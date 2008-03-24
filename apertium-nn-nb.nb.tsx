@@ -10,6 +10,9 @@
     <def-label name="NOMNT">
       <tags-item tags="n.nt.*"/>
     </def-label>
+    <def-label name="NOMMF">
+      <tags-item tags="n.mf.*"/>
+    </def-label>
 
     <def-label name="NUM">
       <tags-item tags="num"/>
@@ -46,6 +49,14 @@
       <tags-item tags="cnjsub"/>
     </def-label>
 
+    <def-label name="CNJCOO">
+      <tags-item tags="cnjcoo"/>
+    </def-label>
+
+    <def-label name="VBSER">
+      <tags-item tags="vbser.*"/>
+    </def-label>
+
     <def-label name="VBLEX">
       <tags-item tags="vblex.*"/>
     </def-label>
@@ -58,8 +69,8 @@
 
   <forbid>
     <label-sequence>
-      <label-item label="CNJSUB"> 
-      <label-item label="CNJSUB">
+      <label-item label="CNJSUB"/> 
+      <label-item label="CNJSUB"/>
     </label-sequence>
   </forbid>
 

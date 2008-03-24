@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- -*- nxml -*- -->
+
 <transfer>
+
   <section-def-cats>
     <def-cat n="navn">
       <cat-item tags="n.*"/>
@@ -58,6 +60,12 @@
       <attr-item tags="prn.enc"/>
       <attr-item tags="prn.enc.ref"/>
     </def-attr>
+    <def-attr n="gen">
+      <attr-item tags="m"/>
+      <attr-item tags="mf"/>
+      <attr-item tags="nt"/>
+      <attr-item tags="f"/>
+    </def-attr>
     <def-attr n="nbr">
       <attr-item tags="sg"/>
       <attr-item tags="pl"/>
@@ -68,11 +76,15 @@
       <attr-item tags="gen"/>
       <attr-item tags="acc"/>
     </def-attr>
-    <def-attr n="defnes">
+    <def-attr n="art">
       <attr-item tags="def"/>
-      <attr-item tags="indef"/>
+      <attr-item tags="ind"/>
     </def-attr>
   </section-def-attrs>
+
+  <section-def-vars>
+    <def-var n="numero"/>
+  </section-def-vars>
 
   <section-def-macros>
 
@@ -106,11 +118,12 @@
       <action>
         <out>
           <lu>
-            <clip pos="2" side="tl" part="lem"/>
-            <clip pos="2" side="tl" part="a_nom"/>
-            <clip pos="2" side="tl" part="gen"/>
-            <clip pos="2" side="tl" part="nbr"/>
-            <clip pos="2" side="tl" part="cas"/>
+            <clip pos="1" side="tl" part="lem"/>
+            <clip pos="1" side="tl" part="a_nom"/>
+            <clip pos="1" side="tl" part="gen"/>
+            <clip pos="1" side="tl" part="nbr"/>
+            <clip pos="1" side="tl" part="art"/>
+            <clip pos="1" side="tl" part="cas"/>
           </lu>
         </out>
       </action>
