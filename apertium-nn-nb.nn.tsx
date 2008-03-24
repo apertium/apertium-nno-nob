@@ -2,16 +2,24 @@
 <tagger name="Norwegian Nynorsk">
   <tagset>
     <def-label name="NOMF">
+      <tags-item tags="n.f"/>   <!-- probably broken -->
       <tags-item tags="n.f.*"/>
     </def-label>
     <def-label name="NOMM">
+      <tags-item tags="n.m"/>   <!-- probably broken -->
       <tags-item tags="n.m.*"/>
     </def-label>
     <def-label name="NOMNT">
+      <tags-item tags="n.nt"/>  <!-- probably broken -->
       <tags-item tags="n.nt.*"/>
     </def-label>
     <def-label name="NOMMF">
+      <tags-item tags="n.mf"/>  <!-- probably broken -->
       <tags-item tags="n.mf.*"/>
+    </def-label>
+
+    <def-label name="PROPN">
+      <tags-item tags="np.*"/>
     </def-label>
 
     <def-label name="NUM">
