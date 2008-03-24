@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- -*- nxml -*- -->
+<transfer>
+  <section-def-cats>
+    <def-cat n="navn">
+      <cat-item tags="n.*"/>
+    </def-cat>
+    <def-cat n="detdem">
+      <cat-item tags="det.dem.*"/>
+    </def-cat>
+    <def-cat n="adj">
+      <cat-item tags="adj.*"/>
+    </def-cat>
+  </section-def-cats>
+
+  <section-def-attrs>
+    <def-attr n="a_nom">
+      <attr-item tags="n"/>
+    </def-attr>
+
+    <def-attr n="a_adj">
+      <attr-item tags="adj"/>
+      <attr-item tags="adj.pst"/>
+      <attr-item tags="adj.comp"/>
+      <attr-item tags="adj.sup"/>
+    </def-attr>
+
+    <def-attr n="persona">
+      <attr-item tags="p1"/>
+      <attr-item tags="p2"/>
+      <attr-item tags="p3"/>
+    </def-attr>
+
+    <def-attr n="a_verb">
+      <attr-item tags="vblex"/>
+      <attr-item tags="vber"/>
+      <attr-item tags="vbhar"/>
+      <attr-item tags="vbmod"/>
+      <attr-item tags="vbaux"/>
+      <attr-item tags="vbs"/>
+    </def-attr>
+
+    <def-attr n="a_inf">
+      <attr-item tags="vblex.prs"/>
+      <attr-item tags="vber.prs"/>
+      <attr-item tags="vbhar.prs"/>
+      <attr-item tags="vbmod.prs"/>
+      <attr-item tags="vbaux.prs"/>
+      <attr-item tags="vbs.prs"/>
+    </def-attr>
+    <def-attr n="temps">
+      <attr-item tags="inf"/>
+      <attr-item tags="prs"/>
+      <attr-item tags="da"/>
+      <attr-item tags="part"/>
+    </def-attr>
+    <def-attr n="a_prn">
+      <attr-item tags="prn.enc"/>
+      <attr-item tags="prn.enc.ref"/>
+    </def-attr>
+    <def-attr n="nbr">
+      <attr-item tags="sg"/>
+      <attr-item tags="pl"/>
+      <attr-item tags="sp"/>
+    </def-attr>
+    <def-attr n="cas">
+      <attr-item tags="nom"/>
+      <attr-item tags="gen"/>
+      <attr-item tags="acc"/>
+    </def-attr>
+    <def-attr n="defnes">
+      <attr-item tags="def"/>
+      <attr-item tags="indef"/>
+    </def-attr>
+  </section-def-attrs>
+
+  <section-def-macros>
+
+    <def-macro n="f_bcond" npar="1">
+      <!--Per mirar si el blanc conté o no format -->
+      <choose>
+        <when>
+          <test>
+            <not>
+              <equal>
+                <b pos="1"/>
+                <lit v=" "/>
+              </equal>
+            </not>
+          </test>
+          <out>
+            <b pos="1"/>
+          </out>
+        </when>
+      </choose>
+    </def-macro>
+
+  </section-def-macros>
+
+  <section-rules>
+
+    <rule>
+      <pattern>
+        <pattern-item n="navn"/>
+      </pattern>
+      <action>
+        <out>
+          <lu>
+            <clip pos="2" side="tl" part="lem"/>
+            <clip pos="2" side="tl" part="a_nom"/>
+            <clip pos="2" side="tl" part="gen"/>
+            <clip pos="2" side="tl" part="nbr"/>
+            <clip pos="2" side="tl" part="cas"/>
+          </lu>
+        </out>
+      </action>
+    </rule>
+
+  </section-rules>
+</transfer>
