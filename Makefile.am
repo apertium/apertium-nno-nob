@@ -94,7 +94,7 @@ apertium_nn_nb_DATA=$(PREFIX1).automorf.bin $(PREFIX2).automorf.bin \
 #                    $(PREFIX1).autopgen.bin 
 #                    $(PREFIX2).autopgen.bin 
 		  
-install-data-lonbl:
+install-data-local:
 	apertium-gen-modes modes.xml apertium-$(PREFIX1)
 	$(INSTALL_DATA) $(PREFIX1).mode $(apertium_nn_modesdir)
 	$(INSTALL_DATA) $(PREFIX2).mode $(apertium_nn_modesdir)
