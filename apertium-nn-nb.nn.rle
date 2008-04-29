@@ -1024,8 +1024,8 @@ LIST setn-gr = "hvorledes" "hvorfor" "hvordan" "hvor" "hva" "$--" "$-" sbu >>> <
 LIST setn-gr-u-komma = "hvorledes" "hvorfor" "hvordan" "hvor" "hva" "$--" "$-" sbu >>> <<< ("$:" clb) ("$\" clb) (clb cnj)  ;
 LIST setn-gr-u-sbu = "hvorledes" "hvorfor" "hvordan" "hvor" "hva" "$--" "$-" >>> <<< ("$:" clb) ("$\" clb) (clb cnj) (clb <komma>)  ;
 LIST setn-gr-u-strek = "hvorledes" "hvorfor" "hvordan" "hvor" "hva" sbu @sbu >>> <<< ("$:" clb) ("$\" clb) (clb cnj) (clb <komma>)  ;
-LIST setn-gr/infmerke = "hvorledes" "hvorfor" "hvordan" "hvor" "hva" "$--" "$-" inf-merke sbu @sbu >>> <<< ("$:" clb) ("$\" clb) (clb cnj) (clb <komma>)  ;
-LIST setn-gr/cnj = "hvorfor" "hvordan" "hvor" "hva" sbu >>> <<< clb cnj  ;
+LIST setn-gr-infmerke = "hvorledes" "hvorfor" "hvordan" "hvor" "hva" "$--" "$-" inf-merke sbu @sbu >>> <<< ("$:" clb) ("$\" clb) (clb cnj) (clb <komma>)  ;
+LIST setn-gr/cnj = ("hvorfor" "hvordan" "hvor" "hva" sbu >>> <<< clb cnj  ) ;
 LIST setn-gr/parentes-beg = "hvorledes" "hvorfor" "hvordan" "hvor" "hva" "$--" "$-" <parentes-beg> sbu @sbu >>> <<< ("$:" clb) ("$\" clb) (clb cnj) (clb <komma>)  ;
 LIST setn-gr/pr = "hvorledes" "hvorfor" "hvordan" "hvor" "hva" "$--" "$-" pr sbu @sbu >>> <<< ("$:" clb) ("$\" clb) (clb cnj) (clb <komma>)  ;
 LIST setn-gr/vblex = "hvorledes" "hvorfor" "hvordan" "hvor" "hva" "$--" "$-" vblex sbu @sbu >>> <<< ("$:" clb) ("$\" clb) (clb cnj) (clb <komma>)  ;
@@ -1033,7 +1033,7 @@ LIST setn-slutt/fin-vblex = <<< clb (vblex pres) (vblex pret)  ;
 LIST setn/infkonstr-gr = "hvorfor" "hvordan" "hvor" "hva" inf-merke sbu >>> <<< ("$-" clb) ("$\" clb) (clb cnj) (clb <komma>) 
 
  ;
-LIST setn/infkonstr-gr/vblex = "hvorfor" "hvordan" "hvor" "hva" inf-merke sbu >>> <<< clb vblex  ;
+LIST setn/infkonstr-gr/vblex = ("hvorfor" "hvordan" "hvor" "hva" inf-merke sbu >>> <<< clb vblex  );
 LIST setningsadv = "øyensynlig" "òg" "visstnok" "visselig" "ventelig" "vanligvis" "unektelig" "uheldigvis" "tydeligvis" "trolig" "tilfeldigvis" "sogar" "sluttelig" "simpelthen" "sannsynligvis" "sannelig" "saktens" "rimeligvis" "riktignok" "også" "ofte" "nødvendigvis" "nesten" "neppe" "nemlig" "naturligvis" "muligvis" "muligens" "lykkeligvis" "liksom" "klokelig" "kanskje" "jo" "jamvel" "jammen" "især" "imidlertid" "ikke" "heldigvis" "gudskjelov" "gledeligvis" "følgelig" "fortrinnsvis" "forresten" "fornuftigvis" "formodentlig" "formelig" "forhåpentligvis" "ellers" "eksempelvis" "dog" "dessverre" "dessuten" "beklageligvis" "bare" "antakelig" "antagelig" "altså" "alltid" "aldri" ("kan" adv) ("hende" adv) ("nok" adv) ("nå" adv) ("så" adv) ("da" adv)  ;
 LIST sier-vblex = "tilføye" "tenke" "svare" "sukke" "spørre" "skrive" "si" "rope" "mumle" "mene" "hyle" "hviske" "fortsette" "fortelle" "anta" "advare"  ;
 LIST sitatvblex = "utbryte" "understreke" "true" "tro" "tilføye" "tenke" "svare" "sukke" "smile" "skrive" "si" "rope" "replisere" "påpeke" "presisere" "presisere" "opplyse" "oppfordre" "mumle" "mene" "love" "le" "konkludere" "hyle" "hviske" "hevde" "glise" "gjenta" "gaule" "fremholde" "framholde" "fortsette" "fortelle" "forklare" "flire" "fastslå" "erkjenne" "bekjenne" "begynne" "be" "avslutte" "anta" "advare"  ;
@@ -1118,7 +1118,7 @@ LIST trans-u11-upresent-upredik = tr1 tr2 tr3 tr4 tr5 tr6 tr7 tr8 tr9 tr10 tr14 
 LIST trans12/til = tr12/til  ;
 LIST trans2 = tr2 tr18  ;
 LIST tullemengde = subst  ;
-LISTind=ind ;
+LIST ind = ind ;
 LIST ub-adj = (adj ind) (adj <pres-part>)  ;
 LIST ub-adj/<adv> = (adj ind) (adj <pres-part>) <adv>  ;
 LIST ub-adj/subst = (adj pos ind) (adj comp) (adj <pres-part>) subst  ;
@@ -1147,10 +1147,10 @@ LIST ub-ent-m-adj/ub-ent-m-subst = (adj mindsg) (adj mfindsg) (adj <pres-part>) 
 LIST ub-ent-m-subst = (subst m sg ind)  ;
 LIST ub-ent-m-subst/tall-subst/maalsubst/tidssubst/gen-subst = "år" "uke" "tusen" "trillion" "tonnkilometer" "time" "tiendelssekund" "tidelssekund" "snes" "sjømil" "sekundmeter" "sekund" "prosent" "nanosekund" "nanometer" "måned" "mrd." "minutt" "millisekund" "million" "millimeter" "milliliter" "milligram" "milliard" "mill." "mil" "mikrometer" "meter" "liter" "kvartmil" "kvartliter" "kvadrillion" "kvadratmillimeter" "kvadratmeter" "kvadratkilometer" "kvadratdesimeter" "kvadratcentimeter" "kubikkmillimeter" "kubikkmeter" "kubikkdesimeter" "kubikkcentimeter" "kilometer" "kilogram" "kilo" "hundredelssekund" "hundre" "hektoliter" "hektogram" "halvår" "halvmillion" "halvmil" "halvmeter" "halvliter" "halvkilo" "gram" "døgn" "dusin" "desimeter" "desiliter" "desigram" "dekaliter" "dag" "centimeter" "centiliter" "centigram" "billion" "billiard" (subst gen) (subst m sg ind) (subst m uboey) ("gang" pl)  ;
 LIST ub-ent-m-subst/tall-subst/maalsubst/tidssubst/prop/gen-subst = "år" "uke" "tusen" "trillion" "tonnkilometer" "time" "tiendelssekund" "tidelssekund" "snes" "sjømil" "sekundmeter" "sekund" "prosent" "nanosekund" "nanometer" "måned" "mrd." "minutt" "millisekund" "million" "millimeter" "milliliter" "milligram" "milliard" "mill." "mil" "mikrometer" "meter" "liter" "kvartmil" "kvartliter" "kvadrillion" "kvadratmillimeter" "kvadratmeter" "kvadratkilometer" "kvadratdesimeter" "kvadratcentimeter" "kubikkmillimeter" "kubikkmeter" "kubikkdesimeter" "kubikkcentimeter" "kilometer" "kilogram" "kilo" "hundredelssekund" "hundre" "hektoliter" "hektogram" "halvår" "halvmillion" "halvmil" "halvmeter" "halvliter" "halvkilo" "gram" "døgn" "dusin" "desimeter" "desiliter" "desigram" "dekaliter" "dag" "centimeter" "centiliter" "centigram" "billion" "billiard" (subst gen) (subst m sg ind) (subst m uboey) ("gang" pl) prop  ;
-LIST ub-ent-mf-adj = (adj mindsg) (adj findsg) (adj mfindsg) (adj <pres-part>)  ;
+LIST ub-ent-mf-adj = (adj m ind sg) (adj f ind sg) (adj mf ind sg) (adj <pres-part>)  ;
 LIST ub-ent-mf-det = ("én" det m sg) ("en" det m sg) ("noen" det m sg) ("ingen" det m sg) ("en" det f sg) ("noen" det f sg) ("ingen" det f sg)  ;
 LIST ub-ent-mf-subst = (subst m sg ind) (subst f sg ub) (subst m sgindgen) (subst f sgindgen)  ;
-LIST ub-ent-mf-adj = (adj mfindsg) (adj <pres-part>)  ;
+#LIST ub-ent-mf-adj = (adj mf ind sg) (adj <pres-part>)  ;
 LIST ub-ent-mf-adj-nr2det/komp-adj/ordenstall = "samme" "eneste" <ordenstall> (adj mfindsg) (adj <pres-part>) ("hver" det qnt m sg) ("neste" det) ("annen" dem mindsg) ("slik" dem m sg) ("sånn" dem m sg) ("sådan" dem m sg) ("egen" forst mindsg) ("eigen" forst mindsg) ("halvannen" qnt m) (adj comp)  ;
 LIST ub-ent-mf-adj/komp-adj = (adj mfindsg) (adj comp) (adj <pres-part>)  ;
 LIST ub-ent-mf-adj/komp-be-sup-adj = (adj mfindsg) (adj comp) (adj sup def) (adj <pres-part>)  ;
@@ -1199,13 +1199,13 @@ SECTION
 
 # 3532
 "<bak>" REMOVE (subst) IF
-	(-1 adj-m/nt OR adj-ind)
+	(-1 adj-m/nt OR adj-ub)
 	(NOT -2 %en/et%);
 
 
 # 3533
 "<bak>" REMOVE (subst) IF
-	(NOT -1 adj-m/nt OR adj-ind);
+	(NOT -1 adj-m/nt OR adj-ub);
 
 
 # 3531
@@ -1331,7 +1331,7 @@ SECTION
 # 3511
 "<det>" SELECT (prn) IF
 	(-1 fv)
-	(1C present-ind)
+	(1C present-ub)
 	(-1C present-vblex);
 
 
@@ -2030,13 +2030,13 @@ SECTION
 
 # 3396
 "<føre>" SELECT (subst nt sg) IF
-	(-1 adj-nt-ind)
+	(-1 adj-nt-ub)
 	(*-1 setn-gr LINK *1 m-hj-vblex LINK *1C inf);
 
 
 # 3397
 "<føre>" SELECT (subst nt sg) IF
-	(-1 adj-nt-ind)
+	(-1 adj-nt-ub)
 	(*-1 setn-gr BARRIER m-hj-vblex);
 
 
@@ -2466,7 +2466,7 @@ SECTION
 
 # 3317
 "<hvis>" SELECT (prn sp) IF
-	(1C subst-ind)
+	(1C subst-ub)
 	(2C subst/prn);
 
 
@@ -2775,10 +2775,10 @@ SECTION
 
 
 # 3268
-"<lite>" REMOVE (vblex inf) IF
-	(*-1 setn-gr BARRIER m-hj-vblex)
-	(*1 setn-gr BARRIER m-hj-vblex)
-	(*-1 setn-gr/infmerke LINK NOT 0 infmerke);
+#"<lite>" REMOVE (vblex inf) IF
+#	(*-1 setn-gr BARRIER m-hj-vblex)
+#	(*1 setn-gr BARRIER m-hj-vblex)
+#	(*-1 setn-gr-infmerke LINK NOT 0 infmerke);
 
 
 # 3266
@@ -4086,7 +4086,7 @@ SECTION
 
 # 3070
 "<så>" SELECT (adv) IF
-	(1 adv/adj-nt-ind)
+	(1 adv/adj-nt-ub)
 	(*2 ikke-pr LINK 0 %som/at%);
 
 
@@ -4230,7 +4230,7 @@ SECTION
 
 # 3035
 "<særlig>" SELECT (nt) IF
-	(NOT 1 subst-mf-ent-ind);
+	(NOT 1 subst-mf-ent-ub);
 
 
 # 3034
@@ -5287,7 +5287,7 @@ SELECT (adj pl) IF
 
 # 2889
 SELECT (adj pl) IF
-	(-1 adj-sup-ind)
+	(-1 adj-sup-ub)
 	(NOT 1 subst/adj)
 	(-2 pl-det);
 
@@ -7159,14 +7159,14 @@ SELECT (clb cnj) IF
 
 
 # 2651
-SELECT (clb cnj) IF
-	(0 clb/cnj-cnj)
-	(-1 komma)
-	(*-1 pres/pret BARRIER setn-gr)
-	(*1 pres/pret BARRIER setn-gr)
-	(*1 pres/pret LINK NOT 0 farlige-vblex LINK NOT 0 perf-part LINK NOT -1 pr/komma)
-	(*1 pres/pret BARRIER setn-gr-u-komma)
-	(*1 pres/pret LINK *-1 komma LINK *-1 komma);
+#SELECT (clb cnj) IF
+#	(0 clb/cnj-cnj)
+#	(-1 komma)
+#	(*-1 pres/pret BARRIER setn-gr)
+#	(*1 pres/pret BARRIER setn-gr)
+#	(*1 pres/pret LINK NOT 0 farlige-vblex LINK NOT 0 perf-part LINK NOT -1 pr/komma)
+#	(*1 pres/pret BARRIER setn-gr-u-komma)
+#	(*1 pres/pret LINK *-1 komma LINK *-1 komma);
 
 
 # 2652
@@ -7604,7 +7604,7 @@ SELECT (clb) IF
 
 # 2622
 SELECT (det pl) IF
-	(1 adj-sup-ind)
+	(1 adj-sup-ub)
 	(2 adj-fl)
 	(NOT 3 subst/adj);
 
@@ -8076,7 +8076,7 @@ SELECT (det nt) IF
 # 2583
 SELECT (det nt) IF
 	(0 be-det)
-	(NOT 1 komma/cnj OR adj-sup-ind)
+	(NOT 1 komma/cnj OR adj-sup-ub)
 	(NOT -1C fv)
 	(*1 ub-ent-nt-subst LINK NOT 0 ikke-subst LINK NOT *-1 ikke-adv-adj)
 	(*1 ub-ent-nt-subst LINK NOT 0 farlige-nt-subst)
@@ -9340,11 +9340,11 @@ SELECT (subst sg) IF
 
 
 # 2419
-SELECT (subst sg) IF
-	(NOT 0 pl)
-	(1C setn-gr/vblex)
-	(*-1 cnj LINK NOT 0 <adv> LINK NOT *1 ikke-adv-adj-det)
-	(*-1 cnj LINK *-1 ikke-poss-det LINK 0 subst LINK NOT 0 ikke-subst LINK NOT 0 pl LINK NOT *1 setn-gr);
+#SELECT (subst sg) IF
+#	(NOT 0 pl)
+#	(1C setn-gr/vblex)
+#	(*-1 cnj LINK NOT 0 <adv> LINK NOT *1 ikke-adv-adj-det)
+#	(*-1 cnj LINK *-1 ikke-poss-det LINK 0 subst LINK NOT 0 ikke-subst LINK NOT 0 pl LINK NOT *1 setn-gr);
 
 
 # 2417
@@ -9390,11 +9390,11 @@ SELECT (subst pl) IF
 
 
 # 2413
-SELECT (subst pl) IF
-	(NOT 0 sg)
-	(1C setn-gr/vblex)
-	(*-1 cnj LINK NOT 0 <adv> LINK NOT *1 ikke-adv-adj-det)
-	(*-1 cnj LINK *-1 ikke-poss-det LINK 0 subst LINK NOT 0 ikke-subst LINK NOT 0 sg LINK NOT *1 setn-gr);
+#SELECT (subst pl) IF
+#	(NOT 0 sg)
+#	(1C setn-gr/vblex)
+#	(*-1 cnj LINK NOT 0 <adv> LINK NOT *1 ikke-adv-adj-det)
+#	(*-1 cnj LINK *-1 ikke-poss-det LINK 0 subst LINK NOT 0 ikke-subst LINK NOT 0 sg LINK NOT *1 setn-gr);
 
 
 # 2414
@@ -9731,10 +9731,10 @@ SELECT (subst) IF
 
 
 # 2364
-SELECT (subst) IF
-	(0 spraak)
-	(-1 %i/paa%)
-	(*1 setn-gr/vblex LINK *-1 subst/adj LINK 0 spraak LINK NOT *-1 subst);
+#SELECT (subst) IF
+#	(0 spraak)
+#	(-1 %i/paa%)
+#	(*1 setn-gr/vblex LINK *-1 subst/adj LINK 0 spraak LINK NOT *-1 subst);
 
 
 # 2365
@@ -9781,7 +9781,7 @@ SELECT (subst) IF
 SELECT (subst) IF
 	(NOT 0 adj)
 	(-1 adj-be)
-	(NOT -1 ikke-adj OR adj-ind)
+	(NOT -1 ikke-adj OR adj-ub)
 	(NOT -2 det)
 	(*-1C setn-gr BARRIER kop);
 
@@ -10076,10 +10076,10 @@ SELECT (vblex pres) IF
 
 
 # 2319
-SELECT (vblex pres) IF
-	(NOT 0 farlige-vblex OR pret)
-	(-1 clb-komma)
-	(*-3 >>> LINK 1 pr-intrans/adv LINK 1 sbu LINK *1C fv LINK NOT *1 setn-gr-u-komma);
+#SELECT (vblex pres) IF
+#	(NOT 0 farlige-vblex OR pret)
+#	(-1 clb-komma)
+#	(*-3 >>> LINK 1 pr-intrans/adv LINK 1 sbu LINK *1C fv LINK NOT *1 setn-gr-u-komma);
 
 
 # 2320
@@ -10701,19 +10701,19 @@ SELECT (vblex perf-part) IF
 
 
 # 2282
-SELECT (vblex perf-part) IF
-	(NOT 0 ikke-adj-vblex OR inf)
-	(*-1 strek/parentes BARRIER pres/pret)
-	(*-1 strek/parentes LINK NOT 0 parentes-beg LINK *-1 strek/parentes LINK NOT 0 parentes-slutt LINK *-1 pres/pret LINK 0 hj-vblex LINK NOT 0 kop LINK NOT *1 kop)
-	(*-1 strek/parentes LINK *-1 strek/parentes LINK *-1 pres/pret LINK NOT *1 setn-gr-u-strek);
+#SELECT (vblex perf-part) IF
+#	(NOT 0 ikke-adj-vblex OR inf)
+#	(*-1 strek/parentes BARRIER pres/pret)
+#	(*-1 strek/parentes LINK NOT 0 parentes-beg LINK *-1 strek/parentes LINK NOT 0 parentes-slutt LINK *-1 pres/pret LINK 0 hj-vblex LINK NOT 0 kop LINK NOT *1 kop)
+#	(*-1 strek/parentes LINK *-1 strek/parentes LINK *-1 pres/pret LINK NOT *1 setn-gr-u-strek);
 
 
 # 2283
-SELECT (vblex perf-part) IF
-	(NOT 0 ikke-adj-vblex)
-	(*-1 strek/parentes BARRIER pres/pret)
-	(*-1 strek/parentes LINK NOT 0 parentes-beg LINK *-1 strek/parentes LINK NOT 0 parentes-slutt LINK *-1 pres/pret LINK 0 p-hj-vblex LINK NOT 0 kop LINK NOT *1 kop)
-	(*-1 strek/parentes LINK *-1 strek/parentes LINK *-1 pres/pret LINK NOT *1 setn-gr-u-strek);
+#SELECT (vblex perf-part) IF
+#	(NOT 0 ikke-adj-vblex)
+#	(*-1 strek/parentes BARRIER pres/pret)
+#	(*-1 strek/parentes LINK NOT 0 parentes-beg LINK *-1 strek/parentes LINK NOT 0 parentes-slutt LINK *-1 pres/pret LINK 0 p-hj-vblex LINK NOT 0 kop LINK NOT *1 kop)
+#	(*-1 strek/parentes LINK *-1 strek/parentes LINK *-1 pres/pret LINK NOT *1 setn-gr-u-strek);
 
 
 # 2204
@@ -10892,10 +10892,10 @@ SELECT (vblex pret) IF
 
 
 # 2224
-SELECT (vblex pret) IF
-	(NOT 0 farlige-vblex)
-	(-1 clb-komma)
-	(*-3 >>> LINK 1 pr-intrans/adv LINK 1 sbu LINK *1C fv LINK NOT *1 setn-gr-u-komma);
+#SELECT (vblex pret) IF
+#	(NOT 0 farlige-vblex)
+#	(-1 clb-komma)
+#	(*-3 >>> LINK 1 pr-intrans/adv LINK 1 sbu LINK *1C fv LINK NOT *1 setn-gr-u-komma);
 
 
 # 2225
@@ -12763,7 +12763,7 @@ REMOVE (det) IF
 # 2006
 REMOVE (det) IF
 	(0 %det/dette%)
-	(1C adj-sup-ind)
+	(1C adj-sup-ub)
 	(NOT 2 adj-be);
 
 
@@ -12777,7 +12777,7 @@ REMOVE (det) IF
 # 2008
 REMOVE (det) IF
 	(0 %det/dette%)
-	(1 adj-ind)
+	(1 adj-ub)
 	(NOT 1 adj-be OR adj-sup)
 	(NOT 1 pret OR ub-ent-nt-adj);
 
@@ -13003,7 +13003,7 @@ REMOVE (prn pers) IF
 	(0 det)
 	(-1 pr)
 	(1C subst/adj)
-	(NOT 1 adj-komp OR adj-sup-ind)
+	(NOT 1 adj-komp OR adj-sup-ub)
 	(*2 ikke-adv-adj-substmgen-prn-cnj-detmdem-pr LINK NOT 0 pres/pret);
 
 
@@ -13012,7 +13012,7 @@ REMOVE (prn pers) IF
 	(0 det)
 	(-1 pr)
 	(1C subst/adj)
-	(NOT 1 adj-komp OR adj-sup-ind)
+	(NOT 1 adj-komp OR adj-sup-ub)
 	(NOT *2 ikke-adv-adj-substmgen-prn-cnj-detmdem-pr BARRIER setn-gr);
 
 
@@ -13553,7 +13553,7 @@ REMOVE (subst def) IF
 
 # 1898
 REMOVE (subst def) IF
-	(-1C adj-ind)
+	(-1C adj-ub)
 	(*-1C pr BARRIER ikke-adv-adj);
 
 
@@ -13987,23 +13987,23 @@ REMOVE (vblex pres) IF
 
 
 # 1823
-REMOVE (vblex pres) IF
-	(NOT 0 pass)
-	(NOT -1 adv OR parentes)
-	(2C setn-gr-u-sbu)
-	(*-1 setn-gr LINK *1C fv LINK NOT 0 trans2)
-	(*-1 setn-gr LINK NOT -1 >>>)
-	(*-1 setn-gr LINK 0 %som% LINK *-1C pres/pret);
+#REMOVE (vblex pres) IF
+#	(NOT 0 pass)
+#	(NOT -1 adv OR parentes)
+#	(2C setn-gr-u-sbu)
+#	(*-1 setn-gr LINK *1C fv LINK NOT 0 trans2)
+#	(*-1 setn-gr LINK NOT -1 >>>)
+#	(*-1 setn-gr LINK 0 %som% LINK *-1C pres/pret);
 
 
 # 1824
-REMOVE (vblex pres) IF
-	(NOT 0 pass)
-	(1C setn-gr-u-sbu)
-	(NOT -1 adv OR parentes)
-	(*-1 setn-gr LINK *1C fv LINK NOT 0 trans2)
-	(*-1 setn-gr LINK NOT -1 >>>)
-	(*-1 setn-gr LINK 0 %som%);
+#REMOVE (vblex pres) IF
+#	(NOT 0 pass)
+#	(1C setn-gr-u-sbu)
+#	(NOT -1 adv OR parentes)
+#	(*-1 setn-gr LINK *1C fv LINK NOT 0 trans2)
+#	(*-1 setn-gr LINK NOT -1 >>>)
+#	(*-1 setn-gr LINK 0 %som%);
 
 
 # 1825
@@ -14430,12 +14430,12 @@ REMOVE (vblex perf-part) IF
 
 
 # 1776
-REMOVE (vblex perf-part) IF
-	(-1 clb/cnj-cnj)
-	(NOT -2 clb-komma OR perf-part)
-	(NOT -3 perf-part)
-	(*-2C setn-gr-u-strek BARRIER p-hj-vblex)
-	(*-2C setn-gr-u-strek BARRIER m-hj-vblex-pret);
+#REMOVE (vblex perf-part) IF
+#	(-1 clb/cnj-cnj)
+#	(NOT -2 clb-komma OR perf-part)
+#	(NOT -3 perf-part)
+#	(*-2C setn-gr-u-strek BARRIER p-hj-vblex)
+#	(*-2C setn-gr-u-strek BARRIER m-hj-vblex-pret);
 
 
 # 1777
@@ -14668,21 +14668,21 @@ REMOVE (vblex pret) IF
 
 
 # 1740
-REMOVE (vblex pret) IF
-	(NOT 0 %var%)
-	(NOT -1 adv OR parentes)
-	(2C setn-gr-u-sbu)
-	(*-1 setn-gr LINK *1C fv LINK NOT 0 trans2)
-	(*-1 setn-gr LINK 0 %som%);
+#REMOVE (vblex pret) IF
+#	(NOT 0 %var%)
+#	(NOT -1 adv OR parentes)
+#	(2C setn-gr-u-sbu)
+#	(*-1 setn-gr LINK *1C fv LINK NOT 0 trans2)
+#	(*-1 setn-gr LINK 0 %som%);
 
 
 # 1741
-REMOVE (vblex pret) IF
-	(NOT 0 %var%)
-	(1C setn-gr-u-sbu)
-	(NOT -1 adv OR parentes)
-	(*-1 setn-gr LINK *1C fv LINK NOT 0 trans2)
-	(*-1 setn-gr LINK 0 %som%);
+#REMOVE (vblex pret) IF
+#	(NOT 0 %var%)
+#	(1C setn-gr-u-sbu)
+#	(NOT -1 adv OR parentes)
+#	(*-1 setn-gr LINK *1C fv LINK NOT 0 trans2)
+#	(*-1 setn-gr LINK 0 %som%);
 
 
 # 1742
@@ -16013,225 +16013,225 @@ REMOVE (adj mf ind) IF
 
 
 # 1586
-REMOVE (adj) IF
-	(0 be-subst)
-	(NOT 0 farlige-adj-subst)
-	(-1 %meste%)
-	(1C clb-komma/cnj)
-	(NOT -3 %for%)
-	(*-1 setn-gr/vblex BARRIER %noe%);
+#REMOVE (adj) IF
+#	(0 be-subst)
+#	(NOT 0 farlige-adj-subst)
+#	(-1 %meste%)
+#	(1C clb-komma/cnj)
+#	(NOT -3 %for%)
+#	(*-1 setn-gr/vblex BARRIER %noe%);
 
 
 # 1587
-REMOVE (adj) IF
-	(0 be-subst)
-	(NOT 0 farlige-adj-subst)
-	(-1 %minste%)
-	(1C clb-komma/cnj)
-	(NOT -3 %i%)
-	(*-1 setn-gr/vblex BARRIER %noe%);
+#REMOVE (adj) IF
+#	(0 be-subst)
+#	(NOT 0 farlige-adj-subst)
+#	(-1 %minste%)
+#	(1C clb-komma/cnj)
+#	(NOT -3 %i%)
+#	(*-1 setn-gr/vblex BARRIER %noe%);
 
 
 # 1588
-REMOVE (adj) IF
-	(0 be-subst)
-	(NOT 0 farlige-adj-subst)
-	(-1 adj-be)
-	(1C clb-komma/cnj)
-	(NOT -1 %meste/minste% OR %mye/lite%)
-	(*-1 setn-gr/vblex BARRIER %noe%);
+#REMOVE (adj) IF
+#	(0 be-subst)
+#	(NOT 0 farlige-adj-subst)
+#	(-1 adj-be)
+#	(1C clb-komma/cnj)
+#	(NOT -1 %meste/minste% OR %mye/lite%)
+#	(*-1 setn-gr/vblex BARRIER %noe%);
 
 
 # 1589
-REMOVE (adj) IF
-	(0 subst)
-	(NOT 0 be-subst OR pl)
-	(-1 %mest/minst%)
-	(1C clb-komma/cnj)
-	(*-1 vblex LINK NOT 0 kop)
-	(*-1 setn-gr/vblex BARRIER %noe%);
+#REMOVE (adj) IF
+#	(0 subst)
+#	(NOT 0 be-subst OR pl)
+#	(-1 %mest/minst%)
+#	(1C clb-komma/cnj)
+#	(*-1 vblex LINK NOT 0 kop)
+#	(*-1 setn-gr/vblex BARRIER %noe%);
 
 
 # 1590
-REMOVE (adj) IF
-	(0 subst)
-	(NOT 0 be-subst OR pl)
-	(-1 %mest/minst%)
-	(1C clb-komma/cnj)
-	(*1 vblex LINK NOT 0 kop LINK NOT *-1 setn-gr)
-	(*-1 setn-gr/vblex BARRIER %noe%);
+#REMOVE (adj) IF
+#	(0 subst)
+#	(NOT 0 be-subst OR pl)
+#	(-1 %mest/minst%)
+#	(1C clb-komma/cnj)
+#	(*1 vblex LINK NOT 0 kop LINK NOT *-1 setn-gr)
+#	(*-1 setn-gr/vblex BARRIER %noe%);
 
 
 # 1591
-REMOVE (adj) IF
-	(0 subst)
-	(NOT 0 be-subst OR pl)
-	(-1 adj-ub-ent/%bare%)
-	(1C clb-komma/cnj)
-	(*-2 pr BARRIER ikke-adv-adj)
-	(*-1 setn-gr/vblex BARRIER %noe%);
+#REMOVE (adj) IF
+#	(0 subst)
+#	(NOT 0 be-subst OR pl)
+#	(-1 adj-ub-ent/%bare%)
+#	(1C clb-komma/cnj)
+#	(*-2 pr BARRIER ikke-adv-adj)
+#	(*-1 setn-gr/vblex BARRIER %noe%);
 
 
 # 1592
-REMOVE (adj) IF
-	(0 subst)
-	(NOT 0 be-subst OR pl)
-	(-1 adj-ub-ent)
-	(1C clb-komma/cnj)
-	(NOT -1 %mye/lite% OR nt-ent-adj)
-	(NOT -1 vblex OR %mest/minst%)
-	(*-1 setn-gr/vblex BARRIER %noe%);
+#REMOVE (adj) IF
+#	(0 subst)
+#	(NOT 0 be-subst OR pl)
+#	(-1 adj-ub-ent)
+#	(1C clb-komma/cnj)
+#	(NOT -1 %mye/lite% OR nt-ent-adj)
+#	(NOT -1 vblex OR %mest/minst%)
+#	(*-1 setn-gr/vblex BARRIER %noe%);
 
 
 # 1593
-REMOVE (adj) IF
-	(0 be-subst)
-	(NOT 0 farlige-adj-subst)
-	(1 komma/cnj)
-	(-1 %meste%)
-	(NOT 2 adj)
-	(NOT -3 %for%)
-	(*-1 setn-gr/vblex BARRIER %noe%);
+#REMOVE (adj) IF
+#	(0 be-subst)
+#	(NOT 0 farlige-adj-subst)
+#	(1 komma/cnj)
+#	(-1 %meste%)
+#	(NOT 2 adj)
+#	(NOT -3 %for%)
+#	(*-1 setn-gr/vblex BARRIER %noe%);
 
 
 # 1594
-REMOVE (adj) IF
-	(0 be-subst)
-	(NOT 0 farlige-adj-subst)
-	(1 komma/cnj)
-	(-1 %minste%)
-	(NOT 2 adj)
-	(NOT -3 %i%)
-	(*-1 setn-gr/vblex BARRIER %noe%);
+#REMOVE (adj) IF
+#	(0 be-subst)
+#	(NOT 0 farlige-adj-subst)
+#	(1 komma/cnj)
+#	(-1 %minste%)
+#	(NOT 2 adj)
+#	(NOT -3 %i%)
+#	(*-1 setn-gr/vblex BARRIER %noe%);
 
 
 # 1595
-REMOVE (adj) IF
-	(0 be-subst)
-	(NOT 0 farlige-adj-subst)
-	(1 komma/cnj)
-	(-1 adj-be)
-	(NOT -1 %meste/minste% OR %mye/lite%)
-	(NOT 2 adj)
-	(*-1 setn-gr/vblex BARRIER %noe%);
+#REMOVE (adj) IF
+#	(0 be-subst)
+#	(NOT 0 farlige-adj-subst)
+#	(1 komma/cnj)
+#	(-1 adj-be)
+#	(NOT -1 %meste/minste% OR %mye/lite%)
+#	(NOT 2 adj)
+#	(*-1 setn-gr/vblex BARRIER %noe%);
 
 
 # 1596
-REMOVE (adj) IF
-	(0 subst)
-	(NOT 0 be-subst OR pl)
-	(1 komma/cnj)
-	(-1 %mest/minst%)
-	(NOT 2 adj)
-	(*-1 vblex LINK NOT 0 kop)
-	(*-1 setn-gr/vblex BARRIER %noe%);
+#REMOVE (adj) IF
+#	(0 subst)
+#	(NOT 0 be-subst OR pl)
+#	(1 komma/cnj)
+#	(-1 %mest/minst%)
+#	(NOT 2 adj)
+#	(*-1 vblex LINK NOT 0 kop)
+#	(*-1 setn-gr/vblex BARRIER %noe%);
 
 
 # 1597
-REMOVE (adj) IF
-	(0 subst)
-	(NOT 0 be-subst OR pl)
-	(1 komma/cnj)
-	(-1 %mest/minst%)
-	(NOT 2 adj)
-	(*1 vblex LINK NOT 0 kop LINK NOT *-1 setn-gr)
-	(*-1 setn-gr/vblex BARRIER %noe%);
+#REMOVE (adj) IF
+#	(0 subst)
+#	(NOT 0 be-subst OR pl)
+#	(1 komma/cnj)
+#	(-1 %mest/minst%)
+#	(NOT 2 adj)
+#	(*1 vblex LINK NOT 0 kop LINK NOT *-1 setn-gr)
+#	(*-1 setn-gr/vblex BARRIER %noe%);
 
 
 # 1598
-REMOVE (adj) IF
-	(0 subst)
-	(NOT 0 be-subst OR pl)
-	(1 komma/cnj)
-	(-1 adj-ub-ent/%bare%)
-	(NOT 2 adj)
-	(*-2 pr BARRIER ikke-adv-adj)
-	(*-1 setn-gr/vblex BARRIER %noe%);
+#REMOVE (adj) IF
+#	(0 subst)
+#	(NOT 0 be-subst OR pl)
+#	(1 komma/cnj)
+#	(-1 adj-ub-ent/%bare%)
+#	(NOT 2 adj)
+#	(*-2 pr BARRIER ikke-adv-adj)
+#	(*-1 setn-gr/vblex BARRIER %noe%);
 
 
 # 1599
-REMOVE (adj) IF
-	(0 subst)
-	(NOT 0 be-subst OR pl)
-	(1 komma/cnj)
-	(-1 adj-ub-ent)
-	(NOT -1 %mye/lite% OR nt-ent-adj)
-	(NOT -1 vblex OR %mest/minst%)
-	(NOT 2 adj)
-	(*-1 setn-gr/vblex BARRIER %noe%);
+#REMOVE (adj) IF
+#	(0 subst)
+#	(NOT 0 be-subst OR pl)
+#	(1 komma/cnj)
+#	(-1 adj-ub-ent)
+#	(NOT -1 %mye/lite% OR nt-ent-adj)
+#	(NOT -1 vblex OR %mest/minst%)
+#	(NOT 2 adj)
+#	(*-1 setn-gr/vblex BARRIER %noe%);
 
 
 # 1600
-REMOVE (adj) IF
-	(0 be-subst)
-	(NOT 0 farlige-adj-subst)
-	(-1 %meste%)
-	(NOT 1 subst/adj OR komma/cnj)
-	(NOT -3 %for%)
-	(*-1 setn-gr/vblex BARRIER %noe%);
+#REMOVE (adj) IF
+#	(0 be-subst)
+#	(NOT 0 farlige-adj-subst)
+#	(-1 %meste%)
+#	(NOT 1 subst/adj OR komma/cnj)
+#	(NOT -3 %for%)
+#	(*-1 setn-gr/vblex BARRIER %noe%);
 
 
 # 1601
-REMOVE (adj) IF
-	(0 be-subst)
-	(NOT 0 farlige-adj-subst)
-	(-1 %minste%)
-	(NOT 1 subst/adj OR komma/cnj)
-	(NOT -3 %i%)
-	(*-1 setn-gr/vblex BARRIER %noe%);
+#REMOVE (adj) IF
+#	(0 be-subst)
+#	(NOT 0 farlige-adj-subst)
+#	(-1 %minste%)
+#	(NOT 1 subst/adj OR komma/cnj)
+#	(NOT -3 %i%)
+#	(*-1 setn-gr/vblex BARRIER %noe%);
 
 
 # 1602
-REMOVE (adj) IF
-	(0 be-subst)
-	(NOT 0 farlige-adj-subst)
-	(-1 adj-be)
-	(NOT 1 subst/adj OR komma/cnj)
-	(NOT -1 %meste/minste% OR %mye/lite%)
-	(*-1 setn-gr/vblex BARRIER %noe%);
+#REMOVE (adj) IF
+#	(0 be-subst)
+#	(NOT 0 farlige-adj-subst)
+#	(-1 adj-be)
+#	(NOT 1 subst/adj OR komma/cnj)
+#	(NOT -1 %meste/minste% OR %mye/lite%)
+#	(*-1 setn-gr/vblex BARRIER %noe%);
 
 
 # 1603
-REMOVE (adj) IF
-	(0 subst)
-	(NOT 0 be-subst OR pl)
-	(-1 %mest/minst%)
-	(NOT 1 subst/adj OR komma/cnj)
-	(*-1 vblex LINK NOT 0 kop)
-	(*-1 setn-gr/vblex BARRIER %noe%)
-
-;
+#REMOVE (adj) IF
+#	(0 subst)
+#	(NOT 0 be-subst OR pl)
+#	(-1 %mest/minst%)
+#	(NOT 1 subst/adj OR komma/cnj)
+#	(*-1 vblex LINK NOT 0 kop)
+#	(*-1 setn-gr/vblex BARRIER %noe%)
+#
+#;
 
 
 # 1604
-REMOVE (adj) IF
-	(0 subst)
-	(NOT 0 be-subst OR pl)
-	(-1 %mest/minst%)
-	(NOT 1 subst/adj OR komma/cnj)
-	(*1 vblex LINK NOT 0 kop LINK NOT *-1 setn-gr)
-	(*-1 setn-gr/vblex BARRIER %noe%);
+#REMOVE (adj) IF
+#	(0 subst)
+#	(NOT 0 be-subst OR pl)
+#	(-1 %mest/minst%)
+#	(NOT 1 subst/adj OR komma/cnj)
+#	(*1 vblex LINK NOT 0 kop LINK NOT *-1 setn-gr)
+#	(*-1 setn-gr/vblex BARRIER %noe%);
 
 
 # 1605
-REMOVE (adj) IF
-	(0 subst)
-	(NOT 0 be-subst OR pl)
-	(-1 adj-ub-ent/%bare%)
-	(NOT 1 subst/adj OR komma/cnj)
-	(*-2 pr BARRIER ikke-adv-adj)
-	(*-1 setn-gr/vblex BARRIER %noe%);
+#REMOVE (adj) IF
+#	(0 subst)
+#	(NOT 0 be-subst OR pl)
+#	(-1 adj-ub-ent/%bare%)
+#	(NOT 1 subst/adj OR komma/cnj)
+#	(*-2 pr BARRIER ikke-adv-adj)
+#	(*-1 setn-gr/vblex BARRIER %noe%);
 
 
 # 1606
-REMOVE (adj) IF
-	(0 subst)
-	(NOT 0 be-subst OR pl)
-	(-1 adj-ub-ent)
-	(NOT 1 subst/adj OR komma/cnj)
-	(NOT -1 %mye/lite% OR nt-ent-adj)
-	(NOT -1 vblex OR %mest/minst%)
-	(*-1 setn-gr/vblex BARRIER %noe%);
+#REMOVE (adj) IF
+#	(0 subst)
+#	(NOT 0 be-subst OR pl)
+#	(-1 adj-ub-ent)
+#	(NOT 1 subst/adj OR komma/cnj)
+#	(NOT -1 %mye/lite% OR nt-ent-adj)
+#	(NOT -1 vblex OR %mest/minst%)
+#	(*-1 setn-gr/vblex BARRIER %noe%);
 
 
 # 1582
