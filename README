@@ -1,0 +1,37 @@
+
+                            apertium-nn-nb
+===============================================================================
+
+This language pair is for translating between Norwegian Nynorsk and Norwegian 
+Bokmål.
+
+Requirements
+===============================================================================
+
+* lttoolbox (>= 3.1.0)
+* apertium (>= 3.1.0)
+* vislcg3 (>= 0.9.6)
+
+Compiling
+===============================================================================
+
+Given the requirements being installed, you should be able to just run:
+
+$ ./autogen.sh
+$ make
+$ make install
+
+Testing
+===============================================================================
+
+$  echo "Eg vil gå ein tur" | apertium -d . nn-nb
+Jeg vil gå en tur
+
+$ echo "Jeg vil gå en tur" | apertium -d . nb-nn
+Eg vil gå ein tur
+
+See also
+===============================================================================
+
+* http://wiki.apertium.org/wiki/Installation
+* http://wiki.apertium.org/wiki/Norwegian
