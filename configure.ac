@@ -51,9 +51,6 @@ then
 fi
 
 
-
-APERTIUM_VER=30
-
 AC_SUBST(APERTIUM_VER)
 
 AC_OUTPUT([Makefile])
