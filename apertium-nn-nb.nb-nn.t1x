@@ -7,6 +7,9 @@
     <def-cat n="navn">
       <cat-item tags="n.*"/>
     </def-cat>
+    <def-cat n="detind">
+      <cat-item tags="det.ind.*"/>
+    </def-cat>
     <def-cat n="detdem">
       <cat-item tags="det.dem.*"/>
     </def-cat>
@@ -55,6 +58,11 @@
       <attr-item tags="prs"/>
       <attr-item tags="da"/>
       <attr-item tags="part"/>
+    </def-attr>
+    <def-attr n="a_det">
+      <attr-item tags="det.def"/>
+      <attr-item tags="det.ind"/>
+      <attr-item tags="det.dem"/>
     </def-attr>
     <def-attr n="a_prn">
       <attr-item tags="prn.enc"/>
@@ -128,6 +136,34 @@
         </out>
       </action>
     </rule>
+
+    <rule>
+      <pattern>
+        <pattern-item n="detind"/>
+        <pattern-item n="navn"/>
+      </pattern>
+      <action>
+        <out>
+          <lu>
+            <clip pos="1" side="tl" part="lem"/>
+            <clip pos="1" side="tl" part="a_det"/>
+            <clip pos="2" side="tl" part="gen"/>
+            <clip pos="2" side="tl" part="nbr"/>
+          </lu>
+          <b pos="1"/>
+          <lu>
+            <clip pos="2" side="tl" part="lemh"/>
+            <clip pos="2" side="tl" part="a_nom"/>
+            <clip pos="2" side="tl" part="gen"/>
+            <clip pos="2" side="tl" part="nbr"/>
+            <clip pos="2" side="tl" part="art"/>
+            <clip pos="2" side="tl" part="cas"/>
+            <clip pos="2" side="tl" part="lemq"/>
+          </lu>
+        </out>
+      </action>
+    </rule>
+
 
   </section-rules>
 </transfer>
