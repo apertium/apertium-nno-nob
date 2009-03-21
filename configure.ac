@@ -10,7 +10,7 @@ AC_INIT([apertium-nn-nb], [0.1.0], [ftyers@prompsit.com])
 AM_INIT_AUTOMAKE([apertium-nn-nb], [0.1.0], no-define)
 AC_PROG_LN_S
 AC_PROG_AWK
-AC_CONFIG_HEADER([config])
+# AC_CONFIG_HEADER([config])
 
 AC_DEFUN([PKG_CHECK_APERTIUM], [
   APERTIUM_VER=0
