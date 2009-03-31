@@ -83,9 +83,11 @@ apertium_nn_modesdir=$(prefix)/share/apertium/modes/
 
 $(PREFIX1).mode: modes.xml 
 	apertium-gen-modes modes.xml
+	cp *.mode modes/
 
 $(PREFIX2).mode: modes.xml 
 	apertium-gen-modes modes.xml
+	cp *.mode modes/
 
 apertium_nn_nb_DATA=$(PREFIX1).automorf.bin $(PREFIX2).automorf.bin \
                     $(PREFIX1).autobil.bin $(PREFIX2).autobil.bin \
