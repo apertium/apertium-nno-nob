@@ -1,8 +1,9 @@
 #!/bin/bash
 
-SRCLIST=`mktemp`;
-TRGLIST=`mktemp`;
-TSTLIST=`mktemp`;
+# Mac mktemp has no default template, this works on both
+SRCLIST=`mktemp -t tmp.XXXXXXXXXX`;
+TRGLIST=`mktemp -t tmp.XXXXXXXXXX`;
+TSTLIST=`mktemp -t tmp.XXXXXXXXXX`;
 
 basedir=`pwd`;
 mode=nb-nn
@@ -10,15 +11,23 @@ mode=nb-nn
 wget -O - -q http://wiki.apertium.org/wiki/Norwegian_Nynorsk_and_Norwegian_Bokmål/Regression_tests | grep '<li>' | sed 's/<.*li>//g' | sed 's/ /_/g' | cut -f2 -d')' | sed 's/<i>//g' | sed 's/<\/i>//g' | cut -f2 -d'*' | sed 's/→/!/g' | cut -f1 -d'!' | sed 's/(note:/!/g' | sed 's/_/ /g' | sed 's/$/./g' > $SRCLIST;
 wget -O - -q http://wiki.apertium.org/wiki/Norwegian_Nynorsk_and_Norwegian_Bokmål/Regression_tests | grep '<li>' | sed 's/<.*li>//g' | sed 's/ /_/g' | sed 's/(\w\w)//g' | sed 's/<i>//g' | cut -f2 -d'*' | sed 's/<\/i>_→/!/g' | cut -f2 -d'!' | sed 's/_/ /g' | sed 's/^ *//g' | sed 's/ *$//g' | sed 's/$/./g' > $TRGLIST;
 
+echo " Jeg leser dette ." | apertium -d . $mode
+cat $SRCLIST > foo;
+cat $TRGLIST > bar;
+#echo "  Jeg leser dette ." > $SRCLIST;
+#echo "Eg les dette." > $TRGLIST;
+apertium -d . $mode < $SRCLIST;
 apertium -d . $mode < $SRCLIST > $TSTLIST;
 
 cat $SRCLIST | sed 's/\.$//g' > $SRCLIST.n; mv $SRCLIST.n $SRCLIST;
 cat $TRGLIST | sed 's/\.$//g' > $TRGLIST.n; mv $TRGLIST.n $TRGLIST;
-cat $TSTLIST | sed 's/\.$//g' | sed 's/\t/ /g' > $TSTLIST.n; mv $TSTLIST.n $TSTLIST;
+# 2nd sed removes tab characters, Mac sed doesn't recognize \t
+cat $TSTLIST | sed 's/\.$//g' | sed 's/	/ /g' > $TSTLIST.n; mv $TSTLIST.n $TSTLIST;
 
 TOTAL=0
 CORRECT=0
-for LINE in `paste $SRCLIST $TRGLIST $TSTLIST | sed 's/ /%_%/g' | sed 's/\t/!/g'`; do
+# sed with tab again
+for LINE in `paste $SRCLIST $TRGLIST $TSTLIST | sed 's/ /%_%/g' | sed 's/	/!/g'`; do
 #	echo $LINE;
 
 	SRC=`echo $LINE | sed 's/%_%/ /g' | cut -f1 -d'!' | sed 's/^ *//g' | sed 's/ *$//g' | sed 's/  / /g'`;

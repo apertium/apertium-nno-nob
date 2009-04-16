@@ -1,8 +1,9 @@
 #!/bin/bash
 
-SRCLIST=`mktemp`;
-TRGLIST=`mktemp`;
-TSTLIST=`mktemp`;
+# Mac mktemp has no default template, this works on both
+SRCLIST=`mktemp -t tmp.XXXXXXXXXX`;
+TRGLIST=`mktemp -t tmp.XXXXXXXXXX`;
+TSTLIST=`mktemp -t tmp.XXXXXXXXXX`;
 
 basedir=`pwd`;
 mode=nb-nn
@@ -14,11 +15,13 @@ apertium -d . $mode < $SRCLIST > $TSTLIST;
 
 cat $SRCLIST | sed 's/\.$//g' > $SRCLIST.n; mv $SRCLIST.n $SRCLIST;
 cat $TRGLIST | sed 's/\.$//g' > $TRGLIST.n; mv $TRGLIST.n $TRGLIST;
-cat $TSTLIST | sed 's/\.$//g' | sed 's/\t/ /g' > $TSTLIST.n; mv $TSTLIST.n $TSTLIST;
+# 2nd sed removes tab characters, Mac sed doesn't recognize \t
+cat $TSTLIST | sed 's/\.$//g' | sed 's/	/ /g' > $TSTLIST.n; mv $TSTLIST.n $TSTLIST;
 
 TOTAL=0
 CORRECT=0
-for LINE in `paste $SRCLIST $TRGLIST $TSTLIST | sed 's/ /%_%/g' | sed 's/\t/!/g'`; do
+# sed with tab again
+for LINE in `paste $SRCLIST $TRGLIST $TSTLIST | sed 's/ /%_%/g' | sed 's/	/!/g'`; do
 #	echo $LINE;
 
 	SRC=`echo $LINE | sed 's/%_%/ /g' | cut -f1 -d'!' | sed 's/^ *//g' | sed 's/ *$//g' | sed 's/  / /g'`;
