@@ -4,20 +4,29 @@
 <transfer>
 
   <section-def-cats>
-    <def-cat n="navn">
+    <def-cat n="nom">
       <cat-item tags="n.*"/>
+      <cat-item tags="np.*"/>
     </def-cat>
-    <def-cat n="detind">
+    <!-- "navn" (name) was "n.*", np is proper noun though.. -->
+    <def-cat n="navn">					       
+      <cat-item tags="np.*"/>
+    </def-cat>
+    <def-cat n="detind">			   <!-- en, ei, et -->
       <cat-item tags="det.ind.*"/>
     </def-cat>
-    <def-cat n="detdem">
+    <def-cat n="detdem">	<!-- dette, den, annen, sådan, ... -->
       <cat-item tags="det.dem.*"/>
+    </def-cat>
+    <def-cat n="detpos">	<!-- min sin -->
+      <cat-item tags="det.pos.*"/>
     </def-cat>
     <def-cat n="adj">
       <cat-item tags="adj.*"/>
     </def-cat>
   </section-def-cats>
 
+  
   <section-def-attrs>
     <def-attr n="a_nom">
       <attr-item tags="n"/>
@@ -63,6 +72,7 @@
       <attr-item tags="det.def"/>
       <attr-item tags="det.ind"/>
       <attr-item tags="det.dem"/>
+      <attr-item tags="det.pos"/>
     </def-attr>
     <def-attr n="a_prn">
       <attr-item tags="prn.enc"/>
@@ -97,7 +107,7 @@
   <section-def-macros>
 
     <def-macro n="f_bcond" npar="1">
-      <!--Per mirar si el blanc conté o no format -->
+      <!--Per mirar si el blanc conté o no format awhatnow? -->
       <choose>
         <when>
           <test>
@@ -118,51 +128,65 @@
   </section-def-macros>
 
   <section-rules>
-
+    <!--  just trying to do min mor -> mora mi to learn transfer rules. KBU -->
     <rule>
       <pattern>
-        <pattern-item n="navn"/>
+	<pattern-item n="detpos"/>	     <!--min <det><pos><mf><sg> -->
+	<pattern-item n="nom"/>		     <!--mor <n>  <f>  <sg><ind>-->
+	<!-- todo: make sure the nom is ind(efinite) -->
+	<!-- Min Per -> Peren min? nah.. TODO: only "n.*" -->
       </pattern>
       <action>
         <out>
           <lu>
-            <clip pos="1" side="tl" part="lem"/>
-            <clip pos="1" side="tl" part="a_nom"/>
-            <clip pos="1" side="tl" part="gen"/>
-            <clip pos="1" side="tl" part="nbr"/>
-            <clip pos="1" side="tl" part="art"/>
-            <clip pos="1" side="tl" part="cas"/>
+            <clip pos="2" side="tl" part="lem"/>
+            <clip pos="2" side="tl" part="a_nom"/>
+            <clip pos="2" side="tl" part="gen"/>
+            <clip pos="2" side="tl" part="nbr"/>
+	    <lit-tag v="def"/>
+          </lu>
+          <b/>
+          <lu>
+	    <clip pos="1" side="tl" part="lem"/>
+            <clip pos="1" side="tl" part="a_det"/>
+	    <!-- TODO: gen=mf should depend on noun gender on the
+	         nynorsk side since bokmål min is mf while nynorsk is
+	         m -->
+	    <clip pos="2" side="tl" part="gen"/>  
+            <clip pos="2" side="tl" part="nbr"/>
           </lu>
         </out>
       </action>
     </rule>
 
     <rule>
-      <pattern>
+      <pattern>						       
         <pattern-item n="detind"/>
-        <pattern-item n="navn"/>
+        <pattern-item n="nom"/>
       </pattern>
       <action>
         <out>
           <lu>
             <clip pos="1" side="tl" part="lem"/>
             <clip pos="1" side="tl" part="a_det"/>
-            <clip pos="2" side="tl" part="gen"/>
+	    <clip pos="2" side="tl" part="gen"/> <!-- "en<mf> kvinne<f>" -->
+	    <!-- But: how do we get if nbr==pl then mf? macro? -->
             <clip pos="2" side="tl" part="nbr"/>
           </lu>
           <b pos="1"/>
           <lu>
-            <clip pos="2" side="tl" part="lemh"/>
+	    <clip pos="2" side="tl" part="lem"/>	       <!-- was lemh, why? -->
             <clip pos="2" side="tl" part="a_nom"/>
             <clip pos="2" side="tl" part="gen"/>
             <clip pos="2" side="tl" part="nbr"/>
             <clip pos="2" side="tl" part="art"/>
-            <clip pos="2" side="tl" part="cas"/>
-            <clip pos="2" side="tl" part="lemq"/>
+	    <clip pos="2" side="tl" part="cas"/>	       <!-- todo: remove? -->
+            <!-- <clip pos="2" side="tl" part="lemq"/> ??? -->
           </lu>
         </out>
       </action>
     </rule>
+
 
 
   </section-rules>
