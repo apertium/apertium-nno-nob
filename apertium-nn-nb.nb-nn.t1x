@@ -131,7 +131,7 @@
     <!--  just trying to do min mor -> mora mi to learn transfer rules. KBU -->
     <rule>
       <pattern>
-	<pattern-item n="detpos"/>	     <!--min <det><pos><mf><sg> -->
+	<pattern-item n="detpos"/>	     <!--min <det><pos><m/f><sg> -->
 	<pattern-item n="nom"/>		     <!--mor <n>  <f>  <sg><ind>-->
 	<!-- todo: make sure the nom is ind(efinite) -->
 	<!-- Min Per -> Peren min? nah.. TODO: only "n.*" -->
@@ -139,11 +139,12 @@
       <action>
         <out>
           <lu>
-            <clip pos="2" side="tl" part="lem"/>
+            <clip pos="2" side="tl" part="lemh"/>
             <clip pos="2" side="tl" part="a_nom"/>
             <clip pos="2" side="tl" part="gen"/>
             <clip pos="2" side="tl" part="nbr"/>
 	    <lit-tag v="def"/>
+	    <clip pos="2" side="tl" part="lemq"/>
           </lu>
           <b/>
           <lu>
@@ -169,19 +170,19 @@
           <lu>
             <clip pos="1" side="tl" part="lem"/>
             <clip pos="1" side="tl" part="a_det"/>
-	    <clip pos="2" side="tl" part="gen"/> <!-- "en<mf> kvinne<f>" -->
+	    <clip pos="2" side="tl" part="gen"/> <!-- "en<m><f> kvinne<f>" -->
 	    <!-- But: how do we get if nbr==pl then mf? macro? -->
             <clip pos="2" side="tl" part="nbr"/>
           </lu>
           <b pos="1"/>
           <lu>
-	    <clip pos="2" side="tl" part="lem"/>	       <!-- was lemh, why? -->
+	    <clip pos="2" side="tl" part="lemh"/>
             <clip pos="2" side="tl" part="a_nom"/>
             <clip pos="2" side="tl" part="gen"/>
             <clip pos="2" side="tl" part="nbr"/>
             <clip pos="2" side="tl" part="art"/>
 	    <clip pos="2" side="tl" part="cas"/>	       <!-- todo: remove? -->
-            <!-- <clip pos="2" side="tl" part="lemq"/> ??? -->
+	    <clip pos="2" side="tl" part="lemq"/>
           </lu>
         </out>
       </action>
