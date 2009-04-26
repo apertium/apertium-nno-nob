@@ -62,6 +62,7 @@
     <sdef n="num"     c="Numeral"/>
     <sdef n="sent"    c="Sentence end" />
     <sdef n="cm"      c="Comma" />
+    <sdef n="apos"    c="Apostrophe" />
     <sdef n="lpar"    c="Left parenthesis" />
     <sdef n="rpar"    c="Right parenthesis" />
   </sdefs>
@@ -98,6 +99,22 @@
         <r><s n="cm"/></r>
       </p>
     </e>
+    </pardef>
+
+    <pardef n="aposchar">
+      <e>
+	<i>'</i>
+      </e>
+    </pardef>
+
+    <pardef n="cometa">
+      <e>
+	<par n="aposchar"/>
+	<p>
+	  <l/>
+	  <r><s n="apos"/></r>
+	</p>
+      </e>
     </pardef>
 
     <pardef n="paresq">
@@ -563,7 +580,7 @@
       </e>
       <e>
         <p>
-	  <l>n</l>					       <!-- not mf? -->
+	  <l>n</l>				<!-- todo: not mf? -->
           <r>n<s n="det"/><s n="dem"/><s n="m"/><s n="sg"/></r>
         </p>
       </e>
@@ -670,7 +687,7 @@
           <l/>
           <r><s n="np"/></r>
         </p>
-	<par n="S__case"/>
+	<par n="S__case"/> <!-- todo: separate out those which need '__case -->
       </e>
     </pardef>
 
@@ -1083,6 +1100,66 @@
     <!-- /single letters -->
 
     <!-- Common nouns -->
+    <pardef n="feil__n">
+      <e>
+        <p>
+          <l>ene</l>
+          <r><s n="n"/><s n="m"/><s n="pl"/><s n="def"/></r>
+        </p>
+        <par n="S__case"/>
+      </e>
+      <e>
+        <p>
+          <l>en</l>
+          <r><s n="n"/><s n="m"/><s n="sg"/><s n="def"/></r>
+        </p>
+        <par n="S__case"/>
+      </e>
+      <e>
+        <p>
+          <l/>
+          <r><s n="n"/><s n="m"/><s n="sg"/><s n="ind"/></r>
+        </p>
+	<par n="S__case"/>
+      </e>
+      <e>
+        <p>
+          <l/>
+          <r><s n="n"/><s n="m"/><s n="pl"/><s n="ind"/></r>
+        </p>
+	<par n="S__case"/>
+      </e>
+    </pardef>
+    <pardef n="lux__n">
+      <e>
+        <p>
+          <l>ene</l>
+          <r><s n="n"/><s n="m"/><s n="pl"/><s n="def"/></r>
+        </p>
+        <par n="S__case"/>
+      </e>
+      <e>
+        <p>
+          <l>en</l>
+          <r><s n="n"/><s n="m"/><s n="sg"/><s n="def"/></r>
+        </p>
+        <par n="S__case"/>
+      </e>
+      <e>
+        <p>
+          <l/>
+          <r><s n="n"/><s n="m"/><s n="sg"/><s n="ind"/></r>
+        </p>
+	<par n="'__case"/>
+      </e>
+      <e>
+        <p>
+          <l/>
+          <r><s n="n"/><s n="m"/><s n="pl"/><s n="ind"/></r>
+        </p>
+	<par n="'__case"/>
+      </e>
+    </pardef>
     <pardef n="søsk/en__n">
       <e>
         <p>
@@ -1116,64 +1193,6 @@
         <p>
           <l>nene</l>
           <r>en<s n="n"/><s n="nt"/><s n="pl"/><s n="def"/></r>
-        </p>
-	<par n="S__case"/>
-      </e>
-    </pardef>
-    <pardef n="r/ong__n">
-      <e>
-        <p>
-          <l>engene</l>
-          <r>ong<s n="n"/><s n="f"/><s n="pl"/><s n="def"/></r>
-        </p>
-        <par n="S__case"/>
-      </e>
-      <e>
-        <p>
-          <l>engene</l>
-          <r>ong<s n="n"/><s n="m"/><s n="pl"/><s n="def"/></r>
-        </p>
-        <par n="S__case"/>
-      </e>
-      <e>
-        <p>
-          <l>enger</l>
-          <r>ong<s n="n"/><s n="f"/><s n="pl"/><s n="ind"/></r>
-        </p>
-        <par n="S__case"/>
-      </e>
-      <e>
-        <p>
-          <l>enger</l>
-          <r>ong<s n="n"/><s n="m"/><s n="pl"/><s n="ind"/></r>
-        </p>
-        <par n="S__case"/>
-      </e>
-      <e>
-        <p>
-          <l>onga</l>
-          <r>ong<s n="n"/><s n="f"/><s n="sg"/><s n="def"/></r>
-        </p>
-        <par n="S__case"/>
-      </e>
-      <e>
-        <p>
-          <l>ongen</l>
-          <r>ong<s n="n"/><s n="m"/><s n="sg"/><s n="def"/></r>
-        </p>
-        <par n="S__case"/>
-      </e>
-      <e>
-        <p>
-          <l>ong</l>
-          <r>ong<s n="n"/><s n="f"/><s n="sg"/><s n="ind"/></r>
-        </p>
-        <par n="S__case"/>
-      </e>
-      <e>
-        <p>
-          <l>ong</l>
-          <r>ong<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/></r>
         </p>
 	<par n="S__case"/>
       </e>
@@ -1243,157 +1262,59 @@
 	<par n="S__case"/>
       </e>
     </pardef>
-    <pardef n="r/ot__n">
-      <e>
-        <p>
-          <l>ota</l>
-          <r>ot<s n="n"/><s n="f"/><s n="sg"/><s n="def"/></r>
-        </p>
-        <par n="S__case"/>
-      </e>
-      <e>
-        <p>
-          <l>ota</l>
-          <r>ot<s n="n"/><s n="nt"/><s n="pl"/><s n="def"/></r>
-        </p>
-        <par n="S__case"/>
-      </e>
-      <e>
-        <p>
-          <l>otene</l>
-          <r>ot<s n="n"/><s n="nt"/><s n="pl"/><s n="def"/></r>
-        </p>
-        <par n="S__case"/>
-      </e>
-      <e>
-        <p>
-          <l>oten</l>
-          <r>ot<s n="n"/><s n="m"/><s n="sg"/><s n="def"/></r>
-        </p>
-        <par n="S__case"/>
-      </e>
-      <e>
-        <p>
-          <l>otet</l>
-          <r>ot<s n="n"/><s n="nt"/><s n="sg"/><s n="def"/></r>
-        </p>
-        <par n="S__case"/>
-      </e>
-      <e>
-        <p>
-          <l>ot</l>
-          <r>ot<s n="n"/><s n="f"/><s n="sg"/><s n="ind"/></r>
-        </p>
-        <par n="S__case"/>
-      </e>
-      <e>
-        <p>
-          <l>ot</l>
-          <r>ot<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/></r>
-        </p>
-        <par n="S__case"/>
-      </e>
-      <e>
-        <p>
-          <l>ot</l>
-          <r>ot<s n="n"/><s n="nt"/><s n="sg"/><s n="ind"/></r>
-        </p>
-        <par n="S__case"/>
-      </e>
-      <e>
-        <p>
-          <l>ot</l>
-          <r>ot<s n="n"/><s n="nt"/><s n="pl"/><s n="ind"/></r>
-        </p>
-        <par n="S__case"/>
-      </e>
-      <e>
-        <p>
-          <l>øttene</l>
-          <r>ot<s n="n"/><s n="f"/><s n="pl"/><s n="def"/></r>
-        </p>
-        <par n="S__case"/>
-      </e>
-      <e>
-        <p>
-          <l>øttene</l>
-          <r>ot<s n="n"/><s n="m"/><s n="pl"/><s n="def"/></r>
-        </p>
-        <par n="S__case"/>
-      </e>
-      <e>
-        <p>
-          <l>øtter</l>
-          <r>ot<s n="n"/><s n="f"/><s n="pl"/><s n="ind"/></r>
-        </p>
-        <par n="S__case"/>
-      </e>
-      <e>
-        <p>
-          <l>øtter</l>
-          <r>ot<s n="n"/><s n="m"/><s n="pl"/><s n="ind"/></r>
-        </p>
-	<par n="S__case"/>
-      </e>
-    </pardef>
-    <pardef n="lus__n">
-      <e>
-        <p>
-          <l>a</l>
-          <r><s n="n"/><s n="f"/><s n="sg"/><s n="def"/></r>
-        </p>
-        <par n="S__case"/>
-      </e>
+    <pardef n="papyr/us__n">
       <e>
         <p>
           <l>ene</l>
-          <r><s n="n"/><s n="f"/><s n="pl"/><s n="def"/></r>
-        </p>
-        <par n="S__case"/>
-      </e>
-      <e>
-        <p>
-          <l>ene</l>
-          <r><s n="n"/><s n="m"/><s n="pl"/><s n="def"/></r>
+          <r>us<s n="n"/><s n="m"/><s n="pl"/><s n="def"/></r>
         </p>
         <par n="S__case"/>
       </e>
       <e>
         <p>
           <l>en</l>
-          <r><s n="n"/><s n="m"/><s n="sg"/><s n="def"/></r>
+          <r>us<s n="n"/><s n="m"/><s n="sg"/><s n="def"/></r>
         </p>
         <par n="S__case"/>
       </e>
       <e>
         <p>
-          <l/>
-          <r><s n="n"/><s n="f"/><s n="sg"/><s n="ind"/></r>
+          <l>er</l>
+          <r>us<s n="n"/><s n="m"/><s n="pl"/><s n="ind"/></r>
         </p>
-        <par n="'__case"/>
+        <par n="S__case"/>
       </e>
       <e>
         <p>
-          <l/>
-          <r><s n="n"/><s n="f"/><s n="pl"/><s n="ind"/></r>
+          <l>usene</l>
+          <r>us<s n="n"/><s n="m"/><s n="pl"/><s n="def"/></r>
         </p>
-        <par n="'__case"/>
+        <par n="S__case"/>
       </e>
       <e>
         <p>
-          <l/>
-          <r><s n="n"/><s n="m"/><s n="sg"/><s n="ind"/></r>
+          <l>usen</l>
+          <r>us<s n="n"/><s n="m"/><s n="sg"/><s n="def"/></r>
         </p>
-        <par n="'__case"/>
+        <par n="S__case"/>
       </e>
       <e>
         <p>
-          <l/>
-          <r><s n="n"/><s n="m"/><s n="pl"/><s n="ind"/></r>
+          <l>user</l>
+          <r>us<s n="n"/><s n="m"/><s n="pl"/><s n="ind"/></r>
+        </p>
+        <par n="S__case"/>
+      </e>
+      <e>
+        <p>
+          <l>us</l>
+          <r>us<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/></r>
         </p>
 	<par n="'__case"/>
       </e>
     </pardef>
+    <!-- XXX manually checked common noun paradigms down to this, KBU
+         090426, move the mark if you continue the work. -->
     <pardef n="f/ader__n">
       <e>
         <p>
@@ -1443,36 +1364,6 @@
           <r>ader<s n="n"/><s n="m"/><s n="pl"/><s n="ind"/></r>
         </p>
 	<par n="S__case"/>
-      </e>
-    </pardef>
-    <pardef n="lux__n">
-      <e>
-        <p>
-          <l>ene</l>
-          <r><s n="n"/><s n="m"/><s n="pl"/><s n="def"/></r>
-        </p>
-        <par n="S__case"/>
-      </e>
-      <e>
-        <p>
-          <l>en</l>
-          <r><s n="n"/><s n="m"/><s n="sg"/><s n="def"/></r>
-        </p>
-        <par n="S__case"/>
-      </e>
-      <e>
-        <p>
-          <l/>
-          <r><s n="n"/><s n="m"/><s n="sg"/><s n="ind"/></r>
-        </p>
-	<par n="'__case"/>
-      </e>
-      <e>
-        <p>
-          <l/>
-          <r><s n="n"/><s n="m"/><s n="pl"/><s n="ind"/></r>
-        </p>
-	<par n="'__case"/>
       </e>
     </pardef>
     <pardef n="krim__n">
@@ -3011,50 +2902,6 @@
         <par n="S__case"/>
       </e>
     </pardef>
-    <pardef n="rit/us__n">
-      <e>
-        <p>
-          <l>ene</l>
-          <r>us<s n="n"/><s n="m"/><s n="pl"/><s n="def"/></r>
-        </p>
-        <par n="S__case"/>
-      </e>
-      <e>
-        <p>
-          <l>er</l>
-          <r>us<s n="n"/><s n="m"/><s n="pl"/><s n="ind"/></r>
-        </p>
-        <par n="S__case"/>
-      </e>
-      <e>
-        <p>
-          <l>usene</l>
-          <r>us<s n="n"/><s n="m"/><s n="pl"/><s n="def"/></r>
-        </p>
-        <par n="S__case"/>
-      </e>
-      <e>
-        <p>
-          <l>usen</l>
-          <r>us<s n="n"/><s n="m"/><s n="sg"/><s n="def"/></r>
-        </p>
-        <par n="S__case"/>
-      </e>
-      <e>
-        <p>
-          <l>user</l>
-          <r>us<s n="n"/><s n="m"/><s n="pl"/><s n="ind"/></r>
-        </p>
-        <par n="S__case"/>
-      </e>
-      <e>
-        <p>
-          <l>us</l>
-          <r>us<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/></r>
-        </p>
-	<par n="'__case"/>
-      </e>
-    </pardef>
     <pardef n="gim/mer__n">
       <e>
         <p>
@@ -3765,57 +3612,6 @@
           <r><s n="n"/><s n="nt"/><s n="pl"/><s n="ind"/></r>
         </p>
         <par n="S__case"/>
-      </e>
-    </pardef>
-    <pardef n="papyr/us__n">
-      <e>
-        <p>
-          <l>ene</l>
-          <r>us<s n="n"/><s n="m"/><s n="pl"/><s n="def"/></r>
-        </p>
-        <par n="S__case"/>
-      </e>
-      <e>
-        <p>
-          <l>en</l>
-          <r>us<s n="n"/><s n="m"/><s n="sg"/><s n="def"/></r>
-        </p>
-        <par n="S__case"/>
-      </e>
-      <e>
-        <p>
-          <l>er</l>
-          <r>us<s n="n"/><s n="m"/><s n="pl"/><s n="ind"/></r>
-        </p>
-        <par n="S__case"/>
-      </e>
-      <e>
-        <p>
-          <l>usene</l>
-          <r>us<s n="n"/><s n="m"/><s n="pl"/><s n="def"/></r>
-        </p>
-        <par n="S__case"/>
-      </e>
-      <e>
-        <p>
-          <l>usen</l>
-          <r>us<s n="n"/><s n="m"/><s n="sg"/><s n="def"/></r>
-        </p>
-        <par n="S__case"/>
-      </e>
-      <e>
-        <p>
-          <l>user</l>
-          <r>us<s n="n"/><s n="m"/><s n="pl"/><s n="ind"/></r>
-        </p>
-        <par n="S__case"/>
-      </e>
-      <e>
-        <p>
-          <l>us</l>
-          <r>us<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/></r>
-        </p>
-<!--         <par n="S__case"/> todo -->
       </e>
     </pardef>
     <pardef n="numer/us__n">
@@ -6214,64 +6010,6 @@
         <p>
           <l/>
           <r><s n="n"/><s n="m"/><s n="sp"/></r>
-        </p>
-        <par n="S__case"/>
-      </e>
-    </pardef>
-    <pardef n="kålr/ot__n">
-      <e>
-        <p>
-          <l>ota</l>
-          <r>ot<s n="n"/><s n="f"/><s n="sg"/><s n="def"/></r>
-        </p>
-        <par n="S__case"/>
-      </e>
-      <e>
-        <p>
-          <l>oten</l>
-          <r>ot<s n="n"/><s n="m"/><s n="sg"/><s n="def"/></r>
-        </p>
-        <par n="S__case"/>
-      </e>
-      <e>
-        <p>
-          <l>ot</l>
-          <r>ot<s n="n"/><s n="f"/><s n="sg"/><s n="ind"/></r>
-        </p>
-        <par n="S__case"/>
-      </e>
-      <e>
-        <p>
-          <l>ot</l>
-          <r>ot<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/></r>
-        </p>
-        <par n="S__case"/>
-      </e>
-      <e>
-        <p>
-          <l>øttene</l>
-          <r>ot<s n="n"/><s n="f"/><s n="pl"/><s n="def"/></r>
-        </p>
-        <par n="S__case"/>
-      </e>
-      <e>
-        <p>
-          <l>øttene</l>
-          <r>ot<s n="n"/><s n="m"/><s n="pl"/><s n="def"/></r>
-        </p>
-        <par n="S__case"/>
-      </e>
-      <e>
-        <p>
-          <l>øtter</l>
-          <r>ot<s n="n"/><s n="f"/><s n="pl"/><s n="ind"/></r>
-        </p>
-        <par n="S__case"/>
-      </e>
-      <e>
-        <p>
-          <l>øtter</l>
-          <r>ot<s n="n"/><s n="m"/><s n="pl"/><s n="ind"/></r>
         </p>
         <par n="S__case"/>
       </e>
@@ -17607,92 +17345,6 @@
         <par n="S__case"/>
       </e>
     </pardef>
-    <pardef n="tannr/ot__n">
-      <e>
-        <p>
-          <l>ota</l>
-          <r>ot<s n="n"/><s n="f"/><s n="sg"/><s n="def"/></r>
-        </p>
-        <par n="S__case"/>
-      </e>
-      <e>
-        <p>
-          <l>otene</l>
-          <r>ot<s n="n"/><s n="f"/><s n="pl"/><s n="def"/></r>
-        </p>
-        <par n="S__case"/>
-      </e>
-      <e>
-        <p>
-          <l>otene</l>
-          <r>ot<s n="n"/><s n="m"/><s n="pl"/><s n="def"/></r>
-        </p>
-        <par n="S__case"/>
-      </e>
-      <e>
-        <p>
-          <l>oten</l>
-          <r>ot<s n="n"/><s n="m"/><s n="sg"/><s n="def"/></r>
-        </p>
-        <par n="S__case"/>
-      </e>
-      <e>
-        <p>
-          <l>ot</l>
-          <r>ot<s n="n"/><s n="f"/><s n="sg"/><s n="ind"/></r>
-        </p>
-        <par n="S__case"/>
-      </e>
-      <e>
-        <p>
-          <l>ot</l>
-          <r>ot<s n="n"/><s n="f"/><s n="pl"/><s n="ind"/></r>
-        </p>
-        <par n="S__case"/>
-      </e>
-      <e>
-        <p>
-          <l>ot</l>
-          <r>ot<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/></r>
-        </p>
-        <par n="S__case"/>
-      </e>
-      <e>
-        <p>
-          <l>ot</l>
-          <r>ot<s n="n"/><s n="m"/><s n="pl"/><s n="ind"/></r>
-        </p>
-        <par n="S__case"/>
-      </e>
-      <e>
-        <p>
-          <l>øttene</l>
-          <r>ot<s n="n"/><s n="f"/><s n="pl"/><s n="def"/></r>
-        </p>
-        <par n="S__case"/>
-      </e>
-      <e>
-        <p>
-          <l>øttene</l>
-          <r>ot<s n="n"/><s n="m"/><s n="pl"/><s n="def"/></r>
-        </p>
-        <par n="S__case"/>
-      </e>
-      <e>
-        <p>
-          <l>øtter</l>
-          <r>ot<s n="n"/><s n="f"/><s n="pl"/><s n="ind"/></r>
-        </p>
-        <par n="S__case"/>
-      </e>
-      <e>
-        <p>
-          <l>øtter</l>
-          <r>ot<s n="n"/><s n="m"/><s n="pl"/><s n="ind"/></r>
-        </p>
-        <par n="S__case"/>
-      </e>
-    </pardef>
     <pardef n="aks/el__n">
       <e>
         <p>
@@ -18704,6 +18356,361 @@
           <r>us<s n="n"/><s n="nt"/><s n="sg"/><s n="ind"/></r>
         </p>
 	<par n="'__case"/>
+      </e>
+    </pardef>
+    <!-- The following common noun paradigms are only in
+         dev/infreq-apertium-nn-nb.nb.dix -->
+    <pardef n="lus__n">
+      <e>
+        <p>
+          <l>a</l>
+          <r><s n="n"/><s n="f"/><s n="sg"/><s n="def"/></r>
+        </p>
+        <par n="S__case"/>
+      </e>
+      <e>
+        <p>
+          <l>ene</l>
+          <r><s n="n"/><s n="f"/><s n="pl"/><s n="def"/></r>
+        </p>
+        <par n="S__case"/>
+      </e>
+      <e>
+        <p>
+          <l>ene</l>
+          <r><s n="n"/><s n="m"/><s n="pl"/><s n="def"/></r>
+        </p>
+        <par n="S__case"/>
+      </e>
+      <e>
+        <p>
+          <l>en</l>
+          <r><s n="n"/><s n="m"/><s n="sg"/><s n="def"/></r>
+        </p>
+        <par n="S__case"/>
+      </e>
+      <e>
+        <p>
+          <l/>
+          <r><s n="n"/><s n="f"/><s n="sg"/><s n="ind"/></r>
+        </p>
+        <par n="'__case"/>
+      </e>
+      <e>
+        <p>
+          <l/>
+          <r><s n="n"/><s n="f"/><s n="pl"/><s n="ind"/></r>
+        </p>
+        <par n="'__case"/>
+      </e>
+      <e>
+        <p>
+          <l/>
+          <r><s n="n"/><s n="m"/><s n="sg"/><s n="ind"/></r>
+        </p>
+        <par n="'__case"/>
+      </e>
+      <e>
+        <p>
+          <l/>
+          <r><s n="n"/><s n="m"/><s n="pl"/><s n="ind"/></r>
+        </p>
+	<par n="'__case"/>
+      </e>
+    </pardef>
+    <pardef n="r/ot__n">
+      <e>
+        <p>
+          <l>ota</l>
+          <r>ot<s n="n"/><s n="f"/><s n="sg"/><s n="def"/></r>
+        </p>
+        <par n="S__case"/>
+      </e>
+      <e>
+        <p>
+          <l>ota</l>
+          <r>ot<s n="n"/><s n="nt"/><s n="pl"/><s n="def"/></r>
+        </p>
+        <par n="S__case"/>
+      </e>
+      <e>
+        <p>
+          <l>otene</l>
+          <r>ot<s n="n"/><s n="nt"/><s n="pl"/><s n="def"/></r>
+        </p>
+        <par n="S__case"/>
+      </e>
+      <e>
+        <p>
+          <l>oten</l>
+          <r>ot<s n="n"/><s n="m"/><s n="sg"/><s n="def"/></r>
+        </p>
+        <par n="S__case"/>
+      </e>
+      <e>
+        <p>
+          <l>otet</l>
+          <r>ot<s n="n"/><s n="nt"/><s n="sg"/><s n="def"/></r>
+        </p>
+        <par n="S__case"/>
+      </e>
+      <e>
+        <p>
+          <l>ot</l>
+          <r>ot<s n="n"/><s n="f"/><s n="sg"/><s n="ind"/></r>
+        </p>
+        <par n="S__case"/>
+      </e>
+      <e>
+        <p>
+          <l>ot</l>
+          <r>ot<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/></r>
+        </p>
+        <par n="S__case"/>
+      </e>
+      <e>
+        <p>
+          <l>ot</l>
+          <r>ot<s n="n"/><s n="nt"/><s n="sg"/><s n="ind"/></r>
+        </p>
+        <par n="S__case"/>
+      </e>
+      <e>
+        <p>
+          <l>ot</l>
+          <r>ot<s n="n"/><s n="nt"/><s n="pl"/><s n="ind"/></r>
+        </p>
+        <par n="S__case"/>
+      </e>
+      <e>
+        <p>
+          <l>øttene</l>
+          <r>ot<s n="n"/><s n="f"/><s n="pl"/><s n="def"/></r>
+        </p>
+        <par n="S__case"/>
+      </e>
+      <e>
+        <p>
+          <l>øttene</l>
+          <r>ot<s n="n"/><s n="m"/><s n="pl"/><s n="def"/></r>
+        </p>
+        <par n="S__case"/>
+      </e>
+      <e>
+        <p>
+          <l>øtter</l>
+          <r>ot<s n="n"/><s n="f"/><s n="pl"/><s n="ind"/></r>
+        </p>
+        <par n="S__case"/>
+      </e>
+      <e>
+        <p>
+          <l>øtter</l>
+          <r>ot<s n="n"/><s n="m"/><s n="pl"/><s n="ind"/></r>
+        </p>
+	<par n="S__case"/>
+      </e>
+    </pardef>
+    <pardef n="tannr/ot__n">
+      <e>
+        <p>
+          <l>ota</l>
+          <r>ot<s n="n"/><s n="f"/><s n="sg"/><s n="def"/></r>
+        </p>
+        <par n="S__case"/>
+      </e>
+      <e>
+        <p>
+          <l>otene</l>
+          <r>ot<s n="n"/><s n="f"/><s n="pl"/><s n="def"/></r>
+        </p>
+        <par n="S__case"/>
+      </e>
+      <e>
+        <p>
+          <l>otene</l>
+          <r>ot<s n="n"/><s n="m"/><s n="pl"/><s n="def"/></r>
+        </p>
+        <par n="S__case"/>
+      </e>
+      <e>
+        <p>
+          <l>oten</l>
+          <r>ot<s n="n"/><s n="m"/><s n="sg"/><s n="def"/></r>
+        </p>
+        <par n="S__case"/>
+      </e>
+      <e>
+        <p>
+          <l>ot</l>
+          <r>ot<s n="n"/><s n="f"/><s n="sg"/><s n="ind"/></r>
+        </p>
+        <par n="S__case"/>
+      </e>
+      <e>
+        <p>
+          <l>ot</l>
+          <r>ot<s n="n"/><s n="f"/><s n="pl"/><s n="ind"/></r>
+        </p>
+        <par n="S__case"/>
+      </e>
+      <e>
+        <p>
+          <l>ot</l>
+          <r>ot<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/></r>
+        </p>
+        <par n="S__case"/>
+      </e>
+      <e>
+        <p>
+          <l>ot</l>
+          <r>ot<s n="n"/><s n="m"/><s n="pl"/><s n="ind"/></r>
+        </p>
+        <par n="S__case"/>
+      </e>
+      <e>
+        <p>
+          <l>øttene</l>
+          <r>ot<s n="n"/><s n="f"/><s n="pl"/><s n="def"/></r>
+        </p>
+        <par n="S__case"/>
+      </e>
+      <e>
+        <p>
+          <l>øttene</l>
+          <r>ot<s n="n"/><s n="m"/><s n="pl"/><s n="def"/></r>
+        </p>
+        <par n="S__case"/>
+      </e>
+      <e>
+        <p>
+          <l>øtter</l>
+          <r>ot<s n="n"/><s n="f"/><s n="pl"/><s n="ind"/></r>
+        </p>
+        <par n="S__case"/>
+      </e>
+      <e>
+        <p>
+          <l>øtter</l>
+          <r>ot<s n="n"/><s n="m"/><s n="pl"/><s n="ind"/></r>
+        </p>
+        <par n="S__case"/>
+      </e>
+    </pardef>
+    <pardef n="kålr/ot__n">
+      <e>
+        <p>
+          <l>ota</l>
+          <r>ot<s n="n"/><s n="f"/><s n="sg"/><s n="def"/></r>
+        </p>
+        <par n="S__case"/>
+      </e>
+      <e>
+        <p>
+          <l>oten</l>
+          <r>ot<s n="n"/><s n="m"/><s n="sg"/><s n="def"/></r>
+        </p>
+        <par n="S__case"/>
+      </e>
+      <e>
+        <p>
+          <l>ot</l>
+          <r>ot<s n="n"/><s n="f"/><s n="sg"/><s n="ind"/></r>
+        </p>
+        <par n="S__case"/>
+      </e>
+      <e>
+        <p>
+          <l>ot</l>
+          <r>ot<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/></r>
+        </p>
+        <par n="S__case"/>
+      </e>
+      <e>
+        <p>
+          <l>øttene</l>
+          <r>ot<s n="n"/><s n="f"/><s n="pl"/><s n="def"/></r>
+        </p>
+        <par n="S__case"/>
+      </e>
+      <e>
+        <p>
+          <l>øttene</l>
+          <r>ot<s n="n"/><s n="m"/><s n="pl"/><s n="def"/></r>
+        </p>
+        <par n="S__case"/>
+      </e>
+      <e>
+        <p>
+          <l>øtter</l>
+          <r>ot<s n="n"/><s n="f"/><s n="pl"/><s n="ind"/></r>
+        </p>
+        <par n="S__case"/>
+      </e>
+      <e>
+        <p>
+          <l>øtter</l>
+          <r>ot<s n="n"/><s n="m"/><s n="pl"/><s n="ind"/></r>
+        </p>
+        <par n="S__case"/>
+      </e>
+    </pardef>
+    <pardef n="r/ong__n">
+      <e>
+        <p>
+          <l>engene</l>
+          <r>ong<s n="n"/><s n="f"/><s n="pl"/><s n="def"/></r>
+        </p>
+        <par n="S__case"/>
+      </e>
+      <e>
+        <p>
+          <l>engene</l>
+          <r>ong<s n="n"/><s n="m"/><s n="pl"/><s n="def"/></r>
+        </p>
+        <par n="S__case"/>
+      </e>
+      <e>
+        <p>
+          <l>enger</l>
+          <r>ong<s n="n"/><s n="f"/><s n="pl"/><s n="ind"/></r>
+        </p>
+        <par n="S__case"/>
+      </e>
+      <e>
+        <p>
+          <l>enger</l>
+          <r>ong<s n="n"/><s n="m"/><s n="pl"/><s n="ind"/></r>
+        </p>
+        <par n="S__case"/>
+      </e>
+      <e>
+        <p>
+          <l>onga</l>
+          <r>ong<s n="n"/><s n="f"/><s n="sg"/><s n="def"/></r>
+        </p>
+        <par n="S__case"/>
+      </e>
+      <e>
+        <p>
+          <l>ongen</l>
+          <r>ong<s n="n"/><s n="m"/><s n="sg"/><s n="def"/></r>
+        </p>
+        <par n="S__case"/>
+      </e>
+      <e>
+        <p>
+          <l>ong</l>
+          <r>ong<s n="n"/><s n="f"/><s n="sg"/><s n="ind"/></r>
+        </p>
+        <par n="S__case"/>
+      </e>
+      <e>
+        <p>
+          <l>ong</l>
+          <r>ong<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/></r>
+        </p>
+	<par n="S__case"/>
       </e>
     </pardef>
     <!-- /common nouns -->
@@ -32850,7 +32857,7 @@
     <e lm="dato"><i>dato</i><par n="ep__n"/></e>
     <e lm="data"><i>data</i><par n="data__n"/></e>
     <e lm="bror"><i>br</i><par n="br/or__n"/></e>
-    <e lm="feil"><i>feil</i><par n="lux__n"/></e>
+    <e lm="feil"><i>feil</i><par n="feil__n"/></e>
     <e lm="am"><i>am</i><par n="ul__n"/></e>
     <e lm="al"><i>al</i><par n="to__n"/></e>
     <e lm="ap"><i>ap</i><par n="to__n"/></e>
@@ -32992,7 +32999,7 @@
     <e lm="bispedømme"><i>bispedømm</i><par n="ød/e__n"/></e>
     <e lm="borgerkrig"><i>borgerkrig</i><par n="ep__n"/></e>
     <e lm="film"><i>film</i><par n="ep__n"/></e>
-    <e lm="dollar"><i>dollar</i><par n="lux__n"/></e>
+    <e lm="dollar"><i>dollar</i><par n="feil__n"/></e>
     <e lm="dommer"><i>dommer</i><par n="uer__n"/></e>
     <e lm="begynner"><i>begynner</i><par n="uer__n"/></e>
     <e lm="energi"><i>energi</i><par n="ep__n"/></e>
@@ -33381,7 +33388,7 @@
     <e lm="kaffe"><i>kaffe</i><par n="re__n"/></e>
     <e lm="have"><i>have</i><par n="re__n"/></e>
     <e lm="havn"><i>havn</i><par n="då__n"/></e>
-    <e lm="henry"><i>henry</i><par n="lux__n"/></e>
+    <e lm="henry"><i>henry</i><par n="feil__n"/></e>
     <e lm="ild"><i>ild</i><par n="ep__n"/></e>
     <e lm="holdning"><i>holdning</i><par n="ep__n"/></e>
     <e lm="irsk"><i>irsk</i><par n="ost__n"/></e>
@@ -34346,7 +34353,7 @@
     <e lm="suksess"><i>suksess</i><par n="ep__n"/></e>
     <e lm="stat"><i>stat</i><par n="ep__n"/></e>
     <e lm="star"><i>star</i><par n="ep__n"/></e>
-    <e lm="tvil"><i>tvil</i><par n="lux__n"/></e>
+    <e lm="tvil"><i>tvil</i><par n="feil__n"/></e>
     <e lm="tilhører"><i>tilhører</i><par n="uer__n"/></e>
     <e lm="tapet"><i>tapet</i><par n="ja__n"/></e>
     <e lm="velger"><i>velger</i><par n="uer__n"/></e>
@@ -39794,6 +39801,7 @@
     <e>       <par n="numeros"/></e>
     <e>       <par n="separa"/></e>
     <e>       <par n="coma"/></e>
+    <e>       <par n="cometa"/></e>
     <e>       <par n="paresq"/></e>
     <e>       <par n="pardret"/></e>
   </section>
