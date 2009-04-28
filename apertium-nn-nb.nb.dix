@@ -44,7 +44,7 @@
 
     <sdef n="vblex"   c="Verb"/>
     <sdef n="vbser"   c="Verb ~ to be ~"/>
-    <sdef n="pst"     c="-st form"/>
+    <sdef n="pst"     c="-st form"/> <!-- also adj.positive, at the moment. TODO -->
     <sdef n="inf"     c="Infinitive"/>
     <sdef n="pres"    c="Present"/>
     <sdef n="imp"     c="Imperative"/>
@@ -58,6 +58,9 @@
     <sdef n="cnjsub"  c="Subordinating conjunction"/>
     <sdef n="cnjcoo"  c="Co-ordinating conjunction"/>
     <sdef n="cnjadv"  c="Adverbial conjunction"/>
+
+    <sdef n="comp"    c="Comparative"/>
+    <sdef n="sup"     c="Superlative"/>
 
     <sdef n="num"     c="Numeral"/>
     <sdef n="sent"    c="Sentence end" />
@@ -32160,6 +32163,105 @@
       </e>
     </pardef>
 
+    <!-- Adjectives from bm.adj.xml -->
+    <!-- 'mange' implies plural... but I guess it's good to have "pl"
+         there in case the noun is underspecified for number -->
+    <pardef n="/mange__adj">
+      <e>
+        <p>
+          <l>mange</l>
+          <r>mange<s n="adj"/><s n="pst"/><s n="pl"/></r>
+        </p>
+      </e>
+      <e>
+        <p>
+          <l>fler</l>
+          <r>mange<s n="adj"/><s n="comp"/><s n="pl"/></r>
+        </p>
+      </e>
+      <e>
+        <p>
+          <l>flere</l>
+          <r>mange<s n="adj"/><s n="comp"/><s n="pl"/></r>
+        </p>
+      </e>
+      <e>
+        <p>
+          <l>fleste</l>
+          <r>mange<s n="adj"/><s n="sup"/><s n="pl"/><s n="def"/></r>
+        </p>
+      </e>
+      <e>
+        <p>
+          <l>flest</l>
+          <r>mange<s n="adj"/><s n="sup"/><s n="pl"/><s n="ind"/></r>
+        </p>
+      </e>
+    </pardef>
+    <pardef n="/liten__adj">
+      <e>
+        <p>
+          <l>lille</l>
+          <r>liten<s n="adj"/><s n="pst"/><s n="sg"/><s n="def"/></r>
+        </p>
+      </e>
+      <e>
+        <p>
+          <l>vesle</l>
+          <r>liten<s n="adj"/><s n="pst"/><s n="sg"/><s n="def"/></r>
+        </p>
+      </e>
+      <e>
+        <p>
+          <l>lita</l>
+          <r>liten<s n="adj"/><s n="pst"/><s n="f"/><s n="sg"/><s n="ind"/></r>
+        </p>
+      </e>
+      <e>
+        <p>
+          <l>liten</l>
+          <r>liten<s n="adj"/><s n="pst"/><s n="mf"/><s n="sg"/><s n="ind"/></r>
+        </p>
+      </e>
+      <e>
+        <p>
+          <l>lite</l>
+          <r>liten<s n="adj"/><s n="pst"/><s n="nt"/><s n="sg"/><s n="ind"/></r>
+        </p>
+      </e>
+      <e>
+        <p>
+          <l>smått</l>
+          <r>liten<s n="adj"/><s n="pst"/><s n="nt"/><s n="sg"/><s n="ind"/></r>
+        </p>
+      </e>
+      <e>
+        <p>
+          <l>små</l>
+          <r>liten<s n="adj"/><s n="pst"/><s n="pl"/></r>
+        </p>
+      </e>
+      <e>
+        <p>
+          <l>mindre</l>
+          <r>liten<s n="adj"/><s n="comp"/></r>
+        </p>
+      </e>
+      <e>
+        <p>
+          <l>minste</l>
+          <r>liten<s n="adj"/><s n="sup"/><s n="def"/></r>
+        </p>
+      </e>
+      <e>
+        <p>
+          <l>minst</l>
+          <r>liten<s n="adj"/><s n="sup"/><s n="ind"/></r>
+        </p>
+      </e>
+    </pardef>
+    <!-- /adjectives -->
+
   </pardefs>
   <section id="main" type="standard">
     <!-- Numbers -->
@@ -38891,6 +38993,7 @@
     <e lm="økte"><i>økt</i><par n="å/e__vblex"/></e>
     <e lm="rydde"><i>rydd</i><par n="å/e__vblex"/></e>
 
+    <!-- Adverbs -->
     <e lm="A"><i>A</i><par n="dagevis__adv"/></e>
     <e lm="a"><i>a</i><par n="dagevis__adv"/></e>
     <e lm="a cappella"><i>a<b/>cappella</i><par n="dagevis__adv"/></e>
@@ -39795,6 +39898,11 @@
     <e lm="ørende"><i>ørende</i><par n="dagevis__adv"/></e>
     <e lm="øyensynlig"><i>øyensynlig</i><par n="dagevis__adv"/></e>
     <e lm="hva"><i>hva</i><par n="dagevis__adv"/></e>
+
+    <!-- Adjectives -->
+    <e lm="liten"><i></i><par n="/liten__adj"/></e>
+    <e lm="mange"><i></i><par n="/mange__adj"/></e>
+
   </section>
 
     <section id="final" type="inconditional">

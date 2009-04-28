@@ -44,7 +44,7 @@
 
     <sdef n="vblex"   c="Verb"/>
     <sdef n="vbser"   c="Verb ~ to be ~"/>
-    <sdef n="pst"     c="-st form"/>
+    <Sdef n="pst"     c="-st form"/> <!-- also adj.positive, at the moment. TODO -->
     <sdef n="inf"     c="Infinitive"/>
     <sdef n="pres"    c="Present"/>
     <sdef n="imp"     c="Imperative"/>
@@ -58,6 +58,9 @@
     <sdef n="cnjsub"  c="Subordinating conjunction"/>
     <sdef n="cnjcoo"  c="Co-ordinating conjunction"/>
     <sdef n="cnjadv"  c="Adverbial conjunction"/>
+
+    <sdef n="comp"    c="Comparative"/>
+    <sdef n="sup"     c="Superlative"/>
 
     <sdef n="num"     c="Numeral"/>
     <sdef n="sent"    c="Sentence end" />
@@ -33952,6 +33955,7 @@
       </e>
     </pardef>
 
+    <!-- Prepositions -->
     <pardef n="i__pr">
       <e>
         <p>
@@ -33960,6 +33964,122 @@
         </p>
       </e>
     </pardef>
+    
+    <!-- Adjectives from bm.adj.xml -->
+    <pardef n="/mange__adj">
+      <e>
+        <p>
+          <l>mange</l>
+          <r>mange<s n="adj"/><s n="pst"/><s n="pl"/></r>
+        </p>
+      </e>
+      <e>
+        <p>
+          <l>fleire</l>
+          <r>mange<s n="adj"/><s n="comp"/><s n="pl"/></r>
+        </p>
+      </e>
+      <e>
+        <p>
+          <l>fleste</l>
+          <r>mange<s n="adj"/><s n="sup"/><s n="pl"/><s n="def"/></r>
+        </p>
+      </e>
+      <e>
+        <p>
+          <l>flest</l>
+          <r>mange<s n="adj"/><s n="sup"/><s n="pl"/><s n="ind"/></r>
+        </p>
+      </e>
+    </pardef>
+    <pardef n="/liten__adj">
+      <e>
+        <p>
+          <l>litle</l>
+          <r>liten<s n="adj"/><s n="pst"/><s n="sg"/><s n="def"/></r>
+        </p>
+      </e>
+      <e>
+        <p>
+          <l>lisle</l>
+          <r>liten<s n="adj"/><s n="pst"/><s n="sg"/><s n="def"/></r>
+        </p>
+      </e>      
+      <e>
+        <p>
+	  <l>vesle</l> 
+          <r>liten<s n="adj"/><s n="pst"/><s n="sg"/><s n="def"/></r>
+        </p>
+      </e>
+      <e>
+        <p>
+          <l>vetle</l>
+          <r>liten<s n="adj"/><s n="pst"/><s n="sg"/><s n="def"/></r>
+        </p>
+      </e>
+      <e>
+        <p>
+          <l>lita</l>
+          <r>liten<s n="adj"/><s n="pst"/><s n="f"/><s n="sg"/><s n="ind"/></r>
+        </p>
+      </e>
+      <e>
+        <p>
+          <l>liti</l>
+          <r>liten<s n="adj"/><s n="pst"/><s n="f"/><s n="sg"/><s n="ind"/></r>
+        </p>
+      </e>
+      <e>
+        <p>
+          <l>liten</l>
+          <r>liten<s n="adj"/><s n="pst"/><s n="m"/><s n="sg"/><s n="ind"/></r>
+        </p>
+      </e>
+      <e>
+        <p>
+          <l>lite</l>
+          <r>liten<s n="adj"/><s n="pst"/><s n="nt"/><s n="sg"/><s n="ind"/></r>
+        </p>
+      </e>
+      <e>
+        <p>
+          <l>smått</l>
+          <r>liten<s n="adj"/><s n="pst"/><s n="nt"/><s n="sg"/><s n="ind"/></r>
+        </p>
+      </e>
+      <e>
+        <p>
+          <l>små</l>
+          <r>liten<s n="adj"/><s n="pst"/><s n="pl"/></r>
+        </p>
+      </e>
+      <e>
+        <p>
+	  <l>småe</l>
+          <r>liten<s n="adj"/><s n="pst"/><s n="pl"/></r>
+        </p>
+      </e>
+      <e>
+        <p>
+          <l>mindre</l>
+          <r>liten<s n="adj"/><s n="comp"/></r>
+        </p>
+      </e>
+      <e>
+        <p>
+          <l>minste</l>
+          <r>liten<s n="adj"/><s n="sup"/><s n="def"/></r>
+        </p>
+      </e>
+      <e>
+        <p>
+          <l>minst</l>
+          <r>liten<s n="adj"/><s n="sup"/><s n="ind"/></r>
+        </p>
+      </e>
+    </pardef>
+    <!-- 'vesal' får eit eige oppslag ;-> -->
+    <!-- /adjectives -->
 
    </pardefs>
 
@@ -36819,10 +36939,8 @@
     <e lm="myr"><i>myr</i><par n="ør__n"/></e>
 
 
-    <!-- Proper names -->
-
+    <!-- Proper nouns -->
     <e lm="Noreg"><i>Noreg</i><par n="Noreg__np"/></e>
-
     <e lm="Aage"><i>Aage</i><par n="Tor__np"/></e>
     <e lm="Aagot"><i>Aagot</i><par n="Sol__np"/></e>
     <e lm="Aanon"><i>Aanon</i><par n="Tor__np"/></e>
@@ -37882,7 +38000,7 @@
     <e lm="Yngvil"><i>Yngvil</i><par n="Sol__np"/></e>
     <e lm="Yngvill"><i>Yngvill</i><par n="Sol__np"/></e>
 
-
+    <!-- Verbs -->
     <e lm="vere"><i/><par n="/vere__vbser"/></e>
 
     <e lm="vise"><i>vis</i><par n="yt/e__vblex"/></e>
@@ -38362,7 +38480,6 @@
     <e lm="døme"><i>døm</i><par n="yr/e__vblex"/></e>
 
     <!-- Adverbs -->
-
     <e lm="adagio"><i>adagio</i><par n="dagevis__adv"/></e>
     <e lm="ad undas"><i>ad<b/>undas</i><par n="dagevis__adv"/></e>
     <e lm="à jour"><i>à<b/>jour</i><par n="dagevis__adv"/></e>
@@ -39290,6 +39407,10 @@
     <e lm="vyrktaleg"><i>vyrktaleg</i><par n="dagevis__adv"/></e>
     <e lm="vyrktalig"><i>vyrktalig</i><par n="dagevis__adv"/></e>
     <e lm="ymist"><i>ymist</i><par n="dagevis__adv"/></e>
+
+    <!-- Adjectives -->
+    <e lm="liten"><i></i><par n="/liten__adj"/></e>
+    <e lm="mange"><i></i><par n="/mange__adj"/></e>
   </section>
 
   <section id="final" type="inconditional">
