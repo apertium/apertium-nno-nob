@@ -102,6 +102,7 @@
 
   <section-def-vars>
     <def-var n="numero"/>
+    <def-var n="caseFirstWord"/>
   </section-def-vars>
 
   <section-def-macros>
@@ -129,7 +130,7 @@
 
   <section-rules>
     <!--  just trying to do min mor -> mora mi to learn transfer rules. KBU -->
-    <rule>
+    <rule comment="DETPOS NOM   - min mor - mora mi ">
       <pattern>
 	<pattern-item n="detpos"/>	     <!--min <det><pos><m/f><sg> -->
 	<pattern-item n="nom"/>		     <!--mor <n>  <f>  <sg><ind>-->
@@ -137,6 +138,10 @@
 	<!-- Min Per -> Peren min? nah.. TODO: only "n.*" -->
       </pattern>
       <action>
+        <let><var n="caseFirstWord"/><clip pos="1" side="tl" part="lemh"/></let>
+        <modify-case><clip pos="1" side="tl" part="lemh"/><clip pos="2" side="tl" part="lemh"/></modify-case>
+        <modify-case><clip pos="2" side="tl" part="lemh"/><var n="caseFirstWord"/></modify-case>
+
         <out>
           <lu>
             <clip pos="2" side="tl" part="lemh"/>
@@ -146,7 +151,7 @@
 	    <lit-tag v="def"/>
 	    <clip pos="2" side="tl" part="lemq"/>
           </lu>
-          <b/>
+          <b pos="1"/>
           <lu>
 	    <clip pos="1" side="tl" part="lem"/>
             <clip pos="1" side="tl" part="a_det"/>
@@ -159,6 +164,56 @@
         </out>
       </action>
     </rule>
+
+
+
+
+
+
+    <rule comment="DETPOS ADJ NOM   - mitt lille navn - det vesle namnet mitt ">
+      <pattern>
+        <pattern-item n="detpos"/>
+        <pattern-item n="adj"/>
+        <pattern-item n="nom"/>
+      </pattern>
+      <action>
+        <let><var n="caseFirstWord"/><clip pos="1" side="tl" part="lemh"/></let>
+        <modify-case><clip pos="1" side="tl" part="lemh"/><clip pos="2" side="tl" part="lemh"/></modify-case>
+
+        <out>
+          <lu><!-- det<det><dem><nt><sg> -->
+            <lit v="det"/>
+      	    <lit-tag v="det.dem"/>
+            <clip pos="3" side="tl" part="gen"/>
+            <clip pos="1" side="tl" part="nbr"/>
+          </lu>
+          <b/>
+          <lu>
+            <clip pos="2" side="tl" part="whole"/>
+          </lu>
+          <b/>
+          <lu>
+            <clip pos="3" side="tl" part="lemh"/>
+            <clip pos="3" side="tl" part="a_nom"/>
+            <clip pos="3" side="tl" part="gen"/>
+            <clip pos="1" side="tl" part="nbr"/>
+      	    <lit-tag v="def"/>
+	          <clip pos="3" side="tl" part="lemq"/>
+          </lu>
+          <b/>
+          <lu>
+      	    <clip pos="1" side="tl" part="lem"/>
+            <clip pos="1" side="tl" part="a_det"/>
+	    <!-- TODO: gen=mf should depend on noun gender on the
+	         nynorsk side since bokmål min is mf while nynorsk is
+	         m -->
+            <clip pos="3" side="tl" part="gen"/>  
+            <clip pos="1" side="tl" part="nbr"/>
+          </lu>
+        </out>
+      </action>
+    </rule>
+
 
     <rule>
       <pattern>						       
