@@ -24,6 +24,9 @@
     <def-cat n="adj">
       <cat-item tags="adj.*"/>
     </def-cat>
+    <def-cat n="vblexpass">
+      <cat-item tags="vblex.pass"/>
+    </def-cat>
   </section-def-cats>
 
   
@@ -102,7 +105,7 @@
 
   <section-def-vars>
     <def-var n="numero"/>
-    <def-var n="caseFirstWord"/>
+    <def-var n="firstWord"/>
   </section-def-vars>
 
   <section-def-macros>
@@ -129,7 +132,36 @@
   </section-def-macros>
 
   <section-rules>
-    <!--  just trying to do min mor -> mora mi to learn transfer rules. KBU -->
+    <rule comment="N VBLEX.PASS - boken leses - boka blir lest ">
+      <pattern>
+	<pattern-item n="nom"/>
+	<pattern-item n="vblexpass"/>
+      </pattern>
+      <action>
+        <modify-case><clip pos="1" side="tl" part="lemh"/><clip pos="2" side="tl" part="lemh"/></modify-case>
+
+        <out>
+          <lu>
+	    <get-case-from pos="1"> <clip pos="2" side="tl" part="lemh"/></get-case-from>
+            <clip pos="2" side="tl" part="a_nom"/>
+            <clip pos="2" side="tl" part="gen"/>
+            <clip pos="2" side="tl" part="nbr"/>
+	    <lit-tag v="def"/>
+	    <clip pos="2" side="tl" part="lemq"/>
+          </lu>
+          <b pos="1"/>
+	  
+	  <b pos="1"/>
+          <lu>
+	    <clip pos="1" side="tl" part="lem"/>
+            <clip pos="1" side="tl" part="a_det"/>
+	    <clip pos="2" side="tl" part="gen"/>  
+            <clip pos="2" side="tl" part="nbr"/>
+          </lu>
+        </out>
+      </action>
+    </rule>
+
     <rule comment="DETPOS NOM   - min mor - mora mi ">
       <pattern>
 	<pattern-item n="detpos"/>	     <!--min <det><pos><m/f><sg> -->
@@ -138,13 +170,11 @@
 	<!-- Min Per -> Peren min? nah.. TODO: only "n.*" -->
       </pattern>
       <action>
-        <let><var n="caseFirstWord"/><clip pos="1" side="tl" part="lemh"/></let>
         <modify-case><clip pos="1" side="tl" part="lemh"/><clip pos="2" side="tl" part="lemh"/></modify-case>
-        <modify-case><clip pos="2" side="tl" part="lemh"/><var n="caseFirstWord"/></modify-case>
 
         <out>
           <lu>
-            <clip pos="2" side="tl" part="lemh"/>
+	    <get-case-from pos="1"> <clip pos="2" side="tl" part="lemh"/></get-case-from>
             <clip pos="2" side="tl" part="a_nom"/>
             <clip pos="2" side="tl" part="gen"/>
             <clip pos="2" side="tl" part="nbr"/>
@@ -153,6 +183,7 @@
           </lu>
           <b pos="1"/>
           <lu>
+	    
 	    <clip pos="1" side="tl" part="lem"/>
             <clip pos="1" side="tl" part="a_det"/>
 	    <!-- TODO: gen=mf should depend on noun gender on the
@@ -177,21 +208,20 @@
         <pattern-item n="nom"/>
       </pattern>
       <action>
-        <let><var n="caseFirstWord"/><clip pos="1" side="tl" part="lemh"/></let>
         <modify-case><clip pos="1" side="tl" part="lemh"/><clip pos="2" side="tl" part="lemh"/></modify-case>
-
+	
         <out>
           <lu><!-- det<det><dem><nt><sg> -->
-            <lit v="det"/>
-      	    <lit-tag v="det.dem"/>
+	    <get-case-from pos="1"> <lit v="det"/></get-case-from>
+	    <lit-tag v="det.dem"/>
             <clip pos="3" side="tl" part="gen"/>
             <clip pos="1" side="tl" part="nbr"/>
           </lu>
-          <b/>
+	  <b pos="1"/>
           <lu>
             <clip pos="2" side="tl" part="whole"/>
           </lu>
-          <b/>
+	  <b pos="2"/>
           <lu>
             <clip pos="3" side="tl" part="lemh"/>
             <clip pos="3" side="tl" part="a_nom"/>
@@ -200,7 +230,7 @@
       	    <lit-tag v="def"/>
 	          <clip pos="3" side="tl" part="lemq"/>
           </lu>
-          <b/>
+	  <b/>
           <lu>
       	    <clip pos="1" side="tl" part="lem"/>
             <clip pos="1" side="tl" part="a_det"/>
@@ -225,7 +255,7 @@
           <lu>
             <clip pos="1" side="tl" part="lem"/>
             <clip pos="1" side="tl" part="a_det"/>
-	    <clip pos="2" side="tl" part="gen"/> <!-- "en<m><f> kvinne<f>" -->
+	    <clip pos="2" side="tl" part="gen"/> <!-- "en<mf> kvinne<f>" -->
 	    <!-- But: how do we get if nbr==pl then mf? macro? -->
             <clip pos="2" side="tl" part="nbr"/>
           </lu>

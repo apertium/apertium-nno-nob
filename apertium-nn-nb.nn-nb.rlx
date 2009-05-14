@@ -81,8 +81,8 @@ LIST %enn%-prep = ("enn" prep) ;
 LIST %etter% = ("etter" prep) ;
 LIST %etter/fram/opp% = ("etter" prep) ("fram" prep) ("opp" prep) ;
 LIST %famn% = ("famn" n) ;
-LIST %far% = ("far") ; 
-LIST %fare% = ("fare" vblex perf-part) ; 
+LIST %far% = ("far") ;
+LIST %fare% = ("fare" vblex perf-part) ;
 LIST %fast% = ("fast" adj) ;
 LIST %fast%-verb = "tjore" "surre" "sette" "setje" "klore" "brenne" "binde" ;
 LIST %fatte/krevje/ta% = ("fatte" vblex) ("krevje" vblex) ("ta" vblex) ;
@@ -384,7 +384,7 @@ LIST adj-fl/%berre% = "berre" (adj fl) (adj <pres-part>) ;
 LIST adj-gen = (adj gen) ;
 LIST adj-komp = (adj komp) ;
 LIST adj-mask = (adj mask) (adj m/f) (adj bu) (adj <pres-part>) ;
-LIST adj-reinmask = (adj mask)
+LIST adj-reinmask = (adj mask);
 LIST adj-mask-fem-bu-sup = (adj mask) (adj fem) (adj m/f) (adj sup bu) (adj <pres-part>) ;
 LIST adj-mask-fem-bu-sup/%som% = "som" (adj mask) (adj fem) (adj m/f) (adj sup bu) (adj <pres-part>) ;
 LIST adj-mask/fem = (adj mask) (adj fem) (adj m/f) (adj bu) (adj <pres-part>) ;
@@ -2392,7 +2392,7 @@ CONSTRAINTS
 "<kostar>" SELECT:6098 (verb pres) IF
 	   (*1 det-kvant BARRIER setn-gr)
 	   (NOT -1 adj-fl)
-; 
+;
 
 
 #:4698
@@ -3043,7 +3043,7 @@ CONSTRAINTS
 #6048
 "<rett>" SELECT:6048 (subst) IF
 	 (1 %til/på%)
-; 
+;
 
 #:6108
 "<rett>" SELECT:6108 (adj pos nøyt ub eint) IF
@@ -5440,7 +5440,7 @@ CONSTRAINTS
 #:6054
 "<i>" REMOVE:6054 (det)
       (NOT 0 storbokstav)
-; 
+;
 
 
 
@@ -6700,7 +6700,7 @@ CONSTRAINTS
 #:6078
 "<still>" REMOVE:6078 (subst)
 	  (0 adj)
-; 
+;
 #svært lite sannsynlig som subst
 
 
@@ -49580,19 +49580,19 @@ CONSTRAINTS
 #:6080
 "<lei>" SELECT:6080 (adj) IF
 	(1 pron-akk)
-; 
+;
 #lei seg
 
 #:6090
 "<lei>" SELECT:6090 (adj) IF
 	(1 %av%)
-; 
+;
 
 #:6091
 "<lei>" SELECT:6091 (adj) IF
 	(1 %ut%)
 	(NOT 0 imp)
-; 
+;
 
 
 
