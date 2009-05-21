@@ -15,6 +15,7 @@
     <sdef n="n"       c="Noun"/>
     <sdef n="np"      c="Proper noun"/>
     <sdef n="prn"     c="Pronoun"/>
+    <sdef n="ref"     c="Reflexive pronoun"/>
     <sdef n="det"     c="Determiner"/>
     <sdef n="pos"     c="Possessive"/>
 
@@ -172,6 +173,15 @@
         <p>
           <l/>
           <r><s n="num"/><s n="pl"/></r>
+        </p>
+      </e>
+    </pardef>
+
+    <pardef n="seg__prn">
+      <e>
+        <p>
+          <l/>
+          <r><s n="prn"/><s n="ref"/><s n="sg"/></r>
         </p>
       </e>
     </pardef>
@@ -32433,6 +32443,7 @@
     <e lm="for"><i>for</i><par n="og__cnjcoo"/></e>
 
     <!-- Pronouns, possessive determiners -->
+    <e lm="seg"><i>seg</i><par n="seg__prn"/></e>
     <e lm="personal pronouns"><i/><par n="personal_pronouns__prn"/></e>
 
     <e lm="min"><i>mi</i><par n="si/n__det"/></e>
