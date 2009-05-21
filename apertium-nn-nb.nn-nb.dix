@@ -34,10 +34,10 @@ Evt. spm. til trond.trosterud@uit.no
 
     <sdef n="nom"     c="Nominative"/>
     <sdef n="acc"     c="Accusative"/>
+    <sdef n="gen"     c="Genitive"/>
 
     <sdef n="dem"     c="Demonstrative"/>
     <sdef n="qnt"     c="Quantifier"/>
-
 
     <sdef n="vblex"   c="Verb"/>
     <sdef n="vbser"   c="Verb ~ to be ~"/>
@@ -56,9 +56,13 @@ Evt. spm. til trond.trosterud@uit.no
     <sdef n="cnjcoo"  c="Co-ordinating conjunction"/>
     <sdef n="cnjadv"  c="Adverbial conjunction"/>
 
+    <sdef n="comp"    c="Comparative"/>
+    <sdef n="sup"     c="Superlative"/>
+
     <sdef n="num"     c="Numeral"/>
     <sdef n="sent"    c="Sentence end" />
     <sdef n="cm"      c="Comma" /> 
+    <sdef n="apos"    c="Apostrophe" />
     <sdef n="lpar"    c="Left parenthesis" />
     <sdef n="rpar"    c="Right parenthesis" />
   </sdefs>
@@ -90,7 +94,8 @@ Evt. spm. til trond.trosterud@uit.no
     <e><p><l>all<s n="det"/><s n="qnt"/></l><r>all<s n="det"/><s n="qnt"/></r></p></e>
 
     <e><p><l>dette<s n="det"/><s n="dem"/></l><r>dette<s n="det"/><s n="dem"/></r></p></e>
-    <e><p><l>det<s n="det"/><s n="dem"/></l><r>det<s n="det"/><s n="dem"/></r></p></e>
+    <!-- de: den, det, de/dei -->
+    <e><p><l>de<s n="det"/><s n="dem"/></l><r>de<s n="det"/><s n="dem"/></r></p></e>
     <e><p><l>eige<s n="det"/><s n="dem"/></l><r>eget<s n="det"/><s n="dem"/></r></p></e>
     <e><p><l>eigen<s n="det"/><s n="dem"/></l><r>egen<s n="det"/><s n="dem"/></r></p></e>
     <e><p><l>einkvar<s n="det"/><s n="dem"/></l><r>enhver<s n="det"/><s n="dem"/></r></p></e>
@@ -29924,7 +29929,10 @@ Evt. spm. til trond.trosterud@uit.no
     <e><p><l>open<s n="adj"/></l><r>åpen<s n="adj"/></r></p></e>
     <e><p><l>liten<s n="adj"/></l><r>liten<s n="adj"/></r></p></e>
     <e><p><l>mange<s n="adj"/></l><r>mange<s n="adj"/></r></p></e>
-    
+    <!-- not sure if we should make 'sort' default in bokmål? variant.. -->
+    <e><p><l>svart<s n="adj"/></l><r>svart<s n="adj"/></r></p></e>
+    <e r="RL"><p><l>svart<s n="adj"/></l><r>sort<s n="adj"/></r></p></e>
+    <!-- ZZZ -->
 
     <e><p><l>anna<s n="adj"/></l><r>annet<s n="adj"/></r></p></e>
     <e><p><l>annan<s n="adj"/></l><r>annen<s n="adj"/></r></p></e>
