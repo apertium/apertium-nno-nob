@@ -77,8 +77,8 @@ LIST %enn%-prep = ("enn" pr) ;
 LIST %etter% = ("etter" pr) ;
 LIST %etter/fram/opp% = ("etter" pr) ("fram" pr) ("opp" pr) ;
 LIST %famn% = ("famn" n) ;
-LIST %far% = ("far") ;
-LIST %fare% = ("fare" vblex perf-part) ;
+LIST %far% = ("far") ; 
+LIST %fare% = ("fare" vblex perf-part) ; 
 LIST %fast% = ("fast" adj) ;
 LIST %fast%-verb = "tjore" "surre" "sette" "setje" "klore" "brenne" "binde" ;
 LIST %fatte/krevje/ta% = ("fatte" vblex) ("krevje" vblex) ("ta" vblex) ;
@@ -380,7 +380,7 @@ LIST adj-fl/%berre% = "berre" (adj pl) (adj <pres-part>) ;
 LIST adj-gen = (adj gen) ;
 LIST adj-komp = (adj comp) ;
 LIST adj-mask = (adj m) (adj mf) (adj def) (adj <pres-part>) ;
-LIST adj-reinmask = (adj m);
+LIST adj-reinmask = (adj m) ;
 LIST adj-mask-fem-bu-sup = (adj m) (adj f) (adj mf) (adj sup def) (adj <pres-part>) ;
 LIST adj-mask-fem-bu-sup/%som% = "som" (adj m) (adj f) (adj mf) (adj sup def) (adj <pres-part>) ;
 LIST adj-mask/fem = (adj m) (adj f) (adj mf) (adj def) (adj <pres-part>) ;
@@ -855,7 +855,7 @@ LIST refl = rl1 rl2 rl3 rl4 rl5 rl6 rl7 rl8 rl9 rl10 rl11 rl12 rl13 rl14 rl15 rl
 LIST replikk = "$¦" "$;" "$:" "$--" "$-" "$\"" >>> <<< ;
 LIST replikk-u-setnst = "$¦" "$?" "$;" "$:" "$--" "$-" "$\"" "$!" ;
 LIST res/akk = res acc ;
-LIST res/refl = res refl ;
+LIST res/refl = res ref ;
 LIST retning = "vest" "sør" "nord" "aust" ;
 LIST s-gr = "$;" "$:" "$..." "$--" "$-" "$," "$\"" cnjcoo >>> <<< ;
 LIST s-gr/interj = "$;" "$:" "$..." "$--" "$-" "$," "$\"" interj >>> <<< ;
@@ -2388,7 +2388,7 @@ CONSTRAINTS
 "<kostar>" SELECT:6098 (vblex pres) IF
 	   (*1 det-kvant BARRIER setn-gr)
 	   (NOT -1 adj-fl)
-;
+; 
 
 
 #:4698
@@ -3039,7 +3039,7 @@ CONSTRAINTS
 #6048
 "<rett>" SELECT:6048 (n) IF
 	 (1 %til/på%)
-;
+; 
 
 #:6108
 "<rett>" SELECT:6108 (adj pos nt ind sg) IF
@@ -5436,7 +5436,7 @@ CONSTRAINTS
 #:6054
 "<i>" REMOVE:6054 (det)
       (NOT 0 storbokstav)
-;
+; 
 
 
 
@@ -6696,7 +6696,7 @@ CONSTRAINTS
 #:6078
 "<still>" REMOVE:6078 (n)
 	  (0 adj)
-;
+; 
 #svært lite sannsynlig som subst
 
 
@@ -49576,19 +49576,19 @@ CONSTRAINTS
 #:6080
 "<lei>" SELECT:6080 (adj) IF
 	(1 pron-akk)
-;
+; 
 #lei seg
 
 #:6090
 "<lei>" SELECT:6090 (adj) IF
 	(1 %av%)
-;
+; 
 
 #:6091
 "<lei>" SELECT:6091 (adj) IF
 	(1 %ut%)
 	(NOT 0 imp)
-;
+; 
 
 
 

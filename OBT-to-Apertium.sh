@@ -1,8 +1,6 @@
 #!/bin/bash
 # bash has arrays
 
-# OBT[6]=""
-# APT[6]=""
 # adj pos be ent
 # <adj><pst><sg><def>
 
@@ -46,6 +44,7 @@ ${L}poss${M}pos${R}
 ${L}pron${M}prn${R}
 ${L}prep${M}pr${R}
 ${L}komp${M}comp${R}
+${L}refl${M}ref${R}
 ${L}kvant${M}qnt${R}
 ${L}konj${M}cnjcoo${R}
 ${L}sbu${M}cnjsub${R}
