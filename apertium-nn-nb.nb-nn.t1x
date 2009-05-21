@@ -18,6 +18,10 @@
     <def-cat n="detdem">	<!-- dette, den, annen, sådan, ... -->
       <cat-item tags="det.dem.*"/>
     </def-cat>
+    <def-cat n="detinddem">	
+      <cat-item tags="det.dem.*"/>
+      <cat-item tags="det.ind.*"/>
+    </def-cat>
     <def-cat n="detpos">	<!-- min sin -->
       <cat-item tags="det.pos.*"/>
     </def-cat>
@@ -105,6 +109,7 @@
 
   <section-def-vars>
     <def-var n="numero"/>
+    <def-var n="mf_or_nt"/>
     <def-var n="firstWord"/>
   </section-def-vars>
 
@@ -129,44 +134,74 @@
       </choose>
     </def-macro>
 
+    <def-macro n="set_mf_or_nt" npar="1">
+      <choose>
+        <when>
+	  <test>
+	      <or>
+		<equal>
+		  <clip pos="1" side="sl" part="gen"/>
+		  <lit-tag v="m"/>
+		</equal>
+		<equal>
+		  <clip pos="1" side="sl" part="gen"/>
+		  <lit-tag v="f"/>
+		</equal>
+	      </or>
+	  </test>
+	  <let>
+	    <var n="mf_or_nt"/>
+	    <lit-tag v="mf"/>
+	  </let>
+        </when>
+	<otherwise>
+	  <let>
+	    <var n="mf_or_nt"/>
+	    <lit-tag v="nt"/>
+	  </let>
+	</otherwise>
+      </choose>
+    </def-macro>
+
+<!-- 	    <clip pos="3" side="tl" part="gen"/> -->
   </section-def-macros>
 
   <section-rules>
-    <rule comment="N VBLEX.PASS - boken leses - boka blir lest ">
-      <pattern>
-	<pattern-item n="nom"/>
-	<pattern-item n="vblexpass"/>
-      </pattern>
-      <action>
-        <modify-case><clip pos="1" side="tl" part="lemh"/><clip pos="2" side="tl" part="lemh"/></modify-case>
+<!--     <rule comment="N VBLEX.PASS - boken leses - boka blir lest "> -->
+<!--       <pattern> -->
+<!-- 	<pattern-item n="nom"/> -->
+<!-- 	<pattern-item n="vblexpass"/> -->
+<!--       </pattern> -->
+<!--       <action> -->
+<!--         <out> -->
+<!--           <lu> -->
+<!-- 	    <clip pos="1" side="tl" part="lem"/> -->
+<!--             <clip pos="1" side="tl" part="a_det"/> -->
+<!-- 	    <clip pos="2" side="tl" part="gen"/>   -->
+<!--             <clip pos="2" side="tl" part="nbr"/> -->
+<!--           </lu> -->
+<!--           <lu> -->
+<!-- 	    <lit v="bli" comment="insert the verb 'bli'" /> -->
+<!-- 	    <lit-tag v="vblex.pres"/> -->
+<!--           </lu> -->
+<!--           <lu> -->
+<!--             <clip pos="2" side="tl" part="a_nom"/> -->
+<!--             <clip pos="2" side="tl" part="gen"/> -->
+<!--             <clip pos="2" side="tl" part="nbr"/> -->
+<!-- 	    <lit-tag v="def"/> -->
+<!-- 	    <clip pos="2" side="tl" part="lemq"/> -->
+<!--           </lu> -->
+<!-- 	  <b pos="1"/> -->
 
-        <out>
-          <lu>
-	    <get-case-from pos="1"> <clip pos="2" side="tl" part="lemh"/></get-case-from>
-            <clip pos="2" side="tl" part="a_nom"/>
-            <clip pos="2" side="tl" part="gen"/>
-            <clip pos="2" side="tl" part="nbr"/>
-	    <lit-tag v="def"/>
-	    <clip pos="2" side="tl" part="lemq"/>
-          </lu>
-          <b pos="1"/>
-	  
-	  <b pos="1"/>
-          <lu>
-	    <clip pos="1" side="tl" part="lem"/>
-            <clip pos="1" side="tl" part="a_det"/>
-	    <clip pos="2" side="tl" part="gen"/>  
-            <clip pos="2" side="tl" part="nbr"/>
-          </lu>
-        </out>
-      </action>
-    </rule>
+<!--         </out> -->
+<!--       </action> -->
+<!--     </rule> -->
 
     <rule comment="DETPOS NOM   - min mor - mora mi ">
       <pattern>
 	<pattern-item n="detpos"/>	     <!--min <det><pos><m/f><sg> -->
 	<pattern-item n="nom"/>		     <!--mor <n>  <f>  <sg><ind>-->
-	<!-- todo: make sure the nom is ind(efinite) -->
+	<!-- todo: make sure the nom is ind(efinite) and NOT genitive -->
 	<!-- Min Per -> Peren min? nah.. TODO: only "n.*" -->
       </pattern>
       <action>
@@ -209,12 +244,14 @@
       </pattern>
       <action>
         <modify-case><clip pos="1" side="tl" part="lemh"/><clip pos="2" side="tl" part="lemh"/></modify-case>
-	
+	<call-macro n="set_mf_or_nt">
+	  <with-param pos="3"/>
+	</call-macro>
         <out>
-          <lu><!-- det<det><dem><nt><sg> -->
-	    <get-case-from pos="1"> <lit v="det"/></get-case-from>
+          <lu>
+	    <get-case-from pos="1"> <lit v="de"/></get-case-from>
 	    <lit-tag v="det.dem"/>
-            <clip pos="3" side="tl" part="gen"/>
+	    <var n="mf_or_nt"/>
             <clip pos="1" side="tl" part="nbr"/>
           </lu>
 	  <b pos="1"/>
@@ -274,6 +311,7 @@
     </rule>
 
 
+    
 
   </section-rules>
 </transfer>
