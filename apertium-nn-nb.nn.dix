@@ -44,12 +44,12 @@
 
     <sdef n="vblex"   c="Verb"/>
     <sdef n="vbser"   c="Verb ~ to be ~"/>
-    <sdef n="pst"     c="-st form"/> <!-- also adj.positive, at the moment. TODO -->
+    <sdef n="pst"     c="-st form"/> <!-- also adj.positive atm. TODO -->
     <sdef n="inf"     c="Infinitive"/>
     <sdef n="pres"    c="Present"/>
     <sdef n="imp"     c="Imperative"/>
     <sdef n="pret"    c="Preterite"/>
-    <sdef n="pass"    c="Passive"/>
+    <sdef n="pass"    c="Passive"/>   <!-- only in one pardef, pst everywhere though.. -->
     <sdef n="pp"      c="Perfect participle"/>
 
     <sdef n="pr"      c="Preposition"/>
@@ -267,7 +267,6 @@
           <r>prpers<s n="prn"/><s n="p3"/><s n="pl"/><s n="mf"/><s n="acc"/></r>
         </p>
       </e>
-
     </pardef>
 
     <!-- Possessives -->
@@ -486,6 +485,16 @@
       </e>
     </pardef>
 
+    <!-- not sure how much info to include here.. -->
+    <pardef n="første__det">
+      <e>
+        <p>
+          <l/>
+	  <r><s n="det"/><s n="dem"/></r>
+        </p>
+      </e>
+    </pardef>
+
     <!-- same; same -->
     <pardef n="same__det">
       <e>
@@ -664,6 +673,7 @@
       </e>
     </pardef>
 
+    <!-- Quantifiers -->
     <!-- all; al -->
     <pardef n="al/l__det">
       <e>
@@ -685,7 +695,64 @@
         </p>
       </e>
     </pardef>
-
+    
+    <!-- noko; no -->
+    <pardef n="no/ko__det">
+      <e>
+        <p>
+          <l>ka</l>
+          <r>ko<s n="det"/><s n="qnt"/><s n="f"/><s n="sg"/></r>
+        </p>
+      </e>
+      <e r="LR">
+        <p>
+          <l>kor</l>
+          <r>ko<s n="det"/><s n="qnt"/><s n="f"/><s n="sg"/></r>
+        </p>
+      </e>
+      <e>
+        <p>
+          <l>kon</l>
+          <r>ko<s n="det"/><s n="qnt"/><s n="m"/><s n="sg"/></r>
+        </p>
+      </e>
+      <e>
+        <p>
+          <l>ko</l>
+          <r>on<s n="det"/><s n="qnt"/><s n="nt"/><s n="sg"/></r>
+        </p>
+      </e>
+      <e r="LR">
+        <p>
+          <l>e</l>
+          <r>ko<s n="det"/><s n="qnt"/><s n="nt"/><s n="sg"/></r>
+        </p>
+      </e>
+      <e r="LR">
+        <p>
+          <l>en</l>
+          <r>ko<s n="det"/><s n="qnt"/><s n="mf"/><s n="sg"/></r>
+        </p>
+      </e>
+      <e r="LR">
+        <p>
+          <l>en</l>
+          <r>on<s n="det"/><s n="qnt"/><s n="pl"/></r>
+        </p>
+      </e>
+      <e>
+        <p>
+          <l>kre</l>
+          <r>on<s n="det"/><s n="qnt"/><s n="pl"/></r>
+        </p>
+      </e>
+      <e>
+        <p>
+          <l>kre</l>
+          <r>on<s n="det"/><s n="qnt"/><s n="pl"/></r>
+        </p>
+      </e>
+    </pardef>
 
     <!-- Nouns -->
     
@@ -4759,7 +4826,7 @@
           <r>ok<s n="n"/><s n="f"/><s n="sg"/><s n="def"/></r>
         </p>
       </e>
-      <e>
+      <e r="LR">
         <p>
           <l>okene</l>
           <r>ok<s n="n"/><s n="f"/><s n="pl"/><s n="def"/></r>
@@ -4771,7 +4838,7 @@
           <r>ok<s n="n"/><s n="f"/><s n="pl"/><s n="def"/></r>
         </p>
       </e>
-      <e>
+      <e r="LR">
         <p>
           <l>oker</l>
           <r>ok<s n="n"/><s n="f"/><s n="pl"/><s n="ind"/></r>
@@ -4783,7 +4850,7 @@
           <r>ok<s n="n"/><s n="f"/><s n="pl"/><s n="ind"/></r>
         </p>
       </e>
-      <e>
+      <e r="LR">
         <p>
           <l>oki</l>
           <r>ok<s n="n"/><s n="f"/><s n="sg"/><s n="def"/></r>
@@ -12664,29 +12731,11 @@
       </e>
       <e>
         <p>
-          <l>orane</l>
-          <r>or<s n="n"/><s n="m"/><s n="pl"/><s n="def"/></r>
-        </p>
-      </e>
-      <e>
-        <p>
-          <l>orar</l>
-          <r>or<s n="n"/><s n="m"/><s n="pl"/><s n="ind"/></r>
-        </p>
-      </e>
-      <e>
-        <p>
           <l>ora</l>
           <r>or<s n="n"/><s n="f"/><s n="sg"/><s n="def"/></r>
         </p>
       </e>
-      <e>
-        <p>
-          <l>oren</l>
-          <r>or<s n="n"/><s n="m"/><s n="sg"/><s n="def"/></r>
-        </p>
-      </e>
-      <e>
+      <e r="LR">
         <p>
           <l>ori</l>
           <r>or<s n="n"/><s n="f"/><s n="sg"/><s n="def"/></r>
@@ -12696,12 +12745,6 @@
         <p>
           <l>or</l>
           <r>or<s n="n"/><s n="f"/><s n="sg"/><s n="ind"/></r>
-        </p>
-      </e>
-      <e>
-        <p>
-          <l>or</l>
-          <r>or<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/></r>
         </p>
       </e>
     </pardef>
@@ -25565,32 +25608,8 @@
     <pardef n="f/å__vblex">
       <e>
         <p>
-          <l>åast</l>
-          <r>å<s n="vblex"/><s n="pst"/></r>
-        </p>
-      </e>
-      <e>
-        <p>
-          <l>ådde</l>
-          <r>å<s n="vblex"/><s n="pret"/></r>
-        </p>
-      </e>
-      <e>
-        <p>
-          <l>ådd</l>
-          <r>å<s n="vblex"/><s n="pp"/></r>
-        </p>
-      </e>
-      <e>
-        <p>
-          <l>år</l>
-          <r>å<s n="vblex"/><s n="pres"/></r>
-        </p>
-      </e>
-      <e>
-        <p>
-          <l>ått</l>
-          <r>å<s n="vblex"/><s n="pp"/></r>
+          <l>å</l>
+          <r>å<s n="vblex"/><s n="inf"/></r>
         </p>
       </e>
       <e>
@@ -25601,8 +25620,20 @@
       </e>
       <e>
         <p>
-          <l>å</l>
-          <r>å<s n="vblex"/><s n="inf"/></r>
+          <l>åast</l>
+          <r>å<s n="vblex"/><s n="pst"/></r>
+        </p>
+      </e>
+      <e>
+        <p>
+          <l>år</l>
+          <r>å<s n="vblex"/><s n="pres"/></r>
+        </p>
+      </e>
+      <e r="LR">
+        <p>
+          <l>ær</l>
+          <r>å<s n="vblex"/><s n="pres"/></r>
         </p>
       </e>
       <e>
@@ -25611,22 +25642,28 @@
           <r>å<s n="vblex"/><s n="pret"/></r>
         </p>
       </e>
+      <e r="LR">
+	<p>			
+          <l>ikk</l>
+          <r>å<s n="vblex"/><s n="pret"/></r>
+        </p>
+      </e>
       <e>
+        <p>
+          <l>ått</l>
+          <r>å<s n="vblex"/><s n="pp"/></r>
+        </p>
+      </e>
+      <e r="LR">
         <p>
           <l>enge</l>
           <r>å<s n="vblex"/><s n="pp"/></r>
         </p>
       </e>
-      <e>
+      <e r="LR">
         <p>
           <l>engi</l>
           <r>å<s n="vblex"/><s n="pp"/></r>
-        </p>
-      </e>
-      <e>
-        <p>
-          <l>ikk</l>
-          <r>å<s n="vblex"/><s n="pret"/></r>
         </p>
       </e>
     </pardef>
@@ -34027,6 +34064,44 @@
     </pardef>
     
     <!-- Adjectives from bm.adj.xml -->
+    <pardef n="m/ykje__adj"> <!-- so how do we deal with uncountable/mass nouns? -->
+      <e r="LR">
+        <p>
+          <l>ye</l>
+          <r>ykje<s n="adj"/><s n="pst"/></r>
+        </p>
+      </e>
+      <e>
+        <p>
+          <l>ykje</l>
+          <r>ykje<s n="adj"/><s n="pst"/></r>
+        </p>
+      </e>
+      <e>
+        <p>
+          <l>eir</l>
+          <r>ykje<s n="adj"/><s n="comp"/></r>
+        </p>
+      </e>
+      <e r="LR">
+        <p>
+          <l>eire</l>
+          <r>ykje<s n="adj"/><s n="comp"/></r>
+        </p>
+      </e>
+      <e>
+        <p>
+          <l>este</l>
+          <r>ykje<s n="adj"/><s n="sup"/><s n="def"/></r>
+        </p>
+      </e>
+      <e>
+        <p>
+          <l>est</l>
+          <r>ykje<s n="adj"/><s n="sup"/><s n="ind"/></r>
+        </p>
+      </e>
+    </pardef>
     <pardef n="op/en__adj">
       <e>
         <p>
@@ -34201,6 +34276,50 @@
         </p>
       </e>
     </pardef>
+    <pardef n="st/or__adj">
+      <e>
+        <p>
+          <l>ore</l>
+          <r>or<s n="adj"/><s n="pst"/><s n="sg"/><s n="def"/></r>
+        </p>
+      </e>
+      <e>
+        <p>
+          <l>or</l>
+          <r>or<s n="adj"/><s n="pst"/><s n="mf"/><s n="sg"/><s n="ind"/></r>
+        </p>
+      </e>
+      <e>
+        <p>
+          <l>ort</l>
+          <r>or<s n="adj"/><s n="pst"/><s n="nt"/><s n="sg"/><s n="ind"/></r>
+        </p>
+      </e>
+      <e>
+        <p>
+          <l>ore</l>
+          <r>or<s n="adj"/><s n="pst"/><s n="pl"/></r>
+        </p>
+      </e>
+      <e>
+        <p>
+          <l>ørre</l>
+          <r>or<s n="adj"/><s n="comp"/></r>
+        </p>
+      </e>
+      <e>
+        <p>
+          <l>ørste</l>
+          <r>or<s n="adj"/><s n="sup"/><s n="def"/></r>
+        </p>
+      </e>
+      <e>
+        <p>
+          <l>ørst</l>
+          <r>or<s n="adj"/><s n="sup"/><s n="ind"/></r>
+        </p>
+      </e>
+    </pardef>
     <!-- 'vesal' får eit eige oppslag ;-> -->
     <pardef n="svart__adj">
       <e>
@@ -34325,13 +34444,25 @@
     <e lm="dette"><i>dette</i><par n="dette__det"/></e>
     <e lm="det"><i>de</i><par n="de/t__det"/></e>
     <e lm="slik"><i>slik</i><par n="slik__det"/></e>
-    <e lm="annan"><i>an</i><par n="an/nan__det"/></e>
     <e lm="dilik"><i>dilik</i><par n="dilik__det"/></e>
     <e lm="denne"><i>denne</i><par n="denne__det"/></e>
     <e lm="hin"><i>hi</i><par n="hi/n__det"/></e>
     <e lm="sovoren"><i>sovor</i><par n="sovor/en__det"/></e>
     <e lm="all"><i>al</i><par n="al/l__det"/></e>
+    <e lm="noko"><i>noko</i><par n="no/ko__det"/></e>
     <e lm="ein"><i>ei</i><par n="ei/n__det"/></e>
+    <e lm="annan"><i>an</i><par n="an/nan__det"/></e>
+    <e lm="første"><i>første</i><par n="første__det"/></e>
+    <e lm="tredje"><i>tredje</i><par n="første__det"/></e>
+    <e lm="fjerde"><i>fjerde</i><par n="første__det"/></e>
+    <e lm="femte"><i>femte</i><par n="første__det"/></e>
+    <e lm="sjette"><i>sjette</i><par n="første__det"/></e>
+    <e lm="sjuande"><i>sjuande</i><par n="første__det"/></e>
+    <e lm="åttande"><i>åttande</i><par n="første__det"/></e>
+    <e lm="niande"><i>niande</i><par n="første__det"/></e>
+    <e lm="tiande"><i>tiande</i><par n="første__det"/></e>
+    <e lm="ellevte"><i>ellevte</i><par n="første__det"/></e>
+    <e lm="tolvte"><i>tolvte</i><par n="første__det"/></e>
 
     <!-- Prepositions -->
     <e lm="a"><i>a</i><par n="i__pr"/></e>
@@ -36111,7 +36242,6 @@
     <e lm="CD"><i>CD</i><par n="ep__n"/></e>
     <e lm="dokument"><i>dokument</i><par n="ty__n"/></e>
     <e lm="datamaskin"><i>datamaskin</i><par n="så__n"/></e>
-    <e lm="først"><i>først</i><par n="ep__n"/></e>
     <e lm="eksil"><i>eksil</i><par n="ty__n"/></e>
     <e lm="ære"><i>ær</i><par n="lø/e__n"/></e>
     <e lm="DNA"><i>DNA</i><par n="ty__n"/></e>
@@ -39579,8 +39709,10 @@
     <e lm="ymist"><i>ymist</i><par n="dagevis__adv"/></e>
 
     <!-- Adjectives -->
+    <e lm="mykje"><i>m</i><par n="m/ykje__adj"/></e>
     <e lm="open"><i>op</i><par n="op/en__adj"/></e>
     <e lm="liten"><i></i><par n="/liten__adj"/></e>
+    <e lm="stor"><i>st</i><par n="st/or__adj"/></e>
     <e lm="mange"><i></i><par n="/mange__adj"/></e>
     <e lm="svart"><i>svart</i><par n="svart__adj"/></e>
   </section>

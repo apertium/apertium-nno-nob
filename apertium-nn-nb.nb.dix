@@ -527,6 +527,16 @@
         </p>
       </e>
     </pardef>
+    
+    <!-- not sure how much info to include here.. -->
+    <pardef n="første__det">
+      <e>
+        <p>
+          <l/>
+	  <r><s n="det"/><s n="dem"/></r>
+        </p>
+      </e>
+    </pardef>
 
     <!-- samme; samme -->
     <pardef n="samme__det">
@@ -654,6 +664,7 @@
       </e>
     </pardef>
 
+    <!-- Quantifiers -->
     <!-- all; al -->
     <pardef n="al/l__det">
       <e>
@@ -675,6 +686,29 @@
         </p>
       </e>
     </pardef>
+
+    <!-- noe; no -->
+    <pardef n="no/e__det">
+      <e>
+        <p>
+          <l>e</l>
+          <r>e<s n="det"/><s n="qnt"/><s n="nt"/><s n="sg"/></r>
+        </p>
+      </e>
+      <e>
+        <p>
+          <l>en</l>
+          <r>e<s n="det"/><s n="qnt"/><s n="mf"/><s n="sg"/></r>
+        </p>
+      </e>
+      <e>
+        <p>
+          <l>en</l>
+          <r>e<s n="det"/><s n="qnt"/><s n="pl"/></r>
+        </p>
+      </e>
+    </pardef>
+
 
     <!-- Case endings for nouns -->
     <!-- Should I even say "nom" ? (it might as well be an
@@ -32205,6 +32239,38 @@
     </pardef>
 
     <!-- Adjectives from bm.adj.xml -->
+    <pardef n="m/ye__adj"> <!-- so how do we deal with uncountable/mass nouns? -->
+      <e>
+        <p>
+          <l>ye</l>
+          <r>ye<s n="adj"/><s n="pst"/></r>
+        </p>
+      </e>
+      <e>
+        <p>
+          <l>er</l>
+          <r>ye<s n="adj"/><s n="comp"/></r>
+        </p>
+      </e>
+      <e r="LR">
+        <p>
+          <l>ere</l>
+          <r>ye<s n="adj"/><s n="comp"/></r>
+        </p>
+      </e>
+      <e>
+        <p>
+          <l>este</l>
+          <r>ye<s n="adj"/><s n="sup"/><s n="def"/></r>
+        </p>
+      </e>
+      <e>
+        <p>
+          <l>est</l>
+          <r>ye<s n="adj"/><s n="sup"/><s n="ind"/></r>
+        </p>
+      </e>
+    </pardef>
     <pardef n="åp/en__adj">
       <e>
         <p>
@@ -32345,6 +32411,50 @@
         </p>
       </e>
     </pardef>
+    <pardef n="st/or__adj">
+      <e>
+        <p>
+          <l>ore</l>
+          <r>or<s n="adj"/><s n="pst"/><s n="sg"/><s n="def"/></r>
+        </p>
+      </e>
+      <e>
+        <p>
+          <l>or</l>
+          <r>or<s n="adj"/><s n="pst"/><s n="mf"/><s n="sg"/><s n="ind"/></r>
+        </p>
+      </e>
+      <e>
+        <p>
+          <l>ort</l>
+          <r>or<s n="adj"/><s n="pst"/><s n="nt"/><s n="sg"/><s n="ind"/></r>
+        </p>
+      </e>
+      <e>
+        <p>
+          <l>ore</l>
+          <r>or<s n="adj"/><s n="pst"/><s n="pl"/></r>
+        </p>
+      </e>
+      <e>
+        <p>
+          <l>ørre</l>
+          <r>or<s n="adj"/><s n="comp"/></r>
+        </p>
+      </e>
+      <e>
+        <p>
+          <l>ørste</l>
+          <r>or<s n="adj"/><s n="sup"/><s n="def"/></r>
+        </p>
+      </e>
+      <e>
+        <p>
+          <l>ørst</l>
+          <r>or<s n="adj"/><s n="sup"/><s n="ind"/></r>
+        </p>
+      </e>
+    </pardef>
     <pardef n="sort__adj">
       <e>
         <p>
@@ -32463,13 +32573,25 @@
     <e lm="neste"><i>neste</i><par n="neste__det"/></e>
     <e lm="det"><i>de</i><par n="de/t__det"/></e>
     <e lm="slik"><i>slik</i><par n="slik__det"/></e>
-    <e lm="annen"><i>an</i><par n="an/nen__det"/></e>
     <e lm="denne"><i>denne</i><par n="denne__det"/></e>
     <e lm="disse"><i>disse</i><par n="disse__det"/></e>
     <e lm="hin"><i>hi</i><par n="hi/n__det"/></e>
     <e lm="forrige"><i>forrige</i><par n="forrige__det"/></e>
     <e lm="all"><i>al</i><par n="al/l__det"/></e>
+    <e lm="noe"><i>no</i><par n="no/e__det"/></e>
     <e lm="en"><i>e</i><par n="e/n__det"/></e>
+    <e lm="annen"><i>an</i><par n="an/nen__det"/></e>
+    <e lm="første"><i>første</i><par n="første__det"/></e>
+    <e lm="tredje"><i>tredje</i><par n="første__det"/></e>
+    <e lm="fjerde"><i>fjerde</i><par n="første__det"/></e>
+    <e lm="femte"><i>femte</i><par n="første__det"/></e>
+    <e lm="sjette"><i>sjette</i><par n="første__det"/></e>
+    <e lm="sjuende"><i>sjuende</i><par n="første__det"/></e>
+    <e lm="åttende"><i>åttende</i><par n="første__det"/></e>
+    <e lm="niende"><i>niende</i><par n="første__det"/></e>
+    <e lm="tiende"><i>tiende</i><par n="første__det"/></e>
+    <e lm="ellevte"><i>ellevte</i><par n="første__det"/></e>
+    <e lm="tolvte"><i>tolvte</i><par n="første__det"/></e>
 
     <!-- Prepositions -->
     <e lm="ad"><i>ad</i><par n="i__pr"/></e>
@@ -40030,8 +40152,10 @@
     <e lm="hva"><i>hva</i><par n="dagevis__adv"/></e>
 
     <!-- Adjectives -->
+    <e lm="mye"><i>m</i><par n="m/ye__adj"/></e>
     <e lm="åpen"><i>åp</i><par n="åp/en__adj"/></e>
     <e lm="liten"><i></i><par n="/liten__adj"/></e>
+    <e lm="stor"><i>st</i><par n="st/or__adj"/></e>
     <e lm="mange"><i></i><par n="/mange__adj"/></e>
     <e lm="sort"><i>sort</i><par n="sort__adj"/></e>
     <e lm="svart"><i>svart</i><par n="sort__adj"/></e>
