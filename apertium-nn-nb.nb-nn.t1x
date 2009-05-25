@@ -8,6 +8,9 @@
       <cat-item tags="n.*"/>
       <cat-item tags="np.*"/>
     </def-cat>
+    <def-cat n="nind">
+      <cat-item tags="n.*.*.ind"/>
+    </def-cat>
     <!-- "navn" (name) was "n.*", np is proper noun though.. -->
     <def-cat n="navn">					       
       <cat-item tags="np.*"/>
@@ -18,9 +21,9 @@
     <def-cat n="detdem">	<!-- dette, den, annen, sådan, ... -->
       <cat-item tags="det.dem.*"/>
     </def-cat>
-    <def-cat n="detinddem">	
-      <cat-item tags="det.dem.*"/>
-      <cat-item tags="det.ind.*"/>
+    <def-cat n="det">	
+      <cat-item tags="det.*"/>
+      <cat-item tags="det.*"/>
     </def-cat>
     <def-cat n="detpos">	<!-- min sin -->
       <cat-item tags="det.pos.*"/>
@@ -29,7 +32,7 @@
       <cat-item tags="adj.*"/>
     </def-cat>
     <def-cat n="vblexpass">
-      <cat-item tags="vblex.pass"/>
+      <cat-item tags="vblex.pass.*"/>
     </def-cat>
   </section-def-cats>
 
@@ -197,11 +200,11 @@
 <!--       </action> -->
 <!--     </rule> -->
 
-    <rule comment="DETPOS NOM   - min mor - mora mi ">
+    <rule comment="DETPOS NIND   - min mor - mora mi (this rule should probably have some stronger restrictions on use?)">
       <pattern>
-	<pattern-item n="detpos"/>	     <!--min <det><pos><m/f><sg> -->
-	<pattern-item n="nom"/>		     <!--mor <n>  <f>  <sg><ind>-->
-	<!-- todo: make sure the nom is ind(efinite) and NOT genitive -->
+	<pattern-item n="detpos"/>     <!--min <det><pos><m/f><sg> -->
+	<pattern-item n="nind"/>	<!--mor <n>  <f>  <sg><ind>-->
+	<!-- todo: make sure the nom is NOT genitive -->
 	<!-- Min Per -> Peren min? nah.. TODO: only "n.*" -->
       </pattern>
       <action>
@@ -284,7 +287,7 @@
 
     <rule>
       <pattern>						       
-        <pattern-item n="detind"/>
+        <pattern-item n="det"/>
         <pattern-item n="nom"/>
       </pattern>
       <action>
