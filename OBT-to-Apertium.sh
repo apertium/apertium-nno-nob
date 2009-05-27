@@ -55,7 +55,11 @@ tLIST
 # ^^ takes file as argument
 # actually 'en' gets 'det kvant'...
 
-# TODO: ordenstal(l), <pres-part>, inf-merke, forst, pers, ubøy
+# TODO: 
+# ordenstal(l), <pres-part> (adj), inf-merke, forst, pers, ubøy
+# fork subst => n acr
+# fork => acr
+# symb => acr (or? we don't split between symbols and acronyms, do we?)
 # pron pers should split into p1, p2, p3
 # ubøy -- not sure what do do about this ("no inflection")
 # ukjent -- unknown..hum.
