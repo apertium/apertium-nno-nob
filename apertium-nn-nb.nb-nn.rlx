@@ -1685,14 +1685,14 @@ CONSTRAINTS
 ;
 
 #:5031
-"<bad>" SELECT:5031 (n)
+"<bad>" SELECT:5031 (n) IF
 	(-1 subst-prop)
 	(*1 fv BARRIER setn-gr)
 ;
 #Bislett bad er nyåpnet.
 
 #:5032
-"<bad>" SELECT:5032 (n)
+"<bad>" SELECT:5032 (n) IF
 	(-1 subst-prop)
 	(*-1 fv BARRIER setn-gr)
 ;
@@ -2200,7 +2200,7 @@ CONSTRAINTS
 
 
 #:5046
-"<fly>" SELECT:5046 (adv)
+"<fly>" SELECT:5046 (adv) IF
 	(1 %forbanne%)
 ;
 
@@ -2230,7 +2230,7 @@ CONSTRAINTS
 
 
 #: 4060
-"<fór>" SELECT:4060 (vblex pret)
+"<fór>" SELECT:4060 (vblex pret) IF
 	(0 verb)
 
 #:3650
@@ -4844,7 +4844,7 @@ CONSTRAINTS
 
 
 #4000
-"<til>"  SELECT:4000 (pr) IF 
+"<til>"  SELECT:4000 (pr) IF
 	 (-1 %ligge%)
 	 (1 %grunn%)
 ; 
@@ -5695,7 +5695,7 @@ CONSTRAINTS
 
 
 #:5045
-"<fly>" REMOVE:5045 (adv)
+"<fly>" REMOVE:5045 (adv) IF
 	(NOT 1 %forbanne%)
 ;
 
@@ -6177,7 +6177,7 @@ CONSTRAINTS
 #  "Sjelden: ei hit = skinnsekk"))
 
 #:4048
-"<hjem>" REMOVE:4048 (pr)
+"<hjem>" REMOVE:4048 (pr) IF
 	 (-2 %hus%)
 	 (-1 %og%)
 #hus og hjem
@@ -6262,7 +6262,7 @@ CONSTRAINTS
 
 
 #:4074
-"<is>" REMOVE:4074 (n fork)
+"<is>" REMOVE:4074 (n fork) IF
        (0 storbokstav)
 ;
 #neppe forkortelsen IS
@@ -6895,7 +6895,7 @@ CONSTRAINTS
 #  "...og som han hadde båret med seg"))
 
 #:5030
-"<ol>" REMOVE:5030 (vblex pret)
+"<ol>" REMOVE:5030 (vblex pret) IF
        (0 subst)
 ;
 #klammeform før. Ikke lenger godkjent form nå. De fleste ol er forkortelsen for OL
@@ -7621,7 +7621,7 @@ CONSTRAINTS
 
 
 #:4089
-SELECT:4089 (verb)
+SELECT:4089 (verb) IF
 	(0 %flekke%)
 	(*1 %tenner% BARRIER ikke-adv)
 ;
@@ -10002,6 +10002,7 @@ SELECT:2963 (adj nøyt ub ent) IF
 	(*1 ub-ent-fem-subst LINK NOT -1 adv)
 ;
 #  "ei anna lita vogn"))
+
 
 
 
@@ -16858,7 +16859,7 @@ SELECT:5009 (verb pres) IF
  SELECT:2420 (vblex perf-part) IF
 	(NOT 0 ikke-adj-verb)
 	(*-1 strek/parentes BARRIER pres/pret)
-	(*-1 strek/parentes LINK NOT 0 parentes-beg LINK '*-1 strek/parentes LINK NOT 0 parentes-slutt LINK *-1 pres/pret LINK 0 p-hj-verb LINK NOT 0 kop LINK NOT *1 kop)
+	(*-1 strek/parentes LINK NOT 0 parentes-beg LINK *-1 strek/parentes LINK NOT 0 parentes-slutt LINK *-1 pres/pret LINK 0 p-hj-verb LINK NOT 0 kop LINK NOT *1 kop)
 	(*-1 strek/parentes LINK *-1 strek/parentes LINK *-1 pres/pret LINK NOT *1 setn-gr-u-strek)
 ;
 # group: 45
@@ -17751,7 +17752,7 @@ CONSTRAINTS
 #bad (adj) boy
 
 #5034
-"<bad>" REMOVE:5034 (n appell nt ind pl) IF 
+"<bad>" REMOVE:5034 (n appell nt ind pl) IF
    (1 %boy%)
    (0 adj)
 ;
@@ -17765,7 +17766,7 @@ CONSTRAINTS
 #bad (adj) guy og andre engelske bad
 
 #5036
-"<bad>" REMOVE:5036 (n appell nt ind) IF 
+"<bad>" REMOVE:5036 (n appell nt ind) IF
    (0 adj)
 ;
 #bad (adj) guy og andre engelske bad
@@ -17797,7 +17798,7 @@ CONSTRAINTS
  
 
 #:4090
-REMOVE:4090 (verb)
+REMOVE:4090 (verb) IF
 	(0 %flekke%)
 	(NOT *1 %tenner% BARRIER ikke-adv)
 ;
@@ -21094,6 +21095,7 @@ REMOVE:2135 (det) IF
 
 
 
+
 #:2040
  REMOVE:2040 (cnjsub) IF
 	(0 prep)
@@ -21158,6 +21160,12 @@ REMOVE:2135 (det) IF
 ;
 #  "for hundre år siden"))
 
+#:3433
+"<mens>"  REMOVE:3433 (n) IF
+	(0 sbu)
+;
+#  "kh jan 2004: vanligst å skrive \"mensen\""))
+# KBU: flytta denne opp sidan han ikkje hadde nokon verknad der nede... 
 
 
 #:2046
@@ -23752,7 +23760,7 @@ CONSTRAINTS
 ;
 
 #4087
-"<lo>"  SELECT:4087 (np)
+"<lo>"  SELECT:4087 (np) IF
 	(0 storbokstav)
 	(-1 setn-start-med-strek/anf)
 ;
@@ -24118,22 +24126,23 @@ CONSTRAINTS
 
 
 #5005
-"<lys>"  REMOVE:5005 (n nt sg ind gen)
+"<lys>"  REMOVE:5005 (n nt sg ind gen) IF
 	(0 subst/adj)
 ;
 
 #5006
-"<straks>"  REMOVE:5006 (adj gen)
+"<straks>"  REMOVE:5006 (adj gen) IF
 	(0 adv)
 ;
 
 
 
-#:3433
-"<mens>"  REMOVE:3433 (n) IF
-	(0 sbu)
-;
-#  "kh jan 2004: vanligst å skrive \"mensen\""))
+# #:3433 
+# "<mens>"  REMOVE:3433 (n) IF
+# 	(0 sbu)
+# ;
+# #  "kh jan 2004: vanligst å skrive \"mensen\""))
+# KBU: flytta denne opp til linje 21164 sidan ingen verknad her
 
 
 
@@ -24297,7 +24306,7 @@ CONSTRAINTS
 
 
 #:4056
-"<villa>" REMOVE:4056 (n f)
+"<villa>" REMOVE:4056 (n f) IF
 	  (NOT -1 %i%)
 ; 
 #bare fem i betydningen forvirring
@@ -25658,7 +25667,7 @@ CONSTRAINTS
 
 
 #:1733
- SELECT:1733 (n) IF	
+ SELECT:1733 (n) IF
 	(NOT 0 farger)
 	(NOT 0 farlige-adj-subst)
 	(NOT 0 ikke-adj-subst)
@@ -25797,7 +25806,7 @@ CONSTRAINTS
 
 
 #:4081
-SELECT:4081 (adj) IF	
+SELECT:4081 (adj) IF
 	(0 farger)
 	(0 subst)
 	(-1C prep)
@@ -25808,7 +25817,7 @@ SELECT:4081 (adj) IF
 
 
 #4086
- SELECT:4086 (np)
+ SELECT:4086 (np) IF
 	(0 storbokstav)
 	(NOT 0 romertall)
 	(NOT -1 >>>)
@@ -25819,7 +25828,7 @@ SELECT:4081 (adj) IF
 
 
 #4088
- SELECT:4088 (det <romertall>)
+ SELECT:4088 (det <romertall>) IF
 	(0 storbokstav)
 	(0 romertall)
 	(NOT -1 setn-start-med-strek/anf)
@@ -26516,7 +26525,7 @@ SELECT:4081 (adj) IF
 ;
 
 #:4036
- REMOVE:4036 (vblex imp) IF  
+ REMOVE:4036 (vblex imp) IF
 	 (0 farlige-imp)	     
 ;
 
