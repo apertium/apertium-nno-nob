@@ -23,6 +23,9 @@ ${L}n fem prop${M}np f${R}
 ${L}n nt prop${M}np nt${R}
 ${L}n nøyt prop${M}np nt${R}
 ${L}n prop${M}np${R}
+${L}fork subst${M}n acr${R}
+${L}fork${M}acr${R}
+${L}n subst${M}n acr${R}
 ${L}subst mask prop${M}np m${R}
 ${L}subst fem prop${M}np f${R}
 ${L}subst nøyt prop${M}np nt${R}
@@ -49,18 +52,24 @@ ${L}kvant${M}qnt${R}
 ${L}konj${M}cnjcoo${R}
 ${L}sbu${M}cnjsub${R}
 ${L}m\/f${M}mf${R}
-${L}<perf-part>${M}pp${R}
+${L}<pres-part>${M}pp${R}
+${L}<pres-part>${M}pst${R}
+${L}inf-merke${M}infm${R}
 tLIST
 " $1
 # ^^ takes file as argument
 # actually 'en' gets 'det kvant'...
 
-# TODO: 
-# ordenstal(l), <pres-part> (adj), inf-merke, forst, pers, ubøy
-# fork subst => n acr
-# fork => acr
-# symb => acr (or? we don't split between symbols and acronyms, do we?)
-# pron pers should split into p1, p2, p3
-# ubøy -- not sure what do do about this ("no inflection")
-# ukjent -- unknown..hum.
-# http://omilia.uio.no/obt/morfosyn.html
+##### TODO: ################################################################
+# - ordenstal(l), (adj), forst, pers, ubøy, appell
+# - symb => acr -- or? we don't split between symbols and acronyms, do 
+#   we? symb only has one rule though, not important.
+# - pron pers should split into p1, p2, p3
+# - ubøy -- not sure what do do about this ("no inflection")
+# - ukjent -- unknown..hum.
+##### See http://omilia.uio.no/obt/morfosyn.html ###########################
+
+##### Stuff that needs doing afterwards if I run this again: ###############
+# - make sure each rule has an IF: $ grep -nE "(SELECT|REMOVE).*[^F]$" *.rlx 
+# - move "mens" rule up before REMOVE:2046 (cnjsub)
+############################################################################
