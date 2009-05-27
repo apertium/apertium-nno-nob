@@ -44,7 +44,7 @@
 
     <sdef n="vblex"   c="Verb"/>
     <sdef n="vbser"   c="Verb ~ to be ~"/>
-    <sdef n="pst"     c="-st form"/> <!-- also adj.positive atm. TODO -->
+    <sdef n="pst"     c="-st form"/> <!-- also adj: positive / perfect participle TODO -->
     <sdef n="inf"     c="Infinitive"/>
     <sdef n="pres"    c="Present"/>
     <sdef n="imp"     c="Imperative"/>
@@ -55,6 +55,7 @@
     <sdef n="pr"      c="Preposition"/>
     <sdef n="adv"     c="Adverb"/>
     <sdef n="adj"     c="Adjective"/>
+    <sdef n="infm"    c="Infinitive marker"/>
     <sdef n="cnjsub"  c="Subordinating conjunction"/>
     <sdef n="cnjcoo"  c="Co-ordinating conjunction"/>
     <sdef n="cnjadv"  c="Adverbial conjunction"/>
@@ -749,8 +750,58 @@
       </e>
     </pardef>
 
-    <!-- Nouns -->
-    
+    <!-- Common nouns -->
+    <pardef n="b/arn__n">
+      <e>
+        <p>
+          <l>arn</l>
+          <r>arn<s n="n"/><s n="nt"/><s n="sg"/><s n="ind"/></r>
+        </p>
+      </e>
+      <e>
+        <p>
+          <l>arnet</l>
+          <r>arn<s n="n"/><s n="nt"/><s n="sg"/><s n="def"/></r>
+        </p>
+      </e>
+      <e>
+        <p>
+          <l>orn</l>
+          <r>arn<s n="n"/><s n="nt"/><s n="pl"/><s n="ind"/></r>
+        </p>
+      </e>
+      <e>
+        <p>
+          <l>orna</l>
+          <r>arn<s n="n"/><s n="nt"/><s n="pl"/><s n="def"/></r>
+        </p>
+      </e>
+      <e r="LR">
+        <p>
+          <l>arna</l>
+          <r>arn<s n="n"/><s n="nt"/><s n="pl"/><s n="def"/></r>
+        </p>
+      </e>
+      <e r="LR">
+        <p>
+          <l>arn</l>
+          <r>arn<s n="n"/><s n="nt"/><s n="pl"/><s n="ind"/></r>
+        </p>
+      </e>
+      <e r="LR">
+        <p>
+          <l>arni</l>
+          <r>arn<s n="n"/><s n="nt"/><s n="pl"/><s n="def"/></r>
+        </p>
+      </e>
+      <e r="LR">
+        <p>
+          <l>orni</l>
+          <r>arn<s n="n"/><s n="nt"/><s n="pl"/><s n="def"/></r>
+        </p>
+      </e>
+    </pardef>
+    <!-- checked common noun paradigms until here -KBU 090527 -->
     <pardef n="fiskeh/ank__n">
       <e>
         <p>
@@ -13396,56 +13447,6 @@
         </p>
       </e>
     </pardef>
-    <pardef n="b/arn__n">
-      <e>
-        <p>
-          <l>arna</l>
-          <r>arn<s n="n"/><s n="nt"/><s n="pl"/><s n="def"/></r>
-        </p>
-      </e>
-      <e>
-        <p>
-          <l>arnet</l>
-          <r>arn<s n="n"/><s n="nt"/><s n="sg"/><s n="def"/></r>
-        </p>
-      </e>
-      <e>
-        <p>
-          <l>arni</l>
-          <r>arn<s n="n"/><s n="nt"/><s n="pl"/><s n="def"/></r>
-        </p>
-      </e>
-      <e>
-        <p>
-          <l>arn</l>
-          <r>arn<s n="n"/><s n="nt"/><s n="pl"/><s n="ind"/></r>
-        </p>
-      </e>
-      <e>
-        <p>
-          <l>arn</l>
-          <r>arn<s n="n"/><s n="nt"/><s n="sg"/><s n="ind"/></r>
-        </p>
-      </e>
-      <e>
-        <p>
-          <l>orna</l>
-          <r>arn<s n="n"/><s n="nt"/><s n="pl"/><s n="def"/></r>
-        </p>
-      </e>
-      <e>
-        <p>
-          <l>orni</l>
-          <r>arn<s n="n"/><s n="nt"/><s n="pl"/><s n="def"/></r>
-        </p>
-      </e>
-      <e>
-        <p>
-          <l>orn</l>
-          <r>arn<s n="n"/><s n="nt"/><s n="pl"/><s n="ind"/></r>
-        </p>
-      </e>
-    </pardef>
     <pardef n="n/agl__n">
       <e>
         <p>
@@ -13906,7 +13907,126 @@
         </p>
       </e>
     </pardef>
+    <pardef n="ål/e__vblex">
+      <e>
+        <p>
+          <l>e</l>
+          <r>e<s n="vblex"/><s n="inf"/></r>
+        </p>
+      </e>
+      <e r="LR">
+        <p>
+          <l>a</l>
+          <r>e<s n="vblex"/><s n="inf"/></r>
+        </p>
+      </e>
+      <e>
+        <p>
+          <l>ar</l>
+          <r>e<s n="vblex"/><s n="pres"/></r>
+        </p>
+      </e>
+      <e r="LR">
+        <p>
+          <l>er</l>
+          <r>e<s n="vblex"/><s n="pres"/></r>
+        </p>
+      </e>
+      <e>
+        <p>
+          <l>ast</l>
+          <r>e<s n="vblex"/><s n="pst"/></r>
+        </p>
+      </e>
+      <e>
+        <p>
+          <l>te</l>
+          <r>e<s n="vblex"/><s n="pret"/></r>
+        </p>
+      </e>
+      <e r="LR">
+        <p>
+          <l>a</l>
+          <r>e<s n="vblex"/><s n="pret"/></r>
+        </p>
+      </e>
+      <e>
+        <p>
+          <l>t</l>
+          <r>e<s n="vblex"/><s n="pp"/></r>
+        </p>
+      </e>
+      <e r="LR">
+        <p>
+          <l>a</l>
+          <r>e<s n="vblex"/><s n="pp"/></r>
+        </p>
+      </e>
+      <e r="LR">
+        <p>
+          <l>a</l>
+          <r>e<s n="vblex"/><s n="imp"/></r>
+        </p>
+      </e>
+      <e r="LR">
+        <p>
+          <l>e</l>
+          <r>e<s n="vblex"/><s n="imp"/></r>
+        </p>
+      </e>
+      <e>
+        <p>
+          <l></l>
+          <r>e<s n="vblex"/><s n="imp"/></r>
+        </p>
+      </e>
+    </pardef>
+    <pardef n="rik/je__vblex">
+      <e>
+        <p>
+          <l>ja</l>
+          <r>je<s n="vblex"/><s n="inf"/></r>
+        </p>
+      </e>
+      <e r="LR">
+        <p>
+          <l>je</l>
+          <r>je<s n="vblex"/><s n="inf"/></r>
+        </p>
+      </e>
+      <e>
+        <p>
+          <l>jer</l>
+          <r>je<s n="vblex"/><s n="pres"/></r>
+        </p>
+      </e>
+      <e>
+        <p>
+          <l>te</l>
+          <r>je<s n="vblex"/><s n="pret"/></r>
+        </p>
+      </e>
+      <e>
+        <p>
+          <l>t</l>
+          <r>je<s n="vblex"/><s n="pp"/></r>
+        </p>
+      </e>
+      <e>
+        <p>
+          <l>jast</l>
+          <r>je<s n="vblex"/><s n="pst"/></r>
+        </p>
+      </e>
+      <e>
+        <p>
+          <l></l>
+          <r>je<s n="vblex"/><s n="imp"/></r>
+        </p>
+      </e>
+    </pardef>
     <!-- vblex paradigms checked until here -KBU 090526 -->
+    
     <pardef n="vil/le__vblex">
       <e>
         <p>
@@ -15068,80 +15188,6 @@
         <p>
           <l>ems</l>
           <r>emja<s n="vblex"/><s n="pres"/></r>
-        </p>
-      </e>
-    </pardef>
-    <pardef n="ål/e__vblex">
-      <e>
-        <p>
-          <l>ar</l>
-          <r>e<s n="vblex"/><s n="pres"/></r>
-        </p>
-      </e>
-      <e>
-        <p>
-          <l>ast</l>
-          <r>e<s n="vblex"/><s n="pst"/></r>
-        </p>
-      </e>
-      <e>
-        <p>
-          <l>a</l>
-          <r>e<s n="vblex"/><s n="imp"/></r>
-        </p>
-      </e>
-      <e r="LR">
-        <p>
-          <l>a</l>
-          <r>e<s n="vblex"/><s n="inf"/></r>
-        </p>
-      </e>
-      <e>
-        <p>
-          <l>a</l>
-          <r>e<s n="vblex"/><s n="pp"/></r>
-        </p>
-      </e>
-      <e>
-        <p>
-          <l>a</l>
-          <r>e<s n="vblex"/><s n="pret"/></r>
-        </p>
-      </e>
-      <e>
-        <p>
-          <l>er</l>
-          <r>e<s n="vblex"/><s n="pres"/></r>
-        </p>
-      </e>
-      <e>
-        <p>
-          <l>e</l>
-          <r>e<s n="vblex"/><s n="imp"/></r>
-        </p>
-      </e>
-      <e>
-        <p>
-          <l>e</l>
-          <r>e<s n="vblex"/><s n="inf"/></r>
-        </p>
-      </e>
-      <e>
-        <p>
-          <l>te</l>
-          <r>e<s n="vblex"/><s n="pret"/></r>
-        </p>
-      </e>
-      <e>
-        <p>
-          <l>t</l>
-          <r>e<s n="vblex"/><s n="pp"/></r>
-        </p>
-      </e>
-      <e>
-        <p>
-          <l></l>
-          <r>e<s n="vblex"/><s n="imp"/></r>
         </p>
       </e>
     </pardef>
@@ -18128,50 +18174,6 @@
         <p>
           <l></l>
           <r><s n="vblex"/><s n="inf"/></r>
-        </p>
-      </e>
-    </pardef>
-    <pardef n="rik/je__vblex">
-      <e>
-        <p>
-          <l>jast</l>
-          <r>je<s n="vblex"/><s n="pst"/></r>
-        </p>
-      </e>
-      <e>
-        <p>
-          <l>ja</l>
-          <r>je<s n="vblex"/><s n="inf"/></r>
-        </p>
-      </e>
-      <e>
-        <p>
-          <l>jer</l>
-          <r>je<s n="vblex"/><s n="pres"/></r>
-        </p>
-      </e>
-      <e>
-        <p>
-          <l>je</l>
-          <r>je<s n="vblex"/><s n="inf"/></r>
-        </p>
-      </e>
-      <e>
-        <p>
-          <l>te</l>
-          <r>je<s n="vblex"/><s n="pret"/></r>
-        </p>
-      </e>
-      <e>
-        <p>
-          <l>t</l>
-          <r>je<s n="vblex"/><s n="pp"/></r>
-        </p>
-      </e>
-      <e>
-        <p>
-          <l></l>
-          <r>je<s n="vblex"/><s n="imp"/></r>
         </p>
       </e>
     </pardef>
@@ -34044,6 +34046,15 @@
       </e>
     </pardef>
 
+    <pardef n="å__infm">
+      <e>
+        <p>
+          <l/>
+          <r><s n="infm"/></r>
+        </p>
+      </e>
+    </pardef>
+
     <pardef n="fordi__cnjsub">
       <e>
         <p>
@@ -34479,21 +34490,22 @@
 
     <!-- Subordinating conjunctions -->
     <e lm="fordi"><i>fordi</i><par n="fordi__cnjsub"/></e> 
+    <e lm="medan"><i>medan</i><par n="fordi__cnjsub"/></e> 
     <e lm="som"><i>som</i><par n="fordi__cnjsub"/></e> 
     <e lm="at"><i>at</i><par n="fordi__cnjsub"/></e> 
     <e lm="om"><i>om</i><par n="fordi__cnjsub"/></e> 
     <e lm="dersom"><i>dersom</i><par n="fordi__cnjsub"/></e> 
     <e lm="enn"><i>enn</i><par n="fordi__cnjsub"/></e> 
-    <!-- TODO: cg calls it inf.mark, change? -->
-    <e lm="å"><i>å</i><par n="fordi__cnjsub"/></e> 
+
+    <e lm="å"><i>å</i><par n="å__infm"/></e> 
     
     <!-- Coordinating conjunctions -->
     <e lm="og"><i>og</i><par n="og__cnjcoo"/></e> 
-    <e lm="eller"><i>eller</i><par n="og__cnjcoo"/></e>
-    <e lm="men"><i>men</i><par n="og__cnjcoo"/></e> 
-    <e lm="for"><i>for</i><par n="og__cnjcoo"/></e> 
     <e lm="anten"><i>anten</i><par n="og__cnjcoo"/></e>
     <e lm="enten"><i>enten</i><par n="og__cnjcoo"/></e>
+    <e lm="men"><i>men</i><par n="og__cnjcoo"/></e>
+    <e lm="eller"><i>eller</i><par n="og__cnjcoo"/></e> 
+    <e lm="for"><i>for</i><par n="og__cnjcoo"/></e> 
 
     <!-- Pronouns, possessive determiners -->
     <e lm="seg"><i>seg</i><par n="seg__prn"/></e>
@@ -38810,6 +38822,7 @@
     <e lm="reise"><i>reis</i><par n="yt/e__vblex"/></e>
     <e lm="gale"><i>g</i><par n="g/ale__vblex"/></e>
     <e lm="ønske"><i>ønsk</i><par n="ål/e__vblex"/></e>
+    <e lm="ønskje"><i>ønsk</i><par n="rik/je__vblex"/></e>
     <e lm="fiske"><i>fisk</i><par n="mo/e__vblex"/></e>
     <e lm="are"><i>ar</i><par n="mo/e__vblex"/></e>
     <e lm="sky"><i>sky</i><par n="rø__vblex"/></e>
