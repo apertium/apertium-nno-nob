@@ -63,6 +63,7 @@
     <sdef n="sup"     c="Superlative"/>
 
     <sdef n="num"     c="Numeral"/>
+    <sdef n="acr"     c="Acronym"/>
     <sdef n="sent"    c="Sentence end" />
     <sdef n="cm"      c="Comma" />
     <sdef n="apos"    c="Apostrophe" />
@@ -72,6 +73,53 @@
 
 
   <pardefs>
+
+    <!-- Case endings for nouns, determiners  -->
+    <!-- Should I even say "nom" ? (it might as well be an
+         oblique/acc, and I assume we can apply rules by checking for
+         presence of gen rather than absence of nom...) -->
+    <pardef n="S__case">
+      <e>
+	<p>
+	  <l/>
+	  <r></r>			     <!-- <s n="nom"/> TODO-->
+	</p>
+      </e>
+      <e>
+	<p>
+	  <l>s</l>
+	  <r><s n="gen"/></r>
+	</p>
+      </e>
+    </pardef>
+    <pardef n="'s__case">
+      <e>
+	<p>
+	  <l/>
+	  <r></r>			    <!-- <s n="nom"/> TODO -->
+	</p>
+      </e>
+      <e>
+	<p>
+	  <l>'s</l>
+	  <r><s n="gen"/></r>
+	</p>
+      </e>
+    </pardef>
+    <pardef n="'__case">
+      <e>
+	<p>
+	  <l/>
+	  <r></r>			     <!-- <s n="nom"/> TODO-->
+	</p>
+      </e>
+      <e>
+	<p>
+	  <l>'</l>
+	  <r><s n="gen"/></r>
+	</p>
+      </e>
+    </pardef>
 
     <!-- Punctuation -->
     <pardef n="numeros">
@@ -149,7 +197,6 @@
         </p>
       </e>
     </pardef>
-
     <pardef n="ei__num">
       <e>
         <p>
@@ -158,7 +205,6 @@
         </p>
       </e>
     </pardef>
-
     <pardef n="et__num">
       <e>
 	<p>
@@ -167,7 +213,6 @@
 	</p>
       </e>
     </pardef>
-
     <pardef n="to__num">
       <e>
         <p>
@@ -177,6 +222,7 @@
       </e>
     </pardef>
 
+    <!-- Pronouns -->
     <pardef n="seg__prn">
       <e>
         <p>
@@ -491,29 +537,28 @@
       </e>
       <e>
         <p>
-	  <l>dre</l>					       <!-- both def and ind -->
+	  <l>dre</l>					       
           <r>nen<s n="det"/><s n="dem"/><s n="mf"/><s n="pl"/></r>
         </p>
       </e>
       <e>
         <p>
-	  <l>dre</l>					       <!-- both def and ind -->
+	  <l>dre</l>
           <r>nen<s n="det"/><s n="dem"/><s n="nt"/><s n="pl"/></r>
         </p>
       </e>
-      <e>
+      <e r="LR">
         <p>
           <l>na</l>
           <r>nen<s n="det"/><s n="dem"/><s n="f"/><s n="sg"/><s n="ind"/></r>
         </p>
       </e>
-<!-- masc possible with 'anna'??  -->
-<!--       <e> -->
-<!--         <p> -->
-<!-- 	  <l>na</l> -->
-<!--           <r>nen<s n="det"/><s n="dem"/><s n="mf"/><s n="sg"/><s n="ind"/></r> -->
-<!--         </p> -->
-<!--       </e> -->
+      <e r="LR">
+        <p>
+          <l>na</l>
+          <r>nen<s n="det"/><s n="dem"/><s n="nt"/><s n="sg"/><s n="ind"/></r>
+        </p>
+      </e>
       <e>
         <p>
           <l>nen</l>
@@ -672,18 +717,21 @@
           <l>l</l>
           <r>l<s n="det"/><s n="qnt"/><s n="mf"/><s n="sg"/></r>
         </p>
+	<par n="S__case"/>
       </e>
       <e>
         <p>
           <l>t</l>
           <r>l<s n="det"/><s n="qnt"/><s n="nt"/><s n="sg"/></r>
         </p>
+	<par n="S__case"/>
       </e>
       <e>
         <p>
           <l>le</l>
           <r>l<s n="det"/><s n="qnt"/><s n="mf"/><s n="pl"/></r>
         </p>
+	<par n="S__case"/>
       </e>
     </pardef>
 
@@ -694,68 +742,24 @@
           <l>e</l>
           <r>e<s n="det"/><s n="qnt"/><s n="nt"/><s n="sg"/></r>
         </p>
+	<par n="S__case"/>
       </e>
       <e>
         <p>
           <l>en</l>
           <r>e<s n="det"/><s n="qnt"/><s n="mf"/><s n="sg"/></r>
         </p>
+	<par n="S__case"/>
       </e>
       <e>
         <p>
           <l>en</l>
           <r>e<s n="det"/><s n="qnt"/><s n="pl"/></r>
         </p>
+	<par n="S__case"/>
       </e>
     </pardef>
 
-
-    <!-- Case endings for nouns -->
-    <!-- Should I even say "nom" ? (it might as well be an
-         oblique/acc, and I assume we can apply rules by checking for
-         presence of gen rather than absence of nom...) -->
-    <pardef n="S__case">
-      <e>
-	<p>
-	  <l/>
-	  <r></r>			     <!-- <s n="nom"/> TODO-->
-	</p>
-      </e>
-      <e>
-	<p>
-	  <l>s</l>
-	  <r><s n="gen"/></r>
-	</p>
-      </e>
-    </pardef>
-    <pardef n="'s__case">
-      <e>
-	<p>
-	  <l/>
-	  <r></r>			    <!-- <s n="nom"/> TODO -->
-	</p>
-      </e>
-      <e>
-	<p>
-	  <l>'s</l>
-	  <r><s n="gen"/></r>
-	</p>
-      </e>
-    </pardef>
-    <pardef n="'__case">
-      <e>
-	<p>
-	  <l/>
-	  <r></r>			     <!-- <s n="nom"/> TODO-->
-	</p>
-      </e>
-      <e>
-	<p>
-	  <l>'</l>
-	  <r><s n="gen"/></r>
-	</p>
-      </e>
-    </pardef>
 
     <!-- Proper nouns -->
     <pardef n="Norge__np">
@@ -1175,6 +1179,17 @@
       </e>
     </pardef>
     <!-- /single letters -->
+
+    <!-- Acronyms -->
+    <!-- singular/plural todo -->
+    <pardef n="km__n">
+      <e>
+        <p>
+          <l/>
+          <r><s n="n"/><s n="acr"/></r>
+        </p>
+      </e>
+    </pardef>
 
     <!-- Common nouns -->
     <pardef n="feil__n">
@@ -32239,6 +32254,26 @@
     </pardef>
 
     <!-- Adjectives from bm.adj.xml -->
+    <pardef n="ofte__adj">
+      <e>
+        <p>
+          <l></l>
+          <r><s n="adj"/><s n="pst"/></r>
+        </p>
+      </e>
+      <e>
+        <p>
+          <l>re</l>
+          <r><s n="adj"/><s n="comp"/></r>
+        </p>
+      </e>
+      <e>
+        <p>
+          <l>st</l>
+          <r><s n="adj"/><s n="sup"/></r>
+        </p>
+      </e>
+    </pardef>
     <pardef n="m/ye__adj"> <!-- so how do we deal with uncountable/mass nouns? -->
       <e>
         <p>
@@ -32499,6 +32534,50 @@
         </p>
       </e>
     </pardef>
+    <pardef n="sen__adj">
+      <e>
+        <p>
+          <l></l>
+          <r><s n="adj"/><s n="pst"/><s n="mf"/><s n="sg"/><s n="ind"/></r>
+        </p>
+      </e>
+      <e>
+        <p>
+          <l>t</l>
+          <r><s n="adj"/><s n="pst"/><s n="nt"/><s n="sg"/><s n="ind"/></r>
+        </p>
+      </e>
+      <e>
+        <p>
+          <l>e</l>
+          <r><s n="adj"/><s n="pst"/><s n="pl"/></r>
+        </p>
+      </e>
+      <e>
+        <p>
+          <l>e</l>
+          <r><s n="adj"/><s n="pst"/><s n="sg"/><s n="def"/></r>
+        </p>
+      </e>
+      <e>
+        <p>
+          <l>ere</l>
+          <r><s n="adj"/><s n="comp"/></r>
+        </p>
+      </e>
+      <e>
+        <p>
+          <l>est</l>
+          <r><s n="adj"/><s n="sup"/><s n="ind"/></r>
+        </p>
+      </e>
+      <e>
+        <p>
+          <l>este</l>
+          <r><s n="adj"/><s n="sup"/><s n="def"/></r>
+        </p>
+      </e>
+    </pardef>
     <!-- /adjectives -->
 
   </pardefs>
@@ -32551,6 +32630,7 @@
     <e lm="eller"><i>eller</i><par n="og__cnjcoo"/></e>
     <e lm="men"><i>men</i><par n="og__cnjcoo"/></e>
     <e lm="for"><i>for</i><par n="og__cnjcoo"/></e>
+    <e lm="enten"><i>enten</i><par n="og__cnjcoo"/></e>
 
     <!-- Pronouns, possessive determiners -->
     <e lm="seg"><i>seg</i><par n="seg__prn"/></e>
@@ -33107,6 +33187,12 @@
     <e lm="å"><i>å</i><par n="A__n"/></e>
     <e lm="æ"><i>æ</i><par n="A__n"/></e>
     <e lm="ø"><i>ø</i><par n="A__n"/></e>
+
+    <e lm="km"><i>km</i><par n="km__n"/></e>
+    <e lm="km"><i>km.</i><par n="km__n"/></e>
+    <e lm="km"><i>kl.</i><par n="km__n"/></e>
+    <e lm="km"><i>kl</i><par n="km__n"/></e>
+
     <e lm="biografi"><i>biografi</i><par n="ep__n"/></e>
     <e lm="diskusjon"><i>diskusjon</i><par n="ep__n"/></e>
     <e lm="absolutt"><i>absolutt</i><par n="ja__n"/></e>
@@ -33880,8 +33966,6 @@
     <e lm="nasjonalitet"><i>nasjonalitet</i><par n="ep__n"/></e>
     <e lm="møte"><i>møt</i><par n="ød/e__n"/></e>
     <e lm="kristendom"><i>kristendom</i><par n="bom__n"/></e>
-    <e lm="med"><i>med</i><par n="ul__n"/></e>
-    <e lm="men"><i>men</i><par n="ja__n"/></e>
     <e lm="maskin"><i>maskin</i><par n="då__n"/></e>
     <e lm="lede"><i>lede</i><par n="re__n"/></e>
     <e lm="ledd"><i>ledd</i><par n="ul__n"/></e>
@@ -38520,6 +38604,7 @@
     <e lm="Uralfjella"><i>Uralfjella</i><par n="Norge__np"/></e>
     <e lm="Uralfjellene"><i>Uralfjellene</i><par n="Norge__np"/></e>
     <e lm="Uruguay"><i>Uruguay</i><par n="Norge__np"/></e>
+    <e lm="USA"><i>USA</i><par n="Norge__np"/></e>
     <e lm="Usbekistan"><i>Usbekistan</i><par n="Norge__np"/></e>
     <e lm="Utah"><i>Utah</i><par n="Norge__np"/></e>
     <e lm="Utne"><i>Utne</i><par n="Norge__np"/></e>
@@ -40152,6 +40237,7 @@
     <e lm="hva"><i>hva</i><par n="dagevis__adv"/></e>
 
     <!-- Adjectives -->
+    <e lm="ofte"><i>ofte</i><par n="ofte__adj"/></e>
     <e lm="mye"><i>m</i><par n="m/ye__adj"/></e>
     <e lm="åpen"><i>åp</i><par n="åp/en__adj"/></e>
     <e lm="liten"><i></i><par n="/liten__adj"/></e>
@@ -40159,6 +40245,7 @@
     <e lm="mange"><i></i><par n="/mange__adj"/></e>
     <e lm="sort"><i>sort</i><par n="sort__adj"/></e>
     <e lm="svart"><i>svart</i><par n="sort__adj"/></e>
+    <e lm="sen"><i>sen</i><par n="sen__adj"/></e>
 
   </section>
 

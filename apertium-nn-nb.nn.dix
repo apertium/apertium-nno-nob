@@ -63,6 +63,7 @@
     <sdef n="sup"     c="Superlative"/>
 
     <sdef n="num"     c="Numeral"/>
+    <sdef n="acr"     c="Acronym"/>
     <sdef n="sent"    c="Sentence end" />
     <sdef n="cm"      c="Comma" /> 
     <sdef n="lpar"    c="Left parenthesis" />
@@ -737,12 +738,6 @@
       <e r="LR">
         <p>
           <l>en</l>
-          <r>ko<s n="det"/><s n="qnt"/><s n="pl"/></r>
-        </p>
-      </e>
-      <e>
-        <p>
-          <l>kre</l>
           <r>ko<s n="det"/><s n="qnt"/><s n="pl"/></r>
         </p>
       </e>
@@ -1771,7 +1766,87 @@
       </e>
     </pardef>
     
-    
+   
+
+    <!-- Genitive case ending only for Proper nouns -->
+    <pardef n="S__case">
+      <e>
+	<p>
+	  <l/>
+	  <r><s n="nom"/></r>
+	</p>
+      </e>
+      <e>
+	<p>
+	  <l>s</l>
+	  <r><s n="gen"/></r>
+	</p>
+      </e>
+    </pardef>
+
+    <pardef n="Jo__np">
+      <e>
+        <p>
+          <l/>
+          <r><s n="np"/><s n="m"/></r>
+        </p>
+	<par n="S__case"/>
+      </e>
+    </pardef>
+    <pardef n="Liv__np">
+      <e>
+        <p>
+          <l/>
+          <r><s n="np"/><s n="f"/></r>
+        </p>
+	<par n="S__case"/>
+      </e>
+    </pardef>
+    <pardef n="Midhavet__np">
+      <e>
+        <p>
+          <l/>
+          <r><s n="np"/><s n="nt"/></r>
+        </p>
+	<par n="S__case"/>
+      </e>
+    </pardef>
+    <pardef n="Noreg__np">
+      <e>
+        <p>
+          <l/>
+          <r><s n="np"/></r>
+        </p>
+	<par n="S__case"/>
+      </e>
+    </pardef>
+    <pardef n="Sol__np">
+      <e>
+        <p>
+          <l/>
+          <r><s n="np"/><s n="f"/></r>
+        </p>
+	<par n="S__case"/>
+      </e>
+    </pardef>
+    <pardef n="Tor__np">
+      <e>
+        <p>
+          <l/>
+          <r><s n="np"/><s n="m"/></r>
+        </p>
+	<par n="S__case"/>
+      </e>
+    </pardef>
+    <pardef n="Ustaoset__np">
+      <e>
+        <p>
+          <l/>
+          <r><s n="np"/><s n="nt"/></r>
+        </p>
+	<par n="S__case"/>
+      </e>
+    </pardef>
 
     <!-- Single letters -->
     <pardef n="A__n">
@@ -1912,84 +1987,16 @@
         </p>
       </e>
     </pardef>
+    <!-- /single letters -->
 
-    <!-- Genitive case ending only for Proper nouns -->
-    <pardef n="S__case">
-      <e>
-	<p>
-	  <l/>
-	  <r><s n="nom"/></r>
-	</p>
-      </e>
-      <e>
-	<p>
-	  <l>s</l>
-	  <r><s n="gen"/></r>
-	</p>
-      </e>
-    </pardef>
-
-    <pardef n="Jo__np">
+    <!-- Acronyms -->
+    <!-- singular/plural todo -->
+    <pardef n="km__n">
       <e>
         <p>
           <l/>
-          <r><s n="np"/><s n="m"/></r>
+          <r><s n="n"/><s n="acr"/></r>
         </p>
-	<par n="S__case"/>
-      </e>
-    </pardef>
-    <pardef n="Liv__np">
-      <e>
-        <p>
-          <l/>
-          <r><s n="np"/><s n="f"/></r>
-        </p>
-	<par n="S__case"/>
-      </e>
-    </pardef>
-    <pardef n="Midhavet__np">
-      <e>
-        <p>
-          <l/>
-          <r><s n="np"/><s n="nt"/></r>
-        </p>
-	<par n="S__case"/>
-      </e>
-    </pardef>
-    <pardef n="Noreg__np">
-      <e>
-        <p>
-          <l/>
-          <r><s n="np"/></r>
-        </p>
-	<par n="S__case"/>
-      </e>
-    </pardef>
-    <pardef n="Sol__np">
-      <e>
-        <p>
-          <l/>
-          <r><s n="np"/><s n="f"/></r>
-        </p>
-	<par n="S__case"/>
-      </e>
-    </pardef>
-    <pardef n="Tor__np">
-      <e>
-        <p>
-          <l/>
-          <r><s n="np"/><s n="m"/></r>
-        </p>
-	<par n="S__case"/>
-      </e>
-    </pardef>
-    <pardef n="Ustaoset__np">
-      <e>
-        <p>
-          <l/>
-          <r><s n="np"/><s n="nt"/></r>
-        </p>
-	<par n="S__case"/>
       </e>
     </pardef>
 
@@ -34066,6 +34073,26 @@
     </pardef>
     
     <!-- Adjectives from bm.adj.xml -->
+    <pardef n="oft/e__adj">
+      <e>
+        <p>
+          <l>e</l>
+          <r>e<s n="adj"/><s n="pst"/></r>
+        </p>
+      </e>
+      <e>
+        <p>
+          <l>are</l>
+          <r>e<s n="adj"/><s n="comp"/></r>
+        </p>
+      </e>
+      <e>
+        <p>
+          <l>ast</l>
+          <r>e<s n="adj"/><s n="sup"/></r>
+        </p>
+      </e>
+    </pardef>
     <pardef n="m/ykje__adj"> <!-- so how do we deal with uncountable/mass nouns? -->
       <e r="LR">
         <p>
@@ -34367,6 +34394,50 @@
         </p>
       </e>
     </pardef>
+    <pardef n="sein__adj">
+      <e>
+        <p>
+          <l></l>
+          <r><s n="adj"/><s n="pst"/><s n="mf"/><s n="sg"/><s n="ind"/></r>
+        </p>
+      </e>
+      <e>
+        <p>
+          <l>t</l>
+          <r><s n="adj"/><s n="pst"/><s n="nt"/><s n="sg"/><s n="ind"/></r>
+        </p>
+      </e>
+      <e>
+        <p>
+          <l>e</l>
+          <r><s n="adj"/><s n="pst"/><s n="pl"/></r>
+        </p>
+      </e>
+      <e>
+        <p>
+          <l>e</l>
+          <r><s n="adj"/><s n="pst"/><s n="sg"/><s n="def"/></r>
+        </p>
+      </e>
+      <e>
+        <p>
+          <l>are</l>
+          <r><s n="adj"/><s n="comp"/></r>
+        </p>
+      </e>
+      <e>
+        <p>
+          <l>ast</l>
+          <r><s n="adj"/><s n="sup"/><s n="ind"/></r>
+        </p>
+      </e>
+      <e>
+        <p>
+          <l>aste</l>
+          <r><s n="adj"/><s n="sup"/><s n="def"/></r>
+        </p>
+      </e>
+    </pardef>
 
     <!-- /adjectives -->
 
@@ -34421,6 +34492,8 @@
     <e lm="eller"><i>eller</i><par n="og__cnjcoo"/></e>
     <e lm="men"><i>men</i><par n="og__cnjcoo"/></e> 
     <e lm="for"><i>for</i><par n="og__cnjcoo"/></e> 
+    <e lm="anten"><i>anten</i><par n="og__cnjcoo"/></e>
+    <e lm="enten"><i>enten</i><par n="og__cnjcoo"/></e>
 
     <!-- Pronouns, possessive determiners -->
     <e lm="seg"><i>seg</i><par n="seg__prn"/></e>
@@ -35072,6 +35145,11 @@
     <e lm="å"><i>å</i><par n="å__n"/></e>
     <e lm="æ"><i>æ</i><par n="A__n"/></e>
     <e lm="ø"><i>ø</i><par n="A__n"/></e>
+
+    <e lm="km"><i>km</i><par n="km__n"/></e>
+    <e lm="km"><i>km.</i><par n="km__n"/></e>
+    <e lm="km"><i>kl.</i><par n="km__n"/></e>
+    <e lm="km"><i>kl</i><par n="km__n"/></e>
 
     <e lm="vegsamband"><i>vegsamband</i><par n="ty__n"/></e>
     <e lm="vise"><i>vis</i><par n="od/e__n"/></e>
@@ -37242,6 +37320,7 @@
 
     <!-- Proper nouns -->
     <e lm="Noreg"><i>Noreg</i><par n="Noreg__np"/></e>
+    <e lm="USA"><i>USA</i><par n="Noreg__np"/></e>
     <e lm="Aage"><i>Aage</i><par n="Tor__np"/></e>
     <e lm="Aagot"><i>Aagot</i><par n="Sol__np"/></e>
     <e lm="Aanon"><i>Aanon</i><par n="Tor__np"/></e>
@@ -39712,12 +39791,14 @@
     <e lm="ymist"><i>ymist</i><par n="dagevis__adv"/></e>
 
     <!-- Adjectives -->
+    <e lm="ofte"><i>oft</i><par n="oft/e__adj"/></e>
     <e lm="mykje"><i>m</i><par n="m/ykje__adj"/></e>
     <e lm="open"><i>op</i><par n="op/en__adj"/></e>
     <e lm="liten"><i></i><par n="/liten__adj"/></e>
     <e lm="stor"><i>st</i><par n="st/or__adj"/></e>
     <e lm="mange"><i></i><par n="/mange__adj"/></e>
     <e lm="svart"><i>svart</i><par n="svart__adj"/></e>
+    <e lm="sein"><i>sein</i><par n="sein__adj"/></e>
   </section>
 
   <section id="final" type="inconditional">
