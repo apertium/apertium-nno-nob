@@ -1711,7 +1711,7 @@ CONSTRAINTS
 ;
 
 #:6053
-"<fly>" SELECT:6053 (adv)
+"<fly>" SELECT:6053 (adv) IF
 	(1 %forbanne%)
 ;
 
@@ -2040,7 +2040,7 @@ CONSTRAINTS
 
 
 #:6022
-"<gjeld>" SELECT:6022 (vblex pres)
+"<gjeld>" SELECT:6022 (vblex pres) IF
 	  (-2 %når%)
 	  (-1 %det%)
 ;
@@ -2680,7 +2680,7 @@ CONSTRAINTS
 
 
 #:6128
-"<mora>" SELECT:6128 (n)
+"<mora>" SELECT:6128 (n) IF
 	(0 subst)
 	(NOT 1 pron)
 	(NOT 1 subst)
@@ -5077,7 +5077,7 @@ CONSTRAINTS
 
 
 #:6054
-"<fly>" REMOVE:6054 (adv)
+"<fly>" REMOVE:6054 (adv) IF
 	(NOT 1 %forbanne%)
 ;
 
@@ -5152,7 +5152,7 @@ CONSTRAINTS
 ;
 
 #:6127
-"<fuglar>" REMOVE:6127 (vblex)
+"<fuglar>" REMOVE:6127 (vblex) IF
 	(0 subst)
 ;
 
@@ -5434,7 +5434,7 @@ CONSTRAINTS
 
 
 #:6054
-"<i>" REMOVE:6054 (det)
+"<i>" REMOVE:6054 (det) IF
       (NOT 0 storbokstav)
 ; 
 
@@ -5848,18 +5848,18 @@ CONSTRAINTS
 
 
 #6125
-"<nedfor>" REMOVE:6125 (vblex)
+"<nedfor>" REMOVE:6125 (vblex) IF
 	 (0 prep/adv)
 ;
 
 #6126
-"<nedfor>" REMOVE:6125 (cnjcoo)
+"<nedfor>" REMOVE:6125 (cnjcoo) IF
 	 (0 prep/adv)
 ;
 
 
 #:6058
-"<nei>" REMOVE:6058 (n nt appell pl def)
+"<nei>" REMOVE:6058 (n nt appell pl def) IF
 	(0 %nei%)
 ;
 
@@ -6694,7 +6694,7 @@ CONSTRAINTS
 
 
 #:6078
-"<still>" REMOVE:6078 (n)
+"<still>" REMOVE:6078 (n) IF
 	  (0 adj)
 ; 
 #svært lite sannsynlig som subst
@@ -6735,7 +6735,7 @@ CONSTRAINTS
 ;
 
 #:6156
-"<tatt>" REMOVE:6156 (adj pos)
+"<tatt>" REMOVE:6156 (adj pos) IF
 	 (0 verb)
 ;
 #adjektivlesningene har ikke egen betydning og tas bort
@@ -49422,19 +49422,19 @@ CONSTRAINTS
 
 
 #:6045
-"<fare>" SELECT:6045 (n)
+"<fare>" SELECT:6045 (n) IF
 	 (-1 %i/utan%)
 ;
 
 
 #:6046
-"<fare>" SELECT:6046 (n)
+"<fare>" SELECT:6046 (n) IF
 	 (1 %for%)
 ;
 
 
 #:6047
-"<faren>" SELECT:6047 (n)
+"<faren>" SELECT:6047 (n) IF
 	 (0 subst)
 ;
 
@@ -49787,7 +49787,7 @@ CONSTRAINTS
 
 
 #:6103
-"<fór>" REMOVE:6103 (adj)
+"<fór>" REMOVE:6103 (adj) IF
 	(0 verb)
 ;
 #sjeldent i betydningen snøgg
@@ -49958,7 +49958,7 @@ SELECT:6137 (verb inf) IF
 
 
 #6060
-SELECT:6060 (subst ub)
+SELECT:6060 (subst ub) IF
 	(-2C adv)
 	(-1 adj-komp)
 ;
@@ -52853,7 +52853,7 @@ REMOVE:6033 (subst nøyt eint) IF
 
 
 ##:6052
-#"<.*i>"r REMOVE:6052 (n)
+#"<.*i>"r REMOVE:6052 (n) IF
 #	(0 perf-part)
 #	(*-1 p-hj-verb LINK NOT 0 kop LINK NOT *1 fv)
 #	(*-1 p-hj-verb BARRIER perf-part)
