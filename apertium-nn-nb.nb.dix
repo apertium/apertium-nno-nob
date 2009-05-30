@@ -41,6 +41,7 @@
 
     <sdef n="dem"     c="Demonstrative"/>
     <sdef n="qnt"     c="Quantifier"/>
+    <sdef n="forst"   c="Emphatic"/>			       <!-- forsterkande? dunno -->
 
     <sdef n="vblex"   c="Verb"/>
     <sdef n="vbser"   c="Verb ~ to be ~"/>
@@ -706,6 +707,43 @@
         <p>
           <l/>
           <r><s n="det"/><s n="dem"/><s n="mf"/><s n="sp"/><s n="def"/></r>
+        </p>
+      </e>
+    </pardef>
+
+    <!-- Emphatic (forsterkande?) determiners -->
+    <!-- egen; eg TODO -->
+    <pardef n="eg/en__det">
+      <e>
+        <p>
+          <l>ne</l>
+          <r>en<s n="det"/><s n="forst"/><s n="sg"/><s n="def"/></r>
+        </p>
+      </e>
+      <e>
+        <p>
+          <l>ne</l>
+          <r>en<s n="det"/><s n="forst"/><s n="pl"/></r>
+        </p>
+      </e>
+      <e>
+        <p>
+          <l>en</l>
+          <r>en<s n="det"/><s n="forst"/><s n="mf"/><s n="sg"/><s n="ind"/></r>
+        </p>
+      </e>
+      <e>
+        <p>
+          <l>et</l>
+          <r>en<s n="det"/><s n="forst"/><s n="nt"/><s n="sg"/><s n="ind"/></r>
+        </p>
+      </e>
+    </pardef>
+    <pardef n="selv__det">
+      <e>
+        <p>
+          <l/>
+          <r><s n="det"/><s n="forst"/></r>
         </p>
       </e>
     </pardef>
@@ -32779,6 +32817,10 @@
     <e lm="tiende"><i>tiende</i><par n="første__det"/></e>
     <e lm="ellevte"><i>ellevte</i><par n="første__det"/></e>
     <e lm="tolvte"><i>tolvte</i><par n="første__det"/></e>
+    <!-- Emphatics -->
+    <e lm="selv"><i>selv</i><par n="selv__det"/></e>
+    <e lm="sjøl"><i>sjøl</i><par n="selv__det"/></e>
+    <e lm="egen"><i>eg</i><par n="eg/en__det"/></e>
     <!-- Quantifiers -->
     <e lm="all"><i>al</i><par n="al/l__det"/></e>
     <e lm="begge"><i>begge</i><par n="begge__det"/></e>
@@ -40360,16 +40402,19 @@
     <e lm="ofte"><i>ofte</i><par n="ofte__adj"/></e>
     <e lm="mye"><i>m</i><par n="m/ye__adj"/></e>
     <e lm="åpen"><i>åp</i><par n="åp/en__adj"/></e>
+    <e lm="egen"><i>eg</i><par n="åp/en__adj"/></e>
     <e lm="liten"><i></i><par n="/liten__adj"/></e>
     <e lm="stor"><i>st</i><par n="st/or__adj"/></e>
     <e lm="mange"><i></i><par n="/mange__adj"/></e>
     <e lm="sort"><i>sort</i><par n="sort__adj"/></e>
     <e lm="svart"><i>svart</i><par n="sort__adj"/></e>
     <e lm="sist"><i>sist</i><par n="sort__adj"/></e>
+    <e lm="tysk"><i>tysk</i><par n="sort__adj"/></e>
     <e lm="sen"><i>sen</i><par n="sen__adj"/></e>
     <e lm="ulik"><i>ulik</i><par n="sen__adj"/></e>
     <e lm="svær"><i>svær</i><par n="sen__adj"/></e>
     <e lm="tidlig"><i>tidlig</i><par n="tidlig__adj"/></e>
+    <e lm="forskjellig"><i>forskjellig</i><par n="tidlig__adj"/></e>
     <e lm="viktig"><i>viktig</i><par n="tidlig__adj"/></e>
     <e lm="gammel"><i></i><par n="/gammel__adj"/></e>
 

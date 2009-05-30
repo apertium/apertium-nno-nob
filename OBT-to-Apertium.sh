@@ -67,6 +67,7 @@ tLIST
 # - pron pers should split into p1, p2, p3
 # - ubøy -- not sure what do do about this ("no inflection")
 # - ukjent -- unknown..hum.
+# - forst -- egen, selv, ....? seems rather few lemma (and <adj> never used)
 ##### See http://omilia.uio.no/obt/morfosyn.html ###########################
 
 ##### Stuff that needs doing afterwards if I run this again: ###############
