@@ -125,8 +125,35 @@
 </pardef>
 
     <!-- Pronouns -->
+<pardef n="hva__prn">
+  <e>       <p><l></l>          <r><s n="prn"/><s n="sp"/></r></p></e>
+</pardef>
+
 <pardef n="seg__prn">
   <e>       <p><l></l>          <r><s n="prn"/><s n="ref"/><s n="sg"/></r></p></e>
+</pardef>
+
+<pardef n="personal_pronouns__prn">
+  <e>       <p><l>jeg</l>       <r>prpers<s n="prn"/><s n="p1"/><s n="sg"/><s n="mf"/><s n="nom"/></r></p></e>
+  <e>       <p><l>meg</l>       <r>prpers<s n="prn"/><s n="p1"/><s n="sg"/><s n="mf"/><s n="acc"/></r></p></e>
+  <e>       <p><l>du</l>        <r>prpers<s n="prn"/><s n="p2"/><s n="sg"/><s n="mf"/><s n="nom"/></r></p></e>
+  <e>       <p><l>deg</l>       <r>prpers<s n="prn"/><s n="p2"/><s n="sg"/><s n="mf"/><s n="acc"/></r></p></e>
+  <e>       <p><l>han</l>       <r>prpers<s n="prn"/><s n="p3"/><s n="sg"/><s n="m"/><s n="nom"/></r></p></e>
+  <e r="LR"><p><l>han</l>       <r>prpers<s n="prn"/><s n="p3"/><s n="sg"/><s n="m"/><s n="acc"/></r></p></e>
+  <e>       <p><l>ham</l>       <r>prpers<s n="prn"/><s n="p3"/><s n="sg"/><s n="m"/><s n="acc"/></r></p></e>
+  <e>       <p><l>hun</l>       <r>prpers<s n="prn"/><s n="p3"/><s n="sg"/><s n="f"/><s n="nom"/></r></p></e>
+  <e>       <p><l>henne</l>     <r>prpers<s n="prn"/><s n="p3"/><s n="sg"/><s n="f"/><s n="acc"/></r></p></e>
+  <e>       <p><l>den</l>       <r>prpers<s n="prn"/><s n="p3"/><s n="sg"/><s n="mf"/><s n="nom"/></r></p></e>
+  <e>       <p><l>den</l>       <r>prpers<s n="prn"/><s n="p3"/><s n="sg"/><s n="mf"/><s n="acc"/></r></p></e>
+  <e>       <p><l>det</l>       <r>prpers<s n="prn"/><s n="p3"/><s n="sg"/><s n="nt"/><s n="nom"/></r></p></e>
+  <e>       <p><l>det</l>       <r>prpers<s n="prn"/><s n="p3"/><s n="sg"/><s n="nt"/><s n="acc"/></r></p></e>
+
+  <e>       <p><l>vi</l>        <r>prpers<s n="prn"/><s n="p1"/><s n="pl"/><s n="mf"/><s n="nom"/></r></p></e>
+  <e>       <p><l>oss</l>       <r>prpers<s n="prn"/><s n="p1"/><s n="pl"/><s n="mf"/><s n="acc"/></r></p></e>
+  <e>       <p><l>dere</l>      <r>prpers<s n="prn"/><s n="p2"/><s n="pl"/><s n="mf"/><s n="nom"/></r></p></e>
+  <e>       <p><l>dere</l>      <r>prpers<s n="prn"/><s n="p2"/><s n="pl"/><s n="mf"/><s n="acc"/></r></p></e>
+  <e>       <p><l>de</l>        <r>prpers<s n="prn"/><s n="p3"/><s n="pl"/><s n="mf"/><s n="nom"/></r></p></e>
+  <e>       <p><l>dem</l>       <r>prpers<s n="prn"/><s n="p3"/><s n="pl"/><s n="mf"/><s n="acc"/></r></p></e>
 </pardef>
 
 <pardef n="personal_pronouns__prn">
@@ -182,6 +209,15 @@
   <e>       <p><l>t</l>         <r>n<s n="det"/><s n="ind"/><s n="nt"/><s n="sg"/></r></p></e>
 </pardef>
 
+  <!-- hvilken; hvilke  -->
+<pardef n="hvilke/n__det">
+  <!-- Ordbanken gives <det> w/o <pl>; but isn't "hvilke<det> biler" possible? -->
+<!--   <e>       <p><l></l>          <r><s n="det"/><s n="sp"/><s n="mf"/><s n="pl"/></r></p></e> -->
+<!--   <e>       <p><l></l>          <r><s n="det"/><s n="sp"/><s n="nt"/><s n="pl"/></r></p></e> -->
+  <e>       <p><l>n</l>         <r><s n="det"/><s n="sp"/><s n="m"/><s n="sg"/></r></p></e>
+  <e>       <p><l>n</l>         <r><s n="det"/><s n="sp"/><s n="f"/><s n="sg"/></r></p></e>
+  <e>       <p><l>t</l>         <r><s n="det"/><s n="sp"/><s n="nt"/><s n="sg"/></r></p></e>
+</pardef>
 
   <!-- sådan; sådan -->
 <pardef n="sådan__det">
@@ -6386,6 +6422,10 @@
 <e lm="både">            <i>både</i><par n="og__cnjcoo"/></e>
 
     <!-- Pronouns, possessive determiners -->
+<e lm="hva">             <i>hva</i><par n="hva__prn"/></e>
+<e lm="hvilke">          <i>hvilke</i><par n="hva__prn"/></e>
+<e lm="hvilket">         <i>hvilket</i><par n="hva__prn"/></e>
+<e lm="hvilken">         <i>hvilken</i><par n="hva__prn"/></e>
 <e lm="seg">             <i>seg</i><par n="seg__prn"/></e>
 <e lm="personal pronouns"><i></i><par n="personal_pronouns__prn"/></e>
 
@@ -6400,6 +6440,8 @@
 <e lm="vår">             <i>vår</i><par n="vår__det"/></e>
 
     <!-- Determiners -->
+    <!-- TODO: is kva for <-> hvilke<prn> enough? -->
+<!-- <e lm="hvilken">         <i>hvilke</i><par n="hvilke/n__det"/></e> -->
 <e lm="sådan">           <i>sådan</i><par n="sådan__det"/></e>
 <e lm="dette">           <i>dette</i><par n="dette__det"/></e>
 <e lm="samme">           <i>samme</i><par n="samme__det"/></e>
@@ -14007,6 +14049,11 @@
 <e lm="forskjellig">     <i>forskjellig</i><par n="tidlig__adj"/></e>
 <e lm="viktig">          <i>viktig</i><par n="tidlig__adj"/></e>
 <e lm="gammel">          <i></i><par n="/gammel__adj"/></e>
+<e lm="hovedsaklig">     <i>hovedsaklig</i><par n="tidlig__adj"/></e>
+<e lm="hovedsakelig">    <i>hovedsakelig</i><par n="tidlig__adj"/></e>
+<e lm="usaklig">         <i>usaklig</i><par n="tidlig__adj"/></e>
+<e lm="saklig">          <i>saklig</i><par n="tidlig__adj"/></e>
+<e lm="særlig">          <i>særlig</i><par n="tidlig__adj"/></e>
 
 	</section>
 	<section id="final" type="inconditional">

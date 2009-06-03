@@ -68,6 +68,7 @@ tLIST
 # - ubøy -- not sure what do do about this ("no inflection")
 # - ukjent -- unknown..hum.
 # - forst -- egen, selv, ....? seems rather few lemma (and <adj> never used)
+# - sp -- in OBT: spørrepronomen (atm, 'hva' simply marked <sp> in dix...)
 ##### See http://omilia.uio.no/obt/morfosyn.html ###########################
 
 ##### Stuff that needs doing afterwards if I run this again: ###############
