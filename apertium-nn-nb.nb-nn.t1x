@@ -21,11 +21,13 @@
     <def-cat n="detdem">	<!-- dette, den, annen, sådan, ... -->
       <cat-item tags="det.dem.*"/>
     </def-cat>
-    <def-cat n="det">	
-      <cat-item tags="det.*"/>
-      <cat-item tags="det.*"/>
+    <def-cat n="det_minus_sp">	
+      <cat-item tags="det.def.*"/>
+      <cat-item tags="det.ind.*"/>
+      <cat-item tags="det.dem.*"/>
+      <cat-item tags="det.pos.*"/>
     </def-cat>
-    <def-cat n="detpos">	<!-- min sin -->
+    <def-cat n="detpos">			      <!-- min sin -->
       <cat-item tags="det.pos.*"/>
     </def-cat>
     <def-cat n="adj">
@@ -82,6 +84,7 @@
       <attr-item tags="det.def"/>
       <attr-item tags="det.ind"/>
       <attr-item tags="det.dem"/>
+      <attr-item tags="det.sp"/>
       <attr-item tags="det.pos"/>
     </def-attr>
     <def-attr n="a_prn">
@@ -286,8 +289,8 @@
 
 
     <rule>
-      <pattern>						       
-        <pattern-item n="det"/>
+      <pattern>
+        <pattern-item n="det_minus_sp"/>
         <pattern-item n="nom"/>
       </pattern>
       <action>
