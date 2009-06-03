@@ -38,7 +38,6 @@
 		<sdef n="qnt" 	c="Quantifier"/> 
 		<sdef n="forst" 	c="Emphatic"/> <!-- forsterkande? dunno -->
 		<sdef n="vblex" 	c="Verb"/> 
-		<sdef n="vbser" 	c="Verb ~ to be ~"/> 
 		<sdef n="pst" 	c="-st form"/> <!-- also adj: positive / perfect participle TODO -->
 		<sdef n="inf" 	c="Infinitive"/> 
 		<sdef n="pres" 	c="Present"/> 
@@ -3045,11 +3044,14 @@
     
     
     <!-- Verbs -->
-<pardef n="/vera__vbser">
-  <e r="LR"><p><l>vera</l>      <r>vera<s n="vbser"/><s n="inf"/></r></p></e>
-  <e>       <p><l>er</l>        <r>vera<s n="vbser"/><s n="pres"/></r></p></e>
-  <e>       <p><l>var</l>       <r>vera<s n="vbser"/><s n="pret"/></r></p></e>
-  <e>       <p><l>vera</l>      <r>vera<s n="vbser"/><s n="pret"/></r></p></e>
+<pardef n="/vere__vblex">
+  <e>       <p><l>er</l>        <r>vere<s n="vblex"/><s n="pres"/></r></p></e>
+  <e>       <p><l>var</l>       <r>vere<s n="vblex"/><s n="pret"/></r></p></e>
+  <e r="LR"><p><l>vera</l>      <r>vere<s n="vblex"/><s n="inf"/></r></p></e>
+  <e>       <p><l>vere</l>      <r>vere<s n="vblex"/><s n="inf"/></r></p></e>
+  <e>       <p><l>ver</l>       <r>vere<s n="vblex"/><s n="imp"/></r></p></e>
+  <e>       <p><l>vore</l>      <r>vere<s n="vblex"/><s n="pp"/></r></p></e>
+  <e r="LR"><p><l>vori</l>      <r>vere<s n="vblex"/><s n="pp"/></r></p></e>
 </pardef>
 
     <!-- Lexical verbs -->
@@ -5219,15 +5221,6 @@
   <e>       <p><l>aris</l>      <r>aras<s n="vblex"/><s n="pp"/></r></p></e>
   <e>       <p><l>ers</l>       <r>aras<s n="vblex"/><s n="pres"/></r></p></e>
   <e>       <p><l>órs</l>       <r>aras<s n="vblex"/><s n="pret"/></r></p></e>
-</pardef>
-<pardef n="/vere__vbser">
-  <e>       <p><l>er</l>        <r>vere<s n="vbser"/><s n="pres"/></r></p></e>
-  <e>       <p><l>var</l>       <r>vere<s n="vbser"/><s n="pret"/></r></p></e>
-  <e r="LR"><p><l>vera</l>      <r>vere<s n="vbser"/><s n="inf"/></r></p></e>
-  <e>       <p><l>vere</l>      <r>vere<s n="vbser"/><s n="inf"/></r></p></e>
-  <e>       <p><l>ver</l>       <r>vere<s n="vbser"/><s n="imp"/></r></p></e>
-  <e>       <p><l>vore</l>      <r>vere<s n="vbser"/><s n="pp"/></r></p></e>
-  <e r="LR"><p><l>vori</l>      <r>vere<s n="vbser"/><s n="pp"/></r></p></e>
 </pardef>
 
 <pardef n="kl/ype__vblex">
@@ -11175,7 +11168,7 @@
 <e lm="Yngvill">         <i>Yngvill</i><par n="Sol__np"/></e>
 
     <!-- Verbs -->
-<e lm="vere">            <i></i><par n="/vere__vbser"/></e>
+<e lm="vere">            <i></i><par n="/vere__vblex"/></e>
 
 <e lm="vise">            <i>vis</i><par n="yt/e__vblex"/></e>
 <e lm="slå">             <i>sl</i><par n="sl/å__vblex"/></e>
