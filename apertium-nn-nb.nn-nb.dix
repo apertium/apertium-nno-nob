@@ -71,6 +71,12 @@ Evt. spm. til trond.trosterud@uit.no
 
   <section id="main" type="standard">
     <!-- Pronouns, possessive determiners -->
+    <e><p><l>kva<b/>for<s n="prn"/></l><r>hvilke<s n="prn"/></r></p></e>
+    <e><p><l>kva<b/>for<b/>eit<s n="prn"/></l><r>hvilket<s n="prn"/></r></p></e>
+    <e><p><l>kva<b/>for<b/>ein<s n="prn"/></l><r>hvilken<s n="prn"/></r></p></e>
+    <e r="LR"><p><l>kva<b/>for<b/>ei<s n="prn"/></l><r>hvilken<s n="prn"/></r></p></e>
+    <!-- ^^^ "Anaphora resolution algorithm", ~58 % precision. Todo: transfer rule for 'hvilken dame<f>' -->
+    <e><p><l>kva<s n="prn"/></l><r>hva<s n="prn"/></r></p></e>
     <e><p><l>seg<s n="prn"/></l><r>seg<s n="prn"/></r></p></e>
 
     <e><p><l>prpers<s n="prn"/></l><r>prpers<s n="prn"/></r></p></e>
@@ -78,7 +84,7 @@ Evt. spm. til trond.trosterud@uit.no
     <e><p><l>prpers<s n="prn"/><s n="p3"/><s n="sg"/><s n="m"/></l><r>prpers<s n="prn"/><s n="p3"/><s n="sg"/><s n="m"/></r></p></e>
     <e><p><l>prpers<s n="prn"/><s n="p3"/><s n="sg"/><s n="nt"/></l><r>prpers<s n="prn"/><s n="p3"/><s n="sg"/><s n="nt"/></r></p></e>
     <e r="RL"><p><l>prpers<s n="prn"/><s n="p3"/><s n="sg"/><s n="m"/></l><r>prpers<s n="prn"/><s n="p3"/><s n="sg"/><s n="mf"/></r></p></e>
-    <!-- ^^^ Anaphora resolution algorithm, ~58 % precision. Alternative: just use 'den' (safer, but less fluent) -->
+    <!-- ^^^ "Anaphora resolution algorithm", ~58 % precision. Alternative: just use 'den' (safer, but less fluent) -->
 
     <e><p><l>de<s n="prn"/></l><r>dere<s n="prn"/></r></p></e>
     <e><p><l>dei<s n="prn"/></l><r>dem<s n="prn"/></r></p></e>
@@ -98,6 +104,12 @@ Evt. spm. til trond.trosterud@uit.no
     <e><p><l>vår<s n="det"/><s n="pos"/></l><r>vår<s n="det"/><s n="pos"/></r></p></e>
     
     <!-- Determiners -->
+    <e r="LR"><p><l>kva<b/>slags<s n="det"/><s n="sp"/></l><r>hvilken<s n="prn"/><s n="sp"/></r></p></e>
+    <!-- TODO: is kva for <-> hvilke<prn> enough? -->
+<!--     <e r="RL"><p><l>kva<b/>slags<s n="det"/><s n="sp"/></l><r>hvilke<s n="det"/><s n="sp"/><s n="m"/><s n="sg"/></r></p></e> -->
+<!--     <e r="RL"><p><l>kva<b/>slags<s n="det"/><s n="sp"/></l><r>hvilke<s n="det"/><s n="sp"/><s n="nt"/><s n="sg"/></r></p></e> -->
+<!--      ^^^ again with the anaphora problem :-/ -->
+
     <e><p><l>ein<s n="det"/><s n="ind"/></l><r>en<s n="det"/><s n="ind"/></r></p></e>
     <e><p><l>dette<s n="det"/><s n="dem"/></l><r>dette<s n="det"/><s n="dem"/></r></p></e>
     <!-- de: den, det, de/dei -->
@@ -106,8 +118,6 @@ Evt. spm. til trond.trosterud@uit.no
     <e><p><l>eigen<s n="det"/><s n="dem"/></l><r>egen<s n="det"/><s n="dem"/></r></p></e>
     <e><p><l>einkvar<s n="det"/><s n="dem"/></l><r>enhver<s n="det"/><s n="dem"/></r></p></e>
     <e><p><l>eitt<s n="det"/><s n="dem"/></l><r>ett<s n="det"/><s n="dem"/></r></p></e>
-    <e><p><l>kvaslags<s n="det"/><s n="dem"/></l><r>hvilke<s n="det"/><s n="dem"/></r></p></e>
-    <e><p><l>kvaslags<s n="det"/><s n="dem"/></l><r>hvilken<s n="det"/><s n="dem"/></r></p></e>
     <e><p><l>mykje<s n="det"/><s n="dem"/></l><r>meget<s n="det"/><s n="dem"/></r></p></e>
     <e><p><l>annan<s n="det"/></l><r>annen<s n="det"/></r></p></e>
     <e><p><l>første<s n="det"/></l><r>første<s n="det"/></r></p></e>
@@ -2045,7 +2055,6 @@ Evt. spm. til trond.trosterud@uit.no
 <e>       <p><l>tene<s n="n"/><s n="m"/></l><r>tjene<s n="n"/><s n="m"/></r></p></e>
 <e>       <p><l>tilbod<s n="n"/><s n="mf"/></l><r>tilbud<s n="n"/><s n="mf"/></r></p></e>
 <e>       <p><l>tilbod<s n="n"/><s n="nt"/></l><r>tilbud<s n="n"/><s n="nt"/></r></p></e>
-<e>       <p><l>tilsette<s n="n"/><s n="mf"/></l><r>ansatte<s n="n"/><s n="mf"/></r></p></e>
 
 <e r="LR"><p><l>tur<s n="n"/><s n="nt"/></l><r>tur<s n="n"/><s n="m"/></r></p></e>
 <e>       <p><l>tur<s n="n"/><s n="m"/></l> <r>tur<s n="n"/><s n="m"/></r></p></e>
@@ -2054,8 +2063,8 @@ Evt. spm. til trond.trosterud@uit.no
 <e>       <p><l>tå<s n="n"/><s n="f"/></l>  <r>tå<s n="n"/><s n="f"/></r></p></e>
 <e>       <p><l>val<s n="n"/><s n="nt"/></l><r>valg<s n="n"/><s n="nt"/></r></p></e>
 <e>       <p><l>vatn<s n="n"/><s n="nt"/></l><r>vann<s n="n"/><s n="nt"/></r></p></e>
-<e>       <p><l>veg<s n="n"/><s n="mf"/></l><r>vei<s n="n"/><s n="mf"/></r></p></e>
-<e>       <p><l>veke<s n="n"/><s n="mf"/></l><r>uke<s n="n"/><s n="mf"/></r></p></e>
+<e>       <p><l>veg<s n="n"/><s n="m"/></l><r>vei<s n="n"/><s n="m"/></r></p></e>
+<e>       <p><l>veke<s n="n"/><s n="f"/></l><r>uke<s n="n"/><s n="f"/></r></p></e>
 <e>       <p><l>årsdag<s n="n"/><s n="m"/></l><r>årsdag<s n="n"/><s n="m"/></r></p></e>
 
 <e>       <p><l>and<s n="n"/><s n="f"/></l> <r>and<s n="n"/><s n="f"/></r></p></e>
@@ -31529,7 +31538,8 @@ Evt. spm. til trond.trosterud@uit.no
     <e><p><l>stileg<s n="adj"/></l><r>stilig<s n="adj"/></r></p></e>
     <e><p><l>avbakleg<s n="adj"/></l><r>avbaklig<s n="adj"/></r></p></e>
     <e><p><l>sakleg<s n="adj"/></l><r>saklig<s n="adj"/></r></p></e>
-    <e><p><l>hovedsakleg<s n="adj"/></l><r>hovedsaklig<s n="adj"/></r></p></e>
+    <e><p><l>hovudsakleg<s n="adj"/></l><r>hovedsakelig<s n="adj"/></r></p></e>
+    <e r="RL"><p><l>hovudsakleg<s n="adj"/></l><r>hovedsaklig<s n="adj"/></r></p></e>
     <e><p><l>usakleg<s n="adj"/></l><r>usaklig<s n="adj"/></r></p></e>
     <e><p><l>bokleg<s n="adj"/></l><r>boklig<s n="adj"/></r></p></e>
     <e><p><l>sjukleg<s n="adj"/></l><r>sjuklig<s n="adj"/></r></p></e>
@@ -31795,6 +31805,7 @@ Evt. spm. til trond.trosterud@uit.no
     <e><p><l>ømtåleg<s n="adj"/></l><r>ømtålig<s n="adj"/></r></p></e>
     <e><p><l>utåleg<s n="adj"/></l><r>utålig<s n="adj"/></r></p></e>
     <e><p><l>kjøleg<s n="adj"/></l><r>kjølig<s n="adj"/></r></p></e>
+<e>       <p><l>tilsett<s n="adj"/></l><r>ansatt<s n="adj"/></r></p></e>
 
 
     <!-- Verbs -->
@@ -37967,7 +37978,6 @@ Evt. spm. til trond.trosterud@uit.no
     <e><p><l>åkkesom<s n="adv"/></l><r>åkkesom<s n="adv"/></r></p></e>
     <e><p><l>årevis<s n="adv"/></l><r>årevis<s n="adv"/></r></p></e>
     <e><p><l>ørande<s n="adv"/></l><r>ørende<s n="adv"/></r></p></e>
-    <e><p><l>kva<s n="adv"/></l><r>hva<s n="adv"/></r></p></e>
 
     <!-- Not adverbs in ordbanken (prepositions, adjectives) delete? -->
     <e><p><l>sjølv<s n="adv"/></l><r>selv<s n="adv"/></r></p></e>

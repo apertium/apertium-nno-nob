@@ -101,6 +101,11 @@
   <e>       <p><l></l>          <r><s n="num"/><s n="pl"/></r></p></e>
 </pardef>
 
+    <!-- Pronouns -->
+<pardef n="kva__prn">
+  <e>       <p><l></l>          <r><s n="prn"/><s n="sp"/></r></p></e>
+</pardef>
+
 <pardef n="seg__prn">
   <e>       <p><l></l>          <r><s n="prn"/><s n="ref"/><s n="sg"/></r></p></e>
 </pardef>
@@ -153,6 +158,10 @@
 </pardef>
 
     <!-- Determiners -->
+<pardef n="kva__det">
+  <e>       <p><l/>             <r><s n="det"/><s n="sp"/></r></p></e>
+</pardef>
+
 <pardef n="ei/n__det">
   <e>       <p><l>n</l>         <r>n<s n="det"/><s n="ind"/><s n="m"/><s n="sg"/></r></p></e>
   <e>       <p><l></l>          <r>n<s n="det"/><s n="ind"/><s n="f"/><s n="sg"/></r></p></e>
@@ -3191,14 +3200,14 @@
 </pardef>
 <pardef n="g/å__vblex">
   <e>       <p><l>åast</l>      <r>å<s n="vblex"/><s n="pst"/></r></p></e>
-  <e>       <p><l>ådde</l>      <r>å<s n="vblex"/><s n="pret"/></r></p></e>
-  <e>       <p><l>ådd</l>       <r>å<s n="vblex"/><s n="pp"/></r></p></e>
   <e>       <p><l>år</l>        <r>å<s n="vblex"/><s n="pres"/></r></p></e>
   <e>       <p><l>ått</l>       <r>å<s n="vblex"/><s n="pp"/></r></p></e>
   <e>       <p><l>å</l>         <r>å<s n="vblex"/><s n="imp"/></r></p></e>
   <e>       <p><l>å</l>         <r>å<s n="vblex"/><s n="inf"/></r></p></e>
-  <e>       <p><l>ikk</l>       <r>å<s n="vblex"/><s n="pret"/></r></p></e>
   <e>       <p><l>jekk</l>      <r>å<s n="vblex"/><s n="pret"/></r></p></e>
+  <e r="LR"><p><l>ådde</l>      <r>å<s n="vblex"/><s n="pret"/></r></p></e>
+  <e r="LR"><p><l>ådd</l>       <r>å<s n="vblex"/><s n="pp"/></r></p></e>
+  <e r="LR"><p><l>ikk</l>       <r>å<s n="vblex"/><s n="pret"/></r></p></e>
 </pardef>
 <pardef n="skr/ike__vblex">
   <e>       <p><l>eik</l>       <r>ike<s n="vblex"/><s n="pret"/></r></p></e>
@@ -7200,6 +7209,22 @@
   <e>       <p><l>ast</l>       <r><s n="adj"/><s n="sup"/><s n="ind"/></r></p></e>
   <e>       <p><l>aste</l>      <r><s n="adj"/><s n="sup"/><s n="def"/></r></p></e>
 </pardef>
+<pardef n="sak/leg__adj">
+  <e>       <p><l>leg</l>          <r>leg<s n="adj"/><s n="pst"/><s n="mf"/><s n="sg"/><s n="ind"/></r></p></e>
+  <e>       <p><l>leg</l>          <r>leg<s n="adj"/><s n="pst"/><s n="nt"/><s n="sg"/><s n="ind"/></r></p></e>
+  <e>       <p><l>lege</l>         <r>leg<s n="adj"/><s n="pst"/><s n="pl"/></r></p></e>
+  <e>       <p><l>lege</l>         <r>leg<s n="adj"/><s n="pst"/><s n="sg"/><s n="def"/></r></p></e>
+  <e>       <p><l>legare</l>       <r>leg<s n="adj"/><s n="comp"/></r></p></e>
+  <e>       <p><l>legast</l>       <r>leg<s n="adj"/><s n="sup"/><s n="ind"/></r></p></e>
+  <e>       <p><l>legaste</l>      <r>leg<s n="adj"/><s n="sup"/><s n="def"/></r></p></e>
+  <e r="LR"><p><l>lig</l>          <r>leg<s n="adj"/><s n="pst"/><s n="mf"/><s n="sg"/><s n="ind"/></r></p></e>
+  <e r="LR"><p><l>lig</l>          <r>leg<s n="adj"/><s n="pst"/><s n="nt"/><s n="sg"/><s n="ind"/></r></p></e>
+  <e r="LR"><p><l>lige</l>         <r>leg<s n="adj"/><s n="pst"/><s n="pl"/></r></p></e>
+  <e r="LR"><p><l>lige</l>         <r>leg<s n="adj"/><s n="pst"/><s n="sg"/><s n="def"/></r></p></e>
+  <e r="LR"><p><l>ligare</l>       <r>leg<s n="adj"/><s n="comp"/></r></p></e>
+  <e r="LR"><p><l>ligast</l>       <r>leg<s n="adj"/><s n="sup"/><s n="ind"/></r></p></e>
+  <e r="LR"><p><l>ligaste</l>      <r>leg<s n="adj"/><s n="sup"/><s n="def"/></r></p></e>
+</pardef>
 <pardef n="sein__adj">
   <e>       <p><l></l>          <r><s n="adj"/><s n="pst"/><s n="mf"/><s n="sg"/><s n="ind"/></r></p></e>
   <e>       <p><l>t</l>         <r><s n="adj"/><s n="pst"/><s n="nt"/><s n="sg"/><s n="ind"/></r></p></e>
@@ -7268,6 +7293,11 @@
 <e lm="både">            <i>både</i><par n="og__cnjcoo"/></e>
 
     <!-- Pronouns, possessive determiners -->
+<e lm="kva for eit">      <i>kva<b/>for<b/>eit</i><par n="kva__prn"/></e>
+<e lm="kva for ei">      <i>kva<b/>for<b/>ei</i><par n="kva__prn"/></e>
+<e lm="kva for ein">     <i>kva<b/>for<b/>ein</i><par n="kva__prn"/></e>
+<e lm="kva for">         <i>kva<b/>for</i><par n="kva__prn"/></e>
+<e lm="kva">             <i>kva</i><par n="kva__prn"/></e>
 <e lm="seg">             <i>seg</i><par n="seg__prn"/></e>
 <e lm="personal pronouns"><i></i><par n="personal_pronouns__prn"/></e>
     
@@ -7283,6 +7313,8 @@
 <e lm="vår">             <i>vår</i><par n="vår__det"/></e>
 
     <!-- Determiners -->
+<e lm="kva">             <i>kva</i><par n="kva__det"/></e>
+<e lm="kva slags">       <i>kva<b/>slags</i><par n="kva__det"/></e>
 <e lm="desse">           <i>desse</i><par n="desse__det"/></e>
 <e lm="såvoren">         <i>såvor</i><par n="sovor/en__det"/></e>
 <e lm="same">            <i>same</i><par n="same__det"/></e>
@@ -12515,6 +12547,10 @@
 <e lm="viktig">          <i>viktig</i><par n="svart__adj"/></e>
 <e lm="gammal">          <i></i><par n="/gammal__adj"/></e>
 <e lm="egen">            <i>eg</i><par n="eg/en__adj"/></e>
+<e lm="hovudsakleg">     <i>hovudsak</i><par n="sak/leg__adj"/></e>
+<e lm="usaklig">         <i>usak</i><par n="sak/leg__adj"/></e>
+<e lm="saklig">          <i>sak</i><par n="sak/leg__adj"/></e>
+<e lm="særleg">          <i>sær</i><par n="sak/leg__adj"/></e>
     
 	</section>
 	<section id="final" type="inconditional">
