@@ -37,6 +37,7 @@ Evt. spm. til trond.trosterud@uit.no
     <sdef n="gen"     c="Genitive"/>
 
     <sdef n="dem"     c="Demonstrative"/>
+    <sdef n="q" 	c="Question word"/>
     <sdef n="qnt"     c="Quantifier"/>
     <sdef n="forst"   c="Emphatic"/>			       <!-- forsterkande? dunno -->
 
@@ -73,11 +74,6 @@ Evt. spm. til trond.trosterud@uit.no
 
   <section id="main" type="standard">
     <!-- Pronouns, possessive determiners -->
-    <e><p><l>kva<b/>for<s n="prn"/></l><r>hvilke<s n="prn"/></r></p></e>
-    <e><p><l>kva<b/>for<b/>eit<s n="prn"/></l><r>hvilket<s n="prn"/></r></p></e>
-    <e><p><l>kva<b/>for<b/>ein<s n="prn"/></l><r>hvilken<s n="prn"/></r></p></e>
-    <e r="LR"><p><l>kva<b/>for<b/>ei<s n="prn"/></l><r>hvilken<s n="prn"/></r></p></e>
-    <!-- ^^^ "Anaphora resolution algorithm", ~58 % precision. Todo: transfer rule for 'hvilken dame<f>' -->
     <e><p><l>kva<s n="prn"/></l><r>hva<s n="prn"/></r></p></e>
     <e><p><l>seg<s n="prn"/></l><r>seg<s n="prn"/></r></p></e>
 
@@ -106,12 +102,9 @@ Evt. spm. til trond.trosterud@uit.no
     <e><p><l>vår<s n="det"/><s n="pos"/></l><r>vår<s n="det"/><s n="pos"/></r></p></e>
     
     <!-- Determiners -->
-    <e r="LR"><p><l>kva<b/>slags<s n="det"/><s n="sp"/></l><r>hvilken<s n="prn"/><s n="sp"/></r></p></e>
-    <!-- TODO: is kva for <-> hvilke<prn> enough? -->
-<!--     <e r="RL"><p><l>kva<b/>slags<s n="det"/><s n="sp"/></l><r>hvilke<s n="det"/><s n="sp"/><s n="m"/><s n="sg"/></r></p></e> -->
-<!--     <e r="RL"><p><l>kva<b/>slags<s n="det"/><s n="sp"/></l><r>hvilke<s n="det"/><s n="sp"/><s n="nt"/><s n="sg"/></r></p></e> -->
-<!--      ^^^ again with the anaphora problem :-/ -->
-
+<e>       <p><l>kva<b/>for<s n="det"/><s n="q"/></l>  <r>hvilken<s n="det"/><s n="q"/></r></p></e>
+<e r="LR"><p><l>kva<b/>slags<s n="det"/><s n="q"/></l><r>hvilken<s n="det"/><s n="q"/></r></p></e>
+    
     <e><p><l>ein<s n="det"/><s n="ind"/></l><r>en<s n="det"/><s n="ind"/></r></p></e>
     <e><p><l>desse<s n="det"/><s n="dem"/></l><r>disse<s n="det"/><s n="dem"/></r></p></e>
     <e><p><l>såvoren<s n="det"/><s n="dem"/></l><r>slik<s n="det"/><s n="dem"/></r></p></e>
@@ -30512,7 +30505,7 @@ Evt. spm. til trond.trosterud@uit.no
     <!-- Proper nouns -->
 
     <!-- Toponyms  TODO: Should all be with "top" -->
-
+ 	  	 
     <e><p><l>Stockholm<s n="np"/><s n="top"/></l><r>Stockholm<s n="np"/><s n="top"/></r></p></e>
     <e><p><l>Bergen<s n="np"/><s n="top"/></l><r>Bergen<s n="np"/><s n="top"/></r></p></e>
     <e><p><l>Høgre<s n="np"/></l><r>Høyre<s n="np"/></r></p></e>

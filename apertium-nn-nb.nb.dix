@@ -22,7 +22,7 @@
 		<sdef n="p1" 	c="1st person"/> 
 		<sdef n="p2" 	c="2nd person"/> 
 		<sdef n="p3" 	c="3rd person"/> 
-		<sdef n="top" 	c="Toponym"/> 
+		<sdef n="top"   c="Toponym"/>
 		<sdef n="nt" 	c="Neuter"/> 
 		<sdef n="mf" 	c="Masculine / feminine"/> 
 		<sdef n="f" 	c="Feminine"/> 
@@ -36,6 +36,7 @@
 		<sdef n="acc" 	c="Accusative"/> <!-- the oblique case -->
 		<sdef n="gen" 	c="Genitive"/> 
 		<sdef n="dem" 	c="Demonstrative"/> 
+		<sdef n="q" 	c="Question word"/>
 		<sdef n="qnt" 	c="Quantifier"/> 
 		<sdef n="forst" 	c="Emphatic"/> <!-- forsterkande? dunno -->
 		<sdef n="vblex" 	c="Verb"/> 
@@ -127,7 +128,7 @@
 
     <!-- Pronouns -->
 <pardef n="hva__prn">
-  <e>       <p><l></l>          <r><s n="prn"/><s n="sp"/></r></p></e>
+  <e>       <p><l></l>          <r><s n="prn"/><s n="q"/></r></p></e>
 </pardef>
 
 <pardef n="seg__prn">
@@ -212,12 +213,10 @@
 
   <!-- hvilken; hvilke  -->
 <pardef n="hvilke/n__det">
-  <!-- Ordbanken gives <det> w/o <pl>; but isn't "hvilke<det> biler" possible? -->
-<!--   <e>       <p><l></l>          <r><s n="det"/><s n="sp"/><s n="mf"/><s n="pl"/></r></p></e> -->
-<!--   <e>       <p><l></l>          <r><s n="det"/><s n="sp"/><s n="nt"/><s n="pl"/></r></p></e> -->
-  <e>       <p><l>n</l>         <r><s n="det"/><s n="sp"/><s n="m"/><s n="sg"/></r></p></e>
-  <e>       <p><l>n</l>         <r><s n="det"/><s n="sp"/><s n="f"/><s n="sg"/></r></p></e>
-  <e>       <p><l>t</l>         <r><s n="det"/><s n="sp"/><s n="nt"/><s n="sg"/></r></p></e>
+  <e>       <p><l></l>          <r>n<s n="det"/><s n="q"/><s n="mf"/><s n="pl"/></r></p></e>
+  <e>       <p><l></l>          <r>n<s n="det"/><s n="q"/><s n="nt"/><s n="pl"/></r></p></e>
+  <e>       <p><l>n</l>         <r>n<s n="det"/><s n="q"/><s n="mf"/><s n="sg"/></r></p></e>
+  <e>       <p><l>t</l>         <r>n<s n="det"/><s n="q"/><s n="nt"/><s n="sg"/></r></p></e>
 </pardef>
 
   <!-- sådan; sådan -->
@@ -341,9 +340,9 @@
 
 
     <!-- Proper nouns -->
-<pardef n="Beograd__np">
-  <e>       <p><l></l>          <r><s n="np"/><s n="top"/></r></p><par n="S__case"/></e>
-</pardef>
+ <pardef n="Beograd__np">
+   <e>       <p><l></l>          <r><s n="np"/><s n="top"/></r></p><par n="S__case"/></e>
+ </pardef>
 
 <pardef n="Norge__np">
   <e>       <p><l></l>          <r><s n="np"/></r></p><par n="S__case"/></e>
@@ -6429,9 +6428,6 @@
 
     <!-- Pronouns, possessive determiners -->
 <e lm="hva">             <i>hva</i><par n="hva__prn"/></e>
-<e lm="hvilke">          <i>hvilke</i><par n="hva__prn"/></e>
-<e lm="hvilket">         <i>hvilket</i><par n="hva__prn"/></e>
-<e lm="hvilken">         <i>hvilken</i><par n="hva__prn"/></e>
 <e lm="seg">             <i>seg</i><par n="seg__prn"/></e>
 <e lm="personal pronouns"><i></i><par n="personal_pronouns__prn"/></e>
 
@@ -6446,8 +6442,7 @@
 <e lm="vår">             <i>vår</i><par n="vår__det"/></e>
 
     <!-- Determiners -->
-    <!-- TODO: is kva for <-> hvilke<prn> enough? -->
-<!-- <e lm="hvilken">         <i>hvilke</i><par n="hvilke/n__det"/></e> -->
+<e lm="hvilken">         <i>hvilke</i><par n="hvilke/n__det"/></e>
 <e lm="sådan">           <i>sådan</i><par n="sådan__det"/></e>
 <e lm="dette">           <i>dette</i><par n="dette__det"/></e>
 <e lm="samme">           <i>samme</i><par n="samme__det"/></e>
@@ -8774,14 +8769,13 @@
 <e lm="tema">            <i>tema</i><par n="vita__n"/></e>
 
     <!-- Proper nouns -->
-
-    <!-- Toponyms -->
-
-<e lm="Stockholm">       <i>Stockholm</i><par n="Beograd__np"/></e>
-<e lm="Bergen">          <i>Bergen</i><par n="Beograd__np"/></e>
-
-
-    <!-- Other -->
+ <!-- Toponyms -->
+ 	  	 
+ 	  	 <e lm="Stockholm">       <i>Stockholm</i><par n="Beograd__np"/></e>
+ 	  	 <e lm="Bergen">          <i>Bergen</i><par n="Beograd__np"/></e>
+ 	  	 
+ 	  	 
+ 	  	     <!-- Other -->
 <e lm="AF">              <i>AF</i><par n="Norge__np"/></e>
 <e lm="AIX">             <i>AIX</i><par n="Norge__np"/></e>
 <e lm="AKAN">            <i>AKAN</i><par n="Norge__np"/></e>
