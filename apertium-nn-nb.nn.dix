@@ -26,7 +26,7 @@
 		<sdef n="mf" 	c="Masculine / feminine"/> 
 		<sdef n="f" 	c="Feminine"/> 
 		<sdef n="m" 	c="Masculine"/> 
-		<sdef n="top" 	c="Toponym"/> 
+		<sdef n="top"   c="Toponym"/>
 		<sdef n="sp" 	c="Singular / plural"/> 
 		<sdef n="sg" 	c="Singular"/> 
 		<sdef n="pl" 	c="Plural"/> 
@@ -36,7 +36,8 @@
 		<sdef n="acc" 	c="Accusative"/> <!-- the oblique case -->
 		<sdef n="gen" 	c="Genitive"/> 
 		<sdef n="dem" 	c="Demonstrative"/> 
-		<sdef n="qnt" 	c="Quantifier"/> 
+		<sdef n="q" 	c="Question word"/>
+ 		<sdef n="qnt" 	c="Quantifier"/> 
 		<sdef n="forst" 	c="Emphatic"/> <!-- forsterkande? dunno -->
 		<sdef n="vblex" 	c="Verb"/> 
 		<sdef n="pst" 	c="-st form"/> <!-- also adj: positive / perfect participle TODO -->
@@ -102,9 +103,19 @@
   <e>       <p><l></l>          <r><s n="num"/><s n="pl"/></r></p></e>
 </pardef>
 
+<pardef n="kva_for__det">
+  <e>       <p><l><b/>eit</l>          <r><s n="det"/><s n="q"/><s n="nt"/><s n="sg"/></r></p></e>
+  <e>       <p><l><b/>ei</l>           <r><s n="det"/><s n="q"/><s n="f"/><s n="sg"/></r></p></e>
+  <e>       <p><l><b/>ein</l>          <r><s n="det"/><s n="q"/><s n="m"/><s n="sg"/></r></p></e>
+  <e r="LR"><p><l><b/>nokre</l>        <r><s n="det"/><s n="q"/><s n="mf"/><s n="pl"/></r></p></e>
+  <e>       <p><l></l>                 <r><s n="det"/><s n="q"/><s n="mf"/><s n="pl"/></r></p></e>
+  <e r="LR"><p><l><b/>nokre</l>        <r><s n="det"/><s n="q"/><s n="nt"/><s n="pl"/></r></p></e>
+  <e>       <p><l></l>                 <r><s n="det"/><s n="q"/><s n="nt"/><s n="pl"/></r></p></e>
+</pardef>
+
     <!-- Pronouns -->
 <pardef n="kva__prn">
-  <e>       <p><l></l>          <r><s n="prn"/><s n="sp"/></r></p></e>
+  <e>       <p><l></l>          <r><s n="prn"/><s n="q"/></r></p></e>
 </pardef>
 
 <pardef n="seg__prn">
@@ -160,7 +171,7 @@
 
     <!-- Determiners -->
 <pardef n="kva__det">
-  <e>       <p><l/>             <r><s n="det"/><s n="sp"/></r></p></e>
+  <e>       <p><l/>             <r><s n="det"/><s n="q"/></r></p></e>
 </pardef>
 
 <pardef n="ei/n__det">
@@ -318,7 +329,7 @@
   <e>       <p><l></l>          <r><s n="np"/><s n="nt"/></r></p><par n="S__case"/></e>
 </pardef>
 <pardef n="Beograd__np">
-  <e>       <p><l></l>          <r><s n="np"/><s n="top"/></r></p><par n="S__case"/></e>
+	   <e>       <p><l></l>          <r><s n="np"/><s n="top"/></r></p><par n="S__case"/></e>
 </pardef>
 <pardef n="Noreg__np">
   <e>       <p><l></l>          <r><s n="np"/></r></p><par n="S__case"/></e>
@@ -7298,10 +7309,6 @@
 <e lm="både">            <i>både</i><par n="og__cnjcoo"/></e>
 
     <!-- Pronouns, possessive determiners -->
-<e lm="kva for eit">      <i>kva<b/>for<b/>eit</i><par n="kva__prn"/></e>
-<e lm="kva for ei">      <i>kva<b/>for<b/>ei</i><par n="kva__prn"/></e>
-<e lm="kva for ein">     <i>kva<b/>for<b/>ein</i><par n="kva__prn"/></e>
-<e lm="kva for">         <i>kva<b/>for</i><par n="kva__prn"/></e>
 <e lm="kva">             <i>kva</i><par n="kva__prn"/></e>
 <e lm="seg">             <i>seg</i><par n="seg__prn"/></e>
 <e lm="personal pronouns"><i></i><par n="personal_pronouns__prn"/></e>
@@ -7318,6 +7325,8 @@
 <e lm="vår">             <i>vår</i><par n="vår__det"/></e>
 
     <!-- Determiners -->
+<e lm="kva for">         <i>kva<b/>for</i><par n="kva_for__det"/></e>
+<e lm="kva">             <i>kva</i><par n="kva__prn"/></e>
 <e lm="kva">             <i>kva</i><par n="kva__det"/></e>
 <e lm="kva slags">       <i>kva<b/>slags</i><par n="kva__det"/></e>
 <e lm="desse">           <i>desse</i><par n="desse__det"/></e>
@@ -10141,13 +10150,12 @@
 
 
     <!-- Proper nouns -->
-
     <!-- Toponyms -->
-
+ 	  	 
 <e lm="Stockholm">           <i>Stockholm</i><par n="Beograd__np"/></e>
 <e lm="Bergen">           <i>Bergen</i><par n="Beograd__np"/></e>
-
-    <!-- Other -->
+ 	  	 
+<!-- Other -->
 
 <e lm="Noreg">           <i>Noreg</i><par n="Noreg__np"/></e>
 <e lm="USA">             <i>USA</i><par n="Noreg__np"/></e>

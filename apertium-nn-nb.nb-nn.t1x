@@ -21,11 +21,14 @@
     <def-cat n="detdem">	<!-- dette, den, annen, sådan, ... -->
       <cat-item tags="det.dem.*"/>
     </def-cat>
-    <def-cat n="det_minus_sp">	
+    <def-cat n="det_minus_q">	
       <cat-item tags="det.def.*"/>
       <cat-item tags="det.ind.*"/>
       <cat-item tags="det.dem.*"/>
       <cat-item tags="det.pos.*"/>
+    </def-cat>
+    <def-cat n="detq">				       <!-- hvilke -->
+      <cat-item tags="det.q.*"/>
     </def-cat>
     <def-cat n="detpos">			      <!-- min sin -->
       <cat-item tags="det.pos.*"/>
@@ -84,7 +87,7 @@
       <attr-item tags="det.def"/>
       <attr-item tags="det.ind"/>
       <attr-item tags="det.dem"/>
-      <attr-item tags="det.sp"/>
+      <attr-item tags="det.q"/>
       <attr-item tags="det.pos"/>
     </def-attr>
     <def-attr n="a_prn">
@@ -115,7 +118,7 @@
 
   <section-def-vars>
     <def-var n="numero"/>
-    <def-var n="mf_or_nt"/>
+    <def-var n="gender"/>
     <def-var n="firstWord"/>
   </section-def-vars>
 
@@ -140,6 +143,58 @@
       </choose>
     </def-macro>
 
+    <def-macro n="set_m_iff_mf_sg" npar="1">
+      <choose>
+        <when>
+	  <test>
+	    <and>
+	    <equal>
+	      <clip pos="1" side="sl" part="gen"/>
+	      <lit-tag v="mf"/>
+	    </equal>
+	    <equal>
+	      <clip pos="1" side="sl" part="nbr"/>
+	      <lit-tag v="sg"/>
+	    </equal>
+	    </and>
+	  </test>
+	  <let>
+	    <var n="gender"/>
+	    <lit-tag v="m"/>
+	  </let>
+        </when>
+	<otherwise>
+	  <let>
+	    <var n="gender"/>
+	    <clip pos="1" side="sl" part="gen"/>
+	  </let>
+	</otherwise>
+      </choose>
+    </def-macro>
+
+    <def-macro n="set_mf_iff_pl" npar="1">
+      <choose>
+        <when>
+	  <test>
+	    <equal>
+	      <clip pos="1" side="sl" part="nbr"/>
+	      <lit-tag v="pl"/>
+	    </equal>
+	  </test>
+	  <let>
+	    <var n="gender"/>
+	    <lit-tag v="mf"/>
+	  </let>
+        </when>
+	<otherwise>
+	  <let>
+	    <var n="gender"/>
+	    <clip pos="1" side="sl" part="gen"/>
+	  </let>
+	</otherwise>
+      </choose>
+    </def-macro>
+
     <def-macro n="set_mf_or_nt" npar="1">
       <choose>
         <when>
@@ -156,20 +211,19 @@
 	      </or>
 	  </test>
 	  <let>
-	    <var n="mf_or_nt"/>
+	    <var n="gender"/>
 	    <lit-tag v="mf"/>
 	  </let>
         </when>
 	<otherwise>
 	  <let>
-	    <var n="mf_or_nt"/>
+	    <var n="gender"/>
 	    <lit-tag v="nt"/>
 	  </let>
 	</otherwise>
       </choose>
     </def-macro>
 
-<!-- 	    <clip pos="3" side="tl" part="gen"/> -->
   </section-def-macros>
 
   <section-rules>
@@ -257,7 +311,7 @@
           <lu>
 	    <get-case-from pos="1"> <lit v="de"/></get-case-from>
 	    <lit-tag v="det.dem"/>
-	    <var n="mf_or_nt"/>
+	    <var n="gender"/>
             <clip pos="1" side="tl" part="nbr"/>
           </lu>
 	  <b pos="1"/>
@@ -290,7 +344,7 @@
 
     <rule>
       <pattern>
-        <pattern-item n="det_minus_sp"/>
+        <pattern-item n="det_minus_q"/>
         <pattern-item n="nom"/>
       </pattern>
       <action>
@@ -317,7 +371,56 @@
     </rule>
 
 
+    <rule comment="TODO: plural needs mf iff m or f">
+      <pattern>
+        <pattern-item n="detq"/>
+        <pattern-item n="nom"/>
+      </pattern>
+      <action>
+	<call-macro n="set_mf_iff_pl">
+	  <with-param pos="2"/>
+	</call-macro>
+        <out>
+          <lu>
+            <clip pos="1" side="tl" part="lem"/>
+            <clip pos="1" side="tl" part="a_det"/>
+	    <var n="gender"/>
+            <clip pos="2" side="tl" part="nbr"/>
+          </lu>
+          <b pos="1"/>
+          <lu>
+	    <clip pos="2" side="tl" part="lemh"/>
+            <clip pos="2" side="tl" part="a_nom"/>
+            <clip pos="2" side="tl" part="gen"/>
+            <clip pos="2" side="tl" part="nbr"/>
+            <clip pos="2" side="tl" part="art"/>
+	    <clip pos="2" side="tl" part="cas"/>
+	    <clip pos="2" side="tl" part="lemq"/>
+          </lu>
+        </out>
+      </action>
+    </rule>
+
+    <rule comment="Anaphora resolution algorithm, ~58 % precision.">
+      <pattern>
+        <pattern-item n="detq"/>
+      </pattern>
+      <action>
+	<call-macro n="set_m_iff_mf_sg">
+	  <with-param pos="1"/>
+	</call-macro>
+        <out>
+          <lu>
+            <clip pos="1" side="tl" part="lem"/>
+            <clip pos="1" side="tl" part="a_det"/>
+	    <var n="gender"/>
+            <clip pos="1" side="tl" part="nbr"/>
+          </lu>
+        </out>
+      </action>
+    </rule>
     
+
 
   </section-rules>
 </transfer>
