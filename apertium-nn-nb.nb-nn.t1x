@@ -99,6 +99,7 @@
       <attr-item tags="mf"/>
       <attr-item tags="nt"/>
       <attr-item tags="f"/>
+      <attr-item tags="GD"/>
     </def-attr>
     <def-attr n="nbr">
       <attr-item tags="sg"/>
@@ -148,10 +149,16 @@
         <when>
 	  <test>
 	    <and>
-	    <equal>
-	      <clip pos="1" side="sl" part="gen"/>
-	      <lit-tag v="mf"/>
-	    </equal>
+              <or>
+  	        <equal>
+	          <clip pos="1" side="tl" part="gen"/>
+	          <lit-tag v="GD"/>
+	        </equal>
+  	        <equal>
+	          <clip pos="1" side="sl" part="gen"/>
+	          <lit-tag v="mf"/>
+	        </equal>
+              </or>
 	    <equal>
 	      <clip pos="1" side="sl" part="nbr"/>
 	      <lit-tag v="sg"/>
@@ -345,14 +352,41 @@
     <rule>
       <pattern>
         <pattern-item n="det_minus_q"/>
-        <pattern-item n="nom"/>
       </pattern>
       <action>
+        <call-macro n="set_m_iff_mf_sg">
+          <with-param pos="1"/>
+        </call-macro>
         <out>
           <lu>
             <clip pos="1" side="tl" part="lem"/>
             <clip pos="1" side="tl" part="a_det"/>
-	    <clip pos="2" side="tl" part="gen"/> <!-- "en<mf> kvinne<f>" -->
+<!--	    <clip pos="1" side="tl" part="gen"/>--> <!-- "en<mf> kvinne<f>" -->
+
+            <var n="gender"/>
+	    <!-- But: how do we get if nbr==pl then mf? macro? -->
+            <clip pos="1" side="tl" part="nbr"/>
+          </lu>
+        </out>
+      </action>
+    </rule>
+
+    <rule>
+      <pattern>
+        <pattern-item n="det_minus_q"/>
+        <pattern-item n="nom"/>
+      </pattern>
+      <action>
+        <call-macro n="set_m_iff_mf_sg">
+          <with-param pos="1"/>
+        </call-macro>
+        <out>
+          <lu>
+            <clip pos="1" side="tl" part="lem"/>
+            <clip pos="1" side="tl" part="a_det"/>
+<!--	    <clip pos="1" side="tl" part="gen"/>--> <!-- "en<mf> kvinne<f>" -->
+
+            <var n="gender"/>
 	    <!-- But: how do we get if nbr==pl then mf? macro? -->
             <clip pos="2" side="tl" part="nbr"/>
           </lu>
