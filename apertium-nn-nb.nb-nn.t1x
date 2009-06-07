@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- -*- nxml -*- -->
-
 <transfer>
 
   <section-def-cats>
@@ -11,24 +10,11 @@
     <def-cat n="nind">
       <cat-item tags="n.*.*.ind"/>
     </def-cat>
-    <!-- "navn" (name) was "n.*", np is proper noun though.. -->
     <def-cat n="navn">					       
       <cat-item tags="np.*"/>
     </def-cat>
-    <def-cat n="detind">			   <!-- en, ei, et -->
-      <cat-item tags="det.ind.*"/>
-    </def-cat>
-    <def-cat n="detdem">	<!-- dette, den, annen, sådan, ... -->
-      <cat-item tags="det.dem.*"/>
-    </def-cat>
-    <def-cat n="det_minus_q">	
-      <cat-item tags="det.def.*"/>
-      <cat-item tags="det.ind.*"/>
-      <cat-item tags="det.dem.*"/>
-      <cat-item tags="det.pos.*"/>
-    </def-cat>
-    <def-cat n="detq">				       <!-- hvilke -->
-      <cat-item tags="det.q.*"/>
+    <def-cat n="det">
+      <cat-item tags="det.*"/>
     </def-cat>
     <def-cat n="detpos">			      <!-- min sin -->
       <cat-item tags="det.pos.*"/>
@@ -87,7 +73,8 @@
       <attr-item tags="det.def"/>
       <attr-item tags="det.ind"/>
       <attr-item tags="det.dem"/>
-      <attr-item tags="det.q"/>
+      <attr-item tags="det.itg"/>
+      <attr-item tags="det.qnt"/>
       <attr-item tags="det.pos"/>
     </def-attr>
     <def-attr n="a_prn">
@@ -117,11 +104,11 @@
     </def-attr>
   </section-def-attrs>
 
+
   <section-def-vars>
-    <def-var n="numero"/>
-    <def-var n="gender"/>
-    <def-var n="firstWord"/>
+    <def-var n="gender"/>     <!-- set_m_iff_mf_sg or set_mf_or_nt -->
   </section-def-vars>
+
 
   <section-def-macros>
 
@@ -131,102 +118,58 @@
         <when>
           <test>
             <not>
-              <equal>
-                <b pos="1"/>
-                <lit v=" "/>
-              </equal>
+              <equal><b pos="1"/><lit v=" "/></equal>
             </not>
           </test>
-          <out>
-            <b pos="1"/>
-          </out>
+          <out><b pos="1"/></out>
         </when>
       </choose>
     </def-macro>
 
     <def-macro n="set_m_iff_mf_sg" npar="1">
+      <!-- - iff sg and mf/GD, take a wild guess and go for m;
+	   - plurals get no tag;
+	   - o/w take what we're given (possibly from what we concord with) -->
       <choose>
         <when>
 	  <test>
 	    <and>
               <or>
-  	        <equal>
-	          <clip pos="1" side="tl" part="gen"/>
-	          <lit-tag v="GD"/>
-	        </equal>
-  	        <equal>
-	          <clip pos="1" side="sl" part="gen"/>
-	          <lit-tag v="mf"/>
-	        </equal>
+  	        <equal><clip pos="1" side="tl" part="gen"/><lit-tag v="GD"/></equal>
+  	        <equal><clip pos="1" side="sl" part="gen"/><lit-tag v="mf"/></equal>
               </or>
-	    <equal>
-	      <clip pos="1" side="sl" part="nbr"/>
-	      <lit-tag v="sg"/>
-	    </equal>
+	      <equal><clip pos="1" side="sl" part="nbr"/><lit-tag v="sg"/></equal>
 	    </and>
 	  </test>
-	  <let>
-	    <var n="gender"/>
-	    <lit-tag v="m"/>
-	  </let>
+	  <let><var n="gender"/><lit-tag v="m"/></let>
         </when>
-	<otherwise>
-	  <let>
-	    <var n="gender"/>
-	    <clip pos="1" side="sl" part="gen"/>
-	  </let>
-	</otherwise>
-      </choose>
-    </def-macro>
-
-    <def-macro n="set_mf_iff_pl" npar="1">
-      <choose>
-        <when>
+	<when>
 	  <test>
-	    <equal>
-	      <clip pos="1" side="sl" part="nbr"/>
-	      <lit-tag v="pl"/>
-	    </equal>
+	    <equal><clip pos="1" side="tl" part="nbr"/><lit-tag v="pl"/></equal>
 	  </test>
-	  <let>
-	    <var n="gender"/>
-	    <lit-tag v="mf"/>
-	  </let>
-        </when>
+	  <let><var n="gender"/><lit v=""/></let>
+	</when>
 	<otherwise>
-	  <let>
-	    <var n="gender"/>
-	    <clip pos="1" side="sl" part="gen"/>
-	  </let>
+	  <let><var n="gender"/><clip pos="1" side="sl" part="gen"/></let>
 	</otherwise>
       </choose>
     </def-macro>
 
     <def-macro n="set_mf_or_nt" npar="1">
+      <!-- - iff m or f, use mf
+           - o/w use nt. For eg. 'den/det' -->
       <choose>
         <when>
 	  <test>
 	      <or>
-		<equal>
-		  <clip pos="1" side="sl" part="gen"/>
-		  <lit-tag v="m"/>
-		</equal>
-		<equal>
-		  <clip pos="1" side="sl" part="gen"/>
-		  <lit-tag v="f"/>
-		</equal>
+		<equal><clip pos="1" side="sl" part="gen"/><lit-tag v="m"/></equal>
+		<equal><clip pos="1" side="sl" part="gen"/><lit-tag v="f"/></equal>
 	      </or>
 	  </test>
-	  <let>
-	    <var n="gender"/>
-	    <lit-tag v="mf"/>
-	  </let>
+	  <let><var n="gender"/><lit-tag v="mf"/></let>
         </when>
 	<otherwise>
-	  <let>
-	    <var n="gender"/>
-	    <lit-tag v="nt"/>
-	  </let>
+	  <let><var n="gender"/><lit-tag v="nt"/></let>
 	</otherwise>
       </choose>
     </def-macro>
@@ -264,12 +207,11 @@
 <!--       </action> -->
 <!--     </rule> -->
 
-    <rule comment="DETPOS NIND   - min mor - mora mi (this rule should probably have some stronger restrictions on use?)">
+    <rule comment="DETPOS NIND: min mor => mora mi 
+      nind makes sure we don't match 'min Per(np)' nor 'min bils(gen)' ">
       <pattern>
-	<pattern-item n="detpos"/>     <!--min <det><pos><m/f><sg> -->
-	<pattern-item n="nind"/>	<!--mor <n>  <f>  <sg><ind>-->
-	<!-- todo: make sure the nom is NOT genitive -->
-	<!-- Min Per -> Peren min? nah.. TODO: only "n.*" -->
+	<pattern-item n="detpos"/>    
+	<pattern-item n="nind"/>
       </pattern>
       <action>
         <modify-case><clip pos="1" side="tl" part="lemh"/><clip pos="2" side="tl" part="lemh"/></modify-case>
@@ -285,12 +227,8 @@
           </lu>
           <b pos="1"/>
           <lu>
-	    
 	    <clip pos="1" side="tl" part="lem"/>
             <clip pos="1" side="tl" part="a_det"/>
-	    <!-- TODO: gen=mf should depend on noun gender on the
-	         nynorsk side since bokmål min is mf while nynorsk is
-	         m -->
 	    <clip pos="2" side="tl" part="gen"/>  
             <clip pos="2" side="tl" part="nbr"/>
           </lu>
@@ -300,10 +238,7 @@
 
 
 
-
-
-
-    <rule comment="DETPOS ADJ NOM   - mitt lille navn - det vesle namnet mitt ">
+    <rule comment="DETPOS ADJ NOM: mitt lille navn => det vesle namnet mitt ">
       <pattern>
         <pattern-item n="detpos"/>
         <pattern-item n="adj"/>
@@ -316,7 +251,7 @@
 	</call-macro>
         <out>
           <lu>
-	    <get-case-from pos="1"> <lit v="de"/></get-case-from>
+	    <get-case-from pos="1"><lit v="de"/></get-case-from>
 	    <lit-tag v="det.dem"/>
 	    <var n="gender"/>
             <clip pos="1" side="tl" part="nbr"/>
@@ -349,9 +284,10 @@
     </rule>
 
 
-    <rule>
+    <rule comment="DET: en => ein
+		   Frequency is on our side, but politically incorrect..hmm..">
       <pattern>
-        <pattern-item n="det_minus_q"/>
+        <pattern-item n="det"/>
       </pattern>
       <action>
         <call-macro n="set_m_iff_mf_sg">
@@ -362,16 +298,15 @@
             <clip pos="1" side="tl" part="lem"/>
             <clip pos="1" side="tl" part="a_det"/>
             <var n="gender"/>
-	    <!-- But: how do we get if nbr==pl then mf? macro? -->
             <clip pos="1" side="tl" part="nbr"/>
           </lu>
         </out>
       </action>
     </rule>
 
-    <rule>
+    <rule comment="DET NOM: en kvinne => ei kvinne">
       <pattern>
-        <pattern-item n="det_minus_q"/>
+        <pattern-item n="det"/>
         <pattern-item n="nom"/>
       </pattern>
       <action>
@@ -393,7 +328,7 @@
             <clip pos="2" side="tl" part="gen"/>
             <clip pos="2" side="tl" part="nbr"/>
             <clip pos="2" side="tl" part="art"/>
-	    <clip pos="2" side="tl" part="cas"/>	       <!-- todo: remove? -->
+	    <clip pos="2" side="tl" part="cas"/>	
 	    <clip pos="2" side="tl" part="lemq"/>
           </lu>
         </out>
@@ -401,56 +336,28 @@
     </rule>
 
 
-    <rule comment="TODO: plural needs mf iff m or f">
+    <rule comment="ADJ: åpne (hus) => opne (hus)
+		   We let CG disambiguate art and nbr using the following noun,
+		   o/w all info should be in the adjective wordform (eg. in the above
+		   example, hus being ind should give plural).">
       <pattern>
-        <pattern-item n="detq"/>
-        <pattern-item n="nom"/>
+        <pattern-item n="adj"/>
       </pattern>
       <action>
-	<call-macro n="set_mf_iff_pl">
-	  <with-param pos="2"/>
-	</call-macro>
+        <call-macro n="set_m_iff_mf_sg">
+          <with-param pos="1"/>
+        </call-macro>
         <out>
           <lu>
             <clip pos="1" side="tl" part="lem"/>
-            <clip pos="1" side="tl" part="a_det"/>
-	    <var n="gender"/>
-            <clip pos="2" side="tl" part="nbr"/>
-          </lu>
-          <b pos="1"/>
-          <lu>
-	    <clip pos="2" side="tl" part="lemh"/>
-            <clip pos="2" side="tl" part="a_nom"/>
-            <clip pos="2" side="tl" part="gen"/>
-            <clip pos="2" side="tl" part="nbr"/>
-            <clip pos="2" side="tl" part="art"/>
-	    <clip pos="2" side="tl" part="cas"/>
-	    <clip pos="2" side="tl" part="lemq"/>
-          </lu>
-        </out>
-      </action>
-    </rule>
-
-    <rule comment="Anaphora resolution algorithm, ~58 % precision.">
-      <pattern>
-        <pattern-item n="detq"/>
-      </pattern>
-      <action>
-	<call-macro n="set_m_iff_mf_sg">
-	  <with-param pos="1"/>
-	</call-macro>
-        <out>
-          <lu>
-            <clip pos="1" side="tl" part="lem"/>
-            <clip pos="1" side="tl" part="a_det"/>
-	    <var n="gender"/>
+            <clip pos="1" side="tl" part="a_adj"/>
+            <var n="gender"/>
             <clip pos="1" side="tl" part="nbr"/>
+            <clip pos="1" side="tl" part="art"/>
           </lu>
         </out>
       </action>
     </rule>
-    
-
 
   </section-rules>
 </transfer>
