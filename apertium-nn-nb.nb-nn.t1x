@@ -361,8 +361,6 @@
           <lu>
             <clip pos="1" side="tl" part="lem"/>
             <clip pos="1" side="tl" part="a_det"/>
-<!--	    <clip pos="1" side="tl" part="gen"/>--> <!-- "en<mf> kvinne<f>" -->
-
             <var n="gender"/>
 	    <!-- But: how do we get if nbr==pl then mf? macro? -->
             <clip pos="1" side="tl" part="nbr"/>
@@ -378,14 +376,12 @@
       </pattern>
       <action>
         <call-macro n="set_m_iff_mf_sg">
-          <with-param pos="1"/>
+          <with-param pos="2"/>
         </call-macro>
         <out>
           <lu>
             <clip pos="1" side="tl" part="lem"/>
             <clip pos="1" side="tl" part="a_det"/>
-<!--	    <clip pos="1" side="tl" part="gen"/>--> <!-- "en<mf> kvinne<f>" -->
-
             <var n="gender"/>
 	    <!-- But: how do we get if nbr==pl then mf? macro? -->
             <clip pos="2" side="tl" part="nbr"/>
