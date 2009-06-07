@@ -103,14 +103,6 @@
   <e>       <p><l></l>          <r><s n="num"/><s n="pl"/></r></p></e>
 </pardef>
 
-<pardef n="kva_for__det">
-  <e>       <p><l><b/>eit</l>          <r><s n="det"/><s n="itg"/><s n="nt"/><s n="sg"/></r></p></e>
-  <e>       <p><l><b/>ei</l>           <r><s n="det"/><s n="itg"/><s n="f"/><s n="sg"/></r></p></e>
-  <e>       <p><l><b/>ein</l>          <r><s n="det"/><s n="itg"/><s n="m"/><s n="sg"/></r></p></e>
-  <e r="LR"><p><l><b/>nokre</l>        <r><s n="det"/><s n="itg"/><s n="pl"/></r></p></e>
-  <e>       <p><l></l>                 <r><s n="det"/><s n="itg"/><s n="pl"/></r></p></e>
-</pardef>
-
     <!-- Pronouns -->
 <pardef n="kva__prn">
   <e>       <p><l></l>          <r><s n="prn"/><s n="itg"/></r></p></e>
@@ -120,8 +112,14 @@
   <e>       <p><l></l>          <r><s n="prn"/><s n="ref"/><s n="sg"/></r></p></e>
 </pardef>
 
+<pardef n="in/gen__prn"> <!-- TODO: OBT tags it prn 'pers' -->
+  <e>       <p><l>ga</l>         <r>gen<s n="prn"/><s n="sg"/><s n="f"/></r></p></e>
+  <e>       <p><l>gen</l>        <r>gen<s n="prn"/><s n="sg"/><s n="m"/></r></p></e>
+  <e>       <p><l>kje</l>        <r>gen<s n="prn"/><s n="sg"/><s n="nt"/></r></p></e>
+  <e>       <p><l>gen</l>        <r>gen<s n="prn"/><s n="pl"/></r></p></e>
+</pardef>
+
 <pardef n="personal_pronouns__prn">
-      <!-- Incomplete, TODO -->
   <e>       <p><l>eg</l>        <r>prpers<s n="prn"/><s n="p1"/><s n="sg"/><s n="mf"/><s n="nom"/></r></p></e>
   <e>       <p><l>meg</l>       <r>prpers<s n="prn"/><s n="p1"/><s n="sg"/><s n="mf"/><s n="acc"/></r></p></e>
   <e>       <p><l>du</l>        <r>prpers<s n="prn"/><s n="p2"/><s n="sg"/><s n="mf"/><s n="nom"/></r></p></e>
@@ -156,7 +154,7 @@
   <e>       <p><l>ne</l>        <r>n<s n="det"/><s n="pos"/><s n="mf"/><s n="pl"/></r></p></e>
   <e>       <p><l>ne</l>        <r>n<s n="det"/><s n="pos"/><s n="nt"/><s n="pl"/></r></p></e>
 </pardef>
-<pardef n="dets__det">
+<pardef n="dets__det">		      <!-- hans, hennar, deira, ... -->
   <e>       <p><l></l>          <r><s n="det"/><s n="pos"/><s n="m"/><s n="sg"/></r></p></e>
   <e>       <p><l></l>          <r><s n="det"/><s n="pos"/><s n="f"/><s n="sg"/></r></p></e>
   <e>       <p><l></l>          <r><s n="det"/><s n="pos"/><s n="nt"/><s n="sg"/></r></p></e>
@@ -170,6 +168,14 @@
 </pardef>
 
     <!-- Determiners -->
+<pardef n="kva_for__det">
+  <e>       <p><l><b/>eit</l>          <r><s n="det"/><s n="itg"/><s n="nt"/><s n="sg"/></r></p></e>
+  <e>       <p><l><b/>ei</l>           <r><s n="det"/><s n="itg"/><s n="f"/><s n="sg"/></r></p></e>
+  <e>       <p><l><b/>ein</l>          <r><s n="det"/><s n="itg"/><s n="m"/><s n="sg"/></r></p></e>
+  <e r="LR"><p><l><b/>nokre</l>        <r><s n="det"/><s n="itg"/><s n="pl"/></r></p></e>
+  <e>       <p><l></l>                 <r><s n="det"/><s n="itg"/><s n="pl"/></r></p></e>
+</pardef>
+
 <pardef n="kva__det">
   <e>       <p><l/>             <r><s n="det"/><s n="itg"/></r></p></e>
 </pardef>
@@ -307,6 +313,15 @@
   <e r="LR"><p><l>en</l>        <r>ko<s n="det"/><s n="qnt"/><s n="mf"/><s n="sg"/></r></p></e>
   <e r="LR"><p><l>en</l>        <r>ko<s n="det"/><s n="qnt"/><s n="pl"/></r></p></e>
   <e>       <p><l>kre</l>       <r>ko<s n="det"/><s n="qnt"/><s n="pl"/></r></p></e>
+</pardef>
+
+<pardef n="in/gen__det"> 
+  <e>       <p><l>ga</l>         <r>gen<s n="det"/><s n="qnt"/><s n="sg"/><s n="f"/></r></p></e>
+  <e r="LR"><p><l>gi</l>         <r>gen<s n="det"/><s n="qnt"/><s n="sg"/><s n="f"/></r></p></e>
+  <e>       <p><l>gen</l>        <r>gen<s n="det"/><s n="qnt"/><s n="sg"/><s n="m"/></r></p></e>
+  <e>       <p><l>kje</l>        <r>gen<s n="det"/><s n="qnt"/><s n="sg"/><s n="nt"/></r></p></e>
+  <e>       <p><l>gen</l>        <r>gen<s n="det"/><s n="qnt"/><s n="pl"/></r></p></e>
+  <e r="LR"><p><l>gi</l>        <r>gen<s n="det"/><s n="qnt"/><s n="pl"/></r></p></e>
 </pardef>
     <!-- /determiners -->
    
@@ -7318,7 +7333,8 @@
 <e lm="kva">             <i>kva</i><par n="kva__prn"/></e>
 <e lm="seg">             <i>seg</i><par n="seg__prn"/></e>
 <e lm="personal pronouns"><i></i><par n="personal_pronouns__prn"/></e>
-    
+<e lm="ingen">           <i>in</i><par n="in/gen__prn"/></e>
+
 <e lm="min">             <i>mi</i><par n="si/n__det"/></e>
 <e lm="sin">             <i>si</i><par n="si/n__det"/></e>
 <e lm="din">             <i>di</i><par n="si/n__det"/></e>
@@ -7332,7 +7348,6 @@
 
     <!-- Determiners -->
 <e lm="kva for">         <i>kva<b/>for</i><par n="kva_for__det"/></e>
-<e lm="kva">             <i>kva</i><par n="kva__prn"/></e>
 <e lm="kva">             <i>kva</i><par n="kva__det"/></e>
 <e lm="kva slags">       <i>kva<b/>slags</i><par n="kva__det"/></e>
 <e lm="desse">           <i>desse</i><par n="desse__det"/></e>
@@ -7368,6 +7383,7 @@
 <e lm="begge">           <i>begge</i><par n="begge__det"/></e>
 <e lm="båe">             <i>båe</i><par n="begge__det"/></e>
 <e lm="noko">            <i>no</i><par n="no/ko__det"/></e>
+<e lm="ingen">           <i>in</i><par n="in/gen__det"/></e>
 
     <!-- Prepositions -->
 <e lm="a">               <i>a</i><par n="i__pr"/></e>
