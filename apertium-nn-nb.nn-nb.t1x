@@ -94,7 +94,7 @@
   </section-def-attrs>
 
   <section-def-vars>
-    <def-var n="numero"/>
+    <def-var n="gender"/>
   </section-def-vars>
 
   <section-def-macros>
@@ -115,6 +115,25 @@
             <b pos="1"/>
           </out>
         </when>
+      </choose>
+    </def-macro>
+
+    <def-macro n="set_mf_or_nt" npar="1">
+      <!-- - iff m or f, use mf
+           - o/w use nt. For eg. 'den/det' -->
+      <choose>
+        <when>
+	  <test>
+	      <or>
+		<equal><clip pos="1" side="sl" part="gen"/><lit-tag v="m"/></equal>
+		<equal><clip pos="1" side="sl" part="gen"/><lit-tag v="f"/></equal>
+	      </or>
+	  </test>
+	  <let><var n="gender"/><lit-tag v="mf"/></let>
+        </when>
+	<otherwise>
+	  <let><var n="gender"/><lit-tag v="nt"/></let>
+	</otherwise>
       </choose>
     </def-macro>
 
@@ -143,30 +162,31 @@
             <clip pos="2" side="tl" part="gen"/>
             <clip pos="2" side="tl" part="nbr"/>
             <clip pos="2" side="tl" part="art"/>
-	    <clip pos="2" side="tl" part="cas"/>	       <!-- todo: remove? -->
+	    <clip pos="2" side="tl" part="cas"/>	     
 	    <clip pos="2" side="tl" part="lemq"/>
           </lu>
         </out>
       </action>
     </rule>
 
-    <rule>						       <!-- todo: remove?-->
+    <rule comment="ADJ: open(m) => open(mf)">
       <pattern>
-        <pattern-item n="navn"/>
+        <pattern-item n="adj"/>
       </pattern>
       <action>
+        <call-macro n="set_mf_or_nt">
+          <with-param pos="1"/>
+        </call-macro>
         <out>
           <lu>
             <clip pos="1" side="tl" part="lem"/>
-            <clip pos="1" side="tl" part="a_nom"/>
-            <clip pos="1" side="tl" part="gen"/>
+            <clip pos="1" side="tl" part="a_adj"/>
+            <var n="gender"/>
             <clip pos="1" side="tl" part="nbr"/>
             <clip pos="1" side="tl" part="art"/>
-            <clip pos="1" side="tl" part="cas"/>
           </lu>
         </out>
       </action>
     </rule>
-
   </section-rules>
 </transfer>
