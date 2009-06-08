@@ -8,24 +8,27 @@
       <cat-item tags="n.*"/>
       <cat-item tags="np.*"/>
     </def-cat>
-    <!-- "navn" (name) was "n.*", np is proper noun though.. -->
+    <def-cat n="nind">
+      <cat-item tags="n.*.*.ind"/>
+    </def-cat>
     <def-cat n="navn">					       
       <cat-item tags="np.*"/>
     </def-cat>
-    <def-cat n="detind">			   <!-- en, ei, et -->
-      <cat-item tags="det.ind.*"/>
+    <def-cat n="det">
+      <cat-item tags="det.*"/>
     </def-cat>
-    <def-cat n="detdem">	<!-- dette, den, annen, sådan, ... -->
-      <cat-item tags="det.dem.*"/>
-    </def-cat>
-    <def-cat n="detpos">	<!-- min sin -->
+    <def-cat n="detpos">			      <!-- min sin -->
       <cat-item tags="det.pos.*"/>
     </def-cat>
     <def-cat n="adj">
       <cat-item tags="adj.*"/>
     </def-cat>
+    <def-cat n="vblexpass">
+      <cat-item tags="vblex.pass.*"/>
+    </def-cat>
   </section-def-cats>
 
+    
   <section-def-attrs>
     <def-attr n="a_nom">
       <attr-item tags="n"/>
@@ -67,6 +70,15 @@
       <attr-item tags="da"/>
       <attr-item tags="part"/>
     </def-attr>
+    <def-attr n="a_det">
+      <attr-item tags="det.forst"/>
+      <attr-item tags="det.def"/>
+      <attr-item tags="det.ind"/>
+      <attr-item tags="det.dem"/>
+      <attr-item tags="det.itg"/>
+      <attr-item tags="det.qnt"/>
+      <attr-item tags="det.pos"/>
+    </def-attr>
     <def-attr n="a_prn">
       <attr-item tags="prn.enc"/>
       <attr-item tags="prn.enc.ref"/>
@@ -76,6 +88,7 @@
       <attr-item tags="mf"/>
       <attr-item tags="nt"/>
       <attr-item tags="f"/>
+      <attr-item tags="GD"/>
     </def-attr>
     <def-attr n="nbr">
       <attr-item tags="sg"/>
@@ -143,17 +156,21 @@
 
     <rule>
       <pattern>						       
-        <pattern-item n="detind"/>
+        <pattern-item n="det"/>
         <pattern-item n="nom"/>
       </pattern>
       <action>
+        <call-macro n="set_mf_or_nt">
+          <with-param pos="2"/>
+        </call-macro>
         <out>
           <lu>
             <clip pos="1" side="tl" part="lem"/>
             <clip pos="1" side="tl" part="a_det"/>
-	    <clip pos="2" side="tl" part="gen"/> <!-- "en<m><f> kvinne<f>" -->
-	    <!-- But: how do we get if nbr==pl then mf? macro? -->
+            <var n="gender"/>
             <clip pos="2" side="tl" part="nbr"/>
+	    <clip pos="1" side="tl" part="art"/>	       <!-- might be empty! -->
+<!-- 	    <clip pos="1" side="tl" part="cas"/> -->
           </lu>
           <b pos="1"/>
           <lu>

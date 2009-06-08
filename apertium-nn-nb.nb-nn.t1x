@@ -70,8 +70,8 @@
       <attr-item tags="part"/>
     </def-attr>
     <def-attr n="a_det">
-      <attr-item tags="det.def"/>
-      <attr-item tags="det.ind"/>
+      <attr-item tags="det"/>				       <!-- selve<det><def> -->
+      <attr-item tags="det.forst"/>
       <attr-item tags="det.dem"/>
       <attr-item tags="det.itg"/>
       <attr-item tags="det.qnt"/>
@@ -300,12 +300,14 @@
             <clip pos="1" side="tl" part="a_det"/>
             <var n="gender"/>
             <clip pos="1" side="tl" part="nbr"/>
+            <clip pos="1" side="tl" part="art"/>
           </lu>
         </out>
       </action>
     </rule>
 
-    <rule comment="DET NOM: en kvinne => ei kvinne">
+    <rule comment="DET NOM: en kvinne => ei kvinne
+		            hvilken jente => kva for ei jente">
       <pattern>
         <pattern-item n="det"/>
         <pattern-item n="nom"/>
@@ -319,8 +321,9 @@
             <clip pos="1" side="tl" part="lem"/>
             <clip pos="1" side="tl" part="a_det"/>
             <var n="gender"/>
-	    <!-- But: how do we get if nbr==pl then mf? macro? -->
             <clip pos="2" side="tl" part="nbr"/>
+	    <clip pos="1" side="tl" part="art"/>	       <!-- might be empty! -->
+<!-- 	    <clip pos="1" side="tl" part="cas"/> -->
           </lu>
           <b pos="1"/>
           <lu>
@@ -329,7 +332,7 @@
             <clip pos="2" side="tl" part="gen"/>
             <clip pos="2" side="tl" part="nbr"/>
             <clip pos="2" side="tl" part="art"/>
-	    <clip pos="2" side="tl" part="cas"/>	
+<!-- 	    <clip pos="2" side="tl" part="cas"/> -->	
 	    <clip pos="2" side="tl" part="lemq"/>
           </lu>
         </out>
@@ -355,6 +358,7 @@
             <var n="gender"/>
             <clip pos="1" side="tl" part="nbr"/>
             <clip pos="1" side="tl" part="art"/>
+<!-- 	    <clip pos="1" side="tl" part="cas"/> -->	
           </lu>
         </out>
       </action>
