@@ -129,25 +129,23 @@
     </def-macro>
 
     <def-macro n="set_number" npar="1">
-      <let><var n="number"/><clip pos="1" side="sl" part="nbr"/></let>
+      <let><var n="number"/><clip pos="1" side="tl" part="nbr"/></let>
     </def-macro>
 
-    <def-macro n="set_gender" npar="1">
-      <!-- ASSUMES THAT set_number HAS BEEN CALLED!
-	   - iff sg and mf/GD, take a wild guess and go for m;
+    <def-macro n="set_gender1" npar="1">
+      <!-- arg.1: determiner
+	   - iff sg and GD, take a wild guess and go for m;
 	   - plurals get no gender;
-	   - if incongruent number, take number of det;
-	   - o/w take what we're given (possibly from what we concord with,
-	     possibly nothing, eg. with comparative adjectives) -->
+	   - o/w take gender of target determiner -->
+      <call-macro n="set_number"> 
+	<with-param pos="1" /> 
+      </call-macro>
       <choose>
         <when>
 	  <test>
 	    <and>
 	      <equal><var n="number"/><lit-tag v="sg"/></equal>
-              <or>
-  	        <equal><clip pos="1" side="sl" part="gen"/><lit-tag v="GD"/></equal>
-  	        <equal><clip pos="1" side="sl" part="gen"/><lit-tag v="mf"/></equal>
-              </or>
+	      <equal><clip pos="1" side="tl" part="gen"/><lit-tag v="GD"/></equal>
 	    </and>
 	  </test>
 	  <let><var n="gender"/><lit-tag v="m"/></let>
@@ -159,7 +157,39 @@
 	  <let><var n="gender"/><lit v=""/></let>
 	</when>
 	<otherwise>
-	  <let><var n="gender"/><clip pos="1" side="sl" part="gen"/></let>
+	  <let><var n="gender"/><clip pos="1" side="tl" part="gen"/></let>
+	</otherwise>
+      </choose>
+      <call-macro n="set_mf_or_gender">
+      </call-macro>
+    </def-macro>
+    
+    <def-macro n="set_gender2" npar="2">
+      <!-- arg.1: noun, arg.2: determiner
+	   - iff sg and GD, take gender of target noun
+	   - plurals get no gender;
+	   - o/w take gender of target determiner -->
+      <call-macro n="set_number"> 
+	<with-param pos="2" /> <!-- determiners are less ambiguous wrt. nbr -->
+      </call-macro>
+      <choose>
+        <when>
+	  <test>
+	    <and>
+	      <equal><var n="number"/><lit-tag v="sg"/></equal>
+	      <equal><clip pos="2" side="tl" part="gen"/><lit-tag v="GD"/></equal>
+	    </and>
+	  </test>
+	  <let><var n="gender"/><clip pos="1" side="tl" part="gen"/></let>
+        </when>
+	<when>
+	  <test>
+	    <equal><var n="number"/><lit-tag v="pl"/></equal>
+	  </test>
+	  <let><var n="gender"/><lit v=""/></let>
+	</when>
+	<otherwise>
+	  <let><var n="gender"/><clip pos="2" side="tl" part="gen"/></let>
 	</otherwise>
       </choose>
       <call-macro n="set_mf_or_gender">
@@ -227,7 +257,10 @@
       </pattern>
       <action>
         <modify-case><clip pos="1" side="tl" part="lemh"/><clip pos="2" side="tl" part="lemh"/></modify-case>
-
+	<call-macro n="set_gender2">
+	  <with-param pos="2"/>
+	  <with-param pos="1"/>
+	</call-macro>
         <out>
           <lu>
 	    <get-case-from pos="1"> <clip pos="2" side="tl" part="lemh"/></get-case-from>
@@ -241,8 +274,8 @@
           <lu>
 	    <clip pos="1" side="tl" part="lem"/>
             <clip pos="1" side="tl" part="a_det"/>
-	    <clip pos="2" side="tl" part="gen"/>  
-            <clip pos="2" side="tl" part="nbr"/>
+	    <var n="gender"/>
+	    <var n="number"/>
           </lu>
         </out>
       </action>
@@ -258,11 +291,9 @@
       </pattern>
       <action>
         <modify-case><clip pos="1" side="tl" part="lemh"/><clip pos="2" side="tl" part="lemh"/></modify-case>
-	<call-macro n="set_number">
-	  <with-param pos="1"/>
-	</call-macro>
-	<call-macro n="set_gender">
+	<call-macro n="set_gender2">
 	  <with-param pos="3"/>
+	  <with-param pos="1"/>
 	</call-macro>
         <out>
           <lu>
@@ -282,15 +313,12 @@
             <clip pos="3" side="tl" part="gen"/>
             <clip pos="1" side="tl" part="nbr"/>
       	    <lit-tag v="def"/>
-	          <clip pos="3" side="tl" part="lemq"/>
+	    <clip pos="3" side="tl" part="lemq"/>
           </lu>
 	  <b/>
           <lu>
       	    <clip pos="1" side="tl" part="lem"/>
             <clip pos="1" side="tl" part="a_det"/>
-	    <!-- TODO: gen=mf should depend on noun gender on the
-	         nynorsk side since bokmål min is mf while nynorsk is
-	         m -->
 	    <var n="gender"/>
             <var n="number"/>
           </lu>
@@ -305,10 +333,7 @@
         <pattern-item n="det"/>
       </pattern>
       <action>
-        <call-macro n="set_number">
-          <with-param pos="1"/>
-        </call-macro>
-        <call-macro n="set_gender">
+        <call-macro n="set_gender1">
           <with-param pos="1"/>
         </call-macro>
         <out>
@@ -331,18 +356,15 @@
         <pattern-item n="nom"/>
       </pattern>
       <action>
-        <call-macro n="set_number">
-          <with-param pos="1"/>
-        </call-macro>
-        <call-macro n="set_gender">
+        <call-macro n="set_gender2">
           <with-param pos="2"/>
+          <with-param pos="1"/>
         </call-macro>
         <out>
           <lu>
             <clip pos="1" side="tl" part="lem"/>
             <clip pos="1" side="tl" part="a_det"/>
             <var n="gender"/>
-	    <!-- determiners are less ambiguous wrt. nbr -->
             <clip pos="1" side="tl" part="nbr"/>
             <clip pos="1" side="tl" part="art"/>
 <!-- 	    <clip pos="1" side="tl" part="cas"/> -->
@@ -370,10 +392,7 @@
         <pattern-item n="adj"/>
       </pattern>
       <action>
-        <call-macro n="set_number">
-          <with-param pos="1"/>
-        </call-macro>
-        <call-macro n="set_gender">
+        <call-macro n="set_gender1">
           <with-param pos="1"/>
         </call-macro>
         <out>
