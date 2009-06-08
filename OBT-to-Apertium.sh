@@ -70,6 +70,8 @@ tLIST
 # - forst -- egen, selv, ....? seems rather few lemma (and <adj> never used)
 # - sp -- in OBT: spørrepronomen (atm, 'hva' simply marked <sp> in dix...)
 # - st-verb -- 'møtast', etc. have this tag
+# - res -- currently using the same tag, but might change?
+# - hum -- not tagged in apertium (eg. 'hverandre', human, animate)
 ##### See http://omilia.uio.no/obt/morfosyn.html ###########################
 
 ##### Stuff that needs doing afterwards if I run this again: ###############
