@@ -131,9 +131,9 @@
       </choose>
     </def-macro>
 
-    <def-macro n="set_mf_or_nt" npar="1">
+    <def-macro n="set_mf_iff_m_or_f" npar="1">
       <!-- - iff m or f, use mf
-           - o/w use nt. For eg. 'den/det' -->
+           - o/w use what we're given. For eg. 'den/det' -->
       <choose>
         <when>
 	  <test>
@@ -145,7 +145,7 @@
 	  <let><var n="gender"/><lit-tag v="mf"/></let>
         </when>
 	<otherwise>
-	  <let><var n="gender"/><lit-tag v="nt"/></let>
+	  <let><var n="gender"/><clip pos="1" side="sl" part="gen"/></let>
 	</otherwise>
       </choose>
     </def-macro>
@@ -160,15 +160,17 @@
         <pattern-item n="nom"/>
       </pattern>
       <action>
-        <call-macro n="set_mf_or_nt">
-          <with-param pos="2"/>
+        <call-macro n="set_mf_iff_m_or_f">
+	  <with-param pos="1"/>
+	  <!-- nn usually specifies nbr/gen on det, where we need it,
+	       although 'kva nom=>hvilke(tn) nom' needs work -->
         </call-macro>
         <out>
           <lu>
             <clip pos="1" side="tl" part="lem"/>
             <clip pos="1" side="tl" part="a_det"/>
             <var n="gender"/>
-            <clip pos="2" side="tl" part="nbr"/>
+            <clip pos="1" side="tl" part="nbr"/>
 	    <clip pos="1" side="tl" part="art"/>	       <!-- might be empty! -->
 <!-- 	    <clip pos="1" side="tl" part="cas"/> -->
           </lu>
@@ -191,7 +193,7 @@
         <pattern-item n="adj"/>
       </pattern>
       <action>
-        <call-macro n="set_mf_or_nt">
+        <call-macro n="set_mf_iff_m_or_f">
           <with-param pos="1"/>
         </call-macro>
         <out>

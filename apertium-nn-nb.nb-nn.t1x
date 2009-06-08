@@ -106,7 +106,8 @@
 
 
   <section-def-vars>
-    <def-var n="gender"/>     <!-- set_m_iff_mf_sg or set_mf_or_nt -->
+    <def-var n="gender"/>     <!-- by set_m_iff_mf_sg or set_mf_or_nt -->
+    <def-var n="number"/>
   </section-def-vars>
 
 
@@ -126,27 +127,33 @@
       </choose>
     </def-macro>
 
-    <def-macro n="set_m_iff_mf_sg" npar="1">
-      <!-- - iff sg and mf/GD, take a wild guess and go for m;
-	   - plurals get no tag;
+    <def-macro n="set_number" npar="1">
+      <let><var n="number"/><clip pos="1" side="sl" part="nbr"/></let>
+    </def-macro>
+
+    <def-macro n="set_gender" npar="1">
+      <!-- arg 1: det, arg 1: possibly nom 
+	   - iff sg and mf/GD, take a wild guess and go for m;
+	   - plurals get no gender;
+	   - if incongruent number, take number of det;
 	   - o/w take what we're given (possibly from what we concord with,
 	     possibly nothing, eg. with comparative adjectives) -->
       <choose>
         <when>
 	  <test>
 	    <and>
+	      <equal><var n="number"/><lit-tag v="sg"/></equal>
               <or>
-  	        <equal><clip pos="1" side="tl" part="gen"/><lit-tag v="GD"/></equal>
+  	        <equal><clip pos="1" side="sl" part="gen"/><lit-tag v="GD"/></equal>
   	        <equal><clip pos="1" side="sl" part="gen"/><lit-tag v="mf"/></equal>
               </or>
-	      <equal><clip pos="1" side="sl" part="nbr"/><lit-tag v="sg"/></equal>
 	    </and>
 	  </test>
 	  <let><var n="gender"/><lit-tag v="m"/></let>
         </when>
 	<when>
 	  <test>
-	    <equal><clip pos="1" side="tl" part="nbr"/><lit-tag v="pl"/></equal>
+	    <equal><var n="number"/><lit-tag v="pl"/></equal>
 	  </test>
 	  <let><var n="gender"/><lit v=""/></let>
 	</when>
@@ -247,7 +254,10 @@
       </pattern>
       <action>
         <modify-case><clip pos="1" side="tl" part="lemh"/><clip pos="2" side="tl" part="lemh"/></modify-case>
-	<call-macro n="set_mf_or_nt">
+	<call-macro n="set_number">
+	  <with-param pos="1"/>
+	</call-macro>
+	<call-macro n="set_gender">
 	  <with-param pos="3"/>
 	</call-macro>
         <out>
@@ -291,7 +301,10 @@
         <pattern-item n="det"/>
       </pattern>
       <action>
-        <call-macro n="set_m_iff_mf_sg">
+        <call-macro n="set_number">
+          <with-param pos="1"/>
+        </call-macro>
+        <call-macro n="set_gender">
           <with-param pos="1"/>
         </call-macro>
         <out>
@@ -299,7 +312,7 @@
             <clip pos="1" side="tl" part="lem"/>
             <clip pos="1" side="tl" part="a_det"/>
             <var n="gender"/>
-            <clip pos="1" side="tl" part="nbr"/>
+            <var n="number"/>
             <clip pos="1" side="tl" part="art"/>
           </lu>
         </out>
@@ -307,13 +320,17 @@
     </rule>
 
     <rule comment="DET NOM: en kvinne => ei kvinne
-		            hvilken jente => kva for ei jente">
+		            hvilken jente => kva for ei jente
+			    egne hus => eigne hus">
       <pattern>
         <pattern-item n="det"/>
         <pattern-item n="nom"/>
       </pattern>
       <action>
-        <call-macro n="set_m_iff_mf_sg">
+        <call-macro n="set_number">
+          <with-param pos="1"/>
+        </call-macro>
+        <call-macro n="set_gender">
           <with-param pos="2"/>
         </call-macro>
         <out>
@@ -321,8 +338,9 @@
             <clip pos="1" side="tl" part="lem"/>
             <clip pos="1" side="tl" part="a_det"/>
             <var n="gender"/>
-            <clip pos="2" side="tl" part="nbr"/>
-	    <clip pos="1" side="tl" part="art"/>	       <!-- might be empty! -->
+	    <!-- determiners are less ambiguous wrt. nbr -->
+            <clip pos="1" side="tl" part="nbr"/>
+            <clip pos="1" side="tl" part="art"/>
 <!-- 	    <clip pos="1" side="tl" part="cas"/> -->
           </lu>
           <b pos="1"/>
@@ -348,7 +366,10 @@
         <pattern-item n="adj"/>
       </pattern>
       <action>
-        <call-macro n="set_m_iff_mf_sg">
+        <call-macro n="set_number">
+          <with-param pos="1"/>
+        </call-macro>
+        <call-macro n="set_gender">
           <with-param pos="1"/>
         </call-macro>
         <out>
