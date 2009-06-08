@@ -17,6 +17,7 @@
 		<sdef n="np" 	c="Proper noun"/> 
 		<sdef n="prn" 	c="Pronoun"/> 
 		<sdef n="ref" 	c="Reflexive pronoun"/> 
+		<sdef n="res" 	c="Resiprocal pronoun"/> 
 		<sdef n="det" 	c="Determiner"/> 
 		<sdef n="pos" 	c="Possessive"/> 
 		<sdef n="p1" 	c="1st person"/> 
@@ -114,13 +115,13 @@
 
     <!-- Numbers -->
 <pardef n="en__num">
-  <e>       <p><l></l>          <r><s n="num"/><s n="sg"/><s n="mf"/></r></p></e>
+  <e>       <p><l></l>          <r><s n="num"/><s n="mf"/><s n="sg"/></r></p></e>
 </pardef>
 <pardef n="ei__num">
-  <e>       <p><l></l>          <r><s n="num"/><s n="sg"/><s n="f"/></r></p></e>
+  <e>       <p><l></l>          <r><s n="num"/><s n="f"/><s n="sg"/></r></p></e>
 </pardef>
 <pardef n="et__num">
-  <e>       <p><l></l>          <r><s n="num"/><s n="sg"/><s n="nt"/></r></p></e>
+  <e>       <p><l></l>          <r><s n="num"/><s n="nt"/><s n="sg"/></r></p></e>
 </pardef>
 <pardef n="to__num">
   <e>       <p><l></l>          <r><s n="num"/><s n="pl"/></r></p></e>
@@ -131,61 +132,42 @@
   <e>       <p><l></l>          <r><s n="prn"/><s n="itg"/></r></p></e>
 </pardef>
 
+<pardef n="hverandre__prn">
+  <e>       <p><l></l>          <r><s n="prn"/><s n="res"/><s n="pl"/></r></p></e>
+</pardef>
+
 <pardef n="seg__prn">
   <e>       <p><l></l>          <r><s n="prn"/><s n="ref"/><s n="sg"/></r></p></e>
 </pardef>
 
 <pardef n="in/gen__prn"> <!-- TODO: OBT tags it prn 'pers' -->
-  <e r="LR"><p><l>ga</l>         <r>gen<s n="prn"/><s n="sg"/><s n="f"/></r></p></e>
-  <e>       <p><l>gen</l>        <r>gen<s n="prn"/><s n="sg"/><s n="mf"/></r></p></e>
-  <e>       <p><l>tet</l>        <r>gen<s n="prn"/><s n="sg"/><s n="nt"/></r></p></e>
+  <e r="LR"><p><l>ga</l>         <r>gen<s n="prn"/><s n="f"/><s n="sg"/></r></p></e>
+  <e>       <p><l>gen</l>        <r>gen<s n="prn"/><s n="mf"/><s n="sg"/></r></p></e>
+  <e>       <p><l>tet</l>        <r>gen<s n="prn"/><s n="nt"/><s n="sg"/></r></p></e>
   <e>       <p><l>gen</l>        <r>gen<s n="prn"/><s n="pl"/></r></p></e>
 </pardef>
 
 <pardef n="personal_pronouns__prn">
-  <e>       <p><l>jeg</l>       <r>prpers<s n="prn"/><s n="p1"/><s n="sg"/><s n="mf"/><s n="nom"/></r></p></e>
-  <e>       <p><l>meg</l>       <r>prpers<s n="prn"/><s n="p1"/><s n="sg"/><s n="mf"/><s n="acc"/></r></p></e>
-  <e>       <p><l>du</l>        <r>prpers<s n="prn"/><s n="p2"/><s n="sg"/><s n="mf"/><s n="nom"/></r></p></e>
-  <e>       <p><l>deg</l>       <r>prpers<s n="prn"/><s n="p2"/><s n="sg"/><s n="mf"/><s n="acc"/></r></p></e>
-  <e>       <p><l>han</l>       <r>prpers<s n="prn"/><s n="p3"/><s n="sg"/><s n="m"/><s n="nom"/></r></p></e>
-  <e r="LR"><p><l>han</l>       <r>prpers<s n="prn"/><s n="p3"/><s n="sg"/><s n="m"/><s n="acc"/></r></p></e>
-  <e>       <p><l>ham</l>       <r>prpers<s n="prn"/><s n="p3"/><s n="sg"/><s n="m"/><s n="acc"/></r></p></e>
-  <e>       <p><l>hun</l>       <r>prpers<s n="prn"/><s n="p3"/><s n="sg"/><s n="f"/><s n="nom"/></r></p></e>
-  <e>       <p><l>henne</l>     <r>prpers<s n="prn"/><s n="p3"/><s n="sg"/><s n="f"/><s n="acc"/></r></p></e>
-  <e>       <p><l>den</l>       <r>prpers<s n="prn"/><s n="p3"/><s n="sg"/><s n="mf"/><s n="nom"/></r></p></e>
-  <e>       <p><l>den</l>       <r>prpers<s n="prn"/><s n="p3"/><s n="sg"/><s n="mf"/><s n="acc"/></r></p></e>
-  <e>       <p><l>det</l>       <r>prpers<s n="prn"/><s n="p3"/><s n="sg"/><s n="nt"/><s n="nom"/></r></p></e>
-  <e>       <p><l>det</l>       <r>prpers<s n="prn"/><s n="p3"/><s n="sg"/><s n="nt"/><s n="acc"/></r></p></e>
+  <e>       <p><l>jeg</l>       <r>prpers<s n="prn"/><s n="p1"/><s n="mf"/><s n="sg"/><s n="nom"/></r></p></e>
+  <e>       <p><l>meg</l>       <r>prpers<s n="prn"/><s n="p1"/><s n="mf"/><s n="sg"/><s n="acc"/></r></p></e>
+  <e>       <p><l>du</l>        <r>prpers<s n="prn"/><s n="p2"/><s n="mf"/><s n="sg"/><s n="nom"/></r></p></e>
+  <e>       <p><l>deg</l>       <r>prpers<s n="prn"/><s n="p2"/><s n="mf"/><s n="sg"/><s n="acc"/></r></p></e>
+  <e>       <p><l>han</l>       <r>prpers<s n="prn"/><s n="p3"/><s n="m"/><s n="sg"/><s n="nom"/></r></p></e>
+  <e>       <p><l>ham</l>       <r>prpers<s n="prn"/><s n="p3"/><s n="m"/><s n="sg"/><s n="acc"/></r></p></e>
+  <e r="LR"><p><l>han</l>       <r>prpers<s n="prn"/><s n="p3"/><s n="m"/><s n="sg"/><s n="acc"/></r></p></e>
+  <e>       <p><l>hun</l>       <r>prpers<s n="prn"/><s n="p3"/><s n="f"/><s n="sg"/><s n="nom"/></r></p></e>
+  <e>       <p><l>henne</l>     <r>prpers<s n="prn"/><s n="p3"/><s n="f"/><s n="sg"/><s n="acc"/></r></p></e>
+  <e>       <p><l>den</l>       <r>prpers<s n="prn"/><s n="p3"/><s n="mf"/><s n="sg"/><s n="nom"/></r></p></e>
+  <e>       <p><l>den</l>       <r>prpers<s n="prn"/><s n="p3"/><s n="mf"/><s n="sg"/><s n="acc"/></r></p></e>
+  <e>       <p><l>det</l>       <r>prpers<s n="prn"/><s n="p3"/><s n="nt"/><s n="sg"/><s n="nom"/></r></p></e>
+  <e>       <p><l>det</l>       <r>prpers<s n="prn"/><s n="p3"/><s n="nt"/><s n="sg"/><s n="acc"/></r></p></e>
 
-  <e>       <p><l>vi</l>        <r>prpers<s n="prn"/><s n="p1"/><s n="pl"/><s n="mf"/><s n="nom"/></r></p></e>
-  <e>       <p><l>oss</l>       <r>prpers<s n="prn"/><s n="p1"/><s n="pl"/><s n="mf"/><s n="acc"/></r></p></e>
-  <e>       <p><l>dere</l>      <r>prpers<s n="prn"/><s n="p2"/><s n="pl"/><s n="mf"/><s n="nom"/></r></p></e>
-  <e>       <p><l>dere</l>      <r>prpers<s n="prn"/><s n="p2"/><s n="pl"/><s n="mf"/><s n="acc"/></r></p></e>
-  <e>       <p><l>de</l>        <r>prpers<s n="prn"/><s n="p3"/><s n="pl"/><s n="mf"/><s n="nom"/></r></p></e>
-  <e>       <p><l>dem</l>       <r>prpers<s n="prn"/><s n="p3"/><s n="pl"/><s n="mf"/><s n="acc"/></r></p></e>
-</pardef>
-
-<pardef n="personal_pronouns__prn">
-  <e>       <p><l>jeg</l>       <r>prpers<s n="prn"/><s n="p1"/><s n="sg"/><s n="mf"/><s n="nom"/></r></p></e>
-  <e>       <p><l>meg</l>       <r>prpers<s n="prn"/><s n="p1"/><s n="sg"/><s n="mf"/><s n="acc"/></r></p></e>
-  <e>       <p><l>du</l>        <r>prpers<s n="prn"/><s n="p2"/><s n="sg"/><s n="mf"/><s n="nom"/></r></p></e>
-  <e>       <p><l>deg</l>       <r>prpers<s n="prn"/><s n="p2"/><s n="sg"/><s n="mf"/><s n="acc"/></r></p></e>
-  <e>       <p><l>han</l>       <r>prpers<s n="prn"/><s n="p3"/><s n="sg"/><s n="m"/><s n="nom"/></r></p></e>
-  <e r="LR"><p><l>han</l>       <r>prpers<s n="prn"/><s n="p3"/><s n="sg"/><s n="m"/><s n="acc"/></r></p></e>
-  <e>       <p><l>ham</l>       <r>prpers<s n="prn"/><s n="p3"/><s n="sg"/><s n="m"/><s n="acc"/></r></p></e>
-  <e>       <p><l>hun</l>       <r>prpers<s n="prn"/><s n="p3"/><s n="sg"/><s n="f"/><s n="nom"/></r></p></e>
-  <e>       <p><l>henne</l>     <r>prpers<s n="prn"/><s n="p3"/><s n="sg"/><s n="f"/><s n="acc"/></r></p></e>
-  <e>       <p><l>den</l>       <r>prpers<s n="prn"/><s n="p3"/><s n="sg"/><s n="mf"/><s n="nom"/></r></p></e>
-  <e>       <p><l>den</l>       <r>prpers<s n="prn"/><s n="p3"/><s n="sg"/><s n="mf"/><s n="acc"/></r></p></e>
-  <e>       <p><l>det</l>       <r>prpers<s n="prn"/><s n="p3"/><s n="sg"/><s n="nt"/><s n="nom"/></r></p></e>
-  <e>       <p><l>det</l>       <r>prpers<s n="prn"/><s n="p3"/><s n="sg"/><s n="nt"/><s n="acc"/></r></p></e>
-
-  <e>       <p><l>vi</l>        <r>prpers<s n="prn"/><s n="p1"/><s n="pl"/><s n="mf"/><s n="nom"/></r></p></e>
-  <e>       <p><l>oss</l>       <r>prpers<s n="prn"/><s n="p1"/><s n="pl"/><s n="mf"/><s n="acc"/></r></p></e>
-  <e>       <p><l>dere</l>      <r>prpers<s n="prn"/><s n="p2"/><s n="pl"/><s n="mf"/><s n="nom"/></r></p></e>
-  <e>       <p><l>dere</l>      <r>prpers<s n="prn"/><s n="p2"/><s n="pl"/><s n="mf"/><s n="acc"/></r></p></e>
-  <e>       <p><l>de</l>        <r>prpers<s n="prn"/><s n="p3"/><s n="pl"/><s n="mf"/><s n="nom"/></r></p></e>
-  <e>       <p><l>dem</l>       <r>prpers<s n="prn"/><s n="p3"/><s n="pl"/><s n="mf"/><s n="acc"/></r></p></e>
+  <e>       <p><l>vi</l>        <r>prpers<s n="prn"/><s n="p1"/><s n="mf"/><s n="pl"/><s n="nom"/></r></p></e>
+  <e>       <p><l>oss</l>       <r>prpers<s n="prn"/><s n="p1"/><s n="mf"/><s n="pl"/><s n="acc"/></r></p></e>
+  <e>       <p><l>dere</l>      <r>prpers<s n="prn"/><s n="p2"/><s n="mf"/><s n="pl"/><s n="nom"/></r></p></e>
+  <e>       <p><l>dere</l>      <r>prpers<s n="prn"/><s n="p2"/><s n="mf"/><s n="pl"/><s n="acc"/></r></p></e>
+  <e>       <p><l>de</l>        <r>prpers<s n="prn"/><s n="p3"/><s n="mf"/><s n="pl"/><s n="nom"/></r></p></e>
+  <e>       <p><l>dem</l>       <r>prpers<s n="prn"/><s n="p3"/><s n="mf"/><s n="pl"/><s n="acc"/></r></p></e>
 </pardef>
     <!-- /personal pronouns -->
 
@@ -323,12 +305,17 @@
   <e r="LR"><p><l>jølve</l>     <r>elv<s n="det"/><s n="def"/></r></p></e>
 </pardef>
 
-    <!-- Quantifiers -->
-    <!-- all; al -->
+<!-- Quantifiers -->
+<!-- all; al -->
 <pardef n="al/l__det">
   <e>       <p><l>l</l>         <r>l<s n="det"/><s n="qnt"/><s n="mf"/><s n="sg"/></r></p><par n="S__case"/></e>
   <e>       <p><l>t</l>         <r>l<s n="det"/><s n="qnt"/><s n="nt"/><s n="sg"/></r></p><par n="S__case"/></e>
   <e>       <p><l>le</l>        <r>l<s n="det"/><s n="qnt"/><s n="pl"/></r></p><par n="S__case"/></e>
+</pardef>
+<!-- hver; hver -->
+<pardef n="hver__det">
+  <e>       <p><l>t</l>         <r><s n="det"/><s n="qnt"/><s n="nt"/><s n="sg"/></r></p></e>
+  <e>       <p><l></l>          <r><s n="det"/><s n="qnt"/><s n="mf"/><s n="sg"/></r></p></e>
 </pardef>
     <!-- begge; begge -->
 <pardef n="begge__det">
@@ -342,9 +329,9 @@
 </pardef>
 
 <pardef n="in/gen__det"> 
-  <e r="LR"><p><l>ga</l>         <r>gen<s n="det"/><s n="qnt"/><s n="sg"/><s n="f"/></r></p></e>
-  <e>       <p><l>gen</l>        <r>gen<s n="det"/><s n="qnt"/><s n="sg"/><s n="mf"/></r></p></e>
-  <e>       <p><l>tet</l>        <r>gen<s n="det"/><s n="qnt"/><s n="sg"/><s n="nt"/></r></p></e>
+  <e r="LR"><p><l>ga</l>         <r>gen<s n="det"/><s n="qnt"/><s n="f"/><s n="sg"/></r></p></e>
+  <e>       <p><l>gen</l>        <r>gen<s n="det"/><s n="qnt"/><s n="mf"/><s n="sg"/></r></p></e>
+  <e>       <p><l>tet</l>        <r>gen<s n="det"/><s n="qnt"/><s n="nt"/><s n="sg"/></r></p></e>
   <e>       <p><l>gen</l>        <r>gen<s n="det"/><s n="qnt"/><s n="pl"/></r></p></e>
 </pardef>
 
@@ -6452,7 +6439,10 @@
 
     <!-- Pronouns, possessive determiners -->
 <e lm="hva">             <i>hva</i><par n="hva__prn"/></e>
+<!-- TODO: tag for human/animate? -->
+<e lm="hvem">            <i>hvem</i><par n="hva__prn"/></e>
 <e lm="seg">             <i>seg</i><par n="seg__prn"/></e>
+<e lm="hverandre">             <i>hverandre</i><par n="hverandre__prn"/></e>
 <e lm="personal pronouns"><i></i><par n="personal_pronouns__prn"/></e>
 <e lm="ingen">           <i>in</i><par n="in/gen__prn"/></e>
 
@@ -6497,6 +6487,7 @@
     <!-- Quantifiers -->
 <e lm="all">             <i>al</i><par n="al/l__det"/></e>
 <e lm="begge">           <i>begge</i><par n="begge__det"/></e>
+<e lm="hver">           <i>hver</i><par n="hver__det"/></e>
 <e lm="noe">             <i>no</i><par n="no/e__det"/></e>
 <e lm="ingen">           <i>in</i><par n="in/gen__det"/></e>
 
