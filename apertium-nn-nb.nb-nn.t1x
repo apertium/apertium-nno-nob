@@ -106,7 +106,8 @@
 
 
   <section-def-vars>
-    <def-var n="gender"/>     <!-- by set_m_iff_mf_sg or set_mf_or_nt -->
+    <def-var n="gender"/>  
+    <def-var n="mf_or_gender"/>  
     <def-var n="number"/>
   </section-def-vars>
 
@@ -132,7 +133,7 @@
     </def-macro>
 
     <def-macro n="set_gender" npar="1">
-      <!-- arg 1: det, arg 1: possibly nom 
+      <!-- ASSUMES THAT set_number HAS BEEN CALLED!
 	   - iff sg and mf/GD, take a wild guess and go for m;
 	   - plurals get no gender;
 	   - if incongruent number, take number of det;
@@ -161,23 +162,26 @@
 	  <let><var n="gender"/><clip pos="1" side="sl" part="gen"/></let>
 	</otherwise>
       </choose>
+      <call-macro n="set_mf_or_gender">
+      </call-macro>
     </def-macro>
 
-    <def-macro n="set_mf_or_nt" npar="1">
-      <!-- - iff m or f, use mf
-           - o/w use nt. For eg. 'den/det' -->
+    <def-macro n="set_mf_or_gender" npar="0">
+      <!-- For eg 'den/det'
+	   - iff m or f, use mf
+           - o/w use what we're given. -->
       <choose>
-        <when>
+	<when>
 	  <test>
 	      <or>
-		<equal><clip pos="1" side="sl" part="gen"/><lit-tag v="m"/></equal>
-		<equal><clip pos="1" side="sl" part="gen"/><lit-tag v="f"/></equal>
+		<equal><var n="gender"/><lit-tag v="m"/></equal>
+		<equal><var n="gender"/><lit-tag v="f"/></equal>
 	      </or>
 	  </test>
-	  <let><var n="gender"/><lit-tag v="mf"/></let>
+	  <let><var n="mf_or_gender"/><lit-tag v="mf"/></let>
         </when>
 	<otherwise>
-	  <let><var n="gender"/><lit-tag v="nt"/></let>
+	  <let><var n="mf_or_gender"/><var n="gender"/></let>
 	</otherwise>
       </choose>
     </def-macro>
@@ -264,8 +268,8 @@
           <lu>
 	    <get-case-from pos="1"><lit v="de"/></get-case-from>
 	    <lit-tag v="det.dem"/>
-	    <var n="gender"/>
-            <clip pos="1" side="tl" part="nbr"/>
+	    <var n="mf_or_gender"/>
+            <var n="number"/>
           </lu>
 	  <b pos="1"/>
           <lu>
@@ -287,8 +291,8 @@
 	    <!-- TODO: gen=mf should depend on noun gender on the
 	         nynorsk side since bokmål min is mf while nynorsk is
 	         m -->
-            <clip pos="3" side="tl" part="gen"/>  
-            <clip pos="1" side="tl" part="nbr"/>
+	    <var n="gender"/>
+            <var n="number"/>
           </lu>
         </out>
       </action>
