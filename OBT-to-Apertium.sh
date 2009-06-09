@@ -1,8 +1,14 @@
 #!/bin/bash
-# bash has arrays
 
-# adj pos be ent
-# <adj><pst><sg><def>
+# OBT-to-Apertium.sh
+# Convert (most of) the OBT CG into Apertium tag format.
+
+# What the original CG expects: adj pos be ent
+# What the monodix give:        adj pst sg def
+
+# OBT CG has no soft delimiters, but when running cg-proc on huge
+# amounts of text, these stop us from getting "hard breaks":
+echo 'SOFT-DELIMITERS = "<,>" ;'
 
 # This would be so much cleaner if I knew of a way to only replace
 # stuff that's after a certain regexp within in a line. Ie. if I could
@@ -47,32 +53,62 @@ ${L}poss${M}pos${R}
 ${L}pron${M}prn${R}
 ${L}prep${M}pr${R}
 ${L}komp${M}comp${R}
+${L}pos${M}posi${R}
 ${L}refl${M}ref${R}
 ${L}kvant${M}qnt${R}
 ${L}konj${M}cnjcoo${R}
 ${L}sbu${M}cnjsub${R}
 ${L}m\/f${M}mf${R}
-${L}<pres-part>${M}pp${R}
-${L}<pres-part>${M}pst${R}
-${L}inf-merke${M}infm${R}
+${L}<pres-part>${M}pprs${R}
+${L}<perf-part>${M}pp${R}
+${L}perf-part${M}pp${R}
+${L}st-form${M}pst${R}
+${L}inf-merke${M}part${R}
+${L}sp${M}itg${R}
+${L}forst${M}emph${R}
+${L}&sted${M}top${R}
+${L}<sted>${M}top${R}
+${L}<komma>${M}cm${R}
+${L}<parentes-beg>${M}lpar${R}
+${L}<parentes-slutt>${M}rpar${R}
 tLIST
 " $1
 # ^^ takes file as argument
-# actually 'en' gets 'det kvant'...
 
 ##### TODO: ################################################################
-# - ordenstal(l), (adj), forst, pers, ubøy, appell
-# - symb => acr -- or? we don't split between symbols and acronyms, do 
-#   we? symb only has one rule though, not important.
-# - pron pers should split into p1, p2, p3
-# - ubøy -- not sure what do do about this ("no inflection")
-# - ukjent -- unknown..hum.
-# - forst -- egen, selv, ....? seems rather few lemma (and <adj> never used)
-# - sp -- in OBT: spørrepronomen (atm, 'hva' simply marked <sp> in dix...)
-# - st-verb -- 'møtast', etc. have this tag
-# - res -- currently using the same tag, but might change?
-# - hum -- not tagged in apertium (eg. 'hverandre', human, animate)
+# 
+# adj <ordenstal(l)> -- ordinals... no tag atm
+# 
+# appell -- eg. 'fyrst (np)', rather few rules, requires tagging lots
+# of nouns as <appell>
+# 
+# symb => acr -- or? we don't split between symbols and acronyms, do
+# we? symb only has one rule though, not important?
+# 
+# pron pers should split into p1, p2, p3; and then some places we have
+# eg. (prn pers 1)
+# 
+# ubøy -- not sure what do do about this ("no inflection") 
+# 
+# ukjent -- can we check for * ?
+# 
+# <adj> -- never used; adj is used a lot, but <adj> is another POS
+# which is "adjectival"
+# 
+# <st-verb> -- 'høyrast', which inflects with -ast all the time
+# 
+# res -- currently using the same tag, but might change?
+#
+# hum -- not tagged in apertium (eg. 'hverandre', human, animate)
+#
+# <person>, <org>, <verk>, <hendelse>, <annet>, &person, &org, &verk,
+# &hendelse, &annet -- not used, but at least we change &sted and
+# <sted> to top
+# 
+# <strek>, <ellipse>, <anf> -- 
+# 
 ##### See http://omilia.uio.no/obt/morfosyn.html ###########################
+
 
 ##### Stuff that needs doing afterwards if I run this again: ###############
 # - make sure each rule has an IF: $ grep -nE "(SELECT|REMOVE).*[^F]$" *.rlx 
