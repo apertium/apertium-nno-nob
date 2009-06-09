@@ -59,6 +59,7 @@
 		<sdef n="comp" 	c="Comparative"/> 
 		<sdef n="sup" 	c="Superlative"/> 
 		<sdef n="num" 	c="Numeral"/> 
+		<sdef n="ord" 	c="Ordinal"/>
 		<sdef n="acr" 	c="Acronym"/> 
 		<sdef n="sent" 	c="Sentence end"/> 
 		<sdef n="cm" 	c="Comma"/>
@@ -221,11 +222,6 @@
   <e>       <p><l>na</l>        <r>nan<s n="det"/><s n="dem"/><s n="f"/><s n="sg"/><s n="ind"/></r></p></e>
   <e>       <p><l>na</l>        <r>nan<s n="det"/><s n="dem"/><s n="nt"/><s n="sg"/><s n="ind"/></r></p></e>
   <e>       <p><l>nan</l>       <r>nan<s n="det"/><s n="dem"/><s n="m"/><s n="sg"/><s n="ind"/></r></p></e>
-</pardef>
-
-    <!-- not sure how much info to include here.. -->
-<pardef n="første__det">
-  <e>       <p><l></l>          <r><s n="det"/><s n="dem"/></r></p></e>
 </pardef>
 
     <!-- same; same -->
@@ -7177,7 +7173,15 @@
   <e>       <p><l></l>          <r><s n="pr"/></r></p></e>
 </pardef>
     
-<!-- Adjectives from bm.adj.xml -->
+<!-- Adjectives (more in bm.adj.xml) -->
+<pardef n="første__adj">
+  <e>       <p><l></l>          <r><s n="adj"/><s n="ord"/><s n="posi"/><s n="f"/><s n="sg"/><s n="ind"/></r></p></e>
+  <e>       <p><l></l>          <r><s n="adj"/><s n="ord"/><s n="posi"/><s n="m"/><s n="sg"/><s n="ind"/></r></p></e>
+  <e>       <p><l></l>          <r><s n="adj"/><s n="ord"/><s n="posi"/><s n="nt"/><s n="sg"/><s n="ind"/></r></p></e>
+  <e>       <p><l></l>          <r><s n="adj"/><s n="ord"/><s n="posi"/><s n="pl"/></r></p></e>
+  <e>       <p><l></l>          <r><s n="adj"/><s n="ord"/><s n="posi"/><s n="sg"/><s n="def"/></r></p></e>
+</pardef>
+
 <pardef n="/gammal__adj">
   <e>       <p><l>gammal</l>    <r>gammal<s n="adj"/><s n="posi"/><s n="f"/><s n="sg"/><s n="ind"/></r></p></e>
   <e>       <p><l>gammal</l>    <r>gammal<s n="adj"/><s n="posi"/><s n="m"/><s n="sg"/><s n="ind"/></r></p></e>
@@ -7398,17 +7402,7 @@
 <e lm="sovoren">         <i>sovor</i><par n="sovor/en__det"/></e>
 <e lm="ein">             <i>ei</i><par n="ei/n__det"/></e>
 <e lm="annan">           <i>an</i><par n="an/nan__det"/></e>
-<e lm="første">          <i>første</i><par n="første__det"/></e>
-<e lm="tredje">          <i>tredje</i><par n="første__det"/></e>
-<e lm="fjerde">          <i>fjerde</i><par n="første__det"/></e>
-<e lm="femte">           <i>femte</i><par n="første__det"/></e>
-<e lm="sjette">          <i>sjette</i><par n="første__det"/></e>
-<e lm="sjuande">         <i>sjuande</i><par n="første__det"/></e>
-<e lm="åttande">         <i>åttande</i><par n="første__det"/></e>
-<e lm="niande">          <i>niande</i><par n="første__det"/></e>
-<e lm="tiande">          <i>tiande</i><par n="første__det"/></e>
-<e lm="ellevte">         <i>ellevte</i><par n="første__det"/></e>
-<e lm="tolvte">          <i>tolvte</i><par n="første__det"/></e>
+
     <!-- Emphatics -->
 <e lm="sjølv">           <i>sjølv</i><par n="sjølv__det"/></e>
 <e lm="eigen">           <i>eig</i><par n="eig/en__det"/></e>
@@ -12732,6 +12726,19 @@
 <e lm="truleg">		 <i>truleg</i><par n="svart__adj"/></e>
 <e lm="utruleg">	 <i>utruleg</i><par n="svart__adj"/></e>
 
+<!-- Ordinals -->
+<e lm="første">          <i>første</i><par n="første__adj"/></e>
+<e lm="tredje">          <i>tredje</i><par n="første__adj"/></e>
+<e lm="fjerde">          <i>fjerde</i><par n="første__adj"/></e>
+<e lm="femte">           <i>femte</i><par n="første__adj"/></e>
+<e lm="sjette">          <i>sjette</i><par n="første__adj"/></e>
+<e lm="sjuande">         <i>sjuande</i><par n="første__adj"/></e>
+<e lm="åttande">         <i>åttande</i><par n="første__adj"/></e>
+<e lm="niande">          <i>niande</i><par n="første__adj"/></e>
+<e lm="tiande">          <i>tiande</i><par n="første__adj"/></e>
+<e lm="ellevte">         <i>ellevte</i><par n="første__adj"/></e>
+<e lm="tolvte">          <i>tolvte</i><par n="første__adj"/></e>
+<!-- todo: rest of them -->
   </section>
 
 	<section id="final" type="inconditional">
