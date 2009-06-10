@@ -2,6 +2,8 @@
 
 # OBT-to-Apertium.sh
 # Convert (most of) the OBT CG into Apertium tag format.
+# usage:
+# ./OBT-to-Apertium nn_morf-utf8.cg > apertium-nn-nb.nn-nb.rlx
 
 # What the original CG expects: adj pos be ent
 # What the monodix give:        adj pst sg def
@@ -19,19 +21,14 @@ echo 'SOFT-DELIMITERS = "<,>" ;'
 L0="\(^LIST  *[^ ][^ ]*  *=.*[\( ]\)"
 L1="\(^[^:]* REMOVE.*[\( ]\)"
 L2="\(^[^:]* SELECT.*[\( ]\)"
+L3="\(^[^:]* SUBSTITUTE.*[\( ]\)" # I'll do those manually instead
 L="s/\(${L0}\|${L1}\|${L2}\)" # these disjunctions are s..l...o.....w
 M="\([\) ;]\)/\1"	      # hey sed! it's got a ^! use it!
 R="\5/"
 ssed -e "
 :LIST
-${L}n mask prop${M}np m${R}
-${L}n fem prop${M}np f${R}
-${L}n nt prop${M}np nt${R}
-${L}n nøyt prop${M}np nt${R}
-${L}n prop${M}np${R}
 ${L}fork subst${M}n acr${R}
 ${L}fork${M}acr${R}
-${L}n subst${M}n acr${R}
 ${L}subst mask prop${M}np m${R}
 ${L}subst fem prop${M}np f${R}
 ${L}subst nøyt prop${M}np nt${R}
@@ -60,9 +57,10 @@ ${L}konj${M}cnjcoo${R}
 ${L}sbu${M}cnjsub${R}
 ${L}m\/f${M}mf${R}
 ${L}<pres-part>${M}pprs${R}
-${L}<perf-part>${M}pp${R}
-${L}perf-part${M}pp${R}
+${L}<perf-part>${M}adj pp${R}
+${L}perf-part${M}vblex pp${R}
 ${L}st-form${M}pst${R}
+${L}<st-verb>${M}pstv${R}
 ${L}inf-merke${M}part${R}
 ${L}sp${M}itg${R}
 ${L}forst${M}emph${R}
@@ -71,13 +69,13 @@ ${L}<sted>${M}top${R}
 ${L}<komma>${M}cm${R}
 ${L}<parentes-beg>${M}lpar${R}
 ${L}<parentes-slutt>${M}rpar${R}
+${L}<ordenstall>${M}ord${R}
+${L}<ordenstal>${M}ord${R}
 tLIST
 " $1
 # ^^ takes file as argument
 
 ##### TODO: ################################################################
-# 
-# adj <ordenstal(l)> -- ordinals... no tag atm
 # 
 # appell -- eg. 'fyrst (np)', rather few rules, requires tagging lots
 # of nouns as <appell>
@@ -95,8 +93,6 @@ tLIST
 # <adj> -- never used; adj is used a lot, but <adj> is another POS
 # which is "adjectival"
 # 
-# <st-verb> -- 'høyrast', which inflects with -ast all the time
-# 
 # res -- currently using the same tag, but might change?
 #
 # hum -- not tagged in apertium (eg. 'hverandre', human, animate)
@@ -113,4 +109,5 @@ tLIST
 ##### Stuff that needs doing afterwards if I run this again: ###############
 # - make sure each rule has an IF: $ grep -nE "(SELECT|REMOVE).*[^F]$" *.rlx 
 # - move "mens" rule up before REMOVE:2046 (cnjsub)
+# - replace within SUBSTITUTE rules (only in bokmål)
 ############################################################################
