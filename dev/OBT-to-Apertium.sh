@@ -19,9 +19,9 @@ echo 'SOFT-DELIMITERS = "<,>" ;'
 # just tear them apart at the equals sign with ssed 's/^.*=//'
 # etc. and then use paste to zip them back together...
 L0="\(^LIST  *[^ ][^ ]*  *=.*[\( ]\)"
-L1="\(^[^:]* REMOVE.*[\( ]\)"
-L2="\(^[^:]* SELECT.*[\( ]\)"
-L3="\(^[^:]* SUBSTITUTE.*[\( ]\)" # I'll do those manually instead
+L1="\(^[^:]*REMOVE.*[\( ]\)"
+L2="\(^[^:]*SELECT.*[\( ]\)"
+L3="\(^[^:]*SUBSTITUTE.*[\( ]\)" # I'll do those manually instead
 L="s/\(${L0}\|${L1}\|${L2}\)" # these disjunctions are s..l...o.....w
 M="\([\) ;]\)/\1"	      # hey sed! it's got a ^! use it!
 R="\5/"
@@ -110,4 +110,7 @@ tLIST
 # - make sure each rule has an IF: $ grep -nE "(SELECT|REMOVE).*[^F]$" *.rlx 
 # - move "mens" rule up before REMOVE:2046 (cnjsub)
 # - replace within SUBSTITUTE rules (only in bokmål)
+# - Replace (pron pers) with (pron p1) (pron p2) (pron p3), etc. Hint:
+#   only in one rule do we have "pers" appearing without "pron " before it:
+#   "<meg>"  SELECT:3450 (pers) IF...
 ############################################################################
