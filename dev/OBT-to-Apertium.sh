@@ -112,5 +112,6 @@ tLIST
 # - replace within SUBSTITUTE rules (only in bokmål)
 # - Replace (pron pers) with (pron p1) (pron p2) (pron p3), etc. Hint:
 #   only in one rule do we have "pers" appearing without "pron " before it:
-#   "<meg>"  SELECT:3450 (pers) IF...
+#   "<meg>"  SELECT:3450 (pers) IF
+#   (and in select/remove rules, just grep for 'pers)'
 ############################################################################
