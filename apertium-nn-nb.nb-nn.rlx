@@ -2741,13 +2741,13 @@ CONSTRAINTS
 
 
 #:3528
-"<hun>"  SELECT:3528 (prn pers) IF
+"<hun>"  SELECT:3528 (prn p3) IF
 	(*-1 ub-mask-det LINK *1 ikke-adv-adj)
 ;
 
 
 #:3529
-"<hun>"  SELECT:3529 (prn pers) IF
+"<hun>"  SELECT:3529 (prn p3) IF
 	(NOT *-1 ub-mask-det)
 ;
 #  "bare subst i \"en hun\".."))
@@ -2880,19 +2880,19 @@ CONSTRAINTS
 
 
 #:3505
-"<jeg>"  SELECT:3505 (prn pers) IF
+"<jeg>"  SELECT:3505 (prn p1) IF
 	(*-1 poss-det-nøyt LINK *1 ikke-adv-adj)
 ;
 
 
 #:3506
-"<jeg>"  SELECT:3506 (prn pers) IF
+"<jeg>"  SELECT:3506 (prn p1) IF
 	(*-1 %et% LINK *1 ikke-adv-adj)
 ;
 
 
 #:3507
-"<jeg>"  SELECT:3507 (prn pers) IF
+"<jeg>"  SELECT:3507 (prn p1) IF
 	(NOT *-1 %et%)
 	(NOT -1 poss-det-nøyt)
 ;
@@ -3118,7 +3118,7 @@ CONSTRAINTS
 
 
 #:3450
-"<meg>"  SELECT:3450 (pers) IF
+"<meg>"  SELECT:3450 (p1) IF
 	(0 pron)
 ;
 
@@ -6220,7 +6220,7 @@ CONSTRAINTS
 
 
 #:3527
-"<hun>"  REMOVE:3527 (prn pers) IF
+"<hun>"  REMOVE:3527 (prn p3) IF
 	(*-1 ub-mask-det BARRIER ikke-adv-adj)
 ;
 #  "bare subst i \"en egentlige hun\", \"en hun\".."))
@@ -6269,7 +6269,7 @@ CONSTRAINTS
 
 
 #:3503
-"<jeg>"  REMOVE:3503 (prn pers) IF
+"<jeg>"  REMOVE:3503 (prn p1) IF
 	(*-1 poss-det-nøyt BARRIER ikke-adv-adj)
 ;
 #  "\"mitt egentlige jeg\".."))
@@ -6277,7 +6277,7 @@ CONSTRAINTS
 
 
 #:3504
-"<jeg>"  REMOVE:3504 (prn pers) IF
+"<jeg>"  REMOVE:3504 (prn p1) IF
 	(*-1 %et% BARRIER ikke-adv-adj)
 ;
 #  "\"et egentlig jeg\".."))
@@ -14039,9 +14039,25 @@ SELECT:2963 (adj nt ind sg) IF
 # den dagen vi vant "))
 
 
-
+# triplicated pron pers rule -KBU
 #:2621
- SELECT:2621 (prn pers nom) IF
+ SELECT:2621 (prn p1 nom) IF
+	(0 %han%)
+	(0 akk)
+	(**-1C pres/pret LINK NOT 0 lo#reverse-verb LINK *-1 kh#ikke-adv-adj-subst-det-prep-pron LINK 0 setn-gr LINK 1 pron)
+	(NOT 0 lo#animat LINK NOT 0 lo#animat-prop LINK NOT 0 lo#animat-pron/det)
+	(*1 kh#ikke-adv-adj-subst-det-prep LINK NOT 0 verb)
+;
+#:2621
+ SELECT:2621 (prn p2 nom) IF
+	(0 %han%)
+	(0 akk)
+	(**-1C pres/pret LINK NOT 0 lo#reverse-verb LINK *-1 kh#ikke-adv-adj-subst-det-prep-pron LINK 0 setn-gr LINK 1 pron)
+	(NOT 0 lo#animat LINK NOT 0 lo#animat-prop LINK NOT 0 lo#animat-pron/det)
+	(*1 kh#ikke-adv-adj-subst-det-prep LINK NOT 0 verb)
+;
+#:2621
+ SELECT:2621 (prn p3 nom) IF
 	(0 %han%)
 	(0 akk)
 	(**-1C pres/pret LINK NOT 0 lo#reverse-verb LINK *-1 kh#ikke-adv-adj-subst-det-prep-pron LINK 0 setn-gr LINK 1 pron)
@@ -14051,9 +14067,23 @@ SELECT:2963 (adj nt ind sg) IF
 #  "3.9.2003: Omarbeidet fra LO av KH: Dette liker han."))
 
 
-
+# triplicated pron pers rule -KBU
 #:2622
- SELECT:2622 (prn pers nom) IF
+ SELECT:2622 (prn p1 nom) IF
+	(0 %han%)
+	(0 akk)
+	(**-1C pres/pret LINK NOT 0 lo#reverse-verb LINK *-1 kh#ikke-adv-adj-subst-det-prep LINK 0 setn-gr LINK *1 ikke-adv-adj-det LINK 0 subst LINK NOT 0 lo#animat LINK NOT 0 lo#animat-prop LINK NOT 0 lo#animat-pron/det)
+	(*1 kh#ikke-adv-adj-subst-det-prep LINK NOT 0 verb)
+;
+#:2622
+ SELECT:2622 (prn p2 nom) IF
+	(0 %han%)
+	(0 akk)
+	(**-1C pres/pret LINK NOT 0 lo#reverse-verb LINK *-1 kh#ikke-adv-adj-subst-det-prep LINK 0 setn-gr LINK *1 ikke-adv-adj-det LINK 0 subst LINK NOT 0 lo#animat LINK NOT 0 lo#animat-prop LINK NOT 0 lo#animat-pron/det)
+	(*1 kh#ikke-adv-adj-subst-det-prep LINK NOT 0 verb)
+;
+#:2622
+ SELECT:2622 (prn p3 nom) IF
 	(0 %han%)
 	(0 akk)
 	(**-1C pres/pret LINK NOT 0 lo#reverse-verb LINK *-1 kh#ikke-adv-adj-subst-det-prep LINK 0 setn-gr LINK *1 ikke-adv-adj-det LINK 0 subst LINK NOT 0 lo#animat LINK NOT 0 lo#animat-prop LINK NOT 0 lo#animat-pron/det)
@@ -14062,9 +14092,25 @@ SELECT:2963 (adj nt ind sg) IF
 #  "3.9.2003: Omarbeidet fra LO av KH: Den mørke sjokoladen liker han."))
 
 
-
+# triplicated pron pers rule -KBU
 #:2619
-# SELECT:2619 (prn pers acc) IF
+# SELECT:2619 (prn p1 acc) IF
+#	(0 %han%)
+#	(0 akk)
+#	(*1 ikke-adv-adj LINK 0 pres/pret LINK 1 nominativ)
+#	(*1 ikke-adv-adj LINK 0 pres/pret LINK NOT 1 akk)
+#	(*1 setn-gr LINK NOT 0 %at/om%)
+#;
+#:2619
+# SELECT:2619 (prn p2 acc) IF
+#	(0 %han%)
+#	(0 akk)
+#	(*1 ikke-adv-adj LINK 0 pres/pret LINK 1 nominativ)
+#	(*1 ikke-adv-adj LINK 0 pres/pret LINK NOT 1 akk)
+#	(*1 setn-gr LINK NOT 0 %at/om%)
+#;
+#:2619
+# SELECT:2619 (prn p3 acc) IF
 #	(0 %han%)
 #	(0 akk)
 #	(*1 ikke-adv-adj LINK 0 pres/pret LINK 1 nominativ)
@@ -14076,9 +14122,25 @@ SELECT:2963 (adj nt ind sg) IF
 #040908: Farlig pga skjult at-setning: og han syntes (at) jeg klamret/han vil (at) jeg skal forstå
 
 
-
+# triplicated pron pers rule -KBU
 #:2620
- SELECT:2620 (prn pers acc) IF
+ SELECT:2620 (prn p1 acc) IF
+	(0 akk)
+	(0 %han%)
+	(*1 ikke-adv-adj LINK 0 pres/pret LINK 1 nominativ)
+	(*1 ikke-adv-adj LINK 0 pres/pret LINK NOT 1 akk)
+	(*1 setn-gr LINK 0 %at/om% LINK NOT 1C adv/fv)
+;
+#:2620
+ SELECT:2620 (prn p2 acc) IF
+	(0 akk)
+	(0 %han%)
+	(*1 ikke-adv-adj LINK 0 pres/pret LINK 1 nominativ)
+	(*1 ikke-adv-adj LINK 0 pres/pret LINK NOT 1 akk)
+	(*1 setn-gr LINK 0 %at/om% LINK NOT 1C adv/fv)
+;
+#:2620
+ SELECT:2620 (prn p3 acc) IF
 	(0 akk)
 	(0 %han%)
 	(*1 ikke-adv-adj LINK 0 pres/pret LINK 1 nominativ)
@@ -14087,9 +14149,23 @@ SELECT:2963 (adj nt ind sg) IF
 ;
 #  "kh jan 2004: For alle andre at-setninger enn: Han har jeg sagt at har lest boka."))
 
-
+# triplicated pron pers rule -KBU
 #:2616
- SELECT:2616 (prn pers) IF
+ SELECT:2616 (prn p1) IF
+	(NOT 0 det)
+	(NOT 0 subst)
+	(1C adverb)
+	(2C fv)
+;
+#:2616
+ SELECT:2616 (prn p2) IF
+	(NOT 0 det)
+	(NOT 0 subst)
+	(1C adverb)
+	(2C fv)
+;
+#:2616
+ SELECT:2616 (prn p3) IF
 	(NOT 0 det)
 	(NOT 0 subst)
 	(1C adverb)
@@ -14100,9 +14176,21 @@ SELECT:2963 (adj nt ind sg) IF
 # subst-hode, unntas noen, dette osv:
 # dersom noe (ikke pers pron) ekstra kommer på"))
 
-
+# triplicated pron pers rule -KBU
 #:2610
- SELECT:2610 (prn pers) IF
+ SELECT:2610 (prn p1) IF
+	(NOT 0 subst)
+	(1C perf-part/inf)
+	(-1C fv)
+;
+#:2610
+ SELECT:2610 (prn p2) IF
+	(NOT 0 subst)
+	(1C perf-part/inf)
+	(-1C fv)
+;
+#:2610
+ SELECT:2610 (prn p3) IF
 	(NOT 0 subst)
 	(1C perf-part/inf)
 	(-1C fv)
@@ -14111,9 +14199,23 @@ SELECT:2963 (adj nt ind sg) IF
 
 
 
-
+# triplicated pron pers rule -KBU
 #:2597
- SELECT:2597 (prn pers) IF
+ SELECT:2597 (prn p1) IF
+	(0 %det/dette%)
+	(1 perf-part)
+	(-1C fv)
+	(NOT 1 subst-nøyt)
+;
+#:2597
+ SELECT:2597 (prn p2) IF
+	(0 %det/dette%)
+	(1 perf-part)
+	(-1C fv)
+	(NOT 1 subst-nøyt)
+;
+#:2597
+ SELECT:2597 (prn p3) IF
 	(0 %det/dette%)
 	(1 perf-part)
 	(-1C fv)
@@ -14123,9 +14225,25 @@ SELECT:2963 (adj nt ind sg) IF
 #      :group 34))
 
 
-
+# triplicated pron pers rule -KBU
 #:2598
- SELECT:2598 (prn pers) IF
+ SELECT:2598 (prn p1) IF
+	(0 %den/denne%)
+	(1 adverb)
+	(-1C fv)
+	(NOT 2 mask/fem)
+	(*-2 setn-gr LINK 1 prep LINK NOT *1 setn-gr)
+;
+#:2598
+ SELECT:2598 (prn p2) IF
+	(0 %den/denne%)
+	(1 adverb)
+	(-1C fv)
+	(NOT 2 mask/fem)
+	(*-2 setn-gr LINK 1 prep LINK NOT *1 setn-gr)
+;
+#:2598
+ SELECT:2598 (prn p3) IF
 	(0 %den/denne%)
 	(1 adverb)
 	(-1C fv)
@@ -14136,9 +14254,27 @@ SELECT:2963 (adj nt ind sg) IF
 #      :group 35))
 
 
-
+# triplicated pron pers rule -KBU
 #:2599
- SELECT:2599 (prn pers) IF
+ SELECT:2599 (prn p1) IF
+	(0 %den/denne%)
+	(-1C fv)
+	(NOT 1 mask/fem)
+	(NOT 1 adj-sup)
+	(NOT 1 adverb)
+	(*-2 setn-gr LINK 1 prep LINK NOT *1 setn-gr)
+;
+#:2599
+ SELECT:2599 (prn p2) IF
+	(0 %den/denne%)
+	(-1C fv)
+	(NOT 1 mask/fem)
+	(NOT 1 adj-sup)
+	(NOT 1 adverb)
+	(*-2 setn-gr LINK 1 prep LINK NOT *1 setn-gr)
+;
+#:2599
+ SELECT:2599 (prn p3) IF
 	(0 %den/denne%)
 	(-1C fv)
 	(NOT 1 mask/fem)
@@ -14150,9 +14286,29 @@ SELECT:2963 (adj nt ind sg) IF
 #      :group 35))
 
 
-
+# triplicated pron pers rule -KBU
 #:2600
- SELECT:2600 (prn pers) IF
+ SELECT:2600 (prn p1) IF
+	(0 %den/denne%)
+	(-1C fv)
+	(NOT 1 mask/fem)
+	(NOT 1 adj-sup)
+	(NOT 1 adverb)
+	(-2C adverb)
+	(-3C setn-gr)
+;
+#:2600
+ SELECT:2600 (prn p2) IF
+	(0 %den/denne%)
+	(-1C fv)
+	(NOT 1 mask/fem)
+	(NOT 1 adj-sup)
+	(NOT 1 adverb)
+	(-2C adverb)
+	(-3C setn-gr)
+;
+#:2600
+ SELECT:2600 (prn p3) IF
 	(0 %den/denne%)
 	(-1C fv)
 	(NOT 1 mask/fem)
@@ -14165,9 +14321,25 @@ SELECT:2963 (adj nt ind sg) IF
 #      :group 35))
 
 
-
+# triplicated pron pers rule -KBU
 #:2601
- SELECT:2601 (prn pers) IF
+ SELECT:2601 (prn p1) IF
+	(0 %den/denne%)
+	(1 perf-part)
+	(-1C fv)
+	(NOT 1 subst-mask/fem)
+	(NOT 1 adverb)
+;
+#:2601
+ SELECT:2601 (prn p2) IF
+	(0 %den/denne%)
+	(1 perf-part)
+	(-1C fv)
+	(NOT 1 subst-mask/fem)
+	(NOT 1 adverb)
+;
+#:2601
+ SELECT:2601 (prn p3) IF
 	(0 %den/denne%)
 	(1 perf-part)
 	(-1C fv)
@@ -14178,9 +14350,21 @@ SELECT:2963 (adj nt ind sg) IF
 #      :group 35))
 
 
-
+# triplicated pron pers rule -KBU
 #:2602
- SELECT:2602 (prn pers) IF
+ SELECT:2602 (prn p1) IF
+	(1 pres-part)
+	(-1C verb)
+	(NOT 2 subst/adj)
+;
+#:2602
+ SELECT:2602 (prn p2) IF
+	(1 pres-part)
+	(-1C verb)
+	(NOT 2 subst/adj)
+;
+#:2602
+ SELECT:2602 (prn p3) IF
 	(1 pres-part)
 	(-1C verb)
 	(NOT 2 subst/adj)
@@ -14188,9 +14372,21 @@ SELECT:2963 (adj nt ind sg) IF
 #  "kom den (pron) vaggende"))
 
 
-
+# triplicated pron pers rule -KBU
 #:2603
- SELECT:2603 (prn pers) IF
+ SELECT:2603 (prn p1) IF
+	(NOT 0 %en/ei/et%)
+	(NOT 0 gen)
+	(1 %eller%)
+;
+#:2603
+ SELECT:2603 (prn p2) IF
+	(NOT 0 %en/ei/et%)
+	(NOT 0 gen)
+	(1 %eller%)
+;
+#:2603
+ SELECT:2603 (prn p3) IF
 	(NOT 0 %en/ei/et%)
 	(NOT 0 gen)
 	(1 %eller%)
@@ -14198,9 +14394,21 @@ SELECT:2963 (adj nt ind sg) IF
 #  "Kan du se noe eller noen?"))
 
 
-
+# triplicated pron pers rule -KBU
 #:2604
- SELECT:2604 (prn pers) IF
+ SELECT:2604 (prn p1) IF
+	(NOT 0 %en/ei/et%)
+	(NOT 0 gen)
+	(1 %av%)
+;
+#:2604
+ SELECT:2604 (prn p2) IF
+	(NOT 0 %en/ei/et%)
+	(NOT 0 gen)
+	(1 %av%)
+;
+#:2604
+ SELECT:2604 (prn p3) IF
 	(NOT 0 %en/ei/et%)
 	(NOT 0 gen)
 	(1 %av%)
@@ -14208,9 +14416,33 @@ SELECT:2963 (adj nt ind sg) IF
 #  "noe av det som ..."))
 
 
-
+# triplicated pron pers rule -KBU
 #:2605
- SELECT:2605 (prn pers) IF
+ SELECT:2605 (prn p1) IF
+	(NOT 0 subst-gen)
+	(NOT 0 poss-det)
+	(1 komma/konj)
+	(NOT 1 %så%)
+	(NOT 1 %så%)
+	(NOT 2 %samme%)
+	(NOT 2 %flere%)
+	(NOT 2 kvant)
+	(NOT 2 nr2-det)
+;
+#:2605
+ SELECT:2605 (prn p2) IF
+	(NOT 0 subst-gen)
+	(NOT 0 poss-det)
+	(1 komma/konj)
+	(NOT 1 %så%)
+	(NOT 1 %så%)
+	(NOT 2 %samme%)
+	(NOT 2 %flere%)
+	(NOT 2 kvant)
+	(NOT 2 nr2-det)
+;
+#:2605
+ SELECT:2605 (prn p3) IF
 	(NOT 0 subst-gen)
 	(NOT 0 poss-det)
 	(1 komma/konj)
@@ -14230,9 +14462,29 @@ SELECT:2963 (adj nt ind sg) IF
 
 #Her stod 2606 
 
-
+# triplicated pron pers rule -KBU
 #:2607
- SELECT:2607 (prn pers) IF
+ SELECT:2607 (prn p1) IF
+	(NOT 0 poss-det)
+	(NOT 0 gen)
+	(NOT 0 %henne%)
+	(NOT 0 %en/ei/et%)
+	(NOT 0 interj)
+	(1C ikke-adv-adj-subst)
+	(NOT 1 nr2-det)
+;
+#:2607
+ SELECT:2607 (prn p2) IF
+	(NOT 0 poss-det)
+	(NOT 0 gen)
+	(NOT 0 %henne%)
+	(NOT 0 %en/ei/et%)
+	(NOT 0 interj)
+	(1C ikke-adv-adj-subst)
+	(NOT 1 nr2-det)
+;
+#:2607
+ SELECT:2607 (prn p3) IF
 	(NOT 0 poss-det)
 	(NOT 0 gen)
 	(NOT 0 %henne%)
@@ -14247,15 +14499,33 @@ SELECT:2963 (adj nt ind sg) IF
 
 
 
-
+# triplicated pron pers rule -KBU
 #:2608
- SELECT:2608 (prn pers) IF
+ SELECT:2608 (prn p1) IF
+	(1 strek)
+;
+#:2608
+ SELECT:2608 (prn p2) IF
+	(1 strek)
+;
+#:2608
+ SELECT:2608 (prn p3) IF
 	(1 strek)
 ;
 
-
+# triplicated pron pers rule -KBU
 #:2609
- SELECT:2609 (prn pers) IF
+ SELECT:2609 (prn p1) IF
+	(0 fl-det)
+	(1 %begge/selve/alle%)
+;
+#:2609
+ SELECT:2609 (prn p2) IF
+	(0 fl-det)
+	(1 %begge/selve/alle%)
+;
+#:2609
+ SELECT:2609 (prn p3) IF
 	(0 fl-det)
 	(1 %begge/selve/alle%)
 ;
@@ -14264,9 +14534,23 @@ SELECT:2963 (adj nt ind sg) IF
 
 
 
-
+# triplicated pron pers rule -KBU
 #:2611
- SELECT:2611 (prn pers) IF
+ SELECT:2611 (prn p1) IF
+	(NOT 0 subst)
+	(1C adverb)
+	(-1C fv)
+	(2C perf-part/inf)
+;
+#:2611
+ SELECT:2611 (prn p2) IF
+	(NOT 0 subst)
+	(1C adverb)
+	(-1C fv)
+	(2C perf-part/inf)
+;
+#:2611
+ SELECT:2611 (prn p3) IF
 	(NOT 0 subst)
 	(1C adverb)
 	(-1C fv)
@@ -14275,18 +14559,46 @@ SELECT:2963 (adj nt ind sg) IF
 #  "vil de (pers pron) ikke dra"))
 
 
-
+# triplicated pron pers rule -KBU
 #:2612
- SELECT:2612 (prn pers) IF
+ SELECT:2612 (prn p1) IF
+	(NOT 0 det)
+	(NOT 0 subst)
+	(1C ub-ent-nøyt-adj)
+	(2C fv)
+;
+#:2612
+ SELECT:2612 (prn p2) IF
+	(NOT 0 det)
+	(NOT 0 subst)
+	(1C ub-ent-nøyt-adj)
+	(2C fv)
+;
+#:2612
+ SELECT:2612 (prn p3) IF
 	(NOT 0 det)
 	(NOT 0 subst)
 	(1C ub-ent-nøyt-adj)
 	(2C fv)
 ;
 
-
+# triplicated pron pers rule -KBU
 #:2613
- SELECT:2613 (prn pers) IF
+ SELECT:2613 (prn p1) IF
+	(NOT 0 gen)
+	(NOT 0 subst)
+	(1C adv)
+	(NOT 2 subst/adj/det-kvant-%av%)
+;
+#:2613
+ SELECT:2613 (prn p2) IF
+	(NOT 0 gen)
+	(NOT 0 subst)
+	(1C adv)
+	(NOT 2 subst/adj/det-kvant-%av%)
+;
+#:2613
+ SELECT:2613 (prn p3) IF
 	(NOT 0 gen)
 	(NOT 0 subst)
 	(1C adv)
@@ -14296,9 +14608,23 @@ SELECT:2963 (adj nt ind sg) IF
 # virket det alltid"))
 
 
-
+# triplicated pron pers rule -KBU
 #:2614
- SELECT:2614 (prn pers) IF
+ SELECT:2614 (prn p1) IF
+	(NOT 0 subst)
+	(NOT 0 det)
+	(-1C fv)
+	(*-2 setn-gr LINK 1 prep LINK NOT *1 setn-gr)
+;
+#:2614
+ SELECT:2614 (prn p2) IF
+	(NOT 0 subst)
+	(NOT 0 det)
+	(-1C fv)
+	(*-2 setn-gr LINK 1 prep LINK NOT *1 setn-gr)
+;
+#:2614
+ SELECT:2614 (prn p3) IF
 	(NOT 0 subst)
 	(NOT 0 det)
 	(-1C fv)
@@ -14307,9 +14633,25 @@ SELECT:2963 (adj nt ind sg) IF
 #  "i dag skal vi ..."))
 
 
-
+# triplicated pron pers rule -KBU
 #:2615
- SELECT:2615 (prn pers) IF
+ SELECT:2615 (prn p1) IF
+	(NOT 0 subst)
+	(NOT 0 det)
+	(-1C fv)
+	(-2C adverb)
+	(-3C setn-gr)
+;
+#:2615
+ SELECT:2615 (prn p2) IF
+	(NOT 0 subst)
+	(NOT 0 det)
+	(-1C fv)
+	(-2C adverb)
+	(-3C setn-gr)
+;
+#:2615
+ SELECT:2615 (prn p3) IF
 	(NOT 0 subst)
 	(NOT 0 det)
 	(-1C fv)
@@ -14322,9 +14664,21 @@ SELECT:2963 (adj nt ind sg) IF
 #Her stod 2616
 
 
-
+# triplicated pron pers rule -KBU
 #:2617
- SELECT:2617 (prn pers) IF
+ SELECT:2617 (prn p1) IF
+	(NOT 0 subst)
+	(1C adv)
+	(2C fv)
+;
+#:2617
+ SELECT:2617 (prn p2) IF
+	(NOT 0 subst)
+	(1C adv)
+	(2C fv)
+;
+#:2617
+ SELECT:2617 (prn p3) IF
 	(NOT 0 subst)
 	(1C adv)
 	(2C fv)
@@ -14332,9 +14686,21 @@ SELECT:2963 (adj nt ind sg) IF
 #  "sannsynlig pron pers: at jeg ikke kunne komme"))
 
 
-
+# triplicated pron pers rule -KBU
 #:2618
- SELECT:2618 (prn pers) IF
+ SELECT:2618 (prn p1) IF
+	(NOT 0 gen)
+	(NOT 0 subst)
+	(1C fv)
+;
+#:2618
+ SELECT:2618 (prn p2) IF
+	(NOT 0 gen)
+	(NOT 0 subst)
+	(1C fv)
+;
+#:2618
+ SELECT:2618 (prn p3) IF
 	(NOT 0 gen)
 	(NOT 0 subst)
 	(1C fv)
@@ -17673,9 +18039,35 @@ SELECT:2335 (vblex) IF
 # NOT SAMSET: partisipper fra samsmodulen er 
 # oftest gale (eneinntekt!)"))
 
-
+# triplicated pron pers rule -KBU
 #:2606
- SELECT:2606 (prn pers) IF
+ SELECT:2606 (prn p1) IF
+	(0 %en/ei/et%)
+	(NOT 0 gen)
+	(1C ikke-adv-adj-subst)
+	(NOT 1 nr2-det)
+	(NOT 1 %av%)
+	(NOT 1 %eller%)
+	(NOT 1 %som%)
+	(NOT 1 komma/konj)
+	(NOT -1 %ganger%)
+	(NOT -2 %hver%)
+;
+#:2606
+ SELECT:2606 (prn p2) IF
+	(0 %en/ei/et%)
+	(NOT 0 gen)
+	(1C ikke-adv-adj-subst)
+	(NOT 1 nr2-det)
+	(NOT 1 %av%)
+	(NOT 1 %eller%)
+	(NOT 1 %som%)
+	(NOT 1 komma/konj)
+	(NOT -1 %ganger%)
+	(NOT -2 %hver%)
+;
+#:2606
+ SELECT:2606 (prn p3) IF
 	(0 %en/ei/et%)
 	(NOT 0 gen)
 	(1C ikke-adv-adj-subst)
@@ -20480,9 +20872,25 @@ REMOVE:2135 (det) IF
 
 
 
-
+# triplicated pron pers rule -KBU
 #:2078
- REMOVE:2078 (prn pers) IF
+ REMOVE:2078 (prn p1) IF
+	(0 det)
+	(-1 prep)
+	(1C adj)
+	(*2 ikke-adv-adj LINK 0 subst LINK NOT 0 ikke-subst LINK NOT -1 komma/konj)
+	(*3 ikke-adv-adj-substmgen-pron-konj-detmdem-prep LINK NOT 0 pres/pret)
+;
+#:2078
+ REMOVE:2078 (prn p2) IF
+	(0 det)
+	(-1 prep)
+	(1C adj)
+	(*2 ikke-adv-adj LINK 0 subst LINK NOT 0 ikke-subst LINK NOT -1 komma/konj)
+	(*3 ikke-adv-adj-substmgen-pron-konj-detmdem-prep LINK NOT 0 pres/pret)
+;
+#:2078
+ REMOVE:2078 (prn p3) IF
 	(0 det)
 	(-1 prep)
 	(1C adj)
@@ -20494,9 +20902,25 @@ REMOVE:2135 (det) IF
 # her hjemme"))
 
 
-
+# triplicated pron pers rule -KBU
 #:2079
- REMOVE:2079 (prn pers) IF
+ REMOVE:2079 (prn p1) IF
+	(0 det)
+	(-1 prep)
+	(1C adj)
+	(NOT *3 ikke-adv-adj-substmgen-pron-konj-detmdem-prep)
+	(*2 ikke-adv-adj LINK 0 subst LINK NOT 0 ikke-subst LINK NOT -1 komma/konj)
+;
+#:2079
+ REMOVE:2079 (prn p2) IF
+	(0 det)
+	(-1 prep)
+	(1C adj)
+	(NOT *3 ikke-adv-adj-substmgen-pron-konj-detmdem-prep)
+	(*2 ikke-adv-adj LINK 0 subst LINK NOT 0 ikke-subst LINK NOT -1 komma/konj)
+;
+#:2079
+ REMOVE:2079 (prn p3) IF
 	(0 det)
 	(-1 prep)
 	(1C adj)
@@ -20506,9 +20930,23 @@ REMOVE:2135 (det) IF
 #  "bare for den (ikke pron) utenlandske mønstringspliktige"))
 
 
-
+# triplicated pron pers rule -KBU
 #:2080
- REMOVE:2080 (prn pers) IF
+ REMOVE:2080 (prn p1) IF
+	(0 det)
+	(-1 prep)
+	(1C subst)
+	(*2 ikke-adv-adj-substmgen-pron-konj-detmdem-prep LINK NOT 0 pres/pret)
+;
+#:2080
+ REMOVE:2080 (prn p2) IF
+	(0 det)
+	(-1 prep)
+	(1C subst)
+	(*2 ikke-adv-adj-substmgen-pron-konj-detmdem-prep LINK NOT 0 pres/pret)
+;
+#:2080
+ REMOVE:2080 (prn p3) IF
 	(0 det)
 	(-1 prep)
 	(1C subst)
@@ -20517,9 +20955,23 @@ REMOVE:2135 (det) IF
 #  "bare for den (ikke pron) mønstringspliktige her hjemme"))
 
 
-
+# triplicated pron pers rule -KBU
 #:2081
- REMOVE:2081 (prn pers) IF
+ REMOVE:2081 (prn p1) IF
+	(0 det)
+	(-1 prep)
+	(1C subst)
+	(NOT *2 ikke-adv-adj-substmgen-pron-konj-detmdem-prep)
+;
+#:2081
+ REMOVE:2081 (prn p2) IF
+	(0 det)
+	(-1 prep)
+	(1C subst)
+	(NOT *2 ikke-adv-adj-substmgen-pron-konj-detmdem-prep)
+;
+#:2081
+ REMOVE:2081 (prn p3) IF
 	(0 det)
 	(-1 prep)
 	(1C subst)
@@ -20528,9 +20980,29 @@ REMOVE:2135 (det) IF
 #  "bare for den (ikke pron) mønstringspliktige"))
 
 
-
+# triplicated pron pers rule -KBU
 #:2082
- REMOVE:2082 (prn pers) IF
+ REMOVE:2082 (prn p1) IF
+	(0 det)
+	(-1 prep)
+	(1C subst/adj)
+	(NOT 1 adverb)
+	(NOT 1 adj-komp)
+	(NOT 1 adj-sup-ub)
+	(*2 ikke-adv-adj-substmgen-pron-konj-detmdem-prep LINK NOT 0 pres/pret)
+;
+#:2082
+ REMOVE:2082 (prn p2) IF
+	(0 det)
+	(-1 prep)
+	(1C subst/adj)
+	(NOT 1 adverb)
+	(NOT 1 adj-komp)
+	(NOT 1 adj-sup-ub)
+	(*2 ikke-adv-adj-substmgen-pron-konj-detmdem-prep LINK NOT 0 pres/pret)
+;
+#:2082
+ REMOVE:2082 (prn p3) IF
 	(0 det)
 	(-1 prep)
 	(1C subst/adj)
@@ -20544,9 +21016,29 @@ REMOVE:2135 (det) IF
 # mønstringspliktige her hjemme"))
 
 
-
+# triplicated pron pers rule -KBU
 #:2083
- REMOVE:2083 (prn pers) IF
+ REMOVE:2083 (prn p1) IF
+	(0 det)
+	(-1 prep)
+	(1C subst/adj)
+	(NOT 1 adverb)
+	(NOT 1 adj-komp)
+	(NOT 1 adj-sup-ub)
+	(NOT *2 ikke-adv-adj-substmgen-pron-konj-detmdem-prep)
+;
+#:2083
+ REMOVE:2083 (prn p2) IF
+	(0 det)
+	(-1 prep)
+	(1C subst/adj)
+	(NOT 1 adverb)
+	(NOT 1 adj-komp)
+	(NOT 1 adj-sup-ub)
+	(NOT *2 ikke-adv-adj-substmgen-pron-konj-detmdem-prep)
+;
+#:2083
+ REMOVE:2083 (prn p3) IF
 	(0 det)
 	(-1 prep)
 	(1C subst/adj)
@@ -20558,9 +21050,21 @@ REMOVE:2135 (det) IF
 #  "bare for den (ikke pron) utenlandske mønstringspliktige"))
 
 
-
+# triplicated pron pers rule -KBU
 #:2084
- REMOVE:2084 (prn pers) IF
+ REMOVE:2084 (prn p1) IF
+	(0 be-mask-det)
+	(1 nr2-det-mask-be)
+	(NOT 2 subst/adj)
+;
+#:2084
+ REMOVE:2084 (prn p2) IF
+	(0 be-mask-det)
+	(1 nr2-det-mask-be)
+	(NOT 2 subst/adj)
+;
+#:2084
+ REMOVE:2084 (prn p3) IF
 	(0 be-mask-det)
 	(1 nr2-det-mask-be)
 	(NOT 2 subst/adj)
@@ -20568,9 +21072,27 @@ REMOVE:2135 (det) IF
 #  "Den andre, bevæpnet med pistol"))
 
 
-
+# triplicated pron pers rule -KBU
 #:2085
- REMOVE:2085 (prn pers) IF
+ REMOVE:2085 (prn p1) IF
+	(0 be-mask-det)
+	(1 be-ent-adj)
+	(-1 prep)
+	(NOT 1 adv)
+	(NOT 2 subst/adj)
+	(NOT 2 komma/konj)
+;
+#:2085
+ REMOVE:2085 (prn p2) IF
+	(0 be-mask-det)
+	(1 be-ent-adj)
+	(-1 prep)
+	(NOT 1 adv)
+	(NOT 2 subst/adj)
+	(NOT 2 komma/konj)
+;
+#:2085
+ REMOVE:2085 (prn p3) IF
 	(0 be-mask-det)
 	(1 be-ent-adj)
 	(-1 prep)
@@ -20582,9 +21104,29 @@ REMOVE:2135 (det) IF
 # (tar større sjanser med prep til venstre)"))
 
 
-
+# triplicated pron pers rule -KBU
 #:2086
- REMOVE:2086 (prn pers) IF
+ REMOVE:2086 (prn p1) IF
+	(0 be-mask-det)
+	(1 be-ent-adj)
+	(NOT 1 fv)
+	(NOT 1 adv)
+	(NOT -1 fv)
+	(2 komma/konj)
+	(NOT 3 adj)
+;
+#:2086
+ REMOVE:2086 (prn p2) IF
+	(0 be-mask-det)
+	(1 be-ent-adj)
+	(NOT 1 fv)
+	(NOT 1 adv)
+	(NOT -1 fv)
+	(2 komma/konj)
+	(NOT 3 adj)
+;
+#:2086
+ REMOVE:2086 (prn p3) IF
 	(0 be-mask-det)
 	(1 be-ent-adj)
 	(NOT 1 fv)
@@ -20596,9 +21138,27 @@ REMOVE:2135 (det) IF
 #  "Den (ikke pron) eldste, en gutt på 14 år "))
 
 
-
+# triplicated pron pers rule -KBU
 #:2087
- REMOVE:2087 (prn pers) IF
+ REMOVE:2087 (prn p1) IF
+	(0 be-mask-det)
+	(1 be-ent-adj)
+	(NOT 1 fv)
+	(NOT 1 adv)
+	(NOT -1 fv)
+	(2C clb-komma/konj)
+;
+#:2087
+ REMOVE:2087 (prn p2) IF
+	(0 be-mask-det)
+	(1 be-ent-adj)
+	(NOT 1 fv)
+	(NOT 1 adv)
+	(NOT -1 fv)
+	(2C clb-komma/konj)
+;
+#:2087
+ REMOVE:2087 (prn p3) IF
 	(0 be-mask-det)
 	(1 be-ent-adj)
 	(NOT 1 fv)
@@ -20611,9 +21171,29 @@ REMOVE:2135 (det) IF
 # ikke den store, men (clb) den lille."))
 
 
-
+# triplicated pron pers rule -KBU
 #:2088
- REMOVE:2088 (prn pers) IF
+ REMOVE:2088 (prn p1) IF
+	(0 be-mask-det)
+	(1 be-ent-adj)
+	(NOT 1 fv)
+	(NOT 1 adv)
+	(NOT -1 fv)
+	(NOT 2 subst/adj)
+	(NOT 2 komma/konj)
+;
+#:2088
+ REMOVE:2088 (prn p2) IF
+	(0 be-mask-det)
+	(1 be-ent-adj)
+	(NOT 1 fv)
+	(NOT 1 adv)
+	(NOT -1 fv)
+	(NOT 2 subst/adj)
+	(NOT 2 komma/konj)
+;
+#:2088
+ REMOVE:2088 (prn p3) IF
 	(0 be-mask-det)
 	(1 be-ent-adj)
 	(NOT 1 fv)
@@ -20629,9 +21209,21 @@ REMOVE:2135 (det) IF
 
 
 
-
+# triplicated pron pers rule -KBU
 #:2090
- REMOVE:2090 (prn pers) IF
+ REMOVE:2090 (prn p1) IF
+	(0 ub-nøyt-det)
+	(*1 ub-ent-nøyt-subst LINK NOT 0 farlige-nøyt-subst LINK NOT *-1 ikke-adv-adj)
+	(*1 ub-fl-subst BARRIER ikke-adv-adj)
+;
+#:2090
+ REMOVE:2090 (prn p2) IF
+	(0 ub-nøyt-det)
+	(*1 ub-ent-nøyt-subst LINK NOT 0 farlige-nøyt-subst LINK NOT *-1 ikke-adv-adj)
+	(*1 ub-fl-subst BARRIER ikke-adv-adj)
+;
+#:2090
+ REMOVE:2090 (prn p3) IF
 	(0 ub-nøyt-det)
 	(*1 ub-ent-nøyt-subst LINK NOT 0 farlige-nøyt-subst LINK NOT *-1 ikke-adv-adj)
 	(*1 ub-fl-subst BARRIER ikke-adv-adj)
@@ -20640,9 +21232,25 @@ REMOVE:2135 (det) IF
 #      :group 61))
 
 
-
+# triplicated pron pers rule -KBU
 #:2091
- REMOVE:2091 (prn pers) IF
+ REMOVE:2091 (prn p1) IF
+	(0 be-mask-det)
+	(0 be-fem-det)
+	(*1 ub-ent-mask-subst LINK 0 subst-gen LINK NOT *-1 ikke-adv-adj)
+	(*1 ub-ent-fem-subst LINK 0 subst-gen LINK NOT *-1 ikke-adv-adj)
+	(*1 ub-ent-fem-subst LINK 1 subst/adj)
+;
+#:2091
+ REMOVE:2091 (prn p2) IF
+	(0 be-mask-det)
+	(0 be-fem-det)
+	(*1 ub-ent-mask-subst LINK 0 subst-gen LINK NOT *-1 ikke-adv-adj)
+	(*1 ub-ent-fem-subst LINK 0 subst-gen LINK NOT *-1 ikke-adv-adj)
+	(*1 ub-ent-fem-subst LINK 1 subst/adj)
+;
+#:2091
+ REMOVE:2091 (prn p3) IF
 	(0 be-mask-det)
 	(0 be-fem-det)
 	(*1 ub-ent-mask-subst LINK 0 subst-gen LINK NOT *-1 ikke-adv-adj)
@@ -20654,9 +21262,29 @@ REMOVE:2135 (det) IF
 
 
 
-
+# triplicated pron pers rule -KBU
 #:2092
- REMOVE:2092 (prn pers) IF
+ REMOVE:2092 (prn p1) IF
+	(0 be-mask-det)
+	(0 be-fem-det)
+	(1 nr2-det)
+	(*2 ub-ent-mask-subst BARRIER ikke-adv-adj-det)
+	(*2 ub-ent-fem-subst BARRIER ikke-adv-adj-det)
+	(*2 ub-ent-mask-subst LINK NOT 1 adj-subst-konj)
+	(*2 ub-ent-subst LINK NOT 0 pres/pret LINK NOT 0 infmerke)
+;
+#:2092
+ REMOVE:2092 (prn p2) IF
+	(0 be-mask-det)
+	(0 be-fem-det)
+	(1 nr2-det)
+	(*2 ub-ent-mask-subst BARRIER ikke-adv-adj-det)
+	(*2 ub-ent-fem-subst BARRIER ikke-adv-adj-det)
+	(*2 ub-ent-mask-subst LINK NOT 1 adj-subst-konj)
+	(*2 ub-ent-subst LINK NOT 0 pres/pret LINK NOT 0 infmerke)
+;
+#:2092
+ REMOVE:2092 (prn p3) IF
 	(0 be-mask-det)
 	(0 be-fem-det)
 	(1 nr2-det)
@@ -20669,9 +21297,27 @@ REMOVE:2135 (det) IF
 #      :group 61))
 
 
-
+# triplicated pron pers rule -KBU
 #:2093
- REMOVE:2093 (prn pers) IF
+ REMOVE:2093 (prn p1) IF
+	(0 be-mask-det)
+	(0 be-fem-det)
+	(*1 ub-ent-mask-subst BARRIER ikke-adv-adj)
+	(*1 ub-ent-fem-subst BARRIER ikke-adv-adj)
+	(*1 ub-ent-fem-subst LINK NOT 1 adj-subst-konj)
+	(*1 ub-ent-subst LINK NOT 0 pres/pret LINK NOT 0 infmerke)
+;
+#:2093
+ REMOVE:2093 (prn p2) IF
+	(0 be-mask-det)
+	(0 be-fem-det)
+	(*1 ub-ent-mask-subst BARRIER ikke-adv-adj)
+	(*1 ub-ent-fem-subst BARRIER ikke-adv-adj)
+	(*1 ub-ent-fem-subst LINK NOT 1 adj-subst-konj)
+	(*1 ub-ent-subst LINK NOT 0 pres/pret LINK NOT 0 infmerke)
+;
+#:2093
+ REMOVE:2093 (prn p3) IF
 	(0 be-mask-det)
 	(0 be-fem-det)
 	(*1 ub-ent-mask-subst BARRIER ikke-adv-adj)
@@ -20685,9 +21331,19 @@ REMOVE:2135 (det) IF
 #      :group 61))
 
 
-
+# triplicated pron pers rule -KBU
 #:2094
- REMOVE:2094 (prn pers) IF
+ REMOVE:2094 (prn p1) IF
+	(1 %samme/neste/ene/eneste/forrige%)
+	(NOT 2 nom-uten-pron)
+;
+#:2094
+ REMOVE:2094 (prn p2) IF
+	(1 %samme/neste/ene/eneste/forrige%)
+	(NOT 2 nom-uten-pron)
+;
+#:2094
+ REMOVE:2094 (prn p3) IF
 	(1 %samme/neste/ene/eneste/forrige%)
 	(NOT 2 nom-uten-pron)
 ;
@@ -20695,9 +21351,23 @@ REMOVE:2135 (det) IF
 # det kunne være det samme"))
 
 
-
+# triplicated pron pers rule -KBU
 #:2095
- REMOVE:2095 (prn pers) IF
+ REMOVE:2095 (prn p1) IF
+	(0 %noen%)
+	(NOT -1 pres/pret)
+	(**1C ub-subst LINK NOT 0 subst-prop LINK NOT *-1 ikke-adv-adj)
+	(**1C subst LINK NOT -1 komma/konj)
+;
+#:2095
+ REMOVE:2095 (prn p2) IF
+	(0 %noen%)
+	(NOT -1 pres/pret)
+	(**1C ub-subst LINK NOT 0 subst-prop LINK NOT *-1 ikke-adv-adj)
+	(**1C subst LINK NOT -1 komma/konj)
+;
+#:2095
+ REMOVE:2095 (prn p3) IF
 	(0 %noen%)
 	(NOT -1 pres/pret)
 	(**1C ub-subst LINK NOT 0 subst-prop LINK NOT *-1 ikke-adv-adj)
@@ -20708,9 +21378,27 @@ REMOVE:2135 (det) IF
 # 5.3.2001: not -1 pres/pret: har noen peis hjemme?"))
 
 
-
+# triplicated pron pers rule -KBU
 #:2096
- REMOVE:2096 (prn pers) IF
+ REMOVE:2096 (prn p1) IF
+	(0 %noen%)
+	(-1 pres/pret)
+	(NOT -2 replikk)
+	(NOT -2 setn-gr)
+	(**1C ub-subst LINK NOT 0 subst-prop LINK NOT *-1 ikke-adv-adj)
+	(**1C subst LINK NOT -1 komma/konj)
+;
+#:2096
+ REMOVE:2096 (prn p2) IF
+	(0 %noen%)
+	(-1 pres/pret)
+	(NOT -2 replikk)
+	(NOT -2 setn-gr)
+	(**1C ub-subst LINK NOT 0 subst-prop LINK NOT *-1 ikke-adv-adj)
+	(**1C subst LINK NOT -1 komma/konj)
+;
+#:2096
+ REMOVE:2096 (prn p3) IF
 	(0 %noen%)
 	(-1 pres/pret)
 	(NOT -2 replikk)
@@ -20722,9 +21410,19 @@ REMOVE:2135 (det) IF
 # Ikke: Har noen peis hjemme?"))
 
 
-
+# triplicated pron pers rule -KBU
 #:2097
- REMOVE:2097 (prn pers) IF
+ REMOVE:2097 (prn p1) IF
+	(0 %noen%)
+	(1 %annen%)
+;
+#:2097
+ REMOVE:2097 (prn p2) IF
+	(0 %noen%)
+	(1 %annen%)
+;
+#:2097
+ REMOVE:2097 (prn p3) IF
 	(0 %noen%)
 	(1 %annen%)
 ;
