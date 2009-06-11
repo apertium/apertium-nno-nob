@@ -95,6 +95,7 @@
     <def-var n="gender"/>  
     <def-var n="mf_or_gender"/>  
     <def-var n="number"/>
+    <def-var n="case"/>
   </section-def-vars>
 
 
@@ -116,6 +117,24 @@
 
     <def-macro n="set_number" npar="1">
       <let><var n="number"/><clip pos="1" side="tl" part="nbr"/></let>
+    </def-macro>
+
+    <def-macro n="set_case" npar="1">
+      <!-- if tl word has case from bidix, use it, o/w nothing -->
+      <call-macro n="set_number"> 
+	<with-param pos="1" /> 
+      </call-macro>
+      <choose>
+        <when>
+	  <test>
+	    <equal><clip pos="1" side="tl" part="cas"/><lit-tag v="gen"/></equal>
+	  </test>
+	  <let><var n="case"/><lit-tag v="gen"/></let>
+        </when>
+	<otherwise>
+	  <let><var n="case"/><lit v=""/></let>
+	</otherwise>
+      </choose>
     </def-macro>
 
     <def-macro n="set_gender1" npar="1">
@@ -346,6 +365,9 @@
           <with-param pos="2"/>
           <with-param pos="1"/>
         </call-macro>
+        <call-macro n="set_case">
+          <with-param pos="2"/>
+        </call-macro>
         <out>
           <lu>
             <clip pos="1" side="tl" part="lem"/>
@@ -362,6 +384,7 @@
             <clip pos="2" side="tl" part="gen"/>
             <clip pos="2" side="tl" part="nbr"/>
             <clip pos="2" side="tl" part="art"/>
+            <var n="case"/>
 <!-- 	    <clip pos="2" side="tl" part="cas"/> -->	
 	    <clip pos="2" side="tl" part="lemq"/>
           </lu>
