@@ -86,19 +86,20 @@ Evt. spm. til trond.trosterud@uit.no
 <e>	  <p><l>seg<s n="prn"/></l>	    <r>seg<s n="prn"/></r></p></e>
 <e>	  <p><l>kvarandre<s n="prn"/></l>   <r>hverandre<s n="prn"/></r></p></e>
 
-<e>	  <p><l>prpers<s n="prn"/></l>	    <r>prpers<s n="prn"/></r></p></e>
-<e>	  <p><l>prpers<s n="prn"/><s n="p3"/><s n="mf"/></l> <r>prpers<s n="prn"/><s n="p3"/><s n="mf"/></r></p></e>
-<e>	  <p><l>prpers<s n="prn"/><s n="p3"/><s n="f"/><s n="sg"/></l> <r>prpers<s n="prn"/><s n="p3"/><s n="f"/><s n="sg"/></r></p></e>
-<e>	  <p><l>prpers<s n="prn"/><s n="p3"/><s n="m"/><s n="sg"/></l> <r>prpers<s n="prn"/><s n="p3"/><s n="m"/><s n="sg"/></r></p></e>
-<e>	  <p><l>prpers<s n="prn"/><s n="p3"/><s n="nt"/><s n="sg"/></l>	<r>prpers<s n="prn"/><s n="p3"/><s n="nt"/><s n="sg"/></r></p></e>
-<e r="RL"><p><l>prpers<s n="prn"/><s n="p3"/><s n="m"/><s n="sg"/></l> <r>prpers<s n="prn"/><s n="p3"/><s n="mf"/><s n="sg"/></r></p></e>
-<!-- ^^^ "Anaphora resolution algorithm", ~58 % precision. Alternative: just use 'den' (safer, but less fluent) -->
-
 <e>	  <p><l>ingen<s n="prn"/></l>	    <r>ingen<s n="prn"/></r></p></e>
 
+<e>	  <p><l>eg<s n="prn"/></l>	    <r>jeg<s n="prn"/></r></p></e>
+<e>	  <p><l>du<s n="prn"/></l>	    <r>du<s n="prn"/></r></p></e>
+<e>	  <p><l>ho<s n="prn"/></l>	    <r>hun<s n="prn"/></r></p></e>
+<e>	  <p><l>han<s n="prn"/></l>	    <r>han<s n="prn"/></r></p></e>
+<e>	  <p><l>det<s n="prn"/></l>	    <r>det<s n="prn"/></r></p></e>
+<e r="LR"><p><l>den<s n="prn"/></l>	    <r>den<s n="prn"/></r></p></e>
+<e r="RL"><p><l>han<s n="prn"/><s n="p3"/><s n="m"/></l>         <r>den<s n="prn"/><s n="p3"/><s n="m"/></r></p></e>
+<e r="RL"><p><l>ho<s n="prn"/><s n="p3"/><s n="f"/></l>         <r>den<s n="prn"/><s n="p3"/><s n="f"/></r></p></e>
+<!-- ^^^ this way CG might have a chance of finding what gender we're referring to... unlikely, but at least leaves options open. -->
+<e>	  <p><l>vi<s n="prn"/></l>	    <r>vi<s n="prn"/></r></p></e>
 <e>	  <p><l>de<s n="prn"/></l>	    <r>dere<s n="prn"/></r></p></e>
-<e>	  <p><l>dei<s n="prn"/></l>	    <r>dem<s n="prn"/></r></p></e>
-<e>	  <p><l>deira<s n="prn"/></l>	    <r>deres<s n="prn"/></r></p></e>
+<e>	  <p><l>dei<s n="prn"/></l>	    <r>de<s n="prn"/></r></p></e>
 
 <e>	  <p><l>sin<s n="det"/><s n="pos"/></l>	<r>sin<s n="det"/><s n="pos"/></r></p></e>
 <e r="RL"><p><l>sin<s n="det"/><s n="pos"/><s n="GD"/></l> <r>sin<s n="det"/><s n="pos"/><s n="mf"/></r></p></e>
@@ -159,6 +160,7 @@ Evt. spm. til trond.trosterud@uit.no
 <e>       <p><l>ein<s n="num"/></l>	    <r>en<s n="num"/></r></p></e>
 <e>       <p><l>eit<s n="num"/></l>	    <r>et<s n="num"/></r></p></e>
 <e>       <p><l>to<s n="num"/></l><r>to<s n="num"/></r></p></e>
+<e r="LR"><p><l>tvo<s n="num"/></l><r>to<s n="num"/></r></p></e>
 <e>       <p><l>tre<s n="num"/></l><r>tre<s n="num"/></r></p></e>
 <e r="LR"><p><l>tri<s n="num"/></l><r>tre<s n="num"/></r></p></e>
 <e>       <p><l>fire<s n="num"/></l><r>fire<s n="num"/></r></p></e>
@@ -858,7 +860,13 @@ Evt. spm. til trond.trosterud@uit.no
 <e>       <p><l>bein<s n="n"/><s n="nt"/></l><r>ben<s n="n"/><s n="nt"/></r></p></e>
 <e r="RL"><p><l>bein<s n="n"/><s n="nt"/></l><r>bein<s n="n"/><s n="nt"/></r></p></e>
 <e>       <p><l>benjamin<s n="n"/><s n="m"/></l><r>benjamin<s n="n"/><s n="m"/></r></p></e>
-
+<e>       <p><l>vik<s n="n"/><s n="f"/></l><r>vik<s n="n"/><s n="f"/></r></p></e>
+<e r="LR"><p><l>vik<s n="n"/><s n="nt"/></l><r>avvik<s n="n"/><s n="f"/></r></p></e>
+<e>       <p><l>røyr<s n="n"/><s n="nt"/></l><r>rør<s n="n"/><s n="nt"/></r></p></e>
+<e r="LR"><p><l>røyr<s n="n"/><s n="f"/></l><r>rør<s n="n"/><s n="nt"/></r></p></e>
+<e>       <p><l>åre<s n="n"/><s n="f"/></l><r>åre<s n="n"/><s n="f"/></r></p></e>
+<e>       <p><l>år<s n="n"/><s n="nt"/></l><r>år<s n="n"/><s n="nt"/></r></p></e>
+<e r="RL"><p><l>år<s n="n"/><s n="nt"/><s n="sg"/><s n="ind"/><s n="gen"/></l><r>år<s n="n"/><s n="nt"/><s n="sg"/><s n="ind"/><s n="gen"/></r></p></e>
 <!--      NNN common nouns checked until here -KBU 090602      -->
 
 <e>       <p><l>A4-format<s n="n"/><s n="nt"/></l><r>A4-format<s n="n"/><s n="nt"/></r></p></e>
@@ -33711,7 +33719,7 @@ Evt. spm. til trond.trosterud@uit.no
     <e><p><l>hesje<s n="vblex"/></l><r>hesje<s n="vblex"/></r></p></e>
     <e><p><l>hespe<s n="vblex"/></l><r>hespe<s n="vblex"/></r></p></e>
     <e><p><l>hesple<s n="vblex"/></l><r>hesple<s n="vblex"/></r></p></e>
-    <e><p><l>hete<s n="vblex"/></l><r>hete<s n="vblex"/></r></p></e>
+    <e><p><l>heite<s n="vblex"/></l><r>hete<s n="vblex"/></r></p></e>
     <e><p><l>hetne<s n="vblex"/></l><r>hetne<s n="vblex"/></r></p></e>
     <e><p><l>hetse<s n="vblex"/></l><r>hetse<s n="vblex"/></r></p></e>
     <e><p><l>hevde<s n="vblex"/></l><r>hevde<s n="vblex"/></r></p></e>

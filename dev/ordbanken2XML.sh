@@ -15,8 +15,9 @@ ssed '/XXXX/s/"bu"/"def"/g' |\
 ssed '/XXXX/s/"be"/"def"/g' |\
 ssed '/XXXX/s/"ub"/"ind"/g' |\
 ssed '/XXXX/s/"st-form"/"pst"/g' |\
-ssed '/XXXX/s/"<perf-part>"/"pst"/g' |\
-ssed '/XXXX/s/"<pres-part>"/"pp"/g' |\
+ssed '/XXXX/s/"<st-verb>"/"pstv"/g' |\
+ssed '/XXXX/s/"<pres-part>"/"pprs"/g' |\
+ssed '/XXXX/s/"<perf-part>"/"pp"/g' |\
 ssed '/XXXX/s/"perf-part"/"pp"/g' |\
 ssed '/XXXX/s/nøyt/nt/g' |\
 ssed '/XXXX/s/m\/f/mf/g' |\
