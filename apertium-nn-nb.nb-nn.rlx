@@ -798,6 +798,7 @@ LIST ikke-adv-adj-det/clb-komma = "siden" "$:" vblex pr prn cnjsub part n interj
 LIST ikke-adv-adj-det2 = "siden" "$:" vblex pr prn cnjsub part n interj <ellipse> ;
 LIST ikke-adv-adj-fl-det = "siden" "$:" vblex pr prn cnjsub part n inter <ellipse> (det sg) (clb cnjcoo) (cnjcoo <adv>) ;
 LIST ikke-adv-adj-komma = "siden" "$-" rpar vblex pr prn cnjsub part n interj det <ellipse> ("$," clb) (clb cnjcoo) (cnjcoo <adv>) ;
+LIST ikke-adv-adj-komma-prep-det-pron = "siden" "$-" rpar vblex cnjsub part n interj <ellipse> ("$," clb) (clb cnjcoo) (cnjcoo <adv>) ;
 LIST ikke-adv-adj-konj = "siden" "$:" vblex pr prn cnjsub part n interj det <ellipse> ;
 LIST ikke-adv-adj-kvant = "siden" vblex pr prn cnjsub cnjcoo part n interj <ellipse> (det dem) (det posi) (det emph) ;
 LIST ikke-adv-adj-nr2det = vblex pr prn cnjsub part n interj <ellipse> <kolon> <semi> ("hin" det) ("denne" det) ("dette" det) ("den" det) ("det" det) ("en" det) ("noen" det m) ("noen" det f) ("noen" det pl) ("ingen" det) (cnjcoo clb) (cm clb) ;
@@ -12220,10 +12221,12 @@ SELECT:2963 (adj nt ind sg) IF
 	(NOT 0 det-ent)
 	(NOT 0 poss-det)
 	(NOT -1 fv)
-	(*1 fl-subst LINK NOT 0 ikke-subst LINK NOT *-1 ikke-adv-adj-komma)
+	(*1 fl-subst LINK NOT 0 ikke-subst LINK NOT *-1 ikke-adv-adj-komma-prep-det-pron)
 ;
 #  "disse (ganske fine) bilene"))
-
+# KBU: ikke-adv-adj-komma endra til ikke-adv-adj-komma-prep-det-pron
+# sidan «de» har lesingane <pr> og <det> og <prn>, og «disse» har
+# lesingane <prn> og <det>
 
 
 #:2784
