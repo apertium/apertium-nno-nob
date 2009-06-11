@@ -46,11 +46,11 @@ ${L}be${M}def${R}
 ${L}bu${M}def${R}
 ${L}fl${M}pl${R}
 ${L}akk${M}acc${R}
+${L}pos${M}posi${R}
 ${L}poss${M}pos${R}
 ${L}pron${M}prn${R}
 ${L}prep${M}pr${R}
 ${L}komp${M}comp${R}
-${L}pos${M}posi${R}
 ${L}refl${M}ref${R}
 ${L}kvant${M}qnt${R}
 ${L}konj${M}cnjcoo${R}
