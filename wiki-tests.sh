@@ -35,7 +35,7 @@ for LINE in `paste $SRCLIST $TRGLIST $TSTLIST | sed 's/ /%_%/g' | sed 's/	/!/g'`
 	
 	echo $TRG | grep "^$TST$" > /dev/null;	
 	if [ $? -eq 1 ]; then
-		echo -e $mode"\t  "$SRC"\n\t- $TRG\n\t+ "$TST"\n";
+		echo -e $mode"\t  "$SRC"\n*\t- $TRG\n\t+ "$TST"\n";
 	else
 		echo -e $mode"\t  "$SRC"\nWORKS\t  $TST\n";
 		CORRECT=`expr $CORRECT + 1`;
