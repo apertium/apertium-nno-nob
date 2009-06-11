@@ -14,13 +14,16 @@ ssed '/XXXX/s/"fl"/"pl"/g' |\
 ssed '/XXXX/s/"bu"/"def"/g' |\
 ssed '/XXXX/s/"be"/"def"/g' |\
 ssed '/XXXX/s/"ub"/"ind"/g' |\
+ssed '/XXXX/s/"kvant"/"qnt"/g' |\
 ssed '/XXXX/s/"st-form"/"pst"/g' |\
 ssed '/XXXX/s/"<st-verb>"/"pstv"/g' |\
 ssed '/XXXX/s/"<pres-part>"/"pprs"/g' |\
 ssed '/XXXX/s/"<perf-part>"/"pp"/g' |\
 ssed '/XXXX/s/"perf-part"/"pp"/g' |\
-ssed '/XXXX/s/nøyt/nt/g' |\
-ssed '/XXXX/s/m\/f/mf/g' |\
+ssed '/XXXX/s/3mnøyt/3mnt/g' |\
+ssed '/XXXX/s/2mm\/f/2mmf/g' |\
+ssed '/XXXX/s/4mmask/4mm/g' |\
+ssed '/XXXX/s/5mfem/5mf/g' |\
 ssed '/$/N;s/\nXXXX//' |\
 ssed 's/^/  /' |\
 ssed 's/$/<\/r><\/p><\/e>/' |\
