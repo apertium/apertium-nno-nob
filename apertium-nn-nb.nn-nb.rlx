@@ -380,7 +380,7 @@ LIST adj-fl/%berre% = "berre"ri (adj pl) (adj pprs) ;
 LIST adj-gen = (adj gen) ;
 LIST adj-komp = (adj comp) ;
 LIST adj-mask = (adj m) (adj mf) (adj def) (adj pprs) ;
-LIST adj-reinmask = (adj m)
+LIST adj-reinmask = (adj m) ;
 LIST adj-mask-fem-bu-sup = (adj m) (adj f) (adj mf) (adj sup def) (adj pprs) ;
 LIST adj-mask-fem-bu-sup/%som% = "som"ri (adj m) (adj f) (adj mf) (adj sup def) (adj pprs) ;
 LIST adj-mask/fem = (adj m) (adj f) (adj mf) (adj def) (adj pprs) ;
@@ -1049,7 +1049,7 @@ LIST verb/adj-perf-part = vblex (adj adj pp) ;
 LIST verb/parentes-beg = vblex lpar ;
 LIST verb/parentes-slutt = vblex rpar ;
 
-
+# sec 1
 CONSTRAINTS
 ## select domain
 #:5018
@@ -7158,7 +7158,7 @@ CONSTRAINTS
 	(0 adv)
 ;
 
-
+# sec 2
 CONSTRAINTS
 ## select ndomain
 #:4209
@@ -38965,16 +38965,16 @@ SELECT:2481 (n nt sg) IF
 	(*-1 nr2-det-u-fl LINK -1C nøyt-det)
 ;
 
-
 #:2482
 SELECT:2482 (n nt sg) IF
 	(NOT 0 farlege-nøyt-subst)
 	(NOT 0 adj)
 	(NOT 1 subst-nøyt)
 	(NOT -1 komma/konj)
-	(**-1C nøyt-det LINK NOT 0 nr2-det LINK NOT *1 ikkje-adv-adj)
+	(**-1C nøyt-det LINK NOT 0 nr2-det LINK NOT *1 ikkje-subst-adj-det-adv)
+	#(**-1C nøyt-det LINK NOT 0 nr2-det LINK NOT *1 ikkje-adv-adj) 
 ;
-
+# KBU: endra til å fange opp «eit hus». TODO: er denne for slepphendt?
 
 #:2473
 SELECT:2473 (n f sg) IF
@@ -50182,7 +50182,7 @@ REMOVE:1550 (vblex) IF
 	(-1C %ein/ei/eit%)
 ;
 
-
+# sec 3
 CONSTRAINTS
 ## select domain heur
 #:4999
@@ -50734,7 +50734,7 @@ CONSTRAINTS
 	(0 %visst%-nøyt)
 ;
 
-
+# sec 4
 CONSTRAINTS
 ## select ndomain heur
 
@@ -50768,7 +50768,7 @@ SELECT:6137 (vblex inf) IF
 
 
 #6060
-SELECT:6060 (n ind)
+SELECT:6060 (n ind) 
 	(-2C adv)
 	(-1 adj-komp)
 ;

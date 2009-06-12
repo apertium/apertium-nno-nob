@@ -108,10 +108,15 @@ tLIST
 
 ##### Stuff that needs doing afterwards if I run this again: ###############
 # - make sure each rule has an IF: $ grep -nE "(SELECT|REMOVE).*[^F]$" *.rlx 
-# - move "mens" rule up before REMOVE:2046 (cnjsub)
+#   Actually, this seems to have no effect, even if we have a wordform
+#   there, eg. SELECT ("<å>"ri) + (part) (1 vinf); it still works w/o IF
+#
 # - replace within SUBSTITUTE rules (only in bokmål)
+#
 # - Replace (pron pers) with (pron p1) (pron p2) (pron p3), etc. Hint:
 #   only in one rule do we have "pers" appearing without "pron " before it:
 #   "<meg>"  SELECT:3450 (pers) IF
 #   (and in select/remove rules, just grep for 'pers)'
+#
+# - LIST adj-reinmask = (adj m) missing a semicolon in nn-nb.rlx
 ############################################################################
