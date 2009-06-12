@@ -7230,6 +7230,13 @@
 </pardef>
     
 <!-- Adjectives (more in bm.adj.xml) -->
+<pardef n="fåfeng/d__adj">
+  <e><p><l>de</l>       <r>d<s n="adj"/><s n="posi"/><s n="sg"/><s n="def"/></r></p></e>
+  <e><p><l>de</l>       <r>d<s n="adj"/><s n="posi"/><s n="pl"/></r></p></e>
+  <e><p><l>d</l>        <r>d<s n="adj"/><s n="posi"/><s n="mf"/><s n="sg"/><s n="ind"/></r></p></e>
+  <e><p><l>t</l>        <r>d<s n="adj"/><s n="posi"/><s n="nt"/><s n="sg"/><s n="ind"/></r></p></e>
+</pardef>
+
 <pardef n="første__adj">
   <e>       <p><l></l>          <r><s n="adj"/><s n="ord"/><s n="posi"/><s n="f"/><s n="sg"/><s n="ind"/></r></p></e>
   <e>       <p><l></l>          <r><s n="adj"/><s n="ord"/><s n="posi"/><s n="m"/><s n="sg"/><s n="ind"/></r></p></e>
@@ -11368,6 +11375,7 @@
 <e lm="ha">              <i>h</i><par n="h/a__vblex_adj"/></e>
 
 <e lm="setje">           <i>set</i><par n="set/je__vblex_adj"/></e>
+<e lm="fortsetje">       <i>fortset</i><par n="avset/je__vblex_adj"/></e>
 <e lm="motsetje">        <i>motset</i><par n="avset/je__vblex_adj"/></e>
 <e lm="folkesetje">      <i>folkeset</i><par n="avset/je__vblex_adj"/></e>
 <e lm="omsetje">         <i>omset</i><par n="avset/je__vblex_adj"/></e>
@@ -11375,7 +11383,26 @@
 <e lm="fastsetje">       <i>fastset</i><par n="avset/je__vblex_adj"/></e>
 <e lm="tilsetje">        <i>tilset</i><par n="avset/je__vblex_adj"/></e>
 <e lm="utsetje">         <i>utset</i><par n="avset/je__vblex_adj"/></e>
-<e lm="fortsetje">       <i>fortset</i><par n="set/je__vblex_adj"/></e>
+<e lm="avsetje">         <i>avset</i><par n="avset/je__vblex_adj"/></e>
+<e lm="bisetje">         <i>biset</i><par n="avset/je__vblex_adj"/></e>
+<e lm="dagsetje">         <i>dagset</i><par n="avset/je__vblex_adj"/></e>
+<e lm="dokksetje">         <i>dokkset</i><par n="avset/je__vblex_adj"/></e>
+<e lm="forsetje">         <i>forset</i><par n="avset/je__vblex_adj"/></e>
+<e lm="innsetje">         <i>innset</i><par n="avset/je__vblex_adj"/></e>
+<e lm="irettesetje">         <i>iretteset</i><par n="avset/je__vblex_adj"/></e>
+<e lm="knesetje">         <i>kneset</i><par n="avset/je__vblex_adj"/></e>
+<e lm="kringsetje">         <i>kringset</i><par n="avset/je__vblex_adj"/></e>
+<e lm="landsetje">         <i>landset</i><par n="avset/je__vblex_adj"/></e>
+<e lm="pantsetje">         <i>pantset</i><par n="avset/je__vblex_adj"/></e>
+<e lm="sjøsetje">         <i>sjøset</i><par n="avset/je__vblex_adj"/></e>
+<e lm="skråsetje">         <i>skråset</i><par n="avset/je__vblex_adj"/></e>
+<e lm="skyldsetje">         <i>skyldset</i><par n="avset/je__vblex_adj"/></e>
+<e lm="steinsetje">         <i>steinset</i><par n="avset/je__vblex_adj"/></e>
+<e lm="stålsetje">         <i>stålset</i><par n="avset/je__vblex_adj"/></e>
+<e lm="sysselsetje">         <i>sysselset</i><par n="avset/je__vblex_adj"/></e>
+<e lm="tonesetje">         <i>toneset</i><par n="avset/je__vblex_adj"/></e>
+<e lm="verdsetje">         <i>verdset</i><par n="avset/je__vblex_adj"/></e>
+
 
 <e lm="leggje">		 <i>l</i><par n="l/eggje__vblex_adj"/></e>
 <e lm="grunnleggje">	 <i>grunnl</i><par n="l/eggje__vblex_adj"/></e>
@@ -12789,7 +12816,9 @@
 <e lm="svær">            <i>svær</i><par n="sein__adj"/></e>
 <e lm="heil">            <i>heil</i><par n="sein__adj"/></e>
 <e lm="ulik">            <i>ulik</i><par n="sein__adj"/></e>
-<e lm="tidleg">          <i>tidleg</i><par n="svart__adj"/></e>
+<e lm="løynleg">         <i>løyn</i><par n="sak/leg__adj"/></e>
+<e lm="tidleg">          <i>tid</i><par n="sak/leg__adj"/></e>
+<!-- ingen -leg på «forskjellig»-->
 <e lm="forskjellig">     <i>forskjellig</i><par n="svart__adj"/></e>
 <e lm="tysk">            <i>tysk</i><par n="svart__adj"/></e>
 <e lm="viktig">          <i>viktig</i><par n="svart__adj"/></e>
@@ -12799,23 +12828,25 @@
 <e lm="usaklig">         <i>usak</i><par n="sak/leg__adj"/></e>
 <e lm="saklig">          <i>sak</i><par n="sak/leg__adj"/></e>
 <e lm="særleg">          <i>sær</i><par n="sak/leg__adj"/></e>
-<e lm="vanleg">		 <i>vanleg</i><par n="svart__adj"/></e>
-<e lm="uvanleg">	 <i>uvanleg</i><par n="svart__adj"/></e>
-<e lm="usedvanleg">	 <i>usedvanleg</i><par n="svart__adj"/></e>
-<e lm="sedvanleg">	 <i>sedvanleg</i><par n="svart__adj"/></e>
+<e lm="vanleg">		 <i>van</i><par n="sak/leg__adj"/></e>
+<e lm="uvanleg">	 <i>uvan</i><par n="sak/leg__adj"/></e>
+<e lm="usedvanleg">	 <i>usedvan</i><par n="sak/leg__adj"/></e>
+<e lm="sedvanleg">	 <i>sedvan</i><par n="sak/leg__adj"/></e>
 <e lm="sjangermessig">	 <i>sjangermessig</i><par n="svart__adj"/></e>
 <e lm="genremessig">	 <i>genremessig</i><par n="svart__adj"/></e>
 <e lm="giftig">		 <i>giftig</i><par n="svart__adj"/></e>
-<e lm="høgtideleg">	 <i>høgtideleg</i><par n="svart__adj"/></e>
-<e lm="forsømmeleg">	 <i>forsømmeleg</i><par n="svart__adj"/></e>
-<e lm="venteleg">	 <i>venteleg</i><par n="svart__adj"/></e>
-<e lm="gemensleg">	 <i>gemensleg</i><par n="svart__adj"/></e>
-<e lm="dotterleg">	 <i>dotterleg</i><par n="svart__adj"/></e>
-<e lm="heilårleg">	 <i>heilårleg</i><par n="svart__adj"/></e>
+<e lm="gemeinsleg">	 <i>gemeins</i><par n="sak/leg__adj"/></e>
+<e lm="høgtideleg">	 <i>høgtide</i><par n="sak/leg__adj"/></e>
+<e lm="forsømmeleg">	 <i>forsømme</i><par n="sak/leg__adj"/></e>
+<e lm="venteleg">	 <i>vente</i><par n="sak/leg__adj"/></e>
+<e lm="gemensleg">	 <i>gemens</i><par n="sak/leg__adj"/></e>
+<e lm="dotterleg">	 <i>dotter</i><par n="sak/leg__adj"/></e>
+<e lm="heilårleg">	 <i>heilår</i><par n="sak/leg__adj"/></e>
 <e lm="heilårig">	 <i>heilårig</i><par n="svart__adj"/></e>
-<e lm="fortruleg">	 <i>fortruleg</i><par n="svart__adj"/></e>
-<e lm="truleg">		 <i>truleg</i><par n="svart__adj"/></e>
-<e lm="utruleg">	 <i>utruleg</i><par n="svart__adj"/></e>
+<e lm="fortruleg">	 <i>fortru</i><par n="sak/leg__adj"/></e>
+<e lm="truleg">		 <i>tru</i><par n="sak/leg__adj"/></e>
+<e lm="utruleg">	 <i>utru</i><par n="sak/leg__adj"/></e>
+<e lm="fåfengd">	 <i>fåfeng</i><par n="fåfeng/d__adj"/></e>
 
 <!-- Ordinals -->
 <e lm="første">          <i>første</i><par n="første__adj"/></e>
