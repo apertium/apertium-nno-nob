@@ -401,7 +401,10 @@
     <rule comment="ADJ: åpne (hus) => opne (hus)
 		   We let CG disambiguate art and nbr using the following noun,
 		   o/w all info should be in the adjective wordform (eg. in the above
-		   example, hus being ind should give plural).">
+		   example, hus being ind should give plural).
+
+                   However, Bokmål adjectives have mf where Nynorsk ones are split
+		   into m and f, so we take a wild guess if we see a lone adjective.">
       <pattern>
         <pattern-item n="adj"/>
       </pattern>
@@ -409,6 +412,17 @@
         <call-macro n="set_gender1">
           <with-param pos="1"/>
         </call-macro>
+	<choose>
+        <when>
+	  <test>
+	    <and>	
+	      <equal><var n="number"/><lit-tag v="sg"/></equal>
+	      <equal><var n="gender"/><lit-tag v="mf"/></equal>
+	    </and>
+	  </test>
+	  <let><var n="gender"/><lit-tag v="m"/></let>
+        </when>
+      </choose>
         <out>
           <lu>
             <clip pos="1" side="tl" part="lem"/>
@@ -416,11 +430,43 @@
             <var n="gender"/>
             <clip pos="1" side="tl" part="nbr"/>
             <clip pos="1" side="tl" part="art"/>
-<!-- 	    <clip pos="1" side="tl" part="cas"/> -->	
+<!-- <clip pos="1" side="tl" part="cas"/> -->
           </lu>
         </out>
       </action>
     </rule>
+
+    <rule comment="ADJ NOM: liten bok => lita bok
+		   We let CG disambiguate art and nbr using the following noun,
+		   o/w all info should be in the adjective wordform (eg. in the above
+		   example, hus being ind should give plural).">
+      <pattern>
+        <pattern-item n="adj"/>
+        <pattern-item n="nom"/>
+      </pattern>
+      <action>
+        <out>
+          <lu>
+            <clip pos="1" side="tl" part="lem"/>
+            <clip pos="1" side="tl" part="a_adj"/>
+            <clip pos="2" side="tl" part="gen"/>
+            <clip pos="1" side="tl" part="nbr"/>
+            <clip pos="1" side="tl" part="art"/>
+	    <!-- <clip pos="1" side="tl" part="cas"/> -->
+          </lu>
+          <b/>
+	  <lu>
+            <clip pos="2" side="tl" part="lemh"/>
+            <clip pos="2" side="tl" part="a_nom"/>
+            <clip pos="2" side="tl" part="gen"/>
+            <clip pos="2" side="tl" part="nbr"/>
+      	    <clip pos="2" side="tl" part="art"/>
+	    <clip pos="2" side="tl" part="lemq"/>
+          </lu>
+        </out>
+      </action>
+    </rule>
+    
 
   </section-rules>
 </transfer>
