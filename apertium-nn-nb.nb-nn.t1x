@@ -444,12 +444,16 @@
         <pattern-item n="adj"/>
         <pattern-item n="nom"/>
       </pattern>
-      <action>
+      <action>	
+        <call-macro n="set_gender2">
+          <with-param pos="2"/>
+          <with-param pos="1"/>
+        </call-macro>
         <out>
           <lu>
             <clip pos="1" side="tl" part="lem"/>
             <clip pos="1" side="tl" part="a_adj"/>
-            <clip pos="2" side="tl" part="gen"/>
+            <var n="gender"/>
             <clip pos="1" side="tl" part="nbr"/>
             <clip pos="1" side="tl" part="art"/>
 	    <!-- <clip pos="1" side="tl" part="cas"/> -->
