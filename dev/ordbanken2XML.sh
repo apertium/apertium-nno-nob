@@ -16,6 +16,7 @@ ssed '/XXXX/s/"be"/"def"/g' |\
 ssed '/XXXX/s/"ub"/"ind"/g' |\
 ssed '/XXXX/s/"kvant"/"qnt"/g' |\
 ssed '/XXXX/s/"pos"/"posi"/g' |\
+ssed '/XXXX/s/"komp"/"comp"/g' |\
 ssed '/XXXX/s/"st-form"/"pst"/g' |\
 ssed '/XXXX/s/"<st-verb>"/"pstv"/g' |\
 ssed '/XXXX/s/"<pres-part>"/"pprs"/g' |\
