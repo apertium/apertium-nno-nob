@@ -1419,7 +1419,7 @@ LIST verb/parentes-beg = vblex lpar ;
 LIST verb/parentes-slutt = vblex rpar ;
 LIST verk = <verk> ;
 
-
+# sec 1
 CONSTRAINTS
 ## select domain
 #:3787
@@ -6190,8 +6190,6 @@ CONSTRAINTS
 ;
 #  "Dette er ikke noe hjem (ikke prep)!"))
 
-
-
 #:3535
   REMOVE:3535  ("<hjem>"ri ) + (n) IF
 	(-1 adj-nøyt)
@@ -6210,7 +6208,14 @@ CONSTRAINTS
 #  "ikke subst dersom det ikke er et hjem osv
 # eller feks \"hus og hjem\""))
 
-
+#:3542
+  REMOVE:3542  ("<hjem>"ri ) + (pr) IF
+	(-1 det)
+	(-2 prep)
+;
+#  «De ble hentet i sine hjem midt på natten»
+# Veldig...heuristisk, ein kan jo ha «Vi åt våre og de tok med sine
+# hjem», men såg ingen slike i avis.uib.no -KBU
 
 #:3533
   REMOVE:3533  ("<holder>"ri ) + (n m sg) IF
@@ -7606,7 +7611,7 @@ CONSTRAINTS
 #  "åtte er sjelden verb på bm"))
 
 
-
+# sec 2
 CONSTRAINTS
 ## select ndomain
 
@@ -24305,7 +24310,7 @@ REMOVE:2135 (det) IF
 #150908 (*1C iv BARRIER iv) dekker ikke det samme som den opprinnelige
 
 
-
+# sec 3
 CONSTRAINTS
 ## select domain heur
 
@@ -24957,7 +24962,7 @@ CONSTRAINTS
 #  "kh jan 2004: Lite sannsynlig at å er subst om ingen av substantivreglene har virket"))
 
 
-
+# sec 4
 #CONSTRAINTS
 ## select ndomain heur
 
