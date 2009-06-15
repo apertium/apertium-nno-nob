@@ -184,9 +184,12 @@
     
     <def-macro n="set_gender2" npar="2">
       <!-- arg.1: noun, arg.2: determiner (or adjective)
-	   - iff sg and GD, take gender of target noun
+	   - iff sg and GD or m, take gender of target noun
 	   - plurals get no gender;
-	   - o/w take gender of target determiner -->
+	   - o/w take gender of target determiner
+          Masculine determiners in bokmål may be used with femininine gender nouns
+	  without being marked as such in bidix...
+      -->
       <call-macro n="set_number"> 
 	<with-param pos="2" /> <!-- determiners are less ambiguous wrt. nbr -->
       </call-macro>
@@ -195,7 +198,10 @@
 	  <test>
 	    <and>
 	      <equal><var n="number"/><lit-tag v="sg"/></equal>
-	      <equal><clip pos="2" side="tl" part="gen"/><lit-tag v="GD"/></equal>
+	      <or>
+		<equal><clip pos="2" side="tl" part="gen"/><lit-tag v="GD"/></equal>
+		<equal><clip pos="2" side="tl" part="gen"/><lit-tag v="m"/></equal>
+	      </or>
 	    </and>
 	  </test>
 	  <let><var n="gender"/><clip pos="1" side="tl" part="gen"/></let>

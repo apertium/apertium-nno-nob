@@ -119,4 +119,9 @@ tLIST
 #   (and in select/remove rules, just grep for 'pers)'
 #
 # - LIST adj-reinmask = (adj m) missing a semicolon in nn-nb.rlx
+#
+# - `grep "det [^ (]* [mf][^mf]" *rlx' and make sure we have OR mf everywhere
+#   since many determiners are mf-marked (easier bidix transfer that way)
+#   Collapsing REMOVE (m) and REMOVE (f), make sure they say "IF (NOT m/f)"
+#   and not just "IF (NOT m)" or "IF (NOT f)"...
 ############################################################################

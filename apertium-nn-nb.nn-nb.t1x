@@ -153,11 +153,11 @@
         <pattern-item n="nom"/>
       </pattern>
       <action>
-        <call-macro n="set_mf_iff_m_or_f">
-	  <with-param pos="1"/>
-	  <!-- nn usually specifies nbr/gen on det, where we need it,
-	       although 'kva nom=>hvilke(tn) nom' needs work -->
-        </call-macro>
+	<let><var n="gender"/><clip pos="2" side="tl" part="gen"/></let>
+	<choose><when>
+	  <test><equal><clip pos="2" side="tl" part="nbr"/><lit-tag v="pl"/></equal></test>
+	  <let><var n="gender"/><lit v=""/></let>
+	</when></choose>
         <out>
           <lu>
             <clip pos="1" side="tl" part="lem"/>
