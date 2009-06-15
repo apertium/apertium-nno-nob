@@ -87,6 +87,7 @@
       <attr-item tags="sg"/>
       <attr-item tags="pl"/>
       <attr-item tags="sp"/>
+      <attr-item tags="ND"/>
     </def-attr>
     <def-attr n="cas">
       <attr-item tags="nom"/>
@@ -101,6 +102,8 @@
 
   <section-def-vars>
     <def-var n="gender"/>
+    <def-var n="mf_or_gender"/>  
+    <def-var n="number"/>  
   </section-def-vars>
 
   <section-def-macros>
@@ -124,55 +127,114 @@
       </choose>
     </def-macro>
 
-    <def-macro n="set_mf_iff_m_or_f" npar="1">
-      <!-- - iff m or f, use mf
-           - o/w use what we're given. For eg. 'den/det' -->
+    <def-macro n="set_number2" npar="2">
+      <!-- arg.1: noun, arg.2: determiner (or adjective)
+	   If it's ND, take that of noun, o/w take that of determiner.
+      -->
       <choose>
         <when>
 	  <test>
-	      <or>
-		<equal><clip pos="1" side="sl" part="gen"/><lit-tag v="m"/></equal>
-		<equal><clip pos="1" side="sl" part="gen"/><lit-tag v="f"/></equal>
-	      </or>
+	    <equal><clip pos="2" side="tl" part="nbr"/><lit-tag v="ND"/></equal>
 	  </test>
-	  <let><var n="gender"/><lit-tag v="mf"/></let>
+	  <let><var n="number"/><clip pos="1" side="tl" part="nbr"/></let>
         </when>
 	<otherwise>
-	  <let><var n="gender"/><clip pos="1" side="sl" part="gen"/></let>
+	  <let><var n="number"/><clip pos="2" side="tl" part="nbr"/></let>
 	</otherwise>
       </choose>
     </def-macro>
 
-  </section-def-macros>
+    <def-macro n="set_gender2" npar="2">
+      <!-- arg.1: noun, arg.2: determiner (or adjective)
+	   - iff sg and GD, take gender of target noun
+	   - plurals get no gender;
+	   - o/w take gender of target determiner
+          Masculine determiners in bokmål may be used with femininine gender nouns
+	  without being marked as such in bidix...
+      -->
+      <call-macro n="set_number2"> 
+	<with-param pos="1" />
+	<with-param pos="2" /> 
+      </call-macro>
+      <choose>
+        <when>
+	  <test>
+	    <and>
+	      <equal><clip pos="2" side="tl" part="nbr"/><lit-tag v="sg"/></equal>
+	      <equal><clip pos="2" side="tl" part="gen"/><lit-tag v="GD"/></equal>
+	    </and>
+	  </test>
+	  <let><var n="gender"/><clip pos="1" side="tl" part="gen"/></let>
+        </when>
+	<when>
+	  <test>
+	    <equal><var n="number"/><lit-tag v="pl"/></equal>
+	  </test>
+	  <let><var n="gender"/><lit v=""/></let>
+	</when>
+	<otherwise>
+	  <let><var n="gender"/><clip pos="2" side="tl" part="gen"/></let>
+	</otherwise>
+      </choose>
+      <choose>
+	<when>
+	  <test>
+	    <equal><var n="gender"/><lit-tag v="f"/></equal>
+	  </test>
+	  <let><var n="gender"/><lit-tag v="m"/></let>
+	</when>
+      </choose>
+      <call-macro n="set_mf_or_gender">
+      </call-macro>
+    </def-macro>
+
+    <def-macro n="set_mf_or_gender" npar="0">
+      <!-- - if m or f or GD, use mf
+	   (we might have GD if set_gender 'failed')
+	   - o/w use what we're given. -->
+      <choose>
+	<when>
+	  <test>
+	    <or>
+	      <equal><var n="gender"/><lit-tag v="m"/></equal>
+	      <equal><var n="gender"/><lit-tag v="f"/></equal>
+	      <equal><var n="gender"/><lit-tag v="GD"/></equal>
+	    </or>
+	  </test>
+	  <let><var n="mf_or_gender"/><lit-tag v="mf"/></let>
+	</when>
+	<otherwise>
+	  <let><var n="mf_or_gender"/><var n="gender"/></let>
+	</otherwise>
+      </choose>
+    </def-macro>
+</section-def-macros>
 
   <section-rules>
-
     <rule>
       <pattern>						       
         <pattern-item n="det"/>
         <pattern-item n="nom"/>
       </pattern>
       <action>
-	<let><var n="gender"/><clip pos="2" side="tl" part="gen"/></let>
-	<choose><when>
-	  <test><equal><clip pos="2" side="tl" part="nbr"/><lit-tag v="pl"/></equal></test>
-	  <let><var n="gender"/><lit v=""/></let>
-	</when></choose>
+	<call-macro n="set_gender2"> 
+	<with-param pos="2" />
+	<with-param pos="1" /> 
+      </call-macro>
         <out>
           <lu>
             <clip pos="1" side="tl" part="lem"/>
             <clip pos="1" side="tl" part="a_det"/>
             <var n="gender"/>
-            <clip pos="1" side="tl" part="nbr"/>
-	    <clip pos="1" side="tl" part="art"/>	       <!-- might be empty! -->
-<!-- 	    <clip pos="1" side="tl" part="cas"/> -->
+	    <var n="number"/>
+	    <clip pos="1" side="tl" part="art"/>
           </lu>
           <b pos="1"/>
           <lu>
 	    <clip pos="2" side="tl" part="lemh"/>
             <clip pos="2" side="tl" part="a_nom"/>
             <clip pos="2" side="tl" part="gen"/>
-            <clip pos="2" side="tl" part="nbr"/>
+	    <var n="number"/>
             <clip pos="2" side="tl" part="art"/>
 	    <clip pos="2" side="tl" part="cas"/>	     
 	    <clip pos="2" side="tl" part="lemq"/>
@@ -186,14 +248,26 @@
         <pattern-item n="adj"/>
       </pattern>
       <action>
-        <call-macro n="set_mf_iff_m_or_f">
-          <with-param pos="1"/>
-        </call-macro>
+      <choose>
+	<when>
+	  <test>
+	    <or>
+	      <equal><clip pos="1" side="tl" part="nbr"/><lit-tag v="m"/></equal>
+	      <equal><clip pos="1" side="tl" part="nbr"/><lit-tag v="f"/></equal>
+	      <equal><clip pos="1" side="tl" part="nbr"/><lit-tag v="GD"/></equal>
+	    </or>
+	  </test>
+	  <let><var n="mf_or_gender"/><lit-tag v="mf"/></let>
+	</when>
+	<otherwise>
+	  <let><var n="mf_or_gender"/><clip pos="1" side="tl" part="gen"/></let>
+	</otherwise>
+      </choose>
         <out>
           <lu>
             <clip pos="1" side="tl" part="lem"/>
             <clip pos="1" side="tl" part="a_adj"/>
-            <var n="gender"/>
+            <var n="mf_or_gender"/>
             <clip pos="1" side="tl" part="nbr"/>
             <clip pos="1" side="tl" part="art"/>
           </lu>
