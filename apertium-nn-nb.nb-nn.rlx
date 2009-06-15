@@ -6197,16 +6197,16 @@ CONSTRAINTS
 ;
 #  "han leverte også tøyet (subst/adj-NØYT) hjem"))
 
-
-
 #:3536
   REMOVE:3536  ("<hjem>"ri ) + (n) IF
 	(NOT -1 nøyt-adj-det)
+	(NOT -1 fl-adj/fl-det)
 	(NOT -1 subst-gen)
 	(NOT -1 %og%)
 ;
 #  "ikke subst dersom det ikke er et hjem osv
 # eller feks \"hus og hjem\""))
+# KBU: fleirtal må med...
 
 #:3542
   REMOVE:3542  ("<hjem>"ri ) + (pr) IF
@@ -6216,6 +6216,8 @@ CONSTRAINTS
 #  «De ble hentet i sine hjem midt på natten»
 # Veldig...heuristisk, ein kan jo ha «Vi åt våre og de tok med sine
 # hjem», men såg ingen slike i avis.uib.no -KBU
+
+
 
 #:3533
   REMOVE:3533  ("<holder>"ri ) + (n m sg) IF
