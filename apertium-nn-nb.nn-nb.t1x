@@ -102,6 +102,7 @@
 
   <section-def-vars>
     <def-var n="gender"/>
+    <def-var n="sp_or_number"/>
     <def-var n="mf_or_gender"/>  
     <def-var n="number"/>  
   </section-def-vars>
@@ -134,13 +135,31 @@
       <choose>
         <when>
 	  <test>
-	    <equal><clip pos="2" side="tl" part="nbr"/><lit-tag v="ND"/></equal>
+	    <equal><clip pos="2" side="tl" part="nbr"/><lit-tag v="sp"/></equal>
 	  </test>
-	  <let><var n="number"/><clip pos="1" side="tl" part="nbr"/></let>
+	  <let><var n="sp_or_number"/><lit-tag v="sp"/></let>
+	  <let><var n="number"/><lit-tag v="ND"/></let>
         </when>
 	<otherwise>
 	  <let><var n="number"/><clip pos="2" side="tl" part="nbr"/></let>
+	  <let><var n="sp_or_number"/><clip pos="2" side="tl" part="nbr"/></let>
 	</otherwise>
+      </choose>
+      <choose>
+        <when>
+	  <test>
+	    <equal><var n="sp_or_number"/><lit-tag v="ND"/></equal>
+	  </test>
+	  <let><var n="sp_or_number"/><clip pos="1" side="tl" part="nbr"/></let>
+        </when>
+      </choose>
+      <choose>
+        <when>
+	  <test>
+	    <equal><var n="number"/><lit-tag v="ND"/></equal>
+	  </test>
+	  <let><var n="number"/><clip pos="1" side="tl" part="nbr"/></let>
+        </when>
       </choose>
     </def-macro>
 
@@ -168,7 +187,7 @@
         </when>
 	<when>
 	  <test>
-	    <equal><var n="number"/><lit-tag v="pl"/></equal>
+	    <equal><var n="sp_or_number"/><lit-tag v="pl"/></equal>
 	  </test>
 	  <let><var n="gender"/><lit v=""/></let>
 	</when>
@@ -211,7 +230,7 @@
 </section-def-macros>
 
   <section-rules>
-    <rule>
+    <rule comment="DET NOM">
       <pattern>						       
         <pattern-item n="det"/>
         <pattern-item n="nom"/>
@@ -226,7 +245,7 @@
             <clip pos="1" side="tl" part="lem"/>
             <clip pos="1" side="tl" part="a_det"/>
             <var n="gender"/>
-	    <var n="number"/>
+	    <var n="sp_or_number"/>
 	    <clip pos="1" side="tl" part="art"/>
           </lu>
           <b pos="1"/>
