@@ -26,8 +26,8 @@
     <def-cat n="vblex">
       <cat-item tags="vblex.*"/>
     </def-cat>
-    <def-cat n="vblexpass">
-      <cat-item tags="vblex.pass.*"/>
+    <def-cat n="vblexpst">
+      <cat-item tags="vblex.inf.pres.pst"/>
     </def-cat>
   </section-def-cats>
 
@@ -234,6 +234,26 @@
 </section-def-macros>
 
   <section-rules>
+
+
+    <rule comment="VBLEX.INF.PRES.PST - lesast - leses ">
+      <pattern>
+	<pattern-item n="vblexpst"/>
+      </pattern>
+      <action>
+        <out>
+	  <lu>	    
+            <clip pos="1" side="tl" part="lem"/>
+            <clip pos="1" side="tl" part="a_verb"/>
+	    <lit-tag v="inf"/>
+	    <lit-tag v="pres"/>
+	    <lit-tag v="pass"/>
+	    <clip pos="1" side="tl" part="lemq"/>
+          </lu>
+        </out>
+      </action>
+    </rule>
+
     <rule comment="DET NOM">
       <pattern>						       
         <pattern-item n="det"/>

@@ -30,7 +30,7 @@
       <cat-item tags="adj.*"/>
     </def-cat>
     <def-cat n="vblexpass">
-      <cat-item tags="vblex.pass.*"/>
+      <cat-item tags="vblex.inf.pres.pass"/>
     </def-cat>
   </section-def-cats>
 
@@ -245,35 +245,27 @@
   </section-def-macros>
 
   <section-rules>
-<!--     <rule comment="N VBLEX.PASS - boken leses - boka blir lest "> -->
-<!--       <pattern> -->
-<!-- 	<pattern-item n="nom"/> -->
-<!-- 	<pattern-item n="vblexpass"/> -->
-<!--       </pattern> -->
-<!--       <action> -->
-<!--         <out> -->
-<!--           <lu> -->
-<!-- 	    <clip pos="1" side="tl" part="lem"/> -->
-<!--             <clip pos="1" side="tl" part="a_det"/> -->
-<!-- 	    <clip pos="2" side="tl" part="gen"/>   -->
-<!--             <clip pos="2" side="tl" part="nbr"/> -->
-<!--           </lu> -->
-<!--           <lu> -->
-<!-- 	    <lit v="bli" comment="insert the verb 'bli'" /> -->
-<!-- 	    <lit-tag v="vblex.pres"/> -->
-<!--           </lu> -->
-<!--           <lu> -->
-<!--             <clip pos="2" side="tl" part="a_nom"/> -->
-<!--             <clip pos="2" side="tl" part="gen"/> -->
-<!--             <clip pos="2" side="tl" part="nbr"/> -->
-<!-- 	    <lit-tag v="def"/> -->
-<!-- 	    <clip pos="2" side="tl" part="lemq"/> -->
-<!--           </lu> -->
-<!-- 	  <b pos="1"/> -->
 
-<!--         </out> -->
-<!--       </action> -->
-<!--     </rule> -->
+    <rule comment="VBLEX.INF.PRES.PASS - leses - blir lest ">
+      <pattern>
+	<pattern-item n="vblexpass"/>
+      </pattern>
+      <action>
+        <out>
+          <lu>
+	    <lit v="bli"/>
+	    <lit-tag v="vblex.pres"/>
+          </lu>
+	  <b/>
+	  <lu>	    
+            <clip pos="1" side="tl" part="lem"/>
+            <clip pos="1" side="tl" part="a_verb"/>
+	    <lit-tag v="pp"/>
+	    <clip pos="1" side="tl" part="lemq"/>
+          </lu>
+        </out>
+      </action>
+    </rule>
 
     <rule comment="DETPOS NIND: min mor => mora mi 
       nind makes sure we don't match 'min Per(np)' nor 'min bils(gen)' ">
