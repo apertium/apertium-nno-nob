@@ -29,6 +29,13 @@
     <def-cat n="vblexinfpst">
       <cat-item tags="vblex.inf.pst"/>
     </def-cat>
+    <def-cat n="vblexpp">
+      <cat-item tags="vblex.pp"/>
+    </def-cat>
+    <def-cat n="vblex_bli">
+      <cat-item lemma="bli" tags="vblex.pres"/>
+      <cat-item lemma="bli" tags="vblex.inf"/>
+    </def-cat>
   </section-def-cats>
 
     
@@ -235,6 +242,24 @@
 
   <section-rules>
 
+
+    <rule comment="VBLEX_BLI VBLEX.PP - bli lest => leses ">
+      <pattern>
+	<pattern-item n="vblex_bli"/>
+	<pattern-item n="vblexpp"/>
+      </pattern>
+      <action>
+        <out>
+	  <lu>	    
+            <clip pos="2" side="tl" part="lem"/>
+            <clip pos="2" side="tl" part="a_verb"/>
+            <clip pos="1" side="tl" part="temps"/>
+	    <lit-tag v="pass"/>
+	    <clip pos="2" side="tl" part="lemq"/>
+          </lu>
+        </out>
+      </action>
+    </rule>
 
     <rule comment="VBLEX.INF.PST - lesast => leses ">
       <pattern>
