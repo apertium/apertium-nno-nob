@@ -29,8 +29,11 @@
     <def-cat n="adj">
       <cat-item tags="adj.*"/>
     </def-cat>
-    <def-cat n="vblexpass">
-      <cat-item tags="vblex.inf.pres.pass"/>
+    <def-cat n="vblexinfpass">
+      <cat-item tags="vblex.inf.pass"/>
+    </def-cat>
+    <def-cat n="vblexprespass">
+      <cat-item tags="vblex.pres.pass"/>
     </def-cat>
   </section-def-cats>
 
@@ -246,9 +249,26 @@
 
   <section-rules>
 
-    <rule comment="VBLEX.INF.PRES.PASS - leses - blir lest ">
+    <rule comment="VBLEX.INF.PASS - kan leses => kan lesast">
       <pattern>
-	<pattern-item n="vblexpass"/>
+	<pattern-item n="vblexinfpass"/>
+      </pattern>
+      <action>
+        <out>
+	  <lu>	    
+            <clip pos="1" side="tl" part="lem"/>
+            <clip pos="1" side="tl" part="a_verb"/>
+	    <clip pos="1" side="tl" part="temps"/>
+	    <lit-tag v="pst"/>
+	    <clip pos="1" side="tl" part="lemq"/>
+          </lu>
+        </out>
+      </action>
+    </rule>
+
+    <rule comment="VBLEX.INF.PRES.PASS - leses => blir lest">
+      <pattern>
+	<pattern-item n="vblexprespass"/>
       </pattern>
       <action>
         <out>
@@ -333,6 +353,56 @@
             <var n="number"/>
       	    <lit-tag v="def"/>
 	    <clip pos="3" side="tl" part="lemq"/>
+          </lu>
+	  <b/>
+          <lu>
+      	    <clip pos="1" side="tl" part="lemh"/>
+            <clip pos="1" side="tl" part="a_det"/>
+	    <var n="gender"/>
+            <var n="number"/>
+	    <clip pos="1" side="tl" part="lemq"/>
+          </lu>
+        </out>
+      </action>
+    </rule>
+
+    <rule comment="DETPOS ADJ ADJ NOM: mitt gamle lille navn => det gamle vesle namnet mitt
+		   (copy of above rule)">
+      <pattern>
+        <pattern-item n="detpos"/>
+        <pattern-item n="adj"/>
+        <pattern-item n="adj"/>
+        <pattern-item n="nom"/>
+      </pattern>
+      <action>
+        <modify-case><clip pos="1" side="tl" part="lemh"/><clip pos="2" side="tl" part="lemh"/></modify-case>
+	<call-macro n="set_gender2">
+	  <with-param pos="4"/>
+	  <with-param pos="1"/>
+	</call-macro>
+        <out>
+          <lu>
+	    <get-case-from pos="1"><lit v="den"/></get-case-from>
+	    <lit-tag v="det.dem"/>
+	    <var n="gender"/>
+            <var n="number"/>
+          </lu>
+	  <b pos="1"/>
+          <lu>
+            <clip pos="2" side="tl" part="whole"/>
+          </lu>
+	  <b pos="2"/>
+          <lu>
+            <clip pos="3" side="tl" part="whole"/>
+          </lu>
+	  <b pos="3"/>
+          <lu>
+            <clip pos="4" side="tl" part="lemh"/>
+            <clip pos="4" side="tl" part="a_nom"/>
+            <clip pos="4" side="tl" part="gen"/>
+            <var n="number"/>
+      	    <lit-tag v="def"/>
+	    <clip pos="4" side="tl" part="lemq"/>
           </lu>
 	  <b/>
           <lu>

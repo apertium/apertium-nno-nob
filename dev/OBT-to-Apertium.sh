@@ -61,6 +61,7 @@ ${L}<perf-part>${M}adj pp${R}
 ${L}perf-part${M}vblex pp${R}
 ${L}st-form${M}pst${R}
 ${L}<st-verb>${M}pstv${R}
+${L}<s-verb>${M}pstv${R}
 ${L}inf-merke${M}part${R}
 ${L}sp${M}itg${R}
 ${L}forst${M}emph${R}
