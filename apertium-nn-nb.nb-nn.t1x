@@ -41,6 +41,8 @@
   <section-def-attrs>
     <def-attr n="a_nom">
       <attr-item tags="n"/>
+      <attr-item tags="np"/>
+      <attr-item tags="np.top"/>
     </def-attr>
 
     <def-attr n="a_adj">
@@ -322,11 +324,12 @@
 
 
 
-    <rule comment="DETPOS ADJ NOM: mitt lille navn => det vesle namnet mitt ">
+    <rule comment="DETPOS ADJ NOM: mitt lille navn => det vesle namnet mitt
+		   nind: vil ikkje ha 'det vesle #Noreg(def) mitt'">
       <pattern>
         <pattern-item n="detpos"/>
         <pattern-item n="adj"/>
-        <pattern-item n="nom"/>
+        <pattern-item n="nind"/>
       </pattern>
       <action>
         <modify-case><clip pos="1" side="tl" part="lemh"/><clip pos="2" side="tl" part="lemh"/></modify-case>
@@ -372,7 +375,7 @@
         <pattern-item n="detpos"/>
         <pattern-item n="adj"/>
         <pattern-item n="adj"/>
-        <pattern-item n="nom"/>
+        <pattern-item n="nind"/>
       </pattern>
       <action>
         <modify-case><clip pos="1" side="tl" part="lemh"/><clip pos="2" side="tl" part="lemh"/></modify-case>
@@ -441,7 +444,9 @@
 
     <rule comment="DET NOM: en kvinne => ei kvinne
 		            hvilken jente => kva for ei jente
-			    egne hus => eigne hus">
+			    egne hus => eigne hus
+			    et Norge => eit Noreg
+	           np får ikkje noko tal i den siste.">
       <pattern>
         <pattern-item n="det"/>
         <pattern-item n="nom"/>
@@ -454,6 +459,13 @@
         <call-macro n="set_case">
           <with-param pos="2"/>
         </call-macro>
+	<choose><when>
+	  <test><or>
+	    <equal><clip pos="2" side="tl" part="a_nom"/><lit-tag v="np"/></equal>
+	    <equal><clip pos="2" side="tl" part="a_nom"/><lit-tag v="np.top"/></equal>
+	  </or></test>
+	  <let><var n="number"/><lit v=""/></let>
+	</when></choose>	
         <out>
           <lu>
             <clip pos="1" side="tl" part="lemh"/>
@@ -500,6 +512,8 @@
     </rule>
 
     <rule comment="ADJ NOM: liten bok => lita bok
+		            hele Norge => heile Noreg
+	           np får ikkje noko tal i den siste.
 		   We let CG disambiguate art and nbr using the following noun,
 		   o/w all info should be in the adjective wordform (eg. in the above
 		   example, hus being ind should give plural).">
@@ -512,6 +526,13 @@
           <with-param pos="2"/>
           <with-param pos="1"/>
         </call-macro>
+	<choose><when>
+	  <test><or>
+	    <equal><clip pos="2" side="tl" part="a_nom"/><lit-tag v="np"/></equal>
+	    <equal><clip pos="2" side="tl" part="a_nom"/><lit-tag v="np.top"/></equal>
+	  </or></test>
+	  <let><var n="number"/><lit v=""/></let>
+	</when></choose>
         <out>
           <lu>
             <clip pos="1" side="tl" part="lemh"/>
