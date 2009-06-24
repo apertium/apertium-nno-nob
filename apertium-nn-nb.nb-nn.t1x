@@ -256,7 +256,8 @@
 
 
   <section-rules>
-
+    
+    <!-- Verbs -->
     <rule comment="VBLEX.INF.PASS - kan leses => kan lesast">
       <pattern>
 	<pattern-item n="vblexinfpass"/>
@@ -295,6 +296,7 @@
       </action>
     </rule>
 
+    <!-- Possessive noun phrases -->
     <rule comment="DETPOS NIND: min mor => mora mi 
       nind makes sure we don't match 'min Per(np)' nor 'min bils(gen)' ">
       <pattern>
@@ -327,8 +329,7 @@
         </out>
       </action>
     </rule>
-
-
+    
 
     <rule comment="DETPOS ADJ NOM: mitt lille navn => det vesle namnet mitt
 		   nind: vil ikkje ha 'det vesle #Noreg(def) mitt'">
@@ -424,8 +425,138 @@
         </out>
       </action>
     </rule>
+    
+    <rule comment="NGEN NOM: naboens bil => bilen til naboen">
+      <pattern>
+        <pattern-item n="ngen"/>
+        <pattern-item n="nom"/>
+      </pattern>
+      <action>
+        <out>
+          <lu>
+            <get-case-from pos="1"><clip pos="2" side="tl" part="lemh"/></get-case-from>
+            <clip pos="2" side="tl" part="a_nom"/>
+            <clip pos="2" side="tl" part="gen"/>
+            <clip pos="2" side="tl" part="nbr"/>
+            <lit-tag v="def"/>
+	    <clip pos="2" side="tl" part="lemq"/>
+          </lu>
+          <b pos="1"/>
+          <lu>
+	    <lit v="til"/>
+	    <lit-tag v="pr"/>
+          </lu>
+          <b/>
+          <lu>
+            <get-case-from pos="2"><clip pos="1" side="tl" part="lemh"/></get-case-from>
+            <clip pos="1" side="tl" part="a_nom"/>
+            <clip pos="1" side="tl" part="gen"/>
+            <clip pos="1" side="tl" part="nbr"/>
+            <clip pos="1" side="tl" part="art"/>
+	    <clip pos="1" side="tl" part="lemq"/>
+          </lu>
+        </out>
+      </action>
+    </rule>
+    
+    <rule comment="DETNONPOS NGEN NOM: en katts snute => snuten til en katt
+                   (remove genitive from pos 2)">
+      <pattern>
+	<pattern-item n="detnonpos"/>    
+	<pattern-item n="ngen"/>
+	<pattern-item n="nom"/>
+      </pattern>
+      <action>
+        <modify-case><clip pos="1" side="tl" part="lemh"/><clip pos="3" side="tl" part="lemh"/></modify-case>
+	<call-macro n="set_gender2">
+	  <with-param pos="2"/>
+	  <with-param pos="1"/>
+	</call-macro>
+        <out>
+          <lu>
+            <get-case-from pos="1"><clip pos="3" side="tl" part="lemh"/></get-case-from>
+            <clip pos="3" side="tl" part="a_nom"/>
+            <clip pos="3" side="tl" part="gen"/>
+            <var n="number"/>
+	    <lit-tag v="def"/>
+	    <clip pos="3" side="tl" part="lemq"/>
+          </lu>
+          <b pos="1"/>
+          <lu>
+	    <lit v="til"/>
+	    <lit-tag v="pr"/>
+          </lu>
+          <b/>
+          <lu>
+	    <clip pos="1" side="tl" part="lemh"/>
+            <clip pos="1" side="tl" part="a_det"/>
+	    <var n="gender"/>
+	    <var n="number"/>
+            <clip pos="1" side="tl" part="art"/>
+	    <clip pos="1" side="tl" part="lemq"/>
+          </lu>
+          <b pos="2"/>
+          <lu>
+            <clip pos="2" side="tl" part="lemh"/>
+            <clip pos="2" side="tl" part="a_nom"/>
+            <clip pos="2" side="tl" part="gen"/>
+            <clip pos="2" side="tl" part="nbr"/>
+            <clip pos="2" side="tl" part="art"/>
+	    <clip pos="2" side="tl" part="lemq"/>
+          </lu>
+        </out>
+      </action>
+    </rule>
 
+    <rule comment="DETPOS NGEN NOM: min katts snute => snuten til katten min
+                   (remove genitive from pos 2)">
+      <pattern>
+	<pattern-item n="detpos"/>    
+	<pattern-item n="ngen"/>
+	<pattern-item n="nom"/>
+      </pattern>
+      <action>
+        <modify-case><clip pos="1" side="tl" part="lemh"/><clip pos="3" side="tl" part="lemh"/></modify-case>
+	<call-macro n="set_gender2">
+	  <with-param pos="2"/>
+	  <with-param pos="1"/>
+	</call-macro>
+        <out>
+          <lu>
+            <get-case-from pos="1"><clip pos="3" side="tl" part="lemh"/></get-case-from>
+            <clip pos="3" side="tl" part="a_nom"/>
+            <clip pos="3" side="tl" part="gen"/>
+            <var n="number"/>
+	    <lit-tag v="def"/>
+	    <clip pos="3" side="tl" part="lemq"/>
+          </lu>
+          <b pos="1"/>
+          <lu>
+	    <lit v="til"/>
+	    <lit-tag v="pr"/>
+          </lu>
+          <b/>
+          <lu>
+            <clip pos="2" side="tl" part="lemh"/>
+            <clip pos="2" side="tl" part="a_nom"/>
+            <clip pos="2" side="tl" part="gen"/>
+            <clip pos="2" side="tl" part="nbr"/>
+	    <lit-tag v="def"/>
+	    <clip pos="2" side="tl" part="lemq"/>
+          </lu>
+          <b pos="2"/>
+          <lu>
+	    <clip pos="1" side="tl" part="lemh"/>
+            <clip pos="1" side="tl" part="a_det"/>
+	    <var n="gender"/>
+	    <var n="number"/>
+	    <clip pos="1" side="tl" part="lemq"/>
+          </lu>
+        </out>
+      </action>
+    </rule>
 
+    <!-- Other determiner/noun phrases -->
     <rule comment="DET: en => ein
 		   Frequency is on our side, but politically incorrect..hmm..">
       <pattern>
@@ -491,7 +622,7 @@
       </action>
     </rule>
 
-
+    <!-- Adjectives -->
     <rule comment="ADJ: åpne (hus) => opne (hus), liten(f) => lita">
       <pattern>
         <pattern-item n="adj"/>
@@ -650,38 +781,9 @@
     </rule>
 
 
-    <rule comment="NGEN NOM: naboens bil => bilen til naboen">
-      <pattern>
-        <pattern-item n="ngen"/>
-        <pattern-item n="nom"/>
-      </pattern>
-      <action>
-        <out>
-          <lu>
-            <get-case-from pos="1"><clip pos="2" side="tl" part="lemh"/></get-case-from>
-            <clip pos="2" side="tl" part="a_nom"/>
-            <clip pos="2" side="tl" part="gen"/>
-            <clip pos="2" side="tl" part="nbr"/>
-            <lit-tag v="def"/>
-	    <clip pos="2" side="tl" part="lemq"/>
-          </lu>
-          <b pos="1"/>
-          <lu>
-	    <lit v="til"/>
-	    <lit-tag v="pr"/>
-          </lu>
-          <b/>
-          <lu>
-            <get-case-from pos="2"><clip pos="1" side="tl" part="lemh"/></get-case-from>
-            <clip pos="1" side="tl" part="a_nom"/>
-            <clip pos="1" side="tl" part="gen"/>
-            <clip pos="1" side="tl" part="nbr"/>
-            <clip pos="1" side="tl" part="art"/>
-	    <clip pos="1" side="tl" part="lemq"/>
-          </lu>
-        </out>
-      </action>
-    </rule>
+    
+
+
 
 
   </section-rules>
