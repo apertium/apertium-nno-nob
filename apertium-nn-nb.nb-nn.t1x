@@ -10,6 +10,9 @@
     <def-cat n="nind">
       <cat-item tags="n.*.*.ind"/>
     </def-cat>
+    <def-cat n="ngen">
+      <cat-item tags="n.*.*.*.gen"/>
+    </def-cat>
     <def-cat n="navn">					       
       <cat-item tags="np.*"/>
     </def-cat>
@@ -139,14 +142,14 @@
     </def-macro>
 
     <def-macro n="set_case" npar="1">
-      <!-- if tl word has case from bidix, use it, o/w nothing -->
-      <call-macro n="set_number"> 
-	<with-param pos="1" /> 
-      </call-macro>
+      <!-- keep only case for proper nouns -->
       <choose>
         <when>
 	  <test>
-	    <equal><clip pos="1" side="tl" part="cas"/><lit-tag v="gen"/></equal>
+            <or>
+              <equal><clip pos="1" side="tl" part="a_nom"/><lit-tag v="np"/></equal>
+              <equal><clip pos="1" side="tl" part="a_nom"/><lit-tag v="np.top"/></equal>
+            </or>
 	  </test>
 	  <let><var n="case"/><lit-tag v="gen"/></let>
         </when>
@@ -249,6 +252,9 @@
 
   </section-def-macros>
 
+
+
+
   <section-rules>
 
     <rule comment="VBLEX.INF.PASS - kan leses => kan lesast">
@@ -303,7 +309,7 @@
 	</call-macro>
         <out>
           <lu>
-	    <get-case-from pos="1"> <clip pos="2" side="tl" part="lemh"/></get-case-from>
+            <get-case-from pos="1"> <clip pos="2" side="tl" part="lemh"/></get-case-from>
             <clip pos="2" side="tl" part="a_nom"/>
             <clip pos="2" side="tl" part="gen"/>
             <var n="number"/>
@@ -456,9 +462,6 @@
           <with-param pos="2"/>
           <with-param pos="1"/>
         </call-macro>
-        <call-macro n="set_case">
-          <with-param pos="2"/>
-        </call-macro>
 	<choose><when>
 	  <test><or>
 	    <equal><clip pos="2" side="tl" part="a_nom"/><lit-tag v="np"/></equal>
@@ -481,8 +484,7 @@
             <clip pos="2" side="tl" part="a_nom"/>
             <clip pos="2" side="tl" part="gen"/>
 	    <var n="number"/>
-            <clip pos="2" side="tl" part="art"/>
-            <var n="case"/>	
+            <clip pos="2" side="tl" part="art"/>	
 	    <clip pos="2" side="tl" part="lemq"/>
           </lu>
         </out>
@@ -646,5 +648,41 @@
         </out>
       </action>
     </rule>
+
+
+    <rule comment="NGEN NOM: naboens bil => bilen til naboen">
+      <pattern>
+        <pattern-item n="ngen"/>
+        <pattern-item n="nom"/>
+      </pattern>
+      <action>
+        <out>
+          <lu>
+            <get-case-from pos="1"><clip pos="2" side="tl" part="lemh"/></get-case-from>
+            <clip pos="2" side="tl" part="a_nom"/>
+            <clip pos="2" side="tl" part="gen"/>
+            <clip pos="2" side="tl" part="nbr"/>
+            <lit-tag v="def"/>
+	    <clip pos="2" side="tl" part="lemq"/>
+          </lu>
+          <b pos="1"/>
+          <lu>
+	    <lit v="til"/>
+	    <lit-tag v="pr"/>
+          </lu>
+          <b/>
+          <lu>
+            <get-case-from pos="2"><clip pos="1" side="tl" part="lemh"/></get-case-from>
+            <clip pos="1" side="tl" part="a_nom"/>
+            <clip pos="1" side="tl" part="gen"/>
+            <clip pos="1" side="tl" part="nbr"/>
+            <clip pos="1" side="tl" part="art"/>
+	    <clip pos="1" side="tl" part="lemq"/>
+          </lu>
+        </out>
+      </action>
+    </rule>
+
+
   </section-rules>
 </transfer>
