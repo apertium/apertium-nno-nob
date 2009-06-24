@@ -426,6 +426,7 @@
       </action>
     </rule>
     
+    <!-- Genitivsomskriving  -->
     <rule comment="NGEN NOM: naboens bil => bilen til naboen">
       <pattern>
         <pattern-item n="ngen"/>
@@ -442,6 +443,56 @@
 	    <clip pos="2" side="tl" part="lemq"/>
           </lu>
           <b pos="1"/>
+          <lu>
+	    <lit v="til"/>
+	    <lit-tag v="pr"/>
+          </lu>
+          <b/>
+          <lu>
+            <get-case-from pos="2"><clip pos="1" side="tl" part="lemh"/></get-case-from>
+            <clip pos="1" side="tl" part="a_nom"/>
+            <clip pos="1" side="tl" part="gen"/>
+            <clip pos="1" side="tl" part="nbr"/>
+            <clip pos="1" side="tl" part="art"/>
+	    <clip pos="1" side="tl" part="lemq"/>
+          </lu>
+        </out>
+      </action>
+    </rule>
+
+    <rule comment="NGEN ADJ NOM: naboens lille bil => den vesle bilen til naboen">
+      <pattern>
+        <pattern-item n="ngen"/>
+        <pattern-item n="adj"/>
+        <pattern-item n="nind"/>
+      </pattern>
+      <action>
+        <modify-case><clip pos="1" side="tl" part="lemh"/><clip pos="2" side="tl" part="lemh"/></modify-case>
+	<call-macro n="set_gender2">
+	  <with-param pos="3"/>
+	  <with-param pos="1"/>
+	</call-macro>
+        <out>
+          <lu>
+	    <get-case-from pos="1"><lit v="den"/></get-case-from>
+	    <lit-tag v="det.dem"/>
+	    <var n="gender"/>
+            <var n="number"/>
+          </lu>
+	  <b pos="1"/>
+          <lu>
+            <clip pos="2" side="tl" part="whole"/>
+          </lu>
+	  <b pos="2"/>
+          <lu>
+            <clip pos="3" side="tl" part="lemh"/>
+            <clip pos="3" side="tl" part="a_nom"/>
+            <clip pos="3" side="tl" part="gen"/>
+            <clip pos="3" side="tl" part="nbr"/>
+            <lit-tag v="def"/>
+	    <clip pos="3" side="tl" part="lemq"/>
+          </lu>
+          <b/>
           <lu>
 	    <lit v="til"/>
 	    <lit-tag v="pr"/>
