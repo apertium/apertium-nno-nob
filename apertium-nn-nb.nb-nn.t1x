@@ -252,6 +252,41 @@
       </choose>
     </def-macro>
 
+    <def-macro n="out_posgen" npar="1">
+      <!-- arg.1: possessor, either genitive noun or possessive
+           determiner. Assumes that gender and number are set. -->
+      <choose><when>
+        <test><equal><clip pos="1" side="sl" part="a_det"/><lit-tag v="det.pos"/></equal></test>
+        <out>
+          <lu>
+            <clip pos="1" side="tl" part="lemh"/>
+            <clip pos="1" side="tl" part="a_det"/>
+            <var n="gender"/>
+            <var n="number"/>
+            <clip pos="1" side="tl" part="lemq"/>
+          </lu>
+        </out>
+        </when><otherwise>
+        <out>
+          <lu>
+            <lit v="til"/>
+            <lit-tag v="pr"/>
+          </lu>
+          <b/>
+          <lu>
+            <clip pos="1" side="tl" part="lemh"/><!-- <get-case-from pos="2"></get-case-from> -->
+            <clip pos="1" side="tl" part="a_nom"/>
+            <clip pos="1" side="tl" part="gen"/>
+            <clip pos="1" side="tl" part="nbr"/>
+            <clip pos="1" side="tl" part="art"/>
+            <clip pos="1" side="tl" part="lemq"/>
+          </lu>
+        </out>
+      </otherwise>
+      </choose>  
+    </def-macro>
+    
+
   </section-def-macros>
 
 
@@ -327,35 +362,9 @@
           </lu>
           <b pos="1"/>
         </out>
-        <choose><when>
-          <test><equal><clip pos="1" side="sl" part="a_det"/><lit-tag v="det.pos"/></equal></test>
-          <out>
-            <lu>
-              <clip pos="1" side="tl" part="lemh"/>
-              <clip pos="1" side="tl" part="a_det"/>
-              <var n="gender"/>
-              <var n="number"/>
-              <clip pos="1" side="tl" part="lemq"/>
-            </lu>
-          </out>
-          </when><otherwise>
-          <out>
-            <lu>
-              <lit v="til"/>
-              <lit-tag v="pr"/>
-            </lu>
-            <b/>
-            <lu>
-              <get-case-from pos="2"><clip pos="1" side="tl" part="lemh"/></get-case-from>
-              <clip pos="1" side="tl" part="a_nom"/>
-              <clip pos="1" side="tl" part="gen"/>
-              <clip pos="1" side="tl" part="nbr"/>
-              <clip pos="1" side="tl" part="art"/>
-              <clip pos="1" side="tl" part="lemq"/>
-            </lu>
-          </out>
-        </otherwise>
-        </choose>
+        <call-macro n="out_posgen">
+	  <with-param pos="1"/>
+	</call-macro>
       </action>
     </rule>
 
@@ -397,35 +406,9 @@
           </lu>
           <b/>
         </out>
-        <choose><when>
-          <test><equal><clip pos="1" side="sl" part="a_det"/><lit-tag v="det.pos"/></equal></test>
-          <out>
-            <lu>
-              <clip pos="1" side="tl" part="lemh"/>
-              <clip pos="1" side="tl" part="a_det"/>
-              <var n="gender"/>
-              <var n="number"/>
-              <clip pos="1" side="tl" part="lemq"/>
-            </lu>
-          </out>
-          </when><otherwise>
-          <out>
-            <lu>
-              <lit v="til"/>
-              <lit-tag v="pr"/>
-            </lu>
-            <b/>
-            <lu>
-              <get-case-from pos="2"><clip pos="1" side="tl" part="lemh"/></get-case-from>
-              <clip pos="1" side="tl" part="a_nom"/>
-              <clip pos="1" side="tl" part="gen"/>
-              <clip pos="1" side="tl" part="nbr"/>
-              <clip pos="1" side="tl" part="art"/>
-              <clip pos="1" side="tl" part="lemq"/>
-            </lu>
-          </out>
-        </otherwise>
-        </choose>
+        <call-macro n="out_posgen">
+          <with-param pos="1"/>
+        </call-macro>
       </action>
     </rule>
     
@@ -470,35 +453,9 @@
           </lu>
           <b/>
         </out>
-        <choose><when>
-          <test><equal><clip pos="1" side="sl" part="a_det"/><lit-tag v="det.pos"/></equal></test>
-          <out>
-            <lu>
-              <clip pos="1" side="tl" part="lemh"/>
-              <clip pos="1" side="tl" part="a_det"/>
-              <var n="gender"/>
-              <var n="number"/>
-              <clip pos="1" side="tl" part="lemq"/>
-            </lu>
-          </out>
-          </when><otherwise>
-          <out>
-            <lu>
-              <lit v="til"/>
-              <lit-tag v="pr"/>
-            </lu>
-            <b/>
-            <lu>
-              <get-case-from pos="2"><clip pos="1" side="tl" part="lemh"/></get-case-from>
-              <clip pos="1" side="tl" part="a_nom"/>
-              <clip pos="1" side="tl" part="gen"/>
-              <clip pos="1" side="tl" part="nbr"/>
-              <clip pos="1" side="tl" part="art"/>
-              <clip pos="1" side="tl" part="lemq"/>
-            </lu>
-          </out>
-        </otherwise>
-        </choose>
+        <call-macro n="out_posgen">
+          <with-param pos="1"/>
+        </call-macro>
       </action>
     </rule>
 
@@ -541,35 +498,9 @@
           </lu>
           <b pos="2"/>
         </out>
-        <choose><when>
-          <test><equal><clip pos="1" side="sl" part="a_det"/><lit-tag v="det.pos"/></equal></test>
-          <out>
-            <lu>
-              <clip pos="1" side="tl" part="lemh"/>
-              <clip pos="1" side="tl" part="a_det"/>
-              <var n="gender"/>
-              <var n="number"/>
-              <clip pos="1" side="tl" part="lemq"/>
-            </lu>
-          </out>
-          </when><otherwise>
-          <out>
-            <lu>
-              <lit v="til"/>
-              <lit-tag v="pr"/>
-            </lu>
-            <b/>
-            <lu>
-              <get-case-from pos="2"><clip pos="1" side="tl" part="lemh"/></get-case-from>
-              <clip pos="1" side="tl" part="a_nom"/>
-              <clip pos="1" side="tl" part="gen"/>
-              <clip pos="1" side="tl" part="nbr"/>
-              <clip pos="1" side="tl" part="art"/>
-              <clip pos="1" side="tl" part="lemq"/>
-            </lu>
-          </out>
-        </otherwise>
-        </choose>
+        <call-macro n="out_posgen">
+          <with-param pos="1"/>
+        </call-macro>
       </action>
     </rule>
     
