@@ -26,9 +26,6 @@
       <cat-item tags="det.itg.*"/>
       <cat-item tags="det.qnt.*"/>
     </def-cat>
-    <def-cat n="detpos"> 
-      <cat-item tags="det.pos.*"/>
-    </def-cat>
     <def-cat n="posgen"> 
       <cat-item tags="det.pos.*"/>
       <cat-item tags="n.*.*.*.gen"/>
@@ -196,7 +193,7 @@
     </def-macro>
     
     <def-macro n="set_gender2" npar="2">
-      <!-- arg.1: noun, arg.2: determiner (or adjective)
+      <!-- arg.1: noun, arg.2: determiner 
 	   - iff sg and GD or m, take gender of target noun
 	   - plurals get no gender;
 	   - o/w take gender of target determiner
@@ -208,26 +205,27 @@
       </call-macro>
       <choose>
         <when>
-	  <test>
-	    <and>
-	      <equal><var n="number"/><lit-tag v="sg"/></equal>
-	      <or>
-		<equal><clip pos="2" side="tl" part="gen"/><lit-tag v="GD"/></equal>
-		<equal><clip pos="2" side="tl" part="gen"/><lit-tag v="m"/></equal>
-	      </or>
-	    </and>
-	  </test>
-	  <let><var n="gender"/><clip pos="1" side="tl" part="gen"/></let>
+          <test><and>
+            <equal><var n="number"/><lit-tag v="sg"/></equal>
+            <or>
+              <equal><clip pos="2" side="tl" part="gen"/><lit-tag v="GD"/></equal>
+              <equal><clip pos="2" side="tl" part="gen"/><lit-tag v="m"/></equal>
+            </or>
+          </and></test>
+          <choose><when>
+            <test><equal><clip pos="1" side="tl" part="gen"/><lit v=""/></equal></test>
+            <let><var n="gender"/><clip pos="2" side="tl" part="gen"/></let>              
+            </when><otherwise>
+            <let><var n="gender"/><clip pos="1" side="tl" part="gen"/></let></otherwise>
+          </choose>
         </when>
-	<when>
-	  <test>
-	    <equal><var n="number"/><lit-tag v="pl"/></equal>
-	  </test>
-	  <let><var n="gender"/><lit v=""/></let>
-	</when>
-	<otherwise>
-	  <let><var n="gender"/><clip pos="2" side="tl" part="gen"/></let>
-	</otherwise>
+        <when>
+          <test><equal><var n="number"/><lit-tag v="pl"/></equal></test>
+          <let><var n="gender"/><lit v=""/></let>
+        </when>
+        <otherwise>
+          <let><var n="gender"/><clip pos="2" side="tl" part="gen"/></let>
+        </otherwise>
       </choose>
       <call-macro n="set_mf_or_gender">
       </call-macro>
@@ -432,10 +430,10 @@
     </rule>
     
 
-    <rule comment="DETPOS ADJ ADJ NOM: mitt gamle lille navn => det gamle vesle namnet mitt
-		   todo: generalise to include ngen">
+    <rule comment="POSGEN ADJ ADJ NIND: mitt gamle lille navn => det gamle vesle namnet mitt
+                                        naboens gamle lille bil => den gamle lille bilen til naboen">
       <pattern>
-        <pattern-item n="detpos"/>
+        <pattern-item n="posgen"/>
         <pattern-item n="adj"/>
         <pattern-item n="adj"/>
         <pattern-item n="nind"/>
@@ -448,45 +446,67 @@
 	</call-macro>
         <out>
           <lu>
-	    <get-case-from pos="1"><lit v="den"/></get-case-from>
-	    <lit-tag v="det.dem"/>
-	    <var n="gender"/>
+            <get-case-from pos="1"><lit v="den"/></get-case-from>
+            <lit-tag v="det.dem"/>
+            <var n="gender"/>
             <var n="number"/>
           </lu>
-	  <b pos="1"/>
+          <b pos="1"/>
           <lu>
             <clip pos="2" side="tl" part="whole"/>
           </lu>
-	  <b pos="2"/>
+          <b pos="2"/>
           <lu>
             <clip pos="3" side="tl" part="whole"/>
           </lu>
-	  <b pos="3"/>
+          <b pos="3"/>
           <lu>
             <clip pos="4" side="tl" part="lemh"/>
             <clip pos="4" side="tl" part="a_nom"/>
             <clip pos="4" side="tl" part="gen"/>
             <var n="number"/>
-      	    <lit-tag v="def"/>
-	    <clip pos="4" side="tl" part="lemq"/>
+            <lit-tag v="def"/>
+            <clip pos="4" side="tl" part="lemq"/>
           </lu>
-	  <b/>
-          <lu>
-      	    <clip pos="1" side="tl" part="lemh"/>
-            <clip pos="1" side="tl" part="a_det"/>
-	    <var n="gender"/>
-            <var n="number"/>
-	    <clip pos="1" side="tl" part="lemq"/>
-          </lu>
+          <b/>
         </out>
+        <choose><when>
+          <test><equal><clip pos="1" side="sl" part="a_det"/><lit-tag v="det.pos"/></equal></test>
+          <out>
+            <lu>
+              <clip pos="1" side="tl" part="lemh"/>
+              <clip pos="1" side="tl" part="a_det"/>
+              <var n="gender"/>
+              <var n="number"/>
+              <clip pos="1" side="tl" part="lemq"/>
+            </lu>
+          </out>
+          </when><otherwise>
+          <out>
+            <lu>
+              <lit v="til"/>
+              <lit-tag v="pr"/>
+            </lu>
+            <b/>
+            <lu>
+              <get-case-from pos="2"><clip pos="1" side="tl" part="lemh"/></get-case-from>
+              <clip pos="1" side="tl" part="a_nom"/>
+              <clip pos="1" side="tl" part="gen"/>
+              <clip pos="1" side="tl" part="nbr"/>
+              <clip pos="1" side="tl" part="art"/>
+              <clip pos="1" side="tl" part="lemq"/>
+            </lu>
+          </out>
+        </otherwise>
+        </choose>
       </action>
     </rule>
 
-    <rule comment="DETPOS NGEN NOM: min katts snute => snuten til katten min
-                   (remove genitive from pos 2)
-                   todo: generalise to POSGEN POSGEN NIND">
+    <rule comment="POSGEN NGEN NOM: min katts snute => snuten til katten min
+                                    naboens katts snute => snuten til katten til naboen
+                                    (but not *'min din snute')">
       <pattern>
-	<pattern-item n="detpos"/>    
+	<pattern-item n="posgen"/>    
 	<pattern-item n="ngen"/>
 	<pattern-item n="nind"/>
       </pattern>
@@ -520,14 +540,36 @@
 	    <clip pos="2" side="tl" part="lemq"/>
           </lu>
           <b pos="2"/>
-          <lu>
-	    <clip pos="1" side="tl" part="lemh"/>
-            <clip pos="1" side="tl" part="a_det"/>
-	    <var n="gender"/>
-	    <var n="number"/>
-	    <clip pos="1" side="tl" part="lemq"/>
-          </lu>
         </out>
+        <choose><when>
+          <test><equal><clip pos="1" side="sl" part="a_det"/><lit-tag v="det.pos"/></equal></test>
+          <out>
+            <lu>
+              <clip pos="1" side="tl" part="lemh"/>
+              <clip pos="1" side="tl" part="a_det"/>
+              <var n="gender"/>
+              <var n="number"/>
+              <clip pos="1" side="tl" part="lemq"/>
+            </lu>
+          </out>
+          </when><otherwise>
+          <out>
+            <lu>
+              <lit v="til"/>
+              <lit-tag v="pr"/>
+            </lu>
+            <b/>
+            <lu>
+              <get-case-from pos="2"><clip pos="1" side="tl" part="lemh"/></get-case-from>
+              <clip pos="1" side="tl" part="a_nom"/>
+              <clip pos="1" side="tl" part="gen"/>
+              <clip pos="1" side="tl" part="nbr"/>
+              <clip pos="1" side="tl" part="art"/>
+              <clip pos="1" side="tl" part="lemq"/>
+            </lu>
+          </out>
+        </otherwise>
+        </choose>
       </action>
     </rule>
     
@@ -727,17 +769,16 @@
           <lu>
             <clip pos="1" side="tl" part="lemh"/>
             <clip pos="1" side="tl" part="a_det"/>
-            <var n="mf_or_gender"/>
+            <var n="gender"/>
             <var n="number"/>
             <clip pos="1" side="tl" part="art"/>
-	    <!-- <clip pos="1" side="tl" part="cas"/> -->
 	    <clip pos="1" side="tl" part="lemq"/>
           </lu>
           <b/>
 	  <lu>
             <clip pos="2" side="tl" part="lemh"/>
             <clip pos="2" side="tl" part="a_adj"/>
-            <var n="mf_or_gender"/>
+            <clip pos="2" side="tl" part="gen"/>
             <clip pos="2" side="tl" part="nbr"/>
       	    <clip pos="2" side="tl" part="art"/>
 	    <clip pos="2" side="tl" part="lemq"/>
