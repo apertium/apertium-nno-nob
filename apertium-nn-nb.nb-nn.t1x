@@ -316,7 +316,7 @@
   <section-rules>
     
     <!-- Verbs -->
-    <rule comment="VBLEX.INF.PASS - kan leses => kan lesast">
+    <rule comment="VBLEX.INF.PASS: kan leses => kan lesast">
       <pattern>
 	<pattern-item n="vblexinfpass"/>
       </pattern>
@@ -333,14 +333,17 @@
       </action>
     </rule>
 
-    <rule comment="VBLEX.INF.PRES.PASS - leses => blir lest">
+    <rule comment="VBLEX.INF.PRES.PASS: leses => blir lest
+                   todo: verb probably should lose possible uppercasing,
+                   although it's unlikely to find the passive verb in
+                   the beginning of a sentence">
       <pattern>
 	<pattern-item n="vblexprespass"/>
       </pattern>
       <action>
         <out>
           <lu>
-	    <lit v="bli"/>
+            <get-case-from pos="1"><lit v="bli"/></get-case-from>	    
 	    <lit-tag v="vblex.pres"/>
           </lu>
 	  <b/>
