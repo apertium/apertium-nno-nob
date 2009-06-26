@@ -194,42 +194,54 @@
     </def-macro>
     
     <def-macro n="set_gender2" npar="2">
-      <!-- arg.1: noun, arg.2: determiner 
+      <!-- arg.1: noun, arg.2: determiner
+           - if a noun is given as arg.2, use set_gender1 instead
 	   - iff sg and GD or m, take gender of target noun
 	   - plurals get no gender;
 	   - o/w take gender of target determiner
           Masculine determiners in bokmål may be used with femininine gender nouns
 	  without being marked as such in bidix...
+          Determiners are less ambiguous wrt. number.
       -->
-      <call-macro n="set_number"> 
-	<with-param pos="2" /> <!-- determiners are less ambiguous wrt. nbr -->
-      </call-macro>
       <choose>
         <when>
-          <test><and>
-            <equal><var n="number"/><lit-tag v="sg"/></equal>
-            <or>
-              <equal><clip pos="2" side="tl" part="gen"/><lit-tag v="GD"/></equal>
-              <equal><clip pos="2" side="tl" part="gen"/><lit-tag v="m"/></equal>
-            </or>
-          </and></test>
-          <choose><when>
-            <test><equal><clip pos="1" side="tl" part="gen"/><lit v=""/></equal></test>
-            <let><var n="gender"/><clip pos="2" side="tl" part="gen"/></let>              
-            </when><otherwise>
-            <let><var n="gender"/><clip pos="1" side="tl" part="gen"/></let></otherwise>
-          </choose>
-        </when>
-        <when>
-          <test><equal><var n="number"/><lit-tag v="pl"/></equal></test>
-          <let><var n="gender"/><lit v=""/></let>
+          <test><begins-with><clip pos="2" side="tl" part="a_nom"/><lit-tag v="n"/></begins-with></test>
+          <call-macro n="set_gender1"> 
+            <with-param pos="1" /> 
+          </call-macro>          
         </when>
         <otherwise>
-          <let><var n="gender"/><clip pos="2" side="tl" part="gen"/></let>
+          <call-macro n="set_number"> 
+            <with-param pos="2" /> 
+          </call-macro>
+          <choose>
+            <when>
+              <test><and>
+                <equal><var n="number"/><lit-tag v="sg"/></equal>
+                <or>
+                  <equal><clip pos="2" side="tl" part="gen"/><lit-tag v="GD"/></equal>
+                  <equal><clip pos="2" side="tl" part="gen"/><lit-tag v="m"/></equal>
+                </or>
+              </and></test>
+              <choose><when>
+                <test><equal><clip pos="1" side="tl" part="gen"/><lit v=""/></equal></test>
+                <let><var n="gender"/><clip pos="2" side="tl" part="gen"/></let>              
+                </when><otherwise>
+                <let><var n="gender"/><clip pos="1" side="tl" part="gen"/></let></otherwise>
+              </choose>
+            </when>
+            <when>
+              <test><equal><var n="number"/><lit-tag v="pl"/></equal></test>
+              <let><var n="gender"/><lit v=""/></let>
+            </when>
+            <otherwise>
+              <let><var n="gender"/><clip pos="2" side="tl" part="gen"/></let>
+            </otherwise>
+          </choose>
+          <call-macro n="set_mf_or_gender">
+          </call-macro>
         </otherwise>
       </choose>
-      <call-macro n="set_mf_or_gender">
-      </call-macro>
     </def-macro>
 
     <def-macro n="set_mf_or_gender" npar="0">
