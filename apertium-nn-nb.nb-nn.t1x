@@ -1015,10 +1015,27 @@
     </rule>
 
 
-    
 
 
 
 
+    <rule comment="NGEN: dags => dag
+                   Debug rule.">
+      <pattern>
+        <pattern-item n="ngen"/>
+      </pattern>
+      <action>	
+        <out>
+          <lu>
+            <clip pos="1" side="tl" part="lemh"/>
+            <clip pos="1" side="tl" part="a_nom"/>
+            <clip pos="1" side="tl" part="gen"/>
+            <clip pos="1" side="tl" part="nbr"/>
+            <clip pos="1" side="tl" part="art"/>
+	    <clip pos="1" side="tl" part="lemq"/>
+          </lu>
+        </out>
+      </action>
+    </rule>
   </section-rules>
 </transfer>
