@@ -10,6 +10,7 @@ ssed '/XXXX/s/\([^X \t][^ \t]*\)/<s n="\1"\/>/g' |\
 ssed 's/[ ]*</</g' |\
 ssed '/XXXX/s/"eint"/"sg"/g' |\
 ssed '/XXXX/s/"ent"/"sg"/g' |\
+ssed '/XXXX/s/"subst"/"n"/g' |\
 ssed '/XXXX/s/"fl"/"pl"/g' |\
 ssed '/XXXX/s/"bu"/"def"/g' |\
 ssed '/XXXX/s/"be"/"def"/g' |\
