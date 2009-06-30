@@ -370,7 +370,10 @@
     </rule>
 
     <!-- Possessive noun phrases -->
-    <!-- POSGEN ADJ* NIND: -->
+    <!-- POSGEN ADJ* NIND: fleire reglar trengst for å matche ADJ* (eigentleg ADJ{0,4} her)
+    men som eg skreiv på wikien er det jo berre kopiere og lime inn etter at ADJ{1} regelen
+    er ferdig.
+     -->
     <rule comment="POSGEN NIND: naboens bil => bilen til naboen
                                 min mor => mora mi
                                 ditt hus => huset ditt
@@ -1015,27 +1018,9 @@
     </rule>
 
 
+<!-- nettopp -->
 
 
 
-
-    <rule comment="NGEN: dags => dag
-                   Debug rule.">
-      <pattern>
-        <pattern-item n="ngen"/>
-      </pattern>
-      <action>	
-        <out>
-          <lu>
-            <clip pos="1" side="tl" part="lemh"/>
-            <clip pos="1" side="tl" part="a_nom"/>
-            <clip pos="1" side="tl" part="gen"/>
-            <clip pos="1" side="tl" part="nbr"/>
-            <clip pos="1" side="tl" part="art"/>
-	    <clip pos="1" side="tl" part="lemq"/>
-          </lu>
-        </out>
-      </action>
-    </rule>
   </section-rules>
 </transfer>
