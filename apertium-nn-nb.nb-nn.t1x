@@ -370,6 +370,34 @@
     </rule>
 
     <!-- Possessive noun phrases -->
+    <rule comment="NGEN: mannens => mannen sin 
+                   If we can't match with the below rules, turn the
+                   genitive -s into 'sin' garpegenitiv instead.
+                   A bit more fluent where eg. input is incomplete:
+                         mannens *sykkel => mannen sin *sykkel">
+      <pattern>
+        <pattern-item n="ngen"/>
+      </pattern>
+      <action>	
+        <out>
+          <lu>
+            <clip pos="1" side="tl" part="lemh"/>
+            <clip pos="1" side="tl" part="a_nom"/>
+            <clip pos="1" side="tl" part="gen"/>
+            <clip pos="1" side="tl" part="nbr"/>
+            <clip pos="1" side="tl" part="art"/>
+            <clip pos="1" side="tl" part="lemq"/>
+          </lu>
+          <b/>
+          <lu><lit v="sin"/>
+          <lit-tag v="det.pos"/>
+          <clip pos="1" side="tl" part="gen"/>
+          <clip pos="1" side="tl" part="nbr"/>
+          </lu> 
+        </out>
+      </action>
+    </rule>
+
     <!-- POSGEN ADJ* NIND: fleire reglar trengst for å matche ADJ* (eigentleg ADJ{0,4} her)
     men som eg skreiv på wikien er det jo berre kopiere og lime inn etter at ADJ{1} regelen
     er ferdig.
@@ -1016,10 +1044,6 @@
         </out>
       </action>
     </rule>
-
-
-<!-- nettopp -->
-
 
 
   </section-rules>
