@@ -370,15 +370,34 @@
     </rule>
 
     <!-- Possessive noun phrases -->
-    <rule comment="NGEN: mannens => mannen sin 
+    <rule comment="NGEN: mannens => mannen sin
+                   Very heuristic fallback rule.
                    If we can't match with the below rules, turn the
                    genitive -s into 'sin' garpegenitiv instead.
                    A bit more fluent where eg. input is incomplete:
-                         mannens *sykkel => mannen sin *sykkel">
+                         mannens *sykkel => mannen sin *sykkel
+                   But we don't know gen/nbr of object, so we could end
+                   up with
+                         mannens *sykler => mannen sin *sykler
+                   So let's just hope plurals possess plurals etc...">
       <pattern>
         <pattern-item n="ngen"/>
       </pattern>
-      <action>	
+      <action>
+        <call-macro n="set_gender1">
+          <with-param pos="1"/>
+        </call-macro>
+        <call-macro n="set_number">
+          <with-param pos="1"/>
+        </call-macro>
+        <choose>					       
+          <when>
+            <test>
+              <equal><var n="number"/><lit-tag v="sp"/></equal>
+            </test>
+            <let><var n="number"/><lit-tag v="pl"/></let>
+          </when>
+        </choose>
         <out>
           <lu>
             <clip pos="1" side="tl" part="lemh"/>
@@ -391,7 +410,7 @@
           <b/>
           <lu><lit v="sin"/>
           <lit-tag v="det.pos"/>
-          <clip pos="1" side="tl" part="gen"/>
+          <var n="gender"/>
           <clip pos="1" side="tl" part="nbr"/>
           </lu> 
         </out>
