@@ -387,15 +387,13 @@
         <call-macro n="set_gender1">
           <with-param pos="1"/>
         </call-macro>
-        <call-macro n="set_number">
-          <with-param pos="1"/>
-        </call-macro>
         <choose>					       
           <when>
             <test>
               <equal><var n="number"/><lit-tag v="sp"/></equal>
             </test>
             <let><var n="number"/><lit-tag v="pl"/></let>
+            <let><var n="gender"/><lit v=""/></let>
           </when>
         </choose>
         <out>
@@ -411,7 +409,7 @@
           <lu><lit v="sin"/>
           <lit-tag v="det.pos"/>
           <var n="gender"/>
-          <clip pos="1" side="tl" part="nbr"/>
+          <var n="number"/>
           </lu> 
         </out>
       </action>
