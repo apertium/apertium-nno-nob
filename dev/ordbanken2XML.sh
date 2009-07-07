@@ -1,36 +1,63 @@
 #!/bin/sh
 
-# Changes output from the ordbanken script to the beginnings of a
-# paradigm. See script at
-# https://savannah.nongnu.org/projects/ordbanken/
+########################################################################################
+# Changes output from the ordbanken script to the beginnings of a 		       #
+# paradigm. See script at							       #
+# https://savannah.nongnu.org/projects/ordbanken/				       #
+#										       #
+# Usage:									       #
+# ./ordbanken2XML.sh LANG WORD							       #
+# eg.										       #
+# ./ordbanken2XML.sh nn balderbrå						       #
+########################################################################################
+
+# Darwin sed has no (normal) \t nor \n
+T="	" 
+N="\\
+"
 
 echo '<pardef n="__">'
-ssed 's/\([^ \t]*\)[ \t]*\([^ \t]*\)/<e>       <p><l>\2<\/l>\t<r>\1\nXXXX/' |\
-ssed '/XXXX/s/\([^X \t][^ \t]*\)/<s n="\1"\/>/g' |\
-ssed 's/[ ]*</</g' |\
-ssed '/XXXX/s/"eint"/"sg"/g' |\
-ssed '/XXXX/s/"ent"/"sg"/g' |\
-ssed '/XXXX/s/"subst"/"n"/g' |\
-ssed '/XXXX/s/"fl"/"pl"/g' |\
-ssed '/XXXX/s/"bu"/"def"/g' |\
-ssed '/XXXX/s/"be"/"def"/g' |\
-ssed '/XXXX/s/"ub"/"ind"/g' |\
-ssed '/XXXX/s/"kvant"/"qnt"/g' |\
-ssed '/XXXX/s/"pos"/"posi"/g' |\
-ssed '/XXXX/s/"komp"/"comp"/g' |\
-ssed '/XXXX/s/"verb"/"vblex"/g' |\
-ssed '/XXXX/s/"st-form"/"pst"/g' |\
-ssed '/XXXX/s/"<st-verb>"/"pstv"/g' |\
-ssed '/XXXX/s/"<pres-part>"/"pprs"/g' |\
-ssed '/XXXX/s/"<perf-part>"/"pp"/g' |\
-ssed '/XXXX/s/"perf-part"/"pp"/g' |\
-ssed '/XXXX/s/3mnøyt/3mnt/g' |\
-ssed '/XXXX/s/2mm\/f/2mmf/g' |\
-ssed '/XXXX/s/4mmask/4mm/g' |\
-ssed '/XXXX/s/5mfem/5mf/g' |\
-ssed '/$/N;s/\nXXXX//' |\
-ssed 's/^/  /' |\
-ssed 's/$/<\/r><\/p><\/e>/' |\
-ssed 's/<s n="def"\/><s n="sg"\/>/<s n="sg"\/><s n="def"\/>/' |\
-ssed 's/<s n="ind"\/><s n="sg"\/>/<s n="sg"\/><s n="ind"\/>/' 
+
+ordbanken -FPs $@ |\
+# put tags on separate lines starting with XXXX
+sed "s/\([^ ${T}]*\)[ ${T}]*\([^ ${T}]*\)/<e>       <p><l>\2<\/l>${T}<r>\1${N}XXXX/" |\
+# put tags into <s> elements
+sed '/XXXX/s/\([^X ${T}][^ ${T}]*\)/<s n="\1"\/>/g' |\
+# remove unneccessary whitespace
+sed 's/[ ]*</</g' |\
+# convert tags
+sed '/XXXX/s/"eint"/"sg"/g' |\
+sed '/XXXX/s/"ent"/"sg"/g' |\
+sed '/XXXX/s/"subst"/"n"/g' |\
+sed '/XXXX/s/"fl"/"pl"/g' |\
+sed '/XXXX/s/"bu"/"def"/g' |\
+sed '/XXXX/s/"be"/"def"/g' |\
+sed '/XXXX/s/"ub"/"ind"/g' |\
+sed '/XXXX/s/"kvant"/"qnt"/g' |\
+sed '/XXXX/s/"pos"/"posi"/g' |\
+sed '/XXXX/s/"komp"/"comp"/g' |\
+sed '/XXXX/s/"verb"/"vblex"/g' |\
+sed '/XXXX/s/"st-form"/"pst"/g' |\
+sed '/XXXX/s/"<st-verb>"/"pstv"/g' |\
+sed '/XXXX/s/"<pres-part>"/"pprs"/g' |\
+sed '/XXXX/s/"<perf-part>"/"pp"/g' |\
+sed '/XXXX/s/"perf-part"/"pp"/g' |\
+sed '/XXXX/s/nøyt/nt/g' |\
+sed '/XXXX/s/m\/f/mf/g' |\
+sed '/XXXX/s/mask/m/g' |\
+sed '/XXXX/s/fem/f/g' |\
+sed '/XXXX/s/<s n="appell"\/>//g' |\
+# put things back on one line:
+sed '/$/N;s/\nXXXX//' |\
+# indent:
+sed 's/^/  /' |\
+# end tags:
+sed 's/$/<\/r><\/p><\/e>/' |\
+# make sure we have the right order:
+sed 's/<s n="def"\/><s n="sg"\/>/<s n="sg"\/><s n="def"\/>/' |\
+sed 's/<s n="ind"\/><s n="sg"\/>/<s n="sg"\/><s n="ind"\/>/' |\
+# klammeform to LR
+sed 's/<e>\(.*\)<s n="klammeform"\/>\(.*\)/<e r="LR">\1\2/' |\
+# indent:
+sed 's/<e>/<e>       /'
 echo '</pardef>'
