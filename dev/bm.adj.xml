@@ -12,6 +12,15 @@ FIXED: many of the paradigms had "ind" where we should have "def", eg:
 should be
 <e> <p><l>gode</l> <r>god<s n="adj"/><s n="posi"/><s n="sg"/><s n="def"/></r></p></e>
 
+TODO on moving paradigms from this file into nb.dix:
+- verbal adjectives (those with at least one pprs entry) should have "pp",
+  not "posi" on the other entries. HOWEVER: some of these are collapsed with
+  non-verbal adjectives in this file (more or less those with at least one pprs
+  entry and at least one comp/sup entry -- pure verbal adjectives have no
+  comp/sup forms). So be careful on copying in paradigms... Use eg.
+  https://savannah.nongnu.org/projects/ordbanken/ to check these
+  (<perf-part> => "pp", pos => "posi", <pres-part> => "pprs").
+
 -->
 <dictionary>
 	<alphabet>ABCDEFGHIJKLMNOPQRSTUVWXYZÆØÅabcdefghijklmnopqrstuvwxyzæøåcqwxzCQWXZéèêóòâôÉÊÈÓÔÒÂ</alphabet>
@@ -111,10 +120,6 @@ should be
   <e>       <p><l>ukket</l>     <r>ikke<s n="adj"/><s n="posi"/><s n="nt"/><s n="sg"/><s n="ind"/></r></p></e>
   <e>       <p><l>ukne</l>      <r>ikke<s n="adj"/><s n="posi"/><s n="pl"/></r></p></e>
   <e>       <p><l>ukne</l>      <r>ikke<s n="adj"/><s n="posi"/><s n="sg"/><s n="def"/></r></p></e>
-</pardef>
-<pardef n="ville__adj">
-  <e>       <p><l>nde</l>       <r><s n="adj"/><s n="pprs"/></r></p></e>
-  <e>       <p><l>t</l>         <r><s n="adj"/><s n="posi"/><s n="nt"/><s n="sg"/><s n="ind"/></r></p></e>
 </pardef>
 <pardef n="bruk/ket__adj">
   <e>       <p><l>ket</l>       <r>ket<s n="adj"/><s n="posi"/><s n="mf"/><s n="sg"/><s n="ind"/></r></p></e>
@@ -223,13 +228,6 @@ should be
   <e>       <p><l></l>          <r><s n="adj"/><s n="posi"/><s n="nt"/><s n="sg"/><s n="ind"/></r></p></e>
   <e>       <p><l>t</l>         <r><s n="adj"/><s n="posi"/><s n="nt"/><s n="sg"/><s n="ind"/></r></p></e>
 </pardef>
-<pardef n="vi/te__adj">
-  <e>       <p><l>sste</l>      <r>te<s n="adj"/><s n="posi"/><s n="pl"/></r></p></e>
-  <e>       <p><l>sste</l>      <r>te<s n="adj"/><s n="posi"/><s n="sg"/><s n="def"/></r></p></e>
-  <e>       <p><l>sst</l>       <r>te<s n="adj"/><s n="posi"/><s n="mf"/><s n="sg"/><s n="ind"/></r></p></e>
-  <e>       <p><l>sst</l>       <r>te<s n="adj"/><s n="posi"/><s n="nt"/><s n="sg"/><s n="ind"/></r></p></e>
-  <e>       <p><l>tende</l>     <r>te<s n="adj"/><s n="pprs"/></r></p></e>
-</pardef>
 <pardef n="vri/en__adj">
   <e>       <p><l>ene</l>       <r>en<s n="adj"/><s n="posi"/><s n="pl"/></r></p></e>
   <e>       <p><l>enere</l>     <r>en<s n="adj"/><s n="comp"/></r></p></e>
@@ -266,15 +264,6 @@ should be
   <e>       <p><l>t</l>         <r>ne<s n="adj"/><s n="posi"/><s n="mf"/><s n="sg"/><s n="ind"/></r></p></e>
   <e>       <p><l>t</l>         <r>ne<s n="adj"/><s n="posi"/><s n="nt"/><s n="sg"/><s n="ind"/></r></p></e>
 </pardef>
-<pardef n="vunne/n__adj">
-  <e>       <p><l>n</l>         <r>n<s n="adj"/><s n="posi"/><s n="mf"/><s n="sg"/><s n="ind"/></r></p></e>
-  <e>       <p><l></l>          <r>n<s n="adj"/><s n="posi"/><s n="pl"/></r></p></e>
-  <e>       <p><l>re</l>        <r>n<s n="adj"/><s n="comp"/></r></p></e>
-  <e>       <p><l></l>          <r>n<s n="adj"/><s n="posi"/><s n="sg"/><s n="def"/></r></p></e>
-  <e>       <p><l>ste</l>       <r>n<s n="adj"/><s n="sup"/><s n="def"/></r></p></e>
-  <e>       <p><l>st</l>        <r>n<s n="adj"/><s n="sup"/><s n="ind"/></r></p></e>
-  <e>       <p><l>t</l>         <r>n<s n="adj"/><s n="posi"/><s n="nt"/><s n="sg"/><s n="ind"/></r></p></e>
-</pardef>
 <pardef n="kverv/e__adj">
   <e>       <p><l>a</l>         <r>e<s n="adj"/><s n="posi"/><s n="mf"/><s n="sg"/><s n="ind"/></r></p></e>
   <e>       <p><l>a</l>         <r>e<s n="adj"/><s n="posi"/><s n="nt"/><s n="sg"/><s n="ind"/></r></p></e>
@@ -294,23 +283,6 @@ should be
   <e>       <p><l>et</l>        <r>e<s n="adj"/><s n="posi"/><s n="nt"/><s n="sg"/><s n="ind"/></r></p></e>
   <e>       <p><l>ne</l>        <r>e<s n="adj"/><s n="posi"/><s n="pl"/></r></p></e>
   <e>       <p><l>ne</l>        <r>e<s n="adj"/><s n="posi"/><s n="sg"/><s n="def"/></r></p></e>
-</pardef>
-<pardef n="vel/le__adj">
-  <e>       <p><l>la</l>        <r>le<s n="adj"/><s n="posi"/><s n="mf"/><s n="sg"/><s n="ind"/></r></p></e>
-  <e>       <p><l>la</l>        <r>le<s n="adj"/><s n="posi"/><s n="nt"/><s n="sg"/><s n="ind"/></r></p></e>
-  <e>       <p><l>la</l>        <r>le<s n="adj"/><s n="posi"/><s n="pl"/></r></p></e>
-  <e>       <p><l>la</l>        <r>le<s n="adj"/><s n="posi"/><s n="sg"/><s n="def"/></r></p></e>
-  <e>       <p><l>lede</l>      <r>le<s n="adj"/><s n="posi"/><s n="pl"/></r></p></e>
-  <e>       <p><l>lede</l>      <r>le<s n="adj"/><s n="posi"/><s n="sg"/><s n="def"/></r></p></e>
-  <e>       <p><l>lende</l>     <r>le<s n="adj"/><s n="pprs"/></r></p></e>
-  <e>       <p><l>lete</l>      <r>le<s n="adj"/><s n="posi"/><s n="pl"/></r></p></e>
-  <e>       <p><l>lete</l>      <r>le<s n="adj"/><s n="posi"/><s n="sg"/><s n="def"/></r></p></e>
-  <e>       <p><l>let</l>       <r>le<s n="adj"/><s n="posi"/><s n="mf"/><s n="sg"/><s n="ind"/></r></p></e>
-  <e>       <p><l>let</l>       <r>le<s n="adj"/><s n="posi"/><s n="nt"/><s n="sg"/><s n="ind"/></r></p></e>
-  <e>       <p><l>te</l>        <r>le<s n="adj"/><s n="posi"/><s n="pl"/></r></p></e>
-  <e>       <p><l>te</l>        <r>le<s n="adj"/><s n="posi"/><s n="sg"/><s n="def"/></r></p></e>
-  <e>       <p><l>t</l>         <r>le<s n="adj"/><s n="posi"/><s n="mf"/><s n="sg"/><s n="ind"/></r></p></e>
-  <e>       <p><l>t</l>         <r>le<s n="adj"/><s n="posi"/><s n="nt"/><s n="sg"/><s n="ind"/></r></p></e>
 </pardef>
 <pardef n="bruk/ken__adj">
   <e>       <p><l>ken</l>       <r>ken<s n="adj"/><s n="posi"/><s n="mf"/><s n="sg"/><s n="ind"/></r></p></e>
@@ -372,18 +344,6 @@ should be
   <e>       <p><l>neste</l>     <r>met<s n="adj"/><s n="sup"/><s n="def"/></r></p></e>
   <e>       <p><l>nest</l>      <r>met<s n="adj"/><s n="sup"/><s n="ind"/></r></p></e>
 </pardef>
-<pardef n="v/inne__adj">
-  <e>       <p><l>innende</l>   <r>inne<s n="adj"/><s n="pprs"/></r></p></e>
-  <e>       <p><l>inte</l>      <r>inne<s n="adj"/><s n="posi"/><s n="pl"/></r></p></e>
-  <e>       <p><l>inte</l>      <r>inne<s n="adj"/><s n="posi"/><s n="sg"/><s n="def"/></r></p></e>
-  <e>       <p><l>int</l>       <r>inne<s n="adj"/><s n="posi"/><s n="mf"/><s n="sg"/><s n="ind"/></r></p></e>
-  <e>       <p><l>int</l>       <r>inne<s n="adj"/><s n="posi"/><s n="nt"/><s n="sg"/><s n="ind"/></r></p></e>
-  <e>       <p><l>unnen</l>     <r>inne<s n="adj"/><s n="posi"/><s n="mf"/><s n="sg"/><s n="ind"/></r></p></e>
-  <e>       <p><l>unne</l>      <r>inne<s n="adj"/><s n="posi"/><s n="pl"/></r></p></e>
-  <e>       <p><l>unne</l>      <r>inne<s n="adj"/><s n="posi"/><s n="sg"/><s n="def"/></r></p></e>
-  <e>       <p><l>unnet</l>     <r>inne<s n="adj"/><s n="posi"/><s n="mf"/><s n="sg"/><s n="ind"/></r></p></e>
-  <e>       <p><l>unnet</l>     <r>inne<s n="adj"/><s n="posi"/><s n="nt"/><s n="sg"/><s n="ind"/></r></p></e>
-</pardef>
 <pardef n="ban/ne__adj">
   <e>       <p><l>na</l>        <r>ne<s n="adj"/><s n="posi"/><s n="mf"/><s n="sg"/><s n="ind"/></r></p></e>
   <e>       <p><l>na</l>        <r>ne<s n="adj"/><s n="posi"/><s n="nt"/><s n="sg"/><s n="ind"/></r></p></e>
@@ -426,20 +386,6 @@ should be
   <e>       <p><l></l>          <r><s n="adj"/><s n="posi"/><s n="nt"/><s n="sg"/><s n="ind"/></r></p></e>
   <e>       <p><l>ste</l>       <r><s n="adj"/><s n="sup"/><s n="def"/></r></p></e>
   <e>       <p><l>st</l>        <r><s n="adj"/><s n="sup"/><s n="ind"/></r></p></e>
-</pardef>
-<pardef n="vær/e__adj">
-  <e>       <p><l>a</l>         <r>e<s n="adj"/><s n="posi"/><s n="mf"/><s n="sg"/><s n="ind"/></r></p></e>
-  <e>       <p><l>a</l>         <r>e<s n="adj"/><s n="posi"/><s n="nt"/><s n="sg"/><s n="ind"/></r></p></e>
-  <e>       <p><l>a</l>         <r>e<s n="adj"/><s n="posi"/><s n="pl"/></r></p></e>
-  <e>       <p><l>a</l>         <r>e<s n="adj"/><s n="posi"/><s n="sg"/><s n="def"/></r></p></e>
-  <e>       <p><l>ede</l>       <r>e<s n="adj"/><s n="posi"/><s n="pl"/></r></p></e>
-  <e>       <p><l>ede</l>       <r>e<s n="adj"/><s n="posi"/><s n="sg"/><s n="def"/></r></p></e>
-  <e>       <p><l>ende</l>      <r>e<s n="adj"/><s n="pprs"/></r></p></e>
-  <e>       <p><l>ete</l>       <r>e<s n="adj"/><s n="posi"/><s n="pl"/></r></p></e>
-  <e>       <p><l>ete</l>       <r>e<s n="adj"/><s n="posi"/><s n="sg"/><s n="def"/></r></p></e>
-  <e>       <p><l>et</l>        <r>e<s n="adj"/><s n="posi"/><s n="mf"/><s n="sg"/><s n="ind"/></r></p></e>
-  <e>       <p><l>et</l>        <r>e<s n="adj"/><s n="posi"/><s n="nt"/><s n="sg"/><s n="ind"/></r></p></e>
-  <e>       <p><l>t</l>         <r>e<s n="adj"/><s n="posi"/><s n="nt"/><s n="sg"/><s n="ind"/></r></p></e>
 </pardef>
 <pardef n="øv/e__adj">
   <e>       <p><l>de</l>        <r>e<s n="adj"/><s n="posi"/><s n="pl"/></r></p></e>
@@ -519,24 +465,6 @@ should be
   <e>       <p><l>urt</l>       <r>øre<s n="adj"/><s n="posi"/><s n="mf"/><s n="sg"/><s n="ind"/></r></p></e>
   <e>       <p><l>urt</l>       <r>øre<s n="adj"/><s n="posi"/><s n="nt"/><s n="sg"/><s n="ind"/></r></p></e>
 </pardef>
-<pardef n="yt/re__adj">
-  <e>       <p><l>ra</l>        <r>re<s n="adj"/><s n="posi"/><s n="mf"/><s n="sg"/><s n="ind"/></r></p></e>
-  <e>       <p><l>ra</l>        <r>re<s n="adj"/><s n="posi"/><s n="nt"/><s n="sg"/><s n="ind"/></r></p></e>
-  <e>       <p><l>ra</l>        <r>re<s n="adj"/><s n="posi"/><s n="pl"/></r></p></e>
-  <e>       <p><l>ra</l>        <r>re<s n="adj"/><s n="posi"/><s n="sg"/><s n="def"/></r></p></e>
-  <e>       <p><l>re</l>        <r>re<s n="adj"/><s n="comp"/></r></p></e>
-  <e>       <p><l>rede</l>      <r>re<s n="adj"/><s n="posi"/><s n="pl"/></r></p></e>
-  <e>       <p><l>rede</l>      <r>re<s n="adj"/><s n="posi"/><s n="sg"/><s n="def"/></r></p></e>
-  <e>       <p><l>rende</l>     <r>re<s n="adj"/><s n="pprs"/></r></p></e>
-  <e>       <p><l>rete</l>      <r>re<s n="adj"/><s n="posi"/><s n="pl"/></r></p></e>
-  <e>       <p><l>rete</l>      <r>re<s n="adj"/><s n="posi"/><s n="sg"/><s n="def"/></r></p></e>
-  <e>       <p><l>ret</l>       <r>re<s n="adj"/><s n="posi"/><s n="mf"/><s n="sg"/><s n="ind"/></r></p></e>
-  <e>       <p><l>ret</l>       <r>re<s n="adj"/><s n="posi"/><s n="nt"/><s n="sg"/><s n="ind"/></r></p></e>
-  <e>       <p><l>ste</l>       <r>re<s n="adj"/><s n="sup"/><s n="def"/></r></p></e>
-  <e>       <p><l>st</l>        <r>re<s n="adj"/><s n="sup"/><s n="ind"/></r></p></e>
-  <e>       <p><l>terste</l>    <r>re<s n="adj"/><s n="sup"/><s n="def"/></r></p></e>
-  <e>       <p><l>terst</l>     <r>re<s n="adj"/><s n="sup"/><s n="ind"/></r></p></e>
-</pardef>
 <pardef n="st/or__adj">
   <e>       <p><l>ore</l>       <r>or<s n="adj"/><s n="posi"/><s n="pl"/></r></p></e>
   <e>       <p><l>ore</l>       <r>or<s n="adj"/><s n="posi"/><s n="sg"/><s n="def"/></r></p></e>
@@ -580,18 +508,6 @@ should be
   <e>       <p><l>epne</l>      <r>ie<s n="adj"/><s n="posi"/><s n="pl"/></r></p></e>
   <e>       <p><l>epne</l>      <r>ie<s n="adj"/><s n="posi"/><s n="sg"/><s n="def"/></r></p></e>
   <e>       <p><l>ipende</l>    <r>ie<s n="adj"/><s n="pprs"/></r></p></e>
-</pardef>
-<pardef n="v/ond__adj">
-  <e>       <p><l>erre</l>      <r>ond<s n="adj"/><s n="comp"/></r></p></e>
-  <e>       <p><l>erste</l>     <r>ond<s n="adj"/><s n="sup"/><s n="def"/></r></p></e>
-  <e>       <p><l>erst</l>      <r>ond<s n="adj"/><s n="sup"/><s n="ind"/></r></p></e>
-  <e>       <p><l>onde</l>      <r>ond<s n="adj"/><s n="posi"/><s n="pl"/></r></p></e>
-  <e>       <p><l>ondere</l>    <r>ond<s n="adj"/><s n="comp"/></r></p></e>
-  <e>       <p><l>onde</l>      <r>ond<s n="adj"/><s n="posi"/><s n="sg"/><s n="def"/></r></p></e>
-  <e>       <p><l>ondeste</l>   <r>ond<s n="adj"/><s n="sup"/><s n="def"/></r></p></e>
-  <e>       <p><l>ondest</l>    <r>ond<s n="adj"/><s n="sup"/><s n="ind"/></r></p></e>
-  <e>       <p><l>ond</l>       <r>ond<s n="adj"/><s n="posi"/><s n="mf"/><s n="sg"/><s n="ind"/></r></p></e>
-  <e>       <p><l>ondt</l>      <r>ond<s n="adj"/><s n="posi"/><s n="nt"/><s n="sg"/><s n="ind"/></r></p></e>
 </pardef>
 <pardef n="sm/yge__adj">
   <e>       <p><l>øgen</l>      <r>yge<s n="adj"/><s n="posi"/><s n="mf"/><s n="sg"/><s n="ind"/></r></p></e>
@@ -682,15 +598,6 @@ should be
   <e>       <p><l>et</l>        <r>e<s n="adj"/><s n="posi"/><s n="nt"/><s n="sg"/><s n="ind"/></r></p></e>
   <e>       <p><l>ne</l>        <r>e<s n="adj"/><s n="posi"/><s n="pl"/></r></p></e>
   <e>       <p><l>ne</l>        <r>e<s n="adj"/><s n="posi"/><s n="sg"/><s n="def"/></r></p></e>
-</pardef>
-<pardef n="guf/fen__adj">
-  <e>       <p><l>fen</l>       <r>fen<s n="adj"/><s n="posi"/><s n="mf"/><s n="sg"/><s n="ind"/></r></p></e>
-  <e>       <p><l>fent</l>      <r>fen<s n="adj"/><s n="posi"/><s n="nt"/><s n="sg"/><s n="ind"/></r></p></e>
-  <e>       <p><l>ne</l>        <r>fen<s n="adj"/><s n="posi"/><s n="pl"/></r></p></e>
-  <e>       <p><l>nere</l>      <r>fen<s n="adj"/><s n="comp"/></r></p></e>
-  <e>       <p><l>ne</l>        <r>fen<s n="adj"/><s n="posi"/><s n="sg"/><s n="def"/></r></p></e>
-  <e>       <p><l>neste</l>     <r>fen<s n="adj"/><s n="sup"/><s n="def"/></r></p></e>
-  <e>       <p><l>nest</l>      <r>fen<s n="adj"/><s n="sup"/><s n="ind"/></r></p></e>
 </pardef>
 <pardef n="beige__adj">
   <e>       <p><l></l>          <r><s n="adj"/><s n="posi"/><s n="mf"/><s n="sg"/><s n="ind"/></r></p></e>
@@ -1011,15 +918,6 @@ should be
   <e>       <p><l>øpne</l>      <r>ype<s n="adj"/><s n="posi"/><s n="sg"/><s n="def"/></r></p></e>
   <e>       <p><l>ypende</l>    <r>ype<s n="adj"/><s n="pprs"/></r></p></e>
 </pardef>
-<pardef n="drag/en__adj">
-  <e>       <p><l>en</l>        <r>en<s n="adj"/><s n="posi"/><s n="mf"/><s n="sg"/><s n="ind"/></r></p></e>
-  <e>       <p><l>et</l>        <r>en<s n="adj"/><s n="posi"/><s n="nt"/><s n="sg"/><s n="ind"/></r></p></e>
-  <e>       <p><l>ne</l>        <r>en<s n="adj"/><s n="posi"/><s n="pl"/></r></p></e>
-  <e>       <p><l>nere</l>      <r>en<s n="adj"/><s n="comp"/></r></p></e>
-  <e>       <p><l>ne</l>        <r>en<s n="adj"/><s n="posi"/><s n="sg"/><s n="def"/></r></p></e>
-  <e>       <p><l>neste</l>     <r>en<s n="adj"/><s n="sup"/><s n="def"/></r></p></e>
-  <e>       <p><l>nest</l>      <r>en<s n="adj"/><s n="sup"/><s n="ind"/></r></p></e>
-</pardef>
 <pardef n="sjokkskad/e__adj">
   <e>       <p><l>a</l>         <r>e<s n="adj"/><s n="posi"/><s n="mf"/><s n="sg"/><s n="ind"/></r></p></e>
   <e>       <p><l>a</l>         <r>e<s n="adj"/><s n="posi"/><s n="nt"/><s n="sg"/><s n="ind"/></r></p></e>
@@ -1165,27 +1063,6 @@ should be
   <e>       <p><l>agt</l>       <r>egge<s n="adj"/><s n="posi"/><s n="mf"/><s n="sg"/><s n="ind"/></r></p></e>
   <e>       <p><l>agt</l>       <r>egge<s n="adj"/><s n="posi"/><s n="nt"/><s n="sg"/><s n="ind"/></r></p></e>
   <e>       <p><l>eggende</l>   <r>egge<s n="adj"/><s n="pprs"/></r></p></e>
-</pardef>
-<pardef n="vi/e__adj">
-  <e>       <p><l>a</l>         <r>e<s n="adj"/><s n="posi"/><s n="mf"/><s n="sg"/><s n="ind"/></r></p></e>
-  <e>       <p><l>a</l>         <r>e<s n="adj"/><s n="posi"/><s n="nt"/><s n="sg"/><s n="ind"/></r></p></e>
-  <e>       <p><l>a</l>         <r>e<s n="adj"/><s n="posi"/><s n="pl"/></r></p></e>
-  <e>       <p><l>a</l>         <r>e<s n="adj"/><s n="posi"/><s n="sg"/><s n="def"/></r></p></e>
-  <e>       <p><l>dde</l>       <r>e<s n="adj"/><s n="posi"/><s n="pl"/></r></p></e>
-  <e>       <p><l>dde</l>       <r>e<s n="adj"/><s n="posi"/><s n="sg"/><s n="def"/></r></p></e>
-  <e>       <p><l>dd</l>        <r>e<s n="adj"/><s n="posi"/><s n="mf"/><s n="sg"/><s n="ind"/></r></p></e>
-  <e>       <p><l>dd</l>        <r>e<s n="adj"/><s n="posi"/><s n="nt"/><s n="sg"/><s n="ind"/></r></p></e>
-  <e>       <p><l>ede</l>       <r>e<s n="adj"/><s n="posi"/><s n="pl"/></r></p></e>
-  <e>       <p><l>ede</l>       <r>e<s n="adj"/><s n="posi"/><s n="sg"/><s n="def"/></r></p></e>
-  <e>       <p><l>ende</l>      <r>e<s n="adj"/><s n="pprs"/></r></p></e>
-  <e>       <p><l>ete</l>       <r>e<s n="adj"/><s n="posi"/><s n="pl"/></r></p></e>
-  <e>       <p><l>ete</l>       <r>e<s n="adj"/><s n="posi"/><s n="sg"/><s n="def"/></r></p></e>
-  <e>       <p><l>et</l>        <r>e<s n="adj"/><s n="posi"/><s n="mf"/><s n="sg"/><s n="ind"/></r></p></e>
-  <e>       <p><l>et</l>        <r>e<s n="adj"/><s n="posi"/><s n="nt"/><s n="sg"/><s n="ind"/></r></p></e>
-  <e>       <p><l>gde</l>       <r>e<s n="adj"/><s n="posi"/><s n="pl"/></r></p></e>
-  <e>       <p><l>gde</l>       <r>e<s n="adj"/><s n="posi"/><s n="sg"/><s n="def"/></r></p></e>
-  <e>       <p><l>gd</l>        <r>e<s n="adj"/><s n="posi"/><s n="mf"/><s n="sg"/><s n="ind"/></r></p></e>
-  <e>       <p><l>gd</l>        <r>e<s n="adj"/><s n="posi"/><s n="nt"/><s n="sg"/><s n="ind"/></r></p></e>
 </pardef>
 <pardef n="kves/se__adj">
   <e>       <p><l>sende</l>     <r>se<s n="adj"/><s n="pprs"/></r></p></e>
@@ -1520,27 +1397,6 @@ should be
   <e>       <p><l>et</l>        <r>e<s n="adj"/><s n="posi"/><s n="mf"/><s n="sg"/><s n="ind"/></r></p></e>
   <e>       <p><l>et</l>        <r>e<s n="adj"/><s n="posi"/><s n="nt"/><s n="sg"/><s n="ind"/></r></p></e>
 </pardef>
-<pardef n="v/ekke__adj">
-  <e>       <p><l>akte</l>      <r>ekke<s n="adj"/><s n="posi"/><s n="pl"/></r></p></e>
-  <e>       <p><l>akte</l>      <r>ekke<s n="adj"/><s n="posi"/><s n="sg"/><s n="def"/></r></p></e>
-  <e>       <p><l>akt</l>       <r>ekke<s n="adj"/><s n="posi"/><s n="mf"/><s n="sg"/><s n="ind"/></r></p></e>
-  <e>       <p><l>akt</l>       <r>ekke<s n="adj"/><s n="posi"/><s n="nt"/><s n="sg"/><s n="ind"/></r></p></e>
-  <e>       <p><l>ekka</l>      <r>ekke<s n="adj"/><s n="posi"/><s n="mf"/><s n="sg"/><s n="ind"/></r></p></e>
-  <e>       <p><l>ekka</l>      <r>ekke<s n="adj"/><s n="posi"/><s n="nt"/><s n="sg"/><s n="ind"/></r></p></e>
-  <e>       <p><l>ekka</l>      <r>ekke<s n="adj"/><s n="posi"/><s n="pl"/></r></p></e>
-  <e>       <p><l>ekka</l>      <r>ekke<s n="adj"/><s n="posi"/><s n="sg"/><s n="def"/></r></p></e>
-  <e>       <p><l>ekkede</l>    <r>ekke<s n="adj"/><s n="posi"/><s n="pl"/></r></p></e>
-  <e>       <p><l>ekkede</l>    <r>ekke<s n="adj"/><s n="posi"/><s n="sg"/><s n="def"/></r></p></e>
-  <e>       <p><l>ekkende</l>   <r>ekke<s n="adj"/><s n="pprs"/></r></p></e>
-  <e>       <p><l>ekkete</l>    <r>ekke<s n="adj"/><s n="posi"/><s n="pl"/></r></p></e>
-  <e>       <p><l>ekkete</l>    <r>ekke<s n="adj"/><s n="posi"/><s n="sg"/><s n="def"/></r></p></e>
-  <e>       <p><l>ekket</l>     <r>ekke<s n="adj"/><s n="posi"/><s n="mf"/><s n="sg"/><s n="ind"/></r></p></e>
-  <e>       <p><l>ekket</l>     <r>ekke<s n="adj"/><s n="posi"/><s n="nt"/><s n="sg"/><s n="ind"/></r></p></e>
-  <e>       <p><l>ekte</l>      <r>ekke<s n="adj"/><s n="posi"/><s n="pl"/></r></p></e>
-  <e>       <p><l>ekte</l>      <r>ekke<s n="adj"/><s n="posi"/><s n="sg"/><s n="def"/></r></p></e>
-  <e>       <p><l>ekt</l>       <r>ekke<s n="adj"/><s n="posi"/><s n="mf"/><s n="sg"/><s n="ind"/></r></p></e>
-  <e>       <p><l>ekt</l>       <r>ekke<s n="adj"/><s n="posi"/><s n="nt"/><s n="sg"/><s n="ind"/></r></p></e>
-</pardef>
 <pardef n="gys/e__adj">
   <e>       <p><l>ende</l>      <r>e<s n="adj"/><s n="pprs"/></r></p></e>
   <e>       <p><l>se</l>        <r>e<s n="adj"/><s n="posi"/><s n="pl"/></r></p></e>
@@ -1859,13 +1715,6 @@ should be
   <e>       <p><l>re</l>        <r>mer<s n="adj"/><s n="posi"/><s n="sg"/><s n="def"/></r></p></e>
   <e>       <p><l>reste</l>     <r>mer<s n="adj"/><s n="sup"/><s n="def"/></r></p></e>
   <e>       <p><l>rest</l>      <r>mer<s n="adj"/><s n="sup"/><s n="ind"/></r></p></e>
-</pardef>
-<pardef n="v/elge__adj">
-  <e>       <p><l>algte</l>     <r>elge<s n="adj"/><s n="posi"/><s n="pl"/></r></p></e>
-  <e>       <p><l>algte</l>     <r>elge<s n="adj"/><s n="posi"/><s n="sg"/><s n="def"/></r></p></e>
-  <e>       <p><l>algt</l>      <r>elge<s n="adj"/><s n="posi"/><s n="mf"/><s n="sg"/><s n="ind"/></r></p></e>
-  <e>       <p><l>algt</l>      <r>elge<s n="adj"/><s n="posi"/><s n="nt"/><s n="sg"/><s n="ind"/></r></p></e>
-  <e>       <p><l>elgende</l>   <r>elge<s n="adj"/><s n="pprs"/></r></p></e>
 </pardef>
 	</pardefs>
 
