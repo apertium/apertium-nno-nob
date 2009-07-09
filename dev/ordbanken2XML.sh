@@ -47,6 +47,9 @@ sed '/XXXX/s/m\/f/mf/g' |\
 sed '/XXXX/s/mask/m/g' |\
 sed '/XXXX/s/fem/f/g' |\
 sed '/XXXX/s/<s n="appell"\/>//g' |\
+# is this an error in the ordbanken-script? weird tag:
+sed '/XXXX/s/<s n="<nullv>"\/>//g' |\
+sed '/XXXX/s/<s n="<trans>"\/>//g' |\
 # put things back on one line:
 sed '/$/N;s/\nXXXX//' |\
 # indent:
