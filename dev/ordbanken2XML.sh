@@ -50,6 +50,7 @@ sed '/XXXX/s/<s n="appell"\/>//g' |\
 # is this an error in the ordbanken-script? weird tag:
 sed '/XXXX/s/<s n="<nullv>"\/>//g' |\
 sed '/XXXX/s/<s n="<trans>"\/>//g' |\
+sed '/XXXX/s/<s n="<adv>"\/>//g' |\
 # put things back on one line:
 sed '/$/N;s/\nXXXX//' |\
 # indent:
