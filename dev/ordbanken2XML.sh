@@ -51,6 +51,7 @@ sed '/XXXX/s/<s n="appell"\/>//g' |\
 sed '/XXXX/s/<s n="<nullv>"\/>//g' |\
 sed '/XXXX/s/<s n="<trans>"\/>//g' |\
 sed '/XXXX/s/<s n="<adv>"\/>//g' |\
+sed '/XXXX/s/<s n="<ordenstall*>"\/>/<s n="ord"\/>/g' |\
 # put things back on one line:
 sed '/$/N;s/\nXXXX//' |\
 # indent:
