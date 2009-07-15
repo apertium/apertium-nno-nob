@@ -64,6 +64,7 @@
 		<sdef n="acr" 	c="Acronym"/> 
 		<sdef n="sent" 	c="Sentence end"/> 
 		<sdef n="cm" 	c="Comma"/>
+		<sdef n="apos" 	c="Apostrophe"/>
 		<sdef n="clb" 	c="Possible clause boundary"/> 
 		<sdef n="lpar" 	c="Left parenthesis"/> 
 		<sdef n="rpar" 	c="Right parenthesis"/> 
@@ -85,12 +86,26 @@
   <e>       <re>,</re><p><l></l><r><s n="cm"/><s n="clb"/></r></p></e>
 </pardef>
 
+<pardef n="aposchar">
+  <e>       <i>'</i></e>
+</pardef>
+
+<pardef n="cometa">
+  <e>       <par n="aposchar"/><p><l></l><r><s n="apos"/></r></p></e>
+</pardef>
+
 <pardef n="paresq">
   <e>       <re>[\(\[]</re><p><l></l><r><s n="lpar"/></r></p></e>
 </pardef>
     
 <pardef n="pardret">
   <e>       <re>[\)\]]</re><p><l></l><r><s n="rpar"/></r></p></e>
+</pardef>
+
+<pardef n="%/s__n">
+  <!-- for po-file translations and Giza++: -->
+  <e>       <re>_[0-9a-z]</re><p><l></l><r><s n="n"/><s n="acr"/></r></p></e>
+  <e>       <re>%[0-9a-z]</re><p><l></l><r><s n="n"/><s n="acr"/></r></p></e>
 </pardef>
 
     <!-- Numbers -->
@@ -24659,7 +24674,9 @@
   <e>                      <par n="numeros"/></e>
   <e>                      <par n="separa"/></e>
   <e>                      <par n="coma"/></e>
+  <e>                      <par n="cometa"/></e>
   <e>                      <par n="paresq"/></e>
   <e>                      <par n="pardret"/></e>
+  <e>                      <par n="%/s__n"/></e>
 </section>
 </dictionary>
