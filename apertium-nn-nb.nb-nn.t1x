@@ -105,6 +105,7 @@
       <attr-item tags="nom"/>
       <attr-item tags="gen"/>
       <attr-item tags="acc"/>
+      <attr-item tags="CD"/>
     </def-attr>
     <def-attr n="art">
       <attr-item tags="def"/>
@@ -712,36 +713,58 @@
 	<pattern-item n="nom"/>
       </pattern>
       <action>
-        <modify-case><clip pos="1" side="tl" part="lemh"/><clip pos="3" side="tl" part="lemh"/></modify-case>
-	<call-macro n="set_gender2">
-	  <with-param pos="2"/>
-	  <with-param pos="1"/>
-	</call-macro>
-        <call-macro n="out_ndef">
-	  <with-param pos="3"/>
-	  <with-param pos="1"/>
-	</call-macro>
-        <out>
-          <b pos="1"/>
-          <lu><lit v="til"/><lit-tag v="pr"/></lu> <b/>
-          <lu>
-	    <clip pos="1" side="tl" part="lemh"/>
-            <clip pos="1" side="tl" part="a_det"/>
-	    <var n="gender"/>
-	    <var n="number"/>
-            <clip pos="1" side="tl" part="art"/>
-	    <clip pos="1" side="tl" part="lemq"/>
-          </lu>
-          <b pos="2"/>
-          <lu>
-            <clip pos="2" side="tl" part="lemh"/>
-            <clip pos="2" side="tl" part="a_nom"/>
-            <clip pos="2" side="tl" part="gen"/>
-            <clip pos="2" side="tl" part="nbr"/>
-            <clip pos="2" side="tl" part="art"/>
-	    <clip pos="2" side="tl" part="lemq"/>
-          </lu>
-        </out>
+        <choose>
+          <when> <!-- todo: add this to every single genitive rule...ugh.. -->
+            <test><equal><clip pos="2" side="tl" part="cas"/><lit-tag v="CD"/></equal></test>
+            <out>
+              <lu><clip pos="1" side="tl" part="whole"/></lu>
+              <b pos="1"/>
+              <lu>
+                <clip pos="2" side="tl" part="lemh"/>
+                <clip pos="2" side="tl" part="a_nom"/>
+                <clip pos="2" side="tl" part="gen"/>
+                <clip pos="2" side="tl" part="nbr"/>
+                <clip pos="2" side="tl" part="art"/>
+                <lit-tag v="gen"/>
+                <clip pos="2" side="tl" part="lemq"/>
+                </lu>
+                <b pos="2"/>
+              <lu><clip pos="3" side="tl" part="whole"/></lu>
+            </out>
+          </when>
+          <otherwise>
+            <modify-case><clip pos="1" side="tl" part="lemh"/><clip pos="3" side="tl" part="lemh"/></modify-case>
+            <call-macro n="set_gender2">
+              <with-param pos="2"/>
+              <with-param pos="1"/>
+            </call-macro>
+            <call-macro n="out_ndef">
+              <with-param pos="3"/>
+              <with-param pos="1"/>
+            </call-macro>
+            <out>
+              <b pos="1"/>
+              <lu><lit v="til"/><lit-tag v="pr"/></lu> <b/>
+              <lu>
+                <clip pos="1" side="tl" part="lemh"/>
+                <clip pos="1" side="tl" part="a_det"/>
+                <var n="gender"/>
+                <var n="number"/>
+                <clip pos="1" side="tl" part="art"/>
+                <clip pos="1" side="tl" part="lemq"/>
+              </lu>
+              <b pos="2"/>
+              <lu>
+                <clip pos="2" side="tl" part="lemh"/>
+                <clip pos="2" side="tl" part="a_nom"/>
+                <clip pos="2" side="tl" part="gen"/>
+                <clip pos="2" side="tl" part="nbr"/>
+                <clip pos="2" side="tl" part="art"/>
+                <clip pos="2" side="tl" part="lemq"/>
+              </lu>
+            </out>
+          </otherwise>
+        </choose>
       </action>
     </rule>
     <rule comment="DETNONPOS ADJ NGEN NOM: en sort katts snute => snuten til ein svart katt">
