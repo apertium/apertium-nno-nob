@@ -1,14 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- -*- nxml -*- -->
-<!-- I've started adding some lexical exceptions to the genitive transfer rules,
-     see the list n_temporal and out_set_ignore_n_temporal[1-3]. A better solution
-     would be if we could eg. specify in the PATTERN section that this lemma is
-     "<not><in><list n="n_temporal">"
-     If not checking this list, alternatively PATTERN could check for a TL tag from
-     the bidix, like for <e><p><l>foo<CD></l><r>bar<gen></r></p></e> we don't apply
-     the rule to the bar=>foo translation, but for all other genitives. Changing SL
-     tags in monodix is a bad solution since it makes the SL monodix less
-     generalizable to other pairs. -->
 <transfer>
 
   <section-def-cats>
@@ -22,8 +13,15 @@
     <def-cat n="ngen">
       <cat-item tags="n.*.*.*.gen"/>
     </def-cat>
-    <def-cat n="navn">					       
-      <cat-item tags="np.*"/>
+    <def-cat n="ngen_temporal">
+      <cat-item tags="n.nt.sg.*.gen"   lemma="år"/>
+      <cat-item tags="n.m.sg.*.gen"    lemma="dag"/>
+      <cat-item tags="n.m.sg.*.gen"    lemma="uke"/>
+      <cat-item tags="n.f.sg.*.gen"    lemma="uke"/>
+      <cat-item tags="n.nt.pl.ind.gen" lemma="år"/>
+      <cat-item tags="n.m.pl.ind.gen"  lemma="dag"/>
+      <cat-item tags="n.m.pl.ind.gen"  lemma="uke"/>
+      <cat-item tags="n.f.pl.ind.gen"  lemma="uke"/>
     </def-cat>
     <def-cat n="det">
       <cat-item tags="det.*"/>
@@ -49,7 +47,6 @@
       <cat-item tags="vblex.pres.pass"/>
     </def-cat>
   </section-def-cats>
-
   
   <section-def-attrs>
     <def-attr n="a_nom">
@@ -132,13 +129,6 @@
     <def-var n="ignore"/>
   </section-def-vars>
 
-  <section-def-lists>
-     <def-list n="n_temporal">
-        <list-item v="år"/>
-        <list-item v="dag"/>
-        <list-item v="uke"/>
-     </def-list>
-  </section-def-lists>
 
   <section-def-macros>
 
@@ -184,9 +174,7 @@
 	   - iff sg and GD, take a wild guess and go for m;
 	   - plurals get no gender;
 	   - o/w take gender of target determiner -->
-      <call-macro n="set_number"> 
-	<with-param pos="1" /> 
-      </call-macro>
+      <call-macro n="set_number"><with-param pos="1"/></call-macro>
       <choose>
         <when>
 	  <test>
@@ -207,8 +195,7 @@
 	  <let><var n="gender"/><clip pos="1" side="tl" part="gen"/></let>
 	</otherwise>
       </choose>
-      <call-macro n="set_mf_or_gender">
-      </call-macro>
+      <call-macro n="set_mf_or_gender"></call-macro>
     </def-macro>
     
     <def-macro n="set_gender2" npar="2">
@@ -224,14 +211,10 @@
       <choose>
         <when>
           <test><begins-with><clip pos="2" side="tl" part="a_nom"/><lit-tag v="n"/></begins-with></test>
-          <call-macro n="set_gender1"> 
-            <with-param pos="1" /> 
-          </call-macro>          
+          <call-macro n="set_gender1"><with-param pos="1"/></call-macro>          
         </when>
         <otherwise>
-          <call-macro n="set_number"> 
-            <with-param pos="2" /> 
-          </call-macro>
+          <call-macro n="set_number"><with-param pos="2"/></call-macro>
           <choose>
             <when>
               <test><and>
@@ -283,83 +266,83 @@
       </choose>
     </def-macro>
 
-    <def-macro n="out_set_ignore_n_temporal1" npar="1">
+<!--     <def-macro n="out_set_ignore_n_temporal1" npar="1"> -->
       <!-- If arg.1 is in n_temporal, output and set ignore to yes,
            o/w ignore to no -->
-      <choose>
-        <when>
-          <test><and>
-            <in><clip pos="1" side="sl" part="lem"/>
-                <list n="n_temporal"/></in>
-            <not><and>
-              <equal><clip pos="1" side="sl" part="nbr"/><lit-tag v="pl"/></equal>
-              <equal><clip pos="1" side="sl" part="art"/><lit-tag v="def"/></equal>
-            </and></not>
-          </and></test>
-          <let><var n="ignore"/><lit v="yes"/></let>
-          <out><lu><clip pos="1" side="tl" part="whole"/></lu></out>
-        </when>
-        <otherwise>
-          <let><var n="ignore"/><lit v="no"/></let>
-        </otherwise>
-      </choose>
-    </def-macro>
+<!--       <choose> -->
+<!--         <when> -->
+<!--           <test><and> -->
+<!--             <in><clip pos="1" side="sl" part="lem"/> -->
+<!--                 <list n="n_temporal"/></in> -->
+<!--             <not><and> -->
+<!--               <equal><clip pos="1" side="sl" part="nbr"/><lit-tag v="pl"/></equal> -->
+<!--               <equal><clip pos="1" side="sl" part="art"/><lit-tag v="def"/></equal> -->
+<!--             </and></not> -->
+<!--           </and></test> -->
+<!--           <let><var n="ignore"/><lit v="yes"/></let> -->
+<!--           <out><lu><clip pos="1" side="tl" part="whole"/></lu></out> -->
+<!--         </when> -->
+<!--         <otherwise> -->
+<!--           <let><var n="ignore"/><lit v="no"/></let> -->
+<!--         </otherwise> -->
+<!--       </choose> -->
+<!--     </def-macro> -->
 
-    <def-macro n="out_set_ignore_n_temporal2" npar="2">
+<!--     <def-macro n="out_set_ignore_n_temporal2" npar="2"> -->
       <!-- If arg.1 is in n_temporal, output and set ignore to yes,
            o/w ignore to no -->
-      <choose>
-        <when>
-          <test><and>
-            <in><clip pos="1" side="sl" part="lem"/>
-                <list n="n_temporal"/></in>
-            <not><and>
-              <equal><clip pos="1" side="sl" part="nbr"/><lit-tag v="pl"/></equal>
-              <equal><clip pos="1" side="sl" part="art"/><lit-tag v="def"/></equal>
-            </and></not>
-          </and></test>
-          <let><var n="ignore"/><lit v="yes"/></let>
-          <out><lu><clip pos="1" side="tl" part="whole"/></lu><b pos="1"/>
-          <lu><clip pos="2" side="tl" part="whole"/></lu></out>
-        </when>
-        <otherwise>
-          <let><var n="ignore"/><lit v="no"/></let>
-        </otherwise>
-      </choose>
-    </def-macro>
+<!--       <choose> -->
+<!--         <when> -->
+<!--           <test><and> -->
+<!--             <in><clip pos="1" side="sl" part="lem"/> -->
+<!--                 <list n="n_temporal"/></in> -->
+<!--             <not><and> -->
+<!--               <equal><clip pos="1" side="sl" part="nbr"/><lit-tag v="pl"/></equal> -->
+<!--               <equal><clip pos="1" side="sl" part="art"/><lit-tag v="def"/></equal> -->
+<!--             </and></not> -->
+<!--           </and></test> -->
+<!--           <let><var n="ignore"/><lit v="yes"/></let> -->
+<!--           <out><lu><clip pos="1" side="tl" part="whole"/></lu><b pos="1"/> -->
+<!--           <lu><clip pos="2" side="tl" part="whole"/></lu></out> -->
+<!--         </when> -->
+<!--         <otherwise> -->
+<!--           <let><var n="ignore"/><lit v="no"/></let> -->
+<!--         </otherwise> -->
+<!--       </choose> -->
+<!--     </def-macro> -->
 
-    <def-macro n="out_set_ignore_n_temporal3" npar="3">
+<!--     <def-macro n="out_set_ignore_n_temporal3" npar="3"> -->
       <!-- If arg.2 is in n_temporal, output and set ignore to yes,
            o/w ignore to no. Arg.1 assumed to be determiner. -->
-      <choose>
-        <when>
-          <test><and>
-            <in><clip pos="2" side="sl" part="lem"/>
-                <list n="n_temporal"/></in>
-            <not><and>
-              <equal><clip pos="2" side="sl" part="nbr"/><lit-tag v="pl"/></equal>
-              <equal><clip pos="2" side="sl" part="art"/><lit-tag v="def"/></equal>
-            </and></not>
-          </and></test>
-          <let><var n="ignore"/><lit v="yes"/></let>
-          <out>
-            <lu>
-              <clip pos="1" side="tl" part="lemh"/>
-              <clip pos="1" side="tl" part="a_det"/>
-              <var n="gender"/>
-              <var n="number"/>
-              <clip pos="1" side="tl" part="art"/>
-              <clip pos="1" side="tl" part="lemq"/>
-            </lu><b pos="1"/>
-            <lu><clip pos="2" side="tl" part="whole"/></lu><b pos="2"/>
-            <lu><clip pos="3" side="tl" part="whole"/></lu>
-          </out>
-        </when>
-        <otherwise>
-          <let><var n="ignore"/><lit v="no"/></let>
-        </otherwise>
-      </choose>
-    </def-macro>
+<!--       <choose> -->
+<!--         <when> -->
+<!--           <test><and> -->
+<!--             <in><clip pos="2" side="sl" part="lem"/> -->
+<!--                 <list n="n_temporal"/></in> -->
+<!--             <not><and> -->
+<!--               <equal><clip pos="2" side="sl" part="nbr"/><lit-tag v="pl"/></equal> -->
+<!--               <equal><clip pos="2" side="sl" part="art"/><lit-tag v="def"/></equal> -->
+<!--             </and></not> -->
+<!--           </and></test> -->
+<!--           <let><var n="ignore"/><lit v="yes"/></let> -->
+<!--           <out> -->
+<!--             <lu> -->
+<!--               <clip pos="1" side="tl" part="lemh"/> -->
+<!--               <clip pos="1" side="tl" part="a_det"/> -->
+<!--               <var n="gender"/> -->
+<!--               <var n="number"/> -->
+<!--               <clip pos="1" side="tl" part="art"/> -->
+<!--               <clip pos="1" side="tl" part="lemq"/> -->
+<!--             </lu><b pos="1"/> -->
+<!--             <lu><clip pos="2" side="tl" part="whole"/></lu><b pos="2"/> -->
+<!--             <lu><clip pos="3" side="tl" part="whole"/></lu> -->
+<!--           </out> -->
+<!--         </when> -->
+<!--         <otherwise> -->
+<!--           <let><var n="ignore"/><lit v="no"/></let> -->
+<!--         </otherwise> -->
+<!--       </choose> -->
+<!--     </def-macro> -->
 
 
     <!-- Output macros: -->
@@ -467,6 +450,58 @@
     </rule>
 
     <!-- Possessive noun phrases -->
+    <!-- First: exceptions to these, since earlier rules match first. -->
+    <rule comment="NGEN_TEMPORAL: dagens => dagens.">
+      <pattern>
+        <pattern-item n="ngen_temporal"/>
+      </pattern>
+      <action>
+        <out><lu><clip pos="1" side="tl" part="whole"/></lu></out>
+      </action>
+    </rule>
+    <rule comment="NGEN_TEMPORAL NIND: dagens avis => dagens avis">
+      <pattern>
+        <pattern-item n="ngen_temporal"/>
+        <pattern-item n="nind"/>
+      </pattern>
+      <action>
+        <out>
+          <lu><clip pos="1" side="tl" part="whole"/></lu><b pos="1"/>
+          <lu><clip pos="2" side="tl" part="whole"/></lu>
+        </out>
+      </action>
+    </rule>
+    <rule comment="NGEN_TEMPORAL NIND: et års tid => eit års tid">
+      <pattern>
+        <pattern-item n="det"/>
+        <pattern-item n="ngen_temporal"/>
+        <pattern-item n="nind"/>
+      </pattern>
+      <action>
+        <call-macro n="set_gender2"><with-param pos="2"/><with-param pos="1"/></call-macro>
+        <out>
+          <lu>
+            <clip pos="1" side="tl" part="lemh"/>
+            <clip pos="1" side="tl" part="a_det"/>
+            <var n="gender"/>
+            <var n="number"/>
+            <clip pos="1" side="tl" part="art"/>
+            <clip pos="1" side="tl" part="lemq"/>
+          </lu>
+          <b pos="1"/>
+          <lu><clip pos="2" side="tl" part="whole"/></lu><b pos="2"/>
+          <lu><clip pos="3" side="tl" part="whole"/></lu>
+        </out>
+      </action>
+    </rule>
+
+    <!-- The regular possessive noun phrases, with more complex
+         transfer operations.
+
+         Fleire reglar trengst for å matche ADJ* (eigentleg ADJ{0,4} i reglane under)
+         men det jo berre kopiere og lime inn (og fikse litt) etter at ADJ{1} regelen 
+         er ferdig. Sjå http://wiki.apertium.org/wiki/Norsk#Genitive.2Fpossessive  -->
+    
     <rule comment="NGEN: mannens => mannen sin
                    Very heuristic fallback rule.
                    If we can't match with the below rules, turn the
@@ -481,47 +516,37 @@
         <pattern-item n="ngen"/>
       </pattern>
       <action>
-        <call-macro n="out_set_ignore_n_temporal1">
-          <with-param pos="1"/>
-        </call-macro>
-        <choose><when>
-          <test><equal><var n="ignore"/><lit v="no"/></equal></test>
-          <call-macro n="set_gender1">
-            <with-param pos="1"/>
-          </call-macro>
-          <choose>					       
-            <when>
-              <test>
-                <equal><var n="number"/><lit-tag v="sp"/></equal>
-              </test>
-              <let><var n="number"/><lit-tag v="pl"/></let>
-              <let><var n="gender"/><lit v=""/></let>
-            </when>
-          </choose>
-          <out>
-            <lu>
-              <clip pos="1" side="tl" part="lemh"/>
-              <clip pos="1" side="tl" part="a_nom"/>
-              <clip pos="1" side="tl" part="gen"/>
-              <clip pos="1" side="tl" part="nbr"/>
-              <clip pos="1" side="tl" part="art"/>
-              <clip pos="1" side="tl" part="lemq"/>
-            </lu>
-            <b/>
-            <lu><lit v="sin"/>
-            <lit-tag v="det.pos"/>
-            <var n="gender"/>
-            <var n="number"/>
-            </lu> 
-          </out>
-        </when></choose>
+        <call-macro n="set_gender1"><with-param pos="1"/></call-macro>
+        <choose>					       
+          <when>
+            <test>
+              <equal><var n="number"/><lit-tag v="sp"/></equal>
+            </test>
+            <let><var n="number"/><lit-tag v="pl"/></let>
+            <let><var n="gender"/><lit v=""/></let>
+          </when>
+        </choose>
+        <out>
+          <lu>
+            <clip pos="1" side="tl" part="lemh"/>
+            <clip pos="1" side="tl" part="a_nom"/>
+            <clip pos="1" side="tl" part="gen"/>
+            <clip pos="1" side="tl" part="nbr"/>
+            <clip pos="1" side="tl" part="art"/>
+            <clip pos="1" side="tl" part="lemq"/>
+          </lu>
+          <b/>
+          <lu><lit v="sin"/>
+          <lit-tag v="det.pos"/>
+          <var n="gender"/>
+          <var n="number"/>
+          </lu> 
+        </out>
       </action>
     </rule>
 
-    <!-- POSGEN ADJ* NIND: fleire reglar trengst for å matche ADJ* (eigentleg ADJ{0,4} her)
-    men som eg skreiv på wikien er det jo berre kopiere og lime inn etter at ADJ{1} regelen
-    er ferdig.
-     -->
+
+    <!-- POSGEN ADJ* NIND: -->
     <rule comment="POSGEN NIND: naboens bil => bilen til naboen
                                 min mor => mora mi
                                 ditt hus => huset ditt
@@ -532,28 +557,13 @@
         <pattern-item n="nind"/>
       </pattern>
       <action>
-        <call-macro n="out_set_ignore_n_temporal2">
-          <with-param pos="1"/>
-          <with-param pos="2"/>
-        </call-macro>
-        <choose><when>
-          <test><equal><var n="ignore"/><lit v="no"/></equal></test>
-          <modify-case><clip pos="1" side="tl" part="lemh"/><clip pos="2" side="tl" part="lemh"/></modify-case>
-          <call-macro n="set_gender2">
-            <with-param pos="2"/>
-            <with-param pos="1"/>
-          </call-macro>
-          <call-macro n="out_ndef">
-            <with-param pos="2"/>
-            <with-param pos="1"/>
-          </call-macro>
-          <out>
-            <b pos="1"/>
-          </out>
-          <call-macro n="out_posgen">
-            <with-param pos="1"/>
-          </call-macro>
-        </when></choose>
+        <modify-case><clip pos="1" side="tl" part="lemh"/><clip pos="2" side="tl" part="lemh"/></modify-case>
+        <call-macro n="set_gender2"><with-param pos="2"/><with-param pos="1"/></call-macro>
+        <call-macro n="out_ndef"><with-param pos="2"/><with-param pos="1"/></call-macro>
+        <out>
+          <b pos="1"/>
+        </out>
+        <call-macro n="out_posgen"><with-param pos="1"/></call-macro>
       </action>
     </rule>
     <rule comment="POSGEN ADJ NIND: naboens lille bil => den vesle bilen til naboen
@@ -585,9 +595,7 @@
 	  <with-param pos="3"/>
 	</call-macro>
         <out> <b/> </out>
-        <call-macro n="out_posgen">
-          <with-param pos="1"/>
-        </call-macro>
+        <call-macro n="out_posgen"><with-param pos="1"/></call-macro>
       </action>
     </rule>
     <rule comment="POSGEN ADJ ADJ NIND">
@@ -619,9 +627,7 @@
 	  <with-param pos="4"/>
 	</call-macro>
         <out> <b/> </out>
-        <call-macro n="out_posgen">
-          <with-param pos="1"/>
-        </call-macro>
+        <call-macro n="out_posgen"><with-param pos="1"/></call-macro>
       </action>
     </rule>
     <rule comment="POSGEN ADJ ADJ ADJ NIND">
@@ -655,9 +661,7 @@
 	  <with-param pos="5"/>
 	</call-macro>
         <out> <b/> </out>
-        <call-macro n="out_posgen">
-          <with-param pos="1"/>
-        </call-macro>
+        <call-macro n="out_posgen"><with-param pos="1"/></call-macro>
       </action>
     </rule>
     <rule comment="POSGEN ADJ ADJ ADJ ADJ NIND">
@@ -693,9 +697,7 @@
 	  <with-param pos="6"/>
 	</call-macro>
         <out> <b/> </out>
-        <call-macro n="out_posgen">
-          <with-param pos="1"/>
-        </call-macro>
+        <call-macro n="out_posgen"><with-param pos="1"/></call-macro>
       </action>
     </rule>
 
@@ -728,9 +730,7 @@
 	  <with-param pos="2"/>
 	</call-macro>
         <out> <b pos="2"/> </out>
-        <call-macro n="out_posgen">
-          <with-param pos="1"/>
-        </call-macro>
+        <call-macro n="out_posgen"><with-param pos="1"/></call-macro>
       </action>
     </rule>
     <rule comment="POSGEN ADJ NGEN NIND: min sorte katts snute => snuten til den svarte katten min">
@@ -767,9 +767,7 @@
 	  <with-param pos="3"/>
 	</call-macro>
         <out> <b pos="3"/> </out>
-        <call-macro n="out_posgen">
-          <with-param pos="1"/>
-        </call-macro>
+        <call-macro n="out_posgen"><with-param pos="1"/></call-macro>
       </action>
     </rule>
     <rule comment="POSGEN NGEN ADJ NIND: min katts hvite snute => den kvite snuten til katten min">
@@ -808,9 +806,7 @@
 	  <with-param pos="2"/>
 	</call-macro>
         <out> <b pos="3"/> </out>
-        <call-macro n="out_posgen">
-          <with-param pos="1"/>
-        </call-macro>
+        <call-macro n="out_posgen"><with-param pos="1"/></call-macro>
       </action>
     </rule>
 
@@ -822,44 +818,30 @@
 	<pattern-item n="nom"/>
       </pattern>
       <action>
-        <call-macro n="set_gender2">
-          <with-param pos="2"/>
-          <with-param pos="1"/>
-        </call-macro>
-        <call-macro n="out_set_ignore_n_temporal3">
-          <with-param pos="1"/>
-          <with-param pos="2"/>
-          <with-param pos="3"/>
-        </call-macro>
-        <choose><when>
-          <test><equal><var n="ignore"/><lit v="no"/></equal></test>
-          <modify-case><clip pos="1" side="tl" part="lemh"/><clip pos="3" side="tl" part="lemh"/></modify-case>
-          <call-macro n="out_ndef">
-            <with-param pos="3"/>
-            <with-param pos="1"/>
-          </call-macro>
-          <out>
-            <b pos="1"/>
-            <lu><lit v="til"/><lit-tag v="pr"/></lu> <b/>
-            <lu>
-              <clip pos="1" side="tl" part="lemh"/>
-              <clip pos="1" side="tl" part="a_det"/>
-              <var n="gender"/>
-              <var n="number"/>
-              <clip pos="1" side="tl" part="art"/>
-              <clip pos="1" side="tl" part="lemq"/>
-            </lu>
-            <b pos="2"/>
-            <lu>
-              <clip pos="2" side="tl" part="lemh"/>
-              <clip pos="2" side="tl" part="a_nom"/>
-              <clip pos="2" side="tl" part="gen"/>
-              <clip pos="2" side="tl" part="nbr"/>
-              <clip pos="2" side="tl" part="art"/>
-              <clip pos="2" side="tl" part="lemq"/>
-            </lu>
-          </out>
-        </when></choose>
+        <call-macro n="set_gender2"><with-param pos="2"/><with-param pos="1"/></call-macro>
+        <modify-case><clip pos="1" side="tl" part="lemh"/><clip pos="3" side="tl" part="lemh"/></modify-case>
+        <call-macro n="out_ndef"><with-param pos="3"/><with-param pos="1"/></call-macro>
+        <out>
+          <b pos="1"/>
+          <lu><lit v="til"/><lit-tag v="pr"/></lu> <b/>
+          <lu>
+            <clip pos="1" side="tl" part="lemh"/>
+            <clip pos="1" side="tl" part="a_det"/>
+            <var n="gender"/>
+            <var n="number"/>
+            <clip pos="1" side="tl" part="art"/>
+            <clip pos="1" side="tl" part="lemq"/>
+          </lu>
+          <b pos="2"/>
+          <lu>
+            <clip pos="2" side="tl" part="lemh"/>
+            <clip pos="2" side="tl" part="a_nom"/>
+            <clip pos="2" side="tl" part="gen"/>
+            <clip pos="2" side="tl" part="nbr"/>
+            <clip pos="2" side="tl" part="art"/>
+            <clip pos="2" side="tl" part="lemq"/>
+          </lu>
+        </out>
       </action>
     </rule>
     <rule comment="DETNONPOS ADJ NGEN NOM: en sort katts snute => snuten til ein svart katt">
@@ -964,9 +946,7 @@
         <pattern-item n="det"/>
       </pattern>
       <action>
-        <call-macro n="set_gender1">
-          <with-param pos="1"/>
-        </call-macro>
+        <call-macro n="set_gender1"><with-param pos="1"/></call-macro>
         <out>
           <lu>
             <clip pos="1" side="tl" part="lemh"/>
@@ -990,10 +970,7 @@
         <pattern-item n="nom"/>
       </pattern>
       <action>
-        <call-macro n="set_gender2">
-          <with-param pos="2"/>
-          <with-param pos="1"/>
-        </call-macro>
+        <call-macro n="set_gender2"><with-param pos="2"/><with-param pos="1"/></call-macro>
 	<choose><when>
 	  <test><or>
 	    <equal><clip pos="2" side="tl" part="a_nom"/><lit-tag v="np"/></equal>
@@ -1029,9 +1006,7 @@
         <pattern-item n="adj"/>
       </pattern>
       <action>
-        <call-macro n="set_gender1">
-          <with-param pos="1"/>
-        </call-macro>
+        <call-macro n="set_gender1"><with-param pos="1"/></call-macro>
         <out>
           <lu>
             <clip pos="1" side="tl" part="lemh"/>
@@ -1056,10 +1031,7 @@
         <pattern-item n="nom"/>
       </pattern>
       <action>	
-        <call-macro n="set_gender2">
-          <with-param pos="2"/>
-          <with-param pos="1"/>
-        </call-macro>
+        <call-macro n="set_gender2"><with-param pos="2"/><with-param pos="1"/></call-macro>
 	<choose><when>
 	  <test><or>
 	    <equal><clip pos="2" side="tl" part="a_nom"/><lit-tag v="np"/></equal>
@@ -1096,10 +1068,7 @@
         <pattern-item n="adj"/>
       </pattern>
       <action>	
-        <call-macro n="set_gender2">
-          <with-param pos="2"/>
-          <with-param pos="1"/>
-        </call-macro>
+        <call-macro n="set_gender2"><with-param pos="2"/><with-param pos="1"/></call-macro>
         <out>
           <lu>
             <clip pos="1" side="tl" part="lemh"/>
@@ -1131,10 +1100,7 @@
         <pattern-item n="nom"/>
       </pattern>
       <action>	
-        <call-macro n="set_gender2">
-          <with-param pos="3"/>
-          <with-param pos="1"/>
-        </call-macro>
+        <call-macro n="set_gender2"><with-param pos="3"/><with-param pos="1"/></call-macro>
 	<choose>					       
 	  <when>
 	    <test>
