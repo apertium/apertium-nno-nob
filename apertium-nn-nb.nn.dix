@@ -471,14 +471,30 @@
   <e>       <p><l>e</l>         <r>e<s n="n"/><s n="nt"/><s n="sg"/><s n="ind"/></r></p></e>
   <e r="LR"><p><l>i</l>         <r>e<s n="n"/><s n="nt"/><s n="pl"/><s n="def"/></r></p></e>
 </pardef>
+<pardef n="dag/s__n">
+  <e>       <p><l>ane</l>   <r><s n="n"/><s n="m"/><s n="pl"/><s n="def"/></r></p></e>
+  <!-- ein (fleire) dags arbeid: -->
+  <e>       <p><l>ar</l>    <r><s n="n"/><s n="m"/><s n="pl"/><s n="ind"/></r></p><par n="S__case"/></e>
+  <e>       <p><l></l>      <r><s n="n"/><s n="m"/><s n="sg"/><s n="ind"/></r></p><par n="S__case"/></e>
+  <!-- dagens avis: -->
+  <e>       <p><l>en</l>    <r><s n="n"/><s n="m"/><s n="sg"/><s n="def"/></r></p><par n="S__case"/></e>
+</pardef>
 <pardef n="år/s__n">
-  <e>       <p><l>a</l>         <r><s n="n"/><s n="nt"/><s n="pl"/><s n="def"/></r></p></e>
-  <e r="LR"><p><l>i</l>         <r><s n="n"/><s n="nt"/><s n="pl"/><s n="def"/></r></p></e>
+  <e>       <p><l>a</l>     <r><s n="n"/><s n="nt"/><s n="pl"/><s n="def"/></r></p></e>
+  <e r="LR"><p><l>i</l>     <r><s n="n"/><s n="nt"/><s n="pl"/><s n="def"/></r></p></e>
   <!-- eit/fleire års tid: -->
-  <e>       <p><l></l>          <r><s n="n"/><s n="nt"/><s n="pl"/><s n="ind"/></r></p><par n="S__case"/></e>
-  <e>       <p><l></l>          <r><s n="n"/><s n="nt"/><s n="sg"/><s n="ind"/></r></p><par n="S__case"/></e>
+  <e>       <p><l></l>      <r><s n="n"/><s n="nt"/><s n="pl"/><s n="ind"/></r></p><par n="S__case"/></e>
+  <e>       <p><l></l>      <r><s n="n"/><s n="nt"/><s n="sg"/><s n="ind"/></r></p><par n="S__case"/></e>
   <!-- årets festival: -->
-  <e>       <p><l>et</l>        <r><s n="n"/><s n="nt"/><s n="sg"/><s n="def"/></r></p><par n="S__case"/></e>
+  <e>       <p><l>et</l>    <r><s n="n"/><s n="nt"/><s n="sg"/><s n="def"/></r></p><par n="S__case"/></e>
+</pardef>
+<pardef n="vek/es__n">
+  <e>       <p><l>ene</l>   <r>e<s n="n"/><s n="f"/><s n="pl"/><s n="def"/></r></p></e>
+  <e r="LR"><p><l>one</l>   <r>e<s n="n"/><s n="f"/><s n="pl"/><s n="def"/></r></p></e>
+  <e>       <p><l>er</l>    <r>e<s n="n"/><s n="f"/><s n="pl"/><s n="ind"/></r></p><par n="S__case"/></e>
+  <e r="LR"><p><l>or</l>    <r>e<s n="n"/><s n="f"/><s n="pl"/><s n="ind"/></r></p><par n="S__case"/></e>
+  <e>       <p><l>a</l>     <r>e<s n="n"/><s n="f"/><s n="sg"/><s n="def"/></r></p><par n="S__case"/></e>
+  <e>       <p><l>e</l>     <r>e<s n="n"/><s n="f"/><s n="sg"/><s n="ind"/></r></p><par n="S__case"/></e>
 </pardef>
 
 <pardef n="lø/e__n">
@@ -11479,7 +11495,9 @@
 <e lm="pga">             <i>pga</i><par n="km__n"/></e>
 
 <e lm="heilagdag">       <i>heilagdag</i><par n="ep__n"/></e>
-<e lm="dag">             <i>dag</i><par n="ep__n"/></e>
+<e lm="veke">            <i>vek</i><par n="vek/es__n"/></e>
+<e lm="år">              <i>år</i><par n="år/s__n"/></e>
+<e lm="dag">             <i>dag</i><par n="dag/s__n"/></e>
 <e lm="middag">          <i>middag</i><par n="ep__n"/></e>
 <e lm="ettermiddag">     <i>ettermiddag</i><par n="ep__n"/></e>
 <e lm="måndag">          <i>måndag</i><par n="ep__n"/></e>
@@ -11931,7 +11949,6 @@
 <e lm="dør">             <i>dør</i><par n="vå__n"/></e>
 <e lm="snute">           <i>snut</i><par n="od/e__n"/></e>
 <e lm="nabo">            <i>nabo</i><par n="ep__n"/></e>
-<e lm="år">              <i>år</i><par n="år/s__n"/></e>
 <e lm="åre">             <i>år</i><par n="år/e__n"/></e>
 <e lm="røyr">            <i>røyr</i><par n="røyr__n"/></e>
 <e lm="vik">             <i>vik</i><par n="røyr__n"/></e>
@@ -12106,7 +12123,6 @@
 <e lm="samskipnad">      <i>samskipnad</i><par n="mon__n"/></e>
 <e lm="vinnar">          <i>vinnar</i><par n="ep__n"/></e>
 <e lm="vekt">            <i>vekt</i><par n="vå__n"/></e>
-<e lm="veke">            <i>vek</i><par n="lø/e__n"/></e>
 <e lm="tilhøve">         <i>tilhøv</i><par n="l/e__n"/></e>
 <e lm="tone">            <i>ton</i><par n="r/e__n"/></e>
 <e lm="statistikk">      <i>statistikk</i><par n="ep__n"/></e>
