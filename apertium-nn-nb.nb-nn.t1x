@@ -123,10 +123,8 @@
   <section-def-vars>
     <def-var n="gender"/>  
     <def-var n="adj_gender"/>  
-    <def-var n="mf_or_gender"/>  
     <def-var n="number"/>
     <def-var n="case"/>
-    <def-var n="ignore"/>
   </section-def-vars>
 
 
@@ -195,7 +193,6 @@
 	  <let><var n="gender"/><clip pos="1" side="tl" part="gen"/></let>
 	</otherwise>
       </choose>
-      <call-macro n="set_mf_or_gender"></call-macro>
     </def-macro>
     
     <def-macro n="set_gender2" npar="2">
@@ -239,66 +236,61 @@
               <let><var n="gender"/><clip pos="2" side="tl" part="gen"/></let>
             </otherwise>
           </choose>
-          <call-macro n="set_mf_or_gender">
-          </call-macro>
         </otherwise>
       </choose>
     </def-macro>
 
-    <def-macro n="set_gender3" npar="3">
-      <!-- arg.1: noun, arg.2: determiner, arg.3: adjective
-           call set_gender2, then set adj_gender.
-           adj_gender is either nt, f or mf. Most adjectives only
-           have nt or mf forms, some also have an f form. These we need
-           to mark in bidix (nb <mf> => <GD>, nb <f> => <f>). GD turns
-           into noun gender; however, we never use <m> so any <m> noun
-           turns into <mf> adj_gender.
+    <def-macro n="set_adj_gender" npar="1">
+      <!-- arg.1: adjective
+           
+           Assumes that set_number is called!
+
+           adj_gender is either nt, f or mf. Most adjectives only have
+           nt or mf forms, some also have an f form. These we need to
+           mark in bidix (nb <mf> => <GD>, nb <f> => <f>). <GD> turns
+           into noun gender (or <mf> as fallback); however, we never
+           use <m> so any <m> noun turns into <mf> adj_gender.
       -->      
-      <call-macro n="set_gender2"><with-param pos="1"/><with-param pos="2"/></call-macro>
       <choose>					       
         <when>
           <test>
             <and>
-              <equal><clip pos="3" side="tl" part="nbr"/><lit-tag v="sg"/></equal>
-              <equal><clip pos="3" side="tl" part="gen"/><lit-tag v="GD"/></equal>
+              <not><equal><var n="gender"/><lit v=""/></equal></not>
+              <equal><clip pos="1" side="tl" part="nbr"/><lit-tag v="sg"/></equal>
+              <equal><clip pos="1" side="tl" part="gen"/><lit-tag v="GD"/></equal>
             </and>
           </test>
           <let><var n="adj_gender"/><var n="gender"/></let>
         </when>
         <otherwise>
-          <let><var n="adj_gender"/><clip pos="3" side="tl" part="gen"/></let>
+          <let><var n="adj_gender"/><clip pos="1" side="tl" part="gen"/></let>
         </otherwise>
       </choose>
       <choose>					       
         <when>
-          <test>
+          <test><or>
             <equal><var n="adj_gender"/><lit-tag v="m"/></equal>
-          </test>
+            <equal><var n="adj_gender"/><lit-tag v="GD"/></equal>
+          </or></test>
           <let><var n="adj_gender"/><lit-tag v="mf"/></let>
         </when>
       </choose>
     </def-macro>
+    
+    <def-macro n="set_gender3" npar="3">
+      <!-- arg.1: noun, arg.2: determiner, arg.3: adjective 
 
-    <def-macro n="set_mf_or_gender" npar="0">
-      <!-- - if m or f or GD, use mf
-  	     (we might have GD if set_gender 'failed')
-           - o/w use what we're given. -->
-      <choose>
-	<when>
-	  <test>
-	      <or>
-		<equal><var n="gender"/><lit-tag v="m"/></equal>
-		<equal><var n="gender"/><lit-tag v="f"/></equal>
-		<equal><var n="gender"/><lit-tag v="GD"/></equal>
-	      </or>
-	  </test>
-	  <let><var n="mf_or_gender"/><lit-tag v="mf"/></let>
-        </when>
-	<otherwise>
-	  <let><var n="mf_or_gender"/><var n="gender"/></let>
-	</otherwise>
-      </choose>
+           call set_gender2, then set adj_gender.  adj_gender is
+           either nt, f or mf. Most adjectives only have nt or mf
+           forms, some also have an f form. These we need to mark in
+           bidix (nb <mf> => <GD>, nb <f> => <f>). <GD> turns into
+           noun gender (or <mf> as fallback); however, we never use
+           <m> so any <m> noun turns into <mf> adj_gender.
+      -->      
+      <call-macro n="set_gender2"><with-param pos="1"/><with-param pos="2"/></call-macro>
+      <call-macro n="set_adj_gender"><with-param pos="3"/></call-macro>
     </def-macro>
+
 
     <!-- Output macros: -->
     <def-macro n="out_ndef" npar="2">
@@ -1029,13 +1021,14 @@
         <pattern-item n="adj"/>
       </pattern>
       <action>
-        <call-macro n="set_gender1"><with-param pos="1"/></call-macro>
+        <call-macro n="set_number"><with-param pos="1"/></call-macro>
+        <call-macro n="set_adj_gender"><with-param pos="1"/></call-macro>
         <out>
           <lu>
             <clip pos="1" side="tl" part="lemh"/>
             <clip pos="1" side="tl" part="a_adj"/>
-            <var n="gender"/>
-            <clip pos="1" side="tl" part="nbr"/>
+            <var n="adj_gender"/>
+            <var n="number"/>
             <clip pos="1" side="tl" part="art"/>
 	    <clip pos="1" side="tl" part="lemq"/>
           </lu>
@@ -1053,8 +1046,9 @@
         <pattern-item n="adj"/>
         <pattern-item n="nom"/>
       </pattern>
-      <action>	
-        <call-macro n="set_gender2"><with-param pos="2"/><with-param pos="1"/></call-macro>
+      <action>
+        <call-macro n="set_gender1"><with-param pos="2"/></call-macro>
+        <call-macro n="set_adj_gender"><with-param pos="1"/></call-macro>
 	<choose><when>
 	  <test><or>
 	    <equal><clip pos="2" side="tl" part="a_nom"/><lit-tag v="np"/></equal>
@@ -1066,10 +1060,9 @@
           <lu>
             <clip pos="1" side="tl" part="lemh"/>
             <clip pos="1" side="tl" part="a_adj"/>
-            <var n="gender"/>
-            <clip pos="1" side="tl" part="nbr"/>
+            <var n="adj_gender"/>
+	    <var n="number"/>
             <clip pos="1" side="tl" part="art"/>
-	    <!-- <clip pos="1" side="tl" part="cas"/> -->
 	    <clip pos="1" side="tl" part="lemq"/>
           </lu>
           <b pos="1"/>
@@ -1090,8 +1083,13 @@
         <pattern-item n="det"/>
         <pattern-item n="adj"/>
       </pattern>
-      <action>	
-        <call-macro n="set_gender2"><with-param pos="2"/><with-param pos="1"/></call-macro>
+      <action>
+        <call-macro n="set_gender1"><with-param pos="1"/></call-macro>
+        <call-macro n="set_adj_gender"><with-param pos="2"/></call-macro>
+        <choose><when>
+          <test><equal><var n="gender"/><lit-tag v="GD"/></equal></test>
+          <let><var n="gender"/><lit-tag v="m"/></let>
+        </when></choose>
         <out>
           <lu>
             <clip pos="1" side="tl" part="lemh"/>
@@ -1105,8 +1103,8 @@
 	  <lu>
             <clip pos="2" side="tl" part="lemh"/>
             <clip pos="2" side="tl" part="a_adj"/>
-            <clip pos="2" side="tl" part="gen"/>
-            <clip pos="2" side="tl" part="nbr"/>
+            <var n="adj_gender"/>
+            <var n="number"/>
       	    <clip pos="2" side="tl" part="art"/>
 	    <clip pos="2" side="tl" part="lemq"/>
           </lu>
