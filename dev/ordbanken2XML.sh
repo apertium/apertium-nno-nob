@@ -11,6 +11,8 @@
 # ./ordbanken2XML.sh nn balderbrå						       #
 ########################################################################################
 
+# TODO: foo inf pres pass => foo inf pass \n foo pres pass
+
 # Darwin sed has no (normal) \t nor \n
 T="	" 
 N="\\
