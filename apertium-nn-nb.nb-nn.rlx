@@ -17908,12 +17908,13 @@ SELECT:5008 (vblex pret) IF
 #:2337
  SELECT:2337 (vblex pass) IF
 	(NOT 0 s-verb)
+	(NOT 0 imp) 
 	(NOT *1 overskrift)
 	(**-1C setn-gr BARRIER fv)
 	(**1C setn-gr BARRIER fv)
 ;
 #  "det sies"))
-
+# NOT 0 imp pga. «Les også:» -KBU
 
 
 
@@ -24966,6 +24967,14 @@ CONSTRAINTS
 	(0 infmerke)
 ;
 #  "kh jan 2004: Lite sannsynlig at å er subst om ingen av substantivreglene har virket"))
+
+#:3118k
+  "<Les>"   REMOVE:3118k (vblex pass) IF
+  	(0 imp)  
+	(-1 setn-gr)
+;
+#  «Les også:» lite sannsynleg at dette er passiv av «le»; sjølv om
+#  pres pass alltid er mogleg... -KBU
 
 
 # sec 4
