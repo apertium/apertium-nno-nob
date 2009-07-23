@@ -123,4 +123,6 @@ tLIST
 #
 # - REMOVE:3536 needs (NOT -1 fl-adj/fl-det) added, add
 #   REMOVE ("<hjem>") + (pr) IF (-1 det) (-2 prep);
+# 
+# - Replace n with "n or np" (except where we have "n appell")
 ############################################################################
