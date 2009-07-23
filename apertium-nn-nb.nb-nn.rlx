@@ -22145,7 +22145,6 @@ REMOVE:2135 (det) IF
 # group: 65
 
 
-
 #:2008
  REMOVE:2008 (n f sg) IF
 	(0 adj)
@@ -27167,6 +27166,17 @@ SELECT:4081 (adj) IF
 	 (NOT 0 %under%)
 	 (0 farlige-nøyt-subst)
 ;
+
+#:4043k
+ REMOVE:4043k (n nt sg ind) IF
+	(0 ub-ent-mask-subst)
+ 	(NOT 0 farlige-mask-subst)
+	(NOT 0 fv)
+ 	(NOT 0 adj)
+ 	(NOT -1 komma/konj)
+	(**-1C mask-det LINK NOT 0 nr2-det)
+;
+# «En vidunderlig vakker ting» Basert på 2553. -KBU
 
 
 #:4035
