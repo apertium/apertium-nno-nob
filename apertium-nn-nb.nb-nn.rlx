@@ -1184,7 +1184,6 @@ LIST prop-fem = (np f) ;
 LIST prop/hum-pron = np (prn p1 hum) (prn p2 hum) (prn p3 hum) (prn p1 m) (prn p2 m) (prn p3 m) (prn p1 f) (prn p2 f) (prn p3 f) (prn p1) (prn p2) (prn p1 pl) (prn p2 pl) (prn p3 pl) ;
 LIST prop-mask = (np m) ;
 LIST prop-nøyt = (n m nt) (np m nt) ;
-LIST prop/ub-eint-subst = np (n sg ind) (np sg ind) (n ubøy) (np ubøy) ;
 LIST prop/ub-ent-subst = np (n sg ind) (n ubøy) ;
 LIST prop/ub-ent-subst/%ganger%/%klokka% = np (n sg ind) (n ubøy) ("gang"  pl ind) ("klokke"  sg def) ;
 LIST proposisjonsverb = "tilføye"  "svare"  "spørre"  "skrive"  "si"  "rope"  "mumle"  "hyle"  "hviske"  "fortelle"  ;
@@ -15075,28 +15074,17 @@ SELECT:2963 (adj nt ind sg) IF
 # velger sbu i stedet for adv"))
 
 
-# KBU: doubled n/np rule
-#:2564k
- SELECT:2564k (np sg) IF
-	(**-1C prop-det-ent BARRIER ikke-adv-adj)
-;
+
 #:2564
- SELECT:2564 (n sg) IF
+ SELECT:2564 ent-subst IF
 	(**-1C prop-det-ent BARRIER ikke-adv-adj)
 ;
 #  "Det juridiske fakultet (ent)"))
 
 
-# KBU: doubled n/np rule
-#:2565k
- SELECT:2565k (np sg) IF
-	(NOT 0 fl)
-	(1C setn-gr/verb)
-	(*-1 konj LINK NOT 0 <adv> LINK NOT *1 ikke-adv-adj-det)
-	(*-1 konj LINK *-1 ikke-poss-det LINK 0 subst LINK NOT 0 ikke-subst LINK NOT 0 fl LINK NOT *1 setn-gr)
-;
+
 #:2565
- SELECT:2565 (n sg) IF
+ SELECT:2565 ent-subst IF
 	(NOT 0 fl)
 	(1C setn-gr/verb)
 	(*-1 konj LINK NOT 0 <adv> LINK NOT *1 ikke-adv-adj-det)
@@ -15105,59 +15093,35 @@ SELECT:2963 (adj nt ind sg) IF
 #  "på bokmål eller nynorsk (subst)"))
 
 
-# KBU: doubled n/np rule
-#:2563k
- SELECT:2563k (np pl ind) IF
-	(*-2 fl-det LINK 1 %slags% LINK NOT *1 ikke-adv-adj)
-;
+
 #:2563
- SELECT:2563 (n pl ind) IF
+ SELECT:2563 ub-fl-subst IF
 	(*-2 fl-det LINK 1 %slags% LINK NOT *1 ikke-adv-adj)
 ;
 #  "alle slags fine leker"))
 
 
-# KBU: doubled n/np rule
-#:2554k
- SELECT:2554k (np pl) IF
-	(-1 %av%)
-	(-2 %hundre/tusen/osv%)
-;
+
 #:2554
- SELECT:2554 (n pl) IF
+ SELECT:2554 fl-subst IF
 	(-1 %av%)
 	(-2 %hundre/tusen/osv%)
 ;
 #  "millioner av kroner"))
 
 
-# KBU: doubled n/np rule
-#:2555k
- SELECT:2555k (np pl) IF
-	(-1 %hundre/tusen/osv%)
-	(NOT -1 gen)
-;
+
 #:2555
- SELECT:2555 (n pl) IF
+ SELECT:2555 fl-subst IF
 	(-1 %hundre/tusen/osv%)
 	(NOT -1 gen)
 ;
 #  "hundre kroner"))
 
 
-# KBU: doubled n/np rule
-#:2556k
- SELECT:2556k (np pl) IF
-	(NOT 0 pres/pret)
-	(NOT 0 farlige-fl-subst)
-	(NOT -1 komma/konj)
-	(NOT -1 adv)
-	(**-1C setn-gr BARRIER pres/pret)
-	(**1C setn-gr BARRIER pres/pret)
-	(**-1C tall LINK NOT 0 %en/ei/et% LINK NOT *1 ikke-adv-adj-komma)
-;
+
 #:2556
- SELECT:2556 (n pl) IF
+ SELECT:2556 fl-subst IF
 	(NOT 0 pres/pret)
 	(NOT 0 farlige-fl-subst)
 	(NOT -1 komma/konj)
@@ -15170,17 +15134,9 @@ SELECT:2963 (adj nt ind sg) IF
 # ikke er andre verb i setningen"))
 
 
-# KBU: doubled n/np rule
-#:2557k
- SELECT:2557k (np pl) IF
-	(NOT 0 farlige-fl-subst)
-	(NOT -1 adv)
-	(NOT -1 komma/konj)
-	(**-1C tall LINK NOT 0 %en/ei/et% LINK NOT *1 ikke-adv-adj-komma)
-	(*1 pres/pret BARRIER setn-gr)
-;
+
 #:2557
- SELECT:2557 (n pl) IF
+ SELECT:2557 fl-subst IF
 	(NOT 0 farlige-fl-subst)
 	(NOT -1 adv)
 	(NOT -1 komma/konj)
@@ -15192,17 +15148,9 @@ SELECT:2963 (adj nt ind sg) IF
 # i setningen"))
 
 
-# KBU: doubled n/np rule
-#:2558k
- SELECT:2558k (np pl) IF
-	(NOT 0 farlige-fl-subst)
-	(NOT -1 adv)
-	(NOT -1 komma/konj)
-	(**-1C tall LINK NOT 0 %en/ei/et% LINK NOT *1 ikke-adv-adj-komma)
-	(*-1 pres/pret BARRIER setn-gr)
-;
+
 #:2558
- SELECT:2558 (n pl) IF
+ SELECT:2558 fl-subst IF
 	(NOT 0 farlige-fl-subst)
 	(NOT -1 adv)
 	(NOT -1 komma/konj)
@@ -15214,16 +15162,9 @@ SELECT:2963 (adj nt ind sg) IF
 # i setningen"))
 
 
-# KBU: doubled n/np rule
-#:2559k
- SELECT:2559k (np pl) IF
-	(NOT 0 ent)
-	(1C setn-gr/verb)
-	(*-1 konj LINK NOT 0 <adv> LINK NOT *1 ikke-adv-adj-det)
-	(*-1 konj LINK *-1 ikke-poss-det LINK 0 subst LINK NOT 0 ikke-subst LINK NOT 0 ent LINK NOT *1 setn-gr)
-;
+
 #:2559
- SELECT:2559 (n pl) IF
+ SELECT:2559 fl-subst IF
 	(NOT 0 ent)
 	(1C setn-gr/verb)
 	(*-1 konj LINK NOT 0 <adv> LINK NOT *1 ikke-adv-adj-det)
@@ -15232,19 +15173,9 @@ SELECT:2963 (adj nt ind sg) IF
 #  "om andakt og moro (subst)"))
 
 
-# KBU: doubled n/np rule
-#:2560k
- SELECT:2560k (np pl) IF
-	(NOT 0 adj-komp)
-	(NOT 0 farlige-fl-subst)
-	(-1C adj-fl)
-	(NOT -1 gen)
-	(NOT -1 ent)
-	(NOT -1 pres-part)
-	(NOT -1 %mange%)
-;
+
 #:2560
- SELECT:2560 (n pl) IF
+ SELECT:2560 fl-subst IF
 	(NOT 0 adj-komp)
 	(NOT 0 farlige-fl-subst)
 	(-1C adj-fl)
@@ -15261,19 +15192,9 @@ SELECT:2963 (adj nt ind sg) IF
 # kh 1.9.2003: Mange liker sjokolade"))
 
 
-# KBU: doubled n/np rule
-#:2561k
- SELECT:2561k (np pl) IF
-	(NOT 0 farlige-fl-subst)
-	(NOT -1 adv)
-	(NOT -1 komma/konj)
-	(NOT -1 gen)
-	(**-1C fl-det LINK NOT 0 tall LINK NOT *1 ikke-adv-adj-komma)
-	(**-1C fl-det LINK NOT -1 be-fl-subst)
-	(*1 setn-gr LINK **-1C fv LINK NOT 0 farlige-verb)
-;
+
 #:2561
- SELECT:2561 (n pl) IF
+ SELECT:2561 fl-subst IF
 	(NOT 0 farlige-fl-subst)
 	(NOT -1 adv)
 	(NOT -1 komma/konj)
@@ -15289,19 +15210,9 @@ SELECT:2963 (adj nt ind sg) IF
 # (forts) ofte svært gode anmeldelser"))
 
 
-# KBU: doubled n/np rule
-#:2562k
- SELECT:2562k (np pl) IF
-	(NOT 0 farlige-fl-subst)
-	(NOT -1 adv)
-	(NOT -1 komma/konj)
-	(NOT -1 gen)
-	(**-1C fl-det LINK NOT 0 tall LINK NOT *1 ikke-adv-adj-komma)
-	(**-1C fl-det LINK NOT -1 be-fl-subst)
-	(**-1C fv BARRIER setn-gr)
-;
+
 #:2562
- SELECT:2562 (n pl) IF
+ SELECT:2562 fl-subst IF
 	(NOT 0 farlige-fl-subst)
 	(NOT -1 adv)
 	(NOT -1 komma/konj)
@@ -15314,19 +15225,9 @@ SELECT:2963 (adj nt ind sg) IF
 # Ikke: armene mine vokser (skal være verb, ikke subst fl)"))
 
 
-# KBU: doubled n/np rule
-#:2549k
- SELECT:2549k (np m sg) IF
-	(0 adj)
-	(NOT 0 farlige-mask-subst)
-	(NOT 0 fv)
-	(NOT 1 subst-mask)
-	(NOT -1 komma/konj)
-	(*-1 nr2-det-u-fl BARRIER ikke-adv-adj-det)
-	(*-1 nr2-det-u-fl LINK -1C mask-det)
-;
+
 #:2549
- SELECT:2549 (n m sg) IF
+ SELECT:2549 ent-mask-subst IF
 	(0 adj)
 	(NOT 0 farlige-mask-subst)
 	(NOT 0 fv)
@@ -15339,17 +15240,9 @@ SELECT:2963 (adj nt ind sg) IF
 #      :group 38))
 
 
-# KBU: doubled n/np rule
-#:2550k
- SELECT:2550k (np m sg) IF
-	(0 adj)
-	(NOT 0 farlige-mask-subst)
-	(NOT 1 subst-mask)
-	(NOT -1 komma/konj)
-	(**-1C mask-det LINK NOT 0 nr2-det LINK NOT *1 ikke-adv-adj)
-;
+
 #:2550
- SELECT:2550 (n m sg) IF
+ SELECT:2550 ent-mask-subst IF
 	(0 adj)
 	(NOT 0 farlige-mask-subst)
 	(NOT 1 subst-mask)
@@ -15359,18 +15252,9 @@ SELECT:2963 (adj nt ind sg) IF
 # group: 38
 
 
-# KBU: doubled n/np rule
-#:2551k
- SELECT:2551k (np m sg) IF
-	(NOT 0 adj)
-	(NOT 0 farlige-mask-subst)
-	(NOT 0 fv)
-	(NOT -1 komma/konj)
-	(*-1 nr2-det-u-fl BARRIER ikke-adv-adj-det)
-	(*-1 nr2-det-u-fl LINK -1C mask-det)
-;
+
 #:2551
- SELECT:2551 (n m sg) IF
+ SELECT:2551 ent-mask-subst IF
 	(NOT 0 adj)
 	(NOT 0 farlige-mask-subst)
 	(NOT 0 fv)
@@ -15386,17 +15270,9 @@ SELECT:2963 (adj nt ind sg) IF
 #      :group 38))
 
 
-# KBU: doubled n/np rule
-#:2552k
- SELECT:2552k (np m sg) IF
-	(NOT 0 farlige-mask-subst)
-	(NOT 0 adj)
-	(NOT -1 komma/konj)
-	(**-1C mask-det LINK NOT 0 nr2-det LINK NOT *1 ikke-adv-adj)
-	(**-1C mask-det LINK *1 ub-ent-mask-adj)
-;
+
 #:2552
- SELECT:2552 (n m sg) IF
+ SELECT:2552 ent-mask-subst IF
 	(NOT 0 farlige-mask-subst)
 	(NOT 0 adj)
 	(NOT -1 komma/konj)
@@ -15407,17 +15283,9 @@ SELECT:2963 (adj nt ind sg) IF
 #      :group 38))
 
 
-# KBU: doubled n/np rule
-#:2553k
- SELECT:2553k (np m sg) IF
-	(NOT 0 farlige-mask-subst)
-	(NOT 0 fv)
-	(NOT 0 adj)
-	(NOT -1 komma/konj)
-	(**-1C mask-det LINK NOT 0 nr2-det LINK NOT *1 ikke-adv-adj)
-;
+
 #:2553
- SELECT:2553 (n m sg) IF
+ SELECT:2553 ent-mask-subst IF
 	(NOT 0 farlige-mask-subst)
 	(NOT 0 fv)
 	(NOT 0 adj)
@@ -15428,19 +15296,9 @@ SELECT:2963 (adj nt ind sg) IF
 #      :group 38))
 
 
-# KBU: doubled n/np rule
-#:2548k
- SELECT:2548k (np nt sg ind) IF
-	(0 ub-ent-nøyt-subst)
-	(NOT 0 inf)
-	(NOT 0 farlige-nøyt-subst)
-	(NOT 0 pres/pret)
-	(-1C ub-ent-nøyt-adj)
-	(NOT -1 adj-fl)
-	(NOT -2 nøyt-det)
-;
+
 #:2548
- SELECT:2548 (n nt sg ind) IF
+ SELECT:2548 ub-ent-nøyt-subst IF
 	(0 ub-ent-nøyt-subst)
 	(NOT 0 inf)
 	(NOT 0 farlige-nøyt-subst)
@@ -15453,18 +15311,9 @@ SELECT:2963 (adj nt ind sg) IF
 # NOT 0 inf: skal selvfølgelig komme (inf)"))
 
 
-# KBU: doubled n/np rule
-#:2543k
- SELECT:2543k (np nt sg) IF
-	(0 adj)
-	(NOT 0 farlige-nøyt-subst)
-	(NOT 1 subst-nøyt)
-	(NOT -1 komma/konj)
-	(*-1 nr2-det-u-fl BARRIER ikke-adv-adj)
-	(*-1 nr2-det-u-fl LINK -1C nøyt-det)
-;
+
 #:2543
- SELECT:2543 (n nt sg) IF
+ SELECT:2543 ent-nøyt-subst IF
 	(0 adj)
 	(NOT 0 farlige-nøyt-subst)
 	(NOT 1 subst-nøyt)
@@ -15475,18 +15324,9 @@ SELECT:2963 (adj nt ind sg) IF
 # group: 38
 
 
-# KBU: doubled n/np rule
-#:2544k
- SELECT:2544k (np nt sg) IF
-	(0 adj)
-	(NOT 0 farlige-nøyt-subst)
-	(1 subst-nøyt)
-	(1 fv)
-	(NOT -1 komma/konj)
-	(**-1C nøyt-det LINK NOT 0 nr2-det LINK NOT *1 ikke-adv-adj)
-;
+
 #:2544
- SELECT:2544 (n nt sg) IF
+ SELECT:2544 ent-nøyt-subst IF
 	(0 adj)
 	(NOT 0 farlige-nøyt-subst)
 	(1 subst-nøyt)
@@ -15499,17 +15339,9 @@ SELECT:2963 (adj nt ind sg) IF
 #      :group 38))
 
 
-# KBU: doubled n/np rule
-#:2545k
- SELECT:2545k (np nt sg) IF
-	(0 adj)
-	(NOT 0 farlige-nøyt-subst)
-	(NOT 1 subst-nøyt)
-	(NOT -1 komma/konj)
-	(**-1C nøyt-det LINK NOT 0 nr2-det LINK NOT *1 ikke-adv-adj)
-;
+
 #:2545
- SELECT:2545 (n nt sg) IF
+ SELECT:2545 ent-nøyt-subst IF
 	(0 adj)
 	(NOT 0 farlige-nøyt-subst)
 	(NOT 1 subst-nøyt)
@@ -15519,17 +15351,9 @@ SELECT:2963 (adj nt ind sg) IF
 # group: 38
 
 
-# KBU: doubled n/np rule
-#:2546k
- SELECT:2546k (np nt sg) IF
-	(NOT 0 adj)
-	(NOT 0 farlige-nøyt-subst)
-	(NOT -1 komma/konj)
-	(*-1 nr2-det-u-fl BARRIER ikke-adv-adj)
-	(*-1 nr2-det-u-fl LINK -1C nøyt-det)
-;
+
 #:2546
- SELECT:2546 (n nt sg) IF
+ SELECT:2546 ent-nøyt-subst IF
 	(NOT 0 adj)
 	(NOT 0 farlige-nøyt-subst)
 	(NOT -1 komma/konj)
@@ -15539,16 +15363,9 @@ SELECT:2963 (adj nt ind sg) IF
 # group: 38
 
 
-# KBU: doubled n/np rule
-#:2547k
- SELECT:2547k (np nt sg) IF
-	(NOT 0 adj)
-	(NOT 0 farlige-nøyt-subst)
-	(NOT -1 komma/konj)
-	(**-1C nøyt-det LINK NOT 0 nr2-det LINK NOT *1 ikke-adv-adj)
-;
+
 #:2547
- SELECT:2547 (n nt sg) IF
+ SELECT:2547 ent-nøyt-subst IF
 	(NOT 0 adj)
 	(NOT 0 farlige-nøyt-subst)
 	(NOT -1 komma/konj)
@@ -15557,31 +15374,18 @@ SELECT:2963 (adj nt ind sg) IF
 # group: 38
 
 
-# KBU: doubled n/np rule
-#:2542k
- SELECT:2542k (np f sg def) IF
-	(0 %klokke/kl%)
-	(1 klokkeslett)
-;
+
 #:2542
- SELECT:2542 (n f sg def) IF
+ SELECT:2542 be-ent-fem-subst IF
 	(0 %klokke/kl%)
 	(1 klokkeslett)
 ;
 #  "15.9.2003: Etter frokost klokka 17.30 dro vi."))
 
 
-# KBU: doubled n/np rule
-#:2537k
- SELECT:2537k (np f sg) IF
-	(0 adj)
-	(NOT 1 subst-fem)
-	(NOT -1 komma/konj)
-	(*-1 nr2-det-u-fl BARRIER ikke-adv-adj)
-	(*-1 nr2-det-u-fl LINK -1C fem-det)
-;
+
 #:2537
- SELECT:2537 (n f sg) IF
+ SELECT:2537 ent-fem-subst IF
 	(0 adj)
 	(NOT 1 subst-fem)
 	(NOT -1 komma/konj)
@@ -15591,16 +15395,9 @@ SELECT:2963 (adj nt ind sg) IF
 # group: 38
 
 
-# KBU: doubled n/np rule
-#:2538k
- SELECT:2538k (np f sg) IF
-	(0 adj)
-	(NOT 1 subst-fem)
-	(NOT -1 komma/konj)
-	(**-1C fem-det LINK NOT 0 nr2-det LINK NOT *1 ikke-adv-adj)
-;
+
 #:2538
- SELECT:2538 (n f sg) IF
+ SELECT:2538 ent-fem-subst IF
 	(0 adj)
 	(NOT 1 subst-fem)
 	(NOT -1 komma/konj)
@@ -15609,16 +15406,9 @@ SELECT:2963 (adj nt ind sg) IF
 # group: 38
 
 
-# KBU: doubled n/np rule
-#:2539k
- SELECT:2539k (np f sg) IF
-	(NOT 0 adj)
-	(NOT -1 komma/konj)
-	(*-1 nr2-det-u-fl BARRIER ikke-adv-adj)
-	(*-1 nr2-det-u-fl LINK -1C fem-det)
-;
+
 #:2539
- SELECT:2539 (n f sg) IF
+ SELECT:2539 ent-fem-subst IF
 	(NOT 0 adj)
 	(NOT -1 komma/konj)
 	(*-1 nr2-det-u-fl BARRIER ikke-adv-adj)
@@ -15627,16 +15417,9 @@ SELECT:2963 (adj nt ind sg) IF
 # group: 38
 
 
-# KBU: doubled n/np rule
-#:2540k
- SELECT:2540k (np f sg) IF
-	(NOT 0 adj)
-	(NOT -1 komma/konj)
-	(**-1C fem-det LINK NOT 0 nr2-det LINK NOT *1 ikke-adv-adj)
-	(**-1C fem-det LINK *1 ub-ent-fem-adj)
-;
+
 #:2540
- SELECT:2540 (n f sg) IF
+ SELECT:2540 ent-fem-subst IF
 	(NOT 0 adj)
 	(NOT -1 komma/konj)
 	(**-1C fem-det LINK NOT 0 nr2-det LINK NOT *1 ikke-adv-adj)
@@ -15645,15 +15428,9 @@ SELECT:2963 (adj nt ind sg) IF
 # group: 38
 
 
-# KBU: doubled n/np rule
-#:2541k
- SELECT:2541k (np f sg) IF
-	(NOT 0 adj)
-	(NOT -1 komma/konj)
-	(**-1C fem-det LINK NOT 0 nr2-det LINK NOT *1 ikke-adv-adj)
-;
+
 #:2541
- SELECT:2541 (n f sg) IF
+ SELECT:2541 ent-fem-subst IF
 	(NOT 0 adj)
 	(NOT -1 komma/konj)
 	(**-1C fem-det LINK NOT 0 nr2-det LINK NOT *1 ikke-adv-adj)
@@ -15740,14 +15517,7 @@ SELECT:2963 (adj nt ind sg) IF
 #  "Høyre (subst prop) er partiet som ..."))
 
 
-# KBU: doubled n/np rule
-#:2529k
- SELECT:2529k (np <dato>) IF
-	(-1C subst)
-	(NOT 1 %tiden%)
-	(NOT 1 nom)
-	(NOT -1 %klokke/kl%)
-;
+
 #:2529
  SELECT:2529 (n <dato>) IF
 	(-1C subst)
@@ -15758,11 +15528,7 @@ SELECT:2963 (adj nt ind sg) IF
 #  "15.9.2003: Etter et innlegg 23/12 "))
 
 
-# KBU: doubled n/np rule
-#:2526k
- SELECT:2526k (np <klokke>) IF
-	(-1 %klokke/kl%)
-;
+
 #:2526
  SELECT:2526 (n <klokke>) IF
 	(-1 %klokke/kl%)
@@ -15770,11 +15536,7 @@ SELECT:2963 (adj nt ind sg) IF
 #  "12.9.2003: Han kom kl./klokka/klokken 9.30."))
 
 
-# KBU: doubled n/np rule
-#:2527k
- SELECT:2527k (np <klokke>) IF
-	(1 %tiden%)
-;
+
 #:2527
  SELECT:2527 (n <klokke>) IF
 	(1 %tiden%)
@@ -15782,14 +15544,7 @@ SELECT:2963 (adj nt ind sg) IF
 #  "15.9.2003: Han kom i 14.30 tida."))
 
 
-# KBU: doubled n/np rule
-#:2528k
- SELECT:2528k (np <klokke>) IF
-	(-1C subst)
-	(NOT 1 nom)
-	(NOT 1 %tiden%)
-	(NOT -1 %klokke/kl%)
-;
+
 #:2528
  SELECT:2528 (n <klokke>) IF
 	(-1C subst)
@@ -15804,16 +15559,9 @@ SELECT:2963 (adj nt ind sg) IF
 
 
 
-# KBU: doubled n/np rule
-#:2492k
- SELECT:2492k (np) IF
-	(1 %og%)
-	(-1 komma)
-	(-2 subst)
-	(*2 %lignende/liknende%)
-;
+
 #:2492
- SELECT:2492 (n) IF
+ SELECT:2492 subst IF
 	(1 %og%)
 	(-1 komma)
 	(-2 subst)
@@ -15822,17 +15570,9 @@ SELECT:2963 (adj nt ind sg) IF
 #  "kh jan 2004: avskjær, slo og liknende"))
 
 
-# KBU: doubled n/np rule
-#:2493k
- SELECT:2493k (np) IF
-	(NOT 0 farlige-adj-subst)
-	(NOT 0 ikke-adj-subst)
-	(1 komma/konj)
-	(-1C prep)
-	(NOT 2 subst/adj)
-;
+
 #:2493
- SELECT:2493 (n) IF
+ SELECT:2493 subst IF
 	(NOT 0 farlige-adj-subst)
 	(NOT 0 ikke-adj-subst)
 	(1 komma/konj)
@@ -15843,16 +15583,9 @@ SELECT:2963 (adj nt ind sg) IF
 # komma ikke del av np"))
 
 
-# KBU: doubled n/np rule
-#:2494k
- SELECT:2494k (np) IF
-	(NOT 0 farlige-mask-subst)
-	(NOT 0 farlige-nøyt-subst)
-	(-1C adj)
-	(-2C prep)
-;
+
 #:2494
- SELECT:2494 (n) IF
+ SELECT:2494 subst IF
 	(NOT 0 farlige-mask-subst)
 	(NOT 0 farlige-nøyt-subst)
 	(-1C adj)
@@ -15861,15 +15594,9 @@ SELECT:2963 (adj nt ind sg) IF
 #  "i mange år/på mange dager"))
 
 
-# KBU: doubled n/np rule
-#:2495k
- SELECT:2495k (np) IF
-	(1 konj)
-	(-1C subst-gen)
-	(NOT 2 adj)
-;
+
 #:2495
- SELECT:2495 (n) IF
+ SELECT:2495 subst IF
 	(1 konj)
 	(-1C subst-gen)
 	(NOT 2 adj)
@@ -15877,35 +15604,18 @@ SELECT:2963 (adj nt ind sg) IF
 #  "fra naturens side (subst) og gjennom "))
 
 
-# KBU: doubled n/np rule
-#:2496k
- SELECT:2496k (np) IF
-	(-1C subst-gen)
-	(NOT 1 adj-subst-konj)
-;
+
 #:2496
- SELECT:2496 (n) IF
+ SELECT:2496 subst IF
 	(-1C subst-gen)
 	(NOT 1 adj-subst-konj)
 ;
 #  "fra naturens side (subst)"))
 
 
-# KBU: doubled n/np rule
-#:2497k
- SELECT:2497k (np) IF
-	(NOT 0 iv)
-	(1 komma/konj)
-	(-1 konj)
-	(NOT -1 clb)
-	(NOT -1 <adv>)
-	(-2C subst)
-	(NOT 2 adj/adv)
-	(NOT -2 gen)
-	(*-3 ikke-adv-adj-det LINK NOT 0 prep)
-;
+
 #:2497
- SELECT:2497 (n) IF
+ SELECT:2497 subst IF
 	(NOT 0 iv)
 	(1 komma/konj)
 	(-1 konj)
@@ -15919,21 +15629,9 @@ SELECT:2963 (adj nt ind sg) IF
 #  "koordinering av substantiv"))
 
 
-# KBU: doubled n/np rule
-#:2498k
- SELECT:2498k (np) IF
-	(NOT 0 iv)
-	(1 komma/konj)
-	(-1 konj)
-	(NOT -1 clb)
-	(NOT -1 <adv>)
-	(-2C subst)
-	(NOT 2 adj/adv)
-	(NOT -2 gen)
-	(NOT *-3 ikke-adv-adj-det)
-;
+
 #:2498
- SELECT:2498 (n) IF
+ SELECT:2498 subst IF
 	(NOT 0 iv)
 	(1 komma/konj)
 	(-1 konj)
@@ -15945,22 +15643,9 @@ SELECT:2963 (adj nt ind sg) IF
 	(NOT *-3 ikke-adv-adj-det)
 ;
 
-# KBU: doubled n/np rule
-#:2499k
- SELECT:2499k (np) IF
-	(NOT 0 iv)
-	(-1 konj)
-	(NOT 1 subst/adj)
-	(NOT 1 komma/konj)
-	(NOT 1 strek/parentes)
-	(NOT -1 clb)
-	(NOT -1 <adv>)
-	(-2C subst)
-	(NOT -2 gen)
-	(*-3 ikke-adv-adj-det LINK NOT 0 prep)
-;
+
 #:2499
- SELECT:2499 (n) IF
+ SELECT:2499 subst IF
 	(NOT 0 iv)
 	(-1 konj)
 	(NOT 1 subst/adj)
@@ -15975,22 +15660,9 @@ SELECT:2963 (adj nt ind sg) IF
 #  "NOT LR0 PREP: hun var sår i hendene og doven (ikke subst) i armene"))
 
 
-# KBU: doubled n/np rule
-#:2500k
- SELECT:2500k (np) IF
-	(NOT 0 iv)
-	(-1 konj)
-	(NOT 1 subst/adj)
-	(NOT 1 komma/konj)
-	(NOT 1 strek/parentes)
-	(NOT -1 clb)
-	(NOT -1 <adv>)
-	(-2C subst)
-	(NOT -2 gen)
-	(NOT *-3 ikke-adv-adj-det)
-;
+
 #:2500
- SELECT:2500 (n) IF
+ SELECT:2500 subst IF
 	(NOT 0 iv)
 	(-1 konj)
 	(NOT 1 subst/adj)
@@ -16003,34 +15675,18 @@ SELECT:2963 (adj nt ind sg) IF
 	(NOT *-3 ikke-adv-adj-det)
 ;
 
-# KBU: doubled n/np rule
-#:2501k
- SELECT:2501k (np) IF
-	(1 konj)
-	(NOT 1 clb)
-	(NOT 1 <adv>)
-	(2C subst)
-	(NOT 2 gen)
-;
+
 #:2501
- SELECT:2501 (n) IF
+ SELECT:2501 subst IF
 	(1 konj)
 	(NOT 1 clb)
 	(NOT 1 <adv>)
 	(2C subst)
 	(NOT 2 gen)
 ;
-# KBU: doubled n/np rule
-#:2502k
- SELECT:2502k (np) IF
-	(0 samset)
-	(0 adj)
-	(NOT 0 -ende)
-	(NOT 0 pres/pret)
-	(NOT 1 subst)
-;
+
 #:2502
- SELECT:2502 (n) IF
+ SELECT:2502 subst IF
 	(0 samset)
 	(0 adj)
 	(NOT 0 -ende)
@@ -16048,17 +15704,9 @@ SELECT:2963 (adj nt ind sg) IF
 	(0 -ende)
 ;
 #  "så å si ikkeeksisterende"))
-# KBU: doubled n/np rule
-#:4026k
- SELECT:4026k (np gen) IF
-	(0 samset)
-	(0 adj)
-	(NOT 0 -ende)
-	(NOT 0 pres/pret)
-	(1 subst)
-;	
+	
 #:4026
- SELECT:4026 (n gen) IF
+ SELECT:4026 gen-subst IF
 	(0 samset)
 	(0 adj)
 	(NOT 0 -ende)
@@ -16067,16 +15715,9 @@ SELECT:2963 (adj nt ind sg) IF
 ;
 #  "ikke livsmaterial!"))
 
-# KBU: doubled n/np rule
-#:2503k
- SELECT:2503k (np) IF
-	(0 samset)
-	(0 pres/pret)
-	(NOT 0 adj)
-	(NOT -1 %som/enn%)
-;
+
 #:2503
- SELECT:2503 (n) IF
+ SELECT:2503 subst IF
 	(0 samset)
 	(0 pres/pret)
 	(NOT 0 adj)
@@ -16085,14 +15726,9 @@ SELECT:2963 (adj nt ind sg) IF
 #  "massepreget" ))
 
 
-# KBU: doubled n/np rule
-#:2504k
- SELECT:2504k (np) IF
-	(-1 %noen/noe%)
-	(-2C prep)
-;
+
 #:2504
- SELECT:2504 (n) IF
+ SELECT:2504 subst IF
 	(-1 %noen/noe%)
 	(-2C prep)
 ;
@@ -16100,15 +15736,9 @@ SELECT:2963 (adj nt ind sg) IF
 #      :group 39))
 
 
-# KBU: doubled n/np rule
-#:2505k
- SELECT:2505k (np) IF
-	(0 språk)
-	(-1 %i/på%)
-	(*1 setn-gr/verb LINK *-1 subst/adj LINK 0 språk LINK NOT *-1 subst)
-;
+
 #:2505
- SELECT:2505 (n) IF
+ SELECT:2505 subst IF
 	(0 språk)
 	(-1 %i/på%)
 	(*1 setn-gr/verb LINK *-1 subst/adj LINK 0 språk LINK NOT *-1 subst)
@@ -16117,16 +15747,9 @@ SELECT:2963 (adj nt ind sg) IF
 #      :group 40))
 
 
-# KBU: doubled n/np rule
-#:2506k
- SELECT:2506k (np) IF
-	(0 språk)
-	(-1 %i/på%)
-	(NOT 1 subst/adj)
-	(NOT 1 komma/konj)
-;
+
 #:2506
- SELECT:2506 (n) IF
+ SELECT:2506 subst IF
 	(0 språk)
 	(-1 %i/på%)
 	(NOT 1 subst/adj)
@@ -16136,16 +15759,9 @@ SELECT:2963 (adj nt ind sg) IF
 #      :group 40))
 
 
-# KBU: doubled n/np rule
-#:2507k
- SELECT:2507k (np) IF
-	(0 språk)
-	(1 komma/konj)
-	(NOT 2 adj)
-	(**-1C setn-gr BARRIER kop)
-;
+
 #:2507
- SELECT:2507 (n) IF
+ SELECT:2507 subst IF
 	(0 språk)
 	(1 komma/konj)
 	(NOT 2 adj)
@@ -16155,16 +15771,9 @@ SELECT:2963 (adj nt ind sg) IF
 #      :group 40))
 
 
-# KBU: doubled n/np rule
-#:2508k
- SELECT:2508k (np) IF
-	(0 språk)
-	(NOT 1 subst/adj)
-	(NOT 1 komma/konj)
-	(**-1C setn-gr BARRIER kop)
-;
+
 #:2508
- SELECT:2508 (n) IF
+ SELECT:2508 subst IF
 	(0 språk)
 	(NOT 1 subst/adj)
 	(NOT 1 komma/konj)
@@ -16175,17 +15784,9 @@ SELECT:2963 (adj nt ind sg) IF
 #      :group 40))
 
 
-# KBU: doubled n/np rule
-#:2509k
- SELECT:2509k (np) IF
-	(NOT 0 ikke-subst-verb)
-	(1 %og%)
-	(-1 %både%)
-	(2 subst)
-	(3C setn-gr)
-;
+
 #:2509
- SELECT:2509 (n) IF
+ SELECT:2509 subst IF
 	(NOT 0 ikke-subst-verb)
 	(1 %og%)
 	(-1 %både%)
@@ -16195,17 +15796,9 @@ SELECT:2963 (adj nt ind sg) IF
 #  "9.3.2001: Slik er der for både lærer og elev. "))
 
 
-# KBU: doubled n/np rule
-#:2510k
- SELECT:2510k (np) IF
-	(NOT 0 ikke-subst-verb)
-	(1 %og%)
-	(-1 %både%)
-	(2C adj)
-	(3C setn-gr)
-;
+
 #:2510
- SELECT:2510 (n) IF
+ SELECT:2510 subst IF
 	(NOT 0 ikke-subst-verb)
 	(1 %og%)
 	(-1 %både%)
@@ -16215,19 +15808,9 @@ SELECT:2963 (adj nt ind sg) IF
 #  "9.3.2001: Slik er det for både lærer og ansatte."))
 
 
-# KBU: doubled n/np rule
-#:2511k
- SELECT:2511k (np) IF
-	(NOT 0 adj)
-	(-1 adj-be)
-	(NOT -1 adj-sup)
-	(NOT -1 ikke-adj)
-	(NOT -1 adj-ub)
-	(NOT -2 det)
-	(**-1C setn-gr BARRIER kop)
-;
+
 #:2511
- SELECT:2511 (n) IF
+ SELECT:2511 subst IF
 	(NOT 0 adj)
 	(-1 adj-be)
 	(NOT -1 adj-sup)
@@ -16245,16 +15828,9 @@ SELECT:2963 (adj nt ind sg) IF
 # 9.3.2001: not -1 adj-sup (De nest beste tjener godt)"))
 
 
-# KBU: doubled n/np rule
-#:2512k
- SELECT:2512k (np) IF
-	(0 pres)
-	(-1 adj)
-	(**-1C prep BARRIER ikke-adv-adj)
-	(**1C fv CBARRIER setn-gr)
-;
+
 #:2512
- SELECT:2512 (n) IF
+ SELECT:2512 subst IF
 	(0 pres)
 	(-1 adj)
 	(**-1C prep BARRIER ikke-adv-adj)
@@ -16264,16 +15840,9 @@ SELECT:2963 (adj nt ind sg) IF
 # 9.3.2001: sjekker at det er funnet verb tidligere i setningen"))
 
 
-# KBU: doubled n/np rule
-#:2513k
- SELECT:2513k (np) IF
-	(0 pres)
-	(-1 adj)
-	(**-1C prep BARRIER ikke-adv-adj)
-	(**-1C fv CBARRIER setn-gr)
-;
+
 #:2513
- SELECT:2513 (n) IF
+ SELECT:2513 subst IF
 	(0 pres)
 	(-1 adj)
 	(**-1C prep BARRIER ikke-adv-adj)
@@ -16282,15 +15851,9 @@ SELECT:2963 (adj nt ind sg) IF
 #  "9.3.2001: Ny regel som sjekker om det er funnet verb tidligere i setningen."))
 
 
-# KBU: doubled n/np rule
-#:2514k
- SELECT:2514k (np) IF
-	(-1 %hele%)
-	(NOT 1 subst/adj)
-	(NOT -2 %det%)
-;
+
 #:2514
- SELECT:2514 (n) IF
+ SELECT:2514 subst IF
 	(-1 %hele%)
 	(NOT 1 subst/adj)
 	(NOT -2 %det%)
@@ -16299,16 +15862,9 @@ SELECT:2963 (adj nt ind sg) IF
 # 29.5.2001: not -2 %det%: det hele ender med at ..."))
 
 
-# KBU: doubled n/np rule
-#:2515k
- SELECT:2515k (np) IF
-	(NOT 0 pres/pret)
-	(-1 %hele%)
-	(NOT 1 subst/adj)
-	(-2 %det%)
-;
+
 #:2515
- SELECT:2515 (n) IF
+ SELECT:2515 subst IF
 	(NOT 0 pres/pret)
 	(-1 %hele%)
 	(NOT 1 subst/adj)
@@ -16317,18 +15873,9 @@ SELECT:2963 (adj nt ind sg) IF
 #  "29.5.2001: Det hele minuttet, men ikke: det hele ender med at .."))
 
 
-# KBU: doubled n/np rule
-#:2516k
- SELECT:2516k (np) IF
-	(NOT 0 ikke-subst-verb)
-	(1 %og%)
-	(-1 %både%)
-	(2C adj)
-	(3 subst)
-	(4C setn-gr)
-;
+
 #:2516
- SELECT:2516 (n) IF
+ SELECT:2516 subst IF
 	(NOT 0 ikke-subst-verb)
 	(1 %og%)
 	(-1 %både%)
@@ -16339,19 +15886,9 @@ SELECT:2963 (adj nt ind sg) IF
 #  "31.5.2001: Slik er det for både lærer og flinke elever."))
 
 
-# KBU: doubled n/np rule
-#:2517k
- SELECT:2517k (np) IF
-	(NOT 0 ikke-subst-verb)
-	(1 %og%)
-	(-1 %både%)
-	(2C det)
-	(3C adj)
-	(4 subst)
-	(5C setn-gr)
-;
+
 #:2517
- SELECT:2517 (n) IF
+ SELECT:2517 subst IF
 	(NOT 0 ikke-subst-verb)
 	(1 %og%)
 	(-1 %både%)
@@ -16363,18 +15900,9 @@ SELECT:2963 (adj nt ind sg) IF
 #  "31.5.2001: Slik er det for både lærer og de flinke elevene."))
 
 
-# KBU: doubled n/np rule
-#:2518k
- SELECT:2518k (np) IF
-	(NOT 0 ikke-subst-verb)
-	(1 %og%)
-	(-1 %både%)
-	(2C det)
-	(4C adj)
-	(5C setn-gr)
-;
+
 #:2518
- SELECT:2518 (n) IF
+ SELECT:2518 subst IF
 	(NOT 0 ikke-subst-verb)
 	(1 %og%)
 	(-1 %både%)
@@ -16385,18 +15913,9 @@ SELECT:2963 (adj nt ind sg) IF
 #  "31.5.2001: Slik er det for både lærer og de ansatte."))
 
 
-# KBU: doubled n/np rule
-#:2519k
- SELECT:2519k (np) IF
-	(NOT 0 ikke-subst-verb)
-	(1 %og%)
-	(-1 %både%)
-	(2C adj)
-	(*1 fv BARRIER setn-gr)
-	(*1 ikke-adv-adj-subst-pron-konj-det2-prep CBARRIER setn-gr)
-;
+
 #:2519
- SELECT:2519 (n) IF
+ SELECT:2519 subst IF
 	(NOT 0 ikke-subst-verb)
 	(1 %og%)
 	(-1 %både%)
@@ -16407,20 +15926,9 @@ SELECT:2963 (adj nt ind sg) IF
 #  "9.3.2001: Både lærer og ansatte ved denne skolen ønsker dette."))
 
 
-# KBU: doubled n/np rule
-#:2520k
- SELECT:2520k (np) IF
-	(NOT 0 ikke-subst-verb)
-	(1 %og%)
-	(-1 %både%)
-	(2C det)
-	(3 adj)
-	(4 subst)
-	(*1 fv BARRIER setn-gr)
-	(*1 ikke-adv-adj-subst-pron-konj-det2-prep CBARRIER setn-gr)
-;
+
 #:2520
- SELECT:2520 (n) IF
+ SELECT:2520 subst IF
 	(NOT 0 ikke-subst-verb)
 	(1 %og%)
 	(-1 %både%)
@@ -16433,19 +15941,9 @@ SELECT:2963 (adj nt ind sg) IF
 #  "31.5.2001: Både lærer og de flinke elevene ved denne skolen ønsker dette."))
 
 
-# KBU: doubled n/np rule
-#:2521k
- SELECT:2521k (np) IF
-	(NOT 0 ikke-subst-verb)
-	(1 %og%)
-	(-1 %både%)
-	(2C det)
-	(3C adj)
-	(*1 fv BARRIER setn-gr)
-	(*1 ikke-adv-adj-subst-pron-konj-det2-prep CBARRIER setn-gr)
-;
+
 #:2521
- SELECT:2521 (n) IF
+ SELECT:2521 subst IF
 	(NOT 0 ikke-subst-verb)
 	(1 %og%)
 	(-1 %både%)
@@ -16457,18 +15955,9 @@ SELECT:2963 (adj nt ind sg) IF
 #  "31.5.2001: Både lærer og de ansatte ved denne skolen ønsker dette."))
 
 
-# KBU: doubled n/np rule
-#:2522k
- SELECT:2522k (np) IF
-	(NOT 0 ikke-subst-verb)
-	(1 %og%)
-	(-1 %både%)
-	(2 subst)
-	(*1 fv BARRIER setn-gr)
-	(*1 ikke-adv-adj-subst-pron-konj-det2-prep CBARRIER setn-gr)
-;
+
 #:2522
- SELECT:2522 (n) IF
+ SELECT:2522 subst IF
 	(NOT 0 ikke-subst-verb)
 	(1 %og%)
 	(-1 %både%)
@@ -16479,16 +15968,9 @@ SELECT:2963 (adj nt ind sg) IF
 #  "31.5.2001: Både lærer og flinke elever ved denne skolen ønsker dette."))
 
 
-# KBU: doubled n/np rule
-#:2523k
- SELECT:2523k (np) IF
-	(1 subst-prop)
-	(-1 %både%)
-	(2 %og%)
-	(3C nom)
-;
+
 #:2523
- SELECT:2523 (n) IF
+ SELECT:2523 subst IF
 	(1 subst-prop)
 	(-1 %både%)
 	(2 %og%)
@@ -16497,17 +15979,9 @@ SELECT:2963 (adj nt ind sg) IF
 #  "1.6.2001: Både lærer Tone og de andre elevene trener ivrig."))
 
 
-# KBU: doubled n/np rule
-#:2524k
- SELECT:2524k (np) IF
-	(1 subst-prop)
-	(-1 %både%)
-	(2 subst-prop)
-	(3 %og%)
-	(4C nom)
-;
+
 #:2524
- SELECT:2524 (n) IF
+ SELECT:2524 subst IF
 	(1 subst-prop)
 	(-1 %både%)
 	(2 subst-prop)
@@ -22383,21 +21857,9 @@ REMOVE:2135 (det) IF
 	(0 pres)
 ;
 
-# KBU: doubled n/np rule
-#:2031k
- REMOVE:2031k (np sg ind) IF
-	(0 ub-fl-subst)
-	(-1 adj-fl)
-	(NOT 1 subst)
-	(NOT -1 adj-ent)
-	(NOT -1 det-ent)
-	(NOT -1 gen)
-	(NOT -1 sup)
-	(NOT -1 fv)
-	(NOT -1 subst-prop)
-;
+
 #:2031
- REMOVE:2031 (n sg ind) IF
+ REMOVE:2031 ub-ent-subst IF
 	(0 ub-fl-subst)
 	(-1 adj-fl)
 	(NOT 1 subst)
@@ -22411,28 +21873,9 @@ REMOVE:2135 (det) IF
 #  "visse fordeler (ikke en fordeler!)"))
 
 
-# KBU: doubled n/np rule
-#:2032k
- REMOVE:2032k (np sg ind) IF
-	(NOT 0 adverbialsubst)
-	(NOT 0 tall-subst)
-	(NOT 0 målsubst)
-	(NOT 0 gen)
-	(NOT 0 tittel)
-	(NOT 1 komma/konj)
-	(NOT 1 anf)
-	(NOT -1 det/adj/gen/prop)
-	(NOT -1 %hvilken%)
-	(NOT -1 prep)
-	(NOT -1 komma/konj)
-	(*-1 setn-gr BARRIER kop)
-	(*1 ikke-adv-adj-det BARRIER setn-gr)
-	(*1 ikke-adv-adj-det BARRIER fork/ukjent-ord)
-	(*1 ikke-adv-adj-det BARRIER parentes)
-	(*1 ikke-adv-adj-det LINK 0 subst LINK NOT 0 ikke-subst LINK NOT 0 adverbialsubst LINK NOT 0 subst-prop LINK NOT 0 fork)
-;
+
 #:2032
- REMOVE:2032 (n sg ind) IF
+ REMOVE:2032 ub-ent-subst IF
 	(NOT 0 adverbialsubst)
 	(NOT 0 tall-subst)
 	(NOT 0 målsubst)
@@ -22453,16 +21896,9 @@ REMOVE:2135 (det) IF
 #  "han kjøpte nemlig feil (ikke subst) bok da"))
 
 
-# KBU: doubled n/np rule
-#:2033k
- REMOVE:2033k (np sg ind) IF
-	(0 be-subst)
-	(NOT 0 fork)
-	(-1C prep)
-	(*1 ikke-poss-det LINK NOT 0 konj)
-;
+
 #:2033
- REMOVE:2033 (n sg ind) IF
+ REMOVE:2033 ub-ent-subst IF
 	(0 be-subst)
 	(NOT 0 fork)
 	(-1C prep)
@@ -22471,60 +21907,35 @@ REMOVE:2135 (det) IF
 #  "8.3"))
 
 
-# KBU: doubled n/np rule
-#:2034k
- REMOVE:2034k (np sg ind) IF
-	(0 be-subst)
-	(NOT 0 fork)
-	(-1C prep)
-	(NOT *1 ikke-poss-det)
-;
+
 #:2034
- REMOVE:2034 (n sg ind) IF
+ REMOVE:2034 ub-ent-subst IF
 	(0 be-subst)
 	(NOT 0 fork)
 	(-1C prep)
 	(NOT *1 ikke-poss-det)
 ;
 
-# KBU: doubled n/np rule
-#:2028k
- REMOVE:2028k (np sg) IF
-	(0 fl-subst)
-	(*-1 %flere% BARRIER ikke-adv-adj)
-;
+
 #:2028
- REMOVE:2028 (n sg) IF
+ REMOVE:2028 ent-subst IF
 	(0 fl-subst)
 	(*-1 %flere% BARRIER ikke-adv-adj)
 ;
 #  "flere bankbygg (subst fl)"))
 
 
-# KBU: doubled n/np rule
-#:2029k
- REMOVE:2029k (np sg) IF
-	(NOT -1 komma/konj)
-	(NOT -1 gen)
-	(*-1 det LINK NOT 0 ent LINK NOT 0 ikke-det LINK NOT 0 %samme/neste/ene/eneste/selve/forrige% LINK NOT *1 ikke-adv-adj)
-;
+
 #:2029
- REMOVE:2029 (n sg) IF
+ REMOVE:2029 ent-subst IF
 	(NOT -1 komma/konj)
 	(NOT -1 gen)
 	(*-1 det LINK NOT 0 ent LINK NOT 0 ikke-det LINK NOT 0 %samme/neste/ene/eneste/selve/forrige% LINK NOT *1 ikke-adv-adj)
 ;
 
-# KBU: doubled n/np rule
-#:2030k
- REMOVE:2030k (np sg) IF
-	(0 farger)
-	(1 komma/konj)
-	(*3 fl-subst BARRIER ikke-adv-adj)
-	(NOT 2 ikke-adv-adj)
-;
+
 #:2030
- REMOVE:2030 (n sg) IF
+ REMOVE:2030 ent-subst IF
 	(0 farger)
 	(1 komma/konj)
 	(*3 fl-subst BARRIER ikke-adv-adj)
@@ -22534,28 +21945,9 @@ REMOVE:2135 (det) IF
 #      :group 64))
 
 
-# KBU: doubled n/np rule
-#:2025k
- REMOVE:2025k (np ind) IF
-	(NOT 0 adverbialsubst)
-	(NOT 0 tall-subst)
-	(NOT 0 målsubst)
-	(NOT 0 gen)
-	(NOT 0 tittel)
-	(NOT 1 komma/konj)
-	(NOT 1 anf)
-	(NOT -1 det/adj/gen/prop)
-	(NOT -1 %hvilken%)
-	(NOT -1 prep)
-	(NOT -1 komma/konj)
-	(*-1 setn-gr BARRIER kop)
-	(*1 ikke-adv-adj-det BARRIER setn-gr)
-	(*1 ikke-adv-adj-det BARRIER fork/ukjent-ord)
-	(*1 ikke-adv-adj-det BARRIER parentes)
-	(*1 ikke-adv-adj-det LINK 0 subst LINK NOT 0 ikke-subst LINK NOT 0 adverbialsubst LINK NOT 0 fork LINK NOT 0 subst-prop LINK 1 setn-gr)
-;
+
 #:2025
- REMOVE:2025 (n ind) IF
+ REMOVE:2025 subst-ub IF
 	(NOT 0 adverbialsubst)
 	(NOT 0 tall-subst)
 	(NOT 0 målsubst)
@@ -22576,32 +21968,18 @@ REMOVE:2135 (det) IF
 #  "han kjøpte nemlig feil (ikke subst) bok"))
 
 
-# KBU: doubled n/np rule
-#:2026k
- REMOVE:2026k (np ind) IF
-	(0 pres/pret)
-	(-1 be-nøyt-det)
-	(NOT -1 poss-det)
-	(*1 setn-gr BARRIER pres/pret)
-;
+
 #:2026
- REMOVE:2026 (n ind) IF
+ REMOVE:2026 subst-ub IF
 	(0 pres/pret)
 	(-1 be-nøyt-det)
 	(NOT -1 poss-det)
 	(*1 setn-gr BARRIER pres/pret)
 ;
 
-# KBU: doubled n/np rule
-#:2027k
- REMOVE:2027k (np ind) IF
-	(0 pres/pret)
-	(-1 be-mask-det)
-	(NOT -1 poss-det)
-	(*1 setn-gr BARRIER pres/pret)
-;
+
 #:2027
- REMOVE:2027 (n ind) IF
+ REMOVE:2027 subst-ub IF
 	(0 pres/pret)
 	(-1 be-mask-det)
 	(NOT -1 poss-det)
@@ -22613,20 +21991,9 @@ REMOVE:2135 (det) IF
 # (ikke disamb. - regelen stopper her) det er"))
 
 
-# KBU: doubled n/np rule
-#:2022k
- REMOVE:2022k (np def) IF
-	(NOT 0 gen)
-	(1C subst)
-	(NOT 1 subst-prop)
-	(**-1C setn-gr LINK NOT 1 adverb/komp/ub-sup)
-	(**-1C setn-gr LINK NOT 1 prep)
-	(*-1 fv LINK NOT -1 komma)
-	(*-1 verb LINK NOT 0 ditrans)
-	(*1 setn-gr BARRIER pres/pret)
-;
+
 #:2022
- REMOVE:2022 (n def) IF
+ REMOVE:2022 be-subst IF
 	(NOT 0 gen)
 	(1C subst)
 	(NOT 1 subst-prop)
@@ -22637,28 +22004,18 @@ REMOVE:2135 (det) IF
 	(*1 setn-gr BARRIER pres/pret)
 ;
 
-# KBU: doubled n/np rule
-#:2023k
- REMOVE:2023k (np def) IF
-	(-1C adj-ub)
-	(**-1C prep BARRIER ikke-adv-adj)
-;
+
 #:2023
- REMOVE:2023 (n def) IF
+ REMOVE:2023 be-subst IF
 	(-1C adj-ub)
 	(**-1C prep BARRIER ikke-adv-adj)
 ;
 #  "da trenger en pent lite av statistiske data (ikke be)"))
 
 
-# KBU: doubled n/np rule
-#:2024k
- REMOVE:2024k (np def) IF
-	(-1 poss-det)
-	(NOT -2 be-subst)
-;
+
 #:2024
- REMOVE:2024 (n def) IF
+ REMOVE:2024 be-subst IF
 	(-1 poss-det)
 	(NOT -2 be-subst)
 ;
@@ -22666,17 +22023,9 @@ REMOVE:2135 (det) IF
 # 26.3"))
 
 
-# KBU: doubled n/np rule
-#:2016k
- REMOVE:2016k (np pl) IF
-	(-1 adj-ent)
-	(NOT -1 ikke-adj)
-	(NOT -1 adj-fl)
-	(NOT -1 adj-komp)
-	(NOT -1 adj-sup)
-;
+
 #:2016
- REMOVE:2016 (n pl) IF
+ REMOVE:2016 fl-subst IF
 	(-1 adj-ent)
 	(NOT -1 ikke-adj)
 	(NOT -1 adj-fl)
@@ -22686,28 +22035,18 @@ REMOVE:2135 (det) IF
 #  "daglig leder (ent)"))
 
 
-# KBU: doubled n/np rule
-#:2017k
- REMOVE:2017k (np pl) IF
-	(NOT -1 komma/konj)
-	(*-1 det LINK NOT 0 fl LINK NOT 0 ikke-det LINK NOT 0 %samme/neste/ene/eneste/selve/forrige% LINK NOT *1 ikke-adv-adj)
-;
+
 #:2017
- REMOVE:2017 (n pl) IF
+ REMOVE:2017 fl-subst IF
 	(NOT -1 komma/konj)
 	(*-1 det LINK NOT 0 fl LINK NOT 0 ikke-det LINK NOT 0 %samme/neste/ene/eneste/selve/forrige% LINK NOT *1 ikke-adv-adj)
 ;
 #  "hver (ikke fl) mann (ikke fl)"))
 
 
-# KBU: doubled n/np rule
-#:2018k
- REMOVE:2018k (np pl) IF
-	(NOT 0 %gang%)
-	(**-1C setn-gr LINK 1 prep LINK NOT 0 setn-gr LINK *1 ikke-adv-adj-substmgen-pron-detmdem-prep LINK 1 pres/pret LINK 0 kop LINK *1 ikke-adv-adj-det LINK 0 nom-ent LINK NOT 0 fl LINK NOT 0 %det/dette%-pron LINK NOT 0 %del/andel% LINK NOT *1 ikke-poss-det)
-;
+
 #:2018
- REMOVE:2018 (n pl) IF
+ REMOVE:2018 fl-subst IF
 	(NOT 0 %gang%)
 	(**-1C setn-gr LINK 1 prep LINK NOT 0 setn-gr LINK *1 ikke-adv-adj-substmgen-pron-detmdem-prep LINK 1 pres/pret LINK 0 kop LINK *1 ikke-adv-adj-det LINK 0 nom-ent LINK NOT 0 fl LINK NOT 0 %det/dette%-pron LINK NOT 0 %del/andel% LINK NOT *1 ikke-poss-det)
 ;
@@ -22715,43 +22054,27 @@ REMOVE:2135 (det) IF
 # 26.3"))
 
 
-# KBU: doubled n/np rule
-#:2019k
- REMOVE:2019k (np pl) IF
-	(NOT 0 %gang%)
-	(**-1C setn-gr LINK 1 adv LINK 1 pres/pret LINK 0 kop LINK *1 ikke-adv-adj-det LINK 0 nom-ent LINK NOT 0 fl LINK NOT 0 %det/dette%-pron LINK NOT 0 %del/andel% LINK NOT *1 ikke-poss-det)
-;
+
 #:2019
- REMOVE:2019 (n pl) IF
+ REMOVE:2019 fl-subst IF
 	(NOT 0 %gang%)
 	(**-1C setn-gr LINK 1 adv LINK 1 pres/pret LINK 0 kop LINK *1 ikke-adv-adj-det LINK 0 nom-ent LINK NOT 0 fl LINK NOT 0 %det/dette%-pron LINK NOT 0 %del/andel% LINK NOT *1 ikke-poss-det)
 ;
 #  "sånn var han laga (ikke subst fl)"))
 
 
-# KBU: doubled n/np rule
-#:2020k
- REMOVE:2020k (np pl) IF
-	(NOT 0 %gang%)
-	(**-1C setn-gr LINK *1 ikke-adv-adj-det LINK 0 nom-ent LINK NOT 0 fl LINK NOT 0 %det/dette%-pron LINK NOT 0 %del/andel% LINK *1 ikke-adv-adj-substmgen-pron-detmdem-prep LINK 0 pres/pret LINK 0 kop LINK NOT *1 ikke-adv-adj-det)
-;
+
 #:2020
- REMOVE:2020 (n pl) IF
+ REMOVE:2020 fl-subst IF
 	(NOT 0 %gang%)
 	(**-1C setn-gr LINK *1 ikke-adv-adj-det LINK 0 nom-ent LINK NOT 0 fl LINK NOT 0 %det/dette%-pron LINK NOT 0 %del/andel% LINK *1 ikke-adv-adj-substmgen-pron-detmdem-prep LINK 0 pres/pret LINK 0 kop LINK NOT *1 ikke-adv-adj-det)
 ;
 #  "hvordan han var laga (ikke subst fl) inni"))
 
 
-# KBU: doubled n/np rule
-#:2021k
- REMOVE:2021k (np pl) IF
-	(-1 %noen/noe%)
-	(NOT -1 fl)
-	(-2C prep)
-;
+
 #:2021
- REMOVE:2021 (n pl) IF
+ REMOVE:2021 fl-subst IF
 	(-1 %noen/noe%)
 	(NOT -1 fl)
 	(-2C prep)
@@ -22759,16 +22082,9 @@ REMOVE:2135 (det) IF
 # group: 65
 
 
-# KBU: doubled n/np rule
-#:2015k
- REMOVE:2015k (np m sg ind) IF
-	(0 pres)
-	(1 pres/pret)
-	(1 subst)
-	(-1 be-mask-det)
-;
+
 #:2015
- REMOVE:2015 (n m sg ind) IF
+ REMOVE:2015 ub-ent-mask-subst IF
 	(0 pres)
 	(1 pres/pret)
 	(1 subst)
@@ -22779,15 +22095,9 @@ REMOVE:2135 (det) IF
 # 18.6.2001: 1 subst: Denne leser(pres) vil(bare når denne kan være noe annet enn verb) imidlertid påpeke at .."))
 
 
-# KBU: doubled n/np rule
-#:2013k
- REMOVE:2013k (np m sg) IF
-	(0 adj)
-	(**-1C det LINK NOT 0 mask LINK NOT 0 fl LINK NOT 0 %selv% LINK NOT 0 %samme/neste/ene/eneste/selve/forrige%)
-	(**-1C det BARRIER ikke-adv-adj)
-;
+
 #:2013
- REMOVE:2013 (n m sg) IF
+ REMOVE:2013 ent-mask-subst IF
 	(0 adj)
 	(**-1C det LINK NOT 0 mask LINK NOT 0 fl LINK NOT 0 %selv% LINK NOT 0 %samme/neste/ene/eneste/selve/forrige%)
 	(**-1C det BARRIER ikke-adv-adj)
@@ -22795,15 +22105,9 @@ REMOVE:2135 (det) IF
 #  "et halvt (ikke subst mask, men adj nøyt!)"))
 
 
-# KBU: doubled n/np rule
-#:2014k
- REMOVE:2014k (np m sg) IF
-	(-1 %noen/noe%)
-	(NOT -1 mask-ent)
-	(-2C prep)
-;
+
 #:2014
- REMOVE:2014 (n m sg) IF
+ REMOVE:2014 ent-mask-subst IF
 	(-1 %noen/noe%)
 	(NOT -1 mask-ent)
 	(-2C prep)
@@ -22811,17 +22115,9 @@ REMOVE:2135 (det) IF
 # group: 65
 
 
-# KBU: doubled n/np rule
-#:2010k
- REMOVE:2010k (np nt sg) IF
-	(NOT -1 komma/konj)
-	(NOT -1 adv)
-	(NOT -1 gen)
-	(*-1 det LINK NOT 1 komma)
-	(*-1 det LINK NOT 0 ikke-det LINK NOT 0 %samme/neste/ene/eneste/selve/forrige% LINK NOT 0 nøyt-det LINK NOT 0 poss-det LINK NOT 0 %all% LINK NOT *1 ikke-adv-adj)
-;
+
 #:2010
- REMOVE:2010 (n nt sg) IF
+ REMOVE:2010 ent-nøyt-subst IF
 	(NOT -1 komma/konj)
 	(NOT -1 adv)
 	(NOT -1 gen)
@@ -22833,58 +22129,34 @@ REMOVE:2135 (det) IF
 #  eller har gitt boka mi håp (subst nøyt)"))
 
 
-# KBU: doubled n/np rule
-#:2011k
- REMOVE:2011k (np nt sg) IF
-	(0 adj)
-	(**-1C det LINK NOT 0 nøyt LINK NOT 0 fl LINK NOT 0 %selv% LINK NOT 0 %samme/neste/ene/eneste/selve/forrige%)
-	(**-1C det BARRIER ikke-adv-adj)
-;
+
 #:2011
- REMOVE:2011 (n nt sg) IF
+ REMOVE:2011 ent-nøyt-subst IF
 	(0 adj)
 	(**-1C det LINK NOT 0 nøyt LINK NOT 0 fl LINK NOT 0 %selv% LINK NOT 0 %samme/neste/ene/eneste/selve/forrige%)
 	(**-1C det BARRIER ikke-adv-adj)
 ;
 
-# KBU: doubled n/np rule
-#:2012k
- REMOVE:2012k (np nt sg) IF
-	(-1 %noen/noe%)
-	(NOT -1 nøyt-ent)
-	(-2C prep)
-;
+
 #:2012
- REMOVE:2012 (n nt sg) IF
+ REMOVE:2012 ent-nøyt-subst IF
 	(-1 %noen/noe%)
 	(NOT -1 nøyt-ent)
 	(-2C prep)
 ;
 # group: 65
 
-# KBU: doubled n/np rule
-#:2008k
- REMOVE:2008k (np f sg) IF
-	(0 adj)
-	(**-1C det LINK NOT 0 fem LINK NOT 0 fl LINK NOT 0 %selv% LINK NOT 0 %samme/neste/ene/eneste/selve/forrige%)
-	(**-1C det BARRIER ikke-adv-adj)
-;
+
 #:2008
- REMOVE:2008 (n f sg) IF
+ REMOVE:2008 ent-fem-subst IF
 	(0 adj)
 	(**-1C det LINK NOT 0 fem LINK NOT 0 fl LINK NOT 0 %selv% LINK NOT 0 %samme/neste/ene/eneste/selve/forrige%)
 	(**-1C det BARRIER ikke-adv-adj)
 ;
 
-# KBU: doubled n/np rule
-#:2009k
- REMOVE:2009k (np f sg) IF
-	(-1 %noen/noe%)
-	(NOT -1 fem-ent)
-	(-2C prep)
-;
+
 #:2009
- REMOVE:2009 (n f sg) IF
+ REMOVE:2009 ent-fem-subst IF
 	(-1 %noen/noe%)
 	(NOT -1 fem-ent)
 	(-2C prep)
@@ -22943,15 +22215,9 @@ REMOVE:2135 (det) IF
 # kh jan 2004: NOT 0 sikre-navn: Arne, Dag, Bjørn..."))
 
 
-# KBU: doubled n/np rule
-#:1999k
- REMOVE:1999k (np ubøy) IF
-	(0 farger)
-	(-1 adverb)
-	(-2 verb)
-;
+
 #:1999
- REMOVE:1999 (n ubøy) IF
+ REMOVE:1999 subst-ubøy IF
 	(0 farger)
 	(-1 adverb)
 	(-2 verb)
@@ -22960,14 +22226,9 @@ REMOVE:2135 (det) IF
 #      :group 66))
 
 
-# KBU: doubled n/np rule
-#:2000k
- REMOVE:2000k (np ubøy) IF
-	(0 farger)
-	(-1C verb)
-;
+
 #:2000
- REMOVE:2000 (n ubøy) IF
+ REMOVE:2000 subst-ubøy IF
 	(0 farger)
 	(-1C verb)
 ;
@@ -22976,17 +22237,9 @@ REMOVE:2135 (det) IF
 #021008 C på verb
 
 
-# KBU: doubled n/np rule
-#:2001k
- REMOVE:2001k (np ubøy) IF
-	(0 adj-fl)
-	(0 farger)
-	(1 komma/konj)
-	(*3 fl-subst BARRIER ikke-adv-adj)
-	(NOT 2 ikke-adv-adj)
-;
+
 #:2001
- REMOVE:2001 (n ubøy) IF
+ REMOVE:2001 subst-ubøy IF
 	(0 adj-fl)
 	(0 farger)
 	(1 komma/konj)
@@ -22998,16 +22251,9 @@ REMOVE:2135 (det) IF
 #      :group 66))
 
 
-# KBU: doubled n/np rule
-#:2002k
- REMOVE:2002k (np ubøy) IF
-	(0 farger)
-	(1 komma/konj)
-	(*3 ub-ent-nøyt-subst BARRIER ikke-adv-adj)
-	(NOT 2 ikke-adv-adj)
-;
+
 #:2002
- REMOVE:2002 (n ubøy) IF
+ REMOVE:2002 subst-ubøy IF
 	(0 farger)
 	(1 komma/konj)
 	(*3 ub-ent-nøyt-subst BARRIER ikke-adv-adj)
@@ -23017,14 +22263,9 @@ REMOVE:2135 (det) IF
 #      :group 66))
 
 
-# KBU: doubled n/np rule
-#:2003k
- REMOVE:2003k (np ubøy) IF
-	(0 farger)
-	(1 ub-ent-nøyt-subst)
-;
+
 #:2003
- REMOVE:2003 (n ubøy) IF
+ REMOVE:2003 subst-ubøy IF
 	(0 farger)
 	(1 ub-ent-nøyt-subst)
 ;
@@ -23033,16 +22274,9 @@ REMOVE:2135 (det) IF
 #      :group 66))
 
 
-# KBU: doubled n/np rule
-#:1997k
- REMOVE:1997k (np gen) IF
-	(NOT 1 subst/adj/nr2-det)
-	(NOT 1 setn-gr)
-	(NOT 1 konj)
-	(NOT 1 parentes)
-;
+
 #:1997
- REMOVE:1997 (n gen) IF
+ REMOVE:1997 gen-subst IF
 	(NOT 1 subst/adj/nr2-det)
 	(NOT 1 setn-gr)
 	(NOT 1 konj)
@@ -23051,16 +22285,9 @@ REMOVE:2135 (det) IF
 #  "gamle, utbombede hus (ikke gen) noen km unna"))
 
 
-# KBU: doubled n/np rule
-#:1998k
- REMOVE:1998k (np gen) IF
-	(0 adj)
-	(NOT 0 %tids%)
-	(NOT 0 samset)
-	(NOT 0 adj-gen)
-;
+
 #:1998
- REMOVE:1998 (n gen) IF
+ REMOVE:1998 gen-subst IF
 	(0 adj)
 	(NOT 0 %tids%)
 	(NOT 0 samset)
@@ -23073,16 +22300,9 @@ REMOVE:2135 (det) IF
 # 29.5.2001: NOT 0 TIDS (tids er også adjektiv)"))
 
 
-# KBU: doubled n/np rule
-#:1979k
-# REMOVE:1979k (np) IF
-#	(0 pres/pret)
-#	(NOT 0 adverb)
-#	(1 pres/pret)
-#	(-1 %som%-sbu)
-#;
+
 #:1979
-# REMOVE:1979 (n) IF
+# REMOVE:1979 subst IF
 #	(0 pres/pret)
 #	(NOT 0 adverb)
 #	(1 pres/pret)
@@ -23092,16 +22312,9 @@ REMOVE:2135 (det) IF
 #040809: For risikabel. For mange tilfeller som "om folket eier"
 
 
-# KBU: doubled n/np rule
-#:1980k
- REMOVE:1980k (np) IF
-	(0 adj)
-	(0 mest-sanns-adj-istf-subst)
-	(NOT 0 subst-prop)
-	(NOT -1 ub-det)
-;
+
 #:1980
- REMOVE:1980 (n) IF
+ REMOVE:1980 subst IF
 	(0 adj)
 	(0 mest-sanns-adj-istf-subst)
 	(NOT 0 subst-prop)
@@ -23110,20 +22323,9 @@ REMOVE:2135 (det) IF
 #  "Hun går stille ut av rommet"))
 
 
-# KBU: doubled n/np rule
-#:1981k
- REMOVE:1981k (np) IF
-	(NOT 0 imp)
-	(-1C be-subst)
-	(NOT -1 gen)
-	(**-1C setn-gr LINK NOT 1 adverb/komp/ub-sup)
-	(**-1C setn-gr LINK NOT 1 prep)
-	(*-1 fv LINK NOT -1 komma)
-	(*-1 verb LINK NOT 0 ditrans)
-	(*1 setn-gr BARRIER pres/pret)
-;
+
 #:1981
- REMOVE:1981 (n) IF
+ REMOVE:1981 subst IF
 	(NOT 0 imp)
 	(-1C be-subst)
 	(NOT -1 gen)
@@ -23144,16 +22346,9 @@ REMOVE:2135 (det) IF
 # Eks: Det var i virkeligheten mor (ikke imp) mi ..."))
 
 
-# KBU: doubled n/np rule
-#:1982k
- REMOVE:1982k (np) IF
-	(0 adj)
-	(-1 komma/konj)
-	(1C subst)
-	(-2 adj)
-;
+
 #:1982
- REMOVE:1982 (n) IF
+ REMOVE:1982 subst IF
 	(0 adj)
 	(-1 komma/konj)
 	(1C subst)
@@ -23162,21 +22357,9 @@ REMOVE:2135 (det) IF
 #  "Skogkledde, myke åssider"))
 
 
-# KBU: doubled n/np rule
-#:1983k
- REMOVE:1983k (np) IF
-	(0 mask/fem)
-	(0 ub)
-	(0 fv)
-	(-1 nøyt)
-	(-1 %det%)
-	(NOT 1 verb)
-	(NOT 1 sbu)
-	(NOT 1 konj)
-	(NOT -2 fv)
-;
+
 #:1983
- REMOVE:1983 (n) IF
+ REMOVE:1983 subst IF
 	(0 mask/fem)
 	(0 ub)
 	(0 fv)
@@ -23190,19 +22373,9 @@ REMOVE:2135 (det) IF
 #  "det grenser (ikke subst men verb) til "))
 
 
-# KBU: doubled n/np rule
-#:1984k
- REMOVE:1984k (np) IF
-	(0 det/adj)
-	(NOT 0 adj-gen)
-	(NOT 0 farlige-adj)
-	(NOT 0 samset)
-	(-1 prep)
-	(1C subst)
-	(NOT 1 subst-prop)
-;
+
 #:1984
- REMOVE:1984 (n) IF
+ REMOVE:1984 subst IF
 	(0 det/adj)
 	(NOT 0 adj-gen)
 	(NOT 0 farlige-adj)
@@ -23214,15 +22387,9 @@ REMOVE:2135 (det) IF
 #  "et enormt potensial for økt (adj) sysselsetting"))
 
 
-# KBU: doubled n/np rule
-#:1985k
-# REMOVE:1985k (np) IF
-#	(-1 iv)
-#	(**1C subst BARRIER ikke-adv-adj-det)
-#	(*-2 ikke-adv LINK 0 pres/pret)
-#;
+
 #:1985
-# REMOVE:1985 (n) IF
+# REMOVE:1985 subst IF
 #	(-1 iv)
 #	(**1C subst BARRIER ikke-adv-adj-det)
 #	(*-2 ikke-adv LINK 0 pres/pret)
@@ -23230,17 +22397,9 @@ REMOVE:2135 (det) IF
 #  "Alle våre valg må ses under (ikke subst) den overskriften"))
 
 
-# KBU: doubled n/np rule
-#:1986k
- REMOVE:1986k (np) IF
-	(0 pres/pret)
-	(NOT 0 adverbialsubst)
-	(*-1 prep LINK *1 ikke-adv-adj LINK 0 subst LINK NOT 0 ikke-subst-pron LINK NOT 0 gen/%slags% LINK NOT 0 adverbialsubst LINK NOT *1 ikke-adv-adj)
-	(*-1 subst BARRIER tegnsetting)
-	(*-1 subst BARRIER konj)
-;
+
 #:1986
- REMOVE:1986 (n) IF
+ REMOVE:1986 subst IF
 	(0 pres/pret)
 	(NOT 0 adverbialsubst)
 	(*-1 prep LINK *1 ikke-adv-adj LINK 0 subst LINK NOT 0 ikke-subst-pron LINK NOT 0 gen/%slags% LINK NOT 0 adverbialsubst LINK NOT *1 ikke-adv-adj)
@@ -23250,17 +22409,9 @@ REMOVE:2135 (det) IF
 #  "i klarspråk dreier (ikke subst) det seg om..."))
 
 
-# KBU: doubled n/np rule
-#:1987k
- REMOVE:1987k (np) IF
-	(0 pres/pret)
-	(NOT 0 adverbialsubst)
-	(*-1 sbu-ren LINK *1 ikke-adv-adj LINK 0 subst LINK NOT 0 ikke-subst-pron LINK NOT 0 gen/%slags% LINK NOT *1 ikke-adv-adj)
-	(*-1 subst BARRIER tegnsetting)
-	(*-1 subst BARRIER konj)
-;
+
 #:1987
- REMOVE:1987 (n) IF
+ REMOVE:1987 subst IF
 	(0 pres/pret)
 	(NOT 0 adverbialsubst)
 	(*-1 sbu-ren LINK *1 ikke-adv-adj LINK 0 subst LINK NOT 0 ikke-subst-pron LINK NOT 0 gen/%slags% LINK NOT *1 ikke-adv-adj)
@@ -23272,15 +22423,9 @@ REMOVE:2135 (det) IF
 # arbeidet (ikke subst) med tiltak"))
 
 
-# KBU: doubled n/np rule
-#:1988k
- REMOVE:1988k (np) IF
-	(0 perf-part)
-	(NOT 1 %som%-sbu)
-	(*-1 ikke-adv LINK 0 %det%-pron LINK -1 kop)
-;
+
 #:1988
- REMOVE:1988 (n) IF
+ REMOVE:1988 subst IF
 	(0 perf-part)
 	(NOT 1 %som%-sbu)
 	(*-1 ikke-adv LINK 0 %det%-pron LINK -1 kop)
@@ -23290,15 +22435,9 @@ REMOVE:2135 (det) IF
 # 26.11"))
 
 
-# KBU: doubled n/np rule
-#:1989k
- REMOVE:1989k (np) IF
-	(0 pres/pret)
-	(NOT 1 pres/pret)
-	(*-1 ikke-poss-det LINK 0 subst LINK *-1 ikke-adv-adj-det LINK 0 subst LINK *1 ikke-poss-det LINK 0 konj LINK *-1 ikke-poss-det LINK *-1 ikke-adv-adj-det LINK 0 prep LINK NOT 0 ikke-prep)
-;
+
 #:1989
- REMOVE:1989 (n) IF
+ REMOVE:1989 subst IF
 	(0 pres/pret)
 	(NOT 1 pres/pret)
 	(*-1 ikke-poss-det LINK 0 subst LINK *-1 ikke-adv-adj-det LINK 0 subst LINK *1 ikke-poss-det LINK 0 konj LINK *-1 ikke-poss-det LINK *-1 ikke-adv-adj-det LINK 0 prep LINK NOT 0 ikke-prep)
@@ -23307,17 +22446,9 @@ REMOVE:2135 (det) IF
 # 25.11"))
 
 
-# KBU: doubled n/np rule
-#:1990k
- REMOVE:1990k (np) IF
-	(0 adj)
-	(NOT 0 subst-prop)
-	(NOT 0 gen)
-	(-1C setn-gr)
-	(*1 ikke-adv-adj LINK 0 subst LINK NOT 0 ikke-subst LINK NOT 0 be LINK NOT 0 subst-prop LINK NOT 0 poss-det LINK NOT 0 %selv% LINK *1 ikke-poss-det LINK 0 pres/pret)
-;
+
 #:1990
- REMOVE:1990 (n) IF
+ REMOVE:1990 subst IF
 	(0 adj)
 	(NOT 0 subst-prop)
 	(NOT 0 gen)
@@ -23328,13 +22459,9 @@ REMOVE:2135 (det) IF
 # 27.11"))
 
 
-# KBU: doubled n/np rule
-#:1991k
- REMOVE:1991k (np) IF
-	(0 retning)
-;
+
 #:1991
- REMOVE:1991 (n) IF
+ REMOVE:1991 subst IF
 	(0 retning)
 ;
 #  "nord (prep) for spissen av ...
@@ -23343,15 +22470,9 @@ REMOVE:2135 (det) IF
 # begge tilfeller"))
 
 
-# KBU: doubled n/np rule
-#:1992k
- REMOVE:1992k (np) IF
-	(0 språk)
-	(1 subst)
-	(NOT 1 %alt%)
-;
+
 #:1992
- REMOVE:1992 (n) IF
+ REMOVE:1992 subst IF
 	(0 språk)
 	(1 subst)
 	(NOT 1 %alt%)
@@ -23360,17 +22481,9 @@ REMOVE:2135 (det) IF
 #      :group 66))
 
 
-# KBU: doubled n/np rule
-#:1993k
- REMOVE:1993k (np) IF
-	(0 poss-det)
-	(1 be-ent-adj)
-	(NOT 1 fv)
-	(NOT 1 adv)
-	(2C clb-komma/konj)
-;
+
 #:1993
- REMOVE:1993 (n) IF
+ REMOVE:1993 subst IF
 	(0 poss-det)
 	(1 be-ent-adj)
 	(NOT 1 fv)
@@ -23380,18 +22493,9 @@ REMOVE:2135 (det) IF
 #  "vår elskede, men (clb)"))
 
 
-# KBU: doubled n/np rule
-#:1994k
- REMOVE:1994k (np) IF
-	(0 poss-det)
-	(1 be-ent-adj)
-	(NOT 1 fv)
-	(NOT 1 adv)
-	(NOT 2 subst/adj)
-	(NOT 2 komma/konj)
-;
+
 #:1994
- REMOVE:1994 (n) IF
+ REMOVE:1994 subst IF
 	(0 poss-det)
 	(1 be-ent-adj)
 	(NOT 1 fv)
@@ -23402,29 +22506,18 @@ REMOVE:2135 (det) IF
 #  "vår elskede"))
 
 
-# KBU: doubled n/np rule
-#:1995k
- REMOVE:1995k (np) IF
-	(0 poss-det)
-	(*1 ub-ent-subst BARRIER ikke-adv-adj)
-;
+
 #:1995
- REMOVE:1995 (n) IF
+ REMOVE:1995 subst IF
 	(0 poss-det)
 	(*1 ub-ent-subst BARRIER ikke-adv-adj)
 ;
 #  "vår (ikke subst) virksomhet"))
 
 
-# KBU: doubled n/np rule
-#:1996k
- REMOVE:1996k (np) IF
-	(0 pres/pret)
-	(-1 konj-<adv>)
-	(**1C setn-gr LINK 0 konj LINK 1 pres/pret)
-;
+
 #:1996
- REMOVE:1996 (n) IF
+ REMOVE:1996 subst IF
 	(0 pres/pret)
 	(-1 konj-<adv>)
 	(**1C setn-gr LINK 0 konj LINK 1 pres/pret)
@@ -25447,7 +24540,7 @@ CONSTRAINTS
 
 
 #:4042
-"<vår>"	SELECT:4042 (n) IF
+"<vår>"	SELECT:4042 subst IF
 	(0 poss-det)
 	(-1 prep)
 	(NOT 1  det)
@@ -25954,18 +25047,9 @@ CONSTRAINTS
 ;
 #  "..., for adelsfolk i Tsjekkoslovakia skal ha brukt latin"))
 
-# KBU: doubled n/np rule
-#:1690k
- SELECT:1690k (np) IF
-	(0 %siden%)
-	(-1 prep)
-	(1C setn-gr)
-	(NOT -1 nr2-det-mask-be)
-	(NOT -1 be-mask-det)
-	(NOT -1 be-ent-adj)
-;
+
 #:1690
- SELECT:1690 (n) IF
+ SELECT:1690 subst IF
 	(0 %siden%)
 	(-1 prep)
 	(1C setn-gr)
@@ -27241,18 +26325,9 @@ CONSTRAINTS
 # "))
 
 
-# KBU: doubled n/np rule
-#:1733k
- SELECT:1733k (np) IF
-	(NOT 0 farger)
-	(NOT 0 farlige-adj-subst)
-	(NOT 0 ikke-adj-subst)
-	(-1C prep)
-	(NOT 1 subst/adj)
-	(NOT 1 komma/konj)
-;
+
 #:1733
- SELECT:1733 (n) IF
+ SELECT:1733 subst IF
 	(NOT 0 farger)
 	(NOT 0 farlige-adj-subst)
 	(NOT 0 ikke-adj-subst)
@@ -27888,48 +26963,27 @@ SELECT:4081 (adj) IF
 #  "ferierute (subst!!!)"))
 
 
-# KBU: doubled n/np rule
-#:1686k
- REMOVE:1686k (np) IF
-	(0 adj)
-	(NOT 0 nøyt)
-	(1 infmerke)
-	(-1C nøyt-ent-adj)
-;
+
 #:1686
- REMOVE:1686 (n) IF
+ REMOVE:1686 subst IF
 	(0 adj)
 	(NOT 0 nøyt)
 	(1 infmerke)
 	(-1C nøyt-ent-adj)
 ;
 
-# KBU: doubled n/np rule
-#:1687k
- REMOVE:1687k (np) IF
-	(0 adj)
-	(1 infmerke)
-	(NOT -1 det/adj)
-	(*-1 verb LINK NOT 0 kop)
-;
+
 #:1687
- REMOVE:1687 (n) IF
+ REMOVE:1687 subst IF
 	(0 adj)
 	(1 infmerke)
 	(NOT -1 det/adj)
 	(*-1 verb LINK NOT 0 kop)
 ;
 
-# KBU: doubled n/np rule
-#:1688k
- REMOVE:1688k (np) IF
-	(0 adj)
-	(1 infmerke)
-	(NOT -1 det/adj)
-	(NOT *-1 verb)
-;
+
 #:1688
- REMOVE:1688 (n) IF
+ REMOVE:1688 subst IF
 	(0 adj)
 	(1 infmerke)
 	(NOT -1 det/adj)
@@ -27938,18 +26992,9 @@ SELECT:4081 (adj) IF
 #  "adj mer sannsynlig enn subst foran infinitivsmerke"))
 
 
-# KBU: doubled n/np rule
-#:1689k
- REMOVE:1689k (np) IF
-	(0 %siden%)
-	(-1 prep)
-	(1C nom)
-	(NOT -1 nr2-det-mask-be)
-	(NOT -1 be-mask-det)
-	(NOT -1 be-ent-adj)
-;
+
 #:1689
- REMOVE:1689 (n) IF
+ REMOVE:1689 subst IF
 	(0 %siden%)
 	(-1 prep)
 	(1C nom)
@@ -27964,13 +27009,9 @@ SELECT:4081 (adj) IF
 
 
 
-# KBU: doubled n/np rule
-#:1691k
- REMOVE:1691k (np) IF
-	(0 %men%)
-;
+
 #:1691
- REMOVE:1691 (n) IF
+ REMOVE:1691 subst IF
 	(0 %men%)
 ;
 #  "kh jan 2004: Ikke substantiv om reglene for substantiv ikke slår til
@@ -28114,55 +27155,30 @@ SELECT:4081 (adj) IF
 	 (NOT 0 %visst%)
 ;
 
-# KBU: doubled n/np rule
-#:4032k
- REMOVE:4032k (np pl) IF
-	 (0 farlige-fl-subst)
-	 (NOT 0 %slags%)	     
-;
+
 #:4032
- REMOVE:4032 (n pl) IF
+ REMOVE:4032 fl-subst IF
 	 (0 farlige-fl-subst)
 	 (NOT 0 %slags%)	     
 ;
 
-# KBU: doubled n/np rule
-#:4033k
- REMOVE:4033k (np m) IF
-	 (0 farlige-mask-subst)	
-	 (NOT 0 %gode%)     
-;
+
 #:4033
- REMOVE:4033 (n m) IF
+ REMOVE:4033 subst-mask IF
 	 (0 farlige-mask-subst)	
 	 (NOT 0 %gode%)     
 ;
 
-# KBU: doubled n/np rule
-#:4034k
- REMOVE:4034k (np nt) IF
-	 (NOT 0 %gode%)	 	     
-	 (NOT 0 %under%)
-	 (0 farlige-nøyt-subst)
-;
+
 #:4034
- REMOVE:4034 (n nt) IF
+ REMOVE:4034 subst-nøyt IF
 	 (NOT 0 %gode%)	 	     
 	 (NOT 0 %under%)
 	 (0 farlige-nøyt-subst)
 ;
-# KBU: doubled n/np rule
-#:4043kb
- REMOVE:4043kb (np nt sg ind) IF
-	(0 ub-ent-mask-subst)
- 	(NOT 0 farlige-mask-subst)
-	(NOT 0 fv)
- 	(NOT 0 adj)
- 	(NOT -1 komma/konj)
-	(**-1C mask-det LINK NOT 0 nr2-det)
-;
-#:4043kb
- REMOVE:4043kb (n nt sg ind) IF
+
+#:4043
+ REMOVE:4043 ub-ent-nøyt-subst IF
 	(0 ub-ent-mask-subst)
  	(NOT 0 farlige-mask-subst)
 	(NOT 0 fv)
@@ -28217,14 +27233,9 @@ SELECT:4081 (adj) IF
  REMOVE:4065 (adj) IF
 	 (0 ikke-sanns-adj)
 ;
-
-# KBU: doubled n/np rule 	     k
-#:4066k
- REMOVE:4066k (np) IF
-	   (0 ikke-sanns-subst)
-; 	     
+ 	     
 #:4066
- REMOVE:4066 (n) IF
+ REMOVE:4066 subst IF
 	   (0 ikke-sanns-subst)
 ;
 
@@ -28233,36 +27244,22 @@ SELECT:4081 (adj) IF
  REMOVE:4070 (vblex) IF
 	   (0 ikke-sanns-verb)
 ;
-# KBU: doubled n/np rule
-#:4067k
- REMOVE:4067k (np appell sg ind) IF
-	   (0 ikke-sanns-subst-ent-ub)
-;
+
 #:4067
  REMOVE:4067 (n appell sg ind) IF
 	   (0 ikke-sanns-subst-ent-ub)
 ;
 
-# KBU: doubled n/np rule
-#4073k
- REMOVE:4072k (np nt) IF
-	    (0 subst-mask/fem)
-	    (0 %pik%)
-;
+
 #4073
- REMOVE:4072 (n nt) IF
+ REMOVE:4072 subst-nøyt IF
 	    (0 subst-mask/fem)
 	    (0 %pik%)
 ;
 
-# KBU: doubled n/np rule
-#4072k
- REMOVE:4073k (np) IF
-	    (0 prep)
-	    (0 %tross%)
-;
+
 #4072
- REMOVE:4073 (n) IF
+ REMOVE:4073 subst IF
 	    (0 prep)
 	    (0 %tross%)
 ;
@@ -28284,13 +27281,9 @@ SELECT:4081 (adj) IF
 
 
 
-# KBU: doubled n/np rule
-#:4079k
- REMOVE:4079k (np pl ind) IF
-	   (0 ikke-sanns-subst-fl-ub)
-;
+
 #:4079
- REMOVE:4079 (n pl ind) IF
+ REMOVE:4079 ub-fl-subst IF
 	   (0 ikke-sanns-subst-fl-ub)
 ;
 
@@ -28306,22 +27299,14 @@ SELECT:4081 (adj) IF
  REMOVE:4091 (adv) IF
 	 (0 ikke-sanns-adv)
 ;
-# KBU: doubled n/np rule
-#:4098k
- REMOVE:4098k (np sg def) IF
-	   (0 ikke-sanns-subst-ent-be)
-; 
+ 
 #:4098
- REMOVE:4098 (n sg def) IF
+ REMOVE:4098 be-ent-subst IF
 	   (0 ikke-sanns-subst-ent-be)
 ;
-# KBU: doubled n/np rule
-#:4099k
- REMOVE:4099k (np) IF
-	   (0 bare-adj)
-;
+
 #:4099
- REMOVE:4099 (n) IF
+ REMOVE:4099 subst IF
 	   (0 bare-adj)
 ;
 
