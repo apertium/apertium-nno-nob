@@ -866,7 +866,7 @@ LIST ikke-mod-u-perfpart-@adv-@app = @iv @fv @subj @obj @i-obj @s-pred @o-pred @
 LIST ikke-nøyt-ent-adj = (adj m sg) (adj f sg) (adj mf) (adj pl) ;
 LIST ikke-org = <annet> <hend> <person> top <verk> ;
 LIST ikke-person = <annet> <hend> <org> top <verk> ;
-LIST ikke-pn-komma-konj = adv adj vblex pr prn cnjsub part (n appell) det interj <ellipse> <kolon> <semi> (cnjcoo clb) (cm clb) (cnjcoo <adv>) <<< >>> ;
+LIST ikke-pn-komma-konj = adv adj vblex pr prn cnjsub part (n) det interj <ellipse> <kolon> <semi> (cnjcoo clb) (cm clb) (cnjcoo <adv>) <<< >>> ; # (n appell)
 LIST ikke-poss-det = "siden"  "$," adj adv vblex pr prn cnjsub cnjcoo part interj n np <ellipse> (det def) (det dem) (det emph) (det qnt) (det itg) ;
 LIST ikke-postmod = @fv @iv @subj @obj @i-obj @s-pred @o-pred @adv @adv> @app @tittel @det> @subst> @<p-utfyll @interj @adj> @kon @løs-np @s-gr ;
 LIST ikke-postmod-@app = @fv @iv @subj @obj @i-obj @s-pred @o-pred @adv @adv> @tittel @det> @subst> @<p-utfyll @interj @adj> @kon @løs-np @s-gr ;
@@ -903,7 +903,7 @@ LIST ikke-subst-adj-det-pron-adv = "siden"  "$-" "$," (n gen) (np gen) vblex pr 
 LIST ikke-subst-fem/mask = "siden"  vblex pr prn cnjsub cnjcoo part det interj adj (n nt) (np nt) adv ;
 LIST ikke-subst-nøyt = "siden"  vblex pr prn cnjsub cnjcoo part det interj adj (n m) (np m) (n f) (np f) adv ;
 LIST ikke-subst-pron = "siden"  "$-" "$," vblex pr cnjsub cnjcoo part det interj adj adv ;
-LIST ikke-subst-prop = "siden"  "$-" "$," vblex pr prn cnjsub cnjcoo part det interj adj adv (n appell) ;
+LIST ikke-subst-prop = "siden"  "$-" "$," vblex pr prn cnjsub cnjcoo part det interj adj adv (n) ; # (n appell)
 LIST ikke-subst-verb = "siden"  "$-" "$," pr prn cnjsub cnjcoo part det interj adj adv ;
 LIST ikke-tall = "somme"  "samtlige"  "noen"  "ingen"  "hver"  "enhver"  "begge"  "all"  ;
 LIST ikke-tr1/tr4-10/tr14/dtr1-9/refl/pr1/pr3-10/adv2/adv6-11/adv13-14/kaus = tr2 tr3 tr11 tr12 tr12/til tr13 tr13/til tr15 tr16 tr17 tr18 tr19 tr20 tr20/til tr21 tr21/til tr22 tr22/til tr23 t n np n1 i1 i2 i3 i4 pr2 pr11 pr12 pr13 a1 a3 a4 a5 a12 a15 a16 a17 pa pa/til pa1 pa1/til pa1 refl4 pa2 pa2/til pa3 pa3/til pa4 pa4/til pa5 pa5 pa5/til pa6 pa7 pa8 <aux1/inf> <aux1/infinitiv> <aux1/perf_part> ;
@@ -1272,7 +1272,8 @@ LIST strek = <strek> ;
 LIST strek/parentes = <strek> lpar rpar ;
 LIST strek/parentes-beg/anf = <strek> lpar <anf> ;
 LIST subst = n np ;
-LIST subst-appell = (n appell) ;
+LIST subst-appell = (n) ; 				    # (n appell)
+LIST subst-appell-ub-ent = (n sg ind) ; 		    # (n appell sg ind)
 LIST subst-ent/komma/konj = (n sg) (np sg) ("$,") cnjcoo ;
 LIST subst-fem = (n f) (np f) ;
 LIST subst-fl/komma/konj = (n pl) (np pl) ("$,") cnjcoo ;
@@ -3689,7 +3690,7 @@ CONSTRAINTS
 
 #:4002
 
- "<rotta>"   SELECT:4002   (n f appell sg def) IF
+ "<rotta>"   SELECT:4002   (n f sg def) IF
 	  (-1 %ta%)
 	  (1 %på%)
 ;
@@ -7043,7 +7044,7 @@ CONSTRAINTS
 
 
 #:5018
-  "<seksten>"   REMOVE:5018   (n m appell sg def) IF
+  "<seksten>"   REMOVE:5018   (n m sg def) IF
 	(0 det)
 ;
 
@@ -7590,7 +7591,7 @@ CONSTRAINTS
 
 
 #:3127
-  "<ville>"   REMOVE:3127   (n appell sg ind) IF
+  "<ville>"   REMOVE:3127   subst-appell-ub-ent IF
 	(0 mask/fem)
 ;
 #  "Bare: tale i villa"))
@@ -18088,17 +18089,17 @@ CONSTRAINTS
 
 # duplicated for capitalisation -KBU
 #5033
-"<bad>"  SUBSTITUTE:5033 (n appell nt ind sg) (adj ubøy <eng>) TARGET (n appell nt ind sg) IF 
+"<bad>"  SUBSTITUTE:5033 (n nt ind sg) (adj ubøy <eng>) TARGET (n nt ind sg) IF 
    (1 %boy%)
 ;
 #5033
-"<Bad>"  SUBSTITUTE:5033 (n appell nt ind sg) (adj ubøy <eng>) TARGET (n appell nt ind sg) IF 
+"<Bad>"  SUBSTITUTE:5033 (n nt ind sg) (adj ubøy <eng>) TARGET (n nt ind sg) IF 
    (1 %boy%)
 ;
 #bad (adj) boy
 
 #5034
- "<bad>"   REMOVE:5034   (n appell nt ind pl) IF 
+ "<bad>"   REMOVE:5034   (n nt ind pl) IF 
    (1 %boy%)
    (0 adj)
 ;
@@ -18106,17 +18107,17 @@ CONSTRAINTS
 
 # duplicated for capitalisation -KBU
 #5035
-"<bad>" SUBSTITUTE:5035 (n appell nt ind sg) (adj ubøy <eng>) TARGET (n appell nt ind sg) IF 
+"<bad>" SUBSTITUTE:5035 (n nt ind sg) (adj ubøy <eng>) TARGET (n nt ind sg) IF 
    (1 ukjent)
 ;
 #5035
-"<Bad>" SUBSTITUTE:5035 (n appell nt ind sg) (adj ubøy <eng>) TARGET (n appell nt ind sg) IF 
+"<Bad>" SUBSTITUTE:5035 (n nt ind sg) (adj ubøy <eng>) TARGET (n nt ind sg) IF 
    (1 ukjent)
 ;
 #bad (adj) guy og andre engelske bad
 
 #5036
- "<bad>"   REMOVE:5036   (n appell nt ind) IF 
+ "<bad>"   REMOVE:5036   (n nt ind) IF 
    (0 adj)
 ;
 #bad (adj) guy og andre engelske bad
@@ -21852,7 +21853,7 @@ REMOVE:2135 (det) IF
 
 
 #:2035
- REMOVE:2035 (n appell) IF
+ REMOVE:2035 subst-appell IF
 	(0 mest-sanns-verb-istf-subst)
 	(0 pres)
 ;
@@ -24696,7 +24697,7 @@ CONSTRAINTS
 
 
 #:3613
-  "<får>"   REMOVE:3613   (n appell ind) IF
+  "<får>"   REMOVE:3613   (n ind) IF
 	(0 pres)
 	(NOT -1 %sort/svart%)
 ;
@@ -27246,7 +27247,7 @@ SELECT:4081 (adj) IF
 ;
 
 #:4067
- REMOVE:4067 (n appell sg ind) IF
+ REMOVE:4067 subst-appell-ub-ent IF
 	   (0 ikke-sanns-subst-ent-ub)
 ;
 
