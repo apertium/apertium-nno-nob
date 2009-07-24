@@ -647,7 +647,7 @@ LIST ikkje-subst-adj-det-pron-adv = "sidan"  "$-" "$," (n gen) (np gen) vblex pr
 LIST ikkje-subst-fem/mask = "sidan"  vblex pr prn cnjsub cnjcoo part det interj adj (n nt) (np nt) adv ;
 LIST ikkje-subst-nøyt = "sidan"  vblex pr prn cnjsub cnjcoo part det interj adj (n m) (np m) (n f) (np f) adv ;
 LIST ikkje-subst-pron = "sidan"  "$-" "$," vblex pr cnjsub cnjcoo part det interj adj adv ;
-LIST ikkje-subst-prop = "$-" "$," vblex pr prn cnjsub cnjcoo part det interj adj adv (n appell) ;
+LIST ikkje-subst-prop = "$-" "$," vblex pr prn cnjsub cnjcoo part det interj adj adv (n) ; # (n appell)
 LIST ikkje-subst-verb = "sidan"  "$-" "$," pr prn cnjsub cnjcoo part det interj adj adv ;
 LIST ikkje-tal = "sumt"  "som"  "nokon"  "noen"  "kvar"  "ingen"  "einkvan"  "båe"  "begge"  "all"  ;
 LIST ikkje-teiknsetjing-konj = "sidan"  adj adv vblex pr prn cnjsub part n np interj det ;
@@ -898,7 +898,7 @@ LIST strek = <strek> ;
 LIST strek/parentes = <strek> lpar rpar ;
 LIST strek/parentes-beg/anf = <strek> lpar <anf> ;
 LIST subst = n np ;
-LIST subst-appell = (n appell) ;
+LIST subst-appell = (n) ; # (n appell)
 LIST subst-eint = (n sg) (np sg) ;
 LIST subst-eint/komma/konj = (n sg) (np sg) ("$,") cnjcoo ;
 LIST subst-fem = (n f) (np f) ;
@@ -1995,7 +1995,7 @@ CONSTRAINTS
 
 
 #:4804
- "<fyrst>"   SELECT:4804   (n appell) IF
+ "<fyrst>"   SELECT:4804   subst-appell IF
 	(1 subst-prop)
 ;
 
@@ -5159,7 +5159,7 @@ CONSTRAINTS
 ;
 
 #:6006
- "<fyrst>"   REMOVE:6006   (n appell) IF
+ "<fyrst>"   REMOVE:6006   subst-appell IF
 	(NOT 1 subst-prop)
 ;
 
