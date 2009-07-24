@@ -353,7 +353,7 @@ LIST %verke% = "verke"  ;
 LIST %vidare% = ("vid"  adj comp) ;
 LIST %vise% = ("vise"  vblex) ;
 LIST %viss% = "viss"  ;
-LIST %visst%-nøyt = ("visst"  adj posi nt);
+LIST %visst%-nøyt = ("visst"  adj posi nt) ;
 LIST %øre% = "øre"  ;
 LIST %år% = "år"  ;
 LIST %åt% = ("åt" ) ;
@@ -370,7 +370,7 @@ LIST >>> = >>> ;
 LIST @adv = @adv ;
 LIST @tittel = @tittel ;
 LIST adj = adj ;
-LIST adj-adv-subst-konj = adv adj n cnjcoo ;
+LIST adj-adv-subst-konj = adv adj n np cnjcoo ;
 LIST adj-bu = (adj def) (adj pprs) ;
 LIST adj-bu-eint = (adj def sg) (adj pprs) ;
 LIST adj-eint = (adj sg) (adj pprs) ;
@@ -389,7 +389,7 @@ LIST adj-nøyt = (adj nt) (adj def) (adj pprs) ;
 LIST adj-nøyt-ub = (adj nt ind) (adj pprs) ;
 LIST adj-pos = (adj posi) ;
 LIST adj-pos-mask-ub-eint = (adj posi m ind sg) (adj posi mf ind sg) ;
-LIST adj-subst-konj = adj n cnjcoo ;
+LIST adj-subst-konj = adj n np cnjcoo ;
 LIST adj-sup = (adj sup) ;
 LIST adj-sup-bu = (adj sup def) ;
 LIST adj-sup-ub = (adj sup ind) ;
@@ -399,7 +399,7 @@ LIST adj-ub-eint/%berre% = "berre"  (adj ind sg) (adj pprs) ;
 LIST adj/adv = adj adv ;
 LIST adj/adv-iv = "så"  "same"  "nå"  "neppe"  "heile"  "halve"  "dette"  "brå"  ("elle"  gen) ("vite"  vblex pp) ("helse"  vblex pp) ;
 LIST adj/adv/prep = adj adv pr ;
-LIST adj/adv/subst/anf = det adj adv n <anf> ;
+LIST adj/adv/subst/anf = det adj adv n np <anf> ;
 LIST adj/nr2det = "sånn"  "slik"  "same"  "neste"  "kvar"  "halvannen"  "halvannan"  "eine"  "einaste"  "eigen"  "annen"  "annan"  adj (det qnt pl) ;
 LIST adj/perf-part = adj vblex pp ;
 LIST adjudet = "litt"  "lite"  ("mange"  posi) ("mange"  comp) ("mange"  sup ind) ("få"  posi) ("få"  comp) ("få"  sup ind) ("mye"  posi) ("mykje"  posi) ("mye"  comp) ("mykje"  comp) ("mye"  sup ind) ("mykje"  sup ind) ("liten"  posi) ("liten"  comp) ("liten"  sup ind) ("enkelt"  pl) ;
@@ -417,13 +417,13 @@ LIST adverb/komp/ub-sup = adv <adv> (adj nt ind) (adj comp) (adj sup ind) ("noko
 LIST adverb/komp/ub-sup/pres-part = adv <adv> (adj nt ind) (adj comp) (adj sup ind) (adj pprs) ;
 LIST adverbialsubst = "år"  "vinter"  "veke"  "veg"  "tysdag"  "torsdag"  "tonnkilometer"  "time"  "tidelssekund"  "tid"  "tiandelssekund"  "søndag"  "sundag"  "sumar"  "stykke"  "stund"  "steg"  "stad"  "sommar"  "skritt"  "sjømil"  "september"  "sekundmeter"  "sekund"  "påske"  "pinse"  "periode"  "onsdag"  "oktober"  "november"  "natt"  "nanosekund"  "nanometer"  "måndag"  "månad"  "morgon"  "minutt"  "millisekund"  "millimeter"  "mil"  "mikrometer"  "meter"  "mars"  "mai"  "m." "laurdag"  "kveld"  "kvartmil"  "kvardag"  "kvadratmillimeter"  "kvadratmeter"  "kvadratkilometer"  "kvadratdesimeter"  "kvadratcentimeter"  "kubikkmillimeter"  "kubikkmeter"  "kubikkdesimeter"  "kubikkcentimeter"  "km"  "klokke"  "kilometer"  "juni"  "juli"  "jul"  "januar"  "hundredelssekund"  "helgedag"  "helgedag"  "heilagdag"  "haust"  "halvår"  "halvmil"  "halvmeter"  "gong"  "føremiddag"  "fredag"  "formiddag"  "februar"  "ettermiddag"  "døgn"  "desimeter"  "desember"  "dag"  "centimeter"  "august"  "augeblink"  "augeblikk"  "april"  <dato> ("liv"  sg def) ("vår"  n) ;
 LIST akk = acc ;
-LIST alt = "sidan"  adj adv vblex pr prn cnjsub part n interj det cnjcoo <anf> cm <ellipse> <kolon> lpar rpar <semi> <strek> ;
+LIST alt = "sidan"  adj adv vblex pr prn cnjsub part n np interj det cnjcoo <anf> cm <ellipse> <kolon> lpar rpar <semi> <strek> ;
 LIST anf = <anf> ;
 LIST bare-adj = "vedkommande"  "vedkomande"  "ugjort"  "tilsvarande"  "skrå"  "nær"  "ny"  "middels"  "kort"  "iført"  "halv"  "fånyttes"  "fri"  ;
 LIST berre-pp-etter-ha = "ville"  "tørste"  "helse"  "grått"  "greie"  ;
 LIST bu = def ;
 LIST bu-adj/komp-adj = comp (adj def) (adj pprs) ;
-LIST bu-adj/subst = (adj def) (adj comp) (adj sup def) (adj pprs) n ;
+LIST bu-adj/subst = (adj def) (adj comp) (adj sup def) (adj pprs) n np ;
 LIST bu-det = "hin"  "dette"  "det"  "denne"  "den"  ;
 LIST bu-det-eint = ("hin"  sg) ("denne"  sg) ("dette"  sg) ("den"  sg) ("det"  sg) ("dei"  sg) (det def sg) ;
 LIST bu-det-eint/fl = "hin"  "dette"  "det"  "denne"  "den"  "dei"  (det def) ;
@@ -484,10 +484,10 @@ LIST det-nøyt-eint = (det nt sg) ;
 LIST det-nøyt-eint/poss/gen = (det nt sg) pos gen ;
 LIST det-prep = det pr ;
 LIST det-prep-infmerke-adjbu = "sidan"  det pr part (adj posi def) ;
-LIST det-subst = det n ;
+LIST det-subst = det n np ;
 LIST det/adj = det adj ;
-LIST det/adj/adv/subst = det adj adv n ;
-LIST det/adj/adv/subst/infmerke = det adj adv n part ;
+LIST det/adj/adv/subst = det adj adv n np ;
+LIST det/adj/adv/subst/infmerke = det adj adv n np part ;
 LIST det/adj/gen/prop = det adj gen np ;
 LIST det/adj/komma/konj = "$," (adj m) (adj f) (adj pl) (adj mf) (adj def) (adj pprs) det cnjcoo ;
 LIST det/adj/tal-subst = "tusen"  "trillion"  "mrd." "million"  "milliard"  "mill." "kvadrillion"  "hundre"  "halvmillion"  "billion"  "billiard"  det adj ;
@@ -495,7 +495,7 @@ LIST det/adj/ub-eint-subst = det adj (n sg ind) (np sg ind) ;
 LIST det/adv = det adv ;
 LIST det/bu-adj = det (adj def) (adj pprs) ;
 LIST det/pron = det prn ;
-LIST det/pron/subst = det prn n ;
+LIST det/pron/subst = det prn n np ;
 LIST ditrans = d1 d2 d3 d6 d7 rl6 rl7 rl8 ;
 LIST ditrans-prep = "mellom"  "imellom"  ;
 LIST eint = sg ;
@@ -523,7 +523,7 @@ LIST farlege-mask-subst = "ville"  "ved"  "skrå"  "like"  "helt"  "heller"  "el
 LIST farlege-nøyt-subst = "vilt"  "venstre"  "var"  "under"  "skrå"  "skal"  "sjølv"  "sett"  "positiv"  "nå"  "ny"  "mot"  "lik"  "konkret"  "høgre"  "godt"  "gode"  "folk"  "bak"  ("beste"  sg ind) ("stikk"  adv) ("gjeld"  ind) ("or"  ind) ("no"  ind) ("skjer"  ind) ("kor"  ind) ("eige"  ind) ("rikt"  ind) ("fort"  ind) ("slag"  gen) ("eg"  sg) ("lo"  pl) ("al"  pl def) ("middel"  gen) ("men"  sg ind) ("men"  pl ind) ("tre"  ind) ("trass"  ind) ;
 LIST farlege-part = "åre"  "vå"  "vogge"  "vite"  "ville"  "vete"  "venne"  "vekkje"  "vekke"  "tørste"  "trøyste"  "tale"  "svare"  "spenne"  "spanne"  "slikje"  "slike"  "slette"  "skulde"  "sitte"  "sitje"  "semje"  "sake"  "rynje"  "rikje"  "rike"  "rette"  "pule"  "prime"  "oppta"  "omvende"  "nære"  "namne"  "minnast"  "lyse"  "love"  "lite"  "lengjast"  "lengast"  "le"  "kontre"  "klokke"  "klare"  "jorde"  "høgje"  "hende"  "helse"  "helle"  "grå"  "greie"  "gale"  "fri"  "felle"  "fare"  "ende"  "elje"  "desidere"  "brå"  "beste"  "ause"  "anne"  "ale"  gen ord ("vinne"  n) ("bygd"  n f) ("var"  adj posi nt) ("pult"  n m) ;
 LIST farlege-prep = "van"  ;
-LIST farlege-verb = "late"  "la"  ("bile"  pres) ("sva"  pres) ("keise"  pres) ("beste"  pret) ("venne"  vblex pret) ("liste"  vblex pret) ("venne"  pres) ("rose"  pres) ("toske"  pres) ("øye"  pres) ("dykke"  pres) ("børse"  pret) ("vege"  pres) ("slute"  pret) ("hå"  pres) ("godte"  pret) ("kan"  adv) ("stie"  pres) ("bøke"  pres) ("senge"  pret) ("rine"  pret) ("neste"  pret) ("deke"  pres) ("ete"  pret) ("anne"  pret) ("grade"  pres) ("åre"  pret) ("kontre"  pret) ("slette"  pres) ("velje"  pres) ("fare"  pret) ("sitje"  pres) ("sitte"  pres) ("sette"  pres) ("nå"  pres) ("elle"  pres) ("fø"  pres) ("helle"  pres) ("dy"  pres) ("dage"  pres) ("vå"  pres) ("vinde"  pres) ("snerte"  pret) ("jorde"  pret) ("ry"  pret) ("rynje"  pret) ("kagge"  pres) ("kroppe"  vblex pres) ("åte"  pret) ("hurre"  pret) ("marke"  pret);
+LIST farlege-verb = "late"  "la"  ("bile"  pres) ("sva"  pres) ("keise"  pres) ("beste"  pret) ("venne"  vblex pret) ("liste"  vblex pret) ("venne"  pres) ("rose"  pres) ("toske"  pres) ("øye"  pres) ("dykke"  pres) ("børse"  pret) ("vege"  pres) ("slute"  pret) ("hå"  pres) ("godte"  pret) ("kan"  adv) ("stie"  pres) ("bøke"  pres) ("senge"  pret) ("rine"  pret) ("neste"  pret) ("deke"  pres) ("ete"  pret) ("anne"  pret) ("grade"  pres) ("åre"  pret) ("kontre"  pret) ("slette"  pres) ("velje"  pres) ("fare"  pret) ("sitje"  pres) ("sitte"  pres) ("sette"  pres) ("nå"  pres) ("elle"  pres) ("fø"  pres) ("helle"  pres) ("dy"  pres) ("dage"  pres) ("vå"  pres) ("vinde"  pres) ("snerte"  pret) ("jorde"  pret) ("ry"  pret) ("rynje"  pret) ("kagge"  pres) ("kroppe"  vblex pres) ("åte"  pret) ("hurre"  pret) ("marke"  pret) ;
 LIST fem = f mf (adj def) ;
 LIST fem-bu = (f def) ;
 LIST fem-det = (det f) ;
@@ -570,33 +570,33 @@ LIST hj-verb-fv = ("bli"  pres) ("verte"  pres) ("have"  pres) ("ha"  pres) ("bl
 LIST hj-verb-iv = ("tore"  inf) ("tore"  vblex pp) ("pla"  inf) ("pla"  vblex pp) ("ljote"  inf) ("ljote"  vblex pp) ("lyte"  inf) ("lyte"  vblex pp) ("bli"  inf) ("bli"  vblex pp) ("verte"  inf) ("verte"  vblex pp) ("ha"  inf) ("ha"  vblex pp) ("have"  inf) ("have"  vblex pp) ("vere"  inf) ("vere"  vblex pp) ("få"  inf) ("få"  vblex pp) ("skulle"  inf) ("skulle"  vblex pp) ("kunne"  inf) ("kunne"  vblex pp) ("vilje"  inf) ("vilje"  vblex pp) ("ville"  inf) ("ville"  vblex pp) ("måtte"  inf) ("måtte"  vblex pp) ("byrje"  inf) ("byrje"  vblex pp) ("burde"  inf) ("burde"  vblex pp) ;
 LIST høfleg = "Dykk" "Deira" "De" ;
 LIST i-subst = "verdi"  "juli"  ;
-LIST ikkje-adj = "sidan"  adv vblex pr prn cnjsub part n interj det (clb cnjcoo) <anf> <ellipse> ;
-LIST ikkje-adj-adv = vblex pr prn cnjsub part n interj det (clb cnjcoo) <anf> <ellipse> ;
-LIST ikkje-adj-det = "sidan"  adv <adv> vblex pr prn cnjsub part n interj (clb cnjcoo) <anf> <ellipse> ;
-LIST ikkje-adj-nr2det = adv vblex pr prn cnjsub part n interj <ellipse> <kolon> <semi> (cnjcoo clb) (cm clb) ("hin"  det) ("denne"  det) ("dette"  det) ("den"  det) ("det"  det) ("ein"  det) ("noen"  det) ("nokon"  det) ("ingen"  det) ;
-LIST ikkje-adj-nr2det-bu-det = adv vblex pr prn cnjsub part n interj <ellipse> <kolon> <semi> ("ein"  det) ("noen"  det) ("nokon"  det) ("ingen"  det) (cnjcoo clb) (cm clb) ;
+LIST ikkje-adj = "sidan"  adv vblex pr prn cnjsub part n np interj det (clb cnjcoo) <anf> <ellipse> ;
+LIST ikkje-adj-adv = vblex pr prn cnjsub part n np interj det (clb cnjcoo) <anf> <ellipse> ;
+LIST ikkje-adj-det = "sidan"  adv <adv> vblex pr prn cnjsub part n np interj (clb cnjcoo) <anf> <ellipse> ;
+LIST ikkje-adj-nr2det = adv vblex pr prn cnjsub part n np interj <ellipse> <kolon> <semi> (cnjcoo clb) (cm clb) ("hin"  det) ("denne"  det) ("dette"  det) ("den"  det) ("det"  det) ("ein"  det) ("noen"  det) ("nokon"  det) ("ingen"  det) ;
+LIST ikkje-adj-nr2det-bu-det = adv vblex pr prn cnjsub part n np interj <ellipse> <kolon> <semi> ("ein"  det) ("noen"  det) ("nokon"  det) ("ingen"  det) (cnjcoo clb) (cm clb) ;
 LIST ikkje-adj-subst = "sidan"  adv vblex pr prn cnjsub cnjcoo part interj det <<< <ellipse> ;
-LIST ikkje-adj-verb = "sidan"  n adv pr prn cnjsub cnjcoo part interj det <<< <ellipse> ;
-LIST ikkje-adj/perf-part = "sidan"  adv pr prn cnjsub part n interj det (vblex inf) (vblex pres) (vblex pret) (vblex imp) (clb cnjcoo) <anf> <ellipse> ;
-LIST ikkje-adv = "sidan"  "$," vblex pr prn cnjsub cnjcoo part interj n det <ellipse> (adj m) (adj f) (adj mf) (adj def) (adj pl) (adj comp) (adj sup) (adj pprs) ;
-LIST ikkje-adv-adj = "sidan"  "$:" vblex pr prn cnjsub part n interj det <ellipse> (clb cnjcoo) ;
-LIST ikkje-adv-adj-det = "sidan"  "$:" vblex pr prn cnjsub part n interj <ellipse> (clb cnjcoo) ;
-LIST ikkje-adv-adj-det-prep = "sidan"  "$:" vblex prn cnjsub part n interj <ellipse> (clb cnjcoo) ;
-LIST ikkje-adv-adj-det-pron = "sidan"  "$:" vblex pr cnjsub part n interj <ellipse> (clb cnjcoo) ;
+LIST ikkje-adj-verb = "sidan"  n np adv pr prn cnjsub cnjcoo part interj det <<< <ellipse> ;
+LIST ikkje-adj/perf-part = "sidan"  adv pr prn cnjsub part n np interj det (vblex inf) (vblex pres) (vblex pret) (vblex imp) (clb cnjcoo) <anf> <ellipse> ;
+LIST ikkje-adv = "sidan"  "$," vblex pr prn cnjsub cnjcoo part interj n np det <ellipse> (adj m) (adj f) (adj mf) (adj def) (adj pl) (adj comp) (adj sup) (adj pprs) ;
+LIST ikkje-adv-adj = "sidan"  "$:" vblex pr prn cnjsub part n np interj det <ellipse> (clb cnjcoo) ;
+LIST ikkje-adv-adj-det = "sidan"  "$:" vblex pr prn cnjsub part n np interj <ellipse> (clb cnjcoo) ;
+LIST ikkje-adv-adj-det-prep = "sidan"  "$:" vblex prn cnjsub part n np interj <ellipse> (clb cnjcoo) ;
+LIST ikkje-adv-adj-det-pron = "sidan"  "$:" vblex pr cnjsub part n np interj <ellipse> (clb cnjcoo) ;
 LIST ikkje-adv-adj-det-subst = "sidan"  "$:" "$--" "$-" "$," lpar rpar vblex pr prn cnjsub cnjcoo part interj <<< <ellipse> ;
-LIST ikkje-adv-adj-det/%all%/%mang%/%mange% = "sidan"  "mange"  "mang"  "all"  "$:" vblex pr prn cnjsub part n interj <ellipse> (clb cnjcoo) ;
-LIST ikkje-adv-adj-det/clb-komma = "sidan"  "$:" vblex pr prn cnjsub part n interj <ellipse> (clb cnjcoo) (clb cm) ;
-LIST ikkje-adv-adj-det2 = "sidan"  "$:" vblex pr prn cnjsub part n interj <ellipse> ;
-LIST ikkje-adv-adj-fl-det = "sidan"  "$:" vblex pr prn cnjsub part n interj <ellipse> (det sg) (clb cnjcoo) ;
-LIST ikkje-adv-adj-interj = "sidan"  "$:" vblex pr prn cnjsub part n det <ellipse> (clb cnjcoo) ;
-LIST ikkje-adv-adj-komma = "sidan"  "$-" rpar vblex pr prn cnjsub part n interj det <ellipse> ("$," clb) (clb cnjcoo) ukjent ;
-LIST ikkje-adv-adj-prep-komma = "sidan"  "$-" rpar vblex prn cnjsub part n interj det <ellipse> ("$," clb) (clb cnjcoo) ;
-LIST ikkje-adv-adj-konj = "sidan"  "$:" vblex pr prn cnjsub part n interj det <ellipse> ;
-LIST ikkje-adv-adj-kvant = "sidan"  vblex pr prn cnjsub cnjcoo part n interj <ellipse> (det dem) (det pos) (det emph) ;
-LIST ikkje-adv-adj-nr2det = vblex pr prn cnjsub part n interj <ellipse> <kolon> <semi> ("hin"  det) ("denne"  det) ("dette"  det) ("den"  det) ("det"  det) ("ein"  det) ("noen"  det m) ("nokon"  det m) ("noen"  det f) ("nokon"  det f) ("noen"  det pl) ("nokon"  det pl) ("ingen"  det) (cnjcoo clb) (cm clb) ;
-LIST ikkje-adv-adj-nr2det-bu-det = vblex pr prn cnjsub part n interj <ellipse> <kolon> <semi> ("ein"  det) ("noen"  det) ("nokon"  det) ("ingen"  det) (cnjcoo clb) (cm clb) ;
-LIST ikkje-adv-adj-prep = "$," det vblex prn cnjsub cnjcoo part interj n <ellipse> ;
-LIST ikkje-adv-adj-prep-det = "$," vblex prn cnjsub cnjcoo part interj n <ellipse> ;
+LIST ikkje-adv-adj-det/%all%/%mang%/%mange% = "sidan"  "mange"  "mang"  "all"  "$:" vblex pr prn cnjsub part n np interj <ellipse> (clb cnjcoo) ;
+LIST ikkje-adv-adj-det/clb-komma = "sidan"  "$:" vblex pr prn cnjsub part n np interj <ellipse> (clb cnjcoo) (clb cm) ;
+LIST ikkje-adv-adj-det2 = "sidan"  "$:" vblex pr prn cnjsub part n np interj <ellipse> ;
+LIST ikkje-adv-adj-fl-det = "sidan"  "$:" vblex pr prn cnjsub part n np interj <ellipse> (det sg) (clb cnjcoo) ;
+LIST ikkje-adv-adj-interj = "sidan"  "$:" vblex pr prn cnjsub part n np det <ellipse> (clb cnjcoo) ;
+LIST ikkje-adv-adj-komma = "sidan"  "$-" rpar vblex pr prn cnjsub part n np interj det <ellipse> ("$," clb) (clb cnjcoo) ukjent ;
+LIST ikkje-adv-adj-prep-komma = "sidan"  "$-" rpar vblex prn cnjsub part n np interj det <ellipse> ("$," clb) (clb cnjcoo) ;
+LIST ikkje-adv-adj-konj = "sidan"  "$:" vblex pr prn cnjsub part n np interj det <ellipse> ;
+LIST ikkje-adv-adj-kvant = "sidan"  vblex pr prn cnjsub cnjcoo part n np interj <ellipse> (det dem) (det pos) (det emph) ;
+LIST ikkje-adv-adj-nr2det = vblex pr prn cnjsub part n np interj <ellipse> <kolon> <semi> ("hin"  det) ("denne"  det) ("dette"  det) ("den"  det) ("det"  det) ("ein"  det) ("noen"  det m) ("nokon"  det m) ("noen"  det f) ("nokon"  det f) ("noen"  det pl) ("nokon"  det pl) ("ingen"  det) (cnjcoo clb) (cm clb) ;
+LIST ikkje-adv-adj-nr2det-bu-det = vblex pr prn cnjsub part n np interj <ellipse> <kolon> <semi> ("ein"  det) ("noen"  det) ("nokon"  det) ("ingen"  det) (cnjcoo clb) (cm clb) ;
+LIST ikkje-adv-adj-prep = "$," det vblex prn cnjsub cnjcoo part interj n np <ellipse> ;
+LIST ikkje-adv-adj-prep-det = "$," vblex prn cnjsub cnjcoo part interj n np <ellipse> ;
 LIST ikkje-adv-adj-subst = "sidan"  "$:" "$--" "$-" "$," lpar rpar vblex pr prn cnjsub cnjcoo part interj det <<< <ellipse> ;
 LIST ikkje-adv-adj-subst-det-prep = "$-" "$," vblex prn cnjsub cnjcoo part interj <<< <ellipse> ;
 LIST ikkje-adv-adj-subst-det-prep-verb = "$-" "$," prn cnjsub cnjcoo part interj <<< <ellipse> ;
@@ -612,34 +612,34 @@ LIST ikkje-adv-adj-substmgen-konj-detmdem-prep = prn cnjsub part interj <ellipse
 LIST ikkje-adv-adj-substmgen-pron-detmdem-prep = cnjsub part interj cnjcoo <ellipse> (vblex pres) (vblex pret) ("$," clb) ;
 LIST ikkje-adv-adj-substmgen-pron-konj-detmdem-prep = cnjsub part interj <ellipse> (vblex pres) (vblex pret) ("$," clb) (clb cnjcoo) ;
 LIST ikkje-adv-adj-substmgen-pron-konj-detmdem-prep2 = cnjsub part interj <ellipse> vblex ("$," clb) (clb cnjcoo) ;
-LIST ikkje-adv-adj-u-konj = vblex pr prn cnjsub part n interj det cnjcoo <ellipse> <kolon> <semi> (cm clb) ;
-LIST ikkje-adv-bu-adj = vblex pr prn cnjsub part n interj det <ellipse> <kolon> <semi> (adj ind) (adj pprs) (cnjcoo clb) (cm clb) ;
-LIST ikkje-adv-komp-ub-sup = "sidan"  "$," vblex pr prn cnjsub cnjcoo part interj n det <ellipse> (adj m) (adj f) (adj mf) (adj def) (adj pl) (adj sup def) (adj pprs) ;
-LIST ikkje-adv-prep = "sidan"  "$," vblex prn cnjsub cnjcoo part interj n det <ellipse> (adj m) (adj f) (adj mf) (adj def) (adj pl) (adj comp) (adj sup) (adj pprs) ;
-LIST ikkje-adv-prep-det = "$," vblex prn cnjsub cnjcoo part interj n <ellipse> (adj m) (adj f) (adj mf) (adj def) (adj pl) (adj comp) (adj sup) (adj pprs) ;
-LIST ikkje-adv-prep2 = "sidan"  vblex prn cnjsub cnjcoo part interj n det (adj m) (adj f) (adj mf) (adj def) (adj pl) (adj comp) (adj sup) (adj pprs) ;
-LIST ikkje-adv-prep2-u-sup = "sidan"  vblex prn cnjsub cnjcoo part interj n det (adj m) (adj f) (adj mf) (adj def) (adj pl) (adj comp) (adj pprs) ;
-LIST ikkje-adv-pron = "sidan"  "$," vblex pr cnjsub cnjcoo part interj n det <ellipse> (adj m) (adj f) (adj mf) (adj def) (adj pl) (adj comp) (adj sup) (adj pprs) ;
-LIST ikkje-adv-pron-prep = "sidan"  "$," vblex cnjsub cnjcoo part interj n det <ellipse> (adj m) (adj f) (adj mf) (adj def) (adj pl) (adj comp) (adj sup) (adj pprs) ;
+LIST ikkje-adv-adj-u-konj = vblex pr prn cnjsub part n np interj det cnjcoo <ellipse> <kolon> <semi> (cm clb) ;
+LIST ikkje-adv-bu-adj = vblex pr prn cnjsub part n np interj det <ellipse> <kolon> <semi> (adj ind) (adj pprs) (cnjcoo clb) (cm clb) ;
+LIST ikkje-adv-komp-ub-sup = "sidan"  "$," vblex pr prn cnjsub cnjcoo part interj n np det <ellipse> (adj m) (adj f) (adj mf) (adj def) (adj pl) (adj sup def) (adj pprs) ;
+LIST ikkje-adv-prep = "sidan"  "$," vblex prn cnjsub cnjcoo part interj n np det <ellipse> (adj m) (adj f) (adj mf) (adj def) (adj pl) (adj comp) (adj sup) (adj pprs) ;
+LIST ikkje-adv-prep-det = "$," vblex prn cnjsub cnjcoo part interj n np <ellipse> (adj m) (adj f) (adj mf) (adj def) (adj pl) (adj comp) (adj sup) (adj pprs) ;
+LIST ikkje-adv-prep2 = "sidan"  vblex prn cnjsub cnjcoo part interj n np det (adj m) (adj f) (adj mf) (adj def) (adj pl) (adj comp) (adj sup) (adj pprs) ;
+LIST ikkje-adv-prep2-u-sup = "sidan"  vblex prn cnjsub cnjcoo part interj n np det (adj m) (adj f) (adj mf) (adj def) (adj pl) (adj comp) (adj pprs) ;
+LIST ikkje-adv-pron = "sidan"  "$," vblex pr cnjsub cnjcoo part interj n np det <ellipse> (adj m) (adj f) (adj mf) (adj def) (adj pl) (adj comp) (adj sup) (adj pprs) ;
+LIST ikkje-adv-pron-prep = "sidan"  "$," vblex cnjsub cnjcoo part interj n np det <ellipse> (adj m) (adj f) (adj mf) (adj def) (adj pl) (adj comp) (adj sup) (adj pprs) ;
 LIST ikkje-adv-subst-pron-konj = "sidan"  det vblex pr cnjsub interj <ellipse> (det dem) (adj m) (adj f) (adj mf) (adj def) (adj pl) (adj pprs) (n gen) (np gen) ("$,") (clb cnjcoo) ;
 LIST ikkje-adv-subst-pron-konj-det = "sidan"  vblex pr cnjsub interj <ellipse> (det dem) (adj m) (adj f) (adj mf) (adj def) (adj pl) (adj pprs) (n gen) (np gen) ("$," clb) (clb cnjcoo) ;
 LIST ikkje-adv-subst-pron-konj-det-verb = "sidan"  pr cnjsub interj <ellipse> (det dem) (adj m) (adj f) (adj mf) (adj def) (adj pl) (adj pprs) (n gen) (np gen) ("$," clb) (clb cnjcoo) @adv ;
-LIST ikkje-adv-verb = "sidan"  "$," pr prn cnjsub cnjcoo part interj n det <ellipse> (adj m) (adj f) (adj mf) (adj def) (adj pl) (adj comp) (adj sup) (adj pprs) ;
+LIST ikkje-adv-verb = "sidan"  "$," pr prn cnjsub cnjcoo part interj n np det <ellipse> (adj m) (adj f) (adj mf) (adj def) (adj pl) (adj comp) (adj sup) (adj pprs) ;
 LIST ikkje-denne-np = "sidan"  "$-" vblex pr prn cnjsub part det interj <<< ;
-LIST ikkje-det = vblex pr prn cnjsub cnjcoo part n interj adj adv ;
-LIST ikkje-det-inkl-parentes-beg = vblex pr prn cnjsub cnjcoo part n interj adj adv lpar ;
-LIST ikkje-det-prep = "sidan"  vblex pr prn cnjsub cnjcoo part n interj adj adv ;
-LIST ikkje-fl-adj = (adj nt sg) adv vblex pr prn cnjsub part n interj det cnjcoo <anf> <ellipse> ;
-LIST ikkje-mask/fem-adj = (adj nt sg) (adj pl) (adj m sg) (adj f sg) (adj mf sg) (adj pprs) adv vblex pr prn cnjsub part n interj det cnjcoo <anf> <ellipse> ;
-LIST ikkje-nøyt-adj = (adj m sg) (adj f sg) (adj mf sg) (adj def) (adj pl) (adj pprs) adv vblex pr prn cnjsub part n interj det cnjcoo <anf> <ellipse> ;
+LIST ikkje-det = vblex pr prn cnjsub cnjcoo part n np interj adj adv ;
+LIST ikkje-det-inkl-parentes-beg = vblex pr prn cnjsub cnjcoo part n np interj adj adv lpar ;
+LIST ikkje-det-prep = "sidan"  vblex pr prn cnjsub cnjcoo part n np interj adj adv ;
+LIST ikkje-fl-adj = (adj nt sg) adv vblex pr prn cnjsub part n np interj det cnjcoo <anf> <ellipse> ;
+LIST ikkje-mask/fem-adj = (adj nt sg) (adj pl) (adj m sg) (adj f sg) (adj mf sg) (adj pprs) adv vblex pr prn cnjsub part n np interj det cnjcoo <anf> <ellipse> ;
+LIST ikkje-nøyt-adj = (adj m sg) (adj f sg) (adj mf sg) (adj def) (adj pl) (adj pprs) adv vblex pr prn cnjsub part n np interj det cnjcoo <anf> <ellipse> ;
 LIST ikkje-nøyt-eint-adj = (adj m sg) (adj f sg) (adj mf sg) (adj def) (adj pl) (adj pprs) ;
-LIST ikkje-poss-det = "sidan"  "$," adj adv vblex pr prn cnjsub cnjcoo part interj n <ellipse> <strek> (det def) (det dem) (det emph) (det qnt) (det itg) ;
-LIST ikkje-poss-det-adv = "sidan"  "$," vblex pr prn cnjsub cnjcoo part interj n <ellipse> <strek> (det def) (det dem) (det emph) (det qnt) (det itg) (adj m) (adj f) (adj mf) (adj def) (adj pprs) ;
-LIST ikkje-prep = cnjsub adv adj vblex prn part n interj det (clb cnjcoo) <anf> <ellipse> ;
-LIST ikkje-prep-sbu = adv adj vblex prn part n interj det (clb cnjcoo) <anf> <ellipse> ;
-LIST ikkje-pres-pret = "sidan"  det pr prn cnjsub cnjcoo part n interj adj adv inf vblex pp ;
+LIST ikkje-poss-det = "sidan"  "$," adj adv vblex pr prn cnjsub cnjcoo part interj n np <ellipse> <strek> (det def) (det dem) (det emph) (det qnt) (det itg) ;
+LIST ikkje-poss-det-adv = "sidan"  "$," vblex pr prn cnjsub cnjcoo part interj n np <ellipse> <strek> (det def) (det dem) (det emph) (det qnt) (det itg) (adj m) (adj f) (adj mf) (adj def) (adj pprs) ;
+LIST ikkje-prep = cnjsub adv adj vblex prn part n np interj det (clb cnjcoo) <anf> <ellipse> ;
+LIST ikkje-prep-sbu = adv adj vblex prn part n np interj det (clb cnjcoo) <anf> <ellipse> ;
+LIST ikkje-pres-pret = "sidan"  det pr prn cnjsub cnjcoo part n np interj adj adv inf vblex pp ;
 LIST ikkje-sanns-ditrans = "skrive"  ;
-LIST ikkje-sbu = det pr prn cnjcoo part n interj adj adv vblex ;
+LIST ikkje-sbu = det pr prn cnjcoo part n np interj adj adv vblex ;
 LIST ikkje-subst = "sidan"  "$-" "$," vblex pr prn cnjsub cnjcoo part det interj adj adv ;
 LIST ikkje-subst-adj-det-adv = "sidan"  "$-" "$," prn (n gen) (np gen) vblex pr cnjsub cnjcoo part interj ;
 LIST ikkje-subst-adj-det-pron = "sidan"  "$-" "$," adv vblex pr cnjsub cnjcoo part interj ;
@@ -650,10 +650,10 @@ LIST ikkje-subst-pron = "sidan"  "$-" "$," vblex pr cnjsub cnjcoo part det inter
 LIST ikkje-subst-prop = "$-" "$," vblex pr prn cnjsub cnjcoo part det interj adj adv (n appell) ;
 LIST ikkje-subst-verb = "sidan"  "$-" "$," pr prn cnjsub cnjcoo part det interj adj adv ;
 LIST ikkje-tal = "sumt"  "som"  "nokon"  "noen"  "kvar"  "ingen"  "einkvan"  "båe"  "begge"  "all"  ;
-LIST ikkje-teiknsetjing-konj = "sidan"  adj adv vblex pr prn cnjsub part n interj det ;
-LIST ikkje-tr1/tr4-10/tr14/dtr1-9/refl/pr1/pr3-10/adv2/adv6-11/adv13-14/kaus = tr2 tr3 tr11 tr12 tr12/til tr13 tr13/til tr15 tr16 tr17 tr18 tr19 tr20 tr20/til tr21 tr21/til tr22 tr23 n n1 i1 i2 i3 i4 pr2 pr11 pr12 pr13 a3 a4 a5 a12 a15 pa pa1 pa1/til pa1 rl4 pa2 pa2/til pa3 pa3/til pa4 pa4/til pa5 pa5 pa5/til pa6 pa7 pa8 <aux1/inf> <aux1/infinitiv> <aux1/perf_part> ;
-LIST ikkje-verb = "sidan"  det pr prn cnjsub cnjcoo part n interj adj adv ;
-LIST ikkje-verb-adj-adv = det pr prn cnjsub cnjcoo part n interj ;
+LIST ikkje-teiknsetjing-konj = "sidan"  adj adv vblex pr prn cnjsub part n np interj det ;
+LIST ikkje-tr1/tr4-10/tr14/dtr1-9/refl/pr1/pr3-10/adv2/adv6-11/adv13-14/kaus = tr2 tr3 tr11 tr12 tr12/til tr13 tr13/til tr15 tr16 tr17 tr18 tr19 tr20 tr20/til tr21 tr21/til tr22 tr23 n np n1 i1 i2 i3 i4 pr2 pr11 pr12 pr13 a3 a4 a5 a12 a15 pa pa1 pa1/til pa1 rl4 pa2 pa2/til pa3 pa3/til pa4 pa4/til pa5 pa5 pa5/til pa6 pa7 pa8 <aux1/inf> <aux1/infinitiv> <aux1/perf_part> ;
+LIST ikkje-verb = "sidan"  det pr prn cnjsub cnjcoo part n np interj adj adv ;
+LIST ikkje-verb-adj-adv = det pr prn cnjsub cnjcoo part n np interj ;
 LIST imp = imp ;
 LIST inf = inf ;
 LIST inf/pres = (vblex inf pres) ;
@@ -723,7 +723,7 @@ LIST månad = "september"  "oktober"  "november"  "mars"  "mai"  "juni"  "juli" 
 LIST månad/høgtid/årstid = "vinter"  "sumar"  "sommer"  "september"  "påske"  "pinse"  "oktober"  "november"  "mars"  "mai"  "juni"  "juli"  "jul"  "januar"  "haust"  "februar"  "desember"  "august"  "april"  ("vår"  n) ;
 LIST månad/høgtid/årstid/tidssubst = "vinter"  "sumar"  "sommer"  "september"  "påske"  "pinse"  "oktober"  "november"  "mars"  "mai"  "juni"  "juli"  "jul"  "januar"  "haust"  "februar"  "desember"  "august"  "april"  ("vår"  n) ("tid"  sg def) ("tidsrom"  sg def) ("periode"  sg def) ;
 LIST neg-adv = "neppe"  "ikkje"  "aldri"  ;
-LIST nom = n adj prn det ;
+LIST nom = n np adj prn det ;
 LIST nom-eint = (n sg) (np sg) ("all"  sg) ("mang"  sg) ("De" nom) ("han"  nom) ("eg"  nom) ("ho"  nom) ("du"  nom) ("den"  prn) ("denne"  prn) ("det"  prn) ("dette"  prn) ;
 LIST nom-fem-eint = (n f sg) (np f sg) ("mang"  det f) ("all"  det f) ("eg"  nom) ("ho"  nom) ("du"  nom) ("den"  prn) ("denne"  prn) ("ein"  prn) ("nokon"  prn) ;
 LIST nom-fem-eint/%ei% = (n f sg) (np f sg) ("mang"  det f) ("all"  det f) ("eg"  nom) ("ho"  nom) ("du"  nom) ("den"  prn) ("denne"  prn) ("ein"  prn) ("nokon"  prn) ("ein"  f) ;
@@ -737,15 +737,15 @@ LIST nom-mask/fem-eint/%ein/ei% = (n m sg) (np m sg) ("mang"  det m) ("all"  det
 LIST nom-nøyt-eint = (n nt sg) (np nt sg) ("mang"  det nt) ("all"  det nt) ("det"  prn) ("dette"  prn) ("noko"  prn) ;
 LIST nom-nøyt-eint/%eit% = (n nt sg) (np nt sg) ("mang"  det nt) ("all"  det nt) ("det"  prn) ("dette"  prn) ("noko"  prn) ("ein"  prn) ("ein"  nt) ;
 LIST nom-nøyt-eint/prop = (n nt sg) (np nt) ("mang"  det nt) ("all"  det nt) ("det"  prn) ("dette"  prn) ("noko"  prn) ;
-LIST nom-sbu = n adj prn det cnjsub ;
-LIST nom-utan-det = n adj prn ;
-LIST nom-utan-pron = n adj det ;
-LIST nom/adv = n adj prn det adv ;
+LIST nom-sbu = n np adj prn det cnjsub ;
+LIST nom-utan-det = n np adj prn ;
+LIST nom-utan-pron = n np adj det ;
+LIST nom/adv = n np adj prn det adv ;
 LIST nom/akk-pron = "ho"  "han"  "eg"  "du"  "dei"  "de"  ;
-LIST nom/at = ("at"  cnjsub) n adj prn det ;
-LIST nom/perf-part = n adj prn det vblex pp ;
-LIST nom/prep = (pr) n adj prn det ;
-LIST nom/som = ("som"  cnjsub) n adj prn det ;
+LIST nom/at = ("at"  cnjsub) n np adj prn det ;
+LIST nom/perf-part = n np adj prn det vblex pp ;
+LIST nom/prep = (pr) n np adj prn det ;
+LIST nom/som = ("som"  cnjsub) n np adj prn det ;
 LIST nominativ = nom ;
 LIST npu-verb = "trenge"  "orke"  "klare"  "gidde"  ;
 LIST nr2-det = (det qnt pl) ("eine"  det) ("hin"  det) ("einaste"  det) ("kvar"  det) ("same"  det) ("neste"  det) ("forrige"  det) ("førre"  det) ("annan"  det) ("annen"  det) ("slik"  det) ("sånn"  det) ("eigen"  det) ("halvannan"  det) ("halvannen"  det) ("nokon"  det) ("noe"  det) ;
@@ -845,9 +845,9 @@ LIST pron-nom/%seg% = (prn p1 nom) (prn p2 nom) (prn p3 nom) ("seg"  prn) ;
 LIST pron-pers = (prn p1) (prn p2) (prn p3) ;
 LIST pron-r = "seg"  "kvarandre"  ;
 LIST pron/bu-subst/prop = prn (n def) np ;
-LIST pron/subst = prn n ;
+LIST pron/subst = prn n np ;
 LIST prop = np ;
-LIST prop-det-eint = ("Det" n np) ("Den" np) ;
+LIST prop-det-eint = ("Det" np) ("Den" np) ;
 LIST prop/%du% = "du"  np ;
 LIST prop/hum-pron = np (prn p1 hum) (prn p2 hum) (prn p3 hum) (prn p1 m) (prn p2 m) (prn p3 m) (prn p1 f) (prn p2 f) (prn p3 f) (prn p1) (prn p2) (prn p1 pl) (prn p2 pl) (prn p3 pl) ;
 LIST prop/ub-eint-subst = np (n sg ind) (np sg ind) (n ubøy) (np ubøy) ;
@@ -869,7 +869,9 @@ LIST sbu/adv = cnjsub adv ;
 LIST sbu/infmerke = cnjsub part ;
 LIST sbu/konj = cnjsub cnjcoo ;
 LIST sbu/sp = "kvifor"  "kvar"  "korleis"  "korfor"  "kor"  cnjsub ;
-LIST seier-verb = "åtvare"  "tenkje"  "tenke"  "svare"  "sukke"  "spørje"  "skrive"  "seie"  "rope"  "mumle"  "meine"  "låte"  "kviskre"  "hyle"  "fortelje"  "(\"la\" vblex pret) = <let> uten ` som det eigentleg burde ga vore, dvs pret av låte " ("la"  vblex pret) ;
+LIST seier-verb = "åtvare"  "tenkje"  "tenke"  "svare"  "sukke"  "spørje"  "skrive"  "seie"  "rope"  "mumle"  "meine"  "låte"  "kviskre"  "hyle"  "fortelje"  ("la"  vblex pret) ;
+#"(\"la\" vblex pret) = <let> uten ` som det eigentleg burde ga vore, dvs pret av låte "
+# ^^^ fjerna denne frå lista over, såg ut som ein feil..? -KBU
 LIST setn-gr = "kvifor"  "korleis"  "$--" "$-" cnjsub @sbu >>> <<< ("koss"  adv) ("kor"  adv) ("kvar"  adv) ("kven"  prn itg) ("kva"  prn itg) ("$:" clb) ("$;" clb) (clb cnjcoo) (clb cm) "<.>" "<:>" "<!>" "<?>" "<|>" "<$.>" "<$:>" "<$!>" "<$?>" "<$|>";
 LIST setn-gr-u-komma = "kvifor"  "korleis"  "korfor"  "$--" "$-" cnjsub @sbu >>> <<< ("koss"  adv) ("kor"  adv) ("kvar"  adv) ("kven"  prn itg) ("kva"  prn itg) ("$:" clb) ("$;" clb) (clb cnjcoo) ;
 LIST setn-gr-u-sbu = "kvifor"  "korleis"  "korfor"  "$--" "$-" "$!" >>> <<< ("koss"  adv) ("kor"  adv) ("kvar"  adv) ("kven"  prn itg) ("kva"  prn itg) ("$:" clb) ("$;" clb) (clb cnjcoo) (clb cm) clb ;
@@ -881,7 +883,7 @@ LIST setn-gr/verb = "kvifor"  "korleis"  "korfor"  "$--" "$-" vblex cnjsub @sbu 
 LIST setn-slutt/fin-verb = <<< clb (vblex pres) (vblex pret) ;
 LIST setn/infkonstr-gr = "kvifor"  "kvar"  "kva"  "korleis"  "korfor"  "kor"  part cnjsub >>> <<< ("$-" clb) ("$;" clb) (clb cnjcoo) (clb cm) ;
 LIST setn/infkonstr-gr/verb = "kvifor"  "korleis"  "$--" "$-" vblex part cnjsub @sbu >>> <<< ("koss"  adv) ("kor"  adv) ("kvar"  adv) ("kven"  prn itg) ("kva"  prn itg) ("$:" clb) ("$;" clb) (clb cnjcoo) (clb cm) ;
-LIST setningsadv = "òg" "vonleg"  "visstnok"  "visselig"  "visseleg"  "ventelig"  "venteleg"  "vanligvis"  "vanlegvis"  "unektelig"  "unekteleg"  "uheldigvis"  "tydeligvis"  "tydelegvis"  "trulig"  "truleg"  "tilfeldigvis"  "sogar"  "so"  "sluttelig"  "slutteleg"  "simpelthen"  "sannsynligvis"  "sannsynlegvis"  "sannelig"  "sanneleg"  "saktens"  "rimeligvis"  "rimelegvis"  "riktignok"  "også"  "ofte"  "nødvendigvis"  "no"  "nesten"  "neppe"  "nemlig"  "nemleg"  "naturligvis"  "naturlegvis"  "muligvis"  "muligens"  "mulegvis"  "mogligvis"  "moglegvis"  "mogeligvis"  "mogelegvis"  "lykkeligvis"  "lykkelegvis"  "lukkeligvis"  "lukkeligvis"  "liksom"  "klokelig"  "klokeleg"  "kanskje"  "jo"  "jamvel"  "jammen"  "især"  "imidlertid"  "ikkje"  "heldigvis"  "gudskjelov"  "gledeligvis"  "gledelegvis"  "følgjeleg"  "følgelig"  "fortrinnsvis"  "forresten"  "fornuftigvis"  "formodentlig"  "formodentleg"  "formelig"  "formeleg"  "forhåpentligvis"  "forhåpentlegvis"  "elles"  "eksempelvis"  "dog"  "dessverre"  "dessutan"  "berre"  "beklageligvis"  "antakelig"  "antakeleg"  "altså"  "alltid"  "aldri"  ("kan"  adv) ("hende"  adv) ("nok"  adv) ("nå"  adv) ("så"  adv) ("da"  adv) ("då"  adv) ("brå"  adj posi nt ind sg) ("sjølvsagd"  adj posi nt ind ein) ("sjølvsagt"  adj posi nt ind ein);
+LIST setningsadv = "òg" "vonleg"  "visstnok"  "visselig"  "visseleg"  "ventelig"  "venteleg"  "vanligvis"  "vanlegvis"  "unektelig"  "unekteleg"  "uheldigvis"  "tydeligvis"  "tydelegvis"  "trulig"  "truleg"  "tilfeldigvis"  "sogar"  "so"  "sluttelig"  "slutteleg"  "simpelthen"  "sannsynligvis"  "sannsynlegvis"  "sannelig"  "sanneleg"  "saktens"  "rimeligvis"  "rimelegvis"  "riktignok"  "også"  "ofte"  "nødvendigvis"  "no"  "nesten"  "neppe"  "nemlig"  "nemleg"  "naturligvis"  "naturlegvis"  "muligvis"  "muligens"  "mulegvis"  "mogligvis"  "moglegvis"  "mogeligvis"  "mogelegvis"  "lykkeligvis"  "lykkelegvis"  "lukkeligvis"  "lukkeligvis"  "liksom"  "klokelig"  "klokeleg"  "kanskje"  "jo"  "jamvel"  "jammen"  "især"  "imidlertid"  "ikkje"  "heldigvis"  "gudskjelov"  "gledeligvis"  "gledelegvis"  "følgjeleg"  "følgelig"  "fortrinnsvis"  "forresten"  "fornuftigvis"  "formodentlig"  "formodentleg"  "formelig"  "formeleg"  "forhåpentligvis"  "forhåpentlegvis"  "elles"  "eksempelvis"  "dog"  "dessverre"  "dessutan"  "berre"  "beklageligvis"  "antakelig"  "antakeleg"  "altså"  "alltid"  "aldri"  ("kan"  adv) ("hende"  adv) ("nok"  adv) ("nå"  adv) ("så"  adv) ("da"  adv) ("då"  adv) ("brå"  adj posi nt ind sg) ("sjølvsagd"  adj posi nt ind ein) ("sjølvsagt"  adj posi nt ind ein) ;
 LIST sitatverb = "åtvare"  "understreke"  "truge"  "true"  "tru"  "tenkje"  "svare"  "sukke"  "smile"  "skrive"  "seie"  "rope"  "replisere"  "påpeike"  "presisere"  "presisere"  "opplyse"  "oppfordre"  "mumle"  "meine"  "love"  "le"  "kviskre"  "konkludere"  "hyle"  "hevde"  "glise"  "gjenta"  "gaule"  "fortelje"  "forklare"  "flire"  "fastslå"  "erkjenne"  "byrje"  "begynne"  "be"  "avslutte"  ;
 LIST skipsmengde = "trosse"  "tofte"  "skip"  "segl"  "ror"  "rekkje"  "ombord"  "matros"  "lugar"  "livbåt"  "lekter"  "forut"  "forut"  "bøye"  "båt"  "baug"  "babord"  ;
 LIST sp = itg ;
@@ -912,29 +914,29 @@ LIST subst-nøyt-eint = (n nt sg) (np nt sg) ;
 LIST subst-prop = (np) ;
 LIST subst-ub = (n ind) (np ind) ;
 LIST subst-ubøy = (n ubøy) (np ubøy) ;
-LIST subst/%det%/%dette% = "dette"  "det"  n ;
-LIST subst/adj = n adj ;
-LIST subst/adj/interj = n adj interj ;
+LIST subst/%det%/%dette% = "dette"  "det"  n np ;
+LIST subst/adj = n np adj ;
+LIST subst/adj/interj = n np adj interj ;
 LIST subst/adj-eint-bu = (n sg def) (np sg def) (adj def sg) ;
 LIST subst/adj-fl = (n pl) (np pl) (adj pl) ;
 LIST subst/adj-gen = (adj gen) (n gen) (np gen) ;
-LIST subst/adj-pos = n (adj posi) ;
-LIST subst/adj/adv = n adj adv ;
-LIST subst/adj/det = n adj det ;
-LIST subst/adj/det-kvant-%av% = n adj ("av"  pr) (det qnt) ;
-LIST subst/adj/nr2-det = n adj (det qnt pl) ("eine"  det) ("hin"  det) ("einaste"  det) ("kvar"  det) ("same"  det) ("neste"  det) ("forrige"  det) ("førre"  det) ("annan"  det) ("annen"  det) ("slik"  det) ("sånn"  det) ("eigen"  det) ("halvannan"  det) ("halvannen"  det) ("nokon"  det) ("noe"  det) ;
-LIST subst/adj/pron/det = n adj prn det ;
-LIST subst/adj/pron/det/adv = adv n adj prn det ;
-LIST subst/adj/pron/det/konj = n adj prn det cnjcoo ;
-LIST subst/bu-komp-adj = n (adj def) (adj comp) (adj pprs) ;
-LIST subst/eint-adj = n (adj sg) ;
-LIST subst/pron = n prn ;
-LIST subst/pron/%all%/%mang%/%mange% = n prn ("all"  det qnt) ("mang"  det) ("mange"  adj) ;
-LIST subst/pron/fl-adj/%all%/%mang%/%mange% = n prn (adj pl) ("all"  det qnt) ("mang"  det) ("mange"  adj) ;
-LIST subst/pron/prep = n prn pr ;
-LIST subst/sp-pron = n (prn itg) ;
-LIST subst/tal-subst/målsubst/tidssubst/gen-subst = "år"  "veke"  "tusen"  "trillion"  "tonnkilometer"  "time"  "tidelssekund"  "tiandelssekund"  "sneis"  "sjømil"  "sekundmeter"  "sekund"  "prosent"  "nanosekund"  "nanometer"  "månad"  "mrd." "minutt"  "millisekund"  "million"  "millimeter"  "milliliter"  "milligram"  "milliard"  "mill." "mil"  "mikrometer"  "meter"  "liter"  "kvartmil"  "kvartliter"  "kvadrillion"  "kvadratmillimeter"  "kvadratmeter"  "kvadratkilometer"  "kvadratdesimeter"  "kvadratcentimeter"  "kubikkmillimeter"  "kubikkmeter"  "kubikkdesimeter"  "kubikkcentimeter"  "kilometer"  "kilogram"  "kilo"  "hundredelssekund"  "hundre"  "hektoliter"  "hektogram"  "halvår"  "halvmillion"  "halvmil"  "halvmeter"  "halvliter"  "halvkilo"  "gram"  "døgn"  "dusin"  "desimeter"  "desiliter"  "desigram"  "dekaliter"  "dag"  "centimeter"  "centiliter"  "centigram"  "billion"  "billiard"  (n gen) (np gen) ("gong"  pl) n ;
-LIST subst/ub-adj = n (adj ind) (adj pprs) ;
+LIST subst/adj-pos = n np (adj posi) ;
+LIST subst/adj/adv = n np adj adv ;
+LIST subst/adj/det = n np adj det ;
+LIST subst/adj/det-kvant-%av% = n np adj ("av"  pr) (det qnt) ;
+LIST subst/adj/nr2-det = n np adj (det qnt pl) ("eine"  det) ("hin"  det) ("einaste"  det) ("kvar"  det) ("same"  det) ("neste"  det) ("forrige"  det) ("førre"  det) ("annan"  det) ("annen"  det) ("slik"  det) ("sånn"  det) ("eigen"  det) ("halvannan"  det) ("halvannen"  det) ("nokon"  det) ("noe"  det) ;
+LIST subst/adj/pron/det = n np adj prn det ;
+LIST subst/adj/pron/det/adv = adv n np adj prn det ;
+LIST subst/adj/pron/det/konj = n np adj prn det cnjcoo ;
+LIST subst/bu-komp-adj = n np (adj def) (adj comp) (adj pprs) ;
+LIST subst/eint-adj = n np (adj sg) ;
+LIST subst/pron = n np prn ;
+LIST subst/pron/%all%/%mang%/%mange% = n np prn ("all"  det qnt) ("mang"  det) ("mange"  adj) ;
+LIST subst/pron/fl-adj/%all%/%mang%/%mange% = n np prn (adj pl) ("all"  det qnt) ("mang"  det) ("mange"  adj) ;
+LIST subst/pron/prep = n np prn pr ;
+LIST subst/sp-pron = n np (prn itg) ;
+LIST subst/tal-subst/målsubst/tidssubst/gen-subst = "år"  "veke"  "tusen"  "trillion"  "tonnkilometer"  "time"  "tidelssekund"  "tiandelssekund"  "sneis"  "sjømil"  "sekundmeter"  "sekund"  "prosent"  "nanosekund"  "nanometer"  "månad"  "mrd." "minutt"  "millisekund"  "million"  "millimeter"  "milliliter"  "milligram"  "milliard"  "mill." "mil"  "mikrometer"  "meter"  "liter"  "kvartmil"  "kvartliter"  "kvadrillion"  "kvadratmillimeter"  "kvadratmeter"  "kvadratkilometer"  "kvadratdesimeter"  "kvadratcentimeter"  "kubikkmillimeter"  "kubikkmeter"  "kubikkdesimeter"  "kubikkcentimeter"  "kilometer"  "kilogram"  "kilo"  "hundredelssekund"  "hundre"  "hektoliter"  "hektogram"  "halvår"  "halvmillion"  "halvmil"  "halvmeter"  "halvliter"  "halvkilo"  "gram"  "døgn"  "dusin"  "desimeter"  "desiliter"  "desigram"  "dekaliter"  "dag"  "centimeter"  "centiliter"  "centigram"  "billion"  "billiard"  (n gen) (np gen) ("gong"  pl) n np ;
+LIST subst/ub-adj = n np (adj ind) (adj pprs) ;
 LIST sup = sup ;
 LIST tal = (det qnt pl) ("ein"  det qnt) ;
 LIST tal-fl = (det qnt pl) ;
@@ -964,7 +966,7 @@ LIST trans2 = tr2 tr18 ;
 LIST ub = ind ;
 LIST ub-adj = (adj ind) (adj pprs) ;
 LIST ub-adj/<adv> = (adj ind) (adj pprs) <adv> ;
-LIST ub-adj/subst = (adj posi ind) (adj pprs) (adj comp) n ;
+LIST ub-adj/subst = (adj posi ind) (adj pprs) (adj comp) n np ;
 LIST ub-det = ("nokon"  det) ("noen"  det) ("ingen"  det) ("ein"  det) ;
 LIST ub-det-fl = ("nokon"  det pl) ("noen"  det pl) ("ingen"  det pl) ;
 LIST ub-eint = (ind sg) (sg ind) ;
@@ -999,7 +1001,7 @@ LIST ub-eint-mf-adj = (adj mf ind sg) (adj pprs) ;
 LIST ub-eint-mf-adj-nr2det/komp-adj/ordenstal = "same"  "einaste"  ord (adj mf ind sg) (adj pprs) ("kvar"  det qnt m sg) ("neste"  det) ("annen"  dem m ind sg) ("annan"  dem m ind sg) ("slik"  dem m sg) ("sånn"  dem m sg) ("eigen"  emph m ind sg) ("halvannen"  qnt m) ("halvannan"  qnt m) (adj comp) ;
 LIST ub-eint-mf-adj/komp-adj = (adj mf ind sg) (adj comp) (adj pprs) ;
 LIST ub-eint-mf-adj/komp-bu-sup-adj = (adj mf ind sg) (adj comp) (adj sup def) (adj pprs) ;
-LIST ub-eint-nøyt = (nt ind sg) (npt ind sg) ;
+LIST ub-eint-nøyt = (nt ind sg) ;
 LIST ub-eint-nøyt-adj = (adj nt ind sg) ;
 LIST ub-eint-nøyt-adj-nr2det/komp-adj/ordenstal = "same"  "einaste"  ord (adj nt ind sg) (adj pprs) ("kvar"  det qnt nt sg) ("neste"  det) ("annen"  dem nt ind sg) ("annan"  dem nt ind sg) ("slik"  dem nt sg) ("sånn"  dem nt sg) ("eigen"  emph nt ind sg) ("halvannen"  qnt nt) ("halvannan"  qnt nt) (adj comp) ;
 LIST ub-eint-nøyt-adj/komp = (adj nt ind sg) (adj comp) ;
@@ -1009,13 +1011,13 @@ LIST ub-eint-nøyt-adj/ub-eint-nøyt-subst = (adj nt ind sg) (adj pprs) (n nt sg
 LIST ub-eint-nøyt-subst = (n nt sg ind) (np nt sg ind) (n nt ubøy) (np nt ubøy) ;
 LIST ub-eint-nøyt-subst/tal-subst/målsubst/tidssubst/gen-subst = "år"  "veke"  "tusen"  "trillion"  "tonnkilometer"  "time"  "tidelssekund"  "tiandelssekund"  "sneis"  "sjømil"  "sekundmeter"  "sekund"  "prosent"  "nanosekund"  "nanometer"  "månad"  "mrd." "minutt"  "millisekund"  "million"  "millimeter"  "milliliter"  "milligram"  "milliard"  "mill." "mil"  "mikrometer"  "meter"  "liter"  "kvartmil"  "kvartliter"  "kvadrillion"  "kvadratmillimeter"  "kvadratmeter"  "kvadratkilometer"  "kvadratdesimeter"  "kvadratcentimeter"  "kubikkmillimeter"  "kubikkmeter"  "kubikkdesimeter"  "kubikkcentimeter"  "kilometer"  "kilogram"  "kilo"  "hundredelssekund"  "hundre"  "hektoliter"  "hektogram"  "halvår"  "halvmillion"  "halvmil"  "halvmeter"  "halvliter"  "halvkilo"  "gram"  "døgn"  "dusin"  "desimeter"  "desiliter"  "desigram"  "dekaliter"  "dag"  "centimeter"  "centiliter"  "centigram"  "billion"  "billiard"  (n gen) (np gen) (n nt sg ind) (np nt sg ind) (n nt ubøy) (np nt ubøy) ("gong"  pl) ;
 LIST ub-eint-nøyt-subst/tal-subst/målsubst/tidssubst/prop/gen-subst = "år"  "veke"  "tusen"  "trillion"  "tonnkilometer"  "time"  "tidelssekund"  "tiandelssekund"  "sneis"  "sjømil"  "sekundmeter"  "sekund"  "prosent"  "nanosekund"  "nanometer"  "månad"  "mrd." "minutt"  "millisekund"  "million"  "millimeter"  "milliliter"  "milligram"  "milliard"  "mill." "mil"  "mikrometer"  "meter"  "liter"  "kvartmil"  "kvartliter"  "kvadrillion"  "kvadratmillimeter"  "kvadratmeter"  "kvadratkilometer"  "kvadratdesimeter"  "kvadratcentimeter"  "kubikkmillimeter"  "kubikkmeter"  "kubikkdesimeter"  "kubikkcentimeter"  "kilometer"  "kilogram"  "kilo"  "hundredelssekund"  "hundre"  "hektoliter"  "hektogram"  "halvår"  "halvmillion"  "halvmil"  "halvmeter"  "halvliter"  "halvkilo"  "gram"  "døgn"  "dusin"  "desimeter"  "desiliter"  "desigram"  "dekaliter"  "dag"  "centimeter"  "centiliter"  "centigram"  "billion"  "billiard"  (n gen) (n nt sg ind) (n nt ubøy) ("gong"  pl) np ;
-LIST ub-eint-nøyt/komp = (nt ind sg) (npt ind sg) comp ;
-LIST ub-eint-nøyt/komp/ub-sup = (nt ind sg) (npt ind sg) (sup ind) comp ;
+LIST ub-eint-nøyt/komp = (nt ind sg) comp ;
+LIST ub-eint-nøyt/komp/ub-sup = (nt ind sg) (sup ind) comp ;
 LIST ub-eint-subst = (n sg ind) (np sg ind) (n ubøy) (np ubøy) ;
-LIST kbu#ub-eint-subst = (n sg ind) (np sg ind) ;
-LIST kbu#ub-eint-mask-subst = (n m sg ind) (np m sg ind) ;
-LIST kbu#ub-eint-fem-subst = (n f sg ind) (np f sg ind) ;
-LIST kbu#ub-eint-nøyt-subst = (n nt sg ind) (np nt sg ind) ;
+LIST ub-eint-subst-ikkje-ubøy = (n sg ind) (np sg ind) ;
+LIST ub-eint-mask-subst-ikkje-ubøy = (n m sg ind) (np m sg ind) ;
+LIST ub-eint-fem-subst-ikkje-ubøy = (n f sg ind) (np f sg ind) ;
+LIST ub-eint-nøyt-subst-ikkje-ubøy = (n nt sg ind) (np nt sg ind) ;
 LIST ub-eint-subst/tal-subst/målsubst/tidssubst/gen-subst = "år"  "veke"  "tusen"  "trillion"  "tonnkilometer"  "time"  "tidelssekund"  "tiandelssekund"  "sneis"  "sjømil"  "sekundmeter"  "sekund"  "prosent"  "nanosekund"  "nanometer"  "månad"  "mrd." "minutt"  "millisekund"  "million"  "millimeter"  "milliliter"  "milligram"  "milliard"  "mill." "mil"  "mikrometer"  "meter"  "liter"  "kvartmil"  "kvartliter"  "kvadrillion"  "kvadratmillimeter"  "kvadratmeter"  "kvadratkilometer"  "kvadratdesimeter"  "kvadratcentimeter"  "kubikkmillimeter"  "kubikkmeter"  "kubikkdesimeter"  "kubikkcentimeter"  "kilometer"  "kilogram"  "kilo"  "hundredelssekund"  "hundre"  "hektoliter"  "hektogram"  "halvår"  "halvmillion"  "halvmil"  "halvmeter"  "halvliter"  "halvkilo"  "gram"  "døgn"  "dusin"  "desimeter"  "desiliter"  "desigram"  "dekaliter"  "dag"  "centimeter"  "centiliter"  "centigram"  "billion"  "billiard"  (n gen) (np gen) (n sg ind) (np sg ind) (n ubøy) (np ubøy) ("gong"  pl) ;
 LIST ub-eint-subst/tal-subst/målsubst/tidssubst/prop/gen-subst = "år"  "veke"  "tusen"  "trillion"  "tonnkilometer"  "time"  "tidelssekund"  "tiandelssekund"  "sneis"  "sjømil"  "sekundmeter"  "sekund"  "prosent"  "nanosekund"  "nanometer"  "månad"  "mrd." "minutt"  "millisekund"  "million"  "millimeter"  "milliliter"  "milligram"  "milliard"  "mill." "mil"  "mikrometer"  "meter"  "liter"  "kvartmil"  "kvartliter"  "kvadrillion"  "kvadratmillimeter"  "kvadratmeter"  "kvadratkilometer"  "kvadratdesimeter"  "kvadratcentimeter"  "kubikkmillimeter"  "kubikkmeter"  "kubikkdesimeter"  "kubikkcentimeter"  "kilometer"  "kilogram"  "kilo"  "hundredelssekund"  "hundre"  "hektoliter"  "hektogram"  "halvår"  "halvmillion"  "halvmil"  "halvmeter"  "halvliter"  "halvkilo"  "gram"  "døgn"  "dusin"  "desimeter"  "desiliter"  "desigram"  "dekaliter"  "dag"  "centimeter"  "centiliter"  "centigram"  "billion"  "billiard"  (n gen) (n sg ind) (n ubøy) ("gong"  pl) np ;
 LIST ub-fem-det = ("ein"  det f) ("noen"  det f) ("nokon"  det f) ("ingen"  det f) ;
@@ -48189,7 +48191,7 @@ REMOVE:1762 (cnjsub) IF
 
 
 #:1744
-REMOVE:1744 kbu#ub-eint-subst IF
+REMOVE:1744 ub-eint-subst-ikkje-ubøy IF
 	(0 bu-subst)
 	(NOT 0 fork)
 	(NOT 0 i-subst)
@@ -48199,7 +48201,7 @@ REMOVE:1744 kbu#ub-eint-subst IF
 
 
 #:1745
-REMOVE:1745 kbu#ub-eint-subst IF
+REMOVE:1745 ub-eint-subst-ikkje-ubøy IF
 	(0 bu-subst)
 	(NOT 0 fork)
 	(NOT 0 i-subst)
@@ -48209,7 +48211,7 @@ REMOVE:1745 kbu#ub-eint-subst IF
 
 
 #:1746
-REMOVE:1746 kbu#ub-eint-subst IF
+REMOVE:1746 ub-eint-subst-ikkje-ubøy IF
 	(NOT 0 tittel)
 	(NOT 0 gen)
 	(NOT 0 målsubst)
@@ -48230,7 +48232,7 @@ REMOVE:1746 kbu#ub-eint-subst IF
 
 
 #:1747
-REMOVE:1747 kbu#ub-eint-subst IF
+REMOVE:1747 ub-eint-subst-ikkje-ubøy IF
 	(0 ub-fl-subst)
 	(-1 adj-fl)
 	(NOT 1 subst)
@@ -48444,14 +48446,14 @@ REMOVE:1725 subst-nøyt-eint IF
 
 
 #:1721
-REMOVE:1721 kbu#ub-eint-fem-subst IF
+REMOVE:1721 ub-eint-fem-subst-ikkje-ubøy IF
 	(0 bu-eint-fem-subst)
 	(*-1 ub-fem-det LINK *1 ikkje-adv-adj-det)
 ;
 
 
 #:1722
-REMOVE:1722 kbu#ub-eint-fem-subst IF
+REMOVE:1722 ub-eint-fem-subst-ikkje-ubøy IF
 	(0 bu-eint-fem-subst)
 	(NOT -1 ub-eint-fem-adj)
 	(NOT *-1 ub-fem-det)
@@ -48477,7 +48479,7 @@ REMOVE:1720 fem-eint-subst IF
 
 
 #:1718
-REMOVE:1718 kbu#ub-eint-mask-subst IF
+REMOVE:1718 ub-eint-mask-subst-ikkje-ubøy IF
 	(0 pres)
 	(1 pres/pret)
 	(-1 bu-mask-det)
@@ -50794,7 +50796,7 @@ SELECT:2532 (prn nom) IF
 
 
 #:2483
-SELECT:2483 kbu#ub-eint-nøyt-subst IF
+SELECT:2483 ub-eint-nøyt-subst-ikkje-ubøy IF
 	(0 ub-eint-nøyt-subst)
 	(NOT 0 pres/pret)
 	(NOT 0 farlege-nøyt-subst)
@@ -53664,7 +53666,7 @@ REMOVE:6033 subst-nøyt-eint IF
 #ok
 
 #:6033k
- REMOVE:6033 kbu#ub-eint-nøyt-subst IF
+ REMOVE:6033 ub-eint-nøyt-subst-ikkje-ubøy IF
 	(0 ub-eint-mask-subst)
  	(NOT 0 farlege-mask-subst)
 	(NOT 0 fv)
