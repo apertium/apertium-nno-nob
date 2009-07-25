@@ -376,6 +376,7 @@ LIST adj-bu-eint = (adj def sg) (adj pprs) ;
 LIST adj-eint = (adj sg) (adj pprs) ;
 LIST adj-fem = (adj f) (adj mf) (adj def) (adj pprs) ;
 LIST adj-fl = (adj pl) (adj pprs) ;
+LIST adj-fl-perf-part = (adj pl pp) ;
 LIST adj-fl/%berre% = "berre"  (adj pl) (adj pprs) ;
 LIST adj-gen = (adj gen) ;
 LIST adj-komp = (adj comp) ;
@@ -404,7 +405,7 @@ LIST adj/nr2det = "sånn"  "slik"  "same"  "neste"  "kvar"  "halvannen"  "halvan
 LIST adj/perf-part = adj vblex pp ;
 LIST adjudet = "litt"  "lite"  ("mange"  posi) ("mange"  comp) ("mange"  sup ind) ("få"  posi) ("få"  comp) ("få"  sup ind) ("mye"  posi) ("mykje"  posi) ("mye"  comp) ("mykje"  comp) ("mye"  sup ind) ("mykje"  sup ind) ("liten"  posi) ("liten"  comp) ("liten"  sup ind) ("enkelt"  pl) ;
 LIST adv = adv <adv> ;
-LIST adv-konj = "verken"  "korkje"  "enten"  "både"  "anten"  "antan"  "4.2" (cnjcoo <adv>) ;
+LIST adv-konj = "verken"  "korkje"  "enten"  "både"  "anten"  "antan" (cnjcoo <adv>) ;
 LIST adv-mod = "tvert"  "trill"  "tjokkande"  "søkkande"  "særs"  "særdeles"  "såre"  "såpass"  "så"  "synderlig"  "synderleg"  "svinaktig"  "stummande"  "stikk"  "steinsens"  "splitter"  "splinter"  "spill"  "spikande"  "spenna"  "sopass"  "so"  "sers"  "sabla"  "ruskande"  "pukka"  "pal"  "overvettes"  "overmåtelig"  "overmåteleg"  "overmåte"  "nokså"  "nokso"  "mukk"  "midt"  "luta"  "likså"  "likso"  "like"  "lagom"  "kul"  "knasande"  "knapt"  "kanon"  "iltrande"  "høgst"  "hoppande"  "hakkande"  "gørr"  "gullande"  "ganske"  "forholdsvis"  "for"  "fly"  "flunkande"  "endå"  "enda"  "dørgande"  "dønn"  "dorgande"  "dess"  "delvis"  "dels"  "bom"  "blikk"  "bitte"  "bistrande"  "bekande"  "altfor"  "aller"  "aldeles"  ("så pass") ("so pass") ;
 LIST adv-overslag = "omtrent"  "min." "maks." "cirka"  "ca." "ca"  ("om lag") ;
 LIST adv/%sånn% = "sånn"  adv ;
@@ -688,6 +689,7 @@ LIST konj/pron = cnjcoo (prn p1) (prn p2) (prn p3) ;
 LIST kop = "verte"  "verke"  "vere"  "synast"  "heite"  "bli"  ("kalle"  pst) ;
 LIST kop-fv = ("vere"  pres) ("bli"  pres) ("verte"  pres) ("heite"  pres) ("synast"  pres) ("verke"  pres) ("kalle"  inf pst) ("vere"  pret) ("bli"  pret) ("verte"  pret) ("heite"  pret) ("synast"  pret) ("verke"  pret) ("kalle"  pret pst) ;
 LIST kop-inf = ("vere"  inf) ("bli"  inf) ("verte"  inf) ("heite"  inf) ("synast"  inf) ("verke"  inf) ("kalle"  inf pst) ;
+LIST kop/st-form/st-verb = "verte"  "verke"  "vere"  "synast"  "heite"  "bli"  ("kalle"  pst) pst pstv ;
 LIST kvant = qnt ;
 LIST kvant-med-fleire = "mange"  "halv"  "fleire"  ("atskilleg"  pl) ("atskillig"  pl) (det qnt) ;
 LIST kvant/sp = qnt itg ;
@@ -784,8 +786,8 @@ LIST parentes-slutt = rpar ;
 LIST parentes-slutt/strek = rpar <strek> ;
 LIST perf-gen = (adj pp gen) (vblex pp gen) ;
 LIST perf-part = (vblex pp) ;
-LIST perf-part/<perf-part> = vblex pp adj pp ;
-LIST perf-part/<perf-part>/inf = adj pp (vblex pp) (vblex inf) ;
+LIST perf-part/<perf-part> = (vblex pp) (adj pp) ;
+LIST perf-part/<perf-part>/inf = (adj pp) (vblex pp) (vblex inf) ;
 LIST periode-beg/clb = >>> clb ;
 LIST periode-beg/clb/strek = >>> clb <strek> ;
 LIST periode-beg/komma/konj/strek = >>> cm cnjcoo <strek> ;
@@ -890,6 +892,7 @@ LIST sp = itg ;
 LIST språk = "tysk"  "svensk"  "spansk"  "portugisisk"  "nynorsk"  "norsk"  "keltisk"  "italiensk"  "fransk"  "finsk"  "engelsk"  "dansk"  "bosnisk"  "amerikansk"  ;
 LIST spørjeadv = "kvifor"  "kvar"  "kva"  "korleis"  "korfor"  "kor"  ("koss"  adv) ;
 LIST spørjeadv/sp = "kvifor"  "kvar"  "kva"  "korleis"  "korfor"  "kor"  itg ("koss"  adv) ;
+LIST spørjeadv/sp/sbu = "kvifor"  "kvar"  "kva"  "korleis"  "korfor"  "kor"  itg ("koss"  adv) cnjsub ;
 LIST spørsmål-t = "$?" "?" ;
 LIST st-form = pst ;
 LIST st-verb = pstv ;
@@ -44110,10 +44113,7 @@ REMOVE:2089 (adj pp pl) IF
 	(**-1C setn-gr-u-strek BARRIER %som%)
 	(**-1C setn-gr-u-strek LINK NOT 1 pres/pret)
 	(**-1C setn-gr-u-strek BARRIER subst-prop)
-	(NOT -1 %vere/bli%)
-	(NOT -1 %verke%)
-	(NOT -1 st-form)
-	(NOT -1 st-verb)
+	(NOT -1 kop/st-form/st-verb)
 ;
 #  "noko liknande skjedde (ikkje adj fl) her"))
 # Men ikkje: «å vere løyste frå otte og naud», difor NOT -1 %vere%,
@@ -49966,8 +49966,9 @@ REMOVE:1587 (vblex pret) IF
 	(*-1 setn-gr LINK **1C fv LINK NOT 0 trans2)
 	(*-1 setn-gr LINK NOT -1 >>>)
 	(*-1 setn-gr LINK NOT 0 %som%)
+	(NOT *-1 fv LINK *-1 spørjeadv/sp/sbu LINK *-1 konj)
 ;
-
+# Ikkje: «Langt uti have eller kor det var lynte<pret> det» 
 
 #:1588
 REMOVE:1588 (vblex pret) IF
@@ -53713,4 +53714,15 @@ REMOVE:6095 (vblex pret) IF
 	(NOT 0 pres)
 	(NOT 0 imp)
 ;
+
+#:6200
+REMOVE:6200 (vblex pret) IF
+	(0 adj-fl-perf-part)
+	(-1 kop/st-form/st-verb)
+	(NOT 1 pron/subst)
+	(NOT 1 adv LINK 1 pron/subst)
+;
+# «vere/synest/blei løyste frå otte og naud» -KBU
+# Ikkje: «Langt uti have eller kor det var lynte det»
+
 
