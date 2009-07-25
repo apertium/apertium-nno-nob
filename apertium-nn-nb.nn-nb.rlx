@@ -292,7 +292,7 @@ LIST %sjølv/jamvel/enda% = "sjølv"  "sjøl"  "sjæl"  "jamvel"  "enda"  ;
 LIST %sjølv/sjølve% = "sjølve"  "sjølv"  "sjøl"  "sjæl"  ;
 LIST %sjølve% = "sjølve"  ;
 LIST %skal% = "skal"  ;
-LIST %skapt% = ("skape"  adj adj pp) ;
+LIST %skapt% = ("skape"  adj pp) ;
 LIST %skifte/bytte% = ("skifte"  vblex) ("bytte"  vblex) ;
 LIST %skritt/steg% = "stykke"  "steg"  "skritt"  ;
 LIST %slags% = "slags"  ;
@@ -715,7 +715,7 @@ LIST mask/fem/nøyt/fl = m f mf nt pl ;
 LIST mest-sanns-adj-istf-subst = "vorte"  "venstre"  "snille"  "reine"  "mjuke"  "lang"  "klare"  "høgre"  "flott"  ("ville"  n) "velkomen"  "velkommen" ;
 LIST mest-sanns-adj-istf-verb = "rine"  ;
 LIST mest-sanns-pos-istf-<perf-part> = "våt"  "vite"  "vaksen"  "utsett"  "tørst"  "trøytt"  "trøtt"  "trygg"  "tett"  "svart"  "super"  "stygg"  "stri"  "stolt"  "stille"  "slutt"  "sliten"  "skitten"  "skalla"  "sinna"  "rik"  "rett"  "oppteken"  "nøydd"  "nøgd"  "mørke"  "motsett"  "lyde"  "lite"  "lik"  "lett"  "klar"   "javisst"  "ill"  "høg"  "huga"  "heit"  "gale"  "fæl"  "fri"  "fortenkt"  "forbanna"  "flust"  "brå"  "betatt"  ;
-LIST mest-sanns-subst-istf-adj = "året"  "timen"  "tid"  "skyld"  "makt"  "lo"  "folket"  ("flaske"  adj pp) ("live"  adj pp) ("kute"  adj adj pp) ("saka"  adj) ("sake"  adj adj pp) ("åre"  adj adj pp) ("lyd"  m f ind sg) ("høv"  def) ;
+LIST mest-sanns-subst-istf-adj = "året"  "timen"  "tid"  "skyld"  "makt"  "lo"  "folket"  ("flaske"  adj pp) ("live"  adj pp) ("kute"  adj pp) ("saka"  adj) ("sake"  adj pp) ("åre"  adj pp) ("lyd"  m f ind sg) ("høv"  def) ;
 LIST mest-sanns-subst-istf-verb = "sti"  "kagge"  ;
 LIST mest-sanns-verb-istf-subst = ("ta"  vblex pret) ("take"  vblex pret) ("blåse"  vblex pret) ;
 LIST målsubst = "tonnkilometer"  "sneis"  "sjømil"  "sekundmeter"  "prosent"  "nanometer"  "millimeter"  "milliliter"  "milligram"  "mil"  "mikrometer"  "meter"  "liter"  "kvartmil"  "kvartliter"  "kvadratmillimeter"  "kvadratmeter"  "kvadratkilometer"  "kvadratdesimeter"  "kvadratcentimeter"  "kubikkmillimeter"  "kubikkmeter"  "kubikkdesimeter"  "kubikkcentimeter"  "kilometer"  "kilogram"  "kilo"  "hektoliter"  "hektogram"  "halvmil"  "halvmeter"  "halvliter"  "halvkilo"  "gram"  "dusin"  "desimeter"  "desiliter"  "desigram"  "dekaliter"  "centimeter"  "centiliter"  "centigram"  ("gong"  pl) ;
@@ -782,7 +782,7 @@ LIST parentes-beg = lpar ;
 LIST parentes-beg/strek = lpar <strek> ;
 LIST parentes-slutt = rpar ;
 LIST parentes-slutt/strek = rpar <strek> ;
-LIST perf-gen = (adj adj pp gen) (vblex pp gen) ;
+LIST perf-gen = (adj pp gen) (vblex pp gen) ;
 LIST perf-part = (vblex pp) ;
 LIST perf-part/<perf-part> = vblex pp adj pp ;
 LIST perf-part/<perf-part>/inf = adj pp (vblex pp) (vblex inf) ;
@@ -1047,7 +1047,7 @@ LIST veldig-farlege-part = "jorde"  "lite"  "pule"  "prime"  "oppta"  "rikje"  "
 LIST veldig-farlege-verb = ("børse"  pret) ("slute"  pret) ("hå"  pres) ("stie"  pres) ("bøke"  pres) ("senge"  pret) ("rine"  pret) ("deke"  pres) ("anne"  pret) ("grade"  pres) ("kontre"  pret) ("slette"  pres) ("sitje"  pres) ("sitte"  pres) ("elle"  pres) ("dy"  pres) ("dage"  pres) ("vå"  pres) ("vinde"  pres) ("snerte"  pret) ("jorde"  pret) ("ry"  pret) ("rynje"  pret) ;
 LIST verb = vblex ;
 LIST verb-u-imp = (vblex pres) (vblex pret) (vblex pp) (vblex inf) ;
-LIST verb/adj-perf-part = vblex (adj adj pp) ;
+LIST verb/adj-perf-part = vblex (adj pp) ;
 LIST verb/parentes-beg = vblex lpar ;
 LIST verb/parentes-slutt = vblex rpar ;
 
@@ -1981,14 +1981,14 @@ CONSTRAINTS
 
 
 #:4806
- "<fritt>"   SELECT:4806   (adj adj pp) IF
+ "<fritt>"   SELECT:4806   (adj pp) IF
 	(1 %frå/for/ut%)
 	(*-1 ikkje-adv LINK 0 kop-fv LINK *-1 ikkje-poss-det LINK 0 nom-nøyt-eint LINK NOT 0 fl)
 ;
 
 
 #:4807
- "<fritt>"   SELECT:4807   (adj adj pp) IF
+ "<fritt>"   SELECT:4807   (adj pp) IF
 	(1 %frå/for/ut%)
 	(*-1 verb LINK 0 kop-fv LINK *1 subst/pron/%all%/%mang%/%mange% LINK 0 nøyt LINK NOT 0 fl LINK NOT *1 ikkje-poss-det)
 ;
@@ -2300,14 +2300,14 @@ CONSTRAINTS
 
 
 #:4713
- "<kontra>"   SELECT:4713   (adj adj pp nt) IF
+ "<kontra>"   SELECT:4713   (adj pp nt) IF
 	(-1 kop)
 	(*-2 ikkje-adv LINK 0 %det%-pron LINK -1 fv LINK 0 %ha%)
 ;
 
 
 #:4714
- "<kontra>"   SELECT:4714   (adj adj pp nt) IF
+ "<kontra>"   SELECT:4714   (adj pp nt) IF
 	(1 pres/pret)
 	(1 %ha%)
 	(2 %det%-pron)
@@ -2316,20 +2316,20 @@ CONSTRAINTS
 
 
 #:4715
- "<kontra>"   SELECT:4715   (adj adj pp nt) IF
+ "<kontra>"   SELECT:4715   (adj pp nt) IF
 	(-1 kop)
 	(*-2 ikkje-adv LINK 0 fv LINK 0 %ha% LINK -1 %det%-pron)
 ;
 
 
 #:4716
- "<kontra>"   SELECT:4716   (adj adj pp nt) IF
+ "<kontra>"   SELECT:4716   (adj pp nt) IF
 	(*-1 ikkje-adv LINK 0 %det%-pron LINK -1 %vere% LINK 0 pres/pret)
 ;
 
 
 #:4717
- "<kontra>"   SELECT:4717   (adj adj pp nt) IF
+ "<kontra>"   SELECT:4717   (adj pp nt) IF
 	(1 pres/pret)
 	(1 %vere%)
 	(2 %det%-pron)
@@ -2337,7 +2337,7 @@ CONSTRAINTS
 
 
 #:4718
- "<kontra>"   SELECT:4718   (adj adj pp nt) IF
+ "<kontra>"   SELECT:4718   (adj pp nt) IF
 	(*-1 ikkje-adv LINK 0 %vere% LINK 0 pres/pret LINK -1 %det%-pron)
 ;
 
@@ -2604,7 +2604,7 @@ CONSTRAINTS
 
 
 #:4646
- "<lite>"   SELECT:4646   (adj adj pp) IF
+ "<lite>"   SELECT:4646   (adj pp) IF
 	(1 %på%)
 	(*-1 %det%-pron LINK 1 kop-fv LINK NOT *1 ikkje-adv)
 ;
@@ -3080,37 +3080,37 @@ CONSTRAINTS
 
 
 #:4487
- "<saka>"   SELECT:4487   (adj adj pp pl) IF
+ "<saka>"   SELECT:4487   (adj pp pl) IF
 	(*-1 ikkje-adv LINK 0 kop-fv LINK *-1 ikkje-poss-det LINK 0 nom-fl LINK NOT *-1 ikkje-adv-adj-det-subst)
 ;
 
 
 #:4485
- "<saka>"   SELECT:4485   (adj adj pp nt ind) IF
+ "<saka>"   SELECT:4485   (adj pp nt ind) IF
 	(*-1 ikkje-adv LINK 0 kop-fv LINK *-1 ikkje-poss-det LINK 0 nom-nøyt-eint LINK *-1 ikkje-adv-adj-det-subst LINK NOT 0 prep)
 ;
 
 
 #:4486
- "<saka>"   SELECT:4486   (adj adj pp nt ind) IF
+ "<saka>"   SELECT:4486   (adj pp nt ind) IF
 	(*-1 ikkje-adv LINK 0 kop-fv LINK *-1 ikkje-poss-det LINK 0 nom-nøyt-eint LINK NOT *-1 ikkje-adv-adj-det-subst)
 ;
 
 
 #:4483
- "<saka>"   SELECT:4483   (adj adj pp mf ind) IF
+ "<saka>"   SELECT:4483   (adj pp mf ind) IF
 	(*-1 ikkje-adv LINK 0 kop-fv LINK *-1 ikkje-poss-det LINK 0 nom LINK NOT 0 nøyt LINK NOT 0 fl LINK *-1 ikkje-adv-adj-det-subst LINK NOT 0 prep)
 ;
 
 
 #:4484
- "<saka>"   SELECT:4484   (adj adj pp mf ind) IF
+ "<saka>"   SELECT:4484   (adj pp mf ind) IF
 	(*-1 ikkje-adv LINK 0 kop-fv LINK *-1 ikkje-poss-det LINK 0 nom LINK NOT 0 nøyt LINK NOT 0 fl LINK NOT *-1 ikkje-adv-adj-det-subst)
 ;
 
 
 #:4482
- "<saka>"   SELECT:4482   (adj adj pp mf) IF
+ "<saka>"   SELECT:4482   (adj pp mf) IF
 	(*-1 ikkje-adv LINK 0 kop-fv LINK *-1 ikkje-poss-det LINK 0 nom-fl LINK *-1 ikkje-adv-adj-det-subst LINK NOT 0 prep)
 ;
 
@@ -4526,7 +4526,7 @@ CONSTRAINTS
 #CONSTRAINTS
 ## remove domain
 #:5002
- "<alt>"   REMOVE:5002   (adj adj pp ind) IF
+ "<alt>"   REMOVE:5002   (adj pp ind) IF
 	(NOT -1 ub-det)
 ;
 
@@ -4977,14 +4977,14 @@ CONSTRAINTS
 
 
 #:4885
- "<enda>"   REMOVE:4885   (adj adj pp) IF
+ "<enda>"   REMOVE:4885   (adj pp) IF
 	(1 %så/om%)
 	(**-1C verb LINK NOT 0 kop LINK NOT *1 verb)
 ;
 
 
 #:4886
- "<enda>"   REMOVE:4886   (adj adj pp) IF
+ "<enda>"   REMOVE:4886   (adj pp) IF
 	(1 %så/om%)
 	(**-1C setn-gr BARRIER verb)
 ;
@@ -5148,7 +5148,7 @@ CONSTRAINTS
 
 
 #:4805
- "<fritt>"   REMOVE:4805   (adj adj pp) IF
+ "<fritt>"   REMOVE:4805   (adj pp) IF
 	(*1 subst-nøyt-eint BARRIER ikkje-adv-adj)
 	(*-1 setn-gr BARRIER %det%-pron)
 ;
@@ -5449,7 +5449,7 @@ CONSTRAINTS
 
 
 #:4727
- "<klart>"   REMOVE:4727   (adj adj pp nt ind sg) IF
+ "<klart>"   REMOVE:4727   (adj pp nt ind sg) IF
 	(1 %for%)
 	(2 pron-akk)
 	(*-1 %ha% BARRIER setn-gr)
@@ -5457,7 +5457,7 @@ CONSTRAINTS
 
 
 #:4728
- "<klart>"   REMOVE:4728   (adj adj pp nt ind sg) IF
+ "<klart>"   REMOVE:4728   (adj pp nt ind sg) IF
 	(*-1 setn-gr BARRIER %ha%)
 ;
 
@@ -5620,7 +5620,7 @@ CONSTRAINTS
 
 
 #:4664
- "<lett>"   REMOVE:4664   (adj adj pp) IF
+ "<lett>"   REMOVE:4664   (adj pp) IF
 	(0 adj)
 ;
 
@@ -6489,13 +6489,13 @@ CONSTRAINTS
 #ein rakkar
 
 #:4493
- "<rett>"   REMOVE:4493   (adj adj pp) IF
+ "<rett>"   REMOVE:4493   (adj pp) IF
 	(0 adj)
 ;
 
 
 #:4494
- "<rett>"   REMOVE:4494   (adj adj pp) IF
+ "<rett>"   REMOVE:4494   (adj pp) IF
 	(*-1 setn-gr BARRIER %ha%)
 ;
 
@@ -6678,7 +6678,7 @@ CONSTRAINTS
 
 
 #:4363
- "<spent>"   REMOVE:4363   (adj adj pp) IF
+ "<spent>"   REMOVE:4363   (adj pp) IF
 	(NOT 1 %frå/for/ut%)
 ;
 
@@ -6709,7 +6709,7 @@ CONSTRAINTS
 
 
 #:4351
- "<svart>"   REMOVE:4351   (adj adj pp) IF
+ "<svart>"   REMOVE:4351   (adj pp) IF
 	(0 adj)
 ;
 
@@ -6820,7 +6820,7 @@ CONSTRAINTS
 
 
 #:6077
- "<uansett>"   REMOVE:6077   (adj adj pp) IF
+ "<uansett>"   REMOVE:6077   (adj pp) IF
 	    (0 adj)
 ;
 #merkelige lesninger i treningskorpuset!
@@ -6901,7 +6901,7 @@ CONSTRAINTS
 
 
 #:4283
- "<vart>"   REMOVE:4283   (adj adj pp) IF
+ "<vart>"   REMOVE:4283   (adj pp) IF
 	(*-1 setn-gr BARRIER p-hj-verb)
 	(*-1 setn-gr BARRIER m-hj-verb-pret)
 ;
@@ -21583,7 +21583,7 @@ SELECT:3465 (adj sup) IF
 
 
 #:3350
-SELECT:3350 (adj adj pp pl) IF
+SELECT:3350 (adj pp pl) IF
 	(0 <perf-part>)
 	(NOT 0 farlege-adj)
 	(NOT 0 farlege-part)
@@ -21600,7 +21600,7 @@ SELECT:3350 (adj adj pp pl) IF
 
 
 #:3351
-SELECT:3351 (adj adj pp pl) IF
+SELECT:3351 (adj pp pl) IF
 	(0 <perf-part>)
 	(NOT 0 farlege-adj)
 	(NOT 0 farlege-part)
@@ -21617,7 +21617,7 @@ SELECT:3351 (adj adj pp pl) IF
 
 
 #:3352
-SELECT:3352 (adj adj pp pl) IF
+SELECT:3352 (adj pp pl) IF
 	(0 <perf-part>)
 	(NOT 0 farlege-adj)
 	(NOT 0 farlege-part)
@@ -21634,7 +21634,7 @@ SELECT:3352 (adj adj pp pl) IF
 
 
 #:3353
-SELECT:3353 (adj adj pp pl) IF
+SELECT:3353 (adj pp pl) IF
 	(0 <perf-part>)
 	(NOT 0 farlege-adj)
 	(NOT 0 farlege-part)
@@ -21649,7 +21649,7 @@ SELECT:3353 (adj adj pp pl) IF
 
 
 #:3354
-SELECT:3354 (adj adj pp pl) IF
+SELECT:3354 (adj pp pl) IF
 	(0 <perf-part>)
 	(NOT 0 pres/pret)
 	(NOT 0 farlege-adj)
@@ -21667,7 +21667,7 @@ SELECT:3354 (adj adj pp pl) IF
 
 
 #:3355
-SELECT:3355 (adj adj pp pl) IF
+SELECT:3355 (adj pp pl) IF
 	(0 <perf-part>)
 	(NOT 0 pres/pret)
 	(NOT 0 farlege-adj)
@@ -21685,7 +21685,7 @@ SELECT:3355 (adj adj pp pl) IF
 
 
 #:3356
-SELECT:3356 (adj adj pp pl) IF
+SELECT:3356 (adj pp pl) IF
 	(NOT 0 mest-sanns-pos-istf-<perf-part>)
 	(NOT 1 %som%-sbu)
 	(*-1 seier-verb LINK *1 ikkje-adv-adj-det LINK 0 nom-fl LINK *1 ikkje-poss-det LINK 0 clb-konj LINK 1 kop-fv LINK NOT *1 ikkje-adv)
@@ -21693,7 +21693,7 @@ SELECT:3356 (adj adj pp pl) IF
 
 
 #:3357
-SELECT:3357 (adj adj pp pl) IF
+SELECT:3357 (adj pp pl) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -21712,7 +21712,7 @@ SELECT:3357 (adj adj pp pl) IF
 
 
 #:3358
-SELECT:3358 (adj adj pp pl) IF
+SELECT:3358 (adj pp pl) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -21728,7 +21728,7 @@ SELECT:3358 (adj adj pp pl) IF
 
 
 #:3359
-SELECT:3359 (adj adj pp pl) IF
+SELECT:3359 (adj pp pl) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -21744,7 +21744,7 @@ SELECT:3359 (adj adj pp pl) IF
 
 
 #:3360
-SELECT:3360 (adj adj pp pl) IF
+SELECT:3360 (adj pp pl) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -21761,7 +21761,7 @@ SELECT:3360 (adj adj pp pl) IF
 
 
 #:3361
-SELECT:3361 (adj adj pp pl) IF
+SELECT:3361 (adj pp pl) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -21781,7 +21781,7 @@ SELECT:3361 (adj adj pp pl) IF
 
 
 #:3362
-SELECT:3362 (adj adj pp pl) IF
+SELECT:3362 (adj pp pl) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -21801,7 +21801,7 @@ SELECT:3362 (adj adj pp pl) IF
 
 
 #:3363
-SELECT:3363 (adj adj pp pl) IF
+SELECT:3363 (adj pp pl) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -21821,7 +21821,7 @@ SELECT:3363 (adj adj pp pl) IF
 
 
 #:3364
-SELECT:3364 (adj adj pp pl) IF
+SELECT:3364 (adj pp pl) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -21841,7 +21841,7 @@ SELECT:3364 (adj adj pp pl) IF
 
 
 #:3365
-SELECT:3365 (adj adj pp pl) IF
+SELECT:3365 (adj pp pl) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -21863,7 +21863,7 @@ SELECT:3365 (adj adj pp pl) IF
 
 
 #:3366
-SELECT:3366 (adj adj pp pl) IF
+SELECT:3366 (adj pp pl) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -21885,7 +21885,7 @@ SELECT:3366 (adj adj pp pl) IF
 
 
 #:3367
-SELECT:3367 (adj adj pp pl) IF
+SELECT:3367 (adj pp pl) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -21905,7 +21905,7 @@ SELECT:3367 (adj adj pp pl) IF
 
 
 #:3368
-SELECT:3368 (adj adj pp pl) IF
+SELECT:3368 (adj pp pl) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -21925,7 +21925,7 @@ SELECT:3368 (adj adj pp pl) IF
 
 
 #:3369
-SELECT:3369 (adj adj pp pl) IF
+SELECT:3369 (adj pp pl) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -21945,7 +21945,7 @@ SELECT:3369 (adj adj pp pl) IF
 
 
 #:3370
-SELECT:3370 (adj adj pp pl) IF
+SELECT:3370 (adj pp pl) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -21965,7 +21965,7 @@ SELECT:3370 (adj adj pp pl) IF
 
 
 #:3371
-SELECT:3371 (adj adj pp pl) IF
+SELECT:3371 (adj pp pl) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -21987,7 +21987,7 @@ SELECT:3371 (adj adj pp pl) IF
 
 
 #:3372
-SELECT:3372 (adj adj pp pl) IF
+SELECT:3372 (adj pp pl) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -22009,7 +22009,7 @@ SELECT:3372 (adj adj pp pl) IF
 
 
 #:3373
-SELECT:3373 (adj adj pp pl) IF
+SELECT:3373 (adj pp pl) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -22029,7 +22029,7 @@ SELECT:3373 (adj adj pp pl) IF
 
 
 #:3374
-SELECT:3374 (adj adj pp pl) IF
+SELECT:3374 (adj pp pl) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -22049,7 +22049,7 @@ SELECT:3374 (adj adj pp pl) IF
 
 
 #:3375
-SELECT:3375 (adj adj pp pl) IF
+SELECT:3375 (adj pp pl) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -22069,7 +22069,7 @@ SELECT:3375 (adj adj pp pl) IF
 
 
 #:3376
-SELECT:3376 (adj adj pp pl) IF
+SELECT:3376 (adj pp pl) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -22089,7 +22089,7 @@ SELECT:3376 (adj adj pp pl) IF
 
 
 #:3377
-SELECT:3377 (adj adj pp pl) IF
+SELECT:3377 (adj pp pl) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -22111,7 +22111,7 @@ SELECT:3377 (adj adj pp pl) IF
 
 
 #:3378
-SELECT:3378 (adj adj pp pl) IF
+SELECT:3378 (adj pp pl) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -22133,7 +22133,7 @@ SELECT:3378 (adj adj pp pl) IF
 
 
 #:3379
-SELECT:3379 (adj adj pp pl) IF
+SELECT:3379 (adj pp pl) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -22153,7 +22153,7 @@ SELECT:3379 (adj adj pp pl) IF
 
 
 #:3380
-SELECT:3380 (adj adj pp pl) IF
+SELECT:3380 (adj pp pl) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -22173,7 +22173,7 @@ SELECT:3380 (adj adj pp pl) IF
 
 
 #:3381
-SELECT:3381 (adj adj pp pl) IF
+SELECT:3381 (adj pp pl) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -22193,7 +22193,7 @@ SELECT:3381 (adj adj pp pl) IF
 
 
 #:3382
-SELECT:3382 (adj adj pp pl) IF
+SELECT:3382 (adj pp pl) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -22213,7 +22213,7 @@ SELECT:3382 (adj adj pp pl) IF
 
 
 #:3383
-SELECT:3383 (adj adj pp pl) IF
+SELECT:3383 (adj pp pl) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -22235,7 +22235,7 @@ SELECT:3383 (adj adj pp pl) IF
 
 
 #:3384
-SELECT:3384 (adj adj pp pl) IF
+SELECT:3384 (adj pp pl) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -22257,7 +22257,7 @@ SELECT:3384 (adj adj pp pl) IF
 
 
 #:3385
-SELECT:3385 (adj adj pp pl) IF
+SELECT:3385 (adj pp pl) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -22277,7 +22277,7 @@ SELECT:3385 (adj adj pp pl) IF
 
 
 #:3386
-SELECT:3386 (adj adj pp pl) IF
+SELECT:3386 (adj pp pl) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -22297,7 +22297,7 @@ SELECT:3386 (adj adj pp pl) IF
 
 
 #:3387
-SELECT:3387 (adj adj pp pl) IF
+SELECT:3387 (adj pp pl) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -22317,7 +22317,7 @@ SELECT:3387 (adj adj pp pl) IF
 
 
 #:3388
-SELECT:3388 (adj adj pp pl) IF
+SELECT:3388 (adj pp pl) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -22337,7 +22337,7 @@ SELECT:3388 (adj adj pp pl) IF
 
 
 #:3389
-SELECT:3389 (adj adj pp pl) IF
+SELECT:3389 (adj pp pl) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -22359,7 +22359,7 @@ SELECT:3389 (adj adj pp pl) IF
 
 
 #:3390
-SELECT:3390 (adj adj pp pl) IF
+SELECT:3390 (adj pp pl) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -22381,7 +22381,7 @@ SELECT:3390 (adj adj pp pl) IF
 
 
 #:3391
-SELECT:3391 (adj adj pp pl) IF
+SELECT:3391 (adj pp pl) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -22401,7 +22401,7 @@ SELECT:3391 (adj adj pp pl) IF
 
 
 #:3392
-SELECT:3392 (adj adj pp pl) IF
+SELECT:3392 (adj pp pl) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -22421,7 +22421,7 @@ SELECT:3392 (adj adj pp pl) IF
 
 
 #:3393
-SELECT:3393 (adj adj pp pl) IF
+SELECT:3393 (adj pp pl) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -22441,7 +22441,7 @@ SELECT:3393 (adj adj pp pl) IF
 
 
 #:3394
-SELECT:3394 (adj adj pp pl) IF
+SELECT:3394 (adj pp pl) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -22461,7 +22461,7 @@ SELECT:3394 (adj adj pp pl) IF
 
 
 #:3395
-SELECT:3395 (adj adj pp pl) IF
+SELECT:3395 (adj pp pl) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -22483,7 +22483,7 @@ SELECT:3395 (adj adj pp pl) IF
 
 
 #:3396
-SELECT:3396 (adj adj pp pl) IF
+SELECT:3396 (adj pp pl) IF
 	(*-1 kop LINK 0 pres/pret LINK NOT *1 ikkje-adv)
 	(*-1 %som% BARRIER ikkje-adv-verb)
 	(*-1 %som% LINK -1 adj-sup LINK *-1 ikkje-adv LINK 0 bu-fl-det LINK NOT 0 eint)
@@ -22491,7 +22491,7 @@ SELECT:3396 (adj adj pp pl) IF
 
 
 #:3397
-SELECT:3397 (adj adj pp pl) IF
+SELECT:3397 (adj pp pl) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -22513,7 +22513,7 @@ SELECT:3397 (adj adj pp pl) IF
 
 
 #:3398
-SELECT:3398 (adj adj pp pl) IF
+SELECT:3398 (adj pp pl) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -22534,7 +22534,7 @@ SELECT:3398 (adj adj pp pl) IF
 
 
 #:3399
-SELECT:3399 (adj adj pp pl) IF
+SELECT:3399 (adj pp pl) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -22556,7 +22556,7 @@ SELECT:3399 (adj adj pp pl) IF
 
 
 #:3400
-SELECT:3400 (adj adj pp pl) IF
+SELECT:3400 (adj pp pl) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -22574,7 +22574,7 @@ SELECT:3400 (adj adj pp pl) IF
 
 
 #:3401
-SELECT:3401 (adj adj pp pl) IF
+SELECT:3401 (adj pp pl) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -22593,7 +22593,7 @@ SELECT:3401 (adj adj pp pl) IF
 
 
 #:3402
-SELECT:3402 (adj adj pp pl) IF
+SELECT:3402 (adj pp pl) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -22614,7 +22614,7 @@ SELECT:3402 (adj adj pp pl) IF
 
 
 #:3403
-SELECT:3403 (adj adj pp pl) IF
+SELECT:3403 (adj pp pl) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -22636,7 +22636,7 @@ SELECT:3403 (adj adj pp pl) IF
 
 
 #:3404
-SELECT:3404 (adj adj pp pl) IF
+SELECT:3404 (adj pp pl) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -22656,7 +22656,7 @@ SELECT:3404 (adj adj pp pl) IF
 
 
 #:3405
-SELECT:3405 (adj adj pp pl) IF
+SELECT:3405 (adj pp pl) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -22678,7 +22678,7 @@ SELECT:3405 (adj adj pp pl) IF
 
 
 #:3406
-SELECT:3406 (adj adj pp pl) IF
+SELECT:3406 (adj pp pl) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -22695,7 +22695,7 @@ SELECT:3406 (adj adj pp pl) IF
 
 
 #:3407
-SELECT:3407 (adj adj pp pl) IF
+SELECT:3407 (adj pp pl) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -22714,7 +22714,7 @@ SELECT:3407 (adj adj pp pl) IF
 
 
 #:3408
-SELECT:3408 (adj adj pp pl) IF
+SELECT:3408 (adj pp pl) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -22734,7 +22734,7 @@ SELECT:3408 (adj adj pp pl) IF
 
 
 #:3409
-SELECT:3409 (adj adj pp pl) IF
+SELECT:3409 (adj pp pl) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -22756,7 +22756,7 @@ SELECT:3409 (adj adj pp pl) IF
 
 
 #:3410
-SELECT:3410 (adj adj pp pl) IF
+SELECT:3410 (adj pp pl) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -22773,7 +22773,7 @@ SELECT:3410 (adj adj pp pl) IF
 
 
 #:3411
-SELECT:3411 (adj adj pp pl) IF
+SELECT:3411 (adj pp pl) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -22791,7 +22791,7 @@ SELECT:3411 (adj adj pp pl) IF
 
 
 #:3412
-SELECT:3412 (adj adj pp pl) IF
+SELECT:3412 (adj pp pl) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -22812,7 +22812,7 @@ SELECT:3412 (adj adj pp pl) IF
 
 
 #:3413
-SELECT:3413 (adj adj pp pl) IF
+SELECT:3413 (adj pp pl) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -22834,7 +22834,7 @@ SELECT:3413 (adj adj pp pl) IF
 
 
 #:3414
-SELECT:3414 (adj adj pp pl) IF
+SELECT:3414 (adj pp pl) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -22853,7 +22853,7 @@ SELECT:3414 (adj adj pp pl) IF
 
 
 #:3415
-SELECT:3415 (adj adj pp pl) IF
+SELECT:3415 (adj pp pl) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -22873,7 +22873,7 @@ SELECT:3415 (adj adj pp pl) IF
 
 
 #:3416
-SELECT:3416 (adj adj pp pl) IF
+SELECT:3416 (adj pp pl) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -22892,7 +22892,7 @@ SELECT:3416 (adj adj pp pl) IF
 
 
 #:3417
-SELECT:3417 (adj adj pp pl) IF
+SELECT:3417 (adj pp pl) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -22912,7 +22912,7 @@ SELECT:3417 (adj adj pp pl) IF
 
 
 #:3418
-SELECT:3418 (adj adj pp pl) IF
+SELECT:3418 (adj pp pl) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -22932,7 +22932,7 @@ SELECT:3418 (adj adj pp pl) IF
 
 
 #:3419
-SELECT:3419 (adj adj pp pl) IF
+SELECT:3419 (adj pp pl) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -22954,7 +22954,7 @@ SELECT:3419 (adj adj pp pl) IF
 
 
 #:3420
-SELECT:3420 (adj adj pp pl) IF
+SELECT:3420 (adj pp pl) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -22973,7 +22973,7 @@ SELECT:3420 (adj adj pp pl) IF
 
 
 #:3421
-SELECT:3421 (adj adj pp pl) IF
+SELECT:3421 (adj pp pl) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -22993,7 +22993,7 @@ SELECT:3421 (adj adj pp pl) IF
 
 
 #:3422
-SELECT:3422 (adj adj pp pl) IF
+SELECT:3422 (adj pp pl) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -23011,7 +23011,7 @@ SELECT:3422 (adj adj pp pl) IF
 
 
 #:3423
-SELECT:3423 (adj adj pp pl) IF
+SELECT:3423 (adj pp pl) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -23031,7 +23031,7 @@ SELECT:3423 (adj adj pp pl) IF
 
 
 #:3424
-SELECT:3424 (adj adj pp pl) IF
+SELECT:3424 (adj pp pl) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -23050,7 +23050,7 @@ SELECT:3424 (adj adj pp pl) IF
 
 
 #:3425
-SELECT:3425 (adj adj pp pl) IF
+SELECT:3425 (adj pp pl) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -23071,7 +23071,7 @@ SELECT:3425 (adj adj pp pl) IF
 
 
 #:3426
-SELECT:3426 (adj adj pp pl) IF
+SELECT:3426 (adj pp pl) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -23088,7 +23088,7 @@ SELECT:3426 (adj adj pp pl) IF
 
 
 #:3427
-SELECT:3427 (adj adj pp pl) IF
+SELECT:3427 (adj pp pl) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -23106,7 +23106,7 @@ SELECT:3427 (adj adj pp pl) IF
 
 
 #:3428
-SELECT:3428 (adj adj pp pl) IF
+SELECT:3428 (adj pp pl) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -23126,7 +23126,7 @@ SELECT:3428 (adj adj pp pl) IF
 
 
 #:3429
-SELECT:3429 (adj adj pp pl) IF
+SELECT:3429 (adj pp pl) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -23147,7 +23147,7 @@ SELECT:3429 (adj adj pp pl) IF
 
 
 #:3430
-SELECT:3430 (adj adj pp pl) IF
+SELECT:3430 (adj pp pl) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -23166,7 +23166,7 @@ SELECT:3430 (adj adj pp pl) IF
 
 
 #:3431
-SELECT:3431 (adj adj pp pl) IF
+SELECT:3431 (adj pp pl) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -23186,7 +23186,7 @@ SELECT:3431 (adj adj pp pl) IF
 
 
 #:3432
-SELECT:3432 (adj adj pp pl) IF
+SELECT:3432 (adj pp pl) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -23205,7 +23205,7 @@ SELECT:3432 (adj adj pp pl) IF
 
 
 #:3433
-SELECT:3433 (adj adj pp pl) IF
+SELECT:3433 (adj pp pl) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -23225,7 +23225,7 @@ SELECT:3433 (adj adj pp pl) IF
 
 
 #:3434
-SELECT:3434 (adj adj pp pl) IF
+SELECT:3434 (adj pp pl) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -23246,7 +23246,7 @@ SELECT:3434 (adj adj pp pl) IF
 
 
 #:3435
-SELECT:3435 (adj adj pp pl) IF
+SELECT:3435 (adj pp pl) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -23268,7 +23268,7 @@ SELECT:3435 (adj adj pp pl) IF
 
 
 #:3436
-SELECT:3436 (adj adj pp pl) IF
+SELECT:3436 (adj pp pl) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -23287,7 +23287,7 @@ SELECT:3436 (adj adj pp pl) IF
 
 
 #:3437
-SELECT:3437 (adj adj pp pl) IF
+SELECT:3437 (adj pp pl) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -23308,7 +23308,7 @@ SELECT:3437 (adj adj pp pl) IF
 
 
 #:3438
-SELECT:3438 (adj adj pp pl) IF
+SELECT:3438 (adj pp pl) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -23327,7 +23327,7 @@ SELECT:3438 (adj adj pp pl) IF
 
 
 #:3439
-SELECT:3439 (adj adj pp pl) IF
+SELECT:3439 (adj pp pl) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -23347,7 +23347,7 @@ SELECT:3439 (adj adj pp pl) IF
 
 
 #:3440
-SELECT:3440 (adj adj pp pl) IF
+SELECT:3440 (adj pp pl) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -23365,7 +23365,7 @@ SELECT:3440 (adj adj pp pl) IF
 
 
 #:3441
-SELECT:3441 (adj adj pp pl) IF
+SELECT:3441 (adj pp pl) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -23385,7 +23385,7 @@ SELECT:3441 (adj adj pp pl) IF
 
 
 #:3442
-SELECT:3442 (adj adj pp pl) IF
+SELECT:3442 (adj pp pl) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -23408,7 +23408,7 @@ SELECT:3442 (adj adj pp pl) IF
 
 
 #:3443
-SELECT:3443 (adj adj pp pl) IF
+SELECT:3443 (adj pp pl) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -23429,7 +23429,7 @@ SELECT:3443 (adj adj pp pl) IF
 
 
 #:3444
-SELECT:3444 (adj adj pp pl) IF
+SELECT:3444 (adj pp pl) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -23450,7 +23450,7 @@ SELECT:3444 (adj adj pp pl) IF
 
 
 #:3445
-SELECT:3445 (adj adj pp pl) IF
+SELECT:3445 (adj pp pl) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -23473,7 +23473,7 @@ SELECT:3445 (adj adj pp pl) IF
 
 
 #:3446
-SELECT:3446 (adj adj pp pl) IF
+SELECT:3446 (adj pp pl) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -23494,7 +23494,7 @@ SELECT:3446 (adj adj pp pl) IF
 
 
 #:3447
-SELECT:3447 (adj adj pp pl) IF
+SELECT:3447 (adj pp pl) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -23516,7 +23516,7 @@ SELECT:3447 (adj adj pp pl) IF
 
 
 #:3448
-SELECT:3448 (adj adj pp pl) IF
+SELECT:3448 (adj pp pl) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -23539,7 +23539,7 @@ SELECT:3448 (adj adj pp pl) IF
 
 
 #:3449
-SELECT:3449 (adj adj pp pl) IF
+SELECT:3449 (adj pp pl) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -23560,7 +23560,7 @@ SELECT:3449 (adj adj pp pl) IF
 
 
 #:3450
-SELECT:3450 (adj adj pp pl) IF
+SELECT:3450 (adj pp pl) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -23584,7 +23584,7 @@ SELECT:3450 (adj adj pp pl) IF
 
 
 #:3451
-SELECT:3451 (adj adj pp pl) IF
+SELECT:3451 (adj pp pl) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -23605,7 +23605,7 @@ SELECT:3451 (adj adj pp pl) IF
 
 
 #:3452
-SELECT:3452 (adj adj pp pl) IF
+SELECT:3452 (adj pp pl) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -23626,7 +23626,7 @@ SELECT:3452 (adj adj pp pl) IF
 
 
 #:3453
-SELECT:3453 (adj adj pp pl) IF
+SELECT:3453 (adj pp pl) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -23650,7 +23650,7 @@ SELECT:3453 (adj adj pp pl) IF
 
 
 #:3454
-SELECT:3454 (adj adj pp pl) IF
+SELECT:3454 (adj pp pl) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -23674,7 +23674,7 @@ SELECT:3454 (adj adj pp pl) IF
 
 
 #:3455
-SELECT:3455 (adj adj pp pl) IF
+SELECT:3455 (adj pp pl) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -23695,7 +23695,7 @@ SELECT:3455 (adj adj pp pl) IF
 
 
 #:3456
-SELECT:3456 (adj adj pp pl) IF
+SELECT:3456 (adj pp pl) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -23716,7 +23716,7 @@ SELECT:3456 (adj adj pp pl) IF
 
 
 #:3457
-SELECT:3457 (adj adj pp pl) IF
+SELECT:3457 (adj pp pl) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -23740,7 +23740,7 @@ SELECT:3457 (adj adj pp pl) IF
 
 
 #:3458
-SELECT:3458 (adj adj pp pl) IF
+SELECT:3458 (adj pp pl) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -23761,7 +23761,7 @@ SELECT:3458 (adj adj pp pl) IF
 
 
 #:3459
-SELECT:3459 (adj adj pp pl) IF
+SELECT:3459 (adj pp pl) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -23783,7 +23783,7 @@ SELECT:3459 (adj adj pp pl) IF
 
 
 #:3460
-SELECT:3460 (adj adj pp pl) IF
+SELECT:3460 (adj pp pl) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -23807,7 +23807,7 @@ SELECT:3460 (adj adj pp pl) IF
 
 
 #:3461
-SELECT:3461 (adj adj pp pl) IF
+SELECT:3461 (adj pp pl) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -23830,7 +23830,7 @@ SELECT:3461 (adj adj pp pl) IF
 
 
 #:3462
-SELECT:3462 (adj adj pp pl) IF
+SELECT:3462 (adj pp pl) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -23850,7 +23850,7 @@ SELECT:3462 (adj adj pp pl) IF
 
 
 #:3463
-SELECT:3463 (adj adj pp pl) IF
+SELECT:3463 (adj pp pl) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -23870,7 +23870,7 @@ SELECT:3463 (adj adj pp pl) IF
 
 
 #:3464
-SELECT:3464 (adj adj pp pl) IF
+SELECT:3464 (adj pp pl) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -23893,19 +23893,19 @@ SELECT:3464 (adj adj pp pl) IF
 
 
 #:3188
-SELECT:3188 (adj adj pp nt ind sg) IF
+SELECT:3188 (adj pp nt ind sg) IF
 	(*-1 kop-fv LINK 1 %det%-pron LINK 1 prep LINK NOT 0 %hit/dit/her/der% LINK *1 ikkje-adv-adj-det LINK 0 nom LINK NOT *1 ikkje-adv)
 ;
 
 
 #:3189
-SELECT:3189 (adj adj pp nt ind sg) IF
+SELECT:3189 (adj pp nt ind sg) IF
 	(*-1 %det%-pron LINK 1 kop-fv LINK 1 prep LINK NOT 0 %hit/dit/her/der% LINK *1 ikkje-adv-adj-det LINK 0 nom LINK NOT 0 %slags% LINK NOT *1 ikkje-adv)
 ;
 
 
 #:3190
-SELECT:3190 (adj adj pp nt ind sg) IF
+SELECT:3190 (adj pp nt ind sg) IF
 	(NOT 0 farlege-adj)
 	(NOT 0 farlege-part)
 	(NOT 0 språk)
@@ -23925,7 +23925,7 @@ SELECT:3190 (adj adj pp nt ind sg) IF
 
 
 #:3191
-SELECT:3191 (adj adj pp nt ind sg) IF
+SELECT:3191 (adj pp nt ind sg) IF
 	(NOT 0 farlege-adj)
 	(NOT 0 farlege-part)
 	(NOT 0 språk)
@@ -23943,7 +23943,7 @@ SELECT:3191 (adj adj pp nt ind sg) IF
 
 
 #:3192
-SELECT:3192 (adj adj pp nt ind sg) IF
+SELECT:3192 (adj pp nt ind sg) IF
 	(NOT 0 farlege-adj)
 	(NOT 0 farlege-part)
 	(NOT 0 språk)
@@ -23961,7 +23961,7 @@ SELECT:3192 (adj adj pp nt ind sg) IF
 
 
 #:3193
-SELECT:3193 (adj adj pp nt ind sg) IF
+SELECT:3193 (adj pp nt ind sg) IF
 	(NOT 0 farlege-adj)
 	(NOT 0 farlege-part)
 	(NOT 0 sup)
@@ -23977,7 +23977,7 @@ SELECT:3193 (adj adj pp nt ind sg) IF
 
 
 #:3194
-SELECT:3194 (adj adj pp nt ind sg) IF
+SELECT:3194 (adj pp nt ind sg) IF
 	(NOT 0 pres/pret)
 	(NOT 0 farlege-adj)
 	(NOT 0 farlege-part)
@@ -23996,7 +23996,7 @@ SELECT:3194 (adj adj pp nt ind sg) IF
 
 
 #:3195
-SELECT:3195 (adj adj pp nt ind sg) IF
+SELECT:3195 (adj pp nt ind sg) IF
 	(NOT 0 pres/pret)
 	(NOT 0 farlege-adj)
 	(NOT 0 farlege-part)
@@ -24015,7 +24015,7 @@ SELECT:3195 (adj adj pp nt ind sg) IF
 
 
 #:3196
-SELECT:3196 (adj adj pp nt ind sg) IF
+SELECT:3196 (adj pp nt ind sg) IF
 	(NOT 0 mest-sanns-pos-istf-<perf-part>)
 	(NOT 1 %som%-sbu)
 	(*-1 seier-verb LINK *1 ikkje-adv-adj-det LINK 0 nom-nøyt-eint/prop LINK *1 ikkje-poss-det LINK 0 clb-konj LINK 1 kop-fv LINK NOT *1 ikkje-adv)
@@ -24025,7 +24025,7 @@ SELECT:3196 (adj adj pp nt ind sg) IF
 
 
 #:3197
-SELECT:3197 (adj adj pp nt ind sg) IF
+SELECT:3197 (adj pp nt ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -24048,7 +24048,7 @@ SELECT:3197 (adj adj pp nt ind sg) IF
 
 
 #:3198
-SELECT:3198 (adj adj pp nt ind sg) IF
+SELECT:3198 (adj pp nt ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -24068,7 +24068,7 @@ SELECT:3198 (adj adj pp nt ind sg) IF
 
 
 #:3199
-SELECT:3199 (adj adj pp nt ind sg) IF
+SELECT:3199 (adj pp nt ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -24088,7 +24088,7 @@ SELECT:3199 (adj adj pp nt ind sg) IF
 
 
 #:3200
-SELECT:3200 (adj adj pp nt ind sg) IF
+SELECT:3200 (adj pp nt ind sg) IF
 	(NOT 0 fl)
 	(NOT 0 fem)
 	(NOT 0 mask)
@@ -24109,7 +24109,7 @@ SELECT:3200 (adj adj pp nt ind sg) IF
 
 
 #:3201
-SELECT:3201 (adj adj pp nt ind sg) IF
+SELECT:3201 (adj pp nt ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -24130,7 +24130,7 @@ SELECT:3201 (adj adj pp nt ind sg) IF
 
 
 #:3202
-SELECT:3202 (adj adj pp nt ind sg) IF
+SELECT:3202 (adj pp nt ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -24155,7 +24155,7 @@ SELECT:3202 (adj adj pp nt ind sg) IF
 
 
 #:3203
-SELECT:3203 (adj adj pp nt ind sg) IF
+SELECT:3203 (adj pp nt ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -24177,7 +24177,7 @@ SELECT:3203 (adj adj pp nt ind sg) IF
 
 
 #:3204
-SELECT:3204 (adj adj pp nt ind sg) IF
+SELECT:3204 (adj pp nt ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -24198,7 +24198,7 @@ SELECT:3204 (adj adj pp nt ind sg) IF
 
 
 #:3205
-SELECT:3205 (adj adj pp nt ind sg) IF
+SELECT:3205 (adj pp nt ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -24219,7 +24219,7 @@ SELECT:3205 (adj adj pp nt ind sg) IF
 
 
 #:3206
-SELECT:3206 (adj adj pp nt ind sg) IF
+SELECT:3206 (adj pp nt ind sg) IF
 	(NOT 0 fl)
 	(NOT 0 fem)
 	(NOT 0 mask)
@@ -24240,7 +24240,7 @@ SELECT:3206 (adj adj pp nt ind sg) IF
 
 
 #:3207
-SELECT:3207 (adj adj pp nt ind sg) IF
+SELECT:3207 (adj pp nt ind sg) IF
 	(NOT 0 fl)
 	(NOT 0 fem)
 	(NOT 0 mask)
@@ -24261,7 +24261,7 @@ SELECT:3207 (adj adj pp nt ind sg) IF
 
 
 #:3208
-SELECT:3208 (adj adj pp nt ind sg) IF
+SELECT:3208 (adj pp nt ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -24285,7 +24285,7 @@ SELECT:3208 (adj adj pp nt ind sg) IF
 
 
 #:3209
-SELECT:3209 (adj adj pp nt ind sg) IF
+SELECT:3209 (adj pp nt ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -24309,7 +24309,7 @@ SELECT:3209 (adj adj pp nt ind sg) IF
 
 
 #:3210
-SELECT:3210 (adj adj pp nt ind sg) IF
+SELECT:3210 (adj pp nt ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -24331,7 +24331,7 @@ SELECT:3210 (adj adj pp nt ind sg) IF
 
 
 #:3211
-SELECT:3211 (adj adj pp nt ind sg) IF
+SELECT:3211 (adj pp nt ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -24355,7 +24355,7 @@ SELECT:3211 (adj adj pp nt ind sg) IF
 
 
 #:3212
-SELECT:3212 (adj adj pp nt ind sg) IF
+SELECT:3212 (adj pp nt ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -24376,7 +24376,7 @@ SELECT:3212 (adj adj pp nt ind sg) IF
 
 
 #:3213
-SELECT:3213 (adj adj pp nt ind sg) IF
+SELECT:3213 (adj pp nt ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -24397,7 +24397,7 @@ SELECT:3213 (adj adj pp nt ind sg) IF
 
 
 #:3214
-SELECT:3214 (adj adj pp nt ind sg) IF
+SELECT:3214 (adj pp nt ind sg) IF
 	(NOT 0 fl)
 	(NOT 0 fem)
 	(NOT 0 mask)
@@ -24418,7 +24418,7 @@ SELECT:3214 (adj adj pp nt ind sg) IF
 
 
 #:3215
-SELECT:3215 (adj adj pp nt ind sg) IF
+SELECT:3215 (adj pp nt ind sg) IF
 	(NOT 0 fl)
 	(NOT 0 fem)
 	(NOT 0 mask)
@@ -24439,7 +24439,7 @@ SELECT:3215 (adj adj pp nt ind sg) IF
 
 
 #:3216
-SELECT:3216 (adj adj pp nt ind sg) IF
+SELECT:3216 (adj pp nt ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -24463,7 +24463,7 @@ SELECT:3216 (adj adj pp nt ind sg) IF
 
 
 #:3217
-SELECT:3217 (adj adj pp nt ind sg) IF
+SELECT:3217 (adj pp nt ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -24487,7 +24487,7 @@ SELECT:3217 (adj adj pp nt ind sg) IF
 
 
 #:3218
-SELECT:3218 (adj adj pp nt ind sg) IF
+SELECT:3218 (adj pp nt ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -24512,7 +24512,7 @@ SELECT:3218 (adj adj pp nt ind sg) IF
 
 
 #:3219
-SELECT:3219 (adj adj pp nt ind sg) IF
+SELECT:3219 (adj pp nt ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -24534,7 +24534,7 @@ SELECT:3219 (adj adj pp nt ind sg) IF
 
 
 #:3220
-SELECT:3220 (adj adj pp nt ind sg) IF
+SELECT:3220 (adj pp nt ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -24555,7 +24555,7 @@ SELECT:3220 (adj adj pp nt ind sg) IF
 
 
 #:3221
-SELECT:3221 (adj adj pp nt ind sg) IF
+SELECT:3221 (adj pp nt ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -24576,7 +24576,7 @@ SELECT:3221 (adj adj pp nt ind sg) IF
 
 
 #:3222
-SELECT:3222 (adj adj pp nt ind sg) IF
+SELECT:3222 (adj pp nt ind sg) IF
 	(NOT 0 fl)
 	(NOT 0 fem)
 	(NOT 0 mask)
@@ -24597,7 +24597,7 @@ SELECT:3222 (adj adj pp nt ind sg) IF
 
 
 #:3223
-SELECT:3223 (adj adj pp nt ind sg) IF
+SELECT:3223 (adj pp nt ind sg) IF
 	(NOT 0 fl)
 	(NOT 0 fem)
 	(NOT 0 mask)
@@ -24618,7 +24618,7 @@ SELECT:3223 (adj adj pp nt ind sg) IF
 
 
 #:3224
-SELECT:3224 (adj adj pp nt ind sg) IF
+SELECT:3224 (adj pp nt ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -24644,7 +24644,7 @@ SELECT:3224 (adj adj pp nt ind sg) IF
 
 
 #:3225
-SELECT:3225 (adj adj pp nt ind sg) IF
+SELECT:3225 (adj pp nt ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -24668,7 +24668,7 @@ SELECT:3225 (adj adj pp nt ind sg) IF
 
 
 #:3226
-SELECT:3226 (adj adj pp nt ind sg) IF
+SELECT:3226 (adj pp nt ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -24692,7 +24692,7 @@ SELECT:3226 (adj adj pp nt ind sg) IF
 
 
 #:3227
-SELECT:3227 (adj adj pp nt ind sg) IF
+SELECT:3227 (adj pp nt ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -24716,7 +24716,7 @@ SELECT:3227 (adj adj pp nt ind sg) IF
 
 
 #:3228
-SELECT:3228 (adj adj pp nt ind sg) IF
+SELECT:3228 (adj pp nt ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -24737,7 +24737,7 @@ SELECT:3228 (adj adj pp nt ind sg) IF
 
 
 #:3229
-SELECT:3229 (adj adj pp nt ind sg) IF
+SELECT:3229 (adj pp nt ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -24758,7 +24758,7 @@ SELECT:3229 (adj adj pp nt ind sg) IF
 
 
 #:3230
-SELECT:3230 (adj adj pp nt ind sg) IF
+SELECT:3230 (adj pp nt ind sg) IF
 	(NOT 0 fl)
 	(NOT 0 fem)
 	(NOT 0 mask)
@@ -24779,7 +24779,7 @@ SELECT:3230 (adj adj pp nt ind sg) IF
 
 
 #:3231
-SELECT:3231 (adj adj pp nt ind sg) IF
+SELECT:3231 (adj pp nt ind sg) IF
 	(NOT 0 fl)
 	(NOT 0 fem)
 	(NOT 0 mask)
@@ -24800,7 +24800,7 @@ SELECT:3231 (adj adj pp nt ind sg) IF
 
 
 #:3232
-SELECT:3232 (adj adj pp nt ind sg) IF
+SELECT:3232 (adj pp nt ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -24824,7 +24824,7 @@ SELECT:3232 (adj adj pp nt ind sg) IF
 
 
 #:3233
-SELECT:3233 (adj adj pp nt ind sg) IF
+SELECT:3233 (adj pp nt ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -24848,7 +24848,7 @@ SELECT:3233 (adj adj pp nt ind sg) IF
 
 
 #:3234
-SELECT:3234 (adj adj pp nt ind sg) IF
+SELECT:3234 (adj pp nt ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -24872,7 +24872,7 @@ SELECT:3234 (adj adj pp nt ind sg) IF
 
 
 #:3235
-SELECT:3235 (adj adj pp nt ind sg) IF
+SELECT:3235 (adj pp nt ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -24894,7 +24894,7 @@ SELECT:3235 (adj adj pp nt ind sg) IF
 
 
 #:3236
-SELECT:3236 (adj adj pp nt ind sg) IF
+SELECT:3236 (adj pp nt ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -24915,7 +24915,7 @@ SELECT:3236 (adj adj pp nt ind sg) IF
 
 
 #:3237
-SELECT:3237 (adj adj pp nt ind sg) IF
+SELECT:3237 (adj pp nt ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -24936,7 +24936,7 @@ SELECT:3237 (adj adj pp nt ind sg) IF
 
 
 #:3238
-SELECT:3238 (adj adj pp nt ind sg) IF
+SELECT:3238 (adj pp nt ind sg) IF
 	(NOT 0 fl)
 	(NOT 0 fem)
 	(NOT 0 mask)
@@ -24957,7 +24957,7 @@ SELECT:3238 (adj adj pp nt ind sg) IF
 
 
 #:3239
-SELECT:3239 (adj adj pp nt ind sg) IF
+SELECT:3239 (adj pp nt ind sg) IF
 	(NOT 0 fl)
 	(NOT 0 fem)
 	(NOT 0 mask)
@@ -24978,7 +24978,7 @@ SELECT:3239 (adj adj pp nt ind sg) IF
 
 
 #:3240
-SELECT:3240 (adj adj pp nt ind sg) IF
+SELECT:3240 (adj pp nt ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -25002,7 +25002,7 @@ SELECT:3240 (adj adj pp nt ind sg) IF
 
 
 #:3241
-SELECT:3241 (adj adj pp nt ind sg) IF
+SELECT:3241 (adj pp nt ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -25026,7 +25026,7 @@ SELECT:3241 (adj adj pp nt ind sg) IF
 
 
 #:3242
-SELECT:3242 (adj adj pp nt ind sg) IF
+SELECT:3242 (adj pp nt ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -25048,7 +25048,7 @@ SELECT:3242 (adj adj pp nt ind sg) IF
 
 
 #:3243
-SELECT:3243 (adj adj pp nt ind sg) IF
+SELECT:3243 (adj pp nt ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -25072,7 +25072,7 @@ SELECT:3243 (adj adj pp nt ind sg) IF
 
 
 #:3244
-SELECT:3244 (adj adj pp nt ind sg) IF
+SELECT:3244 (adj pp nt ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -25093,7 +25093,7 @@ SELECT:3244 (adj adj pp nt ind sg) IF
 
 
 #:3245
-SELECT:3245 (adj adj pp nt ind sg) IF
+SELECT:3245 (adj pp nt ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -25114,7 +25114,7 @@ SELECT:3245 (adj adj pp nt ind sg) IF
 
 
 #:3246
-SELECT:3246 (adj adj pp nt ind sg) IF
+SELECT:3246 (adj pp nt ind sg) IF
 	(NOT 0 fl)
 	(NOT 0 fem)
 	(NOT 0 mask)
@@ -25135,7 +25135,7 @@ SELECT:3246 (adj adj pp nt ind sg) IF
 
 
 #:3247
-SELECT:3247 (adj adj pp nt ind sg) IF
+SELECT:3247 (adj pp nt ind sg) IF
 	(NOT 0 fl)
 	(NOT 0 fem)
 	(NOT 0 mask)
@@ -25156,7 +25156,7 @@ SELECT:3247 (adj adj pp nt ind sg) IF
 
 
 #:3248
-SELECT:3248 (adj adj pp nt ind sg) IF
+SELECT:3248 (adj pp nt ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -25180,7 +25180,7 @@ SELECT:3248 (adj adj pp nt ind sg) IF
 
 
 #:3249
-SELECT:3249 (adj adj pp nt ind sg) IF
+SELECT:3249 (adj pp nt ind sg) IF
 	(*-1 kop LINK 0 pres/pret LINK NOT *1 ikkje-adv)
 	(*-1 %som% BARRIER ikkje-adv-verb)
 	(*-1 %som% LINK -1 adj-sup LINK *-1 ikkje-adv LINK 0 bu-nøyt-det LINK NOT 0 fl)
@@ -25191,7 +25191,7 @@ SELECT:3249 (adj adj pp nt ind sg) IF
 
 
 #:3250
-SELECT:3250 (adj adj pp nt ind sg) IF
+SELECT:3250 (adj pp nt ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -25215,7 +25215,7 @@ SELECT:3250 (adj adj pp nt ind sg) IF
 
 
 #:3251
-SELECT:3251 (adj adj pp nt ind sg) IF
+SELECT:3251 (adj pp nt ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -25239,7 +25239,7 @@ SELECT:3251 (adj adj pp nt ind sg) IF
 
 
 #:3252
-SELECT:3252 (adj adj pp nt ind sg) IF
+SELECT:3252 (adj pp nt ind sg) IF
 	(NOT 0 fl)
 	(NOT 0 fem)
 	(NOT 0 mask)
@@ -25261,7 +25261,7 @@ SELECT:3252 (adj adj pp nt ind sg) IF
 
 
 #:3253
-SELECT:3253 (adj adj pp nt ind sg) IF
+SELECT:3253 (adj pp nt ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -25286,7 +25286,7 @@ SELECT:3253 (adj adj pp nt ind sg) IF
 
 
 #:3254
-SELECT:3254 (adj adj pp nt ind sg) IF
+SELECT:3254 (adj pp nt ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -25305,7 +25305,7 @@ SELECT:3254 (adj adj pp nt ind sg) IF
 
 
 #:3255
-SELECT:3255 (adj adj pp nt ind sg) IF
+SELECT:3255 (adj pp nt ind sg) IF
 	(NOT 0 fl)
 	(NOT 0 fem)
 	(NOT 0 mask)
@@ -25324,7 +25324,7 @@ SELECT:3255 (adj adj pp nt ind sg) IF
 
 
 #:3256
-SELECT:3256 (adj adj pp nt ind sg) IF
+SELECT:3256 (adj pp nt ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -25345,7 +25345,7 @@ SELECT:3256 (adj adj pp nt ind sg) IF
 
 
 #:3257
-SELECT:3257 (adj adj pp nt ind sg) IF
+SELECT:3257 (adj pp nt ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -25367,7 +25367,7 @@ SELECT:3257 (adj adj pp nt ind sg) IF
 
 
 #:3258
-SELECT:3258 (adj adj pp nt ind sg) IF
+SELECT:3258 (adj pp nt ind sg) IF
 	(NOT 0 fl)
 	(NOT 0 fem)
 	(NOT 0 mask)
@@ -25389,7 +25389,7 @@ SELECT:3258 (adj adj pp nt ind sg) IF
 
 
 #:3259
-SELECT:3259 (adj adj pp nt ind sg) IF
+SELECT:3259 (adj pp nt ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -25413,7 +25413,7 @@ SELECT:3259 (adj adj pp nt ind sg) IF
 
 
 #:3260
-SELECT:3260 (adj adj pp nt ind sg) IF
+SELECT:3260 (adj pp nt ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -25435,7 +25435,7 @@ SELECT:3260 (adj adj pp nt ind sg) IF
 
 
 #:3261
-SELECT:3261 (adj adj pp nt ind sg) IF
+SELECT:3261 (adj pp nt ind sg) IF
 	(NOT 0 fl)
 	(NOT 0 fem)
 	(NOT 0 mask)
@@ -25457,7 +25457,7 @@ SELECT:3261 (adj adj pp nt ind sg) IF
 
 
 #:3262
-SELECT:3262 (adj adj pp nt ind sg) IF
+SELECT:3262 (adj pp nt ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -25482,7 +25482,7 @@ SELECT:3262 (adj adj pp nt ind sg) IF
 
 
 #:3263
-SELECT:3263 (adj adj pp nt ind sg) IF
+SELECT:3263 (adj pp nt ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -25501,7 +25501,7 @@ SELECT:3263 (adj adj pp nt ind sg) IF
 
 
 #:3264
-SELECT:3264 (adj adj pp nt ind sg) IF
+SELECT:3264 (adj pp nt ind sg) IF
 	(NOT 0 fl)
 	(NOT 0 fem)
 	(NOT 0 mask)
@@ -25520,7 +25520,7 @@ SELECT:3264 (adj adj pp nt ind sg) IF
 
 
 #:3265
-SELECT:3265 (adj adj pp nt ind sg) IF
+SELECT:3265 (adj pp nt ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -25541,7 +25541,7 @@ SELECT:3265 (adj adj pp nt ind sg) IF
 
 
 #:3266
-SELECT:3266 (adj adj pp nt ind sg) IF
+SELECT:3266 (adj pp nt ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -25563,7 +25563,7 @@ SELECT:3266 (adj adj pp nt ind sg) IF
 
 
 #:3267
-SELECT:3267 (adj adj pp nt ind sg) IF
+SELECT:3267 (adj pp nt ind sg) IF
 	(NOT 0 fl)
 	(NOT 0 fem)
 	(NOT 0 mask)
@@ -25585,7 +25585,7 @@ SELECT:3267 (adj adj pp nt ind sg) IF
 
 
 #:3268
-SELECT:3268 (adj adj pp nt ind sg) IF
+SELECT:3268 (adj pp nt ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -25609,7 +25609,7 @@ SELECT:3268 (adj adj pp nt ind sg) IF
 
 
 #:3269
-SELECT:3269 (adj adj pp nt ind sg) IF
+SELECT:3269 (adj pp nt ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -25627,7 +25627,7 @@ SELECT:3269 (adj adj pp nt ind sg) IF
 
 
 #:3270
-SELECT:3270 (adj adj pp nt ind sg) IF
+SELECT:3270 (adj pp nt ind sg) IF
 	(NOT 0 fl)
 	(NOT 0 fem)
 	(NOT 0 mask)
@@ -25645,7 +25645,7 @@ SELECT:3270 (adj adj pp nt ind sg) IF
 
 
 #:3271
-SELECT:3271 (adj adj pp nt ind sg) IF
+SELECT:3271 (adj pp nt ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -25665,7 +25665,7 @@ SELECT:3271 (adj adj pp nt ind sg) IF
 
 
 #:3272
-SELECT:3272 (adj adj pp nt ind sg) IF
+SELECT:3272 (adj pp nt ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -25689,7 +25689,7 @@ SELECT:3272 (adj adj pp nt ind sg) IF
 
 
 #:3273
-SELECT:3273 (adj adj pp nt ind sg) IF
+SELECT:3273 (adj pp nt ind sg) IF
 	(NOT 0 fl)
 	(NOT 0 fem)
 	(NOT 0 mask)
@@ -25711,7 +25711,7 @@ SELECT:3273 (adj adj pp nt ind sg) IF
 
 
 #:3274
-SELECT:3274 (adj adj pp nt ind sg) IF
+SELECT:3274 (adj pp nt ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -25735,7 +25735,7 @@ SELECT:3274 (adj adj pp nt ind sg) IF
 
 
 #:3275
-SELECT:3275 (adj adj pp nt ind sg) IF
+SELECT:3275 (adj pp nt ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -25755,7 +25755,7 @@ SELECT:3275 (adj adj pp nt ind sg) IF
 
 
 #:3276
-SELECT:3276 (adj adj pp nt ind sg) IF
+SELECT:3276 (adj pp nt ind sg) IF
 	(NOT 0 fl)
 	(NOT 0 fem)
 	(NOT 0 mask)
@@ -25775,7 +25775,7 @@ SELECT:3276 (adj adj pp nt ind sg) IF
 
 
 #:3277
-SELECT:3277 (adj adj pp nt ind sg) IF
+SELECT:3277 (adj pp nt ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -25799,7 +25799,7 @@ SELECT:3277 (adj adj pp nt ind sg) IF
 
 
 #:3278
-SELECT:3278 (adj adj pp nt ind sg) IF
+SELECT:3278 (adj pp nt ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -25819,7 +25819,7 @@ SELECT:3278 (adj adj pp nt ind sg) IF
 
 
 #:3279
-SELECT:3279 (adj adj pp nt ind sg) IF
+SELECT:3279 (adj pp nt ind sg) IF
 	(NOT 0 fl)
 	(NOT 0 fem)
 	(NOT 0 mask)
@@ -25839,7 +25839,7 @@ SELECT:3279 (adj adj pp nt ind sg) IF
 
 
 #:3280
-SELECT:3280 (adj adj pp nt ind sg) IF
+SELECT:3280 (adj pp nt ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -25861,7 +25861,7 @@ SELECT:3280 (adj adj pp nt ind sg) IF
 
 
 #:3281
-SELECT:3281 (adj adj pp nt ind sg) IF
+SELECT:3281 (adj pp nt ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -25883,7 +25883,7 @@ SELECT:3281 (adj adj pp nt ind sg) IF
 
 
 #:3282
-SELECT:3282 (adj adj pp nt ind sg) IF
+SELECT:3282 (adj pp nt ind sg) IF
 	(NOT 0 fl)
 	(NOT 0 fem)
 	(NOT 0 mask)
@@ -25905,7 +25905,7 @@ SELECT:3282 (adj adj pp nt ind sg) IF
 
 
 #:3283
-SELECT:3283 (adj adj pp nt ind sg) IF
+SELECT:3283 (adj pp nt ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -25929,7 +25929,7 @@ SELECT:3283 (adj adj pp nt ind sg) IF
 
 
 #:3284
-SELECT:3284 (adj adj pp nt ind sg) IF
+SELECT:3284 (adj pp nt ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -25949,7 +25949,7 @@ SELECT:3284 (adj adj pp nt ind sg) IF
 
 
 #:3285
-SELECT:3285 (adj adj pp nt ind sg) IF
+SELECT:3285 (adj pp nt ind sg) IF
 	(NOT 0 fl)
 	(NOT 0 fem)
 	(NOT 0 mask)
@@ -25969,7 +25969,7 @@ SELECT:3285 (adj adj pp nt ind sg) IF
 
 
 #:3286
-SELECT:3286 (adj adj pp nt ind sg) IF
+SELECT:3286 (adj pp nt ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -25991,7 +25991,7 @@ SELECT:3286 (adj adj pp nt ind sg) IF
 
 
 #:3287
-SELECT:3287 (adj adj pp nt ind sg) IF
+SELECT:3287 (adj pp nt ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -26011,7 +26011,7 @@ SELECT:3287 (adj adj pp nt ind sg) IF
 
 
 #:3288
-SELECT:3288 (adj adj pp nt ind sg) IF
+SELECT:3288 (adj pp nt ind sg) IF
 	(NOT 0 fl)
 	(NOT 0 fem)
 	(NOT 0 mask)
@@ -26031,7 +26031,7 @@ SELECT:3288 (adj adj pp nt ind sg) IF
 
 
 #:3289
-SELECT:3289 (adj adj pp nt ind sg) IF
+SELECT:3289 (adj pp nt ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -26053,7 +26053,7 @@ SELECT:3289 (adj adj pp nt ind sg) IF
 
 
 #:3290
-SELECT:3290 (adj adj pp nt ind sg) IF
+SELECT:3290 (adj pp nt ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -26074,7 +26074,7 @@ SELECT:3290 (adj adj pp nt ind sg) IF
 
 
 #:3291
-SELECT:3291 (adj adj pp nt ind sg) IF
+SELECT:3291 (adj pp nt ind sg) IF
 	(NOT 0 fl)
 	(NOT 0 fem)
 	(NOT 0 mask)
@@ -26095,7 +26095,7 @@ SELECT:3291 (adj adj pp nt ind sg) IF
 
 
 #:3292
-SELECT:3292 (adj adj pp nt ind sg) IF
+SELECT:3292 (adj pp nt ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -26118,7 +26118,7 @@ SELECT:3292 (adj adj pp nt ind sg) IF
 
 
 #:3293
-SELECT:3293 (adj adj pp nt ind sg) IF
+SELECT:3293 (adj pp nt ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -26136,7 +26136,7 @@ SELECT:3293 (adj adj pp nt ind sg) IF
 
 
 #:3294
-SELECT:3294 (adj adj pp nt ind sg) IF
+SELECT:3294 (adj pp nt ind sg) IF
 	(NOT 0 fl)
 	(NOT 0 fem)
 	(NOT 0 mask)
@@ -26154,7 +26154,7 @@ SELECT:3294 (adj adj pp nt ind sg) IF
 
 
 #:3295
-SELECT:3295 (adj adj pp nt ind sg) IF
+SELECT:3295 (adj pp nt ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -26174,7 +26174,7 @@ SELECT:3295 (adj adj pp nt ind sg) IF
 
 
 #:3296
-SELECT:3296 (adj adj pp nt ind sg) IF
+SELECT:3296 (adj pp nt ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -26197,7 +26197,7 @@ SELECT:3296 (adj adj pp nt ind sg) IF
 
 
 #:3297
-SELECT:3297 (adj adj pp nt ind sg) IF
+SELECT:3297 (adj pp nt ind sg) IF
 	(NOT 0 fl)
 	(NOT 0 fem)
 	(NOT 0 mask)
@@ -26218,7 +26218,7 @@ SELECT:3297 (adj adj pp nt ind sg) IF
 
 
 #:3298
-SELECT:3298 (adj adj pp nt ind sg) IF
+SELECT:3298 (adj pp nt ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -26241,7 +26241,7 @@ SELECT:3298 (adj adj pp nt ind sg) IF
 
 
 #:3299
-SELECT:3299 (adj adj pp nt ind sg) IF
+SELECT:3299 (adj pp nt ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -26261,7 +26261,7 @@ SELECT:3299 (adj adj pp nt ind sg) IF
 
 
 #:3300
-SELECT:3300 (adj adj pp nt ind sg) IF
+SELECT:3300 (adj pp nt ind sg) IF
 	(NOT 0 fl)
 	(NOT 0 fem)
 	(NOT 0 mask)
@@ -26281,7 +26281,7 @@ SELECT:3300 (adj adj pp nt ind sg) IF
 
 
 #:3301
-SELECT:3301 (adj adj pp nt ind sg) IF
+SELECT:3301 (adj pp nt ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -26303,7 +26303,7 @@ SELECT:3301 (adj adj pp nt ind sg) IF
 
 
 #:3302
-SELECT:3302 (adj adj pp nt ind sg) IF
+SELECT:3302 (adj pp nt ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -26323,7 +26323,7 @@ SELECT:3302 (adj adj pp nt ind sg) IF
 
 
 #:3303
-SELECT:3303 (adj adj pp nt ind sg) IF
+SELECT:3303 (adj pp nt ind sg) IF
 	(NOT 0 fl)
 	(NOT 0 fem)
 	(NOT 0 mask)
@@ -26343,7 +26343,7 @@ SELECT:3303 (adj adj pp nt ind sg) IF
 
 
 #:3304
-SELECT:3304 (adj adj pp nt ind sg) IF
+SELECT:3304 (adj pp nt ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -26365,7 +26365,7 @@ SELECT:3304 (adj adj pp nt ind sg) IF
 
 
 #:3305
-SELECT:3305 (adj adj pp nt ind sg) IF
+SELECT:3305 (adj pp nt ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -26389,7 +26389,7 @@ SELECT:3305 (adj adj pp nt ind sg) IF
 
 
 #:3306
-SELECT:3306 (adj adj pp nt ind sg) IF
+SELECT:3306 (adj pp nt ind sg) IF
 	(NOT 0 fl)
 	(NOT 0 fem)
 	(NOT 0 mask)
@@ -26411,7 +26411,7 @@ SELECT:3306 (adj adj pp nt ind sg) IF
 
 
 #:3307
-SELECT:3307 (adj adj pp nt ind sg) IF
+SELECT:3307 (adj pp nt ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -26435,7 +26435,7 @@ SELECT:3307 (adj adj pp nt ind sg) IF
 
 
 #:3308
-SELECT:3308 (adj adj pp nt ind sg) IF
+SELECT:3308 (adj pp nt ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -26456,7 +26456,7 @@ SELECT:3308 (adj adj pp nt ind sg) IF
 
 
 #:3309
-SELECT:3309 (adj adj pp nt ind sg) IF
+SELECT:3309 (adj pp nt ind sg) IF
 	(NOT 0 fl)
 	(NOT 0 fem)
 	(NOT 0 mask)
@@ -26477,7 +26477,7 @@ SELECT:3309 (adj adj pp nt ind sg) IF
 
 
 #:3310
-SELECT:3310 (adj adj pp nt ind sg) IF
+SELECT:3310 (adj pp nt ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -26500,7 +26500,7 @@ SELECT:3310 (adj adj pp nt ind sg) IF
 
 
 #:3311
-SELECT:3311 (adj adj pp nt ind sg) IF
+SELECT:3311 (adj pp nt ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -26520,7 +26520,7 @@ SELECT:3311 (adj adj pp nt ind sg) IF
 
 
 #:3312
-SELECT:3312 (adj adj pp nt ind sg) IF
+SELECT:3312 (adj pp nt ind sg) IF
 	(NOT 0 fl)
 	(NOT 0 fem)
 	(NOT 0 mask)
@@ -26540,7 +26540,7 @@ SELECT:3312 (adj adj pp nt ind sg) IF
 
 
 #:3313
-SELECT:3313 (adj adj pp nt ind sg) IF
+SELECT:3313 (adj pp nt ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -26562,7 +26562,7 @@ SELECT:3313 (adj adj pp nt ind sg) IF
 
 
 #:3314
-SELECT:3314 (adj adj pp nt ind sg) IF
+SELECT:3314 (adj pp nt ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -26582,7 +26582,7 @@ SELECT:3314 (adj adj pp nt ind sg) IF
 
 
 #:3315
-SELECT:3315 (adj adj pp nt ind sg) IF
+SELECT:3315 (adj pp nt ind sg) IF
 	(NOT 0 fl)
 	(NOT 0 fem)
 	(NOT 0 mask)
@@ -26602,7 +26602,7 @@ SELECT:3315 (adj adj pp nt ind sg) IF
 
 
 #:3316
-SELECT:3316 (adj adj pp nt ind sg) IF
+SELECT:3316 (adj pp nt ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -26624,7 +26624,7 @@ SELECT:3316 (adj adj pp nt ind sg) IF
 
 
 #:3317
-SELECT:3317 (adj adj pp nt ind sg) IF
+SELECT:3317 (adj pp nt ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -26647,7 +26647,7 @@ SELECT:3317 (adj adj pp nt ind sg) IF
 
 
 #:3318
-SELECT:3318 (adj adj pp nt ind sg) IF
+SELECT:3318 (adj pp nt ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -26668,7 +26668,7 @@ SELECT:3318 (adj adj pp nt ind sg) IF
 
 
 #:3319
-SELECT:3319 (adj adj pp nt ind sg) IF
+SELECT:3319 (adj pp nt ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -26691,7 +26691,7 @@ SELECT:3319 (adj adj pp nt ind sg) IF
 
 
 #:3320
-SELECT:3320 (adj adj pp nt ind sg) IF
+SELECT:3320 (adj pp nt ind sg) IF
 	(NOT 0 fl)
 	(NOT 0 fem)
 	(NOT 0 mask)
@@ -26714,7 +26714,7 @@ SELECT:3320 (adj adj pp nt ind sg) IF
 
 
 #:3321
-SELECT:3321 (adj adj pp nt ind sg) IF
+SELECT:3321 (adj pp nt ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -26740,7 +26740,7 @@ SELECT:3321 (adj adj pp nt ind sg) IF
 
 
 #:3322
-SELECT:3322 (adj adj pp nt ind sg) IF
+SELECT:3322 (adj pp nt ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -26763,7 +26763,7 @@ SELECT:3322 (adj adj pp nt ind sg) IF
 
 
 #:3323
-SELECT:3323 (adj adj pp nt ind sg) IF
+SELECT:3323 (adj pp nt ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -26786,7 +26786,7 @@ SELECT:3323 (adj adj pp nt ind sg) IF
 
 
 #:3324
-SELECT:3324 (adj adj pp nt ind sg) IF
+SELECT:3324 (adj pp nt ind sg) IF
 	(NOT 0 fl)
 	(NOT 0 fem)
 	(NOT 0 mask)
@@ -26809,7 +26809,7 @@ SELECT:3324 (adj adj pp nt ind sg) IF
 
 
 #:3325
-SELECT:3325 (adj adj pp nt ind sg) IF
+SELECT:3325 (adj pp nt ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -26835,7 +26835,7 @@ SELECT:3325 (adj adj pp nt ind sg) IF
 
 
 #:3326
-SELECT:3326 (adj adj pp nt ind sg) IF
+SELECT:3326 (adj pp nt ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -26861,7 +26861,7 @@ SELECT:3326 (adj adj pp nt ind sg) IF
 
 
 #:3327
-SELECT:3327 (adj adj pp nt ind sg) IF
+SELECT:3327 (adj pp nt ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -26884,7 +26884,7 @@ SELECT:3327 (adj adj pp nt ind sg) IF
 
 
 #:3328
-SELECT:3328 (adj adj pp nt ind sg) IF
+SELECT:3328 (adj pp nt ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -26905,7 +26905,7 @@ SELECT:3328 (adj adj pp nt ind sg) IF
 
 
 #:3329
-SELECT:3329 (adj adj pp nt ind sg) IF
+SELECT:3329 (adj pp nt ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -26928,7 +26928,7 @@ SELECT:3329 (adj adj pp nt ind sg) IF
 
 
 #:3330
-SELECT:3330 (adj adj pp nt ind sg) IF
+SELECT:3330 (adj pp nt ind sg) IF
 	(NOT 0 fl)
 	(NOT 0 fem)
 	(NOT 0 mask)
@@ -26951,7 +26951,7 @@ SELECT:3330 (adj adj pp nt ind sg) IF
 
 
 #:3331
-SELECT:3331 (adj adj pp nt ind sg) IF
+SELECT:3331 (adj pp nt ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -26977,7 +26977,7 @@ SELECT:3331 (adj adj pp nt ind sg) IF
 
 
 #:3332
-SELECT:3332 (adj adj pp nt ind sg) IF
+SELECT:3332 (adj pp nt ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -26998,7 +26998,7 @@ SELECT:3332 (adj adj pp nt ind sg) IF
 
 
 #:3333
-SELECT:3333 (adj adj pp nt ind sg) IF
+SELECT:3333 (adj pp nt ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -27024,7 +27024,7 @@ SELECT:3333 (adj adj pp nt ind sg) IF
 
 
 #:3334
-SELECT:3334 (adj adj pp nt ind sg) IF
+SELECT:3334 (adj pp nt ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -27045,7 +27045,7 @@ SELECT:3334 (adj adj pp nt ind sg) IF
 
 
 #:3335
-SELECT:3335 (adj adj pp nt ind sg) IF
+SELECT:3335 (adj pp nt ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -27071,7 +27071,7 @@ SELECT:3335 (adj adj pp nt ind sg) IF
 
 
 #:3336
-SELECT:3336 (adj adj pp nt ind sg) IF
+SELECT:3336 (adj pp nt ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -27095,7 +27095,7 @@ SELECT:3336 (adj adj pp nt ind sg) IF
 
 
 #:3337
-SELECT:3337 (adj adj pp nt ind sg) IF
+SELECT:3337 (adj pp nt ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -27116,7 +27116,7 @@ SELECT:3337 (adj adj pp nt ind sg) IF
 
 
 #:3338
-SELECT:3338 (adj adj pp nt ind sg) IF
+SELECT:3338 (adj pp nt ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -27139,7 +27139,7 @@ SELECT:3338 (adj adj pp nt ind sg) IF
 
 
 #:3339
-SELECT:3339 (adj adj pp nt ind sg) IF
+SELECT:3339 (adj pp nt ind sg) IF
 	(NOT 0 fl)
 	(NOT 0 fem)
 	(NOT 0 mask)
@@ -27162,7 +27162,7 @@ SELECT:3339 (adj adj pp nt ind sg) IF
 
 
 #:3340
-SELECT:3340 (adj adj pp nt ind sg) IF
+SELECT:3340 (adj pp nt ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -27188,7 +27188,7 @@ SELECT:3340 (adj adj pp nt ind sg) IF
 
 
 #:3341
-SELECT:3341 (adj adj pp nt ind sg) IF
+SELECT:3341 (adj pp nt ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -27214,7 +27214,7 @@ SELECT:3341 (adj adj pp nt ind sg) IF
 
 
 #:3342
-SELECT:3342 (adj adj pp nt ind sg) IF
+SELECT:3342 (adj pp nt ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -27240,7 +27240,7 @@ SELECT:3342 (adj adj pp nt ind sg) IF
 
 
 #:3343
-SELECT:3343 (adj adj pp nt ind sg) IF
+SELECT:3343 (adj pp nt ind sg) IF
 	(NOT 0 fl)
 	(NOT 0 fem)
 	(NOT 0 mask)
@@ -27268,7 +27268,7 @@ SELECT:3343 (adj adj pp nt ind sg) IF
 
 
 #:3344
-SELECT:3344 (adj adj pp nt ind sg) IF
+SELECT:3344 (adj pp nt ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -27296,7 +27296,7 @@ SELECT:3344 (adj adj pp nt ind sg) IF
 
 
 #:3345
-SELECT:3345 (adj adj pp nt ind sg) IF
+SELECT:3345 (adj pp nt ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -27323,7 +27323,7 @@ SELECT:3345 (adj adj pp nt ind sg) IF
 
 
 #:3346
-SELECT:3346 (adj adj pp nt ind sg) IF
+SELECT:3346 (adj pp nt ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -27348,7 +27348,7 @@ SELECT:3346 (adj adj pp nt ind sg) IF
 
 
 #:3347
-SELECT:3347 (adj adj pp nt ind sg) IF
+SELECT:3347 (adj pp nt ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -27374,7 +27374,7 @@ SELECT:3347 (adj adj pp nt ind sg) IF
 
 
 #:3348
-SELECT:3348 (adj adj pp nt ind sg) IF
+SELECT:3348 (adj pp nt ind sg) IF
 	(NOT 0 fl)
 	(NOT 0 fem)
 	(NOT 0 mask)
@@ -27402,7 +27402,7 @@ SELECT:3348 (adj adj pp nt ind sg) IF
 
 
 #:3349
-SELECT:3349 (adj adj pp nt ind sg) IF
+SELECT:3349 (adj pp nt ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -27436,7 +27436,7 @@ SELECT:3349 (adj adj pp nt ind sg) IF
 
 
 #:2950
-SELECT:2950 (adj adj pp mf ind sg) IF
+SELECT:2950 (adj pp mf ind sg) IF
 	(0 <perf-part>)
 	(NOT 0 farlege-adj)
 	(NOT 0 farlege-part)
@@ -27453,7 +27453,7 @@ SELECT:2950 (adj adj pp mf ind sg) IF
 
 
 #:2951
-SELECT:2951 (adj adj pp mf ind sg) IF
+SELECT:2951 (adj pp mf ind sg) IF
 	(0 <perf-part>)
 	(NOT 0 farlege-adj)
 	(NOT 0 farlege-part)
@@ -27471,7 +27471,7 @@ SELECT:2951 (adj adj pp mf ind sg) IF
 
 
 #:2952
-SELECT:2952 (adj adj pp mf ind sg) IF
+SELECT:2952 (adj pp mf ind sg) IF
 	(0 <perf-part>)
 	(NOT 0 farlege-adj)
 	(NOT 0 farlege-part)
@@ -27489,7 +27489,7 @@ SELECT:2952 (adj adj pp mf ind sg) IF
 
 
 #:2953
-SELECT:2953 (adj adj pp mf ind sg) IF
+SELECT:2953 (adj pp mf ind sg) IF
 	(0 <perf-part>)
 	(NOT 0 farlege-adj)
 	(NOT 0 farlege-part)
@@ -27504,7 +27504,7 @@ SELECT:2953 (adj adj pp mf ind sg) IF
 
 
 #:2954
-SELECT:2954 (adj adj pp mf ind sg) IF
+SELECT:2954 (adj pp mf ind sg) IF
 	(0 <perf-part>)
 	(NOT 0 pres/pret)
 	(NOT 0 farlege-adj)
@@ -27522,7 +27522,7 @@ SELECT:2954 (adj adj pp mf ind sg) IF
 
 
 #:2955
-SELECT:2955 (adj adj pp mf ind sg) IF
+SELECT:2955 (adj pp mf ind sg) IF
 	(0 <perf-part>)
 	(NOT 0 pres/pret)
 	(NOT 0 farlege-adj)
@@ -27540,7 +27540,7 @@ SELECT:2955 (adj adj pp mf ind sg) IF
 
 
 #:2956
-SELECT:2956 (adj adj pp mf ind sg) IF
+SELECT:2956 (adj pp mf ind sg) IF
 	(NOT 0 mest-sanns-pos-istf-<perf-part>)
 	(NOT 1 %som%-sbu)
 	(*-1 seier-verb LINK *1 ikkje-adv-adj-det LINK 0 nom-mask-eint/prop LINK *1 ikkje-poss-det LINK 0 clb-konj LINK 1 kop-fv LINK NOT *1 ikkje-adv-adj)
@@ -27548,7 +27548,7 @@ SELECT:2956 (adj adj pp mf ind sg) IF
 
 
 #:2957
-SELECT:2957 (adj adj pp mf ind sg) IF
+SELECT:2957 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -27567,7 +27567,7 @@ SELECT:2957 (adj adj pp mf ind sg) IF
 
 
 #:2958
-SELECT:2958 (adj adj pp mf ind sg) IF
+SELECT:2958 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -27583,7 +27583,7 @@ SELECT:2958 (adj adj pp mf ind sg) IF
 
 
 #:2959
-SELECT:2959 (adj adj pp mf ind sg) IF
+SELECT:2959 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -27599,7 +27599,7 @@ SELECT:2959 (adj adj pp mf ind sg) IF
 
 
 #:2960
-SELECT:2960 (adj adj pp mf ind sg) IF
+SELECT:2960 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -27616,7 +27616,7 @@ SELECT:2960 (adj adj pp mf ind sg) IF
 
 
 #:2961
-SELECT:2961 (adj adj pp mf ind sg) IF
+SELECT:2961 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -27636,7 +27636,7 @@ SELECT:2961 (adj adj pp mf ind sg) IF
 
 
 #:2962
-SELECT:2962 (adj adj pp mf ind sg) IF
+SELECT:2962 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -27656,7 +27656,7 @@ SELECT:2962 (adj adj pp mf ind sg) IF
 
 
 #:2963
-SELECT:2963 (adj adj pp mf ind sg) IF
+SELECT:2963 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -27676,7 +27676,7 @@ SELECT:2963 (adj adj pp mf ind sg) IF
 
 
 #:2964
-SELECT:2964 (adj adj pp mf ind sg) IF
+SELECT:2964 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -27696,7 +27696,7 @@ SELECT:2964 (adj adj pp mf ind sg) IF
 
 
 #:2965
-SELECT:2965 (adj adj pp mf ind sg) IF
+SELECT:2965 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -27718,7 +27718,7 @@ SELECT:2965 (adj adj pp mf ind sg) IF
 
 
 #:2966
-SELECT:2966 (adj adj pp mf ind sg) IF
+SELECT:2966 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -27740,7 +27740,7 @@ SELECT:2966 (adj adj pp mf ind sg) IF
 
 
 #:2967
-SELECT:2967 (adj adj pp mf ind sg) IF
+SELECT:2967 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -27760,7 +27760,7 @@ SELECT:2967 (adj adj pp mf ind sg) IF
 
 
 #:2968
-SELECT:2968 (adj adj pp mf ind sg) IF
+SELECT:2968 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -27780,7 +27780,7 @@ SELECT:2968 (adj adj pp mf ind sg) IF
 
 
 #:2969
-SELECT:2969 (adj adj pp mf ind sg) IF
+SELECT:2969 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -27800,7 +27800,7 @@ SELECT:2969 (adj adj pp mf ind sg) IF
 
 
 #:2970
-SELECT:2970 (adj adj pp mf ind sg) IF
+SELECT:2970 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -27820,7 +27820,7 @@ SELECT:2970 (adj adj pp mf ind sg) IF
 
 
 #:2971
-SELECT:2971 (adj adj pp mf ind sg) IF
+SELECT:2971 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -27842,7 +27842,7 @@ SELECT:2971 (adj adj pp mf ind sg) IF
 
 
 #:2972
-SELECT:2972 (adj adj pp mf ind sg) IF
+SELECT:2972 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -27864,7 +27864,7 @@ SELECT:2972 (adj adj pp mf ind sg) IF
 
 
 #:2973
-SELECT:2973 (adj adj pp mf ind sg) IF
+SELECT:2973 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -27884,7 +27884,7 @@ SELECT:2973 (adj adj pp mf ind sg) IF
 
 
 #:2974
-SELECT:2974 (adj adj pp mf ind sg) IF
+SELECT:2974 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -27904,7 +27904,7 @@ SELECT:2974 (adj adj pp mf ind sg) IF
 
 
 #:2975
-SELECT:2975 (adj adj pp mf ind sg) IF
+SELECT:2975 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -27924,7 +27924,7 @@ SELECT:2975 (adj adj pp mf ind sg) IF
 
 
 #:2976
-SELECT:2976 (adj adj pp mf ind sg) IF
+SELECT:2976 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -27944,7 +27944,7 @@ SELECT:2976 (adj adj pp mf ind sg) IF
 
 
 #:2977
-SELECT:2977 (adj adj pp mf ind sg) IF
+SELECT:2977 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -27966,7 +27966,7 @@ SELECT:2977 (adj adj pp mf ind sg) IF
 
 
 #:2978
-SELECT:2978 (adj adj pp mf ind sg) IF
+SELECT:2978 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -27988,7 +27988,7 @@ SELECT:2978 (adj adj pp mf ind sg) IF
 
 
 #:2979
-SELECT:2979 (adj adj pp mf ind sg) IF
+SELECT:2979 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -28008,7 +28008,7 @@ SELECT:2979 (adj adj pp mf ind sg) IF
 
 
 #:2980
-SELECT:2980 (adj adj pp mf ind sg) IF
+SELECT:2980 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -28028,7 +28028,7 @@ SELECT:2980 (adj adj pp mf ind sg) IF
 
 
 #:2981
-SELECT:2981 (adj adj pp mf ind sg) IF
+SELECT:2981 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -28048,7 +28048,7 @@ SELECT:2981 (adj adj pp mf ind sg) IF
 
 
 #:2982
-SELECT:2982 (adj adj pp mf ind sg) IF
+SELECT:2982 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -28068,7 +28068,7 @@ SELECT:2982 (adj adj pp mf ind sg) IF
 
 
 #:2983
-SELECT:2983 (adj adj pp mf ind sg) IF
+SELECT:2983 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -28090,7 +28090,7 @@ SELECT:2983 (adj adj pp mf ind sg) IF
 
 
 #:2984
-SELECT:2984 (adj adj pp mf ind sg) IF
+SELECT:2984 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -28112,7 +28112,7 @@ SELECT:2984 (adj adj pp mf ind sg) IF
 
 
 #:2985
-SELECT:2985 (adj adj pp mf ind sg) IF
+SELECT:2985 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -28132,7 +28132,7 @@ SELECT:2985 (adj adj pp mf ind sg) IF
 
 
 #:2986
-SELECT:2986 (adj adj pp mf ind sg) IF
+SELECT:2986 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -28152,7 +28152,7 @@ SELECT:2986 (adj adj pp mf ind sg) IF
 
 
 #:2987
-SELECT:2987 (adj adj pp mf ind sg) IF
+SELECT:2987 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -28172,7 +28172,7 @@ SELECT:2987 (adj adj pp mf ind sg) IF
 
 
 #:2988
-SELECT:2988 (adj adj pp mf ind sg) IF
+SELECT:2988 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -28192,7 +28192,7 @@ SELECT:2988 (adj adj pp mf ind sg) IF
 
 
 #:2989
-SELECT:2989 (adj adj pp mf ind sg) IF
+SELECT:2989 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -28214,7 +28214,7 @@ SELECT:2989 (adj adj pp mf ind sg) IF
 
 
 #:2990
-SELECT:2990 (adj adj pp mf ind sg) IF
+SELECT:2990 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -28236,7 +28236,7 @@ SELECT:2990 (adj adj pp mf ind sg) IF
 
 
 #:2991
-SELECT:2991 (adj adj pp mf ind sg) IF
+SELECT:2991 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -28256,7 +28256,7 @@ SELECT:2991 (adj adj pp mf ind sg) IF
 
 
 #:2992
-SELECT:2992 (adj adj pp mf ind sg) IF
+SELECT:2992 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -28276,7 +28276,7 @@ SELECT:2992 (adj adj pp mf ind sg) IF
 
 
 #:2993
-SELECT:2993 (adj adj pp mf ind sg) IF
+SELECT:2993 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -28296,7 +28296,7 @@ SELECT:2993 (adj adj pp mf ind sg) IF
 
 
 #:2994
-SELECT:2994 (adj adj pp mf ind sg) IF
+SELECT:2994 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -28316,7 +28316,7 @@ SELECT:2994 (adj adj pp mf ind sg) IF
 
 
 #:2995
-SELECT:2995 (adj adj pp mf ind sg) IF
+SELECT:2995 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -28338,7 +28338,7 @@ SELECT:2995 (adj adj pp mf ind sg) IF
 
 
 #:2996
-SELECT:2996 (adj adj pp mf ind sg) IF
+SELECT:2996 (adj pp mf ind sg) IF
 	(*-1 kop LINK 0 pres/pret LINK NOT *1 ikkje-adv)
 	(*-1 %som% BARRIER ikkje-adv-verb)
 	(*-1 %som% LINK -1 adj-sup LINK *-1 ikkje-adv LINK 0 bu-mask-det LINK NOT 0 fl)
@@ -28346,7 +28346,7 @@ SELECT:2996 (adj adj pp mf ind sg) IF
 
 
 #:2997
-SELECT:2997 (adj adj pp mf ind sg) IF
+SELECT:2997 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -28368,7 +28368,7 @@ SELECT:2997 (adj adj pp mf ind sg) IF
 
 
 #:2998
-SELECT:2998 (adj adj pp mf ind sg) IF
+SELECT:2998 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -28389,7 +28389,7 @@ SELECT:2998 (adj adj pp mf ind sg) IF
 
 
 #:2999
-SELECT:2999 (adj adj pp mf ind sg) IF
+SELECT:2999 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -28411,7 +28411,7 @@ SELECT:2999 (adj adj pp mf ind sg) IF
 
 
 #:3000
-SELECT:3000 (adj adj pp mf ind sg) IF
+SELECT:3000 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -28429,7 +28429,7 @@ SELECT:3000 (adj adj pp mf ind sg) IF
 
 
 #:3001
-SELECT:3001 (adj adj pp mf ind sg) IF
+SELECT:3001 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -28448,7 +28448,7 @@ SELECT:3001 (adj adj pp mf ind sg) IF
 
 
 #:3002
-SELECT:3002 (adj adj pp mf ind sg) IF
+SELECT:3002 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -28469,7 +28469,7 @@ SELECT:3002 (adj adj pp mf ind sg) IF
 
 
 #:3003
-SELECT:3003 (adj adj pp mf ind sg) IF
+SELECT:3003 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -28491,7 +28491,7 @@ SELECT:3003 (adj adj pp mf ind sg) IF
 
 
 #:3004
-SELECT:3004 (adj adj pp mf ind sg) IF
+SELECT:3004 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -28512,7 +28512,7 @@ SELECT:3004 (adj adj pp mf ind sg) IF
 
 
 #:3005
-SELECT:3005 (adj adj pp mf ind sg) IF
+SELECT:3005 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -28534,7 +28534,7 @@ SELECT:3005 (adj adj pp mf ind sg) IF
 
 
 #:3006
-SELECT:3006 (adj adj pp mf ind sg) IF
+SELECT:3006 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -28552,7 +28552,7 @@ SELECT:3006 (adj adj pp mf ind sg) IF
 
 
 #:3007
-SELECT:3007 (adj adj pp mf ind sg) IF
+SELECT:3007 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -28571,7 +28571,7 @@ SELECT:3007 (adj adj pp mf ind sg) IF
 
 
 #:3008
-SELECT:3008 (adj adj pp mf ind sg) IF
+SELECT:3008 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -28592,7 +28592,7 @@ SELECT:3008 (adj adj pp mf ind sg) IF
 
 
 #:3009
-SELECT:3009 (adj adj pp mf ind sg) IF
+SELECT:3009 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -28614,7 +28614,7 @@ SELECT:3009 (adj adj pp mf ind sg) IF
 
 
 #:3010
-SELECT:3010 (adj adj pp mf ind sg) IF
+SELECT:3010 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -28631,7 +28631,7 @@ SELECT:3010 (adj adj pp mf ind sg) IF
 
 
 #:3011
-SELECT:3011 (adj adj pp mf ind sg) IF
+SELECT:3011 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -28649,7 +28649,7 @@ SELECT:3011 (adj adj pp mf ind sg) IF
 
 
 #:3012
-SELECT:3012 (adj adj pp mf ind sg) IF
+SELECT:3012 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -28670,7 +28670,7 @@ SELECT:3012 (adj adj pp mf ind sg) IF
 
 
 #:3013
-SELECT:3013 (adj adj pp mf ind sg) IF
+SELECT:3013 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -28692,7 +28692,7 @@ SELECT:3013 (adj adj pp mf ind sg) IF
 
 
 #:3014
-SELECT:3014 (adj adj pp mf ind sg) IF
+SELECT:3014 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -28711,7 +28711,7 @@ SELECT:3014 (adj adj pp mf ind sg) IF
 
 
 #:3015
-SELECT:3015 (adj adj pp mf ind sg) IF
+SELECT:3015 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -28731,7 +28731,7 @@ SELECT:3015 (adj adj pp mf ind sg) IF
 
 
 #:3016
-SELECT:3016 (adj adj pp mf ind sg) IF
+SELECT:3016 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -28750,7 +28750,7 @@ SELECT:3016 (adj adj pp mf ind sg) IF
 
 
 #:3017
-SELECT:3017 (adj adj pp mf ind sg) IF
+SELECT:3017 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -28770,7 +28770,7 @@ SELECT:3017 (adj adj pp mf ind sg) IF
 
 
 #:3018
-SELECT:3018 (adj adj pp mf ind sg) IF
+SELECT:3018 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -28791,7 +28791,7 @@ SELECT:3018 (adj adj pp mf ind sg) IF
 
 
 #:3019
-SELECT:3019 (adj adj pp mf ind sg) IF
+SELECT:3019 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -28813,7 +28813,7 @@ SELECT:3019 (adj adj pp mf ind sg) IF
 
 
 #:3020
-SELECT:3020 (adj adj pp mf ind sg) IF
+SELECT:3020 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -28832,7 +28832,7 @@ SELECT:3020 (adj adj pp mf ind sg) IF
 
 
 #:3021
-SELECT:3021 (adj adj pp mf ind sg) IF
+SELECT:3021 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -28852,7 +28852,7 @@ SELECT:3021 (adj adj pp mf ind sg) IF
 
 
 #:3022
-SELECT:3022 (adj adj pp mf ind sg) IF
+SELECT:3022 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -28871,7 +28871,7 @@ SELECT:3022 (adj adj pp mf ind sg) IF
 
 
 #:3023
-SELECT:3023 (adj adj pp mf ind sg) IF
+SELECT:3023 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -28891,7 +28891,7 @@ SELECT:3023 (adj adj pp mf ind sg) IF
 
 
 #:3024
-SELECT:3024 (adj adj pp mf ind sg) IF
+SELECT:3024 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -28911,7 +28911,7 @@ SELECT:3024 (adj adj pp mf ind sg) IF
 
 
 #:3025
-SELECT:3025 (adj adj pp mf ind sg) IF
+SELECT:3025 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -28932,7 +28932,7 @@ SELECT:3025 (adj adj pp mf ind sg) IF
 
 
 #:3026
-SELECT:3026 (adj adj pp mf ind sg) IF
+SELECT:3026 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -28949,7 +28949,7 @@ SELECT:3026 (adj adj pp mf ind sg) IF
 
 
 #:3027
-SELECT:3027 (adj adj pp mf ind sg) IF
+SELECT:3027 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -28967,7 +28967,7 @@ SELECT:3027 (adj adj pp mf ind sg) IF
 
 
 #:3028
-SELECT:3028 (adj adj pp mf ind sg) IF
+SELECT:3028 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -28987,7 +28987,7 @@ SELECT:3028 (adj adj pp mf ind sg) IF
 
 
 #:3029
-SELECT:3029 (adj adj pp mf ind sg) IF
+SELECT:3029 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -29008,7 +29008,7 @@ SELECT:3029 (adj adj pp mf ind sg) IF
 
 
 #:3030
-SELECT:3030 (adj adj pp mf ind sg) IF
+SELECT:3030 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -29027,7 +29027,7 @@ SELECT:3030 (adj adj pp mf ind sg) IF
 
 
 #:3031
-SELECT:3031 (adj adj pp mf ind sg) IF
+SELECT:3031 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -29047,7 +29047,7 @@ SELECT:3031 (adj adj pp mf ind sg) IF
 
 
 #:3032
-SELECT:3032 (adj adj pp mf ind sg) IF
+SELECT:3032 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -29066,7 +29066,7 @@ SELECT:3032 (adj adj pp mf ind sg) IF
 
 
 #:3033
-SELECT:3033 (adj adj pp mf ind sg) IF
+SELECT:3033 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -29086,7 +29086,7 @@ SELECT:3033 (adj adj pp mf ind sg) IF
 
 
 #:3034
-SELECT:3034 (adj adj pp mf ind sg) IF
+SELECT:3034 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -29107,7 +29107,7 @@ SELECT:3034 (adj adj pp mf ind sg) IF
 
 
 #:3035
-SELECT:3035 (adj adj pp mf ind sg) IF
+SELECT:3035 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -29129,7 +29129,7 @@ SELECT:3035 (adj adj pp mf ind sg) IF
 
 
 #:3036
-SELECT:3036 (adj adj pp mf ind sg) IF
+SELECT:3036 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -29149,7 +29149,7 @@ SELECT:3036 (adj adj pp mf ind sg) IF
 
 
 #:3037
-SELECT:3037 (adj adj pp mf ind sg) IF
+SELECT:3037 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -29170,7 +29170,7 @@ SELECT:3037 (adj adj pp mf ind sg) IF
 
 
 #:3038
-SELECT:3038 (adj adj pp mf ind sg) IF
+SELECT:3038 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -29189,7 +29189,7 @@ SELECT:3038 (adj adj pp mf ind sg) IF
 
 
 #:3039
-SELECT:3039 (adj adj pp mf ind sg) IF
+SELECT:3039 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -29209,7 +29209,7 @@ SELECT:3039 (adj adj pp mf ind sg) IF
 
 
 #:3040
-SELECT:3040 (adj adj pp mf ind sg) IF
+SELECT:3040 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -29228,7 +29228,7 @@ SELECT:3040 (adj adj pp mf ind sg) IF
 
 
 #:3041
-SELECT:3041 (adj adj pp mf ind sg) IF
+SELECT:3041 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -29248,7 +29248,7 @@ SELECT:3041 (adj adj pp mf ind sg) IF
 
 
 #:3042
-SELECT:3042 (adj adj pp mf ind sg) IF
+SELECT:3042 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -29271,7 +29271,7 @@ SELECT:3042 (adj adj pp mf ind sg) IF
 
 
 #:3043
-SELECT:3043 (adj adj pp mf ind sg) IF
+SELECT:3043 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -29292,7 +29292,7 @@ SELECT:3043 (adj adj pp mf ind sg) IF
 
 
 #:3044
-SELECT:3044 (adj adj pp mf ind sg) IF
+SELECT:3044 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -29314,7 +29314,7 @@ SELECT:3044 (adj adj pp mf ind sg) IF
 
 
 #:3045
-SELECT:3045 (adj adj pp mf ind sg) IF
+SELECT:3045 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -29337,7 +29337,7 @@ SELECT:3045 (adj adj pp mf ind sg) IF
 
 
 #:3046
-SELECT:3046 (adj adj pp mf ind sg) IF
+SELECT:3046 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -29358,7 +29358,7 @@ SELECT:3046 (adj adj pp mf ind sg) IF
 
 
 #:3047
-SELECT:3047 (adj adj pp mf ind sg) IF
+SELECT:3047 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -29380,7 +29380,7 @@ SELECT:3047 (adj adj pp mf ind sg) IF
 
 
 #:3048
-SELECT:3048 (adj adj pp mf ind sg) IF
+SELECT:3048 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -29403,7 +29403,7 @@ SELECT:3048 (adj adj pp mf ind sg) IF
 
 
 #:3049
-SELECT:3049 (adj adj pp mf ind sg) IF
+SELECT:3049 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -29424,7 +29424,7 @@ SELECT:3049 (adj adj pp mf ind sg) IF
 
 
 #:3050
-SELECT:3050 (adj adj pp mf ind sg) IF
+SELECT:3050 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -29448,7 +29448,7 @@ SELECT:3050 (adj adj pp mf ind sg) IF
 
 
 #:3052
-SELECT:3052 (adj adj pp mf ind sg) IF
+SELECT:3052 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -29470,7 +29470,7 @@ SELECT:3052 (adj adj pp mf ind sg) IF
 
 
 #:3053
-SELECT:3053 (adj adj pp mf ind sg) IF
+SELECT:3053 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -29494,7 +29494,7 @@ SELECT:3053 (adj adj pp mf ind sg) IF
 
 
 #:3054
-SELECT:3054 (adj adj pp mf ind sg) IF
+SELECT:3054 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -29515,7 +29515,7 @@ SELECT:3054 (adj adj pp mf ind sg) IF
 
 
 #:3055
-SELECT:3055 (adj adj pp mf ind sg) IF
+SELECT:3055 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -29536,7 +29536,7 @@ SELECT:3055 (adj adj pp mf ind sg) IF
 
 
 #:3056
-SELECT:3056 (adj adj pp mf ind sg) IF
+SELECT:3056 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -29557,7 +29557,7 @@ SELECT:3056 (adj adj pp mf ind sg) IF
 
 
 #:3057
-SELECT:3057 (adj adj pp mf ind sg) IF
+SELECT:3057 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -29578,7 +29578,7 @@ SELECT:3057 (adj adj pp mf ind sg) IF
 
 
 #:3058
-SELECT:3058 (adj adj pp mf ind sg) IF
+SELECT:3058 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -29602,7 +29602,7 @@ SELECT:3058 (adj adj pp mf ind sg) IF
 
 
 #:3059
-SELECT:3059 (adj adj pp mf ind sg) IF
+SELECT:3059 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -29623,7 +29623,7 @@ SELECT:3059 (adj adj pp mf ind sg) IF
 
 
 #:3060
-SELECT:3060 (adj adj pp mf ind sg) IF
+SELECT:3060 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -29645,7 +29645,7 @@ SELECT:3060 (adj adj pp mf ind sg) IF
 
 
 #:3061
-SELECT:3061 (adj adj pp mf ind sg) IF
+SELECT:3061 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -29669,7 +29669,7 @@ SELECT:3061 (adj adj pp mf ind sg) IF
 
 
 #:3062
-SELECT:3062 (adj adj pp mf ind sg) IF
+SELECT:3062 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -29690,7 +29690,7 @@ SELECT:3062 (adj adj pp mf ind sg) IF
 
 
 #:3063
-SELECT:3063 (adj adj pp mf ind sg) IF
+SELECT:3063 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -29712,7 +29712,7 @@ SELECT:3063 (adj adj pp mf ind sg) IF
 
 
 #:3064
-SELECT:3064 (adj adj pp mf ind sg) IF
+SELECT:3064 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -29736,7 +29736,7 @@ SELECT:3064 (adj adj pp mf ind sg) IF
 
 
 #:3065
-SELECT:3065 (adj adj pp mf ind sg) IF
+SELECT:3065 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -29760,7 +29760,7 @@ SELECT:3065 (adj adj pp mf ind sg) IF
 
 
 #:3066
-SELECT:3066 (adj adj pp mf ind sg) IF
+SELECT:3066 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -29780,7 +29780,7 @@ SELECT:3066 (adj adj pp mf ind sg) IF
 
 
 #:3067
-SELECT:3067 (adj adj pp mf ind sg) IF
+SELECT:3067 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -29801,7 +29801,7 @@ SELECT:3067 (adj adj pp mf ind sg) IF
 
 
 #:3068
-SELECT:3068 (adj adj pp mf ind sg) IF
+SELECT:3068 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -29825,7 +29825,7 @@ SELECT:3068 (adj adj pp mf ind sg) IF
 
 
 #:3069
-SELECT:3069 (adj adj pp mf ind sg) IF
+SELECT:3069 (adj pp mf ind sg) IF
 	(0 <perf-part>)
 	(NOT 0 farlege-adj)
 	(NOT 0 farlege-part)
@@ -29842,7 +29842,7 @@ SELECT:3069 (adj adj pp mf ind sg) IF
 
 
 #:3070
-SELECT:3070 (adj adj pp mf ind sg) IF
+SELECT:3070 (adj pp mf ind sg) IF
 	(0 <perf-part>)
 	(NOT 0 farlege-adj)
 	(NOT 0 farlege-part)
@@ -29860,7 +29860,7 @@ SELECT:3070 (adj adj pp mf ind sg) IF
 
 
 #:3071
-SELECT:3071 (adj adj pp mf ind sg) IF
+SELECT:3071 (adj pp mf ind sg) IF
 	(0 <perf-part>)
 	(NOT 0 farlege-adj)
 	(NOT 0 farlege-part)
@@ -29878,7 +29878,7 @@ SELECT:3071 (adj adj pp mf ind sg) IF
 
 
 #:3072
-SELECT:3072 (adj adj pp mf ind sg) IF
+SELECT:3072 (adj pp mf ind sg) IF
 	(0 <perf-part>)
 	(NOT 0 farlege-adj)
 	(NOT 0 farlege-part)
@@ -29893,7 +29893,7 @@ SELECT:3072 (adj adj pp mf ind sg) IF
 
 
 #:3073
-SELECT:3073 (adj adj pp mf ind sg) IF
+SELECT:3073 (adj pp mf ind sg) IF
 	(0 <perf-part>)
 	(NOT 0 pres/pret)
 	(NOT 0 farlege-adj)
@@ -29911,7 +29911,7 @@ SELECT:3073 (adj adj pp mf ind sg) IF
 
 
 #:3074
-SELECT:3074 (adj adj pp mf ind sg) IF
+SELECT:3074 (adj pp mf ind sg) IF
 	(0 <perf-part>)
 	(NOT 0 pres/pret)
 	(NOT 0 farlege-adj)
@@ -29929,7 +29929,7 @@ SELECT:3074 (adj adj pp mf ind sg) IF
 
 
 #:3075
-SELECT:3075 (adj adj pp mf ind sg) IF
+SELECT:3075 (adj pp mf ind sg) IF
 	(NOT 0 mest-sanns-pos-istf-<perf-part>)
 	(NOT 1 %som%-sbu)
 	(*-1 seier-verb LINK *1 ikkje-adv-adj-det LINK 0 nom-fem-eint/prop LINK *1 ikkje-poss-det LINK 0 clb-konj LINK 1 kop-fv LINK NOT *1 ikkje-adv)
@@ -29937,7 +29937,7 @@ SELECT:3075 (adj adj pp mf ind sg) IF
 
 
 #:3076
-SELECT:3076 (adj adj pp mf ind sg) IF
+SELECT:3076 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -29956,7 +29956,7 @@ SELECT:3076 (adj adj pp mf ind sg) IF
 
 
 #:3077
-SELECT:3077 (adj adj pp mf ind sg) IF
+SELECT:3077 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -29972,7 +29972,7 @@ SELECT:3077 (adj adj pp mf ind sg) IF
 
 
 #:3078
-SELECT:3078 (adj adj pp mf ind sg) IF
+SELECT:3078 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -29989,7 +29989,7 @@ SELECT:3078 (adj adj pp mf ind sg) IF
 
 
 #:3079
-SELECT:3079 (adj adj pp mf ind sg) IF
+SELECT:3079 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -30006,7 +30006,7 @@ SELECT:3079 (adj adj pp mf ind sg) IF
 
 
 #:3080
-SELECT:3080 (adj adj pp mf ind sg) IF
+SELECT:3080 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -30026,7 +30026,7 @@ SELECT:3080 (adj adj pp mf ind sg) IF
 
 
 #:3081
-SELECT:3081 (adj adj pp mf ind sg) IF
+SELECT:3081 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -30046,7 +30046,7 @@ SELECT:3081 (adj adj pp mf ind sg) IF
 
 
 #:3082
-SELECT:3082 (adj adj pp mf ind sg) IF
+SELECT:3082 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -30067,7 +30067,7 @@ SELECT:3082 (adj adj pp mf ind sg) IF
 
 
 #:3083
-SELECT:3083 (adj adj pp mf ind sg) IF
+SELECT:3083 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -30088,7 +30088,7 @@ SELECT:3083 (adj adj pp mf ind sg) IF
 
 
 #:3084
-SELECT:3084 (adj adj pp mf ind sg) IF
+SELECT:3084 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -30110,7 +30110,7 @@ SELECT:3084 (adj adj pp mf ind sg) IF
 
 
 #:3085
-SELECT:3085 (adj adj pp mf ind sg) IF
+SELECT:3085 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -30132,7 +30132,7 @@ SELECT:3085 (adj adj pp mf ind sg) IF
 
 
 #:3086
-SELECT:3086 (adj adj pp mf ind sg) IF
+SELECT:3086 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -30152,7 +30152,7 @@ SELECT:3086 (adj adj pp mf ind sg) IF
 
 
 #:3087
-SELECT:3087 (adj adj pp mf ind sg) IF
+SELECT:3087 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -30172,7 +30172,7 @@ SELECT:3087 (adj adj pp mf ind sg) IF
 
 
 #:3088
-SELECT:3088 (adj adj pp mf ind sg) IF
+SELECT:3088 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -30193,7 +30193,7 @@ SELECT:3088 (adj adj pp mf ind sg) IF
 
 
 #:3089
-SELECT:3089 (adj adj pp mf ind sg) IF
+SELECT:3089 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -30214,7 +30214,7 @@ SELECT:3089 (adj adj pp mf ind sg) IF
 
 
 #:3090
-SELECT:3090 (adj adj pp mf ind sg) IF
+SELECT:3090 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -30236,7 +30236,7 @@ SELECT:3090 (adj adj pp mf ind sg) IF
 
 
 #:3091
-SELECT:3091 (adj adj pp mf ind sg) IF
+SELECT:3091 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -30258,7 +30258,7 @@ SELECT:3091 (adj adj pp mf ind sg) IF
 
 
 #:3092
-SELECT:3092 (adj adj pp mf ind sg) IF
+SELECT:3092 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -30278,7 +30278,7 @@ SELECT:3092 (adj adj pp mf ind sg) IF
 
 
 #:3093
-SELECT:3093 (adj adj pp mf ind sg) IF
+SELECT:3093 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -30298,7 +30298,7 @@ SELECT:3093 (adj adj pp mf ind sg) IF
 
 
 #:3094
-SELECT:3094 (adj adj pp mf ind sg) IF
+SELECT:3094 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -30319,7 +30319,7 @@ SELECT:3094 (adj adj pp mf ind sg) IF
 
 
 #:3095
-SELECT:3095 (adj adj pp mf ind sg) IF
+SELECT:3095 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -30340,7 +30340,7 @@ SELECT:3095 (adj adj pp mf ind sg) IF
 
 
 #:3096
-SELECT:3096 (adj adj pp mf ind sg) IF
+SELECT:3096 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -30362,7 +30362,7 @@ SELECT:3096 (adj adj pp mf ind sg) IF
 
 
 #:3097
-SELECT:3097 (adj adj pp mf ind sg) IF
+SELECT:3097 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -30384,7 +30384,7 @@ SELECT:3097 (adj adj pp mf ind sg) IF
 
 
 #:3098
-SELECT:3098 (adj adj pp mf ind sg) IF
+SELECT:3098 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -30404,7 +30404,7 @@ SELECT:3098 (adj adj pp mf ind sg) IF
 
 
 #:3099
-SELECT:3099 (adj adj pp mf ind sg) IF
+SELECT:3099 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -30424,7 +30424,7 @@ SELECT:3099 (adj adj pp mf ind sg) IF
 
 
 #:3100
-SELECT:3100 (adj adj pp mf ind sg) IF
+SELECT:3100 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -30445,7 +30445,7 @@ SELECT:3100 (adj adj pp mf ind sg) IF
 
 
 #:3101
-SELECT:3101 (adj adj pp mf ind sg) IF
+SELECT:3101 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -30466,7 +30466,7 @@ SELECT:3101 (adj adj pp mf ind sg) IF
 
 
 #:3102
-SELECT:3102 (adj adj pp mf ind sg) IF
+SELECT:3102 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -30488,7 +30488,7 @@ SELECT:3102 (adj adj pp mf ind sg) IF
 
 
 #:3103
-SELECT:3103 (adj adj pp mf ind sg) IF
+SELECT:3103 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -30510,7 +30510,7 @@ SELECT:3103 (adj adj pp mf ind sg) IF
 
 
 #:3104
-SELECT:3104 (adj adj pp mf ind sg) IF
+SELECT:3104 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -30530,7 +30530,7 @@ SELECT:3104 (adj adj pp mf ind sg) IF
 
 
 #:3105
-SELECT:3105 (adj adj pp mf ind sg) IF
+SELECT:3105 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -30550,7 +30550,7 @@ SELECT:3105 (adj adj pp mf ind sg) IF
 
 
 #:3106
-SELECT:3106 (adj adj pp mf ind sg) IF
+SELECT:3106 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -30571,7 +30571,7 @@ SELECT:3106 (adj adj pp mf ind sg) IF
 
 
 #:3107
-SELECT:3107 (adj adj pp mf ind sg) IF
+SELECT:3107 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -30592,7 +30592,7 @@ SELECT:3107 (adj adj pp mf ind sg) IF
 
 
 #:3108
-SELECT:3108 (adj adj pp mf ind sg) IF
+SELECT:3108 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -30614,7 +30614,7 @@ SELECT:3108 (adj adj pp mf ind sg) IF
 
 
 #:3109
-SELECT:3109 (adj adj pp mf ind sg) IF
+SELECT:3109 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -30636,7 +30636,7 @@ SELECT:3109 (adj adj pp mf ind sg) IF
 
 
 #:3110
-SELECT:3110 (adj adj pp mf ind sg) IF
+SELECT:3110 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -30656,7 +30656,7 @@ SELECT:3110 (adj adj pp mf ind sg) IF
 
 
 #:3111
-SELECT:3111 (adj adj pp mf ind sg) IF
+SELECT:3111 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -30676,7 +30676,7 @@ SELECT:3111 (adj adj pp mf ind sg) IF
 
 
 #:3112
-SELECT:3112 (adj adj pp mf ind sg) IF
+SELECT:3112 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -30697,7 +30697,7 @@ SELECT:3112 (adj adj pp mf ind sg) IF
 
 
 #:3113
-SELECT:3113 (adj adj pp mf ind sg) IF
+SELECT:3113 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -30718,7 +30718,7 @@ SELECT:3113 (adj adj pp mf ind sg) IF
 
 
 #:3114
-SELECT:3114 (adj adj pp mf ind sg) IF
+SELECT:3114 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -30740,7 +30740,7 @@ SELECT:3114 (adj adj pp mf ind sg) IF
 
 
 #:3115
-SELECT:3115 (adj adj pp mf ind sg) IF
+SELECT:3115 (adj pp mf ind sg) IF
 	(*-1 kop LINK 0 pres/pret LINK NOT *1 ikkje-adv)
 	(*-1 %som% BARRIER ikkje-adv-verb)
 	(*-1 %som% LINK -1 adj-sup LINK *-1 ikkje-adv LINK 0 bu-fem-det LINK NOT 0 fl)
@@ -30748,7 +30748,7 @@ SELECT:3115 (adj adj pp mf ind sg) IF
 
 
 #:3116
-SELECT:3116 (adj adj pp mf ind sg) IF
+SELECT:3116 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -30770,7 +30770,7 @@ SELECT:3116 (adj adj pp mf ind sg) IF
 
 
 #:3117
-SELECT:3117 (adj adj pp mf ind sg) IF
+SELECT:3117 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -30791,7 +30791,7 @@ SELECT:3117 (adj adj pp mf ind sg) IF
 
 
 #:3118
-SELECT:3118 (adj adj pp mf ind sg) IF
+SELECT:3118 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -30813,7 +30813,7 @@ SELECT:3118 (adj adj pp mf ind sg) IF
 
 
 #:3119
-SELECT:3119 (adj adj pp mf ind sg) IF
+SELECT:3119 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -30831,7 +30831,7 @@ SELECT:3119 (adj adj pp mf ind sg) IF
 
 
 #:3120
-SELECT:3120 (adj adj pp mf ind sg) IF
+SELECT:3120 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -30850,7 +30850,7 @@ SELECT:3120 (adj adj pp mf ind sg) IF
 
 
 #:3121
-SELECT:3121 (adj adj pp mf ind sg) IF
+SELECT:3121 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -30871,7 +30871,7 @@ SELECT:3121 (adj adj pp mf ind sg) IF
 
 
 #:3122
-SELECT:3122 (adj adj pp mf ind sg) IF
+SELECT:3122 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -30893,7 +30893,7 @@ SELECT:3122 (adj adj pp mf ind sg) IF
 
 
 #:3123
-SELECT:3123 (adj adj pp mf ind sg) IF
+SELECT:3123 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -30914,7 +30914,7 @@ SELECT:3123 (adj adj pp mf ind sg) IF
 
 
 #:3124
-SELECT:3124 (adj adj pp mf ind sg) IF
+SELECT:3124 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -30936,7 +30936,7 @@ SELECT:3124 (adj adj pp mf ind sg) IF
 
 
 #:3125
-SELECT:3125 (adj adj pp mf ind sg) IF
+SELECT:3125 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -30954,7 +30954,7 @@ SELECT:3125 (adj adj pp mf ind sg) IF
 
 
 #:3126
-SELECT:3126 (adj adj pp mf ind sg) IF
+SELECT:3126 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -30973,7 +30973,7 @@ SELECT:3126 (adj adj pp mf ind sg) IF
 
 
 #:3127
-SELECT:3127 (adj adj pp mf ind sg) IF
+SELECT:3127 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -30994,7 +30994,7 @@ SELECT:3127 (adj adj pp mf ind sg) IF
 
 
 #:3128
-SELECT:3128 (adj adj pp mf ind sg) IF
+SELECT:3128 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -31016,7 +31016,7 @@ SELECT:3128 (adj adj pp mf ind sg) IF
 
 
 #:3129
-SELECT:3129 (adj adj pp mf ind sg) IF
+SELECT:3129 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -31033,7 +31033,7 @@ SELECT:3129 (adj adj pp mf ind sg) IF
 
 
 #:3130
-SELECT:3130 (adj adj pp mf ind sg) IF
+SELECT:3130 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -31051,7 +31051,7 @@ SELECT:3130 (adj adj pp mf ind sg) IF
 
 
 #:3131
-SELECT:3131 (adj adj pp mf ind sg) IF
+SELECT:3131 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -31072,7 +31072,7 @@ SELECT:3131 (adj adj pp mf ind sg) IF
 
 
 #:3132
-SELECT:3132 (adj adj pp mf ind sg) IF
+SELECT:3132 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -31094,7 +31094,7 @@ SELECT:3132 (adj adj pp mf ind sg) IF
 
 
 #:3133
-SELECT:3133 (adj adj pp mf ind sg) IF
+SELECT:3133 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -31113,7 +31113,7 @@ SELECT:3133 (adj adj pp mf ind sg) IF
 
 
 #:3134
-SELECT:3134 (adj adj pp mf ind sg) IF
+SELECT:3134 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -31133,7 +31133,7 @@ SELECT:3134 (adj adj pp mf ind sg) IF
 
 
 #:3135
-SELECT:3135 (adj adj pp mf ind sg) IF
+SELECT:3135 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -31152,7 +31152,7 @@ SELECT:3135 (adj adj pp mf ind sg) IF
 
 
 #:3136
-SELECT:3136 (adj adj pp mf ind sg) IF
+SELECT:3136 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -31172,7 +31172,7 @@ SELECT:3136 (adj adj pp mf ind sg) IF
 
 
 #:3137
-SELECT:3137 (adj adj pp mf ind sg) IF
+SELECT:3137 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -31193,7 +31193,7 @@ SELECT:3137 (adj adj pp mf ind sg) IF
 
 
 #:3138
-SELECT:3138 (adj adj pp mf ind sg) IF
+SELECT:3138 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -31215,7 +31215,7 @@ SELECT:3138 (adj adj pp mf ind sg) IF
 
 
 #:3139
-SELECT:3139 (adj adj pp mf ind sg) IF
+SELECT:3139 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -31234,7 +31234,7 @@ SELECT:3139 (adj adj pp mf ind sg) IF
 
 
 #:3140
-SELECT:3140 (adj adj pp mf ind sg) IF
+SELECT:3140 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -31254,7 +31254,7 @@ SELECT:3140 (adj adj pp mf ind sg) IF
 
 
 #:3141
-SELECT:3141 (adj adj pp mf ind sg) IF
+SELECT:3141 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -31273,7 +31273,7 @@ SELECT:3141 (adj adj pp mf ind sg) IF
 
 
 #:3142
-SELECT:3142 (adj adj pp mf ind sg) IF
+SELECT:3142 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -31293,7 +31293,7 @@ SELECT:3142 (adj adj pp mf ind sg) IF
 
 
 #:3143
-SELECT:3143 (adj adj pp mf ind sg) IF
+SELECT:3143 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -31313,7 +31313,7 @@ SELECT:3143 (adj adj pp mf ind sg) IF
 
 
 #:3144
-SELECT:3144 (adj adj pp mf ind sg) IF
+SELECT:3144 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -31334,7 +31334,7 @@ SELECT:3144 (adj adj pp mf ind sg) IF
 
 
 #:3145
-SELECT:3145 (adj adj pp mf ind sg) IF
+SELECT:3145 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -31351,7 +31351,7 @@ SELECT:3145 (adj adj pp mf ind sg) IF
 
 
 #:3146
-SELECT:3146 (adj adj pp mf ind sg) IF
+SELECT:3146 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -31369,7 +31369,7 @@ SELECT:3146 (adj adj pp mf ind sg) IF
 
 
 #:3147
-SELECT:3147 (adj adj pp mf ind sg) IF
+SELECT:3147 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -31389,7 +31389,7 @@ SELECT:3147 (adj adj pp mf ind sg) IF
 
 
 #:3148
-SELECT:3148 (adj adj pp mf ind sg) IF
+SELECT:3148 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -31410,7 +31410,7 @@ SELECT:3148 (adj adj pp mf ind sg) IF
 
 
 #:3149
-SELECT:3149 (adj adj pp mf ind sg) IF
+SELECT:3149 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -31429,7 +31429,7 @@ SELECT:3149 (adj adj pp mf ind sg) IF
 
 
 #:3150
-SELECT:3150 (adj adj pp mf ind sg) IF
+SELECT:3150 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -31449,7 +31449,7 @@ SELECT:3150 (adj adj pp mf ind sg) IF
 
 
 #:3151
-SELECT:3151 (adj adj pp mf ind sg) IF
+SELECT:3151 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -31468,7 +31468,7 @@ SELECT:3151 (adj adj pp mf ind sg) IF
 
 
 #:3152
-SELECT:3152 (adj adj pp mf ind sg) IF
+SELECT:3152 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -31488,7 +31488,7 @@ SELECT:3152 (adj adj pp mf ind sg) IF
 
 
 #:3153
-SELECT:3153 (adj adj pp mf ind sg) IF
+SELECT:3153 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -31509,7 +31509,7 @@ SELECT:3153 (adj adj pp mf ind sg) IF
 
 
 #:3154
-SELECT:3154 (adj adj pp mf ind sg) IF
+SELECT:3154 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -31531,7 +31531,7 @@ SELECT:3154 (adj adj pp mf ind sg) IF
 
 
 #:3155
-SELECT:3155 (adj adj pp mf ind sg) IF
+SELECT:3155 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -31551,7 +31551,7 @@ SELECT:3155 (adj adj pp mf ind sg) IF
 
 
 #:3156
-SELECT:3156 (adj adj pp mf ind sg) IF
+SELECT:3156 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -31572,7 +31572,7 @@ SELECT:3156 (adj adj pp mf ind sg) IF
 
 
 #:3157
-SELECT:3157 (adj adj pp mf ind sg) IF
+SELECT:3157 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -31591,7 +31591,7 @@ SELECT:3157 (adj adj pp mf ind sg) IF
 
 
 #:3158
-SELECT:3158 (adj adj pp mf ind sg) IF
+SELECT:3158 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -31611,7 +31611,7 @@ SELECT:3158 (adj adj pp mf ind sg) IF
 
 
 #:3159
-SELECT:3159 (adj adj pp mf ind sg) IF
+SELECT:3159 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -31630,7 +31630,7 @@ SELECT:3159 (adj adj pp mf ind sg) IF
 
 
 #:3160
-SELECT:3160 (adj adj pp mf ind sg) IF
+SELECT:3160 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -31650,7 +31650,7 @@ SELECT:3160 (adj adj pp mf ind sg) IF
 
 
 #:3161
-SELECT:3161 (adj adj pp mf ind sg) IF
+SELECT:3161 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -31673,7 +31673,7 @@ SELECT:3161 (adj adj pp mf ind sg) IF
 
 
 #:3162
-SELECT:3162 (adj adj pp mf ind sg) IF
+SELECT:3162 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -31694,7 +31694,7 @@ SELECT:3162 (adj adj pp mf ind sg) IF
 
 
 #:3163
-SELECT:3163 (adj adj pp mf ind sg) IF
+SELECT:3163 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -31717,7 +31717,7 @@ SELECT:3163 (adj adj pp mf ind sg) IF
 
 
 #:3164
-SELECT:3164 (adj adj pp mf ind sg) IF
+SELECT:3164 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -31740,7 +31740,7 @@ SELECT:3164 (adj adj pp mf ind sg) IF
 
 
 #:3165
-SELECT:3165 (adj adj pp mf ind sg) IF
+SELECT:3165 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -31761,7 +31761,7 @@ SELECT:3165 (adj adj pp mf ind sg) IF
 
 
 #:3166
-SELECT:3166 (adj adj pp mf ind sg) IF
+SELECT:3166 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -31784,7 +31784,7 @@ SELECT:3166 (adj adj pp mf ind sg) IF
 
 
 #:3167
-SELECT:3167 (adj adj pp mf ind sg) IF
+SELECT:3167 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -31807,7 +31807,7 @@ SELECT:3167 (adj adj pp mf ind sg) IF
 
 
 #:3168
-SELECT:3168 (adj adj pp mf ind sg) IF
+SELECT:3168 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -31828,7 +31828,7 @@ SELECT:3168 (adj adj pp mf ind sg) IF
 
 
 #:3169
-SELECT:3169 (adj adj pp mf ind sg) IF
+SELECT:3169 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -31852,7 +31852,7 @@ SELECT:3169 (adj adj pp mf ind sg) IF
 
 
 #:3170
-SELECT:3170 (adj adj pp mf ind sg) IF
+SELECT:3170 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -31873,7 +31873,7 @@ SELECT:3170 (adj adj pp mf ind sg) IF
 
 
 #:3171
-SELECT:3171 (adj adj pp mf ind sg) IF
+SELECT:3171 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -31896,7 +31896,7 @@ SELECT:3171 (adj adj pp mf ind sg) IF
 
 
 #:3172
-SELECT:3172 (adj adj pp mf ind sg) IF
+SELECT:3172 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -31920,7 +31920,7 @@ SELECT:3172 (adj adj pp mf ind sg) IF
 
 
 #:3173
-SELECT:3173 (adj adj pp mf ind sg) IF
+SELECT:3173 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -31941,7 +31941,7 @@ SELECT:3173 (adj adj pp mf ind sg) IF
 
 
 #:3174
-SELECT:3174 (adj adj pp mf ind sg) IF
+SELECT:3174 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -31962,7 +31962,7 @@ SELECT:3174 (adj adj pp mf ind sg) IF
 
 
 #:3175
-SELECT:3175 (adj adj pp mf ind sg) IF
+SELECT:3175 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -31983,7 +31983,7 @@ SELECT:3175 (adj adj pp mf ind sg) IF
 
 
 #:3176
-SELECT:3176 (adj adj pp mf ind sg) IF
+SELECT:3176 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -32004,7 +32004,7 @@ SELECT:3176 (adj adj pp mf ind sg) IF
 
 
 #:3177
-SELECT:3177 (adj adj pp mf ind sg) IF
+SELECT:3177 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -32028,7 +32028,7 @@ SELECT:3177 (adj adj pp mf ind sg) IF
 
 
 #:3178
-SELECT:3178 (adj adj pp mf ind sg) IF
+SELECT:3178 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -32049,7 +32049,7 @@ SELECT:3178 (adj adj pp mf ind sg) IF
 
 
 #:3179
-SELECT:3179 (adj adj pp mf ind sg) IF
+SELECT:3179 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -32072,7 +32072,7 @@ SELECT:3179 (adj adj pp mf ind sg) IF
 
 
 #:3180
-SELECT:3180 (adj adj pp mf ind sg) IF
+SELECT:3180 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -32096,7 +32096,7 @@ SELECT:3180 (adj adj pp mf ind sg) IF
 
 
 #:3181
-SELECT:3181 (adj adj pp mf ind sg) IF
+SELECT:3181 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -32117,7 +32117,7 @@ SELECT:3181 (adj adj pp mf ind sg) IF
 
 
 #:3182
-SELECT:3182 (adj adj pp mf ind sg) IF
+SELECT:3182 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -32140,7 +32140,7 @@ SELECT:3182 (adj adj pp mf ind sg) IF
 
 
 #:3183
-SELECT:3183 (adj adj pp mf ind sg) IF
+SELECT:3183 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -32164,7 +32164,7 @@ SELECT:3183 (adj adj pp mf ind sg) IF
 
 
 #:3184
-SELECT:3184 (adj adj pp mf ind sg) IF
+SELECT:3184 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -32188,7 +32188,7 @@ SELECT:3184 (adj adj pp mf ind sg) IF
 
 
 #:3185
-SELECT:3185 (adj adj pp mf ind sg) IF
+SELECT:3185 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -32208,7 +32208,7 @@ SELECT:3185 (adj adj pp mf ind sg) IF
 
 
 #:3186
-SELECT:3186 (adj adj pp mf ind sg) IF
+SELECT:3186 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -32230,7 +32230,7 @@ SELECT:3186 (adj adj pp mf ind sg) IF
 
 
 #:3187
-SELECT:3187 (adj adj pp mf ind sg) IF
+SELECT:3187 (adj pp mf ind sg) IF
 	(NOT 0 prep)
 	(NOT 0 adj-gen)
 	(NOT 0 adv)
@@ -32254,7 +32254,7 @@ SELECT:3187 (adj adj pp mf ind sg) IF
 
 
 #:2949
-SELECT:2949 (adj adj pp) IF
+SELECT:2949 (adj pp) IF
 	(0 %oppta%)
 	(1 %ved%)
 	(NOT -1 det-prep-infmerke-adjbu)
@@ -42941,7 +42941,7 @@ REMOVE:6129 subst IF
 ;
 
 #:6130
-REMOVE:6130 (adj adj pp) IF
+REMOVE:6130 (adj pp) IF
 	(0 iv)
 	(NOT 0 samset)
 	(NOT 0 farlege-inf)
@@ -43968,13 +43968,13 @@ REMOVE:2096 (adj posi) IF
 
 
 #:2095
-REMOVE:2095 (adj adj pp def sg) IF
+REMOVE:2095 (adj pp def sg) IF
 	(0 pos)
 ;
 
 
 #:2091
-REMOVE:2091 (adj adj pp def) IF
+REMOVE:2091 (adj pp def) IF
 	(1C clb-komma/konj)
 	(NOT -1 det-eint)
 	(**-1C setn-gr-u-strek LINK NOT 0 %som% LINK NOT *1 nom-eint)
@@ -43985,7 +43985,7 @@ REMOVE:2091 (adj adj pp def) IF
 
 
 #:2092
-REMOVE:2092 (adj adj pp def) IF
+REMOVE:2092 (adj pp def) IF
 	(NOT 1 subst-prop)
 	(NOT 1 adj-eint)
 	(NOT 1 subst-eint)
@@ -44002,7 +44002,7 @@ REMOVE:2092 (adj adj pp def) IF
 
 
 #:2093
-REMOVE:2093 (adj adj pp def) IF
+REMOVE:2093 (adj pp def) IF
 	(1 komma/konj)
 	(NOT -1 det-eint)
 	(*2 ikkje-adv LINK NOT 0 subst-eint LINK NOT 0 adj-eint LINK NOT 0 subst-prop)
@@ -44015,7 +44015,7 @@ REMOVE:2093 (adj adj pp def) IF
 
 
 #:2094
-REMOVE:2094 (adj adj pp def) IF
+REMOVE:2094 (adj pp def) IF
 	(NOT 1 subst-prop)
 	(NOT 1 adj-eint)
 	(NOT 1 subst-eint)
@@ -44030,7 +44030,7 @@ REMOVE:2094 (adj adj pp def) IF
 
 
 #:2085
-REMOVE:2085 (adj adj pp pl) IF
+REMOVE:2085 (adj pp pl) IF
 	(1C clb-komma/konj)
 	(NOT -1 fl-det)
 	(**-1C setn-gr-u-strek BARRIER %og%)
@@ -44044,7 +44044,7 @@ REMOVE:2085 (adj adj pp pl) IF
 
 
 #:2086
-REMOVE:2086 (adj adj pp pl) IF
+REMOVE:2086 (adj pp pl) IF
 	(1 komma/konj)
 	(NOT -1 fl-det)
 	(*2 ikkje-adv LINK NOT 0 fl-subst LINK NOT 0 adj-fl LINK NOT 0 subst-prop)
@@ -44062,7 +44062,7 @@ REMOVE:2086 (adj adj pp pl) IF
 
 
 #:2087
-REMOVE:2087 (adj adj pp pl) IF
+REMOVE:2087 (adj pp pl) IF
 	(NOT 1 subst-prop)
 	(NOT 1 adj-fl)
 	(NOT 1 fl-subst)
@@ -44082,7 +44082,7 @@ REMOVE:2087 (adj adj pp pl) IF
 
 
 #:2088
-REMOVE:2088 (adj adj pp pl) IF
+REMOVE:2088 (adj pp pl) IF
 	(1 komma/konj)
 	(NOT -1 fl-det)
 	(*2 ikkje-adv LINK NOT 0 fl-subst LINK NOT 0 adj-fl LINK NOT 0 subst-prop)
@@ -44098,7 +44098,7 @@ REMOVE:2088 (adj adj pp pl) IF
 
 
 #:2089
-REMOVE:2089 (adj adj pp pl) IF
+REMOVE:2089 (adj pp pl) IF
 	(NOT 1 subst-prop)
 	(NOT 1 adj-fl)
 	(NOT 1 fl-subst)
@@ -44112,11 +44112,11 @@ REMOVE:2089 (adj adj pp pl) IF
 	(**-1C setn-gr-u-strek BARRIER subst-prop)
 ;
 #  "noko liknande skjedde (ikkje adj fl) her"))
-
+# Men ikkje: «å vere løyste frå otte og naud» -KBU TODO
 
 
 #:2090
-REMOVE:2090 (adj adj pp pl) IF
+REMOVE:2090 (adj pp pl) IF
 	(0 adj-pos)
 	(NOT 0 ikkje-fl-adj)
 	(NOT -1 komma)
@@ -44126,7 +44126,7 @@ REMOVE:2090 (adj adj pp pl) IF
 
 
 #:2079
-REMOVE:2079 (adj adj pp nt) IF
+REMOVE:2079 (adj pp nt) IF
 	(1C clb-komma/konj)
 	(NOT -1 nøyt-det)
 	(**-1C setn-gr-u-strek LINK NOT 0 %som% LINK NOT *1 nom-nøyt-eint/%eit%)
@@ -44139,7 +44139,7 @@ REMOVE:2079 (adj adj pp nt) IF
 
 
 #:2080
-REMOVE:2080 (adj adj pp nt) IF
+REMOVE:2080 (adj pp nt) IF
 	(1 komma/konj)
 	(NOT -1 nøyt-det)
 	(*2 ikkje-adv LINK NOT 0 subst-nøyt LINK NOT 0 adj-nøyt LINK NOT 0 subst-prop)
@@ -44154,7 +44154,7 @@ REMOVE:2080 (adj adj pp nt) IF
 
 
 #:2081
-REMOVE:2081 (adj adj pp nt) IF
+REMOVE:2081 (adj pp nt) IF
 	(NOT 1 pres/pret)
 	(NOT 1 subst-prop)
 	(NOT 1 adj-nøyt)
@@ -44176,7 +44176,7 @@ REMOVE:2081 (adj adj pp nt) IF
 
 
 #:2082
-REMOVE:2082 (adj adj pp nt) IF
+REMOVE:2082 (adj pp nt) IF
 	(1 komma/konj)
 	(NOT -1 nøyt-det)
 	(*2 ikkje-adv LINK NOT 0 subst-nøyt LINK NOT 0 adj-nøyt LINK NOT 0 subst-prop)
@@ -44189,7 +44189,7 @@ REMOVE:2082 (adj adj pp nt) IF
 
 
 #:2083
-REMOVE:2083 (adj adj pp nt) IF
+REMOVE:2083 (adj pp nt) IF
 	(NOT 1 pres/pret)
 	(NOT 1 subst-prop)
 	(NOT 1 adj-nøyt)
@@ -44208,7 +44208,7 @@ REMOVE:2083 (adj adj pp nt) IF
 
 
 #:2084
-REMOVE:2084 (adj adj pp nt) IF
+REMOVE:2084 (adj pp nt) IF
 	(0 adj-pos)
 	(NOT 0 ikkje-nøyt-adj)
 	(NOT -1 komma)
@@ -44223,7 +44223,7 @@ REMOVE:2084 (adj adj pp nt) IF
 
 
 #:2074
-REMOVE:2074 (adj adj pp f) IF
+REMOVE:2074 (adj pp f) IF
 	(NOT 0 mask)
 	(1C clb-komma/konj)
 	(NOT -1 fem-det)
@@ -44237,7 +44237,7 @@ REMOVE:2074 (adj adj pp f) IF
 
 
 #:2075
-REMOVE:2075 (adj adj pp f) IF
+REMOVE:2075 (adj pp f) IF
 	(NOT 0 mask)
 	(1 komma/konj)
 	(NOT -1 fem-det)
@@ -44253,7 +44253,7 @@ REMOVE:2075 (adj adj pp f) IF
 
 
 #:2076
-REMOVE:2076 (adj adj pp f) IF
+REMOVE:2076 (adj pp f) IF
 	(NOT 0 mask)
 	(NOT 1 subst-prop)
 	(NOT 1 adj-fem)
@@ -44271,7 +44271,7 @@ REMOVE:2076 (adj adj pp f) IF
 
 
 #:2077
-REMOVE:2077 (adj adj pp f) IF
+REMOVE:2077 (adj pp f) IF
 	(NOT 0 mask)
 	(1 komma/konj)
 	(NOT -1 fem-det)
@@ -44287,7 +44287,7 @@ REMOVE:2077 (adj adj pp f) IF
 
 
 #:2078
-REMOVE:2078 (adj adj pp f) IF
+REMOVE:2078 (adj pp f) IF
 	(NOT 0 mask)
 	(NOT 1 subst-prop)
 	(NOT 1 adj-fem)
@@ -44305,7 +44305,7 @@ REMOVE:2078 (adj adj pp f) IF
 
 
 #:2062
-REMOVE:2062 (adj adj pp mf) IF
+REMOVE:2062 (adj pp mf) IF
 	(1C clb-komma/konj)
 	(NOT -1 det-mask/fem)
 	(**-1C setn-gr-u-strek LINK NOT 0 %som% LINK NOT *1 nom-mask/fem-eint/%ein/ei%)
@@ -44318,7 +44318,7 @@ REMOVE:2062 (adj adj pp mf) IF
 
 
 #:2063
-REMOVE:2063 (adj adj pp mf) IF
+REMOVE:2063 (adj pp mf) IF
 	(1 komma/konj)
 	(NOT -1 det-mask/fem)
 	(*2 ikkje-adv LINK NOT 0 subst-mask/fem LINK NOT 0 adj-mask/fem LINK NOT 0 subst-prop)
@@ -44335,7 +44335,7 @@ REMOVE:2063 (adj adj pp mf) IF
 
 
 #:2064
-REMOVE:2064 (adj adj pp mf) IF
+REMOVE:2064 (adj pp mf) IF
 	(NOT 1 subst-prop)
 	(NOT 1 adj-mask/fem)
 	(NOT 1 subst-mask/fem)
@@ -44354,7 +44354,7 @@ REMOVE:2064 (adj adj pp mf) IF
 
 
 #:2065
-REMOVE:2065 (adj adj pp mf) IF
+REMOVE:2065 (adj pp mf) IF
 	(1 komma/konj)
 	(NOT -1 det-mask/fem)
 	(*2 ikkje-adv LINK NOT 0 subst-mask/fem LINK NOT 0 adj-mask/fem LINK NOT 0 subst-prop)
@@ -44371,7 +44371,7 @@ REMOVE:2065 (adj adj pp mf) IF
 
 
 #:2066
-REMOVE:2066 (adj adj pp mf) IF
+REMOVE:2066 (adj pp mf) IF
 	(NOT 1 subst-prop)
 	(NOT 1 adj-mask/fem)
 	(NOT 1 subst-mask/fem)
@@ -44390,7 +44390,7 @@ REMOVE:2066 (adj adj pp mf) IF
 
 
 #:2067
-REMOVE:2067 (adj adj pp mf) IF
+REMOVE:2067 (adj pp mf) IF
 	(NOT 0 fem)
 	(1C clb-komma/konj)
 	(NOT -1 mask-det)
@@ -44402,7 +44402,7 @@ REMOVE:2067 (adj adj pp mf) IF
 
 
 #:2068
-REMOVE:2068 (adj adj pp mf) IF
+REMOVE:2068 (adj pp mf) IF
 	(NOT 0 fem)
 	(1 komma/konj)
 	(NOT -1 mask-det)
@@ -44420,7 +44420,7 @@ REMOVE:2068 (adj adj pp mf) IF
 
 
 #:2069
-REMOVE:2069 (adj adj pp mf) IF
+REMOVE:2069 (adj pp mf) IF
 	(NOT 0 fem)
 	(NOT 1 subst-prop)
 	(NOT 1 adj-mask)
@@ -44442,7 +44442,7 @@ REMOVE:2069 (adj adj pp mf) IF
 
 
 #:2070
-REMOVE:2070 (adj adj pp mf) IF
+REMOVE:2070 (adj pp mf) IF
 	(NOT 0 fem)
 	(1 komma/konj)
 	(NOT -1 mask-det)
@@ -44460,7 +44460,7 @@ REMOVE:2070 (adj adj pp mf) IF
 
 
 #:2071
-REMOVE:2071 (adj adj pp mf) IF
+REMOVE:2071 (adj pp mf) IF
 	(NOT 0 fem)
 	(NOT 1 subst-prop)
 	(NOT 1 adj-mask)
@@ -44480,7 +44480,7 @@ REMOVE:2071 (adj adj pp mf) IF
 
 
 #:2072
-REMOVE:2072 (adj adj pp mf) IF
+REMOVE:2072 (adj pp mf) IF
 	(0 adj-pos)
 	(NOT 0 ikkje-mask/fem-adj)
 	(NOT -1 komma)
@@ -44491,7 +44491,7 @@ REMOVE:2072 (adj adj pp mf) IF
 
 
 #:2073
-REMOVE:2073 (adj adj pp mf) IF
+REMOVE:2073 (adj pp mf) IF
 	(-1C verb)
 	(NOT 1 komma/konj)
 	(NOT 1 subst/adj)
@@ -44502,7 +44502,7 @@ REMOVE:2073 (adj adj pp mf) IF
 
 
 #:2061
-REMOVE:2061 (adj adj pp gen) IF
+REMOVE:2061 (adj pp gen) IF
 	(NOT -1 fl-det)
 	(NOT -1 bu-det)
 ;
@@ -44512,7 +44512,7 @@ REMOVE:2061 (adj adj pp gen) IF
 
 
 #:2042
-REMOVE:2042 (adj adj pp) IF
+REMOVE:2042 (adj pp) IF
 	(0 pos)
 	(*-1 dem BARRIER ikkje-adv-adj)
 	(*-1 setn-gr BARRIER kop)
@@ -44523,7 +44523,7 @@ REMOVE:2042 (adj adj pp) IF
 
 
 #:2043
-REMOVE:2043 (adj adj pp) IF
+REMOVE:2043 (adj pp) IF
 	(0 farlege-part)
 	(**1C setn-gr BARRIER kop)
 	(**-1C setn-gr BARRIER kop)
@@ -44534,7 +44534,7 @@ REMOVE:2043 (adj adj pp) IF
 
 
 #:2044
-REMOVE:2044 (adj adj pp) IF
+REMOVE:2044 (adj pp) IF
 	(0 farlege-part)
 	(NOT *-1 %med%-prep)
 	(**1C setn-gr BARRIER kop)
@@ -44545,7 +44545,7 @@ REMOVE:2044 (adj adj pp) IF
 
 
 #:2045
-REMOVE:2045 (adj adj pp) IF
+REMOVE:2045 (adj pp) IF
 	(0 farlege-part)
 	(**-1C verb LINK NOT 0 kop LINK NOT *1 setn-gr)
 	(**-1C verb BARRIER verb)
@@ -44556,7 +44556,7 @@ REMOVE:2045 (adj adj pp) IF
 
 
 #:2046
-REMOVE:2046 (adj adj pp) IF
+REMOVE:2046 (adj pp) IF
 	(0 farlege-part)
 	(NOT *-1 %med%-prep)
 	(**-1C verb LINK NOT 0 kop LINK NOT *1 setn-gr)
@@ -44568,7 +44568,7 @@ REMOVE:2046 (adj adj pp) IF
 
 
 #:2047
-REMOVE:2047 (adj adj pp) IF
+REMOVE:2047 (adj pp) IF
 	(-1 setn-gr)
 	(NOT 1 komma/konj)
 	(NOT 1 subst/adj)
@@ -44580,7 +44580,7 @@ REMOVE:2047 (adj adj pp) IF
 
 
 #:2048
-REMOVE:2048 (adj adj pp) IF
+REMOVE:2048 (adj pp) IF
 	(-1 setn-gr)
 	(NOT 1 komma/konj)
 	(NOT 1 subst/adj)
@@ -44591,7 +44591,7 @@ REMOVE:2048 (adj adj pp) IF
 
 
 #:2049
-REMOVE:2049 (adj adj pp) IF
+REMOVE:2049 (adj pp) IF
 	(-1C verb)
 	(NOT 1 prep)
 	(NOT 1 komma/konj)
@@ -44606,7 +44606,7 @@ REMOVE:2049 (adj adj pp) IF
 
 
 #:2050
-REMOVE:2050 (adj adj pp) IF
+REMOVE:2050 (adj pp) IF
 	(0 verb)
 	(-1 pron)
 	(NOT 1 verb)
@@ -44620,7 +44620,7 @@ REMOVE:2050 (adj adj pp) IF
 
 
 #:2051
-REMOVE:2051 (adj adj pp) IF
+REMOVE:2051 (adj pp) IF
 	(-1 %lenge/snart%)
 	(NOT 1 prep)
 	(NOT 1 komma/konj)
@@ -44634,7 +44634,7 @@ REMOVE:2051 (adj adj pp) IF
 
 
 #:2052
-REMOVE:2052 (adj adj pp) IF
+REMOVE:2052 (adj pp) IF
 	(-1C periode-beg/sbu)
 	(NOT 1 prep)
 	(NOT 1 komma/konj)
@@ -44646,7 +44646,7 @@ REMOVE:2052 (adj adj pp) IF
 
 
 #:2053
-REMOVE:2053 (adj adj pp) IF
+REMOVE:2053 (adj pp) IF
 	(1 adj)
 	(-1 prep)
 	(NOT 1 subst)
@@ -44655,7 +44655,7 @@ REMOVE:2053 (adj adj pp) IF
 
 
 #:2054
-REMOVE:2054 (adj adj pp) IF
+REMOVE:2054 (adj pp) IF
 	(1 komma/konj)
 	(-1 prep)
 	(NOT -1 %som%)
@@ -44668,7 +44668,7 @@ REMOVE:2054 (adj adj pp) IF
 
 
 #:2055
-REMOVE:2055 (adj adj pp) IF
+REMOVE:2055 (adj pp) IF
 	(-1 prep)
 	(NOT 1 komma/konj)
 	(NOT 1 subst/adj)
@@ -44681,7 +44681,7 @@ REMOVE:2055 (adj adj pp) IF
 
 
 #:2056
-REMOVE:2056 (adj adj pp) IF
+REMOVE:2056 (adj pp) IF
 	(0 fl-subst)
 	(-1 adj-fl)
 ;
@@ -44690,7 +44690,7 @@ REMOVE:2056 (adj adj pp) IF
 
 
 #:2057
-REMOVE:2057 (adj adj pp) IF
+REMOVE:2057 (adj pp) IF
 	(0 ub-eint-mask/fem-subst)
 	(-1 ub-eint-mask/fem-adj)
 	(NOT -1 <adv>)
@@ -44703,20 +44703,20 @@ REMOVE:2057 (adj adj pp) IF
 
 
 #:2058
-REMOVE:2058 (adj adj pp) IF
+REMOVE:2058 (adj pp) IF
 	(0 veldig-farlege-part)
 ;
 
 
 #:2059
-REMOVE:2059 (adj adj pp) IF
+REMOVE:2059 (adj pp) IF
 	(0 adj)
 	(0 berre-pp-etter-ha)
 ;
 
 
 #:2060
-REMOVE:2060 (adj adj pp) IF
+REMOVE:2060 (adj pp) IF
 	(0 %oppta%)
 	(NOT 1 %ved%)
 ;
@@ -50682,7 +50682,7 @@ CONSTRAINTS
 
 
 #:4638
- "<lite>"   REMOVE:4638   (adj adj pp) IF
+ "<lite>"   REMOVE:4638   (adj pp) IF
 	(0 adj)
 ;
 #  "fjern <perf-part> om den ikkje vart valt på nivå 0"))
