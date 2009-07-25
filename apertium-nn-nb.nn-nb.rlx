@@ -49968,7 +49968,7 @@ REMOVE:1587 (vblex pret) IF
 	(*-1 setn-gr LINK NOT 0 %som%)
 	(NOT *-1 fv LINK *-1 spørjeadv/sp/sbu LINK *-1 konj)
 ;
-# Ikkje: «Langt uti have eller kor det var lynte<pret> det» 
+# Ikkje: «Langt uti have eller kor det var lynte<pret> det» -KBU
 
 #:1588
 REMOVE:1588 (vblex pret) IF
@@ -53717,12 +53717,13 @@ REMOVE:6095 (vblex pret) IF
 
 #:6200
 REMOVE:6200 (vblex pret) IF
-	(0 adj-fl-perf-part)
+	(0 perf-part/<perf-part>)
 	(-1 kop/st-form/st-verb)
 	(NOT 1 pron/subst)
-	(NOT 1 adv LINK 1 pron/subst)
+	(NEGATE 1 adv LINK 1 pron/subst LINK NOT 0 infmerke)
 ;
-# «vere/synest/blei løyste frå otte og naud» -KBU
+# «vere/synest/blei løyste frå otte og naud» 
+# «blir tvinga til<adv/prep> å<infmerke/subst> finne»
 # Ikkje: «Langt uti have eller kor det var lynte det»
-
+# -KBU
 
