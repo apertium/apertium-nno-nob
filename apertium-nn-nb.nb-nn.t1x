@@ -123,10 +123,23 @@
   <section-def-vars>
     <def-var n="gender"/>  
     <def-var n="adj_gender"/>  
+    <def-var n="adj_number"/>  
     <def-var n="number"/>
     <def-var n="case"/>
+    <def-var n="n_defness"/>
   </section-def-vars>
 
+  <section-def-lists>
+    <def-list n="det_indef">
+      <!-- feels like these should have their own sub-pos... «<det><dem>
+           som kan ha <ind> etter seg på bokmål» -->
+      <list-item v="denne"/>
+      <list-item v="disse"/>
+      <list-item v="dette"/>
+      <list-item v="den"/>
+      <list-item v="de"/>
+    </def-list>
+  </section-def-lists>
 
   <section-def-macros>
 
@@ -194,6 +207,32 @@
 	</otherwise>
       </choose>
     </def-macro>
+
+    <def-macro n="set_n_defness" npar="2">
+      <!-- arg.1: noun, arg.2: determiner/adjective
+           Remove bookish nb indef after certain determiners.
+      -->
+      <choose>
+        <when>
+          <test>
+            <and>
+              <equal><clip pos="1" side="tl" part="art"/><lit-tag v="ind"/></equal>
+              <or>
+                <in><clip pos="2" side="sl" part="lem"/><list n="det_indef"/></in>
+                <and>
+                  <begins-with><clip pos="2" side="tl" part="a_adj"/><lit-tag v="adj"/></begins-with>
+                  <equal><clip pos="2" side="tl" part="art"/><lit-tag v="def"/></equal>
+                </and>
+              </or>
+            </and>
+          </test>
+          <let><var n="n_defness"/><lit-tag v="def"/></let>
+        </when>
+        <otherwise>
+          <let><var n="n_defness"/><clip pos="1" side="tl" part="art"/></let>
+        </otherwise>
+      </choose>
+    </def-macro>
     
     <def-macro n="set_gender2" npar="2">
       <!-- arg.1: noun, arg.2: determiner
@@ -236,6 +275,30 @@
               <let><var n="gender"/><clip pos="2" side="tl" part="gen"/></let>
             </otherwise>
           </choose>
+        </otherwise>
+      </choose>
+    </def-macro>
+
+    <def-macro n="set_adj_number" npar="1">
+      <!-- arg.1: adjective
+           
+           Assumes that set_number is called!
+
+           Number is only a feature of positive/pp adjectives
+      -->      
+      <choose>					       
+        <when>
+          <test>
+            <or>
+              <equal><clip pos="1" side="tl" part="a_adj"/><lit-tag v="adj.pp"/></equal>
+              <equal><clip pos="1" side="tl" part="a_adj"/><lit-tag v="adj.posi"/></equal>
+              <equal><clip pos="1" side="tl" part="a_adj"/><lit-tag v="adj.ord.posi"/></equal>
+            </or>
+          </test>
+          <let><var n="adj_number"/><var n="number"/></let>
+        </when>
+        <otherwise>
+          <let><var n="adj_number"/><lit v=""/></let>
         </otherwise>
       </choose>
     </def-macro>
@@ -295,6 +358,7 @@
       -->      
       <call-macro n="set_gender2"><with-param pos="1"/><with-param pos="2"/></call-macro>
       <call-macro n="set_adj_gender"><with-param pos="3"/></call-macro>
+      <call-macro n="set_adj_number"><with-param pos="3"/></call-macro>
     </def-macro>
 
 
@@ -424,7 +488,8 @@
         </out>
       </action>
     </rule>
-    <rule comment="DET NGEN_TEMPORAL NIND: et års tid => eit års tid">
+    <rule comment="DET NGEN_TEMPORAL NIND: et års tid => eit års tid
+                   TODO: disse års tid => ?">
       <pattern>
         <pattern-item n="det"/>
         <pattern-item n="ngen_temporal"/>
@@ -468,7 +533,7 @@
             <clip pos="2" side="tl" part="lemh"/>
             <clip pos="2" side="tl" part="a_adj"/>
             <var n="adj_gender"/>
-            <var n="number"/>
+            <var n="adj_number"/>
             <clip pos="2" side="tl" part="art"/>
             <clip pos="2" side="tl" part="lemq"/>
           </lu>
@@ -494,7 +559,7 @@
             <clip pos="1" side="tl" part="lemh"/>
             <clip pos="1" side="tl" part="a_adj"/>
             <var n="adj_gender"/>
-            <var n="number"/>
+            <var n="adj_number"/>
             <clip pos="1" side="tl" part="art"/>
             <clip pos="1" side="tl" part="lemq"/>
           </lu>
@@ -504,7 +569,8 @@
         </out>
       </action>
     </rule>
-    <rule comment="DET ADJ NGEN_TEMPORAL NIND: et langt års tid => eit langt års tid">
+    <rule comment="DET ADJ NGEN_TEMPORAL NIND: et langt års tid => eit langt års tid
+                   TODO: disse lange års tid =>?">
       <pattern>
         <pattern-item n="det"/>
         <pattern-item n="adj"/>
@@ -531,7 +597,7 @@
             <clip pos="2" side="tl" part="lemh"/>
             <clip pos="2" side="tl" part="a_adj"/>
             <var n="adj_gender"/>
-            <var n="number"/>
+            <var n="adj_number"/>
             <clip pos="2" side="tl" part="art"/>
             <clip pos="2" side="tl" part="lemq"/>
           </lu>
@@ -1012,6 +1078,7 @@
 		            hvilken jente => kva for ei jente
 			    egne hus => eigne hus
 			    et Norge => eit Noreg
+                            dette hus => dette huset
 	           np får ikkje noko tal i den siste.">
       <pattern>
         <pattern-item n="det"/>
@@ -1025,7 +1092,8 @@
 	    <equal><clip pos="2" side="tl" part="a_nom"/><lit-tag v="np.top"/></equal>
 	  </or></test>
 	  <let><var n="number"/><lit v=""/></let>
-	</when></choose>	
+	</when></choose>
+        <call-macro n="set_n_defness"><with-param pos="2"/><with-param pos="1"/></call-macro>
         <out>
           <lu>
             <clip pos="1" side="tl" part="lemh"/>
@@ -1041,7 +1109,7 @@
             <clip pos="2" side="tl" part="a_nom"/>
             <clip pos="2" side="tl" part="gen"/>
 	    <var n="number"/>
-            <clip pos="2" side="tl" part="art"/>	
+	    <var n="n_defness"/>            
 	    <clip pos="2" side="tl" part="lemq"/>
           </lu>
         </out>
@@ -1056,12 +1124,13 @@
       <action>
         <call-macro n="set_number"><with-param pos="1"/></call-macro>
         <call-macro n="set_adj_gender"><with-param pos="1"/></call-macro>
+        <call-macro n="set_adj_number"><with-param pos="1"/></call-macro>
         <out>
           <lu>
             <clip pos="1" side="tl" part="lemh"/>
             <clip pos="1" side="tl" part="a_adj"/>
             <var n="adj_gender"/>
-            <var n="number"/>
+            <var n="adj_number"/>
             <clip pos="1" side="tl" part="art"/>
 	    <clip pos="1" side="tl" part="lemq"/>
           </lu>
@@ -1082,6 +1151,7 @@
       <action>
         <call-macro n="set_gender1"><with-param pos="2"/></call-macro>
         <call-macro n="set_adj_gender"><with-param pos="1"/></call-macro>
+        <call-macro n="set_adj_number"><with-param pos="1"/></call-macro>
 	<choose><when>
 	  <test><or>
 	    <equal><clip pos="2" side="tl" part="a_nom"/><lit-tag v="np"/></equal>
@@ -1089,12 +1159,13 @@
 	  </or></test>
 	  <let><var n="number"/><lit v=""/></let>
 	</when></choose>
+        <call-macro n="set_n_defness"><with-param pos="2"/><with-param pos="1"/></call-macro>
         <out>
           <lu>
             <clip pos="1" side="tl" part="lemh"/>
             <clip pos="1" side="tl" part="a_adj"/>
             <var n="adj_gender"/>
-	    <var n="number"/>
+	    <var n="adj_number"/>
             <clip pos="1" side="tl" part="art"/>
 	    <clip pos="1" side="tl" part="lemq"/>
           </lu>
@@ -1104,7 +1175,7 @@
             <clip pos="2" side="tl" part="a_nom"/>
             <clip pos="2" side="tl" part="gen"/>
 	    <var n="number"/>
-      	    <clip pos="2" side="tl" part="art"/>
+	    <var n="n_defness"/>
 	    <clip pos="2" side="tl" part="lemq"/>
           </lu>
         </out>
@@ -1119,6 +1190,7 @@
       <action>
         <call-macro n="set_gender1"><with-param pos="1"/></call-macro>
         <call-macro n="set_adj_gender"><with-param pos="2"/></call-macro>
+        <call-macro n="set_adj_number"><with-param pos="2"/></call-macro>
         <choose><when>
           <test><equal><var n="gender"/><lit-tag v="GD"/></equal></test>
           <let><var n="gender"/><lit-tag v="m"/></let>
@@ -1137,7 +1209,7 @@
             <clip pos="2" side="tl" part="lemh"/>
             <clip pos="2" side="tl" part="a_adj"/>
             <var n="adj_gender"/>
-            <var n="number"/>
+            <var n="adj_number"/>
       	    <clip pos="2" side="tl" part="art"/>
 	    <clip pos="2" side="tl" part="lemq"/>
           </lu>
@@ -1146,6 +1218,7 @@
     </rule>
 
     <rule comment="DETNONPOS ADJ NOM: en(mf) viktig(mf) dag(m) => ein(m) viktig(mf) dag(m)
+                                      denne viktige dag => denne viktige dagen
 		   Note that the adjective might have different gender specificity from the
 		   determiner; so we have an extra test to set adj_gender.">
       <pattern>
@@ -1159,6 +1232,7 @@
           <with-param pos="1"/>
           <with-param pos="2"/>
         </call-macro>
+        <call-macro n="set_n_defness"><with-param pos="3"/><with-param pos="1"/></call-macro>
         <out>
           <lu>
             <clip pos="1" side="tl" part="lemh"/>
@@ -1173,7 +1247,7 @@
             <clip pos="2" side="tl" part="lemh"/>
             <clip pos="2" side="tl" part="a_adj"/>
             <var n="adj_gender"/>
-            <var n="number"/>
+            <var n="adj_number"/>
       	    <clip pos="2" side="tl" part="art"/>
 	    <clip pos="2" side="tl" part="lemq"/>
           </lu>
@@ -1183,7 +1257,7 @@
             <clip pos="3" side="tl" part="a_nom"/>
             <clip pos="3" side="tl" part="gen"/>
             <clip pos="3" side="tl" part="nbr"/>
-      	    <clip pos="3" side="tl" part="art"/>
+	    <var n="n_defness"/>
 	    <clip pos="3" side="tl" part="lemq"/>
           </lu>
         </out>
