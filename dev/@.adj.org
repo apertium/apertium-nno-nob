@@ -1,1180 +1,439 @@
-|    | OK                      | OK                         |
-|    | adskilleg               | adskillig                  |
-|    | allehande               | allehånde                  |
-|    | allsidig                | allsidig                   |
-|    | ambisiøs                | ambisiøs                   |
-|    | amper                   | amper                      |
-|    |                         | anerkjent                  |
-| LR | forskjellig             | annerledes                 |
-| LR | anstendig               | anstendig                  |
-|    | sømeleg                 | anstendig                  |
-|    | antakeleg               | antagelig                  |
-|    | arkeologisk             | arkeologisk                |
-|    | arktisk                 | arktisk                    |
-|    | arm                     | arm                        |
-|    | atletisk                | atletisk                   |
-|    | austre                  | østre                      |
-|    | autentisk               | autentisk                  |
-|    | avdanka                 | avdanket                   |
-|    | bein                    | ben                        |
-|    | avgiftspliktig          | avgiftspliktig             |
-|    |                         | avgått                     |
-| RL | avsaga                  | avsagd                     |
-|    | avsaga                  | avsaget                    |
-|    | avsides                 | avsides                    |
-|    | banal                   | banal                      |
-|    | barnerik                | barnerik                   |
-|    | barsk                   | barsk                      |
-| RL | folksam                 | beferdet                   |
-| RL | folksam                 | beferda                    |
-|    |                         | begivenhetsrik             |
-|    |                         | behørig                    |
-|    |                         | bekvem                     |
-|    |                         | bemerkelsesverdig          |
-|    | bergensk                | bergensk                   |
-| RL | berr                    | berr                       |
-| RL | rusa                    | beruset                    |
-| RL | stadig                  | bestandig                  |
-|    |                         | betrodd                    |
-| RL | viktig                  | betydningsfull             |
-|    | bibelsk                 | bibelsk                    |
-|    | biologisk               | biologisk                  |
-|    | bister                  | bister                     |
-|    | bitter                  | bitter                     |
-|    | blakk                   | blakk                      |
-|    | blid                    | blid                       |
-|    | blond                   | blond                      |
-|    | bortreist               | bortreist                  |
-|    | bortskjemd              | bortskjemt                 |
-|    | brattlendt              | brattlendt                 |
-|    | brutal                  | brutal                     |
-|    | brå                     | brå                        |
-|    | burlesk                 | burlesk                    |
-|    | butikktilsett           | butikkansatt               |
-|    | berekraftig             | bærekraftig                |
-|    | canadisk                | canadisk                   |
-|    | borgarleg               | borgerlig                  |
-|    | dauddrukken             | døddrukken                 |
-|    | danseglad               | danseglad                  |
-|    | dansk                   | dansk                      |
-|    | databasert              | databasert                 |
-|    | defensiv                | defensiv                   |
-|    | definitiv               | definitiv                  |
-|    | delikat                 | delikat                    |
-|    | demokratisk             | demokratisk                |
-|    |                         | derre                      |
-|    | desidert                | desidert                   |
-|    | desperat                | desperat                   |
-|    | diger                   | diger                      |
-|    | digital                 | digital                    |
-|    | diplomatisk             | diplomatisk                |
-|    | direkte                 | direkte                    |
-|    | diskret                 | diskret                    |
-|    | distinkt                | distinkt                   |
-|    | dobbelt                 | dobbelt                    |
-|    | dobbeltløpa             | dobbeltløpet               |
-|    | dramatisk               | dramatisk                  |
-|    | drastisk                | drastisk                   |
-|    | driven                  | dreven                     |
-|    | djuptgåande             | dyptgående                 |
-|    | drukken                 | drukken                    |
-|    | dåverande               | daværende                  |
-|    | døyeleg                 | dødelig                    |
-|    | dristig                 | dristig                    |
-|    | drøymande               | drømmende                  |
-|    | drøy                    | drøy                       |
-|    | duknakka                | duknakket                  |
-|    | dum                     | dum                        |
-| LR | dyktig                  | dyktig                     |
-|    | dugeleg                 | dyktig                     |
-|    | dyr                     | dyr                        |
-|    | dyrebar                 | dyrebar                    |
-|    | dyrekjær                | dyrekjær                   |
-|    | dyrkbar                 | dyrkbar                    |
-|    | dyster                  | dyster                     |
-|    | daud                    | død                        |
-| LR | død                     | død                        |
-| LR | døddrukken              | døddrukken                 |
-|    | dauddrukken             | døddrukken                 |
-|    | døv                     | døv                        |
-|    | edel                    | edel                       |
-|    | eigenkomponert          | egenkomponert              |
-|    | eigna                   | egnet                      |
-|    | egyptisk                | egyptisk                   |
-|    | eksakt                  | eksakt                     |
-|    | eksklusiv               | eksklusiv                  |
-|    | eksotisk                | eksotisk                   |
-|    | ekspansiv               | ekspansiv                  |
-|    | eksplosiv               | eksplosiv                  |
-|    | eksplosjonsfarleg       | eksplosjonsfarlig          |
-|    | ekstern                 | ekstern                    |
-|    | ekstra                  | ekstra                     |
-|    | ekstraordinær           | ekstraordinær              |
-|    | ekstrem                 | ekstrem                    |
-|    | elastisk                | elastisk                   |
-|    | eldgammal               | eldgammel                  |
-|    | elektrisk               | elektrisk                  |
-|    | elendig                 | elendig                    |
-|    | elskverdig              | elskverdig                 |
-|    | einarma                 | enarmet                    |
-|    | eineståande             | enestående                 |
-|    | endelaus                | endeløs                    |
-|    | eineansvarleg           | eneansvarlig               |
-|    | energisk                | energisk                   |
-| RL | snever                  | eng                        |
-|    | engelskspråkleg         | engelskspråklig            |
-|    | samd                    | enig                       |
-|    | enkelt                  | enkelt                     |
-|    | enkeltløpa              | enkeltløpet                |
-|    | enkeltståande           | enkeltstående              |
-|    | einsam                  | ensom                      |
-|    | engelskspråkleg         | engelskspråklig            |
-|    | einstemmig              | enstemmig                  |
-|    | entusiastisk            | entusiastisk               |
-|    | eintydig                | entydig                    |
-|    |                         | erfaren                    |
-|    | erotisk                 | erotisk                    |
-|    | estetisk                | estetisk                   |
-|    | etablert                | etablert                   |
-|    | eterisk                 | eterisk                    |
-|    | ettertenksam            | ettertenksom               |
-|    | ettertrakta             | ettertraktet               |
-|    | europeisk               | europeisk                  |
-|    | ettertrykkjeleg         | ettertrykkelig             |
-|    | eventuell               | eventuell                  |
-|    | evigung                 | evigung                    |
-|    |                         | evindelig                  |
-|    | fair                    | fair                       |
-|    | faktisk                 | faktisk                    |
-|    | falsk                   | falsk                      |
-|    | familiær                | familiær                   |
-|    |                         | fandenivoldsk              |
-|    | fantasilaus             | fantasiløs                 |
-|    | fargelaus               | fargeløs                   |
-|    | fast                    | fast                       |
-|    | fastklemt               | fastklemt                  |
-|    | fastmontert             | fastmontert                |
-|    | fastspikra              | fastspikret                |
-|    | fatal                   | fatal                      |
-|    | fatta                   | fattet                     |
-|    | fattig                  | fattig                     |
-|    | feig                    | feig                       |
-|    | feil                    | feil                       |
-|    | feilslegen              | feilslått                  |
-|    | feit                    | feit                       |
-|    | felles                  | felles                     |
-|    | felleskyrkjeleg         | felleskirkelig             |
-|    | femtenårig              | femtenårig                 |
-|    | femårig                 | femårig                    |
-|    | fersk                   | fersk                      |
-|    | filologisk              | filologisk                 |
-|    | final                   | final                      |
-|    | finansiell              | finansiell                 |
-|    | finkulturell            | finkulturell               |
-|    | firedobbelt             | firedobbelt                |
-|    | firkanta                | firkantet                  |
-|    | fjern                   | fjern                      |
-|    | flamsk                  | flamsk                     |
-|    | flau                    | flau                       |
-|    | fleksibel               | fleksibel                  |
-|    | fleirkulturell          | flerkulturell              |
-|    | fleirnasjonal           | flernasjonal               |
-|    | flink                   | flink                      |
-|    | flittig                 | flittig                    |
-|    | flott                   | flott                      |
-|    | folkesky                | folkesky                   |
-|    | folkevald               | folkevalgt                 |
-|    | forbaska                | forbasket                  |
-|    |                         | forbilledlig               |
-|    | forblåst                | forblåst                   |
-|    | forboden                | forbudt                    |
-| RL | mellombels              | foreløpig                  |
-|    | føresett                | foresatt                   |
-|    | forfylla                | forfyllet                  |
-|    |                         | forgangen                  |
-|    |                         | forleden                   |
-|    | formell                 | formell                    |
-|    | formidabel              | formidabel                 |
-|    | fornem                  | fornem                     |
-|    | fornuftig               | fornuftig                  |
-|    | fornærma                | fornærmet                  |
-|    | nøgd                    | fornøyd                    |
-|    | forseggjord             | forseggjort                |
-|    | forsiktig               | forsiktig                  |
-|    | forskriftsmessig        | forskriftsmessig           |
-|    | forsliten               | forslitt                   |
-|    | forslegen               | forslått                   |
-|    | fort                    | fort                       |
-|    | fortent                 | fortjent                   |
-|    | fortvila                | fortvilet                  |
-|    | fortvila                | fortvilt                   |
-|    | framkomeleg             | fremkommelig               |
-|    |                         | frammøtt                   |
-|    | framtidig               | framtidig                  |
-|    | fransk                  | fransk                     |
-|    | franskspråkleg          | franskspråklig             |
-|    | fransktalande           | fransktalende              |
-|    | frekk                   | frekk                      |
-|    | fremmend                | fremmed                    |
-|    | fråverande              | fraværende                 |
-|    |                         | fremre                     |
-|    |                         | fremtidig                  |
-|    | frilans                 | frilans                    |
-|    | frisk                   | frisk                      |
-|    | frittalande             | frittalende                |
-|    | frodig                  | frodig                     |
-|    | from                    | from                       |
-|    | frosen                  | frossen                    |
-|    |                         | fruktbar                   |
-|    |                         | fryktinngytende            |
-|    | frynsete                | frynsete                   |
-|    | frynset                 | frynset                    |
-|    | frøken                  | frøken                     |
-|    | fuktig                  | fuktig                     |
-|    | full                    | full                       |
-|    | fullasta                | fullastet                  |
-|    | fulltalig               | fulltallig                 |
-|    | fåtalig                 | fåtallig                   |
-|    | føregåande              | foregående                 |
-|    | førnemnd                | førnevnt                   |
-|    | fundamental             | fundamental                |
-|    | funksjonsfrisk          | funksjonsfrisk             |
-|    | funksjonshemja          | funksjonshemmet            |
-| RL | funksjonshemja          | funksjonshemma             |
-| LR | funksjonshemma          | funksjonshemmet            |
-|    | fylkeskommunal          | fylkeskommunal             |
-|    | fysiologisk             | fysiologisk                |
-|    | fysisk                  | fysisk                     |
-|    | fæl                     | fæl                        |
-|    | færøysk                 | færøysk                    |
-|    |                         | følsom                     |
-|    | før                     | før                        |
-|    | førarlaus               | førerløs                   |
-|    | gal                     | gal                        |
-|    | gammaldags              | gammeldags                 |
-| LR | gemensleg               | gemenslig                  |
-| RL | gemeinsleg              | gemeinsleg                 |
-|    | gebrokken               | gebrokken                  |
-|    | genetisk                | genetisk                   |
-|    | genial                  | genial                     |
-|    | geografisk              | geografisk                 |
-|    | gift                    | gift                       |
-|    | gigantisk               | gigantisk                  |
-|    | gjeld                   | gjeld                      |
-|    |                         | gjennomført                |
-|    | gjennomorganisert       | gjennomorganisert          |
-|    | gjensidig               | gjensidig                  |
-|    | gjev                    | gjev                       |
-|    | glad                    | glad                       |
-|    | glamorøs                | glamorøs                   |
-|    | glatt                   | glatt                      |
-|    | glidande                | glidende                   |
-|    |                         | gold                       |
-|    |                         | grammatisk                 |
-|    |                         | gratis                     |
-|    | gravalvorleg            | gravalvorlig               |
-|    | gravid                  | gravid                     |
-|    | grei                    | grei                       |
-|    | grensesprengande        | grensesprengende           |
-|    | grovslegen              |                            |
-|    | gresk                   | gresk                      |
-|    | grotesk                 | grotesk                    |
-|    | grov                    | grov                       |
-|    | grundig                 | grundig                    |
-|    | grunn                   | grunn                      |
-|    | grusom                  | grusom                     |
-|    | gråblå                  | gråblå                     |
-|    | grønn                   | grøn                       |
-|    | gul                     | gul                        |
-|    | gullkanta               | gullkantet                 |
-| LR | gullslegen              | forgylt pp                 |
-|    | gunstig                 | gunstig                    |
-|    | gøy                     | gøy                        |
-|    | habil                   | habil                      |
-|    | halv                    | halv                       |
-|    | halvfull                | halvfull                   |
-|    | heiderleg               | hederlig                   |
-| RL | halvgammal              | halvgammal                 |
-|    | halvgammal              | halvgammel                 |
-|    | halvmilitær             | halvmilitær                |
-|    | halvtørr                | halvtørr                   |
-|    | happy                   | happy                      |
-|    | harry                   | harry                      |
-|    | hasardiøs               | hasardiøs                  |
-|    | hebraisk                | hebraisk                   |
-|    | heftig                  | heftig                     |
-|    | hektisk                 | hektisk                    |
-|    | heldig                  | heldig                     |
-|    | heilag                  | hellig                     |
-|    | heilfrelst              | helfrelst                  |
-|    | heilskapleg             | helhetlig                  |
-|    | heilskinna              | helskinnet                 |
-|    |                         | hensiktsmessig             |
-|    | hes                     | hes                        |
-|    | himmelsk                | himmelsk                   |
-|    | historisk-filosofisk    | historisk-filosofisk       |
-|    | historisk               | historisk                  |
-|    | hjelpelaus              | hjelpeløs                  |
-|    | heimearbeidande         | hjemmearbeidende           |
-|    | heimebasert             | hjemmebasert               |
-| RL | heimelaga               | hjemmelagd                 |
-|    | heimelaga               | hjemmelaget                |
-|    | heimevand               | hjemmevant                 |
-|    | heimleg                 | hjemmevevd                 |
-|    | heit                    | het                        |
-|    | hjernedaud              | hjernedød                  |
-|    | hovudansvarleg          | hovedansvarlig             |
-|    | halden                  | holden                     |
-|    | homofil                 | homofil                    |
-|    | homogen                 | homogen                    |
-|    | hormonell               | hormonell                  |
-|    | hovudtillitsvald        | hovedtillitsvalgt          |
-|    | haustleg                | høstlig                    |
-|    | hoven                   | hoven                      |
-|    | humanitær               | humanitær                  |
-|    | humoristisk             | humoristisk                |
-|    | hurtig                  | hurtig                     |
-|    |                         | hustrig                    |
-|    | hygienisk               | hygienisk                  |
-|    | hyppig                  | hyppig                     |
-|    | håplaus                 | håpløs                     |
-|    | høyrbar                 | hørbar                     |
-|    | høglydt                 | høylytt                    |
-|    | høgre                   | høyre                      |
-|    | høgreist                | høyreist                   |
-|    | høgrøsta                | høyrøstet                  |
-|    | identisk                | identisk                   |
-|    | idiotisk                | idiotisk                   |
-|    | idyllisk                | idyllisk                   |
-|    | ildfull                 | ildfull                    |
-|    | in                      | in                         |
-|    | indignert               | indignert                  |
-|    | indirekte               | indirekte                  |
-|    | indisk                  | indisk                     |
-|    | individuell             | individuell                |
-|    | indonesisk              | indonesisk                 |
-|    | indre                   | indre                      |
-|    | industriell             | industriell                |
-|    | informativ              | informativ                 |
-|    | initiativrik            | initiativrik               |
-|    | inklusiv                | inklusiv                   |
-|    | innbiten                | innbitt                    |
-|    | ihelslegen              | ihjelslått                 |
-|    |                         | innbyrdes                  |
-|    | innandørs               | innendørs                  |
-|    | innanlandsk             | innenlandsk                |
-|    | innestengd              | innestengt                 |
-|    | inneverande             | inneværende                |
-|    | innmeld                 | innmeldt                   |
-|    | innslegen               | innslått                   |
-|    | innfløkt                | innfløkt                   |
-|    | innlagd                 | innlagt                    |
-|    | innmari                 | innmari                    |
-|    | innovativ               | innovativ                  |
-|    | innsatsfylt             | innsatsfylt                |
-|    | innsett                 | innsatt                    |
-|    |                         | innstendig                 |
-| RL | inntørka                | inntørka                   |
-|    | inntørka                | inntørket                  |
-|    | innvendig               | innvendig                  |
-|    |                         | innvortes                  |
-|    | intakt                  | intakt                     |
-|    | intens                  | intens                     |
-|    | intensiv                | intensiv                   |
-|    | interaktiv              | interaktiv                 |
-|    | interessant             | interessant                |
-|    | intern                  | intern                     |
-|    | intim                   | intim                      |
-|    | ironisk                 | ironisk                    |
-|    | irsk                    | irsk                       |
-|    | iskald                  | iskald                     |
-|    | islamittisk             | islamittisk                |
-|    | islamsk                 | islamsk                    |
-|    | islandsk                | islandsk                   |
-|    | israelsk                | israelsk                   |
-|    | italiensk               | italiensk                  |
-|    | ivrig                   | ivrig                      |
-|    | japansk                 | japansk                    |
-|    | jamn                    | jevn                       |
-|    | jarnslegen              | jernbeslått                |
-| LR | jernslegen              | jernbeslått                |
-| LR | jordslegen              | muggen                     |
-|    | jordisk                 | jordisk                    |
-|    | juleraud                | julerød                    |
-|    | juridisk                | juridisk                   |
-|    | jødisk                  | jødisk                     |
-|    | kald                    | kald                       |
-|    | kapital                 | kapital                    |
-|    | katastrofal             | katastrofal                |
-|    | kategorisk              | kategorisk                 |
-|    | katolsk                 | katolsk                    |
-|    | kinesisk                | kinesisk                   |
-|    | kyrkjeframand           | kirkefremmed               |
-| LR | kyrkjefremmend          | kirkefremmed               |
-|    | kirurgisk               | kirurgisk                  |
-|    | kjapp                   | kjapp                      |
-|    | kjekk                   | kjekk                      |
-|    | kjemisk                 | kjemisk                    |
-|    | kjempeartig             | kjempeartig                |
-|    | kjempebra               | kjempebra                  |
-|    | kjempefin               | kjempefin                  |
-|    | kjempegøy               | kjempegøy                  |
-|    | kjempemorosam           | kjempemorsom               |
-|    | kjølig                  | kjølig                     |
-|    | kjempestor              | kjempestor                 |
-|    | kjend                   | kjent                      |
-|    | kjær                    | kjær                       |
-|    | kjærkomen               | kjærkommen                 |
-| LR | kjærkommen              | kjærkommen                 |
-|    | kjønnslaus              | kjønnsløs                  |
-|    | kjøpelysten             | kjøpelysten                |
-|    | kjørt                   | kjørt                      |
-|    | klam                    | klam                       |
-|    | klar                    | klar                       |
-|    | klok                    | klok                       |
-|    | klorhaldig              | klorholdig                 |
-|    | kloss                   | kloss                      |
-|    | klosset                 | klosset                    |
-|    | kløktig                 | kløktig                    |
-|    | knallhard               | knallhard                  |
-|    | knalltøff               | knalltøff                  |
-|    | knockout                | knockout                   |
-|    | kolossal                | kolossal                   |
-|    | kommersiell             | kommersiell                |
-|    | kommunal                | kommunal                   |
-|    | kommunikasjonsmessig    | kommunikasjonsmessig       |
-|    | kompetent               | kompetent                  |
-|    | komplett                | komplett                   |
-|    | kompromisslaus          | kompromissløs              |
-|    |                         | kondisjonert               |
-|    |                         | konkret                    |
-|    |                         | konkurransedyktig          |
-|    |                         | konkurs                    |
-|    |                         | konkursrammet              |
-|    |                         | konsekvent                 |
-|    |                         | konservativ                |
-|    |                         | konstant                   |
-|    |                         | konsulær                   |
-|    |                         | kontinental                |
-|    |                         | kontroversiell             |
-|    |                         | korrekt                    |
-|    |                         | korrupt                    |
-|    |                         | kostbar                    |
-|    |                         | kraftig                    |
-|    |                         | krakilsk                   |
-|    |                         | kravstor                   |
-|    |                         | kreativ                    |
-|    |                         | kriminalpolitisk           |
-|    |                         | kriminell                  |
-|    |                         | krisepsykiatrisk           |
-|    |                         | kristen                    |
-|    |                         | kritikkverdig              |
-|    |                         | kulturell                  |
-|    |                         | kulturhistorisk            |
-|    |                         | kunnskapsmessig            |
-|    |                         | kunstig                    |
-|    |                         | kunstnerisk                |
-| LR | kvalitetsmedveten       | kvalitetsbevisst           |
-|    | kvalitetsmedviten       | kvalitetsbevisst           |
-|    |                         | kvalitetsmessig            |
-|    | kyrkjeframand           | kirkefremmed               |
-| LR | kyrkjefremmend          | kirkefremmed               |
-|    | kyrkjeleg               | kirkelig                   |
-|    | langvegsfarande         | kvit                       |
-|    |                         | kvitt                      |
-|    |                         | kyndig                     |
-|    |                         | kynisk                     |
-|    |                         | lam                        |
-|    |                         | landslagsaktuell           |
-|    |                         | langbeint                  |
-|    |                         | langsiktig                 |
-|    |                         | langvarig                  |
-|    | leiken                  | leken                      |
-|    |                         | langveisfarende            |
-|    |                         | lat                        |
-|    |                         | lav                        |
-|    |                         | leg                        |
-|    |                         | legendarisk                |
-|    |                         | legitim                    |
-|    |                         | lei                        |
-|    |                         | lek                        |
-|    |                         | leken                      |
-|    |                         | lekker                     |
-|    |                         | lett                       |
-|    |                         | libanesisk                 |
-|    |                         | liberal                    |
-|    |                         | lik                        |
-|    |                         | likedan                    |
-|    |                         | likegyldig                 |
-|    |                         | likeverdig                 |
-|    |                         | lilla                      |
-|    |                         | linn                       |
-|    |                         | litterær                   |
-|    |                         | liturgisk                  |
-|    | livlaus                 | livløs                     |
-|    |                         | livsbejaende               |
-|    | livstruande             | livstruende                |
-|    |                         | livsvarig                  |
-|    |                         | logisk                     |
-|    |                         | lojal                      |
-|    |                         | lokal                      |
-|    |                         | lokalhistorisk             |
-|    |                         | loss                       |
-|    |                         | lovlydig                   |
-|    |                         | lovpålagt                  |
-|    |                         | lur                        |
-|    |                         | lurvet                     |
-|    |                         | lutheransk                 |
-|    |                         | luthersk                   |
-|    |                         | lynkjapp                   |
-|    |                         | låg                        |
-|    |                         | lønnet                     |
-|    | laus                    | løs                        |
-|    | ljos                    | lys                        |
-|    | løynleg                 | hemmelig                   |
-|    |                         | mager                      |
-|    |                         | magisk                     |
-|    |                         | maksimal                   |
-|    | makteslaus              | maktesløs                  |
-|    |                         | mangelfull                 |
-|    |                         | mangeårig                  |
-|    |                         | maritim                    |
-|    |                         | markant                    |
-|    |                         | markert                    |
-|    |                         | maskulin                   |
-|    |                         | masse                      |
-|    |                         | material                   |
-|    |                         | materiell                  |
-|    |                         | max                        |
-|    |                         | medisinsk                  |
-|    |                         | mekanisk                   |
-|    |                         | meksikansk                 |
-|    |                         | mektig                     |
-|    | meningslaus             | meningsløs                 |
-|    |                         | menneskeskapt              |
-|    | medverkande             | medvirkende                |
-| LR | medveten                | bevisst                    |
-|    | medviten                | bevisst                    |
-|    | meisterleg              | mesterlig                  |
-|    |                         | mental                     |
-|    |                         | merkbar                    |
-|    |                         | mestselgende               |
-|    |                         | mestvinnende               |
-|    |                         | mett                       |
-|    | mellombels              | midlertidig                |
-|    |                         | midtnorsk                  |
-|    |                         | mild                       |
-|    |                         | militær                    |
-|    |                         | miljøbevisst               |
-|    |                         | mindreårig                 |
-|    |                         | mini                       |
-|    |                         | minimal                    |
-|    |                         | minneverdig                |
-|    |                         | mirakuløs                  |
-|    | misnøgd                 | misfornøyd                 |
-|    |                         | mislykket                  |
-|    |                         | mislykt                    |
-|    |                         | moden                      |
-|    |                         | moderne                    |
-|    |                         | modig                      |
-|    |                         | molekylær                  |
-|    |                         | moralsk                    |
-|    |                         | morderisk                  |
-|    |                         | moro                       |
-|    | morosam                 | morsom                     |
-| LR | motsigelsesfri          | motsigelsesfri             |
-|    |                         | motebevisst                |
-|    | munnleg                 | muntlig                    |
-|    |                         | motsatt                    |
-|    |                         | musikalsk                  |
-|    |                         | musikkvitenskapelig        |
-|    |                         | muslimsk                   |
-|    | mjuk                    | myk                        |
-|    | mjå                     | mjå                        |
-|    |                         | myndig                     |
-|    |                         | mystisk                    |
-|    |                         | målbevisst                 |
-|    |                         | mør                        |
-|    |                         | naken                      |
-|    |                         | narkotisk                  |
-|    |                         | nasjonal                   |
-|    | naturfarga              | naturfarget                |
-|    |                         | naturgitt                  |
-|    |                         | nautisk                    |
-|    | nedarva                 | nedarvet                   |
-|    | nedringt                | nedringt                   |
-|    | nedslegen               | nedslått                   |
-|    |                         | nederlandsk                |
-|    |                         | nederst                    |
-|    |                         | nedleggingstruet           |
-|    | nedsliten               | nedslitt                   |
-|    |                         | nervøs                     |
-|    | nemneverdig             | nevneverdig                |
-|    | nestkommanderande       | nestkommanderende          |
-|    |                         | nominell                   |
-|    |                         | nordirsk                   |
-|    |                         | nordisk                    |
-|    |                         | nordre                     |
-|    |                         | nordtrøndersk              |
-|    |                         | norrøn                     |
-|    |                         | norsk                      |
-|    | norskeigd               | norskeid                   |
-|    |                         | nyanlagt                   |
-|    |                         | nyansatt                   |
-|    | nyfødd                  | nyfødt                     |
-|    |                         | nygift                     |
-|    |                         | nymotens                   |
-|    |                         | nynazistisk                |
-|    |                         | nyoperert                  |
-|    |                         | nyopprykket                |
-|    |                         | nysgjerrig                 |
-|    | nyskapande              | nyskapende                 |
-|    | nyslegen                | nyslått                    |
-|    | nysteikt                | nystekt                    |
-|    | nøydd                   | fornøyd                    |
-|    | nøysam                  | nøysom                     |
-|    |                         | nytenkende                 |
-|    |                         | nytent                     |
-|    |                         | nyttig                     |
-|    |                         | nærmeste                   |
-|    |                         | nødt                       |
-|    |                         | nødvendig                  |
-|    |                         | nøktern                    |
-|    |                         | nøyaktig                   |
-|    | noverande               | nåværende                  |
-|    |                         | obligatorisk               |
-|    |                         | offensiv                   |
-|    |                         | offisiell                  |
-|    |                         | oljepolitisk               |
-|    |                         | olympisk                   |
-|    |                         | omfangsrik                 |
-|    | omkomen                 | omkommen                   |
-|    | omkostningsfri          | omkostningsfri             |
-|    | omstridd                | omstridt                   |
-|    | omsverma                | omsvermet                  |
-|    | omtenksam               | omtenksom                  |
-|    |                         | ond                        |
-|    |                         | ondsinnet                  |
-|    |                         | operasjonell               |
-|    |                         | operativ                   |
-|    |                         | oppbrukt                   |
-|    |                         | oppgitt                    |
-|    |                         | opphetet                   |
-|    | oppjaga                 | oppjaget                   |
-|    |                         | opplagt                    |
-|    |                         | opplest                    |
-|    | oppmeld                 | oppmeldt                   |
-|    | oppmerksam              | oppmerksom                 |
-|    | oppriven                | opprevet                   |
-|    | oppslegen               | oppslått                   |
-|    |                         | oppriktig                  |
-|    |                         | oppringt                   |
-|    |                         | oppvokst                   |
-|    |                         | optimistisk                |
-|    |                         | oransje                    |
-|    |                         | ordinær                    |
-|    |                         | organisatorisk             |
-|    |                         | original                   |
-|    | ovannemnd               | ovennevnt                  |
-|    | overdriven              | overdreven                 |
-|    |                         | overdådig                  |
-|    |                         | overfylt                   |
-|    |                         | overlegen                  |
-|    | overmenneskeleg         | overmenneskelig            |
-|    |                         | overmoden                  |
-|    | overordna               | overordnet                 |
-|    | overskytande            | overskytende               |
-|    |                         | overstadig                 |
-|    |                         | palestinsk                 |
-|    |                         | paradoksal                 |
-|    |                         | pari                       |
-|    |                         | parlamentarisk             |
-|    |                         | pedagogisk                 |
-|    |                         | pedofil                    |
-|    |                         | pensjonsgivende            |
-|    |                         | perfekt                    |
-|    |                         | periodevis                 |
-|    |                         | periodisk                  |
-|    |                         | permanent                  |
-|    |                         | personell                  |
-|    |                         | pirkete                    |
-|    | pigg                    | pigg                       |
-|    | plagsam                 | plagsom                    |
-|    |                         | platt                      |
-|    |                         | pliktig                    |
-|    | poenglaus               | poengløs                   |
-|    |                         | poetisk                    |
-|    |                         | poliorammet                |
-|    |                         | politisk                   |
-|    |                         | pop                        |
-|    |                         | populær                    |
-|    |                         | pornografisk               |
-|    |                         | portugisisk                |
-|    |                         | posete                     |
-|    |                         | positiv                    |
-|    |                         | potensiell                 |
-|    |                         | praktisk                   |
-|    | pratsam                 | pratsom                    |
-|    |                         | premenstruell              |
-|    |                         | presis                     |
-|    |                         | prestisjetung              |
-|    |                         | preventiv                  |
-|    |                         | prinsipiell                |
-|    |                         | privatrettslig             |
-|    |                         | problematisk               |
-|    |                         | produktiv                  |
-|    |                         | profesjonell               |
-|    |                         | proppfull                  |
-|    |                         | psykiatrisk                |
-|    |                         | psykisk                    |
-|    |                         | psykologisk                |
-|    | påboden                 | påbudt                     |
-|    |                         | påkledd                    |
-|    | påmeld                  | påmeldt                    |
-|    |                         | påspandert                 |
-|    |                         | påtagelig                  |
-|    |                         | rabiat                     |
-|    |                         | radikal                    |
-|    |                         | radioaktiv                 |
-|    |                         | rak                        |
-|    |                         | ram                        |
-|    | rasfarleg               | rasfarlig                  |
-|    | rastlaus                | rastløs                    |
-|    |                         | raus                       |
-|    |                         | real                       |
-|    |                         | realistisk                 |
-|    |                         | realpolitisk               |
-|    |                         | rebelsk                    |
-|    |                         | redd                       |
-|    |                         | rede                       |
-|    |                         | reell                      |
-|    |                         | regelmessig                |
-|    |                         | regelrett                  |
-|    |                         | regional                   |
-|    | regjeringsoppnemnd      | regjeringsoppnevnt         |
-|    |                         | regntung                   |
-|    |                         | regulær                    |
-|    |                         | rein                       |
-|    |                         | relevant                   |
-|    |                         | religiøs                   |
-|    |                         | ren                        |
-|    |                         | representativ              |
-|    |                         | resolutt                   |
-|    |                         | respektabel                |
-|    |                         | respektiv                  |
-|    |                         | restriktiv                 |
-|    |                         | rett                       |
-|    |                         | rettferdig                 |
-|    |                         | rettmessig                 |
-|    |                         | rettskraftig               |
-|    |                         | rigorøs                    |
-|    |                         | rik                        |
-|    |                         | riktig                     |
-|    |                         | risikabel                  |
-|    |                         | rom                        |
-|    |                         | romersk                    |
-|    |                         | rotet                      |
-|    |                         | ru                         |
-|    |                         | rund                       |
-|    |                         | rusk                       |
-|    |                         | rusket                     |
-|    |                         | russisk                    |
-|    |                         | rutinemessig               |
-|    |                         | rwandisk                   |
-|    |                         | ryddig                     |
-|    |                         | rytmisk                    |
-|    | rådlaus                 | rådløs                     |
-|    |                         | råkald                     |
-|    | raud                    | rød                        |
-|    | raudkledd               | rødkledd                   |
-|    |                         | røff                       |
-|    |                         | sagnomsust                 |
-|    |                         | sakkyndig                  |
-|    |                         | salt                       |
-|    |                         | samarbeidsvillig           |
-|    |                         | samd                       |
-|    |                         | samfunnsbevisst            |
-|    |                         | samfunnsmessig             |
-|    |                         | samisk                     |
-|    | samanhengande           | sammenhengende             |
-|    | samanlagt               | sammenlagt                 |
-|    | samansett               | sammensatt                 |
-|    | samfunnsmedviten        | samfunnsbevisst            |
-|    | samspelt                | samspilt                   |
-|    |                         | samtidig                   |
-|    |                         | sangbar                    |
-|    |                         | sann                       |
-|    |                         | sart                       |
-|    |                         | satellittbasert            |
-|    |                         | satt                       |
-|    |                         | sein                       |
-|    |                         | seksuell                   |
-|    |                         | selvbærende                |
-|    |                         | selvsagt                   |
-|    | sjølvstendig            | selvstendig                |
-|    |                         | senil                      |
-|    |                         | senior                     |
-|    |                         | sensorisk                  |
-|    |                         | sentral                    |
-|    |                         | sentralafrikansk           |
-|    |                         | sentrumsnær                |
-|    |                         | separat                    |
-|    |                         | seriøs                     |
-|    |                         | siamesisk                  |
-|    |                         | sid                        |
-|    |                         | sikker                     |
-|    | tryggleiksmessig        | sikkerhetsmessig           |
-|    |                         | silent                     |
-|    |                         | sint                       |
-|    | sistnemnd               | sistnevnt                  |
-|    |                         | sivil                      |
-|    | sjanselaus              | sjanseløs                  |
-|    | sjeldan                 | sjelden                    |
-|    | skadelidd               | skadelidt                  |
-|    |                         | skandinavisk               |
-|    |                         | skarp                      |
-|    |                         | skarpskodd                 |
-|    |                         | skattepliktig              |
-|    |                         | skeptisk                   |
-|    | skindaud                | skinndød                   |
-| LR | skindød                 | skinndød                   |
-|    |                         | skitten                    |
-|    |                         | skjebnesvanger             |
-|    |                         | skjeggete                  |
-|    |                         | skjønn                     |
-|    |                         | skotsk                     |
-|    |                         | skråsikker                 |
-|    |                         | skyldig                    |
-|    | skånsam                 | skånsom                    |
-|    | slegen                  | slått                      |
-|    |                         | slak                       |
-|    |                         | slank                      |
-|    |                         | slem                       |
-|    |                         | slett                      |
-|    |                         | sliten                     |
-|    | slitsam                 | slitsom                    |
-|    |                         | slovakisk                  |
-|    |                         | slut                       |
-|    |                         | slutt                      |
-|    | smakeleg                | smakelig                   |
-|    |                         | smal                       |
-|    | smittsam                | smittsom                   |
-|    |                         | smul                       |
-|    | småmorosam              | småmorsom                  |
-|    | småvaksen               | småvokst                   |
-|    |                         | snar                       |
-|    |                         | snarrådig                  |
-|    |                         | snill                      |
-|    |                         | snødekt                    |
-|    |                         | sosial                     |
-|    |                         | sosialistisk               |
-|    |                         | sosiologisk                |
-|    |                         | spansk                     |
-|    |                         | spektakulær                |
-|    |                         | spenstig                   |
-|    |                         | spent                      |
-|    |                         | spesial                    |
-|    |                         | spesialskrevet             |
-|    |                         | spesialtilpasset           |
-|    |                         | spinkel                    |
-|    |                         | spiss                      |
-|    |                         | spontan                    |
-|    |                         | sporadisk                  |
-|    | spreidd                 | spredt                     |
-|    | stadleg                 | stedlig                    |
-|    |                         | sprek                      |
-|    |                         | spurtsterk                 |
-|    |                         | sta                        |
-|    |                         | stadig                     |
-|    |                         | stakkars                   |
-|    |                         | startklar                  |
-|    |                         | statistisk                 |
-|    |                         | stein                      |
-|    |                         | steinhard                  |
-|    |                         | steintøff                  |
-|    |                         | stemmeberettiget           |
-|    |                         | stemningsfull              |
-|    | stemningsskapande       | stemningsskapende          |
-|    |                         | still                      |
-|    | stillesittande          | stillesittende             |
-|    |                         | stiv                       |
-|    |                         | stolt                      |
-|    |                         | storfornøyd                |
-|    | storslegen              | storslått                  |
-|    |                         | storstilt                  |
-|    | storvaksen              | storvokst                  |
-| LR | sundslegen              | ødelagt                    |
-|    |                         | straffbar                  |
-|    |                         | strak                      |
-|    |                         | strategisk                 |
-|    |                         | streng                     |
-|    |                         | strid                      |
-|    |                         | stur                       |
-|    |                         | stygg                      |
-|    |                         | stødig                     |
-|    | svolten                 | sulten                     |
-|    |                         | summarisk                  |
-|    |                         | sunn                       |
-|    |                         | sur                        |
-|    | surmaga                 | surmaget                   |
-|    |                         | suveren                    |
-|    |                         | svak                       |
-|    |                         | svartkledd                 |
-|    |                         | sveitsisk                  |
-|    | sveitt                  | svett                      |
-|    |                         | svevende                   |
-|    |                         | svimmel                    |
-|    |                         | sydlandsk                  |
-|    | sjuk                    | syk                        |
-| LR | sjukemeld               | sykemeldt                  |
-|    | sjukmeld                | sykemeldt                  |
-|    |                         | symbolsk                   |
-|    |                         | symptomatisk               |
-|    |                         | systematisk                |
-|    |                         | syvende                    |
-|    | såkalla                 | såkalt                     |
-|    | sjåverdig               | severdig                   |
-|    | sjølvdaud               | selvdød                    |
-| LR | sjølvdød                | selvdød                    |
-|    |                         | såpeglatt                  |
-|    |                         | sår                        |
-|    |                         | sårbar                     |
-|    |                         | særnorsk                   |
-|    |                         | særskilt                   |
-|    |                         | sølete                     |
-|    |                         | søndre                     |
-|    |                         | sørkoreansk                |
-|    |                         | sørøstlig                  |
-|    |                         | søt                        |
-|    | sørlandsk               | sørlandsk                  |
-|    | søtleg                  | søtlig                     |
-|    | søvnlaus                | søvnløs                    |
-|    | taktisk                 | taktisk                    |
-|    | teatralsk               | teatralsk                  |
-|    | teknisk-naturvitskapleg | teknisk-naturvitenskapelig |
-|    | teknisk                 | teknisk                    |
-|    | teleteknisk             | teleteknisk                |
-|    | teoretisk               | teoretisk                  |
-|    | terminal                | terminal                   |
-|    | termisk                 | termisk                    |
-|    | tett                    | tett                       |
-|    | tettbygd                | tettbygd                   |
-|    | tettpakka               | tettpakket                 |
-|    | thailandsk              | thailandsk                 |
-|    | tidsriktig              | tidsriktig                 |
-|    | tilbakehalden           | tilbakeholden              |
-|    | tilfreds                | tilfreds                   |
-|    | tilgjord                | tilgjort                   |
-|    | tillitsvald             | tillitsvalgt               |
-| LR | tjenestefri             | tjenestefri                |
-| LR | treg                    | treg                       |
-|    |                         | tiltrengt                  |
-|    | titt                    | titt                       |
-|    | tofarga                 | tofarget                   |
-|    | tomsete                 | tomsete                    |
-|    | topp                    | topp                       |
-|    | toppkvalifisert         | toppkvalifisert            |
-|    | tradisjonsrik           | tradisjonsrik              |
-|    | tragisk                 | tragisk                    |
-|    | trang                   | trang                      |
-|    | transportabel           | transportabel              |
-|    | trasig                  | trasig                     |
-|    | traumatisk              | traumatisk                 |
-|    | travel                  | travel                     |
-|    | tredjeseedet            | tredjeseedet               |
-|    | treffsikker             | treffsikker                |
-|    | trendy                  | trendy                     |
-|    | trengande               | trengende                  |
-|    | treårig                 | treårig                    |
-|    | trinn                   | trinn                      |
-|    | trist                   | trist                      |
-|    | trufast                 | trofast                    |
-|    | trygg                   | trygg                      |
-|    | trykt                   | trykt                      |
-|    | trøndersk               | trøndersk                  |
-|    | tusendels               | tusendels                  |
-|    | tusenårig               | tusenårig                  |
-|    | tverr                   | tverr                      |
-|    | tyngst                  | tyngst                     |
-|    | tynn                    | tynn                       |
-|    | typisk                  | typisk                     |
-|    | tyrkisk                 | tyrkisk                    |
-| RL | trøytt                  | trett                      |
-|    | trøytt                  | trøtt                      |
-|    | tysk-austerriksk        | tysk-østerriksk            |
-|    | tålmodig                | tålmodig                   |
-|    | tøff                    | tøff                       |
-|    | tørr                    | tørr                       |
-|    | tørst                   | tørst                      |
-|    | uakseptabel             | uakseptabel                |
-|    | uaktsam                 | uaktsom                    |
-|    | uaktuell                | uaktuell                   |
-|    |                         | uanstrengt                 |
-|    | ubeden                  | ubedt                      |
-| LR | uboden                  | ubedt                      |
-| RL | grunnlaus               | ubegrunnet                 |
-|    |                         | ubehjelpelig               |
-|    |                         | ubemannet                  |
-| LR | ubeskriveleg            | ubeskrivelig               |
-| RL | useieleg                | ubeskrivelig               |
-|    |                         | ubesvart                   |
-|    |                         | ubesværet                  |
-|    |                         | ubetenkelig                |
-|    |                         | ubetinget                  |
-|    | ubrukande               | ubrukbar                   |
-| LR | ubrukbar                | ubrukbar                   |
-|    | udiskutabel             | udiskutabel                |
-|    | ueigna                  | uegnet                     |
-|    | usamd                   | uenig                      |
-| LR | ueinig                  | uenig                      |
-|    | ufin                    | ufin                       |
-|    | uforretta               | uforrettet                 |
-|    | uggen                   | uggen                      |
-|    | ugift                   | ugift                      |
-|    | ugunstig                | ugunstig                   |
-|    | uheldig                 | uheldig                    |
-|    | uhemma                  | uhemmet                    |
-|    | uhyre                   | uhyre                      |
-|    | uhøgtideleg             | uhøytidelig                |
-|    | ukonvensjonell          | ukonvensjonell             |
-|    | ukorrekt                | ukorrekt                   |
-|    | ukvalifisert            | ukvalifisert               |
-|    | ulike                   | ulike                      |
-|    | ullen                   | ullen                      |
-|    | ullkledd                | ullkledd                   |
-| LR | ulønnsam                | ulønnsom                   |
-|    | ulønsam                 | ulønnsom                   |
-|    | umetta                  | umettet                    |
-|    |                         | umiddelbar                 |
-|    | underordna              | underordnet                |
-|    | undersjøisk             | undersjøisk                |
-|    | underutvikla            | underutviklet              |
-|    | ung                     | ung                        |
-|    | ungarsk                 | ungarsk                    |
-|    | unik                    | unik                       |
-|    | unnagjord               | unnagjort                  |
-|    | unormal                 | unormal                    |
-|    | unaudsynt               | unødvendig                 |
-|    | uoffisiell              | uoffisiell                 |
-|    | uoppgjord               | uoppgjort                  |
-|    |                         | uoppklart                  |
-|    | uoverkommeleg           | uoverkommelig              |
-|    | uoversiktleg            | uoversiktlig               |
-|    |                         | uovertruffen               |
-|    | uplassert               | uplassert                  |
-|    | uredd                   | uredd                      |
-|    | ureglementert           | ureglementert              |
-|    | urettferdig             | urettferdig                |
-|    | uriktig                 | uriktig                    |
-|    | urnorsk                 | urnorsk                    |
-|    | urørd                   | urørt                      |
-|    | usikker                 | usikker                    |
-|    | uskadd                  | uskadd                     |
-|    | uskriven                | uskreven                   |
-|    | uskyldig                | uskyldig                   |
-|    | uselt                   | usolgt                     |
-|    | ustoppeleg              | ustoppelig                 |
-|    | usunn                   | usunn                      |
-| RL | omgjengeleg             | utadvendt                  |
-|    | utarma                  | utarmet                    |
-|    | utdøyande               | utdøende                   |
-|    | utanbys                 | utenbys                    |
-|    | utandørs                | utendørs                   |
-|    | utanlandsk              | utenlandsk                 |
-|    | utanriks                | utenriks                   |
-|    | utarma                  | utarmet                    |
-|    | utgraven                | utgravd                    |
-|    | utilnærmeleg            | utilnærmelig               |
-|    | utnemnd                 | utnevnt                    |
-|    | utilsikta               | utilsiktet                 |
-|    | utmerka                 | utmerket                   |
-|    | utprega                 | utpreget                   |
-|    | utrygg                  | utrygg                     |
-|    | utsett                  | utsatt                     |
-|    | utsend                  | utsendt                    |
-|    | utsliten                | utslitt                    |
-|    | utseld                  | utsolgt                    |
-|    | utsend                  | utsendt                    |
-|    | utslegen                | utslått                    |
-|    | utsliten                | utslitt                    |
-|    |                         | utstrakt                   |
-|    | uttrykksfull            | uttrykksfull               |
-|    | utvald                  | utvalgt                    |
-|    | utvendig                | utvendig                   |
-|    | utvitydig               | utvetydig                  |
-|    | utviklingshemma         | utviklingshemmet           |
-|    | utvilsam                | utvilsom                   |
-|    | utålmodig               | utålmodig                  |
-|    | uuthaldeleg             | uutholdelig                |
-|    | uvand                   | uvant                      |
-|    | uventa                  | uventet                    |
-|    | uverdig                 | uverdig                    |
-|    | uvettug                 | uvettig                    |
-| LR | uvettig                 | uvettig                    |
-| LR | uvitug                  | uvettig                    |
-| LR | uvitig                  | uvettig                    |
-|    | uverkeleg               | uvirkelig                  |
-|    | uviss                   | uviss                      |
-|    | uønska                  | uønsket                    |
-| RL | vak                     | vak                        |
-| LR | vak                     | våken                      |
-|    | vakt                    | vakt                       |
-|    | valma                   | valmet                     |
-|    | vammel                  | vammel                     |
-|    | vand                    | vant                       |
-|    | vannfri                 | vannfri                    |
-| RL | vassen                  | vandig                     |
-|    | vasstett                | vanntett                   |
-| LR | vasstett                | vasstett                   |
-|    | vand                    | vant                       |
-|    | vanvittig               | vanvittig                  |
-|    | var                     | var                        |
-|    | varig                   | varig                      |
-|    | varm                    | varm                       |
-|    | vegetarisk              | vegetarisk                 |
-|    | veik                    | vek                        |
-|    | velberga                | velberget                  |
-|    |                         | veldedig                   |
-|    | veldig                  | veldig                     |
-|    | velfortent              | velfortjent                |
-|    | velkjend                | velkjent                   |
-|    | vellykka                | vellykket                  |
-|    | velkomen                | velkommen                  |
-|    | velspelt                | velspilt                   |
-|    | venstre                 | venstre                    |
-|    | verdskjend              | verdensberømt              |
-|    | verdsomspennande        | verdensomspennende         |
-| LR | vedlikeholdsfri         | vedlikeholdsfri            |
-|    | vedlikehaldsfri         | vedlikeholdsfri            |
-|    | verdifull               | verdifull                  |
-|    | verdt                   | verdt                      |
-|    | verre                   | verre                      |
-|    | vertikal                | vertikal                   |
-|    | veslevaksen             | veslevoksen                |
-|    | vestre                  | vestre                     |
-|    | vever                   | vever                      |
-|    | vid                     | vid                        |
-|    | vidsynt                 | vidsynt                    |
-|    | viljesterk              | viljesterk                 |
-|    | vill                    | vill                       |
-|    | vilter                  | vilter                     |
-|    | vind                    | vind                       |
-|    | verknadsfull            | virkningsfull              |
-|    | vis                     | vis                        |
-|    | viss                    | viss                       |
-|    | vaksen                  | voksen                     |
-|    | valdeleg                | voldelig                   |
-| LR | voldeleg                | voldelig                   |
-|    |                         | voldsom                    |
-|    | vond                    | vond                       |
-|    | vunnen                  | vunnen                     |
-|    | våset                   | våset                      |
-|    | våsete                  | våsete                     |
-|    | våt                     | våt                        |
-|    | vêrhard                 | værhard                    |
-|    | ypparleg                | ypperlig                   |
-|    | yrkesaktiv              | yrkesaktiv                 |
-|    | yrkesretta              | yrkesrettet                |
-|    | openbar                 | åpenbar                    |
-|    | austre                  | østre                      |
-|    | øvrig                   | øvrig                      |
+<e>       <p><l><s n="adj"/></l> <r>anerkjent<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>avgått<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>begivenhetsrik<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>behørig<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>bekvem<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>bemerkelsesverdig<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>betrodd<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>derre<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>erfaren<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>evindelig<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>fandenivoldsk<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>forbilledlig<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>forgangen<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>forleden<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>frammøtt<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>fremre<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>fremtidig<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>fruktbar<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>fryktinngytende<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>følsom<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>gjennomført<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>gold<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>grammatisk<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>gratis<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>hensiktsmessig<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>hustrig<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>innbyrdes<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>innstendig<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>innvortes<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>kondisjonert<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>konkret<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>konkurransedyktig<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>konkurs<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>konkursrammet<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>konsekvent<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>konservativ<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>konstant<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>konsulær<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>kontinental<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>kontroversiell<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>korrekt<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>korrupt<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>kostbar<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>kraftig<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>krakilsk<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>kravstor<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>kreativ<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>kriminalpolitisk<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>kriminell<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>krisepsykiatrisk<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>kristen<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>kritikkverdig<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>kulturell<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>kulturhistorisk<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>kunnskapsmessig<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>kunstig<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>kunstnerisk<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>kvalitetsmessig<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>kvitt<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>kyndig<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>kynisk<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>lam<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>landslagsaktuell<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>langbeint<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>langsiktig<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>langvarig<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>langveisfarende<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>lat<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>lav<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>leg<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>legendarisk<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>legitim<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>lei<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>lek<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>leken<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>lekker<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>lett<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>libanesisk<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>liberal<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>lik<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>likedan<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>likegyldig<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>likeverdig<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>lilla<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>linn<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>litterær<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>liturgisk<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>livsbejaende<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>livsvarig<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>logisk<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>lojal<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>lokal<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>lokalhistorisk<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>loss<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>lovlydig<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>lovpålagt<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>lur<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>lurvet<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>lutheransk<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>luthersk<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>lynkjapp<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>låg<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>lønnet<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>mager<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>magisk<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>maksimal<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>mangelfull<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>mangeårig<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>maritim<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>markant<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>markert<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>maskulin<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>masse<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>material<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>materiell<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>max<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>medisinsk<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>mekanisk<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>meksikansk<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>mektig<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>menneskeskapt<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>mental<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>merkbar<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>mestselgende<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>mestvinnende<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>mett<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>midtnorsk<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>mild<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>militær<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>miljøbevisst<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>mindreårig<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>mini<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>minimal<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>minneverdig<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>mirakuløs<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>mislykket<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>mislykt<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>moden<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>moderne<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>modig<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>molekylær<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>moralsk<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>morderisk<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>moro<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>motebevisst<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>motsatt<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>musikalsk<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>musikkvitenskapelig<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>muslimsk<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>myndig<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>mystisk<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>målbevisst<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>mør<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>naken<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>narkotisk<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>nasjonal<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>naturgitt<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>nautisk<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>nederlandsk<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>nederst<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>nedleggingstruet<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>nervøs<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>nominell<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>nordirsk<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>nordisk<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>nordre<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>nordtrøndersk<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>norrøn<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>norsk<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>nyanlagt<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>nyansatt<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>nygift<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>nymotens<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>nynazistisk<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>nyoperert<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>nyopprykket<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>nysgjerrig<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>nytenkende<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>nytent<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>nyttig<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>nærmeste<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>nødt<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>nødvendig<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>nøktern<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>nøyaktig<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>obligatorisk<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>offensiv<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>offisiell<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>oljepolitisk<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>olympisk<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>omfangsrik<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>ond<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>ondsinnet<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>operasjonell<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>operativ<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>oppbrukt<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>oppgitt<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>opphetet<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>opplagt<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>opplest<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>oppriktig<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>oppringt<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>oppvokst<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>optimistisk<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>oransje<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>ordinær<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>organisatorisk<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>original<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>overdådig<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>overfylt<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>overlegen<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>overmoden<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>overstadig<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>palestinsk<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>paradoksal<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>pari<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>parlamentarisk<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>pedagogisk<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>pedofil<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>pensjonsgivende<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>perfekt<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>periodevis<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>periodisk<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>permanent<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>personell<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>pirkete<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>platt<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>pliktig<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>poetisk<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>poliorammet<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>politisk<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>pop<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>populær<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>pornografisk<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>portugisisk<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>posete<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>positiv<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>potensiell<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>praktisk<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>premenstruell<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>presis<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>prestisjetung<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>preventiv<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>prinsipiell<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>privatrettslig<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>problematisk<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>produktiv<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>profesjonell<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>proppfull<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>psykiatrisk<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>psykisk<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>psykologisk<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>påkledd<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>påspandert<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>påtagelig<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>rabiat<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>radikal<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>radioaktiv<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>rak<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>ram<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>raus<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>real<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>realistisk<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>realpolitisk<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>rebelsk<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>redd<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>rede<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>reell<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>regelmessig<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>regelrett<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>regional<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>regntung<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>regulær<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>rein<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>relevant<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>religiøs<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>ren<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>representativ<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>resolutt<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>respektabel<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>respektiv<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>restriktiv<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>rett<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>rettferdig<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>rettmessig<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>rettskraftig<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>rigorøs<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>rik<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>riktig<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>risikabel<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>rom<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>romersk<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>rotet<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>ru<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>rund<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>rusk<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>rusket<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>russisk<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>rutinemessig<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>rwandisk<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>ryddig<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>rytmisk<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>råkald<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>røff<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>sagnomsust<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>sakkyndig<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>salt<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>samarbeidsvillig<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>samd<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>samfunnsbevisst<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>samfunnsmessig<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>samisk<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>samtidig<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>sangbar<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>sann<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>sart<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>satellittbasert<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>satt<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>sein<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>seksuell<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>selvbærende<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>selvsagt<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>senil<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>senior<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>sensorisk<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>sentral<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>sentralafrikansk<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>sentrumsnær<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>separat<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>seriøs<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>siamesisk<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>sid<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>sikker<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>silent<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>sint<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>sivil<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>skandinavisk<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>skarp<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>skarpskodd<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>skattepliktig<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>skeptisk<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>skitten<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>skjebnesvanger<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>skjeggete<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>skjønn<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>skotsk<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>skråsikker<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>skyldig<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>slak<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>slank<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>slem<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>slett<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>sliten<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>slovakisk<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>slut<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>slutt<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>smal<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>smul<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>snar<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>snarrådig<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>snill<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>snødekt<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>sosial<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>sosialistisk<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>sosiologisk<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>spansk<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>spektakulær<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>spenstig<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>spent<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>spesial<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>spesialskrevet<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>spesialtilpasset<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>spinkel<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>spiss<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>spontan<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>sporadisk<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>sprek<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>spurtsterk<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>sta<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>stadig<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>stakkars<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>startklar<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>statistisk<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>stein<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>steinhard<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>steintøff<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>stemmeberettiget<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>stemningsfull<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>still<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>stiv<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>stolt<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>storfornøyd<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>storstilt<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>straffbar<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>strak<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>strategisk<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>streng<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>strid<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>stur<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>stygg<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>stødig<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>summarisk<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>sunn<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>sur<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>suveren<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>svak<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>svartkledd<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>sveitsisk<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>svevende<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>svimmel<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>sydlandsk<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>symbolsk<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>symptomatisk<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>systematisk<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>syvende<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>såpeglatt<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>sår<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>sårbar<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>særnorsk<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>særskilt<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>sølete<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>søndre<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>sørkoreansk<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>sørøstlig<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>søt<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>tiltrengt<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>uanstrengt<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>ubehjelpelig<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>ubemannet<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>ubesvart<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>ubesværet<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>ubetenkelig<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>ubetinget<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>umiddelbar<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>uoppklart<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>uovertruffen<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>utstrakt<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>veldedig<s n="adj"/></r></p></e>
+<e>       <p><l><s n="adj"/></l> <r>voldsom<s n="adj"/></r></p></e>
