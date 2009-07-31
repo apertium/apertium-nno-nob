@@ -234,7 +234,8 @@
 
     <def-macro n="set_n_defness" npar="2">
       <!-- arg.1: noun, arg.2: determiner/adjective
-           Remove bookish nb indef after certain determiners.
+           Make sure we have double definiteness marking, eg.:
+           disse<def> friheter<ind> => desse<def> fridomane<def>
       -->
       <choose>
         <when>
@@ -1166,8 +1167,8 @@
         <pattern-item n="nom"/>
       </pattern>
       <action>
-        <call-macro n="set_number2"><with-param pos="2"/><with-param pos="1"/></call-macro>
         <call-macro n="set_gender1"><with-param pos="2"/></call-macro>
+        <call-macro n="set_number2"><with-param pos="2"/><with-param pos="1"/></call-macro>
         <call-macro n="set_adj_gender"><with-param pos="1"/></call-macro>
         <call-macro n="set_adj_number"><with-param pos="1"/></call-macro>
         <call-macro n="set_n_defness"><with-param pos="2"/><with-param pos="1"/></call-macro>
