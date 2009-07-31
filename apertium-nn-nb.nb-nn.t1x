@@ -123,8 +123,9 @@
   <section-def-vars>
     <def-var n="gender"/>  
     <def-var n="adj_gender"/>  
+    <def-var n="number"/>  
     <def-var n="adj_number"/>  
-    <def-var n="number"/>
+    <def-var n="n_number"/>
     <def-var n="case"/>
     <def-var n="n_defness"/>
   </section-def-vars>
@@ -158,8 +159,31 @@
     </def-macro>
 
     <!-- Macros which set concordance variables: -->
-    <def-macro n="set_number" npar="1">
+    <def-macro n="set_number1" npar="1">
       <let><var n="number"/><clip pos="1" side="tl" part="nbr"/></let>
+    </def-macro>
+    
+    <def-macro n="set_number2" npar="2">
+      <!-- arg.1: noun, arg.2: determiner
+      sets number and n_number
+      -->
+      <call-macro n="set_number1"><with-param pos="2"/></call-macro>
+      <choose>
+        <when>
+          <test><equal><clip pos="1" side="tl" part="nbr"/><lit-tag v="sp"/></equal></test>
+          <let><var n="n_number"/><lit-tag v="sp"/></let>
+        </when>
+        <otherwise>
+          <let><var n="n_number"/><var n="number"/></let>
+        </otherwise>
+      </choose>
+      <choose><when>
+        <test><or>
+          <equal><clip pos="1" side="tl" part="a_nom"/><lit-tag v="np"/></equal>
+          <equal><clip pos="1" side="tl" part="a_nom"/><lit-tag v="np.top"/></equal>
+        </or></test>
+        <let><var n="n_number"/><lit v=""/></let>
+      </when></choose>
     </def-macro>
 
     <def-macro n="set_case" npar="1">
@@ -185,7 +209,7 @@
 	   - iff sg and GD, take a wild guess and go for m;
 	   - plurals get no gender;
 	   - o/w take gender of target determiner -->
-      <call-macro n="set_number"><with-param pos="1"/></call-macro>
+      <call-macro n="set_number1"><with-param pos="1"/></call-macro>
       <choose>
         <when>
 	  <test>
@@ -250,7 +274,7 @@
           <call-macro n="set_gender1"><with-param pos="1"/></call-macro>          
         </when>
         <otherwise>
-          <call-macro n="set_number"><with-param pos="2"/></call-macro>
+          <call-macro n="set_number2"><with-param pos="1"/><with-param pos="2"/></call-macro>
           <choose>
             <when>
               <test><and>
@@ -502,7 +526,7 @@
             <clip pos="1" side="tl" part="lemh"/>
             <clip pos="1" side="tl" part="a_det"/>
             <var n="gender"/>
-            <var n="number"/>
+            <var n="n_number"/>
             <clip pos="1" side="tl" part="art"/>
             <clip pos="1" side="tl" part="lemq"/>
           </lu>
@@ -1086,13 +1110,6 @@
       </pattern>
       <action>
         <call-macro n="set_gender2"><with-param pos="2"/><with-param pos="1"/></call-macro>
-	<choose><when>
-	  <test><or>
-	    <equal><clip pos="2" side="tl" part="a_nom"/><lit-tag v="np"/></equal>
-	    <equal><clip pos="2" side="tl" part="a_nom"/><lit-tag v="np.top"/></equal>
-	  </or></test>
-	  <let><var n="number"/><lit v=""/></let>
-	</when></choose>
         <call-macro n="set_n_defness"><with-param pos="2"/><with-param pos="1"/></call-macro>
         <out>
           <lu>
@@ -1108,7 +1125,7 @@
 	    <clip pos="2" side="tl" part="lemh"/>
             <clip pos="2" side="tl" part="a_nom"/>
             <clip pos="2" side="tl" part="gen"/>
-	    <var n="number"/>
+	    <var n="n_number"/>
 	    <var n="n_defness"/>            
 	    <clip pos="2" side="tl" part="lemq"/>
           </lu>
@@ -1122,7 +1139,7 @@
         <pattern-item n="adj"/>
       </pattern>
       <action>
-        <call-macro n="set_number"><with-param pos="1"/></call-macro>
+        <call-macro n="set_number1"><with-param pos="1"/></call-macro>
         <call-macro n="set_adj_gender"><with-param pos="1"/></call-macro>
         <call-macro n="set_adj_number"><with-param pos="1"/></call-macro>
         <out>
@@ -1149,16 +1166,10 @@
         <pattern-item n="nom"/>
       </pattern>
       <action>
+        <call-macro n="set_number2"><with-param pos="2"/><with-param pos="1"/></call-macro>
         <call-macro n="set_gender1"><with-param pos="2"/></call-macro>
         <call-macro n="set_adj_gender"><with-param pos="1"/></call-macro>
         <call-macro n="set_adj_number"><with-param pos="1"/></call-macro>
-	<choose><when>
-	  <test><or>
-	    <equal><clip pos="2" side="tl" part="a_nom"/><lit-tag v="np"/></equal>
-	    <equal><clip pos="2" side="tl" part="a_nom"/><lit-tag v="np.top"/></equal>
-	  </or></test>
-	  <let><var n="number"/><lit v=""/></let>
-	</when></choose>
         <call-macro n="set_n_defness"><with-param pos="2"/><with-param pos="1"/></call-macro>
         <out>
           <lu>
@@ -1174,7 +1185,7 @@
             <clip pos="2" side="tl" part="lemh"/>
             <clip pos="2" side="tl" part="a_nom"/>
             <clip pos="2" side="tl" part="gen"/>
-	    <var n="number"/>
+	    <var n="n_number"/>
 	    <var n="n_defness"/>
 	    <clip pos="2" side="tl" part="lemq"/>
           </lu>
