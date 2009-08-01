@@ -10514,9 +10514,9 @@
 </pardef>
 <pardef n="/mange__adj">
   <e>       <p><l>mange</l>     <r>mange<s n="adj"/><s n="posi"/><s n="pl"/></r></p></e>
-  <e>       <p><l>fleire</l>    <r>mange<s n="adj"/><s n="comp"/><s n="pl"/></r></p></e>
-  <e>       <p><l>fleste</l>    <r>mange<s n="adj"/><s n="sup"/><s n="pl"/><s n="def"/></r></p></e>
-  <e>       <p><l>flest</l>     <r>mange<s n="adj"/><s n="sup"/><s n="pl"/><s n="ind"/></r></p></e>
+  <e>       <p><l>fleire</l>    <r>mange<s n="adj"/><s n="comp"/></r></p></e>
+  <e>       <p><l>fleste</l>    <r>mange<s n="adj"/><s n="sup"/><s n="def"/></r></p></e>
+  <e>       <p><l>flest</l>     <r>mange<s n="adj"/><s n="sup"/><s n="ind"/></r></p></e>
 </pardef>
 <pardef n="/liten__adj">
   <!-- 'vesal' får eit eige oppslag -->
@@ -24047,6 +24047,10 @@
  <e lm="motseiingsfri">  <i>motsigelsesfri</i><par n="ny__adj"/></e>
  <e lm="omkostingsfri">  <i>omkostningsfri</i><par n="ny__adj"/></e>
  <e lm="røykfri">         <i>røykfri</i><par n="ny__adj"/></e>
+ <e lm="avkøyringsfri">         <i>avkøyringsfri</i><par n="ny__adj"/></e>
+ <e lm="motseiingsfri">         <i>motseiingsfri</i><par n="ny__adj"/></e>
+ <e lm="tenestefri">         <i>tenestefri</i><par n="ny__adj"/></e>
+ <e lm="vedlikehaldsfri">         <i>vedlikehaldsfri</i><par n="ny__adj"/></e>
  <e lm="fly">         <i>fly</i><par n="ny__adj"/></e>
 <!-- todo mwe: -->
 <!--  <e lm="fly forbanna">         <i>fly<par n="ny__adj"/><b/>forbanna</i></e> -->
@@ -24834,6 +24838,14 @@
 <e lm="ekstraordinær">   <i>ekstraordinær</i><par n="sein__adj"/></e>
 <e lm="ekstrem">         <i>ekstrem</i><par n="sein__adj"/></e>
 <e lm="endelaus">        <i>endelaus</i><par n="sein__adj"/></e>
+<e lm="laus">        <i>laus</i><par n="sein__adj"/></e>
+<e lm="ottelaus">        <i>ottelaus</i><par n="sein__adj"/></e>
+<e lm="medvitslaus">        <i>medvitslaus</i><par n="sein__adj"/></e>
+<e lm="førerlaus">        <i>førerlaus</i><par n="sein__adj"/></e>
+<e lm="førarlaus">        <i>førarlaus</i><par n="sein__adj"/></e>
+<e lm="meningslaus">        <i>meningslaus</i><par n="sein__adj"/></e>
+<e lm="sjanselaus">        <i>sjanselaus</i><par n="sein__adj"/></e>
+<e lm="grunnlaus">        <i>grunnlaus</i><par n="sein__adj"/></e>
 <e lm="enorm">           <i>enorm</i><par n="sein__adj"/></e>
 <e lm="falsk">           <i>falsk</i><par n="sein__adj"/></e>
 <e lm="familiær">        <i>familiær</i><par n="sein__adj"/></e>
@@ -25231,6 +25243,10 @@
 <e lm="smittsam">        <i>smittsam</i><par n="sein__adj"/></e>
 <e lm="ulønnsam">        <i>ulønnsam</i><par n="sein__adj"/></e>
 <e lm="verksam">         <i>verksam</i><par n="sein__adj"/></e>
+<e lm="folksam">         <i>folksam</i><par n="sein__adj"/></e>
+<e lm="uaktsam">         <i>uaktsam</i><par n="sein__adj"/></e>
+<e lm="ulønsam">         <i>ulønsam</i><par n="sein__adj"/></e>
+<e lm="valdsam">         <i>valdsam</i><par n="sein__adj"/></e>
 <e lm="lekker">          <i>lek</i><par n="vak/ker__adj"/></e>
 <e lm="sikker">          <i>sik</i><par n="vak/ker__adj"/></e>
 <e lm="skråsikker">      <i>skråsik</i><par n="vak/ker__adj"/></e>
@@ -25434,7 +25450,9 @@
 <e lm="førebels">        <i>førebels</i><par n="le__adj"/></e>
 <e lm="midtnorsk">       <i>midtnorsk</i><par n="svart__adj"/></e>
 <e lm="nordtrøndersk">   <i>nordtrøndersk</i><par n="svart__adj"/></e>
-<e lm="miljømedviten">   <i>medvit</i><par n="op/en__adj"/></e>
+<e lm="miljømedviten">   <i>miljømedvit</i><par n="op/en__adj"/></e>
+<e lm="målmedviten">   <i>målmedvit</i><par n="op/en__adj"/></e>
+<e lm="motemedviten">   <i>motemedvit</i><par n="op/en__adj"/></e>
 <e lm="norskeigd">       <i>norskeig</i><par n="nøyd/d__adj"/></e>
 <e lm="nysteikt">        <i>nysteikt</i><par n="svart__adj"/></e>
 <e lm="regjeringsoppnemnt"><i>regjeringsoppnemn</i><par n="van/d__adj"/></e>
@@ -25463,187 +25481,32 @@
 <e lm="ymsen">           <i>yms</i><par n="op/en__adj"/></e>
 <e lm="umissande">       <i>umissande</i><par n="anti__adj"/></e>
 <e lm="først">           <i>først</i><par n="anti__adj"/></e>
+<!-- checked: -->
+<e lm="borgarleg">       <i>borgarleg</i><par n="svart__adj"/></e>
+<e lm="antakeleg">       <i>antakeleg</i><par n="svart__adj"/></e>
+<e lm="verdskjend">      <i>verdskjen</i><par n="nøyd/d__adj"/></e>
+<e lm="utsett">          <i>utsett</i><par n="svart__adj"/></e>
+<e lm="omgjengeleg">     <i>omgjengeleg</i><par n="svart__adj"/></e>
+<e lm="uskadd">          <i>uskad</i><par n="nøyd/d__adj"/></e>
+<e lm="uplassert">      <i>uplassert</i><par n="svart__adj"/></e>
+<e lm="databasert">      <i>databasert</i><par n="svart__adj"/></e>
+<e lm="eigenkomponert">  <i>eigenkomponert</i><par n="svart__adj"/></e>
+<e lm="fastmontert">     <i>fastmontert</i><par n="svart__adj"/></e>
+<e lm="gjennomorganisert"><i>gjennomorganisert</i><par n="svart__adj"/></e>
+<e lm="heimebasert">     <i>heimebasert</i><par n="svart__adj"/></e>
+<e lm="nyoperert">       <i>nyoperert</i><par n="svart__adj"/></e>
+<e lm="uregistrert">     <i>uregistrert</i><par n="svart__adj"/></e>
+<e lm="sindig">          <i>sindig</i><par n="svart__adj"/></e>
+<e lm="oppvaksen">       <i>oppvaks</i><par n="ubed/en__adj"/></e>
+<e lm="kjend">           <i>kjen</i><par n="nøyd/d__adj"/></e>
+<e lm="innsett">         <i>innsett</i><par n="svart__adj"/></e>
+<e lm="forsliten">       <i>forslit</i><par n="ubed/en__adj"/></e>
+<e lm="nøgd">            <i>nøg</i><par n="nøyd/d__adj"/></e>
+<e lm="føresett">        <i>føresett</i><par n="svart__adj"/></e>
+<e lm="afghansk">        <i>afghansk</i><par n="svart__adj"/></e>
+<e lm="frittalande">     <i>frittalande</i><par n="anti__adj"/></e>
+<e lm="funksjonsfrisk">  <i>funksjonsfrisk</i><par n="sein__adj"/></e>
 
-<!-- AAA the following need translations or paradigms: -->
-<!-- <e lm="uregistrert">     <i>uregistrert</i><par n="svart__adj"/></e> -->
-<!-- <e lm="urnorsk">         <i>urnorsk</i><par n="svart__adj"/></e> -->
-<!-- <e lm="uselt">          <i>uselt</i><par n="svart__adj"/></e> -->
-<!-- <e lm="vandig">          <i>vandig</i><par n="svart__adj"/></e> -->
-<!-- <e lm="vanvittig">       <i>vanvittig</i><par n="svart__adj"/></e> -->
-<!-- <e lm="veldedig">        <i>veldedig</i><par n="svart__adj"/></e> -->
-<!-- <e lm="velspelt">        <i>velspelt</i><par n="svart__adj"/></e> -->
-<!-- <e lm="adskilleg">       <i>adskil</i><par n="sak/leg__adj"/></e> -->
-<!-- <e lm="angiveleg">       <i>angive</i><par n="sak/leg__adj"/></e> -->
-<!-- <e lm="anseleg">         <i>anse</i><par n="sak/leg__adj"/></e> -->
-<!-- <e lm="antageleg">       <i>antage</i><par n="sak/leg__adj"/></e> -->
-<!-- <e lm="betimeleg">       <i>betime</i><par n="sak/leg__adj"/></e> -->
-<!-- <e lm="deileg">          <i>dei</i><par n="sak/leg__adj"/></e> -->
-<!-- <e lm="eineansvarleg">    <i>eineansvar</i><par n="sak/leg__adj"/></e> -->
-<!-- <e lm="evindeleg">       <i>evinde</i><par n="sak/leg__adj"/></e> -->
-<!-- <e lm="forbilletleg">    <i>forbillet</i><par n="sak/leg__adj"/></e> -->
-<!-- <e lm="musikkvitenskapeleg"><i>musikkvitenskape</i><par n="sak/leg__adj"/></e> -->
-<!-- <e lm="møysommeleg">     <i>møysomme</i><par n="sak/leg__adj"/></e> -->
-<!-- <e lm="opprinneleg">     <i>opprinne</i><par n="sak/leg__adj"/></e> -->
-<!-- <e lm="privatrettsleg">  <i>privatretts</i><par n="sak/leg__adj"/></e> -->
-<!-- <e lm="samarbeidsvilleg"><i>samarbeidsvil</i><par n="sak/leg__adj"/></e> -->
-<!-- <e lm="sjølvfølgeleg">    <i>sjølvfølge</i><par n="sak/leg__adj"/></e> -->
-<!-- <e lm="sjukeleg">         <i>sjuke</i><par n="sak/leg__adj"/></e> -->
-<!-- <e lm="sørgeleg">        <i>sørge</i><par n="sak/leg__adj"/></e> -->
-<!-- <e lm="sørøstleg">       <i>sørøst</i><par n="sak/leg__adj"/></e> -->
-<!-- <e lm="teknisk-naturvitenskapeleg"><i>teknisk-naturvitenskape</i><par n="sak/leg__adj"/></e> -->
-<!-- <e lm="ualminneleg">     <i>ualminne</i><par n="sak/leg__adj"/></e> -->
-<!-- <e lm="ubehjelpeleg">    <i>ubehjelpe</i><par n="sak/leg__adj"/></e> -->
-<!-- <e lm="ubetenkeleg">     <i>ubetenke</i><par n="sak/leg__adj"/></e> -->
-<!-- <e lm="ugjenkjenneleg">  <i>ugjenkjenne</i><par n="sak/leg__adj"/></e> -->
-<!-- <e lm="vekentleg">        <i>vekent</i><par n="sak/leg__adj"/></e> -->
-<!-- <e lm="utalleg">         <i>utal</i><par n="sak/leg__adj"/></e> -->
-<!-- <e lm="utretteleg">      <i>utrette</i><par n="sak/leg__adj"/></e> -->
-<!-- <e lm="velvilleg">       <i>velvil</i><par n="sak/leg__adj"/></e> -->
-<!-- <e lm="vidunderleg">     <i>vidunder</i><par n="sak/leg__adj"/></e> -->
-<!-- <e lm="villeg">          <i>vil</i><par n="sak/leg__adj"/></e> -->
-<!-- <e lm="vitterleg">       <i>vitter</i><par n="sak/leg__adj"/></e> -->
-<!-- <e lm="vrangvilleg">     <i>vrangvil</i><par n="sak/leg__adj"/></e> -->
-<!-- <e lm="øyeblikkeleg">    <i>øyeblikke</i><par n="sak/leg__adj"/></e> -->
-<!-- <e lm="OK">              <i>OK</i><par n="OK__adj"/></e> -->
-<!-- <e lm="allehånde">       <i>allehånde</i><par n="OK__adj"/></e> -->
-<!-- <e lm="angrande">        <i>angrande</i><par n="OK__adj"/></e> -->
-<!-- <e lm="annerledes">      <i>annerledes</i><par n="OK__adj"/></e> -->
-<!-- <e lm="anstrengande">    <i>anstrengande</i><par n="OK__adj"/></e> -->
-<!-- <e lm="arbeidskrevande"> <i>arbeidskrevande</i><par n="OK__adj"/></e> -->
-<!-- <e lm="avgjørande">      <i>avgjørande</i><par n="OK__adj"/></e> -->
-<!-- <e lm="avsluttande">     <i>avsluttande</i><par n="OK__adj"/></e> -->
-<!-- <e lm="beliggande">      <i>beliggande</i><par n="OK__adj"/></e> -->
-<!-- <e lm="beskyttande">     <i>beskyttande</i><par n="OK__adj"/></e> -->
-<!-- <e lm="betryggande">     <i>betryggande</i><par n="OK__adj"/></e> -->
-<!-- <e lm="deltagande">      <i>deltagande</i><par n="OK__adj"/></e> -->
-<!-- <e lm="derre">           <i>derre</i><par n="OK__adj"/></e> -->
-<!-- <e lm="drømmande">       <i>drømmande</i><par n="OK__adj"/></e> -->
-<!-- <e lm="fengjande">        <i>fengjande</i><par n="OK__adj"/></e> -->
-<!-- <e lm="forleden">        <i>forleden</i><par n="OK__adj"/></e> -->
-<!-- <e lm="forutgåande">     <i>forutgåande</i><par n="OK__adj"/></e> -->
-<!-- <e lm="framtredande">    <i>framtredande</i><par n="OK__adj"/></e> -->
-<!-- <e lm="framtredande">    <i>framtredande</i><par n="OK__adj"/></e> -->
-<!-- <e lm="fristande">       <i>fristande</i><par n="OK__adj"/></e> -->
-<!-- <e lm="frittalande">     <i>frittalande</i><par n="OK__adj"/></e> -->
-<!-- <e lm="fryktinngytande"> <i>fryktinngytande</i><par n="OK__adj"/></e> -->
-<!-- <e lm="følgjande">        <i>følgjande</i><par n="OK__adj"/></e> -->
-<!-- <e lm="førebyggjande">    <i>førebyggjande</i><par n="OK__adj"/></e> -->
-<!-- <e lm="gjenverande">     <i>gjenverande</i><par n="OK__adj"/></e> -->
-<!-- <e lm="gøy">             <i>gøy</i><par n="OK__adj"/></e> -->
-<!-- <e lm="heimehøyrande">   <i>heimehøyrande</i><par n="OK__adj"/></e> -->
-<!-- <e lm="jamnaldrande">    <i>jamnaldrande</i><par n="OK__adj"/></e> -->
-<!-- <e lm="kjempegøy">       <i>kjempegøy</i><par n="OK__adj"/></e> -->
-<!-- <e lm="livsbejaande">    <i>livsbejaande</i><par n="OK__adj"/></e> -->
-<!-- <e lm="løpande">         <i>løpande</i><par n="OK__adj"/></e> -->
-<!-- <e lm="mestselgande">    <i>mestselgande</i><par n="OK__adj"/></e> -->
-<!-- <e lm="mestvinnande">    <i>mestvinnande</i><par n="OK__adj"/></e> -->
-<!-- <e lm="nytenkjande">      <i>nytenkjande</i><par n="OK__adj"/></e> -->
-<!-- <e lm="omkringliggande"> <i>omkringliggande</i><par n="OK__adj"/></e> -->
-<!-- <e lm="overvegande">     <i>overvegande</i><par n="OK__adj"/></e> -->
-<!-- <e lm="pensjonsgivande"> <i>pensjonsgivande</i><par n="OK__adj"/></e> -->
-<!-- <e lm="påfølgande">      <i>påfølgande</i><par n="OK__adj"/></e> -->
-<!-- <e lm="rystande">        <i>rystande</i><par n="OK__adj"/></e> -->
-<!-- <e lm="sjølvberande">     <i>sjølvberande</i><par n="OK__adj"/></e> -->
-<!-- <e lm="silent">          <i>silent</i><par n="OK__adj"/></e> -->
-<!-- <e lm="skapande">        <i>skapande</i><par n="OK__adj"/></e> -->
-<!-- <e lm="svevande">        <i>svevande</i><par n="OK__adj"/></e> -->
-<!-- <e lm="syvande">         <i>syvande</i><par n="OK__adj"/></e> -->
-<!-- <e lm="søndre">          <i>søndre</i><par n="OK__adj"/></e> -->
-<!-- <e lm="tidkrevande">     <i>tidkrevande</i><par n="OK__adj"/></e> -->
-<!-- <e lm="tids">            <i>tids</i><par n="OK__adj"/></e> -->
-<!-- <e lm="utdøyande">        <i>utdøyande</i><par n="OK__adj"/></e> -->
-<!-- <e lm="utsjåande">        <i>utsjåande</i><par n="OK__adj"/></e> -->
-<!-- <e lm="verdt">           <i>verdt</i><par n="OK__adj"/></e> -->
-<!-- <e lm="barnerik">        <i>barnerik</i><par n="sein__adj"/></e> -->
-<!-- <e lm="begivenhetsrik">  <i>begivenhetsrik</i><par n="sein__adj"/></e> -->
-<!-- <e lm="tydingsfull">  <i>tydingsfull</i><par n="sein__adj"/></e> -->
-<!-- <e lm="bevisstlaus">      <i>bevisstlaus</i><par n="sein__adj"/></e> -->
-<!-- <e lm="blåkvit">         <i>blåkvit</i><par n="sein__adj"/></e> -->
-<!-- <e lm="breid">            <i>breid</i><par n="sein__adj"/></e> -->
-<!-- <e lm="berbar">          <i>berbar</i><par n="sein__adj"/></e> -->
-<!-- <e lm="drøy">            <i>drøy</i><par n="sein__adj"/></e> -->
-<!-- <e lm="eng">             <i>eng</i><par n="sein__adj"/></e> -->
-<!-- <e lm="funksjonsfrisk">  <i>funksjonsfrisk</i><par n="sein__adj"/></e> -->
-<!-- <e lm="førarlaus">        <i>førarlaus</i><par n="sein__adj"/></e> -->
-<!-- <e lm="gal">             <i>gal</i><par n="sein__adj"/></e> -->
-<!-- <e lm="gjev">            <i>gjev</i><par n="sein__adj"/></e> -->
-<!-- <e lm="halvmilitær">     <i>halvmilitær</i><par n="sein__adj"/></e> -->
-<!-- <e lm="hes">             <i>hes</i><par n="sein__adj"/></e> -->
-<!-- <e lm="hørbar">          <i>hørbar</i><par n="sein__adj"/></e> -->
-<!-- <e lm="ildfull">         <i>ildfull</i><par n="sein__adj"/></e> -->
-<!-- <e lm="juleraud">         <i>juleraud</i><par n="sein__adj"/></e> -->
-<!-- <e lm="kjempefin">       <i>kjempefin</i><par n="sein__adj"/></e> -->
-<!-- <e lm="kjempestor">      <i>kjempestor</i><par n="sein__adj"/></e> -->
-<!-- <e lm="leg">             <i>leg</i><par n="sein__adj"/></e> -->
-<!-- <e lm="leik">             <i>leik</i><par n="sein__adj"/></e> -->
-<!-- <e lm="ljosegrøn">        <i>ljosegrøn</i><par n="sein__adj"/></e> -->
-<!-- <e lm="material">        <i>material</i><par n="sein__adj"/></e> -->
-<!-- <e lm="prestisjetung">   <i>prestisjetung</i><par n="sein__adj"/></e> -->
-<!-- <e lm="sangbar">         <i>sangbar</i><par n="sein__adj"/></e> -->
-<!-- <e lm="sentrumsnær">     <i>sentrumsnær</i><par n="sein__adj"/></e> -->
-<!-- <e lm="sjanselaus">       <i>sjanselaus</i><par n="sein__adj"/></e> -->
-<!-- <e lm="terminal">        <i>terminal</i><par n="sein__adj"/></e> -->
-<!-- <e lm="trang">           <i>trang</i><par n="sein__adj"/></e> -->
-<!-- <e lm="umiddelbar">      <i>umiddelbar</i><par n="sein__adj"/></e> -->
-<!-- <e lm="vek">             <i>vek</i><par n="sein__adj"/></e> -->
-<!-- <e lm="avsaga">         <i>avsaga</i><par n="le__adj"/></e> -->
-<!-- <e lm="beferda">        <i>beferda</i><par n="le__adj"/></e> -->
-<!-- <e lm="begrensa">       <i>begrensa</i><par n="le__adj"/></e> -->
-<!-- <e lm="berusa">         <i>berusa</i><par n="le__adj"/></e> -->
-<!-- <e lm="dobbeltløpa">    <i>dobbeltløpa</i><par n="le__adj"/></e> -->
-<!-- <e lm="duknakka">       <i>duknakka</i><par n="le__adj"/></e> -->
-<!-- <e lm="fastspikra">     <i>fastspikra</i><par n="le__adj"/></e> -->
-<!-- <e lm="forfylla">       <i>forfylla</i><par n="le__adj"/></e> -->
-<!-- <e lm="konkursramma">   <i>konkursramma</i><par n="le__adj"/></e> -->
-<!-- <e lm="lønna">          <i>lønna</i><par n="le__adj"/></e> -->
-<!-- <e lm="nedleggingstrua"><i>nedleggingstrua</i><par n="le__adj"/></e> -->
-<!-- <e lm="nyopprykka">     <i>nyopprykka</i><par n="le__adj"/></e> -->
-<!-- <e lm="ondsinna">       <i>ondsinna</i><par n="le__adj"/></e> -->
-<!-- <e lm="oppheita">        <i>oppheita</i><par n="le__adj"/></e> -->
-<!-- <e lm="polioramma">     <i>polioramma</i><par n="le__adj"/></e> -->
-<!-- <e lm="spesialtilpassa"><i>spesialtilpassa</i><par n="le__adj"/></e> -->
-<!-- <e lm="stemmeberettiga"><i>stemmeberettiga</i><par n="le__adj"/></e> -->
-<!-- <e lm="tofarga">        <i>tofarga</i><par n="le__adj"/></e> -->
-<!-- <e lm="tredjeseeda">    <i>tredjeseeda</i><par n="le__adj"/></e> -->
-<!-- <e lm="ubegrunna">      <i>ubegrunna</i><par n="le__adj"/></e> -->
-<!-- <e lm="ubemanna">       <i>ubemanna</i><par n="le__adj"/></e> -->
-<!-- <e lm="ubesværa">       <i>ubesværa</i><par n="le__adj"/></e> -->
-<!-- <e lm="ubetinga">       <i>ubetinga</i><par n="le__adj"/></e> -->
-<!-- <e lm="utilsikta">      <i>utilsikta</i><par n="le__adj"/></e> -->
-<!-- <e lm="utmerkja">        <i>utmerka</i><par n="le__adj"/></e> -->
-<!-- <e lm="uønska">         <i>uønska</i><par n="le__adj"/></e> -->
-<!-- <e lm="spesialskriven">  <i>spesialskriv</i><par n="bund/en__adj"/></e> -->
-<!-- <e lm="uaktsam">         <i>uaktsam</i><par n="øm__adj"/></e> -->
-<!-- <e lm="grusam">          <i>grusam</i><par n="ilsam__adj"/></e> -->
-<!-- <e lm="likedan">         <i>likedan</i><par n="likedan__adj"/></e> -->
-<!-- <e lm="valdsam">         <i>valdsam</i><par n="ilsam__adj"/></e> -->
-<!-- <e lm="uovertruffen">    <i>uovertruf</i><par n="guf/fen__adj"/></e> -->
-<!-- <e lm="bekvem">          <i>bekvem</i><par n="øm__adj"/></e> -->
-<!-- <e lm="skjønn">          <i>skjøn</i><par n="sun/n__adj"/></e> -->
-<!-- <e lm="forgangen">       <i>forgang</i><par n="op/en__adj"/></e> -->
-<!-- <e lm="personell">       <i>personel</i><par n="il/l__adj"/></e> -->
-<!-- <e lm="øvrig">           <i>øvrig</i><par n="svart__adj"/></e> -->
-<!-- <e lm="avsaga">          <i>avsaga</i><par n="svart__adj"/></e> -->
-<!-- <e lm="behørig">         <i>behørig</i><par n="svart__adj"/></e> -->
-<!-- <e lm="bemerkelsesverdig"><i>bemerkelsesverdig</i><par n="svart__adj"/></e> -->
-<!-- <e lm="bortdømt">        <i>bortdømt</i><par n="svart__adj"/></e> -->
-<!-- <e lm="butikkansatt">    <i>butikkansatt</i><par n="svart__adj"/></e> -->
-<!-- <e lm="danseglad">       <i>danseglad</i><par n="svart__adj"/></e> -->
-<!-- <e lm="databasert">      <i>databasert</i><par n="svart__adj"/></e> -->
-<!-- <e lm="eigenkomponert">   <i>eigenkomponert</i><par n="svart__adj"/></e> -->
-<!-- <e lm="einstemmig">       <i>einstemmig</i><par n="svart__adj"/></e> -->
-<!-- <e lm="fastmontert">     <i>fastmontert</i><par n="svart__adj"/></e> -->
-<!-- <e lm="fortent">        <i>fortent</i><par n="svart__adj"/></e> -->
-<!-- <e lm="gjennomorganisert"><i>gjennomorganisert</i><par n="svart__adj"/></e> -->
-<!-- <e lm="heimebasert">    <i>heimebasert</i><par n="svart__adj"/></e> -->
-<!-- <e lm="heimevevd">      <i>heimevevd</i><par n="svart__adj"/></e> -->
-
-<!-- nothing even near it in norsk ordbank: -->
-<!-- <e lm="nyanlagt">        <i>nyanlagt</i><par n="svart__adj"/></e> -->
-<!-- <e lm="nyansatt">        <i>nyansatt</i><par n="svart__adj"/></e> -->
-<!-- <e lm="nyoperert">       <i>nyoperert</i><par n="svart__adj"/></e> -->
-<!-- <e lm="påspandert">      <i>påspandert</i><par n="svart__adj"/></e> -->
-<!-- <e lm="storfornøyd">     <i>storfornøyd</i><par n="svart__adj"/></e> -->
 
 <!-- Ordinals -->
 <e lm="fyrste">          <i>fyrste</i><par n="første__adj"/></e>
