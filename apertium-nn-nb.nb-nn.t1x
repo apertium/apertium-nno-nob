@@ -75,6 +75,7 @@
 
     <def-attr n="a_verb">
       <attr-item tags="vblex"/>
+      <attr-item tags="vblex.pstv"/>
     </def-attr>
 
     <def-attr n="temps">
@@ -127,6 +128,7 @@
     <def-var n="adj_number"/>  
     <def-var n="n_number"/>
     <def-var n="case"/>
+    <def-var n="pass"/>
     <def-var n="n_defness"/>
   </section-def-vars>
 
@@ -455,19 +457,25 @@
 	<pattern-item n="vblexinfpass"/>
       </pattern>
       <action>
+        <choose><when>
+          <test><equal><clip pos="1" side="tl" part="a_verb"/><lit-tag v="vblex.pstv"/></equal></test>
+          <let><var n="pass"/><lit v=""/></let>
+        </when><otherwise>
+          <let><var n="pass"/><lit-tag v="pst"/></let>
+        </otherwise></choose>
         <out>
 	  <lu>	    
             <clip pos="1" side="tl" part="lem"/>
             <clip pos="1" side="tl" part="a_verb"/>
 	    <clip pos="1" side="tl" part="temps"/>
-	    <lit-tag v="pst"/>
+	    <var n="pass"/>
 	    <clip pos="1" side="tl" part="lemq"/>
           </lu>
         </out>
       </action>
     </rule>
 
-    <rule comment="VBLEX.INF.PRES.PASS: leses => blir lest
+    <rule comment="VBLEX.PRES.PASS: leses => blir lest
                    todo: verb probably should lose possible uppercasing,
                    although it's unlikely to find the passive verb in
                    the beginning of a sentence">
