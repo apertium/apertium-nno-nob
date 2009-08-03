@@ -4322,10 +4322,12 @@
 
   <e>       <p><l>bli</l>       <r>bli<s n="vblex"/><s n="imp"/></r></p></e>
   <e>       <p><l>bli</l>       <r>bli<s n="vblex"/><s n="inf"/></r></p></e>
-  <e>       <p><l>blis</l>      <r>bli<s n="vblex"/><s n="inf"/><s n="pass"/></r></p></e>
   <e>       <p><l>blitt</l>     <r>bli<s n="vblex"/><s n="pp"/></r></p></e>
   <e>       <p><l>blir</l>      <r>bli<s n="vblex"/><s n="pres"/></r></p></e>
-  <e>       <p><l>blis</l>      <r>bli<s n="vblex"/><s n="pres"/><s n="pass"/></r></p></e>
+  <!-- Ingen treff på 'blis' i korkje aviskorpus eller Oslo-korpuset;
+       utkommentert for no: -->
+<!--   <e>       <p><l>blis</l>      <r>bli<s n="vblex"/><s n="inf"/><s n="pass"/></r></p></e> -->
+<!--   <e>       <p><l>blis</l>      <r>bli<s n="vblex"/><s n="pres"/><s n="pass"/></r></p></e> -->
   <e>       <p><l>ble</l>       <r>bli<s n="vblex"/><s n="pret"/></r></p></e>
   <e r="LR"><p><l>blei</l>      <r>bli<s n="vblex"/><s n="pret"/></r></p></e>
   <e r="LR"><p><l>bleiv</l>     <r>bli<s n="vblex"/><s n="pret"/></r></p></e>
@@ -9158,10 +9160,13 @@
   <e>       <p><l>st</l>        <r>re<s n="adj"/><s n="sup"/><s n="ind"/></r></p></e>
 </pardef>
 <pardef n="fort__adj">
-  <!-- todo complete paradigm? -->
-  <e>       <p><l>ere</l>       <r><s n="adj"/><s n="comp"/></r></p></e>
-  <e>       <p><l>est</l>       <r><s n="adj"/><s n="sup"/></r></p></e>
-  <e>       <p><l></l>          <r><s n="adj"/><s n="posi"/><s n="sp"/></r></p></e>
+  <e>       <p><l>ere</l>   <r><s n="adj"/><s n="comp"/></r></p></e>
+  <e>       <p><l></l>      <r><s n="adj"/><s n="posi"/><s n="mf"/><s n="sg"/><s n="ind"/></r></p></e>
+  <e>       <p><l></l>      <r><s n="adj"/><s n="posi"/><s n="nt"/><s n="sg"/><s n="ind"/></r></p></e>
+  <e>       <p><l></l>      <r><s n="adj"/><s n="posi"/><s n="pl"/></r></p></e>
+  <e>       <p><l></l>      <r><s n="adj"/><s n="posi"/><s n="sg"/><s n="def"/></r></p></e>
+  <e>       <p><l>este</l>  <r><s n="adj"/><s n="sup"/><s n="def"/></r></p></e>
+  <e>       <p><l>est</l>   <r><s n="adj"/><s n="sup"/><s n="ind"/></r></p></e>
 </pardef>
 <pardef n="/gammal__adj">
   <e>       <p><l>eldre</l>     <r>gammal<s n="adj"/><s n="comp"/></r></p></e>
@@ -9247,7 +9252,8 @@
   <e>       <p><l>nest</l>      <r>men<s n="adj"/><s n="sup"/><s n="ind"/></r></p></e>
 </pardef>
 <pardef n="minst__adj">
-  <!-- todo collapse w/liten? -->
+  <!-- todo: any dev/bm.adj.xml adjectives getting this paradigm
+       should end up being collapsable superlative forms anyway -->
   <e>       <p><l></l>          <r><s n="adj"/><s n="posi"/><s n="mf"/><s n="sg"/><s n="ind"/></r></p></e>
   <e>       <p><l></l>          <r><s n="adj"/><s n="posi"/><s n="nt"/><s n="sg"/><s n="ind"/></r></p></e>
   <e>       <p><l>e</l>         <r><s n="adj"/><s n="posi"/><s n="pl"/></r></p></e>
@@ -9279,9 +9285,6 @@
   <e>       <p><l>t</l>         <r><s n="adj"/><s n="posi"/><s n="nt"/><s n="sg"/><s n="ind"/></r></p></e>
   <e>       <p><l>e</l>         <r><s n="adj"/><s n="posi"/><s n="pl"/></r></p></e>
   <e>       <p><l>e</l>         <r><s n="adj"/><s n="posi"/><s n="sg"/><s n="def"/></r></p></e>
-  <e>       <p><l></l>          <r><s n="adj"/><s n="posi"/><s n="sp"/></r></p></e>
-  <e r="LR"><p><l>est</l>       <r><s n="adj"/><s n="sup"/></r></p></e>
-  <e>       <p><l>mest</l>      <r><s n="adj"/><s n="sup"/></r></p></e>
   <e r="LR"><p><l>este</l>      <r><s n="adj"/><s n="sup"/><s n="def"/></r></p></e>
   <e>       <p><l>meste</l>     <r><s n="adj"/><s n="sup"/><s n="def"/></r></p></e>
   <e r="LR"><p><l>est</l>       <r><s n="adj"/><s n="sup"/><s n="ind"/></r></p></e>
@@ -9360,7 +9363,10 @@
 <pardef n="ti/tt__adj">
   <e>       <p><l>ere</l>       <r>tt<s n="adj"/><s n="comp"/></r></p></e>
   <e>       <p><l>est</l>       <r>tt<s n="adj"/><s n="sup"/></r></p></e>
-  <e>       <p><l>tt</l>        <r>tt<s n="adj"/><s n="posi"/><s n="sp"/></r></p></e>
+  <e>       <p><l>tt</l>       <r>tt<s n="adj"/><s n="posi"/><s n="mf"/><s n="sg"/><s n="ind"/></r></p></e>
+  <e>       <p><l>tt</l>      <r>tt<s n="adj"/><s n="posi"/><s n="nt"/><s n="sg"/><s n="ind"/></r></p></e>
+  <e>       <p><l>tt</l>        <r>tt<s n="adj"/><s n="posi"/><s n="pl"/></r></p></e>
+  <e>       <p><l>tt</l>        <r>tt<s n="adj"/><s n="posi"/><s n="sg"/><s n="def"/></r></p></e>
 </pardef>
 <pardef n="ug/gen__adj">
   <e>       <p><l>nere</l>      <r>gen<s n="adj"/><s n="comp"/></r></p></e>
@@ -9468,11 +9474,6 @@
   <e r="LR"><p><l>st</l>        <r>re<s n="adj"/><s n="sup"/><s n="ind"/></r></p></e>
   <e>       <p><l>terst</l>     <r>re<s n="adj"/><s n="sup"/><s n="ind"/></r></p></e>
 </pardef>
-<pardef n="stil/le__adj">
-  <e>       <p><l>lere</l>      <r>le<s n="adj"/><s n="comp"/></r></p></e>
-  <e>       <p><l>le</l>        <r>le<s n="adj"/><s n="posi"/><s n="sp"/></r></p></e>
-  <e>       <p><l>lest</l>      <r>le<s n="adj"/><s n="sup"/></r></p></e>
-</pardef>
 <pardef n="tru__adj">
   <e>       <p><l>ere</l>       <r><s n="adj"/><s n="comp"/></r></p></e>
   <e>       <p><l></l>          <r><s n="adj"/><s n="posi"/><s n="mf"/><s n="sg"/><s n="ind"/></r></p></e>
@@ -9484,29 +9485,23 @@
   <e>       <p><l>este</l>      <r><s n="adj"/><s n="sup"/><s n="def"/></r></p></e>
   <e>       <p><l>est</l>       <r><s n="adj"/><s n="sup"/><s n="ind"/></r></p></e>
 </pardef>
-<pardef n="sakt/e__adj">
-  <e>       <p><l>ere</l>       <r>e<s n="adj"/><s n="comp"/></r></p></e>
-  <e>       <p><l>e</l>         <r>e<s n="adj"/><s n="posi"/><s n="mf"/><s n="sg"/><s n="ind"/></r></p></e>
-  <e>       <p><l>e</l>         <r>e<s n="adj"/><s n="posi"/><s n="nt"/><s n="sg"/><s n="ind"/></r></p></e>
-  <e>       <p><l>e</l>         <r>e<s n="adj"/><s n="posi"/><s n="pl"/></r></p></e>
-  <e>       <p><l>e</l>         <r>e<s n="adj"/><s n="posi"/><s n="sg"/><s n="def"/></r></p></e>
-  <e>       <p><l>este</l>      <r>e<s n="adj"/><s n="sup"/><s n="def"/></r></p></e>
-  <e>       <p><l>est</l>       <r>e<s n="adj"/><s n="sup"/><s n="ind"/></r></p></e>
-</pardef>
-<pardef n="nøy/e__adj">
-  <e>       <p><l>ere</l>       <r>e<s n="adj"/><s n="comp"/></r></p></e>
-  <e>       <p><l>e</l>         <r>e<s n="adj"/><s n="posi"/><s n="mf"/><s n="sg"/><s n="ind"/></r></p></e>
-  <e>       <p><l>e</l>         <r>e<s n="adj"/><s n="posi"/><s n="nt"/><s n="sg"/><s n="ind"/></r></p></e>
-  <e>       <p><l>e</l>         <r>e<s n="adj"/><s n="posi"/><s n="pl"/></r></p></e>
-  <e>       <p><l>e</l>         <r>e<s n="adj"/><s n="posi"/><s n="sg"/><s n="def"/></r></p></e>
-  <e>       <p><l>este</l>      <r>e<s n="adj"/><s n="sup"/><s n="def"/></r></p></e>
-  <e>       <p><l>est</l>       <r>e<s n="adj"/><s n="sup"/><s n="ind"/></r></p></e>
+<pardef n="nøye__adj">
+  <e>       <p><l>re</l>       <r><s n="adj"/><s n="comp"/></r></p></e>
+  <e>       <p><l></l>         <r><s n="adj"/><s n="posi"/><s n="mf"/><s n="sg"/><s n="ind"/></r></p></e>
+  <e>       <p><l></l>         <r><s n="adj"/><s n="posi"/><s n="nt"/><s n="sg"/><s n="ind"/></r></p></e>
+  <e>       <p><l></l>         <r><s n="adj"/><s n="posi"/><s n="pl"/></r></p></e>
+  <e>       <p><l></l>         <r><s n="adj"/><s n="posi"/><s n="sg"/><s n="def"/></r></p></e>
+  <e>       <p><l>ste</l>      <r><s n="adj"/><s n="sup"/><s n="def"/></r></p></e>
+  <e>       <p><l>st</l>       <r><s n="adj"/><s n="sup"/><s n="ind"/></r></p></e>
 </pardef>
 <pardef n="leng/e__adj">
   <!-- todo wsd split lenger (lang) / lengre (lang) -->
   <e>       <p><l>er</l>        <r>e<s n="adj"/><s n="comp"/></r></p></e>
   <e r="LR"><p><l>re</l>        <r>e<s n="adj"/><s n="comp"/></r></p></e>
-  <e>       <p><l>e</l>         <r>e<s n="adj"/><s n="posi"/><s n="sp"/></r></p></e>
+  <e>       <p><l>e</l>         <r>e<s n="adj"/><s n="posi"/><s n="mf"/><s n="sg"/><s n="ind"/></r></p></e>
+  <e>       <p><l>e</l>         <r>e<s n="adj"/><s n="posi"/><s n="nt"/><s n="sg"/><s n="ind"/></r></p></e>
+  <e>       <p><l>e</l>         <r>e<s n="adj"/><s n="posi"/><s n="pl"/></r></p></e>
+  <e>       <p><l>e</l>         <r>e<s n="adj"/><s n="posi"/><s n="sg"/><s n="def"/></r></p></e>
   <e>       <p><l>st</l>        <r>e<s n="adj"/><s n="sup"/></r></p></e>
 </pardef>
 <pardef n="f/å__adj">
@@ -20945,6 +20940,7 @@
 <e lm="omgås">           <i>omg</i><par n="omg/ås__vblex"/></e>
 <e lm="avgå">            <i>avg</i><par n="g/å__vblex_adj"/></e>
 <e lm="friste">          <i>frist</i><par n="å/e__vblex_adj"/></e>
+<e lm="henge"><i>h</i><par n="h/enge__vblex_adj"/></e>
 <!-- /verbs -->
 
 
@@ -21917,7 +21913,7 @@
 <e lm="trolig">		 <i>trolig</i><par n="tidlig__adj"/></e>
 <e lm="utrolig">	 <i>utrolig</i><par n="tidlig__adj"/></e>
 <e lm="fåfengt">	 <i>fåfengt</i><par n="sort__adj"/></e>
-
+<e lm="gruelig">         <i>gruelig</i><par n="tidlig__adj"/></e>
 
 <!-- todo: make sure the following are in bidix -->
 <e lm="albuelang">       <i>albuel</i><par n="l/ang__adj"/></e>	      
@@ -22883,7 +22879,6 @@
 <e lm="ansvarshavende">  <i>ansvarshavende</i><par n="OK__adj"/></e>
 <e lm="anti">            <i>anti</i><par n="OK__adj"/></e>
 <e lm="arbeidskrevende"> <i>arbeidskrevende</i><par n="OK__adj"/></e>
-<e lm="attende">         <i>attende</i><par n="OK__adj"/></e>
 <e lm="avsides">         <i>avsides</i><par n="OK__adj"/></e>
 <e lm="bra">             <i>b</i><par n="b/ra__adj"/></e>
 <e lm="daværende">       <i>daværende</i><par n="OK__adj"/></e>
@@ -23510,7 +23505,6 @@
 <e lm="vever">           <i>vev</i><par n="mag/er__adj"/></e>
 <e lm="vilter">          <i>vilt</i><par n="mag/er__adj"/></e>
 <e lm="bakre">           <i>bak</i><par n="bak/re__adj"/></e>
-<e lm="tyngst">          <i>tyngst</i><par n="minst__adj"/></e>
 <e lm="ekte">            <i>ekt</i><par n="ekt/e__adj"/></e>
 <e lm="passe">           <i>pass</i><par n="ekt/e__adj"/></e>
 <e lm="rede">            <i>red</i><par n="ekt/e__adj"/></e>
@@ -23618,14 +23612,14 @@
 <e lm="lenge">           <i>leng</i><par n="leng/e__adj"/></e>
 <e lm="likedan">         <i>likedan</i><par n="likedan__adj"/></e>
 <e lm="nær">             <i>nær</i><par n="nær__adj"/></e>
-<e lm="nøye">            <i>nøy</i><par n="nøy/e__adj"/></e>
+<e lm="nøye">            <i>nøye</i><par n="nøye__adj"/></e>
 <e lm="ond">             <i></i><par n="/ond__adj"/></e>
 <e lm="pop">             <i>pop</i><par n="pop__adj"/></e>
 <e lm="ru">              <i>ru</i><par n="mo__adj"/></e>
-<e lm="sakte">           <i>sakt</i><par n="sakt/e__adj"/></e>
+<e lm="sakte">           <i>sakte</i><par n="nøye__adj"/></e>
 <e lm="skitten">         <i>skit</i><par n="råt/ten__adj"/></e>
 <e lm="sky">             <i>sky</i><par n="tru__adj"/></e>
-<e lm="stille">          <i>stil</i><par n="stil/le__adj"/></e>
+<e lm="stille">          <i>stille</i><par n="nøye__adj"/></e>
 <e lm="svimmel">         <i>svim</i><par n="vam/mel__adj"/></e>
 <e lm="titt">            <i>ti</i><par n="ti/tt__adj"/></e>
 <e lm="trippel">         <i>trip</i><par n="trip/pel__adj"/></e>
