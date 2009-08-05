@@ -527,7 +527,7 @@ LIST abj#verk-aktiv-verb2 = "vise"  "selge"  "redigere"  "publisere"  "produsere
 LIST abj#verktype = "verk"  "tv-serie" "triller"  "tidsskrift"  "tegneserie"  "teaterstykke"  "symfony"  "suite"  "stykke"  "sonate"  "skulptur"  "skive"  "seriemester"  "serie"  "sang"  "saga"  "roman"  "program"  "plate"  "opus"  "oppslagsverk"  "operette"  "opera"  "omslag"  "novelle"  "nettsiden"  "maleri"  "magasin"  "låt"  "lp"  "limrik"  "kunstverk"  "komedie"  "hjemmeside"  "historie"  "fortelling"  "film"  "fansine"  "eventyr"  "essay"  "dramaserie"  "drama"  "dokumentar"  "dokument"  "dikt"  "dagblad"  "cover"  "cd"  "bok"  "blad"  "biografi"  "avis"  "artikkel"  "album"  <*lov> <*roman> <*film> <*bok> <*blad> <*program> <*serie> <*teorem> ;
 LIST abj#verktype-farlig = "tv-program" "seriemester"  "program"  "ordbok"  "oppslagsverk"  "lov"  "historie"  "forskningsprogram"  "dokumentar"  <*lov> ;
 LIST aci = "se"  "merke"  "la"  "kjenne"  "høre"  "føle"  "be"  ;
-LIST adj = adj posi ;
+LIST adj = adj ;
 LIST adj-adv-subst-konj = adv adj n np cnjcoo ;
 LIST adj-be = (adj def) (adj pprs) ;
 LIST adj-ent = (adj sg) (adj pprs) ;
@@ -26641,3 +26641,10 @@ SELECT:4081 (adj) IF
 	   (0 bare-adj)
 ;
 
+#:6201
+ REMOVE:6201 (n) IF
+	   (0 adj)
+	   (-1 det)
+	   (1 subst)
+;
+# KBU «det beste<adj, ikkje subst> vilkåret» 
