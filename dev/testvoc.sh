@@ -2,7 +2,8 @@
 
 # Creates some simple lists of the @'s, /'s and #' from the
 # dev/inconsistency.sh scripts, and prints counts for putting on the
-# wiki.
+# wiki. Hmm, I wonder how much work would be involved in being able to
+# say "make testvoc" and run this iff the dix haven't changed.
 
 # Note: ssed used some places instead of sed since Mac OS X sed sucks,
 # haven't bothered with making this general. Either install ssed
