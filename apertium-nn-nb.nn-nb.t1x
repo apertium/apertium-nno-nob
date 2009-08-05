@@ -74,8 +74,8 @@
     </def-attr>
 
     <def-attr n="a_det">
+      <attr-item tags="det"/>
       <attr-item tags="det.emph"/>
-      <attr-item tags="det.def"/>
       <attr-item tags="det.ind"/>
       <attr-item tags="det.dem"/>
       <attr-item tags="det.itg"/>
@@ -138,6 +138,34 @@
       </choose>
     </def-macro>
 
+    <def-macro n="set_number1" npar="1">
+      <!-- arg.1: determiner
+           "Heuristic": If ND, let sp_or_number be sp, while number gets plural.
+      -->
+      <choose>
+        <when>
+	  <test>
+	    <equal><clip pos="1" side="tl" part="nbr"/><lit-tag v="sp"/></equal>
+	  </test>
+	  <let><var n="sp_or_number"/><lit-tag v="sp"/></let>
+	  <let><var n="number"/><lit-tag v="ND"/></let>
+        </when>
+	<otherwise>
+	  <let><var n="sp_or_number"/><clip pos="1" side="tl" part="nbr"/></let>
+	  <let><var n="number"/><clip pos="1" side="tl" part="nbr"/></let>
+	</otherwise>
+      </choose>
+      <choose>
+        <when>
+	  <test>
+	    <equal><clip pos="1" side="tl" part="nbr"/><lit-tag v="ND"/></equal>
+	  </test>
+	  <let><var n="sp_or_number"/><lit-tag v="sp"/></let>
+	  <let><var n="number"/><lit-tag v="pl"/></let>
+        </when>
+      </choose>
+    </def-macro>
+
     <def-macro n="set_number2" npar="2">
       <!-- arg.1: noun, arg.2: determiner (or adjective)
 	   If it's ND, take that of noun, o/w take that of determiner.
@@ -170,6 +198,40 @@
 	  </test>
 	  <let><var n="number"/><clip pos="1" side="tl" part="nbr"/></let>
         </when>
+      </choose>
+    </def-macro>
+
+    <def-macro n="set_gender1" npar="1">
+      <!-- arg.1: determiner
+           - default: keep determiner gender
+           - GD in singular or sp gets m (only nouns may be mf sp)
+           - plurals get no gender
+           - make sure we never translate to f, in case
+	     bidix has errors...
+      -->
+      <call-macro n="set_number1"> 
+	<with-param pos="1" /> 
+      </call-macro>
+      <let><var n="gender"/><clip pos="1" side="tl" part="gen"/></let>
+      <choose>
+        <when>
+	  <test><and>
+	      <or>
+                <equal><var n="sp_or_number"/><lit-tag v="sg"/></equal>
+                <equal><var n="sp_or_number"/><lit-tag v="sp"/></equal>
+              </or>
+	      <equal><var n="gender"/><lit-tag v="GD"/></equal>
+          </and></test>
+	  <let><var n="gender"/><lit-tag v="m"/></let>
+        </when>
+	<when>
+	  <test><equal><var n="sp_or_number"/><lit-tag v="pl"/></equal></test>
+	  <let><var n="gender"/><lit v=""/></let>
+	</when>
+	<when>
+	  <test><equal><var n="gender"/><lit-tag v="f"/></equal></test>
+	  <let><var n="gender"/><lit-tag v="m"/></let>
+	</when>
       </choose>
     </def-macro>
 
@@ -278,6 +340,26 @@
       </action>
     </rule>
 
+    <rule comment="DET: kva => hvilken
+                   If GD, choose m (we never mark determiners mf)">
+      <pattern>
+        <pattern-item n="det"/>
+      </pattern>
+      <action>
+        <call-macro n="set_gender1"><with-param pos="1"/></call-macro>
+        <out>
+          <lu>
+            <clip pos="1" side="tl" part="lemh"/>
+            <clip pos="1" side="tl" part="a_det"/>
+            <var n="gender"/>
+            <var n="sp_or_number"/>
+            <clip pos="1" side="tl" part="art"/>
+	    <clip pos="1" side="tl" part="lemq"/>
+          </lu>
+        </out>
+      </action>
+    </rule>
+
     <rule comment="DET NOM">
       <pattern>						       
         <pattern-item n="det"/>
@@ -329,8 +411,6 @@
         </out>
       </action>
     </rule>
-
-    
     
   </section-rules>
 </transfer>
