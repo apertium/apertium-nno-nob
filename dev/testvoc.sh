@@ -21,7 +21,7 @@ fi
 echo "finding all nn=>nb inconsistencies..."
 ./nn-nb.inconsistency.sh > nn-nb.inconsistency 
 echo "finding nb.@'s..."
-cat nn-nb.inconsistency | grep '@' |sed 's/<n></<n_/g'| sed 's/<adj></<adj_/g' | ssed 's/.*@\([^>]*\).*/\1>/' | uniq > nb.@ 
+cat nn-nb.inconsistency | grep '@' |sed 's/<n></<n_/g'| ssed 's/.*@\([^>]*\).*/\1>/' | uniq > nb.@ 
 echo "finding nb.#'s..."
 cat nn-nb.inconsistency | grep '#' |sed 's/<n></<n_/g'| ssed 's/.*#\([^>]*\).*/\1>/' | uniq > nb.# 
 echo "finding nb.bislash (bidix /'s)..."
@@ -32,7 +32,7 @@ cat nn-nb.inconsistency | grep -v ' --------->.*\/.*--------->' | grep '\/' |sed
 echo "finding all nb=>nn inconsistencies..."
 ./nb-nn.inconsistency.sh > nb-nn.inconsistency 
 echo "finding nn.@'s..."
-cat nb-nn.inconsistency | grep '@' |sed 's/<n></<n_/g'| sed 's/<adj></<adj_/g' | ssed 's/.*@\([^>]*\).*/\1>/' | uniq > nn.@ 
+cat nb-nn.inconsistency | grep '@' |sed 's/<n></<n_/g'| ssed 's/.*@\([^>]*\).*/\1>/' | uniq > nn.@ 
 echo "finding nn.#'s..."
 cat nb-nn.inconsistency | grep '#' |sed 's/<n></<n_/g'| ssed 's/.*#\([^>]*\).*/\1>/' | uniq > nn.# 
 echo "finding nn.bislash (bidix /'s)..."
