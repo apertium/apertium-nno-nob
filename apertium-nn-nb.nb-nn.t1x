@@ -40,6 +40,9 @@
     <def-cat n="adj">
       <cat-item tags="adj.*"/>
     </def-cat>
+    <def-cat n="adv">
+      <cat-item tags="adv"/>
+    </def-cat>
     <def-cat n="vblexinfpass">
       <cat-item tags="vblex.inf.pass"/>
     </def-cat>
@@ -498,6 +501,76 @@
                 <get-case-from pos="1"><lit v="bli"/></get-case-from>	    
                 <lit-tag v="vblex.pres"/>
               </lu>
+              <b/>
+              <lu>	    
+                <clip pos="1" side="tl" part="lem"/>
+                <clip pos="1" side="tl" part="a_verb"/>
+                <lit-tag v="pp"/>
+                <clip pos="1" side="tl" part="lemq"/>
+              </lu>
+            </out>
+        </otherwise></choose>
+      </action>
+    </rule>
+    <rule comment="VBLEX.PRES.PASS ADV: leses ikke => blir ikke lest
+                   Based on the above rule.">
+      <pattern>
+	<pattern-item n="vblexprespass"/>
+	<pattern-item n="adv"/>
+      </pattern>
+      <action>
+        <choose><when>
+          <test><equal>
+            <clip pos="1" side="tl" part="a_verb"/><lit-tag v="vblex.pstv"/>
+          </equal></test>
+          <out><lu><clip pos="1" side="tl" part="whole"/></lu></out>
+          <out><lu><clip pos="2" side="tl" part="whole"/></lu></out>
+          </when>
+          <otherwise>
+            <out>
+              <lu>
+                <get-case-from pos="1"><lit v="bli"/></get-case-from>	    
+                <lit-tag v="vblex.pres"/>
+              </lu>
+              <b pos="1"/>
+              <lu><clip pos="2" side="tl" part="whole"/></lu>
+              <b/>
+              <lu>	    
+                <clip pos="1" side="tl" part="lem"/>
+                <clip pos="1" side="tl" part="a_verb"/>
+                <lit-tag v="pp"/>
+                <clip pos="1" side="tl" part="lemq"/>
+              </lu>
+            </out>
+        </otherwise></choose>
+      </action>
+    </rule>
+    <rule comment="VBLEX.PRES.PASS ADV: leses ikke alltid => blir ikke alltid lest
+                   Based on the above rule.">
+      <pattern>
+	<pattern-item n="vblexprespass"/>
+	<pattern-item n="adv"/>
+	<pattern-item n="adv"/>
+      </pattern>
+      <action>
+        <choose><when>
+          <test><equal>
+            <clip pos="1" side="tl" part="a_verb"/><lit-tag v="vblex.pstv"/>
+          </equal></test>
+          <out><lu><clip pos="1" side="tl" part="whole"/></lu></out>
+          <out><lu><clip pos="2" side="tl" part="whole"/></lu></out>
+          <out><lu><clip pos="3" side="tl" part="whole"/></lu></out>
+          </when>
+          <otherwise>
+            <out>
+              <lu>
+                <get-case-from pos="1"><lit v="bli"/></get-case-from>	    
+                <lit-tag v="vblex.pres"/>
+              </lu>
+              <b pos="1"/>
+              <lu><clip pos="2" side="tl" part="whole"/></lu>
+              <b pos="2"/>
+              <lu><clip pos="3" side="tl" part="whole"/></lu>
               <b/>
               <lu>	    
                 <clip pos="1" side="tl" part="lem"/>
