@@ -45,6 +45,7 @@
     </def-cat>
     <def-cat n="vblexprespass">
       <cat-item tags="vblex.pres.pass"/>
+      <cat-item tags="vblex.pstv.pres"/>
     </def-cat>
   </section-def-cats>
   
@@ -478,24 +479,34 @@
     <rule comment="VBLEX.PRES.PASS: leses => blir lest
                    todo: verb probably should lose possible uppercasing,
                    although it's unlikely to find the passive verb in
-                   the beginning of a sentence">
+                   the beginning of a sentence
+
+                   If we translate into a pstv verb, don't change anything.">
       <pattern>
 	<pattern-item n="vblexprespass"/>
       </pattern>
       <action>
-        <out>
-          <lu>
-            <get-case-from pos="1"><lit v="bli"/></get-case-from>	    
-	    <lit-tag v="vblex.pres"/>
-          </lu>
-	  <b/>
-	  <lu>	    
-            <clip pos="1" side="tl" part="lem"/>
-            <clip pos="1" side="tl" part="a_verb"/>
-	    <lit-tag v="pp"/>
-	    <clip pos="1" side="tl" part="lemq"/>
-          </lu>
-        </out>
+        <choose><when>
+          <test><equal>
+            <clip pos="1" side="tl" part="a_verb"/><lit-tag v="vblex.pstv"/>
+          </equal></test>
+          <out><lu><clip pos="1" side="tl" part="whole"/></lu></out>
+          </when>
+          <otherwise>
+            <out>
+              <lu>
+                <get-case-from pos="1"><lit v="bli"/></get-case-from>	    
+                <lit-tag v="vblex.pres"/>
+              </lu>
+              <b/>
+              <lu>	    
+                <clip pos="1" side="tl" part="lem"/>
+                <clip pos="1" side="tl" part="a_verb"/>
+                <lit-tag v="pp"/>
+                <clip pos="1" side="tl" part="lemq"/>
+              </lu>
+            </out>
+        </otherwise></choose>
       </action>
     </rule>
 
