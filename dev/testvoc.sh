@@ -20,7 +20,7 @@ fi
 
 echo "finding all nn=>nb inconsistencies..."
 ./nn-nb.inconsistency.sh > nn-nb.inconsistency 
-echo "finding nb.@'s..."
+echo "finding nb.@'s..." 
 cat nn-nb.inconsistency | grep '@' |sed 's/<n></<n_/g'| ssed 's/.*@\([^>]*\).*/\1>/' | uniq > nb.@ 
 echo "finding nb.#'s..."
 cat nn-nb.inconsistency | grep '#' |sed 's/<n></<n_/g'| ssed 's/.*#\([^>]*\).*/\1>/' | uniq > nb.# 
