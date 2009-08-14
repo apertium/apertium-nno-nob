@@ -467,7 +467,6 @@
   <e r="LR"><p><l>i</l>         <r><s n="n"/><s n="f"/><s n="sg"/><s n="def"/></r></p></e>
   <e>       <p><l></l>          <r><s n="n"/><s n="f"/><s n="sg"/><s n="ind"/></r></p></e>
 </pardef>
-<!-- /single letters -->
 
 <pardef n="tv__n">
   <e>       <p><l>-ane</l>      <r><s n="n"/><s n="m"/><s n="pl"/><s n="def"/></r></p></e>
@@ -1364,16 +1363,6 @@
   <e>       <p><l>rar</l>       <r>er<s n="n"/><s n="m"/><s n="pl"/><s n="ind"/></r></p></e>
   <e>       <p><l>eren</l>      <r>er<s n="n"/><s n="m"/><s n="sg"/><s n="def"/></r></p></e>
   <e>       <p><l>er</l>        <r>er<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/></r></p></e>
-</pardef>
-<pardef n="BCG-vaksine__n">
-  <e>       <p><l>BCG-vaksinene</l>        <r>BCG-vaksine<s n="n"/><s n="m"/><s n="pl"/><s n="def"/></r></p><par n="S__case"/></e>
-  <e>       <p><l>BCG-vaksiner</l>         <r>BCG-vaksine<s n="n"/><s n="m"/><s n="pl"/><s n="ind"/></r></p><par n="S__case"/></e>
-  <e>       <p><l>BCG-vaksinen</l>         <r>BCG-vaksine<s n="n"/><s n="m"/><s n="sg"/><s n="def"/></r></p><par n="S__case"/></e>
-  <e>       <p><l>BCG-vaksine</l>          <r>BCG-vaksine<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/></r></p><par n="S__case"/></e>
-  <e r="LR"><p><l>bcg-vaksinene</l>        <r>BCG-vaksine<s n="n"/><s n="m"/><s n="pl"/><s n="def"/></r></p><par n="S__case"/></e>
-  <e r="LR"><p><l>bcg-vaksiner</l>         <r>BCG-vaksine<s n="n"/><s n="m"/><s n="pl"/><s n="ind"/></r></p><par n="S__case"/></e>
-  <e r="LR"><p><l>bcg-vaksinen</l>         <r>BCG-vaksine<s n="n"/><s n="m"/><s n="sg"/><s n="def"/></r></p><par n="S__case"/></e>
-  <e r="LR"><p><l>bcg-vaksine</l>          <r>BCG-vaksine<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/></r></p><par n="S__case"/></e>
 </pardef>
 <pardef n="r/e__n">
   <e>       <p><l>ane</l>       <r>e<s n="n"/><s n="m"/><s n="pl"/><s n="def"/></r></p></e>
@@ -3248,6 +3237,97 @@
   <e r="LR"><p><l></l>          <r><s n="n"/><s n="m"/><s n="pl"/><s n="ind"/></r></p></e>
   <e>       <p><l>en</l>        <r><s n="n"/><s n="m"/><s n="sg"/><s n="def"/></r></p></e>
   <e>       <p><l></l>          <r><s n="n"/><s n="m"/><s n="sg"/><s n="ind"/></r></p></e>
+</pardef>
+
+<pardef n="akronym_ord__n">
+  <!-- ord som kan opptre med små eller store bokstavar, men me vil
+       halde oss til ein viss form: -->
+  <e lm="BCG-vaksine">   <i>BCG-vaksin</i><par n="r/e__n"/></e>  
+  <e r="LR"><p>          <l>bcg-vaksin</l><r>BCG-vaksin</r></p><par n="r/e__n"/></e>
+  <e lm="EDB-anlegg">    <i>EDB-anlegg</i><par n="ty__n"/></e>
+  <e r="LR"><p>          <l>edb-anlegg</l><r>EDB-anlegg</r></p><par n="ty__n"/></e>
+  <e lm="EDB-operatør">  <i>EDB-operatør</i><par n="ep__n"/></e>
+  <e r="LR"><p>          <l>edb-operatør</l><r>EDB-operatør</r></p><par n="ep__n"/></e>
+  <e lm="EDB-senter">    <i>EDB-sent</i><par n="hat/er__n"/></e>
+  <e r="LR"><p>          <l>edb-sent</l><r>EDB-sent</r></p><par n="hat/er__n"/></e>
+  <e lm="EDB-sentral">   <i>EDB-sentral</i><par n="ep__n"/></e>
+  <e r="LR"><p>          <l>edb-sentral</l><r>EDB-sentral</r></p><par n="ep__n"/></e>
+  <e lm="EDB-terminal">  <i>EDB-terminal</i><par n="ep__n"/></e>
+  <e r="LR"><p>          <l>edb-terminal</l><r>EDB-terminal</r></p><par n="ep__n"/></e>
+  <e lm="EDB-utstyr">    <i>EDB-utstyr</i><par n="ty__n"/></e>
+  <e r="LR"><p>          <l>edb-utstyr</l><r>EDB-utstyr</r></p><par n="ty__n"/></e>
+  <e lm="NM">            <i>NM</i><par n="VM__n"/></e>
+  <e r="LR"><p>          <l>nm</l><r>NM</r></p><par n="VM__n"/></e>
+  <e lm="AIDS">          <i>AIDS</i><par n="tv__n"/></e>
+  <e r="LR"><p>          <l>aids</l><r>AIDS</r></p><par n="tv__n"/></e>
+  <e lm="AV-middel">     <i>AV-mid</i><par n="molmid/del__n"/></e>
+  <e r="LR"><p>          <l>av-mid</l><r>AV-mid</r></p><par n="molmid/del__n"/></e>
+  <e lm="DDT">           <i>DDT</i><par n="tv__n"/></e>
+  <e r="LR"><p>          <l>ddt</l><r>DDT</r></p><par n="tv__n"/></e>
+  <e lm="DNA">           <i>DNA</i><par n="ty__n"/></e>
+  <e r="LR"><p>          <l>dna</l><r>DNA</r></p><par n="ty__n"/></e>
+  <e lm="DNA-molekyl">   <i>DNA-molekyl</i><par n="ty__n"/></e>
+  <e r="LR"><p>          <l>dna-molekyl</l><r>DNA-molekyl</r></p><par n="ty__n"/></e>
+  <e lm="DV">            <i>DV</i><par n="ep__n"/></e>
+  <e r="LR"><p>          <l>dv</l><r>DV</r></p><par n="ep__n"/></e>
+  <e lm="DVD">           <i>DVD</i><par n="ep__n"/></e>
+  <e r="LR"><p>          <l>dvd</l><r>DVD</r></p><par n="ep__n"/></e>
+  <e lm="EF-land">       <i>EF-land</i><par n="ty__n"/></e>
+  <e r="LR"><p>          <l>ef-land</l><r>EF-land</r></p><par n="ty__n"/></e>
+  <e lm="EM">            <i>EM</i><par n="VM__n"/></e>
+  <e r="LR"><p>          <l>em</l><r>EM</r></p><par n="VM__n"/></e>
+  <e lm="EM-arrangør">   <i>EM-arrangør</i><par n="ep__n"/></e>
+  <e r="LR"><p>          <l>em-arrangør</l><r>EM-arrangør</r></p><par n="ep__n"/></e>
+  <e lm="EM-tittel">     <i>EM-tit</i><par n="tit/tel__n"/></e>
+  <e r="LR"><p>          <l>em-tit</l><r>EM-tit</r></p><par n="tit/tel__n"/></e>
+  <e lm="EP">            <i>EP</i><par n="ep__n"/></e>
+  <e r="LR"><p>          <l>ep</l><r>EP</r></p><par n="ep__n"/></e>
+  <e lm="HB-apparat">    <i>HB-apparat</i><par n="ty__n"/></e>
+  <e r="LR"><p>          <l>hb-apparat</l><r>HB-apparat</r></p><par n="ty__n"/></e>
+  <e lm="HIV-smitte">    <i>HIV-smitt</i><par n="r/e__n"/></e>
+  <e r="LR"><p>          <l>hiv-smitt</l><r>HIV-smitt</r></p><par n="r/e__n"/></e>
+  <e lm="HIV-virus">     <i>HIV-virus</i><par n="ty__n"/></e>
+  <e r="LR"><p>          <l>hiv-virus</l><r>HIV-virus</r></p><par n="ty__n"/></e>
+  <e lm="HV-distrikt">   <i>HV-distrikt</i><par n="ty__n"/></e>
+  <e r="LR"><p>          <l>hv-distrikt</l><r>HV-distrikt</r></p><par n="ty__n"/></e>
+  <e lm="IQ-test">       <i>IQ-test</i><par n="ep__n"/></e>
+  <e r="LR"><p>          <l>iq-test</l><r>IQ-test</r></p><par n="ep__n"/></e>
+  <e lm="MS-pasient">    <i>MS-pasient</i><par n="ep__n"/></e>
+  <e r="LR"><p>          <l>ms-pasient</l><r>MS-pasient</r></p><par n="ep__n"/></e>
+  <e lm="NATO-land">     <i>NATO-land</i><par n="ty__n"/></e>
+  <e r="LR"><p>          <l>nato-land</l><r>NATO-land</r></p><par n="ty__n"/></e>
+  <e lm="PC">            <i>PC</i><par n="ep__n"/></e>
+  <e r="LR"><p>          <l>pc</l><r>PC</r></p><par n="ep__n"/></e>
+  <e lm="PD">            <i>PD</i><par n="ep__n"/></e>
+  <e r="LR"><p>          <l>pd</l><r>PD</r></p><par n="ep__n"/></e>
+  <e lm="PM">            <i>PM</i><par n="VM__n"/></e>
+  <e r="LR"><p>          <l>pm</l><r>PM</r></p><par n="VM__n"/></e>
+  <e lm="PR">            <i>PR</i><par n="tv__n"/></e>
+  <e r="LR"><p>          <l>pr</l><r>PR</r></p><par n="tv__n"/></e>
+  <e lm="SI-system">     <i>SI-system</i><par n="ty__n"/></e>
+  <e r="LR"><p>          <l>si-system</l><r>SI-system</r></p><par n="ty__n"/></e>
+  <e lm="TG-grammatikk"> <i>TG-grammatikk</i><par n="ep__n"/></e>
+  <e r="LR"><p>          <l>tg-grammatikk</l><r>TG-grammatikk</r></p><par n="ep__n"/></e>
+  <e lm="TV">            <i>TV</i><par n="tv__n"/></e>
+  <e r="LR"><p>          <l>tv</l><r>TV</r></p><par n="tv__n"/></e>
+  <e lm="TV-apparat">    <i>TV-apparat</i><par n="ty__n"/></e>
+  <e r="LR"><p>          <l>tv-apparat</l><r>TV-apparat</r></p><par n="ty__n"/></e>
+  <e lm="TV-kjendis">    <i>TV-kjendis</i><par n="ep__n"/></e>
+  <e r="LR"><p>          <l>tv-kjendis</l><r>TV-kjendis</r></p><par n="ep__n"/></e>
+  <e lm="TV-program">    <i>TV-program</i><par n="dim__n"/></e>
+  <e r="LR"><p>          <l>tv-program</l><r>TV-program</r></p><par n="dim__n"/></e>
+  <e lm="TV-skjerm">     <i>TV-skjerm</i><par n="ep__n"/></e>
+  <e r="LR"><p>          <l>tv-skjerm</l><r>TV-skjerm</r></p><par n="ep__n"/></e>
+  <e lm="TV-vert">       <i>TV-vert</i><par n="ep__n"/></e>
+  <e r="LR"><p>          <l>tv-vert</l><r>TV-vert</r></p><par n="ep__n"/></e>
+  <e lm="VM">            <i>VM</i><par n="VM__n"/></e>
+  <e r="LR"><p>          <l>vm</l><r>VM</r></p><par n="VM__n"/></e>
+  <e lm="VVS-ingeniør">  <i>VVS-ingeniør</i><par n="ep__n"/></e>
+  <e r="LR"><p>          <l>vvs-ingeniør</l><r>VVS-ingeniør</r></p><par n="ep__n"/></e>
+  <e lm="farge-TV">      <i>farge-TV</i><par n="tv__n"/></e>
+  <e r="LR"><p>          <l>farge-tv</l><r>farge-TV</r></p><par n="tv__n"/></e>
+  <e lm="LP">            <i>LP</i><par n="ep__n"/></e>
+  <e r="LR"><p>          <l>lp</l><r>LP</r></p><par n="ep__n"/></e>
 </pardef>
 <!-- /common nouns -->
 
@@ -11604,6 +11684,7 @@
 
 <!-- Common nouns -->
 <e lm="alphabet">               <i></i><par n="alphabet__n"/></e>
+<e lm="akronym_ord"><i></i><par n="akronym_ord__n"/></e>
 
 <e lm="b">               <i>b</i><par n="b__n"/></e>
 <e lm="e">               <i>e</i><par n="å__n"/></e>
@@ -11619,8 +11700,6 @@
 <e lm="auto">            <i>auto</i><par n="bo__n"/></e>
 <e lm="eldste">          <i>eldste</i><par n="bo__n"/></e>
 
-<e lm="tv">              <i>tv</i><par n="tv__n"/></e>
-<e lm="pr">              <i>pr</i><par n="tv__n"/></e>
 
 <e lm="km">              <i>km</i><par n="km__n"/></e>
 <e lm="moh">             <i>moh</i><par n="km__n"/></e>
@@ -11967,7 +12046,6 @@
     <e lm="armé"><i>arm</i><par n="id/é__n"/></e>
     <e lm="dokumentasjon"><i>dokumentasjon</i><par n="ep__n"/></e>
     <e lm="arena"><i>arena</i><par n="mon__n"/></e>
-    <e lm="dvd"><i>dvd</i><par n="ep__n"/></e>
     <e lm="bø"><i>bø</i><par n="ty__n"/></e>
     <e lm="enke"><i>enk</i><par n="lø/e__n"/></e>
     <e lm="framkome"><i>framkom</i><par n="kom/e__n"/></e>
@@ -12334,7 +12412,7 @@
 <e lm="utanriksminister"><i>utanriksminist</i><par n="ot/er__n"/></e>
 <e lm="team">            <i>team</i><par n="ty__n"/></e>
 <e lm="western">         <i>western</i><par n="ep__n"/></e>
-<e lm="sto">             <i>sto</i><par n="bu__n"/></e>
+<e lm="sto">             <i>sto</i><par n="ty__n"/></e>
 <e lm="tingvoll">        <i>tingvoll</i><par n="ep__n"/></e>
 <e lm="verktøy">         <i>verktøy</i><par n="ty__n"/></e>
 <e lm="unnatak">         <i>unnatak</i><par n="ty__n"/></e>
@@ -12397,7 +12475,6 @@
 <e lm="varme">           <i>varm</i><par n="r/e__n"/></e>
 <e lm="sommar">          <i>som</i><par n="kum/mar__n"/></e>
 <e lm="stoppe">          <i>stopp</i><par n="lø/e__n"/></e>
-<e lm="VM">              <i>VM</i><par n="VM__n"/></e>
 <e lm="KM">              <i>KM</i><par n="VM__n"/></e>
 <e lm="stoff">           <i>stoff</i><par n="ty__n"/></e>
 <e lm="universitet">     <i>universitet</i><par n="ty__n"/></e>
@@ -12611,7 +12688,7 @@
 <e lm="adel">            <i>ad</i><par n="ad/el__n"/></e>
 <e lm="brent">           <i>brent</i><par n="ep__n"/></e>
 <e lm="høgsterett">      <i>høgsterett</i><par n="ep__n"/></e>
-<e lm="devon">           <i>devon</i><par n="ep__n"/></e>
+<e lm="devon">           <i>devon</i><par n="b__n"/></e>
 <e lm="danske">          <i>dansk</i><par n="r/e__n"/></e>
 <e lm="fotballag">       <i>fotballag</i><par n="ty__n"/></e>
 <e lm="hår">             <i>hår</i><par n="ty__n"/></e>
@@ -12955,7 +13032,6 @@
 <e lm="bilete">          <i>bilet</i><par n="l/e__n"/></e>
 <e lm="etterfølgjar">    <i>etterfølgjar</i><par n="ep__n"/></e>
 <e lm="feste">           <i>fest</i><par n="l/e__n"/></e>
-<e lm="etterlet">        <i>etterlet</i><par n="mon__n"/></e>
 <e lm="hagl">            <i>hagl</i><par n="ty__n"/></e>
 <e lm="infrastruktur">   <i>infrastruktur</i><par n="ep__n"/></e>
 <e lm="brensel">         <i>brens</i><par n="es/el__n"/></e>
@@ -13151,7 +13227,6 @@
 <e lm="guvernør">        <i>guvernør</i><par n="ep__n"/></e>
 <e lm="akutt">           <i>akutt</i><par n="ep__n"/></e>
 <e lm="college">         <i>colleg</i><par n="l/e__n"/></e>
-<e lm="berre">           <i>berr</i><par n="lø/e__n"/></e>
 <e lm="januar">          <i>januar</i><par n="ep__n"/></e>
 <e lm="gard">            <i>gard</i><par n="ep__n"/></e>
 <e lm="gardsbruk">       <i>gardsbruk</i><par n="ty__n"/></e>
@@ -13206,7 +13281,6 @@
 <e lm="blad">            <i>blad</i><par n="ty__n"/></e>
 <e lm="angrep">          <i>angrep</i><par n="ty__n"/></e>
 <e lm="gifte">           <i>gift</i><par n="yr/e__n"/></e>
-<e lm="breie">           <i>brei</i><par n="lø/e__n"/></e>
 <e lm="blautdyr">        <i>blautdyr</i><par n="ty__n"/></e>
 <e lm="følgje">          <i>følgj</i><par n="yr/e__n"/></e>
 <e lm="betaling">        <i>betaling</i><par n="yting__n"/></e>
@@ -13275,8 +13349,8 @@
 <e lm="drikke">          <i>drikk</i><par n="yr/e__n"/></e>
 <e lm="greve">           <i>grev</i><par n="r/e__n"/></e>
 <e lm="greive">          <i>greiv</i><par n="r/e__n"/></e>
-<e lm="grevetittel">     <i>grev</i><par n="tit/tel__n"/></e>
-<e lm="greivetittel">    <i>greiv</i><par n="tit/tel__n"/></e>
+<e lm="grevetittel">     <i>grevetit</i><par n="tit/tel__n"/></e>
+<e lm="greivetittel">    <i>greivetit</i><par n="tit/tel__n"/></e>
 <e lm="force">           <i>forc</i><par n="r/e__n"/></e>
 <e lm="hjort">           <i>hjort</i><par n="ep__n"/></e>
 <e lm="flora">           <i>flora</i><par n="mon__n"/></e>
@@ -13293,7 +13367,6 @@
 <e lm="datamaskin">      <i>datamaskin</i><par n="så__n"/></e>
 <e lm="eksil">           <i>eksil</i><par n="ty__n"/></e>
 <e lm="ære">             <i>ær</i><par n="lø/e__n"/></e>
-<e lm="DNA">             <i>DNA</i><par n="ty__n"/></e>
 <e lm="bere">            <i>ber</i><par n="lø/e__n"/></e>
 <e lm="då">              <i>då</i><par n="ep__n"/></e>
 <e lm="blokk">           <i>blokk</i><par n="så__n"/></e>
@@ -13313,7 +13386,6 @@
 <e lm="friluftsliv">     <i>friluftsliv</i><par n="ty__n"/></e>
 <e lm="blanding">        <i>blanding</i><par n="yting__n"/></e>
 <e lm="herad">           <i>herad</i><par n="ty__n"/></e>
-<e lm="EM">              <i>EM</i><par n="VM__n"/></e>
 <e lm="brukar">          <i>brukar</i><par n="ep__n"/></e>
 <e lm="bryne">           <i>bryn</i><par n="l/e__n"/></e>
 <e lm="drikkevatn">      <i>drikkevatn</i><par n="ty__n"/></e>
@@ -13869,7 +13941,6 @@
 <e lm="jobbar">          <i>jobbar</i><par n="ep__n"/></e>
 <e lm="nåde">            <i>nåd</i><par n="r/e__n"/></e>
 <e lm="naturgass">       <i>naturgass</i><par n="ep__n"/></e>
-<e lm="NM">              <i>NM</i><par n="VM__n"/></e>
 <e lm="konstruksjon">    <i>konstruksjon</i><par n="ep__n"/></e>
 <e lm="nitrogen">        <i>nitrogen</i><par n="ty__n"/></e>
 <e lm="jomfru">          <i>jomfru</i><par n="å__n"/></e>
@@ -14651,7 +14722,6 @@
     <e lm="agronomi"><i>agronomi</i><par n="ep__n"/></e>
     <e lm="agurk"><i>agurk</i><par n="ep__n"/></e>
     <e lm="agurksalat"><i>agurksalat</i><par n="ep__n"/></e>
-    <e lm="aids"><i>aids</i><par n="tv__n"/></e>
     <e lm="aiss"><i>aiss</i><par n="ep__n"/></e>
     <e lm="akademi"><i>akademi</i><par n="ty__n"/></e>
     <e lm="akademisme"><i>akademism</i><par n="r/e__n"/></e>
@@ -15744,7 +15814,6 @@
     <e lm="autorisasjonsprøve"><i>autorisasjonsprøv</i><par n="od/e__n"/></e>
     <e lm="autostrada"><i>autostrada</i><par n="mon__n"/></e>
     <e lm="autovern"><i>autovern</i><par n="ty__n"/></e>
-    <e lm="av-middel"><i>av-mid</i><par n="molmid/del__n"/></e>
     <e lm="aval"><i>aval</i><par n="ep__n"/></e>
     <e lm="avanse"><i>avans</i><par n="r/e__n"/></e>
     <e lm="avansement"><i>avansement</i><par n="ty__n"/></e>
@@ -16315,7 +16384,6 @@
     <e lm="bavian"><i>bavian</i><par n="ep__n"/></e>
     <e lm="bayer"><i>bayer</i><par n="ep__n"/></e>
     <e lm="bazooka"><i>bazooka</i><par n="mon__n"/></e>
-    <e lm="BCG-vaksine"><i></i><par n="BCG-vaksine__n"/></e>
     <e lm="bearnés"><i>bearnés</i><par n="ep__n"/></e>
     <e lm="bearnéssaus"><i>bearnéssaus</i><par n="ep__n"/></e>
     <e lm="beat"><i>beat</i><par n="ep__n"/></e>
@@ -18227,7 +18295,6 @@
     <e lm="daudvekttonn"><i>daudvekttonn</i><par n="ty__n"/></e>
     <e lm="daudvinkel"><i>daudvink</i><par n="ad/el__n"/></e>
     <e lm="davit"><i>davit</i><par n="ep__n"/></e>
-    <e lm="DDT"><i>DDT</i><par n="tv__n"/></e>
     <e lm="debattant"><i>debattant</i><par n="ep__n"/></e>
     <e lm="debet"><i>debet</i><par n="ep__n"/></e>
     <e lm="debilitet"><i>debilitet</i><par n="ep__n"/></e>
@@ -18631,7 +18698,6 @@
     <e lm="djuptrykk"><i>djuptrykk</i><par n="ty__n"/></e>
     <e lm="djupvassfisk"><i>djupvassfisk</i><par n="ep__n"/></e>
     <e lm="djupål"><i>djupål</i><par n="ep__n"/></e>
-    <e lm="DNA-molekyl"><i>DNA-molekyl</i><par n="ty__n"/></e>
     <e lm="dobbe"><i>dobb</i><par n="od/e__n"/></e>
     <e lm="dobbelt-v"><i>dobbelt-v</i><par n="tv__n"/></e>
     <e lm="dobbeltagent"><i>dobbeltagent</i><par n="ep__n"/></e>
@@ -18930,7 +18996,6 @@
     <e lm="duskregn"><i>duskregn</i><par n="ty__n"/></e>
     <e lm="dust"><i>dust</i><par n="or__n"/></e>
     <e lm="dusør"><i>dusør</i><par n="ep__n"/></e>
-    <e lm="DV"><i>DV</i><par n="ep__n"/></e>
     <e lm="dvale"><i>dval</i><par n="r/e__n"/></e>
     <e lm="dvaledrikk"><i>dvaledrikk</i><par n="ep__n"/></e>
     <e lm="dveil"><i>dveil</i><par n="ep__n"/></e>
@@ -19076,12 +19141,6 @@
     <e lm="ecu"><i>ecu</i><par n="lux__n"/></e>
     <e lm="edamer"><i>edamer</i><par n="ep__n"/></e>
     <e lm="edamerost"><i>edamerost</i><par n="ep__n"/></e>
-    <e lm="edb-anlegg"><i>edb-anlegg</i><par n="ty__n"/></e>
-    <e lm="edb-operatør"><i>edb-operatør</i><par n="ep__n"/></e>
-    <e lm="edb-senter"><i>edb-sent</i><par n="hat/er__n"/></e>
-    <e lm="edb-sentral"><i>edb-sentral</i><par n="ep__n"/></e>
-    <e lm="edb-terminal"><i>edb-terminal</i><par n="ep__n"/></e>
-    <e lm="edb-utstyr"><i>edb-utstyr</i><par n="ty__n"/></e>
     <e lm="edd"><i>edd</i><par n="ep__n"/></e>
     <e lm="eddadikt"><i>eddadikt</i><par n="ty__n"/></e>
     <e lm="eddakvad"><i>eddakvad</i><par n="ty__n"/></e>
@@ -19098,7 +19157,6 @@
     <e lm="edruskapsarbeid"><i>edruskapsarbeid</i><par n="ty__n"/></e>
     <e lm="edruskapsdirektorat"><i>edruskapsdirektorat</i><par n="ty__n"/></e>
     <e lm="edruskapsråd"><i>edruskapsråd</i><par n="ty__n"/></e>
-    <e lm="EF-land"><i>EF-land</i><par n="ty__n"/></e>
     <e lm="efedrin"><i>efedrin</i><par n="ep__n"/></e>
     <e lm="efemeride"><i>efemerid</i><par n="r/e__n"/></e>
     <e lm="effektivitet"><i>effektivitet</i><par n="ep__n"/></e>
@@ -19426,8 +19484,6 @@
     <e lm="elvestryk"><i>elvestryk</i><par n="ty__n"/></e>
     <e lm="elvestrøm"><i>elvestrøm</i><par n="ep__n"/></e>
     <e lm="elvesus"><i>elvesus</i><par n="ul__n"/></e>
-    <e lm="EM-arrangør"><i>EM-arrangør</i><par n="ep__n"/></e>
-    <e lm="EM-tittel"><i>EM-tit</i><par n="tit/tel__n"/></e>
     <e lm="emalje"><i>emalj</i><par n="r/e__n"/></e>
     <e lm="emaljelakk"><i>emaljelakk</i><par n="ep__n"/></e>
     <e lm="emaljør"><i>emaljør</i><par n="ep__n"/></e>
@@ -19547,7 +19603,6 @@
     <e lm="entusiast"><i>entusiast</i><par n="ep__n"/></e>
     <e lm="envoyé"><i>envoy</i><par n="id/é__n"/></e>
     <e lm="enzym"><i>enzym</i><par n="ty__n"/></e>
-    <e lm="ep"><i>ep</i><par n="ep__n"/></e>
     <e lm="epidemi"><i>epidemi</i><par n="ep__n"/></e>
     <e lm="epifor"><i>epifor</i><par n="ep__n"/></e>
     <e lm="epifytt"><i>epifytt</i><par n="ep__n"/></e>
@@ -19944,7 +19999,6 @@
     <e lm="faremoment"><i>faremoment</i><par n="ty__n"/></e>
     <e lm="faresignal"><i>faresignal</i><par n="ty__n"/></e>
     <e lm="farfar"><i>farf</i><par n="morf/ar__n"/></e>
-    <e lm="farge-TV"><i>farge-TV</i><par n="tv__n"/></e>
     <e lm="fargeband"><i>fargeband</i><par n="ty__n"/></e>
     <e lm="fargebilde"><i>fargebild</i><par n="l/e__n"/></e>
     <e lm="fargebilete"><i>fargebilet</i><par n="l/e__n"/></e>
@@ -23260,7 +23314,6 @@
     <e lm="havvind"><i>havvind</i><par n="ep__n"/></e>
     <e lm="havål"><i>havål</i><par n="ep__n"/></e>
     <e lm="havørn"><i>havørn</i><par n="ørn__n"/></e>
-    <e lm="hb-apparat"><i>hb-apparat</i><par n="ty__n"/></e>
     <e lm="heat"><i>heat</i><par n="ty__n"/></e>
     <e lm="heddøl"><i>heddøl</i><par n="ep__n"/></e>
     <e lm="hede"><i>hed</i><par n="r/e__n"/></e>
@@ -23568,8 +23621,6 @@
     <e lm="hittegods"><i>hittegods</i><par n="ty__n"/></e>
     <e lm="hittegodskontor"><i>hittegodskontor</i><par n="ty__n"/></e>
     <e lm="hittfolk"><i>hittfolk</i><par n="ty__n"/></e>
-    <e lm="hiv-smitte"><i>hiv-smitt</i><par n="r/e__n"/></e>
-    <e lm="hiv-virus"><i>hiv-virus</i><par n="ty__n"/></e>
     <e lm="hivert"><i>hivert</i><par n="ep__n"/></e>
     <e lm="hjalt"><i>hjalt</i><par n="ty__n"/></e>
     <e lm="hjartefeil"><i>hjartefeil</i><par n="feil__n"/></e>
@@ -23945,7 +23996,6 @@
     <e lm="husvert"><i>husvert</i><par n="ep__n"/></e>
     <e lm="husvære"><i>husvær</i><par n="l/e__n"/></e>
     <e lm="husøkonom"><i>husøkonom</i><par n="ep__n"/></e>
-    <e lm="HV-distrikt"><i>HV-distrikt</i><par n="ty__n"/></e>
     <e lm="HV-område"><i>HV-områd</i><par n="l/e__n"/></e>
     <e lm="hy"><i>hy</i><par n="ty__n"/></e>
     <e lm="hyasint"><i>hyasint</i><par n="ep__n"/></e>
@@ -24688,7 +24738,6 @@
     <e lm="ionium"><i>ionium</i><par n="ty__n"/></e>
     <e lm="ionometer"><i>ionomet</i><par n="hat/er__n"/></e>
     <e lm="ionosfære"><i>ionosfær</i><par n="r/e__n"/></e>
-    <e lm="IQ-test"><i>IQ-test</i><par n="ep__n"/></e>
     <e lm="ir"><i>ir</i><par n="ep__n"/></e>
     <e lm="ire"><i>ir</i><par n="r/e__n"/></e>
     <e lm="iridium"><i>iridium</i><par n="ty__n"/></e>
@@ -28713,7 +28762,6 @@
     <e lm="lovord"><i>lovord</i><par n="ty__n"/></e>
     <e lm="lovott"><i>lovott</i><par n="ep__n"/></e>
     <e lm="lovtekst"><i>lovtekst</i><par n="så__n"/></e>
-    <e lm="lp"><i>lp</i><par n="ep__n"/></e>
     <e lm="lsd-rus"><i>lsd-rus</i><par n="ul__n"/></e>
     <e lm="lubb"><i>lubb</i><par n="ep__n"/></e>
     <e lm="lubbe"><i>lubb</i><par n="od/e__n"/></e>
@@ -30225,7 +30273,6 @@
     <e lm="motvilje"><i>motvilj</i><par n="r/e__n"/></e>
     <e lm="motvind"><i>motvind</i><par n="ep__n"/></e>
     <e lm="moulinégarn"><i>moulinégarn</i><par n="ty__n"/></e>
-    <e lm="ms-pasient"><i>ms-pasient</i><par n="ep__n"/></e>
     <e lm="mudd"><i>mudd</i><par n="ep__n"/></e>
     <e lm="mudder"><i>mudder</i><par n="ty__n"/></e>
     <e lm="mudderapparat"><i>mudderapparat</i><par n="ty__n"/></e>
@@ -30603,7 +30650,6 @@
     <e lm="natalitet"><i>natalitet</i><par n="ep__n"/></e>
     <e lm="nativisme"><i>nativism</i><par n="r/e__n"/></e>
     <e lm="nativitet"><i>nativitet</i><par n="ep__n"/></e>
-    <e lm="Nato-land"><i>Nato-land</i><par n="ty__n"/></e>
     <e lm="natrium"><i>natrium</i><par n="ty__n"/></e>
     <e lm="natriumhydrogenkarbonat"><i>natriumhydrogenkarbonat</i><par n="ty__n"/></e>
     <e lm="natriumhydroksid"><i>natriumhydroksid</i><par n="ty__n"/></e>
@@ -32062,8 +32108,6 @@
     <e lm="pavedømme"><i>pavedømm</i><par n="l/e__n"/></e>
     <e lm="paviljong"><i>paviljong</i><par n="ep__n"/></e>
     <e lm="paviljongsystem"><i>paviljongsystem</i><par n="ty__n"/></e>
-    <e lm="pc"><i>pc</i><par n="ep__n"/></e>
-    <e lm="pd"><i>pd</i><par n="ep__n"/></e>
     <e lm="peanøttsmør"><i>peanøttsmør</i><par n="ty__n"/></e>
     <e lm="peau de pêche"><i>peau de<b/>pêch</i><par n="r/e__n"/></e>
     <e lm="pedagog"><i>pedagog</i><par n="ep__n"/></e>
@@ -32466,7 +32510,6 @@
     <e lm="pluviograf"><i>pluviograf</i><par n="ep__n"/></e>
     <e lm="pluviometer"><i>pluviomet</i><par n="hat/er__n"/></e>
     <e lm="plysj"><i>plysj</i><par n="ep__n"/></e>
-    <e lm="pm"><i>pm</i><par n="VM__n"/></e>
     <e lm="pneumatikk"><i>pneumatikk</i><par n="ep__n"/></e>
     <e lm="pocket"><i>pocket</i><par n="ep__n"/></e>
     <e lm="podagra"><i>podagra</i><par n="soya__n"/></e>
@@ -35094,7 +35137,6 @@
     <e lm="shorts"><i>shorts</i><par n="knop__n"/></e>
     <e lm="shovel"><i>shov</i><par n="ad/el__n"/></e>
     <e lm="shunt"><i>shunt</i><par n="ep__n"/></e>
-    <e lm="SI-system"><i>SI-system</i><par n="ty__n"/></e>
     <e lm="sideback"><i>sideback</i><par n="ep__n"/></e>
     <e lm="sidebein"><i>sidebein</i><par n="ty__n"/></e>
     <e lm="sideblikk"><i>sideblikk</i><par n="ty__n"/></e>
@@ -39010,7 +39052,6 @@
     <e lm="tettegras"><i>tettegras</i><par n="ty__n"/></e>
     <e lm="tev"><i>tev</i><par n="ep__n"/></e>
     <e lm="tevatn"><i>tevatn</i><par n="ty__n"/></e>
-    <e lm="tg-grammatikk"><i>tg-grammatikk</i><par n="ep__n"/></e>
     <e lm="thailending"><i>thailending</i><par n="ep__n"/></e>
     <e lm="thalidomid"><i>thalidomid</i><par n="ty__n"/></e>
     <e lm="thalidomidbarn"><i>thalidomidb</i><par n="b/arn__n"/></e>
@@ -40032,11 +40073,6 @@
     <e lm="tutsi"><i>tutsi</i><par n="ep__n"/></e>
     <e lm="tutt"><i>tutt</i><par n="ep__n"/></e>
     <e lm="tuttifrutti"><i>tuttifrutti</i><par n="ep__n"/></e>
-    <e lm="tv-apparat"><i>tv-apparat</i><par n="ty__n"/></e>
-    <e lm="tv-kjendis"><i>tv-kjendis</i><par n="ep__n"/></e>
-    <e lm="tv-program"><i>tv-program</i><par n="dim__n"/></e>
-    <e lm="tv-skjerm"><i>tv-skjerm</i><par n="ep__n"/></e>
-    <e lm="tv-vert"><i>tv-vert</i><par n="ep__n"/></e>
     <e lm="tvangsakkord"><i>tvangsakkord</i><par n="ep__n"/></e>
     <e lm="tvangsarbeid"><i>tvangsarbeid</i><par n="ty__n"/></e>
     <e lm="tvangsauksjon"><i>tvangsauksjon</i><par n="ep__n"/></e>
@@ -41995,7 +42031,6 @@
     <e lm="vurderingsmåte"><i>vurderingsmåt</i><par n="r/e__n"/></e>
     <e lm="vurderingsorgan"><i>vurderingsorgan</i><par n="ty__n"/></e>
     <e lm="vurderingsspørsmål"><i>vurderingsspørsmål</i><par n="ty__n"/></e>
-    <e lm="VVS-ingeniør"><i>VVS-ingeniør</i><par n="ep__n"/></e>
     <e lm="vy"><i>vy</i><par n="ep__n"/></e>
     <e lm="våde"><i>våd</i><par n="r/e__n"/></e>
     <e lm="vådedrap"><i>vådedrap</i><par n="ty__n"/></e>
