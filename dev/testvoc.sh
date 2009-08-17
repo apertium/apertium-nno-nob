@@ -5,6 +5,10 @@
 # wiki. Hmm, I wonder how much work would be involved in being able to
 # say "make testvoc" and run this iff the dix haven't changed.
 
+# Important: check the (bi)slash files before the hash files, since
+# any slash implies a hash. Hmm, I should probaby grep -v
+# those... after version 0.6 is out.
+
 # Note: ssed used some places instead of sed since Mac OS X sed sucks,
 # haven't bothered with making this general. Either install ssed
 # (eg. from Macports) make a symlink.
