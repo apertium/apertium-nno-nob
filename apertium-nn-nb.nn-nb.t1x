@@ -191,6 +191,14 @@
         <let><var n="n_number"/><clip pos="1" side="tl" part="nbr"/></let>
       </when>
       </choose>
+      
+      <choose><when>
+        <test><or>
+          <equal><clip pos="1" side="tl" part="a_nom"/><lit-tag v="np"/></equal>
+          <equal><clip pos="1" side="tl" part="a_nom"/><lit-tag v="np.top"/></equal>
+        </or></test>
+        <let><var n="n_number"/><lit v=""/></let>
+      </when></choose>
     </def-macro>
 
     <def-macro n="set_gender1" npar="1">
