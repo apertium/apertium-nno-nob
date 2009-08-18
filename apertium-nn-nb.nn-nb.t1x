@@ -194,6 +194,12 @@
 	  <let><var n="sp_or_number"/><clip pos="1" side="tl" part="nbr"/></let>
         </when>
       </choose>
+      <choose><when>
+        <test>
+          <equal><var n="number"/><lit v=""/></equal>
+        </test>
+        <let><var n="sp_or_number"/><clip pos="1" side="tl" part="nbr"/></let>
+      </when></choose>
       <choose>
         <when>
 	  <test>
