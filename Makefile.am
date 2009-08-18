@@ -10,7 +10,7 @@ TARGETS_COMMON = $(PREFIX1).automorf.bin $(PREFIX1).autobil.bin $(PREFIX1).autog
      $(PREFIX2).automorf.bin $(PREFIX2).autobil.bin \
      $(PREFIX2).autogen.bin \
      $(PREFIX1).t1x.bin $(PREFIX1).rlx.bin $(PREFIX2).rlx.bin \
-     $(PREFIX2).t1x.bin
+     $(PREFIX2).t1x.bin 
 
 #    $(PREFIX1).autopgen.bin $(PREFIX2).autopgen.bin 
 
@@ -86,11 +86,11 @@ clean-dicts:
 apertium_nn_nbdir=$(prefix)/share/apertium/apertium-$(PREFIX1)/
 apertium_nn_modesdir=$(prefix)/share/apertium/modes/
 
-$(PREFIX1).mode: modes.xml 
+modes/$(PREFIX1).mode: modes.xml
 	apertium-gen-modes modes.xml
 	cp *.mode modes/
 
-$(PREFIX2).mode: modes.xml 
+modes/$(PREFIX2).mode: modes.xml 
 	apertium-gen-modes modes.xml
 	cp *.mode modes/
 
@@ -100,18 +100,22 @@ apertium_nn_nb_DATA=$(PREFIX1).automorf.bin $(PREFIX2).automorf.bin \
                     $(PREFIX1).prob $(PREFIX2).prob \
 		    $(PREFIX1).t1x.bin $(PREFIX1).rlx.bin $(PREFIX2).rlx.bin \
 		    $(PREFIX2).t1x.bin \
-	            $(PREFIX1).mode $(PREFIX2).mode modes.xml
+	            modes/$(PREFIX1).mode modes/$(PREFIX2).mode modes.xml
 
 #                    $(PREFIX1).autopgen.bin 
 #                    $(PREFIX2).autopgen.bin 
 
 install-data-local:
+	mv modes modes.bak
 	apertium-gen-modes modes.xml apertium-$(PREFIX1)
-	mkdir -p $(apertium_nn_modesdir)
+	rm -rf modes
+	mv modes.bak modes
+	test -d $(apertium_nn_modesdir) || mkdir $(apertium_nn_modesdir)
 	$(INSTALL_DATA) $(PREFIX1).mode $(apertium_nn_modesdir)
 	$(INSTALL_DATA) $(PREFIX2).mode $(apertium_nn_modesdir)
+	rm $(PREFIX1).mode $(PREFIX2).mode
 	$(INSTALL_DATA) $(BASENAME).$(PREFIX1).t1x $(apertium_nn_nbdir)
 	$(INSTALL_DATA) $(BASENAME).$(PREFIX2).t1x $(apertium_nn_nbdir)
-	cp -p *.mode modes/
+
 
 CLEANFILES = -rf $(TARGETS_COMMON) modes
