@@ -115,9 +115,9 @@
 
   <section-def-vars>
     <def-var n="gender"/>
-    <def-var n="sp_or_number"/>
+    <def-var n="pre_number"/>
     <def-var n="mf_or_gender"/>  
-    <def-var n="number"/>  
+    <def-var n="n_number"/>  
   </section-def-vars>
 
   <section-def-macros>
@@ -143,19 +143,17 @@
 
     <def-macro n="set_number1" npar="1">
       <!-- arg.1: determiner
-           "Heuristic": If ND, let sp_or_number be sp, while number gets plural.
+           "Heuristic": If ND, let pre_number be sp
       -->
       <choose>
         <when>
 	  <test>
 	    <equal><clip pos="1" side="tl" part="nbr"/><lit-tag v="sp"/></equal>
 	  </test>
-	  <let><var n="sp_or_number"/><lit-tag v="sp"/></let>
-	  <let><var n="number"/><lit-tag v="ND"/></let>
+	  <let><var n="pre_number"/><lit-tag v="sp"/></let>
         </when>
 	<otherwise>
-	  <let><var n="sp_or_number"/><clip pos="1" side="tl" part="nbr"/></let>
-	  <let><var n="number"/><clip pos="1" side="tl" part="nbr"/></let>
+	  <let><var n="pre_number"/><clip pos="1" side="tl" part="nbr"/></let>
 	</otherwise>
       </choose>
       <choose>
@@ -163,8 +161,7 @@
 	  <test>
 	    <equal><clip pos="1" side="tl" part="nbr"/><lit-tag v="ND"/></equal>
 	  </test>
-	  <let><var n="sp_or_number"/><lit-tag v="sp"/></let>
-	  <let><var n="number"/><lit-tag v="pl"/></let>
+	  <let><var n="pre_number"/><lit-tag v="sp"/></let>
         </when>
       </choose>
     </def-macro>
@@ -172,41 +169,25 @@
     <def-macro n="set_number2" npar="2">
       <!-- arg.1: noun, arg.2: determiner (or adjective)
 	   If it's ND, take that of noun, o/w take that of determiner.
+           If determiner is sp or nil, or noun is sp, take that of noun.
       -->
-      <choose>
-        <when>
-	  <test>
-	    <equal><clip pos="2" side="tl" part="nbr"/><lit-tag v="sp"/></equal>
-	  </test>
-	  <let><var n="sp_or_number"/><lit-tag v="sp"/></let>
-	  <let><var n="number"/><lit-tag v="ND"/></let>
-        </when>
-	<otherwise>
-	  <let><var n="number"/><clip pos="2" side="tl" part="nbr"/></let>
-	  <let><var n="sp_or_number"/><clip pos="2" side="tl" part="nbr"/></let>
-	</otherwise>
-      </choose>
-      <choose>
-        <when>
-	  <test>
-	    <equal><var n="sp_or_number"/><lit-tag v="ND"/></equal>
-	  </test>
-	  <let><var n="sp_or_number"/><clip pos="1" side="tl" part="nbr"/></let>
-        </when>
-      </choose>
+      <let><var n="pre_number"/><clip pos="2" side="tl" part="nbr"/></let>
+      
       <choose><when>
-        <test>
-          <equal><var n="number"/><lit v=""/></equal>
-        </test>
-        <let><var n="sp_or_number"/><clip pos="1" side="tl" part="nbr"/></let>
+	  <test><equal><var n="pre_number"/><lit-tag v="ND"/></equal></test>
+          <let><var n="pre_number"/><clip pos="1" side="tl" part="nbr"/></let>
       </when></choose>
-      <choose>
-        <when>
-	  <test>
-	    <equal><var n="number"/><lit-tag v="ND"/></equal>
-	  </test>
-	  <let><var n="number"/><clip pos="1" side="tl" part="nbr"/></let>
-        </when>
+      
+      <let><var n="n_number"/>    <var n="pre_number"/></let>
+      
+      <choose><when>
+        <test><or>
+          <equal><var n="n_number"/><lit-tag v="sp"/></equal>
+          <equal><var n="n_number"/><lit v=""/></equal>
+          <equal><clip pos="1" side="tl" part="nbr"/><lit-tag v="sp"/></equal>
+        </or></test>
+        <let><var n="n_number"/><clip pos="1" side="tl" part="nbr"/></let>
+      </when>
       </choose>
     </def-macro>
 
@@ -226,15 +207,15 @@
         <when>
 	  <test><and>
 	      <or>
-                <equal><var n="sp_or_number"/><lit-tag v="sg"/></equal>
-                <equal><var n="sp_or_number"/><lit-tag v="sp"/></equal>
+                <equal><var n="pre_number"/><lit-tag v="sg"/></equal>
+                <equal><var n="pre_number"/><lit-tag v="sp"/></equal>
               </or>
 	      <equal><var n="gender"/><lit-tag v="GD"/></equal>
           </and></test>
 	  <let><var n="gender"/><lit-tag v="m"/></let>
         </when>
 	<when>
-	  <test><equal><var n="sp_or_number"/><lit-tag v="pl"/></equal></test>
+	  <test><equal><var n="pre_number"/><lit-tag v="pl"/></equal></test>
 	  <let><var n="gender"/><lit v=""/></let>
 	</when>
 	<when>
@@ -260,7 +241,7 @@
         <when>
 	  <test>
 	    <and>
-	      <equal><var n="sp_or_number"/><lit-tag v="sg"/></equal>
+	      <equal><var n="pre_number"/><lit-tag v="sg"/></equal>
 	      <equal><clip pos="2" side="tl" part="gen"/><lit-tag v="GD"/></equal>
 	    </and>
 	  </test>
@@ -268,7 +249,7 @@
         </when>
 	<when>
 	  <test>
-	    <equal><var n="sp_or_number"/><lit-tag v="pl"/></equal>
+	    <equal><var n="pre_number"/><lit-tag v="pl"/></equal>
 	  </test>
 	  <let><var n="gender"/><lit v=""/></let>
 	</when>
@@ -407,7 +388,7 @@
             <clip pos="1" side="tl" part="lemh"/>
             <clip pos="1" side="tl" part="a_det"/>
             <var n="gender"/>
-            <var n="sp_or_number"/>
+            <var n="pre_number"/>
             <clip pos="1" side="tl" part="art"/>
 	    <clip pos="1" side="tl" part="lemq"/>
           </lu>
@@ -421,24 +402,25 @@
         <pattern-item n="nom"/>
       </pattern>
       <action>
-	<call-macro n="set_gender2"> 
-	<with-param pos="2" />
-	<with-param pos="1" /> 
-      </call-macro>
+        <call-macro n="set_gender2"> 
+          <with-param pos="2" />
+          <with-param pos="1" /> 
+        </call-macro>
         <out>
           <lu>
-            <clip pos="1" side="tl" part="lem"/>
+            <clip pos="1" side="tl" part="lemh"/>
             <clip pos="1" side="tl" part="a_det"/>
             <var n="gender"/>
-	    <var n="sp_or_number"/>
+	    <var n="pre_number"/>
 	    <clip pos="1" side="tl" part="art"/>
+            <clip pos="1" side="tl" part="lemq"/>
           </lu>
           <b pos="1"/>
           <lu>
 	    <clip pos="2" side="tl" part="lemh"/>
             <clip pos="2" side="tl" part="a_nom"/>
             <clip pos="2" side="tl" part="gen"/>
-	    <var n="number"/>
+	    <var n="n_number"/>
             <clip pos="2" side="tl" part="art"/>
 	    <clip pos="2" side="tl" part="cas"/>	     
 	    <clip pos="2" side="tl" part="lemq"/>
