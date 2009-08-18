@@ -174,22 +174,25 @@
       sets number and n_number
       <adj><pp> doesn't have a number, so in that case use noun
       -->
-      <call-macro n="set_number1"><with-param pos="2"/></call-macro>
-      <choose>
-        <when>
-          <test><equal><clip pos="1" side="tl" part="nbr"/><lit-tag v="sp"/></equal></test>
-          <let><var n="n_number"/><lit-tag v="sp"/></let>
-        </when>
-        <otherwise>
-          <let><var n="n_number"/><var n="number"/></let>
-        </otherwise>
-      </choose>
+      <let><var n="number"/><clip pos="2" side="tl" part="nbr"/></let>
+      
       <choose><when>
-        <test>
-          <equal><var n="number"/><lit v=""/></equal>
-        </test>
-        <let><var n="n_number"/><clip pos="1" side="tl" part="nbr"/></let>
+	  <test><equal><var n="number"/><lit-tag v="ND"/></equal></test>
+          <let><var n="number"/><clip pos="1" side="tl" part="nbr"/></let>
       </when></choose>
+      
+      <let><var n="n_number"/>    <var n="number"/></let>
+      
+      <choose><when>
+        <test><or>
+          <equal><var n="n_number"/><lit-tag v="sp"/></equal>
+          <equal><var n="n_number"/><lit v=""/></equal>
+          <equal><clip pos="1" side="tl" part="nbr"/><lit-tag v="sp"/></equal>
+        </or></test>
+        <let><var n="n_number"/><clip pos="1" side="tl" part="nbr"/></let>
+      </when>
+      </choose>
+      
       <choose><when>
         <test><or>
           <equal><clip pos="1" side="tl" part="a_nom"/><lit-tag v="np"/></equal>
@@ -197,6 +200,7 @@
         </or></test>
         <let><var n="n_number"/><lit v=""/></let>
       </when></choose>
+      <call-macro n="set_number1"><with-param pos="2"/></call-macro>
     </def-macro>
 
     <def-macro n="set_case" npar="1">
@@ -1301,7 +1305,6 @@
       <action>
         <call-macro n="set_gender1"><with-param pos="1"/></call-macro>
         <call-macro n="set_adj_gender"><with-param pos="2"/></call-macro>
-        <call-macro n="set_adj_number"><with-param pos="2"/></call-macro>
         <choose><when>
           <test><equal><var n="gender"/><lit-tag v="GD"/></equal></test>
           <let><var n="gender"/><lit-tag v="m"/></let>
@@ -1320,7 +1323,7 @@
             <clip pos="2" side="tl" part="lemh"/>
             <clip pos="2" side="tl" part="a_adj"/>
             <var n="adj_gender"/>
-            <var n="adj_number"/>
+            <clip pos="2" side="tl" part="nbr"/>
       	    <clip pos="2" side="tl" part="art"/>
 	    <clip pos="2" side="tl" part="lemq"/>
           </lu>
