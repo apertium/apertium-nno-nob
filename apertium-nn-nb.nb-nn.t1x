@@ -786,6 +786,82 @@
         </out>
       </action>
     </rule>
+    <rule comment="ADJ NGEN: lille mannens => lille mannen sin
+                   Very heuristic fallback rule  (needed since we have an
+                   ADJ NOM rule below)">
+      <pattern>
+        <pattern-item n="adj"/>
+        <pattern-item n="ngen"/>
+      </pattern>
+      <action>
+        <call-macro n="set_gender1"><with-param pos="2"/></call-macro>
+        <choose>					       
+          <when>
+            <test>
+              <equal><var n="number"/><lit-tag v="sp"/></equal>
+            </test>
+            <let><var n="number"/><lit-tag v="pl"/></let>
+            <let><var n="gender"/><lit v=""/></let>
+          </when>
+        </choose>
+        <out>
+          <lu><clip pos="1" side="tl" part="whole"/></lu> <b pos="1"/>
+          <lu>
+            <clip pos="2" side="tl" part="lemh"/>
+            <clip pos="2" side="tl" part="a_nom"/>
+            <clip pos="2" side="tl" part="gen"/>
+            <clip pos="2" side="tl" part="nbr"/>
+            <clip pos="2" side="tl" part="art"/>
+            <clip pos="2" side="tl" part="lemq"/>
+          </lu>
+          <b/>
+          <lu><lit v="sin"/>
+          <lit-tag v="det.pos"/>
+          <var n="gender"/>
+          <var n="number"/>
+          </lu> 
+        </out>
+      </action>
+    </rule>
+    <rule comment="DETNONPOS ADJ NGEN: den lille mannens => den lille mannen sin
+                   Very heuristic fallback rule (needed since we have a
+                   DETNONPOS ADJ NOM rule below)">
+      <pattern>
+        <pattern-item n="detnonpos"/>
+        <pattern-item n="adj"/>
+        <pattern-item n="ngen"/>
+      </pattern>
+      <action>
+        <call-macro n="set_gender1"><with-param pos="3"/></call-macro>
+        <choose>					       
+          <when>
+            <test>
+              <equal><var n="number"/><lit-tag v="sp"/></equal>
+            </test>
+            <let><var n="number"/><lit-tag v="pl"/></let>
+            <let><var n="gender"/><lit v=""/></let>
+          </when>
+        </choose>
+        <out>
+          <lu><clip pos="1" side="tl" part="whole"/></lu> <b pos="1"/>
+          <lu><clip pos="2" side="tl" part="whole"/></lu> <b pos="2"/>
+          <lu>
+            <clip pos="3" side="tl" part="lemh"/>
+            <clip pos="3" side="tl" part="a_nom"/>
+            <clip pos="3" side="tl" part="gen"/>
+            <clip pos="3" side="tl" part="nbr"/>
+            <clip pos="3" side="tl" part="art"/>
+            <clip pos="3" side="tl" part="lemq"/>
+          </lu>
+          <b/>
+          <lu><lit v="sin"/>
+          <lit-tag v="det.pos"/>
+          <var n="gender"/>
+          <var n="number"/>
+          </lu> 
+        </out>
+      </action>
+    </rule>
 
 
     <!-- POSGEN ADJ* NIND: -->
@@ -1178,7 +1254,6 @@
       </action>
     </rule>
 
-
     
 
     <!-- Other determiner/noun phrases -->
@@ -1267,7 +1342,7 @@
 		   example, hus being ind should give plural).
                    
                    We include case here since this should catch proper as well as common nouns,
-                   and earlier rules should catch any regular possessive noun phrases.">
+                   and earlier rules should catch any _possessive_ noun phrases.">
       <pattern>
         <pattern-item n="adj"/>
         <pattern-item n="nom"/>
@@ -1341,7 +1416,7 @@
 		   determiner; so we have an extra test to set adj_gender.
                    
                    We include case here since this should catch proper as well as common nouns,
-                   and earlier rules should catch any regular possessive noun phrases.">
+                   and earlier rules should catch any _possessive_ noun phrases.">
       <pattern>
         <pattern-item n="detnonpos"/>
         <pattern-item n="adj"/>
