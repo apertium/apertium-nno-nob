@@ -22,6 +22,11 @@ then
     exit 1
 fi
 
+echo "MWE's are not captured by the inconsistency scripts, finding those first:"
+cat ../apertium-nn-nb.nn.dix |grep '<e lm="[^"]* '|sed 's/">.*//'|sed 's/.*"//'|apertium nn-nb| grep '[#@]'
+cat ../apertium-nn-nb.nb.dix |grep '<e lm="[^"]* '|sed 's/">.*//'|sed 's/.*"//'|apertium nb-nn| grep '[#@]'
+
+
 echo "finding all nn=>nb inconsistencies..."
 ./nn-nb.inconsistency.sh > nn-nb.inconsistency 
 echo "finding nb.@'s..." 
