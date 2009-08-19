@@ -7,6 +7,9 @@
       <cat-item tags="n.*"/>
       <cat-item tags="np.*"/>
     </def-cat>
+    <def-cat n="nacr">
+      <cat-item tags="n.acr"/>
+    </def-cat>
     <def-cat n="nind">
       <cat-item tags="n.*.*.ind"/>
     </def-cat>
@@ -55,6 +58,7 @@
   <section-def-attrs>
     <def-attr n="a_nom">
       <attr-item tags="n"/>
+      <attr-item tags="n.acr"/>
       <attr-item tags="np"/>
       <attr-item tags="np.top"/>
     </def-attr>
@@ -1273,6 +1277,20 @@
             <clip pos="1" side="tl" part="art"/>
 	    <clip pos="1" side="tl" part="lemq"/>
           </lu>
+        </out>
+      </action>
+    </rule>
+        
+    <rule comment="DET NACR: eit kl => et kl">
+      <pattern>						       
+        <pattern-item n="det"/>
+        <pattern-item n="nacr"/>
+      </pattern>
+      <action>
+        <out>
+          <lu><clip pos="1" side="tl" part="whole"/></lu>
+          <b pos="1"/>
+          <lu><clip pos="2" side="tl" part="whole"/></lu>
         </out>
       </action>
     </rule>
