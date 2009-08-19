@@ -1264,7 +1264,10 @@
 	           np får ikkje noko tal i den siste.
 		   We let CG disambiguate art and nbr using the following noun,
 		   o/w all info should be in the adjective wordform (eg. in the above
-		   example, hus being ind should give plural).">
+		   example, hus being ind should give plural).
+                   
+                   We include case here since this should catch proper as well as common nouns,
+                   and earlier rules should catch any regular possessive noun phrases.">
       <pattern>
         <pattern-item n="adj"/>
         <pattern-item n="nom"/>
@@ -1291,6 +1294,7 @@
             <clip pos="2" side="tl" part="gen"/>
 	    <var n="n_number"/>
 	    <var n="n_defness"/>
+            <clip pos="2" side="tl" part="cas"/>
 	    <clip pos="2" side="tl" part="lemq"/>
           </lu>
         </out>
@@ -1334,7 +1338,10 @@
     <rule comment="DETNONPOS ADJ NOM: en(mf) viktig(mf) dag(m) => ein(m) viktig(mf) dag(m)
                                       denne viktige dag => denne viktige dagen
 		   Note that the adjective might have different gender specificity from the
-		   determiner; so we have an extra test to set adj_gender.">
+		   determiner; so we have an extra test to set adj_gender.
+                   
+                   We include case here since this should catch proper as well as common nouns,
+                   and earlier rules should catch any regular possessive noun phrases.">
       <pattern>
         <pattern-item n="detnonpos"/>
         <pattern-item n="adj"/>
@@ -1361,7 +1368,7 @@
             <clip pos="2" side="tl" part="lemh"/>
             <clip pos="2" side="tl" part="a_adj"/>
             <var n="adj_gender"/>
-            <var n="adj_number"/>
+      	    <clip pos="2" side="tl" part="nbr"/>
       	    <clip pos="2" side="tl" part="art"/>
 	    <clip pos="2" side="tl" part="lemq"/>
           </lu>
@@ -1372,6 +1379,7 @@
             <clip pos="3" side="tl" part="gen"/>
             <clip pos="3" side="tl" part="nbr"/>
 	    <var n="n_defness"/>
+            <clip pos="3" side="tl" part="cas"/>
 	    <clip pos="3" side="tl" part="lemq"/>
           </lu>
         </out>
