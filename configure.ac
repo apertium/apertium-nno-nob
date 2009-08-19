@@ -5,6 +5,7 @@
 AC_PREREQ(2.52)
 
 m4_define([required_apertium_version], [3.0.0])
+m4_define([required_lttolbox_version], [3.1.2])
 
 AC_INIT([apertium-nn-nb], [0.6.0], [unhammer@gmail.com])
 AM_INIT_AUTOMAKE([apertium-nn-nb], [0.6.0], no-define)
@@ -26,6 +27,8 @@ AC_DEFUN([PKG_CHECK_APERTIUM], [
 ])
 
 PKG_CHECK_APERTIUM
+PKG_CHECK_MODULES(LTTOOLBOX, lttoolbox-3.1 >= 3.1.2)
+
 
 AC_SUBST(APERTIUM_VER)
 
