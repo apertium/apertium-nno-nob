@@ -130,7 +130,7 @@
 
 
   <section-def-vars>
-    <def-var n="gender"/>  
+    <def-var n="det_gender"/>  
     <def-var n="adj_gender"/>  
     <def-var n="number"/>  
     <def-var n="adj_number"/>  
@@ -229,7 +229,8 @@
       <!-- arg.1: determiner
 	   - iff sg and GD, take a wild guess and go for m;
 	   - plurals get no gender;
-	   - o/w take gender of target determiner -->
+	   - o/w take gender of target determiner;
+      -->
       <call-macro n="set_number1"><with-param pos="1"/></call-macro>
       <choose>
         <when>
@@ -239,16 +240,16 @@
 	      <equal><clip pos="1" side="tl" part="gen"/><lit-tag v="GD"/></equal>
 	    </and>
 	  </test>
-	  <let><var n="gender"/><lit-tag v="m"/></let>
+	  <let><var n="det_gender"/><lit-tag v="m"/></let>
         </when>
 	<when>
 	  <test>
 	    <equal><var n="number"/><lit-tag v="pl"/></equal>
 	  </test>
-	  <let><var n="gender"/><lit v=""/></let>
+	  <let><var n="det_gender"/><lit v=""/></let>
 	</when>
 	<otherwise>
-	  <let><var n="gender"/><clip pos="1" side="tl" part="gen"/></let>
+	  <let><var n="det_gender"/><clip pos="1" side="tl" part="gen"/></let>
 	</otherwise>
       </choose>
     </def-macro>
@@ -288,7 +289,8 @@
            +++ default: take gender of target determiner
            +++ det m:   take gender of target noun
            +++ det GD:  take gender of target noun
-           +++ both GD: just take masc to choose Something
+           +++ both GD: just take masc, to choose Something
+           - No number? No gender.
            Masculine determiners in bokmål may be used with femininine gender nouns
            without being marked as such in bidix.
            Determiners are less ambiguous wrt. number.
@@ -303,37 +305,38 @@
           <choose>
             <when>
               <test><equal><var n="number"/><lit-tag v="pl"/></equal></test>
-              <let><var n="gender"/><lit v=""/></let>
+              <let><var n="det_gender"/><lit v=""/></let>
             </when>
             <when>
               <test><or>
                 <equal><var n="number"/><lit-tag v="sg"/></equal>
                 <equal><var n="number"/><lit-tag v="sp"/></equal>
               </or></test>
-              <let><var n="gender"/><clip pos="2" side="tl" part="gen"/></let>
+              <let><var n="det_gender"/><clip pos="2" side="tl" part="gen"/></let>
               <choose>  <!-- ^^^ sg gender default: determiner gender -->
                 <when>
-                  <test><equal><var n="gender"/><lit-tag v="m"/></equal></test>
-                  <let><var n="gender"/><clip pos="1" side="tl" part="gen"/></let>
+                  <test><equal><var n="det_gender"/><lit-tag v="m"/></equal></test>
+                  <let><var n="det_gender"/><clip pos="1" side="tl" part="gen"/></let>
                 </when>    <!-- ^^^ masc determiner => noun gender -->
                 <when>
-                  <test><equal><var n="gender"/><lit-tag v="GD"/></equal></test>
-                  <let><var n="gender"/><clip pos="1" side="tl" part="gen"/></let>
+                  <test><equal><var n="det_gender"/><lit-tag v="GD"/></equal></test>
+                  <let><var n="det_gender"/><clip pos="1" side="tl" part="gen"/></let>
                   <!--  ^^^ GD determiner => noun gender -->
                   <choose>
                     <when>
-                      <test><equal><var n="gender"/><lit v=""/></equal></test>
-                      <let><var n="gender"/><lit-tag v="m"/></let>
+                      <test><equal><var n="det_gender"/><lit v=""/></equal></test>
+                      <let><var n="det_gender"/><lit-tag v="m"/></let>
                     </when> <!-- ^^^ no noun gender, GD determiner => masc -->
                   </choose>
                 </when>
               </choose>                      
             </when>
-            <otherwise><let><var n="gender"/><lit-tag v="setgender2fail"/></let></otherwise>
+            <!-- otherwise: no number, no gender -->
           </choose>
-        </otherwise>
+        </otherwise>        
       </choose>
     </def-macro>
+
 
     <def-macro n="set_adj_number" npar="1">
       <!-- arg.1: adjective
@@ -374,12 +377,12 @@
         <when>
           <test>
             <and>
-              <not><equal><var n="gender"/><lit v=""/></equal></not>
+              <not><equal><var n="det_gender"/><lit v=""/></equal></not>
               <equal><clip pos="1" side="tl" part="nbr"/><lit-tag v="sg"/></equal>
               <equal><clip pos="1" side="tl" part="gen"/><lit-tag v="GD"/></equal>
             </and>
           </test>
-          <let><var n="adj_gender"/><var n="gender"/></let>
+          <let><var n="adj_gender"/><var n="det_gender"/></let>
         </when>
         <otherwise>
           <let><var n="adj_gender"/><clip pos="1" side="tl" part="gen"/></let>
@@ -438,7 +441,7 @@
     
     <def-macro n="out_posgen" npar="1">
       <!-- arg.1: possessor, either genitive noun or det.pos.
-           Assumes that "gender" and "number" are set.
+           Assumes that "det_gender" and "number" are set.
            Choose 'til NOUN' unless we have a determiner. Only determiners
            use variable gender and number-->
       <choose><when>
@@ -447,7 +450,7 @@
           <lu>
             <clip pos="1" side="tl" part="lemh"/>
             <clip pos="1" side="tl" part="a_det"/>
-            <var n="gender"/>
+            <var n="det_gender"/>
             <var n="number"/>
             <clip pos="1" side="tl" part="lemq"/>
           </lu>
@@ -643,7 +646,7 @@
           <lu>
             <clip pos="1" side="tl" part="lemh"/>
             <clip pos="1" side="tl" part="a_det"/>
-            <var n="gender"/>
+            <var n="det_gender"/>
             <var n="n_number"/>
             <clip pos="1" side="tl" part="art"/>
             <clip pos="1" side="tl" part="lemq"/>
@@ -729,7 +732,7 @@
           <lu>
             <clip pos="1" side="tl" part="lemh"/>
             <clip pos="1" side="tl" part="a_det"/>
-            <var n="gender"/>
+            <var n="det_gender"/>
             <var n="number"/>
             <clip pos="1" side="tl" part="art"/>
             <clip pos="1" side="tl" part="lemq"/>
@@ -779,7 +782,7 @@
               <equal><var n="number"/><lit-tag v="sp"/></equal>
             </test>
             <let><var n="number"/><lit-tag v="pl"/></let>
-            <let><var n="gender"/><lit v=""/></let>
+            <let><var n="det_gender"/><lit v=""/></let>
           </when>
         </choose>
         <out>
@@ -794,7 +797,7 @@
           <b/>
           <lu><lit v="sin"/>
           <lit-tag v="det.pos"/>
-          <var n="gender"/>
+          <var n="det_gender"/>
           <var n="number"/>
           </lu> 
         </out>
@@ -815,7 +818,7 @@
               <equal><var n="number"/><lit-tag v="sp"/></equal>
             </test>
             <let><var n="number"/><lit-tag v="pl"/></let>
-            <let><var n="gender"/><lit v=""/></let>
+            <let><var n="det_gender"/><lit v=""/></let>
           </when>
         </choose>
         <out>
@@ -831,7 +834,7 @@
           <b/>
           <lu><lit v="sin"/>
           <lit-tag v="det.pos"/>
-          <var n="gender"/>
+          <var n="det_gender"/>
           <var n="number"/>
           </lu> 
         </out>
@@ -853,7 +856,7 @@
               <equal><var n="number"/><lit-tag v="sp"/></equal>
             </test>
             <let><var n="number"/><lit-tag v="pl"/></let>
-            <let><var n="gender"/><lit v=""/></let>
+            <let><var n="det_gender"/><lit v=""/></let>
           </when>
         </choose>
         <out>
@@ -870,7 +873,7 @@
           <b/>
           <lu><lit v="sin"/>
           <lit-tag v="det.pos"/>
-          <var n="gender"/>
+          <var n="det_gender"/>
           <var n="number"/>
           </lu> 
         </out>
@@ -916,7 +919,7 @@
           <lu>
             <get-case-from pos="1"><lit v="den"/></get-case-from>
             <lit-tag v="det.dem"/>
-            <var n="gender"/>
+            <var n="det_gender"/>
             <var n="number"/>
           </lu>
           <b pos="1"/>
@@ -947,7 +950,7 @@
           <lu>
             <get-case-from pos="1"><lit v="den"/></get-case-from>
             <lit-tag v="det.dem"/>
-            <var n="gender"/>
+            <var n="det_gender"/>
             <var n="number"/>
           </lu>
           <b pos="1"/>
@@ -980,7 +983,7 @@
           <lu>
             <get-case-from pos="1"><lit v="den"/></get-case-from>
             <lit-tag v="det.dem"/>
-            <var n="gender"/>
+            <var n="det_gender"/>
             <var n="number"/>
           </lu>
           <b pos="1"/>
@@ -1015,7 +1018,7 @@
           <lu>
             <get-case-from pos="1"><lit v="den"/></get-case-from>
             <lit-tag v="det.dem"/>
-            <var n="gender"/>
+            <var n="det_gender"/>
             <var n="number"/>
           </lu>
           <b pos="1"/>
@@ -1088,7 +1091,7 @@
           <lu>
             <lit v="den"/>
             <lit-tag v="det.dem"/>
-            <var n="gender"/>
+            <var n="det_gender"/>
             <var n="number"/>
           </lu>
           <b/>
@@ -1119,7 +1122,7 @@
           <lu>
             <get-case-from pos="1"><lit v="den"/></get-case-from>
             <lit-tag v="det.dem"/>
-            <var n="gender"/>
+            <var n="det_gender"/>
             <var n="number"/>
           </lu>
           <b/>
@@ -1159,7 +1162,7 @@
           <lu>
             <clip pos="1" side="tl" part="lemh"/>
             <clip pos="1" side="tl" part="a_det"/>
-            <var n="gender"/>
+            <var n="det_gender"/>
             <var n="number"/>
             <clip pos="1" side="tl" part="art"/>
             <clip pos="1" side="tl" part="lemq"/>
@@ -1199,7 +1202,7 @@
           <lu>
 	    <clip pos="1" side="tl" part="lemh"/>
             <clip pos="1" side="tl" part="a_det"/>
-	    <var n="gender"/>
+	    <var n="det_gender"/>
 	    <var n="number"/>
             <clip pos="1" side="tl" part="art"/>
 	    <clip pos="1" side="tl" part="lemq"/>
@@ -1234,7 +1237,7 @@
           <lu>
             <get-case-from pos="1"><lit v="den"/></get-case-from>
             <lit-tag v="det.dem"/>
-            <var n="gender"/>
+            <var n="det_gender"/>
             <var n="number"/>
           </lu>
           <b/>
@@ -1250,7 +1253,7 @@
           <lu>
 	    <clip pos="1" side="tl" part="lemh"/>
             <clip pos="1" side="tl" part="a_det"/>
-	    <var n="gender"/>
+	    <var n="det_gender"/>
 	    <var n="number"/>
             <clip pos="1" side="tl" part="art"/>
 	    <clip pos="1" side="tl" part="lemq"/>
@@ -1282,7 +1285,7 @@
           <lu>
             <clip pos="1" side="tl" part="lemh"/>
             <clip pos="1" side="tl" part="a_det"/>
-            <var n="gender"/>
+            <var n="det_gender"/>
             <var n="number"/>
             <clip pos="1" side="tl" part="art"/>
 	    <clip pos="1" side="tl" part="lemq"/>
@@ -1322,7 +1325,7 @@
           <lu>
             <clip pos="1" side="tl" part="lemh"/>
             <clip pos="1" side="tl" part="a_det"/>
-            <var n="gender"/>
+            <var n="det_gender"/>
             <clip pos="1" side="tl" part="nbr"/>
             <clip pos="1" side="tl" part="art"/>
 	    <clip pos="1" side="tl" part="lemq"/>
@@ -1413,14 +1416,14 @@
         <call-macro n="set_gender1"><with-param pos="1"/></call-macro>
         <call-macro n="set_adj_gender"><with-param pos="2"/></call-macro>
         <choose><when>
-          <test><equal><var n="gender"/><lit-tag v="GD"/></equal></test>
-          <let><var n="gender"/><lit-tag v="m"/></let>
+          <test><equal><var n="det_gender"/><lit-tag v="GD"/></equal></test>
+          <let><var n="det_gender"/><lit-tag v="m"/></let>
         </when></choose>
         <out>
           <lu>
             <clip pos="1" side="tl" part="lemh"/>
             <clip pos="1" side="tl" part="a_det"/>
-            <var n="gender"/>
+            <var n="det_gender"/>
             <var n="number"/>
             <clip pos="1" side="tl" part="art"/>
 	    <clip pos="1" side="tl" part="lemq"/>
@@ -1461,7 +1464,7 @@
           <lu>
             <clip pos="1" side="tl" part="lemh"/>
             <clip pos="1" side="tl" part="a_det"/>
-            <var n="gender"/>
+            <var n="det_gender"/>
             <var n="number"/>
             <clip pos="1" side="tl" part="art"/>
 	    <clip pos="1" side="tl" part="lemq"/>
