@@ -131,9 +131,10 @@
 
   <section-def-vars>
     <def-var n="det_gender"/>  
-    <def-var n="adj_gender"/>  
     <def-var n="number"/>  
     <def-var n="adj_number"/>  
+    <def-var n="adj_gender"/>  
+    <def-var n="adj_defness"/>  
     <def-var n="n_number"/>
     <def-var n="case"/>
     <def-var n="pass"/>
@@ -362,17 +363,18 @@
       </choose>
     </def-macro>
 
-    <def-macro n="set_adj_gender" npar="1">
+    <def-macro n="set_adj_GND" npar="1">
       <!-- arg.1: adjective
            
-           Assumes that set_number is called!
+           Assumes that number and det_gender are set!
 
            adj_gender is either nt, f or mf. Most adjectives only have
            nt or mf forms, some also have an f form. These we need to
            mark in bidix (nb <mf> => <GD>, nb <f> => <f>). <GD> turns
            into noun gender (or <mf> as fallback); however, we never
            use <m> so any <m> noun turns into <mf> adj_gender.
-      -->      
+      -->
+      <call-macro n="set_adj_number"><with-param pos="1"/></call-macro>
       <choose>					       
         <when>
           <test>
@@ -397,10 +399,21 @@
           <let><var n="adj_gender"/><lit-tag v="mf"/></let>
         </when>
       </choose>
+
+      <!-- some 'sanity checks' for defness and gender: -->
+      <let><var n="adj_defness"/><clip pos="1" side="tl" part="art"/></let>
       <choose>
         <when>
-          <test><equal><var n="number"/><lit-tag v="pl"/></equal></test>
+          <test><and>
+            <equal><var n="adj_number"/><lit-tag v="sg"/></equal>
+            <equal><var n="adj_defness"/><lit v=""/></equal>
+          </and></test>
+          <let><var n="adj_defness"/><lit-tag v="def"/></let>
+        </when>
+        <when>
+          <test><equal><var n="adj_number"/><lit-tag v="pl"/></equal></test>
           <let><var n="adj_gender"/><lit v=""/></let>
+          <let><var n="adj_defness"/><lit v=""/></let>
         </when>
       </choose>
     </def-macro>
@@ -416,8 +429,7 @@
            <m> so any <m> noun turns into <mf> adj_gender.
       -->      
       <call-macro n="set_gender2"><with-param pos="1"/><with-param pos="2"/></call-macro>
-      <call-macro n="set_adj_gender"><with-param pos="3"/></call-macro>
-      <call-macro n="set_adj_number"><with-param pos="3"/></call-macro>
+      <call-macro n="set_adj_GND"><with-param pos="3"/></call-macro>
     </def-macro>
 
 
@@ -679,7 +691,7 @@
             <clip pos="2" side="tl" part="a_adj"/>
             <var n="adj_gender"/>
             <var n="adj_number"/>
-            <clip pos="2" side="tl" part="art"/>
+            <var n="adj_defness"/>
             <clip pos="2" side="tl" part="lemq"/>
           </lu>
           <b pos="2"/>
@@ -705,7 +717,7 @@
             <clip pos="1" side="tl" part="a_adj"/>
             <var n="adj_gender"/>
             <var n="adj_number"/>
-            <clip pos="1" side="tl" part="art"/>
+            <var n="adj_defness"/>
             <clip pos="1" side="tl" part="lemq"/>
           </lu>
           <b pos="1"/>
@@ -743,7 +755,7 @@
             <clip pos="2" side="tl" part="a_adj"/>
             <var n="adj_gender"/>
             <var n="adj_number"/>
-            <clip pos="2" side="tl" part="art"/>
+            <var n="adj_defness"/>
             <clip pos="2" side="tl" part="lemq"/>
           </lu>
           <b pos="2"/>
@@ -1350,15 +1362,14 @@
       </pattern>
       <action>
         <call-macro n="set_number1"><with-param pos="1"/></call-macro>
-        <call-macro n="set_adj_gender"><with-param pos="1"/></call-macro>
-        <call-macro n="set_adj_number"><with-param pos="1"/></call-macro>
+        <call-macro n="set_adj_GND"><with-param pos="1"/></call-macro>
         <out>
           <lu>
             <clip pos="1" side="tl" part="lemh"/>
             <clip pos="1" side="tl" part="a_adj"/>
             <var n="adj_gender"/>
             <var n="adj_number"/>
-            <clip pos="1" side="tl" part="art"/>
+            <var n="adj_defness"/>
 	    <clip pos="1" side="tl" part="lemq"/>
           </lu>
         </out>
@@ -1381,8 +1392,7 @@
       <action>
         <call-macro n="set_gender1"><with-param pos="2"/></call-macro>
         <call-macro n="set_number2"><with-param pos="2"/><with-param pos="1"/></call-macro>
-        <call-macro n="set_adj_gender"><with-param pos="1"/></call-macro>
-        <call-macro n="set_adj_number"><with-param pos="1"/></call-macro>
+        <call-macro n="set_adj_GND"><with-param pos="1"/></call-macro>
         <call-macro n="set_n_defness"><with-param pos="2"/><with-param pos="1"/></call-macro>
         <out>
           <lu>
@@ -1390,7 +1400,7 @@
             <clip pos="1" side="tl" part="a_adj"/>
             <var n="adj_gender"/>
 	    <var n="adj_number"/>
-            <clip pos="1" side="tl" part="art"/>
+	    <var n="adj_defness"/>
 	    <clip pos="1" side="tl" part="lemq"/>
           </lu>
           <b pos="1"/>
@@ -1414,7 +1424,7 @@
       </pattern>
       <action>
         <call-macro n="set_gender1"><with-param pos="1"/></call-macro>
-        <call-macro n="set_adj_gender"><with-param pos="2"/></call-macro>
+        <call-macro n="set_adj_GND"><with-param pos="2"/></call-macro>
         <choose><when>
           <test><equal><var n="det_gender"/><lit-tag v="GD"/></equal></test>
           <let><var n="det_gender"/><lit-tag v="m"/></let>
@@ -1433,8 +1443,8 @@
             <clip pos="2" side="tl" part="lemh"/>
             <clip pos="2" side="tl" part="a_adj"/>
             <var n="adj_gender"/>
-            <clip pos="2" side="tl" part="nbr"/>
-      	    <clip pos="2" side="tl" part="art"/>
+            <var n="adj_number"/>
+            <var n="adj_defness"/>
 	    <clip pos="2" side="tl" part="lemq"/>
           </lu>
         </out>
@@ -1474,8 +1484,8 @@
             <clip pos="2" side="tl" part="lemh"/>
             <clip pos="2" side="tl" part="a_adj"/>
             <var n="adj_gender"/>
-      	    <clip pos="2" side="tl" part="nbr"/>
-      	    <clip pos="2" side="tl" part="art"/>
+            <var n="adj_number"/>
+            <var n="adj_defness"/>
 	    <clip pos="2" side="tl" part="lemq"/>
           </lu>
           <b pos="2"/>
