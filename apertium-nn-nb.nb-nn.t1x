@@ -283,15 +283,18 @@
     <def-macro n="set_gender2" npar="2">
       <!-- arg.1: noun, arg.2: determiner
            - if a noun is given as arg.2, use set_gender1 instead
-	   - iff sg and GD or m, take gender of target noun
-	   - plurals get no gender;
-	   - o/w take gender of target determiner
-          Masculine determiners in bokmål may be used with femininine gender nouns
-	  without being marked as such in bidix...
-          Determiners are less ambiguous wrt. number.
+           - plurals get no gender
+           - if sg/sp (all sp determiners have gender): 
+           +++ default: take gender of target determiner
+           +++ det m:   take gender of target noun
+           +++ det GD:  take gender of target noun
+           +++ both GD: just take masc to choose Something
+           Masculine determiners in bokmål may be used with femininine gender nouns
+           without being marked as such in bidix.
+           Determiners are less ambiguous wrt. number.
       -->
       <choose>
-        <when>
+        <when>                            <!-- if arg.2 is a noun: -->
           <test><begins-with><clip pos="2" side="tl" part="a_nom"/><lit-tag v="n"/></begins-with></test>
           <call-macro n="set_gender1"><with-param pos="1"/></call-macro>          
         </when>
@@ -299,27 +302,34 @@
           <call-macro n="set_number2"><with-param pos="1"/><with-param pos="2"/></call-macro>
           <choose>
             <when>
-              <test><and>
-                <equal><var n="number"/><lit-tag v="sg"/></equal>
-                <or>
-                  <equal><clip pos="2" side="tl" part="gen"/><lit-tag v="GD"/></equal>
-                  <equal><clip pos="2" side="tl" part="gen"/><lit-tag v="m"/></equal>
-                </or>
-              </and></test>
-              <choose><when>
-                <test><equal><clip pos="1" side="tl" part="gen"/><lit v=""/></equal></test>
-                <let><var n="gender"/><clip pos="2" side="tl" part="gen"/></let>              
-                </when><otherwise>
-                <let><var n="gender"/><clip pos="1" side="tl" part="gen"/></let></otherwise>
-              </choose>
-            </when>
-            <when>
               <test><equal><var n="number"/><lit-tag v="pl"/></equal></test>
               <let><var n="gender"/><lit v=""/></let>
             </when>
-            <otherwise>
+            <when>
+              <test><or>
+                <equal><var n="number"/><lit-tag v="sg"/></equal>
+                <equal><var n="number"/><lit-tag v="sp"/></equal>
+              </or></test>
               <let><var n="gender"/><clip pos="2" side="tl" part="gen"/></let>
-            </otherwise>
+              <choose>  <!-- ^^^ sg gender default: determiner gender -->
+                <when>
+                  <test><equal><var n="gender"/><lit-tag v="m"/></equal></test>
+                  <let><var n="gender"/><clip pos="1" side="tl" part="gen"/></let>
+                </when>    <!-- ^^^ masc determiner => noun gender -->
+                <when>
+                  <test><equal><var n="gender"/><lit-tag v="GD"/></equal></test>
+                  <let><var n="gender"/><clip pos="1" side="tl" part="gen"/></let>
+                  <!--  ^^^ GD determiner => noun gender -->
+                  <choose>
+                    <when>
+                      <test><equal><var n="gender"/><lit v=""/></equal></test>
+                      <let><var n="gender"/><lit-tag v="m"/></let>
+                    </when> <!-- ^^^ no noun gender, GD determiner => masc -->
+                  </choose>
+                </when>
+              </choose>                      
+            </when>
+            <otherwise><let><var n="gender"/><lit-tag v="setgender2fail"/></let></otherwise>
           </choose>
         </otherwise>
       </choose>
