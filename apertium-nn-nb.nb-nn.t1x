@@ -232,6 +232,7 @@
 	   - plurals get no gender;
 	   - o/w take gender of target determiner;
       -->
+      <let><var n="det_gender"/><lit v=""/></let>
       <call-macro n="set_number1"><with-param pos="1"/></call-macro>
       <choose>
         <when>
@@ -296,6 +297,7 @@
            without being marked as such in bidix.
            Determiners are less ambiguous wrt. number.
       -->
+      <let><var n="det_gender"/><lit v=""/></let>
       <choose>
         <when>                            <!-- if arg.2 is a noun: -->
           <test><begins-with><clip pos="2" side="tl" part="a_nom"/><lit-tag v="n"/></begins-with></test>
