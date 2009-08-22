@@ -26613,6 +26613,12 @@ SELECT:4081 (adj) IF
 # ...vanlegare med pret først i ledd, men burde jo ha
 # overskriftstagg :-/ -KBU
 
+#:4999
+ REMOVE:4999 (vblex pass) IF
+	   (0 s-verb)
+;
+# KBU: Om me har valet mellom identisk passiv og pstv, vel pstv
+# (for å unngå t.d. finnes=>blir funne). Svært heuristisk... 
 
 #:4079
  REMOVE:4079 ub-fl-subst IF
