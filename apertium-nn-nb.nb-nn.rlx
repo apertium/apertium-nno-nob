@@ -281,6 +281,7 @@ LIST %selv% = "sjøl"  "sjæl"  "selv"  ;
 LIST %selve% = "sjølve"  "selve"  ;
 LIST %seng% = "seng"  ;
 LIST %sett% = ("se"  vblex pp) ;
+LIST %sette/ta% = ("sette" vblex) ("ta" vblex) ;
 LIST %si% = ("sin"  det pos f sg) ;
 LIST %si%-inf = ("si"  inf) ;
 LIST %side% = "side"  ;
@@ -684,7 +685,7 @@ LIST ent-ub = (sg ind) ;
 LIST etternavn = "united"  "times"  "idrettslag"  "city"  "blad"  ;
 LIST f-subj = ("det"  prn) ;
 LIST farger = "turkis"  "svart"  "rød"  "rosa"  "oransje"  "lilla"  "indigo"  "hvit"  "gul"  "grønn"  "grå"  "fiolett"  "blå"  ;
-LIST farlige-adj = "brakk"  "året"  "være"  "vite"  "vis"  "var"  "tids"  "sige"  "se"  "mige"  "live"  "like"  "lette"  "lage"  "helle"  "før"  "fore"  "ete"  "eie"  "egen"  "bar"  "annen"  "angående"  "ale"   ;
+LIST farlige-adj = "talle" "brakk"  "året"  "være"  "vite"  "vis"  "var"  "tids"  "sige"  "se"  "mige"  "live"  "like"  "lette"  "lage"  "helle"  "før"  "fore"  "ete"  "eie"  "egen"  "bar"  "annen"  "angående"  "ale"   ;
 LIST farlige-adj-subst = "gifte"  "vedkommende"  "venstre"  "tunge"  "skrå"  "skarp"  "rett"  "ny"  "like"  "lik"  "kvalm"  "høy"  "helt"  "helt"  "heller"  "gode"  "faren"  (adj comp) ("visse"  n) ("sivil"  n) ("absolutt"  n) ("konkret"  n) ("sett"  nt) ("halv"  ubøy) ("var"  n ind) ("lit"  sg def) ("middel"  gen) ("al"  pl def) ;
 LIST farlige-fl-subst = ("hjelp"  pl ind) ("lede"  m pl ind) ("led"  m pl ind) ("falle"  m pl ind) ("fall"  m pl ind) ("snus"  m pl ind) ("finn"  pl ind) ("finne"  pl ind) ("komme"  pl ind) ("under"  pl ind) ("får"  pl) ("ønske"  pl) ("slag"  gen) ("jeg"  pl) ("lo"  pl) ("var"  pl) ("nå"  pl) ("sett"  pl) ("al"  pl def) ("mot"  pl ind) ("men"  pl ind) ("gir"  pl ind) ;
 LIST farlige-forledd-verb = ("kontre"  pret) ("helle"  pres) ("nå"  pres) ("elle"  pres) ("fø"  pres) ("fare"  pret) ("tro"  adj) ("tiltale"  pret) ("klokke"  pret) ;
@@ -1089,7 +1090,7 @@ LIST orden-pos = ("ene"  det qnt) (ord posi) ;
 LIST ordenstall = ord ;
 LIST org-type = "selskap"  "organisasjon"  "lag"  "klubb"  "institusjon"  "firma"  "bedrift"  "bank"  "avdeling"  <*organisasjon> <*selskap> ;
 LIST organisasjon = <org> <*råd> <*skole> <*lag> <*tilsyn> <*parti> <*aksjon> <*departement> <*forbund> <*forening> <*institutt> <*organisasjon> <*parti> <*råd> ;
-LIST overskrift = <overskrift> ;
+LIST overskrift = overskrift ;
 LIST p-hj-verb = "være"  "ha"  "få"  "bli"  ;
 LIST p-hj-verb-fv = ("bli"  pres) ("ha"  pres) ("bli"  pret) ("ha"  pret) ;
 LIST p-hj-verb/prep = "være"  "ha"  "bli"  pr ;
@@ -4824,6 +4825,15 @@ CONSTRAINTS
 ;
 #  "..., særlig med sikte på ungdommene
 # 4.3"))
+
+
+
+#:3999
+  "<tallet>"   SELECT:3999   (n nt sg def) IF
+	(1 tall/tall-subst) 
+;
+# KBU: «tallet tre/pi». Kanskje litt vågalt, men togrammet av verbet
+# «talle» og eit tal må då vere svært lågfrekvent.
 
 
 
@@ -23231,14 +23241,15 @@ REMOVE:2135 (det) IF
 	(NOT *2 overskrift)
 	(NOT 1 setn-gr)
 	(*1 setn-gr LINK *-1 pres/pret LINK NOT 0 pron)
-	(NOT 0 perf-part)
+	(NOT 0 perf-part/<perf-part>)
+	(NOT 0 %sette/ta% LINK *1 ("<fyr>"))
 ;
 #  "Svarte (ikke pret), blanke biler ruller forbi
 # Ikke: Kjørte meg (ikke pret) over ende 
 # Ikke: Skulle du hjem?
-# Ikkje fjern pret frå «Falt i elva» -KBU; det første dømet er fjerna
+# KBU: Ikkje fjern pret frå «Falt i elva»; det første dømet er fjerna
 # av regelen over.
-
+# KBU: Ikkje fjern pret frå «Satte fyr på huset sitt»
 
 #:1865
  REMOVE:1865 (vblex pret) IF
@@ -25684,6 +25695,12 @@ CONSTRAINTS
 	(**1C setn-gr BARRIER fv)
 ;
 
+#:6202
+ SELECT:6202 (vblex) IF
+	(1 ("<fyr>"))
+	(0 %sette/ta%)
+;
+# «Satte fyr på huset sitt»
 
 #:1732
  SELECT:1732 (vblex pres) IF
