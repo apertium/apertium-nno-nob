@@ -65,6 +65,7 @@
 		<sdef n="sent" 	c="Sentence end"/> 
 		<sdef n="cm" 	c="Comma"/> 
 		<sdef n="clb" 	c="Possible clause boundary"/>
+		<sdef n="overskrift" 	c="Headline"/>
 		<sdef n="apos" 	c="Apostrophe"/> 
 		<sdef n="lpar" 	c="Left parenthesis"/> 
 		<sdef n="rpar" 	c="Right parenthesis"/> 
@@ -87,7 +88,11 @@
 
     <!-- Punctuation -->
 <pardef n="numeros">
-  <e>       <re>[0-9]+([.,][0-9]+)?</re><p><l></l><r><s n="num"/></r></p></e>
+  <e>       <re>[0-9][0-9]+([.,][0-9]+)?</re><p><l></l><r><s n="det"/><s n="qnt"/><s n="pl"/></r></p></e>
+  <!-- separate out the number 1 as singular (fortunately "1.00" is usually plural!) -->
+  <e>       <re>1</re><p><l></l><r><s n="det"/><s n="qnt"/><s n="sg"/></r></p></e>
+  <e>       <re>[02-9]</re><p><l></l><r><s n="det"/><s n="qnt"/><s n="pl"/></r></p></e>
+  <e>       <re>[0-9][.,][0-9]+</re><p><l></l><r><s n="det"/><s n="qnt"/><s n="pl"/></r></p></e>
 </pardef>
 
 <pardef n="separa">
@@ -116,6 +121,12 @@
   <e>       <re>[\)\]]</re><p><l></l><r><s n="rpar"/></r></p></e>
 </pardef>
 
+<pardef n="overskrift">
+  <e>       <re>
+
+</re><p><l></l><r><s n="clb"/><s n="overskrift"/></r></p></e>
+</pardef>
+
 <pardef n="%/s__n">
   <!-- for po-file translations and Giza++: -->
   <e>       <re>_[0-9a-z]</re><p><l></l><r><s n="n"/><s n="acr"/></r></p></e>
@@ -123,17 +134,14 @@
 </pardef>
 
     <!-- Numbers -->
-<pardef n="en__num">
-  <e>       <p><l></l>          <r><s n="num"/><s n="mf"/><s n="sg"/></r></p></e>
+<pardef n="e/n__num">
+  <e>       <p><l>n</l>          <r>n<s n="det"/><s n="qnt"/><s n="m"/><s n="sg"/></r></p></e>
+  <e>       <p><l>i</l>          <r>n<s n="det"/><s n="qnt"/><s n="f"/><s n="sg"/></r></p></e>
+  <e>       <p><l>t</l>          <r>n<s n="det"/><s n="qnt"/><s n="nt"/><s n="sg"/></r></p></e>
 </pardef>
-<pardef n="ei__num">
-  <e>       <p><l></l>          <r><s n="num"/><s n="f"/><s n="sg"/></r></p></e>
-</pardef>
-<pardef n="et__num">
-  <e>       <p><l></l>          <r><s n="num"/><s n="nt"/><s n="sg"/></r></p></e>
-</pardef>
+
 <pardef n="to__num">
-  <e>       <p><l></l>          <r><s n="num"/><s n="pl"/></r></p></e>
+  <e>       <p><l></l>          <r><s n="det"/><s n="qnt"/><s n="pl"/></r></p></e>
 </pardef>
 
     <!-- Pronouns -->
@@ -9687,9 +9695,7 @@
 
 	<section id="main" type="standard">
     <!-- Numbers -->
-<e lm="ei">              <i>ei</i><par n="ei__num"/></e>
-<e lm="en">              <i>en</i><par n="en__num"/></e>
-<e lm="et">              <i>et</i><par n="et__num"/></e>
+<e lm="en">              <i>e</i><par n="e/n__num"/></e>
 <e lm="to">              <i>to</i><par n="to__num"/></e>
 <e lm="tre">             <i>tre</i><par n="to__num"/></e>
 <e lm="fire">            <i>fire</i><par n="to__num"/></e>
