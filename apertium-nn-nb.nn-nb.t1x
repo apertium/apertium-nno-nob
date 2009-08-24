@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- -*- nxml -*- -->
-
+<!-- TODO:
+     * At the moment, many determiners have full paradigms even when
+       they _don't_ differ on number/gender etc. It would be better
+       if we could check for "sp" etc. and, if we find that, use noun
+       or adjectives to determine number instead.
+-->
 <transfer>
 
   <section-def-cats>
@@ -127,25 +132,6 @@
   </section-def-vars>
 
   <section-def-macros>
-
-    <def-macro n="f_bcond" npar="1">
-      <!--Per mirar si el blanc conté o no format -->
-      <choose>
-        <when>
-          <test>
-            <not>
-              <equal>
-                <b pos="1"/>
-                <lit v=" "/>
-              </equal>
-            </not>
-          </test>
-          <out>
-            <b pos="1"/>
-          </out>
-        </when>
-      </choose>
-    </def-macro>
 
     <def-macro n="set_number1" npar="1">
       <!-- arg.1: determiner
