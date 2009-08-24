@@ -197,21 +197,6 @@
       
       <choose><when>
         <test><or>
-          <equal><var n="n_number"/><lit-tag v="sp"/></equal>
-          <equal><var n="n_number"/><lit v=""/></equal>
-          <equal><clip pos="1" side="tl" part="nbr"/><lit-tag v="sp"/></equal>
-        </or></test>
-        <let><var n="n_number"/><clip pos="1" side="tl" part="nbr"/></let>
-      </when>
-      </choose>
-      
-      <choose><when>
-        <test><begins-with><clip pos="1" side="tl" part="a_nom"/><lit-tag v="np"/></begins-with></test>
-        <let><var n="n_number"/><lit v=""/></let>
-      </when></choose>
-      
-      <choose><when>
-        <test><or>
           <equal><clip pos="2" side="tl" part="a_adj"/><lit-tag v="adj.pp"/></equal>
           <ends-with><clip pos="2" side="tl" part="a_adj"/><lit-tag v="posi"/></ends-with>
         </or></test>
@@ -227,6 +212,21 @@
           <let><var n="number"/><lit-tag v="pl"/></let>
         </when></choose>
         <let><var n="n_number"/><var n="number"/></let>
+      </when></choose>
+      
+      <choose><when>
+        <test><or>
+          <equal><var n="n_number"/><lit-tag v="sp"/></equal>
+          <equal><var n="n_number"/><lit v=""/></equal>
+          <equal><clip pos="1" side="tl" part="nbr"/><lit-tag v="sp"/></equal>
+        </or></test>
+        <let><var n="n_number"/><clip pos="1" side="tl" part="nbr"/></let>
+      </when>
+      </choose>
+      
+      <choose><when>
+        <test><begins-with><clip pos="1" side="tl" part="a_nom"/><lit-tag v="np"/></begins-with></test>
+        <let><var n="n_number"/><lit v=""/></let>
       </when></choose>
       
     </def-macro>
