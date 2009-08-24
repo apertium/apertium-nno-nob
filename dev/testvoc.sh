@@ -26,8 +26,8 @@ fi
 echo "MWE's are not captured by the inconsistency scripts, finding those first:"
 cat ../apertium-nn-nb.nn.dix |grep '<e lm="[^"]* '|sed 's/">.*//'|sed 's/.*"//'|apertium nn-nb| grep '[#@]'
 cat ../apertium-nn-nb.nb.dix |grep '<e lm="[^"]* '|sed 's/">.*//'|sed 's/.*"//'|apertium nb-nn| grep '[#@]'
-cat ../apertium-nn-nb.nn-nb.dix|grep '<b/>'|sed 's/.*<l>//'|sed 's/<s.*//'|sed 's/<b\/>/ /g'|nn|grep '[#@]'
-cat ../apertium-nn-nb.nn-nb.dix|grep '<b/>'|sed 's/.*<r>//'|sed 's/<s.*//'|sed 's/<b\/>/ /g'|nb|grep '[#@]'
+cat ../apertium-nn-nb.nn-nb.dix|grep '<b/>'|sed 's/.*<l>//'|sed 's/<s.*//'|sed 's/<b\/>/ /g'|apertium nn-nb|grep '[#@]'
+cat ../apertium-nn-nb.nn-nb.dix|grep '<b/>'|sed 's/.*<r>//'|sed 's/<s.*//'|sed 's/<b\/>/ /g'|apertium nb-nn|grep '[#@]'
 
 
 echo "finding all nn=>nb inconsistencies..."
