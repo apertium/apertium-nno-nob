@@ -177,18 +177,23 @@
     <def-macro n="set_number2" npar="2">
       <!-- arg.1: noun, arg.2: determiner or adjective
       sets number and n_number
-      - <adj><pp> doesn't have a number, so in that case use noun
       - If number is sp or empty (or noun actually is sp), use nbr
-        from noun.
+        from noun. Eg. <adj><pp> doesn't have a number, so in that case
+        use noun.
+      - If we've been given an adjective, and the noun is sg def,
+        we can be pretty sure the noun is right about this, so go with
+        sg def (set_adj_GND should make sure we add the def if adjective
+        is plural). And the other way around, pl noun versus adjective
+        is sure not to be sg def.
       -->
-      <let><var n="number"/><clip pos="2" side="tl" part="nbr"/></let>
+      <call-macro n="set_number1"><with-param pos="2"/></call-macro>
       
       <choose><when>
 	  <test><equal><var n="number"/><lit-tag v="ND"/></equal></test>
           <let><var n="number"/><clip pos="1" side="tl" part="nbr"/></let>
       </when></choose>
       
-      <let><var n="n_number"/>    <var n="number"/></let>
+      <let><var n="n_number"/><var n="number"/></let>
       
       <choose><when>
         <test><or>
@@ -201,31 +206,40 @@
       </choose>
       
       <choose><when>
-        <test><or>
-          <equal><clip pos="1" side="tl" part="a_nom"/><lit-tag v="np"/></equal>
-          <equal><clip pos="1" side="tl" part="a_nom"/><lit-tag v="np.top"/></equal>
-        </or></test>
+        <test><begins-with><clip pos="1" side="tl" part="a_nom"/><lit-tag v="np"/></begins-with></test>
         <let><var n="n_number"/><lit v=""/></let>
       </when></choose>
-      <call-macro n="set_number1"><with-param pos="2"/></call-macro>
+      
+      <choose><when>
+        <test><or>
+          <equal><clip pos="2" side="tl" part="a_adj"/><lit-tag v="adj.pp"/></equal>
+          <ends-with><clip pos="2" side="tl" part="a_adj"/><lit-tag v="posi"/></ends-with>
+        </or></test>
+        <choose><when>
+          <test><and>
+            <equal><clip pos="1" side="tl" part="nbr"/><lit-tag v="sg"/></equal>
+            <equal><clip pos="1" side="tl" part="art"/><lit-tag v="def"/></equal>
+          </and></test>
+          <let><var n="number"/><lit-tag v="sg"/></let>
+        </when></choose>
+        <choose><when>
+          <test><equal><clip pos="1" side="tl" part="nbr"/><lit-tag v="pl"/></equal></test>
+          <let><var n="number"/><lit-tag v="pl"/></let>
+        </when></choose>
+        <let><var n="n_number"/><var n="number"/></let>
+      </when></choose>
+      
     </def-macro>
 
     <def-macro n="set_case" npar="1">
       <!-- keep only case for proper nouns -->
-      <choose>
-        <when>
-	  <test>
-            <or>
-              <equal><clip pos="1" side="tl" part="a_nom"/><lit-tag v="np"/></equal>
-              <equal><clip pos="1" side="tl" part="a_nom"/><lit-tag v="np.top"/></equal>
-            </or>
-	  </test>
-	  <let><var n="case"/><lit-tag v="gen"/></let>
-        </when>
-	<otherwise>
-	  <let><var n="case"/><lit v=""/></let>
-	</otherwise>
-      </choose>
+      <let><var n="case"/><lit v=""/></let>
+      <choose><when>
+        <test>
+          <begins-with><clip pos="1" side="tl" part="a_nom"/><lit-tag v="np"/></begins-with>
+        </test>
+        <let><var n="case"/><lit-tag v="gen"/></let>
+      </when></choose>
     </def-macro>
 
     <def-macro n="set_gender1" npar="1">
@@ -350,27 +364,24 @@
 
            Number is only a feature of positive/pp adjectives. Use
            variable "number" for these unless it's empty/sp.
-      -->      
-      <choose>					       
-        <when>
+      -->
+      <let><var n="adj_number"/><lit v=""/></let>
+      <choose><when>
+        <test><or>
+          <equal><clip pos="1" side="tl" part="a_adj"/><lit-tag v="adj.pp"/></equal>
+          <ends-with><clip pos="1" side="tl" part="a_adj"/><lit-tag v="posi"/></ends-with>
+        </or></test>
+        
+        <let><var n="adj_number"/><var n="number"/></let>
+        
+        <choose><when>
           <test><or>
-            <equal><clip pos="1" side="tl" part="a_adj"/><lit-tag v="adj.pp"/></equal>
-            <equal><clip pos="1" side="tl" part="a_adj"/><lit-tag v="adj.posi"/></equal>
-            <equal><clip pos="1" side="tl" part="a_adj"/><lit-tag v="adj.ord.posi"/></equal>
+            <equal><var n="adj_number"/><lit v=""/></equal>
+            <equal><var n="adj_number"/><lit-tag v="sp"/></equal>
           </or></test>
-          <let><var n="adj_number"/><var n="number"/></let>
-          <choose><when>
-            <test><or>
-              <equal><var n="adj_number"/><lit v=""/></equal>
-              <equal><var n="adj_number"/><lit-tag v="sp"/></equal>
-            </or></test>
-            <let><var n="adj_number"/><clip pos="1" side="tl" part="nbr"/></let>
-          </when></choose>
-        </when>
-        <otherwise>
-          <let><var n="adj_number"/><lit v=""/></let>
-        </otherwise>
-      </choose>
+          <let><var n="adj_number"/><clip pos="1" side="tl" part="nbr"/></let>
+        </when></choose>
+      </when></choose>
     </def-macro>
 
     <def-macro n="set_adj_GND" npar="1">
@@ -679,10 +690,7 @@
         </out>
       </action>
     </rule>
-    <rule comment="NGEN_TEMPORAL ADJ NIND: dagens siste avis => dagens siste avis
-                   (the call to set_gender3 is probably needless since we always
-                   have definite adjectives here, but it doesn't hurt to include
-                   it here)">
+    <rule comment="NGEN_TEMPORAL ADJ NIND: dagens siste avis => dagens siste avis">
       <pattern>
         <pattern-item n="ngen_temporal"/>
         <pattern-item n="adj"/>
@@ -709,7 +717,8 @@
         </out>
       </action>
     </rule>
-    <rule comment="ADJ NGEN_TEMPORAL NIND: flere års tid => fleire års tid">
+    <rule comment="ADJ NGEN_TEMPORAL NIND: flere års tid => fleire års tid
+                                           hele dagens region => heile dagens region">
       <pattern>
         <pattern-item n="adj"/>
         <pattern-item n="ngen_temporal"/>
@@ -719,7 +728,7 @@
         <call-macro n="set_gender3">
           <with-param pos="2"/>
           <with-param pos="1"/>
-          <with-param pos="2"/>
+          <with-param pos="1"/>
         </call-macro>
         <out>
           <lu>
@@ -1400,9 +1409,11 @@
         <pattern-item n="nom"/>
       </pattern>
       <action>
-        <call-macro n="set_gender1"><with-param pos="2"/></call-macro>
-        <call-macro n="set_number2"><with-param pos="2"/><with-param pos="1"/></call-macro>
-        <call-macro n="set_adj_GND"><with-param pos="1"/></call-macro>
+        <call-macro n="set_gender3">
+          <with-param pos="2"/>
+          <with-param pos="1"/>
+          <with-param pos="1"/>
+        </call-macro>
         <call-macro n="set_n_defness"><with-param pos="2"/><with-param pos="1"/></call-macro>
         <out>
           <lu>
