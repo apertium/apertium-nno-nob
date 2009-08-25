@@ -304,7 +304,9 @@
     
     <def-macro n="set_gender2" npar="2">
       <!-- arg.1: noun, arg.2: determiner
-           - if a noun is given as arg.2, use set_gender1 instead
+           - if a noun is given as arg.2, use set_gender1 instead (but
+             set_number2 with arg.1); this is just so we can generalise
+             with the POSGEN category
            - plurals get no gender
            - if sg/sp (all sp determiners have gender): 
            +++ default: take gender of target determiner
@@ -320,7 +322,8 @@
       <choose>
         <when>                            <!-- if arg.2 is a noun: -->
           <test><begins-with><clip pos="2" side="tl" part="a_nom"/><lit-tag v="n"/></begins-with></test>
-          <call-macro n="set_gender1"><with-param pos="1"/></call-macro>          
+          <call-macro n="set_gender1"><with-param pos="1"/></call-macro>
+          <call-macro n="set_number2"><with-param pos="1"/><with-param pos="1"/></call-macro>
         </when>
         <otherwise>
           <call-macro n="set_number2"><with-param pos="1"/><with-param pos="2"/></call-macro>
@@ -351,8 +354,13 @@
                     </when> <!-- ^^^ no noun gender, GD determiner => masc -->
                   </choose>
                 </when>
+                <when>
+                  <test><equal><var n="det_gender"/><lit v=""/></equal></test>
+                  <let><var n="det_gender"/><clip pos="2" side="tl" part="gen"/></let>
+                </when> <!-- ^^^ noun had no gender (was eg. np/acr), use det -->
               </choose>                      
             </when>
+            <out><lu><clip pos="2" side="tl" part="gen"/></lu></out>
             <!-- otherwise: no number, no gender -->
           </choose>
         </otherwise>        
@@ -943,7 +951,7 @@
       <action>
         <modify-case><clip pos="1" side="tl" part="lemh"/><clip pos="2" side="tl" part="lemh"/></modify-case>
         <call-macro n="set_gender2"><with-param pos="2"/><with-param pos="1"/></call-macro>
-        <call-macro n="out_ndef"><with-param pos="2"/><with-param pos="1"/></call-macro>
+        <call-macro n="out_ndef_w_number"><with-param pos="2"/><with-param pos="1"/></call-macro>
         <out>
           <b pos="1"/>
         </out>
@@ -975,7 +983,7 @@
           </lu>
           <b pos="1"/>
           <lu><clip pos="2" side="tl" part="whole"/></lu> <b pos="2"/>
-        </out>        
+        </out>
         <call-macro n="out_ndef_w_number">
 	  <with-param pos="3"/>
 	  <with-param pos="3"/>
