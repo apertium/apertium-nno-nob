@@ -340,7 +340,10 @@
               <let><var n="det_gender"/><clip pos="2" side="tl" part="gen"/></let>
               <choose>  <!-- ^^^ sg gender default: determiner gender -->
                 <when>
-                  <test><equal><var n="det_gender"/><lit-tag v="m"/></equal></test>
+                  <test><and>
+                    <equal><var n="det_gender"/><lit-tag v="m"/></equal>
+                    <not><equal><clip pos="1" side="tl" part="gen"/><lit v=""/></equal></not>
+                  </and></test>
                   <let><var n="det_gender"/><clip pos="1" side="tl" part="gen"/></let>
                 </when>    <!-- ^^^ masc determiner => noun gender -->
                 <when>
@@ -358,9 +361,8 @@
                   <test><equal><var n="det_gender"/><lit v=""/></equal></test>
                   <let><var n="det_gender"/><clip pos="2" side="tl" part="gen"/></let>
                 </when> <!-- ^^^ noun had no gender (was eg. np/acr), use det -->
-              </choose>                      
+              </choose>
             </when>
-            <out><lu><clip pos="2" side="tl" part="gen"/></lu></out>
             <!-- otherwise: no number, no gender -->
           </choose>
         </otherwise>        
