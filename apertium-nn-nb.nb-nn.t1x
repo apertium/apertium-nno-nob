@@ -419,20 +419,36 @@
 
       <choose><when>
           <test><equal><var n="adj_gender"/><lit-tag v="GD"/></equal></test>
+          
           <call-macro n="set_adj_number"><with-param pos="1"/></call-macro>
+          
           <choose><when>
-            <test><and>
-              <not><equal><var n="det_gender"/><lit v=""/></equal></not>
-              <equal><clip pos="1" side="tl" part="nbr"/><lit-tag v="sg"/></equal>
-            </and></test>
-            <let><var n="adj_gender"/><var n="det_gender"/></let>
+            <test><equal><var n="adj_number"/><lit-tag v="sg"/></equal></test>
+            <choose><when>
+              <test><not><equal><var n="det_gender"/><lit v=""/></equal></not></test>            
+              <let><var n="adj_gender"/><var n="det_gender"/></let>
+            </when></choose>
+            <choose><when>
+              <test><or>
+                <equal><var n="adj_gender"/><lit-tag v="m"/></equal>
+                <equal><var n="adj_gender"/><lit-tag v="GD"/></equal>
+              </or></test>
+              <let><var n="adj_gender"/><lit-tag v="mf"/></let>
+            </when></choose>
+            <let><var n="adj_defness"/><lit-tag v="ind"/></let>
+            <choose><when>
+              <test><equal><var n="adj_gender"/><lit v=""/></equal></test>            
+              <let><var n="adj_defness"/><lit-tag v="sg"/></let>
+            </when></choose>
           </when></choose>
+          
           <choose><when>
-            <test><or>
-              <equal><var n="adj_gender"/><lit-tag v="m"/></equal>
-              <equal><var n="adj_gender"/><lit-tag v="GD"/></equal>
-            </or></test>
-            <let><var n="adj_gender"/><lit-tag v="mf"/></let>
+            <test><equal><var n="adj_number"/><lit-tag v="pl"/></equal></test>
+            <let><var n="adj_gender"/><lit v=""/></let>
+            <choose><when>
+              <test><equal><var n="adj_defness"/><lit-tag v="ind"/></equal></test>            
+              <let><var n="adj_defness"/><lit v=""/></let>
+            </when></choose>
           </when></choose>
       </when></choose>
 
@@ -1492,10 +1508,6 @@
       <action>
         <call-macro n="set_gender1"><with-param pos="1"/></call-macro>
         <call-macro n="set_adj_GND"><with-param pos="2"/></call-macro>
-        <choose><when>
-          <test><equal><var n="det_gender"/><lit-tag v="GD"/></equal></test>
-          <let><var n="det_gender"/><lit-tag v="m"/></let>
-        </when></choose>
         <out>
           <lu>
             <clip pos="1" side="tl" part="lemh"/>
