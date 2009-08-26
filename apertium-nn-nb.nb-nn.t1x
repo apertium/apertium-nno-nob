@@ -483,23 +483,6 @@
         </lu>
       </out>
     </def-macro>
-    <def-macro n="out_ndef_w_number" npar="2">
-      <!-- arg.1: possessed noun. arg.2 gives typographic case
-           
-           Strip case, add definiteness.
-           Assumes that "n_number" is set.
-      -->
-      <out>
-        <lu>
-          <get-case-from pos="2"><clip pos="1" side="tl" part="lemh"/></get-case-from>
-          <clip pos="1" side="tl" part="a_nom"/>
-          <clip pos="1" side="tl" part="gen"/>
-          <var n="n_number"/>          
-          <lit-tag v="def"/>
-          <clip pos="1" side="tl" part="lemq"/>
-        </lu>
-      </out>
-    </def-macro>
     
     <def-macro n="out_posgen" npar="1">
       <!-- arg.1: possessor, either genitive noun or det.pos.
@@ -953,7 +936,7 @@
       <action>
         <modify-case><clip pos="1" side="tl" part="lemh"/><clip pos="2" side="tl" part="lemh"/></modify-case>
         <call-macro n="set_gender2"><with-param pos="2"/><with-param pos="1"/></call-macro>
-        <call-macro n="out_ndef_w_number"><with-param pos="2"/><with-param pos="1"/></call-macro>
+        <call-macro n="out_ndef"><with-param pos="2"/><with-param pos="1"/></call-macro>
         <out>
           <b pos="1"/>
         </out>
@@ -986,7 +969,7 @@
           <b pos="1"/>
           <lu><clip pos="2" side="tl" part="whole"/></lu> <b pos="2"/>
         </out>
-        <call-macro n="out_ndef_w_number">
+        <call-macro n="out_ndef">
 	  <with-param pos="3"/>
 	  <with-param pos="3"/>
 	</call-macro>
@@ -1443,7 +1426,7 @@
 	    <clip pos="2" side="tl" part="lemh"/>
             <clip pos="2" side="tl" part="a_nom"/>
             <clip pos="2" side="tl" part="gen"/>
-	    <var n="n_number"/>
+	    <clip pos="2" side="tl" part="nbr"/>
 	    <var n="n_defness"/>            
 	    <clip pos="2" side="tl" part="lemq"/>
           </lu>
@@ -1506,7 +1489,7 @@
             <clip pos="2" side="tl" part="lemh"/>
             <clip pos="2" side="tl" part="a_nom"/>
             <clip pos="2" side="tl" part="gen"/>
-	    <var n="n_number"/>
+	    <clip pos="2" side="tl" part="nbr"/>
 	    <var n="n_defness"/>
             <clip pos="2" side="tl" part="cas"/>
 	    <clip pos="2" side="tl" part="lemq"/>
