@@ -310,9 +310,9 @@
            - plurals get no gender
            - if sg/sp (all sp determiners have gender): 
            +++ default: take gender of target determiner
-           +++ det m:   take gender of target noun
-           +++ det GD:  take gender of target noun
-           +++ both GD: just take masc, to choose Something
+           +++ det m:   take gender of target noun unless mf/empty
+           +++ det GD:  take gender of target noun;
+                        but if GD/mf/empty, just take masc to choose Something
            - No number? No gender.
            Masculine determiners in bokmål may be used with femininine gender nouns
            without being marked as such in bidix.
@@ -343,18 +343,22 @@
                   <test><and>
                     <equal><var n="det_gender"/><lit-tag v="m"/></equal>
                     <not><equal><clip pos="1" side="tl" part="gen"/><lit v=""/></equal></not>
+                    <not><equal><clip pos="1" side="tl" part="gen"/><lit-tag v="mf"/></equal></not>
                   </and></test>
                   <let><var n="det_gender"/><clip pos="1" side="tl" part="gen"/></let>
-                </when>    <!-- ^^^ masc determiner => noun gender -->
+                </when>    <!-- ^^^ masc determiner => noun gender unless mf/empty -->
                 <when>
                   <test><equal><var n="det_gender"/><lit-tag v="GD"/></equal></test>
                   <let><var n="det_gender"/><clip pos="1" side="tl" part="gen"/></let>
                   <!--  ^^^ GD determiner => noun gender -->
                   <choose>
                     <when>
-                      <test><equal><var n="det_gender"/><lit v=""/></equal></test>
+                      <test><or>
+                        <equal><var n="det_gender"/><lit v=""/></equal>
+                        <equal><var n="det_gender"/><lit-tag v="mf"/></equal>
+                      </or></test>
                       <let><var n="det_gender"/><lit-tag v="m"/></let>
-                    </when> <!-- ^^^ no noun gender, GD determiner => masc -->
+                    </when> <!-- ^^^ empty/mf noun gender, GD determiner => masc -->
                   </choose>
                 </when>
                 <when>
@@ -400,56 +404,38 @@
     <def-macro n="set_adj_GND" npar="1">
       <!-- arg.1: adjective
            
-           Assumes that number and det_gender are set!
+           Assumes that number and det_gender are set! Only make changes
+           for GD-marked adjectives.
 
            adj_gender is either nt, f or mf. Most adjectives only have
            nt or mf forms, some also have an f form. These we need to
            mark in bidix (nb <mf> => <GD>, nb <f> => <f>). <GD> turns
            into noun gender (or <mf> as fallback); however, we never
-           use <m> so any <m> noun turns into <mf> adj_gender.
+           use nn <m> so any <m> noun turns into <mf> adj_gender.
       -->
-      <call-macro n="set_adj_number"><with-param pos="1"/></call-macro>
-      <choose>					       
-        <when>
-          <test>
-            <and>
+      <let><var n="adj_gender"/><clip pos="1" side="tl" part="gen"/></let>
+      <let><var n="adj_number"/><clip pos="1" side="tl" part="nbr"/></let>
+      <let><var n="adj_defness"/><clip pos="1" side="tl" part="art"/></let>
+
+      <choose><when>
+          <test><equal><var n="adj_gender"/><lit-tag v="GD"/></equal></test>
+          <call-macro n="set_adj_number"><with-param pos="1"/></call-macro>
+          <choose><when>
+            <test><and>
               <not><equal><var n="det_gender"/><lit v=""/></equal></not>
               <equal><clip pos="1" side="tl" part="nbr"/><lit-tag v="sg"/></equal>
-              <equal><clip pos="1" side="tl" part="gen"/><lit-tag v="GD"/></equal>
-            </and>
-          </test>
-          <let><var n="adj_gender"/><var n="det_gender"/></let>
-        </when>
-        <otherwise>
-          <let><var n="adj_gender"/><clip pos="1" side="tl" part="gen"/></let>
-        </otherwise>
-      </choose>
-      <choose>					       
-        <when>
-          <test><or>
-            <equal><var n="adj_gender"/><lit-tag v="m"/></equal>
-            <equal><var n="adj_gender"/><lit-tag v="GD"/></equal>
-          </or></test>
-          <let><var n="adj_gender"/><lit-tag v="mf"/></let>
-        </when>
-      </choose>
+            </and></test>
+            <let><var n="adj_gender"/><var n="det_gender"/></let>
+          </when></choose>
+          <choose><when>
+            <test><or>
+              <equal><var n="adj_gender"/><lit-tag v="m"/></equal>
+              <equal><var n="adj_gender"/><lit-tag v="GD"/></equal>
+            </or></test>
+            <let><var n="adj_gender"/><lit-tag v="mf"/></let>
+          </when></choose>
+      </when></choose>
 
-      <!-- some 'sanity checks' for defness and gender: -->
-      <let><var n="adj_defness"/><clip pos="1" side="tl" part="art"/></let>
-      <choose>
-        <when>
-          <test><and>
-            <equal><var n="adj_number"/><lit-tag v="sg"/></equal>
-            <equal><var n="adj_defness"/><lit v=""/></equal>
-          </and></test>
-          <let><var n="adj_defness"/><lit-tag v="def"/></let>
-        </when>
-        <when>
-          <test><equal><var n="adj_number"/><lit-tag v="pl"/></equal></test>
-          <let><var n="adj_gender"/><lit v=""/></let>
-          <let><var n="adj_defness"/><lit v=""/></let>
-        </when>
-      </choose>
     </def-macro>
     
     <def-macro n="set_gender3" npar="3">
@@ -1524,8 +1510,8 @@
             <clip pos="2" side="tl" part="lemh"/>
             <clip pos="2" side="tl" part="a_adj"/>
             <var n="adj_gender"/>
-            <var n="adj_number"/>
-            <var n="adj_defness"/>
+	    <var n="adj_number"/>
+	    <var n="adj_defness"/>
 	    <clip pos="2" side="tl" part="lemq"/>
           </lu>
         </out>
