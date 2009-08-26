@@ -12646,7 +12646,7 @@ SELECT:2963 (adj nt ind sg) IF
 #:2771
  SELECT:2771 (det m) IF
 	(0 %hvilken%)
-	(*1 ub-ent-mask-subst LINK NOT 0 ub-ent-fem-subst LINK NOT 0 ikke-subst LINK NOT *-1 ikke-adv-adj)
+	(*1O ub-ent-mask-subst LINK NOT 0 ub-ent-fem-subst LINK NOT 0 ikke-subst LINK NOT *-1 ikke-adv-adj)
 ;
 #  "2.12.2002: Jeg spør hvilken vei det er."))
 
@@ -14931,10 +14931,10 @@ SELECT:2963 (adj nt ind sg) IF
 	(NOT 0 farlige-mask-subst)
 	(NOT 1 subst-mask)
 	(NOT -1 komma/konj)
-	(**-1C mask-det LINK NOT 0 nr2-det LINK NOT *1 ikke-adv-adj)
+	(**-1CO mask-det LINK NOT 0 nr2-det LINK NOT *1 ikke-adv-adj)
 ;
 # group: 38
-
+# KBU: la til O, No Pass Origin
 
 
 #:2551
@@ -14960,12 +14960,12 @@ SELECT:2963 (adj nt ind sg) IF
 	(NOT 0 farlige-mask-subst)
 	(NOT 0 adj)
 	(NOT -1 komma/konj)
-	(**-1C mask-det LINK NOT 0 nr2-det LINK NOT *1 ikke-adv-adj)
-	(**-1C mask-det LINK *1 ub-ent-mask-adj)
+	(**-1CO mask-det LINK NOT 0 nr2-det LINK NOT *1 ikke-adv-adj)
+	(**-1CO mask-det LINK *1 ub-ent-mask-adj)
 ;
 #  "en enestående vakker elsker (subst, ikke pres)"
 #      :group 38))
-
+# KBU: la til O, No Pass Origin
 
 
 #:2553
@@ -14974,12 +14974,11 @@ SELECT:2963 (adj nt ind sg) IF
 	(NOT 0 fv)
 	(NOT 0 adj)
 	(NOT -1 komma/konj)
-	(**-1C mask-det LINK NOT 0 nr2-det LINK NOT *1 ikke-adv-adj)
+	(**-1CO mask-det LINK NOT 0 nr2-det LINK NOT *1 ikke-adv-adj)
 ;
 #  "en vidunderlig vakker sommerfugl"
 #      :group 38))
-
-
+# KBU: la til O, No Pass Origin
 
 #:2548
  SELECT:2548 ub-ent-nøyt-subst IF
@@ -15053,10 +15052,10 @@ SELECT:2963 (adj nt ind sg) IF
 	(NOT 0 adj)
 	(NOT 0 farlige-nøyt-subst)
 	(NOT -1 komma/konj)
-	(**-1C nøyt-det LINK NOT 0 nr2-det LINK NOT *1 ikke-adv-adj)
+	(**-1CO nøyt-det LINK NOT 0 nr2-det LINK NOT *1 ikke-adv-adj)
 ;
 # group: 38
-
+# KBU: la til O, No Pass Origin, pga. «et barn»
 
 
 #:2542
@@ -15106,21 +15105,21 @@ SELECT:2963 (adj nt ind sg) IF
  SELECT:2540 ent-fem-subst IF
 	(NOT 0 adj)
 	(NOT -1 komma/konj)
-	(**-1C fem-det LINK NOT 0 nr2-det LINK NOT *1 ikke-adv-adj)
+	(**-1CO fem-det LINK NOT 0 nr2-det LINK NOT *1 ikke-adv-adj)
 	(**-1C fem-det LINK *1 ub-ent-fem-adj)
 ;
 # group: 38
-
+# KBU: la til O, No Pass Origin
 
 
 #:2541
  SELECT:2541 ent-fem-subst IF
 	(NOT 0 adj)
 	(NOT -1 komma/konj)
-	(**-1C fem-det LINK NOT 0 nr2-det LINK NOT *1 ikke-adv-adj)
+	(**-1CO fem-det LINK NOT 0 nr2-det LINK NOT *1 ikke-adv-adj)
 ;
 # group: 38
-
+# KBU: la til O, No Pass Origin
 
 
 #:2531
@@ -18237,7 +18236,14 @@ REMOVE:4090 (vblex)
 # (NOT -1 int-setn-gr): hvor, hva osv er adv ...NOT %dømme%: Plassen blir etter alt å dømme ledig.
 # "))
 
-
+#:6203
+ REMOVE:6203 (adj pl) IF
+	(0 be-ent-adj)
+	(-1 det-ent)
+	(NOT -1 fl)
+;
+# KBU: «mitt sorte hus», etc. Sikkert overaggressivt, todo: test!
+	
 
 #:2295
  REMOVE:2295 (adj nt sg) IF
@@ -21377,10 +21383,10 @@ REMOVE:2135 (det) IF
 #:2017
  REMOVE:2017 fl-subst IF
 	(NOT -1 komma/konj)
-	(*-1 det LINK NOT 0 fl LINK NOT 0 ikke-det LINK NOT 0 %samme/neste/ene/eneste/selve/forrige% LINK NOT *1 ikke-adv-adj)
+	(*-1O det LINK NOT 0 fl LINK NOT 0 ikke-det LINK NOT 0 %samme/neste/ene/eneste/selve/forrige% LINK NOT *1 ikke-adv-adj)
 ;
 #  "hver (ikke fl) mann (ikke fl)"))
-
+# KBU: la til O, No Pass Origin
 
 
 #:2018
@@ -25700,7 +25706,7 @@ CONSTRAINTS
 	(1 ("<fyr>"))
 	(0 %sette/ta%)
 ;
-# «Satte fyr på huset sitt»
+# KBU: «Satte fyr på huset sitt»
 
 #:1732
  SELECT:1732 (vblex pres) IF
