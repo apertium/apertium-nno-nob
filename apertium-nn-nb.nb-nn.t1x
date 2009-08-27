@@ -893,7 +893,7 @@
         <pattern-item n="ngen"/>
       </pattern>
       <action>
-        <call-macro n="set_gender1"><with-param pos="3"/></call-macro>
+        <call-macro n="set_gender2"><with-param pos="3"/><with-param pos="1"/></call-macro>
         <choose>					       
           <when>
             <test>
@@ -904,7 +904,15 @@
           </when>
         </choose>
         <out>
-          <lu><clip pos="1" side="tl" part="whole"/></lu> <b pos="1"/>
+          <lu>
+            <clip pos="1" side="tl" part="lemh"/>
+            <clip pos="1" side="tl" part="a_det"/>
+            <var n="det_gender"/>
+            <var n="number"/>
+            <clip pos="1" side="tl" part="art"/>
+            <clip pos="1" side="tl" part="lemq"/>
+          </lu>
+          <b pos="1"/>
           <lu><clip pos="2" side="tl" part="whole"/></lu> <b pos="2"/>
           <lu>
             <clip pos="3" side="tl" part="lemh"/>
@@ -969,7 +977,15 @@
             <var n="number"/>
           </lu>
           <b pos="1"/>
-          <lu><clip pos="2" side="tl" part="whole"/></lu> <b pos="2"/>
+          <lu>
+            <clip pos="2" side="tl" part="lemh"/>
+            <clip pos="2" side="tl" part="a_adj"/>
+            <var n="adj_gender"/>
+            <var n="adj_number"/>
+            <var n="adj_defness"/>
+	    <clip pos="2" side="tl" part="lemq"/>
+          </lu>
+          <b pos="2"/>
         </out>
         <call-macro n="out_ndef">
 	  <with-param pos="3"/>
@@ -1269,10 +1285,8 @@
       </action>
     </rule>
     <rule comment="DETNONPOS DETNONPOS NGEN NIND: den neste Lamaens bil => bilen til den neste Lamaen
-                   
-                   For now, we don't do anything to the second determiner, since
-                   since the first might have a full paradigm while the second
-                   doesn't, etc. (would require a second call to set_gender).">
+                                                  hver en Lamas bil => bilen til kvar ein Lama
+                                                  (vel... logisk tvitydig, er det ikkje?)">
       <pattern>
 	<pattern-item n="detnonpos"/>
 	<pattern-item n="detnonpos"/>    
@@ -1281,13 +1295,13 @@
       </pattern>
       <action>
         <modify-case><clip pos="1" side="tl" part="lemh"/><clip pos="4" side="tl" part="lemh"/></modify-case>
-	<call-macro n="set_gender2">
-	  <with-param pos="3"/>
-          <with-param pos="1"/>
-	</call-macro>
-        <call-macro n="out_ndef">
+	<call-macro n="out_ndef">
 	  <with-param pos="4"/>
 	  <with-param pos="1"/>
+	</call-macro>
+        <call-macro n="set_gender2">
+	  <with-param pos="3"/>
+          <with-param pos="1"/>
 	</call-macro>
         <out>
           <b pos="1"/>
@@ -1301,7 +1315,21 @@
 	    <clip pos="1" side="tl" part="lemq"/>
           </lu>
           <b pos="2"/>
-          <lu><clip pos="2" side="tl" part="whole"/></lu> <b pos="3"/>
+        </out>
+        <call-macro n="set_gender2">
+	  <with-param pos="3"/>
+          <with-param pos="2"/>
+	</call-macro>
+        <out>
+          <lu>
+	    <clip pos="2" side="tl" part="lemh"/>
+            <clip pos="2" side="tl" part="a_det"/>
+	    <var n="det_gender"/>
+	    <var n="number"/>
+            <clip pos="2" side="tl" part="art"/>
+	    <clip pos="2" side="tl" part="lemq"/>
+          </lu>
+          <b pos="3"/>
           <lu>
             <clip pos="3" side="tl" part="lemh"/>
             <clip pos="3" side="tl" part="a_nom"/>
@@ -1313,7 +1341,10 @@
         </out>
       </action>
     </rule>
-    <rule comment="DETNONPOS NGEN ADJ NIND: en katts hvite snute => den kvite snuten til ein katt">
+    <rule comment="DETNONPOS NGEN ADJ NIND: en katts hvite snute => den kvite snuten til ein katt
+                                            forrige århundres største filosofer => dei største filosofane til forrige århundre
+                   (ja, me burde ha ein måte å velje preposisjon)
+                   Merk at «en katts hvite hus» er tvitydig mellom sg/pl, så me nyttar set_gender1 først.">
       <pattern>
 	<pattern-item n="detnonpos"/>    
 	<pattern-item n="ngen"/> 
@@ -1322,9 +1353,8 @@
       </pattern>
       <action>
         <modify-case><clip pos="1" side="tl" part="lemh"/><clip pos="4" side="tl" part="lemh"/></modify-case>
-	<call-macro n="set_gender2">
-	  <with-param pos="2"/>
-	  <with-param pos="1"/>
+	<call-macro n="set_gender1">
+	  <with-param pos="4"/>
 	</call-macro>
         <out>
           <lu>
@@ -1340,6 +1370,10 @@
 	  <with-param pos="4"/>
 	  <with-param pos="4"/>
 	</call-macro>
+        <call-macro n="set_gender2">
+          <with-param pos="2"/>
+          <with-param pos="1"/>
+        </call-macro>
         <out>
           <b pos="2"/>
           <lu><lit v="til"/><lit-tag v="pr"/></lu> <b/>
@@ -1393,8 +1427,16 @@
         <pattern-item n="nacr"/>
       </pattern>
       <action>
+        <call-macro n="set_gender1"><with-param pos="1"/></call-macro>
         <out>
-          <lu><clip pos="1" side="tl" part="whole"/></lu>
+          <lu>
+            <clip pos="1" side="tl" part="lemh"/>
+            <clip pos="1" side="tl" part="a_det"/>
+            <var n="det_gender"/>
+            <var n="number"/>
+            <clip pos="1" side="tl" part="art"/>
+	    <clip pos="1" side="tl" part="lemq"/>
+          </lu>
           <b pos="1"/>
           <lu><clip pos="2" side="tl" part="whole"/></lu>
         </out>
