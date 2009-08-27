@@ -13,10 +13,6 @@
     <def-cat n="nind">
       <cat-item tags="n.*.*.ind"/>
     </def-cat>
-    <def-cat n="nomgen">
-      <cat-item tags="n.*.*.*.gen"/>
-      <cat-item tags="np.*.*.*.gen"/>
-    </def-cat>
     <def-cat n="ngen">
       <cat-item tags="n.*.*.*.gen"/>
     </def-cat>
@@ -806,7 +802,7 @@
          men det jo berre kopiere og lime inn (og fikse litt) etter at ADJ{1} regelen 
          er ferdig. Sjå http://wiki.apertium.org/wiki/Norsk#Genitive.2Fpossessive  -->
     
-    <rule comment="NOMGEN: mannens => mannen sin
+    <rule comment="NGEN: mannens => mannen sin
                    Very heuristic fallback rule.
                    If we can't match with the below rules, turn the
                    genitive -s into 'sin' garpegenitiv instead.
@@ -817,7 +813,7 @@
                          mannens *sykler => mannen sin *sykler
                    So let's just hope plurals possess plurals etc...">
       <pattern>
-        <pattern-item n="nomgen"/>
+        <pattern-item n="ngen"/>
       </pattern>
       <action>
         <call-macro n="set_gender1"><with-param pos="1"/></call-macro>
@@ -848,25 +844,32 @@
         </out>
       </action>
     </rule>
-    <rule comment="ADJ NOMGEN: lille mannens => lille mannen sin
+    <rule comment="ADJ NGEN: lille mannens => lille mannen sin
                    Very heuristic fallback rule  (needed since we have an
-                   ADJ NOM rule below)">
+                   ADJ NOM rule below)
+                   
+                   We use an adjective to set determiner adj_gender, so call
+                   set_gender1 again.">
       <pattern>
         <pattern-item n="adj"/>
-        <pattern-item n="nomgen"/>
+        <pattern-item n="ngen"/>
       </pattern>
       <action>
-        <call-macro n="set_gender1"><with-param pos="2"/></call-macro>
-        <choose><when>
-          <test><or>
-            <equal><var n="number"/><lit-tag v="sp"/></equal>
-            <equal><var n="number"/><lit v=""/></equal>
-          </or></test>
-          <let><var n="number"/><lit-tag v="pl"/></let>
-          <let><var n="det_gender"/><lit v=""/></let>
-        </when></choose>
+        <call-macro n="set_gender3">
+          <with-param pos="2"/>
+          <with-param pos="1"/>
+          <with-param pos="1"/>
+        </call-macro>
         <out>
-          <lu><clip pos="1" side="tl" part="whole"/></lu> <b pos="1"/>
+          <lu>
+            <clip pos="1" side="tl" part="lemh"/>
+            <clip pos="1" side="tl" part="a_adj"/>
+            <var n="adj_gender"/>
+            <var n="adj_number"/>
+            <var n="adj_defness"/>
+	    <clip pos="1" side="tl" part="lemq"/>
+          </lu>
+          <b pos="1"/>
           <lu>
             <clip pos="2" side="tl" part="lemh"/>
             <clip pos="2" side="tl" part="a_nom"/>
@@ -876,6 +879,9 @@
             <clip pos="2" side="tl" part="lemq"/>
           </lu>
           <b/>
+        </out>
+        <call-macro n="set_gender1"><with-param pos="2"/></call-macro>        
+        <out>
           <lu><lit v="sin"/>
           <lit-tag v="det.pos"/>
           <var n="det_gender"/>
