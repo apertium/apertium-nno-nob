@@ -50,7 +50,8 @@
 		<sdef n="pp" 	c="Perfect participle (vblex/adj)"/> 
 		<sdef n="pprs" 	c="Present participle (adjectival)"/>
 		<sdef n="pr" 	c="Preposition"/> 
-		<sdef n="adv" 	c="Adverb"/> 
+		<sdef n="adv" 	c="Adverb"/>
+                <sdef n="ij" 	c="Interjection"/>
 		<sdef n="adj" 	c="Adjective"/> 
 		<sdef n="part" 	c="Participle (infinitive)"/> 
 		<sdef n="cnjsub" 	c="Subordinating conjunction"/> 
@@ -10057,6 +10058,10 @@
 </pardef>
 <!-- /verbs -->
 
+<!-- Interjections -->
+<pardef n="ja__ij">
+  <e>       <p><l></l>          <r><s n="ij"/></r></p></e>
+</pardef>
 
     <!-- Adverbs -->
 <pardef n="dagevis__adv">
@@ -10074,6 +10079,7 @@
   <e>       <p><l>leg</l>       <r>leg<s n="adv"/></r></p></e>
   <e r="LR"><p><l>lig</l>       <r>leg<s n="adv"/></r></p></e>
 </pardef>
+
 
 <pardef n="å__part">
   <e>       <p><l></l>          <r><s n="part"/></r></p></e>
@@ -11083,6 +11089,11 @@
 <e lm="einkvar">           <i>einkvar</i><par n="kvar__det"/></e>
 <e lm="noko">            <i>no</i><par n="no/ko__det"/></e>
 <e lm="ingen">           <i>in</i><par n="in/gen__det"/></e>
+
+<!-- Interjections -->
+<e lm="ja">      <i>ja</i><par n="ja__ij"/></e>
+<e lm="nei">      <i>nei</i><par n="ja__ij"/></e>
+<e lm="jo">      <i>jo</i><par n="ja__ij"/></e>
 
     <!-- Prepositions -->
 <e lm="attanfor">         <i>att</i><par n="ut/anfor__pr"/></e>
@@ -55602,26 +55613,47 @@
 <e lm="forøvrig">        <i>forøvrig</i><par n="dagevis__adv"/></e>
 <e lm="føresetnadsvis">  <i>føresetnadsvis</i><par n="dagevis__adv"/></e>
 <e lm="lausleg">         <i>laus</i><par n="nem/leg__adv"/></e>
-<!-- todo check: -->
 <e lm="fortfarande">     <i>fortfarande</i><par n="dagevis__adv"/></e>
-<!-- <e lm="forsøksvis">    <i>forsøksvis</i><par n="dagevis__adv"/></e> -->
-<!-- <e lm="forskuddsvis">    <i>forskuddsvis</i><par n="dagevis__adv"/></e> -->
-<!-- <e lm="forskottsvis">    <i>forskottsvis</i><par n="dagevis__adv"/></e> -->
+<e lm="forsøksvis">    <i>forsøksvis</i><par n="dagevis__adv"/></e>
+<e lm="førebels">    <i>førebels</i><par n="dagevis__adv"/></e>
+<e lm="forskuddsvis">    <i>forskuddsvis</i><par n="dagevis__adv"/></e>
+<e lm="forskottsvis">    <i>forskottsvis</i><par n="dagevis__adv"/></e>
+<e lm="dørimellom">    <i>dørimellom</i><par n="dagevis__adv"/></e>
+<e lm="dus">    <i>dus</i><par n="dagevis__adv"/></e>
+<e lm="doloroso">    <i>doloroso</i><par n="dagevis__adv"/></e>
+<e lm="distriktsvis">    <i>distriktsvis</i><par n="dagevis__adv"/></e>
+<e lm="delkredere">    <i>delkredere</i><par n="dagevis__adv"/></e>
+<e lm="dam">    <i>dam</i><par n="dagevis__adv"/></e>
+<e lm="dagstøtt">    <i>dagstøtt</i><par n="dagevis__adv"/></e>
+<e lm="coolly">    <i>coolly</i><par n="dagevis__adv"/></e>
+<e lm="brennfort">    <i>brennfort</i><par n="dagevis__adv"/></e>
+<e lm="brennsnøgt">    <i>brennsnøgt</i><par n="dagevis__adv"/></e>
+<e lm="blanko">    <i>blanko</i><par n="dagevis__adv"/></e>
+<e lm="bitterleg">    <i>bitterleg</i><par n="dagevis__adv"/></e>
+<e lm="bataljonsvis">    <i>bataljonsvis</i><par n="dagevis__adv"/></e>
+<e lm="bakanom">    <i>bakanom</i><par n="dagevis__adv"/></e>
+<e lm="bakanfrå">    <i>bakanfrå</i><par n="dagevis__adv"/></e>
+<e lm="avhends">    <i>avhends</i><par n="dagevis__adv"/></e>
+<e lm="avdragsvis">    <i>avdragsvis</i><par n="dagevis__adv"/></e>
+<e lm="austanom">    <i>austanom</i><par n="dagevis__adv"/></e>
+<e lm="attåt">    <i>attåt</i><par n="dagevis__adv"/></e>
+<e lm="anno">    <i>anno</i><par n="dagevis__adv"/></e>
+<e lm="fleirvegs">    <i>fleirvegs</i><par n="dagevis__adv"/></e>
+<e lm="bakk">    <i>bakk</i><par n="dagevis__adv"/></e>
+<e lm="føre">    <i>føre</i><par n="dagevis__adv"/></e>
+<!-- todo check: -->
 <!-- <e lm="forsiktigvis">    <i>forsiktigvis</i><par n="dagevis__adv"/></e> -->
 <!-- <e lm="fornuftigvis">    <i>fornuftigvis</i><par n="dagevis__adv"/></e> -->
 <!-- <e lm="fornemmeleg">    <i>fornemmeleg</i><par n="dagevis__adv"/></e> -->
 <!-- <e lm="forholdvis">    <i>forholdvis</i><par n="dagevis__adv"/></e> -->
-<!-- <e lm="fore">    <i>fore</i><par n="dagevis__adv"/></e> -->
 <!-- <e lm="fordømrade">    <i>fordømrade</i><par n="dagevis__adv"/></e> -->
 <!-- <e lm="fordum">    <i>fordum</i><par n="dagevis__adv"/></e> -->
-<!-- <e lm="for øvrig">    <i>for øvrig</i><par n="dagevis__adv"/></e> -->
-<!-- <e lm="flerveis">    <i>flerveis</i><par n="dagevis__adv"/></e> -->
+<!-- <e lm="for øvrig">    <i>for<b/>øvrig</i><par n="dagevis__adv"/></e> -->
 <!-- <e lm="fjellstøtt">    <i>fjellstøtt</i><par n="dagevis__adv"/></e> -->
 <!-- <e lm="falskeleg">    <i>falskeleg</i><par n="dagevis__adv"/></e> -->
 <!-- <e lm="etterskuddsvis">    <i>etterskuddsvis</i><par n="dagevis__adv"/></e> -->
 <!-- <e lm="etterskottsvis">    <i>etterskottsvis</i><par n="dagevis__adv"/></e> -->
 <!-- <e lm="etterhånden">    <i>etterhånden</i><par n="dagevis__adv"/></e> -->
-<!-- <e lm="etterkvert">    <i>etterkvert</i><par n="dagevis__adv"/></e> -->
 <!-- <e lm="etappevis">    <i>etappevis</i><par n="dagevis__adv"/></e> -->
 <!-- <e lm="erfaringsvis">    <i>erfaringsvis</i><par n="dagevis__adv"/></e> -->
 <!-- <e lm="enkom">    <i>enkom</i><par n="dagevis__adv"/></e> -->
@@ -55629,14 +55661,9 @@
 <!-- <e lm="endog">    <i>endog</i><par n="dagevis__adv"/></e> -->
 <!-- <e lm="ekstempore">    <i>ekstempore</i><par n="dagevis__adv"/></e> -->
 <!-- <e lm="einkom">    <i>einkom</i><par n="dagevis__adv"/></e> -->
-<!-- <e lm="etterkvert">    <i>etterkvert</i><par n="dagevis__adv"/></e> -->
-<!-- <e lm="dørimellom">    <i>dørimellom</i><par n="dagevis__adv"/></e> -->
-<!-- <e lm="dus">    <i>dus</i><par n="dagevis__adv"/></e> -->
 <!-- <e lm="drøssevis">    <i>drøssevis</i><par n="dagevis__adv"/></e> -->
 <!-- <e lm="dryppande">    <i>dryppande</i><par n="dagevis__adv"/></e> -->
-<!-- <e lm="doloroso">    <i>doloroso</i><par n="dagevis__adv"/></e> -->
 <!-- <e lm="dog">    <i>dog</i><par n="dagevis__adv"/></e> -->
-<!-- <e lm="distriktsvis">    <i>distriktsvis</i><par n="dagevis__adv"/></e> -->
 <!-- <e lm="dessuakta">    <i>dessuakta</i><par n="dagevis__adv"/></e> -->
 <!-- <e lm="derover">    <i>derover</i><par n="dagevis__adv"/></e> -->
 <!-- <e lm="deromkring">    <i>deromkring</i><par n="dagevis__adv"/></e> -->
@@ -55644,41 +55671,24 @@
 <!-- <e lm="derinne">    <i>derinne</i><par n="dagevis__adv"/></e> -->
 <!-- <e lm="derborte">    <i>derborte</i><par n="dagevis__adv"/></e> -->
 <!-- <e lm="dengong">    <i>dengong</i><par n="dagevis__adv"/></e> -->
-<!-- <e lm="delkredere">    <i>delkredere</i><par n="dagevis__adv"/></e> -->
-<!-- <e lm="dam">    <i>dam</i><par n="dagevis__adv"/></e> -->
-<!-- <e lm="dagstøtt">    <i>dagstøtt</i><par n="dagevis__adv"/></e> -->
-<!-- <e lm="coolly">    <i>coolly</i><par n="dagevis__adv"/></e> -->
 <!-- <e lm="bunkevis">    <i>bunkevis</i><par n="dagevis__adv"/></e> -->
 <!-- <e lm="bråfort">    <i>bråfort</i><par n="dagevis__adv"/></e> -->
-<!-- <e lm="brennfort">    <i>brennfort</i><par n="dagevis__adv"/></e> -->
-<!-- <e lm="blottande">    <i>blottande</i><par n="dagevis__adv"/></e> -->
 <!-- <e lm="blikkande">    <i>blikkande</i><par n="dagevis__adv"/></e> -->
 <!-- <e lm="blikk">    <i>blikk</i><par n="dagevis__adv"/></e> -->
 <!-- <e lm="blideleg">    <i>blideleg</i><par n="dagevis__adv"/></e> -->
-<!-- <e lm="blanko">    <i>blanko</i><par n="dagevis__adv"/></e> -->
-<!-- <e lm="bitterleg">    <i>bitterleg</i><par n="dagevis__adv"/></e> -->
 <!-- <e lm="bistrande">    <i>bistrande</i><par n="dagevis__adv"/></e> -->
 <!-- <e lm="betids">    <i>betids</i><par n="dagevis__adv"/></e> -->
 <!-- <e lm="belgande">    <i>belgande</i><par n="dagevis__adv"/></e> -->
 <!-- <e lm="beklagelegvis">    <i>beklagelegvis</i><par n="dagevis__adv"/></e> -->
 <!-- <e lm="bedriftsvis">    <i>bedriftsvis</i><par n="dagevis__adv"/></e> -->
-<!-- <e lm="bataljonsvis">    <i>bataljonsvis</i><par n="dagevis__adv"/></e> -->
-<!-- <e lm="bakk">    <i>bakk</i><par n="dagevis__adv"/></e> -->
-<!-- <e lm="bakanom">    <i>bakanom</i><par n="dagevis__adv"/></e> -->
-<!-- <e lm="bakanfrå">    <i>bakanfrå</i><par n="dagevis__adv"/></e> -->
 <!-- <e lm="avslutningsvis">    <i>avslutningsvis</i><par n="dagevis__adv"/></e> -->
 <!-- <e lm="avsatsvis">    <i>avsatsvis</i><par n="dagevis__adv"/></e> -->
-<!-- <e lm="avhends">    <i>avhends</i><par n="dagevis__adv"/></e> -->
-<!-- <e lm="avdragsvis">    <i>avdragsvis</i><par n="dagevis__adv"/></e> -->
 <!-- <e lm="avdelingsvis">    <i>avdelingsvis</i><par n="dagevis__adv"/></e> -->
-<!-- <e lm="austanom">    <i>austanom</i><par n="dagevis__adv"/></e> -->
-<!-- <e lm="attåt">    <i>attåt</i><par n="dagevis__adv"/></e> -->
 <!-- <e lm="antydningsvis">    <i>antydningsvis</i><par n="dagevis__adv"/></e> -->
 <!-- <e lm="antakelegvis">    <i>antakelegvis</i><par n="dagevis__adv"/></e> -->
 <!-- <e lm="antagelegvis">    <i>antagelegvis</i><par n="dagevis__adv"/></e> -->
 <!-- <e lm="anstigende">    <i>anstigende</i><par n="dagevis__adv"/></e> -->
 <!-- <e lm="anstendigvis">    <i>anstendigvis</i><par n="dagevis__adv"/></e> -->
-<!-- <e lm="anno">    <i>anno</i><par n="dagevis__adv"/></e> -->
 <!-- <e lm="annetstedshen">    <i>annetstedshen</i><par n="dagevis__adv"/></e> -->
 <!-- <e lm="annetstedsfrå">    <i>annetstedsfrå</i><par n="dagevis__adv"/></e> -->
 <!-- <e lm="andelsvis">    <i>andelsvis</i><par n="dagevis__adv"/></e> -->
