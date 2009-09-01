@@ -148,6 +148,7 @@ LIST %hilsen% = "hilsen"  ;
 LIST %ho% = ("ho"  n) ;
 LIST %ho%-interj = ("ho"  interj) ;
 LIST %hogge/sage/kappe/fyre% = ("hogge"  vblex) ("sage"  vblex) ("kappe"  vblex) ("fyre"  vblex) ;
+LIST %hund% = "hund" "valp" "bikkje" "kjøter" "tispe"  ;
 LIST %hundre/tusen% = "tusen"  "hundre"  ;
 LIST %hundre/tusen/osv% = "tusen"  "par"  "million"  "milliard"  "hundre"  ;
 LIST %hus% =("hus" ) ;
@@ -5953,6 +5954,16 @@ CONSTRAINTS
 	(0 verb)
 ;
 #  "kh jan 2004: Aldri flere \"gjelder\""))
+
+
+
+#:6205
+  "<gjør>"   REMOVE:3589   ("gjø") IF
+	(0 %gjøre% LINK 0 pres)
+	(NEGATE 0* %hund%)
+;
+# KBU: Burde skje etter syntaks; viss me har objekt, "gjøre", viss
+# subjektet er %hund%, "gøy"
 
 
 
