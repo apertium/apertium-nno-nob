@@ -9,8 +9,8 @@
 # any slash implies a hash. Hmm, I should probaby grep -v
 # those... after version 0.6 is out.
 
-# Note: ssed used some places instead of sed since Mac OS X sed sucks,
-# haven't bothered with making this general. Either install ssed
+# Note: gsed used some places instead of sed since Mac OS X sed sucks,
+# haven't bothered with making this general. Either install gsed
 # (eg. from Macports) make a symlink.
 
 dir=`echo "$0" | sed 's,[^/]*$,,'`
@@ -30,27 +30,29 @@ cat ../apertium-nn-nb.nn-nb.dix|grep '<b/>'|sed 's/.*<l>//'|sed 's/<s.*//'|sed '
 cat ../apertium-nn-nb.nn-nb.dix|grep '<b/>'|sed 's/.*<r>//'|sed 's/<s.*//'|sed 's/<b\/>/ /g'|apertium nb-nn|grep '[#@]'
 
 
-echo "finding all nn=>nb inconsistencies..."
+printf "finding all nn=>nb inconsistencies..."
 ./nn-nb.inconsistency.sh > nn-nb.inconsistency 
-echo "finding nb.@'s..." 
-cat nn-nb.inconsistency | grep '@' |sed 's/<n></<n_/g'| ssed 's/.*@\([^>]*\).*/\1>/' | uniq > nb.@ 
-echo "finding nb.#'s..."
-cat nn-nb.inconsistency | grep '#' |sed 's/<n></<n_/g'| ssed 's/.*#\([^>]*\).*/\1>/' | uniq > nb.# 
-echo "finding nb.bislash (bidix /'s)..."
-cat nn-nb.inconsistency | grep    ' --------->.*\/.*--------->' | grep '\/' |sed 's/<n></<n_/g'| ssed 's/.*#\([^>]*\).*\/\([^>]*\).*/\1> \2>/' | uniq > nb.bislash
-echo "finding nb.slash (generation /'s)..."
-cat nn-nb.inconsistency | grep -v ' --------->.*\/.*--------->' | grep '\/' |sed 's/<n></<n_/g'| ssed 's/..*\^\([^>]*\).*/\1>/' | uniq > nb.slash
+printf "finding nb.@'s..." 
+cat nn-nb.inconsistency | grep '@' |sed 's/<n></<n_/g'| gsed 's/.*@\([^>]*\).*/\1>/' | uniq > nb.@ 
+printf "finding nb.#'s..."
+cat nn-nb.inconsistency | grep '#' |sed 's/<n></<n_/g'| gsed 's/.*#\([^>]*\).*/\1>/' | uniq > nb.# 
+printf "finding nb.bislash (bidix /'s)..."
+cat nn-nb.inconsistency | grep    ' --------->.*\/.*--------->' | grep '\/' |sed 's/<n></<n_/g'| gsed 's/.*#\([^>]*\).*\/\([^>]*\).*/\1> \2>/' | uniq > nb.bislash
+printf "finding nb.slash (generation /'s)..."
+cat nn-nb.inconsistency | grep -v ' --------->.*\/.*--------->' | grep '\/' |sed 's/<n></<n_/g'| gsed 's/..*\^\([^>]*\).*/\1>/' | uniq > nb.slash
+echo ""
 
-echo "finding all nb=>nn inconsistencies..."
+printf "finding all nb=>nn inconsistencies..."
 ./nb-nn.inconsistency.sh > nb-nn.inconsistency 
-echo "finding nn.@'s..."
-cat nb-nn.inconsistency | grep '@' |sed 's/<n></<n_/g'| ssed 's/.*@\([^>]*\).*/\1>/' | uniq > nn.@ 
-echo "finding nn.#'s..."
-cat nb-nn.inconsistency | grep '#' |sed 's/<n></<n_/g'| ssed 's/.*#\([^>]*\).*/\1>/' | uniq > nn.# 
-echo "finding nn.bislash (bidix /'s)..."
-cat nb-nn.inconsistency | grep    ' --------->.*\/.*--------->' | grep '\/' |sed 's/<n></<n_/g'| ssed 's/.*#\([^>]*\).*\/\([^>]*\).*/\1> \2>/' | uniq > nn.bislash
-echo "finding nn.slash (generation /'s)..."
-cat nb-nn.inconsistency | grep -v ' --------->.*\/.*--------->' | grep '\/' |sed 's/<n></<n_/g'| ssed 's/..*\^\([^>]*\).*/\1>/' | uniq > nn.slash
+printf "finding nn.@'s..."
+cat nb-nn.inconsistency | grep '@' |sed 's/<n></<n_/g'| gsed 's/.*@\([^>]*\).*/\1>/' | uniq > nn.@ 
+printf "finding nn.#'s..."
+cat nb-nn.inconsistency | grep '#' |sed 's/<n></<n_/g'| gsed 's/.*#\([^>]*\).*/\1>/' | uniq > nn.# 
+printf "finding nn.bislash (bidix /'s)..."
+cat nb-nn.inconsistency | grep    ' --------->.*\/.*--------->' | grep '\/' |sed 's/<n></<n_/g'| gsed 's/.*#\([^>]*\).*\/\([^>]*\).*/\1> \2>/' | uniq > nn.bislash
+printf "finding nn.slash (generation /'s)..."
+cat nb-nn.inconsistency | grep -v ' --------->.*\/.*--------->' | grep '\/' |sed 's/<n></<n_/g'| gsed 's/..*\^\([^>]*\).*/\1>/' | uniq > nn.slash
+echo ""
 
 echo "stats for wiki:"
 echo '|  Nynorsk' && wc -l nn.# nn.@ nn.bislash nn.slash | awk '!/total/ {print "| ", $1}' && echo '|
