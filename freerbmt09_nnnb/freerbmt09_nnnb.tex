@@ -1,7 +1,4 @@
-% File freebmt09.tex
-% July 23rd 2009
-% Contact: freerbmt@dlsi.ua.es
-
+% Created 2009-09-04 Fri 16:35
 \documentclass[11pt]{article}
 \usepackage{freerbmt09}
 \usepackage[utf8x]{inputenc}
@@ -10,53 +7,84 @@
 \usepackage{url}
 \usepackage{latexsym}
 
-%\bibpunct{(}{)}{;}{A}{,}{,}
-%\bibdata{mybib.bib}
+\usepackage{hyperref}
+\author{Jane Doe\\  Department of Computer Science \\  Nonesuch State University \\  Utopia, NS 12345 \\  {\tt jane.doe@cs.nsu.edu} \And  John Smith \\  Department of Linguistics \\  Another State University \\  Collegetown, AS 98765 \\    {\tt jsmith@ling.asu.edu}}
 
 \title{Reuse of Free Resources in Machine Translation between Norwegian Nynorsk and Bokmål}
-
-\author{Jane Doe\\
-  Department of Computer Science \\
-  Nonesuch State University \\
-  Utopia, NS 12345 \\
-  {\tt jane.doe@cs.nsu.edu} \And
-  John Smith \\
-  Department of Linguistics \\
-  Another State University \\
-  Collegetown, AS 98765 \\  
-  {\tt jsmith@ling.asu.edu}}
-
-\date{}
+%\author{Kevin Brubeck Unhammer}
+\date{04/09, 2009}
 
 \begin{document}
 
 \maketitle
 
+
 \begin{abstract}
+
   This article has a very long title, which should probably be snappier and more enticing since we want people to read the abstract to find out what it's really all about.
 \end{abstract}
 
 \section{Introduction}
+\label{sec-1}
+
 The Oslo-Bergen Tagger \citep{hagen2000cbt}
-
 \section{Design}
-Apertium is a shallow-transfer and so on and so forth.
+\label{sec-2}
 
+The nn-nb module follows the design of the Apertium
+system\citep{todo}, a shallow-transfer pipeline system. Apertium is
+quite modular, and nn-nb differs from most of the other language pairs
+in using a Constraint Grammar morphological disambiguator.
 \section{Development}
-Ie. the GsoC process? 
+\label{sec-3}
 
+(Ie. the GsoC process?)
 \section{Evaluation}
-WER, coverage, qualitative assessment, anything else?
+\label{sec-4}
 
+We define naïve coverage as the proportion of words in a corpus which
+are given at least one analysis by our monolingual
+dictionaries. Testing on Nynorsk Wikipedia (5116174 words) and Bokmål
+Wikipedia (27529115 words), we have 89.6\% and 88.2\% coverage,
+respectively.
+
+The Word Error Rate (WER) on a 3750 word Wikipedia article on
+linguistics in the Bokmål to Nynorsk direction was 22.06\% when
+including unknown words, although since 64.93\% of these were
+free-rides (ie. the same in Bokmål and Nynorsk) anyway, the final WER
+was 10.71\%. Typical free-rides include names, loan-words and special
+terminology.
+
+\begin{itemize}
+\item Qualitative assessment\ldots{}
+\item anything else?
+\end{itemize}
 \section{Discussion}
-Including future wossnames.
+\label{sec-5}
 
-\section*{Acknowledgements}
+\begin{itemize}
+\item We don't have any sort of compound handling, probably we could
+  analyse a whole lot more with a trie or whatever, but there's also a
+  compound handler in OBT that might be possible to integrate.
+\item ``Well-written'' nynorsk uses lots of periphrasis and MWE's, eg. particle
+  verbs; we don't generate any such thing. A syntactic analysis might
+  be useful here, although without being quite certain of where the
+  relevant phrase ends, it'll be safer to stick with non-discontinuous
+  target language translations.
+\end{itemize}
+\section{Acknowledgements}
+\label{sec-6}
 
-Development was funded as part of the Google Summer of Code\footnote{\url{http://code.google.com/soc/}} programme.
+Development was funded as part of the Google Summer of Code\footnote{\href{http://code.google.com/soc/}{http://code.google.com/soc/} }
+programme. Thanks to mentors and OBT people.
 
 \bibliographystyle{apalike}
 \bibliography{apertium}
+
+
+
+
+
 
 
 \end{document}
