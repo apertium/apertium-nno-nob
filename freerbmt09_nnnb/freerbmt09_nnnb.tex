@@ -1,4 +1,4 @@
-% Created 2009-09-04 Fri 16:35
+% Created 2009-09-05 Sat 16:22
 \documentclass[11pt]{article}
 \usepackage{freerbmt09}
 \usepackage[utf8x]{inputenc}
@@ -12,7 +12,7 @@
 
 \title{Reuse of Free Resources in Machine Translation between Norwegian Nynorsk and Bokmål}
 %\author{Kevin Brubeck Unhammer}
-\date{04/09, 2009}
+\date{05/09, 2009}
 
 \begin{document}
 
@@ -27,18 +27,44 @@
 \section{Introduction}
 \label{sec-1}
 
-The Oslo-Bergen Tagger \citep{hagen2000cbt}
+The term \emph{Norwegian} covers a variety of related spoken dialects. Up
+until the 1800's, Danish was the only written standard used in
+Norway. Bokmål emerged through various reforms which brought the
+written language closer to the spoken; Nynorsk however, was created
+from the ground up with the purpose of representing all the spoken
+dialects of Norway. As it is, some dialects (especially around the
+Oslo area) share more with Bokmål, while others are closer to
+Nynorsk. Nynorsk is ``in a minority position in Norway, with
+approximately 12\% of the users'' \citep{everson2000sln}, or around
+450,000 people.
+
+On the Scandinavian language group, and expanding it for Apertium:
+\begin{quote}
+Morphologically, these four languages are equally distant from each
+other, but the terminological differences are smaller between Nynorsk
+and Bokmål than between the other two. \\
+\citep{everson2000sln}
+\end{quote}
+
+
+
+The Oslo-Bergen Tagger \citep{hagen2000cbt} \ldots{}
+
+
 \section{Design}
 \label{sec-2}
 
 The nn-nb module follows the design of the Apertium
-system\citep{todo}, a shallow-transfer pipeline system. Apertium is
+system\citep{corbi05oss}, a shallow-transfer pipeline system. Apertium is
 quite modular, and nn-nb differs from most of the other language pairs
 in using a Constraint Grammar morphological disambiguator.
 \section{Development}
 \label{sec-3}
 
-(Ie. the GsoC process?)
+\begin{itemize}
+\item Ie. the GsoC process?
+\item Anything about the Giza++ stuff?
+\end{itemize}
 \section{Evaluation}
 \label{sec-4}
 

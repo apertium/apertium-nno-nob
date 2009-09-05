@@ -21,26 +21,38 @@ until the 1800's, Danish was the only written standard used in
 Norway. Bokmål emerged through various reforms which brought the
 written language closer to the spoken; Nynorsk however, was created
 from the ground up with the purpose of representing all the spoken
-dialects of Norway. As it is, some dialects (especially around the
-Oslo area) share more with Bokmål, while others are closer to Nynorsk.
+dialects of Norway. As it is, certain dialects (especially around the
+Oslo area) correspond more with Bokmål, while others are closer to
+Nynorsk. Nynorsk is "in a minority position in Norway, with
+approximately 12% of the users" \citep{everson2000sln}, or around
+450,000 people. 
 
+We describe a machine translation system between Nynorsk and Bokmål
+built using the Apertium platform \citep{corbi05oss}...
 
-#+BEGIN_QUOTE 
-Morphologically, these four languages are equally distant from each
-other, but the terminological differences are smaller between Nynorsk
-and Bokmål than between the other two. Nynorsk is in a minority
-position in Norway, with approximately 12% of the users.\\
-\citep{everson2006sln}
-#+END_QUOTE
-(or about 450,000 speakers)
-
+Although Nynorsk is in a minority position, there are quite good
+linguistic resources for both Nynorsk and Bokmål available under Free
+licences.
 
 The Oslo-Bergen Tagger \citep{hagen2000cbt} ...
 
 
+On the Scandinavian language group, and expanding it for Apertium:
+#+BEGIN_QUOTE 
+Morphologically, these four languages are equally distant from each
+other, but the terminological differences are smaller between Nynorsk
+and Bokmål than between the other two. \\
+\citep{everson2000sln}
+#+END_QUOTE
+
+
+
+
+
+
 * Design
 The nn-nb module follows the design of the Apertium
-system\citep{todo}, a shallow-transfer pipeline system. Apertium is
+system\citep{corbi05oss}, a shallow-transfer pipeline system. Apertium is
 quite modular, and nn-nb differs from most of the other language pairs
 in using a Constraint Grammar morphological disambiguator.
 * Development
