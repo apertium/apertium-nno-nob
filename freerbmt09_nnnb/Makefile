@@ -34,6 +34,7 @@ reallyclean: clean
 	rm -f ${TARGET}.{ps,pdf}
 
 getbib:
-	wget "http://bibsonomy.org/bib/user/unhammer/apertium?bibtex.entriesPerPage=100" -O apertium.bib 
+	wget "http://bibsonomy.org/bib/user/unhammer/apertium?bibtex.entriesPerPage=100" -O apertium.bib
+	touch apertium.bib
 
 PHONY : ps all clean reallyclean getbib
