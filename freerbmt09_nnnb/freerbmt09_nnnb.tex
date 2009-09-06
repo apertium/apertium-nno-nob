@@ -1,4 +1,4 @@
-% Created 2009-09-05 Sat 16:22
+% Created 2009-09-06 Sun 21:10
 \documentclass[11pt]{article}
 \usepackage{freerbmt09}
 \usepackage[utf8x]{inputenc}
@@ -12,7 +12,7 @@
 
 \title{Reuse of Free Resources in Machine Translation between Norwegian Nynorsk and Bokmål}
 %\author{Kevin Brubeck Unhammer}
-\date{05/09, 2009}
+\date{06/09, 2009}
 
 \begin{document}
 
@@ -32,11 +32,21 @@ until the 1800's, Danish was the only written standard used in
 Norway. Bokmål emerged through various reforms which brought the
 written language closer to the spoken; Nynorsk however, was created
 from the ground up with the purpose of representing all the spoken
-dialects of Norway. As it is, some dialects (especially around the
-Oslo area) share more with Bokmål, while others are closer to
+dialects of Norway. As it is, certain dialects (especially around the
+Oslo area) correspond more with Bokmål, while others are closer to
 Nynorsk. Nynorsk is ``in a minority position in Norway, with
 approximately 12\% of the users'' \citep{everson2000sln}, or around
-450,000 people.
+450,000 people. 
+
+We describe a machine translation system between Nynorsk and Bokmål
+built using the Apertium platform \citep{corbi05oss}\ldots{}
+
+Although Nynorsk is in a minority position, there are quite good
+linguistic resources for both Nynorsk and Bokmål available under Free
+licences.
+
+The Oslo-Bergen Tagger \citep{hagen2000cbt} \ldots{}
+
 
 On the Scandinavian language group, and expanding it for Apertium:
 \begin{quote}
@@ -48,7 +58,7 @@ and Bokmål than between the other two. \\
 
 
 
-The Oslo-Bergen Tagger \citep{hagen2000cbt} \ldots{}
+
 
 
 \section{Design}
@@ -62,8 +72,19 @@ in using a Constraint Grammar morphological disambiguator.
 \label{sec-3}
 
 \begin{itemize}
-\item Ie. the GsoC process?
-\item Anything about the Giza++ stuff?
+\item exact matches ``adding exact matches if morphology is the same
+  e.g. if a noun is (sg.ind, pl.ind, sg.def, pl.def) in both
+  languages and is spelt the same then added to the bidix''
+\item matches with differences a lot of bidix entries were created by
+  1.finding nb entries w/o translations
+
+\begin{enumerate}
+\item running some replacements for typical differences in substrings
+\item checking whether the altered entries were in nn
+\end{enumerate}
+
+\item Giza++ (I guess I could do a diff on the bidix from before and after
+  I started working on Giza++ stuff)
 \end{itemize}
 \section{Evaluation}
 \label{sec-4}
@@ -84,6 +105,26 @@ terminology.
 \begin{itemize}
 \item Qualitative assessment\ldots{}
 \item anything else?
+\item Anything about Nyno? (Their web page says 74000 words, don't know
+  about WER but the cool thing about Nyno is the interface, ie. the
+  freedom of choice with variants and how the user can do the lexical
+  selection. The examples from
+  \href{http://www.hf.uio.no/tekstlab/Presseklipp/Spr%E5knytt%203-2001.htm}{http://www.hf.uio.no/tekstlab/Presseklipp/Spr\%E5knytt\%203-2001.htm}
+  (``Nyno i bruk'') seem to indicate that the OBT is a bit better at
+  disambiguating though (underline meaning wrong translation):
+
+\begin{itemize}
+\item Original: Når det iverksettes arbeidskamp, er det partene i den
+    enkelte tvist som har ansvaret for de konsekvenser arbeidskamp
+    påfører tredjemann.
+\item Nyno: Når \underline{den iverksettes arbeidskampen}, er \underline{dei} partane i den
+    enkelte tvist som har ansvaret for dei konsekvensane arbeidskamp
+    påfører tredjemann.
+\item Apertium: Når det blir iverksett *arbeidskamp, er det partane i
+    den einskilde tvisten som har ansvaret for dei konsekvensane
+    *arbeidskamp påfører tredjemann.
+\end{itemize}
+
 \end{itemize}
 \section{Discussion}
 \label{sec-5}
@@ -92,6 +133,12 @@ terminology.
 \item We don't have any sort of compound handling, probably we could
   analyse a whole lot more with a trie or whatever, but there's also a
   compound handler in OBT that might be possible to integrate.
+
+\begin{itemize}
+\item *menneskehandel.
+\item menneske. handel.
+\end{itemize}
+
 \item ``Well-written'' nynorsk uses lots of periphrasis and MWE's, eg. particle
   verbs; we don't generate any such thing. A syntactic analysis might
   be useful here, although without being quite certain of where the
