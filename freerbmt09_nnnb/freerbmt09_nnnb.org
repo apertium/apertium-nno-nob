@@ -56,8 +56,17 @@ system\citep{corbi05oss}, a shallow-transfer pipeline system. Apertium is
 quite modular, and nn-nb differs from most of the other language pairs
 in using a Constraint Grammar morphological disambiguator.
 * Development
-- Ie. the GsoC process?
-- Anything about the Giza++ stuff?
+- exact matches "adding exact matches if morphology is the same
+  e.g. if a noun is (sg.ind, pl.ind, sg.def, pl.def) in both
+  languages and is spelt the same then added to the bidix"
+- matches with differences a lot of bidix entries were created by
+  1.finding nb entries w/o translations
+  2. running some replacements for typical differences in substrings
+  3. checking whether the altered entries were in nn
+- Giza++ (I guess I could do a diff on the bidix from before and after
+  I started working on Giza++ stuff)
+
+
 * Evaluation
 We define naïve coverage as the proportion of words in a corpus which
 are given at least one analysis by our monolingual
@@ -80,6 +89,8 @@ terminology.
 - We don't have any sort of compound handling, probably we could
   analyse a whole lot more with a trie or whatever, but there's also a
   compound handler in OBT that might be possible to integrate.
+  - *menneskehandel.
+  - menneske. handel.
 - "Well-written" nynorsk uses lots of periphrasis and MWE's, eg. particle
   verbs; we don't generate any such thing. A syntactic analysis might
   be useful here, although without being quite certain of where the
