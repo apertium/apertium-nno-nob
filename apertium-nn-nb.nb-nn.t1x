@@ -888,6 +888,14 @@
           <b/>
         </out>
         <call-macro n="set_gender1"><with-param pos="2"/></call-macro>        
+        <choose><when>
+          <test><or>
+            <equal><var n="number"/><lit-tag v="sp"/></equal>
+            <equal><var n="number"/><lit v=""/></equal>
+          </or></test>
+          <let><var n="number"/><lit-tag v="pl"/></let>
+          <let><var n="det_gender"/><lit v=""/></let>
+        </when></choose>
         <out>
           <lu><lit v="sin"/>
           <lit-tag v="det.pos"/>
