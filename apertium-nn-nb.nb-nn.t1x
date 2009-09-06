@@ -13,6 +13,9 @@
     <def-cat n="nind">
       <cat-item tags="n.*.*.ind"/>
     </def-cat>
+    <def-cat n="ndef">
+      <cat-item tags="n.*.*.def"/>
+    </def-cat>
     <def-cat n="ngen">
       <cat-item tags="n.*.*.*.gen"/>
     </def-cat>
@@ -28,6 +31,9 @@
     </def-cat>
     <def-cat n="det">
       <cat-item tags="det.*"/>
+    </def-cat>
+    <def-cat n="detpos">
+      <cat-item tags="det.pos.*"/>
     </def-cat>
     <def-cat n="detnonpos">
       <cat-item tags="det.def.*"/>
@@ -525,6 +531,7 @@
 
 
   <section-rules>
+    
     
     <!-- Verbs -->
     <rule comment="VBLEX.INF.PASS: kan leses => kan lesast">
@@ -1445,6 +1452,30 @@
           </lu>
           <b pos="1"/>
           <lu><clip pos="2" side="tl" part="whole"/></lu>
+        </out>
+      </action>
+    </rule>
+
+    <rule comment="NDEF DETPOS: jenten min => jenta mi">
+      <pattern>
+        <pattern-item n="ndef"/>
+        <pattern-item n="detpos"/>
+      </pattern>
+      <action>
+        <call-macro n="set_gender2"><with-param pos="1"/><with-param pos="2"/></call-macro>
+        <out>
+          <lu>
+	    <clip pos="1" side="tl" part="whole"/>
+          </lu>
+          <b pos="1"/>
+          <lu>
+            <clip pos="2" side="tl" part="lemh"/>
+            <clip pos="2" side="tl" part="a_det"/>
+            <var n="det_gender"/>
+            <clip pos="2" side="tl" part="nbr"/>
+            <clip pos="2" side="tl" part="art"/>
+	    <clip pos="2" side="tl" part="lemq"/>
+          </lu>          
         </out>
       </action>
     </rule>
