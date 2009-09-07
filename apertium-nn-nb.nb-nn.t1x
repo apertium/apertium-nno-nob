@@ -554,7 +554,7 @@
     </def-macro>
     
     <def-macro n="out_adj" npar="1">
-      <!-- Assumes that set_adj_GND or set_gender3 is called! -->
+      <call-macro n="set_adj_GND"><with-param pos="1"/></call-macro>
       <out><lu>
         <clip pos="1" side="tl" part="lemh"/>
         <clip pos="1" side="tl" part="a_adj"/>
@@ -1378,7 +1378,6 @@
       <action>
         <modify-case><clip pos="1" side="tl" part="lemh"/><clip pos="4" side="tl" part="lemh"/></modify-case>
 	<call-macro n="set_gender1"><with-param pos="4"/></call-macro>
-        <call-macro n="set_adj_GND"><with-param pos="3"/></call-macro>
         <out>
           <lu>
             <get-case-from pos="1"><lit v="den"/></get-case-from>
@@ -1387,8 +1386,9 @@
             <var n="number_no_sp"/>
           </lu>
           <b/>
-          </out><call-macro n="out_adj"><with-param pos="3"/></call-macro><out> <b pos="1"/>
         </out>
+        <call-macro n="out_adj"><with-param pos="3"/></call-macro>
+        <out><b pos="1"/></out>
         <call-macro n="out_ndef">
 	  <with-param pos="4"/>
 	  <with-param pos="4"/>
@@ -1532,17 +1532,7 @@
       </pattern>
       <action>
         <call-macro n="set_number1"><with-param pos="1"/></call-macro>
-        <call-macro n="set_adj_GND"><with-param pos="1"/></call-macro>
-        <out>
-          <lu>
-            <clip pos="1" side="tl" part="lemh"/>
-            <clip pos="1" side="tl" part="a_adj"/>
-            <var n="adj_gender"/>
-            <var n="adj_number"/>
-            <var n="adj_defness"/>
-	    <clip pos="1" side="tl" part="lemq"/>
-          </lu>
-        </out>
+        <call-macro n="out_adj"><with-param pos="1"/></call-macro>
       </action>
     </rule>
 
@@ -1596,7 +1586,6 @@
       </pattern>
       <action>
         <call-macro n="set_gender1"><with-param pos="1"/></call-macro>
-        <call-macro n="set_adj_GND"><with-param pos="2"/></call-macro>
         <out>
           <lu>
             <clip pos="1" side="tl" part="lemh"/>
@@ -1607,15 +1596,8 @@
 	    <clip pos="1" side="tl" part="lemq"/>
           </lu>
           <b pos="1"/>
-	  <lu>
-            <clip pos="2" side="tl" part="lemh"/>
-            <clip pos="2" side="tl" part="a_adj"/>
-            <var n="adj_gender"/>
-	    <var n="adj_number"/>
-	    <var n="adj_defness"/>
-	    <clip pos="2" side="tl" part="lemq"/>
-          </lu>
         </out>
+        <call-macro n="out_adj"><with-param pos="2"/></call-macro>
       </action>
     </rule>
 

@@ -16,7 +16,7 @@ echo 'SOFT-DELIMITERS = "<,>" ;'
 # stuff that's after a certain regexp within in a line. Ie. if I could
 # say "look for lines that start with XYZ, do a global replace within
 # the rest of the line but don't touch XYZ".  Of course, I _could_
-# just tear them apart at the equals sign with ssed 's/^.*=//'
+# just tear them apart at the equals sign with gsed 's/^.*=//'
 # etc. and then use paste to zip them back together...
 L0="\(^LIST  *[^ ][^ ]*  *=.*[\( ]\)"
 L1="\(^[^:]*REMOVE.*[\( ]\)"
@@ -25,7 +25,7 @@ L3="\(^[^:]*SUBSTITUTE.*[\( ]\)" # I'll do those manually instead
 L="s/\(${L0}\|${L1}\|${L2}\)" # these disjunctions are s..l...o.....w
 M="\([\) ;]\)/\1"	      # hey sed! it's got a ^! use it!
 R="\5/"
-ssed -e "
+gsed -e "
 :LIST
 ${L}fork subst${M}n acr${R}
 ${L}fork${M}acr${R}
