@@ -138,6 +138,7 @@
   <section-def-vars>
     <def-var n="det_gender"/>  
     <def-var n="number"/>  
+    <def-var n="number_no_sp"/>  
     <def-var n="adj_number"/>  
     <def-var n="adj_gender"/>  
     <def-var n="adj_defness"/>  
@@ -178,6 +179,14 @@
     <!-- Macros which set concordance variables: -->
     <def-macro n="set_number1" npar="1">
       <let><var n="number"/><clip pos="1" side="tl" part="nbr"/></let>
+      <let><var n="number_no_sp"/><var n="number"/></let>
+      <choose><when>
+        <test><or>
+          <equal><var n="number"/><lit-tag v="sp"/></equal>
+          <equal><var n="number"/><lit v=""/></equal>
+        </or></test>
+        <let><var n="number_no_sp"/><lit-tag v="pl"/></let>
+      </when></choose>
     </def-macro>
     
     <def-macro n="set_number2" npar="2">
@@ -256,6 +265,7 @@
 	   - iff sg and GD, take a wild guess and go for m;
 	   - plurals get no gender;
 	   - o/w take gender of target determiner;
+           - if we have sp or nothing, go with pl
       -->
       <let><var n="det_gender"/><lit v=""/></let>
       <call-macro n="set_number1"><with-param pos="1"/></call-macro>
@@ -523,7 +533,23 @@
       </otherwise>
       </choose>  
     </def-macro>
-    
+
+    <def-macro n="out_sin" npar="1">
+      <call-macro n="set_gender1"><with-param pos="1"/></call-macro>
+      <choose><when>
+        <test><or>
+          <equal><var n="number"/><lit-tag v="sp"/></equal>
+          <equal><var n="number"/><lit v=""/></equal>
+        </or></test>
+        <let><var n="det_gender"/><lit v=""/></let>
+      </when></choose>
+      <out><lu>
+        <lit v="sin"/>
+        <lit-tag v="det.pos"/>
+        <var n="det_gender"/>
+        <var n="number_no_sp"/>
+      </lu></out>
+    </def-macro>
 
   </section-def-macros>
 
@@ -823,15 +849,6 @@
         <pattern-item n="ngen"/>
       </pattern>
       <action>
-        <call-macro n="set_gender1"><with-param pos="1"/></call-macro>
-        <choose><when>
-          <test><or>
-            <equal><var n="number"/><lit-tag v="sp"/></equal>
-            <equal><var n="number"/><lit v=""/></equal>
-          </or></test>
-          <let><var n="number"/><lit-tag v="pl"/></let>
-          <let><var n="det_gender"/><lit v=""/></let>
-        </when></choose>
         <out>
           <lu>
             <clip pos="1" side="tl" part="lemh"/>
@@ -841,14 +858,9 @@
             <clip pos="1" side="tl" part="art"/>
             <clip pos="1" side="tl" part="lemq"/>
           </lu>
-          <b/>
-          <lu>
-            <lit v="sin"/>
-            <lit-tag v="det.pos"/>
-            <var n="det_gender"/>
-            <var n="number"/>
-          </lu> 
+          <b/> 
         </out>
+        <call-macro n="out_sin"><with-param pos="1"/></call-macro>
       </action>
     </rule>
     <rule comment="ADJ NGEN: lille mannens => lille mannen sin
@@ -887,22 +899,7 @@
           </lu>
           <b/>
         </out>
-        <call-macro n="set_gender1"><with-param pos="2"/></call-macro>        
-        <choose><when>
-          <test><or>
-            <equal><var n="number"/><lit-tag v="sp"/></equal>
-            <equal><var n="number"/><lit v=""/></equal>
-          </or></test>
-          <let><var n="number"/><lit-tag v="pl"/></let>
-          <let><var n="det_gender"/><lit v=""/></let>
-        </when></choose>
-        <out>
-          <lu><lit v="sin"/>
-          <lit-tag v="det.pos"/>
-          <var n="det_gender"/>
-          <var n="number"/>
-          </lu> 
-        </out>
+        <call-macro n="out_sin"><with-param pos="2"/></call-macro>
       </action>
     </rule>
     <rule comment="DETNONPOS ADJ NGEN: den lille mannens => den lille mannen sin
@@ -914,7 +911,11 @@
         <pattern-item n="ngen"/>
       </pattern>
       <action>
-        <call-macro n="set_gender2"><with-param pos="3"/><with-param pos="1"/></call-macro>
+        <call-macro n="set_gender3">
+          <with-param pos="3"/>
+          <with-param pos="1"/>
+          <with-param pos="2"/>
+        </call-macro>
         <choose>					       
           <when>
             <test>
@@ -934,7 +935,15 @@
             <clip pos="1" side="tl" part="lemq"/>
           </lu>
           <b pos="1"/>
-          <lu><clip pos="2" side="tl" part="whole"/></lu> <b pos="2"/>
+          <lu>
+            <clip pos="2" side="tl" part="lemh"/>
+            <clip pos="2" side="tl" part="a_adj"/>
+            <var n="adj_gender"/>
+            <var n="adj_number"/>
+            <var n="adj_defness"/>
+	    <clip pos="2" side="tl" part="lemq"/>
+          </lu>
+          <b pos="2"/>
           <lu>
             <clip pos="3" side="tl" part="lemh"/>
             <clip pos="3" side="tl" part="a_nom"/>
@@ -944,12 +953,8 @@
             <clip pos="3" side="tl" part="lemq"/>
           </lu>
           <b/>
-          <lu><lit v="sin"/>
-          <lit-tag v="det.pos"/>
-          <var n="det_gender"/>
-          <var n="number"/>
-          </lu> 
         </out>
+        <call-macro n="out_sin"><with-param pos="3"/></call-macro>
       </action>
     </rule>
 
@@ -995,7 +1000,7 @@
             <get-case-from pos="1"><lit v="den"/></get-case-from>
             <lit-tag v="det.dem"/>
             <var n="det_gender"/>
-            <var n="number"/>
+            <var n="number_no_sp"/>
           </lu>
           <b pos="1"/>
           <lu>
@@ -1034,7 +1039,7 @@
             <get-case-from pos="1"><lit v="den"/></get-case-from>
             <lit-tag v="det.dem"/>
             <var n="det_gender"/>
-            <var n="number"/>
+            <var n="number_no_sp"/>
           </lu>
           <b pos="1"/>
           <lu><clip pos="2" side="tl" part="whole"/></lu> <b pos="2"/>
@@ -1067,7 +1072,7 @@
             <get-case-from pos="1"><lit v="den"/></get-case-from>
             <lit-tag v="det.dem"/>
             <var n="det_gender"/>
-            <var n="number"/>
+            <var n="number_no_sp"/>
           </lu>
           <b pos="1"/>
           <lu><clip pos="2" side="tl" part="whole"/></lu> <b pos="2"/>
@@ -1102,7 +1107,7 @@
             <get-case-from pos="1"><lit v="den"/></get-case-from>
             <lit-tag v="det.dem"/>
             <var n="det_gender"/>
-            <var n="number"/>
+            <var n="number_no_sp"/>
           </lu>
           <b pos="1"/>
           <lu><clip pos="2" side="tl" part="whole"/></lu> <b pos="2"/>
@@ -1175,7 +1180,7 @@
             <lit v="den"/>
             <lit-tag v="det.dem"/>
             <var n="det_gender"/>
-            <var n="number"/>
+            <var n="number_no_sp"/>
           </lu>
           <b/>
           <lu><clip pos="2" side="tl" part="whole"/></lu> <b pos="2"/>
@@ -1206,7 +1211,7 @@
             <get-case-from pos="1"><lit v="den"/></get-case-from>
             <lit-tag v="det.dem"/>
             <var n="det_gender"/>
-            <var n="number"/>
+            <var n="number_no_sp"/>
           </lu>
           <b/>
           <lu><clip pos="3" side="tl" part="whole"/></lu> <b pos="1"/>
@@ -1382,7 +1387,7 @@
             <get-case-from pos="1"><lit v="den"/></get-case-from>
             <lit-tag v="det.dem"/>
             <var n="det_gender"/>
-            <var n="number"/>
+            <var n="number_no_sp"/>
           </lu>
           <b/>
           <lu><clip pos="3" side="tl" part="whole"/></lu> <b pos="1"/>
