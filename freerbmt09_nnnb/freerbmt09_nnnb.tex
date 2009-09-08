@@ -1,4 +1,4 @@
-% Created 2009-09-06 Sun 21:10
+% Created 2009-09-08 Tue 21:17
 \documentclass[11pt]{article}
 \usepackage{freerbmt09}
 \usepackage[utf8x]{inputenc}
@@ -12,7 +12,7 @@
 
 \title{Reuse of Free Resources in Machine Translation between Norwegian Nynorsk and Bokmål}
 %\author{Kevin Brubeck Unhammer}
-\date{06/09, 2009}
+\date{08/09, 2009}
 
 \begin{document}
 
@@ -38,38 +38,66 @@ Nynorsk. Nynorsk is ``in a minority position in Norway, with
 approximately 12\% of the users'' \citep{everson2000sln}, or around
 450,000 people. 
 
-We describe a machine translation system between Nynorsk and Bokmål
-built using the Apertium platform \citep{corbi05oss}\ldots{}
+The source code and linguistic data in Apertium and its language pairs
+are released as free and open source software. Although Nynorsk is in
+a minority position, there are quite good linguistic resources
+available under Free licences, compared to many languages with the
+same amount of speakers. 
 
-Although Nynorsk is in a minority position, there are quite good
-linguistic resources for both Nynorsk and Bokmål available under Free
-licences.
-
-The Oslo-Bergen Tagger \citep{hagen2000cbt} \ldots{}
-
-
-On the Scandinavian language group, and expanding it for Apertium:
-\begin{quote}
-Morphologically, these four languages are equally distant from each
-other, but the terminological differences are smaller between Nynorsk
-and Bokmål than between the other two. \\
-\citep{everson2000sln}
-\end{quote}
+We describe the creation of a machine translation system between
+Nynorsk and Bokmål built using the free and open source Apertium
+platform \citep{corbi05oss}. In \ref{sec-1} we \ldots{}
+\subsection{\textbf{TODO} give overview/roadmap of the article}
+\label{sec-1.1}
 
 
 
 
-
-
-\section{Design}
+\section{Design (just a very short intro to the Apertium pipeline here?)}
 \label{sec-2}
 
-The nn-nb module follows the design of the Apertium
-system\citep{corbi05oss}, a shallow-transfer pipeline system. Apertium is
-quite modular, and nn-nb differs from most of the other language pairs
-in using a Constraint Grammar morphological disambiguator.
+The nn-nb language pair follows the design of the Apertium system
+\citep{corbi05oss}, a highly modular shallow-transfer pipeline
+system. Dictionaries written in XML are compiled into reversible
+finite state transducers, so that word-for-word translations are
+possible in both directions using only two monolingual and one
+translational (transfer) dictionary. First order hidden Markov models
+are used for POS tagging. The transfer module is finite state based
+and allows three-stage chunking transfer (although nn-nb only uses
+one-stage transfer). De-/reformatters applied to the beginning and end
+of the pipeline lets one preserve formatting of various document
+types.
+
+The nn-nb language pair differs from most of the other Apertium pairs
+in having a Constraint Grammar module as a pre-disambiguator (before
+the statistical tagger).
+
+
 \section{Development}
 \label{sec-3}
+
+\subsection{Resources}
+\label{sec-3.1}
+
+We used the GPL-ed resources Norsk Ordbank\footnote{\href{http://www.edd.uio.no/prosjekt/ordbanken/}{http://www.edd.uio.no/prosjekt/ordbanken/} }, a $>100,000$ lemma
+full form dictionary and, the Oslo-Bergen Tagger \citep{hagen2000cbt},
+a high quality Constraint Grammar disambiguator. These were converted
+into Apertium formats and tag schemes. We found no freely available
+bilingual dictionary, so this was created using various both manual
+and automatic methods, along with transfer rules to cope with
+syntactic differences and agreement.
+
+\subsection{Analysis and generation}
+\label{sec-3.2}
+
+
+\subsection{Disambiguation}
+\label{sec-3.3}
+
+
+\subsection{Lexical transfer}
+\label{sec-3.4}
+
 
 \begin{itemize}
 \item exact matches ``adding exact matches if morphology is the same
@@ -85,6 +113,17 @@ in using a Constraint Grammar morphological disambiguator.
 
 \item Giza++ (I guess I could do a diff on the bidix from before and after
   I started working on Giza++ stuff)
+\item Anything about regression testing and that stuff? (Ie. whenever we
+  fix a certain transfer construction or disambiguation problem, we
+  add a regression test to make sure we don't have to fix it again.)
+\end{itemize}
+\subsection{Syntactic transfer}
+\label{sec-3.5}
+
+\begin{itemize}
+\item what are the relevant patterns which need transfer?
+\item how did we solve it?
+\item how didn't we solve it? (or, what are the problems)
 \end{itemize}
 \section{Evaluation}
 \label{sec-4}
@@ -104,27 +143,22 @@ terminology.
 
 \begin{itemize}
 \item Qualitative assessment\ldots{}
-\item anything else?
+
+\begin{itemize}
+\item Error types:
+
+\begin{itemize}
+\item lexical selection
+\item disambiguation
+\item transfer (eg. word order, ``mannen sin hest'')
+\end{itemize}
+
+\end{itemize}
+
 \item Anything about Nyno? (Their web page says 74000 words, don't know
   about WER but the cool thing about Nyno is the interface, ie. the
   freedom of choice with variants and how the user can do the lexical
-  selection. The examples from
-  \href{http://www.hf.uio.no/tekstlab/Presseklipp/Spr%E5knytt%203-2001.htm}{http://www.hf.uio.no/tekstlab/Presseklipp/Spr\%E5knytt\%203-2001.htm}
-  (``Nyno i bruk'') seem to indicate that the OBT is a bit better at
-  disambiguating though (underline meaning wrong translation):
-
-\begin{itemize}
-\item Original: Når det iverksettes arbeidskamp, er det partene i den
-    enkelte tvist som har ansvaret for de konsekvenser arbeidskamp
-    påfører tredjemann.
-\item Nyno: Når \underline{den iverksettes arbeidskampen}, er \underline{dei} partane i den
-    enkelte tvist som har ansvaret for dei konsekvensane arbeidskamp
-    påfører tredjemann.
-\item Apertium: Når det blir iverksett *arbeidskamp, er det partane i
-    den einskilde tvisten som har ansvaret for dei konsekvensane
-    *arbeidskamp påfører tredjemann.
-\end{itemize}
-
+  selection.
 \end{itemize}
 \section{Discussion}
 \label{sec-5}
@@ -145,6 +179,15 @@ terminology.
   relevant phrase ends, it'll be safer to stick with non-discontinuous
   target language translations.
 \end{itemize}
+On the Scandinavian language group, and expanding it for Apertium:
+\begin{quote}
+Morphologically, these four languages are equally distant from each
+other, but the terminological differences are smaller between Nynorsk
+and Bokmål than between the other two. \\
+\citep{everson2000sln}
+\end{quote}
+
+
 \section{Acknowledgements}
 \label{sec-6}
 
@@ -153,6 +196,9 @@ programme. Thanks to mentors and OBT people.
 
 \bibliographystyle{apalike}
 \bibliography{apertium}
+
+
+
 
 
 
