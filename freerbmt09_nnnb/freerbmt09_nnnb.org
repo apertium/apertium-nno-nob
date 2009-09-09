@@ -3,6 +3,7 @@
 #+EMAIL: unhammer at gmail dot com
 #+LANGUAGE: en
 #+TAGS: ROTETE(r)
+#+SEQ_TODO: ULEST SKRIV FERDIG
 #+EXPORT_EXCLUDE_TAGS: ROTETE
 #+LaTeX_CLASS: freerbmt
 #+LaTeX_HEADER: \usepackage{hyperref}
@@ -10,8 +11,9 @@
 
 #+BEGIN_LaTeX
 \begin{abstract}
-
-  This article has a very long title, which should probably be snappier and more enticing since we want people to read the abstract to find out what it's really all about.
+This article has a very long title, which should probably be snappier
+  and more enticing since we want people to read the abstract to find
+  out what it's really all about.
 \end{abstract}
 #+END_LaTeX
 
@@ -27,49 +29,70 @@ Nynorsk. Nynorsk is "in a minority position in Norway, with
 approximately 12% of the users" \citep{everson2000sln}, or around
 450,000 people. 
 
-The source code and linguistic data in Apertium and its language pairs
-are released as free and open source software. Although Nynorsk is in
-a minority position, there are quite good linguistic resources
-available under Free licences, compared to many languages with the
-same amount of speakers. 
+Although Nynorsk is in a minority position, there are quite good
+linguistic resources available under Free licences, compared to many
+languages with the same amount of speakers.  We describe the creation
+of a machine translation system between Nynorsk and Bokmål[fn:4] built
+using these resources with the free and open source Apertium platform
+\citep{corbi05oss}. In the following section we give an overview of
+the Apertium platform and Constraint Grammar. Section
+\ref{SEC:development} describes how the available resources were
+integrated into Apertium, and how we dealt with lexical and syntactic
+transfer (for which we did not have freely available resources). In
+the next two sections we give an evaluation of the translation quality
+and a discussion of the lessons learnt and how the system may be
+further improved.
 
-We describe the creation of a machine translation system between
-Nynorsk and Bokmål built using the free and open source Apertium
-platform \citep{corbi05oss}. In \ref{sec-1} we ...
-** TODO give overview/roadmap of the article
+* Design
+  \label{SEC:design}
 
-
-
-* Design (just a very short intro to the Apertium pipeline here?)
 The nn-nb language pair follows the design of the Apertium system
-\citep{corbi05oss}, a highly modular shallow-transfer pipeline
-system. Dictionaries written in XML are compiled into reversible
-finite state transducers, so that word-for-word translations are
-possible in both directions using only two monolingual and one
-translational (transfer) dictionary. First order hidden Markov models
-are used for POS tagging. The transfer module is finite state based
-and allows three-stage chunking transfer (although nn-nb only uses
-one-stage transfer). De-/reformatters applied to the beginning and end
-of the pipeline lets one preserve formatting of various document
-types.
+\citep{corbi05oss}, a highly modular, shallow-transfer pipeline
+machine translation system. Dictionaries written in XML are compiled
+into reversible finite state transducers, so that word-for-word
+translations are possible in both directions using only two
+monolingual (morphological analysis/generation) and one translational
+(transfer) dictionary. First order hidden Markov models are used after
+analysis for part-of-speech disambiguation. The transfer module is
+finite state based and allows three-stage chunking transfer (although
+nn-nb only uses one-stage transfer). De-/reformatters applied to the
+beginning and end of the pipeline lets one preserve formatting of
+various document types.
 
 The nn-nb language pair differs from most of the other Apertium pairs
-in having a Constraint Grammar module as a pre-disambiguator (before
-the statistical tagger).
+in using a Constraint Grammar module[fn:3] as a pre-disambiguator
+(before the statistical tagger). Constraint Grammars
+\citep{karlsson1990cgf} are hand-written rules which, given
+ambiguously tagged input (eg. 'read' tagged both as a past and present
+tense verb), may SELECT one reading/analysis over all the others, or
+REMOVE a certain reading from the set of analyses. The last reading is
+never removed, although we may end up with several readings if the
+input was in fact ambiguous or the grammar didn't manage to remove
+what it should. Constraint Grammars may also MAP (add) new tags to
+readings, typically syntactic function labels. Rules may check in
+either direction for the existence of tags or even specific words,
+over absolute or undefined distances.
+
+In the next section we describe the use of these modules in nn-nb.
+
 
 
 * Development
+  \label{SEC:development}
 ** Resources
-We used the GPL-ed resources Norsk Ordbank[fn:2], a $>100,000$ lemma
-full form dictionary and, the Oslo-Bergen Tagger \citep{hagen2000cbt},
-a high quality Constraint Grammar disambiguator. These were converted
-into Apertium formats and tag schemes. We found no freely available
-bilingual dictionary, so this was created using various both manual
-and automatic methods, along with transfer rules to cope with
-syntactic differences and agreement.
+We used Norsk Ordbank[fn:2], a $>100,000$ lemma GPL-ed full form
+dictionary, as our basis for the morphological analysis and
+generation. We also used the morphological disambiguator of the
+Oslo-Bergen Tagger \citep{hagen2000cbt}, a high quality GPL Constraint
+Grammar. These were converted into Apertium formats and tag
+schemes. We found no freely available bilingual dictionary, so this
+was created using various both manual and automatic methods, along
+with transfer rules to cope with syntactic differences and agreement.
 
 ** Analysis and generation
-
+Norsk Ordbank is a full form dictionary. Most Apertium language pairs
+use /lttoolbox/ for morphological analysis and generation, which
+compile XML entries into fast finite state transducers.
 ** Disambiguation
 
 ** Lexical transfer
@@ -95,6 +118,7 @@ syntactic differences and agreement.
 
 
 * Evaluation
+  \label{SEC:eval}
 We define naïve coverage as the proportion of words in a corpus which
 are given at least one analysis by our monolingual
 dictionaries. Testing on Nynorsk Wikipedia (5116174 words) and Bokmål
@@ -118,20 +142,20 @@ terminology.
   about WER but the cool thing about Nyno is the interface, ie. the
   freedom of choice with variants and how the user can do the lexical
   selection. 
-* outdated..							     :ROTETE:
-  The examples from
-  http://www.hf.uio.no/tekstlab/Presseklipp/Spr%E5knytt%203-2001.htm
-  ("Nyno i bruk") seem to indicate that the OBT is a bit better at
-  disambiguating though (underline meaning wrong translation):
-  - Original: Når det iverksettes arbeidskamp, er det partene i den
-    enkelte tvist som har ansvaret for de konsekvenser arbeidskamp
-    påfører tredjemann.
-  - Nyno: Når _den iverksettes arbeidskampen_, er _dei_ partane i den
-    enkelte tvist som har ansvaret for dei konsekvensane arbeidskamp
-    påfører tredjemann.
-  - Apertium: Når det blir iverksett *arbeidskamp, er det partane i
-    den einskilde tvisten som har ansvaret for dei konsekvensane
-    *arbeidskamp påfører tredjemann.
+** outdated..							     :ROTETE:
+   The examples from
+   http://www.hf.uio.no/tekstlab/Presseklipp/Spr%E5knytt%203-2001.htm
+   ("Nyno i bruk") seem to indicate that the OBT is a bit better at
+   disambiguating though (underline meaning wrong translation):
+   - Original: Når det iverksettes arbeidskamp, er det partene i den
+     enkelte tvist som har ansvaret for de konsekvenser arbeidskamp
+     påfører tredjemann.
+   - Nyno: Når _den iverksettes arbeidskampen_, er _dei_ partane i den
+     enkelte tvist som har ansvaret for dei konsekvensane arbeidskamp
+     påfører tredjemann.
+   - Apertium: Når det blir iverksett *arbeidskamp, er det partane i
+     den einskilde tvisten som har ansvaret for dei konsekvensane
+     *arbeidskamp påfører tredjemann.
 
 * Discussion
 - We don't have any sort of compound handling, probably we could
@@ -153,7 +177,7 @@ and Bokmål than between the other two. \\
 \citep{everson2000sln}
 #+END_QUOTE
 
-* TODO Acknowledgements should be section*			     :ROTETE:
+* SKRIV Acknowledgements should be section* 			     :ROTETE:
 * Acknowledgements 
 Development was funded as part of the Google Summer of Code[fn:1]
 programme. Thanks to mentors and OBT people.
@@ -167,6 +191,11 @@ programme. Thanks to mentors and OBT people.
 [fn:1] http://code.google.com/soc/
 
 [fn:2] http://www.edd.uio.no/prosjekt/ordbanken/
+
+[fn:3] Running on VISL CG-3, available from
+http://beta.visl.sdu.dk/cg3.html
+
+[fn:4] Available from http://apertium.org
 
 
 
