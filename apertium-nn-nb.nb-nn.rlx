@@ -16240,7 +16240,14 @@ SELECT:2963 (adj nt ind sg) IF
 ;
 #  "Jeg hater fortsatt serberne og ønsker hevn"))
 
-
+#:6208
+ SELECT:6208 (vblex pres) IF
+	(NOT 0 pret)
+	(NOT 0 farlige-verb)
+	(-1C clb-konj)
+	(1* subst/pron BARRIER pres/pret)
+;
+# KBU: «men sier<vblex, ikkje n> de vil avvente»
 
 #Her stod 2480
 
@@ -22210,8 +22217,8 @@ REMOVE:2135 (det) IF
 	(NOT -1 subst/pron)
 	(NOT -1 adv)
 	(NOT -1 parentes)
-	(*-1 setn-gr LINK **1C fv LINK NOT 0 trans2)
-	(*-1 setn-gr LINK NOT 0 %som%)
+	(*-1O setn-gr LINK **1C fv LINK NOT 0 trans2)
+	(*-1O setn-gr LINK NOT 0 %som%)
 ;
 #  "Forkaster finitt verb dersom det allerede
 # er funnet verb i setningen 
@@ -24335,13 +24342,20 @@ CONSTRAINTS
 ;
 #  "kh jan 2004: Lite sannsynlig at å er subst om ingen av substantivreglene har virket"))
 
-#:3118k
-  "<Les>"   REMOVE:3118k (vblex pass) IF
+#:6206
+  "<Les>"   REMOVE:6206 (vblex pass) IF
   	(0 imp)  
 	(-1 setn-gr)
 ;
 #  «Les også:» lite sannsynleg at dette er passiv av «le»; sjølv om
 #  pres pass alltid er mogleg... -KBU
+
+#:6207
+  "<Les>"   REMOVE:6207 (n) IF
+  	(0 imp)
+	(-1 setn-gr)
+;
+#  «Les mer:» -KBU
 
 
 # sec 4
