@@ -3,7 +3,7 @@
 #+EMAIL: unhammer at gmail dot com
 #+LANGUAGE: en
 #+TAGS: ROTETE(r)
-#+SEQ_TODO: ULEST SKRIV FERDIG
+#+SEQ_TODO: SKRIV FERDIG
 #+EXPORT_EXCLUDE_TAGS: ROTETE
 #+LaTeX_CLASS: freerbmt
 #+LaTeX_HEADER: \usepackage{hyperref}
@@ -73,9 +73,8 @@ readings, typically syntactic function labels. Rules may check in
 either direction for the existence of tags or even specific words,
 over absolute or undefined distances.
 
-In the next section we describe the use of these modules in nn-nb.
-
-
+In the next section we describe the development and use of these
+modules in nn-nb.
 
 * Development
   \label{SEC:development}
@@ -90,21 +89,56 @@ was created using various both manual and automatic methods, along
 with transfer rules to cope with syntactic differences and agreement.
 
 ** Analysis and generation
-Norsk Ordbank is a full form dictionary. Most Apertium language pairs
-use /lttoolbox/ for morphological analysis and generation, which
-compile XML entries into fast finite state transducers.
+Norsk Ordbank is a full form dictionary with morphological
+information. Most Apertium language pairs use /lttoolbox/ for
+morphological analysis and generation, which compiles XML entries into
+fast finite state transducers and allow generalisations to be made
+across eg. common suffix paradigms. The full form dictionary was
+semi-automatically transformed into the lttoolbox format 
+*** SKRIV example of an entry?
+
 ** Disambiguation
+The Oslo-Bergen tagger and Norsk Ordbank use a different tagset from
+Apertium. We want the resources used in nn-nb to be useful in creating
+new Apertium language pairs, so we converted the tags to ones which
+conform as much as possible to other Apertium dictionaries. Most tags
+could be replaced one-to-one, although some were replaced with
+Constraint Grammar sets. The Oslo-Bergen tagger gives the tags
+<subst><appell> and <subst><prop> where Apertium uses <n> and <np>
+respectively, so rules working on the single tag subst were changed to
+work on the set consisting of the tags n and np. Most of this was done
+automatically using simple shell scripts.
+
 
 ** Lexical transfer
+The transfer lexicon, or translational dictionary, was created using
+three main methods. 
 
-- exact matches "adding exact matches if morphology is the same
-  e.g. if a noun is (sg.ind, pl.ind, sg.def, pl.def) in both
-  languages and is spelt the same then added to the bidix"
-- matches with differences a lot of bidix entries were created by
-  1.finding nb entries w/o translations
-  1. running some replacements for typical differences in substrings
-  2. checking whether the altered entries were in nn
-  \citet[p.~4]{tyers2009dpm} used the same method, but additionally:
+First, exact matches were added where the morphology was the same for
+both languages. Eg., if a noun lemma was the same in both languages,
+and both languages had the same forms (singular/plural,
+definite/indefinite) for the noun, we added it as a translation. This
+method got us around 36,000 entries. There are two problems with this
+method. One is that it may introduce a lot of false friends. However,
+for closely related languages, the benefit outweighs the risk (and
+lists of common false friends are not hard to come by in
+grammars). The other problem is that we add many "radical forms",
+eg. Bokmål words which exist in the Nynorsk dictionary but are far
+from being the most natural sounding Nynorsk translation. We can
+easily put restrictions on such forms so that they are only analysed,
+but not generated, but finding all such pairs involves some work.
+
+We also added entries where there were predictable changes, eg. the
+Bokmål adjective suffix /-lig/ will typically be /-leg/ in Nynorsk,
+etc. This process, also used by \citet[p.~4]{tyers2009dpm}, simply
+consists of
+1. finding Bokmål entries without translations
+2. running string replacements on these for typical differences in
+   substrings
+3. checking whether the altered entries actually exist in the Nynorsk
+   analyser
+
+Finally, we 
 - Giza++ (I guess I could do a diff on the bidix from before and after
   I started working on Giza++ stuff)
 - Anything about regression testing and that stuff? (Ie. whenever we
