@@ -92,7 +92,7 @@ LIST %fatte/kreve/ta% = ("fatte"  vblex) ("kreve"  vblex) ("ta"  vblex) ;
 LIST %finne%-verb = ("finne"  vblex) ;
 LIST %fjære% = "fjære"  ;
 LIST %flekke% = ("flekke"  vblex) ;
-LIST %flere% = ("mange"  adj comp) ;
+LIST %flere% = ("mange" adj comp) ;
 LIST %flere/få/mange/noen% = ("mange"  pl) ("noen"  pl) ("få"  pl) ("mange"  adj comp) ;
 LIST %fleste% = ("mange"  adj sup def) ;
 LIST %for% = "for"  ;
@@ -161,7 +161,7 @@ LIST %hver%-fem = ("hver"  f) ;
 LIST %hver%-mask = ("hver"  m) ;
 LIST %hver%-nøyt = ("hver"  nt) ;
 LIST %hverken/verken% = ("verken" ) ("verken" ) ;
-LIST %hvert% = "hver"  (det qnt nt) ;
+LIST %hvert% = ("hver" det qnt nt) ;
 LIST %hvile% = "hvile"  ;
 LIST %hvilken% = "hvilken"  ;
 LIST %hvor/hva% = "hvor"  "hva"  ;
@@ -16529,7 +16529,7 @@ SELECT:5009 (vblex pres) IF
 #:2429
  SELECT:2429 (vblex inf) IF
 	(NOT 0 farlige-inf)
-	(NOT -1 ikke-adv-subst-pron-konj)
+	(NOT -1 ikke-adv-subst-pron-konj LINK NOT 0 det-kvant)
 	(*-1 m-hj-verb BARRIER setn-gr)
 	(*-1 m-hj-verb BARRIER inf)
 	(*-1 m-hj-verb BARRIER perf-part)
@@ -16541,7 +16541,7 @@ SELECT:5009 (vblex pres) IF
 # tillates til venstre
 # NOT PERF-PART fordi m-hj-verb i pret kan ta
 # perf-part"))
-
+# KBU: det-kvant-unntak pga. «Av disse skal 50<det><qnt> legges<inf> ned»
 
 
 #:2430
@@ -23553,7 +23553,7 @@ REMOVE:2135 (det) IF
 	(-2C prep)
 ;
 #  "Jeg må overleve i dette huset (ikke verb)"))
-
+# Men ikkje: «Av disse skal 50 legges ned»
 
 
 #:1826
