@@ -53,11 +53,11 @@ into reversible finite state transducers, so that word-for-word
 translations are possible in both directions using only two
 monolingual (morphological analysis/generation) and one translational
 (transfer) dictionary. First order hidden Markov models are used after
-analysis for part-of-speech disambiguation. The transfer module is
-finite state based and allows three-stage chunking transfer (although
-nn-nb only uses one-stage transfer). De-/reformatters applied to the
-beginning and end of the pipeline lets one preserve formatting of
-various document types.
+analysis for part-of-speech disambiguation[fn:7]. The transfer module
+is finite state based and allows three-stage chunking transfer
+(although nn-nb only uses one-stage transfer). De-/reformatters
+applied to the beginning and end of the pipeline lets one preserve
+formatting of various document types.
 
 The nn-nb language pair differs from most of the other Apertium pairs
 in using a Constraint Grammar module[fn:3] as a pre-disambiguator
@@ -87,7 +87,7 @@ Grammar. These were converted into Apertium formats and tag
 schemes. We found no freely available bilingual dictionary, so this
 was created using various both manual and automatic methods, along
 with transfer rules to cope with syntactic differences and agreement.
-
+*** SKRIV mention KDE4 and bitextor web sites?
 ** Analysis and generation
 Norsk Ordbank is a full form dictionary with morphological
 information. Most Apertium language pairs use /lttoolbox/ for
@@ -138,7 +138,28 @@ consists of
 3. checking whether the altered entries actually exist in the Nynorsk
    analyser
 
-Finally, we 
+Finally, we added some entries using automatic word alignments. We
+used two resources here: the KDE4 corpus of software translations, and
+text gathered with the bitextor web crawler tool[fn:5]. 
+
+The KDE4 translations are in the /gettext/ (.po-file) format, for
+which there are a lot of available tools. We first used the Translate
+Toolkit[fn:6] tool /poswap/ to turn the English-Nynorsk and
+English-Bokmål .po-files into Nynorsk-Bokmål files, then we ran
+/poterminology/, a terminology extraction tool which gathers simple
+phrase pairs (all subphrases which appear together over a certain
+threshold), taking advantage of the amount of repetition in software
+translations. 
+
+We next ran Giza++ \citep{och2003scv} to create word alignments, which
+we then fed into the tool ReTraTos \citep{caseli2006aib}.
+
+*** SKRIV wikipedia!
+*** SKRIV noe om at nn-nb.po kan nyttast som TMX med Apertium?
+
+
+*** SKRIV URL til KDE4
+
 - Giza++ (I guess I could do a diff on the bidix from before and after
   I started working on Giza++ stuff)
 - Anything about regression testing and that stuff? (Ie. whenever we
@@ -230,6 +251,17 @@ programme. Thanks to mentors and OBT people.
 http://beta.visl.sdu.dk/cg3.html
 
 [fn:4] Available from http://apertium.org
+
+[fn:5] Available from http://websvn.kde.org/trunk/l10n-kde4/ and
+http://bitextor.sourceforge.net/ respectively.
+
+[fn:6] Available from
+http://translate.sourceforge.net/wiki/toolkit/index
+
+[fn:7] Although we now have the capability for second order HMM's,
+\citep{todo_or_remove}.
+
+
 
 
 
