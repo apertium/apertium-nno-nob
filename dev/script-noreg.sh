@@ -1,6 +1,8 @@
 # script for washing the noreg-no-n*.txt files
+# the "preprocess" line requires the perl script
+# preprocess
 grep -v 'Gå til toppen' | \
-preprocess --abbr=~/gtsvn/st/nob/bin/abbr.txt | \
+preprocess --abbr=abbr.txt | \
 sed 's/^\.$/\.¢/g' | sed 's/^\?$/\?¢/' | \
 sed 's/^\!$/\!¢/' | \
 tr '[•\|]' '¢' | \
