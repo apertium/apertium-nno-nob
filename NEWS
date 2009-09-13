@@ -1,4 +1,21 @@
+søn sep 13 13:05:01 CET 2009
+
+  * Feilrettingsutgåve, versjon 0.6.1. CG-en skal no ha no-pass-origin
+    på alle reglar som kan få kryssande kontekstkrav, dvs. (*1 foo
+    LINK *-1 bar) er endra til (*1O foo LINK *-1 bar). OBT i
+    CG3-versjon må elles køyrast med kommandolinjevalet
+    --no-pass-origin for å fungere som OBT i CG1-versjon. Ein del
+    viktige disambigueringsfeil er au retta (gjør≠>gøyr,
+    satte≠>sindige, ...). Versjon 0.6.0 hadde ein del trivielle
+    transfer-feil, dei aller fleste av desse er no retta (nyaste test
+    viste berre to #-merkjer på heile nn- og nb-wikipedia). Elles er
+    det lagt til ein haug med adverb, og nokre av dei meir
+    høgfrekvente manglande orda. Makefile.am er litt oppdatert og skal
+    no kreve nyaste versjon av lttoolbox og ikkje fjerne lokale
+    modes-filer ved kall til make install.
+
 mån aug 17 23:59:59 CET 2009
+
   * Første offisielle utgåve: versjon 0.6.0, sjå pressemelding på
     https://sourceforge.net/forum/forum.php?forum_id=994990
 
