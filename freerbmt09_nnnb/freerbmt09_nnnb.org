@@ -1,4 +1,4 @@
-#+TITLE: Reuse of Free Resources in Machine Translation between Norwegian Nynorsk and Bokmål
+#+TITLE: Reuse of Free Resources in Machine Translation between Nynorsk and Bokmål
 #+OPTIONS: skip:nil num:nil author:nil
 #+EMAIL: unhammer at gmail dot com
 #+LANGUAGE: en
@@ -10,11 +10,9 @@
 #+LaTeX_HEADER: \author{Jane Doe\\  Department of Computer Science \\  Nonesuch State University \\  Utopia, NS 12345 \\  {\tt jane.doe@cs.nsu.edu} \And  John Smith \\  Department of Linguistics \\  Another State University \\  Collegetown, AS 98765 \\    {\tt jsmith@ling.asu.edu}}
 
 #+BEGIN_LaTeX
-\begin{abstract}
-This article has a very long title, which should probably be snappier
-  and more enticing since we want people to read the abstract to find
-  out what it's really all about.
-\end{abstract}
+  \begin{abstract}
+    We describe the development of a shallow-transfer machine translation system between Norwegian Nynorsk and Norwegian Bokmål built on the Apertium platform, using the free and open source resources Norsk Ordbank and the Oslo-Bergen (Constraint Grammar) tagger. We detail the integration of these and other resources in the system, the construction of the lexical and structural transfer, and give an evaluation of the translation quality and a comparison with another system.
+  \end{abstract}
 #+END_LaTeX
 
 * Introduction
@@ -130,8 +128,8 @@ but not generated, but finding all such pairs involves some work.
 
 We also added entries where there were predictable changes, eg. the
 Bokmål adjective suffix /-lig/ will typically be /-leg/ in Nynorsk,
-etc. This process, also used by \citet[p.~4]{tyers2009dpm}, simply
-consists of
+etc. This process, also used by \citet[p.~4]{tyers2009dpm}[fn:8],
+simply consists of
 1. finding Bokmål entries without translations
 2. running string replacements on these for typical differences in
    substrings
@@ -167,6 +165,10 @@ we then fed into the tool ReTraTos \citep{caseli2006aib}.
   add a regression test to make sure we don't have to fix it again.)
 
 ** Syntactic transfer
+The transfer module matches fixed-length patterns of part-of-speech
+tags and/or lemmas, on a left-to-right longest-first
+[basis..wossname..]. 
+
 - what are the relevant patterns which need transfer?
 - how did we solve it?
 - how didn't we solve it? (or, what are the problems)
@@ -260,6 +262,10 @@ http://translate.sourceforge.net/wiki/toolkit/index
 
 [fn:7] Although we now have the capability for second order HMM's,
 \citep{todo_or_remove}.
+
+[fn:8] A technique used in other Apertium language pairs, which we
+haven't tried yet, is running a target language spell checker (which
+gives suggestions) on the missing source language words.
 
 
 
