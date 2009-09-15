@@ -11,4 +11,6 @@ tr '\n' ' ' | \
 tr '¢' '\n' | \
 #sed 's/^ *(Gå til toppen )[0-9]|//g' | \
 #sed 's/^[0-9 \t\|]*//g' | \
-grep -v '^$'
+grep -v '^$' | \
+sed 's/^ *//g;'
+
