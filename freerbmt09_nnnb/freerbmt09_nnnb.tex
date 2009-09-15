@@ -1,4 +1,4 @@
-% Created 2009-09-15 Tue 12:25
+% Created 2009-09-15 Tue 17:20
 \documentclass[11pt]{article}
 \usepackage{freerbmt09}
 \usepackage[utf8x]{inputenc}
@@ -95,7 +95,7 @@ modules in nn-nb.
 \subsection{Resources}
 \label{sec-3.1}
 
-We used Norsk Ordbank\footnote{\href{http://www.edd.uio.no/prosjekt/ordbanken/}{http://www.edd.uio.no/prosjekt/ordbanken/} }, a $>100,000$ lemma GPL-ed full form
+We used Norsk Ordbank\footnote{\href{http://www.edd.uio.no/prosjekt/ordbanken/}{http://www.edd.uio.no/prosjekt/ordbanken/} }, a $>100,000$ lemma GPL full form
 dictionary, as our basis for the morphological analysis and
 generation. We also used the morphological disambiguator of the
 Oslo-Bergen Tagger \citep{hagen2000cbt}, a high quality GPL Constraint
@@ -146,40 +146,52 @@ tags \texttt{<n>} and \texttt{<np>}. Most of this conversion was done using simp
 shell scripts.
 \begin{itemize}
 
-\item \textbf{SKRIV} unsupervised tagger training\\
+\item \textbf{SKRIV} \texttt{texttt} for tags? or something else?\\
 \label{sec-3.3.1}
 
 
-\item \textbf{SKRIV} \texttt{texttt} for tags? or something else?\\
+\item \textbf{SKRIV} unsupervised tagger training\\
 \label{sec-3.3.2}
 
+The Constraint Grammar runs as a pre-disambiguator, and doesn't always
+manage to remove all spurious analyses. We run Apertium's statistical
+disambiguator module after this step to make a final choice. We
+trained an unsupervised bigram model on the Nynorsk and Bokmål
+Wikipedia's using the \texttt{apertium-tagger} \citep{todo}. Although there
+is the possibility of more advanced statistical models in Apertium
+\citep{sanchez2008utl,sheikh2009unpublished}.
 
 \end{itemize} % ends low level
 \subsection{Lexical transfer}
 \label{sec-3.4}
 
-The transfer lexicon, or translational dictionary, was created using
-three main methods. 
+As mentioned, we found no freely available bilingual dictionaries
+between Nynorsk and Bokmål, so this we had to build from the ground
+up. Closed categories and some open-category entries were simply added
+manually, but the bulk of the transfer lexicon, or translational
+dictionary, was created more or less automatically using three main
+methods.
 
 First, exact matches were added where the morphology was the same for
 both languages. Eg., if a noun lemma was the same in both languages,
-and both languages had the same forms (singular/plural,
-definite/indefinite) for the noun, we added it as a translation. This
-method got us around 36,000 entries. There are two problems with this
-method. One is that it may introduce a lot of false friends. However,
-for closely related languages, the benefit outweighs the risk (and
-lists of common false friends are not hard to come by in
-grammars). The other problem is that we add many ``radical forms'',
-eg. Bokmål words which exist in the Nynorsk dictionary but are far
-from being the most natural sounding Nynorsk translation. We can
-easily put restrictions on such forms so that they are only analysed,
+and in both languages the noun could occur in the same forms
+(singular/plural, definite/indefinite), we added it as a
+translation. This quickly got us around 36,000 entries. There are two
+problems with this method though. One is that it may introduce a lot
+of false friends. However, for closely related languages, the benefit
+outweighs the risk (and lists of common false friends are not hard to
+come by in grammars). The other problem is that we add many ``radical
+forms'', eg. Bokmål words which exist in the Nynorsk dictionary but are
+far from being the most natural sounding Nynorsk translation. We can
+easily put restrictions on these forms so that they are only analysed,
 but not generated, but finding all such pairs involves some work.
 
 We also added entries where there were predictable changes, eg. the
 Bokmål adjective suffix \emph{-lig} will typically be \emph{-leg} in Nynorsk,
 etc. This process, also used by \citet[p.~4]{tyers2009dpm}\footnote{A technique used in other Apertium language pairs, which we
 haven't tried yet, is running a target language spell checker (which
-gives suggestions) on the missing source language words. },
+gives suggestions) on the missing source language words, and then
+analysing the suggestion to find the lemma. },
 simply consists of
 \begin{enumerate}
 \item finding Bokmål entries without translations
@@ -188,6 +200,11 @@ simply consists of
 \item checking whether the altered entries actually exist in the Nynorsk
    analyser
 \end{enumerate}
+There are no orthographic generalisations to make between the
+languages, but of course lots of such morpheme/substring
+correspondences. The main run of this method gave us about 2500 nouns
+and verbs.
+
 Finally, we added some entries using automatic word alignments. We
 used two resources here: the KDE4 corpus of software translations, and
 text gathered with the bitextor web crawler tool\footnote{Available from \href{http://websvn.kde.org/trunk/l10n-kde4/}{http://websvn.kde.org/trunk/l10n-kde4/} and
@@ -229,6 +246,15 @@ we then fed into the tool ReTraTos \citep{caseli2006aib}.
   fix a certain transfer construction or disambiguation problem, we
   add a regression test to make sure we don't have to fix it again.)
 \end{itemize}
+
+\item \textbf{SKRIV} summary\\
+\label{sec-3.4.4}
+
+(It's hard to tell exactly how many entries were added by which
+method\ldots{} but the main impression I have is that we need a lot better
+parallel text to use the word aligment methods, since they involve a
+lot of work for very messy output.)
+
 \end{itemize} % ends low level
 \subsection{Syntactic transfer}
 \label{sec-3.5}
@@ -314,6 +340,7 @@ programme. Thanks to mentors and OBT people.
 
 \bibliographystyle{apalike}
 \bibliography{apertium}
+
 
 
 

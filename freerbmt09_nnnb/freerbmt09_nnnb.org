@@ -1,5 +1,5 @@
 #+TITLE: Reuse of Free Resources in Machine Translation between Nynorsk and Bokmål
-#+OPTIONS: skip:nil num:nil author:nil
+#+OPTIONS: skip:nil num:nil author:nil 
 #+EMAIL: unhammer at gmail dot com
 #+LANGUAGE: en
 #+TAGS: ROTETE(r)
@@ -77,7 +77,7 @@ modules in nn-nb.
 * Development
   \label{SEC:development}
 ** Resources
-We used Norsk Ordbank[fn:2], a $>100,000$ lemma GPL-ed full form
+We used Norsk Ordbank[fn:2], a $>100,000$ lemma GPL full form
 dictionary, as our basis for the morphological analysis and
 generation. We also used the morphological disambiguator of the
 Oslo-Bergen Tagger \citep{hagen2000cbt}, a high quality GPL Constraint
@@ -112,25 +112,36 @@ Apertium uses =<n>= and =<np>= respectively, so rules working on the
 single tag =<subst>= were changed to work on the set consisting of the
 tags =<n>= and =<np>=. Most of this conversion was done using simple
 shell scripts.
-*** SKRIV unsupervised tagger training
 *** SKRIV =texttt= for tags? or something else?
+*** SKRIV unsupervised tagger training
+The Constraint Grammar runs as a pre-disambiguator, and doesn't always
+manage to remove all spurious analyses. We run Apertium's statistical
+disambiguator module after this step to make a final choice. We
+trained an unsupervised bigram model on the Nynorsk and Bokmål
+Wikipedia's using the =apertium-tagger= \citep{todo}. Although there
+is the possibility of more advanced statistical models in Apertium
+\citep{sanchez2008utl,sheikh2009unpublished}.
 
 ** Lexical transfer
-The transfer lexicon, or translational dictionary, was created using
-three main methods. 
+As mentioned, we found no freely available bilingual dictionaries
+between Nynorsk and Bokmål, so this we had to build from the ground
+up. Closed categories and some open-category entries were simply added
+manually, but the bulk of the transfer lexicon, or translational
+dictionary, was created more or less automatically using three main
+methods.
 
 First, exact matches were added where the morphology was the same for
 both languages. Eg., if a noun lemma was the same in both languages,
-and both languages had the same forms (singular/plural,
-definite/indefinite) for the noun, we added it as a translation. This
-method got us around 36,000 entries. There are two problems with this
-method. One is that it may introduce a lot of false friends. However,
-for closely related languages, the benefit outweighs the risk (and
-lists of common false friends are not hard to come by in
-grammars). The other problem is that we add many "radical forms",
-eg. Bokmål words which exist in the Nynorsk dictionary but are far
-from being the most natural sounding Nynorsk translation. We can
-easily put restrictions on such forms so that they are only analysed,
+and in both languages the noun could occur in the same forms
+(singular/plural, definite/indefinite), we added it as a
+translation. This quickly got us around 36,000 entries. There are two
+problems with this method though. One is that it may introduce a lot
+of false friends. However, for closely related languages, the benefit
+outweighs the risk (and lists of common false friends are not hard to
+come by in grammars). The other problem is that we add many "radical
+forms", eg. Bokmål words which exist in the Nynorsk dictionary but are
+far from being the most natural sounding Nynorsk translation. We can
+easily put restrictions on these forms so that they are only analysed,
 but not generated, but finding all such pairs involves some work.
 
 We also added entries where there were predictable changes, eg. the
@@ -142,6 +153,11 @@ simply consists of
    substrings
 3. checking whether the altered entries actually exist in the Nynorsk
    analyser
+
+There are no orthographic generalisations to make between the
+languages, but of course lots of such morpheme/substring
+correspondences. The main run of this method gave us about 2500 nouns
+and verbs.
 
 Finally, we added some entries using automatic word alignments. We
 used two resources here: the KDE4 corpus of software translations, and
@@ -170,6 +186,12 @@ we then fed into the tool ReTraTos \citep{caseli2006aib}.
 - Anything about regression testing and that stuff? (Ie. whenever we
   fix a certain transfer construction or disambiguation problem, we
   add a regression test to make sure we don't have to fix it again.)
+*** SKRIV summary
+(It's hard to tell exactly how many entries were added by which
+method... but the main impression I have is that we need a lot better
+parallel text to use the word aligment methods, since they involve a
+lot of work for very messy output.)
+#todo
 
 ** Syntactic transfer
 The transfer module matches fixed-length patterns of part-of-speech
@@ -273,7 +295,9 @@ http://translate.sourceforge.net/wiki/toolkit/index
 
 [fn:8] A technique used in other Apertium language pairs, which we
 haven't tried yet, is running a target language spell checker (which
-gives suggestions) on the missing source language words.
+gives suggestions) on the missing source language words, and then
+analysing the suggestion to find the lemma.
+
 
 
 
