@@ -268,6 +268,7 @@ tags and/or lemmas, on a left-to-right longest-first
 \item how did we solve it?
 \item how didn't we solve it? (or, what are the problems)
 \end{itemize}
+
 \section{Evaluation}
 \label{sec-4}
 
@@ -278,6 +279,7 @@ dictionaries. Testing on Nynorsk Wikipedia (5116174 words) and Bokmål
 Wikipedia (27529115 words), we have 89.6\% and 88.2\% coverage,
 respectively.
 
+\subsection{Word Error Rate}
 The Word Error Rate (WER) on a 3750 word Wikipedia article on
 linguistics in the Bokmål to Nynorsk direction was 22.06\% when
 including unknown words, although since 64.93\% of these were
@@ -299,11 +301,22 @@ terminology.
 
 \end{itemize}
 
-\item Anything about Nyno? (Their web page says 74000 words, don't know
+
+\end{itemize}
+
+\subsection{Bleu score}
+
+Apertium is not the only MT system between Nynorsk and Bokmål. Another system is \textit{Nyno} (\url{www.nynodata.no}), a commercial MT system translating from Bokmål to Nynorsk (but not the other way around. In order to compare the systems, we translated an unseen text (20667 words) from Bokmål to Nynorsk in both Apertium and Nyno. The translation was compared to a set of x gold standards, and the Bleu score of the respective systems was calculated.
+
+\textbf{SKRIV} ut resultata frå Bleu score. Men først treng vi folk til å lage gullstandard.
+
+Anything about Nyno? (Their web page says 74000 words, don't know
   about WER but the cool thing about Nyno is the interface, ie. the
   freedom of choice with variants and how the user can do the lexical
   selection.
-\end{itemize}
+  
+  Yes, Nyno deserves a presentation for this.
+
 \section{Discussion}
 \label{sec-5}
 
