@@ -11,13 +11,10 @@
 \author{Jane Doe\\  Department of Computer Science \\  Nonesuch State University \\  Utopia, NS 12345 \\  {\tt jane.doe@cs.nsu.edu} \And  John Smith \\  Department of Linguistics \\  Another State University \\  Collegetown, AS 98765 \\    {\tt jsmith@ling.asu.edu}}
 
 \title{Reuse of Free Resources in Machine Translation between Nynorsk and Bokmål}
-%\author{Kevin Brubeck Unhammer}
-\date{15/09, 2009}
 
 \begin{document}
 
 \maketitle
-
 
   \begin{abstract}
     We describe the development of a shallow-transfer machine
@@ -68,12 +65,18 @@ further improved.
  into reversible finite state transducers, so that word-for-word
  translations are possible in both directions using only two
  monolingual dictionaries (morphological analysis/generation) and one
- translational (transfer) dictionary. First order hidden Markov models
- are used after analysis for part-of-speech
- disambiguation\footnote{Although we now have the capability for
-   second order HMM's, \citep{todo_or_remove}. }. The transfer module
- is finite state based and allows three-stage chunking transfer
- (although nn-nb only uses one-stage transfer). De-/reformatters
+ translational (transfer) dictionary. Both dictionary types make use of
+ \emph{paradigms} to eg. generalise over common suffix sets (and
+ their analyses), and \emph{directional constraints}, which state that
+ a certain entry may be analysed, but not generated, or vice versa.
+
+ First order hidden Markov models are used after analysis for
+ part-of-speech disambiguation\footnote{Although there is now also the
+   capability for second order HMM's \citep{sheikh2009trigram}. }.
+ The transfer module is finite state based and allows three-stage
+ chunking transfer, although nn-nb so far only uses one-stage
+ transfer.
+ De-/reformatters
  applied to the beginning and end of the pipeline lets one preserve
  formatting of various document types.
 
@@ -164,7 +167,7 @@ unsupervised bigram model was trained on the Nynorsk and Bokmål
 Wikipedias using the \texttt{apertium-tagger} \citep{todo}. Although
 there is the possibility of more advanced statistical models using the
 Apertium toolset
-\citep[see~eg.~][]{sanchez2008utl,sheikh2009unpublished}, so far we
+\citep[see~eg.~][]{sanchez2008utl,sheikh2009trigram}, so far we
 have instead worked on improving the Constraint Grammar where we
 spotted errors.
 
@@ -211,13 +214,15 @@ of this method gave us about 2500 nouns and verbs\footnote{A technique
   then analysing the suggestion to find the lemma. }.
 
 Finally, we added some entries using automatic word alignments. We
-used two resources here: the KDE4 corpus of software translations, and
-text gathered with the bitextor web crawler tool\footnote{Available
+used two resources here: the KDE4 corpus of software translations
+(about 400,000 words), and about 50,000 words of parallel text
+gathered with the bitextor web crawler tool
+\citep{sanchez2006eam}\footnote{Available
   from
   \href{http://websvn.kde.org/trunk/l10n-kde4/}{http://websvn.kde.org/trunk/l10n-kde4/}
   and
   \href{http://bitextor.sourceforge.net/}{http://bitextor.sourceforge.net/}
-  respectively. }.
+  respectively.} from Norwegian government web pages.
 
 The KDE4 translations are in the \emph{gettext} (.po-file) format, for
 which there are a lot of available tools. We first used the Translate
@@ -227,28 +232,40 @@ Toolkit\footnote{Available from
 .po-files into Nynorsk-Bokmål files, then we ran \emph{poterminology},
 a terminology extraction tool which gathers simple phrase pairs (all
 subphrases which appear together over a certain threshold), taking
-advantage of the amount of repetition in software translations. This
-got us some hundreds of new terms with very little work; however, many
-of the software terms were of course not in the monolingual
-dictionaries and thus adding them requires some manual labour.
+advantage of the typically short sentences\footnote{On average, the
+  aligned translations are about 4.5 words long (including
+  multi-sentence translations).} and high amount of repetition in
+software translations. This gave us some hundreds of new terms with
+very little work; however, many of the software terms were of course
+not in the monolingual dictionaries and thus adding them requires some
+manual labour.
 
 We next ran Giza++ \citep{och2003scv} on a cleaned version of the KDE4
 corpus to create word alignments. We also appended our existing
 transfer lexicon to the corpus several times, to improve the
-probability of correct alignments. We then fed these alignments into
-the tool ReTraTos \citep{caseli2006aib}, which extracts both phrases
-and single-word translations and converts them into Apertium transfer
-entries.
+probability of correct alignments. We then ran these these alignments
+through our morphological analysers, and fed them into the tool
+ReTraTos \citep{caseli2006aib}, which extracts both phrases and
+single-word translations from alignments, and converts them into
+Apertium transfer entries (perhaps adding directional constraints). We
+also followed this same process on the text gathered from web pages,
+which was automatically crawled and sentence aligned with the bitextor
+tool mentioned above.
+
+The ReTraTos method gave translations for about 3500 entries which
+were missing from the transfer lexicon; however, these still needed a
+manual see through, and very many had to be discarded. Due to the high
+amount of noise in this data, it seemed to work better as a source of
+\emph{suggestions} for translations.
 
 \begin{itemize}
+\item \textbf{SKRIV} om me berre hadde hatt større korpus, så kunne me fått det så mykje betre til osb. (men kanskje vanskeleg uansett med så nærliggande språk)
 \item \textbf{SKRIV} wikipedia!
 \item \textbf{SKRIV} noe om at nn-nb.po kan nyttast som TMX med Apertium?
 \begin{itemize}
-\item Giza++ (I guess I could do a diff on the bidix from before and after
+\item Giza++ (I guess I could do a diff on the bidix from before and
+  after
   I started working on Giza++ stuff)
-\item Anything about regression testing and that stuff? (Ie. whenever we
-  fix a certain transfer construction or disambiguation problem, we
-  add a regression test to make sure we don't have to fix it again.)
 \end{itemize}
 \item \textbf{SKRIV} summary
 
@@ -268,6 +285,9 @@ tags and/or lemmas, on a left-to-right longest-first
 \item what are the relevant patterns which need transfer?
 \item how did we solve it?
 \item how didn't we solve it? (or, what are the problems)
+\item Anything about regression testing and that stuff? (Ie. whenever we
+  fix a certain transfer construction or disambiguation problem, we
+  add a regression test to make sure we don't have to fix it again.)
 \end{itemize}
 
 \section{Evaluation}
