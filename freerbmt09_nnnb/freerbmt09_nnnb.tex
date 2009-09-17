@@ -20,14 +20,20 @@
 
 
   \begin{abstract}
-    We describe the development of a shallow-transfer machine translation system between Norwegian Nynorsk and Norwegian Bokmål built on the Apertium platform, using the free and open source resources Norsk Ordbank and the Oslo-Bergen (Constraint Grammar) tagger. We detail the integration of these and other resources in the system, the construction of the lexical and structural transfer, and give an evaluation of the translation quality and a comparison with another system.
+    We describe the development of a shallow-transfer machine
+    translation system between Norwegian Nynorsk and Norwegian Bokmål
+    built on the Apertium platform, using the free and open source
+    resources Norsk Ordbank and the Oslo-Bergen (Constraint Grammar)
+    tagger. We detail the integration of these and other resources in
+    the system, the construction of the lexical and structural
+    transfer, and give an evaluation of the translation quality and a
+    comparison with another system.
   \end{abstract}
 
 \section{Introduction}
-\label{sec-1}
 
-The term \emph{Norwegian} covers a variety of related spoken dialects. Up
-until the 1800's, Danish was the only written standard used in
+The term \emph{Norwegian} covers a variety of related spoken dialects.
+Up until the 1800's, Danish was the only written standard used in
 Norway. Bokmål emerged through various reforms which brought the
 written language closer to the spoken; Nynorsk however, was created
 from the ground up with the purpose of representing all the spoken
@@ -35,13 +41,15 @@ dialects of Norway. As it is, certain dialects (especially around the
 Oslo area) correspond more with Bokmål, while others are closer to
 Nynorsk. Nynorsk is ``in a minority position in Norway, with
 approximately 12\% of the users'' \citep{everson2000sln}, or around
-450,000 people. 
+450,000 people.
 
 Although Nynorsk is in a minority position, there are quite good
 linguistic resources available under Free licences, compared to many
-languages with the same amount of speakers.  We describe the creation
-of a machine translation system between Nynorsk and Bokmål\footnote{Available from \href{http://apertium.org}{http://apertium.org} } built
-using these resources with the free and open source Apertium platform
+languages with the same amount of speakers. We describe the creation
+of a machine translation system between Nynorsk and
+Bokmål\footnote{Available from
+  \href{http://apertium.org}{http://apertium.org} } built using these
+resources with the free and open source Apertium platform
 \citep{corbi05oss}. In the following section we give an overview of
 the Apertium platform and Constraint Grammar. Section
 \ref{SEC:development} describes how the available resources were
@@ -52,55 +60,60 @@ and a discussion of the lessons learnt and how the system may be
 further improved.
 
 \section{Design}
-\label{sec-2}
+ \label{SEC:design}
 
-  \label{SEC:design}
-
-The nn-nb language pair follows the design of the Apertium system
-\citep{corbi05oss}, a highly modular, shallow-transfer pipeline
-machine translation system. Dictionaries written in XML are compiled
-into reversible finite state transducers, so that word-for-word
-translations are possible in both directions using only two
-monolingual (morphological analysis/generation) and one translational
-(transfer) dictionary. First order hidden Markov models are used after
-analysis for part-of-speech disambiguation\footnote{Although we now have the capability for second order HMM's,
-\citep{todo_or_remove}. }. The transfer module
-is finite state based and allows three-stage chunking transfer
-(although nn-nb only uses one-stage transfer). De-/reformatters
-applied to the beginning and end of the pipeline lets one preserve
-formatting of various document types.
+ The nn-nb language pair follows the design of the Apertium system
+ \citep{corbi05oss}, a highly modular, shallow-transfer pipeline
+ machine translation system. Dictionaries written in XML are compiled
+ into reversible finite state transducers, so that word-for-word
+ translations are possible in both directions using only two
+ monolingual dictionaries (morphological analysis/generation) and one
+ translational (transfer) dictionary. First order hidden Markov models
+ are used after analysis for part-of-speech
+ disambiguation\footnote{Although we now have the capability for
+   second order HMM's, \citep{todo_or_remove}. }. The transfer module
+ is finite state based and allows three-stage chunking transfer
+ (although nn-nb only uses one-stage transfer). De-/reformatters
+ applied to the beginning and end of the pipeline lets one preserve
+ formatting of various document types.
 
 The nn-nb language pair differs from most of the other Apertium pairs
-in using a Constraint Grammar module\footnote{Running on VISL CG-3, available from
-\href{http://beta.visl.sdu.dk/cg3.html}{http://beta.visl.sdu.dk/cg3.html} } as a pre-disambiguator
-(before the statistical tagger). Constraint Grammars
-\citep{karlsson1990cgf} are hand-written rules which, given
-ambiguously tagged input (eg. `read' tagged both as a past and present
-tense verb), may SELECT one reading/analysis over all the others, or
-REMOVE a certain reading from the set of analyses. The last reading is
-never removed, although we may end up with several readings if the
-input was in fact ambiguous or the grammar didn't manage to remove
-what it should. Constraint Grammars may also MAP (add) new tags to
-readings, typically syntactic function labels. Rules may check in
-either direction for the existence of tags or even specific words,
-over absolute or undefined distances.
+in using a Constraint Grammar module\footnote{Running on VISL CG-3,
+  available from
+  \href{http://beta.visl.sdu.dk/cg3.html}{http://beta.visl.sdu.dk/cg3.html}
+} as a pre-disambiguator (before the statistical tagger). Constraint
+Grammars \citep{karlsson1990cgf} are hand-written rules which, given
+ambiguously tagged input (eg. the English word `read' tagged both as a
+past and present tense verb), may SELECT one reading/analysis over all
+the others, or REMOVE a certain reading from the set of analyses. The
+last reading is never removed, although we may end up with several
+readings if the input was in fact ambiguous or the grammar didn't
+manage to remove what it should. Constraint Grammars may also MAP
+(add) new tags to readings, typically syntactic function labels. Rules
+may check in either direction for the existence of tags or even
+specific words, over absolute or undefined distances.
+
+\begin{itemize}
+\item \textbf{SKRIV} more? something like ``CG's have shown 94\%  P/R \citet{someone}'' ?
+\end{itemize} 
+
 
 In the next section we describe the development and use of these
 modules in nn-nb.
 
 \section{Development}
-\label{sec-3}
 
   \label{SEC:development}
 \subsection{Resources}
-\label{sec-3.1}
 
-We used Norsk Ordbank\footnote{\href{http://www.edd.uio.no/prosjekt/ordbanken/}{http://www.edd.uio.no/prosjekt/ordbanken/} }, a $>100,000$ lemma GPL full form
-dictionary, as our basis for the morphological analysis and
-generation. We also used the morphological disambiguator of the
-Oslo-Bergen Tagger \citep{hagen2000cbt}, a high quality GPL Constraint
-Grammar. These were converted into Apertium formats and tag schemes,
-as described below.
+As our basis for the morphological analysis and generation, we used
+Norsk
+Ordbank\footnote{\href{http://www.edd.uio.no/prosjekt/ordbanken/}{http://www.edd.uio.no/prosjekt/ordbanken/}
+}, a $>100,000$ lemma GPL full form dictionary. We also used the
+morphological disambiguator of the Oslo-Bergen Tagger
+\citep{hagen2000cbt}, a high quality GPL Constraint Grammar. These
+were converted into Apertium formats and tag schemes, as described
+below.
 
 We found no freely available bilingual dictionary, so this was created
 using various both manual and automatic methods, along with transfer
@@ -109,29 +122,24 @@ sections detail the process.
 \begin{itemize}
 
 \item \textbf{SKRIV} mention KDE4 and bitextor web sites?\\
-\label{sec-3.1.1}
 
-\end{itemize} % ends low level
+\end{itemize} 
 \subsection{Analysis and generation}
-\label{sec-3.2}
 
 Most Apertium language pairs use \emph{lttoolbox} for morphological
 analysis and generation, which compiles XML-structured entries into
 fast finite state transducers and allows generalisations to be made
 across eg. common suffix paradigms. Norsk Ordbank is a full form
 dictionary with morphological information (lemma, part-of-speech,
-inflection, \ldots{}), this was semi-automatically transformed into the
-lttoolbox format. First one paradigm was created per lemma (always
-creating the longest possible suffix), then any duplicate paradigms
-were merged.
-\begin{itemize}
+inflection, \ldots{}), this was semi-automatically transformed into
+the lttoolbox format. First, one paradigm was created per lemma
+(always creating the longest possible suffix), then any duplicate
+paradigms were merged. \begin{itemize}
 
 \item \textbf{SKRIV} example of an XML entry?\\
-\label{sec-3.2.1}
 
-\end{itemize} % ends low level
+\end{itemize} 
 \subsection{Disambiguation}
-\label{sec-3.3}
 
 The Oslo-Bergen tagger and Norsk Ordbank use a different tagset from
 Apertium. We want the resources used in nn-nb to be useful in creating
@@ -139,34 +147,28 @@ new Apertium language pairs, so we converted the tags to ones which
 conform as much as possible to other Apertium dictionaries. Most tags
 could be replaced one-to-one, although some were replaced with
 Constraint Grammar sets. To exemplify the latter: the Oslo-Bergen
-tagger uses the tags \texttt{<subst><appell>} and \texttt{<subst><prop>} where
-Apertium uses \texttt{<n>} and \texttt{<np>} respectively, so rules working on the
-single tag \texttt{<subst>} were changed to work on the set consisting of the
-tags \texttt{<n>} and \texttt{<np>}. Most of this conversion was done using simple
-shell scripts.
-\begin{itemize}
+tagger uses the tags \texttt{<subst><appell>} and
+\texttt{<subst><prop>} where Apertium uses \texttt{<n>} and
+\texttt{<np>} respectively, so rules working on the single tag
+\texttt{<subst>} were changed to work on the set consisting of the
+tags \texttt{<n>} and \texttt{<np>}. Most of this conversion was done
+using simple shell scripts.
 
-\item \textbf{SKRIV} \texttt{texttt} for tags? or something else?\\
-\label{sec-3.3.1}
+\textbf{SKRIV} \texttt{texttt} for tags? or something else?\\
 
-
-\item \textbf{SKRIV} unsupervised tagger training\\
-\label{sec-3.3.2}
 
 The Constraint Grammar runs as a pre-disambiguator, and doesn't always
 manage to remove all spurious analyses. We run Apertium's statistical
-disambiguator module after this step to make a final choice. We
-trained an unsupervised bigram model on the Nynorsk and Bokmål
-Wikipedia's using the \texttt{apertium-tagger} \citep{todo}. Although there
-is the possibility of more advanced statistical models using the
+disambiguator module after this step to make a final choice. An
+unsupervised bigram model was trained on the Nynorsk and Bokmål
+Wikipedias using the \texttt{apertium-tagger} \citep{todo}. Although
+there is the possibility of more advanced statistical models using the
 Apertium toolset
 \citep[see~eg.~][]{sanchez2008utl,sheikh2009unpublished}, so far we
 have instead worked on improving the Constraint Grammar where we
 spotted errors.
 
-\end{itemize} % ends low level
 \subsection{Lexical transfer}
-\label{sec-3.4}
 
 As mentioned, we found no freely available bilingual dictionaries
 between Nynorsk and Bokmål, so this we had to build from the ground
@@ -178,70 +180,69 @@ methods.
 First, exact matches were added where the morphology was the same for
 both languages. Eg., if a noun lemma was the same in both languages,
 and in both languages the noun could occur in the same forms
-(singular/plural, definite/indefinite), we added it as a
+(singular/plural, definite/indefinite), it was considered a
 translation. This quickly got us around 36,000 entries. There are two
 problems with this method though. One is that it may introduce a lot
-of false friends. However, for closely related languages, the benefit
-outweighs the risk (and lists of common false friends are not hard to
-come by in grammars). The other problem is that we add many ``radical
-forms'', eg. Bokmål words which exist in the Nynorsk dictionary but are
-far from being the most natural sounding Nynorsk translation. We can
-easily put restrictions on these forms so that they are only analysed,
-but not generated, but finding all such pairs involves some work.
+of false friends. However, for closely related languages with such
+high overlap in the lexicon, the benefit outweighs the risk (and lists
+of common false friends are not hard to come by in grammars). The
+other problem is that we add many ``radical forms'', eg. Bokmål words
+which exist in the Nynorsk dictionary but are far from being the most
+natural sounding Nynorsk translation. We can easily put restrictions
+on these forms so that they are only analysed, but not generated, but
+finding all such pairs involves some work.
 
 We also added entries where there were predictable changes, eg. the
 Bokmål adjective suffix \emph{-lig} will typically be \emph{-leg} in Nynorsk,
-etc. This process, also used by \citet[p.~4]{tyers2009dpm}\footnote{A technique used in other Apertium language pairs, which we
-haven't tried yet, is running a target language spell checker (which
-gives suggestions) on the missing source language words, and then
-analysing the suggestion to find the lemma. },
+etc. This process, also used by \citet[p.~4]{tyers2009dpm},
 simply consists of
 \begin{enumerate}
-\item finding Bokmål entries without translations
-\item running string replacements on these for typical differences in
+\item finding Bokmål entries without translations \item running string replacements on these for typical differences in
    substrings
 \item checking whether the altered entries actually exist in the Nynorsk
    analyser
 \end{enumerate}
-There are no orthographic generalisations to make between the
-languages, but of course lots of such morpheme/substring
-correspondences. The main run of this method gave us about 2500 nouns
-and verbs.
+There are no orthographic differences between the languages, but of
+course lots of such morpheme/substring correspondences. The main run
+of this method gave us about 2500 nouns and verbs\footnote{A technique
+  used in other Apertium language pairs, which we haven't tried yet,
+  is running a target language spell checker (which gives suggestions)
+  on the missing source language words (replacing step 2 above), and
+  then analysing the suggestion to find the lemma. }.
 
 Finally, we added some entries using automatic word alignments. We
 used two resources here: the KDE4 corpus of software translations, and
-text gathered with the bitextor web crawler tool\footnote{Available from \href{http://websvn.kde.org/trunk/l10n-kde4/}{http://websvn.kde.org/trunk/l10n-kde4/} and
-\href{http://bitextor.sourceforge.net/}{http://bitextor.sourceforge.net/} respectively. }. 
+text gathered with the bitextor web crawler tool\footnote{Available
+  from
+  \href{http://websvn.kde.org/trunk/l10n-kde4/}{http://websvn.kde.org/trunk/l10n-kde4/}
+  and
+  \href{http://bitextor.sourceforge.net/}{http://bitextor.sourceforge.net/}
+  respectively. }.
 
 The KDE4 translations are in the \emph{gettext} (.po-file) format, for
 which there are a lot of available tools. We first used the Translate
 Toolkit\footnote{Available from
-\href{http://translate.sourceforge.net/wiki/toolkit/index}{http://translate.sourceforge.net/wiki/toolkit/index} } tool \emph{poswap} to turn the English-Nynorsk and
-English-Bokmål .po-files into Nynorsk-Bokmål files, then we ran
-\emph{poterminology}, a terminology extraction tool which gathers simple
-phrase pairs (all subphrases which appear together over a certain
-threshold), taking advantage of the amount of repetition in software
-translations. 
+  \href{http://translate.sourceforge.net/wiki/toolkit/index}{http://translate.sourceforge.net/wiki/toolkit/index}
+} tool \emph{poswap} to turn the English-Nynorsk and English-Bokmål
+.po-files into Nynorsk-Bokmål files, then we ran \emph{poterminology},
+a terminology extraction tool which gathers simple phrase pairs (all
+subphrases which appear together over a certain threshold), taking
+advantage of the amount of repetition in software translations. This
+got us some hundreds of new terms with very little work; however, many
+of the software terms were of course not in the monolingual
+dictionaries and thus adding them requires some manual labour.
 
-We next ran Giza++ \citep{och2003scv} to create word alignments, which
-we then fed into the tool ReTraTos \citep{caseli2006aib}.
+We next ran Giza++ \citep{och2003scv} on a cleaned version of the KDE4
+corpus to create word alignments. We also appended our existing
+transfer lexicon to the corpus several times, to improve the
+probability of correct alignments. We then fed these alignments into
+the tool ReTraTos \citep{caseli2006aib}, which extracts both phrases
+and single-word translations and converts them into Apertium transfer
+entries.
 
 \begin{itemize}
-
-\item \textbf{SKRIV} wikipedia!\\
-\label{sec-3.4.1}
-
-
-\item \textbf{SKRIV} noe om at nn-nb.po kan nyttast som TMX med Apertium?\\
-\label{sec-3.4.2}
-
-
-
-
-\item \textbf{SKRIV} URL til KDE4\\
-\label{sec-3.4.3}
-
-
+\item \textbf{SKRIV} wikipedia!
+\item \textbf{SKRIV} noe om at nn-nb.po kan nyttast som TMX med Apertium?
 \begin{itemize}
 \item Giza++ (I guess I could do a diff on the bidix from before and after
   I started working on Giza++ stuff)
@@ -249,18 +250,15 @@ we then fed into the tool ReTraTos \citep{caseli2006aib}.
   fix a certain transfer construction or disambiguation problem, we
   add a regression test to make sure we don't have to fix it again.)
 \end{itemize}
-
-\item \textbf{SKRIV} summary\\
-\label{sec-3.4.4}
+\item \textbf{SKRIV} summary
 
 (It's hard to tell exactly how many entries were added by which
 method\ldots{} but the main impression I have is that we need a lot better
 parallel text to use the word aligment methods, since they involve a
 lot of work for very messy output.)
 
-\end{itemize} % ends low level
+\end{itemize} 
 \subsection{Syntactic transfer}
-\label{sec-3.5}
 
 The transfer module matches fixed-length patterns of part-of-speech
 tags and/or lemmas, on a left-to-right longest-first
@@ -273,9 +271,7 @@ tags and/or lemmas, on a left-to-right longest-first
 \end{itemize}
 
 \section{Evaluation}
-\label{sec-4}
-
-  \label{SEC:eval}
+ \label{SEC:eval}
 We define naïve coverage as the proportion of words in a corpus which
 are given at least one analysis by our monolingual
 dictionaries. Testing on Nynorsk Wikipedia (5116174 words) and Bokmål
@@ -309,7 +305,14 @@ terminology.
 
 \subsection{Bleu score}
 
-Apertium is not the only MT system between Nynorsk and Bokmål. Another system is \textit{Nyno} (\url{www.nynodata.no}), a commercial MT system translating from Bokmål to Nynorsk (but not the other way around. In order to compare the systems, we translated an unseen text (20667 words) from Bokmål to Nynorsk in both Apertium and Nyno. The translation was compared to a set of x gold standards, and the Bleu score of the respective systems was calculated.
+Apertium is not the only MT system between Nynorsk and Bokmål. Another
+system is
+\textit{Nyno}\footnote{\href{http://www.nynodata.no}{http://www.nynodata.no}},
+a commercial MT system translating from Bokmål to Nynorsk (but not the
+other way around. In order to compare the systems, we translated an
+unseen text (20667 words) from Bokmål to Nynorsk in both Apertium and
+Nyno. The translation was compared to a set of x gold standards, and
+the Bleu score of the respective systems was calculated.
 
 \textbf{SKRIV} ut resultata frå Bleu score. Men først treng vi folk til å lage gullstandard.
 
@@ -321,7 +324,6 @@ Anything about Nyno? (Their web page says 74000 words, don't know
   Yes, Nyno deserves a presentation for this.
 
 \section{Discussion}
-\label{sec-5}
 
 \begin{itemize}
 \item We don't have any sort of compound handling, probably we could
@@ -347,32 +349,19 @@ and Bokmål than between the other two. \\
 \citep{everson2000sln}
 \end{quote}
 
+\begin{itemize} \item reporting CG errors which were not
+  related
+  to the conversion back to the Oslo-Bergen tagger developers.
+\end{itemize} 
 
-\section{Acknowledgements}
-\label{sec-6}
+\section*{Acknowledgements}
 
-Development was funded as part of the Google Summer of Code\footnote{\href{http://code.google.com/soc/}{http://code.google.com/soc/} }
-programme. Thanks to mentors and OBT people.
+Development was funded as part of the Google Summer of
+Code\footnote{\href{http://code.google.com/soc/}{http://code.google.com/soc/}
+} programme. Thanks to mentors and OBT people.
+
 
 \bibliographystyle{apalike}
 \bibliography{apertium}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 \end{document}
