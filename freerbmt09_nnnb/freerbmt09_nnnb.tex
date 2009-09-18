@@ -254,28 +254,31 @@ tool mentioned above.
 
 The ReTraTos method gave translations for about 3500 entries which
 were missing from the transfer lexicon; however, these still needed a
-manual see through, and very many had to be discarded. Due to the high
-amount of noise in this data, it seemed to work better as a source of
-\emph{suggestions} for translations.
+manual see through, and very many had to be altered slightly (eg.
+changing directional constraints or morphological tags) or simply
+discarded. Due to the amount of noise in this data, this method
+required a lot of post-editing (and in our case functioning more as a
+source of \emph{suggestions} for translations). Of course, a different
+corpus might have achieved higher quality word alignments; either a
+bigger corpus (Wu and Xia \citep[1994, in][p.~230]{caseli2006aib} used
+a 3 million word corpus to induce an English–Chinese dictionary) or a
+corpus of a different text type (\citet{caseli2006aib} used corpora
+which were of similar sizes, but containing magazine text).
 
-\begin{itemize}
-\item \textbf{SKRIV} om me berre hadde hatt større korpus, så kunne me fått det så mykje betre til osb. (men kanskje vanskeleg uansett med så nærliggande språk)
-\item \textbf{SKRIV} wikipedia!
-\item \textbf{SKRIV} noe om at nn-nb.po kan nyttast som TMX med Apertium?
-\begin{itemize}
-\item Giza++ (I guess I could do a diff on the bidix from before and
-  after
-  I started working on Giza++ stuff)
-\end{itemize}
-\item \textbf{SKRIV} summary
+In addition to these three main methods, we also had some
+user-contributed entries. We created a page on the Nynorsk Wikipedia
+where users could suggest translations for those words which were
+missing from the transfer lexicon (sectioned by part-of-speech), and
+simply added these as they trickled in.
 
-(It's hard to tell exactly how many entries were added by which
-method\ldots{} but the main impression I have is that we need a lot better
-parallel text to use the word aligment methods, since they involve a
-lot of work for very messy output.)
 
-\end{itemize} 
 \subsection{Syntactic transfer}
+
+Nynorsk and Bokmål do not have very many syntactic differences. The main ones are:
+\begin{itemize}
+\item Verb phrases:
+\item Noun phrases:
+\end{itemize}
 
 The transfer module matches fixed-length patterns of part-of-speech
 tags and/or lemmas, on a left-to-right longest-first
@@ -354,6 +357,7 @@ Anything about Nyno? (Their web page says 74000 words, don't know
 \item *menneskehandel.
 \item menneske. handel.
 \end{itemize}
+\item \textbf{SKRIV} noe om at nn-nb.po kan nyttast som TMX med Apertium?
 
 \item ``Well-written'' nynorsk uses lots of periphrasis and MWE's, eg. particle
   verbs; we don't generate any such thing. A syntactic analysis might
