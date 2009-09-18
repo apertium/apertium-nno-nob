@@ -9,6 +9,7 @@
       <tags-item tags="n.m"/>   <!-- probably broken -->
       <tags-item tags="n.m.*"/>
     </def-label>
+    <!-- nn nt is ~always ambiguous between sg and pl, uncoarsify todo: -->
     <def-label name="NOMNT">
       <tags-item tags="n.nt"/>  <!-- probably broken -->
       <tags-item tags="n.nt.*"/>
