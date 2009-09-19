@@ -273,7 +273,7 @@ missing from the transfer lexicon (sectioned by part-of-speech), and
 simply added these as they trickled in.
 
 
-\subsection{Syntactic transfer}
+\subsection{Structural transfer}
 
 Nynorsk and Bokmål do not have very many syntactic differences. There
 are some minor differences in verb phrases, and some slightly more
@@ -295,16 +295,17 @@ In fall.DEF fill.PRES.PASS fjord.DEF with herring\\
 In fall.DEF AUX fjord.DEF fill.PRES.PASS with herring\\ 
 `In fall, the fjord is filled with herring''
 
-As \Last[a-b] show, we have to take into account that the verb might
-have to occur after a string of adverbs. \Last[c-d] shows that in
-certain constructions, the subject will occur between the auxiliary
-and the finite verb (Norwegian being a V2 language). Norsk Ordbank
-originally had one and the same entry for present and infinitive
-passive verbs in Bokmål, this we had to split up, but fortunately for
-us the Oslo-Bergen tagger was already pretty good at disambiguating
-infinitives from finite verbs\footnote{We currently do
-  not analyse the rather infrequent past passive form.}, so we apply a
-transfer rule to the finite passive verbs in \Last[a-b]. \Last[c-d]
+As \Last[a-b] show, we may have a string of adverbs between the
+Nynorsk finite and main verb. \Last[c-d] shows that in certain
+constructions, the Nynorsk subject has to occur between the auxiliary
+and the finite verb (Norwegian being a V2 language). We apply a
+transfer rule to the finite passive verbs\footnote{Norsk Ordbank uses
+  one and the same entry for present and infinitive passive verbs in
+  Bokmål, which we split into two entries; fortunately for us the
+  Oslo-Bergen tagger was already pretty good at disambiguating
+  infinitives from finite verbs regardless of voice. We currently
+  do not analyse the
+  rather infrequent past passive form.} in \Last[a-b]. \Last[c-d]
 however, does not get analysed correctly yet.
 
 \textbf{SKRIV} syntaksen til OBT, ``om restriksjonene opprettholdes, vil det bli mindre fisk''
