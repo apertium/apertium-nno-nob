@@ -5,6 +5,7 @@
 \usepackage{times}
 \usepackage{natbib}
 \usepackage{url}
+\usepackage{linguex}
 \usepackage{latexsym}
 
 \usepackage{hyperref}
@@ -114,9 +115,9 @@ Norsk
 Ordbank\footnote{\href{http://www.edd.uio.no/prosjekt/ordbanken/}{http://www.edd.uio.no/prosjekt/ordbanken/}
 }, a $>100,000$ lemma GPL full form dictionary. We also used the
 morphological disambiguator of the Oslo-Bergen Tagger
-\citep{hagen2000cbt}, a high quality GPL Constraint Grammar. These
-were converted into Apertium formats and tag schemes, as described
-below.
+\citep{hagen2000cbt}, a high quality GPL Constraint Grammar. Both of
+these use the same tag scheme. They were converted into Apertium
+formats and tag schemes, as described below.
 
 We found no freely available bilingual dictionary, so this was created
 using various both manual and automatic methods, along with transfer
@@ -274,11 +275,20 @@ simply added these as they trickled in.
 
 \subsection{Syntactic transfer}
 
-Nynorsk and Bokmål do not have very many syntactic differences. The main ones are:
-\begin{itemize}
-\item Verb phrases:
-\item Noun phrases:
-\end{itemize}
+Nynorsk and Bokmål do not have very many syntactic differences. There
+are some minor differences in verb phrases, and some slightly more
+complex differences in noun phrases:
+
+\ex. Bokmål present tense passive verbs are expressed with an auxiliary in Nynorsk, while infinitive passives stay the same
+\a. Boken leses ikke alltid \rightarrow Boka blir ikkje alltid lese\\
+todo!
+
+\ex. Bokmål genitives must be expressed periphrastically in Nynorsk
+
+Norsk Ordbank originally had one and the same entry for present and
+infinitive passive verbs in Bokmål, these we had to split up, but
+fortunately for us the Oslo-Bergen tagger was already pretty good at
+disambiguating infinitives from finite verbs.
 
 The transfer module matches fixed-length patterns of part-of-speech
 tags and/or lemmas, on a left-to-right longest-first
