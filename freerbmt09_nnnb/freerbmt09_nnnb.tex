@@ -290,15 +290,22 @@ Book.DEF read.PRES.PASS not always \\
 Book.DEF AUX not always read.PART \\
 `The book isn't always read'
 
+Norsk Ordbank originally had one and the same entry for present and
+infinitive passive verbs in Bokmål, these we had to split up, but
+fortunately for us the Oslo-Bergen tagger was already pretty good at
+disambiguating infinitives from finite verbs. As the above example
+shows, we have to take into account that the verb might have to occur
+after a string of adverbs.
+
 \ex. \emph{Phrase-initial Bokmål genitives are expressed
-  periphrastically/phrase-finally in Nynorsk:}
+  periphrastically, phrase-finally in Nynorsk:}
 \ag. avisens siste utgivelse\\
 newspaper.DEF.GEN last publication.IND\\
 \bg. den siste utgjevinga til avisa\\
 the last publication.DEF of newspaper.DEF\\
-`the newspapers last publication'\\
+`the newspaper's last publication'\\
 \cg. mitt nye luftputefartøy\\
-my new hoverkraft.IND\\
+my new hovercraft.IND\\
 \dg. det nye luftputefartøyet mitt\\
 the new hovercraft.DEF mine\\
 `my new hovercraft'
@@ -306,12 +313,8 @@ the new hovercraft.DEF mine\\
 \Last has certain exceptions; proper names are commonly used with the
 genitive, as are certain frequent nouns (\emph{dagens siste} `today's
 latest', \emph{verdas største} `the world's
-  greatest'). Of course, we can have strings of adjectives appearing before 
-
-Norsk Ordbank originally had one and the same entry for present and
-infinitive passive verbs in Bokmål, these we had to split up, but
-fortunately for us the Oslo-Bergen tagger was already pretty good at
-disambiguating infinitives from finite verbs.
+greatest'). Of course, we can have strings of adjectives appearing
+before each noun in \Last[a, b].
 
 The transfer module matches fixed-length patterns of part-of-speech
 tags and/or lemmas, on a left-to-right longest-first
@@ -321,10 +324,12 @@ tags and/or lemmas, on a left-to-right longest-first
 \item what are the relevant patterns which need transfer?
 \item how did we solve it?
 \item how didn't we solve it? (or, what are the problems)
-\item Anything about regression testing and that stuff? (Ie. whenever we
+\end{itemize}
+\subsection{Summary}
+\textbf{SKRIV}
+Anything about regression testing and that stuff? (Ie. whenever we
   fix a certain transfer construction or disambiguation problem, we
   add a regression test to make sure we don't have to fix it again.)
-\end{itemize}
 
 \section{Evaluation}
  \label{SEC:eval}
