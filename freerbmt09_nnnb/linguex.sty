@@ -1,0 +1,354 @@
+%% Copyright 1996 by Wolfgang Sternefeld
+%% This program can be redistributed and/or modified under the terms
+%% of the LaTeX Project Public License Distributed from CTAN
+%% archives in directory macros/latex/base/lppl.txt; either
+%% version 1 of the License, or any later version.
+%% linguex.sty version 3.3, revised 2000/12/22, compatability with 
+%% lucida fonts: Defaults defined \AtBeginDocument
+%% linguex.sty version 3.4, revised 2001/04/30, corrected vspacing for 
+%% \ex. embedded in \a. 
+%% linguex.sty version 3.5, revised 2002/01/26, corrected hspacing for 
+%% \alignSubEx
+%% linguex.sty version 3.6, revised 2008/03/20, \lessthanten, 
+%% \lessthanhundred, and \lessthanthousand redefined due to problems 
+%% with kerning in garamond
+%% Author: Wolfgang.Sternefeld@uni-tuebingen.de
+%% status: supported
+%% filedate 2008/03/20
+\RequirePackage{xspace,cgloss4e}
+%%%%%%%%%%%%%%%%%%% FOOTNOTES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% to let \ex. know whether or not it is in a footnote 
+\newif\if@noftnote\@noftnotetrue
+\let\predefinedfootnotetext=\@footnotetext
+\long\def\@footnotetext#1{\@noftnotefalse\predefinedfootnotetext{#1}%
+         \@noftnotetrue}
+%
+%%%%%%%%%%%%%%% COUNTERS FOR LABELLING %%%%%%%%%%%%%%%%%%%%%%%%%%%
+\@ifundefined{chapter}{\newcounter{ExNo}}{\newcounter{ExNo}[chapter]}
+\newcounter{SubExNo}[\if@noftnote ExNo\else FnExNo\fi]
+\newcounter{SubSubExNo}[SubExNo]
+\newcounter{FnExNo}[footnote]
+\newcounter{ABC}
+\renewcommand{\theExNo}{(\arabic{ExNo})}
+\renewcommand{\theFnExNo}{(\roman{FnExNo})}
+\newcommand{\refdash}{-}
+\newcommand{\SubSubExLeftBracket}{(}
+\newcommand{\SubSubExRightBracket}{)}
+\newcommand{\SubExLeftBracket}{}
+\newcommand{\SubExRightBracket}{.}
+\renewcommand{\theSubExNo}{\hbox{(\if@noftnote\arabic{ExNo}\else
+   \roman{FnExNo}\fi\refdash\alph{SubExNo})}}
+\renewcommand{\theSubSubExNo}{%
+   \hbox{(\if@noftnote\arabic{ExNo}\else\roman{FnExNo}\fi
+          \refdash\alph{SubExNo}\refdash\if@noftnote\roman{SubSubExNo}%
+                          \else\arabic{SubSubExNo}\fi)}}
+%
+%%%%%%%%%%%%%% LENGTHS FOR SPACING %%%%%%%%%%%%%%%%%%%%%%%%%%
+\newlength{\currentlabel}
+\newlength{\lessthanten}
+\newlength{\lessthanhundred}
+\newlength{\lessthanthousand}
+\newlength{\@Exleftmargin}
+\newlength{\Exlabelwidth}
+\newlength{\Extopsep}
+\newlength{\Exindent}
+\newlength{\SubExleftmargin}
+\newlength{\SubSubExleftmargin}
+\newlength{\Exlabelsep}
+\newlength{\alignSubExnegindent}
+\newif\ifalignSubEx
+\newcommand{\resetExdefaults}{%
+  \setlength{\Exlabelsep}{1.3em}%
+  \setlength{\Extopsep}{.66\baselineskip}%
+  \setlength{\SubSubExleftmargin}{2.4em}%
+  \setlength{\SubExleftmargin}{2em}%
+  \setlength{\Exindent}{0pt}%
+  \setlength{\Exlabelwidth}{4em}%
+  \setlength{\alignSubExnegindent}{\Exlabelsep}
+  \ifalignSubEx\addtolength{\Exlabelsep}{.7em}%
+      \addtolength{\alignSubExnegindent}{.7em}\fi 
+}
+\AtBeginDocument{\resetExdefaults}
+%%%%%%%%%%%%%%%%%%% DEFINITION OF \ex. %%%%%%%%%%%%%%%%%%%%%%%%%% 
+\newif\ifembedded
+\newif\ifExWarning
+\newcounter{ExDepth}
+\newcounter{TempExDepth}\setcounter{TempExDepth}{0}
+\def\trivex.#1\par{\ifdim\lastskip=.66\baselineskip\vspace{-\baselineskip}\fi
+     \begin{list}{}{\leftmargin\z@%
+     \labelwidth\z@\labelsep\z@\partopsep\z@\topsep\Extopsep}%
+     \item{}#1%
+     \refstepcounter{ExDepth}\ExEnd}
+\def\ex.#1\par{%
+     \ifnum\theExDepth>0 \setcounter{TempExDepth}{\theExDepth}%
+        \setcounter{ExDepth}{0}
+		\embeddedtrue\fi
+	 \ifembedded\else
+        \ifdim\lastskip=.66\baselineskip\vspace{-\baselineskip}\fi
+	 \fi
+     \refstepcounter{ExDepth}%
+     \my@ifnextchar[{\OptArgEx}{\ifindex\expandafter\lookforwords\fi
+     \NormalEx\testforgramm}%
+     #1%
+     \addtocounter{ExDepth}{\theTempExDepth}\setcounter{TempExDepth}{0}%
+     \embeddedfalse\global\ExWarningfalse\ExEnd}
+\newcommand{\NormalEx}{\ifExWarning 
+     \PackageWarning{linguex}{Check example numbering (screwed up?), 
+     check number of empty lines at end of examples.  
+     Detected}\fi\ExWarningtrue
+     \if@noftnote\refstepcounter{ExNo}%
+        \Exformat[(\arabic{ExNo})]%
+     \else
+         \refstepcounter{FnExNo}\Exformat[(\roman{FnExNo})]%
+     \fi}
+\def\OptArgEx[#1]{\Exformat[#1]\expandafter\testforgramm\ifindex\expandafter
+     \lookforwords\fi}
+\newcommand{\ExEnd}{%
+     \ifnum\theExDepth=0\global\unembeddedfalse\else%
+          \end{list}\addtocounter{ExDepth}{-1}\ExEnd\fi}
+\newcommand{\listdecl}{\parsep\z@\itemsep\z@\partopsep\z@\labelsep\z@
+   \@Exleftmargin\z@\settowidth{\lessthanthousand}{(0000)}%
+   \ifdim\currentlabel<\lessthanthousand\leftmargin\Exlabelsep
+      \ifdim\lessthanthousand<\Exlabelwidth\Exlabelwidth\Exlabelsep% 
+      \settowidth{\lessthanten}{(00)}%
+      \settowidth{\lessthanhundred}{(000)}%
+      \ifdim\currentlabel<\lessthanten\leftmargin\lessthanten%
+         \else
+         \ifdim\currentlabel<\lessthanhundred\leftmargin\lessthanhundred%
+            \else 
+            \ifdim\currentlabel<\lessthanthousand\leftmargin\lessthanthousand%
+      \fi\fi\fi\fi
+   \else
+   \Exlabelwidth\z@
+   \fi%
+   \@Exleftmargin\Exlabelwidth 
+   \labelwidth\leftmargin
+   \ifembedded\relax\else
+   \addtolength{\Exlabelwidth}{\Exindent}
+   \fi
+   \addtolength{\leftmargin}{\Exlabelwidth}%
+   \addtolength{\labelwidth}{\@Exleftmargin}%
+}
+\def\Exformat[#1]{%
+   \settowidth{\currentlabel}{#1}%
+   \begin{list}{\makebox[\labelwidth][l]{#1}}{%
+      \setlength{\leftmargin}{\currentlabel}%
+      \listdecl%
+      \if@noftnote\relax\else\addtolength{\topsep}{-.5\topsep}\fi
+      \ifembedded\topsep=.3\Extopsep\else\topsep=\Extopsep\fi
+   }%
+   \ifindex\firstwordtrue\fi\item{}}
+%
+%%%%%%%% the `[' of OPTIONAL ARGUMENTS must immediately follow \ex. %%%%%% 
+%%%% redefinition of \@ifnextchar which does NOT ignore spaces %%%%%%%%%%%
+\def\my@ifnextchar#1#2#3{\let\reserved@d=#1%
+  \def\reserved@a{#2}\def\reserved@b{#3}%
+  \futurelet\@let@token\my@ifnch}
+\def\my@ifnch{\ifx\@let@token\@sptoken%
+     % \let\reserved@c\@xifnch
+       \let\reserved@c\reserved@b%
+   \else
+    \ifx\@let@token\reserved@d%
+      \let\reserved@c\reserved@a%
+    \else
+      \let\reserved@c\reserved@b%
+  \fi\fi
+  \reserved@c}% cf. definition of \@ifnextchar in latex2e.ltx %%
+%
+%%%%%%%%%%%%%% PROCESSING OF GRAMMATICALITY JUDGMENTS %%%%%%%%%%%%%
+\newtoks\CollectTokens
+\newcommand\AddInfo[1]{\expandafter\expandafter\expandafter
+           \CollectTokens\expandafter{%
+           \the\CollectTokens#1}}
+\def\testforgramm{\GTest{}{\printGramm}}
+\def\printGramm{\makebox[0pt][r]{\normalfont\the\CollectTokens}\ignorespaces}
+\def\GTest#1#2{%
+      \def\TestForGramm{\CollectTokens={}%
+           \@ifnextchar *{\AddInfo{*}\@firstoftwo\recTestForGramm}{%
+           \@ifnextchar ?{\AddInfo{\char63}\@firstoftwo\recTestForGramm}{%
+           \@ifnextchar \#{\AddInfo{\#}\@firstoftwo\recTestForGramm}{%
+           \@ifnextchar \%{\AddInfo{\%}\@firstoftwo\recTestForGramm}%
+          {#1}}}}}%
+     \def\recTestForGramm{\@ifnextchar *{\AddInfo{*}\@firstoftwo%
+                    \recTestForGramm}{%
+           \@ifnextchar ?{\AddInfo{\char63}\@firstoftwo\recTestForGramm}{%
+           \@ifnextchar \#{\AddInfo{\#}\@firstoftwo\recTestForGramm}{%
+           \@ifnextchar \%{\AddInfo{\%}\@firstoftwo\recTestForGramm}%
+          {#2}}}}}%
+   \TestForGramm}
+%
+%%%%%%%%%%%%%%%% SUBLISTS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newif\ifunembedded
+\newcommand{\SubExlabel}{\SubExLeftBracket\alph{SubExNo}\SubExRightBracket}
+\def\a.{\ifindex\firstwordtrue\fi
+        \ifnum\theExDepth=0 \unembeddedtrue
+        \trivex.\fi
+     \refstepcounter{ExDepth}% 
+     \begin{list}{\makebox[\labelwidth][l]{% 
+         \ifnum\theExDepth=1 \SubExLeftBracket\alph{ABC}\SubExRightBracket%
+          \else
+           \ifnum\theExDepth=2 %
+           \ifdim\currentlabel<\lessthanthousand%
+           \ifalignSubEx 
+              \llap{\hbox to \alignSubExnegindent{\ifunembedded%
+                  \SubExLeftBracket\alph{SubExNo}\SubExRightBracket
+                  \else\SubExlabel\fi\hss}}%
+            \else\SubExlabel\fi%
+              \else\ifunembedded%
+                  \SubSubExLeftBracket\roman{SubExNo}\SubSubExRightBracket
+                  \else\SubExlabel\fi\fi
+            \else
+             \ifnum\theExDepth=3 %
+             \if@noftnote%\ifunembedded\mbox{$\bullet$!}\else 
+                    \SubSubExLeftBracket\roman{SubSubExNo}\SubSubExRightBracket
+                    %\fi
+               \else\arabic{SubSubExNo}\SubSubExRightBracket\fi
+         \fi\fi\fi}}%
+    {\labelsep\z@ 
+     \ifnum\theExDepth=2\topsep .3\Extopsep\else\topsep 0pt\fi 
+     \parsep\z@\itemsep\z@
+     \ifnum\theExDepth=1 %
+       \usecounter{ABC}%
+       \settowidth{\currentlabel}{\theExNo}%
+       \listdecl%   
+     \else
+      \ifnum\theExDepth=2 %
+         \usecounter{SubExNo}%
+           \ifalignSubEx\ifdim\currentlabel<\lessthanthousand%
+           \leftmargin\z@\else\leftmargin=\SubExleftmargin\fi%
+           \else\leftmargin=\SubExleftmargin\fi%
+         \else
+            \ifnum\theExDepth=3 \usecounter{SubSubExNo}\fi
+         \leftmargin=\SubSubExleftmargin%
+         \fi
+    \labelwidth=\leftmargin%
+    \fi}%
+    \ifnum\theExDepth=1 \setlength{\Exlabelwidth}{4em}\fi%
+	%previous line added 2000/12/22
+	\b.}
+%
+%%%%%%%%%%%%%%%%% ITEMS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\def\newExitem[#1]{\ifnum\theExDepth=2 %
+      \ifdim\currentlabel<\lessthanthousand%
+      \ifalignSubEx 
+              \item[\llap{\hbox to \alignSubExnegindent{#1\hfill}}]%
+      \else
+          \item[#1\hfill]\fi 
+       \else\item[#1\hfill]%
+	   \fi 
+       \else\item[#1\hfill]%
+       \fi\testforgramm}
+\let\oldb=\b
+\DeclareRobustCommand{\b}{\@ifnextchar.{\newb}{\oldb}}
+\def\newb.{\ifindex\firstwordtrue\fi
+        \my@ifnextchar[{\newExitem}{\item\testforgramm}}
+\let\oldc=\c
+\DeclareRobustCommand{\c}{\@ifnextchar.{\b}{\oldc}}
+\let\oldd=\d
+\DeclareRobustCommand{\d}{\@ifnextchar.{\b}{\oldd}}
+\let\e=\b
+\let\f=\b
+\def\z.{\end{list}\addtocounter{ExDepth}{-1}}
+%
+%%%%%%%%%%%%%%%%%%%% INDEXED BRACKETS %%%%%%%%%%%%%%%%%%%%%%%%
+\newif\ifindex
+\newif\iffirstword
+\def\I#1#2 {#1\labelBr#2 }
+\def\exi.#1\par{\indextrue\ex.#1 | blabla | \indexfalse\par}
+\def\ai.#1 \par{\indextrue
+           \a.#1 | blabla |
+           \par      
+           \indexfalse}
+\def\finish|#1|{\ExEnd}
+\newcommand{\testGrAndBr}{\GTest{}{\printGramm\checkforbr}}
+\def\doaword#1 {% 
+       \iffirstword\firstwordfalse\expandafter\testGrAndBr\fi%
+       #1
+       \ifgloss\expandafter\checkforbrorstar\else
+               \expandafter\lookforwords\fi}
+\newcommand{\checkforbrorstar}{\GTest{\checkforbr}{\printGramm\checkforbr}}
+\newcommand{\lookforwords}{\@ifnextchar]{\firstwordfalse\@aber}%
+                          {\@ifnextchar[{\firstwordfalse\@aber}%
+           {\@ifnextchar|{\firstwordfalse\finish}{\doaword}}}}
+\def\labelBr#1 {\mbox{$\hspace{.05em}_{\mbox{\scriptsize\rm#1}}$} }
+\newcommand{\jetzt}{\my@ifnextchar[{\@aber}{\my@ifnextchar]{\@aber}%
+                                                      {\@schnell}}}
+\def\@aber#1#2 {#1\jetzt#2 }
+\def\@schnell#1 {\labelBr#1 \lookforwords}
+\newcommand{\checkforbr}{\@ifnextchar[{\recurseonbr}%
+                     {\@ifnextchar]{\recurseonbr}{}}}
+\newcommand{\recurseonbr}{\my@ifnextchar[{\stripoffbr}%
+                       {\my@ifnextchar]{\stripoffbr}{\labelBr}}}
+\def\stripoffbr#1#2 {\rm #1\recurseonbr#2 }
+%
+%%%%%%%%%%%%%%%%%%%% GLOSSES %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newif\ifgloss
+%%% modification of cgloss4e %%%%
+\def\getwords(#1,#2)#3 #4\\% #1=linebox, #2=\each, #3=1st word, #4=remainder
+   {\setbox#1=\vbox{\hbox{#2\strut\ifindex\expandafter\checkforbr\fi#3 }%
+                    \unvbox#1}%
+    \def\more{#4}%
+    \ifx\more\empty\let\more=\donewords
+    \else\let\more=\getwords 
+    \fi
+    \more(#1,#2)#4\\%
+   }
+\def\gl@stop{{\hskip -\glossglue}\unhbox\gline\end{flushleft}%
+         \global\glossfalse%
+         \ifindex\expandafter\lookforwords\fi {} }
+%%%
+\newcommand{\newgll}{\glosstrue\GTest{\gll}{\gll\printGramm}}        
+\def\exg.{\my@ifnextchar[{\newglossex}{\ex.\newgll}}
+\def\newglossex[#1]{\ex.[#1]\newgll}
+\def\ag.{\my@ifnextchar[{\newglossa}{\a.\newgll}}
+\def\newglossa[#1]{\a.[#1]\newgll}
+\def\newglossitem[#1]{\ifalignSubEx%\ifdim\currentlabel<\lessthanthousand%
+	 \item[\llap{\hbox to \alignSubExnegindent{#1\hfill}}]%
+   \else
+     \item[#1\hfill]%
+   \fi
+\newgll}
+\def\bg.{\my@ifnextchar[{\newglossitem}{\item\newgll}}
+\def\cg.{\bg.}
+\def\dg.{\bg.}
+\def\eg.{\bg.}
+\def\fg.{\bg.}
+%
+%%%%%%%%%%%%%%%%%%%% GLOSSES WITH INDEXED BRACKETS %%%%%%%%%%%%
+\def\exig.{\my@ifnextchar[{\newglossexi}{\exi.\newgll}}
+\def\newglossexi[#1]{\exi.[#1]\newgll}
+\let\exgi=\exig
+\def\aig.{\my@ifnextchar[{\newglossai}{\ai.\newgll}}
+\def\newglossai[#1]{\ai.[#1]\newgll}
+\let\agi=\aig
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% CROSS REFERENCES %%%%%%%%%%%%%%
+\newcounter{tmpaEx}
+\newif\ifNoFnRef
+\newcommand{\Next}{\if@noftnote\NoFnReftrue\else\NoFnReffalse\fi
+          \copyExNo\refstepcounter{tmpaEx}\printExNo}
+\newcommand{\NNext}{\if@noftnote\NoFnReftrue\else\NoFnReffalse\fi
+          \copyExNo\addtocounter{tmpaEx}{2}\printExNo}
+\newcommand{\TextNext}{\NoFnReftrue\copyExNo\refstepcounter{tmpaEx}\printExNo}
+\newcommand{\Last}{\if@noftnote\NoFnReftrue\else
+               \ifnum\arabic{FnExNo}=0 \NoFnReftrue\else\NoFnReffalse\fi
+          \fi
+          \copyExNo\printExNo}
+\newcommand{\LLast}{\if@noftnote\NoFnReftrue\copyExNo%
+        \addtocounter{tmpaEx}{-1}%
+           \else
+              \ifnum\arabic{FnExNo}=0 \NoFnReftrue\copyExNo%
+              \addtocounter{tmpaEx}{-1}%
+              \else
+                 \ifnum\arabic{FnExNo}=1 \NoFnReftrue\copyExNo%
+                 \else
+                    \NoFnReffalse\copyExNo\addtocounter{tmpaEx}{-1}%
+            \fi\fi\fi
+      \printExNo}
+\newcommand{\copyExNo}{\strut\ifNoFnRef\setcounter{tmpaEx}{\value{ExNo}}%
+                \def\thetmpaEx{\arabic{tmpaEx}}%
+           \else
+           \setcounter{tmpaEx}{\value{FnExNo}}\def\thetmpaEx{\roman{tmpaEx}}%
+           \fi}
+\def\complexExNo[#1]{\hbox{(\thetmpaEx\refdash#1)}}
+\newcommand{\printExNo}{\@ifnextchar[{\complexExNo}{(\thetmpaEx)\xspace}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%% END %%%%%%%%%%%%%%%%%%%%%%%%%%
