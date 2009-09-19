@@ -1,0 +1,130 @@
+%% Copyright 1999 Wolfgang Sternefeld
+%% This program can be redistributed and/or modified under the terms
+%% of the LaTeX Project Public License Distributed from CTAN
+%% archives in directory macros/latex/base/lppl.txt; either
+%% version 1 of the License, or any later version.
+%% linguho.sty for linguex.sty
+%% Author: Wolfgang.Sternefeld@uni-tuebingen.de
+%% fileversion 2.0
+%% filedate 99/05/04
+
+\RequirePackage{linguex}
+\newif\ifcopytohandout
+\DeclareOption{*}{\copytohandouttrue}
+\ProcessOptions
+\let\copyoflabel=\label
+\let\copyofex=\ex
+\let\copyofexi=\exi
+\let\copyofexg=\exg
+\let\copyofexig=\exig
+\let\copyofexgi=\exgi
+\let\copyofa=\a
+\let\copyofag=\ag
+\let\copyofai=\ai
+\let\copyofaig=\aig
+\let\copyofagi=\agi
+\let\copyofsection=\section
+\let\copyofsubsection=\subsection
+\let\copyofsubsubsection=\subsubsection
+\let\copyofsetlength=\setlength
+\let\copyofsettowidth=\settowidth
+\let\copyofresetExdefaults=\resetExdefaults
+\let\copyofmaketitle=\maketitle
+\let\copyofA=\A
+\newwrite\han\immediate\openout\han=\jobname.han
+\def\MakeOther #1{\catcode`#1 = 12}
+\def\MkOthersSpecial{%
+   %\MakeOther{\§}%to be copied for all active characters
+   %\MakeOther{\Š}
+   %\MakeOther{\š}
+   %\MakeOther{\€}
+   %\MakeOther{\…}
+   %\MakeOther{\†}
+   %\MakeOther{\Ÿ}
+   %\MakeOther{\"}
+  }%This definition must be uncommented	if any of\
+  %% the characters	in the above definition	are	\active
+%\def\MkOthersSpecial{}%This line must be uncommented if any of 
+%% the characters in the above definition are \active
+\def\ChangeCatCodes{\begingroup%
+   \immediate\write\han{ }%
+   \MkOthersSpecial%
+   \def\do##1{\catcode`##1=12}\dospecials%
+   %\catcode`\%=14 
+   \catcode`\{=1\catcode`\}=2%
+   \catcode`\^^M=12\newlinechar=`\^^M}%    
+{\catcode`\^^M=12%
+  \gdef\@WriteEx#1#2^^M^^M{\catcode`\^^M=5%
+    \immediate\write\han{\noexpand#1#2}\endgroup%
+    \immediate\write\han{\string\par}}%
+} 
+\def\maketitle{\relax}
+\def\a.#1\par{\relax}
+\def\ag.#1\par{\relax}
+\def\ai.#1\par{\relax}
+\def\agi.#1\par{\relax}
+\def\aig.#1\par{\relax}
+\def\exi.#1\par{\relax}
+\def\exig.#1\par{\relax}
+\def\exgi.#1\par{\relax}
+\def\A.#1\par{\relax}
+\def\ex{\ChangeCatCodes\@WriteEx{\ex}}
+\def\exg{\ChangeCatCodes\@WriteEx{\exg}}
+\def\a{\ChangeCatCodes\@WriteEx{\a}}
+\def\ag{\ChangeCatCodes\@WriteEx{\ag}}
+\def\ai{\ChangeCatCodes\@WriteEx{\ai}}
+\def\agi{\ChangeCatCodes\@WriteEx{\agi}}
+\def\aig{\ChangeCatCodes\@WriteEx{\aig}}
+\def\exi{\ChangeCatCodes\@WriteEx{\exi}}
+\def\exig{\ChangeCatCodes\@WriteEx{\exig}}
+\def\exgi{\ChangeCatCodes\@WriteEx{\exgi}}
+\def\A{\ChangeCatCodes\@WriteEx{\A}}
+\def\resetExdefaults{\immediate\write\han{\noexpand\resetExdefaults}}
+{\catcode`\^^M=12%
+  \gdef\@WriteCommand#1#2{\catcode`\^^M=5%
+    \immediate\write\han{\noexpand#1{#2}}\endgroup}%
+}
+{\catcode`\^^M=12%
+  \gdef\@WriteTwoArgCommand#1#2#3{\catcode`\^^M=5%
+    \immediate\write\han{\noexpand#1{#2}{#3}}\endgroup}%
+} 
+\def\subsubsection{\@ifstar{\subsubsectionstar}%
+                           {\ChangeCatCodes\@WriteCommand{\subsubsection}}}
+\def\subsection{\@ifstar{\subsectionstar}%
+                           {\ChangeCatCodes\@WriteCommand{\subsection}}}
+\def\section{\@ifstar{\sectionstar}{\ChangeCatCodes\@WriteCommand{\section}}}
+\def\setlength{\ChangeCatCodes\@WriteTwoArgCommand{\setlength}}
+\def\settowidth{\ChangeCatCodes\@WriteTwoArgCommand{\settowidth}}
+\ifcopytohandout
+	\def\subsubsectionstar{\ChangeCatCodes\@WriteCommand{\subsubsection*}}
+	\def\subsectionstar{\ChangeCatCodes\@WriteCommand{\subsection*}}
+	\def\sectionstar{\ChangeCatCodes\@WriteCommand{\section*}}
+\else
+	\def\subsubsectionstar{\relax}
+	\def\subsectionstar{\relax}
+	\def\sectionstar{\relax}
+\fi
+\long\def\footnote#1{\relax}
+\def\makehandout{\immediate\closeout\han\newpage%
+    \setcounter{page}{1}\setcounter{ExNo}{0}%
+    \def\maketitle{\copyofmaketitle}
+    \def\a{\copyofa}
+    \def\ag{\copyofag}
+    \def\ai{\copyofai}
+    \def\aig{\copyofaig}
+    \def\agi{\copyofagi}
+    \def\ex{\copyofex}
+    \def\exg{\copyofexg}
+    \def\exi{\copyofexi}
+    \def\exig{\copyofexig}
+    \def\exgi{\copyofexgi}
+    \def\resetExdefaults{\copyofresetExdefaults}
+    \def\subsubsection{\copyofsubsubsection}
+    \def\subsection{\copyofsubsection}
+    \def\section{\copyofsection}
+    \def\setlength{\copyofsetlength}
+    \def\settowidth{\copyofsettowidth}
+    \def\A{\copyofA}
+    \maketitle%
+    \input \jobname.han}
+\endinput
