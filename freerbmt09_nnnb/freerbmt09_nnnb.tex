@@ -278,24 +278,36 @@ simply added these as they trickled in.
 Nynorsk and Bokmål do not have very many syntactic differences. There
 are some minor differences in verb phrases, and some slightly more
 complex differences in noun phrases\footnote{In the examples here,
-  Bokmål appears above Nynorsk.}.
+  Bokmål appears above Nynorsk.}:
 
 \setlength{\Exlabelsep}{1.1em} % was 1.3em
 \alignSubExtrue % wasn't
-\ex. \emph{Bokmål present tense passive verbs are expressed with an
-auxiliary in Nynorsk, while infinitive passives stay the same:}
+\ex. \emph{Finite bokmål passive verbs are expressed with an auxiliary
+  in Nynorsk (infinitive passives remain unchanged):}
 \ag. Boken leses ikke alltid \\
 Book.DEF read.PRES.PASS not always \\
 \bg. Boka blir ikkje alltid lese\\
 Book.DEF AUX not always read.PART \\
 `The book isn't always read'
+\cg. Om høsten fylles fjorden med sild\\
+In fall.DEF fill.PRES.PASS fjord.DEF with herring\\
+\dg. Om hausten blir fjorden fylt med sild\\
+In fall.DEF AUX fjord.DEF fill.PRES.PASS with herring\\ 
+`In fall, the fjord is filled with herring''
 
-Norsk Ordbank originally had one and the same entry for present and
-infinitive passive verbs in Bokmål, these we had to split up, but
-fortunately for us the Oslo-Bergen tagger was already pretty good at
-disambiguating infinitives from finite verbs. As the above example
-shows, we have to take into account that the verb might have to occur
-after a string of adverbs.
+As \Last[a-b] show, we have to take into account that the verb might
+have to occur after a string of adverbs. \Last[c-d] shows that in
+certain constructions, the subject will occur between the auxiliary
+and the finite verb (Norwegian being a V2 language). Norsk Ordbank
+originally had one and the same entry for present and infinitive
+passive verbs in Bokmål, this we had to split up, but fortunately for
+us the Oslo-Bergen tagger was already pretty good at disambiguating
+infinitives from finite verbs\footnote{We currently do
+  not analyse the rather infrequent past passive form.}, so we apply a
+transfer rule to the finite passive verbs in \Last[a-b]. \Last[c-d]
+however, does not get analysed correctly yet.
+
+\textbf{SKRIV} syntaksen til OBT, ``om restriksjonene opprettholdes, vil det bli mindre fisk''
 
 \ex. \emph{Phrase-initial Bokmål genitives are expressed
   periphrastically, phrase-finally in Nynorsk:}
@@ -314,14 +326,13 @@ the new hovercraft.DEF mine\\
 genitive, as are certain frequent nouns (\emph{dagens siste} `today's
 latest', \emph{verdas største} `the world's
 greatest'). Of course, we can have strings of adjectives appearing
-before each noun in \Last[a, b].
+before each noun in \Last[a-d].
 
 The transfer module matches fixed-length patterns of part-of-speech
 tags and/or lemmas, on a left-to-right longest-first
 [basis..wossname..]. 
 
 \begin{itemize}
-\item what are the relevant patterns which need transfer?
 \item how did we solve it?
 \item how didn't we solve it? (or, what are the problems)
 \end{itemize}
