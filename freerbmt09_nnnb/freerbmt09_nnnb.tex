@@ -284,11 +284,11 @@ complex differences in noun phrases\footnote{In the examples here,
 \alignSubExtrue % wasn't
 \ex. \emph{Finite bokmål passive verbs are expressed with an auxiliary
   in Nynorsk (infinitive passives remain unchanged):}
-\ag. Boken leses ikke alltid \\
-Book.DEF read.PRES.PASS not always \\
-\bg. Boka blir ikkje alltid lese\\
-Book.DEF AUX not always read.PART \\
-`The book isn't always read'
+\ag. Bevilgning gis oftest ikke\\
+grant.IND give.PRES.PASS usually not\\
+\bg. Løyve blir oftast ikkje gjeve\\
+grant.IND AUX usually not give.PART \\
+`Grants are usually not given'
 \cg. Om høsten fylles fjorden med sild\\
 In fall.DEF fill.PRES.PASS fjord.DEF with herring\\
 \dg. Om hausten blir fjorden fylt med sild\\
@@ -296,19 +296,20 @@ In fall.DEF AUX fjord.DEF fill.PRES.PASS with herring\\
 `In fall, the fjord is filled with herring''
 
 As \Last[a-b] show, we may have a string of adverbs between the
-Nynorsk finite and main verb. \Last[c-d] shows that in certain
-constructions, the Nynorsk subject has to occur between the auxiliary
-and the finite verb (Norwegian being a V2 language). We apply a
-transfer rule to the finite passive verbs\footnote{Norsk Ordbank uses
+Nynorsk finite and main verb. \Last[c-d] demonstrates that when the
+subject is not the first phrase, the Nynorsk subject has to occur
+between the auxiliary and the finite verb (Norwegian being a V2
+language). We apply a transfer rule to the finite passive
+verbs\footnote{Norsk Ordbank uses
   one and the same entry for present and infinitive passive verbs in
   Bokmål, which we split into two entries; fortunately for us the
   Oslo-Bergen tagger was already pretty good at disambiguating
   infinitives from finite verbs regardless of voice. We currently
   do not analyse the
   rather infrequent past passive form.} in \Last[a-b]. \Last[c-d]
-however, does not get analysed correctly yet.
-
-\textbf{SKRIV} syntaksen til OBT, ``om restriksjonene opprettholdes, vil det bli mindre fisk''
+however, does not get transferred correctly yet as the syntactic
+analysis of the Oslo-Bergen tagger is still not incorporated into
+Apertium.
 
 \ex. \emph{Phrase-initial Bokmål genitives are expressed
   periphrastically, phrase-finally in Nynorsk:}
@@ -325,19 +326,27 @@ the new hovercraft.DEF mine\\
 
 \Last has certain exceptions; proper names are commonly used with the
 genitive, as are certain frequent nouns (\emph{dagens siste} `today's
-latest', \emph{verdas største} `the world's
-greatest'). Of course, we can have strings of adjectives appearing
-before each noun in \Last[a-d].
+latest', \emph{verdas største} `the world's greatest'). Of course, we
+can have strings of adjectives appearing before each noun in
+\Last[a-d], agreeing in gender, number and definiteness.
 
-The transfer module matches fixed-length patterns of part-of-speech
-tags and/or lemmas, on a left-to-right longest-first
-[basis..wossname..]. 
+The transfer module matches fixed-length patterns of
+\emph{categories}—sets of possible part-of-speech tags and/or
+lemmas—on a left-to-right, longest-first basis. There are currently 33
+rules for translating Bokmål to Nynorsk, and 8 for the opposite
+direction. The passive rules are quite simple since there is no
+agreement to handle; the bulk of the transfer work was on the noun
+phrase. We generalise over possessive determiners and genitive nouns
+with a single transfer category such that both \Last[a-b] and
+\Last[c-d] are handled by one rule. Although transfer rules work on
+fixed-length patterns, transfer macros allow us to generalise over eg.
+agreement operations.
 
-\begin{itemize}
-\item how did we solve it?
-\item how didn't we solve it? (or, what are the problems)
-\end{itemize}
+\textbf{SKRIV} meir?
+
 \subsection{Summary}
+
+
 \textbf{SKRIV}
 Anything about regression testing and that stuff? (Ie. whenever we
   fix a certain transfer construction or disambiguation problem, we
