@@ -282,14 +282,14 @@ complex differences in noun phrases\footnote{In the examples here,
 
 \setlength{\Exlabelsep}{1.1em} % was 1.3em
 \alignSubExtrue % wasn't
-\ex. \emph{Finite bokmål passive verbs are expressed with an auxiliary
+\ex. \label{pass} \emph{Finite bokmål passive verbs are expressed with an auxiliary
   in Nynorsk (infinitive passives remain unchanged):}
 \ag. Bevilgning gis oftest ikke\\
 grant.IND give.PRES.PASS usually not\\
 \bg. Løyve blir oftast ikkje gjeve\\
 grant.IND AUX usually not give.PART \\
 `Grants are usually not given'
-\cg. Om høsten fylles fjorden med sild\\
+\cg. \label{pass-c} Om høsten fylles fjorden med sild\\
 In fall.DEF fill.PRES.PASS fjord.DEF with herring\\
 \dg. Om hausten blir fjorden fylt med sild\\
 In fall.DEF AUX fjord.DEF fill.PRES.PASS with herring\\ 
@@ -311,7 +311,7 @@ however, does not get transferred correctly yet as the syntactic
 analysis of the Oslo-Bergen tagger is still not incorporated into
 Apertium.
 
-\ex. \emph{Phrase-initial Bokmål genitives are expressed
+\ex. \label{posgen} \emph{Phrase-initial Bokmål genitives are expressed
   periphrastically, phrase-finally in Nynorsk:}
 \ag. avisens siste utgivelse\\
 newspaper.DEF.GEN last publication.IND\\
@@ -344,46 +344,33 @@ agreement operations.
 
 \textbf{SKRIV} meir?
 
+\textbf{SKRIV} ``Since changes to transfer (or Constraint
+  Grammar) rules easily can introduce errors in previously error-free
+  translations, we made extensive use of regression tests during
+  development.'' or is this self-evident?
+
 \subsection{Summary}
+\textbf{SKRIV} ?
 
-
-\textbf{SKRIV}
-Anything about regression testing and that stuff? (Ie. whenever we
-  fix a certain transfer construction or disambiguation problem, we
-  add a regression test to make sure we don't have to fix it again.)
 
 \section{Evaluation}
- \label{SEC:eval}
+\label{SEC:eval}
+
 We define naïve coverage as the proportion of words in a corpus which
-are given at least one analysis by our monolingual
-dictionaries. Testing on Nynorsk Wikipedia (5116174 words) and Bokmål
-Wikipedia (27529115 words), we have 89.6\% and 88.2\% coverage,
-respectively.
+are given at least one analysis by our monolingual dictionaries.
+Testing on Nynorsk Wikipedia (5116174 words) and Bokmål Wikipedia
+(27529115 words), we have 89.6\% and 88.2\% naïve coverage,
+respectively. On a 7019526 word corpus of Bokmål newspaper texts, the
+coverage is 91.8\%.
 
 \subsection{Word Error Rate}
-The Word Error Rate (WER) on a 3750 word Wikipedia article on
-linguistics in the Bokmål to Nynorsk direction was 22.06\% when
+\label{WER}
+The Word Error Rate (WER) on a 3750 word post-edited Wikipedia article
+on linguistics in the Bokmål to Nynorsk direction was 22.06\% when
 including unknown words, although since 64.93\% of these were
-free-rides (ie. the same in Bokmål and Nynorsk) anyway, the final WER
-was 10.71\%. Typical free-rides include names, loan-words and special
-terminology.
-
-\begin{itemize}
-\item Qualitative assessment\ldots{}
-
-\begin{itemize}
-\item Error types:
-
-\begin{itemize}
-\item lexical selection
-\item disambiguation
-\item transfer (eg. word order, ``mannen sin hest'')
-\end{itemize}
-
-\end{itemize}
-
-
-\end{itemize}
+free-rides\footnote{Ie. the same in Bokmål and Nynorsk. Typical
+  free-rides include names, loan-words and special terminology.}
+anyway, the final WER was 10.71\%. 
 
 \subsection{Bleu score}
 
@@ -404,20 +391,25 @@ Anything about Nyno? (Their web page says 74000 words, don't know
   selection.
   
   Yes, Nyno deserves a presentation for this.
+\subsection{Qualitative assessment / error types}
+Of the errors which are not simply due to missing vocabulary, most
+errors can be attributed to either \emph{disambiguation},
+\emph{transfer} (eg. agreement, or the problem of \ref{pass-c} above)
+or \emph{lexical
+  selection} (choosing the most natural collocations on the target
+language side). Of the 20 first non-vocabulary errors in the above WER
+test, 13 were disambiguation problems, two were transfer problems and
+five related to lexical selection. In other text domains, eg.
+newspaper texts, we also find some problems related to \emph{anaphora
+  resolution}, which we currently have not attempted solving
+(especially noticable since Bokmål more or less is a two-gender
+language while Nynorsk is three-gender).
 
-\section{Discussion}
+\section{Discussion, future work, conclusion}
 
 \begin{itemize}
-\item We don't have any sort of compound handling, probably we could
-  analyse a whole lot more with a trie or whatever, but there's also a
-  compound handler in OBT that might be possible to integrate.
-
-\begin{itemize}
-\item *menneskehandel.
-\item menneske. handel.
-\end{itemize}
+\item compounds
 \item \textbf{SKRIV} noe om at nn-nb.po kan nyttast som TMX med Apertium?
-
 \item ``Well-written'' nynorsk uses lots of periphrasis and MWE's, eg. particle
   verbs; we don't generate any such thing. A syntactic analysis might
   be useful here, although without being quite certain of where the
@@ -441,7 +433,14 @@ and Bokmål than between the other two. \\
 
 Development was funded as part of the Google Summer of
 Code\footnote{\href{http://code.google.com/soc/}{http://code.google.com/soc/}
-} programme. Thanks to mentors and OBT people.
+} programme. Thanks to co-mentor Francis Tyers (Universitat d'Alacant,
+Prompsit Language Engineering) for the initial work on apertium-nn-nb
+and constant help throughout, to Wikipedia contributors for reference
+translations and suggestions, and to Paul Meurer (Aksis, Universitetet
+i Bergen) and Kristin Hagen (Universitetet i Oslo) for help with the
+Oslo-Bergen tagger.
+
+\textbf{SKRIV} roarjo og frokor
 
 
 \bibliographystyle{apalike}
