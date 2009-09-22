@@ -44,7 +44,7 @@ approximately 12\% of the users'' \citep{everson2000sln}, or around
 Although Nynorsk is in a minority position, there are quite good
 linguistic resources available under Free licences, compared to many
 languages with the same amount of speakers. We describe the creation
-of a machine translation system between Nynorsk and
+of apertium-nn-nb, a machine translation system between Nynorsk and
 Bokmål\footnote{Available from
   \href{http://apertium.org}{http://apertium.org} } built using these
 resources with the free and open source Apertium platform
@@ -57,10 +57,13 @@ the next two sections we give an evaluation of the translation quality
 and a discussion of the lessons learnt and how the system may be
 further improved.
 
+\textbf{SKRIV} yes we want it to be good enough for dissemination/post-editing, not just assimilation/gisting
+
 \section{Design}
  \label{SEC:design}
 
- The nn-nb language pair follows the design of the Apertium system
+ The Nynorsk–Bokmål language pair follows the design of the Apertium
+ system
  \citep{corbi05oss}, a highly modular, shallow-transfer pipeline
  machine translation system. Dictionaries written in XML are compiled
  into reversible finite state transducers, so that word-for-word
@@ -378,7 +381,7 @@ Apertium is not the only MT system between Nynorsk and Bokmål. Another
 system is
 \textit{Nyno}\footnote{\href{http://www.nynodata.no}{http://www.nynodata.no}},
 a commercial MT system translating from Bokmål to Nynorsk (but not the
-other way around. In order to compare the systems, we translated an
+other way around). In order to compare the systems, we translated an
 unseen text (20667 words) from Bokmål to Nynorsk in both Apertium and
 Nyno. The translation was compared to a set of x gold standards, and
 the Bleu score of the respective systems was calculated.
@@ -392,29 +395,52 @@ Anything about Nyno? (Their web page says 74000 words, don't know
   
   Yes, Nyno deserves a presentation for this.
 \subsection{Qualitative assessment / error types}
-Of the errors which are not simply due to missing vocabulary, most
-errors can be attributed to either \emph{disambiguation},
-\emph{transfer} (eg. agreement, or the problem of \ref{pass-c} above)
-or \emph{lexical
+Quite a lot of the translation errors in apertium-nn-nb seem to be
+simply due to missing vocabulary. Of the remaining errors, most can be
+attributed to either \emph{disambiguation}, \emph{transfer} (eg.
+agreement, or the problem of \ref{pass-c} above) or \emph{lexical
   selection} (choosing the most natural collocations on the target
-language side). Of the 20 first non-vocabulary errors in the above WER
-test, 13 were disambiguation problems, two were transfer problems and
-five related to lexical selection. In other text domains, eg.
-newspaper texts, we also find some problems related to \emph{anaphora
-  resolution}, which we currently have not attempted solving
-(especially noticable since Bokmål more or less is a two-gender
-language while Nynorsk is three-gender).
+language side).
+
+Of the 20 first non-vocabulary errors in the above WER test, 13 were
+disambiguation problems, two were transfer problems and five related
+to lexical selection. In other text domains, eg. newspaper texts, we
+also find some problems related to \emph{coreference chaining}, which
+we currently have not attempted solving (especially noticable in
+pronouns since Bokmål more or less is a two-gender language while
+Nynorsk is three-gender). Below we also discuss another challenge:
+multi-word expressions such as phrasal verbs.
 
 \section{Discussion, future work, conclusion}
+In Norwegian, like in other Germanic languages, compounding is very
+productive\footnote{Munthe \citep[1972, in][p.~1]{johannessen1996aan}
+  puts the number at ``10.4\% of all words in running text'', although
+  quite a lot of these will already be in our dictionary.}. At the
+moment, we do not have any sort of compound analysis, but we are
+currently looking into ways of incorporating this in the Apertium
+pipeline. Some preliminary tests using left-to-right longest-match and
+a noun-only dictionary showed that it is quite easy to restrict the
+analysis of compounds to those for which we can expect good
+translations. Looking at only those compound translations which
+happened to be analysed as two nouns\footnote{Noun-noun compounds are
+  by far the most common, from a list of 26344 Bokmål tagged compounds
+  (from
+  \href{http://www.dokpro.uio.no/bokmaal/nyord/nyord_ramme.html}{http://www.dokpro.uio.no/bokmaal/nyord/nyord\_ramme.html})
+  we
+  found only 1281 containing an adjective or verb as a member.} where
+the first was in the singular indefinite form, 98 out of 100 randomly
+selected compounds were correctly translated.
+
+``Well-written'' Nynorsk uses lots of periphrasis and MWE's, eg.
+particle verbs; we don't generate any such thing. A syntactic analysis
+might be useful here, although without being quite certain of where
+the relevant phrase ends, it'll be safer to stick with
+non-discontinuous target language translations.
 
 \begin{itemize}
 \item compounds
 \item \textbf{SKRIV} noe om at nn-nb.po kan nyttast som TMX med Apertium?
-\item ``Well-written'' nynorsk uses lots of periphrasis and MWE's, eg. particle
-  verbs; we don't generate any such thing. A syntactic analysis might
-  be useful here, although without being quite certain of where the
-  relevant phrase ends, it'll be safer to stick with non-discontinuous
-  target language translations.
+\item 
 \end{itemize}
 On the Scandinavian language group, and expanding it for Apertium:
 \begin{quote}
@@ -433,12 +459,12 @@ and Bokmål than between the other two. \\
 
 Development was funded as part of the Google Summer of
 Code\footnote{\href{http://code.google.com/soc/}{http://code.google.com/soc/}
-} programme. Thanks to co-mentor Francis Tyers (Universitat d'Alacant,
-Prompsit Language Engineering) for the initial work on apertium-nn-nb
-and constant help throughout, to Wikipedia contributors for reference
-translations and suggestions, and to Paul Meurer (Aksis, Universitetet
-i Bergen) and Kristin Hagen (Universitetet i Oslo) for help with the
-Oslo-Bergen tagger.
+} programme. Thanks to Jim Regan and co-mentor Francis Tyers
+(Universitat d'Alacant, Prompsit Language Engineering) for the initial
+work on apertium-nn-nb and constant help throughout, to Wikipedia
+contributors for reference translations and suggestions, and to Paul
+Meurer (Aksis, Universitetet i Bergen) and Kristin Hagen
+(Universitetet i Oslo) for help with the Oslo-Bergen tagger.
 
 \textbf{SKRIV} roarjo og frokor
 
