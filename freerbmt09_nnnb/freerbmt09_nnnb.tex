@@ -14,6 +14,9 @@
 
 \title{Reuse of Free Resources in Machine Translation between Nynorsk and Bokmål}
 
+\newcommand{\comment}[1]{\textbf{SKRIV} #1}
+%\renewcommand{\comment}[1]{}
+
 \begin{document}
 
 \maketitle
@@ -26,7 +29,7 @@
     tagger. We detail the integration of these and other resources in
     the system, the construction of the lexical and structural
     transfer, and give an evaluation of the translation quality and a
-    comparison with another system.
+    comparison with another system. Some future work is suggested.
   \end{abstract}
 
 \section{Introduction}
@@ -58,7 +61,7 @@ the next two sections we give an evaluation of the translation quality
 and a discussion of the lessons learnt and how the system may be
 further improved.
 
-\textbf{SKRIV} yes we want it to be good enough for dissemination/post-editing, not just assimilation/gisting
+\comment{ yes we want it to be good enough for dissemination/post-editing, not just assimilation/gisting}
 
 \section{Design}
  \label{SEC:design}
@@ -101,9 +104,8 @@ manage to remove what it should. Constraint Grammars may also MAP
 may check in either direction for the existence of tags or even
 specific words, over absolute or undefined distances.
 
-\begin{itemize}
-\item \textbf{SKRIV} more? something like ``CG's have shown 94\%  P/R \citet{someone}'' ?
-\end{itemize} 
+\comment{ more? something like ``CG's have shown 94\%  P/R \citet{someone}'' ?}
+
 
 
 In the next section we describe the development and use of these
@@ -138,11 +140,11 @@ dictionary with morphological information (lemma, part-of-speech,
 inflection, \ldots{}), this was semi-automatically transformed into
 the lttoolbox format. First, one paradigm was created per lemma
 (always creating the longest possible suffix), then any duplicate
-paradigms were merged. \begin{itemize}
+paradigms were merged. 
 
-\item \textbf{SKRIV} example of an XML entry?\\
+\comment{ example of an XML entry?\\}
 
-\end{itemize} 
+
 \subsection{Disambiguation}
 
 The Oslo-Bergen tagger and Norsk Ordbank use a different tagset from
@@ -158,7 +160,7 @@ tagger uses the tags \texttt{<subst><appell>} and
 tags \texttt{<n>} and \texttt{<np>}. Most of this conversion was done
 using simple shell scripts.
 
-\textbf{SKRIV} \texttt{texttt} for tags? or something else?\\
+\comment{ \texttt{texttt} for tags? or something else?\\}
 
 
 The Constraint Grammar runs as a pre-disambiguator, and doesn't always
@@ -309,7 +311,11 @@ verbs\footnote{Norsk Ordbank uses
   rather infrequent past passive form.} in \Last[a-b]. \Last[c-d]
 however, does not get transferred correctly yet as the syntactic
 analysis of the Oslo-Bergen tagger is still not incorporated into
-Apertium.
+Apertium (we would not want to apply such a transfer rule if a
+non-subject followed the passive verb, as in \emph{om det selges fisk}
+lit. `if there is sold fish', which should transfer by the same rule
+as \Last[a-b] to \emph{om det
+  blir selt fisk}).
 
 \ex. \label{posgen} \emph{Phrase-initial Bokmål genitives are expressed
   periphrastically, phrase-finally in Nynorsk:}
@@ -343,15 +349,15 @@ fixed-length patterns, transfer macros allow us to generalise over eg.
 agreement operations. Although Bokmål allows definite determiners with
 indefinite nouns, Nynorsk does not; this is also handled with a macro.
 
-\textbf{SKRIV} meir?
+\comment{ meir?}
 
-\textbf{SKRIV} ``Since changes to transfer (or Constraint
+\comment{ ``Since changes to transfer (or Constraint
   Grammar) rules easily can introduce errors in previously error-free
   translations, we made extensive use of regression tests during
-  development.'' or is this self-evident?
+  development.'' or is this self-evident?}
 
 \subsection{Summary}
-\textbf{SKRIV} ?
+\comment{ ?}
 
 
 \section{Evaluation}
@@ -375,12 +381,12 @@ free-rides\footnote{Ie. the same in Bokmål and Nynorsk. Typical
 anyway, the final WER was 10.71\%. We consider this quite acceptable
 for post-editing.
 
-\textbf{SKRIV} apertium-nn-nb may thus be used for dissemination (is
+\comment{ apertium-nn-nb may thus be used for dissemination (is
 there a citation somewhere s.t. we may say ``<15\% means we spend less
-time post-editing than translating from scratch''?)
+time post-editing than translating from scratch''?)}
 
-\textbf{SKRIV} we should update this WER on the bleu-text, 10.71\%
-does seem too good to be true / generalisable
+\comment{ we should update this WER on the bleu-text, 10.71\%
+does seem too good to be true / generalisable}
 
 \subsection{Bleu score}
 
@@ -393,14 +399,14 @@ unseen text (20667 words) from Bokmål to Nynorsk in both Apertium and
 Nyno. The translation was compared to a set of x gold standards, and
 the Bleu score of the respective systems was calculated.
 
-\textbf{SKRIV} ut resultata frå Bleu score. Men først treng vi folk til å lage gullstandard.
+\comment{ resultata frå Bleu score. Men først treng vi folk til å lage gullstandard.
 
 Anything about Nyno? (Their web page says 74000 words, don't know
   about WER but the cool thing about Nyno is the interface, ie. the
   freedom of choice with variants and how the user can do the lexical
-  selection.
+  selection).
   
-  Yes, Nyno deserves a presentation for this.
+  Yes, Nyno deserves a presentation for this.}
 \subsection{Qualitative assessment / error types}
 Quite a lot of the translation errors in apertium-nn-nb seem to be
 simply due to missing vocabulary. Of the remaining errors, most can be
@@ -431,49 +437,60 @@ analysis of compounds to those for which we can expect good
 translations. Looking at only those compound translations which
 happened to be analysed as two nouns\footnote{Noun-noun compounds are
   by far the most common, from a list of 26344 Bokmål tagged compounds
-  (from
-  \href{http://www.dokpro.uio.no/bokmaal/nyord/nyord_ramme.html}{http://www.dokpro.uio.no/bokmaal/nyord/nyord\_ramme.html})
+  (\href{http://www.dokpro.uio.no/bokmaal/nyord/nyord_fside.html}{http://www.dokpro.uio.no/bokmaal/nyord/nyord\_fside.html})
   we
-  found only 1281 containing an adjective or verb as a member.} where
-the first was in the singular indefinite form, 98 out of 100 randomly
-selected compounds were correctly translated.
+  found only 1281 containing an adjective or verb as a member. (Such
+  annotated compound lists may of course also easily be converted into
+  transfer lexicon entries.)} where the first was in the singular
+indefinite form, 98 out of 100 randomly selected compounds were
+correctly translated.
 
-``Well-written'' Nynorsk uses lots of periphrasis and MWE's, eg.
-particle verbs; we don't generate any such thing. A syntactic analysis
-might be useful here, although without being quite certain of where
-the relevant phrase ends, it'll be safer to stick with
-non-discontinuous target language translations.
+As mentioned above, the Oslo-Bergen tagger has a syntactic component
+which we haven't incorporated yet, and could be used to handle example
+\ref{pass-c} above. We are also considering how this syntactic
+information could help us handle multi-word expressions such as
+particle verbs, consider \Next below where the particle is expressed
+after the object\footnote{And sometimes after adverbs, although
+  here the source may have an inherent attachment ambiguity.}:
 
-\begin{itemize}
-\item compounds
-\item \textbf{SKRIV} noe om at nn-nb.po kan nyttast som TMX med Apertium?
-\item 
-\end{itemize}
-On the Scandinavian language group, and expanding it for Apertium:
-\begin{quote}
+\ex. \ag. Han anbefalte meg å gå hjem\\
+he recommended me INF go home\\
+\bg. Han rådte meg til å gå heim\\
+he counseled me to INF go home\\
+`He recommended that I go home'
+
+``Well-written'' Nynorsk contains many such multi-word expressions,
+but for now, without knowing where the relevant phrase ends, we take
+the safe route and try to find non-discontinuous translations.
+
+\comment{ noko om at nn-nb.po kan nyttast som TMX med Apertium?}
+
+\comment {On the Scandinavian language group, and expanding it for Apertium:
+
 Morphologically, these four languages are equally distant from each
 other, but the terminological differences are smaller between Nynorsk
 and Bokmål than between the other two. \\
 \citep{everson2000sln}
-\end{quote}
+}
 
-\begin{itemize} \item reporting CG errors which were not
+\comment{ reporting CG errors which were not
   related
   to the conversion back to the Oslo-Bergen tagger developers.
-\end{itemize} 
+}
 
 \section*{Acknowledgements}
 
 Development was funded as part of the Google Summer of
 Code\footnote{\href{http://code.google.com/soc/}{http://code.google.com/soc/}
-} programme. Thanks to Jim Regan and co-mentor Francis Tyers
-(Universitat d'Alacant, Prompsit Language Engineering) for the initial
-work on apertium-nn-nb and constant help throughout, to Wikipedia
-contributors for reference translations and suggestions, and to Paul
-Meurer (Aksis, Universitetet i Bergen) and Kristin Hagen
-(Universitetet i Oslo) for help with the Oslo-Bergen tagger.
+} programme. Thanks to co-mentor Francis Tyers (Universitat d'Alacant,
+Prompsit Language Engineering) for the initial work on apertium-nn-nb
+and constant help throughout, also to Jimmy O'Regan and the other
+Apertium contributors. Thanks to Wikipedia contributors for reference
+translations and suggestions, and to Paul Meurer (Aksis, Universitetet
+i Bergen) and Kristin Hagen (Universitetet i Oslo) for help with the
+Oslo-Bergen tagger.
 
-\textbf{SKRIV} roarjo og frokor
+\comment{ roarjo og frokor}
 
 
 \bibliographystyle{apalike}
