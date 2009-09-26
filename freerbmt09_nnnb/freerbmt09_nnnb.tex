@@ -222,7 +222,7 @@ Finally, we added some entries using automatic word alignments. We
 used two resources here: the KDE4 corpus of software translations
 (about 400,000 words), and about 50,000 words of parallel text
 gathered with the {\tt bitextor} web crawler tool
-\citep{sanchez2006eam}\footnote{Available
+\citep{espla-gomis2009bfs}\footnote{Available
   from
   \href{http://websvn.kde.org/trunk/l10n-kde4/}{http://websvn.kde.org/trunk/l10n-kde4/}
   and
@@ -445,7 +445,7 @@ pronouns since Bokmål more or less is a two-gender language while
 Nynorsk is three-gender). Below we also discuss some other challenges,
 including multi-word expressions such as phrasal verbs.
 
-\section{Discussion, future work, conclusion}
+\section{Discussion and outlook}
 In Norwegian, like in other Germanic languages, compounding is very
 productive\footnote{Munthe \citep[1972, in][p.~1]{johannessen1996aan}
   puts the number at ``10.4\% of all words in running text'', although
@@ -492,21 +492,26 @@ the safe route and try to find non-discontinuous Nynorsk translations.
 
 \comment{ noko om at nn-nb.po kan nyttast som TMX med Apertium?}
 
-\comment {On the Scandinavian language group, and expanding it for Apertium:
-
-Morphologically, these four languages are equally distant from each
-other, but the terminological differences are smaller between Nynorsk
-and Bokmål than between the other two. \\
-\citep{everson2000sln}
-}
-
 We have described the development of a machine translation language
 pair using free and open source tools and linguistic data. Although
 there are many possible improvements to be made, the system is in a
 usable state for post-editing MT. This would not have been possible
 without the reuse of existing linguistic data. Hopefully the changes
-we made to the Constraint Grammar will also benefit other users of
-the Oslo-Bergen tagger.
+we made to the Constraint Grammar will also benefit other users of the
+Oslo-Bergen tagger. 
+
+Nynorsk, Bokmål, Swedish and Danish are ``[morphologically] equally
+distant from each other'' \citep[p.~1]{everson2000sln}, although
+Nynorsk and Bokmål are closer terminologically. Nynorsk–Bokmål was the
+first released translator among these languages made with the Apertium
+toolset, but there is also a group working on Swedish–Danish; the
+monolingual data of both these language pairs may be used in creating
+the four remaining possible pairs, as may the translational data
+(through the Apertium {\tt crossdics} tool) once there is at least one
+connecting language pair. 
+
+\comment{den der mangla litt...punch. me treng ein slutt!}
+
 
 \section*{Acknowledgements}
 
