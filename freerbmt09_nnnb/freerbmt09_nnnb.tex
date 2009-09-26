@@ -48,8 +48,8 @@ approximately 12\% of the users'' \citep{everson2000sln}, or around
 Although Nynorsk is in a minority position, there are quite good
 linguistic resources available under Free licences, compared to many
 languages with the same amount of speakers. We describe the creation
-of apertium-nn-nb, a machine translation system between Nynorsk and
-Bokmål\footnote{Available from
+of {\tt apertium-nn-nb}, a machine translation system between Nynorsk
+and Bokmål\footnote{Available from
   \href{http://apertium.org}{http://apertium.org} } built using these
 resources with the free and open source Apertium platform
 \citep{corbi05oss}. In the following section we give an overview of
@@ -59,7 +59,7 @@ integrated into Apertium, and how we dealt with lexical and syntactic
 transfer (for which we did not have freely available resources). As
 Bokmål and Nynorsk are mutually intelligible, a `gisting' system would
 not find much use, our aim is to make the system acceptable for
-\emph{post-editing}; in the next two sections we give an evaluation of
+\emph{post-editing}; in the last two sections we give an evaluation of
 the translation quality in light of this, and a discussion of the
 lessons learnt and how the system may be further improved.
 
@@ -106,14 +106,13 @@ readings if the input was in fact ambiguous or the grammar didn't
 manage to remove what it should. Constraint Grammars may also MAP
 (add) new tags to readings, typically syntactic function labels. Rules
 may check in either direction for the existence of tags or even
-specific words, over absolute or undefined distances.
+specific words, over absolute or undefined distances. Constraint
+Grammars have been shown to be robust in handling unseen text, as well
+as reaching high accuracy levels; \citet[p.~8]{bick1996app} reports
+over 99\% accuracy on morphological disambiguation of Portuguese.
 
-\comment{ more? something like ``CG's have shown 94\%  P/R \citet{someone}'' ?}
-
-
-
-In the next section we describe the development and use of these
-modules in nn-nb.
+In the next section we describe the development and use of the
+Apertium modules, including Constraint Grammar, in {\tt apertium-nn-nb}.
 
 \section{Development}
 
@@ -294,8 +293,9 @@ grant.IND give.PRES.PASS usually not\\
 \bg. Løyve blir oftast ikkje gjeve\\
 grant.IND AUX usually not give.PART \\
 `Grants are usually not given'
-\cg. \label{pass-c} Om høsten fylles fjorden med sild\\
+\cg. Om høsten fylles fjorden med sild\\
 In fall.DEF fill.PRES.PASS fjord.DEF with herring\\
+\label{pass-syntax}
 \dg. Om hausten blir fjorden fylt med sild\\
 In fall.DEF AUX fjord.DEF fill.PRES.PASS with herring\\ 
 `In fall, the fjord is filled with herring''
@@ -355,7 +355,7 @@ us to generalise over eg. agreement or definiteness\footnote{Although
 
 \comment{sum up the above more? the next part seems sorta disconnected:}
 
-In the next section, we give an evaluation of apertium-nn-nb and
+In the next section, we give an evaluation of {\tt apertium-nn-nb} and
 compare its output with that of the commercial Bokmål-Nynorsk MT
 system Nyno.
 
@@ -372,55 +372,67 @@ system Nyno.
 \section{Evaluation}
 \label{sec:eval}
 
-We define naïve coverage as the proportion of words in a corpus which
+Unknown words easily lead to errors in disambiguation or transfer;
+coverage is essential for any MT system meant for unrestricted text.
+ We define naïve coverage as the proportion of words in a corpus which
 are given at least one analysis by our monolingual
 dictionaries\footnote{Since the dictionaries are \emph{consistent}, we
-  also have translations for all analysed words.}. Testing on Nynorsk
-Wikipedia (5116174 words) and Bokmål Wikipedia (27529115 words), we
-have 89.6\% and 88.2\% naïve coverage, respectively. On a 7019526 word
-corpus of Bokmål newspaper texts, the coverage is 91.8\%.
+  also have translations for all analysed words.} (some analyses will
+be missing from a naïve coverage test due to homography). Testing on
+Nynorsk Wikipedia (5,116,174 words) and Bokmål Wikipedia (27,529,115
+words), we have 89.6\% and 88.2\% naïve coverage, respectively. On a
+7,019,526 word corpus of Bokmål newspaper texts, the naïve coverage
+was 91.8\%. 
 
 \subsection{Word Error Rate}
 \label{sec:WER}
-The Word Error Rate (WER) on a 3750 word post-edited Wikipedia article
-on linguistics in the Bokmål to Nynorsk direction was 22.06\% when
-including unknown words, although since 64.93\% of these were
-free-rides\footnote{Ie. the same in Bokmål and Nynorsk. Typical
-  free-rides include names, loan-words and special terminology.}
-anyway, the final WER was 10.71\%. We consider this quite acceptable
-for post-editing.
+We also tested the Word Error Rate (WER)\footnote{Using the tool {\tt
+    apertium-eval-translator}, available from
+  \href{http://www.dlsi.ua.es/~fsanchez/software.html\#eval}{http://www.dlsi.ua.es/\~{}fsanchez/software.html\#eval}}
+on a 3750 word post-edited article on linguistics from the Bokmål
+Wikipedia. The WER was 22.06\% when including unknown words, although
+since 64.93\% of these were free-rides\footnote{Ie. the same
+  in Bokmål and Nynorsk. Typical free-rides include names, loan-words
+  and special terminology.} anyway, the final WER was 10.71\%. We
+consider this quite acceptable for post-editing.
 
-\comment{ apertium-nn-nb may thus be used for dissemination (is
+\comment{ {\tt apertium-nn-nb} may thus be used for dissemination (is
 there a citation somewhere s.t. we may say ``$<15\%$ means we spend less
 time post-editing than translating from scratch''?)}
 
 \comment{ we should update this WER on the bleu-text, 10.71\%
 does seem too good to be true / generalisable}
 
-\subsection{Bleu score}
+\subsection{Bleu score in comparison with Nyno}
 
 Apertium is not the only MT system between Nynorsk and Bokmål. Another
 system is
 \textit{Nyno}\footnote{\href{http://www.nynodata.no}{http://www.nynodata.no}},
 a commercial MT system translating from Bokmål to Nynorsk (but not the
-other way around). In order to compare the systems, we translated an
-unseen text (20667 words) from Bokmål to Nynorsk in both Apertium and
-Nyno. The translation was compared to a set of x gold standards, and
-the Bleu score of the respective systems was calculated.
+other way around). 
 
-\comment{ resultata frå Bleu score. Men først treng vi folk til å lage gullstandard.
+In order to compare the systems, we translated an unseen text (20,667
+words) from Bokmål to Nynorsk in both Apertium and Nyno. The
+translation was compared to a set of \comment{x} gold standards, and
+the {\sc Bleu} score \citep{papineni2001bleu} of the respective
+systems was calculated. The Norwegian written languages allow many
+different variant forms (regarding lexical choice, inflections, etc.);
+Nyno provides the user with a wide range of dictionary customisation
+options, eg. ``radical'' versus ``conservative'' Nynorsk, whereas {\tt
+  apertium-nn-nb} as of yet only outputs one standard variant. We
+chose the \comment{standard/XYZ-}configuration, which seemed to
+correspond most closely to the guidelines we used in designing {\tt
+  apertium-nn-nb}.
 
-Anything about Nyno? (Their web page says 74000 words, don't know
-  about WER but the cool thing about Nyno is the interface, ie. the
-  freedom of choice with variants and how the user can do the lexical
-  selection).
-  
-  Yes, Nyno deserves a presentation for this.}
-\subsection{Qualitative assessment / error types}
-Quite a lot of the translation errors in apertium-nn-nb seem to be
+\comment{resultata frå Bleu score. Men først treng vi folk til å lage gullstandard.}
+
+\subsection{Qualitative assessment}
+\comment{Either move this section up to WER or also discuss Bleu, Nyno}
+
+Quite a lot of the translation errors in {\tt apertium-nn-nb} seem to be
 simply due to missing vocabulary. Of the remaining errors, most can be
 attributed to either \emph{disambiguation}, \emph{transfer} (eg.
-agreement, or the problem of \ref{pass-c} above) or \emph{lexical
+agreement, or the problem of \ref{pass-syntax} above) or \emph{lexical
   selection} (choosing the most natural collocations on the target
 language side).
 
@@ -430,33 +442,39 @@ to lexical selection. In other text domains, eg. newspaper texts, we
 also find some problems related to \emph{coreference chaining}, which
 we currently have not attempted solving (especially noticable in
 pronouns since Bokmål more or less is a two-gender language while
-Nynorsk is three-gender). Below we also discuss another challenge:
-multi-word expressions such as phrasal verbs.
+Nynorsk is three-gender). Below we also discuss some other challenges,
+including multi-word expressions such as phrasal verbs.
 
 \section{Discussion, future work, conclusion}
 In Norwegian, like in other Germanic languages, compounding is very
 productive\footnote{Munthe \citep[1972, in][p.~1]{johannessen1996aan}
   puts the number at ``10.4\% of all words in running text'', although
-  quite a lot of these will already be in our dictionary.}. At the
+  quite a lot of these will already be in our dictionary.} At the
 moment, we do not have any sort of compound analysis, but we are
 currently looking into ways of incorporating this in the Apertium
 pipeline. Some preliminary tests using left-to-right longest-match and
 a noun-only dictionary showed that it is quite easy to restrict the
-analysis of compounds to those for which we can expect good
-translations. Looking at only those compound translations which
-happened to be analysed as two nouns\footnote{Noun-noun compounds are
+analysis of compounds to \emph{those for which we can expect good
+  translations}. Looking at only those compound translations which
+were analysed as two nouns\footnote{Noun-noun compounds are
   by far the most common, from a list of 26344 Bokmål tagged compounds
   (\href{http://www.dokpro.uio.no/bokmaal/nyord/nyord_fside.html}{http://www.dokpro.uio.no/bokmaal/nyord/nyord\_fside.html})
   we
   found only 1281 containing an adjective or verb as a member. (Such
   annotated compound lists may of course also easily be converted into
   transfer lexicon entries.)} where the first was in the singular
-indefinite form, 98 out of 100 randomly selected compounds were
-correctly translated.
+indefinite form, 99 out of 100 randomly selected compounds were
+correctly translated, the remaining one—shown in \Next[b]—had an
+ambiguous second member on the Bokmål side:
+
+\ex. \ag. bilkirkegård $\rightarrow$ bilkyrkjegard\\
+car.cemetery $\rightarrow$ car.cemetery\\
+\bg. postordrelager $\rightarrow$ \#postordrelagar\\
+mail.order.storage $\rightarrow$ mail.order.creator\\
 
 As mentioned above, the Oslo-Bergen tagger has a syntactic component
 which we haven't incorporated yet, and could be used to handle example
-\ref{pass-c} above. We are also considering how this syntactic
+\ref{pass-syntax} above. We are also considering how this syntactic
 information could help us handle multi-word expressions such as
 particle verbs, consider \Next below where the particle is expressed
 after the object\footnote{And sometimes after adverbs, although
@@ -468,9 +486,9 @@ he recommended me INF go home\\
 he counseled me to INF go home\\
 `He recommended that I go home'
 
-``Well-written'' Nynorsk contains many such multi-word expressions;
-but without knowing where the relevant phrase ends, we have to take
-the safe route and try to find non-discontinuous translations.
+Nynorsk text typically contains many such multi-word expressions; but
+without knowing where the relevant Bokmål phrase ends, we have to take
+the safe route and try to find non-discontinuous Nynorsk translations.
 
 \comment{ noko om at nn-nb.po kan nyttast som TMX med Apertium?}
 
@@ -495,7 +513,7 @@ the Oslo-Bergen tagger.
 Development was funded as part of the Google Summer of
 Code\footnote{\href{http://code.google.com/soc/}{http://code.google.com/soc/}
 } programme. Thanks to co-mentor Francis Tyers (Universitat d'Alacant,
-Prompsit Language Engineering) for the initial work on apertium-nn-nb,
+Prompsit Language Engineering) for the initial work on {\tt apertium-nn-nb},
 also to Jimmy O'Regan and the other Apertium contributors for constant
 help throughout. Thanks to Wikipedia contributors for reference
 translations and suggestions, and to Paul Meurer (Aksis, Universitetet
