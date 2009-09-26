@@ -167,14 +167,27 @@ The Constraint Grammar runs as a pre-disambiguator, and doesn't always
 manage to remove all spurious analyses. We run Apertium's statistical
 disambiguator module after this step to make a final choice. An
 unsupervised bigram model was trained on the Nynorsk and Bokmål
-Wikipedias using the {\tt apertium-tagger} \citep{todo}. Although
-there is the possibility of more advanced statistical models using the
-Apertium toolset \citep[see~eg.~][]{sanchez2008utl,sheikh2009trigram},
-so far we have instead worked on improving the Constraint Grammar
-where we spotted errors (certain errors in the disambiguation might be
-easier to spot when working with machine translation, and improvements
-to the Constraint Grammar could be of benefit to others using the
-Oslo-Bergen tagger).
+Wikipedias using the {\tt apertium-tagger}. Although there is the
+possibility of more advanced statistical models using the Apertium
+toolset \citep[see~eg.~][]{sanchez2008utl,sheikh2009trigram}, so far
+we have instead worked on improving the Constraint Grammar where we
+spotted errors. Certain errors in the disambiguation might be easier
+to spot when working with machine translation, and improvements to the
+Constraint Grammar could be of benefit to others using the Oslo-Bergen
+tagger. When disambiguating for machine translation, it is important
+to keep in mind that we always have to end up with only one analysis,
+thus our version of the Oslo-Bergen tagger is slightly more aggressive
+in removing readings. Eg. we use the following ``heuristic'' rule:
+
+\begin{figure}[htp] {\tt REMOVE (n) IF\\
+    (0 adj) (-1 det) (1 subst);}
+\end{figure}
+
+to remove a noun reading if the word might also be an adjective,
+and is between a determiner and a noun / proper noun. When tagging a
+corpus for eg. lexicographic work, this rule may be too strict, but
+for our purposes it is better to make a choice which will be correct
+most of the time than to end up with an unsolved ambiguity.
 
 \subsection{Lexical transfer}
 
