@@ -94,7 +94,8 @@ lessons learnt and how the system may be further improved.
 
 \subsection{Constraint Grammar}
 The nn-nb language pair differs from most of the other Apertium pairs
-in using a Constraint Grammar module\footnote{Running on VISL CG-3,
+in using a Constraint Grammar (CG) module\footnote{Running on VISL
+  CG-3,
   available from
   \href{http://beta.visl.sdu.dk/cg3.html}{http://beta.visl.sdu.dk/cg3.html}
 } as a pre-disambiguator (before the statistical tagger). Constraint
@@ -107,30 +108,27 @@ readings if the input was in fact ambiguous or the grammar didn't
 manage to remove what it should. Constraint Grammars may also MAP
 (add) new tags to readings, typically syntactic function labels. Rules
 may check in either direction for the existence of tags or even
-specific words, over absolute or undefined distances. Constraint
-Grammars have been shown to be robust in handling unseen text, as well
-as reaching high accuracy levels; \citet[p.~8]{bick1996app} reports
-over 99\% accuracy on morphological disambiguation of Portuguese.
+specific words, over absolute or undefined distances. 
 
-In the next section we describe the development and use of the
-Apertium modules, including Constraint Grammar, in {\tt apertium-nn-nb}.
-
-CG has shown, as the only grammar-based parsing method, to give parsing
-results compared to statistical parsers. Where statistical parsers have been 
-shown to have a ceiling under 97 \% (\citep{leech1994claws}, \citep{brants1998}, 
-\citep{brill1997web} all cite accuracy results between 96 and 97 \%). 
-\citep{voutilainen1992engcg} og \citet{bick2000palavras} both cite accuracy 
-results above 99 \%, for English and Portuguese. Both \citep{chanod1997} 
-and \citep{samuelsson1997cg} compare statistical and CG taggers 
+Constraint Grammars have been shown to be robust in handling unseen
+text, as well as reaching high accuracy levels. CG has also shown, as
+the only grammar-based parsing method, to give parsing results
+compared to statistical parsers. Where statistical parsers have been
+shown to have a ceiling under 97\% (\citet{leech1994claws,
+  brants2000tnt,
+  brill1997uld} all cite accuracy results between 96\% and 97\%),
+\citet{voutilainen1994engcg} and \citet{bick2000palavras} both cite
+accuracy results above 99\%, for English and Portuguese. Both
+\citet{chanod1995tfc} and \citet{samuelsson1997cls} compare
+statistical and CG taggers.
 
 In an MT context the important point is that the good CG results have 
 made it possible to present robust rule-based MT. Good examples are
-\citet{Bick200xfyn}. % other references?
+\citet{bick2007fmw}. % other references?
 
-In the next section we describe the development and use of these 
-\comment{change ``these''}
-modules in nn-nb.
-
+In the next section we describe the development and use of the
+Apertium modules, including Constraint Grammar, in {\tt
+  apertium-nn-nb}.
 
 \section{Development}
 
