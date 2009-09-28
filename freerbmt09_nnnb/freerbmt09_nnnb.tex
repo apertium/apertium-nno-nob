@@ -440,9 +440,40 @@ other way around).
 
 In order to compare the systems, we translated an unseen text (20,667
 words) from Bokmål to Nynorsk in both Apertium and Nyno. The
-translation was compared to a set of \comment{x} gold standards, and
+translation was compared to two gold standards, and
 the {\sc Bleu} score \citep{papineni2001bleu} of the respective
-systems was calculated. The Norwegian written languages allow many
+systems was calculated. The one gold standard came from the official 
+websites themselves (the text was simultaneously published in Bokmål and Nynorsk),
+and the other was translated by Roar Johansen.
+
+
+\begin{table}[htdp]
+\caption{Bleu score for Apertium and Nyno, two reference translations}
+\begin{center}
+\begin{tabular}{|l|r|r|}
+\hline
+Translation & Bleu score \\
+\hline
+Apertium    & 0.74 \\
+Nyno        & 0.85 \\
+\hline
+\end{tabular}
+\end{center}
+\label{bleu}
+\end{table}%
+
+Both results are quite good, but Nyno is clearly better.
+
+The main difference between the two translation programs is found in the lexicon.
+9.5\% of the words of the incoming text are unknown to Apertium, in sharp
+% 693 of 7283 words are unknown
+contrasts to Nyno, which misses only 0.8 \% of the words of the testbed.
+% 55 of 7283
+The singlemost important candidate for Apertium nn-nb improvement is thus the lexicon.
+
+
+
+The Norwegian written languages allow many
 different variant forms (regarding lexical choice, inflections, etc.);
 Nyno provides the user with a wide range of dictionary customisation
 options, eg. ``radical'' versus ``conservative'' Nynorsk, whereas {\tt
@@ -451,7 +482,6 @@ chose the \comment{standard/XYZ-}configuration, which seemed to
 correspond most closely to the guidelines we used in designing {\tt
   apertium-nn-nb}.
 
-\comment{resultata frå Bleu score. Men først treng vi folk til å lage gullstandard.}
 
 \subsection{Qualitative assessment}
 \comment{Either move this section up to WER or also discuss Bleu, Nyno}
