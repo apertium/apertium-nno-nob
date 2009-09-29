@@ -443,31 +443,30 @@ words) from Bokmål to Nynorsk in both Apertium and Nyno\footnote{The
     apertium-nn-nb}.}. The translation was compared to two gold
 standards, and the {\sc Bleu} score \citep{papineni2001bleu} of the
 respective systems was calculated. One gold standard came from the
-official websites themselves (the text was simultaneously published in
-both languages), and the other was translated by Roar Johansen.
-
+bilingual websites themselves, the other was translated as a joint 
+effort on Nynorsk Wikipedia.
 
 \begin{table}[htdp]
 \caption{{\sc Bleu} score for Apertium and Nyno, two reference translations}
 \begin{center}
 \begin{tabular}{|l|r|r|}
 \hline
-Translation & Bleu score \\
-\hline
-Apertium    & 0.74 \\
-Nyno        & 0.85 \\
+Translation & Bleu score & UWR  & WER \\
+\hline					 
+Apertium    & 0.74       & 0.8 & . \\
+Nyno        & 0.85       & 9.5 & . \\
 \hline
 \end{tabular}
 \end{center}
 \label{bleu}
 \end{table}%
 
-With only two reference translations, both results are quite good. The Nyno 
+With only two reference translations, both Bleu scores are quite good. The Nyno 
 result is clearly better than Apertium, though. The main difference between 
-the two translation programs is found in the lexicon. 9.5\% of the words of 
-the incoming text are unknown to Apertium, in sharp
+the two translation programs is found in the lexicon. An unknown word rate of 
+9.5\% for Apertium stands in sharp
 % 693 of 7283 words are unknown
-contrasts to Nyno, which misses only 0.8 \% of the words of the testbed.
+contrasts to Nyno, who misses 0.8 \% of the words of the testbed.
 % 55 of 7283
 The singlemost important candidate for {\tt apertium-nn-nb}
 improvement thus seems to be the lexicon.
