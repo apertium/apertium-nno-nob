@@ -1,6 +1,6 @@
 #                                               -*- Autoconf -*-
 # Process this file with autoconf to produce a configure script.
-
+# Todo: require vislcg3 >= 0.9.7.5129
 
 AC_PREREQ(2.52)
 
