@@ -418,12 +418,7 @@ in Bokmål and Nynorsk. Typical free-rides include names, loan-words
 and special terminology.} anyway, the final WER was 10.71\%. We
 consider this quite acceptable for post-editing.
 
-\comment{ {\tt \small  apertium-nn-nb} may thus be used for dissemination (is
-there a citation somewhere s.t. we may say ``$<15\%$ means we spend less
-time post-editing than translating from scratch''?)}
-
-\comment{ we should update this WER on the bleu-text, 10.71\%
-does seem too good to be true / generalisable}
+%\footnote{WER for non-post-edited reference translations will of course be higher.}
 
 \subsection{{\sc Bleu} score in comparison with Nyno}
 
@@ -450,7 +445,7 @@ bilingual websites themselves, the other was translated as a joint
 effort on Nynorsk Wikipedia.
 
 \begin{table}[htdp]
-  \caption{{\sc Bleu} score (two reference translations), UWR and WER (for each reference translation) for Apertium and Nyno}
+  \caption{{\sc Bleu} score (two reference translations), UWR and WER (for the \emph{O}riginal and \emph{W}ikipedia references) for Apertium and Nyno}
 \begin{center}
 \begin{tabular}{|l|r|r|r|r|}
   \hline
@@ -470,7 +465,7 @@ main difference between the two translation programs is found in the
 lexicon. An unknown word rate (UWR) of 9.5\% for Apertium stands in
 sharp
 % 693 of 7283 words are unknown
-contrasts to Nyno, who misses 0.8 \% of the words of the testbed.
+contrasts to Nyno, who misses 0.8\% of the words of the testbed.
 % 55 of 7283
 The singlemost important candidate for {\tt \small  apertium-nn-nb}
 improvement thus seems to be the lexicon.
