@@ -448,24 +448,25 @@ bilingual websites themselves, the other was translated as a joint
 effort on Nynorsk Wikipedia.
 
 \begin{table}[htdp]
-\caption{{\sc Bleu} score (two reference translations), UWR and WER for Apertium and Nyno}
+  \caption{{\sc Bleu} score (two reference translations), UWR and WER (for each reference translation) for Apertium and Nyno}
 \begin{center}
 \begin{tabular}{|l|r|r|r|r|}
-\hline
-Translation & Bleu score & UWR  & WER \\
-\hline					 
-Apertium    & 0.74       & 0.8 & . \\
-Nyno        & 0.85       & 9.5 & . \\
-\hline
+  \hline
+  & {\sc Bleu} & UWR  & WER$_{O}$ & WER$_{W}$ \\
+  \hline					 
+  Apertium    & 0.74       & 9.5 & 32.5 & 17.7\\
+  Nyno        & 0.85       & 0.8 & 29.1 &13.3 \\
+  \hline
 \end{tabular}
 \end{center}
 \label{bleu}
 \end{table}%
 
-With only two reference translations, both Bleu scores are quite good. The Nyno 
-result is clearly better than Apertium, though. The main difference between 
-the two translation programs is found in the lexicon. An unknown word rate (UWR) of 
-9.5\% for Apertium stands in sharp
+With only two reference translations, both {\sc Bleu} scores are quite
+good. The Nyno result is clearly better than Apertium, though. The
+main difference between the two translation programs is found in the
+lexicon. An unknown word rate (UWR) of 9.5\% for Apertium stands in
+sharp
 % 693 of 7283 words are unknown
 contrasts to Nyno, who misses 0.8 \% of the words of the testbed.
 % 55 of 7283
@@ -590,12 +591,13 @@ between closely related languages has the potential to easily reach
 post-editable quality, the Apertium MT pairs could increase the amount
 of text available in these languages, and in fact, {\tt
   apertium-nn-nb} has already been put to this use in drafting
-translations of Wikipedia articles from Bokmål to Nynorsk\footnote{\href{http://nn.wikipedia.org/wiki/Kategori:Omsett_med_Apertium}{http://nn.wikipedia.org/wiki/Kategori:Omsett_med_Apertium}}.
+translations of Wikipedia articles from Bokmål to
+Nynorsk\footnote{\href{http://nn.wikipedia.org/wiki/Kategori:Omsett_med_Apertium}{http://nn.wikipedia.org/wiki/Kategori:Omsett\_med\_Apertium}}.
 
 \comment{den der mangla litt...punch. me treng ein slutt!}
 
 Punch idea: Disregarding domain-specific systems, all operative Machine 
-Translation between Scandinavial languages are rule-based systems, and 
+Translation between Scandinavian languages are rule-based systems, and 
 most of them are run by the help of a constraint grammar.
 
 
