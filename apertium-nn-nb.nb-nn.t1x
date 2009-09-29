@@ -647,12 +647,15 @@
 	<pattern-item n="adv"/>
       </pattern>
       <action>
-        <choose><when>
-          <test><equal>
-            <clip pos="1" side="tl" part="a_verb"/><lit-tag v="vblex.pstv"/>
-          </equal></test>
-          <out><lu><clip pos="1" side="tl" part="whole"/></lu></out>
-          <out><lu><clip pos="2" side="tl" part="whole"/></lu></out>
+        <choose>
+          <when>
+            <test><equal>
+              <clip pos="1" side="tl" part="a_verb"/><lit-tag v="vblex.pstv"/>
+            </equal></test>
+            <out>
+              <lu><clip pos="1" side="tl" part="whole"/></lu><b pos="1"/>
+              <lu><clip pos="2" side="tl" part="whole"/></lu>
+            </out>
           </when>
           <otherwise>
             <out>
