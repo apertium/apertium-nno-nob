@@ -33,6 +33,8 @@
   \end{abstract}
 
 \section{Introduction}
+\comment{jimregan Unhammer, can you add something about nn-nb being used on wikipedia
+	   so I can cite you please? :)}
 
 The term \emph{Norwegian} covers a variety of related spoken dialects.
 Up until the 1800's, Danish was the only written standard used in
@@ -484,8 +486,6 @@ correspond most closely to the guidelines we used in designing {\tt
 
 
 \subsection{Qualitative assessment}
-\comment{Either move this section up to WER or also discuss Bleu, Nyno}
-
 Quite a lot of the translation errors in {\tt apertium-nn-nb} seem to be
 simply due to missing vocabulary. Of the remaining errors, most can be
 attributed to either \emph{disambiguation}, \emph{transfer} (eg.
@@ -499,8 +499,37 @@ to lexical selection. In other text domains, eg. newspaper texts, we
 also find some problems related to \emph{coreference chaining}, which
 we currently have not attempted solving (especially noticable in
 pronouns since Bokmål more or less is a two-gender language while
-Nynorsk is three-gender). Below we also discuss some other challenges,
-including multi-word expressions such as phrasal verbs.
+Nynorsk is three-gender). 
+
+Comparing the CG analyses and translations of the first 100 sentences
+in the {\sc Bleu} testbed, we find one problem of lexical selection,
+\emph{lov} may be either \emph{lov} `law' or \emph{løyve}
+`permission'; these are in fact disambiguated in the dictionary, but
+our CG disambiguator has no rule for disambiguating these yet. There
+was also one trivially fixable transfer bug (an infrequently used rule
+removed a space), and three errors which were plainly due to the lack
+of any coreference analysis (choosing the wrong gender for a pronoun).
+
+A manual count showed that 223 mistaken readings had not been removed
+(remained undisambiguated) without causing errors in the final
+translation\footnote{If a word has one correct (unremoved) and five
+  mistaken (unremoved) readings, we count this as five.}. 19 readings
+which should have been removed, but weren't, \emph{did} in fact cause
+errors. 13 readings were mistakenly removed without causing errors,
+while 3 where mistakenly removed and \emph{did} cause errors. Of the
+undisambiguated readings which did not cause errors, we find a lot of
+singular/plural ambiguity. This is common in this text type, although
+some times the lack of disambiguation is plainly due to dictionary
+size (eg. an ambiguous adjective followed by an unknown, but
+unambiguous, noun). The few CG errors which caused translation errors
+are fortunately quite easy to correct; however, 128 word tokens in
+these sentences were not in the dictionary, which again shows that
+dictionary errors are more pertinent. Even if more than half were
+free-rides, we would still have more dictionary than disambiguation
+errors. More importantly, dictionary errors leak into the
+disambiguation and transfer components. Below we discuss one way to
+improve our dictionary coverage, as well as the challenges posed by
+multi-word expressions such as phrasal verbs.
 
 \section{Discussion and outlook}
 In Norwegian, like in other Germanic languages, compounding is very
