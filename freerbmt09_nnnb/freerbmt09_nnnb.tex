@@ -10,7 +10,8 @@
 \usepackage{latexsym}
 
 \usepackage{hyperref}
-\author{Kevin Unhammer\\  Department of Linguistics \\ University of Bergen \\  Bergen \\  {\tt  kun041@student.uib.no} \And  Trond Trosterud \\  Department of Linguistics \\  University of Tromsø \\  Tromsø, Norway \\    {\tt trond.trosterud@uit.no}}
+\author{NN\\  X \\ X \\  X \\  {\tt  X@X} \And  NN \\  X \\  X \\  X \\    {\tt X@X}}
+% \author{Kevin Unhammer\\  Department of Linguistics \\ University of Bergen \\  Bergen, Norway \\  {\tt  kun041@student.uib.no} \And  Trond Trosterud \\  Department of Linguistics \\  University of Tromsø \\  Tromsø, Norway \\    {\tt trond.trosterud@uit.no}}
 
 \title{Reuse of Free Resources in Machine Translation between Nynorsk and Bokmål}
 
@@ -233,8 +234,8 @@ simply consists of
    analyser
 \end{enumerate}
 There are no orthographic differences between the languages, but of
-course lots of such morpheme/substring correspondences. The main run
-of this method gave us about 2500 nouns and verbs\footnote{A technique
+course lots of such morpheme/substring correspondences. Running
+ this method gave about 2500 nouns and verbs\footnote{A technique
   used in other Apertium language pairs, which we haven't tried yet,
   is running a target language spell checker (which gives suggestions)
   on the missing source language words (replacing step 2 above), and
@@ -268,7 +269,7 @@ were of course not in the monolingual dictionaries and thus adding
 them requires some manual labour.
 
 We next ran {\tt Giza++} \citep{och2003scv} on a cleaned version of the KDE4
-corpus to create word alignments. We also appended our existing
+corpus to create word alignments. We also appended our 
 transfer lexicon to the corpus several times, to improve the
 probability of correct alignments. We then ran these these alignments
 through our morphological analysers, and fed them into the tool
@@ -447,7 +448,7 @@ bilingual websites themselves, the other was translated as a joint
 effort on Nynorsk Wikipedia.
 
 \begin{table}[htdp]
-\caption{{\sc Bleu} score for Apertium and Nyno, two reference translations}
+\caption{{\sc Bleu} score (two reference translations), UWR and WER for Apertium and Nyno}
 \begin{center}
 \begin{tabular}{|l|r|r|r|r|}
 \hline
@@ -463,7 +464,7 @@ Nyno        & 0.85       & 9.5 & . \\
 
 With only two reference translations, both Bleu scores are quite good. The Nyno 
 result is clearly better than Apertium, though. The main difference between 
-the two translation programs is found in the lexicon. An unknown word rate of 
+the two translation programs is found in the lexicon. An unknown word rate (UWR) of 
 9.5\% for Apertium stands in sharp
 % 693 of 7283 words are unknown
 contrasts to Nyno, who misses 0.8 \% of the words of the testbed.
