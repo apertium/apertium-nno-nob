@@ -1,15 +1,21 @@
 #!/usr/bin/perl -w
 
+use utf8 ;
+
 while (<>) 
 {
-s/\[\[dei:/\[\[de:/g ;
-s/\[\[ein:/\[\[en:/g ;
-s/\[\[gav:/\[\[ga:/g ;
-s/\[\[eit:/\[\[et:/g ;
-s/\[\[då:/\[\[da:/g ;
-s/{{spire}}/{{stubb}}/g ;
-s/\]\]ein /\]\]en /g ;
-s/\]\]eit /\]\]et /g ;
+s/\[\[dei:/\[\[de:/g ; # iw german
+s/\[\[ein:/\[\[en:/g ; # iw english
+s/\[\[gav:/\[\[ga:/g ; # iw galician?
+s/\[\[eit:/\[\[et:/g ; # iw estonian
+s/\[\[då:/\[\[da:/g ;  # iw danish
+s/\[\[nn:/\[\[nb:/g ;  # iw switch 
+s/{{.*stubb}}/{{spire}}/g ; # 
+s/\]\]ein /\]\]en /g ; # definite suffix -en
+s/\]\]eine /\]\]ane /g ; # definite suffix -ene
+s/\]\]eit /\]\]et /g ; # definite suffix -et
 
 print ;
 }
+
+print "\n[[Kategori:Omsett med Apertium]]\n" ;
