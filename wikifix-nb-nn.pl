@@ -1,5 +1,11 @@
 #!/usr/bin/perl -w
 
+# Script to postedit articles translated from
+# Bokmål Wikipedia to Nynorsk Wikipedia.
+
+# Usage (in the directory apertium-nn-nb/):
+# cat nb-inputarticle | apertium -d . -u nb-nn | ./wikifix-nb-nn.pl | ...
+
 use utf8 ;
 
 while (<>) 
