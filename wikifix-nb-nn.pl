@@ -7,18 +7,22 @@
 # cat nb-inputarticle | apertium -d . -u nb-nn | ./wikifix-nb-nn.pl | ...
 
 use utf8 ;
-print "\n{{språkvask}}\n\n" ;
 
+print "\n{{språkvask}}\n\n" ;
 
 while (<>) 
 {
+s/\[\[ase:/\[\[ast:/g ; # iw asturian
 s/\[\[dei:/\[\[de:/g ; # iw german
 s/\[\[ein:/\[\[en:/g ; # iw english
 s/\[\[gav:/\[\[ga:/g ; # iw galician?
 s/\[\[eit:/\[\[et:/g ; # iw estonian
 s/\[\[då:/\[\[da:/g ;  # iw danish
+
 s/\[\[nn:/\[\[nb:/g ;  # iw switch 
+
 s/{{.*stubb}}/{{spire}}/g ; # 
+
 s/\]\]ein /\]\]en /g ; # definite suffix -en
 s/\]\]eine /\]\]ane /g ; # definite suffix -ene
 s/\]\]eit /\]\]et /g ; # definite suffix -et
