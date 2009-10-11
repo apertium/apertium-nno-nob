@@ -7,6 +7,8 @@
 # cat nb-inputarticle | apertium -d . -u nb-nn | ./wikifix-nb-nn.pl | ...
 
 use utf8 ;
+print "\n{{språkvask}}\n\n" ;
+
 
 while (<>) 
 {
