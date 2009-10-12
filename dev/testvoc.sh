@@ -13,6 +13,11 @@
 # haven't bothered with making this general. Either install gsed
 # (eg. from Macports) make a symlink.
 
+# To get nb.@ or nn.@ into bidix format, use:
+# sed 's/<\([^_>]*\)>/<s n="\1"\/>/' |\
+# sed 's/<n_\([^>]*\)>/<s n="n"\/><s n="\1">/' |\
+# gsed 's/.*/<e>       <p><l>\0<\/l><r>\0<\/r><\/p><\/e>/'
+
 dir=`echo "$0" | sed 's,[^/]*$,,'`
 test "x${dir}" = "x" && dir='.'
 
