@@ -11,8 +11,8 @@
 \usepackage{latexsym}
 
 \usepackage{hyperref}
-\author{NN\\  X \\ X \\  X \\  {\tt \small   X@X} \And  NN \\  X \\  X \\  X \\    {\tt \small  X@X}}
-% \author{Kevin Unhammer\\  Department of Linguistics \\ University of Bergen \\  Bergen, Norway \\  {\tt \small   kun041@student.uib.no} \And  Trond Trosterud \\  Department of Linguistics \\  University of Tromsø \\  Tromsø, Norway \\    {\tt \small  trond.trosterud@uit.no}}
+%\author{NN\\  X \\ X \\  X \\  {\tt \small   X@X} \And  NN \\  X \\  X \\  X \\    {\tt \small  X@X}}
+\author{Kevin Unhammer\\  Department of Linguistics \\ University of Bergen \\  Bergen, Norway \\  {\tt \small   kun041@student.uib.no} \And  Trond Trosterud \\  Department of Linguistics \\  University of Tromsø \\  Tromsø, Norway \\    {\tt \small  trond.trosterud@uit.no}}
 
 \title{Reuse of Free Resources in Machine Translation between Nynorsk and Bokmål}
 
@@ -50,12 +50,12 @@ approximately 12\% of the users'' \citep{everson2000sln}, or around
 Although Nynorsk is in a minority position, there are quite good
 linguistic resources available under Free licences, compared to many
 languages with the same amount of speakers. We describe the creation
-of {\tt \small  apertium-nn-nb}, a machine translation system between Nynorsk
-and Bokmål\footnote{Available from
+of {\tt \small apertium-nn-nb}, a machine translation (MT) system
+between Nynorsk and Bokmål\footnote{Available from
   \href{http://apertium.org}{http://apertium.org} } built using these
 resources with the Free and Open Source Apertium platform
-\citep{armentano2006ops}. In the following section we give an overview of
-the Apertium platform and Constraint Grammar. Section
+\citep{armentano2006ops}. In the following section we give an overview
+of the Apertium platform and Constraint Grammar. Section
 \ref{sec:development} describes how the available resources were
 integrated into Apertium, and how we dealt with lexical and syntactic
 transfer (for which we did not have Free resources available). As
@@ -71,7 +71,7 @@ lessons learnt and how the system may be further improved.
 \subsection{The Apertium Pipeline}
 The Nynorsk–Bokmål language pair follows the design of the Apertium
 system, a highly modular, shallow-transfer
-pipeline machine translation system. Dictionaries written in XML are
+pipeline MT system. Dictionaries written in XML are
 compiled into finite state transducers, so that word-for-word
 translations are possible in both directions using only two
 monolingual dictionaries (morphological analysis/generation) and one
@@ -80,41 +80,46 @@ translational (transfer) dictionary. Both dictionary types make use of
 analyses), and \emph{directional constraints}, which state that a
 certain entry may be analysed, but not generated, or vice versa.
 
- First order hidden Markov models (HMM's) are used after analysis for
- part-of-speech disambiguation\footnote{Although there is now also an
-   implementation of second order HMM's \citep{sheikh2009trigram}. }.
- The transfer module is finite state based and handles three-stage
- chunking transfer, although we so far only use one-stage transfer,
- applying operations directly on patterns of morphological categories
- (described in further detail in section
- \ref{sec:structural-transfer}).  De-/reformatters applied to the
- beginning and end of the pipeline let us preserve formatting of
- various document types.
+First order hidden Markov models (HMM's) are used after analysis for
+part-of-speech disambiguation\footnote{Although there is now also an
+  implementation of second order HMM's \citep{sheikh2009trigram}. }.
+The transfer module is finite state based and handles three-stage
+chunking transfer, although we so far only use one-stage transfer,
+applying operations directly on patterns of morphological categories
+(described in further detail in section
+\ref{sec:structural-transfer}). Output from the transfer module is fed
+to morphological generation. De-/reformatters applied to the
+beginning and end of the pipeline let us preserve formatting of
+various document types.
 
 \subsection{Constraint Grammar}
 This language pair differs from most of the other Apertium pairs in
-using a Constraint Grammar (CG) module\footnote{Using {\tt \small  VISL CG-3},
+using a Constraint Grammar (CG) module\footnote{Using {\tt \small VISL
+    CG-3},
   \href{http://beta.visl.sdu.dk/cg3.html}{http://beta.visl.sdu.dk/cg3.html}
 } as a pre-disambiguator (before the HMM). CG's
 \citep{karlsson1990cgf} are hand-written rules which, given
-ambiguously tagged input (e.g. the English word `read' tagged both as a
-past and present tense verb), may SELECT one reading/analysis over all
-the others, or REMOVE a certain reading from the set of analyses. The
-last reading is never removed, although we may end up with several
-readings if the input in fact was ambiguous or the grammar didn't
-manage to remove what it should. CG's may also MAP (add) new tags to
-readings, typically syntactic function labels. Rules may check in
-either direction for the existence of tags or even specific words,
+ambiguously tagged input (e.g. the English word `read' tagged both as
+a past and present tense verb), may SELECT one reading/analysis over
+all the others, or REMOVE a certain reading from the set of
+analyses. The last reading is never removed. We may end up with
+several readings if the input in fact was ambiguous or the grammar
+didn't manage to remove what it should. CG's may also MAP (add) new
+tags to readings, typically syntactic function labels. Rules may check
+in either direction for the existence of tags or even specific words,
 over absolute or undefined distances.
+
+\comment{changed ``parse'' to ``tag'', although most CG's use some
+  ``parsing'' to improve ``tagging''...}
 
 CG's have been shown to be robust in handling unseen text, as well as
 reaching high accuracy levels. CG is also the only grammar-based
-parsing method to give parsing results comparable to statistical
-parsers. Where statistical parsers have been shown to have a ceiling
-under 97\%\footnote{\citet{leech1994claws, brants2000tnt,
-    brill1997uld} all cite accuracy results between 96\% and
-  97\%. Both \citet{chanod1995tfc} and \citet{samuelsson1997cls}
-  compare statistical and CG taggers.},
+method to give results comparable to statistical taggers. Where
+statistical taggers have been shown to have a ceiling under
+97\%\footnote{\citet{leech1994claws, brants2000tnt, brill1997uld} all
+  cite accuracy results between 96\% and 97\%. Both
+  \citet{chanod1995tfc} and \citet{samuelsson1997cls} compare
+  statistical and CG taggers.},
 % I find the footnote more readable than the parenthesis with all these citations, but please change it back if you disagree
 \citet{voutilainen1994engcg} and \citet{bick2000palavras} both cite
 accuracy results above 99\%, for English and Portuguese. 
@@ -178,14 +183,14 @@ The Constraint Grammar runs as a pre-disambiguator, and does not
 always manage to remove all spurious analyses. We run Apertium's
 statistical disambiguator module after this step to make a final
 choice. An unsupervised bigram model (Baum-Welch algorithm, 8
-iterations) was trained on the Nynorsk and Bokmål Wikipedias using the
-{\tt \small apertium-tagger}. Although the Apertium toolset allows for
+iterations) was trained on the Norwegian Wikipedias using the {\tt
+  \small apertium-tagger}. Although the Apertium toolset allows for
 more advanced statistical models \citep{sheikh2009trigram} and methods
 for parameter estimation \citep{sanchez2008utl}, so far we have
 instead worked on improving the CG where we spotted errors. Certain
 errors in the disambiguation might be easier to spot when working with
-machine translation, and improvements to the CG could be of benefit to
-others using the OBT. When disambiguating for machine translation, it
+MT, and improvements to the CG could be of benefit to
+others using the OBT. When disambiguating for MT, it
 is important to keep in mind that we always have to end up with only
 one analysis, thus our version of the OBT is slightly more aggressive
 in removing readings. E.g. we use the following ``heuristic'' rule:
@@ -209,9 +214,8 @@ most of the time than to end up with an unsolved ambiguity.
 As mentioned, we found no freely available bilingual dictionaries
 between Nynorsk and Bokmål, so this we had to build from the ground
 up. Closed classes and some open class entries were simply added
-manually, but the bulk of the transfer lexicon, or translational
-dictionary, was created more or less automatically using the three
-methods described below.
+manually, but the bulk of the translational dictionary was created
+more or less automatically using the three methods described below.
 
 First, exact matches were added where the morphology was the same for
 both languages. E.g., if a noun lemma was the same in both languages,
@@ -249,15 +253,15 @@ course lots of such morpheme/substring correspondences. Running
   then analysing the suggestion to find the lemma. }.
 
 Finally, we added some entries using automatic word alignments. We
-used two resources here: the KDE4 corpus of software translations
-(about 400,000 words), and about 50,000 words of parallel text
-gathered with the {\tt \small  bitextor} web crawler tool
-\citep{espla-gomis2009bfs}\footnote{Available
-  from
+used the KDE4 corpus of software translations (about 400,000 words),
+and about 50,000 words of parallel text from Norwegian government web
+pages, automatically crawled and sentence aligned with the {\tt \small
+  bitextor} web crawler tool
+\citep{espla-gomis2009bfs}\footnote{Available from
   \href{http://websvn.kde.org/trunk/l10n-kde4/}{http://websvn.kde.org/trunk/l10n-kde4/}
   and
   \href{http://bitextor.sourceforge.net/}{http://bitextor.sourceforge.net/}
-  respectively.} from Norwegian government web pages.
+  respectively.}.
 
 The KDE4 translations are in the \emph{gettext} (.po-file) format, for
 which there are a lot of available tools. We first used the Translate
@@ -275,35 +279,37 @@ new terms with very little work; however, many of the software terms
 were of course not in the monolingual dictionaries and thus adding
 them requires some manual labour.
 
-We next ran {\tt \small  Giza++} \citep{och2003scv} on a cleaned version of the KDE4
-corpus to create word alignments. We also appended our 
-transfer lexicon to the corpus several times, to improve the
+We next ran {\tt \small Giza++} \citep{och2003scv} on a cleaned
+version of the KDE4 corpus to create word alignments. We also appended
+our translational dictionary to the corpus 6 times\footnote{This
+  number was simply based on trial and error.}, to improve the
 probability of correct alignments. We then ran these alignments
-through our morphological analysers, and fed them into the tool
-{\tt \small  ReTraTos} \citep{caseli2006aib}, which extracts both phrases and
-single-word translations from alignments, and converts them into
-Apertium transfer entries (perhaps adding directional constraints). We
-also followed this same process on the text gathered from web pages,
-which was automatically crawled and sentence aligned with the {\tt \small  bitextor}
-tool mentioned above.
+through our morphological analysers, and fed them into the tool {\tt
+  \small ReTraTos} \citep{caseli2006aib}, which extracts both phrases
+and single-word translations from alignments\footnote{We did not add
+  transfer rules found by ReTraTos, although this is a possibility.},
+and converts them into Apertium translational entries (perhaps adding
+directional constraints).  We used the same process on the web corpus.
+.
 
-The {\tt \small  ReTraTos} method gave translations for about 3500 entries
-which were missing from the transfer lexicon; however, these still
-needed a manual see through, and very many had to be altered slightly
-(e.g.  changing directional constraints or morphological tags) or
-simply discarded. Due to the amount of noise in this data, this method
-required a lot of post-editing (and in our case functioned more as a
-source of \emph{suggestions} for translations). Of course, a different
-corpus might have achieved higher quality word alignments; either a
-bigger corpus (Wu and Xia \citep[1994, in][p.~230]{caseli2006aib} used
-a 3 million word corpus to induce an English–Chinese dictionary) or a
-corpus of a different text type (\citet{caseli2006aib} used corpora
-which were of similar sizes, but containing magazine text).
+The {\tt \small ReTraTos} method gave translations for about 3500
+entries which were missing from the translational lexicon; however,
+these still needed a manual check, and very many had to be altered
+slightly (e.g.  changing directional constraints or morphological
+tags) or simply discarded. Due to the amount of noise in this data,
+this method required a lot of post-editing (and in our case functioned
+more as a source of \emph{suggestions} for translations). Of course, a
+different corpus might have achieved higher quality word alignments;
+either a bigger corpus (Wu and Xia \citep[1994,
+in][p.~230]{caseli2006aib} used a 3 million word corpus to induce an
+English–Chinese dictionary) or a corpus of a different text type
+(\citet{caseli2006aib} used corpora of similar sizes, but with
+magazine text).
 
 In addition to these three main methods, we also had some
 user-contributed entries. We created a page on the Nynorsk Wikipedia
 where users could suggest translations for those words which were
-missing from the transfer lexicon (sectioned by part-of-speech), and
+missing from the translational lexicon (sectioned by part-of-speech), and
 simply added these as they trickled in.
 
 
@@ -341,16 +347,14 @@ verbs\footnote{Norsk Ordbank uses
   OBT was already pretty good at disambiguating
   infinitives from finite verbs, regardless of voice. 
 
-We currently
-  do not analyse the
-  rather infrequent past passive form.} in \Last[a-b]. \Last[c-d]
-however, does not get transferred correctly yet as the syntactic
-analysis of the OBT is still not incorporated into
-Apertium (we would not want to apply such a transfer rule if a
-non-subject followed the passive verb, as in \emph{om det selges fisk}
-lit. `if there is sold fish', which should transfer by the same rule
-as \Last[a-b] to \emph{om det
-  blir selt fisk}).
+  We currently do not analyse the rather infrequent past passive
+  form.} in \Last[a-b]. \Last[c-d] however, does not get transferred
+correctly yet. We need to know if the phrase after the verb is the
+subject; if it is not, as in \emph{om det selges fisk} lit. `if there
+is sold fish', we should transfer by the same rule as \Last[a-b], to
+\emph{om det blir selt fisk}. The OBT has a CG module which adds
+syntactic function labels, but this is still not incorporated into
+Apertium.
 
 \ex. \label{posgen} \emph{Phrase-initial Bokmål genitives are expressed
   periphrastically, phrase-finally in Nynorsk:}
@@ -413,17 +417,20 @@ word corpus of Bokmål newspaper texts, the naïve coverage was 91.8\%.
 
 \subsection{Word Error Rate on Post-Edited text}
 \label{sec:WER}
-We also tested the Word Error Rate (WER)\footnote{Using the tool {\tt \small 
-apertium-eval-translator}, available from
-\href{http://www.dlsi.ua.es/~fsanchez/software.html\#eval}{http://www.dlsi.ua.es/\~{}fsanchez/software.html\#eval}}
-on a 3,750 word post-edited article on linguistics from the Bokmål
-Wikipedia. The WER was 22.06\% when including unknown words, although
-since 64.93\% of these were free-rides\footnote{Ie. the same
-in Bokmål and Nynorsk. Typical free-rides include names, loan-words
-and special terminology.} anyway, the final WER was 10.71\%. We
-consider this quite acceptable for post-editing.
+We also tested the Word Error Rate (WER)\footnote{Using the tool {\tt
+    \small apertium-eval-translator}, available from
+  \href{http://www.dlsi.ua.es/~fsanchez/software.html\#eval}{http://www.dlsi.ua.es/\~{}fsanchez/software.html\#eval}. WER
+  is defined by how many editing operations are needed to change the
+  MT output into the reference text.}
+on a 3,750 word post-edited
+article on linguistics from the Bokmål Wikipedia. The WER was 22.06\%
+when including unknown words, although since 64.93\% of these were
+free-rides\footnote{Ie. the same in Bokmål and Nynorsk. Typical
+  free-rides include names, loan-words and special terminology.}
+anyway, the final WER was 10.71\%. We consider this quite acceptable
+for post-editing.
 
-%\footnote{WER for non-post-edited reference translations will of course be higher.}
+\comment{More WER explanation? Levenshtein/Edit distance, substitution/insertion/deletion? Or a citation instead?}
 
 \subsection{{\sc Bleu} score in comparison with Nyno}
 
@@ -450,19 +457,21 @@ bilingual websites themselves, the other was translated as a joint
 effort on Nynorsk Wikipedia.
 
 \begin{table}[htdp]
-  \caption{{\sc Bleu} score (two reference translations), UWR and WER (for the \emph{O}riginal and \emph{W}ikipedia references) for Apertium and Nyno}
+  \caption{{\sc Bleu} score (two reference translations), UWR and WER (for the \emph{O}riginal and \emph{W}ikipedia references) for Apertium and Nyno. Numbers in parenthesis give percentage of unknown words which were free-rides.}
 \begin{center}
-\begin{tabular}{|l|r|r|r|r|}
+\begin{tabular}{|l|r|r|r|}
   \hline
-  & {\sc Bleu} & UWR  & WER$_{O}$ & WER$_{W}$ \\
+  & {\sc Bleu} &  WER$_{O}$ & WER$_{W}$ \\
   \hline					 
-  Apertium    & 0.74       & 9.5 & 32.5 & 17.7\\
-  Nyno        & 0.85       & 0.8 & 29.1 &13.3 \\
+  Apertium    & 0.74 & 32.5 (36.1) & 17.7 (50.5) \\
+  Nyno        & 0.85 & 29.1 (34.6) &13.3 (47.3) \\
   \hline
 \end{tabular}
 \end{center}
 \label{bleu}
 \end{table}%
+
+\comment{fjerna UWR frå tabellen, sidan det står nedanfor}
 
 With only two reference translations, both {\sc Bleu} scores are quite
 good. The Nyno result is clearly better than Apertium, though. The
@@ -488,21 +497,21 @@ language side).
 Of the 20 first non-vocabulary errors in the above WER test, 13 were
 disambiguation problems, two were transfer problems and five related
 to lexical selection. In other text domains, e.g. newspaper texts, we
-also find some problems related to \emph{coreference chaining}, which
-we currently have not attempted solving (especially noticable in
-pronouns since Bokmål more or less is a two-gender language while
-Nynorsk is three-gender). 
+also find some problems related to \emph{coreference}, eg. where a
+pronoun refers to, and should agree with, a noun elsewhere in the
+text. We have not attempted to solve this.
 
-Comparing the CG analyses and translations of the first 100 sentences
-in the {\sc Bleu} testbed, we discovered one trivially fixable
-transfer bug, and three pronoun gender errors which were plainly due
-to our lack of any coreference analysis.
+Comparing the CG analyses (before HMM disambiguation) and translations
+of the first 100 sentences in the {\sc Bleu} testbed, we discovered
+one trivially fixable transfer bug, and three pronoun gender errors
+which were plainly due to our lack of any coreference analysis.
 
 A manual check of the analyses showed that 223 superfluous readings
 had not been removed (remained undisambiguated) without causing errors
 in the final translation\footnote{If a word has one correct
   (unremoved) and five mistaken (unremoved) readings, we count this as
-  five.}. 19 readings which should have been removed, but weren't,
+  five.}, in most cases since the translations of both readings were
+the same. 19 readings which should have been removed, but weren't,
 \emph{did} in fact cause errors.  13 readings were mistakenly removed
 without causing errors, while 3 where mistakenly removed and
 \emph{did} cause errors.
@@ -525,26 +534,26 @@ as the challenges posed by multi-word expressions such as phrasal
 verbs.
 
 \section{Discussion and outlook}
-In Norwegian, like in other Germanic languages, compounding is very
-productive\footnote{Munthe \citep[1972, in][p.~1]{johannessen1996aan}
-  puts the number at ``10.4\% of all words in running text'', although
-  quite a lot of these will already be in our dictionary.} At the
-moment, we do not have any sort of compound analysis, but we are
-currently looking into ways of incorporating this in the Apertium
-pipeline. Some preliminary tests using left-to-right longest-match and
-a noun-only dictionary showed that it is quite easy to restrict the
-analysis of compounds to \emph{those for which we can expect good
-  translations}. Looking at only those compound translations which
-were analysed as two nouns\footnote{Noun-noun compounds are
-  by far the most common, from a list of 26,344 Bokmål tagged compounds
+In Norwegian, like in other Germanic languages, words combine very
+productively into compunds\footnote{Munthe \citep[1972,
+  in][p.~1]{johannessen1996aan} puts the number at ``10.4\% of all
+  words in running text'', although quite a lot of these will already
+  be in our dictionary.}. At the moment, we do not have any sort of
+compound analysis, but we are currently looking into ways of
+incorporating this in the Apertium pipeline. Some preliminary tests
+using left-to-right longest-match and a noun-only dictionary showed
+that it is quite easy to restrict the analysis of compounds to
+\emph{those for which we can expect good translations}: looking at
+only those translations of noun-noun compounds \footnote{Noun-noun
+  compounds are by far the most common, from a list of 26,344 Bokmål
+  tagged compounds
   (\href{http://www.dokpro.uio.no/bokmaal/nyord/nyord_fside.html}{http://www.dokpro.uio.no/bokmaal/nyord/nyord\_fside.html})
-  we
-  found only 1281 containing an adjective or verb as a member. (Such
-  annotated compound lists may of course also easily be converted into
-  transfer lexicon entries.)} where the first was in the singular
-indefinite form, 99 out of 100 randomly selected compounds were
-correctly translated, the remaining one—shown in \Next[b]—had an
-ambiguous second member on the Bokmål side:
+  we found only 1281 containing an adjective or verb as a
+  member. (Such annotated compound lists may of course also easily be
+  converted into translational lexicon entries.)} where the first part
+was analysed as singular indefinite, 99 out of 100 randomly selected
+compounds were correctly translated, the remaining one—shown in
+\Next[b]—had an ambiguous second member on the Bokmål side:
 
 \ex. \ag. bilkirkegård $\rightarrow$ bilkyrkjegard\\
 car.cemetery $\rightarrow$ car.cemetery\\
@@ -566,13 +575,13 @@ he counseled me to INF go home\\
 Nynorsk text typically contains many such MWE's; but without knowing
 where the relevant Bokmål phrase ends, we have to take the safe route
 and try to find non-discontinuous Nynorsk translations. However, as
-mentioned earlier, the OBT has a syntactic component which we haven't
-incorporated yet. This could be used to handle MWE's, in addition to
-the challenge posed by \ref{pass-syntax} above.
+mentioned earlier, the OBT has a CG which adds syntactic information;
+this could be used to handle MWE's, in addition to the challenge posed
+by \ref{pass-syntax} above.
 
 \comment{ noko om at nn-nb.po kan nyttast som TMX med Apertium?}
 
-We have described the development of a machine translation language
+We have described the development of a MT language
 pair using Free and Open Source tools and linguistic data. Although
 there are many possible improvements to be made, the system is in a
 usable state for post-editing MT. This would not have been possible
@@ -596,16 +605,15 @@ of text available in these languages, and in fact, {\tt \small
 translations of Wikipedia articles from Bokmål to
 Nynorsk\footnote{\href{http://nn.wikipedia.org/wiki/Kategori:Omsett_med_Apertium}{http://nn.wikipedia.org/wiki/Kategori:Omsett\_med\_Apertium}}.
 
-Except for Google's Swedish/Danish/Bokmål MT (all via English), 
-operative general-purpose Machine Translation systems between 
-Scandinavian languages are rule-based, and most of them are powered by CG. 
-Being open source, Apertium broadens the Scandinavian MT horizon.
+Except for Google's Swedish/Danish/Bokmål MT (all via English),
+operative general-purpose MT systems between Scandinavian languages
+are rule-based, and most of them are powered by CG.  Being open
+source, Apertium broadens the Scandinavian MT horizon.
 
 %As the first open source RBMT platform, Apertium broadens the horizon of Scandinavian MT.
 
 \section*{Acknowledgements}
-[Anonymised]
-\comment{Development was funded as part of the Google Summer of
+Development was funded as part of the Google Summer of
 Code\footnote{\href{http://code.google.com/soc/}{http://code.google.com/soc/}
 } programme. Thanks to co-mentor Francis Tyers (Universitat d'Alacant,
 Prompsit Language Engineering) for the initial work on {\tt \small 
@@ -615,7 +623,7 @@ Frode Håvik Korneliussen and Pål Julius Skogholt for reference
 translations, and Wikipedia contributors for suggestions, and to Paul
 Meurer (Aksis, Universitetet i Bergen) and Kristin Hagen
 (Universitetet i Oslo) for help with the OBT.
-}
+
 
 \bibliographystyle{apalike}
 \bibliography{apertium}
