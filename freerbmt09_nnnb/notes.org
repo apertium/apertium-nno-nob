@@ -1,308 +1,111 @@
-#+TITLE: Reuse of Free Resources in Machine Translation between Nynorsk and Bokmål
+#+TITLE: Notes for Reuse of Free Resources in Machine Translation between Nynorsk and Bokmål
 #+OPTIONS: skip:nil num:nil author:nil 
 #+EMAIL: unhammer at gmail dot com
 #+LANGUAGE: en
 #+TAGS: ROTETE(r)
 #+SEQ_TODO: SKRIV FERDIG
 #+EXPORT_EXCLUDE_TAGS: ROTETE
-#+LaTeX_CLASS: freerbmt
-#+LaTeX_HEADER: \usepackage{hyperref}
-#+LaTeX_HEADER: \author{Jane Doe\\  Department of Computer Science \\  Nonesuch State University \\  Utopia, NS 12345 \\  {\tt jane.doe@cs.nsu.edu} \And  John Smith \\  Department of Linguistics \\  Another State University \\  Collegetown, AS 98765 \\    {\tt jsmith@ling.asu.edu}}
-
-#+BEGIN_LaTeX
-  \begin{abstract}
-    We describe the development of a shallow-transfer machine translation system between Norwegian Nynorsk and Norwegian Bokmål built on the Apertium platform, using the free and open source resources Norsk Ordbank and the Oslo-Bergen (Constraint Grammar) tagger. We detail the integration of these and other resources in the system, the construction of the lexical and structural transfer, and give an evaluation of the translation quality and a comparison with another system.
-  \end{abstract}
-#+END_LaTeX
-
-* Introduction
-The term /Norwegian/ covers a variety of related spoken dialects. Up
-until the 1800's, Danish was the only written standard used in
-Norway. Bokmål emerged through various reforms which brought the
-written language closer to the spoken; Nynorsk however, was created
-from the ground up with the purpose of representing all the spoken
-dialects of Norway. As it is, certain dialects (especially around the
-Oslo area) correspond more with Bokmål, while others are closer to
-Nynorsk. Nynorsk is "in a minority position in Norway, with
-approximately 12% of the users" \citep{everson2000sln}, or around
-450,000 people. 
-
-Although Nynorsk is in a minority position, there are quite good
-linguistic resources available under Free licences, compared to many
-languages with the same amount of speakers.  We describe the creation
-of a machine translation system between Nynorsk and Bokmål[fn:4] built
-using these resources with the free and open source Apertium platform
-\citep{corbi05oss}. In the following section we give an overview of
-the Apertium platform and Constraint Grammar. Section
-\ref{SEC:development} describes how the available resources were
-integrated into Apertium, and how we dealt with lexical and syntactic
-transfer (for which we did not have freely available resources). In
-the next two sections we give an evaluation of the translation quality
-and a discussion of the lessons learnt and how the system may be
-further improved.
-
-* Design
-  \label{SEC:design}
-
-The nn-nb language pair follows the design of the Apertium system
-\citep{corbi05oss}, a highly modular, shallow-transfer pipeline
-machine translation system. Dictionaries written in XML are compiled
-into reversible finite state transducers, so that word-for-word
-translations are possible in both directions using only two
-monolingual (morphological analysis/generation) and one translational
-(transfer) dictionary. First order hidden Markov models are used after
-analysis for part-of-speech disambiguation[fn:7]. The transfer module
-is finite state based and allows three-stage chunking transfer
-(although nn-nb only uses one-stage transfer). De-/reformatters
-applied to the beginning and end of the pipeline lets one preserve
-formatting of various document types.
-
-The nn-nb language pair differs from most of the other Apertium pairs
-in using a Constraint Grammar module[fn:3] as a pre-disambiguator
-(before the statistical tagger). Constraint Grammars
-\citep{karlsson1990cgf} are hand-written rules which, given
-ambiguously tagged input (eg. 'read' tagged both as a past and present
-tense verb), may SELECT one reading/analysis over all the others, or
-REMOVE a certain reading from the set of analyses. The last reading is
-never removed, although we may end up with several readings if the
-input was in fact ambiguous or the grammar didn't manage to remove
-what it should. Constraint Grammars may also MAP (add) new tags to
-readings, typically syntactic function labels. Rules may check in
-either direction for the existence of tags or even specific words,
-over absolute or undefined distances.
-
-In the next section we describe the development and use of these
-modules in nn-nb.
-
-* Development
-  \label{SEC:development}
-** Resources
-We used Norsk Ordbank[fn:2], a $>100,000$ lemma GPL full form
-dictionary, as our basis for the morphological analysis and
-generation. We also used the morphological disambiguator of the
-Oslo-Bergen Tagger \citep{hagen2000cbt}, a high quality GPL Constraint
-Grammar. These were converted into Apertium formats and tag schemes,
-as described below.
-
-We found no freely available bilingual dictionary, so this was created
-using various both manual and automatic methods, along with transfer
-rules to cope with syntactic differences and agreement. The following
-sections detail the process.
-*** SKRIV mention KDE4 and bitextor web sites?
-** Analysis and generation
-Most Apertium language pairs use /lttoolbox/ for morphological
-analysis and generation, which compiles XML-structured entries into
-fast finite state transducers and allows generalisations to be made
-across eg. common suffix paradigms. Norsk Ordbank is a full form
-dictionary with morphological information (lemma, part-of-speech,
-inflection, ...), this was semi-automatically transformed into the
-lttoolbox format. First one paradigm was created per lemma (always
-creating the longest possible suffix), then any duplicate paradigms
-were merged.
-*** SKRIV example of an XML entry?
-** Disambiguation
-The Oslo-Bergen tagger and Norsk Ordbank use a different tagset from
-Apertium. We want the resources used in nn-nb to be useful in creating
-new Apertium language pairs, so we converted the tags to ones which
-conform as much as possible to other Apertium dictionaries. Most tags
-could be replaced one-to-one, although some were replaced with
-Constraint Grammar sets. To exemplify the latter: the Oslo-Bergen
-tagger uses the tags =<subst><appell>= and =<subst><prop>= where
-Apertium uses =<n>= and =<np>= respectively, so rules working on the
-single tag =<subst>= were changed to work on the set consisting of the
-tags =<n>= and =<np>=. Most of this conversion was done using simple
-shell scripts.
-*** SKRIV =texttt= for tags? or something else?
-*** SKRIV unsupervised tagger training
-The Constraint Grammar runs as a pre-disambiguator, and doesn't always
-manage to remove all spurious analyses. We run Apertium's statistical
-disambiguator module after this step to make a final choice. We
-trained an unsupervised bigram model on the Nynorsk and Bokmål
-Wikipedia's using the =apertium-tagger= \citep{todo}. Although there
-is the possibility of more advanced statistical models using the
-Apertium toolset
-\citep[see~eg.~][]{sanchez2008utl,sheikh2009unpublished}, so far we
-have instead worked on improving the Constraint Grammar where we
-spotted errors.
-
-** Lexical transfer
-As mentioned, we found no freely available bilingual dictionaries
-between Nynorsk and Bokmål, so this we had to build from the ground
-up. Closed categories and some open-category entries were simply added
-manually, but the bulk of the transfer lexicon, or translational
-dictionary, was created more or less automatically using three main
-methods.
-
-First, exact matches were added where the morphology was the same for
-both languages. Eg., if a noun lemma was the same in both languages,
-and in both languages the noun could occur in the same forms
-(singular/plural, definite/indefinite), we added it as a
-translation. This quickly got us around 36,000 entries. There are two
-problems with this method though. One is that it may introduce a lot
-of false friends. However, for closely related languages, the benefit
-outweighs the risk (and lists of common false friends are not hard to
-come by in grammars). The other problem is that we add many "radical
-forms", eg. Bokmål words which exist in the Nynorsk dictionary but are
-far from being the most natural sounding Nynorsk translation. We can
-easily put restrictions on these forms so that they are only analysed,
-but not generated, but finding all such pairs involves some work.
-
-We also added entries where there were predictable changes, eg. the
-Bokmål adjective suffix /-lig/ will typically be /-leg/ in Nynorsk,
-etc. This process, also used by \citet[p.~4]{tyers2009dpm}[fn:8],
-simply consists of
-1. finding Bokmål entries without translations
-2. running string replacements on these for typical differences in
-   substrings
-3. checking whether the altered entries actually exist in the Nynorsk
-   analyser
-
-There are no orthographic generalisations to make between the
-languages, but of course lots of such morpheme/substring
-correspondences. The main run of this method gave us about 2500 nouns
-and verbs.
-
-Finally, we added some entries using automatic word alignments. We
-used two resources here: the KDE4 corpus of software translations, and
-text gathered with the bitextor web crawler tool[fn:5]. 
-
-The KDE4 translations are in the /gettext/ (.po-file) format, for
-which there are a lot of available tools. We first used the Translate
-Toolkit[fn:6] tool /poswap/ to turn the English-Nynorsk and
-English-Bokmål .po-files into Nynorsk-Bokmål files, then we ran
-/poterminology/, a terminology extraction tool which gathers simple
-phrase pairs (all subphrases which appear together over a certain
-threshold), taking advantage of the amount of repetition in software
-translations. 
-
-We next ran Giza++ \citep{och2003scv} to create word alignments, which
-we then fed into the tool ReTraTos \citep{caseli2006aib}.
-
-*** SKRIV wikipedia!
-*** SKRIV noe om at nn-nb.po kan nyttast som TMX med Apertium?
 
 
-*** SKRIV URL til KDE4
+* SKRIV Although the authors argue that the MT developed can be used both for the translation from Nynorsk to Bokmål, and the other way around, it is only evaluated in one direction. 
+It would be nice to evaluate the translator in the other direction, since the number of structural transfer rules is quite different (33 versus 8).
 
-- Giza++ (I guess I could do a diff on the bidix from before and after
-  I started working on Giza++ stuff)
-- Anything about regression testing and that stuff? (Ie. whenever we
-  fix a certain transfer construction or disambiguation problem, we
-  add a regression test to make sure we don't have to fix it again.)
-*** SKRIV summary
-(It's hard to tell exactly how many entries were added by which
-method... but the main impression I have is that we need a lot better
-parallel text to use the word aligment methods, since they involve a
-lot of work for very messy output.)
-#todo
+* SKRIV Also it would be nice to know the amount of effort needed to develop the system; this would help other developers in deciding to build a new language pair for Apertium by re-using existing resources and semi-automatically building some of them.
+  - Note taken on [2009-10-13 Tue 13:54] \\
+    I tried to indicate that in the bidix section at least.. but I guess I
+    could mention that I at least only worked 12 weeks full time, or
+    something like that. -k
 
-** Syntactic transfer
-The transfer module matches fixed-length patterns of part-of-speech
-tags and/or lemmas, on a left-to-right longest-first
-[basis..wossname..]. 
-#todo
+* FERDIG Finally, the paper is well written and easy to follow. The authors should avoid the use of contractions such as "doesn't" and use the more formal way "does not".
+   CLOSED: [2009-10-13 Tue 13:34]
 
-- what are the relevant patterns which need transfer?
-- how did we solve it?
-- how didn't we solve it? (or, what are the problems)
+* SKRIV In section 1, you mention that the system is aimed at being acceptable for post-editing, it would be useful to mention the possible usages of MT systems (assimilation and dissemination) and say that your system is aimed at being useful for dissemination purposes, which always requires post-editing.
 
+* FERDIG Although Corbí-Bellot el al. (2005) provide the first description of Apertium, it is better explained by Armentano et al. (2006) on their paper "Open-source Portuguese-Spanish machine translation".
+   CLOSED: [2009-10-13 Tue 13:43]
 
-* Evaluation
-  \label{SEC:eval}
-We define naïve coverage as the proportion of words in a corpus which
-are given at least one analysis by our monolingual
-dictionaries. Testing on Nynorsk Wikipedia (5116174 words) and Bokmål
-Wikipedia (27529115 words), we have 89.6% and 88.2% coverage,
-respectively.
-
-The Word Error Rate (WER) on a 3750 word Wikipedia article on
-linguistics in the Bokmål to Nynorsk direction was 22.06% when
-including unknown words, although since 64.93% of these were
-free-rides (ie. the same in Bokmål and Nynorsk) anyway, the final WER
-was 10.71%. Typical free-rides include names, loan-words and special
-terminology.
-
-- Qualitative assessment...
-  - Error types:
-    - lexical selection
-    - disambiguation
-    - transfer (eg. word order, "mannen sin hest")
-
-- Anything about Nyno? (Their web page says 74000 words, don't know
-  about WER but the cool thing about Nyno is the interface, ie. the
-  freedom of choice with variants and how the user can do the lexical
-  selection. 
-** outdated..							     :ROTETE:
-   The examples from
-   http://www.hf.uio.no/tekstlab/Presseklipp/Spr%E5knytt%203-2001.htm
-   ("Nyno i bruk") seem to indicate that the OBT is a bit better at
-   disambiguating though (underline meaning wrong translation):
-   - Original: Når det iverksettes arbeidskamp, er det partene i den
-     enkelte tvist som har ansvaret for de konsekvenser arbeidskamp
-     påfører tredjemann.
-   - Nyno: Når _den iverksettes arbeidskampen_, er _dei_ partane i den
-     enkelte tvist som har ansvaret for dei konsekvensane arbeidskamp
-     påfører tredjemann.
-   - Apertium: Når det blir iverksett *arbeidskamp, er det partane i
-     den einskilde tvisten som har ansvaret for dei konsekvensane
-     *arbeidskamp påfører tredjemann.
-
-* Discussion
-- We don't have any sort of compound handling, probably we could
-  analyse a whole lot more with a trie or whatever, but there's also a
-  compound handler in OBT that might be possible to integrate.
-  - *menneskehandel.
-  - menneske. handel.
-- "Well-written" nynorsk uses lots of periphrasis and MWE's, eg. particle
-  verbs; we don't generate any such thing. A syntactic analysis might
-  be useful here, although without being quite certain of where the
-  relevant phrase ends, it'll be safer to stick with non-discontinuous
-  target language translations.
-
-On the Scandinavian language group, and expanding it for Apertium:
-#+BEGIN_QUOTE 
-Morphologically, these four languages are equally distant from each
-other, but the terminological differences are smaller between Nynorsk
-and Bokmål than between the other two. \\
-\citep{everson2000sln}
-#+END_QUOTE
-
-* SKRIV Acknowledgements should be section* 			     :ROTETE:
-* Acknowledgements 
-Development was funded as part of the Google Summer of Code[fn:1]
-programme. Thanks to mentors and OBT people.
-
-\bibliographystyle{apalike}
-\bibliography{apertium}
+* SKRIV In section 2, you argue that the dictionaries are compiled into reversible finite-state transducers (FST); note that the fact that FSTs are reversible is irrelevant, because no tool in Apertium reverses them.
+   - Note taken on [2009-10-13 Tue 13:44] \\
+     Do we have space to explicate this? Or is it ok to just remove "reversible"?
+It is true that Apertium dictionaries are used both for analysis and
+generation; however, Apertium uses two different FSTs, one for
+analysis and another for generation. Monolingual dictionaries are
+compiled twice: to obtained a FST for analysis, and to obtained a FST
+for generation.
 
 
-* Footnotes
+* SKRIV The Apertium pipeline description should be improved so as to allow readers not knowing Apertium to understand how it works.
 
-[fn:1] http://code.google.com/soc/
+* SKRIV When Constrain Grammar (CG) are described (sec. 2.2) it is not clear whether you use the Apertium tagger after CG. Later in the paper it becomes clear that the tagger is used; anyway, I think you should say something here.
+  - Note taken on [2009-10-13 Tue 13:59] \\
+    Hmm. We do say "This language pair differs from most of the other
+    Apertium pairs in using a Constraint Grammar (CG) module3 as a
+    pre-disambiguator (before the HMM).", but I guess we could be more explicit.
 
-[fn:2] http://www.edd.uio.no/prosjekt/ordbanken/
+* FERDIG In section 3.1, please rewrite sentence "..., a > 100,000 lemma ....".
+  CLOSED: [2009-10-13 Tue 14:03]
 
-[fn:3] Running on VISL CG-3, available from
-http://beta.visl.sdu.dk/cg3.html
+* FERDIG In section 3.3, please explain the meaning of each tag you use in the examples. What do "subst.appell", "subst.prop", "n" and "np" mean?
+  CLOSED: [2009-10-13 Tue 14:07]
 
-[fn:4] Available from http://apertium.org
+* FERDIG Sánchez-Martínez et al. (2008) describes a method to estimate the HMM parameters, not a more advanced statistical model; the model whose parameters are estimated is still an HMM. Please rewrite that sentence to clarify this.
+  CLOSED: [2009-10-13 Tue 14:15]
 
-[fn:5] Available from http://websvn.kde.org/trunk/l10n-kde4/ and
-http://bitextor.sourceforge.net/ respectively.
+* FERDIG Also mention that you have used the Baum-Welch algorithm (you say you trained the tagger in an unsupervised way) to train the HMM-based tagger and how many iteration of this algorithm you have done.
+  CLOSED: [2009-10-13 Tue 14:13]
 
-[fn:6] Available from
-http://translate.sourceforge.net/wiki/toolkit/index
+* SKRIV In section 3.4. how many times have you added your bilingual dictionary to the corpus before running Giza++? If it was n times, how did you decide the value of n?
 
-[fn:7] Although we now have the capability for second order HMM's,
-\citep{todo_or_remove}.
+* SKRIV Sometimes you refer to the entries in the bilingual dictionary as "transfer entries" which may be confusing, specially when speaking about the use of ReTraTos.
 
-[fn:8] A technique used in other Apertium language pairs, which we
-haven't tried yet, is running a target language spell checker (which
-gives suggestions) on the missing source language words, and then
-analysing the suggestion to find the lemma.
+* SKRIV In section 3.5, example (1), please provide the language, using ISO-639 codes if you want, and make clear which is the source language and the target language. Same thing applies to rest of examples.
+
+* SKRIV Explain what is a V2 language.
+
+* SKRIV About the evaluation (section 4.2), you provide the WER and the percentage of unknown words, of these unknown words, how many are free rides? You should compare the percentage of unknown words that are not free rides to the percentage of unknown words in the other MT system.
+
+* SKRIV Explain what is coreference chaining.
 
 
+* SKRIV In section 2.1, the individual modules of the Apertium pipeline are mentioned: morphological analysis, PoS tagging, transfer module and de-/reformatting. For the novice reader it is not clear where generation fits into the pipeline.
 
+* SKRIV The second paragraph in section 2.2 is confusing.
+	i) The text says: "CG is also the only grammar-based parsing method to give parsing results comparable to statistical parsers. Where statistical parsers have been shown to have a ceiling under 97% ..."  I assume that the authors intended to write "taggers" instead of "parsers" (no statistical parser obtains an accuracy of 97%!). The footnote that follows indeed supports my assumption because all the papers listed (Leech, Brants, Brill) are papers about PoS tagging.
+	ii) Then the text continues: "...Voutilainen and Heikkila (1994) and Bick (2000) both cite accuracy results above 99%, for English and Portuguese." One cannot directly compare the tagging accuracy of taggers that perform full disambiguation (like say TnT) to constraint grammar taggers which do not always remove all spurious analysis. Here the authors are comparing accuracy vs. recall. This important difference should be noted in the text.
+
+* SKRIV In section 3.5, "... as the syntactic analysis of the OBT is still not incorporated into Apertium". This suggest to the reader that incorporating syntactic analysis (parsing structures) is possible (this issue is again stated in section 5). A discussion related to this is needed.
+
+* SKRIV In the evaluation part, both BLEU and WER are used.  Readers not familiar with these criteria can refer to the BLEU paper cited but no reference is cited with regard to WER (excluding the Perl program used). If no paper is cited regarding WER then at least WER should be explained in a few words.
+
+* SKRIV In section 4.3, in the discussion about CG analysis, it is stated that "223 superfluous readings had not been removed (remained undisambiguated) without causing errors in the final translation".  This is confusing because, according to the earlier discussion, an HMM tagger is used to fully disambiguate the source language.  Does this mean that the HMM tagger was able to remove all these superfluous readings and therefore it (the HMM tagger) is the one to thank for no translation errors in the system in this case?
+
+* SKRIV In section 5, I find the discussion about compounds not clear. How can a compound translation be analysed as two nouns? Isn't a Norwegian compound a single noun?  Why is it "easy to restrict the analysis of compounds to those for which we can expect good translation"? 
+
+
+* SKRIV In the introduction, it is not clear whether the system is able to translate in both directions or only from nn to nb.
+
+* SKRIV When the term "machine translation" is used the first time in the introduction, the abbreviation "MT" should follow in parenthesis (MT is used first as an abbreviation in section 2.2).
+
+* FERDIG The Corbí-Bellot et al. reference is redundant in section 2.1, because it is already cited in the introduction.
+   CLOSED: [2009-10-13 Tue 13:49]
+
+* FERDIG The abbreviation "eg." is used in various places throughout the paper.  I prefer the standard "e.g."
+   CLOSED: [2009-10-13 Tue 13:50]
+   - Note taken on [2009-10-13 Tue 13:51] \\
+     wow, we had 17 e.g.'s.
+
+* SKRIV In section 2.2, a missing "(" in front of "tagged both as a past and present tense verb)"
+
+* SKRIV In section 2.2, "The last reading is never removed, although we may end up with several readings ...".  Shouldn't "although" be "and"? 
+
+* SKRIV In section 3.5, footnote nr. 10 should be moved to the end of the sentence.
+
+* SKRIV In section 5, there is a missing period in the first sentence.  
+
+* FERDIG In the reference list, the Corbí-Bellot reference presumably has "Spain" instead of "spain".
+   CLOSED: [2009-10-13 Tue 13:49]
+   - Note taken on [2009-10-13 Tue 13:49] \\
+     Armentano 2006 used instead
 
 
 
