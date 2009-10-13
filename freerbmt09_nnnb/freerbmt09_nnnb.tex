@@ -54,7 +54,7 @@ of {\tt \small  apertium-nn-nb}, a machine translation system between Nynorsk
 and Bokmål\footnote{Available from
   \href{http://apertium.org}{http://apertium.org} } built using these
 resources with the Free and Open Source Apertium platform
-\citep{corbi05oss}. In the following section we give an overview of
+\citep{armentano2006ops}. In the following section we give an overview of
 the Apertium platform and Constraint Grammar. Section
 \ref{sec:development} describes how the available resources were
 integrated into Apertium, and how we dealt with lexical and syntactic
@@ -69,17 +69,16 @@ lessons learnt and how the system may be further improved.
 \section{Design}
  \label{sec:design}
 \subsection{The Apertium Pipeline}
- The Nynorsk–Bokmål language pair follows the design of the Apertium
- system
- \citep{corbi05oss}, a highly modular, shallow-transfer pipeline
- machine translation system. Dictionaries written in XML are compiled
- into reversible finite state transducers, so that word-for-word
- translations are possible in both directions using only two
- monolingual dictionaries (morphological analysis/generation) and one
- translational (transfer) dictionary. Both dictionary types make use of
- \emph{paradigms} to eg. generalise over common suffix sets (and
- their analyses), and \emph{directional constraints}, which state that
- a certain entry may be analysed, but not generated, or vice versa.
+The Nynorsk–Bokmål language pair follows the design of the Apertium
+system, a highly modular, shallow-transfer
+pipeline machine translation system. Dictionaries written in XML are
+compiled into finite state transducers, so that word-for-word
+translations are possible in both directions using only two
+monolingual dictionaries (morphological analysis/generation) and one
+translational (transfer) dictionary. Both dictionary types make use of
+\emph{paradigms} to e.g. generalise over common suffix sets (and their
+analyses), and \emph{directional constraints}, which state that a
+certain entry may be analysed, but not generated, or vice versa.
 
  First order hidden Markov models (HMM's) are used after analysis for
  part-of-speech disambiguation\footnote{Although there is now also an
@@ -98,7 +97,7 @@ using a Constraint Grammar (CG) module\footnote{Using {\tt \small  VISL CG-3},
   \href{http://beta.visl.sdu.dk/cg3.html}{http://beta.visl.sdu.dk/cg3.html}
 } as a pre-disambiguator (before the HMM). CG's
 \citep{karlsson1990cgf} are hand-written rules which, given
-ambiguously tagged input (eg. the English word `read' tagged both as a
+ambiguously tagged input (e.g. the English word `read' tagged both as a
 past and present tense verb), may SELECT one reading/analysis over all
 the others, or REMOVE a certain reading from the set of analyses. The
 last reading is never removed, although we may end up with several
@@ -136,11 +135,11 @@ Apertium modules, including Constraint Grammar, in {\tt \small
 As our basis for the morphological analysis and generation, we used
 Norsk
 Ordbank\footnote{\href{http://www.edd.uio.no/prosjekt/ordbanken/}{http://www.edd.uio.no/prosjekt/ordbanken/}
-}, a $>100,000$ lemma GPL full form dictionary. We also used the
-morphological disambiguator of the Oslo–Bergen Tagger (OBT), a high
-quality GPL Constraint Grammar \citep{hagen2000cbt}. Both of these use
-the same tag scheme. They were converted into Apertium formats and tag
-schemes, as described below.
+}, a GPL full form dictionary with over $100,000$ lemmas. We also used
+the morphological disambiguator of the Oslo–Bergen Tagger (OBT), a
+high quality GPL Constraint Grammar \citep{hagen2000cbt}. Both of
+these use the same tag scheme. They were converted into Apertium
+formats and tag schemes, as described below.
 
 We found no freely available bilingual dictionary, so this was created
 using various both manual and automatic methods, along with transfer
@@ -152,42 +151,44 @@ sections detail the process.
 Like most Apertium language pairs, we use \emph{lttoolbox} for
 morphological analysis and generation, which compiles XML-formatted
 entries into fast finite state transducers and allows generalisations
-to be made across eg. common suffix paradigms. The full form
+to be made across e.g. common suffix paradigms. The full form
 dictionary entries (with morphological information like lemma, POS,
 inflection, etc.) in Norsk Ordbank were semi-automatically transformed
 into the lttoolbox format. First, one paradigm was created per lemma
 (always creating the longest possible suffix), then any duplicate
-paradigms were merged. Closed classes (eg. pronouns, determiners) were
+paradigms were merged. Closed classes (e.g. pronouns, determiners) were
 added manually.
 
 \subsection{Disambiguation}
 
 The OBT and Norsk Ordbank use a different tagset from Apertium. We
-want the data from {\tt \small  apertium-nn-nb} to be useful in creating new
-Apertium language pairs, so we converted the tags to ones which
-conform as much as possible to other Apertium dictionaries. Most tags
-could be replaced one-to-one, although some were replaced with CG
-sets. To exemplify the latter: the OBT uses the tags {\tt \small 
-  subst.appell} and {\tt \small  subst.prop} where Apertium uses {\tt \small  n} and
-{\tt \small  np} respectively, so rules working on the single tag {\tt \small  subst}
-were changed to work on the set consisting of the tags {\tt \small  n} and
-{\tt \small  np}. Most of this conversion was done using simple shell scripts.
+want the data from {\tt \small apertium-nn-nb} to be useful in
+creating new Apertium language pairs, so we converted the tags to ones
+which conform as much as possible to other Apertium dictionaries. Most
+tags could be replaced one-to-one, although some were replaced with CG
+sets. To exemplify the latter: the OBT uses the tags {\tt \small
+  subst.appell} and {\tt \small subst.prop} for common and proper
+nouns, where Apertium uses {\tt \small n} and {\tt \small np}
+respectively, so rules working on the single tag {\tt \small subst}
+were changed to work on the \emph{set} consisting of the tags {\tt \small n}
+and {\tt \small np}. Most of this conversion was done using simple
+shell scripts.
 
-The Constraint Grammar runs as a pre-disambiguator, and doesn't always
-manage to remove all spurious analyses. We run Apertium's statistical
-disambiguator module after this step to make a final choice. An
-unsupervised bigram model was trained on the Nynorsk and Bokmål
-Wikipedias using the {\tt \small  apertium-tagger}. Although there is the
-possibility of more advanced statistical models using the Apertium
-toolset \citep[see~eg.~][]{sanchez2008utl,sheikh2009trigram}, so far
-we have instead worked on improving the CG where we spotted
-errors. Certain errors in the disambiguation might be easier to spot
-when working with machine translation, and improvements to the CG
-could be of benefit to others using the OBT. When disambiguating for
-machine translation, it is important to keep in mind that we always
-have to end up with only one analysis, thus our version of the OBT is
-slightly more aggressive in removing readings. Eg. we use the
-following ``heuristic'' rule:
+The Constraint Grammar runs as a pre-disambiguator, and does not
+always manage to remove all spurious analyses. We run Apertium's
+statistical disambiguator module after this step to make a final
+choice. An unsupervised bigram model (Baum-Welch algorithm, 8
+iterations) was trained on the Nynorsk and Bokmål Wikipedias using the
+{\tt \small apertium-tagger}. Although the Apertium toolset allows for
+more advanced statistical models \citep{sheikh2009trigram} and methods
+for parameter estimation \citep{sanchez2008utl}, so far we have
+instead worked on improving the CG where we spotted errors. Certain
+errors in the disambiguation might be easier to spot when working with
+machine translation, and improvements to the CG could be of benefit to
+others using the OBT. When disambiguating for machine translation, it
+is important to keep in mind that we always have to end up with only
+one analysis, thus our version of the OBT is slightly more aggressive
+in removing readings. E.g. we use the following ``heuristic'' rule:
 
 \begin{figure}[htp] {\tt \small  REMOVE (n) IF\\
     (0 adj) (-1 det) (1 subst);}
@@ -195,7 +196,7 @@ following ``heuristic'' rule:
 
 to remove a noun reading if the word might also be an adjective,
 and is between a determiner and a noun / proper noun. When tagging a
-corpus for eg. lexicographic work, this rule may be too strict, but
+corpus for e.g. lexicographic work, this rule may be too strict, but
 for our purposes it is better to make a choice which will be correct
 most of the time than to end up with an unsolved ambiguity.
 
@@ -213,7 +214,7 @@ dictionary, was created more or less automatically using the three
 methods described below.
 
 First, exact matches were added where the morphology was the same for
-both languages. Eg., if a noun lemma was the same in both languages,
+both languages. E.g., if a noun lemma was the same in both languages,
 and in both languages the noun could occur in the same forms
 (singular/plural, definite/indefinite), it was considered a
 translation. This quickly got us around 36,000 entries. There are two
@@ -221,14 +222,14 @@ problem with this method though. One is that it may introduce a lot of
 false friends—however, for closely related languages with such high
 overlap in the lexicon, the benefit outweighs the risk (and lists of
 common false friends are not hard to come by in grammars). The other
-problem is that we add many ``radical forms'', eg. Bokmål words which
+problem is that we add many ``radical forms'', e.g. Bokmål words which
 exist in the Nynorsk dictionary but are far from being the most
 natural sounding Nynorsk translation. We can easily put restrictions
 on these forms (or on all forms with a certain substring) so that they
 are only analysed, but not generated; but finding all such pairs
 involves some work.
 
-We also added entries where there were predictable changes, eg. the
+We also added entries where there were predictable changes, e.g. the
 Bokmål adjective suffix \emph{-lig} will typically be \emph{-leg} in Nynorsk,
 etc. This process, also used by \citet[p.~4]{tyers2009dpm},
 simply consists of
@@ -289,7 +290,7 @@ tool mentioned above.
 The {\tt \small  ReTraTos} method gave translations for about 3500 entries
 which were missing from the transfer lexicon; however, these still
 needed a manual see through, and very many had to be altered slightly
-(eg.  changing directional constraints or morphological tags) or
+(e.g.  changing directional constraints or morphological tags) or
 simply discarded. Due to the amount of noise in this data, this method
 required a lot of post-editing (and in our case functioned more as a
 source of \emph{suggestions} for translations). Of course, a different
@@ -380,7 +381,7 @@ generalise over possessive determiners and genitive nouns with a
 single transfer category such that both \Last[a-b] and \Last[c-d] are
 handled by one rule. Although transfer rules work on fixed-length
 patterns, transfer macros (used by several rules) allow us to
-generalise over eg. agreement or definiteness\footnote{Although
+generalise over e.g. agreement or definiteness\footnote{Although
   Bokmål, like Danish, allows definite determiners with indefinite
   nouns, Nynorsk does not.} operations.
 
@@ -438,7 +439,7 @@ words) from Bokmål to Nynorsk in both Apertium and Nyno\footnote{The
   Norwegian written languages allow many different variant forms
   (regarding lexical choice, inflections, etc.); Nyno provides the
   user with a wide range of dictionary customisation options,
-  eg. ``radical'' versus ``conservative'' Nynorsk, whereas {\tt \small 
+  e.g. ``radical'' versus ``conservative'' Nynorsk, whereas {\tt \small 
     apertium-nn-nb} as of yet only outputs one standard variant. We
   chose the \comment{standard/XYZ-}configuration which seemed to
   correspond most closely to the guidelines we used in designing {\tt \small 
@@ -479,14 +480,14 @@ improvement thus seems to be the lexicon.
 \subsection{Error analysis}
 The majority of the translation errors in {\tt \small  apertium-nn-nb} seem to
 be simply due to missing vocabulary. Of the remaining errors, most can
-be attributed to either \emph{disambiguation}, \emph{transfer} (eg.
+be attributed to either \emph{disambiguation}, \emph{transfer} (e.g.
 agreement, or the problem of \ref{pass-syntax} above) or \emph{lexical
   selection} (choosing the most natural collocations on the target
 language side).
 
 Of the 20 first non-vocabulary errors in the above WER test, 13 were
 disambiguation problems, two were transfer problems and five related
-to lexical selection. In other text domains, eg. newspaper texts, we
+to lexical selection. In other text domains, e.g. newspaper texts, we
 also find some problems related to \emph{coreference chaining}, which
 we currently have not attempted solving (especially noticable in
 pronouns since Bokmål more or less is a two-gender language while
@@ -509,7 +510,7 @@ without causing errors, while 3 where mistakenly removed and
 Of the undisambiguated readings which did not cause errors, we find a
 lot of singular/plural ambiguity. This is common in this text type,
 although some times the disambiguation problems are plainly due to
-lack of vocabulary (eg. an ambiguous adjective could have been
+lack of vocabulary (e.g. an ambiguous adjective could have been
 disambiguated by the following unknown, but unambiguous, noun). The 22
 CG errors which caused translation errors are fortunately quite easy
 to correct; however, 128 word tokens in these sentences were not even
