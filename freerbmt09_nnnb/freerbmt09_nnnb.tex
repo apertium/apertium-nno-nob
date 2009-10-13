@@ -80,17 +80,18 @@ translational (transfer) dictionary. Both dictionary types make use of
 analyses), and \emph{directional constraints}, which state that a
 certain entry may be analysed, but not generated, or vice versa.
 
-First order hidden Markov models (HMM's) are used after analysis for
-part-of-speech disambiguation\footnote{Although there is now also an
-  implementation of second order HMM's \citep{sheikh2009trigram}. }.
-The transfer module is finite state based and handles three-stage
-chunking transfer, although we so far only use one-stage transfer,
-applying operations directly on patterns of morphological categories
-(described in further detail in section
+\comment{removed ``first-order'' since second-order HMM's are also
+  possible, and we cite sheikh2009trigram below}
+
+Hidden Markov models (HMM's) are used after analysis for
+part-of-speech disambiguation.  The transfer module is finite state
+based and handles three-stage chunking transfer, although we so far
+only use one-stage transfer, applying operations directly on patterns
+of morphological categories (described in further detail in section
 \ref{sec:structural-transfer}). Output from the transfer module is fed
-to morphological generation. De-/reformatters applied to the
-beginning and end of the pipeline let us preserve formatting of
-various document types.
+to morphological generation. De-/reformatters applied to the beginning
+and end of the pipeline let us preserve formatting of various document
+types.
 
 \subsection{Constraint Grammar}
 This language pair differs from most of the other Apertium pairs in
@@ -318,12 +319,13 @@ simply added these as they trickled in.
 Nynorsk and Bokmål do not have very many syntactic differences. There
 are some minor differences in verb phrases, and some slightly more
 complex differences in noun phrases\footnote{In the examples here,
-  Bokmål appears above Nynorsk.}, we give some examples below:
+  Bokmål appears above Nynorsk.}. One difference is that \emph{finite
+  bokmål passive verbs are expressed with an auxiliary in Nynorsk
+  (infinitive passives remain unchanged):}
 
-\setlength{\Exlabelsep}{1.1em} % was 1.3em
+\setlength{\Exlabelsep}{1.0em} % was 1.3em
 \alignSubExtrue % wasn't
-\ex. \label{pass} \emph{Finite bokmål passive verbs are expressed with an auxiliary
-  in Nynorsk (infinitive passives remain unchanged):}
+\ex. \label{pass} 
 \ag. Bevilgning gis oftest ikke\\
 grant.{\sc ind} give.{\sc pres.pass} usually not\\
 \bg. Løyve blir oftast ikkje gjeve\\
@@ -339,13 +341,12 @@ In fall.{\sc def} {\sc aux} fjord.{\sc def} fill.{\sc pres.pass} with herring\\
 As \Last[a-b] show, we may have a string of adverbs between the
 Nynorsk finite and main verb. \Last[c-d] demonstrates that when the
 subject is not the first phrase, the Nynorsk subject has to occur
-between the auxiliary and the finite verb (Norwegian being a V2
-language). We apply a transfer rule to the finite passive
-verbs\footnote{Norsk Ordbank uses
-  one and the same entry for present and infinitive passive verbs in
-  Bokmål, which we split into two entries; fortunately for us the
-  OBT was already pretty good at disambiguating
-  infinitives from finite verbs, regardless of voice. 
+between the auxiliary and the finite verb\comment{ (Norwegian being a
+  V2 language)}. We apply a transfer rule to the finite passive
+verbs\footnote{Norsk Ordbank uses one and the same entry for present
+  and infinitive passive verbs in Bokmål, which we split into two
+  entries; fortunately for us the OBT was already pretty good at
+  disambiguating infinitives from finite verbs, regardless of voice.
 
   We currently do not analyse the rather infrequent past passive
   form.} in \Last[a-b]. \Last[c-d] however, does not get transferred
@@ -354,15 +355,17 @@ subject; if it is not, as in \emph{om det selges fisk} lit. `if there
 is sold fish', we should transfer by the same rule as \Last[a-b], to
 \emph{om det blir selt fisk}. The OBT has a CG module which adds
 syntactic function labels, but this is still not incorporated into
-Apertium.
+Apertium. 
 
-\ex. \label{posgen} \emph{Phrase-initial Bokmål genitives are expressed
-  periphrastically, phrase-finally in Nynorsk:}
-\ag. avisens siste utgivelse\\
-newspaper.{\sc def.gen} last publication.{\sc ind}\\
-\bg. den siste utgjevinga til avisa\\
-the last publication.{\sc def} of newspaper.{\sc def}\\
-`the newspaper's last publication'\\
+Additionally, \emph{phrase-initial Bokmål genitives are
+  expressed periphrastically, phrase-finally in Nynorsk:}
+
+\ex. \label{posgen}
+\ag. forfatterens siste utgivelse\\
+author.{\sc def.gen} last publication.{\sc ind}\\
+\bg. den siste utgjevinga til forfattaren\\
+the last publication.{\sc def} of author.{\sc def}\\
+`the author's last publication'\\
 \cg. mitt nye luftputefartøy\\
 my new hovercraft.{\sc ind}\\
 \dg. det nye luftputefartøyet mitt\\
