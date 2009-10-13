@@ -10,6 +10,10 @@
 * SKRIV Although the authors argue that the MT developed can be used both for the translation from Nynorsk to Bokmål, and the other way around, it is only evaluated in one direction. 
 It would be nice to evaluate the translator in the other direction, since the number of structural transfer rules is quite different (33 versus 8).
 
+* SKRIV In the introduction, it is not clear whether the system is able to translate in both directions or only from nn to nb.
+
+* SKRIV In section 1, you mention that the system is aimed at being acceptable for post-editing, it would be useful to mention the possible usages of MT systems (assimilation and dissemination) and say that your system is aimed at being useful for dissemination purposes, which always requires post-editing.
+
 * SKRIV Also it would be nice to know the amount of effort needed to develop the system; this would help other developers in deciding to build a new language pair for Apertium by re-using existing resources and semi-automatically building some of them.
   - Note taken on [2009-10-13 Tue 13:54] \\
     I tried to indicate that in the bidix section at least.. but I guess I
@@ -18,8 +22,6 @@ It would be nice to evaluate the translator in the other direction, since the nu
 
 * FERDIG Finally, the paper is well written and easy to follow. The authors should avoid the use of contractions such as "doesn't" and use the more formal way "does not".
    CLOSED: [2009-10-13 Tue 13:34]
-
-* SKRIV In section 1, you mention that the system is aimed at being acceptable for post-editing, it would be useful to mention the possible usages of MT systems (assimilation and dissemination) and say that your system is aimed at being useful for dissemination purposes, which always requires post-editing.
 
 * FERDIG Although Corbí-Bellot el al. (2005) provide the first description of Apertium, it is better explained by Armentano et al. (2006) on their paper "Open-source Portuguese-Spanish machine translation".
    CLOSED: [2009-10-13 Tue 13:43]
@@ -54,37 +56,66 @@ for generation.
 * FERDIG Also mention that you have used the Baum-Welch algorithm (you say you trained the tagger in an unsupervised way) to train the HMM-based tagger and how many iteration of this algorithm you have done.
   CLOSED: [2009-10-13 Tue 14:13]
 
-* SKRIV In section 3.4. how many times have you added your bilingual dictionary to the corpus before running Giza++? If it was n times, how did you decide the value of n?
+* FERDIG In section 3.4. how many times have you added your bilingual dictionary to the corpus before running Giza++? If it was n times, how did you decide the value of n?
+  CLOSED: [2009-10-13 Tue 15:45]
 
-* SKRIV Sometimes you refer to the entries in the bilingual dictionary as "transfer entries" which may be confusing, specially when speaking about the use of ReTraTos.
+* FERDIG Sometimes you refer to the entries in the bilingual dictionary as "transfer entries" which may be confusing, specially when speaking about the use of ReTraTos.
+  CLOSED: [2009-10-13 Tue 15:45]
 
 * SKRIV In section 3.5, example (1), please provide the language, using ISO-639 codes if you want, and make clear which is the source language and the target language. Same thing applies to rest of examples.
 
+** SKRIV In section 3.5, footnote nr. 10 (now 11) should be moved to the end of the sentence.
+
 * SKRIV Explain what is a V2 language.
 
-* SKRIV About the evaluation (section 4.2), you provide the WER and the percentage of unknown words, of these unknown words, how many are free rides? You should compare the percentage of unknown words that are not free rides to the percentage of unknown words in the other MT system.
-
-* SKRIV Explain what is coreference chaining.
-
-
-* SKRIV In section 2.1, the individual modules of the Apertium pipeline are mentioned: morphological analysis, PoS tagging, transfer module and de-/reformatting. For the novice reader it is not clear where generation fits into the pipeline.
+* FERDIG Explain what is coreference chaining.
+  CLOSED: [2009-10-13 Tue 16:02]
 
 * SKRIV The second paragraph in section 2.2 is confusing.
-	i) The text says: "CG is also the only grammar-based parsing method to give parsing results comparable to statistical parsers. Where statistical parsers have been shown to have a ceiling under 97% ..."  I assume that the authors intended to write "taggers" instead of "parsers" (no statistical parser obtains an accuracy of 97%!). The footnote that follows indeed supports my assumption because all the papers listed (Leech, Brants, Brill) are papers about PoS tagging.
-	ii) Then the text continues: "...Voutilainen and Heikkila (1994) and Bick (2000) both cite accuracy results above 99%, for English and Portuguese." One cannot directly compare the tagging accuracy of taggers that perform full disambiguation (like say TnT) to constraint grammar taggers which do not always remove all spurious analysis. Here the authors are comparing accuracy vs. recall. This important difference should be noted in the text.
+** FERDIG The text says: "CG is also the only grammar-based parsing method to give parsing results comparable to statistical parsers. Where statistical parsers have been shown to have a ceiling under 97% ..."  I assume that the authors intended to write "taggers" instead of "parsers" (no statistical parser obtains an accuracy of 97%!). The footnote that follows indeed supports my assumption because all the papers listed (Leech, Brants, Brill) are papers about PoS tagging.
+   CLOSED: [2009-10-13 Tue 14:40]
+  - Note taken on [2009-10-13 Tue 14:38] \\
+    Well, it is a confusing area since CG sort of mixes tagging with
+    parsing; and syntactic parsing results may improve tagging
+    results... But we don't really have space to mention this.
+** SKRIV Then the text continues: "...Voutilainen and Heikkila (1994) and Bick (2000) both cite accuracy results above 99%, for English and Portuguese." One cannot directly compare the tagging accuracy of taggers that perform full disambiguation (like say TnT) to constraint grammar taggers which do not always remove all spurious analysis. Here the authors are comparing accuracy vs. recall. This important difference should be noted in the text.
+   - Note taken on [2009-10-13 Tue 14:40] \\
+     Bick does mention this difference... must re-read.
 
-* SKRIV In section 3.5, "... as the syntactic analysis of the OBT is still not incorporated into Apertium". This suggest to the reader that incorporating syntactic analysis (parsing structures) is possible (this issue is again stated in section 5). A discussion related to this is needed.
-
-* SKRIV In the evaluation part, both BLEU and WER are used.  Readers not familiar with these criteria can refer to the BLEU paper cited but no reference is cited with regard to WER (excluding the Perl program used). If no paper is cited regarding WER then at least WER should be explained in a few words.
-
-* SKRIV In section 4.3, in the discussion about CG analysis, it is stated that "223 superfluous readings had not been removed (remained undisambiguated) without causing errors in the final translation".  This is confusing because, according to the earlier discussion, an HMM tagger is used to fully disambiguate the source language.  Does this mean that the HMM tagger was able to remove all these superfluous readings and therefore it (the HMM tagger) is the one to thank for no translation errors in the system in this case?
-
-* SKRIV In section 5, I find the discussion about compounds not clear. How can a compound translation be analysed as two nouns? Isn't a Norwegian compound a single noun?  Why is it "easy to restrict the analysis of compounds to those for which we can expect good translation"? 
+* FERDIG In section 3.5, "... as the syntactic analysis of the OBT is still not incorporated into Apertium". This suggest to the reader that incorporating syntactic analysis (parsing structures) is possible (this issue is again stated in section 5). A discussion related to this is needed.
+  CLOSED: [2009-10-13 Tue 15:33]
+  - Note taken on [2009-10-13 Tue 15:34] \\
+    We don't really have space for more discussion... :-/
 
 
-* SKRIV In the introduction, it is not clear whether the system is able to translate in both directions or only from nn to nb.
 
-* SKRIV When the term "machine translation" is used the first time in the introduction, the abbreviation "MT" should follow in parenthesis (MT is used first as an abbreviation in section 2.2).
+* FERDIG About the evaluation (section 4.2), you provide the WER and the percentage of unknown words, of these unknown words, how many are free rides? You should compare the percentage of unknown words that are not free rides to the percentage of unknown words in the other MT system.
+  CLOSED: [2009-10-13 Tue 14:28]
+
+
+* FERDIG In section 2.1, the individual modules of the Apertium pipeline are mentioned: morphological analysis, PoS tagging, transfer module and de-/reformatting. For the novice reader it is not clear where generation fits into the pipeline.
+  CLOSED: [2009-10-13 Tue 14:36]
+
+* FERDIG In the evaluation part, both BLEU and WER are used.  Readers not familiar with these criteria can refer to the BLEU paper cited but no reference is cited with regard to WER (excluding the Perl program used). If no paper is cited regarding WER then at least WER should be explained in a few words.
+  CLOSED: [2009-10-13 Tue 14:48]
+
+* FERDIG In section 4.3, in the discussion about CG analysis, it is stated that "223 superfluous readings had not been removed (remained undisambiguated) without causing errors in the final translation".  This is confusing because, according to the earlier discussion, an HMM tagger is used to fully disambiguate the source language.  Does this mean that the HMM tagger was able to remove all these superfluous readings and therefore it (the HMM tagger) is the one to thank for no translation errors in the system in this case?
+  CLOSED: [2009-10-13 Tue 14:51]
+
+* FERDIG In section 5, I find the discussion about compounds not clear. How can a compound translation be analysed as two nouns? Isn't a Norwegian compound a single noun?
+  CLOSED: [2009-10-13 Tue 15:02]
+  - Note taken on [2009-10-13 Tue 15:04] \\
+    By recursion, yes... changed "compounding is very productive"
+    into "words combine very productively into compunds" etc.
+
+* FERDIG Why is it "easy to restrict the analysis of compounds to those for which we can expect good translation"?
+  CLOSED: [2009-10-13 Tue 15:06]
+  - Note taken on [2009-10-13 Tue 15:06] \\
+    This is explained after the period of that sentence. Changed the
+    period into a colon.
+
+* FERDIG When the term "machine translation" is used the first time in the introduction, the abbreviation "MT" should follow in parenthesis (MT is used first as an abbreviation in section 2.2).
+  CLOSED: [2009-10-13 Tue 15:17]
 
 * FERDIG The Corbí-Bellot et al. reference is redundant in section 2.1, because it is already cited in the introduction.
    CLOSED: [2009-10-13 Tue 13:49]
@@ -94,13 +125,16 @@ for generation.
    - Note taken on [2009-10-13 Tue 13:51] \\
      wow, we had 17 e.g.'s.
 
-* SKRIV In section 2.2, a missing "(" in front of "tagged both as a past and present tense verb)"
+* FERDIG In section 2.2, a missing "(" in front of "tagged both as a past and present tense verb)"
+  CLOSED: [2009-10-13 Tue 15:14]
+  - Note taken on [2009-10-13 Tue 15:14] \\
+    It's there, read the whole sentence.
 
-* SKRIV In section 2.2, "The last reading is never removed, although we may end up with several readings ...".  Shouldn't "although" be "and"? 
+* FERDIG In section 2.2, "The last reading is never removed, although we may end up with several readings ...".  Shouldn't "although" be "and"?
+  CLOSED: [2009-10-13 Tue 15:15]
 
-* SKRIV In section 3.5, footnote nr. 10 should be moved to the end of the sentence.
-
-* SKRIV In section 5, there is a missing period in the first sentence.  
+* FERDIG In section 5, there is a missing period in the first sentence.
+  CLOSED: [2009-10-13 Tue 15:16]
 
 * FERDIG In the reference list, the Corbí-Bellot reference presumably has "Spain" instead of "spain".
    CLOSED: [2009-10-13 Tue 13:49]
