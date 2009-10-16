@@ -184,17 +184,17 @@ The Constraint Grammar runs as a pre-disambiguator, and does not
 always manage to remove all spurious analyses. We run Apertium's
 statistical disambiguator module after this step to make a final
 choice. An unsupervised bigram model (Baum-Welch algorithm, 8
-iterations) was trained on the Norwegian Wikipedias using the {\tt
-  \small apertium-tagger}. Although the Apertium toolset allows for
-more advanced statistical models \citep{sheikh2009trigram} and methods
-for parameter estimation \citep{sanchez2008utl}, so far we have
-instead worked on improving the CG where we spotted errors. Certain
-errors in the disambiguation might be easier to spot when working with
-MT, and improvements to the CG could be of benefit to
-others using the OBT. When disambiguating for MT, it
-is important to keep in mind that we always have to end up with only
-one analysis, thus our version of the OBT is slightly more aggressive
-in removing readings. E.g. we use the following ``heuristic'' rule:
+iterations) was trained on Wikipedia text using the {\tt \small
+  apertium-tagger}. Although the Apertium toolset allows for more
+advanced statistical models \citep{sheikh2009trigram} and methods for
+parameter estimation \citep{sanchez2008utl}, so far we have instead
+worked on improving the CG where we spotted errors. Certain errors in
+the disambiguation might be easier to spot when working with MT, and
+improvements to the CG could be of benefit to others using the
+OBT. When disambiguating for MT, it is important to keep in mind that
+we always have to end up with only one analysis, thus our version of
+the OBT is slightly more aggressive in removing readings. E.g. we use
+the following ``heuristic'' rule:
 
 \begin{figure}[htp] {\tt \small  REMOVE (n) IF\\
     (0 adj) (-1 det) (1 subst);}
