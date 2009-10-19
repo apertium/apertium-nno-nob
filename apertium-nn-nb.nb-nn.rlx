@@ -109,6 +109,7 @@ LIST %fram/frem% = ("fram"  pr) ("frem"  pr) ;
 LIST %fram/inn/opp% = ("fram"  pr) ("frem"  pr) ("inn"  pr) ("opp"  pr) ;
 LIST %fram/opp/på% = ("på" ) ("fram"  pr) ("frem"  pr) ("opp"  pr) ;
 LIST %full%  = ("full"  adj nt ind sg) ;
+LIST %fullstendig%  = ("fullstendig") ;
 LIST %fullt% = ("full"  adj nt ind sg) ;
 LIST %fullt/mange% = "mange"  ("full"  adj nt ind sg) ;
 LIST %få% = "få"  ;
@@ -11460,11 +11461,13 @@ SELECT:2963 (adj nt ind sg) IF
  SELECT:2866 (adv) IF
 	(NOT 0 %så/og/selv%)
 	(NOT 0 nr2-det)
+	(NOT 0 %fullstendig%)
 	(1C adj)
 	(-1C det)
 ;
 #  "en heller dårlig film"))
 #NOT 0 nr2-det: en slik dårlig film
+# KBU: «en fullstendig<adj, ikkje adv> syntaktisk trestruktur»
 
 
 #:2867
