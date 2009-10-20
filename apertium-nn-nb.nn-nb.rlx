@@ -2426,7 +2426,31 @@ CONSTRAINTS
 
 
 #:4693
- "<kva>"   SELECT:4693   (det itg pl) IF
+ "<Kva>"   SELECT:4693   (det itg pl) IF
+	(1C subst/adj LINK 0 fl)
+	(NOT 1 subst-prop)
+	(NOT 1 bu-eint)
+;
+#:4693
+ "<Kva>"   SELECT:4693   (det itg m sg) IF
+	(1C subst/adj LINK 0 mask-eint)
+	(NOT 1 subst-prop)
+	(NOT 1 bu-eint)
+;
+#:4693
+ "<Kva>"   SELECT:4693   (det itg f sg) IF
+	(1C subst/adj LINK 0 fem-eint)
+	(NOT 1 subst-prop)
+	(NOT 1 bu-eint)
+;
+#:4693
+ "<Kva>"   SELECT:4693   (det itg nt sg) IF
+	(1C subst/adj LINK 0 nøyt-eint)
+	(NOT 1 subst-prop)
+	(NOT 1 bu-eint)
+;
+#:4693
+ "<Kva>"   SELECT:4693   (det itg pl) IF
 	(1C subst/adj LINK 0 fl)
 	(NOT 1 subst-prop)
 	(NOT 1 bu-eint)
@@ -2449,7 +2473,8 @@ CONSTRAINTS
 	(NOT 1 subst-prop)
 	(NOT 1 bu-eint)
 ;
-# KBU: delt opp i 4 pga. forskjell mellom OBT og Apertium
+# KBU: delt opp i 4 pga. forskjell mellom OBT og Apertium, delt opp i
+# 2 til pga. stor/liten forbokstav. Ugh.
 
 
 
@@ -7196,6 +7221,14 @@ CONSTRAINTS
 # sec 2
 CONSTRAINTS
 ## select ndomain
+
+#:6212
+SELECT:6212 (adj) IF
+	(-1 ("<fargen>"))
+	(0 farger)
+;
+# KBU: «fargen blå» osb.
+
 #:4209
 SELECT:4209 (<adv>) IF
 	(NOT 0 %lenger/lengst%)
@@ -52172,7 +52205,6 @@ SELECT:1432 (vblex pres) IF
 ;
 
 
-
 #CONSTRAINTS
 ## remove ndomain heur
 
@@ -52956,15 +52988,8 @@ REMOVE:6200 (vblex pret) IF
 
 
 #:6211
-REMOVE:6211 (adj) IF
+REMOVE:6211 (n pl) IF
 	(0 subst-eint)
 	(-1 bu-eint-subst LINK -1 adj-bu BARRIER ikkje-adv-adj-komma LINK -1* bu-det-eint/fl)
 ;	
-# KBU: «den viktige, litle fargen blå<n>, det grammatiske trekket imperativ<sg>»
-
-#:6212
-REMOVE:6212 (n pl) IF
-	(0 subst-eint)
-	(-1 bu-eint-subst LINK -1 adj-bu BARRIER ikkje-adv-adj-komma LINK -1* bu-det-eint/fl)
-;	
-# KBU: «den viktige, litle fargen blå<n>, det grammatiske trekket imperativ<sg>»
+# KBU: «det viktige, grammatiske trekket imperativ<sg>»

@@ -7655,6 +7655,12 @@ CONSTRAINTS
 CONSTRAINTS
 ## select ndomain
 
+#:6212
+SELECT:6212 (adj) IF
+	(-1 ("<fargen>"))
+	(0 farger)
+;
+# KBU: «fargen blå» osb.
 
 #:5042
  SELECT:5042 (vblex imp) IF
@@ -26719,16 +26725,9 @@ SELECT:4081 (adj) IF
 ;
 # KBU «det beste<adj, ikkje subst> vilkåret» 
 
-#:6208
-REMOVE:6211 (adj) IF
+#:6211
+REMOVE:6211 (n pl) IF
 	(0 ent-subst)
 	(-1 be-ent-subst LINK -1 adj-be BARRIER ikke-adv-adj-komma LINK -1* be-det-ent/fl)
 ;	
-# KBU: «den viktige, litle fargen blå<n>, det grammatiske trekket imperativ<sg>»
-
-#:6209
-REMOVE:6212 (n pl) IF
-	(0 ent-subst)
-	(-1 be-ent-subst LINK -1 adj-be BARRIER ikke-adv-adj-komma LINK -1* be-det-ent/fl)
-;	
-# KBU: «den viktige, litle fargen blå<n>, det grammatiske trekket imperativ<sg>»
+# KBU: «det viktige, grammatiske trekket imperativ<sg>»
