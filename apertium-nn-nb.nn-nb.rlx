@@ -2426,12 +2426,30 @@ CONSTRAINTS
 
 
 #:4693
- "<kva>"   SELECT:4693   (det itg) IF
-	(1C subst/adj)
+ "<kva>"   SELECT:4693   (det itg pl) IF
+	(1C subst/adj LINK 0 fl)
 	(NOT 1 subst-prop)
 	(NOT 1 bu-eint)
 ;
-
+#:4693
+ "<kva>"   SELECT:4693   (det itg m sg) IF
+	(1C subst/adj LINK 0 mask-eint)
+	(NOT 1 subst-prop)
+	(NOT 1 bu-eint)
+;
+#:4693
+ "<kva>"   SELECT:4693   (det itg f sg) IF
+	(1C subst/adj LINK 0 fem-eint)
+	(NOT 1 subst-prop)
+	(NOT 1 bu-eint)
+;
+#:4693
+ "<kva>"   SELECT:4693   (det itg nt sg) IF
+	(1C subst/adj LINK 0 nøyt-eint)
+	(NOT 1 subst-prop)
+	(NOT 1 bu-eint)
+;
+# KBU: delt opp i 4 pga. forskjell mellom OBT og Apertium
 
 
 
@@ -52936,3 +52954,17 @@ REMOVE:6200 (vblex pret) IF
 # Ikkje: «Langt uti have eller kor det var lynte det»
 # -KBU
 
+
+#:6211
+REMOVE:6211 (adj) IF
+	(0 subst-eint)
+	(-1 bu-eint-subst LINK -1 adj-bu BARRIER ikkje-adv-adj-komma LINK -1* bu-det-eint/fl)
+;	
+# KBU: «den viktige, litle fargen blå<n>, det grammatiske trekket imperativ<sg>»
+
+#:6212
+REMOVE:6212 (n pl) IF
+	(0 subst-eint)
+	(-1 bu-eint-subst LINK -1 adj-bu BARRIER ikkje-adv-adj-komma LINK -1* bu-det-eint/fl)
+;	
+# KBU: «den viktige, litle fargen blå<n>, det grammatiske trekket imperativ<sg>»
