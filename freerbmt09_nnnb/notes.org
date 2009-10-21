@@ -7,12 +7,14 @@
 #+EXPORT_EXCLUDE_TAGS: ROTETE
 
 
-* SKRIV Although the authors argue that the MT developed can be used both for the translation from Nynorsk to Bokmål, and the other way around, it is only evaluated in one direction. 
+* FERDIG Although the authors argue that the MT developed can be used both for the translation from Nynorsk to Bokmål, and the other way around, it is only evaluated in one direction. 
 It would be nice to evaluate the translator in the other direction, since the number of structural transfer rules is quite different (33 versus 8).
 
-* SKRIV In the introduction, it is not clear whether the system is able to translate in both directions or only from nn to nb.
+* FERDIG In the introduction, it is not clear whether the system is able to translate in both directions or only from nn to nb.
+==> BETWEEN
 
-* SKRIV In section 1, you mention that the system is aimed at being acceptable for post-editing, it would be useful to mention the possible usages of MT systems (assimilation and dissemination) and say that your system is aimed at being useful for dissemination purposes, which always requires post-editing.
+* FERDIG In section 1, you mention that the system is aimed at being acceptable for post-editing, it would be useful to mention the possible usages of MT systems (assimilation and dissemination) and say that your system is aimed at being useful for dissemination purposes, which always requires post-editing.
+==> NO USE FOR A GISTING SYSTEM
 
 * SKRIV Also it would be nice to know the amount of effort needed to develop the system; this would help other developers in deciding to build a new language pair for Apertium by re-using existing resources and semi-automatically building some of them.
   - Note taken on [2009-10-13 Tue 13:54] \\
@@ -36,12 +38,15 @@ for generation.
 
 
 * SKRIV The Apertium pipeline description should be improved so as to allow readers not knowing Apertium to understand how it works.
+==> I am not sure that it can be done any better (especially not given the
+    space constraint.
 
-* SKRIV When Constrain Grammar (CG) are described (sec. 2.2) it is not clear whether you use the Apertium tagger after CG. Later in the paper it becomes clear that the tagger is used; anyway, I think you should say something here.
+* FERDIG When Constrain Grammar (CG) are described (sec. 2.2) it is not clear whether you use the Apertium tagger after CG. Later in the paper it becomes clear that the tagger is used; anyway, I think you should say something here.
   - Note taken on [2009-10-13 Tue 13:59] \\
     Hmm. We do say "This language pair differs from most of the other
     Apertium pairs in using a Constraint Grammar (CG) module3 as a
     pre-disambiguator (before the HMM).", but I guess we could be more explicit.
+==> I fail to see that it could be more explicit than that.
 
 * FERDIG In section 3.1, please rewrite sentence "..., a > 100,000 lemma ....".
 
@@ -55,17 +60,21 @@ for generation.
 
 * FERDIG Sometimes you refer to the entries in the bilingual dictionary as "transfer entries" which may be confusing, specially when speaking about the use of ReTraTos.
 
-* SKRIV In section 3.5, example (1), please provide the language, using ISO-639 codes if you want, and make clear which is the source language and the target language. Same thing applies to rest of examples.
+* FERDIG In section 3.5, example (1), please provide the language, using ISO-639 codes if you want, and make clear which is the source language and the target language. Same thing applies to rest of examples.
+==> Footnote changed.
 
 ** SKRIV In section 3.5, footnote nr. 10 (now 11) should be moved to the end of the sentence.
 
 * FERDIG Explain what is a V2 language.
  - Note taken on [2009-10-13 Tue 16:30] \\
     I just removed the parenthesis. Not important, is it?
+    ==> interested readers will know.
 
 * FERDIG Explain what is coreference chaining.
 
-* SKRIV The second paragraph in section 2.2 is confusing.
+* FERDIG The second paragraph in section 2.2 is confusing.
+==> Now more specific reference to CG in the second paragraph.
+
 ** FERDIG The text says: "CG is also the only grammar-based parsing method to give parsing results comparable to statistical parsers. Where statistical parsers have been shown to have a ceiling under 97% ..."  I assume that the authors intended to write "taggers" instead of "parsers" (no statistical parser obtains an accuracy of 97%!). The footnote that follows indeed supports my assumption because all the papers listed (Leech, Brants, Brill) are papers about PoS tagging.
  - Note taken on [2009-10-13 Tue 14:38] \\
     Well, it is a confusing area since CG sort of mixes tagging with
@@ -74,11 +83,11 @@ for generation.
 ** SKRIV Then the text continues: "...Voutilainen and Heikkila (1994) and Bick (2000) both cite accuracy results above 99%, for English and Portuguese." One cannot directly compare the tagging accuracy of taggers that perform full disambiguation (like say TnT) to constraint grammar taggers which do not always remove all spurious analysis. Here the authors are comparing accuracy vs. recall. This important difference should be noted in the text.
    - Note taken on [2009-10-13 Tue 14:40] \\
      Bick does mention this difference... must re-read.
+====> must look into this!
 
 * FERDIG In section 3.5, "... as the syntactic analysis of the OBT is still not incorporated into Apertium". This suggest to the reader that incorporating syntactic analysis (parsing structures) is possible (this issue is again stated in section 5). A discussion related to this is needed.
  - Note taken on [2009-10-13 Tue 15:34] \\
     We don't really have space for more discussion... :-/
-
 
 
 * FERDIG About the evaluation (section 4.2), you provide the WER and the percentage of unknown words, of these unknown words, how many are free rides? You should compare the percentage of unknown words that are not free rides to the percentage of unknown words in the other MT system.
