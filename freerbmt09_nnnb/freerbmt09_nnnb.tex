@@ -9,7 +9,7 @@
 \usepackage[small,bf]{caption}
 \usepackage{linguex}
 \usepackage{latexsym}
-\usepackage{setspace
+%\usepackage{setspace}
 
 \usepackage{hyperref}
 %\author{NN\\  X \\ X \\  X \\  {\tt \small   X@X} \And  NN \\  X \\  X \\  X \\    {\tt \small  X@X}}
@@ -301,13 +301,13 @@ The {\tt \small ReTraTos} method gave translations for about 3500
 entries which were missing from the translation lexicon; however,
 these still needed a manual check, and many had to be altered
 slightly (e.g.  changing directional constraints or morphological
-tags) or simply discarded). Due to the amount of noise in this data,
+tags) or simply discarded. Due to the amount of noise in this data,
 this method required a lot of post-editing (and in our case functioned
 more as a source of \emph{suggestions} for translations). Of course, a
 different corpus might have achieved higher quality word alignments;
 either a bigger corpus\footnote{Wu and Xia \citep[1994,
 in][p.~230]{caseli2006aib} used a 3 million word corpus to induce an
-English–Chinese dictionary)} or a corpus of a different text type
+English–Chinese dictionary.} or a corpus of a different text type
 (\citet{caseli2006aib} used corpora of similar sizes, but with
 magazine text).
 
@@ -400,7 +400,7 @@ errors in previously error-free translations, we made extensive use of
 regression tests during development, essentially adding a test for
 each problem discovered or fixed.
 
-In section \ref{sec:eval}, we evaluate of {\tt \small  apertium-nn-nb} and
+In section \ref{sec:eval}, we evaluate {\tt \small  apertium-nn-nb} and
 compare its output with that of the commercial
 Bokmål$\rightarrow$Nynorsk MT system Nyno.
 
@@ -416,10 +416,11 @@ monolingual dictionaries\footnote{Some analyses will be missing from a
 naïve coverage test due to homography. 
 
 Since the dictionaries are \emph{consistent}, we also have
-\emph{translations} for all analysed words.}. Testing on Nynorsk
-Wikipedia (5,116,174 words) and Bokmål Wikipedia (27,529,115 words),
-we have 89.6\% and 88.2\% naïve coverage, respectively. On a 7,019,526
-word corpus of Bokmål newspaper texts, the naïve coverage was 91.8\%.
+\emph{translations} for all analysed words.}. Naïve coverage is 89.6\%
+on the Nynorsk Wikipedia (5,116,174 words) and 88.2\% for Bokmål
+(27,529,115 words)\footnote{nnwiki-20090119-pages-articles and nowiki-20090108-pages-articles from \href{http://download.wikimedia.org}{http://download.wikimedia.org}.}. On a 7,019,526 word corpus of Bokmål newspaper
+texts, the naïve coverage was 91.8\%.
+
 
 \subsection{Word Error Rate on Post-Edited text}
 \label{sec:WER}
@@ -447,7 +448,7 @@ a commercial MT system translating from Bokmål to Nynorsk. Nyno does not
 translate in the other direction, probably because there is larger demand for 
 translations to Nynorsk. Both in order to have another system to compare with, 
 and because we deemed the task of translating into Nynorsk as harder, we
-confined the {\tt \small Apertium-nn-nb} evaluation to this direction only.
+confined the {\tt \small apertium-nn-nb} evaluation to this direction only.
 
 % total size 20,667, we used only 7,283
 In order to compare the systems, we translated an unseen text (7,283
@@ -466,7 +467,7 @@ bilingual websites themselves, the other was translated as a joint
 effort on Nynorsk Wikipedia.
 
 \begin{table}[htdp]
-  \caption{{\sc Bleu} score (two reference translations), UWR and WER (for the \emph{O}riginal and \emph{W}ikipedia references) for Apertium and Nyno. Numbers in parenthesis give percentage of unknown words which were free-rides.}
+  \caption{{\sc Bleu} score (two reference translations) and WER (for the \emph{O}riginal and \emph{W}ikipedia references) for Apertium and Nyno. Numbers in parenthesis give percentage of unknown words which were free-rides.}
 \begin{center}
 \begin{tabular}{|l|r|r|r|}
   \hline
