@@ -63,7 +63,8 @@ for generation.
 * FERDIG In section 3.5, example (1), please provide the language, using ISO-639 codes if you want, and make clear which is the source language and the target language. Same thing applies to rest of examples.
 ==> Footnote changed.
 
-** SKRIV In section 3.5, footnote nr. 10 (now 11) should be moved to the end of the sentence.
+** FERDIG In section 3.5, footnote nr. 10 (now 11) should be moved to the end of the sentence.
+   CLOSED: [2009-10-23 Fri 21:06]
 
 * FERDIG Explain what is a V2 language.
  - Note taken on [2009-10-13 Tue 16:30] \\
@@ -80,10 +81,33 @@ for generation.
     Well, it is a confusing area since CG sort of mixes tagging with
     parsing; and syntactic parsing results may improve tagging
     results... But we don't really have space to mention this.
-** SKRIV Then the text continues: "...Voutilainen and Heikkila (1994) and Bick (2000) both cite accuracy results above 99%, for English and Portuguese." One cannot directly compare the tagging accuracy of taggers that perform full disambiguation (like say TnT) to constraint grammar taggers which do not always remove all spurious analysis. Here the authors are comparing accuracy vs. recall. This important difference should be noted in the text.
+** FERDIG Then the text continues: "...Voutilainen and Heikkila (1994) and Bick (2000) both cite accuracy results above 99%, for English and Portuguese." One cannot directly compare the tagging accuracy of taggers that perform full disambiguation (like say TnT) to constraint grammar taggers which do not always remove all spurious analysis. Here the authors are comparing accuracy vs. recall. This important difference should be noted in the text.
+   CLOSED: [2009-10-23 Fri 21:06]
    - Note taken on [2009-10-13 Tue 14:40] \\
      Bick does mention this difference... must re-read.
 ====> must look into this!
+
+    «When forcing the parser into full disambiguation, where all
+    words - with the exception of the rare cases of true ambiguity -
+    end up with one reading only, recall and precision will obviously
+    assume identical values, and one can regard the recall/precision
+    figure as a direct measure for the parser's performance, which is
+    why I will henceforth use the more general term correctness to
+    mean recall/precision at 100% disambiguation.
+
+    During the project period I have done some such correctness
+    evaluation on unknown texts, too. These test runs, while being
+    fairly small, consistently suggest a correctness rate of over 99%
+    for morphology and part of speech, when analysing unknown
+    unrestricted text.» \citep[p.~187--188]{bick2000palavras}
+
+However: 
+
+    «Of all words, 94.5% became unambiguous, and 99.8% (4,840) of all
+    words retained the correct morphological analysis.»
+    \citet[p.~9]{voutilainen1994engcg}
+
+
 
 * FERDIG In section 3.5, "... as the syntactic analysis of the OBT is still not incorporated into Apertium". This suggest to the reader that incorporating syntactic analysis (parsing structures) is possible (this issue is again stated in section 5). A discussion related to this is needed.
  - Note taken on [2009-10-13 Tue 15:34] \\
