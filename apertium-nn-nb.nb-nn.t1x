@@ -52,6 +52,9 @@
     <def-cat n="adv">
       <cat-item tags="adv"/>
     </def-cat>
+    <def-cat n="vblex">
+      <cat-item tags="vblex.*"/>
+    </def-cat>
     <def-cat n="vblexinfpass">
       <cat-item tags="vblex.inf.pass"/>
     </def-cat>
@@ -94,8 +97,10 @@
 
     <def-attr n="temps">
       <attr-item tags="inf"/>
+      <attr-item tags="imp"/>
       <attr-item tags="pres"/>
       <attr-item tags="pret"/>
+      <attr-item tags="pp"/>
     </def-attr>
     <def-attr n="a_det">
       <attr-item tags="det"/> 
@@ -597,7 +602,7 @@
         </otherwise></choose>
         <out>
 	  <lu>	    
-            <clip pos="1" side="tl" part="lem"/>
+            <clip pos="1" side="tl" part="lemh"/>
             <clip pos="1" side="tl" part="a_verb"/>
 	    <clip pos="1" side="tl" part="temps"/>
 	    <var n="pass"/>
@@ -631,7 +636,7 @@
               </lu>
               <b/>
               <lu>	    
-                <clip pos="1" side="tl" part="lem"/>
+                <clip pos="1" side="tl" part="lemh"/>
                 <clip pos="1" side="tl" part="a_verb"/>
                 <lit-tag v="pp"/>
                 <clip pos="1" side="tl" part="lemq"/>
@@ -667,7 +672,7 @@
               <lu><clip pos="2" side="tl" part="whole"/></lu>
               <b/>
               <lu>	    
-                <clip pos="1" side="tl" part="lem"/>
+                <clip pos="1" side="tl" part="lemh"/>
                 <clip pos="1" side="tl" part="a_verb"/>
                 <lit-tag v="pp"/>
                 <clip pos="1" side="tl" part="lemq"/>
@@ -704,13 +709,32 @@
               <lu><clip pos="3" side="tl" part="whole"/></lu>
               <b/>
               <lu>	    
-                <clip pos="1" side="tl" part="lem"/>
+                <clip pos="1" side="tl" part="lemh"/>
                 <clip pos="1" side="tl" part="a_verb"/>
                 <lit-tag v="pp"/>
                 <clip pos="1" side="tl" part="lemq"/>
               </lu>
             </out>
         </otherwise></choose>
+      </action>
+    </rule>
+
+    <rule comment="VBLEX
+                   Just in case we have nn multiwords; which need
+                   lemq after the inflected part.
+                   This has to be below the passive rules.">
+      <pattern>
+        <pattern-item n="vblex"/>
+      </pattern>
+      <action>
+        <out>
+          <lu>	    
+            <clip pos="1" side="tl" part="lemh"/>
+            <clip pos="1" side="tl" part="a_verb"/>
+            <clip pos="1" side="tl" part="temps"/>
+            <clip pos="1" side="tl" part="lemq"/>
+          </lu>
+        </out>
       </action>
     </rule>
 

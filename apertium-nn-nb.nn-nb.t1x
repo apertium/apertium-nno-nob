@@ -303,7 +303,7 @@
       <action>
         <out>
 	  <lu>	    
-            <clip pos="2" side="tl" part="lem"/>
+            <clip pos="2" side="tl" part="lemh"/>
             <clip pos="2" side="tl" part="a_verb"/>
             <clip pos="1" side="tl" part="temps"/>
 	    <lit-tag v="pass"/>
@@ -322,7 +322,7 @@
       <action>
         <out>
 	  <lu>	    
-            <clip pos="3" side="tl" part="lem"/>
+            <clip pos="3" side="tl" part="lemh"/>
             <clip pos="3" side="tl" part="a_verb"/>
             <clip pos="1" side="tl" part="temps"/>
 	    <lit-tag v="pass"/>
@@ -344,7 +344,7 @@
       <action>
         <out>
 	  <lu>	    
-            <clip pos="4" side="tl" part="lem"/>
+            <clip pos="4" side="tl" part="lemh"/>
             <clip pos="4" side="tl" part="a_verb"/>
             <clip pos="1" side="tl" part="temps"/>
 	    <lit-tag v="pass"/>
@@ -366,11 +366,30 @@
       <action>
         <out>
 	  <lu>	    
-            <clip pos="1" side="tl" part="lem"/>
+            <clip pos="1" side="tl" part="lemh"/>
             <clip pos="1" side="tl" part="a_verb"/>
 	    <lit-tag v="inf"/>
 	    <lit-tag v="pass"/>
 	    <clip pos="1" side="tl" part="lemq"/>
+          </lu>
+        </out>
+      </action>
+    </rule>
+    
+    <rule comment="VBLEX
+                   Just in case we have nb multiwords; which need
+                   lemq after the inflected part.
+                   This has to be below the passive rules.">
+      <pattern>
+        <pattern-item n="vblex"/>
+      </pattern>
+      <action>
+        <out>
+          <lu>	    
+            <clip pos="1" side="tl" part="lemh"/>
+            <clip pos="1" side="tl" part="a_verb"/>
+            <clip pos="1" side="tl" part="temps"/>
+            <clip pos="1" side="tl" part="lemq"/>
           </lu>
         </out>
       </action>
@@ -453,11 +472,12 @@
 	</call-macro>
         <out>
           <lu>
-            <clip pos="1" side="tl" part="lem"/>
+            <clip pos="1" side="tl" part="lemh"/>
             <clip pos="1" side="tl" part="a_adj"/>
             <var n="mf_or_gender"/>
             <clip pos="1" side="tl" part="nbr"/>
             <clip pos="1" side="tl" part="art"/>
+            <clip pos="1" side="tl" part="lemq"/>
           </lu>
         </out>
       </action>
