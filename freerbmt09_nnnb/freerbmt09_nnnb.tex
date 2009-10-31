@@ -286,17 +286,18 @@ not in the monolingual dictionaries and
 %thus
  adding them requires some manual labour.
 
-We next ran {\tt \small Giza++} \citep{och2003scv} on a cleaned
-version of the KDE4 corpus to create word alignments. We also appended
-our translational dictionary to the corpus 6 times\footnote{This
-  number was simply based on trial and error.}, to improve the
-probability of correct alignments. We then ran these alignments
-through our morphological analysers, and fed them into the tool {\tt
-  \small ReTraTos} \citep{caseli2006aib}, which extracts both phrases
-and single-word translations from alignments\footnote{We did not add
-  transfer rules found by ReTraTos, although this is a possibility.},
-and converts them into Apertium translational entries (perhaps adding
-directional constraints).  We used the same process on the web corpus.
+ We next created word alignments by running {\tt \small Giza++}
+ \citep{och2003scv} on a cleaned version of the KDE4 corpus after
+ passing it through our morphological analysers. We also appended our
+ translational dictionary to the corpus 6 times\footnote{This number
+   was simply based on trial and error.}, to improve the probability
+ of correct alignments. We then fed them into the tool {\tt \small
+   ReTraTos} \citep{caseli2006aib}, which extracts both phrases and
+ single-word translations from alignments\footnote{We did not add
+   transfer rules found by ReTraTos, although this is a possibility.},
+ and converts them into Apertium translational entries (perhaps adding
+ directional constraints).  We used the same process on the web
+ corpus.
 
 The {\tt \small ReTraTos} method gave translations for about 3500
 entries which were missing from the translation lexicon; however,
