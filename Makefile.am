@@ -12,8 +12,6 @@ TARGETS_COMMON = $(PREFIX1).automorf.bin $(PREFIX1).autobil.bin $(PREFIX1).autog
      $(PREFIX1).t1x.bin $(PREFIX1).rlx.bin $(PREFIX2).rlx.bin \
      $(PREFIX2).t1x.bin 
 
-#    $(PREFIX1).autopgen.bin $(PREFIX2).autopgen.bin 
-
 $(PREFIX1).automorf.bin: $(BASENAME).$(LANG1).dix
 	apertium-validate-dictionary $(BASENAME).$(LANG1).dix
 	lt-comp lr $(BASENAME).$(LANG1).dix $@
@@ -26,9 +24,6 @@ $(PREFIX1).autogen.bin: $(BASENAME).$(LANG2).dix
 	apertium-validate-dictionary $(BASENAME).$(LANG2).dix
 	lt-comp rl $(BASENAME).$(LANG2).dix $@
 
-# $(PREFIX1).autopgen.bin: $(BASENAME).post-$(LANG2).dix
-# 	apertium-validate-dictionary $(BASENAME).post-$(LANG2).dix
-# 	lt-comp lr $(BASENAME).post-$(LANG2).dix $@
 
 $(PREFIX1).rlx.bin: $(BASENAME).$(PREFIX1).rlx
 	cg-comp $(BASENAME).$(PREFIX1).rlx $@
@@ -49,10 +44,6 @@ $(PREFIX2).autogen.bin: $(BASENAME).$(LANG1).dix
 	apertium-validate-dictionary $(BASENAME).$(LANG1).dix
 	lt-comp rl $(BASENAME).$(LANG1).dix $@
 
-# $(PREFIX2).autopgen.bin: $(BASENAME).post-$(LANG1).dix
-# 	apertium-validate-dictionary $(BASENAME).post-$(LANG1).dix
-# 	lt-comp lr $(BASENAME).post-$(LANG1).dix $@
-
 $(PREFIX1).t1x.bin: $(BASENAME).$(PREFIX1).t1x
 	apertium-validate-transfer $(BASENAME).$(PREFIX1).t1x
 	apertium-preprocess-transfer $(BASENAME).$(PREFIX1).t1x $@
@@ -70,12 +61,6 @@ EXTRA_DIST=$(BASENAME).$(LANG1).dix $(BASENAME).$(PREFIX1).dix \
 	   $(BASENAME).$(PREFIX2).t1x \
 	   $(BASENAME).$(LANG1).tsx \
 	   $(BASENAME).$(LANG2).tsx modes.xml
-
-# 	   $(BASENAME).$(LANG1).dix.xml \
-# 	   $(BASENAME).$(LANG2).dix.xml \
-# 	   $(BASENAME).$(PREFIX1).dix.xml \
-#          $(BASENAME).post-$(LANG1).dix $(BASENAME).post-$(LANG2).dix \
-#          $(LANG1)-tagger-data/README $(LANG2)-tagger-data/README 
 
 clean-dicts:
 	touch $(BASENAME).$(LANG1).dix $(BASENAME).$(LANG2).dix $(BASENAME).$(PREFIX1).dix
@@ -101,9 +86,6 @@ apertium_nn_nb_DATA=$(PREFIX1).automorf.bin $(PREFIX2).automorf.bin \
 		    $(PREFIX1).t1x.bin $(PREFIX1).rlx.bin $(PREFIX2).rlx.bin \
 		    $(PREFIX2).t1x.bin \
 	            modes/$(PREFIX1).mode modes/$(PREFIX2).mode modes.xml
-
-#                    $(PREFIX1).autopgen.bin 
-#                    $(PREFIX2).autopgen.bin 
 
 install-data-local:
 	mv modes modes.bak
