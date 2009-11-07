@@ -1,11 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- -*- nxml -*- -->
-<!-- TODO:
-     * At the moment, many determiners have full paradigms even when
-       they _don't_ differ on number/gender etc. It would be better
-       if we could check for "sp" etc. and, if we find that, use noun
-       or adjectives to determine number instead.
--->
 <transfer>
 
   <section-def-cats>
@@ -130,7 +124,7 @@
   <section-def-vars>
     <def-var n="gender"/>
     <def-var n="pre_number"/>
-    <def-var n="mf_or_gender"/>  
+    <def-var n="adj_gender"/>  
     <def-var n="n_number"/>  
   </section-def-vars>
 
@@ -203,7 +197,7 @@
 	     bidix has errors...
       -->
       <call-macro n="set_number1"> 
-	<with-param pos="1" /> 
+	<with-param pos="1"/> 
       </call-macro>
       <let><var n="gender"/><clip pos="1" side="tl" part="gen"/></let>
       <choose>
@@ -230,24 +224,26 @@
 
     <def-macro n="set_gender2" npar="2">
       <!-- arg.1: noun, arg.2: determiner (or adjective)
-	   - iff sg and GD, take gender of target noun
+	   - iff sg AND has-some-gender, take gender of target noun 
 	   - plurals get no gender (sp, however, may want mf);
 	   - o/w take gender of target determiner
            - Finally, make sure we never translate to f, in case
 	     bidix has errors...
       -->
       <call-macro n="set_number2"> 
-	<with-param pos="1" />
-	<with-param pos="2" /> 
+	<with-param pos="1"/>
+	<with-param pos="2"/> 
       </call-macro>
       <choose>
         <when>
-	  <test>
-	    <and>
-	      <equal><var n="pre_number"/><lit-tag v="sg"/></equal>
-	      <equal><clip pos="2" side="tl" part="gen"/><lit-tag v="GD"/></equal>
-	    </and>
-	  </test>
+          <test><and>
+            <equal><var n="pre_number"/><lit-tag v="sg"/></equal>
+            <not><equal>
+              <clip pos="2" side="sl" part="gen"/>
+              <lit v=""/>
+            </equal></not>
+            <!--               <equal><clip pos="2" side="tl" part="gen"/><lit-tag v="GD"/></equal> -->
+          </and></test>
 	  <let><var n="gender"/><clip pos="1" side="tl" part="gen"/></let>
         </when>
 	<when>
@@ -268,17 +264,18 @@
 	  <let><var n="gender"/><lit-tag v="m"/></let>
 	</when>
       </choose>
-      <call-macro n="set_mf_or_gender">
-      </call-macro>
     </def-macro>    
 
-    <def-macro n="set_mf_or_gender" npar="0">
-      <!-- Assumes var gender is set, o/w we get empty string 
+    <def-macro n="set_adj_gender" npar="1">
+      <!-- arg.1: adjective (used for determination, "art")
+          Assumes var gender is set, o/w we get empty string 
 	   - if m or f or GD, use mf
 	     (we might have GD if set_gender 'failed')
-	   - o/w use what we're given. -->
+	   - o/w use what we're given.
+         However, definite adjectives get no gender.
+      -->
       <choose>
-	<when>
+        <when>
 	  <test>
 	    <or>
 	      <equal><var n="gender"/><lit-tag v="m"/></equal>
@@ -286,16 +283,23 @@
 	      <equal><var n="gender"/><lit-tag v="GD"/></equal>
 	    </or>
 	  </test>
-	  <let><var n="mf_or_gender"/><lit-tag v="mf"/></let>
+	  <let><var n="adj_gender"/><lit-tag v="mf"/></let>
 	</when>
 	<otherwise>
-	  <let><var n="mf_or_gender"/><var n="gender"/></let>
+	  <let><var n="adj_gender"/><var n="gender"/></let>
 	</otherwise>
       </choose>
+      <choose>
+        <when>
+          <test><equal><clip pos="1" side="tl" part="art"/><lit-tag v="def"/></equal></test>
+          <let><var n="adj_gender"/><lit v=""/></let>
+        </when>
+      </choose>
     </def-macro>
+    
 </section-def-macros>
 
-  <section-rules>
+<section-rules>
 
 
     <rule comment="VBLEX_BLI VBLEX.PP - bli(r) lese => leses ">
@@ -439,8 +443,8 @@
       </pattern>
       <action>
         <call-macro n="set_gender2"> 
-          <with-param pos="2" />
-          <with-param pos="1" /> 
+          <with-param pos="2"/>
+          <with-param pos="1"/> 
         </call-macro>
         <out>
           <lu>
@@ -465,19 +469,65 @@
       </action>
     </rule>
 
+    <rule comment="DET ADJ NOM">
+      <pattern>						       
+        <pattern-item n="det"/>
+        <pattern-item n="adj"/>
+        <pattern-item n="nom"/>
+      </pattern>
+      <action>
+        <call-macro n="set_gender2"> 
+          <with-param pos="3"/>
+          <with-param pos="1"/> 
+        </call-macro>
+        <out>
+          <lu>
+            <clip pos="1" side="tl" part="lemh"/>
+            <clip pos="1" side="tl" part="a_det"/>
+            <var n="gender"/>
+	    <var n="pre_number"/>
+	    <clip pos="1" side="tl" part="art"/>
+            <clip pos="1" side="tl" part="lemq"/>
+          </lu>
+          <b pos="1"/>
+        </out>
+        <let><var n="gender"/><clip pos="3" side="tl" part="gen"/></let>
+	<call-macro n="set_adj_gender"><with-param pos="2"/></call-macro>
+        <out>
+          <lu>
+            <clip pos="2" side="tl" part="lemh"/>
+            <clip pos="2" side="tl" part="a_adj"/>
+            <var n="adj_gender"/>
+            <clip pos="2" side="tl" part="nbr"/>
+            <clip pos="2" side="tl" part="art"/>
+            <clip pos="2" side="tl" part="lemq"/>
+          </lu>
+          <b pos="2"/>
+          <lu>
+	    <clip pos="3" side="tl" part="lemh"/>
+            <clip pos="3" side="tl" part="a_nom"/>
+            <clip pos="3" side="tl" part="gen"/>
+	    <var n="n_number"/>
+            <clip pos="3" side="tl" part="art"/>
+	    <clip pos="3" side="tl" part="cas"/>	     
+	    <clip pos="3" side="tl" part="lemq"/>
+          </lu>
+        </out>
+      </action>
+    </rule>
+
     <rule comment="ADJ: open(m) => åpen(mf)">
       <pattern>
         <pattern-item n="adj"/>
       </pattern>
       <action>
 	<let><var n="gender"/><clip pos="1" side="tl" part="gen"/></let>
-	<call-macro n="set_mf_or_gender">
-	</call-macro>
+	<call-macro n="set_adj_gender"><with-param pos="1"/></call-macro>
         <out>
           <lu>
             <clip pos="1" side="tl" part="lemh"/>
             <clip pos="1" side="tl" part="a_adj"/>
-            <var n="mf_or_gender"/>
+            <var n="adj_gender"/>
             <clip pos="1" side="tl" part="nbr"/>
             <clip pos="1" side="tl" part="art"/>
             <clip pos="1" side="tl" part="lemq"/>
@@ -486,5 +536,5 @@
       </action>
     </rule>
     
-  </section-rules>
+</section-rules>
 </transfer>
