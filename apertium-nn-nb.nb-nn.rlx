@@ -11253,15 +11253,15 @@ SELECT:2963 (adj nt ind sg) IF
 	(NOT 0 subst)
 	(-1C verb)
 	(NOT 1 anf)
-	(NOT 1 nom)
-	(NOT -1 kop)
-	(NOT -1 %ha%)
-	(*-1 setn-gr BARRIER kop-fv)
+	(NOT 1 pron/subst/det)
+ 	(NOT -1 kop)
+ 	(NOT -1 %ha%)
+ 	(*-1 setn-gr BARRIER kop-fv)
 ;
 #  "Vi handler utelukkende (adv) med regjeringer
 # 3.4.2003: Not 0 subst: Han spilte piano."))
-
-
+# KBU (NOT 1 nom) er for strengt, (NOT 1 pron/subst/det) i staden:
+# «at han ikke visste hvor<adv> høy farten var.»
 
 #:2851
  SELECT:2851 (adv) IF
@@ -14784,12 +14784,13 @@ SELECT:2963 (adj nt ind sg) IF
 	(NOT 0 %så%)
 	(NOT 0 prep)
 	(NOT 1 tegnsetting)
+	(NOT 1C adj/adv LINK 1* subst BARRIER ikke-adj-adv)
 	(**1C subst/pron BARRIER ikke-adv-adj-det)
 	(**1C subst/pron LINK *1 ikke-adv LINK 0 pres/pret)
 ;
 #  "da gruvedriften tok til
 # velger sbu i stedet for adv"))
-
+# Men: «at han ikke visste hvor<adv> høy farten var.» (så NOT 1C adj ...) -KBU
 
 
 #:2564
@@ -21197,7 +21198,7 @@ REMOVE:2135 (det) IF
 	(**1C setn-gr BARRIER pres/pret)
 ;
 #  "før (ikke sbu) min tid. "))
-
+# Merk: setn-gr kan vere på pres/pret-ordet: «visste ikke hvor<adv> høy farten var<pret><setn-gr>» -KBU
 
 
 #:2047
@@ -25372,6 +25373,7 @@ CONSTRAINTS
  SELECT:1760 (cnjsub) IF
 	(NOT 1 sbu)
 	(NOT 1 pres/pret)
+	(NOT 1C adj/adv LINK 1* subst BARRIER ikke-adj-adv)
 	(NOT -1 clb)
 	(*-1O sbu LINK **1C fv)
 	(*-1 sbu LINK *-1 pres/pret)
@@ -25386,7 +25388,7 @@ CONSTRAINTS
 # NOT 1 SBU: enn (prep) om (sbu)
 # NOT -1 CLB: men som (prep) Dina vil han helst ikke "
 #      :group 73))
-
+# Men: «at han ikke visste hvor<adv> høy farten var.» (så NOT 1C adj ...) -KBU
 
 
 #:1761
