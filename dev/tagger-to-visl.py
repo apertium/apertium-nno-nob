@@ -59,9 +59,9 @@ def processWord(c): #{
 			tags = ' '.join(analyses[i].split('<')[1:]).split('#')[0];
 			lemq = analyses[i].split('#')[1].replace(' ', '_');
 			analyses[i] = lemh + lemq + '<' + tags;
-			analyses[i] = analyses[i].replace('+', '<+').replace('><', ' ').replace('<', '" ').strip('><').replace('" ', ' ').replace('>', '');
+			analyses[i] = analyses[i].replace('>+', '><+').replace('><', ' ').replace('<', '" ').strip('><').replace('" ', ' ').replace('>', '');
 		else: #{
-			analyses[i] = analyses[i].replace('+', '<+').replace('><', ' ').replace('<', '" ').strip('><').replace('" ', ' ');
+			analyses[i] = analyses[i].replace('>+', '><+').replace('><', ' ').replace('<', '" ').strip('><').replace('" ', ' ');
 		#}
 		print '\t"' + analyses[i].split(' ')[0].replace('_', ' ') + '" ' + ' '.join(analyses[i].split(' ')[1:]); 
 	#}
