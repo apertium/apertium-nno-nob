@@ -20,8 +20,14 @@ AC_DEFUN([PKG_CHECK_APERTIUM], [
     APERTIUM_VER=30
   ],
   [
-    PKG_CHECK_MODULES(APERTIUM, apertium-3.1 >= 3.1.0)
-    APERTIUM_VER=31
+    PKG_CHECK_MODULES(APERTIUM, apertium-3.1 >= 3.1.0,
+    [
+      APERTIUM_VER=31
+    ],
+    [
+      PKG_CHECK_MODULES(APERTIUM, apertium-3.2 >= 3.2.0)
+      APERTIUM_VER=32
+    ])
   ])
   AC_SUBST(APERTIUM_VER)
 ])
