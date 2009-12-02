@@ -71,7 +71,15 @@
 		<sdef n="rpar" 	c="Right parenthesis"/> 
 	</sdefs>
 	<pardefs>
-
+<pardef n="høy_LR_høg">
+  <e>                    <p><l>høy</l><r>høy</r></p></e>
+  <e r="LR">             <p><l>høg</l><r>høy</r></p></e>
+</pardef>
+<pardef n="høye_LR_høg">
+  <e>                    <p><l>høye</l><r>høye</r></p></e>
+  <e r="LR">             <p><l>høg</l> <r>høye</r></p></e>
+</pardef>
+          
     <!-- Case endings for nouns, determiners  -->
 <pardef n="S__case">
   <e>       <p><l></l>          <r></r></p></e>
@@ -9132,15 +9140,6 @@
   <e>       <p><l>este</l>      <r><s n="adj"/><s n="sup"/><s n="def"/></r></p></e>
   <e>       <p><l>est</l>       <r><s n="adj"/><s n="sup"/><s n="ind"/></r></p></e>
 </pardef>
-<pardef n="høg__adj">
-  <e>       <p><l>ere</l>       <r><s n="adj"/><s n="comp"/></r></p></e>
-  <e>       <p><l></l>          <r><s n="adj"/><s n="posi"/><s n="mf"/><s n="sg"/><s n="ind"/></r></p></e>
-  <e>       <p><l>t</l>         <r><s n="adj"/><s n="posi"/><s n="nt"/><s n="sg"/><s n="ind"/></r></p></e>
-  <e>       <p><l>e</l>         <r><s n="adj"/><s n="posi"/><s n="pl"/></r></p></e>
-  <e>       <p><l>e</l>         <r><s n="adj"/><s n="posi"/><s n="sg"/><s n="def"/></r></p></e>
-  <e>       <p><l>este</l>      <r><s n="adj"/><s n="sup"/><s n="def"/></r></p></e>
-  <e>       <p><l>est</l>       <r><s n="adj"/><s n="sup"/><s n="ind"/></r></p></e>
-</pardef>
 <pardef n="/gammel__adj">
   <e>       <p><l>eldre</l>     <r>gammel<s n="adj"/><s n="comp"/></r></p></e>
   <e>       <p><l>gammel</l>    <r>gammel<s n="adj"/><s n="posi"/><s n="mf"/><s n="sg"/><s n="ind"/></r></p></e>
@@ -14555,6 +14554,7 @@
 <e lm="dra">             <i>dr</i><par n="dr/a__vblex_adj"/></e>
 <e lm="type">            <i>typ</i><par n="å/e__vblex_adj"/></e>
 <e lm="stille">          <i>stil</i><par n="stil/le__vblex_adj"/></e>
+<e lm="sidestille">          <i>sidestil</i><par n="stil/le__vblex_adj"/></e>
 <e lm="oppdage">         <i>oppdag</i><par n="å/e__vblex_adj"/></e>
 <e lm="løfte">           <i>løft</i><par n="å/e__vblex_adj"/></e>
 <e lm="skåne">           <i>skån</i><par n="yt/e__vblex_adj"/></e>
@@ -16011,8 +16011,8 @@
     <e lm="håve"><i>håv</i><par n="å/e__vblex_adj"/></e>
     <e lm="hæle"><i>hæl</i><par n="yt/e__vblex_adj"/></e>
     <e lm="hærta"><i>hært</i><par n="t/a__vblex_adj"/></e>
-    <e lm="høgakte"><i>høgakt</i><par n="å/e__vblex_adj"/></e>
-    <e lm="høgtide"><i>høgtid</i><par n="å/e__vblex_adj"/></e>
+    <e lm="høyakte"><par n="høy_LR_høg"/><i>akt</i><par n="å/e__vblex_adj"/></e>
+    <e lm="høytide"><par n="høy_LR_høg"/><i>tid</i><par n="å/e__vblex_adj"/></e>
     <e lm="høkre"><i>høkr</i><par n="adl/e__vblex_adj"/></e>
     <e lm="hølje"><i>hølj</i><par n="å/e__vblex_adj"/></e>
     <e lm="høljeregne"><i>høljeregn</i><par n="yt/e__vblex_adj"/></e>
@@ -18072,35 +18072,20 @@
 <e lm="århundrelang">    <i>århundrel</i><par n="l/ang__adj"/></e>    
 <e lm="årtusenlang">     <i>årtusenl</i><par n="l/ang__adj"/></e>     
 
-<!-- todo: /høy__adj paradigm with LR instead -->
-<e lm="halvhøg">         <i>halvhøg</i><par n="høg__adj"/></e>
-<e lm="halvhøy">         <i>halvhøy</i><par n="sen__adj"/></e>
-<e lm="halvmeterhøg">    <i>halvmeterhøy</i><par n="høg__adj"/></e>
-<e lm="halvmeterhøy">    <i>halvmeterhøy</i><par n="sen__adj"/></e>
-<e lm="himmelhøg">       <i>himmelhøg</i><par n="høg__adj"/></e>
-<e lm="himmelhøy">       <i>himmelhøy</i><par n="sen__adj"/></e>
-<e lm="høg">             <i>høg</i><par n="høg__adj"/></e>
-<e lm="høy">             <i>høy</i><par n="sen__adj"/></e>
-<e lm="jamhøg">          <i>jamhøy</i><par n="høg__adj"/></e>
-<e lm="jamhøy">          <i>jamhøy</i><par n="sen__adj"/></e>
-<e lm="jevnhøg">         <i>jevnhøy</i><par n="høg__adj"/></e>
-<e lm="jevnhøy">         <i>jevnhøy</i><par n="sen__adj"/></e>
-<e lm="kjempehøg">       <i>kjempehøy</i><par n="høg__adj"/></e>
-<e lm="kjempehøy">       <i>kjempehøy</i><par n="sen__adj"/></e>
-<e lm="kjepphøg">        <i>kjepphøg</i><par n="høg__adj"/></e>
-<e lm="kjepphøy">        <i>kjepphøy</i><par n="sen__adj"/></e>
-<e lm="meterhøg">        <i>meterhøg</i><par n="høg__adj"/></e>
-<e lm="meterhøy">        <i>meterhøy</i><par n="sen__adj"/></e>
-<e lm="middelhøg">       <i>middelhøg</i><par n="høg__adj"/></e>
-<e lm="middelhøy">       <i>middelhøy</i><par n="sen__adj"/></e>
-<e lm="middelshøg">      <i>middelshøg</i><par n="høg__adj"/></e>
-<e lm="middelshøy">      <i>middelshøy</i><par n="sen__adj"/></e>
-<e lm="rekordhøg">       <i>rekordhøy</i><par n="høg__adj"/></e>
-<e lm="rekordhøy">       <i>rekordhøy</i><par n="sen__adj"/></e>
-<e lm="skyhøg">          <i>skyhøg</i><par n="høg__adj"/></e>
-<e lm="skyhøy">          <i>skyhøy</i><par n="sen__adj"/></e>
-<e lm="tårnhøg">         <i>tårnhøg</i><par n="høg__adj"/></e>
-<e lm="tårnhøy">         <i>tårnhøy</i><par n="sen__adj"/></e>
+<e lm="halvhøy"> <i>halv</i><par n="høy_LR_høg"/><i></i><par n="sen__adj"/></e>
+<e lm="halvmeterhøy"> <i>halvmeter</i><par n="høy_LR_høg"/><i></i><par n="sen__adj"/></e>
+<e lm="himmelhøy"> <i>himmel</i><par n="høy_LR_høg"/><i></i><par n="sen__adj"/></e>
+<e lm="høy"> <i></i><par n="høy_LR_høg"/><i></i><par n="sen__adj"/></e>
+<e lm="jamhøy"> <i>jam</i><par n="høy_LR_høg"/><i></i><par n="sen__adj"/></e>
+<e lm="jevnhøy"> <i>jevn</i><par n="høy_LR_høg"/><i></i><par n="sen__adj"/></e>
+<e lm="kjempehøy"> <i>kjempe</i><par n="høy_LR_høg"/><i></i><par n="sen__adj"/></e>
+<e lm="kjepphøy"> <i>kjepp</i><par n="høy_LR_høg"/><i></i><par n="sen__adj"/></e>
+<e lm="meterhøy"> <i>meter</i><par n="høy_LR_høg"/><i></i><par n="sen__adj"/></e>
+<e lm="middelhøy"> <i>middel</i><par n="høy_LR_høg"/><i></i><par n="sen__adj"/></e>
+<e lm="middelshøy"> <i>middels</i><par n="høy_LR_høg"/><i></i><par n="sen__adj"/></e>
+<e lm="rekordhøy"> <i>rekord</i><par n="høy_LR_høg"/><i></i><par n="sen__adj"/></e>
+<e lm="skyhøy"> <i>sky</i><par n="høy_LR_høg"/><i></i><par n="sen__adj"/></e>
+<e lm="tårnhøy"> <i>tårn</i><par n="høy_LR_høg"/><i></i><par n="sen__adj"/></e>
 
 <e lm="alkoholfri">      <i>alkoholfri</i><par n="ny__adj"/></e>
 <e lm="alliansefri">     <i>alliansefri</i><par n="ny__adj"/></e>
@@ -20037,7 +20022,6 @@
 <e lm="finsk">           <i>finsk</i><par n="ost__n"/></e>
 <e lm="fransk">          <i>fransk</i><par n="ost__n"/></e>
 <e lm="gammelfransk"><i>gammelfransk</i><par n="ost__n"/></e>
-<e lm="gammelhøytysk"><i>gammelhøytysk</i><par n="ost__n"/></e>
 <e lm="gammelsvensk"><i>gammelsvensk</i><par n="ost__n"/></e>
 <e lm="frisisk">         <i>frisisk</i><par n="ost__n"/></e>
 <e lm="færøysk">         <i>færøysk</i><par n="ost__n"/></e>
@@ -20100,8 +20084,6 @@
     <e lm="flamsk"><i>flamsk</i><par n="ost__n"/></e>
     <e lm="gammelgresk"><i>gammelgresk</i><par n="ost__n"/></e>
     <e lm="jysk"><i>jysk</i><par n="ost__n"/></e>
-    <e lm="høytysk"><i>høytysk</i><par n="ost__n"/></e>
-    <e lm="høgtysk"><i>høgtysk</i><par n="ost__n"/></e>
     <e lm="gammelengelsk"><i>gammelengelsk</i><par n="ost__n"/></e>
     <e lm="ido"><i>ido</i><par n="ost__n"/></e>
     <e lm="gammaldansk"><i>gammaldansk</i><par n="ost__n"/></e>
@@ -20201,6 +20183,7 @@
 <e lm="enighet">         <i>enighet</i><par n="då__n"/></e>
 <e lm="besetning">       <i>besetning</i><par n="ep__n"/></e>
 <e lm="fil">             <i>fil</i><par n="då__n"/></e>
+<e lm="løe">             <i>lø</i><par n="enk/e__n"/></e>
 <e lm="ansvar">          <i>ansvar</i><par n="ul__n"/></e>
 <e lm="dør">             <i>dør</i><par n="då__n"/></e>
 <e lm="død">             <i>død</i><par n="ep__n"/></e>
@@ -20712,7 +20695,6 @@
 <e lm="følelse">         <i>følelse</i><par n="re__n"/></e>
 <e lm="humor">           <i>humor</i><par n="ep__n"/></e>
 <e lm="friidrett">       <i>friidrett</i><par n="ep__n"/></e>
-<e lm="høydepunkt">      <i>høydepunkt</i><par n="ja__n"/></e>
 <e lm="følge">           <i>følg</i><par n="god/e__n"/></e>
 <e lm="foredrag">        <i>foredrag</i><par n="ul__n"/></e>
 <e lm="gjenstand">       <i>gjenstand</i><par n="ep__n"/></e>
@@ -20734,7 +20716,6 @@
 <e lm="grevskap">        <i>grevskap</i><par n="ja__n"/></e>
 <e lm="ingenting">       <i>ingenting</i><par n="sør__n"/></e>
 <e lm="kapp">            <i>kapp</i><par n="bo__n"/></e>
-<e lm="høy">             <i>høy</i><par n="ul__n"/></e>
 <e lm="flekk">           <i>flekk</i><par n="ep__n"/></e>
 <e lm="formue">          <i>formue</i><par n="re__n"/></e>
 <e lm="gass">            <i>gass</i><par n="ep__n"/></e>
@@ -20770,7 +20751,6 @@
 <e lm="fylkesvei">       <i>fylkesvei</i><par n="ep__n"/></e>
 <e lm="idrettslag">      <i>idrettslag</i><par n="ul__n"/></e>
 <e lm="front">           <i>front</i><par n="ep__n"/></e>
-<e lm="høyde">           <i>høyde</i><par n="love__n"/></e>
 <e lm="idrett">          <i>idrett</i><par n="ep__n"/></e>
 <e lm="hovedkontor">     <i>hovedkontor</i><par n="ja__n"/></e>
 <e lm="galleri">         <i>galleri</i><par n="ja__n"/></e>
@@ -20795,7 +20775,6 @@
 <e lm="flora">           <i>flora</i><par n="ep__n"/></e>
 <e lm="institusjon">     <i>institusjon</i><par n="ep__n"/></e>
 <e lm="forteller">       <i>forteller</i><par n="uer__n"/></e>
-<e lm="høyesterett">     <i>høyesterett</i><par n="ep__n"/></e>
 <e lm="grand">           <i>grand</i><par n="gon__n"/></e>
 <e lm="flertall">        <i>flertall</i><par n="ul__n"/></e>
 <e lm="henhold">         <i>henhold</i><par n="MC__n"/></e>
@@ -20876,7 +20855,6 @@
 <e lm="kandidat">        <i>kandidat</i><par n="ep__n"/></e>
 <e lm="ordførerkandidat"><i>ordførerkandidat</i><par n="ep__n"/></e>
 <e lm="fred">            <i>fred</i><par n="ep__n"/></e>
-<e lm="høyre">           <i>høyre</i><par n="ost__n"/></e>
 <e lm="forsøk">          <i>forsøk</i><par n="ul__n"/></e>
 <e lm="kampanje">        <i>kampanje</i><par n="re__n"/></e>
 <e lm="kanal">           <i>kanal</i><par n="ep__n"/></e>
@@ -21927,7 +21905,43 @@
 <e lm="stedsnavn">       <i>stedsnavn</i><par n="ul__n"/></e>
 <e lm="tale">            <i>tale</i><par n="re__n"/></e>
 <e lm="samtale">         <i>samtale</i><par n="re__n"/></e>
+
+<e lm="årstimetall">     <i>årstimetall</i><par n="ul__n"/></e>
+<e lm="uketimetall">     <i>uketimetall</i><par n="ul__n"/></e>
+<e lm="totaltall">       <i>totaltall</i><par n="ul__n"/></e>
+<e lm="tohundretall">    <i>tohundretall</i><par n="ul__n"/></e>
+<e lm="telletall">       <i>telletall</i><par n="ul__n"/></e>
+<e lm="selvmordstall">   <i>selvmordstall</i><par n="ul__n"/></e>
+<e lm="seerflertall">    <i>seerflertall</i><par n="ul__n"/></e>
+<e lm="råtall">          <i>råtall</i><par n="ul__n"/></e>
+<e lm="råratetall">      <i>råratetall</i><par n="ul__n"/></e>
+<e lm="relativtall">     <i>relativtall</i><par n="ul__n"/></e>
+<e lm="ratingtall">      <i>ratingtall</i><par n="ul__n"/></e>
+<e lm="personekvivalenttall"><i>personekvivalenttall</i><par n="ul__n"/></e>
+<e lm="pengemengdetall"> <i>pengemengdetall</i><par n="ul__n"/></e>
+<e lm="omdreiningstall"> <i>omdreiningstall</i><par n="ul__n"/></e>
+<e lm="omdreiingstall">  <i>omdreiingstall</i><par n="ul__n"/></e>
+<e lm="nøkkeltall">      <i>nøkkeltall</i><par n="ul__n"/></e>
+<e lm="nøkkeltall">      <i>nøkkeltall</i><par n="ul__n"/></e>
+<e lm="nettoreproduksjonstall"><i>nettoreproduksjonstall</i><par n="ul__n"/></e>
+<e lm="minimumstimetall"><i>minimumstimetall</i><par n="ul__n"/></e>
+<e lm="mindretall">      <i>mindretall</i><par n="ul__n"/></e>
+<e lm="lærertimetall">   <i>lærertimetall</i><par n="ul__n"/></e>
+<e lm="komitéflertall">  <i>komitéflertall</i><par n="ul__n"/></e>
+<e lm="heltall">         <i>heltall</i><par n="ul__n"/></e>
+<e lm="handelsbalansetall"><i>handelsbalansetall</i><par n="ul__n"/></e>
+<e lm="folkemeningstall"><i>folkemeningstall</i><par n="ul__n"/></e>
+<e lm="folkeavstemningsmanntall"><i>folkeavstemningsmanntall</i><par n="ul__n"/></e>
+<e lm="fiskermanntall">  <i>fiskermanntall</i><par n="ul__n"/></e>
+<e lm="eierflertall">    <i>eierflertall</i><par n="ul__n"/></e>
+<e lm="dødsulykketall">  <i>dødsulykketall</i><par n="ul__n"/></e>
+<e lm="dødsulykketall">  <i>dødsulykketall</i><par n="ul__n"/></e>
+<e lm="bystyreflertall"> <i>bystyreflertall</i><par n="ul__n"/></e>
+<e lm="arbeidsledighetstall"><i>arbeidsledighetstall</i><par n="ul__n"/></e>
+<e lm="arbeiderflertall"><i>arbeiderflertall</i><par n="ul__n"/></e>
+<e lm="innbyggertall">   <i>innbyggertall</i><par n="ul__n"/></e>
 <e lm="tall">            <i>tall</i><par n="lo__n"/></e>
+
 <e lm="styreleder">      <i>styreleder</i><par n="uer__n"/></e>
 <e lm="syke">            <i>syke</i><par n="re__n"/></e>
 <e lm="teller">          <i>teller</i><par n="uer__n"/></e>
@@ -22118,7 +22132,6 @@
 <e lm="privatliv">       <i>privatliv</i><par n="ul__n"/></e>
 <e lm="plikt">           <i>plikt</i><par n="då__n"/></e>
 <e lm="pakt">            <i>pakt</i><par n="då__n"/></e>
-<e lm="overhøyhet">      <i>overhøyhet</i><par n="då__n"/></e>
 <e lm="opplysning">      <i>opplysning</i><par n="ep__n"/></e>
 <e lm="oppholdssted">    <i>oppholdssted</i><par n="sted__n"/></e>
 <e lm="oppfordring">     <i>oppfordring</i><par n="då__n"/></e>
@@ -22496,10 +22509,100 @@
 <e lm="drikkevann"><i>drikkevann</i><par n="ul__n"/></e>
 <e lm="åtak"><i>åtak</i><par n="ul__n"/></e>
 <e lm="bit"><i>bit</i><par n="bit__n"/></e>
-<e lm="høgtrykk"><i>høgtrykk</i><par n="ul__n"/></e>
+<e lm="høyballe">        <i>høyballe</i><par n="re__n"/></e>
+<e lm="høyfeber">        <i>høyfeb</i><par n="iv/er__n"/></e>
+<e lm="høydott">         <i>høydott</i><par n="ep__n"/></e>
+<e lm="høybunt">         <i>høybunt</i><par n="ep__n"/></e>
+<e lm="høysvans">        <i>høysvans</i><par n="ep__n"/></e>
+<e lm="høykanon">        <i>høykanon</i><par n="ep__n"/></e>
+<e lm="høyvisk">         <i>høyvisk</i><par n="ep__n"/></e>
+<e lm="høytørk">         <i>høytørk</i><par n="ep__n"/></e>
+<e lm="høysekk">         <i>høysekk</i><par n="ep__n"/></e>
+<e lm="høystakk">        <i>høystakk</i><par n="ep__n"/></e>
+<e lm="høysnue">         <i>høysnue</i><par n="re__n"/></e>
+<e lm="vollhøy">         <i>vollhøy</i><par n="ul__n"/></e>
+<e lm="høy">             <i>høy</i><par n="ul__n"/></e>
+<e lm="høylass">         <i>høylass</i><par n="ul__n"/></e>
+<e lm="høymo">           <i>høymo</i><par n="ul__n"/></e>
+<e lm="høyvann">         <i>høyvann</i><par n="ul__n"/></e>
+<e lm="høygaffel">       <i>høygaf</i><par n="vaf/fel__n"/></e>
+
+<e lm="høysete"> <par n="høy_LR_høg"/><i>set</i><par n="ød/e__n"/></e>
+<e lm="overhøyhet">      <i>over</i><par n="høy_LR_høg"/><i>het</i><par n="då__n"/></e>
+<e lm="høyblokk"> <par n="høy_LR_høg"/><i>blokk</i><par n="då__n"/></e>
+<e lm="høytysk"><par n="høy_LR_høg"/><i>tysk</i><par n="ost__n"/></e>
+<e lm="høyrefot"> <par n="høy_LR_høg"/><i>ref</i><par n="fef/ot__n"/></e>
+<e lm="høyreekstremist"> <par n="høy_LR_høg"/><i>reekstremist</i><par n="ep__n"/></e>
+<e lm="høykant"> <par n="høy_LR_høg"/><i>kant</i><par n="ep__n"/></e>
+<e lm="høystatus"> <par n="høy_LR_høg"/><i>status</i><par n="ep__n"/></e>
+<e lm="høyfrekvens"> <par n="høy_LR_høg"/><i>frekvens</i><par n="ep__n"/></e>
+<e lm="høykonjunktur"> <par n="høy_LR_høg"/><i>konjunktur</i><par n="ep__n"/></e>
+<e lm="høyrearm"> <par n="høy_LR_høg"/><i>rearm</i><par n="ep__n"/></e>
+<e lm="høysesong"> <par n="høy_LR_høg"/><i>sesong</i><par n="ep__n"/></e>
+<e lm="høytidsdag"> <par n="høy_LR_høg"/><i>tidsdag</i><par n="ep__n"/></e>
+<e lm="høysterettsdom"> <par n="høy_LR_høg"/><i>sterettsdom</i><par n="bom__n"/></e>
+<e lm="høyhus"> <par n="høy_LR_høg"/><i>hus</i><par n="ul__n"/></e>
+<e lm="høyderor"> <par n="høy_LR_høg"/><i>deror</i><par n="ul__n"/></e>
+<e lm="høygir"> <par n="høy_LR_høg"/><i>gir</i><par n="ul__n"/></e>
+<e lm="høydehopp"> <par n="høy_LR_høg"/><i>dehopp</i><par n="ul__n"/></e>
+<e lm="høyspenn"> <par n="høy_LR_høg"/><i>spenn</i><par n="ul__n"/></e>
+<e lm="høyfjell"> <par n="høy_LR_høg"/><i>fjell</i><par n="ul__n"/></e>
+<e lm="høyrefolk"> <par n="høy_LR_høg"/><i>refolk</i><par n="ul__n"/></e>
+<e lm="høybygg"> <par n="høy_LR_høg"/><i>bygg</i><par n="ul__n"/></e>
+<e lm="høydedrag"> <par n="høy_LR_høg"/><i>dedrag</i><par n="ul__n"/></e>
+<e lm="høykostland"> <par n="høy_LR_høg"/><i>kostland</i><par n="ul__n"/></e>
+<e lm="høyadel"> <par n="høy_LR_høg"/><i>ad</i><par n="ad/el__n"/></e>
+<e lm="høyskole"><par n="høy_LR_høg"/><i>skole</i><par n="re__n"/></e>
+<e lm="høyfjellsbeite"> <par n="høy_LR_høg"/><i>fjellsbeit</i><par n="ød/e__n"/></e>
+<e lm="høytrykksområde"> <par n="høy_LR_høg"/><i>trykksområd</i><par n="ød/e__n"/></e>
+<e lm="høydepunkt"> <par n="høy_LR_høg"/><i>depunkt</i><par n="ja__n"/></e>
+<e lm="høyreorgan"> <par n="høy_LR_høg"/><i>reorgan</i><par n="ja__n"/></e>
+<e lm="høyreparti"> <par n="høy_LR_høg"/><i>reparti</i><par n="ja__n"/></e>
+<e lm="høydebasseng"> <par n="høy_LR_høg"/><i>debasseng</i><par n="ja__n"/></e>
+<e lm="høyblad"> <par n="høy_LR_høg"/><i>blad</i><par n="ja__n"/></e>
+<e lm="høykommissær"> <par n="høy_LR_høg"/><i>kommissær</i><par n="ep__n"/></e>
+<e lm="høyoktanbensin"> <par n="høy_LR_høg"/><i>oktanbensin</i><par n="ep__n"/></e>
+<e lm="høyrepolitikk"> <par n="høy_LR_høg"/><i>repolitikk</i><par n="ep__n"/></e>
+<e lm="høyretrafikk"> <par n="høy_LR_høg"/><i>retrafikk</i><par n="ep__n"/></e>
+<e lm="høyreving"> <par n="høy_LR_høg"/><i>reving</i><par n="ep__n"/></e>
+<e lm="høylending"> <par n="høy_LR_høg"/><i>lending</i><par n="ep__n"/></e>
+<e lm="høytrykksrygg"> <par n="høy_LR_høg"/><i>trykksrygg</i><par n="ep__n"/></e>
+<e lm="høyrygg"> <par n="høy_LR_høg"/><i>rygg</i><par n="ep__n"/></e>
+<e lm="høyfjellsveg"> <par n="høy_LR_høg"/><i>fjellsveg</i><par n="ep__n"/></e>
+<e lm="høyprosa"> <par n="høy_LR_høg"/><i>prosa</i><par n="ep__n"/></e>
+<e lm="høyremann"> <par n="høy_LR_høg"/><i>rem</i><par n="jam/ann__n"/></e>
+<e lm="høyvatn"> <par n="høy_LR_høg"/><i>vatn</i><par n="ul__n"/></e>
+<e lm="høyfjellshotell"> <par n="høy_LR_høg"/><i>fjellshotell</i><par n="ul__n"/></e>
+<e lm="høytrykk"> <par n="høy_LR_høg"/><i>trykk</i><par n="ul__n"/></e>
+<e lm="høyland"> <par n="høy_LR_høg"/><i>land</i><par n="ul__n"/></e>
+<e lm="høystatusyrke"> <par n="høy_LR_høg"/><i>statusyrk</i><par n="ød/e__n"/></e>
+<e lm="høyre"> <par n="høy_LR_høg"/><i>re</i><par n="ost__n"/></e>
+<e lm="høyfjellsvei"> <par n="høy_LR_høg"/><i>fjellsvei</i><par n="ep__n"/></e>
+<e lm="høyde"> <par n="høy_LR_høg"/><i>de</i><par n="love__n"/></e>
+<e lm="høyfjellshotell"> <par n="høy_LR_høg"/><i>fjellshotell</i><par n="ja__n"/></e>
+
+<e lm="gammelhøytysk">   <i>gammel</i><par n="høy_LR_høg"/><i>tysk</i><par n="ost__n"/></e>
+<e lm="gammalhøytysk">   <i>gammal</i><par n="høy_LR_høg"/><i>tysk</i><par n="ost__n"/></e>
+<e lm="sykepleierhøyskole"><i>sykepleier</i><par n="høy_LR_høg"/><i>skole</i><par n="re__n"/></e>
+<e lm="sjukepleierhøyskole"><i>sjukepleier</i><par n="høy_LR_høg"/><i>skole</i><par n="re__n"/></e>
+<e lm="idrettshøyskole"> <i>idretts</i><par n="høy_LR_høg"/><i>skole</i><par n="re__n"/></e>
+<e lm="distriktshøyskole"><i>distrikts</i><par n="høy_LR_høg"/><i>skole</i><par n="re__n"/></e>
+<e lm="handelshøyskole"> <i>handels</i><par n="høy_LR_høg"/><i>skole</i><par n="re__n"/></e>
+<e lm="landbrukshøyskole"><i>landbruks</i><par n="høy_LR_høg"/><i>skole</i><par n="re__n"/></e>
+<e lm="ingeniørhøyskole"><i>ingeniør</i><par n="høy_LR_høg"/><i>skole</i><par n="re__n"/></e>
+<e lm="veterinærhøyskole"><i>veterinær</i><par n="høy_LR_høg"/><i>skole</i><par n="re__n"/></e>
+<e lm="sosialhøyskole">  <i>sosial</i><par n="høy_LR_høg"/><i>skole</i><par n="re__n"/></e>
+<e lm="folkehøyskole">   <i>folke</i><par n="høy_LR_høg"/><i>skole</i><par n="re__n"/></e>
+
+<e lm="sykepleierske">   <i>sykepleiersk</i><par n="enk/e__n"/></e>
+<e lm="sjukepleierske">   <i>sjukepleiersk</i><par n="enk/e__n"/></e>
+
+<e lm="høyesterett"> <par n="høye_LR_høg"/><i>sterett</i><par n="ep__n"/></e>
+<e lm="høyesterettsadvokat"> <par n="høye_LR_høg"/><i>sterettsadvokat</i><par n="ep__n"/></e>
+<e lm="høyesterettsjustitiarius"> <par n="høye_LR_høg"/><i>sterettsjustitiari</i><par n="dekan/us__n"/></e>
+
 <e lm="akkusativ"><i>akkusativ</i><par n="ep__n"/></e>
 <e lm="bustad"><i>bustad</i><par n="ep__n"/></e>
-<e lm="høgdepunkt"><i>høgdepunkt</i><par n="ja__n"/></e>
 <e lm="fat"><i>fat</i><par n="ja__n"/></e>
 <e lm="heimstad"><i>heimst</i><par n="forst/ad__n"/></e>
 <e lm="etikk"><i>etikk</i><par n="ep__n"/></e>
@@ -22625,7 +22728,6 @@
 <e lm="lauvtre">         <i>lauvtr</i><par n="tr/e__n"/></e>
 <e lm="kapitalisme">     <i>kapitalisme</i><par n="re__n"/></e>
 <e lm="monopol">         <i>monopol</i><par n="ja__n"/></e>
-<e lm="mindretal">       <i>mindretal</i><par n="ul__n"/></e>
 <e lm="krepsdyr">        <i>krepsdyr</i><par n="ul__n"/></e>
 <e lm="nebb">            <i>nebb</i><par n="ymt__n"/></e>
 <e lm="lunde">           <i>lunde</i><par n="re__n"/></e>
@@ -25922,6 +26024,8 @@
     <e lm="bunadssølv"><i>bunadssølv</i><par n="ul__n"/></e>
     <e lm="bunadsølv"><i>bunadsølv</i><par n="ul__n"/></e>
     <e lm="bunding"><i>bunding</i><par n="ep__n"/></e>
+    <e lm="feiring"><i>feiring</i><par n="då__n"/></e>
+<e lm="gruppering"><i>gruppering</i><par n="då__n"/></e>
     <e lm="bungalow"><i>bungalow</i><par n="ep__n"/></e>
     <e lm="bunke"><i>bunke</i><par n="re__n"/></e>
     <e lm="bunker"><i>bunker</i><par n="uer__n"/></e>
@@ -26447,6 +26551,60 @@
     <e lm="dagsordre"><i>dagsordre</i><par n="re__n"/></e>
     <e lm="dagsrevy"><i>dagsrevy</i><par n="ep__n"/></e>
     <e lm="dagstur"><i>dagstur</i><par n="ep__n"/></e>
+    <e lm="anestesisjukepleier"><i>anestesisjukepleier</i><par n="uer__n"/></e>
+    <e lm="anestesisykepleier"><i>anestesisykepleier</i><par n="uer__n"/></e>
+    <e lm="avdelingssjukepleier"><i>avdelingssjukepleier</i><par n="uer__n"/></e>
+    <e lm="avdelingssykepleier"><i>avdelingssykepleier</i><par n="uer__n"/></e>
+    <e lm="barnesjukepleier"><i>barnesjukepleier</i><par n="uer__n"/></e>
+    <e lm="barnesykepleier"><i>barnesykepleier</i><par n="uer__n"/></e>
+    <e lm="bedriftssjukepleie"><i>bedriftssjukeplei</i><par n="enk/e__n"/></e>
+    <e lm="bedriftssjukepleier"><i>bedriftssjukepleier</i><par n="uer__n"/></e>
+    <e lm="bedriftssykepleie"><i>bedriftssykeplei</i><par n="enk/e__n"/></e>
+    <e lm="bedriftssykepleier"><i>bedriftssykepleier</i><par n="uer__n"/></e>
+    <e lm="heimesjukepleie"><i>heimesjukeplei</i><par n="enk/e__n"/></e>
+    <e lm="heimesjukepleier"><i>heimesjukepleier</i><par n="uer__n"/></e>
+    <e lm="heimesykepleie"><i>heimesykeplei</i><par n="enk/e__n"/></e>
+    <e lm="heimesykepleier"><i>heimesykepleier</i><par n="uer__n"/></e>
+    <e lm="helsesjukepleier"><i>helsesjukepleier</i><par n="uer__n"/></e>
+    <e lm="helsesykepleier"><i>helsesykepleier</i><par n="uer__n"/></e>
+    <e lm="hjemmesjukepleie"><i>hjemmesjukeplei</i><par n="enk/e__n"/></e>
+    <e lm="hjemmesjukepleier"><i>hjemmesjukepleier</i><par n="uer__n"/></e>
+    <e lm="hjemmesykepleie"><i>hjemmesykeplei</i><par n="enk/e__n"/></e>
+    <e lm="hjemmesykepleier"><i>hjemmesykepleier</i><par n="uer__n"/></e>
+    <e lm="hygienesykepleier"><i>hygienesykepleier</i><par n="uer__n"/></e>
+    <e lm="intensivsjukepleie"><i>intensivsjukeplei</i><par n="enk/e__n"/></e>
+    <e lm="intensivsjukepleier"><i>intensivsjukepleier</i><par n="uer__n"/></e>
+    <e lm="intensivsykepleie"><i>intensivsykeplei</i><par n="enk/e__n"/></e>
+    <e lm="intensivsykepleier"><i>intensivsykepleier</i><par n="uer__n"/></e>
+    <e lm="kreftsjukepleier"><i>kreftsjukepleier</i><par n="uer__n"/></e>
+    <e lm="kreftsykepleier"><i>kreftsykepleier</i><par n="uer__n"/></e>
+    <e lm="nattsjukepleier"><i>nattsjukepleier</i><par n="uer__n"/></e>
+    <e lm="nattsykepleier"><i>nattsykepleier</i><par n="uer__n"/></e>
+    <e lm="operasjonssjukepleier"><i>operasjonssjukepleier</i><par n="uer__n"/></e>
+    <e lm="operasjonssykepleier"><i>operasjonssykepleier</i><par n="uer__n"/></e>
+    <e lm="oversjukepleier"><i>oversjukepleier</i><par n="uer__n"/></e>
+    <e lm="oversykepleier"><i>oversykepleier</i><par n="uer__n"/></e>
+    <e lm="sjefsjukepleier"><i>sjefsjukepleier</i><par n="uer__n"/></e>
+    <e lm="sjefsykepleier"><i>sjefsykepleier</i><par n="uer__n"/></e>
+    <e lm="sjukepleie"><i>sjukeplei</i><par n="enk/e__n"/></e>
+    <e lm="sjukepleier"><i>sjukepleier</i><par n="uer__n"/></e>
+    <e lm="rødekorssjukepleier"><i>rødekorssjukepleier</i><par n="uer__n"/></e>
+    <e lm="sjukepleierelev"><i>sjukepleierelev</i><par n="ep__n"/></e>
+    <e lm="sjukepleierskole"><i>sjukepleierskole</i><par n="re__n"/></e>
+    <e lm="sjukepleierstilling"><i>sjukepleierstilling</i><par n="då__n"/></e>
+    <e lm="sjukepleierutdannelse"><i>sjukepleierutdannelse</i><par n="re__n"/></e>
+    <e lm="sjukepleierutdanning"><i>sjukepleierutdanning</i><par n="då__n"/></e>
+    <e lm="sykepleie"><i>sykeplei</i><par n="enk/e__n"/></e>
+    <e lm="sykepleierelev"><i>sykepleierelev</i><par n="ep__n"/></e>
+    <e lm="sykepleierskole"><i>sykepleierskole</i><par n="re__n"/></e>
+    <e lm="sykepleierstilling"><i>sykepleierstilling</i><par n="då__n"/></e>
+    <e lm="sykepleierstudent"><i>sykepleierstudent</i><par n="ep__n"/></e>
+    <e lm="sykepleierutdannelse"><i>sykepleierutdannelse</i><par n="re__n"/></e>
+    <e lm="sykepleierutdanning"><i>sykepleierutdanning</i><par n="då__n"/></e>
+    <e lm="sykepleieryrke"><i>sykepleieryrk</i><par n="ød/e__n"/></e>
+    <e lm="sykepleier"><i>sykepleier</i><par n="uer__n"/></e>
+    <e lm="rødekorssykepleier"><i>rødekorssykepleier</i><par n="uer__n"/></e>
+    
     <e lm="dagsykehus"><i>dagsykehus</i><par n="ul__n"/></e>
     <e lm="dagtog"><i>dagtog</i><par n="ul__n"/></e>
     <e lm="daguerreotypi"><i>daguerreotypi</i><par n="do__n"/></e>
@@ -26913,7 +27071,6 @@
     <e lm="distribusjon"><i>distribusjon</i><par n="ep__n"/></e>
     <e lm="distribusjonsapparat"><i>distribusjonsapparat</i><par n="ja__n"/></e>
     <e lm="distributør"><i>distributør</i><par n="ep__n"/></e>
-    <e lm="distriktshøgskole"><i>distriktshøgskole</i><par n="re__n"/></e>
     <e lm="distriktskommando"><i>distriktskommando</i><par n="ep__n"/></e>
     <e lm="distriktslege"><i>distriktslege</i><par n="re__n"/></e>
     <e lm="distriktspolitikk"><i>distriktspolitikk</i><par n="ep__n"/></e>
@@ -29099,7 +29256,6 @@
     <e lm="folkehelt"><i>folkehelt</i><par n="ep__n"/></e>
     <e lm="folkehop"><i>folkehop</i><par n="ep__n"/></e>
     <e lm="folkehumor"><i>folkehumor</i><par n="ep__n"/></e>
-    <e lm="folkehøgskole"><i>folkehøgskole</i><par n="re__n"/></e>
     <e lm="folkekarakter"><i>folkekarakter</i><par n="ep__n"/></e>
     <e lm="folkekommissær"><i>folkekommissær</i><par n="ep__n"/></e>
     <e lm="folkekommune"><i>folkekommune</i><par n="re__n"/></e>
@@ -30020,15 +30176,12 @@
     <e lm="gamling"><i>gamling</i><par n="ep__n"/></e>
     <e lm="gamma"><i>gamma</i><par n="ep__n"/></e>
     <e lm="gammaldans"><i>gammaldans</i><par n="ep__n"/></e>
-    <e lm="gammalhøgtysk"><i>gammalhøgtysk</i><par n="ep__n"/></e>
-    <e lm="gammalhøytysk"><i>gammalhøytysk</i><par n="ep__n"/></e>
     <e lm="gammalkommunist"><i>gammalkommunist</i><par n="ep__n"/></e>
     <e lm="gammalost"><i>gammalost</i><par n="ep__n"/></e>
     <e lm="gammalstev"><i>gammalstev</i><par n="ul__n"/></e>
     <e lm="gammastråle"><i>gammastråle</i><par n="re__n"/></e>
     <e lm="gamme"><i>gamme</i><par n="re__n"/></e>
     <e lm="gammeldans"><i>gammeldans</i><par n="ep__n"/></e>
-    <e lm="gammelhøgtysk"><i>gammelhøgtysk</i><par n="ep__n"/></e>
     <e lm="gammelkommunist"><i>gammelkommunist</i><par n="ep__n"/></e>
     <e lm="gammelost"><i>gammelost</i><par n="ep__n"/></e>
     <e lm="gammelstev"><i>gammelstev</i><par n="ul__n"/></e>
@@ -31346,7 +31499,6 @@
     <e lm="handelsgymnas"><i>handelsgymnas</i><par n="ja__n"/></e>
     <e lm="handelsgymnasiast"><i>handelsgymnasiast</i><par n="ep__n"/></e>
     <e lm="handelshus"><i>handelshus</i><par n="ul__n"/></e>
-    <e lm="handelshøgskole"><i>handelshøgskole</i><par n="re__n"/></e>
     <e lm="handelskalender"><i>handelskalend</i><par n="iv/er__n"/></e>
     <e lm="handelskammer"><i>handelskam</i><par n="num/mer__n"/></e>
     <e lm="handelskar"><i>handelskar</i><par n="ep__n"/></e>
@@ -32390,54 +32542,6 @@
     <e lm="hærskip"><i>hærskip</i><par n="ul__n"/></e>
     <e lm="hærstyrke"><i>hærstyrke</i><par n="re__n"/></e>
     <e lm="hærverk"><i>hærverk</i><par n="ja__n"/></e>
-    <e lm="høgadel"><i>høgad</i><par n="ad/el__n"/></e>
-    <e lm="høgblad"><i>høgblad</i><par n="ja__n"/></e>
-    <e lm="høgblokk"><i>høgblokk</i><par n="då__n"/></e>
-    <e lm="høgbygg"><i>høgbygg</i><par n="ul__n"/></e>
-    <e lm="høgdebasseng"><i>høgdebasseng</i><par n="ja__n"/></e>
-    <e lm="høgdedrag"><i>høgdedrag</i><par n="ul__n"/></e>
-    <e lm="høgdehopp"><i>høgdehopp</i><par n="ul__n"/></e>
-    <e lm="høgderor"><i>høgderor</i><par n="ul__n"/></e>
-    <e lm="høgfjell"><i>høgfjell</i><par n="ul__n"/></e>
-    <e lm="høgfjellsbeite"><i>høgfjellsbeit</i><par n="ød/e__n"/></e>
-    <e lm="høgfjellshotell"><i>høgfjellshotell</i><par n="ul__n"/></e>
-    <e lm="høgfjellsveg"><i>høgfjellsveg</i><par n="ep__n"/></e>
-    <e lm="høgfrekvens"><i>høgfrekvens</i><par n="ep__n"/></e>
-    <e lm="høggir"><i>høggir</i><par n="ul__n"/></e>
-    <e lm="høghus"><i>høghus</i><par n="ul__n"/></e>
-    <e lm="høgkant"><i>høgkant</i><par n="ep__n"/></e>
-    <e lm="høgkommissær"><i>høgkommissær</i><par n="ep__n"/></e>
-    <e lm="høgkonjunktur"><i>høgkonjunktur</i><par n="ep__n"/></e>
-    <e lm="høgkostland"><i>høgkostland</i><par n="ul__n"/></e>
-    <e lm="høgland"><i>høgland</i><par n="ul__n"/></e>
-    <e lm="høglending"><i>høglending</i><par n="ep__n"/></e>
-    <e lm="høgoktanbensin"><i>høgoktanbensin</i><par n="ep__n"/></e>
-    <e lm="høgprosa"><i>høgprosa</i><par n="ep__n"/></e>
-    <e lm="høgrearm"><i>høgrearm</i><par n="ep__n"/></e>
-    <e lm="høgreekstremist"><i>høgreekstremist</i><par n="ep__n"/></e>
-    <e lm="høgrefolk"><i>høgrefolk</i><par n="ul__n"/></e>
-    <e lm="høgrefot"><i>høgref</i><par n="fef/ot__n"/></e>
-    <e lm="høgremann"><i>høgrem</i><par n="jam/ann__n"/></e>
-    <e lm="høgreorgan"><i>høgreorgan</i><par n="ja__n"/></e>
-    <e lm="høgreparti"><i>høgreparti</i><par n="ja__n"/></e>
-    <e lm="høgrepolitikk"><i>høgrepolitikk</i><par n="ep__n"/></e>
-    <e lm="høgretrafikk"><i>høgretrafikk</i><par n="ep__n"/></e>
-    <e lm="høgreving"><i>høgreving</i><par n="ep__n"/></e>
-    <e lm="høgrygg"><i>høgrygg</i><par n="ep__n"/></e>
-    <e lm="høgsesong"><i>høgsesong</i><par n="ep__n"/></e>
-    <e lm="høgsete"><i>høgset</i><par n="ød/e__n"/></e>
-    <e lm="høgskole"><i>høgskole</i><par n="re__n"/></e>
-    <e lm="høgspenn"><i>høgspenn</i><par n="ul__n"/></e>
-    <e lm="høgstatus"><i>høgstatus</i><par n="ep__n"/></e>
-    <e lm="høgstatusyrke"><i>høgstatusyrk</i><par n="ød/e__n"/></e>
-    <e lm="høgsterett"><i>høgsterett</i><par n="ep__n"/></e>
-    <e lm="høgsterettsadvokat"><i>høgsterettsadvokat</i><par n="ep__n"/></e>
-    <e lm="høgsterettsdom"><i>høgsterettsdom</i><par n="bom__n"/></e>
-    <e lm="høgsterettsjustitiarius"><i>høgsterettsjustitiari</i><par n="dekan/us__n"/></e>
-    <e lm="høgtidsdag"><i>høgtidsdag</i><par n="ep__n"/></e>
-    <e lm="høgtrykksområde"><i>høgtrykksområd</i><par n="ød/e__n"/></e>
-    <e lm="høgtrykksrygg"><i>høgtrykksrygg</i><par n="ep__n"/></e>
-    <e lm="høgvatn"><i>høgvatn</i><par n="ul__n"/></e>
     <e lm="høker"><i>høker</i><par n="uer__n"/></e>
     <e lm="høljeregn"><i>høljeregn</i><par n="ul__n"/></e>
     <e lm="høneblund"><i>høneblund</i><par n="ep__n"/></e>
@@ -32471,23 +32575,6 @@
     <e lm="høvelbenk"><i>høvelbenk</i><par n="ep__n"/></e>
     <e lm="høvelspon"><i>høvelspon</i><par n="ep__n"/></e>
     <e lm="høvleri"><i>høvleri</i><par n="ja__n"/></e>
-    <e lm="høyballe"><i>høyballe</i><par n="re__n"/></e>
-    <e lm="høybunt"><i>høybunt</i><par n="ep__n"/></e>
-    <e lm="høydott"><i>høydott</i><par n="ep__n"/></e>
-    <e lm="høyfeber"><i>høyfeb</i><par n="iv/er__n"/></e>
-    <e lm="høygaffel"><i>høygaf</i><par n="vaf/fel__n"/></e>
-    <e lm="høyhus"><i>høyhus</i><par n="ul__n"/></e>
-    <e lm="høykanon"><i>høykanon</i><par n="ep__n"/></e>
-    <e lm="høylass"><i>høylass</i><par n="ul__n"/></e>
-    <e lm="høymo"><i>høymo</i><par n="ul__n"/></e>
-    <e lm="høyreorgan"><i>høyreorgan</i><par n="ja__n"/></e>
-    <e lm="høysekk"><i>høysekk</i><par n="ep__n"/></e>
-    <e lm="høysnue"><i>høysnue</i><par n="re__n"/></e>
-    <e lm="høystakk"><i>høystakk</i><par n="ep__n"/></e>
-    <e lm="høysvans"><i>høysvans</i><par n="ep__n"/></e>
-    <e lm="høytørk"><i>høytørk</i><par n="ep__n"/></e>
-    <e lm="høyvann"><i>høyvann</i><par n="ul__n"/></e>
-    <e lm="høyvisk"><i>høyvisk</i><par n="ep__n"/></e>
     <e lm="i-land"><i>i-land</i><par n="ul__n"/></e>
     <e lm="i-mål"><i>i-mål</i><par n="ul__n"/></e>
     <e lm="ibenholt"><i>ibenholt</i><par n="to__n"/></e>
@@ -32521,7 +32608,6 @@
     <e lm="idioti"><i>idioti</i><par n="ep__n"/></e>
     <e lm="idiotisme"><i>idiotisme</i><par n="re__n"/></e>
     <e lm="idol"><i>idol</i><par n="ja__n"/></e>
-    <e lm="idrettshøgskole"><i>idrettshøgskole</i><par n="re__n"/></e>
     <e lm="idrettskandidat"><i>idrettskandidat</i><par n="ep__n"/></e>
     <e lm="idrettsklubb"><i>idrettsklubb</i><par n="ep__n"/></e>
     <e lm="idrettskonsulent"><i>idrettskonsulent</i><par n="ep__n"/></e>
@@ -32738,7 +32824,6 @@
     <e lm="ingefærplante"><i>ingefærplant</i><par n="enk/e__n"/></e>
     <e lm="ingefærøl"><i>ingefærøl</i><par n="ul__n"/></e>
     <e lm="ingeniør"><i>ingeniør</i><par n="ep__n"/></e>
-    <e lm="ingeniørhøgskole"><i>ingeniørhøgskole</i><par n="re__n"/></e>
     <e lm="ingeniøroffiser"><i>ingeniøroffiser</i><par n="ep__n"/></e>
     <e lm="ingeniørregiment"><i>ingeniørregiment</i><par n="ja__n"/></e>
     <e lm="ingeniørtropp"><i>ingeniørtropp</i><par n="ep__n"/></e>
@@ -33117,6 +33202,7 @@
     <e lm="istapp"><i>istapp</i><par n="ep__n"/></e>
     <e lm="istermage"><i>istermage</i><par n="re__n"/></e>
     <e lm="isvatn"><i>isvatn</i><par n="ul__n"/></e>
+    <e lm="isvann"><i>isvann</i><par n="ul__n"/></e>
     <e lm="isvind"><i>isvind</i><par n="ep__n"/></e>
     <e lm="isørken"><i>isørken</i><par n="ep__n"/></e>
     <e lm="itakisme"><i>itakisme</i><par n="re__n"/></e>
@@ -36422,7 +36508,6 @@
     <e lm="landauer"><i>landauer</i><par n="uer__n"/></e>
     <e lm="landbruksdepartement"><i>landbruksdepartement</i><par n="ja__n"/></e>
     <e lm="landbruksfly"><i>landbruksfly</i><par n="ul__n"/></e>
-    <e lm="landbrukshøgskole"><i>landbrukshøgskole</i><par n="re__n"/></e>
     <e lm="landbrukskandidat"><i>landbrukskandidat</i><par n="ep__n"/></e>
     <e lm="landbrukslag"><i>landbrukslag</i><par n="ul__n"/></e>
     <e lm="landbruksmaskin"><i>landbruksmaskin</i><par n="då__n"/></e>
@@ -45319,7 +45404,6 @@
     <e lm="sosialdemokrati"><i>sosialdemokrati</i><par n="ja__n"/></e>
     <e lm="sosialdepartement"><i>sosialdepartement</i><par n="ja__n"/></e>
     <e lm="sosialetikk"><i>sosialetikk</i><par n="ep__n"/></e>
-    <e lm="sosialhøgskole"><i>sosialhøgskole</i><par n="re__n"/></e>
     <e lm="sosialist"><i>sosialist</i><par n="ep__n"/></e>
     <e lm="sosialistland"><i>sosialistland</i><par n="ul__n"/></e>
     <e lm="sosialistparti"><i>sosialistparti</i><par n="ja__n"/></e>
@@ -50114,7 +50198,6 @@
     <e lm="veteranbil"><i>veteranbil</i><par n="ep__n"/></e>
     <e lm="veteranbilklubb"><i>veteranbilklubb</i><par n="ep__n"/></e>
     <e lm="veterinær"><i>veterinær</i><par n="ep__n"/></e>
-    <e lm="veterinærhøgskole"><i>veterinærhøgskole</i><par n="re__n"/></e>
     <e lm="veterinærmedisin"><i>veterinærmedisin</i><par n="ep__n"/></e>
     <e lm="veterinærstudent"><i>veterinærstudent</i><par n="ep__n"/></e>
     <e lm="veterinærstudium"><i>veterinærstudi</i><par n="podi/um__n"/></e>
@@ -50499,7 +50582,6 @@
     <e lm="voll"><i>voll</i><par n="ep__n"/></e>
     <e lm="volley"><i>volley</i><par n="ep__n"/></e>
     <e lm="volleyball"><i>volleyball</i><par n="ep__n"/></e>
-    <e lm="vollhøy"><i>vollhøy</i><par n="ul__n"/></e>
     <e lm="volontør"><i>volontør</i><par n="ep__n"/></e>
     <e lm="volt"><i>volt</i><par n="lux__n"/></e>
     <e lm="voltampere"><i>voltampere</i><par n="byte__n"/></e>
@@ -51107,37 +51189,8 @@
     <e lm="hunnkatt"><i>hunnkatt</i><par n="ep__n"/></e>
     <e lm="hunnplante"><i>hunnplant</i><par n="enk/e__n"/></e>
     <e lm="hvilebu"><i>hvilebu</i><par n="då__n"/></e>
-    <e lm="høyadel"><i>høyad</i><par n="ad/el__n"/></e>
-    <e lm="høyblad"><i>høyblad</i><par n="ja__n"/></e>
-    <e lm="høyblokk"><i>høyblokk</i><par n="då__n"/></e>
-    <e lm="høybygg"><i>høybygg</i><par n="ul__n"/></e>
-    <e lm="høydebasseng"><i>høydebasseng</i><par n="ja__n"/></e>
-    <e lm="høydedrag"><i>høydedrag</i><par n="ul__n"/></e>
-    <e lm="høydehopp"><i>høydehopp</i><par n="ul__n"/></e>
-    <e lm="høyderor"><i>høyderor</i><par n="ul__n"/></e>
-    <e lm="høyfjell"><i>høyfjell</i><par n="ul__n"/></e>
-    <e lm="høyfjellsbeite"><i>høyfjellsbeit</i><par n="ød/e__n"/></e>
-    <e lm="høyfjellshotell"><i>høyfjellshotell</i><par n="ja__n"/></e>
-    <e lm="høyfjellsvei"><i>høyfjellsvei</i><par n="ep__n"/></e>
-    <e lm="høyfrekvens"><i>høyfrekvens</i><par n="ep__n"/></e>
-    <e lm="høygir"><i>høygir</i><par n="ul__n"/></e>
-    <e lm="høykant"><i>høykant</i><par n="ep__n"/></e>
-    <e lm="høykonjunktur"><i>høykonjunktur</i><par n="ep__n"/></e>
-    <e lm="høykostland"><i>høykostland</i><par n="ul__n"/></e>
-    <e lm="høyrearm"><i>høyrearm</i><par n="ep__n"/></e>
-    <e lm="høyreekstremist"><i>høyreekstremist</i><par n="ep__n"/></e>
-    <e lm="høyrefolk"><i>høyrefolk</i><par n="ul__n"/></e>
-    <e lm="høyrefot"><i>høyref</i><par n="fef/ot__n"/></e>
-    <e lm="høyreparti"><i>høyreparti</i><par n="ja__n"/></e>
-    <e lm="høysesong"><i>høysesong</i><par n="ep__n"/></e>
-    <e lm="høyskole"><i>høyskole</i><par n="re__n"/></e>
-    <e lm="høyspenn"><i>høyspenn</i><par n="ul__n"/></e>
-    <e lm="høystatus"><i>høystatus</i><par n="ep__n"/></e>
-    <e lm="høytidsdag"><i>høytidsdag</i><par n="ep__n"/></e>
-    <e lm="høytrykksområde"><i>høytrykksområd</i><par n="ød/e__n"/></e>
 <e lm="verneområde"><i>verneområd</i><par n="ød/e__n"/></e>
     <e lm="infeksjonssykdom"><i>infeksjonssykdom</i><par n="bom__n"/></e>
-    <e lm="ingeniørhøyskole"><i>ingeniørhøyskole</i><par n="re__n"/></e>
     <e lm="innbrudd"><i>innbrudd</i><par n="ul__n"/></e>
     <e lm="innbygger"><i>innbygger</i><par n="uer__n"/></e>
     <e lm="innvandring"><i>innvandring</i><par n="då__n"/></e>
@@ -51321,7 +51374,6 @@
 <e lm="direkten"><i>direkten</i><par n="småen__n"/></e>
 <e lm="boknafisk"><i>boknafisk</i><par n="ep__n"/></e>
 <e lm="tingvoll"><i>tingvoll</i><par n="ep__n"/></e>
-<e lm="høysterettsdom"><i>høysterettsdom</i><par n="bom__n"/></e>
 <e lm="tidevannstrøm"><i>tidevannstrøm</i><par n="bom__n"/></e>
 <e lm="san"><i>san</i><par n="ep__n"/></e>
 <e lm="fremskrittsmann"><i>fremskrittsm</i><par n="jam/ann__n"/></e>
@@ -51425,6 +51477,8 @@
     <e lm="turteldue"><i>turteldu</i><par n="enk/e__n"/></e>
     <e lm="tyrkerdue"><i>tyrkerdu</i><par n="enk/e__n"/></e>
     <e lm="villdue"><i>villdu</i><par n="enk/e__n"/></e>
+<e lm="viktighet">       <i>viktighet</i><par n="då__n"/></e>
+<e lm="tomhet">    <i>tomhet</i><par n="då__n"/></e>
 <!-- /common nouns -->
 
 <!-- Proper nouns --> 	  	 
