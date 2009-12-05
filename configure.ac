@@ -11,6 +11,7 @@ AC_INIT([apertium-nn-nb], [0.6.1], [unhammer@gmail.com])
 AM_INIT_AUTOMAKE([apertium-nn-nb], [0.6.1], no-define)
 AC_PROG_LN_S
 AC_PROG_AWK
+# todo: needed?
 # AC_CONFIG_HEADER([config])
 
 AC_DEFUN([PKG_CHECK_APERTIUM], [
@@ -32,11 +33,27 @@ AC_DEFUN([PKG_CHECK_APERTIUM], [
   AC_SUBST(APERTIUM_VER)
 ])
 
+AC_DEFUN([PKG_CHECK_LTTOOLBOX], [
+  LTTOOLBOX_VER=0
+  PKG_CHECK_MODULES(LTTOOLBOX, lttoolbox-3.0 >= 3.0.0,
+  [
+    LTTOOLBOX_VER=30
+  ],
+  [
+    PKG_CHECK_MODULES(LTTOOLBOX, lttoolbox-3.1 >= 3.1.0,
+    [
+      LTTOOLBOX_VER=31
+    ],
+    [
+      PKG_CHECK_MODULES(LTTOOLBOX, lttoolbox-3.2 >= 3.2.0)
+      LTTOOLBOX_VER=32
+    ])
+  ])
+  AC_SUBST(LTTOOLBOX_VER)
+])
+
 PKG_CHECK_APERTIUM
-PKG_CHECK_MODULES(LTTOOLBOX, lttoolbox-3.1 >= 3.1.2)
-
-
-AC_SUBST(APERTIUM_VER)
+PKG_CHECK_LTTOOLBOX
 
 
 AC_PATH_PROG(CGCOMP, cg-comp, no)
@@ -59,7 +76,5 @@ then
   AC_MSG_ERROR([You don't have cg-proc installed.])
 fi
 
-
-AC_SUBST(APERTIUM_VER)
 
 AC_OUTPUT([Makefile])
