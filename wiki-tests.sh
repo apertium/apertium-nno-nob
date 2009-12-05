@@ -43,11 +43,17 @@ for LINE in `paste $SRCLIST $TRGLIST $TSTLIST | sed 's/ /%_%/g' | sed 's/	/!/g'`
 	TOTAL=`expr $TOTAL + 1`;
 done
 
-echo $CORRECT" / "$TOTAL ;
+CALC=
+WORKING=
 if [ -x /usr/bin/calc ]; then
-	WORKING=`calc $CORRECT" / "$TOTAL" * 100" | head -c 7`;
-
-	echo $WORKING"%";
+    CALC="/usr/bin/calc"
+elif [ -x /opt/local/bin/calc ]; then
+    CALC="/opt/local/bin/calc"
 fi
+if [ -n $CALC ]; then
+	WORKING=`$CALC $CORRECT" / "$TOTAL" * 100" | head -c 7`;
+	WORKING=", "$WORKING"%";
+fi
+echo $CORRECT" / "$TOTAL$WORKING;
 
 rm $SRCLIST $TRGLIST $TSTLIST;
