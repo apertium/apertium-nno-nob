@@ -71,6 +71,7 @@
 		<sdef n="rpar" 	c="Right parenthesis"/> 
 	</sdefs>
 	<pardefs>
+<!-- Radical vs conservative spelling choices -->
 <pardef n="høy_LR_høg">
   <e>                    <p><l>høy</l><r>høy</r></p></e>
   <e r="LR">             <p><l>høg</l><r>høy</r></p></e>
@@ -351,6 +352,16 @@
   <e>       <p><l>t</l>         <r><s n="det"/><s n="qnt"/><s n="nt"/><s n="sg"/></r></p></e>
   <e>       <p><l></l>          <r><s n="det"/><s n="qnt"/><s n="m"/><s n="sg"/></r></p></e>
   <e r="LR"><p><l></l>          <r><s n="det"/><s n="qnt"/><s n="f"/><s n="sg"/></r></p></e>
+</pardef>
+<pardef n="e/nhver__det">
+  <e>       <p><l>thvert</l>         <r>nhver<s n="det"/><s n="qnt"/><s n="nt"/><s n="sg"/></r></p></e>
+  <e>       <p><l>nhver</l>          <r>nhver<s n="det"/><s n="qnt"/><s n="m"/><s n="sg"/></r></p></e>
+  <e r="LR"><p><l>ihver</l>          <r>nhver<s n="det"/><s n="qnt"/><s n="f"/><s n="sg"/></r></p></e>
+</pardef>
+<pardef n="e/n_eller_annen__det">
+  <e>       <p><l>t<b/>eller<b/>annet</l>         <r>n<b/>eller<b/>annen<s n="det"/><s n="qnt"/><s n="nt"/><s n="sg"/></r></p></e>
+  <e>       <p><l>n<b/>eller<b/>annen</l>          <r>n<b/>eller<b/>annen<s n="det"/><s n="qnt"/><s n="m"/><s n="sg"/></r></p></e>
+  <e r="LR"><p><l>i<b/>eller<b/>anna</l>          <r>n<b/>eller<b/>annen<s n="det"/><s n="qnt"/><s n="f"/><s n="sg"/></r></p></e>
 </pardef>
     <!-- begge; begge -->
 <pardef n="begge__det">
@@ -9830,8 +9841,8 @@
 <e lm="og">              <i>og</i><par n="og__cnjcoo"/></e>
 <e lm="eller">           <i>eller</i><par n="og__cnjcoo"/></e>
 <e lm="men">             <i>men</i><par n="og__cnjcoo"/></e>
+<e lm="enten">           <i>enten</i><par n="både__cnjcoo"/></e>
 <e lm="både">           <i>både</i><par n="både__cnjcoo"/></e>
-<e lm="både">            <i>både</i><par n="både__cnjcoo"/></e>
 <e lm="hverken">           <i>hverken</i><par n="både__cnjcoo"/></e>
 <e lm="verken">           <i>verken</i><par n="både__cnjcoo"/></e>
 <e lm="samt">            <i>samt</i><par n="både__cnjcoo"/></e>
@@ -9880,7 +9891,8 @@
 <e lm="samtlige">             <i>samtlige</i><par n="begge__det"/></e>
 <e lm="begge">           <i>begge</i><par n="begge__det"/></e>
 <e lm="hver">            <i>hver</i><par n="hver__det"/></e>
-<e lm="enhver">            <i>enhver</i><par n="hver__det"/></e>
+<e lm="enhver">            <i>e</i><par n="e/nhver__det"/></e>
+<e lm="en eller annen">            <i>e</i><par n="e/n_eller_annen__det"/></e>
 <e lm="noe">             <i>no</i><par n="no/e__det"/></e>
 <e lm="ingen">           <i>in</i><par n="in/gen__det"/></e>
 
@@ -32576,6 +32588,7 @@
     <e lm="høreapparat"><i>høreapparat</i><par n="ja__n"/></e>
     <e lm="høresans"><i>høresans</i><par n="ep__n"/></e>
     <e lm="høretelefon"><i>høretelefon</i><par n="ep__n"/></e>
+    <e lm="hørsel"><i>hørs</i><par n="aks/el__n"/></e>
     <e lm="hørselsinntrykk"><i>hørselsinntrykk</i><par n="ul__n"/></e>
     <e lm="hørselsnerve"><i>hørselsnerve</i><par n="re__n"/></e>
     <e lm="hørselsskade"><i>hørselsskade</i><par n="re__n"/></e>

@@ -52,7 +52,8 @@
 		<sdef n="adv" 	c="Adverb"/>
                 <sdef n="ij" 	c="Interjection"/>
 		<sdef n="adj" 	c="Adjective"/> 
-		<sdef n="part" 	c="Participle (infinitive)"/> 
+		<sdef n="part" 	c="Participle (infinitive mark, also particles)"/> 
+		<sdef n="sep" 	c="Seperable verb/particle"/> 
 		<sdef n="cnjsub" 	c="Subordinating conjunction"/> 
 		<sdef n="cnjcoo" 	c="Co-ordinating conjunction"/> 
 		<sdef n="cnjadv" 	c="Adverbial conjunction"/> 
@@ -120,6 +121,21 @@
 <!--   <e>       <p><l></l>          <r></r></p><par n="cp-R"/></e> -->
 <!--   <e>       <p><l></l>          <r></r></p><par n="cp-only-L-s-e"/></e> -->
 <!-- </pardef> -->
+
+
+<!-- Radical vs conservative spelling choices -->
+<pardef n="høyr_LR_hør">
+  <e>                    <p><l>høyr</l><r>høyr</r></p></e>
+  <e r="LR">             <p><l>hør</l><r>høyr</r></p></e>
+</pardef>
+<pardef n="høyrsle_LR_hørsels">
+  <!-- s-epenthesis -->
+  <e r="LR"><p><l>høyrsels</l><r>høyrsle</r></p></e>
+  <e r="LR"><p><l>hørsels</l><r>høyrsle</r></p></e>
+  <e r="LR"><p><l>hørsle</l><r>hørsle</r></p></e>
+  <e>       <p><l>høyrsle</l><r>høyrsle</r></p></e>
+</pardef>
+
 
     <!-- Punctuation -->
 <pardef n="numeros">
@@ -387,6 +403,26 @@
   <e>       <p><l>t</l>         <r><s n="det"/><s n="qnt"/><s n="nt"/><s n="sg"/></r></p></e>
   <e>       <p><l></l>          <r><s n="det"/><s n="qnt"/><s n="m"/><s n="sg"/></r></p></e>
   <e>       <p><l></l>          <r><s n="det"/><s n="qnt"/><s n="f"/><s n="sg"/></r></p></e>
+</pardef>
+<pardef n="kvar/_og_ein__det">
+  <e>       <p><l>t<b/>og<b/>eit</l>         <r><b/>og<b/>ein<s n="det"/><s n="qnt"/><s n="nt"/><s n="sg"/></r></p></e>
+  <e>       <p><l><b/>og<b/>ei</l>          <r><b/>og<b/>ein<s n="det"/><s n="qnt"/><s n="f"/><s n="sg"/></r></p></e>
+  <e>       <p><l><b/>og<b/>ein</l>          <r><b/>og<b/>ein<s n="det"/><s n="qnt"/><s n="m"/><s n="sg"/></r></p></e>
+</pardef>
+<pardef n="ei/nkvar__det">
+  <e>       <p><l>tkvart</l>         <r>nkvar<s n="det"/><s n="qnt"/><s n="nt"/><s n="sg"/></r></p></e>
+  <e>       <p><l>kvar</l>          <r>nkvar<s n="det"/><s n="qnt"/><s n="f"/><s n="sg"/></r></p></e>
+  <e>       <p><l>nkvar</l>          <r>nkvar<s n="det"/><s n="qnt"/><s n="m"/><s n="sg"/></r></p></e>
+</pardef>
+<pardef n="ei/nkvan__det">
+  <e>       <p><l>tkvart</l>         <r>nkvan<s n="det"/><s n="qnt"/><s n="nt"/><s n="sg"/></r></p></e>
+  <e>       <p><l>kor</l>          <r>nkvan<s n="det"/><s n="qnt"/><s n="f"/><s n="sg"/></r></p></e>
+  <e>       <p><l>nkvan</l>          <r>nkvan<s n="det"/><s n="qnt"/><s n="m"/><s n="sg"/></r></p></e>
+</pardef>
+<pardef n="ei/n_eller_annan__det">
+  <e>       <p><l>t<b/>eller<b/>anna</l> <r>n<b/>eller<b/>annan<s n="det"/><s n="qnt"/><s n="nt"/><s n="sg"/></r></p></e>
+  <e>       <p><l>n<b/>eller<b/>annan</l><r>n<b/>eller<b/>annan<s n="det"/><s n="qnt"/><s n="m"/><s n="sg"/></r></p></e>
+  <e r="LR"><p><l>i<b/>eller<b/>anna</l> <r>n<b/>eller<b/>annan<s n="det"/><s n="qnt"/><s n="f"/><s n="sg"/></r></p></e>
 </pardef>
 <!-- begge; begge -->
 <pardef n="begge__det">
@@ -1064,6 +1100,11 @@
   <e>       <p><l>la</l>    <r>el<s n="n"/><s n="f"/><s n="sg"/><s n="def"/></r></p><par n="cp-R"/></e>
   <e r="LR"><p><l>li</l>    <r>el<s n="n"/><s n="f"/><s n="sg"/><s n="def"/></r></p><par n="cp-R"/></e>
   <e>       <p><l>el</l>    <r>el<s n="n"/><s n="f"/><s n="sg"/><s n="ind"/></r></p><par n="cp-both-s"/></e>
+</pardef>
+<pardef n="høyrs/le__n">
+  <e r="LR"><p><l>li</l>    <r>le<s n="n"/><s n="f"/><s n="sg"/><s n="def"/></r></p><par n="cp-R"/></e>
+  <e r="LR"><p><l>el</l>    <r>le<s n="n"/><s n="f"/><s n="sg"/><s n="ind"/></r></p><par n="cp-both-s"/></e>
+  <e>       <p><l>l</l>     <r>l</r></p><par n="lø/e__n"/></e>
 </pardef>
 <pardef n="sum__n">
   <e>       <p><l>mane</l>  <r><s n="n"/><s n="m"/><s n="pl"/><s n="def"/></r></p><par n="cp-R"/></e>
@@ -11436,8 +11477,8 @@
 <e lm="eller">           <i>eller</i><par n="og__cnjcoo"/></e>
 <e lm="men">             <i>men</i><par n="og__cnjcoo"/></e>
 <e lm="anten">           <i>anten</i><par n="både__cnjcoo"/></e>
-<e lm="både">            <i>både</i><par n="både__cnjcoo"/></e>
 <e lm="enten">           <i>enten</i><par n="både__cnjcoo"/></e>
+<e lm="både">            <i>både</i><par n="både__cnjcoo"/></e>
 <e lm="korkje">           <i>korkje</i><par n="både__cnjcoo"/></e>
 <e lm="verken">           <i>verken</i><par n="både__cnjcoo"/></e>
 <e r="RL" lm="og dessutan">            <i>og<b/>dessutan</i><par n="både__cnjcoo"/></e>
@@ -11492,7 +11533,10 @@
 <e lm="båe">             <i>båe</i><par n="begge__det"/></e>
 <e lm="somme">            <i>somme</i><par n="begge__det"/></e>
 <e lm="kvar">           <i>kvar</i><par n="kvar__det"/></e>
-<e lm="einkvar">           <i>einkvar</i><par n="kvar__det"/></e>
+<e lm="kvar og ein">           <i>kvar</i><par n="kvar/_og_ein__det"/></e>
+<e lm="ein eller annan">           <i>ei</i><par n="ei/n_eller_annan__det"/></e>
+<e lm="einkvan">           <i>ei</i><par n="ei/nkvan__det"/></e>
+<e lm="einkvar">           <i>ei</i><par n="ei/nkvar__det"/></e>
 <e lm="noko">            <i>no</i><par n="no/ko__det"/></e>
 <e lm="ingen">           <i>in</i><par n="in/gen__det"/></e>
 
@@ -14055,8 +14099,7 @@
 <e lm="holdast">	 <i>holdas</i><par n="åras/t__vblex"/></e>
 <e lm="hugast">		 <i>hugas</i><par n="åras/t__vblex"/></e>
 <e lm="hålkast">	 <i>hålkas</i><par n="åras/t__vblex"/></e>
-<e lm="hørast">		 <i>hør</i><par n="ør/ast__vblex"/></e>
-<e lm="høyrast">	 <i>høyr</i><par n="ør/ast__vblex"/></e>
+<e lm="høyrast">	 <i></i><par n="høyr_LR_hør"/><par n="ør/ast__vblex"/></e>
 <e lm="idast">		 <i>id</i><par n="yv/ast__vblex"/></e>
 <e lm="ilengast">	 <i>ileng</i><par n="ør/ast__vblex"/></e>
 <e lm="ilengjast">	 <i>ileng</i><par n="yng/jast__vblex"/></e>
@@ -14203,8 +14246,7 @@
 <e lm="straffedømme">	 <i>straffedøm</i><par n="tøm/me__vblex_adj"/></e>
 <e lm="tildøme">	 <i>tildøm</i><par n="yr/e__vblex_adj"/></e>
 <e lm="tildømme">	 <i>tildøm</i><par n="tøm/me__vblex_adj"/></e>
-<e lm="avhøre">		 <i>avhør</i><par n="yr/e__vblex_adj"/></e>
-<e lm="avhøyre">	 <i>avhøyr</i><par n="yr/e__vblex_adj"/></e>
+<e lm="avhøyre">	 <i>av</i><par n="høyr_LR_hør"/><par n="yr/e__vblex_adj"/></e>
 <e lm="avstyre">	 <i>avstyr</i><par n="yr/e__vblex_adj"/></e>
 <e lm="bløme">		 <i>bløm</i><par n="yr/e__vblex_adj"/></e>
 <e lm="blomstre">        <i>blomstr</i><par n="mo/e__vblex_adj"/></e>
@@ -14214,10 +14256,8 @@
 <e lm="gyte">            <i>g</i><par n="g/yte__vblex_adj"/></e>
 <e lm="bære">		 <i>bær</i><par n="yr/e__vblex_adj"/></e>
 <e lm="innebære">		 <i>innebær</i><par n="yr/e__vblex_adj"/></e>
-<e lm="bønhøre">	 <i>bønhør</i><par n="yr/e__vblex_adj"/></e>
-<e lm="bønhøyre">	 <i>bønhøyr</i><par n="yr/e__vblex_adj"/></e>
-<e lm="bønnhøre">	 <i>bønnhør</i><par n="yr/e__vblex_adj"/></e>
-<e lm="bønnhøyre">	 <i>bønnhøyr</i><par n="yr/e__vblex_adj"/></e>
+<e lm="bønhøyre">	 <i>bøn</i><par n="høyr_LR_hør"/><par n="yr/e__vblex_adj"/></e>
+<e lm="bønnhøyre">	 <i>bønn</i><par n="høyr_LR_hør"/><par n="yr/e__vblex_adj"/></e>
 <e lm="dagdrøyme">	 <i>dagdrøym</i><par n="yr/e__vblex_adj"/></e>
 <e lm="dataføre">	 <i>datafør</i><par n="yr/e__vblex_adj"/></e>
 <e lm="datastyre">	 <i>datastyr</i><par n="yr/e__vblex_adj"/></e>
@@ -14232,8 +14272,7 @@
 <e lm="forføre">	 <i>forfør</i><par n="yr/e__vblex_adj"/></e>
 <e lm="forgløyme">	 <i>forgløym</i><par n="yr/e__vblex_adj"/></e>
 <e lm="utegløyme">	 <i>utegløym</i><par n="yr/e__vblex_adj"/></e>
-<e lm="forhøre">	 <i>forhør</i><par n="yr/e__vblex_adj"/></e>
-<e lm="forhøyre">	 <i>forhøyr</i><par n="yr/e__vblex_adj"/></e>
+<e lm="forhøyre">	 <i>for</i><par n="høyr_LR_hør"/><par n="yr/e__vblex_adj"/></e>
 <e lm="forrøyne">	 <i>forrøyn</i><par n="yr/e__vblex_adj"/></e>
 <e lm="forsøme">	 <i>forsøm</i><par n="yr/e__vblex_adj"/></e>
 <e lm="fortrenge">	 <i>fortreng</i><par n="yr/e__vblex_adj"/></e>
@@ -14258,8 +14297,6 @@
 <e lm="hire">		 <i>hir</i><par n="yr/e__vblex_adj"/></e>
 <e lm="hånflire">	 <i>hånflir</i><par n="yr/e__vblex_adj"/></e>
 <e lm="hære">		 <i>hær</i><par n="yr/e__vblex_adj"/></e>
-<e lm="høre">		 <i>hør</i><par n="yr/e__vblex_adj"/></e>
-<e lm="høyre">           <i>høyr</i><par n="yr/e__vblex_adj"/></e>
 <e lm="iføre">		 <i>ifør</i><par n="yr/e__vblex_adj"/></e>
 <e lm="jamføre">	 <i>jamfør</i><par n="yr/e__vblex_adj"/></e>
 <e lm="journalføre">	 <i>journalfør</i><par n="yr/e__vblex_adj"/></e>
@@ -14270,20 +14307,17 @@
 <e lm="kleime">		 <i>kleim</i><par n="yr/e__vblex_adj"/></e>
 <e lm="kløvkjøre">	 <i>kløvkjør</i><par n="yr/e__vblex_adj"/></e>
 <e lm="kløvkøyre">	 <i>kløvkøyr</i><par n="yr/e__vblex_adj"/></e>
-<e lm="kryssforhøre">	 <i>kryssforhør</i><par n="yr/e__vblex_adj"/></e>
-<e lm="kryssforhøyre">	 <i>kryssforhøyr</i><par n="yr/e__vblex_adj"/></e>
+<e lm="kryssforhøyre">	 <i>kryssfor</i><par n="høyr_LR_hør"/><par n="yr/e__vblex_adj"/></e>
 <e lm="lagerføre">	 <i>lagerfør</i><par n="yr/e__vblex_adj"/></e>
 <e lm="listeføre">	 <i>listefør</i><par n="yr/e__vblex_adj"/></e>
 <e lm="livskræme">	 <i>livskræm</i><par n="yr/e__vblex_adj"/></e>
 <e lm="løyne">		 <i>løyn</i><par n="yr/e__vblex_adj"/></e>
 <e lm="marknadsføre">	 <i>marknadsfør</i><par n="yr/e__vblex_adj"/></e>
 <e lm="medføre">	 <i>medfør</i><par n="yr/e__vblex_adj"/></e>
-<e lm="mishøre">	 <i>mishør</i><par n="yr/e__vblex_adj"/></e>
-<e lm="mishøyre">	 <i>mishøyr</i><par n="yr/e__vblex_adj"/></e>
+<e lm="mishøyre">	 <i>mis</i><par n="høyr_LR_hør"/><par n="yr/e__vblex_adj"/></e>
 <e lm="nemne">           <i>nemn</i><par n="yr/e__vblex_adj"/></e>
 <e lm="nøre">		 <i>nør</i><par n="yr/e__vblex_adj"/></e>
 <e lm="overføre">        <i>overfør</i><par n="yr/e__vblex_adj"/></e>
-<e lm="overhøyre">	 <i>overhøyr</i><par n="yr/e__vblex_adj"/></e>
 <e lm="parallellføre">	 <i>parallellfør</i><par n="yr/e__vblex_adj"/></e>
 <e lm="plire">		 <i>plir</i><par n="yr/e__vblex_adj"/></e>
 <e lm="privatkjøre">	 <i>privatkjør</i><par n="yr/e__vblex_adj"/></e>
@@ -14737,7 +14771,7 @@
     <e lm="annonsere">   <i>annonser</i><par n="yt/e__vblex_adj"/></e>
     <e lm="underminere"> <i>underminer</i><par n="yt/e__vblex_adj"/></e>
     <e lm="gravitere">   <i>graviter</i><par n="yt/e__vblex_adj"/></e>
-    <e lm="overhøre">    <i>overhør</i><par n="yt/e__vblex_adj"/></e>
+    <e lm="overhøyre">    <i>over</i><par n="høyr_LR_hør"/><par n="yt/e__vblex_adj"/></e>
     <e lm="inkarnere">   <i>inkarner</i><par n="yt/e__vblex_adj"/></e>
     <e lm="innkassere">  <i>innkasser</i><par n="yt/e__vblex_adj"/></e>
     <e lm="humanisere">  <i>humaniser</i><par n="yt/e__vblex_adj"/></e>
@@ -16271,6 +16305,10 @@
 <e lm="tvidele">         <i>tvidel</i><par n="yt/e__vblex_adj"/></e>
 <e lm="røykje">          <i>røyk</i><par n="rik/je__vblex_adj"/></e>
 <e lm="oppsøkje">        <i>oppsøk</i><par n="rik/je__vblex_adj"/></e>
+
+<e lm="tilhøyre">        <i>til</i><par n="høyr_LR_hør"/><par n="yr/e__vblex_adj"/></e>
+<e lm="høyre">		 <i></i><par n="høyr_LR_hør"/><par n="yr/e__vblex_adj"/></e>
+
 <e lm="rå">              <i>rå</i><par n="rå__vblex_adj"/></e>
 <e lm="tilrå"><i>tilrå</i><par n="rå__vblex_adj"/></e>
 <e lm="områ"><i>områ</i><par n="rå__vblex_adj"/></e>
@@ -19938,7 +19976,6 @@
 <e lm="manntallsføre">            <i>manntallsfør</i><par n="yr/e__vblex_adj"/></e>
 <e lm="inntektsføre">            <i>inntektsfør</i><par n="yr/e__vblex_adj"/></e>
 <e lm="avføre">            <i>avfør</i><par n="yr/e__vblex_adj"/></e>
-<e lm="tilhøyre">           <i>tilhøyr</i><par n="yr/e__vblex_adj"/></e>
 <e lm="opphøyre">           <i>opphøyr</i><par n="yr/e__vblex_adj"/></e>
 <e lm="opprøre">		 <i>opprør</i><par n="yr/e__vblex_adj"/></e>
 <e lm="gjennomlese">            <i>gjennoml</i><par n="l/ese__vblex_adj"/></e>
@@ -20852,7 +20889,7 @@
 <e lm="tåpeleg">         <i>tåpe</i><par n="sak/leg__adj"/></e>
 <e lm="ubehageleg">      <i>ubehage</i><par n="sak/leg__adj"/></e>
 <e lm="ubeskriveleg">    <i>ubeskrive</i><par n="sak/leg__adj"/></e>
-<e lm="ubønnhørleg">     <i>ubønnhør</i><par n="sak/leg__adj"/></e>
+<e lm="ubønnhøyrleg">     <i>ubønn</i><par n="høyr_LR_hør"/><par n="sak/leg__adj"/></e>
 <e lm="uendeleg">        <i>uende</i><par n="sak/leg__adj"/></e>
 <e lm="ufatteleg">       <i>ufatte</i><par n="sak/leg__adj"/></e>
 <e lm="ufeilbarleg">     <i>ufeilbar</i><par n="sak/leg__adj"/></e>
@@ -22320,7 +22357,7 @@
 <e lm="ordning">         <i>ordning</i><par n="yting__n"/></e>
 <e lm="skritt">          <i>skritt</i><par n="ty__n"/></e>
 <e lm="rose">            <i>ros</i><par n="lø/e__n"/></e>
-<e lm="opphør">          <i>opphør</i><par n="ty__n"/></e>
+<e lm="opphøyr">          <i>opp</i><par n="høyr_LR_hør"/><par n="ty__n"/></e>
 <e lm="registrering">    <i>registrering</i><par n="yting__n"/></e>
 <e lm="riksvåpen">       <i>riksvåp</i><par n="våp/en__n"/></e>
 <e lm="skei">            <i>skei</i><par n="å__n"/></e>
@@ -26413,7 +26450,7 @@
     <e lm="avgudstempel"><i>avgudstemp</i><par n="es/el__n"/></e>
     <e lm="avhandlingsstil"><i>avhandlingsstil</i><par n="ep__n"/></e>
     <e lm="avhol"><i>avhol</i><par n="ty__n"/></e>
-    <e lm="avhør"><i>avhør</i><par n="ty__n"/></e>
+    <e lm="avhøyr"><i>av</i><par n="høyr_LR_hør"/><par n="ty__n"/></e>
     <e lm="aviarium"><i>aviari</i><par n="podi/um__n"/></e>
     <e lm="aviatikk"><i>aviatikk</i><par n="ep__n"/></e>
     <e lm="avisartikkel"><i>avisartik</i><par n="puk/kel__n"/></e>
@@ -31495,8 +31532,8 @@
     <e lm="forhandlingsrett"><i>forhandlingsrett</i><par n="ep__n"/></e>
     <e lm="forheng"><i>forheng</i><par n="ty__n"/></e>
     <e lm="forholdstal"><i>forholdstal</i><par n="ty__n"/></e>
-    <e lm="forhør"><i>forhør</i><par n="ty__n"/></e>
-    <e lm="forhørsrett"><i>forhørsrett</i><par n="ep__n"/></e>
+    <e lm="forhøyr"><i>for</i><par n="høyr_LR_hør"/><par n="ty__n"/></e>
+    <e lm="forhøyrsrett"><i>for</i><par n="høyr_LR_hør"/><i>srett</i><par n="ep__n"/></e>
     <e lm="forint"><i>forint</i><par n="ep__n"/></e>
     <e lm="forladning"><i>forladning</i><par n="ep__n"/></e>
     <e lm="forlagskatalog"><i>forlagskatalog</i><par n="ep__n"/></e>
@@ -34724,10 +34761,12 @@
     <e lm="hønsekjøtt"><i>hønsekjøtt</i><par n="ty__n"/></e>
     <e lm="hønsenetting"><i>hønsenetting</i><par n="ep__n"/></e>
     <e lm="hønseri"><i>hønseri</i><par n="ty__n"/></e>
-    <e lm="hørselsinntrykk"><i>hørselsinntrykk</i><par n="ty__n"/></e>
-    <e lm="hørselsnerve"><i>hørselsnerv</i><par n="r/e__n"/></e>
-    <e lm="hørselsskade"><i>hørselsskad</i><par n="r/e__n"/></e>
-    <e lm="hørselsvern"><i>hørselsvern</i><par n="ty__n"/></e>
+
+    <e lm="høyrsle">    <par n="høyr_LR_hør"/><i>s</i><par n="høyrs/le__n"/></e>
+    <e lm="høyrsleinntrykk"><par n="høyrsle_LR_hørsels"/><i>inntrykk</i><par n="ty__n"/></e>
+    <e lm="høyrslenerve"><par n="høyrsle_LR_hørsels"/><i>nerv</i><par n="r/e__n"/></e>
+    <e lm="høyrsleskade"><par n="høyrsle_LR_hørsels"/><i>skad</i><par n="r/e__n"/></e>
+    <e lm="høyrslevern"><par n="høyrsle_LR_hørsels"/><i>vern</i><par n="ty__n"/></e>
     <e lm="høvding"><i>høvding</i><par n="ep__n"/></e>
     <e lm="høvdingemne"><i>høvdingemn</i><par n="l/e__n"/></e>
     <e lm="høvdingsete"><i>høvdingset</i><par n="l/e__n"/></e>
@@ -38094,7 +38133,7 @@
     <e lm="kryssavl"><i>kryssavl</i><par n="ep__n"/></e>
     <e lm="krysseld"><i>krysseld</i><par n="ep__n"/></e>
     <e lm="kryssfiner"><i>kryssfiner</i><par n="ep__n"/></e>
-    <e lm="kryssforhør"><i>kryssforhør</i><par n="ty__n"/></e>
+    <e lm="kryssforhør"><i>kryssfor</i><par n="høyr_LR_hør"/><par n="ty__n"/></e>
     <e lm="kryssord"><i>kryssord</i><par n="ty__n"/></e>
     <e lm="krysspress"><i>krysspress</i><par n="ty__n"/></e>
     <e lm="kryssrim"><i>kryssrim</i><par n="ty__n"/></e>
@@ -42292,7 +42331,7 @@
     <e lm="overherre"><i>overherr</i><par n="r/e__n"/></e>
     <e lm="overherredømme"><i>overherredømm</i><par n="l/e__n"/></e>
     <e lm="overhus"><i>overhus</i><par n="ty__n"/></e>
-    <e lm="overhøringsdag"><i>overhøringsdag</i><par n="ep__n"/></e>
+    <e lm="overhøyringsdag"><i>over</i><par n="høyr_LR_hør"/><i>ingsdag</i><par n="ep__n"/></e>
     <e lm="overkapasitet"><i>overkapasitet</i><par n="ep__n"/></e>
     <e lm="overkast"><i>overkast</i><par n="ty__n"/></e>
     <e lm="overkikador"><i>overkikador</i><par n="ep__n"/></e>
@@ -50180,7 +50219,7 @@
     <e lm="trebukk"><i>trebukk</i><par n="ep__n"/></e>
     <e lm="trebygning"><i>trebygning</i><par n="ep__n"/></e>
     <e lm="tredjedag"><i>tredjedag</i><par n="ep__n"/></e>
-    <e lm="tredjegradsforhør"><i>tredjegradsforhør</i><par n="ty__n"/></e>
+    <e lm="tredjegradsforhøyr"><i>tredjegradsfor</i><par n="høyr_LR_hør"/><par n="ty__n"/></e>
     <e lm="tredjeklasse"><i>tredjeklass</i><par n="od/e__n"/></e>
     <e lm="tredjeklassing"><i>tredjeklassing</i><par n="ep__n"/></e>
     <e lm="tredjeland"><i>tredjeland</i><par n="ty__n"/></e>
@@ -52462,9 +52501,9 @@
     <e lm="vitaminbehov"><i>vitaminbehov</i><par n="ty__n"/></e>
     <e lm="vitamintilskott"><i>vitamintilskott</i><par n="ty__n"/></e>
     <e lm="vitneansvar"><i>vitneansvar</i><par n="ty__n"/></e>
-    <e lm="vitneavhør"><i>vitneavhør</i><par n="ty__n"/></e>
+    <e lm="vitneavhøyr"><i>vitneav</i><par n="høyr_LR_hør"/><par n="ty__n"/></e>
     <e lm="vitneboks"><i>vitneboks</i><par n="ep__n"/></e>
-    <e lm="vitneforhør"><i>vitneforhør</i><par n="ty__n"/></e>
+    <e lm="vitneforhøyr"><i>vitnefor</i><par n="høyr_LR_hør"/><par n="ty__n"/></e>
     <e lm="vitneførsel"><i>vitneførs</i><par n="ad/el__n"/></e>
     <e lm="vitnemål"><i>vitnemål</i><par n="ty__n"/></e>
     <e lm="vitnemøte"><i>vitnemøt</i><par n="l/e__n"/></e>
