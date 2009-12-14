@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- We only let particles come to the right of words.  -->
+<!-- put this in dix to test: -->
+<!-- <pardef n="yr/e__vblex_sep"> -->
+<!--   <e>       <p><l></l>          <r>e<s n="vblex"/><s n="sep"/><s n="imp"/></r></p></e> -->
+<!--   <e r="LR"><p><l>a</l>         <r>e<s n="vblex"/><s n="sep"/><s n="inf"/></r></p></e> -->
+<!--   <e>       <p><l>e</l>         <r>e<s n="vblex"/><s n="sep"/><s n="inf"/></r></p></e> -->
+<!--   <e>       <p><l>ast</l>       <r>e<s n="vblex"/><s n="sep"/><s n="inf"/><s n="pst"/></r></p></e> -->
+<!--   <e>       <p><l>t</l>         <r>e<s n="vblex"/><s n="sep"/><s n="pp"/></r></p></e> -->
+<!--   <e r="LR"><p><l>d</l>         <r>e<s n="vblex"/><s n="sep"/><s n="pp"/></r></p></e> -->
+<!--   <e>       <p><l>er</l>        <r>e<s n="vblex"/><s n="sep"/><s n="pres"/></r></p></e> -->
+<!--   <e>       <p><l>de</l>        <r>e<s n="vblex"/><s n="sep"/><s n="pret"/></r></p></e> -->
+<!--   <e r="LR"><p><l>te</l>        <r>e<s n="vblex"/><s n="sep"/><s n="pret"/></r></p></e> -->
+<!-- </pardef> -->
+
+<!-- <e lm="høyre /til">	 <i></i><par n="høyr_LR_hør"/><par n="yr/e__vblex_sep"/></e> -->
+<!-- <e><p><l>til</l>         <r>til<s n="part"/><s n="sep"/></r></p></e> -->
+
+<transfer>
+
+<section-def-cats>
+  <def-cat n="default"> <!-- Catch all words -->
+    <cat-item tags="*"/>
+    <cat-item lemma="*"/>
+  </def-cat>
+  <def-cat n="sepverb">
+    <cat-item tags="vblex.sep.*"/>
+  </def-cat>
+  <def-cat n="sepverb_part">
+    <cat-item tags="part.sep"/>
+  </def-cat>
+</section-def-cats>
+
+<section-def-attrs>
+  <def-attr n="tags">
+    <attr-item tags="vblex.pri.p2.pl"/>
+    <attr-item tags="vblex.pri.p2.sg"/>
+    <attr-item tags="vblex.pri.p1.pl"/>
+    <attr-item tags="vblex.pri.p1.sg"/>
+  </def-attr>
+</section-def-attrs>
+
+<section-def-vars>
+  <def-var n="buffer" v=""/>
+  <def-var n="verb_lemh"/>
+  <def-var n="verb_lemq"/>
+  <def-var n="verb_rest"/>
+  <!-- true if seen, o/w "": -->
+  <def-var n="verb_seen_sep"/>
+</section-def-vars>
+
+<section-rules>
+
+  <rule comment="REGLA: SEP PART">
+     <pattern>
+       <pattern-item n="sepverb_part"/>
+     </pattern>
+     <action>
+       <choose>
+         <when>
+           <test>
+             <equal>
+               <var n="verb_seen_sep"/>
+               <lit v="true"/>
+             </equal>
+           </test>
+           <out>
+             <lu>
+               <clip pos="1" side="sl" part="lem"/>
+               <var n="verb_lemh"/>
+               <var n="verb_lemq"/>
+               <var n="verb_rest"/>
+             </lu>
+             <b/>
+             <var n="buffer"/>
+           </out>
+           <let>
+             <var n="verb_seen_sep"/>
+             <lit v=""/>
+           </let>
+         </when>
+       </choose>
+     </action>
+  </rule>
+
+  <rule comment="REGLA: SEP VERB">
+     <pattern>
+       <pattern-item n="sepverb"/>
+     </pattern>
+     <action>
+       <let>
+         <var n="verb_seen_sep"/>
+         <lit v="true"/>
+       </let>
+       <let>
+         <var n="verb_lemh"/>
+         <clip pos="1" side="sl" part="lemh"/>
+       </let>
+       <let>
+         <var n="verb_lemq"/>
+         <clip pos="1" side="sl" part="lemq"/>
+       </let>
+       <let>
+         <var n="verb_rest"/>
+         <clip pos="1" side="sl" part="tags"/>
+       </let>
+     </action>
+  </rule>
+
+  <rule comment="REGLA: DEFAULT">
+     <pattern>
+       <pattern-item n="default"/>
+     </pattern>
+     <action>
+       <choose>
+         <when>
+           <test>
+             <equal>
+               <var n="verb_seen_sep"/>
+               <lit v="true"/>
+             </equal>
+           </test>
+           <let>
+             <var n="buffer"/>
+             <concat>
+               <var n="buffer"/>
+               <lit v="^"/>
+               <clip pos="1" side="sl" part="whole"/>
+               <lit v="$"/>
+               <b pos="0"/>
+             </concat>
+           </let>
+         </when>
+         <otherwise>
+           <out>
+             <lu>
+               <clip pos="1" side="sl" part="whole"/>
+             </lu>
+           </out> 
+         </otherwise>
+       </choose>
+     </action>
+  </rule>
+
+</section-rules>
+</transfer>

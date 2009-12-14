@@ -1041,6 +1041,11 @@ LIST verb/adj-perf-part = vblex (adj pp) ;
 LIST verb/parentes-beg = vblex lpar ;
 LIST verb/parentes-slutt = vblex rpar ;
 
+# sec 0: MWE / particle verbs TODO!
+CONSTRAINTS
+SELECT (part sep) IF (*-1 (vblex sep)) ;
+SELECT (vblex sep) IF (*1 (part sep)) ; 
+
 
 #Predikativ eller perfpart i nynorsk:
 # Etter ha/hadde/få: perfektum partisipp
@@ -36808,10 +36813,12 @@ SELECT:2666 (det m) IF
 	(*1O ub-eint-mask-subst LINK NOT 0 ikkje-adj-subst LINK NOT *-1 ikkje-adv-adj)
 	(NEGATE -1 fv LINK -1 subst LINK *-1 prep BARRIER ikkje-adv-adj-det-pron LINK -1 setn-gr)
 	(NEGATE -1 fv LINK -1 adv LINK -1 setn-gr)
+	(NEGATE *-1 fv BARRIER ikkje-adv LINK -1C clb)
 ;
 #  "ein ganske gul bil"
 # Ikkje: «I gamle dagar feira ein<prn!> bursdag denne dagen» 
 # Ikkje: «og innimellom feira ein<prn!> bursdag denne dagen»
+# Ikkje: «Dersom friaren til slutt fekk dottera ,<clb> heldt<fv> ein<prn!> fest med store ete- og drikkegilde i den store festsalen i Pohjola.»
 
 #:2667
 SELECT:2667 (det m) IF
@@ -52995,3 +53002,4 @@ REMOVE:6211 (n pl) IF
 	(-1 bu-eint-subst LINK -1 adj-bu BARRIER ikkje-adv-adj-komma LINK -1* bu-det-eint/fl)
 ;	
 # KBU: «det viktige, grammatiske trekket imperativ<sg>»
+
