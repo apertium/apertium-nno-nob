@@ -19,6 +19,7 @@
     </def-cat>
     <def-cat n="ngen">
       <cat-item tags="n.*.*.*.gen"/>
+      <cat-item tags="n.*.*.*.gen-i"/>
     </def-cat>
     <def-cat n="ngen_temporal">
       <cat-item tags="n.nt.sg.*.gen"   lemma="år"/>
@@ -46,12 +47,16 @@
     <def-cat n="posgen"> 
       <cat-item tags="det.pos.*"/>
       <cat-item tags="n.*.*.*.gen"/>
+      <cat-item tags="n.*.*.*.gen-i"/>
     </def-cat>
     <def-cat n="adj">
       <cat-item tags="adj.*"/>
     </def-cat>
     <def-cat n="adv">
       <cat-item tags="adv"/>
+    </def-cat>
+    <def-cat n="infm">
+      <cat-item lemma="å" tags="part"/>
     </def-cat>
     <def-cat n="vblex">
       <cat-item tags="vblex.*"/>
@@ -131,6 +136,7 @@
     <def-attr n="cas">
       <attr-item tags="nom"/>
       <attr-item tags="gen"/>
+      <attr-item tags="gen-i"/>
       <attr-item tags="acc"/>
       <attr-item tags="CD"/>
     </def-attr>
@@ -501,6 +507,31 @@
 
 
     <!-- Output macros: -->
+    <def-macro n="out_gen_prep" npar="1">
+      <!-- arg.1: possessor noun. Note: puts a space _after_ the preposition. -->
+      <choose>
+        <when>
+          <test><equal><clip pos="1" side="sl" part="cas"/><lit-tag v="gen-i"/></equal></test>
+          <out>
+            <lu>
+              <lit v="i"/>
+              <lit-tag v="pr"/>
+            </lu>
+            <b/>
+          </out>
+        </when>
+        <otherwise>
+          <out>
+            <lu>
+              <lit v="til"/>
+              <lit-tag v="pr"/>
+            </lu>
+            <b/>
+          </out>
+        </otherwise>
+      </choose>
+    </def-macro>
+    
     <def-macro n="out_ndef" npar="2">
       <!-- arg.1: possessed noun. arg.2 gives typographic case
            
@@ -533,23 +564,22 @@
             <clip pos="1" side="tl" part="lemq"/>
           </lu>
         </out>
-        </when><otherwise>
-        <out>
-          <lu>
-            <lit v="til"/>
-            <lit-tag v="pr"/>
-          </lu>
-          <b/>
-          <lu>
-            <clip pos="1" side="tl" part="lemh"/>
-            <clip pos="1" side="tl" part="a_nom"/>
-            <clip pos="1" side="tl" part="gen"/>
-            <clip pos="1" side="tl" part="nbr"/>
-            <clip pos="1" side="tl" part="art"/>
-            <clip pos="1" side="tl" part="lemq"/>
-          </lu>
-        </out>
-      </otherwise>
+        </when>
+        <otherwise>
+          <call-macro n="out_gen_prep">
+            <with-param pos="1"/>
+          </call-macro>
+          <out>
+            <lu>
+              <clip pos="1" side="tl" part="lemh"/>
+              <clip pos="1" side="tl" part="a_nom"/>
+              <clip pos="1" side="tl" part="gen"/>
+              <clip pos="1" side="tl" part="nbr"/>
+              <clip pos="1" side="tl" part="art"/>
+              <clip pos="1" side="tl" part="lemq"/>
+            </lu>
+          </out>
+        </otherwise>
       </choose>  
     </def-macro>
 
@@ -591,6 +621,127 @@
     
     
     <!-- Verbs -->
+    <rule comment="Å VBLEX.INF.PASS: å leses => å bli lest">
+      <pattern>
+        <pattern-item n="infm"/>
+	<pattern-item n="vblexinfpass"/>
+      </pattern>
+      <action>
+        <choose><when>
+          <test><equal>
+            <clip pos="2" side="tl" part="a_verb"/><lit-tag v="vblex.pstv"/>
+          </equal></test>
+          <out>
+            <lu><clip pos="1" side="tl" part="whole"/></lu>
+            <b pos="1"/>
+            <lu><clip pos="2" side="tl" part="whole"/></lu>
+          </out>
+          </when>
+          <otherwise>
+            <out>
+              <lu><clip pos="1" side="tl" part="whole"/></lu>
+              <b pos="1"/>
+              <lu>
+                <lit v="bli"/>	    
+                <lit-tag v="vblex.inf"/>
+              </lu>
+              <b/>
+              <lu>	    
+                <clip pos="2" side="tl" part="lemh"/>
+                <clip pos="2" side="tl" part="a_verb"/>
+                <lit-tag v="pp"/>
+                <clip pos="2" side="tl" part="lemq"/>
+              </lu>
+            </out>
+        </otherwise></choose>
+      </action>
+    </rule>    
+    <rule comment="Å ADV VBLEX.INF.PASS: å ofte leses => å ofte bli lest">
+      <pattern>
+        <pattern-item n="infm"/>
+	<pattern-item n="adv"/>
+	<pattern-item n="vblexinfpass"/>
+      </pattern>
+      <action>
+        <choose><when>
+          <test><equal>
+            <clip pos="3" side="tl" part="a_verb"/><lit-tag v="vblex.pstv"/>
+          </equal></test>
+          <out>
+            <lu><clip pos="1" side="tl" part="whole"/></lu>
+            <b pos="1"/>
+            <lu><clip pos="2" side="tl" part="whole"/></lu>
+            <b pos="2"/>
+            <lu><clip pos="3" side="tl" part="whole"/></lu>
+          </out>
+          </when>
+          <otherwise>
+            <out>
+              <lu><clip pos="1" side="tl" part="whole"/></lu>
+              <b pos="1"/>
+              <lu><clip pos="2" side="tl" part="whole"/></lu>
+              <b pos="2"/>
+              <lu>
+                <lit v="bli"/>	    
+                <lit-tag v="vblex.inf"/>
+              </lu>
+              <b/>
+              <lu>	    
+                <clip pos="3" side="tl" part="lemh"/>
+                <clip pos="3" side="tl" part="a_verb"/>
+                <lit-tag v="pp"/>
+                <clip pos="3" side="tl" part="lemq"/>
+              </lu>
+            </out>
+        </otherwise></choose>
+      </action>
+    </rule>
+    <rule comment="Å ADV ADV VBLEX.INF.PASS: å kanskje ofte leses => å kanskje ofte bli lest">
+      <pattern>
+        <pattern-item n="infm"/>
+	<pattern-item n="adv"/>
+	<pattern-item n="adv"/>
+	<pattern-item n="vblexinfpass"/>
+      </pattern>
+      <action>
+        <choose><when>
+          <test><equal>
+            <clip pos="4" side="tl" part="a_verb"/><lit-tag v="vblex.pstv"/>
+          </equal></test>
+          <out>
+            <lu><clip pos="1" side="tl" part="whole"/></lu>
+            <b pos="1"/>
+            <lu><clip pos="2" side="tl" part="whole"/></lu>
+            <b pos="2"/>
+            <lu><clip pos="3" side="tl" part="whole"/></lu>
+            <b pos="3"/>
+            <lu><clip pos="4" side="tl" part="whole"/></lu>
+          </out>
+          </when>
+          <otherwise>
+            <out>
+              <lu><clip pos="1" side="tl" part="whole"/></lu>
+              <b pos="1"/>
+              <lu><clip pos="2" side="tl" part="whole"/></lu>
+              <b pos="2"/>
+              <lu><clip pos="3" side="tl" part="whole"/></lu>
+              <b pos="3"/>
+              <lu>
+                <lit v="bli"/>	    
+                <lit-tag v="vblex.inf"/>
+              </lu>
+              <b/>
+              <lu>	    
+                <clip pos="4" side="tl" part="lemh"/>
+                <clip pos="4" side="tl" part="a_verb"/>
+                <lit-tag v="pp"/>
+                <clip pos="4" side="tl" part="lemq"/>
+              </lu>
+            </out>
+        </otherwise></choose>
+      </action>
+    </rule>
+
     <rule comment="VBLEX.INF.PASS: kan leses => kan lesast">
       <pattern>
 	<pattern-item n="vblexinfpass"/>
@@ -1182,10 +1333,10 @@
 	  <with-param pos="3"/>
 	  <with-param pos="1"/>
 	</call-macro>
-        <out>
-          <b pos="1"/>
-          <lu><lit v="til"/><lit-tag v="pr"/></lu> <b/>
-        </out>
+        <out><b pos="1"/></out>
+        <call-macro n="out_gen_prep">
+	  <with-param pos="2"/>
+	</call-macro>
         <call-macro n="out_ndef">
 	  <with-param pos="2"/>
 	  <with-param pos="2"/>
@@ -1214,7 +1365,11 @@
 	</call-macro>
         <out>
           <b pos="1"/>
-          <lu><lit v="til"/><lit-tag v="pr"/></lu> <b/>
+        </out>
+        <call-macro n="out_gen_prep">
+          <with-param pos="3"/>
+        </call-macro>
+        <out>
           <lu>
             <lit v="den"/>
             <lit-tag v="det.dem"/>
@@ -1262,8 +1417,10 @@
 	</call-macro>
         <out>
           <b pos="2"/>
-          <lu><lit v="til"/><lit-tag v="pr"/></lu> <b/>
         </out>
+        <call-macro n="out_gen_prep">
+          <with-param pos="2"/>
+        </call-macro>
         <call-macro n="out_ndef">
 	  <with-param pos="2"/>
 	  <with-param pos="2"/>
@@ -1286,7 +1443,11 @@
         <call-macro n="out_ndef"><with-param pos="3"/><with-param pos="1"/></call-macro>
         <out>
           <b pos="1"/>
-          <lu><lit v="til"/><lit-tag v="pr"/></lu> <b/>
+        </out>
+        <call-macro n="out_gen_prep">
+          <with-param pos="2"/>
+        </call-macro>
+        <out>
           <lu>
             <clip pos="1" side="tl" part="lemh"/>
             <clip pos="1" side="tl" part="a_det"/>
@@ -1328,7 +1489,11 @@
 	</call-macro>
         <out>
           <b pos="1"/>
-          <lu><lit v="til"/><lit-tag v="pr"/></lu> <b/>
+        </out>
+        <call-macro n="out_gen_prep">
+          <with-param pos="3"/>
+        </call-macro>
+        <out>
           <lu>
 	    <clip pos="1" side="tl" part="lemh"/>
             <clip pos="1" side="tl" part="a_det"/>
@@ -1371,7 +1536,11 @@
 	</call-macro>
         <out>
           <b pos="1"/>
-          <lu><lit v="til"/><lit-tag v="pr"/></lu> <b/>
+        </out>
+        <call-macro n="out_gen_prep">
+          <with-param pos="3"/>
+        </call-macro>
+        <out>
           <lu>
 	    <clip pos="1" side="tl" part="lemh"/>
             <clip pos="1" side="tl" part="a_det"/>
@@ -1441,7 +1610,11 @@
         </call-macro>
         <out>
           <b pos="2"/>
-          <lu><lit v="til"/><lit-tag v="pr"/></lu> <b/>
+        </out>
+        <call-macro n="out_gen_prep">
+          <with-param pos="2"/>
+        </call-macro>
+        <out>
           <lu>
 	    <clip pos="1" side="tl" part="lemh"/>
             <clip pos="1" side="tl" part="a_det"/>
