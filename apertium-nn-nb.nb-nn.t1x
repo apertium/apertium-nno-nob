@@ -21,15 +21,77 @@
       <cat-item tags="n.*.*.*.gen"/>
       <cat-item tags="n.*.*.*.gen-i"/>
     </def-cat>
-    <def-cat n="ngen_temporal">
+    <def-cat n="ngen_time_meas">
+      <cat-item tags="n.m.sg.*.gen"   lemma="liter"/>
+      <cat-item tags="n.m.pl.ind.gen" lemma="liter"/>
+      <cat-item tags="n.m.sg.*.gen"   lemma="centimeter"/>
+      <cat-item tags="n.m.pl.ind.gen" lemma="centimeter"/>
+      <cat-item tags="n.m.sg.*.gen"   lemma="kilometer"/>
+      <cat-item tags="n.m.pl.ind.gen" lemma="kilometer"/>
+      <cat-item tags="n.m.sg.*.gen"   lemma="millimeter"/>
+      <cat-item tags="n.m.pl.ind.gen" lemma="millimeter"/>
+      <cat-item tags="n.m.sg.*.gen"   lemma="kubikkmeter"/>
+      <cat-item tags="n.m.pl.ind.gen" lemma="kubikkmeter"/>
+      <cat-item tags="n.m.sg.*.gen"   lemma="kvadratkilometer"/>
+      <cat-item tags="n.m.pl.ind.gen" lemma="kvadratkilometer"/>
+      <cat-item tags="n.m.sg.*.gen"   lemma="centiliter"/>
+      <cat-item tags="n.m.pl.ind.gen" lemma="centiliter"/>
+      <cat-item tags="n.m.sg.*.gen"   lemma="dekaliter"/>
+      <cat-item tags="n.m.pl.ind.gen" lemma="dekaliter"/>
+      <cat-item tags="n.m.sg.*.gen"   lemma="dekameter"/>
+      <cat-item tags="n.m.pl.ind.gen" lemma="dekameter"/>
+      <cat-item tags="n.m.sg.*.gen"   lemma="desiliter"/>
+      <cat-item tags="n.m.pl.ind.gen" lemma="desiliter"/>
+      <cat-item tags="n.m.sg.*.gen"   lemma="desimeter"/>
+      <cat-item tags="n.m.pl.ind.gen" lemma="desimeter"/>
+      <cat-item tags="n.m.sg.*.gen"   lemma="hektoliter"/>
+      <cat-item tags="n.m.pl.ind.gen" lemma="hektoliter"/>
+      <cat-item tags="n.m.sg.*.gen"   lemma="kilopondmeter"/>
+      <cat-item tags="n.m.pl.ind.gen" lemma="kilopondmeter"/>
+      <cat-item tags="n.m.sg.*.gen"   lemma="kubikkcentimeter"/>
+      <cat-item tags="n.m.pl.ind.gen" lemma="kubikkcentimeter"/>
+      <cat-item tags="n.m.sg.*.gen"   lemma="kubikkdesimeter"/>
+      <cat-item tags="n.m.pl.ind.gen" lemma="kubikkdesimeter"/>
+      <cat-item tags="n.m.sg.*.gen"   lemma="kvadratmeter"/>
+      <cat-item tags="n.m.pl.ind.gen" lemma="kvadratmeter"/>
+      <cat-item tags="n.m.sg.*.gen"   lemma="løpemeter"/>
+      <cat-item tags="n.m.pl.ind.gen" lemma="løpemeter"/>
+      <cat-item tags="n.m.sg.*.gen"   lemma="milliliter"/>
+      <cat-item tags="n.m.pl.ind.gen" lemma="milliliter"/>
+      <cat-item tags="n.m.sg.*.gen"   lemma="nanometer"/>
+      <cat-item tags="n.m.pl.ind.gen" lemma="nanometer"/>
+      <cat-item tags="n.m.sg.*.gen"   lemma="sekundmeter"/>
+      <cat-item tags="n.m.pl.ind.gen" lemma="sekundmeter"/>
+      <cat-item tags="n.m.sg.*.gen"   lemma="spaltemillimeter"/>
+      <cat-item tags="n.m.pl.ind.gen" lemma="spaltemillimeter"/>
+      <cat-item tags="n.m.sg.*.gen"   lemma="tonnkilometer"/>
+      <cat-item tags="n.m.pl.ind.gen" lemma="tonnkilometer"/>
+      <cat-item tags="n.m.sg.*.gen"   lemma="passasjerkilometer"/>
+      <cat-item tags="n.m.pl.ind.gen" lemma="passasjerkilometer"/>
+      <cat-item tags="n.m.sg.*.gen"   lemma="rutemeter"/>
+      <cat-item tags="n.m.pl.ind.gen" lemma="rutemeter"/>
+      <cat-item tags="n.m.sg.*.gen"   lemma="laupemeter"/>
+      <cat-item tags="n.m.pl.ind.gen" lemma="laupemeter"/>
+      <cat-item tags="n.m.sg.*.gen"   lemma="meter"/>
+      <cat-item tags="n.m.pl.ind.gen" lemma="meter"/>
+      <cat-item tags="n.m.sg.*.gen"   lemma="kilometer"/>
+      <cat-item tags="n.m.pl.ind.gen" lemma="kilometer"/>
+
+      <cat-item tags="n.*.sg.*.gen"   lemma="mil"/>
+      <cat-item tags="n.*.pl.ind.gen" lemma="mil"/>
+      <cat-item tags="n.*.sg.*.gen"   lemma="sjømil"/>
+      <cat-item tags="n.*.pl.ind.gen" lemma="sjømil"/>
+      <cat-item tags="n.*.sg.*.gen"   lemma="kvartmil"/>
+      <cat-item tags="n.*.pl.ind.gen" lemma="kvartmil"/>
+      <cat-item tags="n.*.sg.*.gen"   lemma="halvmil"/>
+      <cat-item tags="n.*.pl.ind.gen" lemma="halvmil"/>
+
       <cat-item tags="n.nt.sg.*.gen"   lemma="år"/>
-      <cat-item tags="n.m.sg.*.gen"    lemma="dag"/>
-      <cat-item tags="n.m.sg.*.gen"    lemma="uke"/>
-      <cat-item tags="n.f.sg.*.gen"    lemma="uke"/>
       <cat-item tags="n.nt.pl.ind.gen" lemma="år"/>
+      <cat-item tags="n.m.sg.*.gen"    lemma="dag"/>
       <cat-item tags="n.m.pl.ind.gen"  lemma="dag"/>
-      <cat-item tags="n.m.pl.ind.gen"  lemma="uke"/>
-      <cat-item tags="n.f.pl.ind.gen"  lemma="uke"/>
+      <cat-item tags="n.*.sg.*.gen"    lemma="uke"/>
+      <cat-item tags="n.*.pl.ind.gen"  lemma="uke"/>
     </def-cat>
     <def-cat n="det">
       <cat-item tags="det.*"/>
@@ -896,17 +958,17 @@
 
     <!-- Possessive noun phrases -->
     <!-- First: exceptions to these, since earlier rules match first. -->
-    <rule comment="NGEN_TEMPORAL: dagens => dagens.">
+    <rule comment="NGEN_TIME_MEAS: dagens => dagens.">
       <pattern>
-        <pattern-item n="ngen_temporal"/>
+        <pattern-item n="ngen_time_meas"/>
       </pattern>
       <action>
         <out><lu><clip pos="1" side="tl" part="whole"/></lu></out>
       </action>
     </rule>
-    <rule comment="NGEN_TEMPORAL NIND: dagens avis => dagens avis">
+    <rule comment="NGEN_TIME_MEAS NIND: dagens avis => dagens avis">
       <pattern>
-        <pattern-item n="ngen_temporal"/>
+        <pattern-item n="ngen_time_meas"/>
         <pattern-item n="nind"/>
       </pattern>
       <action>
@@ -916,11 +978,11 @@
         </out>
       </action>
     </rule>
-    <rule comment="DET NGEN_TEMPORAL NIND: et års tid => eit års tid
+    <rule comment="DET NGEN_TIME_MEAS NIND: et års tid => eit års tid
                    TODO: disse års tid => ?">
       <pattern>
         <pattern-item n="det"/>
-        <pattern-item n="ngen_temporal"/>
+        <pattern-item n="ngen_time_meas"/>
         <pattern-item n="nind"/>
       </pattern>
       <action>
@@ -940,9 +1002,9 @@
         </out>
       </action>
     </rule>
-    <rule comment="NGEN_TEMPORAL ADJ NIND: dagens siste avis => dagens siste avis">
+    <rule comment="NGEN_TIME_MEAS ADJ NIND: dagens siste avis => dagens siste avis">
       <pattern>
-        <pattern-item n="ngen_temporal"/>
+        <pattern-item n="ngen_time_meas"/>
         <pattern-item n="adj"/>
         <pattern-item n="nind"/>
       </pattern>
@@ -960,11 +1022,11 @@
         </out>
       </action>
     </rule>
-    <rule comment="ADJ NGEN_TEMPORAL NIND: flere års tid => fleire års tid
+    <rule comment="ADJ NGEN_TIME_MEAS NIND: flere års tid => fleire års tid
                                            hele dagens region => heile dagens region">
       <pattern>
         <pattern-item n="adj"/>
-        <pattern-item n="ngen_temporal"/>
+        <pattern-item n="ngen_time_meas"/>
         <pattern-item n="nind"/>
       </pattern>
       <action>
@@ -981,12 +1043,12 @@
         </out>
       </action>
     </rule>
-    <rule comment="DET ADJ NGEN_TEMPORAL NIND: et langt års tid => eit langt års tid
+    <rule comment="DET ADJ NGEN_TIME_MEAS NIND: et langt års tid => eit langt års tid
                    TODO: disse lange års tid =>?">
       <pattern>
         <pattern-item n="det"/>
         <pattern-item n="adj"/>
-        <pattern-item n="ngen_temporal"/>
+        <pattern-item n="ngen_time_meas"/>
         <pattern-item n="nind"/>
       </pattern>
       <action>
