@@ -291,7 +291,12 @@
       </choose>
       <choose>
         <when>
-          <test><equal><clip pos="1" side="tl" part="art"/><lit-tag v="def"/></equal></test>
+          <test>
+            <or>
+              <equal><clip pos="1" side="tl" part="art"/><lit-tag v="def"/></equal>
+              <equal><clip pos="1" side="tl" part="nbr"/><lit-tag v="pl"/></equal>
+            </or>
+          </test>
           <let><var n="adj_gender"/><lit v=""/></let>
         </when>
       </choose>
