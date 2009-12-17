@@ -224,7 +224,7 @@
 
     <def-macro n="set_gender2" npar="2">
       <!-- arg.1: noun, arg.2: determiner (or adjective)
-	   - iff sg AND has-some-gender, take gender of target noun 
+	   - iff sg, not mf, AND both have some gender, take gender of target noun 
 	   - plurals get no gender 
 	   - o/w take gender of target determiner
            - Finally, make sure we never translate to f, in case
@@ -241,6 +241,7 @@
           <test><and>
             <equal><var n="pre_number"/><lit-tag v="sg"/></equal>
             <not><equal><clip pos="2" side="tl" part="gen"/><lit v=""/></equal></not>
+            <not><equal><clip pos="1" side="tl" part="gen"/><lit v=""/></equal></not>
             <not><equal><clip pos="1" side="tl" part="gen"/><lit-tag v="mf"/></equal></not>
           </and></test>
 	  <let><var n="gender"/><clip pos="1" side="tl" part="gen"/></let>
