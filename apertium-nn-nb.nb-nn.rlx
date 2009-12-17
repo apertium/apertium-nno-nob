@@ -21669,14 +21669,13 @@ REMOVE:2135 (det) IF
 # (av ens adj)
 # 29.5.2001: NOT 0 TIDS (tids er også adjektiv)"))
 
-#:10000
- REMOVE:10000 gen-subst IF
+REMOVE:gen-subst gen-subst IF
 	(0 &sted)
 	(1 konj)
 	(2 &sted)
 	(NOT 2 gen)
 ;
-
+# «Troms og Finnmark»
 
 
 
@@ -26766,6 +26765,12 @@ REMOVE:6211 (n pl) IF
 	(-1 be-ent-subst LINK -1 adj-be BARRIER ikke-adv-adj-komma LINK -1* be-det-ent/fl)
 ;	
 # KBU: «det viktige, grammatiske trekket imperativ<sg>»
+
+REMOVE:gen-subst gen-subst IF
+	(0 subst-prop)
+;
+# «God morgen, Troms 06.03.2009»
+# Viss me har både genitiv og eigennamn er det vel usannsynleg at det er genitiven sidan eigennamnet har stor forbokstav
 
 
 # sec 5
