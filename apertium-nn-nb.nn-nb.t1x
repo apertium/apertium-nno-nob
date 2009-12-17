@@ -183,6 +183,7 @@
         <test><or>
           <equal><clip pos="1" side="tl" part="a_nom"/><lit-tag v="np"/></equal>
           <equal><clip pos="1" side="tl" part="a_nom"/><lit-tag v="np.top"/></equal>
+          <equal><clip pos="1" side="tl" part="a_nom"/><lit-tag v="n.acr"/></equal>
         </or></test>
         <let><var n="n_number"/><lit v=""/></let>
       </when></choose>
@@ -267,27 +268,33 @@
     </def-macro>    
 
     <def-macro n="set_adj_gender" npar="1">
-      <!-- arg.1: adjective (used for determination, "art")
-          Assumes var gender is set, o/w we get empty string 
-	   - if m or f or GD, use mf
-	     (we might have GD if set_gender 'failed')
-	   - o/w use what we're given.
-         However, definite adjectives get no gender.
+      <!-- arg.1: adjective
+           Assumes var gender is set, o/w we get empty string 
+           - if m or f or GD, use mf
+           (we might have GD if set_gender 'failed')
+           - o/w use what we're given.
+             If this was the empty string, use given adjective gender.
+           However, definite adjectives, plurals, sup/comp etc. get no gender.
       -->
       <choose>
         <when>
-	  <test>
-	    <or>
-	      <equal><var n="gender"/><lit-tag v="m"/></equal>
-	      <equal><var n="gender"/><lit-tag v="f"/></equal>
-	      <equal><var n="gender"/><lit-tag v="GD"/></equal>
-	    </or>
-	  </test>
-	  <let><var n="adj_gender"/><lit-tag v="mf"/></let>
-	</when>
-	<otherwise>
-	  <let><var n="adj_gender"/><var n="gender"/></let>
-	</otherwise>
+          <test>
+            <or>
+              <equal><var n="gender"/><lit-tag v="m"/></equal>
+              <equal><var n="gender"/><lit-tag v="f"/></equal>
+              <equal><var n="gender"/><lit-tag v="GD"/></equal>
+            </or>    
+          </test>
+          <let><var n="adj_gender"/><lit-tag v="mf"/></let>
+        </when>
+        <otherwise>
+          <let><var n="adj_gender"/><var n="gender"/></let>
+        </otherwise>
+      </choose>
+      <choose>
+        <when><test><equal><var n="adj_gender"/><lit v=""/></equal></test>
+        <let><var n="adj_gender"/><clip pos="1" side="tl" part="gen"/></let>
+        </when>
       </choose>
       <choose>
         <when>
