@@ -561,7 +561,7 @@ LIST adj/adv/subst/anf = det adj adv n np <anf> ;
 LIST adj/det = adj det ;
 LIST adj/nr2det = "sånn"  "sådan"  "slik"  "samme"  "neste"  "hver"  "halvannen"  "eneste"  "ene"  "eigen"  "egen"  "annen"  adj (det qnt pl) ;
 LIST adj/nr2det-udetfl = "sånn"  "sådan"  "slik"  "samme"  "neste"  "hver"  "halvannen"  "eneste"  "ene"  "eigen"  "egen"  "annen"  adj (det qnt pl) ;
-LIST adj/perf-part = adj vblex pp ;
+LIST adj/perf-part = adj (vblex pp) ;
 LIST adj/subst = adj n np ;
 LIST adjudet = "litt"  "lite"  ("mange"  posi) ("mange"  comp) ("mange"  sup ind) ("få"  posi) ("få"  comp) ("få"  sup ind) ("mye"  posi) ("mye"  comp) ("mye"  sup ind) ("liten"  posi) ("liten"  comp) ("liten"  sup ind) ("enkelt"  pl) ;
 LIST adv = adv <adv> ;
@@ -24154,12 +24154,36 @@ CONSTRAINTS
 
 
 #5005
-  "<lys>"   REMOVE:5005   (n nt sg ind gen)
+  "<lys>"   REMOVE:5005   (n nt sg ind gen) IF
 	(0 subst/adj)
 ;
 
+
+"<skrevet>" REMOVE:skrev (n nt sg def) IF
+	(0 adj/perf-part)
+	(*1 %under% OR %inn% BARRIER ikke-subst-adj-det-pron-adv)
+;
+REMOVE:skrev ("<skrev>"ri n nt ind) IF
+	(0 pret)
+	(*1 %under% OR %inn% BARRIER ikke-subst-adj-det-pron-adv)
+;
+"<skrevet>" REMOVE:skrev ("skreve") IF
+	(0 adj/perf-part)
+	(0 ("skrive"))
+	(NOT *1C %over%)
+;
+REMOVE:skrev ("<skrev>"ri "skreve") IF
+	(0 pret)
+	(0 ("skrive"))
+	(NOT *1C %over%)
+;
+# skrev<n> og skreve<vblex> er svært sjeldan rett svar, sjølv for ordbokdømet:
+# «Han hadde bare laget seg en blogg og skrevet i vei.»
+# men desse reglane kan sikkert nyanserast litt... -KBU
+
+
 #5006
-  "<straks>"   REMOVE:5006   (adj gen)
+  "<straks>"   REMOVE:5006   (adj gen) IF
 	(0 adv)
 ;
 
