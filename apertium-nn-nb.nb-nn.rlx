@@ -7327,7 +7327,6 @@ CONSTRAINTS
 # kh jan 2004: not -2 at/om: Gutten mente jeg at Per så (verb)."))
 
 
-
 #:3198
   "<tanker>"   REMOVE:3198   (vblex pres) IF
 	(NOT 1 %opp%)
@@ -24194,6 +24193,18 @@ REMOVE:skrev ("<skrev>"ri "skreve") IF
   "<straks>"   REMOVE:5006   (adj gen) IF
 	(0 adv)
 ;
+
+
+  "<så>"   REMOVE:så   (vblex pret) IF
+	(-1 nom)
+	(1C prep LINK 1C prep)
+	(NOT 1 %ut%)
+	(*-2 verb BARRIER ikke-subst-adj-det-pron LINK NOT 0 hj-verb)
+;
+# «Han tok seg så nær av det», «De har hengt seg så opp i det», men
+# ikkje «det måtte være<hj-verb> slik<adv> bukkene så ut på dommedag», og 
+# ikkje «det var likevel fedrene barna så opp til»
+# ikkje «De andre som kjøpte vafler så ut til å...»
 
 
 
