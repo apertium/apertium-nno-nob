@@ -332,6 +332,7 @@ LIST %til% = "til"  ;
 LIST %til/på% = "til"  "på" ;
 LIST %to% = ("to"  det) ;
 LIST %trass% = ("trass"  pr) ;
+LIST %trass-i% = ("trass i"  pr) ;
 LIST %tvers% = "tvers"  ;
 LIST %tvert% = "tvert"  ;
 LIST %tygge/spytte% = "tygge"  "spytte"  ;
@@ -48572,9 +48573,11 @@ REMOVE:1648 (vblex pres) IF
 	(NOT -1 adv)
 	(NOT -1 subst/pron)
 	(NOT -1 %og%)
-	(*-1O setn-gr LINK **1C fv LINK NOT 0 trans2)
-	(*-1 setn-gr LINK NOT 0 %som%)
+	(*-1O setn-gr LINK NOT 0 %som/om/der% LINK **1C fv LINK NOT 0 trans2)
+ 	(*-1 setn-gr LINK NEGATE 0 %at% LINK -1 %i% LINK -1 %trass%)
+ 	(*-1 setn-gr LINK NEGATE 0 %at% LINK -1 %trass-i%)
 ;
+# Men ikkje: «trass i at det er enkelt tyder<vblex!!> ikkje det at det er opplagt»
 
 
 #:1649
