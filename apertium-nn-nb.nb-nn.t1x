@@ -120,8 +120,14 @@
     <def-cat n="infm">
       <cat-item lemma="å" tags="part"/>
     </def-cat>
+    <def-cat n="måte">
+      <cat-item lemma="måte" tags="n.m.sg.ind"/>
+    </def-cat>
     <def-cat n="vblex">
       <cat-item tags="vblex.*"/>
+    </def-cat>
+    <def-cat n="vblexinf">
+      <cat-item tags="vblex.inf"/>
     </def-cat>
     <def-cat n="vblexinfpass">
       <cat-item tags="vblex.inf.pass"/>
@@ -169,6 +175,9 @@
       <attr-item tags="pres"/>
       <attr-item tags="pret"/>
       <attr-item tags="pp"/>
+    </def-attr>
+    <def-attr n="voice">
+      <attr-item tags="pass"/>
     </def-attr>
     <def-attr n="a_det">
       <attr-item tags="det"/> 
@@ -248,7 +257,9 @@
   <section-def-macros>
 
     <def-macro n="f_bcond" npar="1">
-      <!--Per mirar si el blanc conté o no format awhatnow? -->
+      <!--Per mirar si el blanc conté o no format
+          (only output blank if not simple space)
+      -->
       <choose>
         <when>
           <test>
@@ -634,6 +645,37 @@
           <out>
             <lu>
               <clip pos="1" side="tl" part="lemh"/>
+              <clip pos="1" side="tl" part="a_nom"/>
+              <clip pos="1" side="tl" part="gen"/>
+              <clip pos="1" side="tl" part="nbr"/>
+              <clip pos="1" side="tl" part="art"/>
+              <clip pos="1" side="tl" part="lemq"/>
+            </lu>
+          </out>
+        </otherwise>
+      </choose>  
+    </def-macro>
+
+    <def-macro n="out_posgen_subj" npar="2">
+      <!-- arg.1: possessor, either genitive noun or det.pos.
+           arg.2: gives case
+           Assumes no variables.
+           Turns eg. "min" into "eg", "naboens" into "naboen".
+      -->
+      <choose><when>
+        <test><equal><clip pos="1" side="sl" part="a_det"/><lit-tag v="det.pos"/></equal></test>
+        <out>
+          <lu>
+            <get-case-from pos="2"><clip pos="1" side="tl" part="lemh"/></get-case-from>
+            <lit-tag v="prn"/>
+            <clip pos="1" side="tl" part="lemq"/>
+          </lu>
+        </out>
+        </when>
+        <otherwise>
+          <out>
+            <lu>
+              <get-case-from pos="2"><clip pos="1" side="tl" part="lemh"/></get-case-from>
               <clip pos="1" side="tl" part="a_nom"/>
               <clip pos="1" side="tl" part="gen"/>
               <clip pos="1" side="tl" part="nbr"/>
@@ -1489,6 +1531,70 @@
 	</call-macro>
         <out> <b pos="3"/> </out>
         <call-macro n="out_posgen"><with-param pos="1"/></call-macro>
+      </action>
+    </rule>
+
+    <!-- POSGEN måte å VBLEXINF -->
+    <rule comment="TODO -- POSGEN måte å VBLEXINF: hennes måte å sykle => måten ho syklar
+                                                   bokens måte å leses => måten boka blir lest
+
+Problem: lemma 'hans' needs to change to lemma 'han', etc., unless we want to put 'hans'
+in as an alternative RL-only entry in nn.dix.
+">
+      <pattern>
+	<pattern-item n="posgen"/>
+	<pattern-item n="måte"/>
+	<pattern-item n="infm"/>
+	<pattern-item n="vblexinf"/>
+      </pattern>
+      <action>
+        <call-macro n="out_ndef">
+	  <with-param pos="2"/>
+	  <with-param pos="1"/>
+	</call-macro>
+        <out><b pos="1"/></out>
+        <call-macro n="out_posgen_subj">
+          <with-param pos="1"/>
+          <with-param pos="2"/>
+        </call-macro>
+        <choose>
+          <when>
+            <test>
+              <not><equal><b pos="2"/><lit v=" "/></equal></not>
+            </test>
+            <out><b pos="2"/></out>
+          </when>
+        </choose>
+        <choose>
+          <when>
+            <test>
+              <equal><clip pos="4" side="tl" part="voice"/><lit v="pass"/></equal>
+            </test>
+            <out>
+              <lu>
+                <lit v="bli"/>	    
+                <lit-tag v="vblex.pres"/>
+              </lu>
+              <b pos="3"/>
+              <lu>	    
+                <clip pos="4" side="tl" part="lemh"/>
+                <clip pos="4" side="tl" part="a_verb"/>
+                <lit-tag v="pp"/>
+                <clip pos="4" side="tl" part="lemq"/>
+              </lu>
+            </out>
+          </when>
+          <otherwise>
+            <out>
+              <b pos="3"/>
+              <lu>	    
+                <clip pos="4" side="tl" part="lemh"/>
+                <clip pos="4" side="tl" part="a_verb"/>
+                <lit-tag v="pres"/>
+                <clip pos="4" side="tl" part="lemq"/>
+              </lu>
+            </out>
+        </otherwise></choose>
       </action>
     </rule>
 
