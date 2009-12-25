@@ -4,8 +4,10 @@
 <transfer>
 
   <section-def-cats>
+    <!-- nom does not include compound lhs's: -->
     <def-cat n="nom">
-      <cat-item tags="n.*"/>
+      <cat-item tags="n.*.*.*"/>
+      <cat-item tags="n.*.*.*.gen"/>
       <cat-item tags="np.*"/>
     </def-cat>
     <def-cat n="nacr">
@@ -13,6 +15,11 @@
     </def-cat>
     <def-cat n="nind">
       <cat-item tags="n.*.*.ind"/>
+    </def-cat>
+    <!-- compound lhs's are never genitive: -->
+    <def-cat n="n-ep">
+      <cat-item tags="n.*.*.*.ep-s"/>
+      <cat-item tags="n.*.*.*.ep-Ø"/>
     </def-cat>
     <def-cat n="ndef">
       <cat-item tags="n.*.*.def"/>
@@ -145,6 +152,11 @@
       <attr-item tags="np"/>
       <attr-item tags="np.top"/>
     </def-attr>
+    
+    <def-attr n="ep">
+      <attr-item tags="ep-s"/>
+      <attr-item tags="ep-Ø"/>
+    </def-attr>
 
     <def-attr n="a_adj">
       <attr-item tags="adj"/>
@@ -228,6 +240,7 @@
     <def-var n="n_number"/>
     <def-var n="case"/>
     <def-var n="pass"/>
+    <def-var n="epenthetic"/>
     <def-var n="n_defness"/>
   </section-def-vars>
 
@@ -715,6 +728,24 @@
         <clip pos="1" side="tl" part="lemq"/>
       </lu></out>
     </def-macro>
+
+    <def-macro n="out_cp_lhs" npar="1">
+      <out>
+        <lu>
+          <clip pos="1" side="tl" part="lemh"/>
+          <clip pos="1" side="tl" part="a_nom"/>
+          <clip pos="1" side="tl" part="gen"/>
+          <clip pos="1" side="tl" part="nbr"/>
+          <clip pos="1" side="tl" part="art"/>
+          <clip pos="1" side="tl" part="cas"/>	     
+          <clip pos="1" side="tl" part="lemq"/>
+        </lu>
+      </out>
+      <choose><when>
+        <test><equal><clip pos="1" side="sl" part="ep"/><lit-tag v="ep-s"/></equal></test>
+        <out><lu><lit v="s"/></lu></out>
+      </when></choose>
+    </def-macro>      
 
   </section-def-macros>
 
@@ -1535,12 +1566,10 @@
     </rule>
 
     <!-- POSGEN måte å VBLEXINF -->
-    <rule comment="TODO -- POSGEN måte å VBLEXINF: hennes måte å sykle => måten ho syklar
-                                                   bokens måte å leses => måten boka blir lest
+    <rule comment="POSGEN måte å VBLEXINF: hennes måte å sykle => måten ho syklar
+                                           bokens måte å leses => måten boka blir lest
 
-Problem: lemma 'hans' needs to change to lemma 'han', etc., unless we want to put 'hans'
-in as an alternative RL-only entry in nn.dix.
-">
+                   Requires rather ugly RL prn lemmas in nn.dix, see personal_pronouns__prn pardef">
       <pattern>
 	<pattern-item n="posgen"/>
 	<pattern-item n="måte"/>
@@ -2035,6 +2064,78 @@ in as an alternative RL-only entry in nn.dix.
       </action>
     </rule>
 
+
+    <!-- Compound rules, very basic still: -->
+    <rule comment="N-ep NGEN: ytelse ytelses => ytingsyting sin
+                   Garpegenitiv">
+      <pattern>
+        <pattern-item n="n-ep"/>
+        <pattern-item n="ngen"/>
+      </pattern>
+      <action>
+        <call-macro n="out_cp_lhs"><with-param pos="1"/></call-macro>
+        <out>
+          <lu>
+            <clip pos="2" side="tl" part="lemh"/>
+            <clip pos="2" side="tl" part="a_nom"/>
+            <clip pos="2" side="tl" part="gen"/>
+            <clip pos="2" side="tl" part="nbr"/>
+            <clip pos="2" side="tl" part="art"/>
+            <clip pos="2" side="tl" part="lemq"/>
+          </lu>
+          <b/> 
+        </out>
+        <call-macro n="out_sin"><with-param pos="2"/></call-macro>
+      </action>
+    </rule>
+    <rule comment="N-ep N-ep NGEN: ytelses ytelse ytelses => ytingsytingyting sin
+                   Garpegenitiv">
+      <pattern>
+        <pattern-item n="n-ep"/>
+        <pattern-item n="n-ep"/>
+        <pattern-item n="ngen"/>
+      </pattern>
+      <action>
+        <call-macro n="out_cp_lhs"><with-param pos="1"/></call-macro>
+        <call-macro n="out_cp_lhs"><with-param pos="2"/></call-macro>
+        <out>
+          <lu>
+            <clip pos="3" side="tl" part="lemh"/>
+            <clip pos="3" side="tl" part="a_nom"/>
+            <clip pos="3" side="tl" part="gen"/>
+            <clip pos="3" side="tl" part="nbr"/>
+            <clip pos="3" side="tl" part="art"/>
+            <clip pos="3" side="tl" part="lemq"/>
+          </lu>
+          <b/> 
+        </out>
+        <call-macro n="out_sin"><with-param pos="3"/></call-macro>
+      </action>
+    </rule>    
+    <rule comment="N-ep NOM: ytelse ytelse => ytingsyting
+                   Remove the space that pretransfer added, turn ep-s into 's'">
+      <pattern>
+        <pattern-item n="n-ep"/>
+        <pattern-item n="nom"/>
+      </pattern>
+      <action>
+        <call-macro n="out_cp_lhs"><with-param pos="1"/></call-macro>
+        <out><lu><clip pos="2" side="tl" part="whole"/></lu></out>
+      </action>
+    </rule>
+    <rule comment="N-ep N-ep NOM: ytelses ytelse ytelse => ytingsytingyting
+                   Remove the space that pretransfer added, turn ep-s into 's'">
+      <pattern>
+        <pattern-item n="n-ep"/>
+        <pattern-item n="n-ep"/>
+        <pattern-item n="nom"/>
+      </pattern>
+      <action>
+        <call-macro n="out_cp_lhs"><with-param pos="1"/></call-macro>
+        <call-macro n="out_cp_lhs"><with-param pos="2"/></call-macro>
+        <out><lu><clip pos="3" side="tl" part="whole"/></lu></out>
+      </action>
+    </rule>
 
   </section-rules>
 </transfer>
