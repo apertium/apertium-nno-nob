@@ -20,13 +20,33 @@
       <program name="lt-proc $1">
         <file name="nb-nn.autogen.bin"/>
       </program>
-<!--
-      <program name="lt-proc -p">
-        <file name="nb-nn.autopgen.bin"/>
-      </program>
-  -->
     </pipeline>
   </mode>
+
+  <mode name="nb-nn-cp" install="no">
+    <pipeline>
+      <program name="lt-proc-j -e">
+        <file name="nb-nn.automorf.bin"/>
+      </program>
+      <program name="cg-proc -w">
+	<file name="nb-nn.rlx.bin"/>
+      </program>
+      <program name="apertium-tagger -g $2">
+        <file name="nb-nn.prob"/>
+      </program>
+      <program name="apertium-pretransfer"/>
+      <program name="apertium-transfer">
+        <file name="apertium-nn-nb.nb-nn.t1x"/>
+        <file name="nb-nn.t1x.bin"/>
+        <file name="nb-nn.autobil.bin"/>
+      </program>
+      <program name="lt-proc $1">
+        <file name="nb-nn.autogen.bin"/>
+      </program>
+    </pipeline>
+  </mode>
+
+  
   
   <mode name="nn-nb" install="yes">
     <pipeline>
@@ -48,11 +68,29 @@
       <program name="lt-proc $1">
         <file name="nn-nb.autogen.bin"/>
       </program>
-<!--
-      <program name="lt-proc -p">
-        <file name="nn-nb.autopgen.bin"/>
+    </pipeline>
+  </mode>
+  
+  <mode name="nn-nb-cp" install="no">
+    <pipeline>
+      <program name="lt-proc-j -e">
+        <file name="nn-nb.automorf.bin"/>
       </program>
-  -->
+      <program name="cg-proc -w">
+	<file name="nn-nb.rlx.bin"/>
+      </program>
+      <program name="apertium-tagger -g $2">
+        <file name="nn-nb.prob"/>
+      </program>
+      <program name="apertium-pretransfer"/>
+      <program name="apertium-transfer">
+        <file name="apertium-nn-nb.nn-nb.t1x"/>
+        <file name="nn-nb.t1x.bin"/>
+        <file name="nn-nb.autobil.bin"/>
+      </program>
+      <program name="lt-proc $1">
+        <file name="nn-nb.autogen.bin"/>
+      </program>
     </pipeline>
   </mode>
 </modes>
