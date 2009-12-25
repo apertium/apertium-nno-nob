@@ -86,6 +86,7 @@
 
 		<sdef n="compound-only-L" 	c="May only be the left-side of a compound"/> 
 		<sdef n="compound-R" 	c="May be the right-side of a compound, or a full word"/> 
+		<sdef n="ep-Ø" 	c="no epenthesis"/>
 		<sdef n="ep-s" 	c="s-epenthesis"/> 
 		<sdef n="ep-e" 	c="e-epenthesis"/> 
 	</sdefs>
@@ -93,47 +94,36 @@
 
           <!-- Compounding pardefs. At the moment, only cp-R and cp-both-s are in use. -->
 <pardef n="cp-R"> 
-   <e c="remove lksdfjsdlfkjalfjs to turn cp on again">
-   <p><l>lksdfjsdlfkjalfjs</l>          <r><s n="compound-R"/></r></p></e>
-   <e c="comment me out to turn cp on again">
-   <p><l></l>                           <r></r></p></e> 
+   <e r="LR"><p><l></l>          <r><s n="compound-R"/></r></p></e>
+   <e>       <p><l></l>          <r></r></p></e>
  </pardef>
-<pardef n="cp-only-L"> 
-   <e c="remove lksdfjsdlfkjalfjs to turn cp on again">
-   <p><l>lksdfjsdlfkjalfjs</l>          <r><s n="compound-only-L"/></r></p></e>
-   <e c="comment me out to turn cp on again">
-   <p><l></l>                           <r></r></p></e> 
-</pardef>
-<pardef n="cp-only-L-s"> 
-   <e>       <p><l></l>          <r></r></p><par n="cp-only-L"/></e> 
-   <e>       <p><l>s</l>         <r><s n="ep-s"/></r></p><par n="cp-only-L"/></e> 
-</pardef>
-<!-- <pardef n="cp-only-L-e"> -->
-<!--   <e>       <p><l></l>          <r></r></p><par n="cp-only-L"/></e> -->
-<!--   <e>       <p><l>e</l>         <r><s n="ep-e"/></r></p><par n="cp-only-L"/></e> -->
-<!-- </pardef> -->
-<!-- <pardef n="cp-only-L-s-e"> -->
-<!--   <e>       <p><l></l>          <r></r></p><par n="cp-only-L"/></e> -->
-<!--   <e>       <p><l>s</l>         <r><s n="ep-s"/></r></p><par n="cp-only-L"/></e> -->
-<!--   <e>       <p><l>e</l>         <r><s n="ep-e"/></r></p><par n="cp-only-L"/></e> -->
-<!-- </pardef> -->
-<!-- <pardef n="cp-both"> -->
-<!--   <e>       <p><l></l>          <r></r></p><par n="cp-R"/></e> -->
-<!--   <e>       <p><l></l>          <r></r></p><par n="cp-only-L"/></e> -->
-<!-- </pardef> -->
 <pardef n="cp-both-s">
-  <e>       <p><l></l>          <r></r></p><par n="cp-R"/></e>
-  <!-- left-compounding turned off -->
-<!--   <e>       <p><l></l>          <r></r></p><par n="cp-only-L-s"/></e> --> 
+   <e r="LR"><p><l></l>          <r><s n="ep-Ø"/><s n="compound-only-L"/></r></p></e> 
+   <e r="LR"><p><l>s</l>         <r><s n="ep-s"/><s n="compound-only-L"/></r></p></e> 
+   <e r="LR"><p><l></l>          <r><s n="compound-R"/></r></p></e>
+   <e>       <p><l></l>          <r></r></p></e>
 </pardef>
-<!-- <pardef n="cp-both-e"> -->
-<!--   <e>       <p><l></l>          <r></r></p><par n="cp-R"/></e> -->
-<!--   <e>       <p><l></l>          <r></r></p><par n="cp-only-L-e"/></e> -->
-<!-- </pardef> -->
-<!-- <pardef n="cp-both-s-e"> -->
-<!--   <e>       <p><l></l>          <r></r></p><par n="cp-R"/></e> -->
-<!--   <e>       <p><l></l>          <r></r></p><par n="cp-only-L-s-e"/></e> -->
-<!-- </pardef> -->
+<pardef n="cp-both-s_S__case">
+   <e r="LR"><p><l></l>          <r><s n="ep-Ø"/><s n="compound-only-L"/></r></p></e> 
+   <e r="LR"><p><l>s</l>         <r><s n="ep-s"/><s n="compound-only-L"/></r></p></e> 
+   <e r="LR"><p><l></l>          <r><s n="compound-R"/></r></p></e>
+   <e>       <p><l></l>          <r></r></p></e>
+   <e>       <p><l>s</l>         <r><s n="gen"/></r></p></e>
+</pardef>
+
+    <!-- Genitive case endings mostly only for proper nouns -->
+<pardef n="S__case">
+  <e>       <p><l></l>          <r></r></p></e>
+  <e>       <p><l>s</l>         <r><s n="gen"/></r></p></e>
+</pardef>
+<pardef n="'s__case">
+  <e>       <p><l></l>          <r></r></p></e>
+  <e>       <p><l>'s</l>        <r><s n="gen"/></r></p></e>
+</pardef>
+<pardef n="'__case">
+  <e>       <p><l></l>          <r></r></p></e>
+  <e>       <p><l>'</l>         <r><s n="gen"/></r></p></e>
+</pardef>
 
 
 <!-- Radical vs conservative spelling choices -->
@@ -482,20 +472,6 @@
     <!-- /determiners -->
    
 
-    <!-- Genitive case ending only for Proper nouns -->
-<pardef n="S__case">
-  <e>       <p><l></l>          <r></r></p></e>
-  <e>       <p><l>s</l>         <r><s n="gen"/></r></p></e>
-</pardef>
-<pardef n="'s__case">
-  <e>       <p><l></l>          <r></r></p></e>
-  <e>       <p><l>'s</l>        <r><s n="gen"/></r></p></e>
-</pardef>
-<pardef n="'__case">
-  <e>       <p><l></l>          <r></r></p></e>
-  <e>       <p><l>'</l>         <r><s n="gen"/></r></p></e>
-</pardef>
-
 <!-- Proper nouns
      Todo:
      * Noreg: no gender (but nt? «eit Noreg», just never *Noreget)
@@ -650,7 +626,7 @@
   <e r="LR"><p><l>erar</l>  <r>er<s n="n"/><s n="m"/><s n="pl"/><s n="ind"/></r></p><par n="S__case"/><par n="cp-R"/></e>
   <e r="LR"><p><l>rar</l>   <r>er<s n="n"/><s n="m"/><s n="pl"/><s n="ind"/></r></p><par n="S__case"/><par n="cp-R"/></e>
   <e>       <p><l>eren</l>  <r>er<s n="n"/><s n="m"/><s n="sg"/><s n="def"/></r></p><par n="S__case"/><par n="cp-R"/></e>
-  <e>       <p><l>er</l>    <r>er<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/></r></p><par n="S__case"/><par n="cp-both-s"/></e>
+  <e>       <p><l>er</l>    <r>er<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/></r></p><par n="cp-both-s_S__case"/></e>
 </pardef>
 <pardef n="mil/s__n">
   <e>       <p><l>ene</l>   <r><s n="n"/><s n="f"/><s n="pl"/><s n="def"/></r></p><par n="cp-R"/></e>
@@ -658,7 +634,7 @@
   <e r="LR"><p><l>er</l>    <r><s n="n"/><s n="f"/><s n="pl"/><s n="ind"/></r></p><par n="S__case"/><par n="cp-R"/></e>
   <e>       <p><l>a</l>     <r><s n="n"/><s n="f"/><s n="sg"/><s n="def"/></r></p><par n="S__case"/><par n="cp-R"/></e>
   <e r="LR"><p><l>i</l>     <r><s n="n"/><s n="f"/><s n="sg"/><s n="def"/></r></p><par n="S__case"/><par n="cp-R"/></e>
-  <e>       <p><l></l>      <r><s n="n"/><s n="f"/><s n="sg"/><s n="ind"/></r></p><par n="S__case"/><par n="cp-both-s"/></e>
+  <e>       <p><l></l>      <r><s n="n"/><s n="f"/><s n="sg"/><s n="ind"/></r></p><par n="cp-both-s_S__case"/></e>
 </pardef>
 <pardef n="mil/s_no-cp__n">
   <e>       <p><l>ene</l>   <r><s n="n"/><s n="f"/><s n="pl"/><s n="def"/></r></p></e>
@@ -673,7 +649,7 @@
   <e>       <p><l>rane</l>  <r>er<s n="n"/><s n="m"/><s n="pl"/><s n="def"/></r></p><par n="cp-R"/></e>
   <e>       <p><l>er</l>    <r>er<s n="n"/><s n="m"/><s n="pl"/><s n="ind"/></r></p><par n="S__case"/><par n="cp-R"/></e>
   <e>       <p><l>eren</l>  <r>er<s n="n"/><s n="m"/><s n="sg"/><s n="def"/></r></p><par n="S__case"/><par n="cp-R"/></e>
-  <e>       <p><l>er</l>    <r>er<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/></r></p><par n="S__case"/><par n="cp-both-s"/></e>
+  <e>       <p><l>er</l>    <r>er<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/></r></p><par n="cp-both-s_S__case"/></e>
 </pardef>
 <pardef n="vek/es__n">
   <e>       <p><l>ene</l>   <r>e<s n="n"/><s n="f"/><s n="pl"/><s n="def"/></r></p></e>
@@ -684,7 +660,7 @@
   <e>       <p><l>e</l>     <r>e<s n="n"/><s n="f"/><s n="sg"/><s n="ind"/></r></p><par n="S__case"/></e>
 </pardef>
 
-<!-- Common nouns, "regular" -->
+<!-- Common nouns, "regular" with compounding -->
 <pardef n="å__n">
   <e>       <p><l>ene</l>   <r><s n="n"/><s n="f"/><s n="pl"/><s n="def"/></r></p><par n="cp-R"/></e>
   <e>       <p><l>er</l>    <r><s n="n"/><s n="f"/><s n="pl"/><s n="ind"/></r></p><par n="cp-R"/></e>
@@ -3171,7 +3147,7 @@
   <e r="LR"><p><l>andi</l>  <r>and<s n="n"/><s n="f"/><s n="sg"/><s n="def"/></r></p><par n="cp-R"/></e>
   <e>       <p><l>and</l>   <r>and<s n="n"/><s n="f"/><s n="sg"/><s n="ind"/></r></p><par n="cp-both-s"/></e>
 </pardef>
-
+<!-- /regular (compounding) nouns -->
      <!-- Exceptions, nouns w/o compounding -->
 <pardef n="STD_f/e_no-cp__n">
   <e>       <p><l>ene</l>   <r>e<s n="n"/><s n="f"/><s n="pl"/><s n="def"/></r></p></e>
@@ -3719,6 +3695,8 @@
   <e>       <p><l></l>      <r></r></p><par n="r/e__n"/></e>
   <e>       <p><l></l>          <r></r></p><par n="l/e__n"/></e>
 </pardef>
+<!-- /exceptions, nouns w/o compounding -->
+
 <pardef n="akronym_ord__n">
   <!-- Ord som kan opptre med små eller store bokstavar, men me vil
        halde oss til ein viss form. Store bokstavar utgjer for desse
@@ -21997,6 +21975,8 @@
 <!-- todo: rest of them -->
 
 <!-- Common nouns -->
+<e lm="s" c="Compounding epenthetic"><i>s</i></e>
+
 <e lm="alphabet">        <i></i><par n="alphabet__n"/></e>
 <e lm="-åring"><re>[0-9]+</re><i>-åring</i><par n="ep__n"/></e>
 <e lm="-tal"><re>[0-9]+</re><i>-tal</i><par n="ty__n"/></e>
@@ -31541,6 +31521,7 @@
     <e lm="fordom"><i>fordom</i><par n="dom__n"/></e>
     <e lm="fordringskreditt"><i>fordringskreditt</i><par n="ep__n"/></e>
     <e lm="fordøyelse"><i>fordøyels</i><par n="r/e__n"/></e>
+    <e lm="fordøying"><i>fordøying</i><par n="yting__n"/></e>
     <e lm="foredlingsindustri"><i>foredlingsindustri</i><par n="ep__n"/></e>
     <e lm="foredragsturné"><i>foredragsturn</i><par n="id/é__n"/></e>
     <e lm="forehand"><i>forehand</i><par n="ep__n"/></e>
@@ -53502,6 +53483,8 @@
 <e lm="fylling">  <i>fylling</i><par n="yting__n"/></e>
 <e lm="amalgamfylling">  <i>amalgamfylling</i><par n="yting__n"/></e>
 <e lm="karpe">      <i>karp</i><par n="lø/e__n"/></e>
+    <e lm="etar"><i>etar</i><par n="ep__n"/></e>
+<e lm="spisar"><i>spisar</i><par n="ep__n"/></e>
 <!-- /common nouns -->
 
 <!-- Proper nouns -->
