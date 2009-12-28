@@ -1783,6 +1783,17 @@ CONSTRAINTS
 # ikke er \"et best\""
 
 
+#:nn4956
+ "<beste>"   SELECT:nn4956   (adj sup) IF
+	(-1C be-det)
+;
+
+
+#:nn4957
+ "<beste>"   SELECT:nn4957   (adj sup) IF
+	(1 subst)
+;
+
 
 #:3729
   "<bredt>"   SELECT:3729   (vblex pp) IF
@@ -26791,13 +26802,3 @@ REMOVE:gen-subst gen-subst IF
 # Viss me har både genitiv og eigennamn er det vel usannsynleg at det er genitiven sidan eigennamnet har stor forbokstav
 
 
-# sec 5
-AFTER-SECTIONS
-
-### Genitive vs periphrasis
-# Not sure if we should do this in nb.dix instead. Reasons to do it here: 
-# - we might want to restrict the choice of
-#   preposition depending on other words than just the possessor
-# - it would make nb.dix very nb->nn specific.
-SUBSTITUTE (gen) (gen-i) TARGET ("<verdens>"ri gen) IF (0 gen);
-SUBSTITUTE (gen) (gen-i) TARGET ("<århundres>"ri gen) IF (0 gen);
