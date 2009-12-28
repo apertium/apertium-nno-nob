@@ -26,7 +26,6 @@
     </def-cat>
     <def-cat n="ngen">
       <cat-item tags="n.*.*.*.gen"/>
-      <cat-item tags="n.*.*.*.gen-i"/>
     </def-cat>
     <def-cat n="ngen_time_meas">
       <cat-item tags="n.m.sg.*.gen"   lemma="liter"/>
@@ -116,7 +115,6 @@
     <def-cat n="posgen"> 
       <cat-item tags="det.pos.*"/>
       <cat-item tags="n.*.*.*.gen"/>
-      <cat-item tags="n.*.*.*.gen-i"/>
     </def-cat>
     <def-cat n="adj">
       <cat-item tags="adj.*"/>
@@ -219,7 +217,6 @@
     <def-attr n="cas">
       <attr-item tags="nom"/>
       <attr-item tags="gen"/>
-      <attr-item tags="gen-i"/>
       <attr-item tags="acc"/>
       <attr-item tags="CD"/>
     </def-attr>
@@ -245,6 +242,20 @@
   </section-def-vars>
 
   <section-def-lists>
+    <def-list n="gen-i">
+      <list-item v="verd"/>
+      <list-item v="by"/>
+      <list-item v="dal"/>
+      <list-item v="luft"/>
+      <list-item v="radio"/>
+      <list-item v="hav"/>
+      <list-item v="ryggmarg"/>
+      <list-item v="styre"/>
+      <list-item v="fylke"/>
+      <list-item v="hus"/>
+      <list-item v="århundre"/>
+      <list-item v="dokument"/>
+    </def-list>
     <def-list n="det_indef">
       <!-- feels like these should have their own
            sub-pos... «<det><dem> som kan ha <ind> etter seg på
@@ -597,7 +608,7 @@
       <!-- arg.1: possessor noun. Note: puts a space _after_ the preposition. -->
       <choose>
         <when>
-          <test><equal><clip pos="1" side="sl" part="cas"/><lit-tag v="gen-i"/></equal></test>
+          <test><in><clip pos="1" side="tl" part="lemh"/><list n="gen-i"/></in></test>
           <out>
             <lu>
               <lit v="i"/>
