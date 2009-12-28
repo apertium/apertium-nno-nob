@@ -72,6 +72,7 @@ ${L}<parentes-beg>${M}lpar${R}
 ${L}<parentes-slutt>${M}rpar${R}
 ${L}<ordenstall>${M}ord${R}
 ${L}<ordenstal>${M}ord${R}
+${L}interj${M}ij${R}
 tLIST
 " $1
 # ^^ takes file as argument
