@@ -743,7 +743,7 @@ LIST hendelse = <hend> ;
 LIST hj-verb = "være"  "ville"  "skulle"  "måtte"  "kunne"  "ha"  "få"  "burde"  "bli"  ;
 LIST hj-verb-ikke-passiv = "ville"  "skulle"  "måtte"  "kunne"  "ha"  "få"  "burde"  ;
 LIST hj-verb-iv = ("bli"  inf) ("bli"  vblex pp) ("ha"  inf) ("ha"  vblex pp) ("være"  inf) ("være"  vblex pp) ("få"  inf) ("få"  vblex pp) ("skulle"  inf) ("skulle"  vblex pp) ("kunne"  inf) ("kunne"  vblex pp) ("ville"  inf) ("ville"  vblex pp) ("måtte"  inf) ("måtte"  vblex pp) ("burde"  inf) ("burde"  vblex pp) ;
-LIST høflig = "deres"  "dem"  "de"  ;
+LIST høflig = ("Deres" det pos)  ("Dem" prn)  ("De" prn)  ;
 LIST ikke-&annet = &hend &org &person top &verk ;
 LIST ikke-&hend = &annet &org &person top &verk ;
 LIST ikke-&org = &annet &hend &person top &verk ;
@@ -23742,6 +23742,32 @@ CONSTRAINTS
 	(*1O subst/pron/fl-adj/%all%/%mang%/%mange% LINK *-1 ikke-adv-adj-det)
 ;
 #  "det aller meste av korrespondansen der (prep) går på norsk"))
+
+
+"<De>" REMOVE:De ("de" prn) IF
+ 	(0 høflig)
+	(NOT -1 >>>)
+;
+"<De>" REMOVE:De høflig IF
+ 	(0 ("de" prn))
+	(-1 >>>)
+;
+"<Dem>" REMOVE:De ("de" prn) IF
+ 	(0 høflig)
+	(NOT -1 >>>)
+;
+"<Dem>" REMOVE:De høflig IF
+ 	(0 ("de" prn))
+	(-1 >>>)
+;
+"<Deres>" REMOVE:Deres ("deres" det pos) IF
+ 	(0 høflig)
+	(NOT -1 >>>)
+;
+"<Deres>" REMOVE:Deres høflig IF
+ 	(0 ("deres" det pos))
+	(-1 >>>)
+;
 
 
 #5004:
