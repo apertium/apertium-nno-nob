@@ -269,8 +269,8 @@
        useless for "dens"-disambiguation, CG could change lemma though:  -->
   <e r="RL"><p><l>ho</l>        <r>dens<s n="prn"/></r></p></e>
   <e r="RL"><p><l>vi</l>        <r>vår<s n="prn"/></r></p></e>
-  <e r="RL"><p><l>de</l>        <r>dykkar<s n="prn"/></r></p></e>
-  <e r="RL"><p><l>dei</l>       <r>deira<s n="prn"/></r></p></e>
+  <e r="RL"><p><l>de</l>        <r>dykkar<s n="prn"/><s n="p2"/></r></p></e>
+  <e r="RL"><p><l>dei</l>       <r>deira<s n="prn"/><s n="p3"/></r></p></e>
 </pardef>
 
     <!-- Possessives -->
@@ -286,6 +286,12 @@
   <e>       <p><l></l>          <r><s n="det"/><s n="pos"/><s n="f"/><s n="sg"/></r></p></e>
   <e>       <p><l></l>          <r><s n="det"/><s n="pos"/><s n="nt"/><s n="sg"/></r></p></e>
   <e>       <p><l></l>          <r><s n="det"/><s n="pos"/><s n="pl"/></r></p></e>
+</pardef>
+<pardef n="Dykkar__det">		      <!-- hans, hennar, deira, ... -->
+  <e>       <p><l></l>          <r><s n="det"/><s n="pos"/><s n="p2"/><s n="m"/><s n="sg"/></r></p></e>
+  <e>       <p><l></l>          <r><s n="det"/><s n="pos"/><s n="p2"/><s n="f"/><s n="sg"/></r></p></e>
+  <e>       <p><l></l>          <r><s n="det"/><s n="pos"/><s n="p2"/><s n="nt"/><s n="sg"/></r></p></e>
+  <e>       <p><l></l>          <r><s n="det"/><s n="pos"/><s n="p2"/><s n="pl"/></r></p></e>
 </pardef>
 <pardef n="vår__det">
   <e>       <p><l></l>          <r><s n="det"/><s n="pos"/><s n="m"/><s n="sg"/></r></p></e>
@@ -11512,8 +11518,10 @@
 <e lm="dets">            <i>dets</i><par n="dets__det"/></e>
 <e lm="dens">            <i>dens</i><par n="dets__det"/></e>
 <e lm="deira">           <i>deira</i><par n="dets__det"/></e>
+<!--
 <e lm="dykkar">          <i>dykkar</i><par n="dets__det"/></e>
-<e lm="Dykkar">          <i>Dykkar</i><par n="dets__det"/></e>
+-->
+<e lm="Dykkar">          <i>Dykkar</i><par n="Dykkar__det"/></e>
 <e lm="vår">             <i>vår</i><par n="vår__det"/></e>
 
 <!-- Determiners -->
