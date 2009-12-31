@@ -568,6 +568,57 @@
       </action>
     </rule>
 
+    <rule comment="DET DET NOM: det andre buslitet">
+      <pattern>						       
+        <pattern-item n="det"/>
+        <pattern-item n="det"/>
+        <pattern-item n="nom"/>
+      </pattern>
+      <action>
+        <call-macro n="set_gender2"> 
+          <with-param pos="3"/>
+          <with-param pos="1"/> 
+        </call-macro>
+        <out>
+          <lu>
+            <clip pos="1" side="tl" part="lemh"/>
+            <clip pos="1" side="tl" part="a_det"/>
+            <clip pos="1" side="tl" part="persona"/>
+            <var n="gender"/>
+	    <var n="pre_number"/>
+	    <clip pos="1" side="tl" part="art"/>
+            <clip pos="1" side="tl" part="lemq"/>
+          </lu>
+          <b pos="1"/>
+        </out>
+        <call-macro n="set_gender2"> 
+          <with-param pos="3"/>
+          <with-param pos="2"/> 
+        </call-macro>
+        <out>
+          <lu>
+            <clip pos="2" side="tl" part="lemh"/>
+            <clip pos="2" side="tl" part="a_det"/>
+            <clip pos="1" side="tl" part="persona"/>
+            <var n="gender"/>
+	    <var n="pre_number"/>
+            <clip pos="2" side="tl" part="art"/>
+            <clip pos="2" side="tl" part="lemq"/>
+          </lu>
+          <b pos="2"/>
+          <lu>
+	    <clip pos="3" side="tl" part="lemh"/>
+            <clip pos="3" side="tl" part="a_nom"/>
+            <clip pos="3" side="tl" part="gen"/>
+	    <var n="n_number"/>
+            <clip pos="3" side="tl" part="art"/>
+	    <clip pos="3" side="tl" part="cas"/>	     
+	    <clip pos="3" side="tl" part="lemq"/>
+          </lu>
+        </out>
+      </action>
+    </rule>
+
     <rule comment="ADJ: open(m) => åpen(mf)">
       <pattern>
         <pattern-item n="adj"/>
