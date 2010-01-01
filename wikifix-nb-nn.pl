@@ -8,6 +8,20 @@
 
 use utf8 ;
 
+@months = qw(jan feb mars april mai juni juli aug sept okt nov des);
+@weekDays = qw(søndag måndag tysdag onsdag torsdag fredag laurdag søndag);
+($second, $minute, $hour, $dayOfMonth, $month, $yearOffset, $dayOfWeek, $dayOfYear, $daylightSavings) = localtime();
+
+$minute = sprintf("%2d", $minute);
+$minute=~ tr/ /0/;
+
+$hour = sprintf("%2d", $hour);
+$hour=~ tr/ /0/;
+
+$year = 1900 + $yearOffset;
+$tidspunkt = "$weekDays[$dayOfWeek]  $dayOfMonth. $months[$month] $year, klokka $hour:$minute.\n\n";
+
+
 print "\n{{språkvask}}\n\n" ;
 
 while (<>) 
@@ -29,5 +43,7 @@ s/\]\]eit /\]\]et /g ; # definite suffix -et
 
 print ;
 }
+
+print "\n\n== Kjelde ==\n\n* Omsett frå [[:nb:Hovedside|Wikipedia på bokmål]] $tidspunkt \n\n" ;
 
 print "\n[[Kategori:Omsett med Apertium]]\n" ;
