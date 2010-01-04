@@ -8,9 +8,14 @@
 
 use utf8 ;
 
-@months = qw(jan feb mars april mai juni juli aug sept okt nov des);
+@months = qw(januar februar mars april mai juni juli august september oktober november desember);												 
 @weekDays = qw(søndag måndag tysdag onsdag torsdag fredag laurdag søndag);
 ($second, $minute, $hour, $dayOfMonth, $month, $yearOffset, $dayOfWeek, $dayOfYear, $daylightSavings) = localtime();
+
+# The next 3 lines to get rid of annoying error msg
+$second = $second;
+$dayOfYear = $dayOfYear;
+$daylightSavings = $daylightSavings ;
 
 $minute = sprintf("%2d", $minute);
 $minute=~ tr/ /0/;
@@ -32,6 +37,7 @@ s/\[\[ein:/\[\[en:/g ; # iw english
 s/\[\[gav:/\[\[ga:/g ; # iw galician?
 s/\[\[eit:/\[\[et:/g ; # iw estonian
 s/\[\[då:/\[\[da:/g ;  # iw danish
+s/\[\[sjå:/\[\[de:/g ;  # iw north sámi
 
 s/\[\[nn:/\[\[nb:/g ;  # iw switch 
 
@@ -44,6 +50,6 @@ s/\]\]eit /\]\]et /g ; # definite suffix -et
 print ;
 }
 
-print "\n\n== Kjelde ==\n\n* Omsett frå [[:nb:Hovedside|Wikipedia på bokmål]] $tidspunkt \n\n" ;
+print "\n\n== Kjelde ==\n\n* Omsett frå [[:nb:Hovedside|Wikipedia på bokmål]], innhenta $tidspunkt \n\n" ;
 
 print "\n[[Kategori:Omsett med Apertium]]\n" ;
