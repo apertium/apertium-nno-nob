@@ -7980,10 +7980,10 @@ SELECT:4141 (adj pl) IF
 #:4142
 SELECT:4142 (adj pl) IF
 	(0 subst)
-	(NOT 0 ikkje-adj-subst)
-	(NOT 0 subst-prop)
-	(1C fl-subst)
-	(NOT -1 det)
+ 	(NOT 0 ikkje-adj-subst)
+ 	(NOT 0 subst-prop)
+ 	(1C fl-subst)
+ 	(NOT -1 det)
 ;
 #  "strikkar tjukke (adj, ikkje subst) genserar"))
 
@@ -38631,8 +38631,9 @@ SELECT:2490 fl-subst IF
 	(NOT -1 pres-part)
 	(NOT -1 eint)
 	(NOT -1 gen)
+	(NEGATE 0 adj-fl LINK 1 fl-subst + subst-appell)
 ;
-
+# NEGATE: «Han kjøpte mange hefta<adj pl> bøker.» -KBU
 
 #:2491
 SELECT:2491 fl-subst IF
@@ -44445,11 +44446,12 @@ REMOVE:2055 (adj pp) IF
 
 #:2056
 REMOVE:2056 (adj pp) IF
-	(0 fl-subst)
 	(-1 adj-fl)
+	(0 fl-subst)
+	(NEGATE 0 adj-fl LINK 1 fl-subst + subst-appell)
 ;
 #  "Dei foreslår tøffe kutt (adj fl)"))
-
+# NEGATE: «Han kjøpte mange hefta<adj pl> bøker.» -KBU
 
 
 #:2057
@@ -46528,7 +46530,8 @@ REMOVE:1845 (ij) IF
 
 
 #:1846
-REMOVE:1846 (ij) IF
+REMOVE:1846 (ij
+) IF
 	(NOT 0 %ja-nei%)
 	(NOT -1 replikk)
 	(NOT -1 interj)
@@ -49222,12 +49225,13 @@ REMOVE:1587 (vblex pret) IF
 	(NOT 0 %var%)
 	(NOT -1 parentes)
 	(NOT -1 adv)
-	(NOT -1 subst/pron)
-	(*-1O setn-gr LINK **1C fv LINK NOT 0 trans2)
-	(*-1 setn-gr LINK NOT -1 >>>)
-	(*-1 setn-gr LINK NOT 0 %som%)
-	(NOT *-1 fv LINK *-1 spørjeadv/sp/sbu LINK *-1 konj)
+ 	(NOT -1 subst/pron)
+ 	(*-1O setn-gr LINK **1C fv LINK NOT 0 trans2)
+ 	(*-1 setn-gr LINK NOT -1 >>>)
+ 	(*-1 setn-gr LINK NOT 0 %som%)
+ 	(NEGATE *-1 fv LINK *-1 spørjeadv/sp/sbu LINK *-1 konj)
 ;
+# «Han kjøpte mange hefta<ikkje pret> bøker» -KBU
 # Ikkje: «Langt uti have eller kor det var lynte<pret> det» -KBU
 
 #:1588
@@ -53014,7 +53018,7 @@ REMOVE:6211 (n pl) IF
 
 
 REMOVE:rel-ellipse (n) IF
-	(0 perf-part)
+	(0 perf-part/<perf-part>)
 	(-1 subst LINK NOT 0 ikkje-subst)
 	(1 prep LINK *1 subst/pron BARRIER ikkje-adv-adj-subst-pron-det)
 ;
