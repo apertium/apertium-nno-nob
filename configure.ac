@@ -11,7 +11,7 @@ AC_INIT([apertium-nn-nb], [0.6.5], [unhammer@gmail.com])
 AM_INIT_AUTOMAKE([apertium-nn-nb], [0.6.5], no-define)
 AC_PROG_LN_S
 AC_PROG_AWK
-# todo: needed?
+# todo: only needed if we use a config.in file--should we?
 # AC_CONFIG_HEADER([config])
 
 AC_DEFUN([PKG_CHECK_APERTIUM], [
