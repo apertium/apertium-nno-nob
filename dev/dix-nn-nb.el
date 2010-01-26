@@ -5,6 +5,34 @@
 
 (require 'dix)
 
+(defun dix-compound-guess-pardef ()
+  "How to use: write a compound word, eg. \"øygruppe\", in the
+dix file below all the nouns, put point between \"øy\" and
+\"gruppe\", and if \"gruppe\" is defined somewhere above, this
+function will turn the word into eg.
+
+<e lm=\"øygruppe\">    <i>øygruppe</i><par n=\"lø/e__n\"/></e>
+
+Still todo: remove the last \"e\" there."
+  (interactive)
+  (let* ((rhs (buffer-substring-no-properties (point) (line-end-position)))
+	 (pos (save-excursion
+		(re-search-backward
+		 (concat "<e.* lm=\"[^\"]*" rhs "\"") nil 'noerror 1)))
+	 (e (if pos
+		  (buffer-substring-no-properties pos (nxml-scan-element-forward pos))
+	      nil)))
+    (let ((word (word-at-point)))
+      (kill-region (line-beginning-position) (line-end-position))
+      (insert e)
+      (beginning-of-line)
+      (dix-next)
+      (dix-with-sexp (kill-sexp))
+      (insert word)
+      (dix-next)
+      (dix-with-sexp (kill-sexp))
+      (insert word))))
+
 (defun dix-ordbanken-lookup-lm ()
   "Used with the cursor at an entry like 
 
