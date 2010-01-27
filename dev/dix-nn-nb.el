@@ -13,7 +13,7 @@ function will turn the word into eg.
 
 <e lm=\"øygruppe\">    <i>øygruppe</i><par n=\"lø/e__n\"/></e>
 
-Still todo: remove the last \"e\" there."
+Still todo: remove the last \"e\" in that example."
   (interactive)
   (let* ((rhs (buffer-substring-no-properties (point) (line-end-position)))
 	 (pos (save-excursion
