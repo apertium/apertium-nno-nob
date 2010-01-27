@@ -1098,6 +1098,51 @@
       </action>
     </rule>
 
+    <rule comment="VBLEX ADV ADV beholder heller ikke => held heller ikkje på
+                   Requires each possible lemq (# på) to be in nn monodix, see
+                   http://wiki.apertium.org/wiki/Multiwords#The_Nynorsk_hack">
+      <pattern>
+        <pattern-item n="vblex"/>
+        <pattern-item n="adv"/>
+        <pattern-item n="adv"/>
+      </pattern>
+      <action>
+      <out>
+        <lu>
+          <clip pos="1" side="tl" part="lemh"/>
+          <clip pos="1" side="tl" part="a_verb"/>
+          <clip pos="1" side="tl" part="temps"/>
+        </lu>
+        <b pos="1"/>
+        <lu><clip pos="2" side="tl" part="whole"/></lu>
+        <b pos="2"/>
+        <lu><clip pos="3" side="tl" part="whole"/></lu>
+        <b/>
+        <lu><clip pos="1" side="tl" part="lemq"/></lu>
+      </out>
+      </action>
+    </rule>
+    <rule comment="VBLEX ADV beholder ikke => held ikkje på
+                   Requires each possible lemq (# på) to be in nn monodix, see
+                   http://wiki.apertium.org/wiki/Multiwords#The_Nynorsk_hack">
+      <pattern>
+        <pattern-item n="vblex"/>
+        <pattern-item n="adv"/>
+      </pattern>
+      <action>
+      <out>
+        <lu>
+          <clip pos="1" side="tl" part="lemh"/>
+          <clip pos="1" side="tl" part="a_verb"/>
+          <clip pos="1" side="tl" part="temps"/>
+        </lu>
+        <b pos="1"/>
+        <lu><clip pos="2" side="tl" part="whole"/></lu>
+        <b/>
+        <lu><clip pos="1" side="tl" part="lemq"/></lu>
+      </out>
+      </action>
+    </rule>    
     <rule comment="VBLEX
                    Just in case we have nn multiwords; which need
                    lemq after the inflected part.
@@ -1111,6 +1156,9 @@
             <clip pos="1" side="tl" part="lemh"/>
             <clip pos="1" side="tl" part="a_verb"/>
             <clip pos="1" side="tl" part="temps"/>
+          </lu>
+          <b/>
+          <lu>
             <clip pos="1" side="tl" part="lemq"/>
           </lu>
         </out>
