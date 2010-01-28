@@ -1117,7 +1117,6 @@
         <lu><clip pos="2" side="tl" part="whole"/></lu>
         <b pos="2"/>
         <lu><clip pos="3" side="tl" part="whole"/></lu>
-        <b/>
         <lu><clip pos="1" side="tl" part="lemq"/></lu>
       </out>
       </action>
@@ -1138,26 +1137,24 @@
         </lu>
         <b pos="1"/>
         <lu><clip pos="2" side="tl" part="whole"/></lu>
-        <b/>
         <lu><clip pos="1" side="tl" part="lemq"/></lu>
       </out>
       </action>
     </rule>    
     <rule comment="VBLEX
-                   Just in case we have nn multiwords; which need
-                   lemq after the inflected part.
+                   Just in case we have nn multiwords; which need lemq after the
+                   inflected part (all lemq's should include their own initial space).
                    This has to be below the passive rules.">
       <pattern>
         <pattern-item n="vblex"/>
       </pattern>
       <action>
         <out>
-          <lu>	    
+          <lu>
             <clip pos="1" side="tl" part="lemh"/>
             <clip pos="1" side="tl" part="a_verb"/>
             <clip pos="1" side="tl" part="temps"/>
           </lu>
-          <b/>
           <lu>
             <clip pos="1" side="tl" part="lemq"/>
           </lu>
