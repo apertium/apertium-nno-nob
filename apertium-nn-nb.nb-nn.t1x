@@ -323,7 +323,9 @@
 
 
     <def-macro n="modify_case_detpos" npar="2">
-      <!-- arg.1: possessed noun. arg.2: det.pos, gives typographic case -->
+      <!-- arg.1: possessed noun. arg.2: det.pos, gives typographic case
+           Workaround for Polite forms.
+      -->
       <choose>
         <when>
           <test><not>
@@ -495,7 +497,7 @@
       </choose>
     </def-macro>
     
-    <def-macro n="set_gender2" npar="2">
+    <def-macro n="set_gender2.n.det" npar="2">
       <!-- arg.1: noun, arg.2: determiner
            - if a noun is given as arg.2, use set_gender1 instead (but
              set_number2 with arg.1); this is just so we can generalise
@@ -648,6 +650,21 @@
       </when></choose>
 
     </def-macro>
+
+    <def-macro n="set_gender2.n.adj" npar="2">
+      <!-- arg.1: noun, arg.2: adjective 
+
+           call set_gender2, then set adj_gender.  adj_gender is
+           either nt, f or mf. Most adjectives only have nt or mf
+           forms, some also have an f form. These we need to mark in
+           bidix (nb <mf> => <GD>, nb <f> => <f>). <GD> turns into
+           noun gender (or <mf> as fallback); however, we never use
+           <m> so any <m> noun turns into <mf> adj_gender.
+      -->
+      <let><var n="det_gender"/><clip pos="1" side="tl" part="gen"/></let>
+      <call-macro n="set_number1"><with-param pos="1"/></call-macro>
+      <call-macro n="set_adj_GND"><with-param pos="2"/></call-macro>
+    </def-macro>
     
     <def-macro n="set_gender3" npar="3">
       <!-- arg.1: noun, arg.2: determiner, arg.3: adjective 
@@ -659,7 +676,7 @@
            noun gender (or <mf> as fallback); however, we never use
            <m> so any <m> noun turns into <mf> adj_gender.
       -->      
-      <call-macro n="set_gender2"><with-param pos="1"/><with-param pos="2"/></call-macro>
+      <call-macro n="set_gender2.n.det"><with-param pos="1"/><with-param pos="2"/></call-macro>
       <call-macro n="set_adj_GND"><with-param pos="3"/></call-macro>
     </def-macro>
 
@@ -1193,7 +1210,7 @@
         <pattern-item n="nind"/>
       </pattern>
       <action>
-        <call-macro n="set_gender2"><with-param pos="2"/><with-param pos="1"/></call-macro>
+        <call-macro n="set_gender2.n.det"><with-param pos="2"/><with-param pos="1"/></call-macro>
         <out>
           <lu>
             <clip pos="1" side="tl" part="lemh"/>
@@ -1429,7 +1446,7 @@
       </pattern>
       <action>
         <call-macro n="modify_case_detpos"><with-param pos="2"/><with-param pos="1"/></call-macro>
-        <call-macro n="set_gender2"><with-param pos="2"/><with-param pos="1"/></call-macro>
+        <call-macro n="set_gender2.n.det"><with-param pos="2"/><with-param pos="1"/></call-macro>
         <call-macro n="out_ndef"><with-param pos="2"/><with-param pos="1"/></call-macro>
         <out>
           <b pos="1"/>
@@ -1597,7 +1614,7 @@
       </pattern>
       <action>
         <call-macro n="modify_case_detpos"><with-param pos="3"/><with-param pos="1"/></call-macro>
-	<call-macro n="set_gender2">
+	<call-macro n="set_gender2.n.det">
 	  <with-param pos="2"/>
 	  <with-param pos="1"/>
 	</call-macro>
@@ -1764,6 +1781,46 @@
       </action>
     </rule>
 
+    
+
+    <!-- ADJ* NGEN ADJ* NIND: -->
+    <rule comment="ADJ NGEN NIND: sorte katters snuter => snutane til svarte kattar
+                   bestemte gruppers velvære => velvera til bestemde grupper
+TODO!">
+      <pattern>    
+        <pattern-item n="adj"/>    
+        <pattern-item n="ngen"/>
+        <pattern-item n="nind"/>
+      </pattern>
+      <action>
+        <call-macro n="set_gender2.n.adj">
+          <with-param pos="2"/>
+	  <with-param pos="1"/>
+	</call-macro>
+        <call-macro n="out_ndef">
+          <with-param pos="3"/>
+          <with-param pos="1"/>
+        </call-macro>
+        <out>
+          <b pos="1"/>
+        </out>
+        <call-macro n="out_gen_prep">
+          <with-param pos="2"/>
+        </call-macro>
+        <call-macro n="out_adj"><with-param pos="1"/></call-macro><out>
+        <b pos="2"/>
+        <lu>
+          <clip pos="2" side="tl" part="lemh"/>
+          <clip pos="2" side="tl" part="a_nom"/>
+          <clip pos="2" side="tl" part="gen"/>
+          <clip pos="2" side="tl" part="nbr"/>
+          <clip pos="2" side="tl" part="art"/>
+          <clip pos="2" side="tl" part="lemq"/>
+        </lu>
+      </out>
+      </action>
+    </rule>
+
     <!-- DETNONPOS* ADJ* NGEN ADJ* NIND: -->
     <rule comment="DETNONPOS NGEN NIND: en katts snute => snuten til ein katt">
       <pattern>
@@ -1772,7 +1829,7 @@
 	<pattern-item n="nind"/>
       </pattern>
       <action>
-        <call-macro n="set_gender2"><with-param pos="2"/><with-param pos="1"/></call-macro>
+        <call-macro n="set_gender2.n.det"><with-param pos="2"/><with-param pos="1"/></call-macro>
         <call-macro n="modify_case_detpos"><with-param pos="3"/><with-param pos="1"/></call-macro>
         <call-macro n="out_ndef"><with-param pos="3"/><with-param pos="1"/></call-macro>
         <out>
@@ -1918,7 +1975,7 @@
 	  <with-param pos="4"/>
 	  <with-param pos="1"/>
 	</call-macro>
-        <call-macro n="set_gender2">
+        <call-macro n="set_gender2.n.det">
 	  <with-param pos="3"/>
           <with-param pos="1"/>
 	</call-macro>
@@ -1940,7 +1997,7 @@
           </lu>
           <b pos="2"/>
         </out>
-        <call-macro n="set_gender2">
+        <call-macro n="set_gender2.n.det">
 	  <with-param pos="3"/>
           <with-param pos="2"/>
 	</call-macro>
@@ -1993,7 +2050,7 @@
 	  <with-param pos="4"/>
 	  <with-param pos="4"/>
 	</call-macro>
-        <call-macro n="set_gender2">
+        <call-macro n="set_gender2.n.det">
           <with-param pos="2"/>
           <with-param pos="1"/>
         </call-macro>
@@ -2079,7 +2136,7 @@
         <pattern-item n="detpos"/>
       </pattern>
       <action>
-        <call-macro n="set_gender2"><with-param pos="1"/><with-param pos="2"/></call-macro>
+        <call-macro n="set_gender2.n.det"><with-param pos="1"/><with-param pos="2"/></call-macro>
         <out>
           <lu>
 	    <clip pos="1" side="tl" part="whole"/>
@@ -2109,7 +2166,7 @@
         <pattern-item n="nom"/>
       </pattern>
       <action>
-        <call-macro n="set_gender2"><with-param pos="2"/><with-param pos="1"/></call-macro>
+        <call-macro n="set_gender2.n.det"><with-param pos="2"/><with-param pos="1"/></call-macro>
         <call-macro n="set_n_defness"><with-param pos="2"/><with-param pos="1"/></call-macro>
         <out>
           <lu>
@@ -2164,7 +2221,7 @@
       <action>
         <call-macro n="set_n_defness"><with-param pos="2"/><with-param pos="1"/></call-macro>
         
-        <call-macro n="set_gender2">
+        <call-macro n="set_gender2.n.det">
           <with-param pos="2"/>
           <with-param pos="2"/>
         </call-macro>
