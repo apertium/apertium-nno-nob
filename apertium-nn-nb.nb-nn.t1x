@@ -498,7 +498,7 @@
     </def-macro>
     
     <def-macro n="set_gender2.n.det" npar="2">
-      <!-- arg.1: noun, arg.2: determiner
+      <!-- arg.1: noun, arg.2: determiner (or noun)
            - if a noun is given as arg.2, use set_gender1 instead (but
              set_number2 with arg.1); this is just so we can generalise
              with the POSGEN category
@@ -652,17 +652,8 @@
     </def-macro>
 
     <def-macro n="set_gender2.n.adj" npar="2">
-      <!-- arg.1: noun, arg.2: adjective 
-
-           call set_gender2, then set adj_gender.  adj_gender is
-           either nt, f or mf. Most adjectives only have nt or mf
-           forms, some also have an f form. These we need to mark in
-           bidix (nb <mf> => <GD>, nb <f> => <f>). <GD> turns into
-           noun gender (or <mf> as fallback); however, we never use
-           <m> so any <m> noun turns into <mf> adj_gender.
-      -->
-      <let><var n="det_gender"/><clip pos="1" side="tl" part="gen"/></let>
-      <call-macro n="set_number1"><with-param pos="1"/></call-macro>
+      <!-- arg.1: noun, arg.2: adjective -->
+      <call-macro n="set_gender2.n.det"><with-param pos="1"/><with-param pos="1"/></call-macro>
       <call-macro n="set_adj_GND"><with-param pos="2"/></call-macro>
     </def-macro>
     
@@ -1783,20 +1774,15 @@
 
     
 
-    <!-- ADJ* NGEN ADJ* NIND: -->
+    <!-- ADJ+ NGEN ADJ* NIND: -->
     <rule comment="ADJ NGEN NIND: sorte katters snuter => snutane til svarte kattar
-                   bestemte gruppers velvære => velvera til bestemde grupper
-TODO!">
+                                  bestemte gruppers velvære => velvera til bestemde grupper">
       <pattern>    
         <pattern-item n="adj"/>    
         <pattern-item n="ngen"/>
         <pattern-item n="nind"/>
       </pattern>
       <action>
-        <call-macro n="set_gender2.n.adj">
-          <with-param pos="2"/>
-	  <with-param pos="1"/>
-	</call-macro>
         <call-macro n="out_ndef">
           <with-param pos="3"/>
           <with-param pos="1"/>
@@ -1807,17 +1793,73 @@ TODO!">
         <call-macro n="out_gen_prep">
           <with-param pos="2"/>
         </call-macro>
-        <call-macro n="out_adj"><with-param pos="1"/></call-macro><out>
-        <b pos="2"/>
-        <lu>
-          <clip pos="2" side="tl" part="lemh"/>
-          <clip pos="2" side="tl" part="a_nom"/>
-          <clip pos="2" side="tl" part="gen"/>
-          <clip pos="2" side="tl" part="nbr"/>
-          <clip pos="2" side="tl" part="art"/>
-          <clip pos="2" side="tl" part="lemq"/>
-        </lu>
-      </out>
+        <call-macro n="set_gender2.n.adj">
+          <with-param pos="2"/>
+	  <with-param pos="1"/>
+	</call-macro>
+        <call-macro n="out_adj"><with-param pos="1"/></call-macro>
+        <out>
+          <b pos="2"/>
+          <lu>
+            <clip pos="2" side="tl" part="lemh"/>
+            <clip pos="2" side="tl" part="a_nom"/>
+            <clip pos="2" side="tl" part="gen"/>
+            <clip pos="2" side="tl" part="nbr"/>
+            <clip pos="2" side="tl" part="art"/>
+            <clip pos="2" side="tl" part="lemq"/>
+          </lu>
+        </out>
+      </action>
+    </rule>
+    <rule comment="ADJ NGEN ADJ NIND: sorte katters hvite snuter => dei kvite snutane til svarte kattar">
+      <pattern>    
+        <pattern-item n="adj"/>
+        <pattern-item n="ngen"/>
+        <pattern-item n="adj"/>
+        <pattern-item n="nind"/>
+      </pattern>
+      <action>
+        <call-macro n="set_gender2.n.adj">
+          <with-param pos="4"/>
+          <with-param pos="3"/>
+        </call-macro>
+        <out>
+          <lu>
+            <get-case-from pos="1"><lit v="den"/></get-case-from>
+            <lit-tag v="det.dem"/>
+            <var n="det_gender"/>
+            <var n="number_no_sp"/>
+          </lu>
+          <b/>
+        </out>
+        <call-macro n="out_adj"><with-param pos="3"/></call-macro>
+        <out><b pos="1"/></out>
+        <call-macro n="out_ndef">
+          <with-param pos="4"/>
+          <with-param pos="1"/>
+        </call-macro>
+        <out>
+          <b pos="2"/>
+        </out>
+        <call-macro n="out_gen_prep">
+          <with-param pos="2"/>
+        </call-macro>
+        <call-macro n="set_gender2.n.adj">
+          <with-param pos="2"/>
+          <with-param pos="1"/>
+        </call-macro>
+        <call-macro n="out_adj"><with-param pos="1"/></call-macro>
+        <out>
+          <b pos="3"/>
+          <lu>
+            <clip pos="2" side="tl" part="lemh"/>
+            <clip pos="2" side="tl" part="a_nom"/>
+            <clip pos="2" side="tl" part="gen"/>
+            <clip pos="2" side="tl" part="nbr"/>
+            <clip pos="2" side="tl" part="art"/>
+            <clip pos="2" side="tl" part="lemq"/>
+          </lu>
+        </out>
       </action>
     </rule>
 
@@ -2023,8 +2065,7 @@ TODO!">
       </action>
     </rule>
     <rule comment="DETNONPOS NGEN ADJ NIND: en katts hvite snute => den kvite snuten til ein katt
-                                            forrige århundres største filosofer => dei største filosofane til forrige århundre
-                   (ja, me burde ha ein måte å velje preposisjon)
+                                            forrige århundres største filosofer => dei største filosofane i forrige århundre
                    Merk at «en katts hvite hus» er tvitydig mellom sg/pl, så me nyttar set_gender1 først.">
       <pattern>
 	<pattern-item n="detnonpos"/>    
@@ -2242,9 +2283,8 @@ TODO!">
           </out>
         </when></choose>
         
-        <call-macro n="set_gender3">
+        <call-macro n="set_gender2.n.adj">
           <with-param pos="2"/>
-          <with-param pos="1"/>
           <with-param pos="1"/>
         </call-macro>
         <out>
