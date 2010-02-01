@@ -535,7 +535,16 @@
                 <equal><var n="number"/><lit-tag v="sp"/></equal>
               </or></test>
               <let><var n="det_gender"/><clip pos="2" side="tl" part="gen"/></let>
-              <choose>  <!-- ^^^ sg gender default: determiner gender -->
+              <!-- ^^^ sg gender default: determiner gender -->
+              <choose>
+                <when>
+                  <test><not><equal>
+                    <clip pos="1" side="sl" part="gen"/><clip pos="1" side="tl" part="gen"/>
+                  </equal></not></test>
+                  <let><var n="det_gender"/><clip pos="1" side="tl" part="gen"/></let>
+                </when> <!-- ^^^ noun gender change across the translation -->
+              </choose>
+              <choose>
                 <when>
                   <test><and>
                     <equal><var n="det_gender"/><lit-tag v="m"/></equal>
@@ -849,8 +858,7 @@
 
 
 
-  <section-rules>
-    
+  <section-rules>  
     
     <!-- Verbs -->
     <rule comment="Å VBLEX.INF.PASS: å leses => å bli lest">
@@ -2231,7 +2239,7 @@
         </out>
       </action>
     </rule>
-
+    
     <!-- Adjectives -->
     <rule comment="ADJ: åpne (hus) => opne (hus), liten(f) => lita">
       <pattern>
@@ -2333,6 +2341,8 @@
       </action>
     </rule>
 
+    <!-- DETNONPOS ADJ+ NOM: -->
+    
     <rule comment="DETNONPOS ADJ NOM: en(mf) viktig(mf) dag(m) => ein(m) viktig(mf) dag(m)
                                       denne viktige dag => denne viktige dagen
 		   Note that the adjective might have different gender specificity from the
@@ -2464,7 +2474,7 @@
         </out>
         <call-macro n="out_sin"><with-param pos="3"/></call-macro>
       </action>
-    </rule>    
+    </rule>
     <rule comment="N-ep NOM: ytelse ytelse => ytingsyting
                    Remove the space that pretransfer added, turn ep-s into 's'">
       <pattern>
