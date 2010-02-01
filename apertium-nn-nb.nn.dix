@@ -50,7 +50,8 @@
 		<sdef n="gen" 	c="Genitive"/> 
 		<sdef n="dem" 	c="Demonstrative"/> 
 		<sdef n="itg" 	c="Question word / interrogative"/>
- 		<sdef n="qnt" 	c="Quantifier"/> 
+ 		<sdef n="qnt" 	c="Quantifier"/>
+                <sdef n="neg" 	c="Negative"/> 
 		<sdef n="emph" 	c="Emphatic"/>
 		<sdef n="vblex" 	c="Verb"/> 
 		<sdef n="pst" 	c="-st form"/>
@@ -239,14 +240,17 @@
   <e>       <p><l>tte</l>          <r>nne<s n="prn"/><s n="p3"/><s n="nt"/><s n="sg"/></r></p></e>
   <e>       <p><l>sse</l>          <r>nne<s n="prn"/><s n="p3"/><s n="pl"/></r></p></e>
 </pardef>
-<pardef n="nok/o__prn"> <!-- TODO: OBT tags it prn 'pers' -->
-  <e r="LR"><p><l>or</l>          <r>o<s n="prn"/><s n="p3"/><s n="f"/><s n="sg"/></r></p></e>
-  <e>       <p><l>a</l>           <r>o<s n="prn"/><s n="p3"/><s n="f"/><s n="sg"/></r></p></e>
-  <e>       <p><l>on</l>          <r>o<s n="prn"/><s n="p3"/><s n="m"/><s n="sg"/></r></p></e>
-  <e>       <p><l>o</l>           <r>o<s n="prn"/><s n="p3"/><s n="nt"/><s n="sg"/></r></p></e>
-  <!-- todo: can we disambiguate these two in nb=>nn? -->
-  <e r="LR"><p><l>re</l>          <r>o<s n="prn"/><s n="p3"/><s n="pl"/></r></p></e>
-  <e>       <p><l>on</l>          <r>o<s n="prn"/><s n="p3"/><s n="pl"/></r></p></e>
+<pardef n="no/ko__prn">
+  <e>       <p><l>ka</l>        <r>ko<s n="prn"/><s n="p3"/><s n="f"/><s n="sg"/></r></p></e>
+  <e r="LR"><p><l>kor</l>       <r>ko<s n="prn"/><s n="p3"/><s n="f"/><s n="sg"/></r></p></e>
+  <e>       <p><l>kon</l>       <r>ko<s n="prn"/><s n="p3"/><s n="m"/><s n="sg"/></r></p></e>
+  <e>       <p><l>ko</l>        <r>ko<s n="prn"/><s n="p3"/><s n="nt"/><s n="sg"/></r></p></e>
+  <e r="LR"><p><l>e</l>         <r>ko<s n="prn"/><s n="p3"/><s n="nt"/><s n="sg"/></r></p></e>
+  <e r="LR"><p><l>en</l>        <r>ko<s n="prn"/><s n="p3"/><s n="m"/><s n="sg"/></r></p></e>
+  <e r="LR"><p><l>en</l>        <r>ko<s n="prn"/><s n="p3"/><s n="f"/><s n="sg"/></r></p></e>
+  <e r="LR"><p><l>en</l>        <r>ko<s n="prn"/><s n="p3"/><s n="pl"/></r></p></e>
+  <e>       <p><l>kon</l>       <r>ko<s n="prn"/><s n="neg"/><s n="p3"/><s n="pl"/></r></p></e>
+  <e>       <p><l>kre</l>       <r>ko<s n="prn"/><s n="p3"/><s n="pl"/></r></p></e>
 </pardef>
 
 <pardef n="personal_pronouns__prn">
@@ -486,6 +490,7 @@
   <e r="LR"><p><l>en</l>        <r>ko<s n="det"/><s n="qnt"/><s n="m"/><s n="sg"/></r></p></e>
   <e r="LR"><p><l>en</l>        <r>ko<s n="det"/><s n="qnt"/><s n="f"/><s n="sg"/></r></p></e>
   <e r="LR"><p><l>en</l>        <r>ko<s n="det"/><s n="qnt"/><s n="pl"/></r></p></e>
+  <e>       <p><l>kon</l>       <r>ko<s n="det"/><s n="qnt"/><s n="neg"/><s n="pl"/></r></p></e>
   <e>       <p><l>kre</l>       <r>ko<s n="det"/><s n="qnt"/><s n="pl"/></r></p></e>
 </pardef>
 
@@ -11549,7 +11554,7 @@
 <e lm="ingen">           <i>in</i><par n="in/gen__prn"/></e>
 <e lm="ein">           <i>ein</i><par n="en__prn"/></e>
 <e lm="denne">           <i>de</i><par n="de/nne__prn"/></e>
-<e lm="noko">           <i>nok</i><par n="nok/o__prn"/></e>
+<e lm="noko">           <i>no</i><par n="no/ko__prn"/></e>
 
 <e lm="min">             <i>mi</i><par n="si/n__det"/></e>
 <e lm="sin">             <i>si</i><par n="si/n__det"/></e>

@@ -23868,6 +23868,29 @@ CONSTRAINTS
 
 #det var ei mine.
 
+#:10010
+  "<noen>"   SELECT:10010   (det qnt neg) IF
+	(0C det-kvant + fl)
+	(*-1 %ikke% BARRIER setn-gr)
+;
+#:10010
+  "<noen>"   SELECT:10010   (pron neg) IF
+	(0C pron + fl)
+	(*-1 %ikke% BARRIER setn-gr)
+;
+# «Jeg hadde ikke noen gode poeng i min.»
+#:10010
+  "<noen>"   REMOVE:10010   (det qnt neg) IF
+	(0C det-kvant + fl)
+	(NEGATE *-1 %ikke% BARRIER setn-gr)
+;
+# «Læreren sa jeg hadde noen gode poeng i oppgaven min»
+#:10010
+  "<noen>"   REMOVE:10010   (pron neg) IF
+	(0C pron + fl)
+	(NEGATE *-1 %ikke% BARRIER setn-gr)
+;
+# «Læreren sa jeg hadde noen gode poeng i oppgaven min»
 
 
 #:3366
