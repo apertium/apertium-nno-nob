@@ -5,9 +5,9 @@ SRCLANG=$2
 TRGLANG=$3
 
 # Mac mktemp has no default template, this works on both
-SRCLIST=`mktemp -t tmp.XXXXXXXXXX`;
-TRGLIST=`mktemp -t tmp.XXXXXXXXXX`;
-TSTLIST=`mktemp -t tmp.XXXXXXXXXX`;
+SRCLIST=`mktemp -t tmp_$1.XXXXXXXXXX`;
+TRGLIST=`mktemp -t tmp_$1.XXXXXXXXXX`;
+TSTLIST=`mktemp -t tmp_$1.XXXXXXXXXX`;
 
 basedir=`pwd`;
 mode="$SRCLANG-$TRGLANG"
@@ -56,4 +56,5 @@ if [ -n $CALC ]; then
 fi
 echo $CORRECT" / "$TOTAL$WORKING;
 
-rm $SRCLIST $TRGLIST $TSTLIST;
+rm $TRGLIST $TSTLIST;
+# rm $SRCLIST
