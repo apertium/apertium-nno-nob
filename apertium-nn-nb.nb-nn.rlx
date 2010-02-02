@@ -1308,7 +1308,6 @@ LIST subst/adj/pron/det = n np adj prn det ;
 LIST subst/adj/pron/det/adv = adv n np adj prn det ;
 LIST subst/adj/pron/det/konj = n np adj prn det cnjcoo ;
 LIST subst/be-komp-adj = n np (adj def) (adj comp) (adj pprs) ;
-LIST subst/pron = n np prn ;
 LIST subst/pron/%all% = n np prn ("all"  det qnt) ;
 LIST subst/pron/%all%/%mang%/%mange% = n np prn ("all"  det qnt) ("mang"  det) ("mange"  det) ;
 LIST subst/pron/fl-adj/%all%/%mang%/%mange% = n np prn (adj pl) (adj pprs) ("all"  det qnt) ("mang"  det) ("mange"  adj) ;
@@ -2401,21 +2400,21 @@ CONSTRAINTS
 #:3638
   "<for>"   SELECT:3638   (pr) IF
 	(-1 nom)
-	(NOT *1 subst/pron BARRIER setn-gr)
+	(NOT *1 pron/subst BARRIER setn-gr)
 	(*-2 ikke-adv-adj-det LINK 0 nom LINK *-1 ikke-adv-adj-det LINK 0 verb LINK NOT 0 kop)
 ;
 #  "dette skylder han dem for mangt og mye"
-#	(**1C setn-gr BARRIER subst/pron)
+#	(**1C setn-gr BARRIER pron/subst)
 
 
 #:3639
   "<for>"   SELECT:3639   (pr) IF
 	(-1 nom)
-	(NOT *1 subst/pron BARRIER setn-gr)
+	(NOT *1 pron/subst BARRIER setn-gr)
 	(*-2 ikke-adv-adj-det LINK 0 verb LINK NOT 0 kop)
 ;
 #  "dette gjør han for små og store"
-#	(**1C setn-gr BARRIER subst/pron)
+#	(**1C setn-gr BARRIER pron/subst)
 
 
 #:3640
@@ -2462,7 +2461,7 @@ CONSTRAINTS
 
 #:3633
   "<for>"   SELECT:3633   (vblex) IF
-	(-1 subst/pron)
+	(-1 pron/subst)
 	(1C prep)
 	(NOT *-1 fv BARRIER setn-gr)
 	(NOT *1 fv BARRIER setn-gr)
@@ -2667,7 +2666,7 @@ CONSTRAINTS
 #:3555
   "<heller>"   SELECT:3555   (vblex pres) IF
 	(1 adverb)
-	(-1C subst/pron)
+	(-1C pron/subst)
 	(2C nom/prep)
 	(**-2C setn-gr BARRIER ikke-adv-adj-subst-pron-konj-det)
 ;
@@ -2678,7 +2677,7 @@ CONSTRAINTS
 #:3556
   "<heller>"   SELECT:3556   (vblex pres) IF
 	(1C nom/prep)
-	(-1C subst/pron)
+	(-1C pron/subst)
 	(NOT 1 adverb)
 	(**-2C setn-gr BARRIER ikke-adv-adj-subst-pron-konj-det)
 ;
@@ -2835,7 +2834,7 @@ CONSTRAINTS
 #:3515
   "<hvis>"   SELECT:3515   (prn itg) IF
 	(1C subst-ub)
-	(2C subst/pron)
+	(2C pron/subst)
 ;
 #  "Han spurte hvÌs bøker hun likte best"
 #      :group 2
@@ -2844,7 +2843,7 @@ CONSTRAINTS
 
 #:3516
   "<hvis>"   SELECT:3516   (prn itg) IF
-	(-1C subst/pron)
+	(-1C pron/subst)
 	(**1C subst-ub BARRIER ikke-adv-adj)
 	(*1 ub-subst LINK 1 adverb/komp/ub-sup LINK 1 fv)
 ;
@@ -2855,7 +2854,7 @@ CONSTRAINTS
 
 #:3517
   "<hvis>"   SELECT:3517   (prn itg) IF
-	(-1C subst/pron)
+	(-1C pron/subst)
 	(**1C subst-ub BARRIER ikke-adv-adj)
 	(*1 ub-subst LINK 1 fv)
 ;
@@ -3748,7 +3747,7 @@ CONSTRAINTS
 
 #:3333
   "<seg>"   SELECT:3333   (prn) IF
-	(-1 subst/pron)
+	(-1 pron/subst)
 	(*-1 pres/pret BARRIER ikke-adv-adj-subst-pron-konj-det)
 ;
 #  "I dag endrer det seg (pron, ikke verb)"))
@@ -4477,7 +4476,7 @@ CONSTRAINTS
 
 #:3210
   "<så>"   SELECT:3210   (vblex pret) IF
-	(-1C subst/pron)
+	(-1C pron/subst)
 	(NOT -1 %noen%)
 	(NOT -1 gen)
 	(**-2CO setn-gr LINK 1 prep LINK NOT *1 ikke-adv-adj-subst-pron-konj-det2)
@@ -4702,7 +4701,7 @@ CONSTRAINTS
 
 #:3204
   "<så>"   SELECT:3204   (vblex pret) IF
-	(-1C subst/pron)
+	(-1C pron/subst)
 	(NOT -1 %noen%)
 	(NOT -1 gen)
 	(**-2CO setn-gr LINK 1 prep LINK NOT *1 ikke-adv-adj-subst-pron-konj-det2-prep)
@@ -4769,7 +4768,7 @@ CONSTRAINTS
 #:3208
   "<så>"   SELECT:3208   (vblex pret) IF
 	(1 adverb)
-	(-1C subst/pron)
+	(-1C pron/subst)
 	(2 nom/at)
 	(NOT 2 fv)
 	(**-2C setn-gr BARRIER ikke-adv-adj-subst-pron-konj-det)
@@ -4783,7 +4782,7 @@ CONSTRAINTS
 #:3209
   "<så>"   SELECT:3209   (vblex pret) IF
 	(1 nom/at)
-	(-1C subst/pron)
+	(-1C pron/subst)
 	(NOT 1 adverb)
 	(NOT 1 fv)
 	(NOT 1 infmerke)
@@ -5819,7 +5818,7 @@ CONSTRAINTS
 #:3626
   "<for>"   REMOVE:3626   (vblex) IF
 	(1 subst/adj/pron/det)
-	(-1 subst/pron)
+	(-1 pron/subst)
 	(NOT -1 %det%-pron)
 ;
 #  "for er ikke transitivt: derfor godtar 
@@ -6667,7 +6666,7 @@ CONSTRAINTS
 
 #:3436
   "<men>"   REMOVE:3436   (n) IF
-	(1 subst/pron)
+	(1 pron/subst)
 	(NOT 1 prep)
 ;
 #  "Mest sannsynlig at det ikke er subst: Men jeg,
@@ -7265,7 +7264,7 @@ CONSTRAINTS
 #:3241
   "<steder>"   REMOVE:3241   (n pl) IF
 	(0 verb)
-	(1 subst/pron)
+	(1 pron/subst)
 	(2 %til%)
 	(3 %hvile%)
 	(**-1C setn-gr BARRIER fv)
@@ -7728,7 +7727,7 @@ SELECT:4089 (vblex)
 #:3107
  SELECT:3107 (<adv>) IF
  	(NOT 0 %lenge%)
- 	(-1 subst/pron)
+ 	(-1 pron/subst)
 	(*-4O setn-gr LINK 1 adv)
 	(**-2C fv BARRIER ikke-adv-subst-pron-konj-det)
 ;
@@ -7738,7 +7737,7 @@ SELECT:4089 (vblex)
 #:3108
  SELECT:3108 (<adv>) IF
  	(NOT 0 %lenge%)
-	(-1 subst/pron)
+	(-1 pron/subst)
 	(*-4O setn-gr LINK 1 prep)
 	(**-2C fv BARRIER ikke-adv-subst-pron-konj-det)
 ;
@@ -7747,7 +7746,7 @@ SELECT:4089 (vblex)
 
 #:3109
  SELECT:3109 (<adv>) IF
-	(-1 subst/pron)
+	(-1 pron/subst)
 	(1C perf-part/inf)
 	(**-2C fv BARRIER ikke-adv-subst-pron-konj-det)
 ;
@@ -9161,7 +9160,7 @@ SELECT:2963 (adj nt ind sg) IF
 	(NOT 0 farlige-adj)
 	(NOT 0 prep)
 	(NOT 0 subst)
-	(-1 subst/pron)
+	(-1 pron/subst)
 	(*-4O setn-gr LINK 1 adv)
 	(**-2CO fv LINK NOT 0 kop LINK NOT *1 ikke-adv-subst-pron-konj-det)
 ;
@@ -9175,7 +9174,7 @@ SELECT:2963 (adj nt ind sg) IF
 	(NOT 0 farlige-adj)
 	(NOT 0 prep)
 	(NOT 0 subst)
-	(-1 subst/pron)
+	(-1 pron/subst)
 	(*-4O setn-gr LINK 1 prep)
 	(**-2CO fv LINK NOT 0 kop LINK NOT *1 ikke-adv-subst-pron-konj-det)
 ;
@@ -9191,7 +9190,7 @@ SELECT:2963 (adj nt ind sg) IF
 	(NOT 0 <perf-part>)
 	(NOT 0 farlige-adj)
 	(NOT 0 adv)
-	(-1 subst/pron)
+	(-1 pron/subst)
 	(1C perf-part/inf)
 	(**-2C fv BARRIER ikke-adv-subst-pron-konj-det)
 ;
@@ -9982,7 +9981,7 @@ SELECT:2963 (adj nt ind sg) IF
 	(NOT 0 farlige-adj)
 	(NOT 0 adv)
 	(NOT 0 <perf-part>)
-	(-1 subst/pron)
+	(-1 pron/subst)
 	(*1 ikke-adv LINK 0 perf-part/inf LINK NOT 0 subst-mask/fem)
 	(**-2C fv BARRIER ikke-adv-subst-pron-konj-det)
 ;
@@ -11299,7 +11298,7 @@ SELECT:2963 (adj nt ind sg) IF
 	(NOT 0 %ei%)
 	(NOT 0 prep)
 	(NOT 0 perf-part/inf)
-	(-1 subst/pron)
+	(-1 pron/subst)
 	(*-4O setn-gr LINK 1 adv)
 	(**-2C fv BARRIER ikke-adv-subst-pron-konj-det)
 	(*1 setn-gr BARRIER pres/pret)
@@ -11315,7 +11314,7 @@ SELECT:2963 (adj nt ind sg) IF
 	(NOT 0 %ei%)
 	(NOT 0 prep)
 	(NOT 0 perf-part/inf)
-	(-1 subst/pron)
+	(-1 pron/subst)
 	(*-4O setn-gr LINK 1 adv)
 	(**-2C fv BARRIER ikke-adv-subst-pron-konj-det)
 ;
@@ -11333,7 +11332,7 @@ SELECT:2963 (adj nt ind sg) IF
 	(NOT 0 %ei%)
 	(NOT 0 prep)
 	(NOT 0 perf-part/inf)
-	(-1 subst/pron)
+	(-1 pron/subst)
 	(*-4O setn-gr LINK 1 prep LINK NOT 1 fv)
 	(**-2C fv BARRIER ikke-adv-subst-pron-konj-det)
 ;
@@ -11346,7 +11345,7 @@ SELECT:2963 (adj nt ind sg) IF
 #:2855
  SELECT:2855 (adv) IF
 	(NOT 0 %så/og/selv%)
-	(-1 subst/pron)
+	(-1 pron/subst)
 	(1C interj)
 	(**-2C fv BARRIER ikke-adv-subst-pron-konj-det)
 ;
@@ -11357,7 +11356,7 @@ SELECT:2963 (adj nt ind sg) IF
 #:2856
  SELECT:2856 (adv) IF
 	(NOT 0 %så/og/selv%)
-	(-1 subst/pron)
+	(-1 pron/subst)
 	(1C perf-part/inf)
 	(**-2C fv BARRIER ikke-adv-subst-pron-konj-det)
 ;
@@ -11523,11 +11522,11 @@ SELECT:2963 (adj nt ind sg) IF
 #:2796
  SELECT:2796 (clb cnjcoo) IF
 	(0 clb/konj-konj)
-	(1 subst/pron)
-	(NOT -1 subst/pron)
+	(1 pron/subst)
+	(NOT -1 pron/subst)
 	(2 pret)
 	(NOT 2 farlige-verb)
-	(*-1O >>> LINK 1 subst/pron LINK 1C pret)
+	(*-1O >>> LINK 1 pron/subst LINK 1C pret)
 ;
 #  "Sara begynte med narkotika igjen og (clb) Anders 
 # kontaktet barnevernet"
@@ -11537,11 +11536,11 @@ SELECT:2963 (adj nt ind sg) IF
 #:2797
  SELECT:2797 (clb cnjcoo) IF
 	(0 clb/konj-konj)
-	(1 subst/pron)
-	(NOT -1 subst/pron)
+	(1 pron/subst)
+	(NOT -1 pron/subst)
 	(2 pres)
 	(NOT 2 farlige-verb)
-	(*-1O >>> LINK 1 subst/pron LINK 1C pres)
+	(*-1O >>> LINK 1 pron/subst LINK 1C pres)
 ;
 #  "Italia skal bygge to av samme type, og (CLB)
 # (forts) forhandlingene er i gang"))
@@ -13769,7 +13768,7 @@ SELECT:2963 (adj nt ind sg) IF
 #:2646
  SELECT:2646 (pr) IF
 	(0 sbu)
-	(*1O fv LINK -1C adverb LINK -1C subst LINK **-1C subst/pron)
+	(*1O fv LINK -1C adverb LINK -1C subst LINK **-1C pron/subst)
 	(*1 fv BARRIER prep)
 	(*1 fv BARRIER subst-prop)
 	(*1 fv BARRIER subst-gen)
@@ -13780,7 +13779,7 @@ SELECT:2963 (adj nt ind sg) IF
 #:2647
  SELECT:2647 (pr) IF
 	(0 sbu)
-	(*1O fv LINK -1C adverb LINK -1C pron LINK **-1C subst/pron)
+	(*1O fv LINK -1C adverb LINK -1C pron LINK **-1C pron/subst)
 	(*1 fv BARRIER prep)
 	(*1 fv BARRIER subst-prop)
 	(*1 fv BARRIER subst-gen)
@@ -13794,7 +13793,7 @@ SELECT:2963 (adj nt ind sg) IF
 #:2648
  SELECT:2648 (pr) IF
 	(0 sbu)
-	(*1O fv LINK -1C subst LINK **-1C subst/pron)
+	(*1O fv LINK -1C subst LINK **-1C pron/subst)
 	(*1 fv BARRIER prep)
 	(*1 fv BARRIER subst-prop)
 	(*1 fv BARRIER subst-gen)
@@ -13808,7 +13807,7 @@ SELECT:2963 (adj nt ind sg) IF
 #:2649
  SELECT:2649 (pr) IF
 	(0 sbu)
-	(*1O fv LINK -1C pron LINK **-1C subst/pron)
+	(*1O fv LINK -1C pron LINK **-1C pron/subst)
 	(*1 fv BARRIER prep)
 	(*1 fv BARRIER subst-prop)
 	(*1 fv BARRIER subst-gen)
@@ -13895,7 +13894,7 @@ SELECT:2963 (adj nt ind sg) IF
  SELECT:2655 (pr) IF
 	(NOT 1 pres/pret)
 	(NOT 1 prep)
-	(*1CO setn-gr LINK -1C subst/adj LINK NOT 0 subst-prop LINK *-1O ikke-adv-adj-det LINK NOT 1 komma/konj LINK -1C subst/pron LINK NOT 0 subst-prop LINK *-1 ikke-adv-adj-substmgen-pron-konj-detmdem-prep2 LINK 0 kop LINK 0 pres/pret LINK -1 subst/pron LINK NOT *-1 ikke-adv-adj-substmgen-pron-konj-detmdem-prep2)
+	(*1CO setn-gr LINK -1C subst/adj LINK NOT 0 subst-prop LINK *-1O ikke-adv-adj-det LINK NOT 1 komma/konj LINK -1C pron/subst LINK NOT 0 subst-prop LINK *-1 ikke-adv-adj-substmgen-pron-konj-detmdem-prep2 LINK 0 kop LINK 0 pres/pret LINK -1 pron/subst LINK NOT *-1 ikke-adv-adj-substmgen-pron-konj-detmdem-prep2)
 ;
 #  "for (prep) en organisasjon er forskjeller i språk og 
 # 
@@ -13944,7 +13943,7 @@ SELECT:2963 (adj nt ind sg) IF
 #:2631
  SELECT:2631 (pres) IF
 	(NOT 0 farlige-verb)
-	(-1 subst/pron)
+	(-1 pron/subst)
 	(NOT -1 akk)
 	(-2 %slik%-adv)
 ;
@@ -13956,7 +13955,7 @@ SELECT:2963 (adj nt ind sg) IF
  SELECT:2632 (pres) IF
 	(NOT 0 farlige-verb)
 	(-1 adverb)
-	(-2 subst/pron)
+	(-2 pron/subst)
 	(NOT -2 akk)
 	(-3 trans2)
 	(-3C pres/pret)
@@ -13968,7 +13967,7 @@ SELECT:2963 (adj nt ind sg) IF
 #:2633
  SELECT:2633 (pres) IF
 	(NOT 0 farlige-verb)
-	(-1 subst/pron)
+	(-1 pron/subst)
 	(NOT -1 tall)
 	(NOT -1 akk)
 	(-2 trans2)
@@ -13980,7 +13979,7 @@ SELECT:2963 (adj nt ind sg) IF
 #:2634
  SELECT:2634 (pres) IF
 	(NOT 0 farlige-verb)
-	(-1 subst/pron)
+	(-1 pron/subst)
 	(NOT -1 tall)
 	(NOT -1 akk)
 	(NOT 1C pres/pret)
@@ -14001,10 +14000,10 @@ SELECT:2963 (adj nt ind sg) IF
  SELECT:2636 (pres) IF
 	(NOT 0 farlige-verb)
 	(-1 adv)
-	(-2C subst/pron)
+	(-2C pron/subst)
 	(NOT -2 dato)
-	(**-3CO subst/pron LINK NOT 0 subst-prop LINK NOT 0 subst-gen LINK NOT 0 ub-ent-subst LINK NOT *1 ikke-subst-adj-det-pron-adv)
-	(**-3C subst/pron LINK NOT -1 prep)
+	(**-3CO pron/subst LINK NOT 0 subst-prop LINK NOT 0 subst-gen LINK NOT 0 ub-ent-subst LINK NOT *1 ikke-subst-adj-det-pron-adv)
+	(**-3C pron/subst LINK NOT -1 prep)
 ;
 #  "den dagen vi ikke vinner"
 
@@ -14015,13 +14014,13 @@ SELECT:2963 (adj nt ind sg) IF
 #:2638
  SELECT:2638 (pres) IF
 	(NOT 0 farlige-verb)
-	(-1C subst/pron)
+	(-1C pron/subst)
 	(NOT -1 pron-r)
 	(NOT -1 dato)
 	(NOT -1 %slags%)
-	(**-2CO subst/pron LINK NOT 0 subst-prop LINK NOT 0 subst-gen LINK NOT 0 ub-ent-subst LINK NOT *1 ikke-subst-adj-det-pron)
+	(**-2CO pron/subst LINK NOT 0 subst-prop LINK NOT 0 subst-gen LINK NOT 0 ub-ent-subst LINK NOT *1 ikke-subst-adj-det-pron)
 ;
-#  "(**-2C SUBST/PRON L-1)
+#  "(**-2C PRON/SUBST L-1)
 # (NOT L-1 PREP))
 # identifiserer FV i rel.setn uten som
 # den dagen vi vinner"
@@ -14031,7 +14030,7 @@ SELECT:2963 (adj nt ind sg) IF
 #:2623
  SELECT:2623 (pret) IF
 	(NOT 0 farlige-verb)
-	(-1 subst/pron)
+	(-1 pron/subst)
 	(NOT -1 akk)
 	(-2 %slik%-adv)
 ;
@@ -14043,7 +14042,7 @@ SELECT:2963 (adj nt ind sg) IF
  SELECT:2624 (pret) IF
 	(NOT 0 farlige-verb)
 	(-1 adverb)
-	(-2 subst/pron)
+	(-2 pron/subst)
 	(NOT -2 akk)
 	(-3 trans2)
 	(-3C pres/pret)
@@ -14055,7 +14054,7 @@ SELECT:2963 (adj nt ind sg) IF
 #:2625
  SELECT:2625 (pret) IF
 	(NOT 0 farlige-verb)
-	(-1 subst/pron)
+	(-1 pron/subst)
 	(NOT -1 tall)
 	(NOT -1 akk)
 	(-2 trans2)
@@ -14067,7 +14066,7 @@ SELECT:2963 (adj nt ind sg) IF
 #:2626
  SELECT:2626 (pret) IF
 	(NOT 0 farlige-verb)
-	(-1 subst/pron)
+	(-1 pron/subst)
 	(NOT -1 tall)
 	(NOT -1 akk)
 	(NOT 1C pres/pret)
@@ -14087,10 +14086,10 @@ SELECT:2963 (adj nt ind sg) IF
  SELECT:2628 (pret) IF
 	(NOT 0 farlige-verb)
 	(-1 adv)
-	(-2C subst/pron)
+	(-2C pron/subst)
 	(NOT -2 dato)
-	(**-3CO subst/pron LINK NOT 0 subst-prop LINK NOT 0 subst-gen LINK NOT 0 ub-ent-subst LINK NOT *1 ikke-subst-adj-det-pron-adv)
-	(**-3C subst/pron LINK NOT -1 prep)
+	(**-3CO pron/subst LINK NOT 0 subst-prop LINK NOT 0 subst-gen LINK NOT 0 ub-ent-subst LINK NOT *1 ikke-subst-adj-det-pron-adv)
+	(**-3C pron/subst LINK NOT -1 prep)
 ;
 #  "den dagen vi ikke vant"
 
@@ -14102,13 +14101,13 @@ SELECT:2963 (adj nt ind sg) IF
 #:2630
  SELECT:2630 (pret) IF
 	(NOT 0 farlige-verb)
-	(-1C subst/pron)
+	(-1C pron/subst)
 	(NOT -1 pron-r)
 	(NOT -1 dato)
 	(NOT -1 %slags%)
-	(**-2CO subst/pron LINK NOT 0 subst-prop LINK NOT 0 subst-gen LINK NOT 0 ub-ent-subst LINK NOT *1 ikke-subst-adj-det-pron)
+	(**-2CO pron/subst LINK NOT 0 subst-prop LINK NOT 0 subst-gen LINK NOT 0 ub-ent-subst LINK NOT *1 ikke-subst-adj-det-pron)
 ;
-#  "(**-2C SUBST/PRON L-1)
+#  "(**-2C PRON/SUBST L-1)
 # (NOT L-1 PREP))
 # den dagen vi vant "
 
@@ -14710,7 +14709,7 @@ SELECT:2963 (adj nt ind sg) IF
  SELECT:2572 (cnjsub) IF
 	(NOT 0 %enda%)
 	(NOT 0 %som%)
-	(*1O infmerke LINK *-1 ikke-adv-prep LINK 0 pres/pret LINK NOT 0 ikke-pres-pret LINK *-1 ikke-det LINK 0 subst/pron LINK NOT *-1 ikke-adv-adj-det)
+	(*1O infmerke LINK *-1 ikke-adv-prep LINK 0 pres/pret LINK NOT 0 ikke-pres-pret LINK *-1 ikke-det LINK 0 pron/subst LINK NOT *-1 ikke-adv-adj-det)
 	(**1CO pres/pret LINK NOT -1 komma)
 ;
 #  "når (sbu) forfatteren våger å balansere"))
@@ -14769,7 +14768,7 @@ SELECT:2963 (adj nt ind sg) IF
  SELECT:2577 (cnjsub) IF
 	(0 %som%)
 	(NOT 1 %helhet%)
-	(*1O infmerke LINK *-1 ikke-adv-prep LINK 0 pres/pret LINK NOT 0 ikke-pres-pret LINK *-1 ikke-det LINK 0 subst/pron LINK NOT *-1 ikke-adv-adj-det)
+	(*1O infmerke LINK *-1 ikke-adv-prep LINK 0 pres/pret LINK NOT 0 ikke-pres-pret LINK *-1 ikke-det LINK 0 pron/subst LINK NOT *-1 ikke-adv-adj-det)
 	(**1CO pres/pret LINK NOT -1 komma)
 ;
 #  "de tre millionene som (sbu) kommunen venter å spare
@@ -14785,8 +14784,8 @@ SELECT:2963 (adj nt ind sg) IF
 	(NOT 1 adj/adv)
 	(NOT 1 %en/ei/et%)
 	(NOT 1 tegnsetting)
-	(**1C subst/pron BARRIER ikke-adv-adj-det)
-	(**1C subst/pron LINK *1 ikke-adv LINK 0 pres/pret)
+	(**1C pron/subst BARRIER ikke-adv-adj-det)
+	(**1C pron/subst LINK *1 ikke-adv LINK 0 pres/pret)
 ;
 #  "enda gruvedriften tok til
 # NOT 1 ADJ/ADV: enda sterkere var han; enda så lenge han hadde vært der
@@ -14802,8 +14801,8 @@ SELECT:2963 (adj nt ind sg) IF
 	(NOT 0 prep)
 	(NOT 1 tegnsetting)
 	(NOT 1C adj/adv LINK 1* subst BARRIER ikke-adj-adv)
-	(**1C subst/pron BARRIER ikke-adv-adj-det)
-	(**1C subst/pron LINK *1 ikke-adv LINK 0 pres/pret)
+	(**1C pron/subst BARRIER ikke-adv-adj-det)
+	(**1C pron/subst LINK *1 ikke-adv LINK 0 pres/pret)
 ;
 #  "da gruvedriften tok til
 # velger sbu i stedet for adv"
@@ -16103,7 +16102,7 @@ SELECT:2963 (adj nt ind sg) IF
  SELECT:2469 (vblex pres) IF
 	(NOT 0 farlige-forledd-verb)
 	(NOT 0 pret)
-	(-1C subst/pron)
+	(-1C pron/subst)
 	(NOT -1 %noen%)
 	(NOT -1 gen)
 	(**-2CO setn-gr LINK 1 prep LINK NOT *1 ikke-adv-adj-subst-pron-konj-det2-prep)
@@ -16118,7 +16117,7 @@ SELECT:2963 (adj nt ind sg) IF
 	(NOT 0 pret)
 	(NOT 0 subst-gen)
 	(NOT 0 farlige-forledd-verb)
-	(-1 subst/pron)
+	(-1 pron/subst)
 	(NOT 1 pres/pret)
 	(NOT -1 %noen%)
 	(NOT -1 gen)
@@ -16186,7 +16185,7 @@ SELECT:2963 (adj nt ind sg) IF
 #:2475
  SELECT:2475 (vblex pres) IF
 	(0 sier-verb)
-	(1 subst/pron)
+	(1 pron/subst)
 	(-1 replikk)
 	(2 setn-gr)
 ;
@@ -16196,7 +16195,7 @@ SELECT:2963 (adj nt ind sg) IF
 #:5021
  SELECT:5021 (vblex pres) IF
 	(0 sier-verb)
-	(1 subst/pron)
+	(1 pron/subst)
 	(-1 komma)
 	(2 setn-gr)
 ;
@@ -16206,7 +16205,7 @@ SELECT:2963 (adj nt ind sg) IF
 #:5022
  SELECT:5022 (vblex pret) IF
 	(0 sier-verb)
-	(1 subst/pron)
+	(1 pron/subst)
 	(-1 komma)
 	(2 setn-gr)
 ;
@@ -16231,7 +16230,7 @@ SELECT:2963 (adj nt ind sg) IF
 	(NOT 0 farlige-verb)
 	(NOT 1 pres/pret)
 	(**-1C setn-gr BARRIER pres/pret)
-	(*4O setn-gr LINK *-1 pres/pret LINK -1 subst LINK -1C subst/pron LINK NOT 0 gen LINK NOT 0 subst-prop LINK NOT *-1 pres/pret)
+	(*4O setn-gr LINK *-1 pres/pret LINK -1 subst LINK -1C pron/subst LINK NOT 0 gen LINK NOT 0 subst-prop LINK NOT *-1 pres/pret)
 	(*4 setn-gr BARRIER setn-gr)
 	(NOT 1 setn-gr)
 	(NOT 2 setn-gr)
@@ -16247,7 +16246,7 @@ SELECT:2963 (adj nt ind sg) IF
 	(NOT 0 farlige-verb)
 	(NOT 1 pres/pret)
 	(**-1C setn-gr BARRIER pres/pret)
-	(*4O setn-gr LINK *-1 pres/pret LINK -1 pron LINK -1C subst/pron LINK NOT 0 gen LINK NOT 0 subst-prop LINK NOT *-1 pres/pret)
+	(*4O setn-gr LINK *-1 pres/pret LINK -1 pron LINK -1C pron/subst LINK NOT 0 gen LINK NOT 0 subst-prop LINK NOT *-1 pres/pret)
 	(*4 setn-gr BARRIER setn-gr)
 	(NOT 1 setn-gr)
 	(NOT 2 setn-gr)
@@ -16271,7 +16270,7 @@ SELECT:2963 (adj nt ind sg) IF
 	(NOT 0 pret)
 	(NOT 0 farlige-verb)
 	(-1C clb-konj)
-	(1* subst/pron BARRIER pres/pret)
+	(1* pron/subst BARRIER pres/pret)
 ;
 # KBU: «men sier<vblex, ikkje n> de vil avvente»
 
@@ -16408,7 +16407,7 @@ SELECT:2963 (adj nt ind sg) IF
  SELECT:2490 (vblex pres) IF
 	(NOT 0 subst-prop)
 	(NOT 0 farlige-verb)
-	(-1C subst/pron)
+	(-1C pron/subst)
 	(NOT -1 gen)
 	(NOT -1 %slags%)
 	(NOT -1 dato)
@@ -16695,10 +16694,10 @@ SELECT:5009 (vblex pres) IF
 	(1C prep)
 	(-1C subst)
 	(**1C pres/pret BARRIER ikke-adv-adj-subst-pron-konj-det2-prep)
-	(**1CO pres/pret LINK -1C subst/pron LINK *-1 ikke-adv-adj-det LINK NOT 0 subst/pron)
+	(**1CO pres/pret LINK -1C pron/subst LINK *-1 ikke-adv-adj-det LINK NOT 0 pron/subst)
 ;
-#  "(L-1C SUBST/PRON L-1)
-# (NOT L-1 SUBST/PRON))
+#  "(L-1C PRON/SUBST L-1)
+# (NOT L-1 PRON/SUBST))
 # Kunnskaper ervervet (perf-part, ikke pret) under
 # (forts) utviklingen av rakettene har gitt ..."))
 
@@ -16921,7 +16920,7 @@ SELECT:5009 (vblex pres) IF
 	(-1 %ingen%)
 	(-1 nøyt)
 	(-2 %ha%-pres/pret)
-	(-3 subst/pron)
+	(-3 pron/subst)
 ;
 #  "kh jan 2004: Jeg har intet hatt."
 
@@ -17343,7 +17342,7 @@ SELECT:5009 (vblex pres) IF
  SELECT:2372 (vblex pret) IF
 	(NOT 0 %så%)
 	(NOT 0 farlige-forledd-verb)
-	(-1C subst/pron)
+	(-1C pron/subst)
 	(NOT -1 %noen%)
 	(NOT -1 gen)
 	(**-2CO setn-gr LINK 1 prep LINK NOT *1 ikke-adv-adj-subst-pron-konj-det2-prep)
@@ -17357,7 +17356,7 @@ SELECT:5009 (vblex pres) IF
  SELECT:2373 (vblex pret) IF
 	(NOT 0 %så%)
 	(NOT 0 farlige-forledd-verb)
-	(-1C subst/pron)
+	(-1C pron/subst)
 	(NOT -1 %noen%)
 	(NOT -1 gen)
 	(**-2CO setn-gr LINK 1 prep LINK NOT *1 ikke-adv-adj-subst-pron-konj-det2)
@@ -17415,7 +17414,7 @@ SELECT:5009 (vblex pres) IF
 #:2378
  SELECT:2378 (vblex pret) IF
 	(0 sier-verb)
-	(1 subst/pron)
+	(1 pron/subst)
 	(-1 replikk)
 	(2 setn-gr)
 ;
@@ -17440,7 +17439,7 @@ SELECT:5009 (vblex pres) IF
 	(NOT 0 farlige-verb)
 	(NOT 1 pres/pret)
 	(**-1C setn-gr BARRIER pres/pret)
-	(*4O setn-gr LINK *-1 pres/pret LINK -1 subst LINK -1C subst/pron LINK NOT 0 gen LINK NOT 0 subst-prop LINK NOT *-1 pres/pret)
+	(*4O setn-gr LINK *-1 pres/pret LINK -1 subst LINK -1C pron/subst LINK NOT 0 gen LINK NOT 0 subst-prop LINK NOT *-1 pres/pret)
 	(*4 setn-gr BARRIER setn-gr)
 	(NOT 1 setn-gr)
 	(NOT 2 setn-gr)
@@ -17457,7 +17456,7 @@ SELECT:5009 (vblex pres) IF
 	(NOT 0 farlige-verb)
 	(NOT 1 pres/pret)
 	(**-1C setn-gr BARRIER pres/pret)
-	(*4O setn-gr LINK *-1 pres/pret LINK -1 pron LINK -1C subst/pron LINK NOT 0 gen LINK NOT 0 subst-prop LINK NOT *-1 pres/pret)
+	(*4O setn-gr LINK *-1 pres/pret LINK -1 pron LINK -1C pron/subst LINK NOT 0 gen LINK NOT 0 subst-prop LINK NOT *-1 pres/pret)
 	(*4 setn-gr BARRIER setn-gr)
 	(NOT 1 setn-gr)
 	(NOT 2 setn-gr)
@@ -17754,7 +17753,7 @@ SELECT:2335 (vblex) IF
 	(*1 pres/pret BARRIER setn-gr)
 	(*2O pres/pret LINK NOT 0 subst-gen LINK NOT 0 farlige-verb LINK NOT -1 prep-tall)
 	(*2 pres/pret BARRIER komma/konj)
-	(*2O pres/pret LINK -1 subst LINK NOT *-1 subst/pron)
+	(*2O pres/pret LINK -1 subst LINK NOT *-1 pron/subst)
 	(**-1C fv CBARRIER setn-gr)
 ;
 #  "at han kom
@@ -19056,8 +19055,8 @@ REMOVE:4090 (vblex)
 #:2216
  REMOVE:2216 (clb cnjcoo) IF
 	(NOT -1 komma)
-	(**1C subst/pron BARRIER ikke-adv-adj-det)
-	(*-1 setn-gr LINK 0 %som% LINK -1 subst/pron LINK NOT -1 verb)
+	(**1C pron/subst BARRIER ikke-adv-adj-det)
+	(*-1 setn-gr LINK 0 %som% LINK -1 pron/subst LINK NOT -1 verb)
 ;
 
 
@@ -19663,9 +19662,9 @@ REMOVE:4090 (vblex)
 #:2204
  REMOVE:2204 (clb) IF
 	(0 clb/konj-konj)
-	(-1C subst/pron)
-	(**1C subst/pron BARRIER ikke-adv-adj-det)
-	(**1CO subst/pron LINK NOT 0 subst-gen LINK NOT 0 subst-prop LINK **1C subst/pron LINK NOT *-1 ikke-adv-adj-subst-pron-konj-det2)
+	(-1C pron/subst)
+	(**1C pron/subst BARRIER ikke-adv-adj-det)
+	(**1CO pron/subst LINK NOT 0 subst-gen LINK NOT 0 subst-prop LINK **1C pron/subst LINK NOT *-1 ikke-adv-adj-subst-pron-konj-det2)
 ;
 #  "konj i skjult relativsetning:
 # sammen med matpakken og (ikke clb) 
@@ -19677,9 +19676,9 @@ REMOVE:4090 (vblex)
  REMOVE:2205 (clb) IF
 	(0 clb/konj-konj)
 	(1C nom)
-	(-1C subst/pron)
+	(-1C pron/subst)
 	(NOT 1 pron)
-	(-2C subst/pron)
+	(-2C pron/subst)
 	(NOT -2 subst-prop)
 	(NOT -2 subst-gen)
 	(NOT -2 pron-akk)
@@ -19692,8 +19691,8 @@ REMOVE:4090 (vblex)
 #:2206
  REMOVE:2206 (clb) IF
 	(0 clb/konj-konj)
-	(-1C subst/pron)
-	(**-2CO subst/pron LINK NOT 0 subst-gen LINK NOT 0 subst-prop LINK NOT *1 ikke-adv-adj-subst-pron-konj-det2)
+	(-1C pron/subst)
+	(**-2CO pron/subst LINK NOT 0 subst-gen LINK NOT 0 subst-prop LINK NOT *1 ikke-adv-adj-subst-pron-konj-det2)
 	(**1C subst BARRIER ikke-adv-adj-det)
 ;
 #  "konj i skjult relativsetning:
@@ -22124,7 +22123,7 @@ REMOVE:gen-subst gen-subst IF
 	(0 fl)
 	(NOT 0 pass)
 	(1 fl)
-	(NOT -1 subst/pron)
+	(NOT -1 pron/subst)
 	(NOT -1 adv)
 	(**-1C fv BARRIER setn-gr)
 ;
@@ -22139,7 +22138,7 @@ REMOVE:gen-subst gen-subst IF
 	(0 fl)
 	(NOT 0 pass)
 	(-1 fl)
-	(NOT -1 subst/pron)
+	(NOT -1 pron/subst)
 	(NOT -1 adv)
 	(**-1C fv BARRIER setn-gr)
 ;
@@ -22154,7 +22153,7 @@ REMOVE:gen-subst gen-subst IF
 #:1946
  REMOVE:1946 (vblex pres) IF
 	(NOT 0 pass)
-	(NOT -1 subst/pron)
+	(NOT -1 pron/subst)
 	(NOT -1 adv)
 	(NOT -1 parentes)
 	(2C setn-gr-u-sbu)
@@ -22168,7 +22167,7 @@ REMOVE:gen-subst gen-subst IF
  REMOVE:1947 (vblex pres) IF
 	(NOT 0 pass)
 	(1C setn-gr-u-sbu)
-	(NOT -1 subst/pron)
+	(NOT -1 pron/subst)
 	(NOT -1 adv)
 	(NOT -1 parentes)
 	(*-1O setn-gr LINK **1C fv LINK NOT 0 trans2)
@@ -22192,7 +22191,7 @@ REMOVE:gen-subst gen-subst IF
 	(NOT 0 pass)
 	(-1C adv)
 	(NOT -1 konj-<adv>)
-	(NOT -2 subst/pron)
+	(NOT -2 pron/subst)
 	(*-1O setn-gr LINK **1C fv LINK NOT 0 trans2)
 	(*-1 setn-gr LINK NOT 0 %som%)
 ;
@@ -22204,7 +22203,7 @@ REMOVE:gen-subst gen-subst IF
 #:1950
  REMOVE:1950 (vblex pres) IF
 	(NOT 0 pass)
-	(NOT -1 subst/pron)
+	(NOT -1 pron/subst)
 	(NOT -1 adv)
 	(NOT -1 parentes)
 	(*-1O setn-gr LINK **1C fv LINK 0 trans2 LINK 0 ditrans)
@@ -22239,7 +22238,7 @@ REMOVE:gen-subst gen-subst IF
 #:1953
  REMOVE:1953 (vblex pres) IF
 	(NOT 0 pass)
-	(NOT -1 subst/pron)
+	(NOT -1 pron/subst)
 	(NOT -1 adv)
 	(NOT -1 parentes)
 	(*-1O setn-gr LINK **1C fv LINK NOT 0 trans2 LINK NOT *-1 pron LINK NOT *-1 subst)
@@ -22247,7 +22246,7 @@ REMOVE:gen-subst gen-subst IF
 ;
 #  "Forkaster finitt verb dersom det allerede
 # er funnet verb i setningen 
-# NOT -1 SUBST/PRON osv så den ikke skal forkaste
+# NOT -1 PRON/SUBST osv så den ikke skal forkaste
 # verb i rel-u-som
 # NOT LR0 TRANS2: Mulig skjult at-setning
 # 8.2.2000: NOT LR0 %SOM% fordi innskutte
@@ -22957,7 +22956,7 @@ REMOVE:gen-subst gen-subst IF
 	(**-1C setn-gr BARRIER m-hj-verb-pret)
 	(**-1C setn-gr BARRIER p-hj-verb)
 	(*-1 prep BARRIER ikke-adv-adj-det-subst)
-	(*-1 prep LINK -1 subst/pron)
+	(*-1 prep LINK -1 pron/subst)
 ;
 #  "Mannen i høysetet løftet (ikke perf-part)
 # (forts) forbauset på ....."))
@@ -23054,7 +23053,7 @@ REMOVE:gen-subst gen-subst IF
  REMOVE:1846 (vblex pret) IF
 	(0 perf-part)
 	(NOT 0 %var%)
-	(NOT -1 subst/pron)
+	(NOT -1 pron/subst)
 	(NOT -1 adv)
 	(*-1O setn-gr LINK **1C fv LINK 0 p-hj-verb)
 	(*-1 setn-gr LINK 0 %som%)
@@ -23065,7 +23064,7 @@ REMOVE:gen-subst gen-subst IF
  REMOVE:1847 (vblex pret) IF
 	(0 inf)
 	(NOT 0 %var%)
-	(NOT -1 subst/pron)
+	(NOT -1 pron/subst)
 	(NOT -1 adv)
 	(*-1O setn-gr LINK **1C fv LINK 0 m-hj-verb)
 	(*-1 setn-gr LINK 0 %som%)
@@ -23077,7 +23076,7 @@ REMOVE:gen-subst gen-subst IF
 	(0 nøyt)
 	(NOT 0 %var%)
 	(1 nøyt)
-	(NOT -1 subst/pron)
+	(NOT -1 pron/subst)
 	(NOT -1 adv)
 	(**-1C fv BARRIER setn-gr)
 ;
@@ -23092,7 +23091,7 @@ REMOVE:gen-subst gen-subst IF
 	(0 nøyt)
 	(NOT 0 %var%)
 	(-1 nøyt)
-	(NOT -1 subst/pron)
+	(NOT -1 pron/subst)
 	(NOT -1 adv)
 	(**-1C fv BARRIER setn-gr)
 ;
@@ -23107,7 +23106,7 @@ REMOVE:gen-subst gen-subst IF
 	(0 fem)
 	(NOT 0 %var%)
 	(-1 fem)
-	(NOT -1 subst/pron)
+	(NOT -1 pron/subst)
 	(NOT -1 adv)
 	(**-1C fv BARRIER setn-gr)
 ;
@@ -23122,7 +23121,7 @@ REMOVE:gen-subst gen-subst IF
 	(0 fem)
 	(NOT 0 %var%)
 	(1 fem)
-	(NOT -1 subst/pron)
+	(NOT -1 pron/subst)
 	(NOT -1 adv)
 	(**-1C fv BARRIER setn-gr)
 ;
@@ -23137,7 +23136,7 @@ REMOVE:gen-subst gen-subst IF
 	(0 mask)
 	(NOT 0 %var%)
 	(-1 mask)
-	(NOT -1 subst/pron)
+	(NOT -1 pron/subst)
 	(NOT -1 adv)
 	(**-1C fv BARRIER setn-gr)
 ;
@@ -23152,7 +23151,7 @@ REMOVE:gen-subst gen-subst IF
 	(0 mask)
 	(NOT 0 %var%)
 	(1 mask)
-	(NOT -1 subst/pron)
+	(NOT -1 pron/subst)
 	(NOT -1 adv)
 	(**-1C fv BARRIER setn-gr)
 ;
@@ -23167,7 +23166,7 @@ REMOVE:gen-subst gen-subst IF
 	(0 fl)
 	(NOT 0 %var%)
 	(1 fl)
-	(NOT -1 subst/pron)
+	(NOT -1 pron/subst)
 	(NOT -1 adv)
 	(**-1C fv BARRIER setn-gr)
 ;
@@ -23182,7 +23181,7 @@ REMOVE:gen-subst gen-subst IF
 	(0 fl)
 	(NOT 0 %var%)
 	(-1 fl)
-	(NOT -1 subst/pron)
+	(NOT -1 pron/subst)
 	(NOT -1 adv)
 	(**-1C fv BARRIER setn-gr)
 ;
@@ -23197,7 +23196,7 @@ REMOVE:gen-subst gen-subst IF
 #:1856
  REMOVE:1856 (vblex pret) IF
 	(NOT 0 %var%)
-	(NOT -1 subst/pron)
+	(NOT -1 pron/subst)
 	(NOT -1 adv)
 	(NOT -1 parentes)
 	(2C setn-gr-u-sbu)
@@ -23210,7 +23209,7 @@ REMOVE:gen-subst gen-subst IF
  REMOVE:1857 (vblex pret) IF
 	(NOT 0 %var%)
 	(1C setn-gr-u-sbu)
-	(NOT -1 subst/pron)
+	(NOT -1 pron/subst)
 	(NOT -1 adv)
 	(NOT -1 parentes)
 	(*-1O setn-gr LINK **1C fv LINK NOT 0 trans2)
@@ -23232,7 +23231,7 @@ REMOVE:gen-subst gen-subst IF
  REMOVE:1859 (vblex pret) IF
 	(NOT 0 %var%)
 	(-1C adv)
-	(NOT -2 subst/pron)
+	(NOT -2 pron/subst)
 	(*-1O setn-gr LINK **1C fv LINK NOT 0 trans2)
 	(*-1 setn-gr LINK NOT 0 %som%)
 ;
@@ -23242,7 +23241,7 @@ REMOVE:gen-subst gen-subst IF
  REMOVE:1860 (vblex pret) IF
 	(NOT 0 %var%)
 	(NOT 0 imp)
-	(NOT -1 subst/pron)
+	(NOT -1 pron/subst)
 	(NOT -1 adv)
 	(NOT -1 parentes)
 	(*-1O setn-gr LINK **1C fv LINK 0 trans2 LINK 0 ditrans)
@@ -23283,12 +23282,24 @@ REMOVE:gen-subst gen-subst IF
 	(NOT 0 %var%)
 	(NOT -1 parentes)
 	(NOT -1 adv)
-	(NOT -1 subst/pron)
+	(NOT -1 pron/subst)
 	(*-1O setn-gr LINK **1C fv LINK NOT 0 trans2)
 	(*-1 setn-gr LINK NOT 0 %som%)
 ;
 #  "Forkaster finitt verb dersom det allerede
 # er funnet verb i setningen "
+
+
+ REMOVE:fv-pret (vblex pret) IF
+	(0 pron/subst)
+ 	(NOT 0 %gjøre%)
+ 	(NOT 0 %var%)
+ 	(NOT -1 parentes)
+	(*-1O setn-gr LINK *1 pron/subst LINK **1C fv LINK NOT 0 trans2 LINK NEGATE *1 pron/subst LINK *1 pron/subst)
+	(*-1 setn-gr LINK NOT 0 %som%)
+;
+# «Det har (iallfall) jeg (ofte) tro på»
+# «Denne saken (iallfall) jeg (ofte) tro på» --KBU
 
 
 
@@ -23868,25 +23879,21 @@ CONSTRAINTS
 
 #det var ei mine.
 
-#:10010
-  "<noen>"   SELECT:10010   (det qnt neg) IF
+  "<noen>"   SELECT:noen-d   (det qnt neg) IF
 	(0C det-kvant + fl)
 	(*-1 %ikke% BARRIER setn-gr)
 ;
-#:10010
-  "<noen>"   SELECT:10010   (pron neg) IF
+  "<noen>"   SELECT:noen-p   (pron neg) IF
 	(0C pron + fl)
 	(*-1 %ikke% BARRIER setn-gr)
 ;
 # «Jeg hadde ikke noen gode poeng i min.»
-#:10010
-  "<noen>"   REMOVE:10010   (det qnt neg) IF
+  "<noen>"   REMOVE:noen-d   (det qnt neg) IF
 	(0C det-kvant + fl)
 	(NEGATE *-1 %ikke% BARRIER setn-gr)
 ;
 # «Læreren sa jeg hadde noen gode poeng i oppgaven min»
-#:10010
-  "<noen>"   REMOVE:10010   (pron neg) IF
+  "<noen>"   REMOVE:noen-p   (pron neg) IF
 	(0C pron + fl)
 	(NEGATE *-1 %ikke% BARRIER setn-gr)
 ;
@@ -24072,7 +24079,7 @@ CONSTRAINTS
 
 #:3618
   "<for>"   REMOVE:3618   (clb cnjcoo) IF
-	(**1CO pres/pret LINK -1C subst LINK *-1 subst/pron LINK NOT 0 subst-prop)
+	(**1CO pres/pret LINK -1C subst LINK *-1 pron/subst LINK NOT 0 subst-prop)
 	(**1C pres/pret BARRIER setn-gr)
 	(**1C pres/pret BARRIER komma/konj)
 	(**1C pres/pret BARRIER prep)
@@ -24081,7 +24088,7 @@ CONSTRAINTS
 
 #:3619
   "<for>"   REMOVE:3619   (clb cnjcoo) IF
-	(**1CO pres/pret LINK -1C pron LINK *-1 subst/pron LINK NOT 0 subst-prop)
+	(**1CO pres/pret LINK -1C pron LINK *-1 pron/subst LINK NOT 0 subst-prop)
 	(**1C pres/pret BARRIER setn-gr)
 	(**1C pres/pret BARRIER komma/konj)
 	(**1C pres/pret BARRIER prep)
@@ -24397,6 +24404,11 @@ REMOVE:skrev ("<skrev>"ri "skreve") IF
 #  "kh jan 2004: Bare ved spill levende, spill våken"
 
 
+  "<sport>"  REMOVE:sport   (vblex) IF
+	(0 subst)
+;
+# «sport» åleine er nok substantivet
+
 
 #:3239
   "<steder>"   REMOVE:3239   (vblex pres) IF
@@ -24679,8 +24691,8 @@ REMOVE:skrev ("<skrev>"ri "skreve") IF
 	(*1O setn-gr/parentes-beg LINK *-1 pres/pret)
 	(*1O pres/pret LINK NOT 0 farlige-verb LINK NOT 0 perf-part LINK NOT -1 prep/komma)
 	(*1O pres/pret LINK NOT -1 subst-gen)
-	(*1O pres/pret LINK NOT -1 subst/pron)
-	(*1O pres/pret LINK -1 adv LINK -1 subst/pron LINK NOT -1 subst/pron)
+	(*1O pres/pret LINK NOT -1 pron/subst)
+	(*1O pres/pret LINK -1 adv LINK -1 pron/subst LINK NOT -1 pron/subst)
 	(**-1CO setn-gr LINK 0 sbu LINK *1 pres/pret LINK NOT *1 adv-konj)
 	(**-1C setn-gr LINK NOT -1 setn-gr)
 ;
@@ -24696,8 +24708,8 @@ REMOVE:skrev ("<skrev>"ri "skreve") IF
 	(*1O setn-gr/parentes-beg LINK *-1 pres/pret)
 	(*1O pres/pret LINK NOT 0 farlige-verb LINK NOT 0 perf-part LINK NOT -1 prep/komma)
 	(*1O pres/pret LINK NOT -1 subst-gen)
-	(*1O pres/pret LINK NOT -1 subst/pron)
-	(*1O pres/pret LINK -1 adv LINK NOT -1 subst/pron)
+	(*1O pres/pret LINK NOT -1 pron/subst)
+	(*1O pres/pret LINK -1 adv LINK NOT -1 pron/subst)
 	(**-1CO setn-gr LINK 0 sbu LINK *1 pres/pret LINK NOT *1 adv-konj)
 	(**-1C setn-gr LINK NOT -1 setn-gr)
 ;
@@ -24713,7 +24725,7 @@ REMOVE:skrev ("<skrev>"ri "skreve") IF
 	(*1O setn-gr/parentes-beg LINK *-1 pres/pret)
 	(*1O pres/pret LINK NOT 0 farlige-verb LINK NOT 0 perf-part LINK NOT -1 prep/komma)
 	(*1O pres/pret LINK NOT -1 subst-gen)
-	(*1O pres/pret LINK -1 subst/pron LINK NOT -1 subst/pron)
+	(*1O pres/pret LINK -1 pron/subst LINK NOT -1 pron/subst)
 	(**-1CO setn-gr LINK 0 sbu LINK *1 pres/pret LINK NOT *1 adv-konj)
 	(**-1C setn-gr LINK NOT -1 setn-gr)
 ;
@@ -24730,7 +24742,7 @@ REMOVE:skrev ("<skrev>"ri "skreve") IF
 	(*1O setn-gr/parentes-beg LINK *-1 pres/pret)
 	(*1O pres/pret LINK NOT 0 farlige-verb LINK NOT 0 perf-part LINK NOT -1 prep/komma)
 	(*1O pres/pret LINK NOT -1 subst-gen)
-	(*1O pres/pret LINK NOT -1 subst/pron)
+	(*1O pres/pret LINK NOT -1 pron/subst)
 	(*1O pres/pret LINK NOT -1 adv)
 	(**-1CO setn-gr LINK 0 sbu LINK *1 pres/pret LINK NOT *1 adv-konj)
 	(**-1C setn-gr LINK NOT -1 setn-gr)
@@ -24746,8 +24758,8 @@ REMOVE:skrev ("<skrev>"ri "skreve") IF
 	(*1O setn-gr/parentes-beg LINK *-1 pres/pret)
 	(*1O pres/pret LINK NOT 0 farlige-verb LINK NOT 0 perf-part LINK NOT -1 prep/komma)
 	(*1O pres/pret LINK NOT -1 subst-gen)
-	(*1O pres/pret LINK NOT -1 subst/pron)
-	(*1O pres/pret LINK -1 adv LINK -1 subst/pron LINK NOT -1 subst/pron)
+	(*1O pres/pret LINK NOT -1 pron/subst)
+	(*1O pres/pret LINK -1 adv LINK -1 pron/subst LINK NOT -1 pron/subst)
 	(**-1CO setn-gr LINK NOT 0 sbu LINK *1 pres/pret LINK NOT *1 adv-konj)
 ;
 #  "For å unngå:
@@ -24761,8 +24773,8 @@ REMOVE:skrev ("<skrev>"ri "skreve") IF
 	(*1O setn-gr/parentes-beg LINK *-1 pres/pret)
 	(*1O pres/pret LINK NOT 0 farlige-verb LINK NOT 0 perf-part LINK NOT -1 prep/komma)
 	(*1O pres/pret LINK NOT -1 subst-gen)
-	(*1O pres/pret LINK NOT -1 subst/pron)
-	(*1O pres/pret LINK -1 adv LINK NOT -1 subst/pron)
+	(*1O pres/pret LINK NOT -1 pron/subst)
+	(*1O pres/pret LINK -1 adv LINK NOT -1 pron/subst)
 	(**-1CO setn-gr LINK NOT 0 sbu LINK *1 pres/pret LINK NOT *1 adv-konj)
 ;
 #  "For å unngå:
@@ -24776,7 +24788,7 @@ REMOVE:skrev ("<skrev>"ri "skreve") IF
 	(*1O setn-gr/parentes-beg LINK *-1 pres/pret)
 	(*1O pres/pret LINK NOT 0 farlige-verb LINK NOT 0 perf-part LINK NOT -1 prep/komma)
 	(*1O pres/pret LINK NOT -1 subst-gen)
-	(*1O pres/pret LINK -1 subst/pron LINK NOT -1 subst/pron)
+	(*1O pres/pret LINK -1 pron/subst LINK NOT -1 pron/subst)
 	(**-1CO setn-gr LINK NOT 0 sbu LINK *1 pres/pret LINK NOT *1 adv-konj)
 ;
 #  "For å unngå skjulte relativsetninger som:
@@ -24791,7 +24803,7 @@ REMOVE:skrev ("<skrev>"ri "skreve") IF
 	(*1O setn-gr/parentes-beg LINK *-1 pres/pret)
 	(*1O pres/pret LINK NOT 0 farlige-verb LINK NOT 0 perf-part LINK NOT -1 prep/komma)
 	(*1O pres/pret LINK NOT -1 subst-gen)
-	(*1O pres/pret LINK NOT -1 subst/pron)
+	(*1O pres/pret LINK NOT -1 pron/subst)
 	(*1O pres/pret LINK NOT -1 adv)
 	(**-1CO setn-gr LINK NOT 0 sbu LINK *1 pres/pret LINK NOT *1 adv-konj)
 ;
@@ -24868,7 +24880,7 @@ REMOVE:skrev ("<skrev>"ri "skreve") IF
 	(-1 subst/pron/%all%/%mang%/%mange%)
 	(**-1CO verb LINK NOT 0 trans2 LINK NOT *1 verb)
 	(**-1C verb BARRIER setn-gr)
-	(**-1CO verb LINK *1 subst/pron LINK 0 premod-subst/prop)
+	(**-1CO verb LINK *1 pron/subst LINK 0 premod-subst/prop)
 	(**1C pres/pret BARRIER verb)
 	(**1C pres/pret BARRIER setn-gr)
 	(**1CO pres/pret LINK *-1 ikke-poss-det LINK 0 nom LINK NOT *-1 ikke-adv-adj-det)
@@ -24885,7 +24897,7 @@ REMOVE:skrev ("<skrev>"ri "skreve") IF
 	(-1 subst/pron/%all%/%mang%/%mange%)
 	(**-1CO verb LINK NOT 0 trans2 LINK NOT *1 verb)
 	(**-1C verb BARRIER setn-gr)
-	(**-1CO verb LINK *1 subst/pron LINK NOT *1 subst/pron)
+	(**-1CO verb LINK *1 pron/subst LINK NOT *1 pron/subst)
 	(**1C pres/pret BARRIER verb)
 	(**1C pres/pret BARRIER setn-gr)
 	(**1CO pres/pret LINK *-1 ikke-poss-det LINK 0 nom LINK NOT *-1 ikke-adv-adj-det)
@@ -24903,7 +24915,7 @@ REMOVE:skrev ("<skrev>"ri "skreve") IF
 	(-1 subst/pron/%all%/%mang%/%mange%)
 	(**-1CO verb LINK 0 kop LINK NOT *1 verb)
 	(**-1C verb BARRIER setn-gr)
-	(**-1CO verb LINK *1 subst/pron LINK 0 premod-subst/prop)
+	(**-1CO verb LINK *1 pron/subst LINK 0 premod-subst/prop)
 	(**1C pres/pret BARRIER verb)
 	(**1C pres/pret BARRIER setn-gr)
 	(**1CO pres/pret LINK *-1 ikke-poss-det LINK 0 nom LINK NOT *-1 ikke-adv-adj-det)
@@ -24919,7 +24931,7 @@ REMOVE:skrev ("<skrev>"ri "skreve") IF
 	(-1 subst/pron/%all%/%mang%/%mange%)
 	(**-1CO verb LINK 0 kop LINK NOT *1 verb)
 	(**-1C verb BARRIER setn-gr)
-	(**-1CO verb LINK *1 subst/pron LINK NOT *1 subst/pron)
+	(**-1CO verb LINK *1 pron/subst LINK NOT *1 pron/subst)
 	(**1C pres/pret BARRIER verb)
 	(**1C pres/pret BARRIER setn-gr)
 	(**1CO pres/pret LINK *-1 ikke-poss-det LINK 0 nom LINK NOT *-1 ikke-adv-adj-det)
@@ -25048,13 +25060,13 @@ REMOVE:skrev ("<skrev>"ri "skreve") IF
 	(NOT 1 konj-<adv>)
 	(*1 pres/pret BARRIER setn-gr)
 	(**-1CO setn-gr LINK *1 pres/pret LINK NOT *1 clb-konj)
-	(*1O pres/pret LINK NOT 0 farlige-verb LINK NOT 0 perf-part LINK -1 subst/pron LINK NOT -1 nom)
+	(*1O pres/pret LINK NOT 0 farlige-verb LINK NOT 0 perf-part LINK -1 pron/subst LINK NOT -1 nom)
 	(*1O pres/pret LINK NOT -1 konj)
 ;
 #  "..., og opphavsmannen mener
 # finner skjulte som-setninger vha NOT L-1 NOM: 
 # vi er helt enige med dem,(ikke CLB) i alt de sier"))
-#300908 fra -1 nom til -1 subst/pron 
+#300908 fra -1 nom til -1 pron/subst 
 
 
 
@@ -25151,7 +25163,7 @@ REMOVE:skrev ("<skrev>"ri "skreve") IF
  SELECT:1737 (cnjsub) IF
 	(0 %som%)
 	(-1 pres/pret)
-	(1C subst/pron)
+	(1C pron/subst)
 	(2 pres/pret)
 ;
 #  "... han vant som han ville"
@@ -25161,7 +25173,7 @@ REMOVE:skrev ("<skrev>"ri "skreve") IF
 #:1738
  SELECT:1738 (cnjsub) IF
 	(0 %som%)
-	(1C subst/pron)
+	(1C pron/subst)
 	(2C adverb)
 	(NOT -2 sbu)
 	(3 pres/pret)
@@ -25330,7 +25342,7 @@ REMOVE:skrev ("<skrev>"ri "skreve") IF
 #:1749
  SELECT:1749 (cnjsub) IF
 	(NOT *-2 sbu BARRIER setn-gr)
-	(*1 prep LINK NOT 0 sbu LINK 1 subst/pron LINK 1 pres/pret LINK NOT 0 farlige-verb)
+	(*1 prep LINK NOT 0 sbu LINK 1 pron/subst LINK 1 pres/pret LINK NOT 0 farlige-verb)
 	(*1 prep BARRIER ikke-adv-adj-subst-det-prep)
 	(**-1C fv CBARRIER setn-gr)
 ;
@@ -25342,9 +25354,9 @@ REMOVE:skrev ("<skrev>"ri "skreve") IF
 
 #:1750
 # SELECT:1750 (cnjsub) IF
-#	(1 subst/pron)
+#	(1 pron/subst)
 #	(2 konj)
-#	(3 subst/pron)
+#	(3 pron/subst)
 #	(4 pres/pret)
 #	(NOT 4 farlige-verb)
 #	(*-1O sbu LINK **1C fv)
@@ -25359,9 +25371,9 @@ REMOVE:skrev ("<skrev>"ri "skreve") IF
 
 #:1751
  SELECT:1751 (cnjsub) IF
-	(1 subst/pron)
+	(1 pron/subst)
 	(2 konj)
-	(3 subst/pron)
+	(3 pron/subst)
 	(4 pres/pret)
 	(NOT 4 farlige-verb)
 	(*-1O sbu LINK **1C fv LINK *1 fv)
@@ -25376,9 +25388,9 @@ REMOVE:skrev ("<skrev>"ri "skreve") IF
 
 #:1752
  SELECT:1752 (cnjsub) IF
-	(1 subst/pron)
+	(1 pron/subst)
 	(2 konj)
-	(3 subst/pron)
+	(3 pron/subst)
 	(4 pres/pret)
 	(NOT 4 farlige-verb)
 	(*-1O sbu LINK **1C fv LINK NOT *1 fv)
@@ -25393,10 +25405,10 @@ REMOVE:skrev ("<skrev>"ri "skreve") IF
 
 #:1753
  SELECT:1753 (cnjsub) IF
-	(1 subst/pron)
+	(1 pron/subst)
 	(2 konj)
 	(NOT *-2 sbu BARRIER setn-gr)
-	(3 subst/pron)
+	(3 pron/subst)
 	(4 adverb)
 	(5 pres/pret)
 	(NOT 5 farlige-verb)
@@ -25409,10 +25421,10 @@ REMOVE:skrev ("<skrev>"ri "skreve") IF
 
 #:1754
  SELECT:1754 (cnjsub) IF
-	(1 subst/pron)
+	(1 pron/subst)
 	(2 konj)
 	(NOT *-2 sbu)
-	(3 subst/pron)
+	(3 pron/subst)
 	(4 pres/pret)
 	(NOT 4 farlige-verb)
 	(**-1C fv BARRIER setn-gr)
@@ -25427,7 +25439,7 @@ REMOVE:skrev ("<skrev>"ri "skreve") IF
 	(NOT 0 %som%)
 	(NOT 1 pres/pret)
 	(*1 pres/pret BARRIER setn-gr)
-	(*2O pres/pret LINK NOT 0 farlige-verb LINK NOT 0 subst-gen LINK -1 det-etterstilt LINK -1 subst/pron)
+	(*2O pres/pret LINK NOT 0 farlige-verb LINK NOT 0 subst-gen LINK -1 det-etterstilt LINK -1 pron/subst)
 ;
 #  "å studere der de selv vil"
 #      :group 73
@@ -25552,7 +25564,7 @@ REMOVE:skrev ("<skrev>"ri "skreve") IF
 	(*2O pres/pret LINK NOT 0 farlige-verb LINK NOT 0 subst/adj-gen LINK NOT -1 prep-tall)
 	(*2 pres/pret BARRIER komma/konj)
 	(NOT 1 komma/konj)
-	(*2O pres/pret LINK -1 subst LINK NOT *-1 subst/pron)
+	(*2O pres/pret LINK -1 subst LINK NOT *-1 pron/subst)
 ;
 #  "Da vi gikk inn på rommet, nektet hun å si nø
 # da vi spurte ...
@@ -25570,7 +25582,7 @@ REMOVE:skrev ("<skrev>"ri "skreve") IF
 	(*2O pres/pret LINK NOT 0 farlige-verb LINK NOT 0 subst/adj-gen LINK NOT -1 prep-tall)
 	(*2 pres/pret BARRIER komma/konj)
 	(NOT 1 komma/konj)
-	(*2O pres/pret LINK -1 pron LINK NOT *-1 subst/pron)
+	(*2O pres/pret LINK -1 pron LINK NOT *-1 pron/subst)
 ;
 #  "Da vi gikk inn på rommet, nektet hun å si nø
 # da vi spurte ...
@@ -25588,7 +25600,7 @@ REMOVE:skrev ("<skrev>"ri "skreve") IF
 	(*2O pres/pret LINK NOT 0 farlige-verb LINK NOT 0 subst/adj-gen LINK NOT -1 prep-tall)
 	(*2 pres/pret BARRIER komma/konj)
 	(NOT 1 komma/konj)
-	(*2O pres/pret LINK -1 subst LINK NOT *-1 subst/pron)
+	(*2O pres/pret LINK -1 subst LINK NOT *-1 pron/subst)
 	(*2O pres/pret LINK *1 pres/pret LINK NOT *-1 sbu)
 ;
 #  "Da vi gikk inn på rommet der (sbu) jenta skulle
@@ -25607,7 +25619,7 @@ REMOVE:skrev ("<skrev>"ri "skreve") IF
 	(*2O pres/pret LINK NOT 0 farlige-verb LINK NOT 0 subst/adj-gen LINK NOT -1 prep-tall)
 	(*2 pres/pret BARRIER komma/konj)
 	(NOT 1 komma/konj)
-	(*2O pres/pret LINK -1 pron LINK NOT *-1 subst/pron)
+	(*2O pres/pret LINK -1 pron LINK NOT *-1 pron/subst)
 	(*2O pres/pret LINK *1 pres/pret LINK NOT *-1 sbu)
 ;
 #  "Da vi gikk inn på rommet der (sbu) vi skulle
@@ -25624,7 +25636,7 @@ REMOVE:skrev ("<skrev>"ri "skreve") IF
 	(NOT -1 clb-konj)
 	(NOT -2 clb-konj)
 	(*1 pres/pret BARRIER setn-gr)
-	(*3O pres/pret LINK NOT 0 subst/adj-gen LINK NOT 0 farlige-verb LINK -1 subst/pron LINK NOT -1 subst/pron)
+	(*3O pres/pret LINK NOT 0 subst/adj-gen LINK NOT 0 farlige-verb LINK -1 pron/subst LINK NOT -1 pron/subst)
 	(*3O pres/pret LINK *-1 komma/konj LINK NOT 0 clb)
 	(*3 pres/pret BARRIER ikke-adv-adj-subst-pron-konj-det2-prep)
 	(NOT 1 ikke-adv-adj-subst-pron-konj-det2-prep)
@@ -25645,7 +25657,7 @@ REMOVE:skrev ("<skrev>"ri "skreve") IF
 	(NOT 0 %om%)
 	(NOT -1 clb-konj)
 	(*1 pres/pret BARRIER setn-gr)
-	(*3O pres/pret LINK NOT 0 subst/adj-gen LINK NOT 0 farlige-verb LINK -1 subst/pron LINK NOT -1 subst/pron)
+	(*3O pres/pret LINK NOT 0 subst/adj-gen LINK NOT 0 farlige-verb LINK -1 pron/subst LINK NOT -1 pron/subst)
 	(*3O pres/pret LINK *-1 komma/konj LINK NOT 0 clb)
 	(*3 pres/pret BARRIER ikke-adv-adj-subst-pron-konj-det2)
 	(NOT 1 ikke-adv-adj-subst-pron-konj-det2-prep)
@@ -25667,7 +25679,7 @@ REMOVE:skrev ("<skrev>"ri "skreve") IF
 	(*1 pres/pret BARRIER setn-gr)
 	(*2O pres/pret LINK NOT 0 subst/adj-gen LINK NOT 0 farlige-verb LINK NOT -1 prep-tall)
 	(*2 pres/pret BARRIER komma/konj)
-	(*2O pres/pret LINK -1 adverb/komp LINK -1 adverb LINK -1 subst/pron LINK NOT *-1 subst/pron)
+	(*2O pres/pret LINK -1 adverb/komp LINK -1 adverb LINK -1 pron/subst LINK NOT *-1 pron/subst)
 	(**-1C fv CBARRIER setn-gr)
 ;
 #  "som vi ikke seinere makter å stoppe
@@ -25685,7 +25697,7 @@ REMOVE:skrev ("<skrev>"ri "skreve") IF
 	(*1 pres/pret BARRIER setn-gr)
 	(*2O pres/pret LINK NOT 0 subst/adj-gen LINK NOT 0 farlige-verb LINK NOT -1 prep-tall)
 	(*2 pres/pret BARRIER komma/konj)
-	(*2O pres/pret LINK -1 adverb LINK -1 subst LINK NOT *-1 subst/pron)
+	(*2O pres/pret LINK -1 adverb LINK -1 subst LINK NOT *-1 pron/subst)
 	(**-1C fv CBARRIER setn-gr)
 ;
 #  "med adverb som L-1, substantiv testes på L-2
@@ -25704,7 +25716,7 @@ REMOVE:skrev ("<skrev>"ri "skreve") IF
 	(*1 pres/pret BARRIER setn-gr)
 	(*2O pres/pret LINK NOT 0 subst/adj-gen LINK NOT 0 farlige-verb LINK NOT -1 prep-tall)
 	(*2 pres/pret BARRIER komma/konj)
-	(*2O pres/pret LINK -1 adverb LINK -1 pron LINK NOT *-1 subst/pron)
+	(*2O pres/pret LINK -1 adverb LINK -1 pron LINK NOT *-1 pron/subst)
 	(**-1C fv CBARRIER setn-gr)
 ;
 #  "med adverb som L-1, pronomen testes på L-2
@@ -25723,10 +25735,10 @@ REMOVE:skrev ("<skrev>"ri "skreve") IF
 	(*1 pres/pret BARRIER setn-gr)
 	(*2O pres/pret LINK NOT 0 subst/adj-gen LINK NOT 0 farlige-verb LINK NOT -1 prep-tall)
 	(*2 pres/pret BARRIER komma/konj)
-	(*2O pres/pret LINK -1 det-etterstilt LINK -1 subst/pron)
+	(*2O pres/pret LINK -1 det-etterstilt LINK -1 pron/subst)
 	(**-1C fv CBARRIER setn-gr)
 ;
-#  "Etterstilt det etter subst/pron:
+#  "Etterstilt det etter pron/subst:
 # som (sbu) hun selv (det) var"
 #      :group 73
 
@@ -25744,7 +25756,7 @@ REMOVE:skrev ("<skrev>"ri "skreve") IF
 	(*1 pres/pret BARRIER setn-gr)
 	(*2O pres/pret LINK NOT 0 subst/adj-gen LINK NOT 0 farlige-verb LINK NOT -1 prep-tall)
 	(*2 pres/pret BARRIER komma/konj)
-	(*2O pres/pret LINK -1 pron LINK NOT *-1 subst/pron)
+	(*2O pres/pret LINK -1 pron LINK NOT *-1 pron/subst)
 	(**-1C fv CBARRIER setn-gr)
 ;
 #  "at han kom
@@ -25908,7 +25920,7 @@ REMOVE:skrev ("<skrev>"ri "skreve") IF
 	(1C prep)
 	(-1C subst)
 	(**1C pres/pret BARRIER ikke-adv-adj-subst-pron-konj-det2-prep)
-	(**1CO pres/pret LINK -1C subst/pron LINK -1 subst/pron)
+	(**1CO pres/pret LINK -1C pron/subst LINK -1 pron/subst)
 ;
 
 
@@ -26029,7 +26041,7 @@ SELECT:4081 (adj) IF
  REMOVE:1723 (adj def sg) IF
 	(0 fl)
 	(NOT 0 %syvende%)
-	(NOT *1 subst/pron)
+	(NOT *1 pron/subst)
 	(NOT *-1 det-ent/pron-ent)
 ;
 #  "sjuke og gamle (ikke ent)
@@ -26042,7 +26054,7 @@ SELECT:4081 (adj) IF
 	(0 fl)
 	(NOT 0 %syvende%)
 	(NOT 0 %tiltalte%)
-	(NOT *1 subst/pron)
+	(NOT *1 pron/subst)
 	(*-1O ikke-adv-adj-det-pron LINK NOT 0 det-ent/pron-ent LINK NOT 1 det-ent/pron-ent)
 ;
 #  "forholdene for syke og gamle
@@ -26056,7 +26068,7 @@ SELECT:4081 (adj) IF
 	(NOT 0 %syvende%)
 	(NOT 0 %tiltalte%)
 	(NOT *-1 det-ent/pron-ent)
-	(*1O subst/pron LINK *-1 ikke-adv-adj-det)
+	(*1O pron/subst LINK *-1 ikke-adv-adj-det)
 ;
 #  "forholdene for syke og gamle
 # 6.3.2001: Der tiltalte har blitt dømt er det slik."
@@ -26068,7 +26080,7 @@ SELECT:4081 (adj) IF
 	(0 fl)
 	(NOT 0 %syvende%)
 	(NOT 0 %tiltalte%)
-	(*1O subst/pron LINK *-1 ikke-adv-adj-det)
+	(*1O pron/subst LINK *-1 ikke-adv-adj-det)
 	(*-1O ikke-adv-adj-det-pron LINK NOT 0 det-ent/pron-ent LINK NOT 1 det-ent/pron-ent)
 ;
 #  "forholdene for syke og gamle, sa mannen
