@@ -285,19 +285,19 @@ LIST %selve% =  "selv"  ;
 LIST %seng% = "seng"  ;
 LIST %sett% = ("se"  vblex pp) ;
 LIST %sette/ta% = ("sette" vblex) ("ta" vblex) ;
-LIST %si% = ("sin"  det pos f sg) ;
+LIST %si% = ("seg"  det pos f sg) ;
 LIST %si%-inf = ("si"  inf) ;
 LIST %side% = "side"  ;
 LIST %side%-be = ("side"  def) ;
 LIST %siden% = "siden"  ;
 LIST %sikt% = "sikt"  ;
-LIST %sin% = ("sin"  det pos m sg) ;
-LIST %sine% = ("sin"  det pos pl) ;
+LIST %sin% = ("seg"  det pos m sg) ;
+LIST %sine% = ("seg"  det pos pl) ;
 LIST %sist% = ("sist"  adv) ;
 LIST %siste% = ("sist"  pl) ;
 LIST %siste%/ordenstall = ("sist"  def) ("sist"  pl) ord ;
 LIST %siste/første% = ("sist"  def) ("sist"  pl) ("første" ) ;
-LIST %sitt% = ("sin"  det pos nt sg) ;
+LIST %sitt% = ("seg"  det pos nt sg) ;
 LIST %sjakk% = "sjakk"  ;
 LIST %sjelden% = "sjelden"  ;
 LIST %skifte/bytte% = ("skifte"  vblex) ("bytte"  vblex) ;
@@ -743,7 +743,7 @@ LIST hendelse = <hend> ;
 LIST hj-verb = "være"  "ville"  "skulle"  "måtte"  "kunne"  "ha"  "få"  "burde"  "bli"  ;
 LIST hj-verb-ikke-passiv = "ville"  "skulle"  "måtte"  "kunne"  "ha"  "få"  "burde"  ;
 LIST hj-verb-iv = ("bli"  inf) ("bli"  vblex pp) ("ha"  inf) ("ha"  vblex pp) ("være"  inf) ("være"  vblex pp) ("få"  inf) ("få"  vblex pp) ("skulle"  inf) ("skulle"  vblex pp) ("kunne"  inf) ("kunne"  vblex pp) ("ville"  inf) ("ville"  vblex pp) ("måtte"  inf) ("måtte"  vblex pp) ("burde"  inf) ("burde"  vblex pp) ;
-LIST høflig = ("Deres" det pos)  ("Dem" prn)  ("De" prn)  ;
+LIST høflig = ("De" det pos)  ("Dem" prn)  ("De" prn)  ;
 LIST ikke-&annet = &hend &org &person top &verk ;
 LIST ikke-&hend = &annet &org &person top &verk ;
 LIST ikke-&org = &annet &hend &person top &verk ;
@@ -23759,24 +23759,41 @@ CONSTRAINTS
  	(0 høflig)
 	(NOT -1 >>>)
 ;
-"<De>" REMOVE:De høflig IF
- 	(0 ("de" prn))
-	(-1 >>>)
-;
 "<Dem>" REMOVE:De ("de" prn) IF
  	(0 høflig)
 	(NOT -1 >>>)
 ;
-"<Dem>" REMOVE:De høflig IF
- 	(0 ("de" prn))
-	(-1 >>>)
-;
-"<Deres>" REMOVE:Deres ("deres" det pos) IF
+"<Deres>" REMOVE:Deres ("de" det pos) OR ("dere" det pos) IF
  	(0 høflig)
 	(NOT -1 >>>)
 ;
+
+"<De>" REMOVE:De ("de" prn) IF
+ 	(0 høflig)
+	(*1 høflig)
+;
+"<Dem>" REMOVE:De ("de" prn) IF
+ 	(0 høflig)
+	(*1 høflig)
+;
+"<Deres>" REMOVE:Deres ("de" det pos) OR ("dere" det pos) IF
+ 	(0 høflig)
+	(*1 høflig)
+;
+
+"<De>" REMOVE:De høflig IF
+ 	(0 ("de" prn))
+	(NOT *1 høflig)
+	(-1 >>>)
+;
+"<Dem>" REMOVE:De høflig IF
+ 	(0 ("de" prn))
+	(NOT *1 høflig)
+	(-1 >>>)
+;
 "<Deres>" REMOVE:Deres høflig IF
- 	(0 ("deres" det pos))
+ 	(0 ("de" det pos) OR ("dere" det pos))
+	(NOT *1 høflig)
 	(-1 >>>)
 ;
 
@@ -26885,3 +26902,10 @@ REMOVE:gen-subst gen-subst IF
 # Viss me har både genitiv og eigennamn er det vel usannsynleg at det er genitiven sidan eigennamnet har stor forbokstav
 
 
+#### Simple anaphora resolution. < means span window boundaries to the left
+REMOVE:anaphora ("de" det pos) IF
+	(*-1C< (p2) LINK -1 setn-gr)
+;
+REMOVE:anaphora ("dere" det pos) IF # default: p3
+	(0 ("de" det pos))
+;
