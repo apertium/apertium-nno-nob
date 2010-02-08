@@ -283,46 +283,66 @@
   <e r="LR"><p><l>deim</l>      <r>dei<s n="prn"/><s n="p3"/><s n="mf"/><s n="pl"/><s n="acc"/></r></p></e>
 
   <!-- Hack for the «hennes måte å sykle=>måten ho syklar» transfer rule: -->
-  <e r="RL"><p><l>eg</l>        <r>min<s n="prn"/></r></p></e>
-  <e r="RL"><p><l>du</l>        <r>din<s n="prn"/></r></p></e>
-  <e r="RL"><p><l>han</l>       <r>hans<s n="prn"/></r></p></e>
-  <e r="RL"><p><l>ho</l>        <r>hennar<s n="prn"/></r></p></e>
-  <e r="RL"><p><l>det</l>       <r>dets<s n="prn"/></r></p></e>
+  <e r="RL"><p><l>eg</l>        <r>eg<s n="prn"/></r></p></e>
+  <e r="RL"><p><l>du</l>        <r>du<s n="prn"/></r></p></e>
+  <e r="RL"><p><l>han</l>       <r>han<s n="prn"/></r></p></e>
+  <e r="RL"><p><l>ho</l>        <r>ho<s n="prn"/></r></p></e>
+  <e r="RL"><p><l>det</l>       <r>det<s n="prn"/></r></p></e>
   <!-- the gender from det.pos are for the possessed, not possessor, thus 
        useless for "dens"-disambiguation, CG could change lemma though:  -->
-  <e r="RL"><p><l>ho</l>        <r>dens<s n="prn"/></r></p></e>
-  <e r="RL"><p><l>vi</l>        <r>vår<s n="prn"/></r></p></e>
-  <e r="RL"><p><l>de</l>        <r>dykkar<s n="prn"/></r></p></e>
-  <e r="RL"><p><l>dei</l>       <r>deira<s n="prn"/></r></p></e>
-  <e r="RL"><p><l>De</l>       <r>Dykkar<s n="prn"/><s n="p2"/></r></p></e>
+  <e r="RL"><p><l>ho</l>        <r>den<s n="prn"/></r></p></e>
+  <e r="RL"><p><l>vi</l>        <r>vi<s n="prn"/></r></p></e>
+  <e r="RL"><p><l>de</l>        <r>de<s n="prn"/></r></p></e>
+  <e r="RL"><p><l>dei</l>       <r>dei<s n="prn"/></r></p></e>
+  <e r="RL"><p><l>De</l>       <r>De<s n="prn"/><s n="p2"/></r></p></e>
 </pardef>
 
     <!-- Possessives -->
-    <!-- Polite forms still todo -->
-<pardef n="si/n__det">
-  <e>       <p><l>n</l>         <r>n<s n="det"/><s n="pos"/><s n="m"/><s n="sg"/></r></p></e>
-  <e>       <p><l></l>          <r>n<s n="det"/><s n="pos"/><s n="f"/><s n="sg"/></r></p></e>
-  <e>       <p><l>tt</l>        <r>n<s n="det"/><s n="pos"/><s n="nt"/><s n="sg"/></r></p></e>
-  <e>       <p><l>ne</l>        <r>n<s n="det"/><s n="pos"/><s n="pl"/></r></p></e>
-</pardef>
-<pardef n="dets__det">		      <!-- hans, hennar, deira, ... -->
+<pardef n="dets__det">
   <e>       <p><l></l>          <r><s n="det"/><s n="pos"/><s n="m"/><s n="sg"/></r></p></e>
   <e>       <p><l></l>          <r><s n="det"/><s n="pos"/><s n="f"/><s n="sg"/></r></p></e>
   <e>       <p><l></l>          <r><s n="det"/><s n="pos"/><s n="nt"/><s n="sg"/></r></p></e>
   <e>       <p><l></l>          <r><s n="det"/><s n="pos"/><s n="pl"/></r></p></e>
 </pardef>
-<pardef n="Dykkar__det">		      <!-- hans, hennar, deira, ... -->
-  <e>       <p><l></l>          <r><s n="det"/><s n="pos"/><s n="p2"/><s n="m"/><s n="sg"/></r></p></e>
-  <e>       <p><l></l>          <r><s n="det"/><s n="pos"/><s n="p2"/><s n="f"/><s n="sg"/></r></p></e>
-  <e>       <p><l></l>          <r><s n="det"/><s n="pos"/><s n="p2"/><s n="nt"/><s n="sg"/></r></p></e>
-  <e>       <p><l></l>          <r><s n="det"/><s n="pos"/><s n="p2"/><s n="pl"/></r></p></e>
+<pardef n="possessives__det">
+  <e>       <p><l>min</l>         <r>eg<s n="det"/><s n="pos"/><s n="m"/><s n="sg"/></r></p></e>
+  <e>       <p><l>mi</l>          <r>eg<s n="det"/><s n="pos"/><s n="f"/><s n="sg"/></r></p></e>
+  <e>       <p><l>mitt</l>        <r>eg<s n="det"/><s n="pos"/><s n="nt"/><s n="sg"/></r></p></e>
+  <e>       <p><l>mine</l>        <r>eg<s n="det"/><s n="pos"/><s n="pl"/></r></p></e>
+
+  <e>       <p><l>din</l>         <r>du<s n="det"/><s n="pos"/><s n="m"/><s n="sg"/></r></p></e>
+  <e>       <p><l>di</l>          <r>du<s n="det"/><s n="pos"/><s n="f"/><s n="sg"/></r></p></e>
+  <e>       <p><l>ditt</l>        <r>du<s n="det"/><s n="pos"/><s n="nt"/><s n="sg"/></r></p></e>
+  <e>       <p><l>dine</l>        <r>du<s n="det"/><s n="pos"/><s n="pl"/></r></p></e>
+
+  <e>       <p><l>sin</l>         <r>seg<s n="det"/><s n="pos"/><s n="m"/><s n="sg"/></r></p></e>
+  <e>       <p><l>si</l>          <r>seg<s n="det"/><s n="pos"/><s n="f"/><s n="sg"/></r></p></e>
+  <e>       <p><l>sitt</l>        <r>seg<s n="det"/><s n="pos"/><s n="nt"/><s n="sg"/></r></p></e>
+  <e>       <p><l>sine</l>        <r>seg<s n="det"/><s n="pos"/><s n="pl"/></r></p></e>
+
+  <e>       <p><l>hennar</l>      <r>ho</r></p><par n="dets__det"/></e>
+  <e>       <p><l>hans</l>        <r>han</r></p><par n="dets__det"/></e>
+  <e>       <p><l>dets</l>        <r>det</r></p><par n="dets__det"/></e>
+  <e>       <p><l>dens</l>        <r>den</r></p><par n="dets__det"/></e>
+
+  <e>       <p><l>vår</l>         <r>vi<s n="det"/><s n="pos"/><s n="m"/><s n="sg"/></r></p></e>
+  <e>       <p><l>vår</l>         <r>vi<s n="det"/><s n="pos"/><s n="f"/><s n="sg"/></r></p></e>
+  <e>       <p><l>vårt</l>        <r>vi<s n="det"/><s n="pos"/><s n="nt"/><s n="sg"/></r></p></e>
+  <e>       <p><l>våre</l>        <r>vi<s n="det"/><s n="pos"/><s n="pl"/></r></p></e>
+
+  <e>       <p><l>deira</l>       <r>dei</r>  </p><par n="dets__det"/></e>
+  <e>       <p><l>dykkar</l>      <r>de</r>   </p><par n="dets__det"/></e>
+
+  <e r="LR"><p><l>Dykkar</l>          <r>De<s n="det"/><s n="pos"/><s n="p2"/><s n="m"/><s n="sg"/></r></p></e>
+  <e r="LR"><p><l>Dykkar</l>          <r>De<s n="det"/><s n="pos"/><s n="p2"/><s n="f"/><s n="sg"/></r></p></e>
+  <e r="LR"><p><l>Dykkar</l>          <r>De<s n="det"/><s n="pos"/><s n="p2"/><s n="nt"/><s n="sg"/></r></p></e>
+  <e r="LR"><p><l>Dykkar</l>          <r>De<s n="det"/><s n="pos"/><s n="p2"/><s n="pl"/></r></p></e>
+  <e r="RL"><p><l>Dykkar</l>          <r>de<s n="det"/><s n="pos"/><s n="p2"/><s n="m"/><s n="sg"/></r></p></e>
+  <e r="RL"><p><l>Dykkar</l>          <r>de<s n="det"/><s n="pos"/><s n="p2"/><s n="f"/><s n="sg"/></r></p></e>
+  <e r="RL"><p><l>Dykkar</l>          <r>de<s n="det"/><s n="pos"/><s n="p2"/><s n="nt"/><s n="sg"/></r></p></e>
+  <e r="RL"><p><l>Dykkar</l>          <r>de<s n="det"/><s n="pos"/><s n="p2"/><s n="pl"/></r></p></e>
 </pardef>
-<pardef n="vår__det">
-  <e>       <p><l></l>          <r><s n="det"/><s n="pos"/><s n="m"/><s n="sg"/></r></p></e>
-  <e>       <p><l></l>          <r><s n="det"/><s n="pos"/><s n="f"/><s n="sg"/></r></p></e>
-  <e>       <p><l>t</l>         <r><s n="det"/><s n="pos"/><s n="nt"/><s n="sg"/></r></p></e>
-  <e>       <p><l>e</l>         <r><s n="det"/><s n="pos"/><s n="pl"/></r></p></e>
-</pardef>
+
 
     <!-- Determiners -->
 <pardef n="kva_for__det">
@@ -11550,23 +11570,15 @@
 <e lm="kven">            <i>kven</i><par n="kva__prn"/></e>
 <e lm="seg">             <i>seg</i><par n="seg__prn"/></e>
 <e lm="kvarandre">       <i>kvarandre</i><par n="kvarandre__prn"/></e>
-<e lm="personal pronouns"><i></i><par n="personal_pronouns__prn"/></e>
 <e lm="ingen">           <i>in</i><par n="in/gen__prn"/></e>
 <e lm="ein">           <i>ein</i><par n="en__prn"/></e>
 <e lm="denne">           <i>de</i><par n="de/nne__prn"/></e>
 <e lm="noko">           <i>no</i><par n="no/ko__prn"/></e>
 
-<e lm="min">             <i>mi</i><par n="si/n__det"/></e>
-<e lm="sin">             <i>si</i><par n="si/n__det"/></e>
-<e lm="din">             <i>di</i><par n="si/n__det"/></e>
-<e lm="hennar">          <i>hennar</i><par n="dets__det"/></e>
-<e lm="hans">            <i>hans</i><par n="dets__det"/></e>
-<e lm="dets">            <i>dets</i><par n="dets__det"/></e>
-<e lm="dens">            <i>dens</i><par n="dets__det"/></e>
-<e lm="deira">           <i>deira</i><par n="dets__det"/></e>
-<e lm="Dykkar" r="LR">   <i>Dykkar</i><par n="Dykkar__det"/></e>
-<e lm="Dykkar" r="RL">   <p><l>Dykkar</l><r>dykkar</r></p><par n="Dykkar__det"/></e>
-<e lm="vår">             <i>vår</i><par n="vår__det"/></e>
+<e lm="personal pronouns"><i></i><par n="personal_pronouns__prn"/></e>
+
+<e lm="possessive determiners"><i></i><par n="possessives__det"/></e>
+
 
 <!-- Determiners -->
 <e lm="kva for">         <i>kva<b/>for</i><par n="kva_for__det"/></e>
