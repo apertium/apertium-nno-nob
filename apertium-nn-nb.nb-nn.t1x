@@ -291,24 +291,6 @@
   </section-def-lists>
 
   <section-def-macros>
-
-    <def-macro n="f_bcond" npar="1">
-      <!--Per mirar si el blanc conté o no format
-          (only output blank if not simple space)
-      -->
-      <choose>
-        <when>
-          <test>
-            <not>
-              <equal><b pos="1"/><lit v=" "/></equal>
-            </not>
-          </test>
-          <out><b pos="1"/></out>
-        </when>
-      </choose>
-    </def-macro>
-
-
     <def-macro n="modify_case_detpos" npar="2">
       <!-- arg.1: possessed noun. arg.2: det.pos, gives typographic case
            Workaround for Polite forms.
