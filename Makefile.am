@@ -72,10 +72,12 @@ apertium_nn_nbdir=$(prefix)/share/apertium/apertium-$(PREFIX1)/
 apertium_nn_modesdir=$(prefix)/share/apertium/modes/
 
 modes/$(PREFIX1).mode: modes.xml
+	apertium-validate-modes modes.xml
 	apertium-gen-modes modes.xml
 	cp *.mode modes/
 
 modes/$(PREFIX2).mode: modes.xml 
+	apertium-validate-modes modes.xml
 	apertium-gen-modes modes.xml
 	cp *.mode modes/
 
