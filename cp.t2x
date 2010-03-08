@@ -507,6 +507,23 @@
     </def-macro>
 
     <!-- Output macros: -->
+    <def-macro n="out_det_when_adj" npar="2"
+               c="arg.1: adj, arg.2: gives typographic case">
+    <choose><when><test><begins-with><clip pos="1" part="lemh"/><lit v="adj"/></begins-with></test>
+        <out><chunk>
+          <get-case-from pos="2"><lit v="det"/></get-case-from>
+          <lit-tag v="det.dem"/>
+          <var n="det_gender"/>
+          <var n="number_no_sp"/>
+          <lit v="{^"/>
+          <get-case-from pos="2"><lit v="den"/></get-case-from>
+          <lit-tag v="det.dem"/>
+          <var n="det_gender"/>
+          <var n="number_no_sp"/>
+          <lit v="$}"/>
+        </chunk><b/></out>
+        </when></choose>
+    </def-macro>
     <def-macro n="out_gen_prep" npar="1">
       <!-- arg.1: possessor noun. Note: puts a space _after_ the preposition. -->
       <choose>
@@ -620,12 +637,7 @@
     
 
     <!-- The regular possessive noun phrases, with more complex
-         transfer operations.
-
-         Fleire reglar trengst for å matche ADJ* (eigentleg ADJ{0,4} i reglane under)
-         men det jo berre kopiere og lime inn (og fikse litt) etter at ADJ{1} regelen 
-         er ferdig. Sjå http://wiki.apertium.org/wiki/Norsk#Genitive.2Fpossessive  -->
-    
+         transfer operations.-->
     <rule comment="NGEN: mannens => mannen sin
                    Very heuristic fallback rule.
                    If we can't match with the below rules, turn the
@@ -647,6 +659,23 @@
           <b/> 
         </out>
         <call-macro n="out_sin"><with-param pos="1"/></call-macro>
+      </action>
+    </rule>
+    <rule comment="NDEF: lille menneske => det vesle mennesket">
+      <pattern>
+        <pattern-item n="ndef"/>
+      </pattern>
+      <action>
+        <call-macro n="modify_case_detpos"><with-param pos="1"/><with-param pos="1"/></call-macro>
+        <call-macro n="set_gender2.n.det"><with-param pos="1"/><with-param pos="1"/></call-macro>
+
+        <call-macro n="out_det_when_adj"><with-param pos="1"/><with-param pos="1"/></call-macro>
+        <out>
+          <chunk>
+            <clip pos="1" part="whole"/>
+          </chunk>
+          <b/> 
+        </out>
       </action>
     </rule>
     <rule comment="DETNONPOS NGEN: det forfatterskapets => den forfattarskapen sin">
@@ -673,6 +702,7 @@
     <rule comment="POSGEN NIND: naboens bil => bilen til naboen
                                 min mor => mora mi
                                 ditt hus => huset ditt
+                                naboens røde bil => den røde bilen til naboen
                    nind makes sure we don't match 'min Per(np)' nor 'min bils(gen)'
                    Third example shows how determiners ..um..determine number.">
       <pattern>
@@ -683,20 +713,7 @@
         <call-macro n="modify_case_detpos"><with-param pos="2"/><with-param pos="1"/></call-macro>
         <call-macro n="set_gender2.n.det"><with-param pos="2"/><with-param pos="1"/></call-macro>
 
-        <choose><when><test><begins-with><clip pos="2" part="lemh"/><lit v="adj"/></begins-with></test>
-        <out><chunk>
-          <get-case-from pos="1"><lit v="den"/></get-case-from>
-          <lit-tag v="det.dem"/>
-          <var n="det_gender"/>
-          <var n="number_no_sp"/>
-          <lit v="{^"/>
-          <get-case-from pos="1"><lit v="den"/></get-case-from>
-          <lit-tag v="det.dem"/>
-          <var n="det_gender"/>
-          <var n="number_no_sp"/>
-          <lit v="$}"/>
-        </chunk><b/></out>
-        </when></choose>
+        <call-macro n="out_det_when_adj"><with-param pos="2"/><with-param pos="1"/></call-macro>
         <call-macro n="out_ndef"><with-param pos="2"/><with-param pos="1"/></call-macro>
         <out><b pos="1"/></out>
         <call-macro n="out_posgen"><with-param pos="1"/></call-macro>
@@ -719,47 +736,13 @@
 	  <with-param pos="1"/>
 	</call-macro>
         
-        <choose><when><test><begins-with><clip pos="3" part="lemh"/><lit v="adj"/></begins-with></test>
-        <out><chunk>
-          <get-case-from pos="1"><lit v="den"/></get-case-from>
-          <lit-tag v="det.dem"/>
-          <var n="det_gender"/>
-          <var n="number_no_sp"/>
-          <lit v="{^"/>
-          <get-case-from pos="1"><lit v="den"/></get-case-from>
-          <lit-tag v="det.dem"/>
-          <var n="det_gender"/>
-          <var n="number_no_sp"/>
-          <lit v="$}"/>
-        </chunk><b/></out>
-        </when></choose>
-        <call-macro n="out_ndef">
-	  <with-param pos="3"/>
-	  <with-param pos="1"/>
-	</call-macro>
+        <call-macro n="out_det_when_adj"><with-param pos="3"/><with-param pos="1"/></call-macro>
+        <call-macro n="out_ndef"><with-param pos="3"/><with-param pos="1"/></call-macro>
         <out><b pos="1"/></out>
-        <call-macro n="out_gen_prep">
-	  <with-param pos="2"/>
-	</call-macro>
+        <call-macro n="out_gen_prep"><with-param pos="2"/></call-macro>
 
-        <choose><when><test><begins-with><clip pos="2" part="lemh"/><lit v="adj"/></begins-with></test>
-        <out><chunk>
-          <get-case-from pos="1"><lit v="den"/></get-case-from>
-          <lit-tag v="det.dem"/>
-          <var n="det_gender"/>
-          <var n="number_no_sp"/>
-          <lit v="{^"/>
-          <get-case-from pos="1"><lit v="den"/></get-case-from>
-          <lit-tag v="det.dem"/>
-          <var n="det_gender"/>
-          <var n="number_no_sp"/>
-          <lit v="$}"/>
-        </chunk><b/></out>
-        </when></choose>        
-        <call-macro n="out_ndef">
-	  <with-param pos="2"/>
-	  <with-param pos="2"/>
-	</call-macro>
+        <call-macro n="out_det_when_adj"><with-param pos="2"/><with-param pos="2"/></call-macro>
+        <call-macro n="out_ndef"><with-param pos="2"/><with-param pos="2"/></call-macro>
         <out> <b pos="2"/> </out>
         <call-macro n="out_posgen"><with-param pos="1"/></call-macro>
       </action>
