@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- -*- nxml -*- -->
+<postchunk>
+  <section-def-cats>
+    <def-cat n="n">
+      <cat-item name="n"/>
+    </def-cat>
+    <def-cat n="n_n">
+      <cat-item name="n_n"/>
+    </def-cat>
+    <def-cat n="adj_n">
+      <cat-item name="adj_n"/>
+    </def-cat>
+    <def-cat n="det">
+      <cat-item name="det"/>
+    </def-cat>
+  </section-def-cats>
+
+  
+  <section-def-attrs>
+    <def-attr n="gen">
+      <attr-item tags="m"/>
+      <attr-item tags="mf"/>
+      <attr-item tags="nt"/>
+      <attr-item tags="f"/>
+      <attr-item tags="GD"/>
+    </def-attr>
+    <def-attr n="art">
+      <attr-item tags="def"/>
+      <attr-item tags="ind"/>
+    </def-attr>
+    <def-attr n="voice">
+      <attr-item tags="pass"/>
+    </def-attr>
+  </section-def-attrs>
+
+  <section-def-vars>
+    <def-var n="foo"/>
+  </section-def-vars>
+
+  <section-rules>
+    <rule comment="CHUNK: det">
+      <pattern>
+        <pattern-item n="det"/>
+      </pattern>
+      <action>
+        <let><clip pos="1" part="gen"/><clip pos="0" part="gen"/></let>
+        <let><clip pos="1" part="nbr"/><clip pos="0" part="nbr"/></let>
+        <out>
+          <lu>
+            <clip pos="1" part="whole"/>
+          </lu>
+        </out>
+      </action>
+    </rule>
+    <rule comment="CHUNK: n">
+      <pattern>
+        <pattern-item n="n"/>
+      </pattern>
+      <action>
+        <let><clip pos="1" part="art"/><clip pos="0" part="art"/></let>
+        <out>
+          <lu>
+            <clip pos="1" part="whole"/>
+          </lu>
+        </out>
+      </action>
+    </rule>
+    <rule comment="CHUNK: n_n">
+      <pattern>
+        <pattern-item n="n_n"/>
+      </pattern>
+      <action>
+        <let><clip pos="2" part="art"/><clip pos="0" part="art"/></let>
+        <out>
+          <lu>
+            <clip pos="1" part="whole"/>
+          </lu>
+          <b pos="1"/>
+          <lu>
+            <clip pos="2" part="whole"/>
+          </lu>
+        </out>
+      </action>
+    </rule>
+    <rule comment="CHUNK: adj_n
+                   Allow adjectives to become definite, but not indefinite.">
+      <pattern>
+        <pattern-item n="adj_n"/>
+      </pattern>
+      <action>
+        <choose><when>
+          <test><equal><clip pos="1" part="art"/><lit-tag v="ind"/></equal></test>
+          <let><clip pos="1" part="art"/><clip pos="0" part="art"/></let>
+        </when></choose>
+        <let><clip pos="2" part="art"/><clip pos="0" part="art"/></let>
+        <out>
+          <lu>
+            <clip pos="1" part="whole"/>
+          </lu>
+          <b pos="1"/>
+          <lu>
+            <clip pos="2" part="whole"/>
+          </lu>
+        </out>
+      </action>
+    </rule>
+  </section-rules>
+</postchunk>

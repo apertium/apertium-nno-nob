@@ -52,6 +52,20 @@ $(PREFIX2).t1x.bin: $(BASENAME).$(PREFIX2).t1x
 	apertium-validate-transfer $(BASENAME).$(PREFIX2).t1x
 	apertium-preprocess-transfer $(BASENAME).$(PREFIX2).t1x $@
 
+cp.t2x.bin: cp.t2x
+	apertium-validate-interchunk cp.t2x
+	apertium-preprocess-transfer cp.t2x $@
+
+cp.t1x.bin: cp.t1x
+	apertium-validate-transfer cp.t1x
+	apertium-preprocess-transfer cp.t1x $@
+
+cp.t3x.bin: cp.t3x
+	apertium-validate-postchunk cp.t3x
+	apertium-preprocess-transfer cp.t3x $@
+
+cp: cp.t1x.bin cp.t2x.bin cp.t3x.bin
+
 EXTRA_DIST=$(BASENAME).$(LANG1).dix $(BASENAME).$(PREFIX1).dix \
 	   $(BASENAME).$(LANG2).dix \
            $(BASENAME).$(PREFIX1).rlx \
