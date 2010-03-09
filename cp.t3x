@@ -33,6 +33,12 @@
     <def-attr n="voice">
       <attr-item tags="pass"/>
     </def-attr>
+    <def-attr n="nbr">
+      <attr-item tags="sg"/>
+      <attr-item tags="pl"/>
+      <attr-item tags="sp"/>
+      <attr-item tags="ND"/>
+    </def-attr>
   </section-def-attrs>
 
   <section-def-vars>
@@ -45,8 +51,19 @@
         <pattern-item n="det"/>
       </pattern>
       <action>
-        <let><clip pos="1" part="gen"/><clip pos="0" part="gen"/></let>
+        <choose><when>
+          <test><not><equal><clip pos="0" part="gen"/><lit-tag v="mf"/></equal></not></test>
+          <let><clip pos="1" part="gen"/><clip pos="0" part="gen"/></let>
+        </when></choose>
+        <choose><when>
+          <test><equal><clip pos="1" part="gen"/><lit-tag v="GD"/></equal></test>
+          <let><clip pos="1" part="gen"/><lit-tag v="m"/></let>
+        </when></choose>
         <let><clip pos="1" part="nbr"/><clip pos="0" part="nbr"/></let>
+        <choose><when>
+          <test><equal><clip pos="1" part="nbr"/><lit-tag v="pl"/></equal></test>
+          <let><clip pos="1" part="gen"/><lit v=""/></let>
+        </when></choose>
         <out>
           <lu>
             <clip pos="1" part="whole"/>
@@ -95,6 +112,11 @@
           <let><clip pos="1" part="art"/><clip pos="0" part="art"/></let>
         </when></choose>
         <let><clip pos="2" part="art"/><clip pos="0" part="art"/></let>
+
+        <choose><when>
+          <test><equal><clip pos="1" part="art"/><lit-tag v="def"/></equal></test>
+          <let><clip pos="1" part="gen"/><lit v=""/></let>
+        </when></choose>
         <out>
           <lu>
             <clip pos="1" part="whole"/>
