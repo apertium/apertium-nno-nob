@@ -698,6 +698,37 @@
         </out>
       </action>
     </rule>
+    <rule comment="DETNONPOS DETNONPOS NGEN NIND: den forrige Lamaens bil => bilen til den forrige Lamaen">
+      <pattern>
+	<pattern-item n="detnonpos"/>
+	<pattern-item n="detnonpos"/>    
+	<pattern-item n="ngen"/>
+	<pattern-item n="nind"/>
+      </pattern>
+      <action>
+        <call-macro n="switch_cases"><with-param pos="4"/><with-param pos="1"/></call-macro>
+        <call-macro n="set_gender2.n.det"><with-param pos="3"/><with-param pos="1"/></call-macro>
+        <call-macro n="set_gender2.n.det"><with-param pos="3"/><with-param pos="2"/></call-macro>
+        <call-macro n="out_det_when_adj"><with-param pos="4"/><with-param pos="1"/></call-macro>
+        <call-macro n="out_ndef"><with-param pos="4"/><with-param pos="1"/></call-macro>
+
+        <out><b pos="1"/></out>
+        <call-macro n="out_gen_prep"><with-param pos="2"/></call-macro>
+        <out>
+          <chunk>
+            <clip pos="1" part="whole"/>
+          </chunk>
+          <b pos="2"/>
+          <chunk>
+            <clip pos="2" part="whole"/>
+          </chunk>
+          <b pos="3"/>
+          <chunk>
+            <clip pos="3" part="whole"/>
+          </chunk>
+        </out>
+      </action>
+    </rule>
 
     <rule comment="NDEF DETPOS: jenten min => jenta mi">
       <pattern>
