@@ -224,6 +224,7 @@
   </section-def-attrs>
 
   <section-def-vars>
+    <def-var n="chunkname"/>
     <def-var n="det_gender"/>  
     <def-var n="number"/>  
     <def-var n="number_no_sp"/>  
@@ -443,33 +444,6 @@
 	<otherwise>
 	  <let><var n="det_gender"/><clip pos="1" side="tl" part="gen"/></let>
 	</otherwise>
-      </choose>
-    </def-macro>
-
-    <def-macro n="set_n_defness" npar="2">
-      <!-- arg.1: noun, arg.2: determiner/adjective
-           Make sure we have double definiteness marking, eg.:
-           disse<def> friheter<ind> => desse<def> fridomane<def>
-      -->
-      <choose>
-        <when>
-          <test>
-            <and>
-              <equal><clip pos="1" side="tl" part="art"/><lit-tag v="ind"/></equal>
-              <or>
-                <in caseless="yes"><clip pos="2" side="sl" part="lem"/><list n="det_indef"/></in>
-                <and>
-                  <begins-with><clip pos="2" side="tl" part="a_adj"/><lit-tag v="adj"/></begins-with>
-                  <equal><clip pos="2" side="tl" part="art"/><lit-tag v="def"/></equal>
-                </and>
-              </or>
-            </and>
-          </test>
-          <let><var n="n_defness"/><lit-tag v="def"/></let>
-        </when>
-        <otherwise>
-          <let><var n="n_defness"/><clip pos="1" side="tl" part="art"/></let>
-        </otherwise>
       </choose>
     </def-macro>
     
@@ -1413,15 +1387,21 @@ Requires rather ugly RL prn lemmas in nn.dix, see personal_pronouns__prn pardef"
       </action>
     </rule>
 
-
     <!-- Other classes -->
     <rule comment="DET">
       <pattern>
         <pattern-item n="det"/>
       </pattern>
       <action>
+        <choose>
+          <when>
+            <test><in caseless="yes"><clip pos="1" side="sl" part="lem"/><list n="det_indef"/></in></test>
+            <let><var n="chunkname"/><lit v="detdd"/></let>
+          </when>
+          <otherwise><let><var n="chunkname"/><lit v="det"/></let></otherwise>
+        </choose>
         <out>
-          <chunk name="det" case="caseFirstWord">
+          <chunk namefrom="chunkname" case="caseFirstWord">
             <tags>
               <tag><clip pos="1" side="tl" part="tags"/></tag>
             </tags>
