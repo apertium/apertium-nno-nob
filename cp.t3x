@@ -11,6 +11,9 @@
     <def-cat n="adj_n">
       <cat-item name="adj_n"/>
     </def-cat>
+    <def-cat n="adj_adj_n">
+      <cat-item name="adj_adj_n"/>
+    </def-cat>
     <def-cat n="det">
       <cat-item name="det"/>
       <cat-item name="detdd"/>
@@ -124,6 +127,48 @@
           <b pos="1"/>
           <lu>
             <clip pos="2" part="whole"/>
+          </lu>
+        </out>
+      </action>
+    </rule>
+    <rule comment="CHUNK: adj_adj_n
+                   Allow adjectives to become definite, but not indefinite.">
+      <pattern>
+        <pattern-item n="adj_adj_n"/>
+      </pattern>
+      <action>
+        <choose><when>
+          <test><equal><clip pos="1" part="art"/><lit-tag v="ind"/></equal></test>
+          <let><clip pos="1" part="art"/><clip pos="0" part="art"/></let>
+        </when></choose>
+        <let><clip pos="3" part="art"/><clip pos="0" part="art"/></let>
+
+        <choose><when>
+          <test><equal><clip pos="1" part="art"/><lit-tag v="def"/></equal></test>
+          <let><clip pos="1" part="gen"/><lit v=""/></let>
+        </when></choose>
+        
+        <choose><when>
+          <test><equal><clip pos="2" part="art"/><lit-tag v="ind"/></equal></test>
+          <let><clip pos="2" part="art"/><clip pos="0" part="art"/></let>
+        </when></choose>
+        <let><clip pos="3" part="art"/><clip pos="0" part="art"/></let>
+
+        <choose><when>
+          <test><equal><clip pos="2" part="art"/><lit-tag v="def"/></equal></test>
+          <let><clip pos="2" part="gen"/><lit v=""/></let>
+        </when></choose>
+        <out>
+          <lu>
+            <clip pos="1" part="whole"/>
+          </lu>
+          <b pos="1"/>
+          <lu>
+            <clip pos="2" part="whole"/>
+          </lu>
+          <b pos="2"/>
+          <lu>
+            <clip pos="3" part="whole"/>
           </lu>
         </out>
       </action>
