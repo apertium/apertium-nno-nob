@@ -659,14 +659,10 @@
       </pattern>
       <action>
         <call-macro n="switch_cases"><with-param pos="3"/><with-param pos="1"/></call-macro>
-<!--         <call-macro n="modify_case_detpos"><with-param pos="3"/><with-param pos="1"/></call-macro> -->
-	<call-macro n="set_gender2.n.det">
-	  <with-param pos="2"/>
-	  <with-param pos="1"/>
-	</call-macro>
-        
+	<call-macro n="set_gender2.n.det"><with-param pos="2"/><with-param pos="1"/></call-macro>
         <call-macro n="out_det_when_adj"><with-param pos="3"/><with-param pos="1"/></call-macro>
         <call-macro n="out_ndef"><with-param pos="3"/><with-param pos="1"/></call-macro>
+
         <out><b pos="1"/></out>
         <call-macro n="out_gen_prep"><with-param pos="2"/></call-macro>
 
@@ -677,24 +673,20 @@
       </action>
     </rule>
 
-    <rule comment="DETNONPOS NGEN NIND: en katts snute => snuten til ein katt
-                   TODO: en liten katts smarte snute">
+    <rule comment="DETNONPOS NGEN NIND: en katts snute => snuten til ein katt">
       <pattern>
 	<pattern-item n="detnonpos"/>    
 	<pattern-item n="ngen"/>
 	<pattern-item n="nind"/>
       </pattern>
       <action>
-        <call-macro n="set_gender2.n.det"><with-param pos="2"/><with-param pos="1"/></call-macro>
         <call-macro n="switch_cases"><with-param pos="3"/><with-param pos="1"/></call-macro>
-<!--         <call-macro n="modify_case_detpos"><with-param pos="3"/><with-param pos="1"/></call-macro> -->
+        <call-macro n="set_gender2.n.det"><with-param pos="2"/><with-param pos="1"/></call-macro>
+        <call-macro n="out_det_when_adj"><with-param pos="3"/><with-param pos="1"/></call-macro>
         <call-macro n="out_ndef"><with-param pos="3"/><with-param pos="1"/></call-macro>
-        <out>
-          <b pos="1"/>
-        </out>
-        <call-macro n="out_gen_prep">
-          <with-param pos="2"/>
-        </call-macro>
+
+        <out><b pos="1"/></out>
+        <call-macro n="out_gen_prep"><with-param pos="2"/></call-macro>
         <out>
           <chunk>
             <clip pos="1" part="whole"/>

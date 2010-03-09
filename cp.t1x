@@ -8,6 +8,7 @@
     </def-cat>
     <def-cat n="nind">
       <cat-item tags="n.*.*.ind"/>
+      <cat-item tags="n.*.*.ind.gen"/>
     </def-cat>
     <!-- n does not include compound lhs's: -->
     <def-cat n="n">
@@ -28,6 +29,7 @@
     </def-cat>
     <def-cat n="ndef">
       <cat-item tags="n.*.*.def"/>
+      <cat-item tags="n.*.*.def.gen"/>
     </def-cat>
     <def-cat n="ngen">
       <cat-item tags="n.*.*.*.gen"/>
@@ -510,7 +512,8 @@
       </when></choose>
     </def-macro>
 
-    <def-macro n="set_gender1.adj" npar="1">
+    <def-macro n="set_gender1.adj" npar="1"
+               c="arg.1: adj">
       <choose><when>
         <test><or>
           <equal><clip pos="1" side="tl" part="gen"/><lit-tag v="m"/></equal>
@@ -520,9 +523,20 @@
       </when></choose>
     </def-macro>
 
-    <def-macro n="set_gender2.n.adj" npar="2">
-      <!-- arg.1: noun, arg.2: adjective -->
-      <let><clip pos="2" side="tl" part="gen"/><clip pos="1" side="tl" part="gen"/></let>
+    <def-macro n="set_gender2.n.adj" npar="2"
+               c="arg.1: noun, arg.2: adjective
+                  If noun is f, only use noun gender if adj is GD.">
+      <choose>
+        <when><test><equal><clip pos="1" side="tl" part="gen"/><lit-tag v="f"/></equal></test>
+        <choose><when>
+          <test><equal><clip pos="2" side="tl" part="gen"/><lit-tag v="GD"/></equal></test>
+          <let><clip pos="2" side="tl" part="gen"/><clip pos="1" side="tl" part="gen"/></let>
+        </when></choose>
+        </when>
+        <otherwise>
+          <let><clip pos="2" side="tl" part="gen"/><clip pos="1" side="tl" part="gen"/></let>
+        </otherwise>
+      </choose>
       <call-macro n="set_gender1.adj"><with-param pos="2"/></call-macro>
     </def-macro>
 
@@ -1263,12 +1277,11 @@ Requires rather ugly RL prn lemmas in nn.dix, see personal_pronouns__prn pardef"
         <pattern-item n="ngen_time_meas"/>
       </pattern>
       <action>
-        <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
-        <call-macro n="set_gender3">
+        <call-macro n="set_gender2.n.adj">
           <with-param pos="2"/>
           <with-param pos="1"/>
-          <with-param pos="1"/>
         </call-macro>
+        <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
         <out>
           <chunk name="adj_n" case="caseFirstWord">
             <tags>
@@ -1276,12 +1289,7 @@ Requires rather ugly RL prn lemmas in nn.dix, see personal_pronouns__prn pardef"
               <tag><clip pos="2" side="tl" part="tags"/></tag>
             </tags>
             <lu>
-              <clip pos="1" side="tl" part="lemh"/>
-              <clip pos="1" side="tl" part="a_adj"/>
-              <var n="adj_gender"/>
-              <var n="adj_number"/>
-              <var n="adj_defness"/>
-              <clip pos="1" side="tl" part="lemq"/>
+              <clip pos="1" side="tl" part="whole"/>
             </lu>
             <b pos="1"/>
             <lu><clip pos="2" side="tl" part="whole"/></lu>
