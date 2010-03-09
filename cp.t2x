@@ -166,16 +166,7 @@
       <list-item v="kjøkken"/>
     </def-list>
     
-    <def-list n="det_indef">
-      <!-- feels like these should have their own
-           sub-pos... «<det><dem> som kan ha <ind> etter seg på
-           bokmål» -->
-      <list-item v="denne"/>
-      <list-item v="disse"/>
-      <list-item v="dette"/>
-      <list-item v="den"/>
-      <list-item v="de"/>
-    </def-list>
+
     
   </section-def-lists>
 
@@ -483,22 +474,17 @@
 
 
     <def-macro n="set_n_defness" npar="2">
-      <!-- arg.1: noun, arg.2: determiner/adjective
+      <!-- arg.1: noun, arg.2: determiner
            Make sure we have double definiteness marking, eg.:
            disse<def> friheter<ind> => desse<def> fridomane<def>
+           TODO: make sure def. adjectives get def nouns too
       -->
       <choose>
         <when>
           <test>
             <and>
               <equal><clip pos="1" part="art"/><lit-tag v="ind"/></equal>
-              <or>
-                <in caseless="yes"><clip pos="2" part="lem"/><list n="det_indef"/></in>
-                <and>
-                  <begins-with><clip pos="2" part="a_adj"/><lit-tag v="adj"/></begins-with>
-                  <equal><clip pos="2" part="art"/><lit-tag v="def"/></equal>
-                </and>
-              </or>
+              <equal><clip pos="2" part="lemh"/><lit v="detdd"/></equal>
             </and>
           </test>
           <let><clip pos="1" part="art"/><lit-tag v="def"/></let>
