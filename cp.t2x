@@ -114,7 +114,8 @@
 
 
   <section-def-vars>
-    <def-var n="det_gender"/>  
+    <def-var n="caseFirstWord"/>
+    <def-var n="det_gender"/>
     <def-var n="number"/>  
     <def-var n="number_no_sp"/>  
     <def-var n="adj_number"/>  
@@ -172,7 +173,13 @@
 
   <section-def-macros>
 
-    <!-- Macros which set concordance variables: -->
+    <!-- Macros which set concordance variables etc.: -->
+    <def-macro n="switch_cases" npar="2">
+      <let><var n="caseFirstWord"/><get-case-from pos="1"><clip pos="1" part="lemh"/></get-case-from></let>
+      <let><clip pos="1" part="lemh"/><get-case-from pos="2"><clip pos="1" part="lemh"/></get-case-from></let>
+      <modify-case><clip pos="2" part="lemh"/><var n="caseFirstWord"/></modify-case>
+    </def-macro>
+
     <def-macro n="get_case_from_detpos" npar="2">
       <!-- arg.1: possessed noun. arg.2: det.pos, gives typographic case -->
       <choose>
@@ -308,11 +315,8 @@
     <def-macro n="set_gender1" npar="1">
       <!-- arg.1: determiner
 	   - iff sg and GD, take a wild guess and go for m;
-	   - plurals get no gender;
 	   - o/w take gender of target determiner;
-           - if we have sp or nothing, go with pl
       -->
-      <let><var n="det_gender"/><lit v=""/></let>
       <call-macro n="set_number1"><with-param pos="1"/></call-macro>
       <choose>
         <when>
@@ -320,38 +324,19 @@
             <equal><var n="number"/><lit-tag v="sg"/></equal>
             <equal><clip pos="1" part="gen"/><lit-tag v="GD"/></equal>
           </and></test>
-	  <let><var n="det_gender"/><lit-tag v="m"/></let>
+	  <let><clip pos="1" part="gen"/><lit-tag v="m"/></let>
         </when>
-	<when>
-	  <test><equal><var n="number"/><lit-tag v="pl"/></equal></test>
-          <let><var n="det_gender"/><lit v=""/></let>
-	</when>
-	<otherwise>
-	  <let><var n="det_gender"/><clip pos="1" part="gen"/></let>
-	</otherwise>
       </choose>
+      <let><var n="det_gender"/><clip pos="1" part="gen"/></let>
     </def-macro>
 
     
-    <def-macro n="set_gender2.n.det" npar="2">
-      <!-- arg.1: noun, arg.2: determiner (or noun)
-           - if a noun is given as arg.2, use set_gender1 instead (but
-             set_number2 with arg.1); this is just so we can generalise
-             with the POSGEN category
-           - plurals get no gender
-           - if sg/sp (all sp determiners have gender): 
-           +++ default: take gender of target determiner
-           +++ det m:   take gender of target noun unless mf/empty
-           +++ det GD:  take gender of target noun;
-                        but if GD/mf/empty, just take masc to choose Something
-           - No number? No gender.
-           Masculine determiners in bokmål may be used with femininine gender nouns
-           without being marked as such in bidix.
-           Determiners are less ambiguous wrt. number.
-           
-           Note: does not set adj_GND, use set_gender3 or an explicit call to set_adj_GND.
-      -->
-      <let><var n="det_gender"/><lit v=""/></let>
+    <def-macro n="set_gender2.n.det" npar="2"
+               c="arg.1: noun, arg.2: determiner (or noun)
+                  - if a noun is given as arg.2, use set_gender1 instead (but
+                  set_number2 with arg.1); this is just so we can generalise
+                  with the POSGEN category
+           Note: does not set adj_GND, use set_gender3 or an explicit call to set_adj_GND.">
       <choose>
         <when>                            <!-- if arg.2 is a noun: -->
           <test><begins-with><clip pos="2" part="a_nom"/><lit-tag v="n"/></begins-with></test>
@@ -362,57 +347,24 @@
           <call-macro n="set_number2"><with-param pos="1"/><with-param pos="2"/></call-macro>
           <choose>
             <when>
-              <test><equal><var n="number"/><lit-tag v="pl"/></equal></test>
-              <let><var n="det_gender"/><lit v=""/></let>
+              <test><not>
+                <equal><clip pos="1" part="gen"/><lit v=""/></equal>
+              </not></test>
+              <let><clip pos="2" part="gen"/><clip pos="1" part="gen"/></let>
             </when>
-            <when>
-              <test><or>
-                <equal><var n="number"/><lit-tag v="sg"/></equal>
-                <equal><var n="number"/><lit-tag v="sp"/></equal>
-              </or></test>
-              <let><var n="det_gender"/><clip pos="2" part="gen"/></let>
-              <!-- ^^^ sg gender default: determiner gender -->
-              <choose>
-                <when>
-                  <test><not><equal>
-                    <clip pos="1" part="gen"/><clip pos="1" part="gen"/>
-                  </equal></not></test>
-                  <let><var n="det_gender"/><clip pos="1" part="gen"/></let>
-                </when> <!-- ^^^ noun gender change across the translation -->
-              </choose>
-              <choose>
-                <when>
-                  <test><and>
-                    <equal><var n="det_gender"/><lit-tag v="m"/></equal>
-                    <not><equal><clip pos="1" part="gen"/><lit v=""/></equal></not>
-                    <not><equal><clip pos="1" part="gen"/><lit-tag v="mf"/></equal></not>
-                  </and></test>
-                  <let><var n="det_gender"/><clip pos="1" part="gen"/></let>
-                </when>    <!-- ^^^ masc determiner => noun gender unless mf/empty -->
-                <when>
-                  <test><equal><var n="det_gender"/><lit-tag v="GD"/></equal></test>
-                  <let><var n="det_gender"/><clip pos="1" part="gen"/></let>
-                  <!--  ^^^ GD determiner => noun gender -->
-                  <choose>
-                    <when>
-                      <test><or>
-                        <equal><var n="det_gender"/><lit v=""/></equal>
-                        <equal><var n="det_gender"/><lit-tag v="mf"/></equal>
-                      </or></test>
-                      <let><var n="det_gender"/><lit-tag v="m"/></let>
-                    </when> <!-- ^^^ empty/mf noun gender, GD determiner => masc -->
-                  </choose>
-                </when>
-                <when>
-                  <test><equal><var n="det_gender"/><lit v=""/></equal></test>
-                  <let><var n="det_gender"/><clip pos="2" part="gen"/></let>
-                </when> <!-- ^^^ noun had no gender (was eg. np/acr), use det -->
-              </choose>
-            </when>
-            <!-- otherwise: no number, no gender -->
           </choose>
         </otherwise>        
       </choose>
+      <choose>
+        <when>
+          <test><and>
+            <equal><var n="number"/><lit-tag v="sg"/></equal>
+            <equal><clip pos="1" part="gen"/><lit-tag v="GD"/></equal>
+          </and></test>
+	  <let><clip pos="1" part="gen"/><lit-tag v="m"/></let>
+        </when>
+      </choose>
+      <let><var n="det_gender"/><clip pos="1" part="gen"/></let>
     </def-macro>
     <def-macro n="set_adj_GND" npar="1">
       <!-- arg.1: adjective
@@ -484,7 +436,7 @@
           <test>
             <and>
               <equal><clip pos="1" part="art"/><lit-tag v="ind"/></equal>
-              <equal><clip pos="2" part="lemh"/><lit v="detdd"/></equal>
+              <equal caseless="yes"><clip pos="2" part="lemh"/><lit v="detdd"/></equal>
             </and>
           </test>
           <let><clip pos="1" part="art"/><lit-tag v="def"/></let>
@@ -495,7 +447,8 @@
     <!-- Output macros: -->
     <def-macro n="out_det_when_adj" npar="2"
                c="arg.1: adj, arg.2: gives typographic case">
-    <choose><when><test><begins-with><clip pos="1" part="lemh"/><lit v="adj"/></begins-with></test>
+      <choose><when>
+        <test><begins-with><clip pos="1" part="lemh"/><lit v="adj"/></begins-with></test>
         <out><chunk>
           <get-case-from pos="2"><lit v="det"/></get-case-from>
           <lit-tag v="det.dem"/>
@@ -508,7 +461,7 @@
           <var n="number_no_sp"/>
           <lit v="$}"/>
         </chunk><b/></out>
-        </when></choose>
+      </when></choose>
     </def-macro>
     <def-macro n="out_gen_prep" npar="1">
       <!-- arg.1: possessor noun. Note: puts a space _after_ the preposition. -->
@@ -570,37 +523,25 @@
         <test><equal><clip pos="1" part="a_det"/><lit-tag v="det.pos"/></equal></test>
         <out>
           <chunk>
-            <clip pos="1" part="lemh"/>
-            <clip pos="1" part="tags"/>
-            <var n="det_gender"/>
-            <var n="number"/>
-            <clip pos="1" part="chcontent"/>
-            <clip pos="1" part="lemq"/>
+            <clip pos="1" part="whole"/>
           </chunk>
         </out>
-        </when>
-        <otherwise>
-          <call-macro n="out_gen_prep">
-            <with-param pos="1"/>
-          </call-macro>
-          <out>
-            <chunk>
-              <clip pos="1" part="whole"/>
-            </chunk>
-          </out>
-        </otherwise>
+      </when>
+      <otherwise>
+        <call-macro n="out_gen_prep">
+          <with-param pos="1"/>
+        </call-macro>
+        <out>
+          <chunk>
+            <clip pos="1" part="whole"/>
+          </chunk>
+        </out>
+      </otherwise>
       </choose>  
     </def-macro>
 
     <def-macro n="out_sin" npar="1">
       <call-macro n="set_gender1"><with-param pos="1"/></call-macro>
-      <choose><when>
-        <test><or>
-          <equal><var n="number"/><lit-tag v="sp"/></equal>
-          <equal><var n="number"/><lit v=""/></equal>
-        </or></test>
-        <let><var n="det_gender"/><lit v=""/></let>
-      </when></choose>
       <out><chunk>
         <lit v="det"/>
         <var n="det_gender"/>
@@ -660,7 +601,6 @@
           <chunk>
             <clip pos="1" part="whole"/>
           </chunk>
-          <b/> 
         </out>
       </action>
     </rule>
@@ -670,7 +610,7 @@
         <pattern-item n="ngen"/>
       </pattern>
       <action>
-        <let><clip pos="1" part="gen"/><clip pos="2" part="gen"/></let>
+        <call-macro n="set_gender2.n.det"><with-param pos="2"/><with-param pos="1"/></call-macro>
         <out>
           <chunk>
             <clip pos="1" part="whole"/>
@@ -696,7 +636,8 @@
         <pattern-item n="nind"/>
       </pattern>
       <action>
-        <call-macro n="modify_case_detpos"><with-param pos="2"/><with-param pos="1"/></call-macro>
+        <call-macro n="switch_cases"><with-param pos="2"/><with-param pos="1"/></call-macro>
+<!--         <call-macro n="modify_case_detpos"><with-param pos="2"/><with-param pos="1"/></call-macro> -->
         <call-macro n="set_gender2.n.det"><with-param pos="2"/><with-param pos="1"/></call-macro>
 
         <call-macro n="out_det_when_adj"><with-param pos="2"/><with-param pos="1"/></call-macro>
@@ -716,7 +657,8 @@
 	<pattern-item n="nind"/>
       </pattern>
       <action>
-        <call-macro n="modify_case_detpos"><with-param pos="3"/><with-param pos="1"/></call-macro>
+        <call-macro n="switch_cases"><with-param pos="3"/><with-param pos="1"/></call-macro>
+<!--         <call-macro n="modify_case_detpos"><with-param pos="3"/><with-param pos="1"/></call-macro> -->
 	<call-macro n="set_gender2.n.det">
 	  <with-param pos="2"/>
 	  <with-param pos="1"/>
@@ -743,7 +685,8 @@
       </pattern>
       <action>
         <call-macro n="set_gender2.n.det"><with-param pos="2"/><with-param pos="1"/></call-macro>
-        <call-macro n="modify_case_detpos"><with-param pos="3"/><with-param pos="1"/></call-macro>
+        <call-macro n="switch_cases"><with-param pos="3"/><with-param pos="1"/></call-macro>
+<!--         <call-macro n="modify_case_detpos"><with-param pos="3"/><with-param pos="1"/></call-macro> -->
         <call-macro n="out_ndef"><with-param pos="3"/><with-param pos="1"/></call-macro>
         <out>
           <b pos="1"/>
@@ -751,7 +694,6 @@
         <call-macro n="out_gen_prep">
           <with-param pos="2"/>
         </call-macro>
-        <let><clip pos="1" part="gen"/><clip pos="2" part="gen"/></let>
         <out>
           <chunk>
             <clip pos="1" part="whole"/>
@@ -770,7 +712,7 @@
         <pattern-item n="detpos"/>
       </pattern>
       <action>
-        <let><clip pos="2" part="gen"/><clip pos="1" part="gen"/></let>
+        <call-macro n="set_gender2.n.det"><with-param pos="1"/><with-param pos="2"/></call-macro>
         <out>
           <chunk>
 	    <clip pos="1" part="whole"/>
@@ -794,7 +736,7 @@
         <pattern-item n="nom"/>
       </pattern>
       <action>
-        <let><clip pos="1" part="gen"/><clip pos="2" part="gen"/></let>
+        <call-macro n="set_gender2.n.det"><with-param pos="2"/><with-param pos="1"/></call-macro>
         <call-macro n="set_n_defness"><with-param pos="2"/><with-param pos="1"/></call-macro>
         <out>
           <chunk>
@@ -808,7 +750,20 @@
       </action>
     </rule>
 
-    
+    <rule comment="DET: en => ein
+		   Frequency is on our side, but politically incorrect..hmm..">
+      <pattern>
+        <pattern-item n="det"/>
+      </pattern>
+      <action>
+        <call-macro n="set_gender1"><with-param pos="1"/></call-macro>
+        <out>
+          <chunk>
+            <clip pos="1" part="whole"/>
+          </chunk>
+        </out>
+      </action>
+    </rule>
     
   </section-rules>  
 </interchunk>
