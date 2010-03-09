@@ -335,24 +335,37 @@
         </when>
       </choose>      
     </def-macro>
-    <def-macro n="get_case_from_detpos" npar="2">
-      <!-- arg.1: possessed noun. arg.2: det.pos, gives typographic case
-      TODO!!-->
+    <def-macro n="switch_cases" npar="2">
       <choose>
         <when>
-          <test>
+          <test><not>
             <and>
               <equal><clip pos="2" side="tl" part="lemh"/><lit v="De"/></equal>
               <equal><clip pos="2" side="tl" part="a_det"/><lit-tag v="det.pos"/></equal>
               <equal><clip pos="2" side="tl" part="persona"/><lit-tag v="p2"/></equal>
             </and>
-          </test>
-          <let><var n="lemh"/><clip pos="1" side="tl" part="lemh"/></let>
+          </not></test>
+          <let><var n="caseFirstWord"/><get-case-from pos="1"><clip pos="1" side="tl" part="lemh"/></get-case-from></let>
+          <let><clip pos="1" side="tl" part="lemh"/><get-case-from pos="2"><clip pos="1" side="tl" part="lemh"/></get-case-from></let>
+          <modify-case><clip pos="2" side="tl" part="lemh"/><var n="caseFirstWord"/></modify-case>
         </when>
-        <otherwise>
-          <let><var n="lemh"/><get-case-from pos="2"><clip pos="1" side="tl" part="lemh"/></get-case-from></let>
-        </otherwise>
-      </choose>      
+      </choose>
+    </def-macro>
+    <def-macro n="set_caseFirstWord2" npar="2">
+      <!-- arg.1: possessed noun. arg.2: det.pos, gives typographic case -->
+      <choose>
+        <when>
+          <test><not>
+            <and>
+              <equal><clip pos="2" side="tl" part="lemh"/><lit v="De"/></equal>
+              <equal><clip pos="2" side="tl" part="a_det"/><lit-tag v="det.pos"/></equal>
+              <equal><clip pos="2" side="tl" part="persona"/><lit-tag v="p2"/></equal>
+            </and>
+          </not></test>
+          <let><var n="caseFirstWord"/><get-case-from pos="2"><lit v="aa"/></get-case-from></let>
+          <modify-case><clip pos="1" side="tl" part="lemh"/><lit v="aa"/></modify-case>
+        </when>
+      </choose>
     </def-macro>
 
 
@@ -497,69 +510,20 @@
       </when></choose>
     </def-macro>
 
-    <def-macro n="set_adj_GND" npar="1">
-      <!-- arg.1: adjective
-           
-           Assumes that number and det_gender are set! Only make changes
-           for GD-marked adjectives.
-
-           adj_gender is either nt, f or mf. Most adjectives only have
-           nt or mf forms, some also have an f form. These we need to
-           mark in bidix (nb <mf> => <GD>, nb <f> => <f>). <GD> turns
-           into noun gender (or <mf> as fallback); however, we never
-           use nn <m> so any <m> noun turns into <mf> adj_gender.
-      -->
-      <let><var n="adj_gender"/><clip pos="1" side="tl" part="gen"/></let>
-      <let><var n="adj_number"/><clip pos="1" side="tl" part="nbr"/></let>
-      <let><var n="adj_defness"/><clip pos="1" side="tl" part="art"/></let>
-
+    <def-macro n="set_gender1.adj" npar="1">
       <choose><when>
-          <test><equal><var n="adj_gender"/><lit-tag v="GD"/></equal></test>
-          
-          <call-macro n="set_adj_number"><with-param pos="1"/></call-macro>
-          
-          <choose><when>
-            <test><equal><var n="adj_number"/><lit-tag v="sg"/></equal></test>
-            <choose><when>
-              <test><not><equal><var n="det_gender"/><lit v=""/></equal></not></test>            
-              <let><var n="adj_gender"/><var n="det_gender"/></let>
-            </when></choose>
-            <choose><when>
-              <test><or>
-                <equal><var n="adj_gender"/><lit-tag v="m"/></equal>
-                <equal><var n="adj_gender"/><lit-tag v="GD"/></equal>
-              </or></test>
-              <let><var n="adj_gender"/><lit-tag v="mf"/></let>
-            </when></choose>
-            <let><var n="adj_defness"/><lit-tag v="ind"/></let>
-            <choose><when>
-              <test><equal><var n="adj_gender"/><lit v=""/></equal></test>            
-              <let><var n="adj_defness"/><lit-tag v="sg"/></let>
-            </when></choose>
-          </when></choose>
-          
-          <choose><when>
-            <test><equal><var n="adj_number"/><lit-tag v="pl"/></equal></test>
-            <let><var n="adj_gender"/><lit v=""/></let>
-            <choose><when>
-              <test><equal><var n="adj_defness"/><lit-tag v="ind"/></equal></test>            
-              <let><var n="adj_defness"/><lit v=""/></let>
-            </when></choose>
-          </when></choose>
+        <test><or>
+          <equal><clip pos="1" side="tl" part="gen"/><lit-tag v="m"/></equal>
+          <equal><clip pos="1" side="tl" part="gen"/><lit-tag v="GD"/></equal>
+        </or></test>
+        <let><clip pos="1" side="tl" part="gen"/><lit-tag v="mf"/></let>
       </when></choose>
-
     </def-macro>
 
     <def-macro n="set_gender2.n.adj" npar="2">
       <!-- arg.1: noun, arg.2: adjective -->
       <let><clip pos="2" side="tl" part="gen"/><clip pos="1" side="tl" part="gen"/></let>
-      <choose><when>
-        <test><or>
-          <equal><clip pos="2" side="tl" part="gen"/><lit-tag v="m"/></equal>
-          <equal><clip pos="2" side="tl" part="gen"/><lit-tag v="GD"/></equal>
-        </or></test>
-        <let><clip pos="2" side="tl" part="gen"/><lit-tag v="mf"/></let>
-      </when></choose>
+      <call-macro n="set_gender1.adj"><with-param pos="2"/></call-macro>
     </def-macro>
 
 
@@ -656,7 +620,7 @@
            <m> so any <m> noun turns into <mf> adj_gender.
       -->      
       <call-macro n="set_gender2.n.det"><with-param pos="1"/><with-param pos="2"/></call-macro>
-      <call-macro n="set_adj_GND"><with-param pos="3"/></call-macro>
+      <call-macro n="set_gender2.n.adj"><with-param pos="3"/><with-param pos="1"/></call-macro>
     </def-macro>
 
 
@@ -700,17 +664,16 @@
       <!-- arg.1: possessed noun. arg.2 gives typographic case
            
            Strip case, add definiteness.  -->
-      <call-macro n="get_case_from_detpos">
+      <call-macro n="set_caseFirstWord2">
         <with-param pos="1"/>
         <with-param pos="2"/>
       </call-macro>
       <let><clip pos="1" side="tl" part="art"/><lit-tag v="def"/></let>
-      <call-macro n="set_caseFirstWord"><with-param pos="2"/></call-macro>
       <out>
         <chunk name="n" case="caseFirstWord">
           <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
           <lu>
-            <var n="lemh"/>
+            <clip pos="1" side="tl" part="lemh"/>
             <clip pos="1" side="tl" part="a_nom"/>
             <clip pos="1" side="tl" part="gen"/>
             <clip pos="1" side="tl" part="nbr"/>
@@ -763,6 +726,7 @@
            arg.2: gives case
            Assumes no variables.
            Turns eg. "min" into "eg", "naboens" into "naboen".
+           Strips case both from chunk and word.
       -->
       <choose>
         <when>
@@ -782,33 +746,19 @@
         </when>
       <otherwise>
         <call-macro n="set_caseFirstWord"><with-param pos="2"/></call-macro>
+        <let><clip pos="1" side="tl" part="cas"/><lit v=""/></let>
         <out>
           <chunk name="n" case="caseFirstWord">
             <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
             <lu>
               <get-case-from pos="2"><clip pos="1" side="tl" part="lemh"/></get-case-from>
-              <clip pos="1" side="tl" part="a_nom"/>
-              <clip pos="1" side="tl" part="gen"/>
-              <clip pos="1" side="tl" part="nbr"/>
-              <clip pos="1" side="tl" part="art"/>
+              <clip pos="1" side="tl" part="tags"/>
               <clip pos="1" side="tl" part="lemq"/>
             </lu>
           </chunk>
         </out>
       </otherwise>
       </choose>  
-    </def-macro>
-
-    <def-macro n="out_adj" npar="1">
-      <call-macro n="set_adj_GND"><with-param pos="1"/></call-macro>
-      <out><lu>
-        <clip pos="1" side="tl" part="lemh"/>
-        <clip pos="1" side="tl" part="a_adj"/>
-        <var n="adj_gender"/>
-        <var n="adj_number"/>
-        <var n="adj_defness"/>
-        <clip pos="1" side="tl" part="lemq"/>
-      </lu></out>
     </def-macro>
 
     <def-macro n="out_cp_lhs" npar="1">
@@ -1223,6 +1173,10 @@ Requires rather ugly RL prn lemmas in nn.dix, see personal_pronouns__prn pardef"
         <pattern-item n="vblexinf"/>
       </pattern>
       <action>
+        <call-macro n="switch_cases">          
+	  <with-param pos="2"/>
+	  <with-param pos="1"/>
+        </call-macro>
         <call-macro n="out_ndef">
 	  <with-param pos="2"/>
 	  <with-param pos="1"/>
@@ -1250,7 +1204,7 @@ Requires rather ugly RL prn lemmas in nn.dix, see personal_pronouns__prn pardef"
               <chunk name="vblex" case="caseFirstWord">
                 <tags><tag><lit-tag v="TODO"/></tag></tags>
                 <lu>
-                  <lit v="bli"/>	    
+                  <lit v="bli"/>
                   <lit-tag v="vblex.pres"/>
                 </lu>
               </chunk>
@@ -1455,6 +1409,28 @@ Requires rather ugly RL prn lemmas in nn.dix, see personal_pronouns__prn pardef"
               <clip pos="2" side="tl" part="nbr"/>
               <clip pos="2" side="tl" part="art"/>
               <clip pos="2" side="tl" part="lemq"/>
+            </lu>
+          </chunk>
+        </out>
+      </action>
+    </rule>
+
+    <rule comment="ADJ">
+      <pattern>
+        <pattern-item n="adj"/>
+      </pattern>
+      <action>
+        <call-macro n="set_gender1.adj">
+          <with-param pos="1"/>
+        </call-macro>
+        <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
+        <out>
+          <chunk name="adj" case="caseFirstWord">
+            <tags>
+              <tag><clip pos="1" side="tl" part="tags"/></tag>
+            </tags>
+            <lu>
+              <clip pos="1" side="tl" part="whole"/>
             </lu>
           </chunk>
         </out>

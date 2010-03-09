@@ -446,21 +446,22 @@
 
     <!-- Output macros: -->
     <def-macro n="out_det_when_adj" npar="2"
-               c="arg.1: adj, arg.2: gives typographic case">
+               c="arg.1: adj, arg.2: gives typographic case to adj">
       <choose><when>
-        <test><begins-with><clip pos="1" part="lemh"/><lit v="adj"/></begins-with></test>
+        <test><begins-with caseless="yes"><clip pos="1" part="lemh"/><lit v="adj"/></begins-with></test>
         <out><chunk>
-          <get-case-from pos="2"><lit v="det"/></get-case-from>
+          <get-case-from pos="1"><lit v="det"/></get-case-from>
           <lit-tag v="det.dem"/>
           <var n="det_gender"/>
           <var n="number_no_sp"/>
           <lit v="{^"/>
-          <get-case-from pos="2"><lit v="den"/></get-case-from>
+          <get-case-from pos="1"><lit v="den"/></get-case-from>
           <lit-tag v="det.dem"/>
           <var n="det_gender"/>
           <var n="number_no_sp"/>
           <lit v="$}"/>
         </chunk><b/></out>
+        <let><clip pos="1" part="lemh"/><get-case-from pos="2"><clip pos="1" part="lemh"/></get-case-from></let>
       </when></choose>
     </def-macro>
     <def-macro n="out_gen_prep" npar="1">
