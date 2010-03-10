@@ -126,19 +126,29 @@
     <def-cat n="adj">
       <cat-item tags="adj.*"/>
     </def-cat>
-    <def-cat n="adjdef">
-      <cat-item tags="adj.ord.posi.sg.def"/>
-      <cat-item tags="adj.*.sg.def"/>
-      <cat-item tags="adj.sup.def"/>
+    <def-cat n="preadj-adv">
+      <cat-item lemma="ikke" tags="adv"/>
+      <cat-item lemma="for" tags="adv"/>
+      <cat-item lemma="altfor" tags="adv"/>
+      <cat-item lemma="forholdsvis" tags="adv"/>
+      <cat-item lemma="forhåpentlig" tags="adv"/>
+      <cat-item lemma="forholdsvis" tags="adv"/>
+      <cat-item lemma="hvor" tags="adv"/>
+      <cat-item lemma="kanon" tags="adv"/>
+      <cat-item lemma="sørpe" tags="adv"/>
+      <cat-item lemma="bom" tags="adv"/>
+      <cat-item lemma="dønn" tags="adv"/>
+      <cat-item lemma="eitrende" tags="adv"/>
+      <cat-item lemma="forhakkende" tags="adv"/>
+      <cat-item lemma="fullstendig" tags="adv"/>
+      <cat-item lemma="delvis" tags="adv"/>
     </def-cat>
     <def-cat n="adjind">
-      <cat-item tags="adj.ord.posi.*.*.ind"/>
-      <cat-item tags="adj.ord.posi.pl"/>
       <cat-item tags="adj.*.*.*.ind"/>
       <cat-item tags="adj.*.pl"/>
       <cat-item tags="adj.comp"/>
-      <cat-item tags="adj.pprs"/>
-      <cat-item tags="adj.sup.ind"/>
+      <cat-item tags="adj.pprs"/>                              <!--hvor truende-->
+      <cat-item tags="adj.sup.ind"/>                           <!---->
     </def-cat>
     <def-cat n="adv">
       <cat-item tags="adv"/>
@@ -525,18 +535,20 @@
 
     <def-macro n="set_gender2.n.adj" npar="2"
                c="arg.1: noun, arg.2: adjective
-                  If noun is f, only use noun gender if adj is GD.">
-      <choose>
-        <when><test><equal><clip pos="1" side="tl" part="gen"/><lit-tag v="f"/></equal></test>
-        <choose><when>
-          <test><equal><clip pos="2" side="tl" part="gen"/><lit-tag v="GD"/></equal></test>
-          <let><clip pos="2" side="tl" part="gen"/><clip pos="1" side="tl" part="gen"/></let>
-        </when></choose>
-        </when>
-        <otherwise>
-          <let><clip pos="2" side="tl" part="gen"/><clip pos="1" side="tl" part="gen"/></let>
-        </otherwise>
-      </choose>
+                  Only take noun gender if adj is GD (in which case we may have adj.f in nn.dix),
+                  or if noun has changed gender (if not GD, don't allow adj.f as target).
+                  (We want to allow 'helt.nt svart.mf katt.m', no gender change nor GD on 'helt',
+                   but o/w make sure adj corresponds: 'helt.nt forfatterskap => heil.mf forfattarskap')">
+      <choose><when>
+        <test><or>
+          <equal><clip pos="2" side="tl" part="gen"/><lit-tag v="GD"/></equal>
+          <and>
+            <not><equal><clip pos="1" side="sl" part="gen"/><clip pos="1" side="tl" part="gen"/></equal></not>
+            <not><equal><clip pos="1" side="tl" part="gen"/><lit-tag v="f"/></equal></not>
+          </and>
+        </or></test>
+        <let><clip pos="2" side="tl" part="gen"/><clip pos="1" side="tl" part="gen"/></let>
+      </when></choose>
       <call-macro n="set_gender1.adj"><with-param pos="2"/></call-macro>
     </def-macro>
 
@@ -748,7 +760,7 @@
           <call-macro n="set_caseFirstWord"><with-param pos="2"/></call-macro>
           <out>
             <chunk name="prn" case="caseFirstWord">
-              <tags><tag><lit-tag v="TODO"/></tag></tags>
+              <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
               <lu>
                 <clip pos="1" side="tl" part="lemh"/>
                 <lit-tag v="prn"/>
@@ -810,7 +822,7 @@
           </equal></test>
           <out>
             <chunk name="part_vblex" case="caseFirstWord">
-              <tags><tag><lit-tag v="TODO"/></tag></tags>
+              <tags><tag><clip pos="2" side="tl" part="tags"/></tag></tags>
               <lu><clip pos="1" side="tl" part="whole"/></lu>
               <b pos="1"/>
               <lu><clip pos="2" side="tl" part="whole"/></lu>
@@ -820,7 +832,7 @@
         <otherwise>
           <out>
             <chunk name="part_vblex_vblex" case="caseFirstWord">
-              <tags><tag><lit-tag v="TODO"/></tag></tags>
+              <tags><tag><clip pos="2" side="tl" part="tags"/></tag></tags>
               <lu><clip pos="1" side="tl" part="whole"/></lu>
               <b pos="1"/>
               <lu>
@@ -853,7 +865,7 @@
           </equal></test>
           <out>
             <chunk name="part_adv_vblex" case="caseFirstWord">
-              <tags><tag><lit-tag v="TODO"/></tag></tags>
+              <tags><tag><clip pos="3" side="tl" part="tags"/></tag></tags>
               <lu><clip pos="1" side="tl" part="whole"/></lu>
               <b pos="1"/>
               <lu><clip pos="2" side="tl" part="whole"/></lu>
@@ -865,7 +877,7 @@
         <otherwise>
           <out>
             <chunk name="part_adv_vblex_vblex" case="caseFirstWord">
-              <tags><tag><lit-tag v="TODO"/></tag></tags>
+              <tags><tag><clip pos="3" side="tl" part="tags"/></tag></tags>
               <lu><clip pos="1" side="tl" part="whole"/></lu>
               <b pos="1"/>
               <lu><clip pos="2" side="tl" part="whole"/></lu>
@@ -901,7 +913,7 @@
           </equal></test>
           <out>
             <chunk name="part_adv_adv_vblex" case="caseFirstWord">
-              <tags><tag><lit-tag v="TODO"/></tag></tags>
+              <tags><tag><clip pos="4" side="tl" part="tags"/></tag></tags>
               <lu><clip pos="1" side="tl" part="whole"/></lu>
               <b pos="1"/>
               <lu><clip pos="2" side="tl" part="whole"/></lu>
@@ -915,7 +927,7 @@
         <otherwise>
           <out>
             <chunk name="part_adv_adv_vblex_vblex" case="caseFirstWord">
-              <tags><tag><lit-tag v="TODO"/></tag></tags>
+              <tags><tag><clip pos="4" side="tl" part="tags"/></tag></tags>
               <lu><clip pos="1" side="tl" part="whole"/></lu>
               <b pos="1"/>
               <lu><clip pos="2" side="tl" part="whole"/></lu>
@@ -939,7 +951,7 @@
       </action>
     </rule>
 
-    <rule comment="VBLEX.INF.PASS: kan leses => kan lesast">
+    <rule comment="VBLEX.INF.PASS: [kan] leses => [kan] lesast">
       <pattern>
         <pattern-item n="vblexinfpass"/>
       </pattern>
@@ -953,7 +965,7 @@
         </otherwise></choose>
         <out>
           <chunk name="vblex" case="caseFirstWord">
-            <tags><tag><lit-tag v="TODO"/></tag></tags>
+            <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
             <lu>
               <clip pos="1" side="tl" part="lemh"/>
               <clip pos="1" side="tl" part="a_verb"/>
@@ -983,7 +995,7 @@ If we translate into a pstv verb, don't change anything.">
           </equal></test>
           <out>
             <chunk name="vblex" case="caseFirstWord">
-              <tags><tag><lit-tag v="TODO"/></tag></tags>
+              <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
               <lu><clip pos="1" side="tl" part="whole"/></lu>
             </chunk>
           </out>
@@ -991,7 +1003,7 @@ If we translate into a pstv verb, don't change anything.">
         <otherwise>
           <out>
             <chunk name="vblex_vblex" case="caseFirstWord">
-              <tags><tag><lit-tag v="TODO"/></tag></tags>
+              <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
               <lu>
                 <get-case-from pos="1"><lit v="bli"/></get-case-from>	    
                 <lit-tag v="vblex.pres"/>
@@ -1023,7 +1035,7 @@ If we translate into a pstv verb, don't change anything.">
             </equal></test>
             <out>
               <chunk name="vblex_adv" case="caseFirstWord">
-                <tags><tag><lit-tag v="TODO"/></tag></tags>
+                <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
                 <lu><clip pos="1" side="tl" part="whole"/></lu><b pos="1"/>
                 <lu><clip pos="2" side="tl" part="whole"/></lu>
               </chunk>
@@ -1032,7 +1044,7 @@ If we translate into a pstv verb, don't change anything.">
           <otherwise>
             <out>
               <chunk name="vblex_adv_vblex" case="caseFirstWord">
-                <tags><tag><lit-tag v="TODO"/></tag></tags>
+                <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
                 <lu>
                   <get-case-from pos="1"><lit v="bli"/></get-case-from>	    
                   <lit-tag v="vblex.pres"/>
@@ -1066,7 +1078,7 @@ If we translate into a pstv verb, don't change anything.">
           </equal></test>
           <out>
             <chunk name="vblex_adv_adv" case="caseFirstWord">
-              <tags><tag><lit-tag v="TODO"/></tag></tags>
+              <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
               <lu><clip pos="1" side="tl" part="whole"/></lu><b pos="1"/>
               <lu><clip pos="2" side="tl" part="whole"/></lu><b pos="2"/>
               <lu><clip pos="3" side="tl" part="whole"/></lu>
@@ -1076,7 +1088,7 @@ If we translate into a pstv verb, don't change anything.">
         <otherwise>
           <out>
             <chunk name="vblex_adv_adv_vblex" case="caseFirstWord">
-              <tags><tag><lit-tag v="TODO"/></tag></tags>
+              <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
               <lu>
                 <get-case-from pos="1"><lit v="bli"/></get-case-from>	    
                 <lit-tag v="vblex.pres"/>
@@ -1110,7 +1122,7 @@ If we translate into a pstv verb, don't change anything.">
         <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
         <out>
           <chunk name="vblex_adv_adv_lemq" case="caseFirstWord">
-            <tags><tag><lit-tag v="TODO"/></tag></tags>
+            <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
             <lu>
               <clip pos="1" side="tl" part="lemh"/>
               <clip pos="1" side="tl" part="a_verb"/>
@@ -1136,7 +1148,7 @@ If we translate into a pstv verb, don't change anything.">
         <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
         <out>
           <chunk name="vblex_adv_lemq" case="caseFirstWord">
-            <tags><tag><lit-tag v="TODO"/></tag></tags>
+            <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
             <lu>
               <clip pos="1" side="tl" part="lemh"/>
               <clip pos="1" side="tl" part="a_verb"/>
@@ -1160,15 +1172,13 @@ If we translate into a pstv verb, don't change anything.">
         <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
         <out>
           <chunk name="vblex_adv_lemq" case="caseFirstWord">
-            <tags><tag><lit-tag v="TODO"/></tag></tags>
+            <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
             <lu>
               <clip pos="1" side="tl" part="lemh"/>
               <clip pos="1" side="tl" part="a_verb"/>
               <clip pos="1" side="tl" part="temps"/>
             </lu>
-            <lu>
-              <clip pos="1" side="tl" part="lemq"/>
-            </lu>
+            <lu><clip pos="1" side="tl" part="lemq"/></lu>
           </chunk>
         </out>
       </action>
@@ -1216,7 +1226,7 @@ Requires rather ugly RL prn lemmas in nn.dix, see personal_pronouns__prn pardef"
             </test>
             <out>
               <chunk name="vblex" case="caseFirstWord">
-                <tags><tag><lit-tag v="TODO"/></tag></tags>
+                <tags><tag><clip pos="4" side="tl" part="tags"/></tag></tags>
                 <lu>
                   <lit v="bli"/>
                   <lit-tag v="vblex.pres"/>
@@ -1224,7 +1234,7 @@ Requires rather ugly RL prn lemmas in nn.dix, see personal_pronouns__prn pardef"
               </chunk>
               <b pos="3"/>
               <chunk name="vblex" case="caseFirstWord">
-                <tags><tag><lit-tag v="TODO"/></tag></tags>
+                <tags><tag><clip pos="4" side="tl" part="tags"/></tag></tags>
                 <lu>	    
                   <clip pos="4" side="tl" part="lemh"/>
                   <clip pos="4" side="tl" part="a_verb"/>
@@ -1238,7 +1248,7 @@ Requires rather ugly RL prn lemmas in nn.dix, see personal_pronouns__prn pardef"
             <out>
               <b pos="3"/>
               <chunk name="vblex" case="caseFirstWord">
-                <tags><tag><lit-tag v="TODO"/></tag></tags>
+                <tags><tag><clip pos="4" side="tl" part="tags"/></tag></tags>
                 <lu>	    
                   <clip pos="4" side="tl" part="lemh"/>
                   <clip pos="4" side="tl" part="a_verb"/>
@@ -1358,10 +1368,31 @@ Requires rather ugly RL prn lemmas in nn.dix, see personal_pronouns__prn pardef"
       </action>
     </rule>
 
-    <rule comment="ADJIND NIND">
+    <rule comment="preadj-ADV ADJIND
+                   Ikkje: «altså kvinnelig [vektløfting]»">
       <pattern>
+        <pattern-item n="preadj-adv"/>
         <pattern-item n="adjind"/>
-        <pattern-item n="nind"/>
+      </pattern>
+      <action>
+        <call-macro n="set_gender1.adj">
+          <with-param pos="2"/>
+        </call-macro>
+        <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
+        <out>
+          <chunk name="adv_adj" case="caseFirstWord">
+            <tags><tag><clip pos="2" side="tl" part="tags"/></tag></tags>
+            <lu><clip pos="1" side="tl" part="whole"/></lu>
+            <b pos="1"/>
+            <lu><clip pos="2" side="tl" part="whole"/></lu>
+          </chunk>
+        </out>
+      </action>
+    </rule>
+    <rule comment="ADJ N">
+      <pattern>
+        <pattern-item n="adj"/>
+        <pattern-item n="n"/>
       </pattern>
       <action>
         <call-macro n="set_gender2.n.adj">
@@ -1371,12 +1402,8 @@ Requires rather ugly RL prn lemmas in nn.dix, see personal_pronouns__prn pardef"
         <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
         <out>
           <chunk name="adj_n" case="caseFirstWord">
-            <tags>
-              <tag><clip pos="2" side="tl" part="tags"/></tag>
-            </tags>
-            <lu>
-              <clip pos="1" side="tl" part="whole"/>
-            </lu>
+            <tags><tag><clip pos="2" side="tl" part="tags"/></tag></tags>
+            <lu><clip pos="1" side="tl" part="whole"/></lu>
             <b pos="1"/>
             <lu>
               <clip pos="2" side="tl" part="lemh"/>
@@ -1390,107 +1417,22 @@ Requires rather ugly RL prn lemmas in nn.dix, see personal_pronouns__prn pardef"
         </out>
       </action>
     </rule>
-    <rule comment="ADJDEF N">
+    <rule comment="ADJ ADJ N">
       <pattern>
-        <pattern-item n="adjdef"/>
+        <pattern-item n="adj"/>
+        <pattern-item n="adj"/>
         <pattern-item n="n"/>
       </pattern>
       <action>
-        <call-macro n="set_gender2.n.adj">
-          <with-param pos="2"/>
-          <with-param pos="1"/>
-        </call-macro>
-        <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
-        <out>
-          <chunk name="adj_n" case="caseFirstWord">
-            <tags>
-              <tag><clip pos="2" side="tl" part="tags"/></tag>
-            </tags>
-            <lu>
-              <clip pos="1" side="tl" part="whole"/>
-            </lu>
-            <b pos="1"/>
-            <lu>
-              <clip pos="2" side="tl" part="lemh"/>
-              <clip pos="2" side="tl" part="a_nom"/>
-              <clip pos="2" side="tl" part="gen"/>
-              <clip pos="2" side="tl" part="nbr"/>
-              <clip pos="2" side="tl" part="art"/>
-              <clip pos="2" side="tl" part="lemq"/>
-            </lu>
-          </chunk>
-        </out>
-      </action>
-    </rule>
-    <rule comment="ADJIND ADJIND NIND">
-      <pattern>
-        <pattern-item n="adjind"/>
-        <pattern-item n="adjind"/>
-        <pattern-item n="nind"/>
-      </pattern>
-      <action>
-        <call-macro n="set_gender2.n.adj">
-          <with-param pos="3"/>
-          <with-param pos="1"/>
-        </call-macro>
-        <call-macro n="set_gender2.n.adj">
-          <with-param pos="3"/>
-          <with-param pos="2"/>
-        </call-macro>
+        <call-macro n="set_gender2.n.adj"><with-param pos="3"/><with-param pos="1"/></call-macro>
+        <call-macro n="set_gender2.n.adj"><with-param pos="3"/><with-param pos="2"/></call-macro>
         <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
         <out>
           <chunk name="adj_adj_n" case="caseFirstWord">
-            <tags>
-              <tag><clip pos="3" side="tl" part="tags"/></tag>
-            </tags>
-            <lu>
-              <clip pos="1" side="tl" part="whole"/>
-            </lu>
+            <tags><tag><clip pos="3" side="tl" part="tags"/></tag></tags>
+            <lu><clip pos="1" side="tl" part="whole"/></lu>
             <b pos="1"/>
-            <lu>
-              <clip pos="2" side="tl" part="whole"/>
-            </lu>
-            <b pos="2"/>
-            <lu>
-              <clip pos="3" side="tl" part="lemh"/>
-              <clip pos="3" side="tl" part="a_nom"/>
-              <clip pos="3" side="tl" part="gen"/>
-              <clip pos="3" side="tl" part="nbr"/>
-              <clip pos="3" side="tl" part="art"/>
-              <clip pos="3" side="tl" part="lemq"/>
-            </lu>
-          </chunk>
-        </out>
-      </action>
-    </rule>
-    <rule comment="ADJDEF ADJDEF N">
-      <pattern>
-        <pattern-item n="adjdef"/>
-        <pattern-item n="adjdef"/>
-        <pattern-item n="n"/>
-      </pattern>
-      <action>
-        <call-macro n="set_gender2.n.adj">
-          <with-param pos="3"/>
-          <with-param pos="1"/>
-        </call-macro>
-        <call-macro n="set_gender2.n.adj">
-          <with-param pos="3"/>
-          <with-param pos="2"/>
-        </call-macro>
-        <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
-        <out>
-          <chunk name="adj_adj_n" case="caseFirstWord">
-            <tags>
-              <tag><clip pos="3" side="tl" part="tags"/></tag>
-            </tags>
-            <lu>
-              <clip pos="1" side="tl" part="whole"/>
-            </lu>
-            <b pos="1"/>
-            <lu>
-              <clip pos="2" side="tl" part="whole"/>
-            </lu>
+            <lu><clip pos="2" side="tl" part="whole"/></lu>
             <b pos="2"/>
             <lu>
               <clip pos="3" side="tl" part="lemh"/>
@@ -1516,12 +1458,8 @@ Requires rather ugly RL prn lemmas in nn.dix, see personal_pronouns__prn pardef"
         <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
         <out>
           <chunk name="adj" case="caseFirstWord">
-            <tags>
-              <tag><clip pos="1" side="tl" part="tags"/></tag>
-            </tags>
-            <lu>
-              <clip pos="1" side="tl" part="whole"/>
-            </lu>
+            <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
+            <lu><clip pos="1" side="tl" part="whole"/></lu>
           </chunk>
         </out>
       </action>
@@ -1543,34 +1481,26 @@ Requires rather ugly RL prn lemmas in nn.dix, see personal_pronouns__prn pardef"
         <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
         <out>
           <chunk namefrom="chunkname" case="caseFirstWord">
-            <tags>
-              <tag><clip pos="1" side="tl" part="tags"/></tag>
-            </tags>
-            <lu>
-              <clip pos="1" side="tl" part="whole"/>
-            </lu>
+            <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
+            <lu><clip pos="1" side="tl" part="whole"/></lu>
           </chunk>
         </out>
       </action>
     </rule>
-    <rule comment="INFM: å => å">
-      <pattern>
-        <pattern-item n="infm"/>
-      </pattern>
-      <action>
-        <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
-        <out>
-          <chunk name="part" case="caseFirstWord">
-            <tags>
-              <tag><clip pos="1" side="tl" part="tags"/></tag>
-            </tags>
-            <lu>
-              <clip pos="1" side="tl" part="whole"/>
-            </lu>
-          </chunk>
-        </out>
-      </action>
-    </rule>
+<!--     <rule comment="INFM: å => å"> -->
+<!--       <pattern> -->
+<!--         <pattern-item n="infm"/> -->
+<!--       </pattern> -->
+<!--       <action> -->
+<!--         <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro> -->
+<!--         <out> -->
+<!--           <chunk name="part" case="caseFirstWord"> -->
+<!--             <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags> -->
+<!--             <lu><clip pos="1" side="tl" part="whole"/></lu> -->
+<!--           </chunk> -->
+<!--         </out> -->
+<!--       </action> -->
+<!--     </rule> -->
     
   </section-rules>
 </transfer>
