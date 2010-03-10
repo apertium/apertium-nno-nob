@@ -11,8 +11,14 @@
     <def-cat n="adj_n">
       <cat-item name="adj_n"/>
     </def-cat>
+    <def-cat n="adj_n_n">
+      <cat-item name="adj_n_n"/>
+    </def-cat>
     <def-cat n="adj_adj_n">
       <cat-item name="adj_adj_n"/>
+    </def-cat>
+    <def-cat n="adj_adj_n_n">
+      <cat-item name="adj_adj_n_n"/>
     </def-cat>
     <def-cat n="det">
       <cat-item name="det"/>
@@ -87,9 +93,7 @@
           <let><clip pos="1" part="gen"/><lit v=""/></let>
         </when></choose>
         <out>
-          <lu>
-            <clip pos="1" part="whole"/>
-          </lu>
+          <lu><clip pos="1" part="whole"/></lu>
         </out>
       </action>
     </rule>
@@ -100,26 +104,22 @@
       <action>
         <let><clip pos="1" part="art"/><clip pos="0" part="art"/></let>
         <out>
-          <lu>
-            <clip pos="1" part="whole"/>
-          </lu>
+          <lu><clip pos="1" part="whole"/></lu>
         </out>
       </action>
     </rule>
-    <rule comment="CHUNK: n_n">
+    <rule comment="CHUNK: n_n (note: ep between each n)">
       <pattern>
         <pattern-item n="n_n"/>
       </pattern>
       <action>
-        <let><clip pos="2" part="art"/><clip pos="0" part="art"/></let>
+        <let><clip pos="3" part="art"/><clip pos="0" part="art"/></let>
         <out>
-          <lu>
-            <clip pos="1" part="whole"/>
-          </lu>
+          <lu><clip pos="1" part="whole"/></lu>
           <b pos="1"/>
-          <lu>
-            <clip pos="2" part="whole"/>
-          </lu>
+          <lu><clip pos="2" part="whole"/></lu>
+          <b pos="2"/>
+          <lu><clip pos="3" part="whole"/></lu>
         </out>
       </action>
     </rule>
@@ -130,13 +130,26 @@
       <action>
         <call-macro n="clean_n.adj"><with-param pos="2"/><with-param pos="1"/><with-param pos="0"/></call-macro>
         <out>
-          <lu>
-            <clip pos="1" part="whole"/>
-          </lu>
+          <lu><clip pos="1" part="whole"/></lu>
           <b pos="1"/>
-          <lu>
-            <clip pos="2" part="whole"/>
-          </lu>
+          <lu><clip pos="2" part="whole"/></lu>
+        </out>
+      </action>
+    </rule>
+    <rule comment="CHUNK: adj_n_n (note: ep between each n)">
+      <pattern>
+        <pattern-item n="adj_n_n"/>
+      </pattern>
+      <action>
+        <call-macro n="clean_n.adj"><with-param pos="4"/><with-param pos="1"/><with-param pos="0"/></call-macro>
+        <out>
+          <lu><clip pos="1" part="whole"/></lu>
+          <b pos="1"/>
+          <lu><clip pos="2" part="whole"/></lu>
+          <b pos="2"/>
+          <lu><clip pos="3" part="whole"/></lu>
+          <b pos="3"/>
+          <lu><clip pos="4" part="whole"/></lu>
         </out>
       </action>
     </rule>
@@ -148,17 +161,31 @@
         <call-macro n="clean_n.adj"><with-param pos="3"/><with-param pos="1"/><with-param pos="0"/></call-macro>
         <call-macro n="clean_n.adj"><with-param pos="3"/><with-param pos="2"/><with-param pos="0"/></call-macro>
         <out>
-          <lu>
-            <clip pos="1" part="whole"/>
-          </lu>
+          <lu><clip pos="1" part="whole"/></lu>
           <b pos="1"/>
-          <lu>
-            <clip pos="2" part="whole"/>
-          </lu>
+          <lu><clip pos="2" part="whole"/></lu>
           <b pos="2"/>
-          <lu>
-            <clip pos="3" part="whole"/>
-          </lu>
+          <lu><clip pos="3" part="whole"/></lu>
+        </out>
+      </action>
+    </rule>
+    <rule comment="CHUNK: adj_adj_n_n (note: ep between each n)">
+      <pattern>
+        <pattern-item n="adj_adj_n_n"/>
+      </pattern>
+      <action>
+        <call-macro n="clean_n.adj"><with-param pos="5"/><with-param pos="1"/><with-param pos="0"/></call-macro>
+        <call-macro n="clean_n.adj"><with-param pos="5"/><with-param pos="2"/><with-param pos="0"/></call-macro>
+        <out>
+          <lu><clip pos="1" part="whole"/></lu>
+          <b pos="1"/>
+          <lu><clip pos="2" part="whole"/></lu>
+          <b pos="2"/>
+          <lu><clip pos="3" part="whole"/></lu>
+          <b pos="3"/>
+          <lu><clip pos="4" part="whole"/></lu>
+          <b pos="4"/>
+          <lu><clip pos="5" part="whole"/></lu>
         </out>
       </action>
     </rule>

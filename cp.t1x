@@ -182,6 +182,7 @@
     </def-attr>
     <def-attr n="a_ep">
       <attr-item tags="ep-s"/>
+      <attr-item tags="ep-e"/>
       <attr-item tags="ep-Ø"/>
     </def-attr>
     <def-attr n="a_adj">
@@ -260,6 +261,7 @@
     <def-var n="adj_defness"/>  
     <def-var n="n_number"/>
     <def-var n="case"/>
+    <def-var n="ntags"/>
     <def-var n="pass"/>
     <def-var n="epenthetic"/>
     <def-var n="n_defness"/>
@@ -317,13 +319,24 @@
     
   </section-def-lists>
 
-  <section-def-macros>    
+  <section-def-macros>
     <def-macro n="set_ep" npar="1">
       <let><var n="ep"/><lit v=""/></let>
-      <choose><when>
-        <test><equal><clip pos="1" side="sl" part="a_ep"/><lit-tag v="ep-s"/></equal></test>
-        <let><var n="ep"/><lit v="s"/></let>
-      </when></choose>
+      <choose>
+        <when><test><equal><clip pos="1" side="sl" part="a_ep"/><lit-tag v="ep-s"/></equal></test>
+        <let><var n="ep"/><concat><lit v="^s"/><lit-tag v="ep-s"/><lit v="$"/></concat></let></when>
+        <when><test><equal><clip pos="1" side="sl" part="a_ep"/><lit-tag v="ep-e"/></equal></test>
+        <let><var n="ep"/><concat><lit v="^e"/><lit-tag v="ep-e"/><lit v="$"/></concat></let></when>
+        <when><test><equal><clip pos="1" side="sl" part="a_ep"/><lit-tag v="ep-Ø"/></equal></test>
+        <let><var n="ep"/><concat><lit v="^Ø"/><lit-tag v="ep-Ø"/><lit v="$"/></concat></let></when>
+      </choose>
+      <let><clip pos="1" side="tl" part="a_ep"/><lit v=""/></let>
+    </def-macro>
+    
+    <def-macro n="stash_case_in_ntags" npar="1"
+               c="arg.1: noun. Puts tags of noun in ntags (for use as chunk tags), removes case from the word.">
+      <let><var n="ntags"/><clip pos="1" side="tl" part="tags"/></let>
+      <let><clip pos="1" side="tl" part="cas"/><lit v=""/></let>
     </def-macro>
 
     <def-macro n="switch_cases" npar="2">
@@ -889,14 +902,10 @@ Requires rather ugly RL prn lemmas in nn.dix, see personal_pronouns__prn pardef"
           <with-param pos="2"/>
         </call-macro>
         <call-macro n="set_caseFirstWord"><with-param pos="2"/></call-macro>
-        <choose>
-          <when>
-            <test>
-              <not><equal><b pos="2"/><lit v=" "/></equal></not>
-            </test>
-            <out><b pos="2"/></out>
-          </when>
-        </choose>
+        <choose><when>
+          <test><not><equal><b pos="2"/><lit v=" "/></equal></not></test>
+          <out><b pos="2"/></out>
+        </when></choose>
         <choose>
           <when>
             <test>
@@ -1009,26 +1018,19 @@ Requires rather ugly RL prn lemmas in nn.dix, see personal_pronouns__prn pardef"
     </rule>
 
     <rule comment="N
-                   Remove cas from lu, but keep in on chunk">
+                   Remove cas from lu, but put it in chunk">
       <pattern>
         <pattern-item n="n"/>
       </pattern>
       <action>
         <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
         <call-macro n="out_gen-prep"><with-param pos="1"/></call-macro>
+
+        <call-macro n="stash_case_in_ntags"><with-param pos="1"/></call-macro>
         <out>
           <chunk name="n" case="caseFirstWord">
-            <tags>
-              <tag><clip pos="1" side="tl" part="tags"/></tag>
-            </tags>
-            <lu>
-              <clip pos="1" side="tl" part="lemh"/>
-              <clip pos="1" side="tl" part="a_nom"/>
-              <clip pos="1" side="tl" part="gen"/>
-              <clip pos="1" side="tl" part="nbr"/>
-              <clip pos="1" side="tl" part="art"/>
-              <clip pos="1" side="tl" part="lemq"/>
-            </lu>
+            <tags><tag><var n="ntags"/></tag></tags>            
+            <lu><clip pos="1" side="tl" part="whole"/></lu>
           </chunk>
         </out>
       </action>
@@ -1043,28 +1045,13 @@ Requires rather ugly RL prn lemmas in nn.dix, see personal_pronouns__prn pardef"
         <call-macro n="set_ep"><with-param pos="1"/></call-macro>
         <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
         <call-macro n="out_gen-prep"><with-param pos="2"/></call-macro>
+        <call-macro n="stash_case_in_ntags"><with-param pos="2"/></call-macro>
         <out>
           <chunk name="n_n" case="caseFirstWord">
-            <tags>
-              <tag><clip pos="2" side="tl" part="tags"/></tag>
-            </tags>            
-            <lu>
-              <clip pos="1" side="tl" part="lemh"/>
-              <clip pos="1" side="tl" part="a_nom"/>
-              <clip pos="1" side="tl" part="gen"/>
-              <clip pos="1" side="tl" part="nbr"/>
-              <clip pos="1" side="tl" part="art"/>
-              <clip pos="1" side="tl" part="lemq"/>
-            </lu>
+            <tags><tag><var n="ntags"/></tag></tags>            
+            <lu><clip pos="1" side="tl" part="whole"/></lu>
             <var n="ep"/>
-            <lu>
-              <clip pos="2" side="tl" part="lemh"/>
-              <clip pos="2" side="tl" part="a_nom"/>
-              <clip pos="2" side="tl" part="gen"/>
-              <clip pos="2" side="tl" part="nbr"/>
-              <clip pos="2" side="tl" part="art"/>
-              <clip pos="2" side="tl" part="lemq"/>
-            </lu>
+            <lu><clip pos="2" side="tl" part="whole"/></lu>
           </chunk>
         </out>
       </action>
@@ -1082,19 +1069,39 @@ Requires rather ugly RL prn lemmas in nn.dix, see personal_pronouns__prn pardef"
         </call-macro>
         <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
         <call-macro n="out_gen-prep"><with-param pos="2"/></call-macro>
+        <call-macro n="stash_case_in_ntags"><with-param pos="2"/></call-macro>
         <out>
           <chunk name="adj_n" case="caseFirstWord">
-            <tags><tag><clip pos="2" side="tl" part="tags"/></tag></tags>
+            <tags><tag><var n="ntags"/></tag>
+            </tags>
             <lu><clip pos="1" side="tl" part="whole"/></lu>
             <b pos="1"/>
-            <lu>
-              <clip pos="2" side="tl" part="lemh"/>
-              <clip pos="2" side="tl" part="a_nom"/>
-              <clip pos="2" side="tl" part="gen"/>
-              <clip pos="2" side="tl" part="nbr"/>
-              <clip pos="2" side="tl" part="art"/>
-              <clip pos="2" side="tl" part="lemq"/>
-            </lu>
+            <lu><clip pos="2" side="tl" part="whole"/></lu>
+          </chunk>
+        </out>
+      </action>
+    </rule>
+    <rule comment="ADJ N-ep N">
+      <pattern>
+        <pattern-item n="adj"/>
+        <pattern-item n="n-ep"/>
+        <pattern-item n="n"/>
+      </pattern>
+      <action>
+        <call-macro n="set_ep"><with-param pos="2"/></call-macro>
+        <call-macro n="set_gender2.n.adj"><with-param pos="3"/><with-param pos="1"/></call-macro>
+        <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
+        <call-macro n="out_gen-prep"><with-param pos="3"/></call-macro>
+        <call-macro n="stash_case_in_ntags"><with-param pos="3"/></call-macro>
+        <out>
+          <chunk name="adj_n_n" case="caseFirstWord">
+            <tags><tag><var n="ntags"/></tag>
+            </tags>
+            <lu><clip pos="1" side="tl" part="whole"/></lu>
+            <b pos="1"/>
+            <lu><clip pos="2" side="tl" part="whole"/></lu>
+            <var n="ep"/>
+            <lu><clip pos="3" side="tl" part="whole"/></lu>
           </chunk>
         </out>
       </action>
@@ -1110,21 +1117,43 @@ Requires rather ugly RL prn lemmas in nn.dix, see personal_pronouns__prn pardef"
         <call-macro n="set_gender2.n.adj"><with-param pos="3"/><with-param pos="2"/></call-macro>
         <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
         <call-macro n="out_gen-prep"><with-param pos="3"/></call-macro>
+        <call-macro n="stash_case_in_ntags"><with-param pos="3"/></call-macro>
         <out>
           <chunk name="adj_adj_n" case="caseFirstWord">
-            <tags><tag><clip pos="3" side="tl" part="tags"/></tag></tags>
+            <tags><tag><var n="ntags"/></tag></tags>
             <lu><clip pos="1" side="tl" part="whole"/></lu>
             <b pos="1"/>
             <lu><clip pos="2" side="tl" part="whole"/></lu>
             <b pos="2"/>
-            <lu>
-              <clip pos="3" side="tl" part="lemh"/>
-              <clip pos="3" side="tl" part="a_nom"/>
-              <clip pos="3" side="tl" part="gen"/>
-              <clip pos="3" side="tl" part="nbr"/>
-              <clip pos="3" side="tl" part="art"/>
-              <clip pos="3" side="tl" part="lemq"/>
-            </lu>
+            <lu><clip pos="3" side="tl" part="whole"/></lu>
+          </chunk>
+        </out>
+      </action>
+    </rule>
+    <rule comment="ADJ ADJ N-ep N">
+      <pattern>
+        <pattern-item n="adj"/>
+        <pattern-item n="adj"/>
+        <pattern-item n="n-ep"/>
+        <pattern-item n="n"/>
+      </pattern>
+      <action>
+        <call-macro n="set_ep"><with-param pos="3"/></call-macro>
+        <call-macro n="set_gender2.n.adj"><with-param pos="4"/><with-param pos="1"/></call-macro>
+        <call-macro n="set_gender2.n.adj"><with-param pos="4"/><with-param pos="2"/></call-macro>
+        <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
+        <call-macro n="out_gen-prep"><with-param pos="4"/></call-macro>
+        <call-macro n="stash_case_in_ntags"><with-param pos="4"/></call-macro>
+        <out>
+          <chunk name="adj_adj_n_n" case="caseFirstWord">
+            <tags><tag><var n="ntags"/></tag></tags>
+            <lu><clip pos="1" side="tl" part="whole"/></lu>
+            <b pos="1"/>
+            <lu><clip pos="2" side="tl" part="whole"/></lu>
+            <b pos="2"/>
+            <lu><clip pos="3" side="tl" part="whole"/></lu>
+            <var n="ep"/>
+            <lu><clip pos="4" side="tl" part="whole"/></lu>
           </chunk>
         </out>
       </action>
