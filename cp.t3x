@@ -48,6 +48,25 @@
     <def-var n="foo"/>
   </section-def-vars>
 
+  <section-def-macros>
+    <def-macro n="clean_n.adj" npar="3"
+               c="arg.1: noun, arg.2: adjective, arg.3: chunk.
+                  Nouns always get chunk defnes.
+                  Allow adjectives to turn definite (from chunk defnes), but not indefinite.">
+        <let><clip pos="1" part="art"/><clip pos="3" part="art"/></let>
+
+        <choose><when>
+          <test><equal><clip pos="2" part="art"/><lit-tag v="ind"/></equal></test>
+          <let><clip pos="2" part="art"/><clip pos="3" part="art"/></let>
+        </when></choose>
+
+        <choose><when>
+          <test><equal><clip pos="2" part="art"/><lit-tag v="def"/></equal></test>
+          <let><clip pos="2" part="gen"/><lit v=""/></let>
+        </when></choose>
+    </def-macro>
+  </section-def-macros>
+
   <section-rules>
     <rule comment="CHUNK: det">
       <pattern>
@@ -104,22 +123,12 @@
         </out>
       </action>
     </rule>
-    <rule comment="CHUNK: adj_n
-                   Allow adjectives to become definite, but not indefinite.">
+    <rule comment="CHUNK: adj_n">
       <pattern>
         <pattern-item n="adj_n"/>
       </pattern>
       <action>
-        <choose><when>
-          <test><equal><clip pos="1" part="art"/><lit-tag v="ind"/></equal></test>
-          <let><clip pos="1" part="art"/><clip pos="0" part="art"/></let>
-        </when></choose>
-        <let><clip pos="2" part="art"/><clip pos="0" part="art"/></let>
-
-        <choose><when>
-          <test><equal><clip pos="1" part="art"/><lit-tag v="def"/></equal></test>
-          <let><clip pos="1" part="gen"/><lit v=""/></let>
-        </when></choose>
+        <call-macro n="clean_n.adj"><with-param pos="2"/><with-param pos="1"/><with-param pos="0"/></call-macro>
         <out>
           <lu>
             <clip pos="1" part="whole"/>
@@ -131,33 +140,13 @@
         </out>
       </action>
     </rule>
-    <rule comment="CHUNK: adj_adj_n
-                   Allow adjectives to become definite, but not indefinite.">
+    <rule comment="CHUNK: adj_adj_n">
       <pattern>
         <pattern-item n="adj_adj_n"/>
       </pattern>
       <action>
-        <choose><when>
-          <test><equal><clip pos="1" part="art"/><lit-tag v="ind"/></equal></test>
-          <let><clip pos="1" part="art"/><clip pos="0" part="art"/></let>
-        </when></choose>
-        <let><clip pos="3" part="art"/><clip pos="0" part="art"/></let>
-
-        <choose><when>
-          <test><equal><clip pos="1" part="art"/><lit-tag v="def"/></equal></test>
-          <let><clip pos="1" part="gen"/><lit v=""/></let>
-        </when></choose>
-        
-        <choose><when>
-          <test><equal><clip pos="2" part="art"/><lit-tag v="ind"/></equal></test>
-          <let><clip pos="2" part="art"/><clip pos="0" part="art"/></let>
-        </when></choose>
-        <let><clip pos="3" part="art"/><clip pos="0" part="art"/></let>
-
-        <choose><when>
-          <test><equal><clip pos="2" part="art"/><lit-tag v="def"/></equal></test>
-          <let><clip pos="2" part="gen"/><lit v=""/></let>
-        </when></choose>
+        <call-macro n="clean_n.adj"><with-param pos="3"/><with-param pos="1"/><with-param pos="0"/></call-macro>
+        <call-macro n="clean_n.adj"><with-param pos="3"/><with-param pos="2"/><with-param pos="0"/></call-macro>
         <out>
           <lu>
             <clip pos="1" part="whole"/>
