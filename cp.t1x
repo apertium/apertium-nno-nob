@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <transfer default="chunk">
+  <!-- TODO:
+       *   De. Deres måte å sykle
+         - Dei. Måten dei syklar
+         + Dei. måten De syklar
+       * Chunk ADV+ and verbs, so that we can avoid 
+           visste hvor høy farten var => visste kor den høge farten var
+  -->
   <section-def-cats>
     <!-- compound lhs's are never genitive: -->
     <def-cat n="n-ep">
@@ -253,24 +260,13 @@
     <def-var n="gen-prep"/>
     <def-var n="caseFirstWord"/>
     <def-var n="chunkname"/>
-    <def-var n="det_gender"/>  
-    <def-var n="number"/>  
-    <def-var n="number_no_sp"/>  
-    <def-var n="adj_number"/>  
-    <def-var n="adj_gender"/>  
-    <def-var n="adj_defness"/>  
-    <def-var n="n_number"/>
-    <def-var n="case"/>
     <def-var n="ntags"/>
     <def-var n="pass"/>
-    <def-var n="epenthetic"/>
-    <def-var n="n_defness"/>
-    <def-var n="lemh"/>
     <def-var n="ep"/>
+    <def-var n="ep2"/>
   </section-def-vars>
   
   <section-def-lists>
-
     <!-- POSSESSED-DEPENDENT EXCEPTIONS TODO: omkretsen til verda,
          lengden på dokumentet, ryktet til styret, lukta av/etter
          kua... (although this could be coded in all the dictionaries,
@@ -316,7 +312,6 @@
       <list-item v="den"/>
       <list-item v="de"/>
     </def-list>
-    
   </section-def-lists>
 
   <section-def-macros>
@@ -331,6 +326,11 @@
         <let><var n="ep"/><concat><lit v="^Ø"/><lit-tag v="ep-Ø"/><lit v="$"/></concat></let></when>
       </choose>
       <let><clip pos="1" side="tl" part="a_ep"/><lit v=""/></let>
+    </def-macro>
+    <def-macro n="set_ep2" npar="2">
+      <call-macro n="set_ep"><with-param pos="2"/></call-macro>
+      <let><var n="ep2"/><var n="ep"/></let>
+      <call-macro n="set_ep"><with-param pos="1"/></call-macro>
     </def-macro>
     
     <def-macro n="stash_case_in_ntags" npar="1"
@@ -1016,7 +1016,8 @@ Requires rather ugly RL prn lemmas in nn.dix, see personal_pronouns__prn pardef"
         </out>
       </action>
     </rule>
-
+    
+    <!-- N+ -->
     <rule comment="N
                    Remove cas from lu, but put it in chunk">
       <pattern>
@@ -1056,7 +1057,30 @@ Requires rather ugly RL prn lemmas in nn.dix, see personal_pronouns__prn pardef"
         </out>
       </action>
     </rule>
-
+    <rule comment="N-ep N-ep N: Falk lands krigen => Falklandskrigen">
+      <pattern>
+        <pattern-item n="n-ep"/>
+        <pattern-item n="n-ep"/>
+        <pattern-item n="n"/>
+      </pattern>
+      <action>
+        <call-macro n="set_ep2"><with-param pos="1"/><with-param pos="2"/></call-macro>
+        <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
+        <call-macro n="out_gen-prep"><with-param pos="3"/></call-macro>
+        <call-macro n="stash_case_in_ntags"><with-param pos="3"/></call-macro>
+        <out>
+          <chunk name="n_n_n" case="caseFirstWord">
+            <tags><tag><var n="ntags"/></tag></tags>            
+            <lu><clip pos="1" side="tl" part="whole"/></lu>
+            <var n="ep"/>
+            <lu><clip pos="2" side="tl" part="whole"/></lu>
+            <var n="ep2"/>
+            <lu><clip pos="3" side="tl" part="whole"/></lu>
+          </chunk>
+        </out>
+      </action>
+    </rule>
+    <!-- ADJ N+ -->
     <rule comment="ADJ N">
       <pattern>
         <pattern-item n="adj"/>
@@ -1106,6 +1130,35 @@ Requires rather ugly RL prn lemmas in nn.dix, see personal_pronouns__prn pardef"
         </out>
       </action>
     </rule>
+    <rule comment="ADJ N-ep N-ep N">
+      <pattern>
+        <pattern-item n="adj"/>
+        <pattern-item n="n-ep"/>
+        <pattern-item n="n-ep"/>
+        <pattern-item n="n"/>
+      </pattern>
+      <action>
+        <call-macro n="set_ep2"><with-param pos="2"/><with-param pos="3"/></call-macro>
+        <call-macro n="set_gender2.n.adj"><with-param pos="4"/><with-param pos="1"/></call-macro>
+        <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
+        <call-macro n="out_gen-prep"><with-param pos="4"/></call-macro>
+        <call-macro n="stash_case_in_ntags"><with-param pos="4"/></call-macro>
+        <out>
+          <chunk name="adj_n_n_n" case="caseFirstWord">
+            <tags><tag><var n="ntags"/></tag>
+            </tags>
+            <lu><clip pos="1" side="tl" part="whole"/></lu>
+            <b pos="1"/>
+            <lu><clip pos="2" side="tl" part="whole"/></lu>
+            <var n="ep"/>
+            <lu><clip pos="3" side="tl" part="whole"/></lu>
+            <var n="ep2"/>
+            <lu><clip pos="4" side="tl" part="whole"/></lu>
+          </chunk>
+        </out>
+      </action>
+    </rule>
+    <!-- ADJ ADJ N+ -->
     <rule comment="ADJ ADJ N">
       <pattern>
         <pattern-item n="adj"/>
@@ -1158,7 +1211,39 @@ Requires rather ugly RL prn lemmas in nn.dix, see personal_pronouns__prn pardef"
         </out>
       </action>
     </rule>
+    <rule comment="ADJ ADJ N-ep N-ep N">
+      <pattern>
+        <pattern-item n="adj"/>
+        <pattern-item n="adj"/>
+        <pattern-item n="n-ep"/>
+        <pattern-item n="n-ep"/>
+        <pattern-item n="n"/>
+      </pattern>
+      <action>
+        <call-macro n="set_ep2"><with-param pos="3"/><with-param pos="4"/></call-macro>
+        <call-macro n="set_gender2.n.adj"><with-param pos="5"/><with-param pos="1"/></call-macro>
+        <call-macro n="set_gender2.n.adj"><with-param pos="5"/><with-param pos="2"/></call-macro>
+        <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
+        <call-macro n="out_gen-prep"><with-param pos="5"/></call-macro>
+        <call-macro n="stash_case_in_ntags"><with-param pos="5"/></call-macro>
+        <out>
+          <chunk name="adj_adj_n_n_n" case="caseFirstWord">
+            <tags><tag><var n="ntags"/></tag></tags>
+            <lu><clip pos="1" side="tl" part="whole"/></lu>
+            <b pos="1"/>
+            <lu><clip pos="2" side="tl" part="whole"/></lu>
+            <b pos="2"/>
+            <lu><clip pos="3" side="tl" part="whole"/></lu>
+            <var n="ep"/>
+            <lu><clip pos="4" side="tl" part="whole"/></lu>
+            <var n="ep2"/>
+            <lu><clip pos="5" side="tl" part="whole"/></lu>
+          </chunk>
+        </out>
+      </action>
+    </rule>
 
+    <!-- ADJ, no noun -->
     <rule comment="ADJ">
       <pattern>
         <pattern-item n="adj"/>
