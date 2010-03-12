@@ -8,17 +8,26 @@
     <def-cat n="n_n">
       <cat-item name="n_n"/>
     </def-cat>
+    <def-cat n="n_n_n">
+      <cat-item name="n_n_n"/>
+    </def-cat>
     <def-cat n="adj_n">
       <cat-item name="adj_n"/>
     </def-cat>
     <def-cat n="adj_n_n">
       <cat-item name="adj_n_n"/>
     </def-cat>
+    <def-cat n="adj_n_n_n">
+      <cat-item name="adj_n_n_n"/>
+    </def-cat>
     <def-cat n="adj_adj_n">
       <cat-item name="adj_adj_n"/>
     </def-cat>
     <def-cat n="adj_adj_n_n">
       <cat-item name="adj_adj_n_n"/>
+    </def-cat>
+    <def-cat n="adj_adj_n_n_n">
+      <cat-item name="adj_adj_n_n_n"/>
     </def-cat>
     <def-cat n="det">
       <cat-item name="det"/>
@@ -94,6 +103,7 @@
         </out>
       </action>
     </rule>
+    <!-- N+ -->
     <rule comment="CHUNK: n">
       <pattern>
         <pattern-item n="n"/>
@@ -120,6 +130,26 @@
         </out>
       </action>
     </rule>
+    <rule comment="CHUNK: n_n_n (note: ep between each n)">
+      <pattern>
+        <pattern-item n="n_n_n"/>
+      </pattern>
+      <action>
+        <let><clip pos="5" part="art"/><clip pos="0" part="art"/></let>
+        <out>
+          <lu><clip pos="1" part="whole"/></lu>
+          <b pos="1"/>
+          <lu><clip pos="2" part="whole"/></lu>
+          <b pos="2"/>
+          <lu><clip pos="3" part="whole"/></lu>
+          <b pos="3"/>
+          <lu><clip pos="4" part="whole"/></lu>
+          <b pos="4"/>
+          <lu><clip pos="5" part="whole"/></lu>
+        </out>
+      </action>
+    </rule>
+    <!-- ADJ N+ -->
     <rule comment="CHUNK: adj_n">
       <pattern>
         <pattern-item n="adj_n"/>
@@ -150,6 +180,28 @@
         </out>
       </action>
     </rule>
+    <rule comment="CHUNK: adj_n_n_n (note: ep between each n)">
+      <pattern>
+        <pattern-item n="adj_n_n_n"/>
+      </pattern>
+      <action>
+        <call-macro n="clean_n.adj"><with-param pos="6"/><with-param pos="1"/><with-param pos="0"/></call-macro>
+        <out>
+          <lu><clip pos="1" part="whole"/></lu>
+          <b pos="1"/>
+          <lu><clip pos="2" part="whole"/></lu>
+          <b pos="2"/>
+          <lu><clip pos="3" part="whole"/></lu>
+          <b pos="3"/>
+          <lu><clip pos="4" part="whole"/></lu>
+          <b pos="4"/>
+          <lu><clip pos="5" part="whole"/></lu>
+          <b pos="5"/>
+          <lu><clip pos="6" part="whole"/></lu>
+        </out>
+      </action>
+    </rule>
+    <!-- ADJ ADJ N+ -->
     <rule comment="CHUNK: adj_adj_n">
       <pattern>
         <pattern-item n="adj_adj_n"/>
@@ -183,6 +235,30 @@
           <lu><clip pos="4" part="whole"/></lu>
           <b pos="4"/>
           <lu><clip pos="5" part="whole"/></lu>
+        </out>
+      </action>
+    </rule>
+    <rule comment="CHUNK: adj_adj_n_n_n (note: ep between each n)">
+      <pattern>
+        <pattern-item n="adj_adj_n_n_n"/>
+      </pattern>
+      <action>
+        <call-macro n="clean_n.adj"><with-param pos="7"/><with-param pos="1"/><with-param pos="0"/></call-macro>
+        <call-macro n="clean_n.adj"><with-param pos="7"/><with-param pos="2"/><with-param pos="0"/></call-macro>
+        <out>
+          <lu><clip pos="1" part="whole"/></lu>
+          <b pos="1"/>
+          <lu><clip pos="2" part="whole"/></lu>
+          <b pos="2"/>
+          <lu><clip pos="3" part="whole"/></lu>
+          <b pos="3"/>
+          <lu><clip pos="4" part="whole"/></lu>
+          <b pos="4"/>
+          <lu><clip pos="5" part="whole"/></lu>
+          <b pos="5"/>
+          <lu><clip pos="6" part="whole"/></lu>
+          <b pos="6"/>
+          <lu><clip pos="7" part="whole"/></lu>
         </out>
       </action>
     </rule>
