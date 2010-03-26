@@ -3,15 +3,19 @@ Norwegian Nynorsk and Norwegian Bokmål
                             apertium-nn-nb
 ===============================================================================
 
-This language pair is for translating between Norwegian Nynorsk and Norwegian 
-Bokmål.
+This is an Apertium language pair for translating between Norwegian
+Nynorsk and Norwegian Bokmål.
 
 Requirements
 ===============================================================================
 
+You will need the following software installed:
+
 * lttoolbox (>= 3.1.2)
 * apertium (>= 3.1.1)
 * vislcg3 (>= 0.9.7.5129)
+
+If this does not make any sense, we recommend you look at: www.apertium.org
 
 Compiling
 ===============================================================================
@@ -47,13 +51,35 @@ The following command runs tests which are on the Apertium wiki page:
 
 $ ./regression-tests.sh 
 
-See also
+Files and data
+===============================================================================
+
+* apertium-nn-nb.nn.dix 	   - Monolingual dictionary for Nynorsk
+* apertium-nn-nb.nn-nb.dix 	   - Bilingual dictionary 
+* apertium-nn-nb.nb.dix 	   - Monolingual dictionary for Bokmål
+* apertium-nn-nb.nn-nb.rlx 	   - Constraint Grammar for Nynorsk
+* apertium-nn-nb.nb-nn.rlx 	   - Constraint Grammar for Bokmål
+* apertium-nn-nb.nn-nb.t1x 	   - Transfer rules for translating into Bokmål
+* apertium-nn-nb.nb-nn.t1x 	   - Transfer rules for translating into Nynorsk
+* nn-nb.prob 			   - Tagger model for Nynorsk
+* nb-nn.prob 			   - Tagger model for Bokmål
+* modes.xml			   - Translation modes
+
+For more information
 ===============================================================================
 
 * http://wiki.apertium.org/wiki/Installation
-* http://wiki.apertium.org/wiki/Norsk
+* http://wiki.apertium.org/wiki/apertium-nn-nb
+* http://wiki.apertium.org/wiki/Using_an_lttoolbox_dictionary
+* http://nn.wikipedia.org/wiki/Wikipedia:Wikiprosjekt_Maskinomsetjing_fr%C3%A5_bokm%C3%A5l
+  (in Norwegian)
 
-===================================================================
+Help and support
+===============================================================================
 
-More information about this module, and others can be found on 
-the Apertium: Wiki, http://wiki.apertium.org
+If you need help using this language pair or data, you can contact:
+
+* Mailing list: apertium-stuff@lists.sourceforge.net
+* IRC: #apertium on irc.freenode.net
+
+See also the file AUTHORS.
