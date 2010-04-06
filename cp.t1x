@@ -264,6 +264,7 @@
     <def-var n="pass"/>
     <def-var n="ep"/>
     <def-var n="ep2"/>
+    <def-var n="aux"/>
   </section-def-vars>
   
   <section-def-lists>
@@ -313,9 +314,15 @@
       <list-item v="den"/>
       <list-item v="de"/>
     </def-list>
+    
+    <def-list n="vere_pass" 
+              c="Verbs which require vere instead of bli/verte.">
+      <list-item v="vite"/>
+      <list-item v="eige"/>
+    </def-list>
   </section-def-lists>
 
-  <section-def-macros>
+  <section-def-macros>    
     <def-macro n="set_ep" npar="1">
       <let><var n="ep"/><lit v=""/></let>
       <choose>
@@ -376,6 +383,25 @@
           <modify-case><clip pos="1" side="tl" part="lemh"/><lit v="aa"/></modify-case>
         </when>
       </choose>
+    </def-macro>
+    
+    <def-macro n="set_aux" npar="2"
+               c="arg.1: main/content verb; arg.2: gives case">
+      <let><var n="aux"/><lit v=""/></let>
+      <choose>
+        <when>
+          <test><in><clip pos="1" side="tl" part="lemh"/><list n="vere_pass"/></in></test>
+          <let><var n="aux"/><get-case-from pos="2"><lit v="^vere"/></get-case-from></let>
+        </when>
+        <otherwise>
+          <let><var n="aux"/><get-case-from pos="2"><lit v="^bli"/></get-case-from></let>
+        </otherwise>
+      </choose>
+      <append n="aux">
+        <clip pos="1" side="tl" part="a_verb"/>
+        <clip pos="1" side="tl" part="temps"/>
+        <lit v="$"/>
+      </append>
     </def-macro>
 
     <!-- Macros which set concordance variables: -->    
@@ -522,15 +548,13 @@
           </out>
         </when>
         <otherwise>
+          <call-macro n="set_aux"><with-param pos="2"/><with-param pos="2"/></call-macro>
           <out>
             <chunk name="part_vblex_vblex" case="caseFirstWord">
               <tags><tag><clip pos="2" side="tl" part="tags"/></tag></tags>
               <lu><clip pos="1" side="tl" part="whole"/></lu>
               <b pos="1"/>
-              <lu>
-                <lit v="bli"/>	    
-                <lit-tag v="vblex.inf"/>
-              </lu>
+              <var n="aux"/>
               <b/>
               <lu>	    
                 <clip pos="2" side="tl" part="lemh"/>
@@ -567,6 +591,7 @@
           </out>
         </when>
         <otherwise>
+          <call-macro n="set_aux"><with-param pos="3"/><with-param pos="3"/></call-macro>
           <out>
             <chunk name="part_adv_vblex_vblex" case="caseFirstWord">
               <tags><tag><clip pos="3" side="tl" part="tags"/></tag></tags>
@@ -574,10 +599,7 @@
               <b pos="1"/>
               <lu><clip pos="2" side="tl" part="whole"/></lu>
               <b pos="2"/>
-              <lu>
-                <lit v="bli"/>	    
-                <lit-tag v="vblex.inf"/>
-              </lu>
+              <var n="aux"/>
               <b/>
               <lu>	    
                 <clip pos="3" side="tl" part="lemh"/>
@@ -617,6 +639,7 @@
           </out>
         </when>
         <otherwise>
+          <call-macro n="set_aux"><with-param pos="4"/><with-param pos="4"/></call-macro>
           <out>
             <chunk name="part_adv_adv_vblex_vblex" case="caseFirstWord">
               <tags><tag><clip pos="4" side="tl" part="tags"/></tag></tags>
@@ -626,10 +649,7 @@
               <b pos="2"/>
               <lu><clip pos="3" side="tl" part="whole"/></lu>
               <b pos="3"/>
-              <lu>
-                <lit v="bli"/>	    
-                <lit-tag v="vblex.inf"/>
-              </lu>
+              <var n="aux"/>
               <b/>
               <lu>	    
                 <clip pos="4" side="tl" part="lemh"/>
@@ -693,13 +713,11 @@ If we translate into a pstv verb, don't change anything.">
           </out>
         </when>
         <otherwise>
+          <call-macro n="set_aux"><with-param pos="1"/><with-param pos="1"/></call-macro>
           <out>
             <chunk name="vblex_vblex" case="caseFirstWord">
               <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
-              <lu>
-                <get-case-from pos="1"><lit v="bli"/></get-case-from>	    
-                <lit-tag v="vblex.pres"/>
-              </lu>
+              <var n="aux"/>
               <b/>
               <lu>	    
                 <clip pos="1" side="tl" part="lemh"/>
@@ -734,13 +752,11 @@ If we translate into a pstv verb, don't change anything.">
             </out>
           </when>
           <otherwise>
+            <call-macro n="set_aux"><with-param pos="1"/><with-param pos="1"/></call-macro>
             <out>
               <chunk name="vblex_adv_vblex" case="caseFirstWord">
                 <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
-                <lu>
-                  <get-case-from pos="1"><lit v="bli"/></get-case-from>	    
-                  <lit-tag v="vblex.pres"/>
-                </lu>
+                <var n="aux"/>
                 <b pos="1"/>
                 <lu><clip pos="2" side="tl" part="whole"/></lu>
                 <b/>
@@ -778,13 +794,11 @@ If we translate into a pstv verb, don't change anything.">
           </out>
         </when>
         <otherwise>
+          <call-macro n="set_aux"><with-param pos="1"/><with-param pos="1"/></call-macro>
           <out>
             <chunk name="vblex_adv_adv_vblex" case="caseFirstWord">
               <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
-              <lu>
-                <get-case-from pos="1"><lit v="bli"/></get-case-from>	    
-                <lit-tag v="vblex.pres"/>
-              </lu>
+              <var n="aux"/>
               <b pos="1"/>
               <lu><clip pos="2" side="tl" part="whole"/></lu>
               <b pos="2"/>
@@ -912,13 +926,11 @@ Requires rather ugly RL prn lemmas in nn.dix, see personal_pronouns__prn pardef"
             <test>
               <equal><clip pos="4" side="tl" part="voice"/><lit v="pass"/></equal>
             </test>
+            <call-macro n="set_aux"><with-param pos="4"/><with-param pos="4"/></call-macro>
             <out>
               <chunk name="vblex" case="caseFirstWord">
                 <tags><tag><clip pos="4" side="tl" part="tags"/></tag></tags>
-                <lu>
-                  <lit v="bli"/>
-                  <lit-tag v="vblex.pres"/>
-                </lu>
+                <var n="aux"/>
               </chunk>
               <b pos="3"/>
               <chunk name="vblex" case="caseFirstWord">
