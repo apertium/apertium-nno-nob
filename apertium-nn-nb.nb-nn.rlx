@@ -23905,7 +23905,7 @@ CONSTRAINTS
 	(0C det-kvant + fl)
 	(*-1 %ikke% BARRIER setn-gr)
 ;
-  "<noen>"   SELECT:noen-p   (pron neg) IF
+  "<noen>"   SELECT:noen-p   (prn neg) IF
 	(0C pron + fl)
 	(*-1 %ikke% BARRIER setn-gr)
 ;
@@ -23913,13 +23913,24 @@ CONSTRAINTS
   "<noen>"   REMOVE:noen-d   (det qnt neg) IF
 	(0C det-kvant + fl)
 	(NEGATE *-1 %ikke% BARRIER setn-gr)
+	(NEGATE *1 spørsmål-t)
 ;
-# «Læreren sa jeg hadde noen gode poeng i oppgaven min»
-  "<noen>"   REMOVE:noen-p   (pron neg) IF
+# «Læreren sa jeg hadde noen(nokre) gode poeng i oppgaven min»
+# Ikkje: «Sa læreren at jeg hadde noen(nokon) gode poeng i oppgaven min?»
+# Problem: «Sa læreren at jeg kunne låne noen(nokre) pengar til oppgaven min?»
+  "<noen>"   REMOVE:noen-p   (prn neg) IF
 	(0C pron + fl)
 	(NEGATE *-1 %ikke% BARRIER setn-gr)
 ;
 # «Læreren sa jeg hadde noen gode poeng i oppgaven min»
+  "<noen>"   SELECT:noen-p   (prn neg) IF
+	(NOT 0 det)
+;
+# «å finne noen han kan leke med», standardomsetjing for pronomen: «nokon»
+  "<noen>"   SELECT:noen-p   (det neg) IF
+	(NOT 0 pron)
+;
+# «å finne noen han kan leke med», standardomsetjing for pronomen: «nokon»
 
 
 #:3366
