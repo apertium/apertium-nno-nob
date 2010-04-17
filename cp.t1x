@@ -4,8 +4,6 @@
        *   De. Deres måte å sykle
          - Dei. Måten dei syklar
          + Dei. måten De syklar
-       * Chunk ADV+ and verbs, so that we can avoid 
-           visste hvor høy farten var => visste kor den høge farten var
   -->
   <section-def-cats>
     <!-- compound lhs's are never genitive: -->
@@ -175,8 +173,8 @@
     <def-cat n="vblexinfpass">
       <cat-item tags="vblex.inf.pass"/>
     </def-cat>
-    <def-cat n="vblexprespass">
-      <cat-item tags="vblex.pres.pass"/>
+    <def-cat n="vblexpass">
+      <cat-item tags="vblex.*.pass"/>
       <cat-item tags="vblex.pstv.pres"/>
     </def-cat>
   </section-def-cats>
@@ -385,7 +383,25 @@
       </choose>
     </def-macro>
     
-    <def-macro n="set_aux" npar="2"
+    <def-macro n="set_aux" npar="1"
+               c="arg.1: main/content verb">
+      <let><var n="aux"/><lit v=""/></let>
+      <choose>
+        <when>
+          <test><in><clip pos="1" side="tl" part="lemh"/><list n="vere_pass"/></in></test>
+          <let><var n="aux"/><lit v="^vere"/></let>
+        </when>
+        <otherwise>
+          <let><var n="aux"/><lit v="^bli"/></let>
+        </otherwise>
+      </choose>
+      <append n="aux">
+        <clip pos="1" side="tl" part="a_verb"/>
+        <clip pos="1" side="tl" part="temps"/>
+        <lit v="$"/>
+      </append>
+    </def-macro>
+    <def-macro n="set_aux2" npar="2"
                c="arg.1: main/content verb; arg.2: gives case">
       <let><var n="aux"/><lit v=""/></let>
       <choose>
@@ -526,215 +542,18 @@
   </section-def-macros>
   
   <section-rules>
-    <!-- Verbs -->
-    <rule comment="Å VBLEX.INF.PASS: å leses => å bli lest">
-      <pattern>
-        <pattern-item n="infm"/>
-        <pattern-item n="vblexinfpass"/>
-      </pattern>
-      <action>
-        <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
-        <choose><when>
-          <test><equal>
-            <clip pos="2" side="tl" part="a_verb"/><lit-tag v="vblex.pstv"/>
-          </equal></test>
-          <out>
-            <chunk name="part_vblex" case="caseFirstWord">
-              <tags><tag><clip pos="2" side="tl" part="tags"/></tag></tags>
-              <lu><clip pos="1" side="tl" part="whole"/></lu>
-              <b pos="1"/>
-              <lu><clip pos="2" side="tl" part="whole"/></lu>
-            </chunk>
-          </out>
-        </when>
-        <otherwise>
-          <call-macro n="set_aux"><with-param pos="2"/><with-param pos="2"/></call-macro>
-          <out>
-            <chunk name="part_vblex_vblex" case="caseFirstWord">
-              <tags><tag><clip pos="2" side="tl" part="tags"/></tag></tags>
-              <lu><clip pos="1" side="tl" part="whole"/></lu>
-              <b pos="1"/>
-              <var n="aux"/>
-              <b/>
-              <lu>	    
-                <clip pos="2" side="tl" part="lemh"/>
-                <clip pos="2" side="tl" part="a_verb"/>
-                <lit-tag v="pp"/>
-                <clip pos="2" side="tl" part="lemq"/>
-              </lu>
-            </chunk>
-          </out>
-        </otherwise></choose>
-      </action>
-    </rule>
-    <rule comment="Å ADV VBLEX.INF.PASS: å ofte leses => å ofte bli lest">
-      <pattern>
-        <pattern-item n="infm"/>
-        <pattern-item n="adv"/>
-        <pattern-item n="vblexinfpass"/>
-      </pattern>
-      <action>
-        <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
-        <choose><when>
-          <test><equal>
-            <clip pos="3" side="tl" part="a_verb"/><lit-tag v="vblex.pstv"/>
-          </equal></test>
-          <out>
-            <chunk name="part_adv_vblex" case="caseFirstWord">
-              <tags><tag><clip pos="3" side="tl" part="tags"/></tag></tags>
-              <lu><clip pos="1" side="tl" part="whole"/></lu>
-              <b pos="1"/>
-              <lu><clip pos="2" side="tl" part="whole"/></lu>
-              <b pos="2"/>
-              <lu><clip pos="3" side="tl" part="whole"/></lu>
-            </chunk>
-          </out>
-        </when>
-        <otherwise>
-          <call-macro n="set_aux"><with-param pos="3"/><with-param pos="3"/></call-macro>
-          <out>
-            <chunk name="part_adv_vblex_vblex" case="caseFirstWord">
-              <tags><tag><clip pos="3" side="tl" part="tags"/></tag></tags>
-              <lu><clip pos="1" side="tl" part="whole"/></lu>
-              <b pos="1"/>
-              <lu><clip pos="2" side="tl" part="whole"/></lu>
-              <b pos="2"/>
-              <var n="aux"/>
-              <b/>
-              <lu>	    
-                <clip pos="3" side="tl" part="lemh"/>
-                <clip pos="3" side="tl" part="a_verb"/>
-                <lit-tag v="pp"/>
-                <clip pos="3" side="tl" part="lemq"/>
-              </lu>
-            </chunk>
-          </out>
-        </otherwise></choose>
-      </action>
-    </rule>
-    <rule comment="Å ADV ADV VBLEX.INF.PASS: å kanskje ofte leses => å kanskje ofte bli lest">
-      <pattern>
-        <pattern-item n="infm"/>
-        <pattern-item n="adv"/>
-        <pattern-item n="adv"/>
-        <pattern-item n="vblexinfpass"/>
-      </pattern>
-      <action>
-        <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
-        <choose><when>
-          <test><equal>
-            <clip pos="4" side="tl" part="a_verb"/><lit-tag v="vblex.pstv"/>
-          </equal></test>
-          <out>
-            <chunk name="part_adv_adv_vblex" case="caseFirstWord">
-              <tags><tag><clip pos="4" side="tl" part="tags"/></tag></tags>
-              <lu><clip pos="1" side="tl" part="whole"/></lu>
-              <b pos="1"/>
-              <lu><clip pos="2" side="tl" part="whole"/></lu>
-              <b pos="2"/>
-              <lu><clip pos="3" side="tl" part="whole"/></lu>
-              <b pos="3"/>
-              <lu><clip pos="4" side="tl" part="whole"/></lu>
-            </chunk>
-          </out>
-        </when>
-        <otherwise>
-          <call-macro n="set_aux"><with-param pos="4"/><with-param pos="4"/></call-macro>
-          <out>
-            <chunk name="part_adv_adv_vblex_vblex" case="caseFirstWord">
-              <tags><tag><clip pos="4" side="tl" part="tags"/></tag></tags>
-              <lu><clip pos="1" side="tl" part="whole"/></lu>
-              <b pos="1"/>
-              <lu><clip pos="2" side="tl" part="whole"/></lu>
-              <b pos="2"/>
-              <lu><clip pos="3" side="tl" part="whole"/></lu>
-              <b pos="3"/>
-              <var n="aux"/>
-              <b/>
-              <lu>	    
-                <clip pos="4" side="tl" part="lemh"/>
-                <clip pos="4" side="tl" part="a_verb"/>
-                <lit-tag v="pp"/>
-                <clip pos="4" side="tl" part="lemq"/>
-              </lu>
-            </chunk>
-          </out>
-        </otherwise></choose>
-      </action>
-    </rule>
-
-    <rule comment="VBLEX.INF.PASS: [kan] leses => [kan] lesast">
-      <pattern>
-        <pattern-item n="vblexinfpass"/>
-      </pattern>
-      <action>
-        <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
-        <choose><when>
-          <test><equal><clip pos="1" side="tl" part="a_verb"/><lit-tag v="vblex.pstv"/></equal></test>
-          <let><var n="pass"/><lit v=""/></let>
-          </when><otherwise>
-          <let><var n="pass"/><lit-tag v="pst"/></let>
-        </otherwise></choose>
-        <out>
-          <chunk name="vblex" case="caseFirstWord">
-            <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
-            <lu>
-              <clip pos="1" side="tl" part="lemh"/>
-              <clip pos="1" side="tl" part="a_verb"/>
-              <clip pos="1" side="tl" part="temps"/>
-              <var n="pass"/>
-              <clip pos="1" side="tl" part="lemq"/>
-            </lu>
-          </chunk>
-        </out>
-      </action>
-    </rule>
-
+    <!-- Verbs -->        
     <rule comment="VBLEX.PRES.PASS: leses => blir lest
                    todo: verb probably should lose possible uppercasing,
                    although it's unlikely to find the passive verb in
                    the beginning of a sentence
-
-If we translate into a pstv verb, don't change anything.">
+                   
+                   If we translate into a pstv verb, don't change anything.
+                   
+                   If we don't see an infinitive marker in t2x, the aux gets
+                   deleted again.">
       <pattern>
-        <pattern-item n="vblexprespass"/>
-      </pattern>
-      <action>
-        <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
-        <choose><when>
-          <test><equal>
-            <clip pos="1" side="tl" part="a_verb"/><lit-tag v="vblex.pstv"/>
-          </equal></test>
-          <out>
-            <chunk name="vblex" case="caseFirstWord">
-              <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
-              <lu><clip pos="1" side="tl" part="whole"/></lu>
-            </chunk>
-          </out>
-        </when>
-        <otherwise>
-          <call-macro n="set_aux"><with-param pos="1"/><with-param pos="1"/></call-macro>
-          <out>
-            <chunk name="vblex_vblex" case="caseFirstWord">
-              <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
-              <var n="aux"/>
-              <b/>
-              <lu>	    
-                <clip pos="1" side="tl" part="lemh"/>
-                <clip pos="1" side="tl" part="a_verb"/>
-                <lit-tag v="pp"/>
-                <clip pos="1" side="tl" part="lemq"/>
-              </lu>
-            </chunk>
-          </out>
-        </otherwise></choose>
-      </action>
-    </rule>
-    <rule comment="VBLEX.PRES.PASS ADV: leses ikke => blir ikke lest
-                   Based on the above rule.">
-      <pattern>
-        <pattern-item n="vblexprespass"/>
-        <pattern-item n="adv"/>
+        <pattern-item n="vblexpass"/>
       </pattern>
       <action>
         <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
@@ -744,23 +563,35 @@ If we translate into a pstv verb, don't change anything.">
               <clip pos="1" side="tl" part="a_verb"/><lit-tag v="vblex.pstv"/>
             </equal></test>
             <out>
-              <chunk name="vblex_adv" case="caseFirstWord">
+              <chunk name="vblex" case="caseFirstWord">
                 <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
-                <lu><clip pos="1" side="tl" part="whole"/></lu><b pos="1"/>
-                <lu><clip pos="2" side="tl" part="whole"/></lu>
+                <lu>
+                  <clip pos="1" side="tl" part="lemh"/>
+                  <clip pos="1" side="tl" part="a_verb"/>
+                  <clip pos="1" side="tl" part="temps"/>
+                </lu>
+              </chunk>
+              <chunk name="lemq">
+                <tags><tag><lit-tag v="vblex.lemq"/></tag></tags>
+                <lu><clip pos="1" side="tl" part="lemq"/></lu>
               </chunk>
             </out>
           </when>
           <otherwise>
-            <call-macro n="set_aux"><with-param pos="1"/><with-param pos="1"/></call-macro>
+            <call-macro n="set_aux"><with-param pos="1"/></call-macro>
+            <!-- todo: why do I get a bus error when calling set_aux2 here? -->
             <out>
-              <chunk name="vblex_adv_vblex" case="caseFirstWord">
+              <chunk name="aux" case="caseFirstWord">
                 <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
                 <var n="aux"/>
-                <b pos="1"/>
-                <lu><clip pos="2" side="tl" part="whole"/></lu>
-                <b/>
-                <lu>	    
+              </chunk>
+              <b/>
+              <chunk name="vblex">
+                <tags>
+                  <tag><clip pos="1" side="tl" part="a_verb"/></tag>
+                  <tag><lit-tag v="pp"/></tag>
+                </tags>
+                <lu>
                   <clip pos="1" side="tl" part="lemh"/>
                   <clip pos="1" side="tl" part="a_verb"/>
                   <lit-tag v="pp"/>
@@ -768,108 +599,14 @@ If we translate into a pstv verb, don't change anything.">
                 </lu>
               </chunk>
             </out>
-        </otherwise></choose>
+          </otherwise>
+        </choose>
       </action>
     </rule>
-    <rule comment="VBLEX.PRES.PASS ADV ADV: leses ikke alltid => blir ikke alltid lest
-                   Based on the above rule.">
-      <pattern>
-        <pattern-item n="vblexprespass"/>
-        <pattern-item n="adv"/>
-        <pattern-item n="adv"/>
-      </pattern>
-      <action>
-        <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
-        <choose><when>
-          <test><equal>
-            <clip pos="1" side="tl" part="a_verb"/><lit-tag v="vblex.pstv"/>
-          </equal></test>
-          <out>
-            <chunk name="vblex_adv_adv" case="caseFirstWord">
-              <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
-              <lu><clip pos="1" side="tl" part="whole"/></lu><b pos="1"/>
-              <lu><clip pos="2" side="tl" part="whole"/></lu><b pos="2"/>
-              <lu><clip pos="3" side="tl" part="whole"/></lu>
-            </chunk>
-          </out>
-        </when>
-        <otherwise>
-          <call-macro n="set_aux"><with-param pos="1"/><with-param pos="1"/></call-macro>
-          <out>
-            <chunk name="vblex_adv_adv_vblex" case="caseFirstWord">
-              <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
-              <var n="aux"/>
-              <b pos="1"/>
-              <lu><clip pos="2" side="tl" part="whole"/></lu>
-              <b pos="2"/>
-              <lu><clip pos="3" side="tl" part="whole"/></lu>
-              <b/>
-              <lu>	    
-                <clip pos="1" side="tl" part="lemh"/>
-                <clip pos="1" side="tl" part="a_verb"/>
-                <lit-tag v="pp"/>
-                <clip pos="1" side="tl" part="lemq"/>
-              </lu>
-            </chunk>
-          </out>
-        </otherwise></choose>
-      </action>
-    </rule>
-
-    <rule comment="VBLEX ADV ADV beholder heller ikke => held heller ikkje på
-                   Requires each possible lemq (# på) to be in nn monodix, see
-                   http://wiki.apertium.org/wiki/Multiwords#The_Nynorsk_hack">
-      <pattern>
-        <pattern-item n="vblex"/>
-        <pattern-item n="adv"/>
-        <pattern-item n="adv"/>
-      </pattern>
-      <action>
-        <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
-        <out>
-          <chunk name="vblex_adv_adv_lemq" case="caseFirstWord">
-            <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
-            <lu>
-              <clip pos="1" side="tl" part="lemh"/>
-              <clip pos="1" side="tl" part="a_verb"/>
-              <clip pos="1" side="tl" part="temps"/>
-            </lu>
-            <b pos="1"/>
-            <lu><clip pos="2" side="tl" part="whole"/></lu>
-            <b pos="2"/>
-            <lu><clip pos="3" side="tl" part="whole"/></lu>
-            <lu><clip pos="1" side="tl" part="lemq"/></lu>
-          </chunk>
-        </out>
-      </action>
-    </rule>
-    <rule comment="VBLEX ADV beholder ikke => held ikkje på
-                   Requires each possible lemq (# på) to be in nn monodix, see
-                   http://wiki.apertium.org/wiki/Multiwords#The_Nynorsk_hack">
-      <pattern>
-        <pattern-item n="vblex"/>
-        <pattern-item n="adv"/>
-      </pattern>
-      <action>
-        <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
-        <out>
-          <chunk name="vblex_adv_lemq" case="caseFirstWord">
-            <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
-            <lu>
-              <clip pos="1" side="tl" part="lemh"/>
-              <clip pos="1" side="tl" part="a_verb"/>
-              <clip pos="1" side="tl" part="temps"/>
-            </lu>
-            <b pos="1"/>
-            <lu><clip pos="2" side="tl" part="whole"/></lu>
-            <lu><clip pos="1" side="tl" part="lemq"/></lu>
-          </chunk>
-        </out>
-      </action>
-    </rule>    
+        
     <rule comment="VBLEX
-                   Just in case we have nn multiwords; which need lemq after the
-                   inflected part (all lemq's should include their own initial space).
+                   If we have nn multiwords, these need the lemq after the
+                   inflected part. (all lemq's should include their own initial space).
                    This has to be below the passive rules.">
       <pattern>
         <pattern-item n="vblex"/>
@@ -877,14 +614,54 @@ If we translate into a pstv verb, don't change anything.">
       <action>
         <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
         <out>
-          <chunk name="vblex_adv_lemq" case="caseFirstWord">
+          <chunk name="vblex" case="caseFirstWord">
             <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
             <lu>
               <clip pos="1" side="tl" part="lemh"/>
               <clip pos="1" side="tl" part="a_verb"/>
               <clip pos="1" side="tl" part="temps"/>
             </lu>
+          </chunk>
+          <chunk name="lemq">
+            <tags><tag><lit-tag v="vblex.lemq"/></tag></tags>
             <lu><clip pos="1" side="tl" part="lemq"/></lu>
+          </chunk>
+        </out>
+      </action>
+    </rule>
+    
+    <rule comment="INFM">
+      <pattern>
+        <pattern-item n="infm"/>
+      </pattern>
+      <action>
+        <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
+        <out>
+          <chunk name="infm" case="caseFirstWord">
+            <tags>
+              <tag><clip pos="1" side="tl" part="tags"/></tag>
+            </tags>
+            <lu>
+              <clip pos="1" side="tl" part="whole"/>
+            </lu>
+          </chunk>
+        </out>
+      </action>
+    </rule>
+    <rule comment="ADV">
+      <pattern>
+        <pattern-item n="adv"/>
+      </pattern>
+      <action>
+        <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
+        <out>
+          <chunk name="adv" case="caseFirstWord">
+            <tags>
+              <tag><clip pos="1" side="tl" part="tags"/></tag>
+            </tags>
+            <lu>
+              <clip pos="1" side="tl" part="whole"/>
+            </lu>
           </chunk>
         </out>
       </action>
@@ -926,7 +703,7 @@ Requires rather ugly RL prn lemmas in nn.dix, see personal_pronouns__prn pardef"
             <test>
               <equal><clip pos="4" side="tl" part="voice"/><lit v="pass"/></equal>
             </test>
-            <call-macro n="set_aux"><with-param pos="4"/><with-param pos="4"/></call-macro>
+            <call-macro n="set_aux2"><with-param pos="4"/><with-param pos="4"/></call-macro>
             <out>
               <chunk name="vblex" case="caseFirstWord">
                 <tags><tag><clip pos="4" side="tl" part="tags"/></tag></tags>
@@ -1297,20 +1074,6 @@ Requires rather ugly RL prn lemmas in nn.dix, see personal_pronouns__prn pardef"
         </out>
       </action>
     </rule>
-<!--     <rule comment="INFM: å => å"> -->
-<!--       <pattern> -->
-<!--         <pattern-item n="infm"/> -->
-<!--       </pattern> -->
-<!--       <action> -->
-<!--         <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro> -->
-<!--         <out> -->
-<!--           <chunk name="part" case="caseFirstWord"> -->
-<!--             <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags> -->
-<!--             <lu><clip pos="1" side="tl" part="whole"/></lu> -->
-<!--           </chunk> -->
-<!--         </out> -->
-<!--       </action> -->
-<!--     </rule> -->
     
   </section-rules>
 </transfer>

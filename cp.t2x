@@ -34,6 +34,28 @@
       <cat-item tags="det.itg.*"/>
       <cat-item tags="det.qnt.*"/>
     </def-cat>
+    <def-cat n="vblex">
+      <cat-item tags="vblex"/>
+      <cat-item tags="vblex.*"/>
+    </def-cat>
+    <def-cat n="infaux">
+      <cat-item lemma="aux" tags="vblex.inf"/>
+      <cat-item lemma="aux" tags="vblex.inf.*"/>
+    </def-cat>
+    <def-cat n="adv">
+      <cat-item tags="adv"/>
+      <cat-item tags="adv.*"/>
+    </def-cat>
+    <def-cat n="infm">
+      <cat-item lemma="infm" tags="part"/>
+      <cat-item lemma="infm" tags="part.*"/>
+    </def-cat>
+    <def-cat n="part">
+      <cat-item tags="vblex.lemq"/>
+      <cat-item tags="vblex.lemq.*"/>
+      <cat-item tags="vblex.pp"/>
+      <cat-item tags="vblex.pp.*"/>
+    </def-cat>
   </section-def-cats>
   
   <section-def-attrs>
@@ -294,9 +316,185 @@
   </section-def-macros>
 
 
+  <section-rules>
+    <rule comment="INFM INFAUX PART => INFM INFAUX PART
+                   å leses => å bli lest
+                   Infinitive passives with an infinitive marker should keep the auxiliary.
+                   Overrides below aux-deleting rule below (no infm => no aux needed)">
+      <pattern>
+        <pattern-item n="infm"/>
+        <pattern-item n="infaux"/>
+        <pattern-item n="part"/>
+      </pattern>
+      <action>
+        <out>
+          <chunk>
+            <clip pos="1" part="whole"/>
+          </chunk>
+          <b pos="1"/>
+          <chunk>
+            <clip pos="2" part="whole"/>
+          </chunk>
+          <b pos="2"/>          
+          <chunk>
+            <clip pos="3" part="whole"/>
+          </chunk> 
+        </out>
+      </action>
+    </rule>
+    <rule comment="INFM ADV INFAUX => INFM ADV INFAUX PART">
+      <pattern>
+        <pattern-item n="infm"/>
+        <pattern-item n="adv"/>
+        <pattern-item n="infaux"/>
+        <pattern-item n="part"/>
+      </pattern>
+      <action>
+        <out>
+          <chunk>
+            <clip pos="1" part="whole"/>
+          </chunk>
+          <b pos="1"/>
+          <chunk>
+            <clip pos="2" part="whole"/>
+          </chunk>
+          <b pos="2"/>
+          <chunk>
+            <clip pos="3" part="whole"/>
+          </chunk>
+          <b pos="3"/>          
+          <chunk>
+            <clip pos="4" part="whole"/>
+          </chunk> 
+        </out>
+      </action>
+    </rule>
+    <rule comment="INFM ADV ADV INFAUX PART => INFM ADV ADV INFAUX PART">
+      <pattern>
+        <pattern-item n="infm"/>
+        <pattern-item n="adv"/>
+        <pattern-item n="adv"/>
+        <pattern-item n="infaux"/>
+        <pattern-item n="part"/>
+      </pattern>
+      <action>
+        <out>
+          <chunk>
+            <clip pos="1" part="whole"/>
+          </chunk>
+          <b pos="1"/>
+          <chunk>
+            <clip pos="2" part="whole"/>
+          </chunk>
+          <b pos="2"/>
+          <chunk>
+            <clip pos="3" part="whole"/>
+          </chunk>
+          <b pos="3"/>
+          <chunk>
+            <clip pos="4" part="whole"/>
+          </chunk>
+          <b pos="4"/>          
+          <chunk>
+            <clip pos="5" part="whole"/>
+          </chunk> 
+        </out>
+      </action>
+    </rule>    
 
+    <rule comment="INFAUX PART => VBLEX
+                   [kan] synes => [kan] synast
+                   If we have infinitive without an infinitive marker, there's probably a modal
+                   somewhere and we can keep the original nynorsk passive form.">
+      <pattern>
+        <pattern-item n="infaux"/>
+        <pattern-item n="part"/>
+      </pattern>
+      <action>
+        <choose><when>
+          <test><not><equal><b pos="1"/><lit v=" "/></equal></not></test>
+          <out><b pos="1"/></out>
+        </when></choose>
+        <out>          
+          <chunk>
+            <clip pos="2" part="lemh"/>
+            <clip pos="1" part="tags"/>
+            <clip pos="2" part="chcontent"/>
+            <clip pos="2" part="lemq"/>
+          </chunk> 
+        </out>
+      </action>
+    </rule>
 
-  <section-rules>  
+    <rule comment="VBLEX PART => VBLEX PART">
+      <pattern>
+        <pattern-item n="vblex"/>
+        <pattern-item n="part"/>
+      </pattern>
+      <action>
+        <out>
+          <chunk>
+            <clip pos="1" part="whole"/>
+          </chunk>
+          <b pos="1"/>          
+          <chunk>
+            <clip pos="2" part="whole"/>
+          </chunk> 
+        </out>
+      </action>
+    </rule>
+    
+    <rule comment="VBLEX PART ADV => VBLEX ADV PART">
+      <pattern>
+        <pattern-item n="vblex"/>
+        <pattern-item n="part"/>
+        <pattern-item n="adv"/>
+      </pattern>
+      <action>
+        <out>
+          <chunk>
+            <clip pos="1" part="whole"/>
+          </chunk>
+          <b pos="1"/>
+          <chunk>
+            <clip pos="3" part="whole"/>
+          </chunk>
+          <b pos="2"/>          
+          <chunk>
+            <clip pos="2" part="whole"/>
+          </chunk> 
+        </out>
+      </action>
+    </rule>
+
+    <rule comment="VBLEX PART ADV ADV => VBLEX ADV ADV PART">
+      <pattern>
+        <pattern-item n="vblex"/>
+        <pattern-item n="part"/>
+        <pattern-item n="adv"/>
+        <pattern-item n="adv"/>
+      </pattern>
+      <action>
+        <out>
+          <chunk>
+            <clip pos="1" part="whole"/>
+          </chunk>
+          <b pos="1"/>
+          <chunk>
+            <clip pos="3" part="whole"/>
+          </chunk>
+          <b pos="2"/>
+          <chunk>
+            <clip pos="4" part="whole"/>
+          </chunk>
+          <b pos="3"/>          
+          <chunk>
+            <clip pos="2" part="whole"/>
+          </chunk> 
+        </out>
+      </action>
+    </rule>
+    
     <!-- Possessive noun phrases -->
     
 
