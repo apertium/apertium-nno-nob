@@ -33,6 +33,9 @@
       <cat-item name="det"/>
       <cat-item name="detdd"/>
     </def-cat>
+    <def-cat n="vblex">
+      <cat-item name="vblex"/>
+    </def-cat>
   </section-def-cats>
 
   
@@ -47,6 +50,17 @@
     <def-attr n="art">
       <attr-item tags="def"/>
       <attr-item tags="ind"/>
+    </def-attr>
+    <def-attr n="a_verb">
+      <attr-item tags="vblex"/>
+      <attr-item tags="vblex.pstv"/>
+    </def-attr>
+    <def-attr n="temps">
+      <attr-item tags="inf"/>
+      <attr-item tags="imp"/>
+      <attr-item tags="pres"/>
+      <attr-item tags="pret"/>
+      <attr-item tags="pp"/>
     </def-attr>
     <def-attr n="voice">
       <attr-item tags="pass"/>
@@ -63,7 +77,8 @@
     <def-var n="foo"/>
   </section-def-vars>
 
-  <section-def-macros>
+  
+<section-def-macros>
     <def-macro n="clean_n.adj" npar="3"
                c="arg.1: noun, arg.2: adjective, arg.3: chunk.
                   Nouns always get chunk defnes.
@@ -82,7 +97,35 @@
     </def-macro>
   </section-def-macros>
 
+
   <section-rules>
+    <rule comment="CHUNK: vblex">
+      <pattern>
+        <pattern-item n="vblex"/>
+      </pattern>
+      <action>
+        <choose>
+          <when><test><and>
+            <equal><clip pos="0" part="tags"/><lit-tag v="vblex.inf.pass"/></equal>
+            <equal><clip pos="1" part="temps"/><lit-tag v="pp"/></equal>
+          </and></test>
+          <out>
+            <lu>
+              <clip pos="1" part="lemh"/>
+              <clip pos="1" part="a_verb"/>
+              <clip pos="0" part="temps"/>
+              <clip pos="0" part="voice"/>
+              <clip pos="1" part="lemq"/>
+            </lu>
+          </out>
+          </when>
+          <otherwise>
+            <out><lu><clip pos="1" part="whole"/></lu></out>
+          </otherwise>
+        </choose>
+      </action>
+    </rule>
+    
     <rule comment="CHUNK: det">
       <pattern>
         <pattern-item n="det"/>
@@ -103,6 +146,7 @@
         </out>
       </action>
     </rule>
+    
     <!-- N+ -->
     <rule comment="CHUNK: n">
       <pattern>
