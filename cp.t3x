@@ -11,6 +11,9 @@
     <def-cat n="n_n_n">
       <cat-item name="n_n_n"/>
     </def-cat>
+    <def-cat n="adj">
+      <cat-item name="adj"/>
+    </def-cat>
     <def-cat n="adj_n">
       <cat-item name="adj_n"/>
     </def-cat>
@@ -99,6 +102,19 @@
 
 
   <section-rules>
+    <rule comment="CHUNK: adj
+                   boka kan leses => boka kan vert lese => boka kan lesast
+                   boken leses => boka vart lese => boka vart lesen">
+      <pattern>
+        <pattern-item n="adj"/>
+      </pattern>
+      <action>
+        <let><clip pos="1" part="tags"/><clip pos="0" part="tags"/></let>      
+        <out>
+          <lu><clip pos="1" part="whole"/></lu>
+        </out>
+      </action>
+    </rule>
     <rule comment="CHUNK: vblex">
       <pattern>
         <pattern-item n="vblex"/>

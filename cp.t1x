@@ -6,6 +6,7 @@
          + Dei. måten De syklar
        * POSGEN måte å VBLEXINF needs to be chunked
        * boka vart [lese vs lesen], concord
+         VBLEXPASS rule should have adj.pp.nt.sg.ind as the second chunk
   -->
   <section-def-cats>
     <!-- compound lhs's are never genitive: -->
@@ -545,8 +546,8 @@
   
   <section-rules>
     <!-- Verbs -->        
-    <rule comment="VBLEX.PRES.PASS: leses => blir lest
-                   todo: verb probably should lose possible uppercasing,
+    <rule comment="VBLEX.PASS: leses => blir lest
+                   TODO: verb probably should lose possible uppercasing,
                    although it's unlikely to find the passive verb in
                    the beginning of a sentence
                    
@@ -588,15 +589,13 @@
                 <var n="aux"/>
               </chunk>
               <b/>
-              <chunk name="vblex">
+              <chunk name="adj">
                 <tags>
-                  <tag><clip pos="1" side="tl" part="a_verb"/></tag>
-                  <tag><lit-tag v="pp"/></tag>
+                  <tag><lit-tag v="adj.pp.nt.sg.ind"/></tag>
                 </tags>
                 <lu>
                   <clip pos="1" side="tl" part="lemh"/>
-                  <clip pos="1" side="tl" part="a_verb"/>
-                  <lit-tag v="pp"/>
+                  <lit-tag v="adj.pp.nt.sg.ind"/>
                   <clip pos="1" side="tl" part="lemq"/>
                 </lu>
               </chunk>
