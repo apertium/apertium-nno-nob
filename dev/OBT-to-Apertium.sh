@@ -59,7 +59,7 @@ ${L}m\/f${M}mf${R}
 ${L}<pres-part>${M}pprs${R}
 ${L}<perf-part>${M}adj pp${R}
 ${L}perf-part${M}vblex pp${R}
-${L}st-form${M}pst${R}
+${L}st-form${M}pass${R}
 ${L}<st-verb>${M}pstv${R}
 ${L}<s-verb>${M}pstv${R}
 ${L}inf-merke${M}part${R}
