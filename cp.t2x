@@ -53,8 +53,13 @@
     <def-cat n="part">
       <cat-item tags="vblex.lemq"/>
       <cat-item tags="vblex.lemq.*"/>
+      <cat-item tags="adj.pp"/>
+      <cat-item tags="adj.pp.*"/>
+    </def-cat>
+    <def-cat n="adjpart">
       <cat-item tags="vblex.pp"/>
-      <cat-item tags="vblex.pp.*"/>
+      <cat-item tags="adj.pp"/>
+      <cat-item tags="adj.pp.*"/>
     </def-cat>
   </section-def-cats>
   
@@ -240,6 +245,34 @@
       </choose>
     </def-macro>
 
+    <def-macro n="modify_adj_gender2.n.adj" npar="2"
+               c="arg.1: noun, arg.2: adj">
+      <choose>
+        <when>
+          <test><equal><clip pos="1" part="nbr"/><lit-tag v="sg"/></equal></test>
+          <let><clip pos="2" part="nbr"/><clip pos="1" part="nbr"/></let>
+          <choose><when>
+            <test><or>
+              <equal><clip pos="2" part="gen"/><lit-tag v="mf"/></equal>
+              <equal><clip pos="2" part="gen"/><lit-tag v="m"/></equal>
+              <equal><clip pos="2" part="gen"/><lit-tag v="f"/></equal>
+              <equal><clip pos="2" part="gen"/><lit-tag v="nt"/></equal>
+            </or></test>
+            <let><clip pos="2" part="gen"/><clip pos="1" part="gen"/></let>
+            <choose><when>
+              <test><equal><clip pos="2" part="gen"/><lit-tag v="f"/></equal></test>
+              <let><clip pos="2" part="gen"/><lit-tag v="mf"/></let>
+            </when></choose>
+          </when></choose>
+        </when>
+        <when>
+          <test><equal><clip pos="1" part="nbr"/><lit-tag v="pl"/></equal></test>
+          <let><clip pos="2" part="nbr"/><clip pos="1" part="nbr"/></let>
+          <let><clip pos="2" part="gen"/><lit v=""/></let>
+        </when>
+      </choose>
+    </def-macro>
+
     <def-macro n="set_n_defness" npar="2">
       <!-- arg.1: noun, arg.2: determiner
            Make sure we have double definiteness marking, eg.:
@@ -317,6 +350,9 @@
 
 
   <section-rules>
+    
+    <!-- AUX PART rules -->
+    
     <rule comment="INFM INFAUX PART => INFM INFAUX PART
                    å leses => å bli lest
                    Infinitive passives with an infinitive marker should keep the auxiliary.
@@ -400,10 +436,12 @@
           </chunk> 
         </out>
       </action>
-    </rule>    
+    </rule>
 
     <rule comment="INFAUX PART => VBLEX
-                   [kan] synes => [kan] synast
+                   [kan] leses => [kan] bli lest => [kan] lesast
+                   Delete aux.
+                   
                    If we have infinitive without an infinitive marker, there's probably a modal
                    somewhere and we can keep the original nynorsk passive form.">
       <pattern>
@@ -442,8 +480,7 @@
           </chunk> 
         </out>
       </action>
-    </rule>
-    
+    </rule>    
     <rule comment="VBLEX PART ADV => VBLEX ADV PART">
       <pattern>
         <pattern-item n="vblex"/>
@@ -466,7 +503,6 @@
         </out>
       </action>
     </rule>
-
     <rule comment="VBLEX PART ADV ADV => VBLEX ADV ADV PART">
       <pattern>
         <pattern-item n="vblex"/>
@@ -494,6 +530,41 @@
         </out>
       </action>
     </rule>
+    
+    
+    <!-- NOM VBLEX ADJPART rules -->
+
+    <rule comment="NOM VBLEX ADJPART => NOM VBLEX ADJPART
+                   boken leses => boka vert lese => boka vert lesen
+                   Set concordance">
+      <pattern>
+        <pattern-item n="nom"/>
+        <pattern-item n="vblex"/>
+        <pattern-item n="adjpart"/>
+      </pattern>
+      <action>
+        <choose><when>
+          <test><equal><clip pos="3" part="tags"/><lit-tag v="vblex.pp"/></equal></test>
+          <let><clip pos="3" part="tags"/><lit-tag v="adj.pp.nt.sg.ind"/></let>
+        </when></choose>
+        <call-macro n="modify_adj_gender2.n.adj"><with-param pos="1"/><with-param pos="3"/></call-macro>
+        <!-- TODO: f=>mf (unfortunately we can't check if an f form is in the generator) -->
+        <out>
+          <chunk>
+            <clip pos="1" part="whole"/>
+          </chunk>
+          <b pos="1"/>
+          <chunk>
+            <clip pos="2" part="whole"/>
+          </chunk>
+          <b pos="2"/>          
+          <chunk>
+            <clip pos="3" part="whole"/>
+          </chunk> 
+        </out>
+      </action>
+    </rule>
+
     
     <!-- Possessive noun phrases -->
     
