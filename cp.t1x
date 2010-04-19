@@ -117,6 +117,9 @@
     <def-cat n="det">
       <cat-item tags="det.*"/>
     </def-cat>
+    <def-cat n="prn">
+      <cat-item tags="prn.*"/>
+    </def-cat>
     <def-cat n="detpos">
       <cat-item tags="det.pos.*"/>
     </def-cat>
@@ -156,7 +159,7 @@
       <cat-item tags="adj.*.pl"/>
       <cat-item tags="adj.comp"/>
       <cat-item tags="adj.pprs"/>                              <!--hvor truende-->
-      <cat-item tags="adj.sup.ind"/>                           <!---->
+      <cat-item tags="adj.sup.ind"/>
     </def-cat>
     <def-cat n="adv">
       <cat-item tags="adv"/>
@@ -544,14 +547,19 @@
     </def-macro>
   </section-def-macros>
   
+
+
   <section-rules>
     <!-- Verbs -->        
-    <rule comment="VBLEX.PASS: leses => blir lest
+    <rule comment="VBLEX.PASS: leses => vert lest
+                   beholdes [ikke] => vert [ikkje] haldt på
+                   synes => synest
+                   
                    TODO: verb probably should lose possible uppercasing,
                    although it's unlikely to find the passive verb in
                    the beginning of a sentence
                    
-                   If we translate into a pstv verb, don't change anything.
+                   If we translate into a pstv verb, output like the regular VBLEX rule.
                    
                    If we don't see an infinitive marker in t2x, the aux gets
                    deleted again.">
@@ -607,15 +615,23 @@
         
     <rule comment="VBLEX
                    If we have nn multiwords, these need the lemq after the
-                   inflected part. (all lemq's should include their own initial space).
-                   This has to be below the passive rules.">
+                   inflected part. All lemq's include their own initial space.
+                   This rule has to be below passive rules.">
       <pattern>
         <pattern-item n="vblex"/>
       </pattern>
       <action>
         <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
+        <let><var n="chunkname"/><lit v="vblex"/></let>
+        <choose><when>
+          <test><or>
+            <equal><clip pos="1" side="tl" part="lemh"/><lit v="bli"/></equal>
+            <equal><clip pos="1" side="tl" part="lemh"/><lit v="vere"/></equal>
+          </or></test>
+          <let><var n="chunkname"/><lit v="aux"/></let>
+        </when></choose>
         <out>
-          <chunk name="vblex" case="caseFirstWord">
+          <chunk namefrom="chunkname" case="caseFirstWord">
             <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
             <lu>
               <clip pos="1" side="tl" part="lemh"/>
@@ -623,11 +639,16 @@
               <clip pos="1" side="tl" part="temps"/>
             </lu>
           </chunk>
-          <chunk name="lemq">
-            <tags><tag><lit-tag v="vblex.lemq"/></tag></tags>
-            <lu><clip pos="1" side="tl" part="lemq"/></lu>
-          </chunk>
         </out>
+        <choose><when>
+          <test><not><equal><clip pos="1" side="tl" part="lemq"/><lit v=""/></equal></not></test>
+          <out>
+            <chunk name="lemq">
+              <tags><tag><lit-tag v="vblex.lemq"/></tag></tags>
+              <lu><clip pos="1" side="tl" part="lemq"/></lu>
+            </chunk>
+          </out>
+        </when></choose>
       </action>
     </rule>
     
@@ -671,7 +692,7 @@
     
     <!-- POSGEN måte å VBLEXINF -->
     <rule comment="POSGEN måte å VBLEXINF: hennes måte å sykle => måten ho syklar
-                   bokens måte å leses => måten boka blir lest
+                   bokens måte å leses => måten boka vert lesen
 
 Requires rather ugly RL prn lemmas in nn.dix, see personal_pronouns__prn pardef">
       <pattern>
@@ -1069,6 +1090,21 @@ Requires rather ugly RL prn lemmas in nn.dix, see personal_pronouns__prn pardef"
         <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
         <out>
           <chunk namefrom="chunkname" case="caseFirstWord">
+            <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
+            <lu><clip pos="1" side="tl" part="whole"/></lu>
+          </chunk>
+        </out>
+      </action>
+    </rule>
+    
+    <rule comment="PRN">
+      <pattern>
+        <pattern-item n="prn"/>
+      </pattern>
+      <action>
+        <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
+        <out>
+          <chunk name="prn" case="caseFirstWord">
             <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
             <lu><clip pos="1" side="tl" part="whole"/></lu>
           </chunk>

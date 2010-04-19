@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- -*- nxml -*- -->
-<!-- todo: stop using GD, just check whether the determiner (or whatever) has some gender already -->
+<!-- TODO:
+     * stop using GD, just check whether the determiner (or whatever) has some gender already
+-->
 <interchunk>
 
   <section-def-cats>
@@ -24,6 +26,9 @@
     <def-cat n="det">
       <cat-item tags="det.*"/>
     </def-cat>
+    <def-cat n="prn">
+      <cat-item tags="prn.*"/>
+    </def-cat>
     <def-cat n="detpos">
       <cat-item tags="det.pos.*"/>
     </def-cat>
@@ -34,9 +39,17 @@
       <cat-item tags="det.itg.*"/>
       <cat-item tags="det.qnt.*"/>
     </def-cat>
+    
     <def-cat n="vblex">
       <cat-item tags="vblex"/>
       <cat-item tags="vblex.*"/>
+    </def-cat>
+    <def-cat n="aux">
+      <cat-item lemma="aux" tags="vblex"/>
+      <cat-item lemma="aux" tags="vblex.*"/>
+    </def-cat>
+    <def-cat n="auxpass" c="Auxiliary generated in t1x">
+      <cat-item lemma="aux" tags="vblex.*.pass"/>
     </def-cat>
     <def-cat n="infaux">
       <cat-item lemma="aux" tags="vblex.inf"/>
@@ -50,11 +63,9 @@
       <cat-item lemma="infm" tags="part"/>
       <cat-item lemma="infm" tags="part.*"/>
     </def-cat>
-    <def-cat n="part">
+    <def-cat n="lemq">
       <cat-item tags="vblex.lemq"/>
       <cat-item tags="vblex.lemq.*"/>
-      <cat-item tags="adj.pp"/>
-      <cat-item tags="adj.pp.*"/>
     </def-cat>
     <def-cat n="adjpart">
       <cat-item tags="vblex.pp"/>
@@ -152,6 +163,8 @@
     <def-var n="epenthetic"/>
     <def-var n="n_defness"/>
     <def-var n="lemh"/>
+    <def-var n="ana_gen"/>
+    <def-var n="ana_nbr"/>
   </section-def-vars>
  
   <section-def-macros>
@@ -245,32 +258,53 @@
       </choose>
     </def-macro>
 
-    <def-macro n="modify_adj_gender2.n.adj" npar="2"
-               c="arg.1: noun, arg.2: adj">
+    <def-macro n="set_ana" npar="1"
+               c="arg.1: noun. Set vars for for later use by modify_pp_gender">
       <choose>
         <when>
-          <test><equal><clip pos="1" part="nbr"/><lit-tag v="sg"/></equal></test>
-          <let><clip pos="2" part="nbr"/><clip pos="1" part="nbr"/></let>
+          <test><and>
+            <equal><clip pos="1" part="nbr"/><lit-tag v="sg"/></equal>
+            <or>
+              <equal><clip pos="1" part="gen"/><lit-tag v="mf"/></equal>
+              <equal><clip pos="1" part="gen"/><lit-tag v="m"/></equal>
+              <equal><clip pos="1" part="gen"/><lit-tag v="f"/></equal>
+              <equal><clip pos="1" part="gen"/><lit-tag v="nt"/></equal>
+            </or>            
+          </and></test>
+          <let><var n="ana_nbr"/><clip pos="1" part="nbr"/></let>
+          <let><var n="ana_gen"/><clip pos="1" part="gen"/></let>
           <choose><when>
             <test><or>
-              <equal><clip pos="2" part="gen"/><lit-tag v="mf"/></equal>
-              <equal><clip pos="2" part="gen"/><lit-tag v="m"/></equal>
-              <equal><clip pos="2" part="gen"/><lit-tag v="f"/></equal>
-              <equal><clip pos="2" part="gen"/><lit-tag v="nt"/></equal>
+              <equal><var n="ana_gen"/><lit-tag v="f"/></equal>
+              <equal><var n="ana_gen"/><lit-tag v="m"/></equal>
             </or></test>
-            <let><clip pos="2" part="gen"/><clip pos="1" part="gen"/></let>
-            <choose><when>
-              <test><equal><clip pos="2" part="gen"/><lit-tag v="f"/></equal></test>
-              <let><clip pos="2" part="gen"/><lit-tag v="mf"/></let>
-            </when></choose>
+            <let><var n="ana_gen"/><lit-tag v="mf"/></let>
           </when></choose>
         </when>
         <when>
           <test><equal><clip pos="1" part="nbr"/><lit-tag v="pl"/></equal></test>
-          <let><clip pos="2" part="nbr"/><clip pos="1" part="nbr"/></let>
-          <let><clip pos="2" part="gen"/><lit v=""/></let>
+          <let><var n="ana_nbr"/><clip pos="1" part="nbr"/></let>
+          <let><var n="ana_gen"/><lit v=""/></let>
         </when>
       </choose>
+    </def-macro>
+    <def-macro n="modify_pp_gen_nbr" npar="1"
+               c="arg.1: adj.pp / vblex.pp
+                  Assumes set_ana only sets variable combinations that are OK for adj.pp's">
+      <choose><when>
+        <test><equal><clip pos="1" part="tags"/><lit-tag v="vblex.pp"/></equal></test>
+        <let><clip pos="1" part="tags"/><lit-tag v="adj.pp.nt.sg.ind"/></let>
+        <let><clip pos="1" part="lemh"/><lit v="adj"/></let>
+      </when></choose>
+      <choose><when>
+        <test><not><equal><var n="ana_nbr"/><lit v=""/></equal></not></test>
+        <let><clip pos="1" part="nbr"/><var n="ana_nbr"/></let>
+        <let><clip pos="1" part="gen"/><var n="ana_gen"/></let>
+      </when></choose>
+      <choose><when>
+        <test><equal><clip pos="1" part="nbr"/><lit-tag v="pl"/></equal></test>
+        <let><clip pos="1" part="art"/><lit v=""/></let>
+      </when></choose>
     </def-macro>
 
     <def-macro n="set_n_defness" npar="2">
@@ -353,14 +387,14 @@
     
     <!-- AUX PART rules -->
     
-    <rule comment="INFM INFAUX PART => INFM INFAUX PART
+    <rule comment="INFM INFAUX ADJPART => INFM INFAUX ADJPART
                    å leses => å bli lest
                    Infinitive passives with an infinitive marker should keep the auxiliary.
                    Overrides below aux-deleting rule below (no infm => no aux needed)">
       <pattern>
         <pattern-item n="infm"/>
         <pattern-item n="infaux"/>
-        <pattern-item n="part"/>
+        <pattern-item n="adjpart"/>
       </pattern>
       <action>
         <out>
@@ -378,12 +412,12 @@
         </out>
       </action>
     </rule>
-    <rule comment="INFM ADV INFAUX => INFM ADV INFAUX PART">
+    <rule comment="INFM ADV INFAUX => INFM ADV INFAUX ADJPART">
       <pattern>
         <pattern-item n="infm"/>
         <pattern-item n="adv"/>
         <pattern-item n="infaux"/>
-        <pattern-item n="part"/>
+        <pattern-item n="adjpart"/>
       </pattern>
       <action>
         <out>
@@ -405,13 +439,13 @@
         </out>
       </action>
     </rule>
-    <rule comment="INFM ADV ADV INFAUX PART => INFM ADV ADV INFAUX PART">
+    <rule comment="INFM ADV ADV INFAUX ADJPART => INFM ADV ADV INFAUX ADJPART">
       <pattern>
         <pattern-item n="infm"/>
         <pattern-item n="adv"/>
         <pattern-item n="adv"/>
         <pattern-item n="infaux"/>
-        <pattern-item n="part"/>
+        <pattern-item n="adjpart"/>
       </pattern>
       <action>
         <out>
@@ -438,7 +472,7 @@
       </action>
     </rule>
 
-    <rule comment="INFAUX PART => VBLEX
+    <rule comment="INFAUX ADJPART => VBLEXPASS
                    [kan] leses => [kan] bli lest => [kan] lesast
                    Delete aux.
                    
@@ -446,16 +480,13 @@
                    somewhere and we can keep the original nynorsk passive form.">
       <pattern>
         <pattern-item n="infaux"/>
-        <pattern-item n="part"/>
+        <pattern-item n="adjpart"/>
       </pattern>
       <action>
-        <choose><when>
-          <test><not><equal><b pos="1"/><lit v=" "/></equal></not></test>
-          <out><b pos="1"/></out>
-        </when></choose>
+        <call-macro n="modify_pp_gen_nbr"><with-param pos="2"/></call-macro>
         <out>          
           <chunk>
-            <clip pos="2" part="lemh"/>
+            <get-case-from pos="1"><clip pos="2" part="lemh"/></get-case-from>
             <clip pos="1" part="tags"/>
             <clip pos="2" part="chcontent"/>
             <clip pos="2" part="lemq"/>
@@ -464,10 +495,144 @@
       </action>
     </rule>
 
-    <rule comment="VBLEX PART => VBLEX PART">
+
+    <!-- AUXPASS ADJPART ADV* => AUXPASS ADV* ADJPART ADV*
+         and AUX ADV* ADJPART => AUX ADV* ADJPART rules -->
+
+    <rule comment="AUX ADJPART => AUX ADJPART">
+      <pattern>
+        <pattern-item n="aux"/>
+        <pattern-item n="adjpart"/>
+      </pattern>
+      <action>
+        <call-macro n="modify_pp_gen_nbr"><with-param pos="2"/></call-macro>
+        <out>
+          <chunk>
+            <clip pos="1" part="whole"/>
+          </chunk>
+          <b pos="1"/>          
+          <chunk>
+            <clip pos="2" part="whole"/>
+          </chunk> 
+        </out>
+      </action>
+    </rule>
+    <rule comment="AUXPASS ADJPART ADV => AUXPASS ADV ADJPART
+                   boken leses ofte =1> boka blir lest ofte =2> boka blir ofte lest
+                   auxpass are created in t1x; move adv's behind these
+                   (No match if the aux was there originally, then we don't move any adverbs)">
+      <pattern>
+        <pattern-item n="auxpass"/>
+        <pattern-item n="adjpart"/>
+        <pattern-item n="adv"/>
+      </pattern>
+      <action>
+        <call-macro n="modify_pp_gen_nbr"><with-param pos="2"/></call-macro>
+        <out>
+          <chunk>
+            <clip pos="1" part="whole"/>
+          </chunk>
+          <b pos="1"/>          
+          <chunk>
+            <clip pos="3" part="whole"/>
+          </chunk>
+          <b pos="2"/>          
+          <chunk>
+            <clip pos="2" part="whole"/>
+          </chunk> 
+        </out>
+      </action>
+    </rule>
+    <rule comment="AUXPASS ADJPART ADV ADV => AUXPASS ADV ADV ADJPART
+                   boken leses heller ofte =1> boka blir lest heller ofte =2> boka blir heller ofte lest
+                   auxpass are created in t1x; move adv's behind these
+                   (No match if the aux was there originally, then we don't move any adverbs)">
+      <pattern>
+        <pattern-item n="auxpass"/>
+        <pattern-item n="adjpart"/>
+        <pattern-item n="adv"/>
+        <pattern-item n="adv"/>
+      </pattern>
+      <action>
+        <call-macro n="modify_pp_gen_nbr"><with-param pos="2"/></call-macro>
+        <out>
+          <chunk>
+            <clip pos="1" part="whole"/>
+          </chunk>
+          <b pos="1"/>          
+          <chunk>
+            <clip pos="3" part="whole"/>
+          </chunk>
+          <b pos="2"/>
+          <chunk>
+            <clip pos="4" part="whole"/>
+          </chunk>
+          <b pos="3"/>
+          <chunk>
+            <clip pos="2" part="whole"/>
+          </chunk> 
+        </out>
+      </action>
+    </rule>
+    <rule comment="AUX ADV ADJPART => AUX ADV ADJPART
+                   boken ble ofte lest =1> boka vart ofte lesen =2> boka vart ofte lesen">
+      <pattern>
+        <pattern-item n="aux"/>
+        <pattern-item n="adv"/>
+        <pattern-item n="adjpart"/>
+      </pattern>
+      <action>
+        <call-macro n="modify_pp_gen_nbr"><with-param pos="3"/></call-macro>
+        <out>
+          <chunk>
+            <clip pos="1" part="whole"/>
+          </chunk>
+          <b pos="1"/>          
+          <chunk>
+            <clip pos="2" part="whole"/>
+          </chunk>
+          <b pos="2"/>
+          <chunk>
+            <clip pos="3" part="whole"/>
+          </chunk> 
+        </out>
+      </action>
+    </rule>
+    <rule comment="AUX ADV ADV ADJPART => AUX ADV ADV ADJPART
+                   boken ble heller ofte lest =1> boka vart heller ofte lesen =2> boka vart heller ofte lesen">
+      <pattern>
+        <pattern-item n="aux"/>
+        <pattern-item n="adv"/>
+        <pattern-item n="adv"/>
+        <pattern-item n="adjpart"/>
+      </pattern>
+      <action>
+        <call-macro n="modify_pp_gen_nbr"><with-param pos="4"/></call-macro>
+        <out>
+          <chunk>
+            <clip pos="1" part="whole"/>
+          </chunk>
+          <b pos="1"/>
+          <chunk>
+            <clip pos="2" part="whole"/>
+          </chunk>
+          <b pos="2"/>
+          <chunk>
+            <clip pos="3" part="whole"/>
+          </chunk>
+          <b pos="3"/>
+          <chunk>
+            <clip pos="4" part="whole"/>
+          </chunk> 
+        </out>
+      </action>
+    </rule>
+    
+    
+    <rule comment="VBLEX LEMQ => VBLEX LEMQ">
       <pattern>
         <pattern-item n="vblex"/>
-        <pattern-item n="part"/>
+        <pattern-item n="lemq"/>
       </pattern>
       <action>
         <out>
@@ -480,11 +645,12 @@
           </chunk> 
         </out>
       </action>
-    </rule>    
-    <rule comment="VBLEX PART ADV => VBLEX ADV PART">
+    </rule>
+    <rule comment="VBLEX LEMQ ADV => VBLEX ADV LEMQ
+                   Push blanks one place up since lemq space is inside the chunk.">
       <pattern>
         <pattern-item n="vblex"/>
-        <pattern-item n="part"/>
+        <pattern-item n="lemq"/>
         <pattern-item n="adv"/>
       </pattern>
       <action>
@@ -493,20 +659,21 @@
             <clip pos="1" part="whole"/>
           </chunk>
           <b pos="1"/>
+          <b pos="2"/>
           <chunk>
             <clip pos="3" part="whole"/>
           </chunk>
-          <b pos="2"/>          
           <chunk>
             <clip pos="2" part="whole"/>
           </chunk> 
         </out>
       </action>
     </rule>
-    <rule comment="VBLEX PART ADV ADV => VBLEX ADV ADV PART">
+    <rule comment="VBLEX LEMQ ADV ADV => VBLEX ADV ADV LEMQ
+                   Push blanks one place up since lemq space is inside the chunk.">
       <pattern>
         <pattern-item n="vblex"/>
-        <pattern-item n="part"/>
+        <pattern-item n="lemq"/>
         <pattern-item n="adv"/>
         <pattern-item n="adv"/>
       </pattern>
@@ -516,14 +683,14 @@
             <clip pos="1" part="whole"/>
           </chunk>
           <b pos="1"/>
+          <b pos="2"/>
           <chunk>
             <clip pos="3" part="whole"/>
           </chunk>
-          <b pos="2"/>
+          <b pos="3"/>
           <chunk>
             <clip pos="4" part="whole"/>
           </chunk>
-          <b pos="3"/>          
           <chunk>
             <clip pos="2" part="whole"/>
           </chunk> 
@@ -532,39 +699,6 @@
     </rule>
     
     
-    <!-- NOM VBLEX ADJPART rules -->
-
-    <rule comment="NOM VBLEX ADJPART => NOM VBLEX ADJPART
-                   boken leses => boka vert lese => boka vert lesen
-                   Set concordance">
-      <pattern>
-        <pattern-item n="nom"/>
-        <pattern-item n="vblex"/>
-        <pattern-item n="adjpart"/>
-      </pattern>
-      <action>
-        <choose><when>
-          <test><equal><clip pos="3" part="tags"/><lit-tag v="vblex.pp"/></equal></test>
-          <let><clip pos="3" part="tags"/><lit-tag v="adj.pp.nt.sg.ind"/></let>
-        </when></choose>
-        <call-macro n="modify_adj_gender2.n.adj"><with-param pos="1"/><with-param pos="3"/></call-macro>
-        <!-- TODO: f=>mf (unfortunately we can't check if an f form is in the generator) -->
-        <out>
-          <chunk>
-            <clip pos="1" part="whole"/>
-          </chunk>
-          <b pos="1"/>
-          <chunk>
-            <clip pos="2" part="whole"/>
-          </chunk>
-          <b pos="2"/>          
-          <chunk>
-            <clip pos="3" part="whole"/>
-          </chunk> 
-        </out>
-      </action>
-    </rule>
-
     
     <!-- Possessive noun phrases -->
     
@@ -587,6 +721,7 @@
         <pattern-item n="ngen"/>
       </pattern>
       <action>
+        <call-macro n="set_ana"><with-param pos="2"/></call-macro>
         <out>
           <chunk>
           <clip pos="2" part="whole"/>
@@ -603,6 +738,7 @@
         <pattern-item n="ngen"/>
       </pattern>
       <action>
+        <call-macro n="set_ana"><with-param pos="3"/></call-macro>
         <call-macro n="modify_det_gender2.n.det"><with-param pos="3"/><with-param pos="1"/></call-macro>
         <out>
           <chunk>
@@ -623,6 +759,7 @@
         <pattern-item n="ndef"/>
       </pattern>
       <action>
+        <call-macro n="set_ana"><with-param pos="1"/></call-macro>
         <call-macro n="modify_case_detpos"><with-param pos="1"/><with-param pos="1"/></call-macro>
 
         <call-macro n="out_det_when_adj"><with-param pos="1"/><with-param pos="1"/></call-macro>
@@ -643,6 +780,7 @@
         <pattern-item n="nind"/>
       </pattern>
       <action>
+        <call-macro n="set_ana"><with-param pos="3"/></call-macro>
         <call-macro n="switch_cases"><with-param pos="3"/><with-param pos="2"/></call-macro>
 
         <call-macro n="out_det_when_adj"><with-param pos="3"/><with-param pos="2"/></call-macro>
@@ -664,6 +802,7 @@
         <pattern-item n="nind"/>
       </pattern>
       <action>
+        <call-macro n="set_ana"><with-param pos="2"/></call-macro>
         <call-macro n="switch_cases"><with-param pos="2"/><with-param pos="1"/></call-macro>
 
         <call-macro n="out_det_when_adj"><with-param pos="2"/><with-param pos="1"/></call-macro>
@@ -687,6 +826,7 @@
 	<pattern-item n="nind"/>
       </pattern>
       <action>
+        <call-macro n="set_ana"><with-param pos="5"/></call-macro>
         <call-macro n="switch_cases"><with-param pos="5"/><with-param pos="2"/></call-macro>
         
         <call-macro n="out_det_when_adj"><with-param pos="5"/><with-param pos="1"/></call-macro>
@@ -719,6 +859,7 @@
 	<pattern-item n="nind"/>
       </pattern>
       <action>
+        <call-macro n="set_ana"><with-param pos="4"/></call-macro>
         <call-macro n="switch_cases"><with-param pos="4"/><with-param pos="1"/></call-macro>
 
         <call-macro n="out_det_when_adj"><with-param pos="4"/><with-param pos="1"/></call-macro>
@@ -748,6 +889,7 @@
 	<pattern-item n="nind"/>
       </pattern>
       <action>
+        <call-macro n="set_ana"><with-param pos="4"/></call-macro>
         <call-macro n="switch_cases"><with-param pos="4"/><with-param pos="1"/></call-macro>
         <call-macro n="out_det_when_adj"><with-param pos="4"/><with-param pos="1"/></call-macro>
         <call-macro n="out_ndef"><with-param pos="4"/><with-param pos="1"/></call-macro>
@@ -772,6 +914,7 @@
 	<pattern-item n="nind"/>
       </pattern>
       <action>
+        <call-macro n="set_ana"><with-param pos="5"/></call-macro>
         <call-macro n="switch_cases"><with-param pos="5"/><with-param pos="1"/></call-macro>
         
         <call-macro n="out_det_when_adj"><with-param pos="5"/><with-param pos="1"/></call-macro>
@@ -798,6 +941,7 @@
         <pattern-item n="detpos"/>
       </pattern>
       <action>
+        <call-macro n="set_ana"><with-param pos="1"/></call-macro>
         <call-macro n="modify_det_gender2.n.det"><with-param pos="1"/><with-param pos="2"/></call-macro>
         <out>
           <chunk><clip pos="1" part="whole"/></chunk>
@@ -818,12 +962,36 @@
         <pattern-item n="nom"/>
       </pattern>
       <action>
+        <call-macro n="set_ana"><with-param pos="2"/></call-macro>
         <call-macro n="modify_det_gender2.n.det"><with-param pos="2"/><with-param pos="1"/></call-macro>
         <call-macro n="set_n_defness"><with-param pos="2"/><with-param pos="1"/></call-macro>
         <out>
           <chunk><clip pos="1" part="whole"/></chunk>
           <b pos="1"/>
           <chunk><clip pos="2" part="whole"/></chunk>
+        </out>
+      </action>
+    </rule>
+    
+    <rule comment="DET">
+      <pattern>
+        <pattern-item n="det"/>
+      </pattern>
+      <action>
+        <call-macro n="set_ana"><with-param pos="1"/></call-macro>
+        <out>
+          <chunk><clip pos="1" part="whole"/></chunk>
+        </out>
+      </action>
+    </rule>
+    <rule comment="PRN">
+      <pattern>
+        <pattern-item n="prn"/>
+      </pattern>
+      <action>
+        <call-macro n="set_ana"><with-param pos="1"/></call-macro>
+        <out>
+          <chunk><clip pos="1" part="whole"/></chunk>
         </out>
       </action>
     </rule>
