@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <modes>
+  <!-- nb=>nn -->
   <mode name="nb-nn" install="yes">
     <pipeline>
       <program name="lt-proc -w">
-        <file name="nb-nn.automorf.bin"/>
+        <file name="nb-nn.automorf-no-cp.bin"/>
       </program>
       <program name="cg-proc -w">
 	<file name="nb-nn.rlx.bin"/>
@@ -55,7 +56,7 @@
   </mode>
 
   
-  
+  <!-- nn=>nb -->
   <mode name="nn-nb" install="yes">
     <pipeline>
       <program name="lt-proc -w">
@@ -74,7 +75,7 @@
         <file name="nn-nb.autobil.bin"/>
       </program>
       <program name="lt-proc $1">
-        <file name="nn-nb.autogen.bin"/>
+        <file name="nn-nb.autogen-no-cp.bin"/>
       </program>
     </pipeline>
   </mode>
