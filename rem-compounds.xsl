@@ -22,53 +22,53 @@
 <xsl:param name="r2l"/>
 
 <xsl:template match="s">
-  <s n="{./@n}"/>
+  <xsl:copy-of select="."/>
 </xsl:template>
 
 <xsl:template match="b">
-  <b/>
+  <xsl:copy-of select="."/>
 </xsl:template>
 
 <xsl:template match="g">
-  <g><xsl:apply-templates/></g>
+  <xsl:copy-of select="."/>
 </xsl:template>
 
 <xsl:template match="a">
-  <a/>
+  <xsl:copy-of select="."/>
 </xsl:template>
 
 <xsl:template match="j">
-  <j/>
+  <xsl:copy-of select="."/>
 </xsl:template>
 
 <xsl:template match="l">
-  <l><xsl:apply-templates/></l>
+  <xsl:copy-of select="."/>
 </xsl:template>
 
 <xsl:template match="r">
-  <r><xsl:apply-templates/></r>
+  <xsl:copy-of select="."/>
 </xsl:template>
 
 <xsl:template match="par">
-  <par n="{./@n}"/>
+  <xsl:copy-of select="."/>
 </xsl:template>
 
 <xsl:template match="re">
-  <re><xsl:apply-templates/></re>
+  <xsl:copy-of select="."/>
 </xsl:template>
 
 <xsl:template match="p">
-  <p><xsl:apply-templates/></p>
+  <xsl:copy-of select="."/>
 </xsl:template>
 
 <xsl:template match="i">
-  <i><xsl:apply-templates/></i>
+  <xsl:copy-of select="."/>
 </xsl:template>
 
 <xsl:template match="e">
   <xsl:choose>
     <xsl:when test="not(.//@n='compound-R') and not(.//@n='compound-only-L')">
-      <e><xsl:apply-templates select="./*"/></e>
+      <xsl:copy-of select="."/>
     </xsl:when>
   </xsl:choose>  
 </xsl:template>
@@ -104,7 +104,6 @@
 
     </xsl:for-each>
   </dictionary>
-
 </xsl:template>
 
 
