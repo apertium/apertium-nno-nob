@@ -78,10 +78,16 @@
 		<sdef n="ep-e" 	c="e-epenthesis"/> 
 	</sdefs>
 	<pardefs>
-          <!-- Compounding pardefs. -->
+          <!-- Compounding pardefs.
+               Note that since rem-compounds.xsl removes all <e> containing compounding symbols,
+               we need the extra NON_ANALYSIS entries (which will of course never be seen in real
+               texts). Without these, we end up with a pardef with only one <e> with empty <l/>
+               and empty <r/>, this make lt-proc hang.
+          -->
 <pardef n="cp-R"> 
    <e r="LR"><p><l></l>          <r><s n="compound-R"/></r></p></e>
    <e>       <p><l></l>          <r></r></p></e>
+   <e>       <p><l>NON_ANALYSIS</l>          <r>DUE_TO_LT_PROC_HANG</r></p></e>
 </pardef>
 <pardef n="cp-R_S__case"> 
    <e r="LR"><p><l></l>          <r><s n="compound-R"/></r></p></e>
@@ -100,6 +106,7 @@
    <e r="LR"><p><l>s</l>         <r><s n="ep-s"/><s n="compound-only-L"/></r></p></e>
    <e r="LR"><p><l></l>          <r><s n="compound-R"/></r></p></e>
    <e>       <p><l></l>          <r></r></p></e>
+   <e>       <p><l>NON_ANALYSIS</l>          <r>DUE_TO_LT_PROC_HANG</r></p></e>
 </pardef>
 <pardef n="cp-both-s_S__case">
    <e r="LR"><p><l></l>          <r><s n="ep-Ø"/><s n="compound-only-L"/></r></p></e>
