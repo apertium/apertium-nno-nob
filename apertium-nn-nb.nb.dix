@@ -125,6 +125,13 @@
    <e r="LR"><p><l>'</l>         <r><s n="gen"/><s n="compound-R"/></r></p></e>
    <e>       <p><l>'</l>         <r><s n="gen"/></r></p></e>
 </pardef>
+<pardef n="cp-both-e_S__case">
+   <e r="LR"><p><l></l>          <r><s n="ep-Ø"/><s n="compound-only-L"/></r></p></e> 
+   <e r="LR"><p><l>e</l>         <r><s n="ep-e"/><s n="compound-only-L"/></r></p></e> 
+   <e r="LR"><p><l></l>          <r><s n="compound-R"/></r></p></e>
+   <e>       <p><l></l>          <r></r></p></e>
+   <e>       <p><l>s</l>         <r><s n="gen"/></r></p></e>
+</pardef>
 
     <!-- Genitive case endings for nouns, determiners  -->
 <pardef n="S__case">
@@ -755,6 +762,12 @@
   <e>       <p><l>er</l>        <r><s n="n"/><s n="m"/><s n="pl"/><s n="ind"/></r></p><par n="cp-R_S__case"/></e>
   <e>       <p><l>en</l>        <r><s n="n"/><s n="m"/><s n="sg"/><s n="def"/></r></p><par n="cp-R_S__case"/></e>
   <e>       <p><l></l>          <r><s n="n"/><s n="m"/><s n="sg"/><s n="ind"/></r></p><par n="cp-both-s_S__case"/></e>
+</pardef>
+<pardef n="ep_e__n">
+  <e>       <p><l>ene</l>       <r><s n="n"/><s n="m"/><s n="pl"/><s n="def"/></r></p><par n="S__case"/><par n="cp-R"/></e>
+  <e>       <p><l>er</l>        <r><s n="n"/><s n="m"/><s n="pl"/><s n="ind"/></r></p><par n="S__case"/><par n="cp-R"/></e>
+  <e>       <p><l>en</l>        <r><s n="n"/><s n="m"/><s n="sg"/><s n="def"/></r></p><par n="S__case"/><par n="cp-R"/></e>
+  <e>       <p><l></l>          <r><s n="n"/><s n="m"/><s n="sg"/><s n="ind"/></r></p><par n="cp-both-e_S__case"/></e>
 </pardef>
 
 <pardef n="os__n">
@@ -12374,6 +12387,8 @@
 <e lm="nordover">            <i>nordover</i><par n="dagevis__adv"/></e>
 <e lm="senere">            <i>senere</i><par n="dagevis__adv"/></e>
 <e lm="med">            <i>med</i><par n="dagevis__adv"/></e>
+<e lm="sørpå">            <par n="sør_LR_syd"/><i>på</i><par n="dagevis__adv"/></e>
+<e lm="sørfra">            <par n="sør_LR_syd"/><i>fra</i><par n="dagevis__adv"/></e>
 <!-- /adverbs -->
 
 <!-- Verbs -->
@@ -15716,6 +15731,7 @@
 <e lm="ruse">            <i>rus</i><par n="yt/e__vblex_adj"/></e>
 <e lm="bunnfryse">       <i>bunnfr</i><par n="fr/yse__vblex_adj"/></e>
 <e lm="fôre">            <i>fôr</i><par n="yt/e__vblex_adj"/></e>
+<e r="LR" lm="fore"><p><l>for</l><r>fôr</r></p><par n="yt/e__vblex_adj"/></e>
 <e lm="kvite">           <i>kvit</i><par n="å/e__vblex_adj"/></e>
 <e lm="hvite">           <i>hvit</i><par n="å/e__vblex_adj"/></e>
 <e lm="fomle">           <i>foml</i><par n="å/e__vblex_adj"/></e>
@@ -18550,6 +18566,7 @@
     <e lm="tutle"><i>tutl</i><par n="adl/e__vblex_adj"/></e>
     <e lm="tvangsflytte"><i>tvangsflytt</i><par n="å/e__vblex_adj"/></e>
     <e lm="tvangsfôre"><i>tvangsfôr</i><par n="yt/e__vblex_adj"/></e>
+    <e r="LR" lm="tvangsfore"><p><l>tvangsfor</l><r>tvangsfôr</r></p><par n="yt/e__vblex_adj"/></e>
     <e lm="tverrsnu"><i>tverrsnu</i><par n="nø__vblex_adj"/></e>
     <e lm="tverrstanse"><i>tverrstans</i><par n="å/e__vblex_adj"/></e>
     <e lm="tvette"><i>tvett</i><par n="å/e__vblex_adj"/></e>
@@ -18816,7 +18833,6 @@
 <e lm="iverksette">      <i>iverks</i><par n="s/ette__vblex_adj"/></e>
 <e lm="tilspisse">       <i>tilspiss</i><par n="å/e__vblex_adj"/></e>
 <e lm="overvåke">        <i>overvåk</i><par n="yt/e__vblex_adj"/></e>
-
 <e lm="befinne seg"><i>bef</i><par n="f/inne__vblex_adj"/><par n="/seg__refl"/></e>
 <!-- /verbs -->
 
@@ -19920,6 +19936,7 @@
 <e lm="tilsynelatende">  <i>tilsynelatende</i><par n="OK__adj"/></e>
 <e lm="uforvarende">     <i>uforvarende</i><par n="OK__adj"/></e>
 <e lm="underliggende">   <i>underliggende</i><par n="OK__adj"/></e>
+<e lm="fjerntliggende">   <i>fjerntliggende</i><par n="OK__adj"/></e>
 <e lm="utseende">        <i>utseende</i><par n="OK__adj"/></e>
 <e lm="uvedkommende">    <i>uvedkommende</i><par n="OK__adj"/></e>
 <e lm="vakthavende">     <i>vakthavende</i><par n="OK__adj"/></e>
@@ -21456,7 +21473,7 @@
 <e lm="andreplass">      <i>andreplass</i><par n="ep__n"/></e>
 <e lm="begrep">          <i>begrep</i><par n="ja__n"/></e>
 <e lm="ekteskap">        <i>ekteskap</i><par n="ja__n"/></e>
-<e lm="dans">            <i>dans</i><par n="ep__n"/></e>
+<e lm="dans">            <i>dans</i><par n="ep_e__n"/></e>
 <e lm="art">             <i>art</i><par n="då_no-cp__n"/></e>
 <e lm="fiske">           <i>fisk</i><par n="ød/e__n"/></e>
 <e lm="europavei">       <i>europavei</i><par n="ep__n"/></e>
@@ -52606,7 +52623,7 @@
 <e lm="forgjengelighet"> <i>forgjengelighet</i><par n="då__n"/></e>
 <e lm="ballettsko"><i>ballettsko</i><par n="sko__n"/></e>
 <e lm="regnvær">  <i>regnvær</i><par n="ul__n"/></e>
-
+<e lm="skam">            <i>skam</i><par n="vom__n"/></e>
 <!-- todo: -->
 <!-- masterå -->
 <!-- vinterkomag (ser ut som hankjønn) -->
@@ -56645,6 +56662,7 @@
 <e lm="Mari">            <i>Mari</i><par n="Eva__np"/></e>
 <e lm="Marion">          <i>Marion</i><par n="Eva__np"/></e>
 <e lm="Marit">           <i>Marit</i><par n="Eva__np"/></e>
+<e lm="Máret">           <i>Máret</i><par n="Eva__np"/></e>
 <e lm="Marta">           <i>Marta</i><par n="Eva__np"/></e>
 <e lm="Martha">          <i>Martha</i><par n="Eva__np"/></e>
 <e lm="Mathilde">        <i>Mathilde</i><par n="Eva__np"/></e>
