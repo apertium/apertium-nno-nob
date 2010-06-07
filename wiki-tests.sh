@@ -12,8 +12,20 @@ TSTLIST=`mktemp -t tmp_$1.XXXXXXXXXX`;
 basedir=`pwd`;
 mode="$SRCLANG-$TRGLANG"
 
-wget -O - -q http://wiki.apertium.org/wiki/Norwegian_Nynorsk_and_Norwegian_Bokmål/$TESTTYPE | grep "<li> ($SRCLANG)" | sed 's/<.*li>//g' | sed 's/ /_/g' | cut -f2 -d')' | sed 's/<i>//g' | sed 's/<\/i>//g' | cut -f2 -d'*' | sed 's/→/!/g' | cut -f1 -d'!' | sed 's/(note:/!/g' | sed 's/_/ /g' | sed 's/$/./g' > $SRCLIST;
-wget -O - -q http://wiki.apertium.org/wiki/Norwegian_Nynorsk_and_Norwegian_Bokmål/$TESTTYPE | grep "<li> ($SRCLANG)" | sed 's/<.*li>//g' | sed 's/ /_/g' | sed 's/(\w\w)//g' | sed 's/<i>//g' | cut -f2 -d'*' | sed 's/<\/i>_→/!/g' | cut -f2 -d'!' | sed 's/_/ /g' | sed 's/^ *//g' | sed 's/ *$//g' | sed 's/$/./g' > $TRGLIST;
+SED=sed
+if test x$(uname -s) = xDarwin; then 
+	ECHOE="builtin echo"
+	SED=gsed
+fi
+
+cleansrc () {
+    grep "<li> ($SRCLANG)" | $SED 's/<.*li>//g' | $SED 's/ /_/g' | cut -f2 -d')' | $SED 's/<i>//g' | $SED 's/<\/i>//g' | cut -f2 -d'*' | $SED 's/→/!/g' | cut -f1 -d'!' | $SED 's/(note:/!/g' | $SED 's/_/ /g' | $SED 's/^ *//g' | $SED 's/ *$//g' | $SED 's/$/./g'
+}
+cleantrg () {
+    grep "<li> ($SRCLANG)" | $SED 's/<.*li>//g' | $SED 's/ /_/g' | $SED 's/(\w\w)//g' | $SED 's/<i>//g' | cut -f2 -d'*' | $SED 's/<\/i>_→/!/g' | cut -f2 -d'!' | $SED 's/_/ /g' | $SED 's/^ *//g' | $SED 's/ *$//g' | $SED 's/$/./g'
+}
+wget -O - -q http://wiki.apertium.org/wiki/Norwegian_Nynorsk_and_Norwegian_Bokmål/$TESTTYPE | cleansrc > $SRCLIST;
+wget -O - -q http://wiki.apertium.org/wiki/Norwegian_Nynorsk_and_Norwegian_Bokmål/$TESTTYPE | cleantrg > $TRGLIST;
 
 apertium -d . $mode < $SRCLIST > $TSTLIST;
 
