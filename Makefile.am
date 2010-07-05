@@ -7,6 +7,8 @@ LANG2=nb
 PREFIX1=$(LANG1)-$(LANG2)
 PREFIX2=$(LANG2)-$(LANG1)
 PREFIX2a=$(LANG2)-$(LANG1a)
+PREFIX1a=$(LANG1)-$(LANG1a)
+PREFIX1e=$(LANG1a)-$(LANG1)
 
 BASENAME=apertium-$(PREFIX1)
 
@@ -140,7 +142,7 @@ apertium_nn_nb_DATA=$(PREFIX1).automorf.bin      $(PREFIX2).automorf-no-cp.bin \
 		    $(PREFIX1).t1x.bin           $(PREFIX2).t1x.bin \
 		    modes.xml 
 
-noinst_DATA=modes/$(PREFIX1).mode modes/$(PREFIX2).mode 
+noinst_DATA=modes/$(PREFIX1).mode modes/$(PREFIX2).mode
 
 install-data-local:
 	mv modes modes.bak
@@ -150,7 +152,10 @@ install-data-local:
 	test -d $(DESTDIR)$(apertium_nn_modesdir) || mkdir $(DESTDIR)$(apertium_nn_modesdir)
 	$(INSTALL_DATA) $(PREFIX1).mode $(DESTDIR)$(apertium_nn_modesdir)
 	$(INSTALL_DATA) $(PREFIX2).mode $(DESTDIR)$(apertium_nn_modesdir)
-	rm $(PREFIX1).mode $(PREFIX2).mode
+	$(INSTALL_DATA) $(PREFIX2a).mode $(DESTDIR)$(apertium_nn_modesdir)
+	$(INSTALL_DATA) $(PREFIX1a).mode $(DESTDIR)$(apertium_nn_modesdir)
+	$(INSTALL_DATA) $(PREFIX1e).mode $(DESTDIR)$(apertium_nn_modesdir)
+	rm $(PREFIX1).mode $(PREFIX2).mode $(PREFIX2a).mode $(PREFIX1a).mode $(PREFIX1e).mode
 	$(INSTALL_DATA) $(BASENAME).$(PREFIX1).t1x $(DESTDIR)$(apertium_nn_nbdir)
 	$(INSTALL_DATA) $(BASENAME).$(PREFIX2).t1x $(DESTDIR)$(apertium_nn_nbdir)
 
