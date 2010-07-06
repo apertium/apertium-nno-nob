@@ -13,9 +13,11 @@ PREFIX1e=$(LANG1a)-$(LANG1)
 BASENAME=apertium-$(PREFIX1)
 
 TARGETS_COMMON = $(PREFIX1).automorf.bin $(PREFIX1).rlx.bin \
-     $(PREFIX1).autobil.bin $(PREFIX1).t1x.bin $(PREFIX1).autogen-no-cp.bin \
+     $(PREFIX1).autobil.bin $(PREFIX1).t1x.bin \
+     $(PREFIX1).autogen-no-cp.bin \
      $(PREFIX2).automorf-no-cp.bin $(PREFIX2).rlx.bin \
-     $(PREFIX2).autobil.bin $(PREFIX2).t1x.bin $(PREFIX2).autogen.bin \
+     $(PREFIX2).autobil.bin $(PREFIX2).t1x.bin $(PREFIX2).t2x.bin $(PREFIX2).t3x.bin \
+     $(PREFIX2).autogen.bin \
      $(PREFIX2a).autogen.bin
 
 .deps/$(BASENAME).$(LANG2).dix: $(BASENAME).$(LANG2).dix rem-compounds.xsl
@@ -42,9 +44,9 @@ $(PREFIX1).autobil.bin: $(BASENAME).$(PREFIX1).dix
 	apertium-validate-dictionary $(BASENAME).$(PREFIX1).dix
 	lt-comp lr $(BASENAME).$(PREFIX1).dix $@
 
-$(PREFIX2).t1x.bin: $(BASENAME).$(PREFIX2).t1x
-	apertium-validate-transfer $(BASENAME).$(PREFIX2).t1x
-	apertium-preprocess-transfer $(BASENAME).$(PREFIX2).t1x $@
+$(PREFIX1).t1x.bin: $(BASENAME).$(PREFIX1).t1x
+	apertium-validate-transfer $(BASENAME).$(PREFIX1).t1x
+	apertium-preprocess-transfer $(BASENAME).$(PREFIX1).t1x $@
 
 $(PREFIX1).autogen-no-cp.bin: .deps/$(BASENAME).$(LANG2).dix
 	apertium-validate-dictionary .deps/$(BASENAME).$(LANG2).dix
@@ -63,9 +65,17 @@ $(PREFIX2).autobil.bin: $(BASENAME).$(PREFIX1).dix
 	apertium-validate-dictionary $(BASENAME).$(PREFIX1).dix
 	lt-comp rl $(BASENAME).$(PREFIX1).dix $@
 
-$(PREFIX1).t1x.bin: $(BASENAME).$(PREFIX1).t1x
-	apertium-validate-transfer $(BASENAME).$(PREFIX1).t1x
-	apertium-preprocess-transfer $(BASENAME).$(PREFIX1).t1x $@
+$(PREFIX2).t1x.bin: $(BASENAME).$(PREFIX2).t1x
+	apertium-validate-transfer $(BASENAME).$(PREFIX2).t1x
+	apertium-preprocess-transfer $(BASENAME).$(PREFIX2).t1x $@
+
+$(PREFIX2).t2x.bin: $(BASENAME).$(PREFIX2).t2x
+	apertium-validate-interchunk $(BASENAME).$(PREFIX2).t2x
+	apertium-preprocess-transfer $(BASENAME).$(PREFIX2).t2x $@
+
+$(PREFIX2).t3x.bin: $(BASENAME).$(PREFIX2).t3x
+	apertium-validate-postchunk $(BASENAME).$(PREFIX2).t3x
+	apertium-preprocess-transfer $(BASENAME).$(PREFIX2).t3x $@
 
 $(PREFIX2).autogen.bin: .deps/$(BASENAME).$(LANG1).dix
 	apertium-validate-dictionary .deps/$(BASENAME).$(LANG1).dix
@@ -77,30 +87,17 @@ $(PREFIX2a).autogen.bin: .deps/$(BASENAME).$(LANG1a).dix
 	lt-comp rl .deps/$(BASENAME).$(LANG1a).dix $@
 
 
-# nn-nb-cp
-$(PREFIX1).autogen.bin: $(BASENAME).$(LANG2).dix
-	apertium-validate-dictionary $(BASENAME).$(LANG2).dix
-	lt-comp rl $(BASENAME).$(LANG2).dix $@
+# nn-nb-cp TODO
+# $(PREFIX1).autogen.bin: $(BASENAME).$(LANG2).dix
+# 	apertium-validate-dictionary $(BASENAME).$(LANG2).dix
+# 	lt-comp rl $(BASENAME).$(LANG2).dix $@
 
 # nb-nn-cp
 $(PREFIX2).automorf.bin: $(BASENAME).$(LANG2).dix
 	apertium-validate-dictionary $(BASENAME).$(LANG2).dix
 	lt-comp lr $(BASENAME).$(LANG2).dix $@
 
-cp.t1x.bin: cp.t1x
-	apertium-validate-transfer cp.t1x
-	apertium-preprocess-transfer cp.t1x $@
-
-cp.t2x.bin: cp.t2x
-	apertium-validate-interchunk cp.t2x
-	apertium-preprocess-transfer cp.t2x $@
-
-cp.t3x.bin: cp.t3x
-	apertium-validate-postchunk cp.t3x
-	apertium-preprocess-transfer cp.t3x $@
-
-TARGETS_CP = $(PREFIX1).autogen.bin $(PREFIX2).automorf.bin \
-	cp.t1x.bin cp.t2x.bin cp.t3x.bin
+TARGETS_CP = $(PREFIX2).automorf.bin
 
 cp: $(TARGETS_CP)
 
@@ -111,6 +108,8 @@ EXTRA_DIST=$(BASENAME).$(LANG1).dix $(BASENAME).$(PREFIX1).dix \
            $(PREFIX1).prob $(PREFIX2).prob \
 	   $(BASENAME).$(PREFIX1).t1x \
 	   $(BASENAME).$(PREFIX2).t1x \
+	   $(BASENAME).$(PREFIX2).t2x \
+	   $(BASENAME).$(PREFIX2).t3x \
 	   $(BASENAME).$(LANG1).tsx \
 	   $(BASENAME).$(LANG2).tsx modes.xml
 
@@ -140,6 +139,8 @@ apertium_nn_nb_DATA=$(PREFIX1).automorf.bin      $(PREFIX2).automorf-no-cp.bin \
                     $(PREFIX1).autogen-no-cp.bin $(PREFIX2).autogen.bin \
                                                  $(PREFIX2a).autogen.bin \
 		    $(PREFIX1).t1x.bin           $(PREFIX2).t1x.bin \
+		                                 $(PREFIX2).t2x.bin \
+		                                 $(PREFIX2).t3x.bin \
 		    modes.xml 
 
 noinst_DATA=modes/$(PREFIX1).mode modes/$(PREFIX2).mode
@@ -158,6 +159,8 @@ install-data-local:
 	rm $(PREFIX1).mode $(PREFIX2).mode $(PREFIX2a).mode $(PREFIX1a).mode $(PREFIX1e).mode
 	$(INSTALL_DATA) $(BASENAME).$(PREFIX1).t1x $(DESTDIR)$(apertium_nn_nbdir)
 	$(INSTALL_DATA) $(BASENAME).$(PREFIX2).t1x $(DESTDIR)$(apertium_nn_nbdir)
+	$(INSTALL_DATA) $(BASENAME).$(PREFIX2).t2x $(DESTDIR)$(apertium_nn_nbdir)
+	$(INSTALL_DATA) $(BASENAME).$(PREFIX2).t3x $(DESTDIR)$(apertium_nn_nbdir)
 
 
 CLEANFILES = -rf $(TARGETS_COMMON) $(TARGETS_CP) modes .deps
