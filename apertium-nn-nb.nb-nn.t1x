@@ -899,6 +899,15 @@ Requires rather ugly RL prn lemmas in nn.dix, see personal_pronouns__prn pardef"
         <pattern-item n="n"/>
       </pattern>
       <action>
+        <!-- TODO: add this when it's accepted in trunk/apertium: -->
+        <!-- <exception> -->
+        <!--   <test> -->
+        <!--     <and> -->
+        <!--       <equal><clip pos="1" side="tl" part="art"/><lit-tag v="ind"/></equal> -->
+        <!--       <equal><clip pos="2" side="tl" part="art"/><lit-tag v="def"/></equal> -->
+        <!--     </and> -->
+        <!--   </test> -->
+        <!-- </exception> -->
         <call-macro n="set_gender2.n.adj">
           <with-param pos="2"/>
           <with-param pos="1"/>
