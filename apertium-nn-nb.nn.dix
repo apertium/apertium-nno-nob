@@ -23,7 +23,7 @@
 
   -->
 <dictionary>
-	<alphabet>ABCDEFGHIJKLMNOPQRSTUVWXYZÆØÅabcdefghijklmnopqrstuvwxyzæøåcqwxzCQWXZéèêóòâôÉÊÈÓÔÒÂáàÁÀäÄöÖ</alphabet>
+	<alphabet>ABCDEFGHIJKLMNOPQRSTUVWXYZÆØÅabcdefghijklmnopqrstuvwxyzæøåcqwxzCQWXZéèêóòâôÉÊÈÓÔÒÂáàÁÀäÄöÖšŠ</alphabet>
 	<sdefs>
 		<sdef n="n" 	c="Noun"/> 
 		<sdef n="np" 	c="Proper noun"/> 
@@ -11207,6 +11207,15 @@
   <e>       <p><l>aste</l>      <r><s n="adj"/><s n="sup"/><s n="def"/></r></p></e>
   <e>       <p><l>ast</l>       <r><s n="adj"/><s n="sup"/><s n="ind"/></r></p></e>
 </pardef>
+<pardef n="sist__adj">
+  <e r="RL"><p><l>are</l>       <r><s n="adj"/><s n="comp"/></r></p></e>
+  <e r="RL"><p><l></l>          <r><s n="adj"/><s n="posi"/><s n="mf"/><s n="sg"/><s n="ind"/></r></p></e>
+  <e r="RL"><p><l></l>          <r><s n="adj"/><s n="posi"/><s n="nt"/><s n="sg"/><s n="ind"/></r></p></e>
+  <e r="RL"><p><l>e</l>         <r><s n="adj"/><s n="posi"/><s n="pl"/></r></p></e>
+  <e r="RL"><p><l>e</l>         <r><s n="adj"/><s n="posi"/><s n="sg"/><s n="def"/></r></p></e>
+  <e>       <p><l>e</l>      <r><s n="adj"/><s n="sup"/><s n="def"/></r></p></e>
+  <e>       <p><l></l>       <r><s n="adj"/><s n="sup"/><s n="ind"/></r></p></e>
+</pardef>
 <pardef n="heilag__adj">
   <e>       <p><l>are</l>   <r><s n="adj"/><s n="comp"/></r></p></e>
   <e>       <p><l></l>      <r><s n="adj"/><s n="posi"/><s n="mf"/><s n="sg"/><s n="ind"/></r></p></e>
@@ -11698,6 +11707,7 @@
 <e lm="i">               <i>i</i><par n="i__pr"/></e>
 <!-- «i ferd med» eh...preposisjon? -->
 <e lm="i ferd med">      <i>i<b/>ferd<b/>med</i><par n="i__pr"/></e>
+<e lm="i heile">          <i>i<b/>heile</i><par n="i__pr"/></e>
 <e lm="iblant">          <i>iblant</i><par n="i__pr"/></e>
 <e lm="ifølge">          <i>ifølge</i><par n="i__pr"/></e>
 <e lm="ifølgje">         <i>ifølgje</i><par n="i__pr"/></e>
@@ -20031,7 +20041,7 @@
 <e lm="stor">            <i>st</i><par n="st/or__adj"/></e>
 <e lm="mange">           <i></i><par n="/mange__adj"/></e>
 <e lm="svart">           <i>svart</i><par n="svart__adj"/></e>
-<e lm="sist">            <i>sist</i><par n="svart__adj"/></e>
+<e lm="sist">            <i>sist</i><par n="sist__adj"/></e>
 <e lm="sein">            <i>sein</i><par n="sein__adj"/></e>
 <e lm="svær">            <i>svær</i><par n="sein__adj"/></e>
 <e lm="heil">            <i>heil</i><par n="sein__adj"/></e>
@@ -22101,12 +22111,14 @@
 <e lm="t-shirt"><i>t-shirt</i><par n="t-shirt__n"/></e>
 <e lm="t-skjorte"><i>t-skjort</i><par n="lø/e__n"/></e>
 <e lm="heile">           <i>heil</i><par n="heil/e__n"/></e>
+<e lm="æve">          <i>æv</i><par n="lø/e__n"/></e>
 <e lm="nærleik"><i>nærleik</i><par n="ep__n"/></e>
 <e lm="skiping"><i>skiping</i><par n="yting__n"/></e>
 <e lm="feiring"><i>feiring</i><par n="yting__n"/></e>
 <e lm="gruppering"><i>gruppering</i><par n="yting__n"/></e>
 <e lm="munning"><i>munning</i><par n="ep__n"/></e>
-    <e lm="tomheit"><i>tomheit</i><par n="å__n"/></e>
+<e lm="tomheit"><i>tomheit</i><par n="å__n"/></e>
+<e lm="samiskheit"><i>samiskheit</i><par n="å__n"/></e>
 <e lm="tomleik">  <i>tomleik</i><par n="ep__n"/></e>
 <e lm="viktigheit"><i>viktigheit</i><par n="å__n"/></e>
 <e lm="drep">            <i>drep</i><par n="ul__n"/></e>
@@ -44964,6 +44976,8 @@
     <e lm="ruskomsnusk"><i>ruskomsnusk</i><par n="ty__n"/></e>
     <e lm="rusmiddel"><i>rusmid</i><par n="molmid/del__n"/></e>
     <e lm="russ"><i>russ</i><par n="knop__n"/></e>
+    <e lm="blåruss"><i>blåruss</i><par n="knop__n"/></e>
+    <e lm="raudruss"><i>raudruss</i><par n="knop__n"/></e>
     <e lm="russar"><i>russar</i><par n="ep__n"/></e>
     <e lm="russehandel"><i>russehand</i><par n="ad/el__n"/></e>
     <e lm="rustingsindustri"><i>rustingsindustri</i><par n="ep__n"/></e>
@@ -57100,6 +57114,7 @@
 <e lm="Smedsrud">        <i>Smedsrud</i><par n="Noreg__np"/></e>
 <e lm="Smestad">         <i>Smestad</i><par n="Noreg__np"/></e>
 <e lm="Småland">         <i>Småland</i><par n="Noreg__np"/></e>
+<e lm="Smirnov">         <i>Smirnov</i><par n="Noreg__np"/></e>
 <e lm="Smøla">           <i>Smøla</i><par n="Noreg__np"/></e>
 <e lm="Snillfjord">      <i>Snillfjord</i><par n="Noreg__np"/></e>
 <e lm="Snåsa">           <i>Snåsa</i><par n="Noreg__np"/></e>
@@ -57202,6 +57217,7 @@
 <e lm="Stovner">         <i>Stovner</i><par n="Noreg__np"/></e>
 <e lm="Strand">          <i>Strand</i><par n="Noreg__np"/></e>
 <e lm="Strandenes">      <i>Strandenes</i><par n="Ås__np"/></e>
+<e lm="Strandebarm">     <i>Strandebarm</i><par n="Noreg__np"/></e>
 <e lm="Strasbourg">      <i>Strasbourg</i><par n="Noreg__np"/></e>
 <e lm="Straume">         <i>Straume</i><par n="Noreg__np"/></e>
 <e lm="Strauss">         <i>Strauss</i><par n="Ås__np"/></e>
@@ -58086,6 +58102,7 @@
 <e lm="Amund">           <i>Amund</i><par n="Jo__np"/></e>
 <e lm="Anders">          <i>Anders</i><par n="Jens__np"/></e>
 <e lm="Ánde">            <i>Ánde</i><par n="Jo__np"/></e>
+<e lm="Áššu">            <i>Áššu</i><par n="Jo__np"/></e>
 <e lm="Andreas">         <i>Andreas</i><par n="Jens__np"/></e>
 <e lm="Andre">           <i>Andre</i><par n="Jo__np"/></e>
 <e lm="André">           <i>André</i><par n="Jo__np"/></e>
