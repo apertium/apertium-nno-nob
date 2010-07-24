@@ -5,7 +5,7 @@
 
 (require 'dix)
 
-(defun dix-compound-guess-pardef ()
+(defun dix-compound-guess-pardef (&optional partype)
   "How to use: write a compound word, eg. \"øygruppe\", in the
 dix file below all the nouns, put point between \"øy\" and
 \"gruppe\", and if \"gruppe\" is defined somewhere above, this
@@ -18,24 +18,37 @@ Still todo: remove the last \"e\" in that example."
   (let* ((rhs (buffer-substring-no-properties (point) (line-end-position)))
 	 (pos (save-excursion
 		(re-search-backward
-		 (concat "<e.* lm=\"[^\"]*" rhs "\"") nil 'noerror 1)))
-	 (e (if pos
-		  (buffer-substring-no-properties pos (nxml-scan-element-forward pos))
-	      nil)))
-    (let ((word (word-at-point)))
-      (kill-region (line-beginning-position) (line-end-position))
-      (insert e)
-      (beginning-of-line)
-      (dix-next)
-      (let* ((lmbound (progn (nxml-token-after)
-			     (nxml-attribute-value-boundary (point))))
-	     (oldlm (buffer-substring-no-properties (car lmbound) (cdr lmbound))))
-	(dix-with-sexp (kill-sexp))
-	(insert word)
+		 (concat "<e.* lm=\"[^\"]*" rhs "\".*" partype "\"") nil 'noerror 1))))
+    (if pos
+      (let ((e (buffer-substring-no-properties pos (nxml-scan-element-forward pos)))
+	    (word (buffer-substring-no-properties (line-beginning-position)
+						  (line-end-position))))
+	(kill-region (line-beginning-position) (line-end-position))
+	(insert e)
+	(beginning-of-line)
 	(dix-next)
-	(dix-with-sexp (kill-sexp))
-	(insert word)
-	(message oldlm)))))
+	(let* ((lmbound (progn (nxml-token-after)
+			       (nxml-attribute-value-boundary (point))))
+	       (oldlm (buffer-substring-no-properties (car lmbound) (cdr lmbound))))      
+	  (dix-with-sexp (kill-sexp))
+	  (insert word)
+	  (dix-next)
+	  (let* ((suffix (cdr (dix-split-root-suffix)))
+		 (root (if suffix
+			   (if (string= (substring word (- (length suffix))) suffix)
+			       (substring word 0 (- (length suffix)))
+			     (error "Pardef suffix didn't match!"))
+			 word)))
+	    (dix-with-sexp (kill-sexp))
+	    (insert root)
+	    (beginning-of-line) (insert (concat "<!-- " oldlm " -->")) (end-of-line)
+	    ;; (message oldlm)
+	    )))
+      (message "No fitting word found :("))))
+
+(defun dix-compound-guess-pardef__n ()
+  (interactive)
+  (dix-compound-guess-pardef "__n"))
 
 (defun dix-ordbanken-lookup-lm ()
   "Used with the cursor at an entry like 
