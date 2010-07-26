@@ -13,37 +13,40 @@ function will turn the word into eg.
 
 <e lm=\"øygruppe\">    <i>øygruppe</i><par n=\"lø/e__n\"/></e>
 
-Still todo: remove the last \"e\" in that example."
+TODO: ideally, instead of having to place the cursor at the
+compound border, it should try to get the longest possible match,
+the same as trying this function from first char, then from
+second, etc., but preferably using a more efficient method..."
   (interactive)
   (let* ((rhs (buffer-substring-no-properties (point) (line-end-position)))
 	 (pos (save-excursion
 		(re-search-backward
 		 (concat "<e.* lm=\"[^\"]*" rhs "\".*" partype "\"") nil 'noerror 1))))
     (if pos
-      (let ((e (buffer-substring-no-properties pos (nxml-scan-element-forward pos)))
-	    (word (buffer-substring-no-properties (line-beginning-position)
-						  (line-end-position))))
-	(kill-region (line-beginning-position) (line-end-position))
-	(insert e)
-	(beginning-of-line)
-	(dix-next)
-	(let* ((lmbound (progn (nxml-token-after)
-			       (nxml-attribute-value-boundary (point))))
-	       (oldlm (buffer-substring-no-properties (car lmbound) (cdr lmbound))))      
-	  (dix-with-sexp (kill-sexp))
-	  (insert word)
+	(let ((e (buffer-substring-no-properties pos (nxml-scan-element-forward pos)))
+	      (word (buffer-substring-no-properties (line-beginning-position)
+						    (line-end-position))))
+	  (kill-region (line-beginning-position) (line-end-position))
+	  (insert e)
+	  (beginning-of-line)
 	  (dix-next)
-	  (let* ((suffix (cdr (dix-split-root-suffix)))
-		 (root (if suffix
-			   (if (string= (substring word (- (length suffix))) suffix)
-			       (substring word 0 (- (length suffix)))
-			     (error "Pardef suffix didn't match!"))
-			 word)))
+	  (let* ((lmbound (progn (nxml-token-after)
+				 (nxml-attribute-value-boundary (point))))
+		 (oldlm (buffer-substring-no-properties (car lmbound) (cdr lmbound))))      
 	    (dix-with-sexp (kill-sexp))
-	    (insert root)
-	    (beginning-of-line) (insert (concat "<!-- " oldlm " -->")) (end-of-line)
-	    ;; (message oldlm)
-	    )))
+	    (insert word)
+	    (dix-next)
+	    (let* ((suffix (cdr (dix-split-root-suffix)))
+		   (root (if suffix
+			     (if (string= (substring word (- (length suffix))) suffix)
+				 (substring word 0 (- (length suffix)))
+			       (error "Pardef suffix didn't match!"))
+			   word)))
+	      (dix-with-sexp (kill-sexp))
+	      (insert root)
+	      (beginning-of-line) (insert (concat "<!-- " oldlm " -->")) (end-of-line)
+	      ;; (message oldlm)
+	      )))
       (message "No fitting word found :("))))
 
 (defun dix-compound-guess-pardef__n ()
