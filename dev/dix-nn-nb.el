@@ -47,7 +47,7 @@ second, etc., but preferably using a more efficient method..."
 	      (beginning-of-line) (insert (concat "<!-- " oldlm " -->")) (end-of-line)
 	      ;; (message oldlm)
 	      )))
-      (message "No fitting word found :("))))
+      (message "No fitting word found :-/"))))
 
 (defun dix-compound-guess-pardef__n ()
   (interactive)
@@ -77,7 +77,8 @@ one to remove the invariant prefix before calling
 	   (word (concat (car split)
 			 (cdr split)))
 	   (class (dix-pardef-type-of-e))
-	   (lang (if (string-match "nb" (buffer-name)) " nb " " nn "))
+	   (lang (if (or (string-match "nb" (buffer-name))
+			 (string-match "nob" (buffer-name))) " nb " " nn "))
 	   (buf (pop-to-buffer "*Ordbanken*"))
 	   (fcmd (cond
 		  ((string= class "adj") "|grep '\"adj\".*\"\\(comp\\|sup\\|posi\\)\"'")
