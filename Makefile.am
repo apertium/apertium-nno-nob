@@ -12,30 +12,30 @@ PREFIX1e=$(LANG1a)-$(LANG1)
 
 BASENAME=apertium-$(PREFIX1)
 
-TARGETS_COMMON = $(PREFIX1).automorf.bin $(PREFIX1).rlx.bin \
+TARGETS_COMMON = $(PREFIX1).automorf-no-cp.bin $(PREFIX1).rlx.bin \
      $(PREFIX1).autobil.bin $(PREFIX1).t1x.bin \
      $(PREFIX1).autogen-no-cp.bin \
      $(PREFIX2).automorf-no-cp.bin $(PREFIX2).rlx.bin \
      $(PREFIX2).autobil.bin $(PREFIX2).t1x.bin $(PREFIX2).t2x.bin $(PREFIX2).t3x.bin \
-     $(PREFIX2).autogen.bin \
-     $(PREFIX2a).autogen.bin
+     $(PREFIX2).autogen-no-cp.bin \
+     $(PREFIX2a).autogen-no-cp.bin
 
-.deps/$(BASENAME).$(LANG2).dix: $(BASENAME).$(LANG2).dix rem-compounds.xsl
+.deps/$(BASENAME).$(LANG2)-no-cp.dix: $(BASENAME).$(LANG2).dix rem-compounds.xsl
 	if [ ! -d .deps ]; then mkdir .deps; fi
 	xsltproc rem-compounds.xsl $(BASENAME).$(LANG2).dix > $@
 
-.deps/$(BASENAME).$(LANG1).dix: $(BASENAME).$(LANG1).dix alt.xsl
+.deps/$(BASENAME).$(LANG1)-no-cp.dix: $(BASENAME).$(LANG1).dix alt.xsl
 	if [ ! -d .deps ]; then mkdir .deps; fi
-	xsltproc --stringparam alt $(LANG1e) alt.xsl $(BASENAME).$(LANG1).dix > $@
+	xsltproc --stringparam alt $(LANG1e) alt.xsl $(BASENAME).$(LANG1).dix | xsltproc rem-compounds.xsl - > $@
 
-.deps/$(BASENAME).$(LANG1a).dix: $(BASENAME).$(LANG1).dix alt.xsl
+.deps/$(BASENAME).$(LANG1a)-no-cp.dix: $(BASENAME).$(LANG1).dix alt.xsl
 	if [ ! -d .deps ]; then mkdir .deps; fi
-	xsltproc --stringparam alt $(LANG1a) alt.xsl $(BASENAME).$(LANG1).dix > $@
+	xsltproc --stringparam alt $(LANG1a) alt.xsl $(BASENAME).$(LANG1).dix | xsltproc rem-compounds.xsl - > $@
 
 # nn-nb
-$(PREFIX1).automorf.bin: .deps/$(BASENAME).$(LANG1).dix
-	apertium-validate-dictionary .deps/$(BASENAME).$(LANG1).dix
-	lt-comp lr .deps/$(BASENAME).$(LANG1).dix $@
+$(PREFIX1).automorf-no-cp.bin: .deps/$(BASENAME).$(LANG1)-no-cp.dix
+	apertium-validate-dictionary .deps/$(BASENAME).$(LANG1)-no-cp.dix
+	lt-comp lr .deps/$(BASENAME).$(LANG1)-no-cp.dix $@
 
 $(PREFIX1).rlx.bin: $(BASENAME).$(PREFIX1).rlx
 	cg-comp $(BASENAME).$(PREFIX1).rlx $@
@@ -48,15 +48,15 @@ $(PREFIX1).t1x.bin: $(BASENAME).$(PREFIX1).t1x
 	apertium-validate-transfer $(BASENAME).$(PREFIX1).t1x
 	apertium-preprocess-transfer $(BASENAME).$(PREFIX1).t1x $@
 
-$(PREFIX1).autogen-no-cp.bin: .deps/$(BASENAME).$(LANG2).dix
-	apertium-validate-dictionary .deps/$(BASENAME).$(LANG2).dix
-	lt-comp rl .deps/$(BASENAME).$(LANG2).dix $@
+$(PREFIX1).autogen-no-cp.bin: .deps/$(BASENAME).$(LANG2)-no-cp.dix
+	apertium-validate-dictionary .deps/$(BASENAME).$(LANG2)-no-cp.dix
+	lt-comp rl .deps/$(BASENAME).$(LANG2)-no-cp.dix $@
 
 
 # nb-nn
-$(PREFIX2).automorf-no-cp.bin: .deps/$(BASENAME).$(LANG2).dix
-	apertium-validate-dictionary .deps/$(BASENAME).$(LANG2).dix
-	lt-comp lr .deps/$(BASENAME).$(LANG2).dix $@
+$(PREFIX2).automorf-no-cp.bin: .deps/$(BASENAME).$(LANG2)-no-cp.dix
+	apertium-validate-dictionary .deps/$(BASENAME).$(LANG2)-no-cp.dix
+	lt-comp lr .deps/$(BASENAME).$(LANG2)-no-cp.dix $@
 
 $(PREFIX2).rlx.bin: $(BASENAME).$(PREFIX2).rlx
 	cg-comp $(BASENAME).$(PREFIX2).rlx $@
@@ -77,14 +77,14 @@ $(PREFIX2).t3x.bin: $(BASENAME).$(PREFIX2).t3x
 	apertium-validate-postchunk $(BASENAME).$(PREFIX2).t3x
 	apertium-preprocess-transfer $(BASENAME).$(PREFIX2).t3x $@
 
-$(PREFIX2).autogen.bin: .deps/$(BASENAME).$(LANG1).dix
-	apertium-validate-dictionary .deps/$(BASENAME).$(LANG1).dix
-	lt-comp rl .deps/$(BASENAME).$(LANG1).dix $@
+$(PREFIX2).autogen-no-cp.bin: .deps/$(BASENAME).$(LANG1)-no-cp.dix
+	apertium-validate-dictionary .deps/$(BASENAME).$(LANG1)-no-cp.dix
+	lt-comp rl .deps/$(BASENAME).$(LANG1)-no-cp.dix $@
 
 # nb-nn_a
-$(PREFIX2a).autogen.bin: .deps/$(BASENAME).$(LANG1a).dix
-	apertium-validate-dictionary .deps/$(BASENAME).$(LANG1a).dix
-	lt-comp rl .deps/$(BASENAME).$(LANG1a).dix $@
+$(PREFIX2a).autogen-no-cp.bin: .deps/$(BASENAME).$(LANG1a)-no-cp.dix
+	apertium-validate-dictionary .deps/$(BASENAME).$(LANG1a)-no-cp.dix
+	lt-comp rl .deps/$(BASENAME).$(LANG1a)-no-cp.dix $@
 
 
 # nn-nb-cp TODO
@@ -132,15 +132,15 @@ modes/$(PREFIX2).mode: modes.xml
 	apertium-gen-modes modes.xml
 	cp *.mode modes/
 
-apertium_nn_nb_DATA=$(PREFIX1).automorf.bin      $(PREFIX2).automorf-no-cp.bin \
-		    $(PREFIX1).rlx.bin           $(PREFIX2).rlx.bin \
-                    $(PREFIX1).prob              $(PREFIX2).prob \
-                    $(PREFIX1).autobil.bin       $(PREFIX2).autobil.bin \
-                    $(PREFIX1).autogen-no-cp.bin $(PREFIX2).autogen.bin \
-                                                 $(PREFIX2a).autogen.bin \
-		    $(PREFIX1).t1x.bin           $(PREFIX2).t1x.bin \
-		                                 $(PREFIX2).t2x.bin \
-		                                 $(PREFIX2).t3x.bin \
+apertium_nn_nb_DATA=$(PREFIX1).automorf-no-cp.bin $(PREFIX2).automorf-no-cp.bin \
+		    $(PREFIX1).rlx.bin            $(PREFIX2).rlx.bin \
+                    $(PREFIX1).prob               $(PREFIX2).prob \
+                    $(PREFIX1).autobil.bin        $(PREFIX2).autobil.bin \
+                    $(PREFIX1).autogen-no-cp.bin  $(PREFIX2).autogen-no-cp.bin \
+                                                  $(PREFIX2a).autogen-no-cp.bin \
+		    $(PREFIX1).t1x.bin            $(PREFIX2).t1x.bin \
+		                                  $(PREFIX2).t2x.bin \
+		                                  $(PREFIX2).t3x.bin \
 		    modes.xml 
 
 noinst_DATA=modes/$(PREFIX1).mode modes/$(PREFIX2).mode
