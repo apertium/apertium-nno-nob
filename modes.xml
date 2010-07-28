@@ -27,7 +27,7 @@
         <file name="nb-nn.t3x.bin"/>
       </program>
       <program name="lt-proc $1">
-        <file name="nb-nn.autogen.bin"/>
+        <file name="nb-nn.autogen-no-cp.bin"/>
       </program>
     </pipeline>
   </mode>
@@ -58,7 +58,7 @@
         <file name="nb-nn.t3x.bin"/>
       </program>
       <program name="lt-proc $1">
-        <file name="nb-nn_a.autogen.bin"/>
+        <file name="nb-nn_a.autogen-no-cp.bin"/>
       </program>
     </pipeline>
   </mode>
@@ -89,7 +89,8 @@
         <file name="nb-nn.t3x.bin"/>
       </program>
       <program name="lt-proc $1">
-        <file name="nb-nn.autogen.bin"/>
+        <!-- using the cp-free one is ok for generation: -->
+        <file name="nb-nn.autogen-no-cp.bin"/>
       </program>
     </pipeline>
   </mode>
@@ -111,7 +112,7 @@
         <file name="nb-nn.t3x.bin"/>
       </program>
       <program name="lt-proc $1">
-        <file name="nb-nn.autogen.bin"/>
+        <file name="nb-nn.autogen-no-cp.bin"/>
       </program>
     </pipeline>
   </mode>
@@ -142,7 +143,8 @@
         <file name="nb-nn.t3x.bin"/>
       </program>
       <program name="lt-proc $1">
-        <file name="nb-nn_a.autogen.bin"/>
+        <!-- using the cp-free one is ok for generation: -->
+        <file name="nb-nn_a.autogen-no-cp.bin"/>
       </program>
     </pipeline>
   </mode>
@@ -151,7 +153,7 @@
   <mode name="nn-nb" install="yes">
     <pipeline>
       <program name="lt-proc -w">
-        <file name="nn-nb.automorf.bin"/>
+        <file name="nn-nb.automorf-no-cp.bin"/>
       </program>
       <program name="cg-proc -w">
 	<file name="nn-nb.rlx.bin"/>
@@ -175,7 +177,7 @@
   <mode name="nn-nn_a" install="yes">
     <pipeline>
       <program name="lt-proc -w">
-        <file name="nn-nb.automorf.bin"/>
+        <file name="nn-nb.automorf-no-cp.bin"/>
       </program>
       <program name="cg-proc -w">
 	<file name="nn-nb.rlx.bin"/>
@@ -185,7 +187,7 @@
       </program>
       <program name="apertium-pretransfer"/>
       <program name="lt-proc $1">
-        <file name="nb-nn_a.autogen.bin"/>
+        <file name="nb-nn_a.autogen-no-cp.bin"/>
       </program>
     </pipeline>
   </mode>
@@ -193,7 +195,7 @@
   <mode name="nn_a-nn" install="yes">
     <pipeline>
       <program name="lt-proc -w">
-        <file name="nn-nb.automorf.bin"/>
+        <file name="nn-nb.automorf-no-cp.bin"/>
       </program>
       <program name="cg-proc -w">
 	<file name="nn-nb.rlx.bin"/>
@@ -203,7 +205,7 @@
       </program>
       <program name="apertium-pretransfer"/>
       <program name="lt-proc $1">
-        <file name="nb-nn.autogen.bin"/>
+        <file name="nb-nn.autogen-no-cp.bin"/>
       </program>
     </pipeline>
   </mode>
