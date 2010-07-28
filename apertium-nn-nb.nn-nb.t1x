@@ -16,9 +16,8 @@
       <cat-item tags="n.*.*.ind"/>
     </def-cat>
     <!-- compound lhs's are never genitive: -->
-    <def-cat n="n-ep">
-      <cat-item tags="n.*.*.*.ep-s"/>
-      <cat-item tags="n.*.*.*.ep-Ø"/>
+    <def-cat n="ncmp">
+      <cat-item tags="n.*.*.*.cmp"/>
     </def-cat>
     <def-cat n="navn">					       
       <cat-item tags="np.*"/>
@@ -58,11 +57,6 @@
       <attr-item tags="n.acr"/>
       <attr-item tags="np"/>
       <attr-item tags="np.top"/>
-    </def-attr>
-    
-    <def-attr n="ep">
-      <attr-item tags="ep-s"/>
-      <attr-item tags="ep-Ø"/>
     </def-attr>
     
     <def-attr n="a_adj">
@@ -140,7 +134,6 @@
     <def-var n="pre_number"/>
     <def-var n="adj_gender"/>  
     <def-var n="n_number"/>  
-    <def-var n="epenthetic"/>
   </section-def-vars>
 
   <section-def-macros>
@@ -341,10 +334,6 @@
           <clip pos="1" side="tl" part="lemq"/>
         </lu>
       </out>
-      <choose><when>
-        <test><equal><clip pos="1" side="sl" part="ep"/><lit-tag v="ep-s"/></equal></test>
-        <out><lu><lit v="s"/></lu></out>
-      </when></choose>
     </def-macro>
     
 </section-def-macros>
@@ -642,10 +631,10 @@
     </rule>
 
     
-    <rule comment="N-EP NOM: ytelse ytelse => ytingsyting
-                   Remove the space that pretransfer added, turn ep-s into 's'">
+    <rule comment="NCMP NOM: ytelse ytelse => ytingsyting
+                   Remove the space that pretransfer added">
       <pattern>
-        <pattern-item n="n-ep"/>
+        <pattern-item n="ncmp"/>
         <pattern-item n="nom"/>
       </pattern>
       <action>
@@ -653,11 +642,11 @@
         <out><lu><clip pos="2" side="tl" part="whole"/></lu></out>
       </action>
     </rule>
-    <rule comment="N-EP N-EP NOM: ytelses ytelse ytelse => ytingsytingyting
-                   Remove the space that pretransfer added, turn ep-s into 's'">
+    <rule comment="NCMP NCMP NOM: ytelses ytelse ytelse => ytingsytingyting
+                   Remove the space that pretransfer added">
       <pattern>
-        <pattern-item n="n-ep"/>
-        <pattern-item n="n-ep"/>
+        <pattern-item n="ncmp"/>
+        <pattern-item n="ncmp"/>
         <pattern-item n="nom"/>
       </pattern>
       <action>
