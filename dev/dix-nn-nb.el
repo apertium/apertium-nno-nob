@@ -52,6 +52,9 @@ second, etc., but preferably using a more efficient method..."
 (defun dix-compound-guess-pardef__n ()
   (interactive)
   (dix-compound-guess-pardef "__n"))
+(defun dix-compound-guess-pardef__vblex_adj ()
+  (interactive)
+  (dix-compound-guess-pardef "__vblex_adj"))
 
 (defun dix-ordbanken-lookup-lm ()
   "Used with the cursor at an entry like 
