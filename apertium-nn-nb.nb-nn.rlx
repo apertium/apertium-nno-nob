@@ -23902,6 +23902,9 @@ CONSTRAINTS
 
 #det var ei mine.
 
+
+
+# NOKON vs NOKRE:
   "<noen>"   SELECT:noen-d   (det qnt neg) IF
 	(0C det-kvant + fl)
 	(*-1 %ikke% BARRIER setn-gr)
@@ -23928,10 +23931,16 @@ CONSTRAINTS
 	(NOT 0 det)
 ;
 # «å finne noen han kan leke med», standardomsetjing for pronomen: «nokon»
-  "<noen>"   SELECT:noen-p   (det neg) IF
+  "<noen>"   SELECT:noen-d   (det neg) IF
 	(NOT 0 pron)
 ;
 # «å finne noen han kan leke med», standardomsetjing for pronomen: «nokon»
+
+# Default:
+  "<noen>"   SELECT:noen-default (neg) ;
+# Viss me har kome så langt, tek me «nokon»
+
+
 
 
 #:3366
