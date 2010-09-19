@@ -9,27 +9,38 @@ PREFIX2=$(LANG2)-$(LANG1)
 PREFIX2a=$(LANG2)-$(LANG1a)
 PREFIX1a=$(LANG1)-$(LANG1a)
 PREFIX1e=$(LANG1a)-$(LANG1)
+PREFIX2cp=$(LANG2)-$(LANG1)-cp
+PREFIX2acp=$(LANG2)-$(LANG1a)-cp
 
 BASENAME=apertium-$(PREFIX1)
 
-TARGETS_COMMON = $(PREFIX1).automorf-no-cp.bin $(PREFIX1).rlx.bin \
+TARGETS_COMMON = \
+     $(PREFIX1).automorf-no-cp.bin \
+     $(PREFIX1).rlx.bin \
      $(PREFIX1).autobil.bin $(PREFIX1).t1x.bin \
      $(PREFIX1).autogen-no-cp.bin \
-     $(PREFIX2).automorf-no-cp.bin $(PREFIX2).rlx.bin \
+     $(PREFIX2).automorf-no-cp.bin \
+     $(PREFIX2).automorf.bin \
+     $(PREFIX2).rlx.bin \
      $(PREFIX2).autobil.bin $(PREFIX2).t1x.bin $(PREFIX2).t2x.bin $(PREFIX2).t3x.bin \
      $(PREFIX2).autogen-no-cp.bin \
      $(PREFIX2a).autogen-no-cp.bin
 
-.deps/$(BASENAME).$(LANG2)-no-cp.dix: $(BASENAME).$(LANG2).dix rem-compounds.xsl
+# Use this goal for creating .deps, otherwise make -j2 will give problems:
+.deps/.d:
 	if [ ! -d .deps ]; then mkdir .deps; fi
+	touch $@
+
+# Prevent the .d file from being removed automatically:
+.PRECIOUS: .deps/.d
+
+.deps/$(BASENAME).$(LANG2)-no-cp.dix: $(BASENAME).$(LANG2).dix rem-compounds.xsl .deps/.d
 	xsltproc rem-compounds.xsl $(BASENAME).$(LANG2).dix > $@
 
-.deps/$(BASENAME).$(LANG1)-no-cp.dix: $(BASENAME).$(LANG1).dix alt.xsl
-	if [ ! -d .deps ]; then mkdir .deps; fi
+.deps/$(BASENAME).$(LANG1)-no-cp.dix: $(BASENAME).$(LANG1).dix alt.xsl .deps/.d
 	xsltproc --stringparam alt $(LANG1e) alt.xsl $(BASENAME).$(LANG1).dix | xsltproc rem-compounds.xsl - > $@
 
-.deps/$(BASENAME).$(LANG1a)-no-cp.dix: $(BASENAME).$(LANG1).dix alt.xsl
-	if [ ! -d .deps ]; then mkdir .deps; fi
+.deps/$(BASENAME).$(LANG1a)-no-cp.dix: $(BASENAME).$(LANG1).dix alt.xsl .deps/.d
 	xsltproc --stringparam alt $(LANG1a) alt.xsl $(BASENAME).$(LANG1).dix | xsltproc rem-compounds.xsl - > $@
 
 # nn-nb
@@ -133,6 +144,7 @@ modes/$(PREFIX2).mode: modes.xml
 	cp *.mode modes/
 
 apertium_nn_nb_DATA=$(PREFIX1).automorf-no-cp.bin $(PREFIX2).automorf-no-cp.bin \
+		                                  $(PREFIX2).automorf.bin \
 		    $(PREFIX1).rlx.bin            $(PREFIX2).rlx.bin \
                     $(PREFIX1).prob               $(PREFIX2).prob \
                     $(PREFIX1).autobil.bin        $(PREFIX2).autobil.bin \
@@ -156,6 +168,8 @@ install-data-local:
 	$(INSTALL_DATA) $(PREFIX2a).mode $(DESTDIR)$(apertium_nn_modesdir)
 	$(INSTALL_DATA) $(PREFIX1a).mode $(DESTDIR)$(apertium_nn_modesdir)
 	$(INSTALL_DATA) $(PREFIX1e).mode $(DESTDIR)$(apertium_nn_modesdir)
+	$(INSTALL_DATA) $(PREFIX2cp).mode $(DESTDIR)$(apertium_nn_modesdir)
+	$(INSTALL_DATA) $(PREFIX2acp).mode $(DESTDIR)$(apertium_nn_modesdir)
 	rm $(PREFIX1).mode $(PREFIX2).mode $(PREFIX2a).mode $(PREFIX1a).mode $(PREFIX1e).mode
 	$(INSTALL_DATA) $(BASENAME).$(PREFIX1).t1x $(DESTDIR)$(apertium_nn_nbdir)
 	$(INSTALL_DATA) $(BASENAME).$(PREFIX2).t1x $(DESTDIR)$(apertium_nn_nbdir)
