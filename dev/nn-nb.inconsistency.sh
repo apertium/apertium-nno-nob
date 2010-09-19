@@ -1,7 +1,14 @@
+DEV=$(dirname $0)
 TMPDIR=/tmp
 ALPHABET="ABCDEFGHIJKLMNOPQRSTUVWXYZÆØÅabcdefghijklmnopqrstuvwxyzæøåcqwxzCQWXZéèêóòâôÉÊÈÓÔÒÂáàÁÀäÄöÖ"
-lt-expand ../apertium-nn-nb.nn.dix | grep -v '<prn><enc>' | grep -e ':<:' -e "[$ALPHABET]:[$ALPHABET]" | sed 's/:<:/%/g' | sed 's/:/%/g' | cut -f2 -d'%' |  sed 's/^/^/g' | sed 's/$/$ ^.<sent><clb>$/g' | tee $TMPDIR/tmp_testvoc1.txt |
+
+SLANG=nn
+PREFIX=nn-nb
+BASENAME=apertium-nn-nb
+
+lt-expand ${DEV}/../${BASENAME}.${SLANG}.dix | grep -v '<prn><enc>\|DUE_TO_LT_PROC_HANG\|__REGEXP__' | grep -e ':>:' -e "[$ALPHABET]:[$ALPHABET]" | sed 's/:>:/%/g' | sed 's/:/%/g' | cut -f2 -d'%' |  sed 's/^/^/g' | sed 's/$/$ ^.<sent><clb>$/g' | tee $TMPDIR/tmp_${PREFIX}_testvoc1.txt |
         apertium-pretransfer|
-        apertium-transfer ../apertium-nn-nb.nn-nb.t1x  ../nn-nb.t1x.bin  ../nn-nb.autobil.bin | tee $TMPDIR/tmp_testvoc2.txt | 
-        lt-proc -d ../nn-nb.autogen.bin > $TMPDIR/tmp_testvoc3.txt
-paste -d _ $TMPDIR/tmp_testvoc1.txt $TMPDIR/tmp_testvoc2.txt $TMPDIR/tmp_testvoc3.txt | sed 's/\^.<sent><clb>\$//g' | sed 's/_/   --------->  /g' | sed 's/\\//g'
+        apertium-transfer ${DEV}/../${BASENAME}.${PREFIX}.t1x  ${DEV}/../${PREFIX}.t1x.bin  ${DEV}/../${PREFIX}.autobil.bin | tee $TMPDIR/tmp_${PREFIX}_testvoc2.txt | 
+        lt-proc -d ${DEV}/../${PREFIX}.autogen-no-cp.bin > $TMPDIR/tmp_${PREFIX}_testvoc3.txt
+
+paste -d _ $TMPDIR/tmp_${PREFIX}_testvoc1.txt $TMPDIR/tmp_${PREFIX}_testvoc2.txt $TMPDIR/tmp_${PREFIX}_testvoc3.txt | sed 's/\^.<sent><clb>\$//g' | sed 's/_/   --------->  /g' | sed 's/\\//g'
