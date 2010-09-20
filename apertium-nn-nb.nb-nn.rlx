@@ -743,7 +743,7 @@ LIST hendelse = <hend> ;
 LIST hj-verb = "være"  "ville"  "skulle"  "måtte"  "kunne"  "ha"  "få"  "burde"  "bli"  ;
 LIST hj-verb-ikke-passiv = "ville"  "skulle"  "måtte"  "kunne"  "ha"  "få"  "burde"  ;
 LIST hj-verb-iv = ("bli"  inf) ("bli"  vblex pp) ("ha"  inf) ("ha"  vblex pp) ("være"  inf) ("være"  vblex pp) ("få"  inf) ("få"  vblex pp) ("skulle"  inf) ("skulle"  vblex pp) ("kunne"  inf) ("kunne"  vblex pp) ("ville"  inf) ("ville"  vblex pp) ("måtte"  inf) ("måtte"  vblex pp) ("burde"  inf) ("burde"  vblex pp) ;
-LIST høflig = ("De" det pos)  ("Dem" prn)  ("De" prn)  ;
+LIST høflig = ("De" det pos p2) ("De" prn p2) ("de" det pos p2) ("de" prn p2)  ;
 LIST ikke-&annet = &hend &org &person top &verk ;
 LIST ikke-&hend = &annet &org &person top &verk ;
 LIST ikke-&org = &annet &hend &person top &verk ;
@@ -21265,6 +21265,12 @@ REMOVE:2135 (det) IF
 ;
 #  "visse fordeler (ikke en fordeler!)"))
 
+#:20310
+ REMOVE:20310 ub-ent-subst IF
+	(0 ub-fl-subst)
+	(1 kop LINK *1 adj-fl BARRIER ikke-adv)
+;
+# «Barn er store»
 
 
 #:2032
