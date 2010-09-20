@@ -86,6 +86,15 @@
                c="arg.1: adjective
                   If we have a pp adj (verb used as adj), the lemq is a particle
                   which should be output before the adj, with no intervening space.">
+      <choose><when>
+        <test><and>
+          <equal><clip pos="1" part="nbr"/><lit-tag v="sg"/></equal>
+          <equal><clip pos="1" part="art"/><lit v=""/></equal>
+        </and></test>
+        <let><clip pos="1" part="nbr"/><concat><clip pos="1" part="nbr"/><lit-tag v="def"/></concat></let>
+        <let><clip pos="1" part="gen"/><concat><lit v=""/></concat></let>
+      </when></choose>
+      
       <choose>
         <when>
           <test><equal><clip pos="1" part="temps"/><lit-tag v="pp"/></equal></test>
