@@ -24327,7 +24327,7 @@ REMOVE:skrev ("<skrev>"ri "skreve") IF
 
   "<så>"   REMOVE:så   (vblex pret) IF
 	(-1 nom)
-	(1C prep LINK 1C prep)
+	(1 prep LINK 1 prep)
 	(NOT 1 %ut%)
 	(*-2 verb BARRIER ikke-subst-adj-det-pron LINK NOT 0 hj-verb)
 ;
@@ -24336,6 +24336,12 @@ REMOVE:skrev ("<skrev>"ri "skreve") IF
 # ikkje «det var likevel fedrene barna så opp til»
 # ikkje «De andre som kjøpte vafler så ut til å...»
 
+  "<så>"   REMOVE:så   (adv) IF
+	(*1 %ut% BARRIER ikke-adv)
+;
+  "<så>"   REMOVE:så   (adv) IF
+	(*1 %opp% BARRIER ikke-adv LINK 1 %til%)
+;
 
 
 #:3433
