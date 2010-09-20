@@ -13,10 +13,9 @@ lt-expand ${DEV}/../${BASENAME}.${SLANG}.dix | grep -v '<prn><enc>\|DUE_TO_LT_PR
 	apertium-postchunk ${DEV}/../${BASENAME}.${PREFIX}.t3x  ${DEV}/../${PREFIX}.t3x.bin | tee $TMPDIR/tmp_${PREFIX}_testvoc2p.txt |
         lt-proc -d  ${DEV}/../${PREFIX}.autogen-no-cp.bin > $TMPDIR/tmp_${PREFIX}_testvoc3.txt
 
+# add nb->nn_a:
+cat $TMPDIR/tmp_${PREFIX}_testvoc2p.txt | lt-proc -d  ${DEV}/../${PREFIX}_a.autogen-no-cp.bin > $TMPDIR/tmp_${PREFIX}_testvoc3_a.txt
+
 paste -d _ $TMPDIR/tmp_${PREFIX}_testvoc1.txt $TMPDIR/tmp_${PREFIX}_testvoc2t.txt $TMPDIR/tmp_${PREFIX}_testvoc3.txt | sed 's/\^.<sent><clb>\$//g' | sed 's/_/   --------->  /g' | sed 's/\\//g'
-
-
-# nb->nn_a:
-lt-proc -d  ${DEV}/../${PREFIX}_a.autogen-no-cp.bin > $TMPDIR/tmp_${PREFIX}_testvoc3_a.txt
 
 paste -d _ $TMPDIR/tmp_${PREFIX}_testvoc1.txt $TMPDIR/tmp_${PREFIX}_testvoc2t.txt $TMPDIR/tmp_${PREFIX}_testvoc3_a.txt | sed 's/\^.<sent><clb>\$//g' | sed 's/_/   --------->  /g' | sed 's/\\//g'
