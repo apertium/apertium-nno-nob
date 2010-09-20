@@ -17799,16 +17799,6 @@ SELECT:2335 (vblex) IF
 CONSTRAINTS
 #substitute-regler for enkelte utvalgte + disamb
 
-# duplicated for capitalisation -KBU
-#5033
-"<bad>"  SUBSTITUTE:5033 (n nt ind sg) (adj ubøy <eng>) TARGET (n nt ind sg) IF 
-   (1 %boy%)
-;
-#5033
-"<Bad>"  SUBSTITUTE:5033 (n nt ind sg) (adj ubøy <eng>) TARGET (n nt ind sg) IF 
-   (1 %boy%)
-;
-#bad (adj) boy
 
 #5034
  "<bad>"   REMOVE:5034   (n nt ind pl) IF 
@@ -17817,48 +17807,11 @@ CONSTRAINTS
 ;
 #bad (adj) boy
 
-# duplicated for capitalisation -KBU
-#5035
-"<bad>" SUBSTITUTE:5035 (n nt ind sg) (adj ubøy <eng>) TARGET (n nt ind sg) IF 
-   (1 ukjent)
-;
-#5035
-"<Bad>" SUBSTITUTE:5035 (n nt ind sg) (adj ubøy <eng>) TARGET (n nt ind sg) IF 
-   (1 ukjent)
-;
-#bad (adj) guy og andre engelske bad
-
 #5036
  "<bad>"   REMOVE:5036   (n nt ind) IF 
    (0 adj)
 ;
 #bad (adj) guy og andre engelske bad
-
-#5037
- SUBSTITUTE:5037 (ukjent) (subst <eng>) TARGET (ukjent) IF 
-   (0 ukjent)
-   (-1 %bad%)
-;
-#satser på at ukjent etter bad er engelske substantiv
-
-# duplicated for capitalisation -KBU
-#5038
-"<bad>" SUBSTITUTE:5038 (vblex pret tr1 i1 tr11 d5 d4 d6 tr4) (adj ubøy <eng>) TARGET (vblex pret tr1 i1 tr11 d5 d4 d6 tr4) IF 
-   (-1 %too%)
-;
-#5038
-"<Bad>" SUBSTITUTE:5038 (vblex pret tr1 i1 tr11 d5 d4 d6 tr4) (adj ubøy <eng>) TARGET (vblex pret tr1 i1 tr11 d5 d4 d6 tr4) IF 
-   (-1 %too%)
-;
-#too bad
-
-#5039
- SUBSTITUTE:5039 (ukjent) (adv <eng>) TARGET (ukjent) IF 
-   (0 %too%)
-   (1 %bad%)
-;
-#too bad
-
 
 
 #CONSTRAINTS
