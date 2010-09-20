@@ -7653,7 +7653,6 @@ CONSTRAINTS
 #  "Bare ved \"et være eller ikke være\""
 
 
-
 #:3117
   "<åtte>"   REMOVE:3117   (adj pp) IF
 	(0 det)
@@ -20285,13 +20284,14 @@ REMOVE:2135 (det) IF
 	(-1 setn-gr)
 	(NOT 1 %en%)
 	(NOT 1 %nå%)
+	(NEGATE 0 subst LINK 1 subst)
 ;
 #  "Tar foreløpig sjansen på at det ikke er imp om det er en 
 # annen mulighet rett til høyre
 # unntak. når det etterfølgende verbet er \"nå\":
 # hør nå her!
 # 22.6.2001: NOT 0 PRET La kjøttet trekke tre minutter!"
-
+# ikkje «Sjekk<imp/subst> været<verb/subst> der du bor»
 
 
 #:2109
@@ -24516,6 +24516,12 @@ REMOVE:skrev ("<skrev>"ri "skreve") IF
 	(-1 setn-gr)
 ;
 #  «Les mer:» -KBU
+
+
+#:31230
+  "<været>"   REMOVE:31230   (vblex)
+;
+# Veldig heuristisk! Men mest sannsynleg snakkar folk om været. --KBU
 
 
 # sec 4
