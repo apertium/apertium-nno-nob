@@ -81,22 +81,40 @@
   </section-def-vars>
 
   
-<section-def-macros>
+  <section-def-macros>
+    <def-macro n="out_adj" npar="1"
+               c="arg.1: adjective
+                  If we have a pp adj (verb used as adj), the lemq is a particle
+                  which should be output before the adj, with no intervening space.">
+      <choose>
+        <when>
+          <test><equal><clip pos="1" part="temps"/><lit-tag v="pp"/></equal></test>
+          <out>
+            <lu><clip pos="1" part="lemq"/></lu>
+            <lu><clip pos="1" part="lemh"/><clip pos="1" part="tags"/></lu>
+          </out>
+        </when>
+        <otherwise>
+          <out><lu><clip pos="1" part="whole"/></lu></out>
+        </otherwise>
+      </choose>
+    </def-macro>
+    
     <def-macro n="clean_n.adj" npar="3"
                c="arg.1: noun, arg.2: adjective, arg.3: chunk.
                   Nouns always get chunk defnes.
                   Allow adjectives to turn definite (from chunk defnes), but not indefinite.">
-        <let><clip pos="1" part="art"/><clip pos="3" part="art"/></let>
+      <let><clip pos="1" part="art"/><clip pos="3" part="art"/></let>
 
-        <choose><when>
-          <test><equal><clip pos="2" part="art"/><lit-tag v="ind"/></equal></test>
-          <let><clip pos="2" part="art"/><clip pos="3" part="art"/></let>
-        </when></choose>
+      <choose><when>
+        <test><equal><clip pos="2" part="art"/><lit-tag v="ind"/></equal></test>
+        <let><clip pos="2" part="art"/><clip pos="3" part="art"/></let>
+      </when></choose>
 
-        <choose><when>
-          <test><equal><clip pos="2" part="art"/><lit-tag v="def"/></equal></test>
-          <let><clip pos="2" part="gen"/><lit v=""/></let>
-        </when></choose>
+      <choose><when>
+        <test><equal><clip pos="2" part="art"/><lit-tag v="def"/></equal></test>
+        <let><clip pos="2" part="gen"/><lit v=""/></let>
+      </when></choose>
     </def-macro>
   </section-def-macros>
 
@@ -110,9 +128,7 @@
       </pattern>
       <action>
         <let><clip pos="1" part="tags"/><clip pos="0" part="tags"/></let>      
-        <out>
-          <lu><clip pos="1" part="whole"/></lu>
-        </out>
+        <call-macro n="out_adj"><with-param pos="1"/></call-macro>
       </action>
     </rule>
     <rule comment="CHUNK: vblex">
@@ -210,8 +226,8 @@
       </pattern>
       <action>
         <call-macro n="clean_n.adj"><with-param pos="2"/><with-param pos="1"/><with-param pos="0"/></call-macro>
+        <call-macro n="out_adj"><with-param pos="1"/></call-macro>
         <out>
-          <lu><clip pos="1" part="whole"/></lu>
           <b pos="1"/>
           <lu><clip pos="2" part="whole"/></lu>
         </out>
@@ -223,8 +239,8 @@
       </pattern>
       <action>
         <call-macro n="clean_n.adj"><with-param pos="3"/><with-param pos="1"/><with-param pos="0"/></call-macro>
+        <call-macro n="out_adj"><with-param pos="1"/></call-macro>
         <out>
-          <lu><clip pos="1" part="whole"/></lu>
           <b pos="1"/>
           <lu><clip pos="2" part="whole"/></lu>
           <b pos="2"/>
@@ -238,8 +254,8 @@
       </pattern>
       <action>
         <call-macro n="clean_n.adj"><with-param pos="4"/><with-param pos="1"/><with-param pos="0"/></call-macro>
+        <call-macro n="out_adj"><with-param pos="1"/></call-macro>
         <out>
-          <lu><clip pos="1" part="whole"/></lu>
           <b pos="1"/>
           <lu><clip pos="2" part="whole"/></lu>
           <b pos="2"/>
@@ -257,10 +273,12 @@
       <action>
         <call-macro n="clean_n.adj"><with-param pos="3"/><with-param pos="1"/><with-param pos="0"/></call-macro>
         <call-macro n="clean_n.adj"><with-param pos="3"/><with-param pos="2"/><with-param pos="0"/></call-macro>
+        <call-macro n="out_adj"><with-param pos="1"/></call-macro>
         <out>
-          <lu><clip pos="1" part="whole"/></lu>
           <b pos="1"/>
-          <lu><clip pos="2" part="whole"/></lu>
+        </out>
+        <call-macro n="out_adj"><with-param pos="2"/></call-macro>
+        <out>
           <b pos="2"/>
           <lu><clip pos="3" part="whole"/></lu>
         </out>
@@ -273,10 +291,12 @@
       <action>
         <call-macro n="clean_n.adj"><with-param pos="4"/><with-param pos="1"/><with-param pos="0"/></call-macro>
         <call-macro n="clean_n.adj"><with-param pos="4"/><with-param pos="2"/><with-param pos="0"/></call-macro>
+        <call-macro n="out_adj"><with-param pos="1"/></call-macro>
         <out>
-          <lu><clip pos="1" part="whole"/></lu>
           <b pos="1"/>
-          <lu><clip pos="2" part="whole"/></lu>
+        </out>
+        <call-macro n="out_adj"><with-param pos="2"/></call-macro>
+        <out>
           <b pos="2"/>
           <lu><clip pos="3" part="whole"/></lu>
           <b pos="3"/>
@@ -291,10 +311,12 @@
       <action>
         <call-macro n="clean_n.adj"><with-param pos="5"/><with-param pos="1"/><with-param pos="0"/></call-macro>
         <call-macro n="clean_n.adj"><with-param pos="5"/><with-param pos="2"/><with-param pos="0"/></call-macro>
+        <call-macro n="out_adj"><with-param pos="1"/></call-macro>
         <out>
-          <lu><clip pos="1" part="whole"/></lu>
           <b pos="1"/>
-          <lu><clip pos="2" part="whole"/></lu>
+        </out>
+        <call-macro n="out_adj"><with-param pos="2"/></call-macro>
+        <out>
           <b pos="2"/>
           <lu><clip pos="3" part="whole"/></lu>
           <b pos="3"/>
