@@ -120,6 +120,7 @@
 
 
   <section-rules>
+
     <rule comment="CHUNK: adj
                    boka kan leses => boka kan vert lese => boka kan lesast
                    boken leses => boka vart lese => boka vart lesen">
@@ -131,6 +132,7 @@
         <call-macro n="out_adj"><with-param pos="1"/></call-macro>
       </action>
     </rule>
+    
     <rule comment="CHUNK: vblex">
       <pattern>
         <pattern-item n="vblex"/>
@@ -150,6 +152,13 @@
               <clip pos="1" part="lemq"/>
             </lu>
           </out>
+          </when>
+          <when c="See out_adj.">
+            <test><equal><clip pos="1" part="temps"/><lit-tag v="pp"/></equal></test>
+            <out>
+              <lu><clip pos="1" part="lemq"/></lu>
+              <lu><clip pos="1" part="lemh"/><clip pos="1" part="tags"/></lu>
+            </out>
           </when>
           <otherwise>
             <out><lu><clip pos="1" part="whole"/></lu></out>

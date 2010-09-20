@@ -172,6 +172,10 @@
     <def-cat n="vblex">
       <cat-item tags="vblex.*"/>
     </def-cat>
+    <def-cat n="vblexpp">
+      <cat-item tags="vblex.pp"/>
+      <cat-item tags="vblex.pp.*"/>
+    </def-cat>
     <def-cat n="vblexinf">
       <cat-item tags="vblex.inf"/>
     </def-cat>
@@ -556,10 +560,6 @@
                   <clip pos="1" side="tl" part="temps"/>
                 </lu>
               </chunk>
-              <chunk name="lemq">
-                <tags><tag><lit-tag v="vblex.lemq"/></tag></tags>
-                <lu><clip pos="1" side="tl" part="lemq"/></lu>
-              </chunk>
             </out>
           </when>
           <otherwise>
@@ -578,19 +578,57 @@
                 <lu>
                   <clip pos="1" side="tl" part="lemh"/>
                   <lit-tag v="adj.pp.nt.sg.ind"/>
-                  <clip pos="1" side="tl" part="lemq"/>
                 </lu>
               </chunk>
             </out>
           </otherwise>
         </choose>
+        <choose><when>
+          <test><not><equal><clip pos="1" side="tl" part="lemq"/><lit v=""/></equal></not></test>
+          <out>
+            <chunk name="lemq">
+              <tags><tag><lit-tag v="vblex.lemq"/></tag></tags>
+              <lu><clip pos="1" side="tl" part="lemq"/></lu>
+            </chunk>
+          </out>
+        </when></choose>
       </action>
     </rule>
         
+    <rule comment="VBLEXPP
+                   This rule has to be above the regular vblex rule,
+                   override lemq-moving for pp verbs.">
+      <pattern>
+        <pattern-item n="vblexpp"/>
+      </pattern>
+      <action>
+        <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
+        <let><var n="chunkname"/><lit v="vblex"/></let>
+        <choose><when>
+          <test><or>
+            <equal><clip pos="1" side="tl" part="lemh"/><lit v="bli"/></equal>
+            <equal><clip pos="1" side="tl" part="lemh"/><lit v="vere"/></equal>
+          </or></test>
+          <let><var n="chunkname"/><lit v="aux"/></let>
+        </when></choose>
+        <out>
+          <chunk namefrom="chunkname" case="caseFirstWord">
+            <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
+            <lu>
+              <clip pos="1" side="tl" part="lemh"/>
+              <clip pos="1" side="tl" part="a_verb"/>
+              <clip pos="1" side="tl" part="temps"/>
+              <clip pos="1" side="tl" part="lemq"/>
+            </lu>
+          </chunk>
+        </out>
+      </action>
+    </rule>
+    
     <rule comment="VBLEX
                    If we have nn multiwords, these need the lemq after the
                    inflected part. All lemq's include their own initial space.
-                   This rule has to be below passive rules.">
+                   This rule has to be below the passive rule.">
       <pattern>
         <pattern-item n="vblex"/>
       </pattern>
@@ -1094,6 +1132,11 @@ Requires rather ugly RL prn lemmas in nn.dix, see personal_pronouns__prn pardef"
           <otherwise><let><var n="chunkname"/><lit v="det"/></let></otherwise>
         </choose>
         <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
+        <choose><when c="There are no genitive det's in nn.dix, output prep (most likely changed to 'sin' in t2x)">
+          <test><equal><clip pos="1" side="tl" part="cas"/><lit-tag v="gen"/></equal></test>
+          <call-macro n="out_gen-prep"><with-param pos="1"/></call-macro>
+          <let><clip pos="1" side="tl" part="cas"/><lit v=""/></let>
+        </when></choose>        
         <out>
           <chunk namefrom="chunkname" case="caseFirstWord">
             <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>

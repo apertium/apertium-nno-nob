@@ -7,21 +7,24 @@
 
   <section-def-cats>
     <def-cat n="nom">
-      <cat-item tags="n.*.*.*"/>
-      <cat-item tags="n.*.*.*.gen"/>
+      <cat-item tags="n.*"/>
+      <cat-item tags="n.*.gen"/>
       <cat-item tags="np.*"/>
     </def-cat>
     <def-cat n="nind">
-      <cat-item tags="n.*.*.ind"/>
+      <cat-item tags="n.*.ind"/>
     </def-cat>
     <def-cat n="ndef">
-      <cat-item tags="n.*.*.def"/>
+      <cat-item tags="n.*.def"/>
     </def-cat>
     <def-cat n="prep_gen">
       <cat-item lemma="gen-prep" tags="pr"/>
     </def-cat>
     <def-cat n="ngen">
-      <cat-item tags="n.*.*.*.gen"/>
+      <cat-item tags="n.*.gen"/>
+    </def-cat>
+    <def-cat n="detgen">
+      <cat-item tags="det.*.gen"/>
     </def-cat>
     <def-cat n="det">
       <cat-item tags="det.*"/>
@@ -538,6 +541,37 @@
         </out>
       </action>
     </rule>
+    <rule comment="AUXPASS ADJPART LEMQ ADV => AUXPASS ADV ADJPART LEMQ
+                   påberopes ofte =1> vert skulda på ofte =2> vert ofte skulda på
+                   auxpass are created in t1x; move adv's behind these
+                   (No match if the aux was there originally, then we don't move any adverbs)">
+      <pattern>
+        <pattern-item n="auxpass"/>
+        <pattern-item n="adjpart"/>
+        <pattern-item n="lemq"/>
+        <pattern-item n="adv"/>
+      </pattern>
+      <action>
+        <call-macro n="modify_pp_gen_nbr"><with-param pos="2"/></call-macro>
+        <out>
+          <chunk>
+            <clip pos="1" part="whole"/>
+          </chunk>
+          <b pos="1"/>
+          <b pos="2"/>
+          <chunk>
+            <clip pos="4" part="whole"/>
+          </chunk>
+          <b pos="3"/>          
+          <chunk>
+            <clip pos="2" part="whole"/>
+          </chunk>
+          <chunk>
+            <clip pos="3" part="whole"/>
+          </chunk> 
+        </out>
+      </action>
+    </rule>
     <rule comment="AUXPASS ADJPART ADV ADV => AUXPASS ADV ADV ADJPART
                    boken leses heller ofte =1> boka blir lest heller ofte =2> boka blir heller ofte lest
                    auxpass are created in t1x; move adv's behind these
@@ -565,6 +599,42 @@
           <b pos="3"/>
           <chunk>
             <clip pos="2" part="whole"/>
+          </chunk> 
+        </out>
+      </action>
+    </rule>
+    <rule comment="AUXPASS ADJPART LEMQ ADV ADV => AUXPASS ADV ADV ADJPART LEMQ
+                   påberopes heller ofte =1> vert skulda på heller ofte =2> vert heller ofte skulda på
+                   auxpass are created in t1x; move adv's behind these
+                   (No match if the aux was there originally, then we don't move any adverbs)">
+      <pattern>
+        <pattern-item n="auxpass"/>
+        <pattern-item n="adjpart"/>
+        <pattern-item n="lemq"/>
+        <pattern-item n="adv"/>
+        <pattern-item n="adv"/>
+      </pattern>
+      <action>
+        <call-macro n="modify_pp_gen_nbr"><with-param pos="2"/></call-macro>
+        <out>
+          <chunk>
+            <clip pos="1" part="whole"/>
+          </chunk>
+          <b pos="1"/>
+          <b pos="2"/>
+          <chunk>
+            <clip pos="4" part="whole"/>
+          </chunk>
+          <b pos="3"/>
+          <chunk>
+            <clip pos="5" part="whole"/>
+          </chunk>
+          <b pos="4"/>
+          <chunk>
+            <clip pos="2" part="whole"/>
+          </chunk>
+          <chunk>
+            <clip pos="3" part="whole"/>
           </chunk> 
         </out>
       </action>
@@ -700,7 +770,7 @@
 
     <!-- The regular possessive noun phrases, with more complex
          transfer operations.-->
-    <rule comment="NGEN: [til] mannens => mannen sin
+    <rule comment="PREP_GEN NGEN: [til] mannens => mannen sin
                    Very heuristic fallback rule.
                    If we can't match with the below rules, turn the
                    genitive -s into 'sin' garpegenitiv instead.
@@ -726,7 +796,23 @@
         <call-macro n="out_sin"><with-param pos="2"/></call-macro>
       </action>
     </rule>
-    <rule comment="DETNONPOS NGEN: det [til] forfatterskapets => den forfattarskapen sin">
+    <rule comment="PREP_GEN DET: [til] det => det sin
+                   Fallback, like above">
+      <pattern>
+        <pattern-item n="prep_gen"/>
+        <pattern-item n="det"/>
+      </pattern>
+      <action>
+        <out>
+          <chunk>
+          <clip pos="2" part="whole"/>
+          </chunk>
+          <b pos="1"/> 
+        </out>
+        <call-macro n="out_sin"><with-param pos="2"/></call-macro>
+      </action>
+    </rule>
+    <rule comment="DETNONPOS PREP_GEN NGEN: det [til] forfatterskapets => den forfattarskapen sin">
       <pattern>
         <pattern-item n="detnonpos"/>
         <pattern-item n="prep_gen"/>
@@ -766,7 +852,7 @@
       </action>
     </rule>
     
-    <rule comment="NGEN NIND: naboens bil => bilen til naboen
+    <rule comment="PREP_GEN NGEN NIND: naboens bil => bilen til naboen
                               naboens røde bil => den røde bilen til naboen
                    nind makes sure we don't match 'min Per(np)' nor 'min bils(gen)'">
       <pattern>
@@ -812,7 +898,7 @@
     </rule>
 
     
-    <rule comment="NGEN NGEN NIND: [på] kjøkkenets [til] katts snute => snuten til katten på kjøkkenet">
+    <rule comment="PREP_GEN NGEN PREP_GEN NGEN NIND: [på] kjøkkenets [til] katts snute => snuten til katten på kjøkkenet">
       <pattern>
         <pattern-item n="prep_gen"/>
         <pattern-item n="ngen"/>    
@@ -845,7 +931,7 @@
         </out>
       </action>
     </rule>
-    <rule comment="DETPOS NGEN NIND: min [til] katts snute => snuten til katten min
+    <rule comment="DETPOS PREP_GEN NGEN NIND: min [til] katts snute => snuten til katten min
                                      (but not *'min din snute')">
       <pattern>
 	<pattern-item n="detpos"/>
@@ -876,7 +962,7 @@
       </action>
     </rule>
 
-    <rule comment="DETNONPOS NGEN NIND: en [til] katts snute => snuten til ein katt">
+    <rule comment="DETNONPOS PREP_GEN NGEN NIND: en [til] katts snute => snuten til ein katt">
       <pattern>
 	<pattern-item n="detnonpos"/>    
 	<pattern-item n="prep_gen"/>
@@ -900,7 +986,7 @@
         </out>
       </action>
     </rule>
-    <rule comment="DETNONPOS DETNONPOS NGEN NIND: den forrige [til] Lamaens bil => bilen til den forrige Lamaen">
+    <rule comment="DETNONPOS DETNONPOS PREP_GEN NGEN NIND: den forrige [til] Lamaens bil => bilen til den forrige Lamaen">
       <pattern>
 	<pattern-item n="detnonpos"/>
 	<pattern-item n="detnonpos"/>    
