@@ -30,7 +30,7 @@ $(PREFIX1).@ : $(PREFIX1).inconsistency
 
 $(PREFIX1).hash : $(PREFIX1).inconsistency
 	@echo "finding $@..." 
-	@cat $(PREFIX1).inconsistency | grep '#' |sed 's/<n></<n_/g'| sed 's/.*#\([^>]*\).*/\1>/' | uniq > $@
+	@cat $(PREFIX1).inconsistency | grep ' #' |sed 's/<n></<n_/g'| sed 's/.* --------->.*--------->[^#]*#\([^>]*\).*/\1>/' | uniq > $@
 
 $(PREFIX1).bislash : $(PREFIX1).inconsistency
 	@echo "finding $@..." 
@@ -53,7 +53,7 @@ $(PREFIX2).@ : $(PREFIX2).inconsistency
 
 $(PREFIX2).hash : $(PREFIX2).inconsistency
 	@echo "finding $@..." 
-	@cat $(PREFIX2).inconsistency | grep '#' |sed 's/<n></<n_/g'| sed 's/.*#\([^>]*\).*/\1>/' | uniq > $@
+	@cat $(PREFIX2).inconsistency | grep ' #' |sed 's/<n></<n_/g'| sed 's/.* --------->.*--------->[^#]*#\([^>]*\).*/\1>/' | uniq > $@
 
 $(PREFIX2).bislash : $(PREFIX2).inconsistency
 	@echo "finding $@..." 
