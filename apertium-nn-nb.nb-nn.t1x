@@ -166,6 +166,9 @@
     <def-cat n="infm">
       <cat-item lemma="å" tags="part"/>
     </def-cat>
+    <def-cat n="sin">
+      <cat-item lemma="seg" tags="det.pos.*"/>
+    </def-cat>
     <def-cat n="måte">
       <cat-item lemma="måte" tags="n.m.sg.ind"/>
     </def-cat>
@@ -462,7 +465,7 @@
         
     <def-macro n="out_posgen_subj" npar="2">
       <!-- arg.1: possessor, either genitive noun or det.pos.
-           arg.2: gives case
+           arg.2: gives typographic case
            Assumes no variables.
            Turns eg. "min" into "eg", "naboens" into "naboen".
            Strips case both from chunk and word.
@@ -703,6 +706,63 @@
 
     
     <!-- POSGEN måte å VBLEXINF -->
+    <rule comment="sin måte å VBLEXINF: sin måte å referere => sin måte å referere
+                   Override the below rule (TODO: use exception tag instead, when accepted to trunk).">
+      <pattern>
+        <pattern-item n="sin"/>
+        <pattern-item n="måte"/>
+        <pattern-item n="infm"/>
+        <pattern-item n="vblexinf"/>
+      </pattern>
+      <action>        
+        <out>
+          <chunk name="detsin">
+            <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
+            <lu><clip pos="1" side="tl" part="whole"/></lu>
+          </chunk>
+          <b pos="1"/>
+          <chunk name="n">
+            <tags><tag><clip pos="2" side="tl" part="tags"/></tag></tags>            
+            <lu><clip pos="2" side="tl" part="whole"/></lu>
+          </chunk>
+          <b pos="2"/>
+          <chunk name="infm">
+            <tags><tag><clip pos="3" side="tl" part="tags"/></tag></tags>
+            <lu><clip pos="3" side="tl" part="whole"/></lu>
+          </chunk>
+          <b pos="3"/>
+        </out>
+        <call-macro n="set_caseFirstWord"><with-param pos="4"/></call-macro>
+        <let><var n="chunkname"/><lit v="vblex"/></let>
+        <choose><when>
+          <test><or>
+            <equal><clip pos="4" side="tl" part="lemh"/><lit v="bli"/></equal>
+            <equal><clip pos="4" side="tl" part="lemh"/><lit v="vere"/></equal>
+          </or></test>
+          <let><var n="chunkname"/><lit v="aux"/></let>
+        </when></choose>
+        <out>
+          <chunk namefrom="chunkname" case="caseFirstWord">
+            <tags><tag><clip pos="4" side="tl" part="tags"/></tag></tags>
+            <lu>
+              <clip pos="4" side="tl" part="lemh"/>
+              <clip pos="4" side="tl" part="a_verb"/>
+              <clip pos="4" side="tl" part="temps"/>
+            </lu>
+          </chunk>
+        </out>
+        <choose><when>
+          <test><not><equal><clip pos="4" side="tl" part="lemq"/><lit v=""/></equal></not></test>
+          <out>
+            <chunk name="lemq">
+              <tags><tag><lit-tag v="vblex.lemq"/></tag></tags>
+              <lu><clip pos="4" side="tl" part="lemq"/></lu>
+            </chunk>
+          </out>
+        </when></choose>
+      </action>
+    </rule>
+    
     <rule comment="POSGEN måte å VBLEXINF: hennes måte å sykle => måten ho syklar
                    bokens måte å leses => måten boka vert lesen
 
@@ -1128,6 +1188,10 @@ Requires rather ugly RL prn lemmas in nn.dix, see personal_pronouns__prn pardef"
           <when>
             <test><in caseless="yes"><clip pos="1" side="sl" part="lem"/><list n="det_indef"/></in></test>
             <let><var n="chunkname"/><lit v="detdd"/></let>
+          </when>
+          <when>
+            <test><equal caseless="yes"><clip pos="1" side="tl" part="lemh"/><lit v="seg"/></equal></test>
+            <let><var n="chunkname"/><lit v="detsin"/></let>
           </when>
           <otherwise><let><var n="chunkname"/><lit v="det"/></let></otherwise>
         </choose>

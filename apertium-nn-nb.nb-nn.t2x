@@ -6,6 +6,9 @@
 <interchunk>
 
   <section-def-cats>
+    <def-cat n="unknown">
+      <cat-item tags="unknown"/>
+    </def-cat>
     <def-cat n="nom">
       <cat-item tags="n.*"/>
       <cat-item tags="n.*.gen"/>
@@ -31,6 +34,9 @@
     </def-cat>
     <def-cat n="prn">
       <cat-item tags="prn.*"/>
+    </def-cat>
+    <def-cat n="sin">
+      <cat-item lemma="detsin" tags="det.pos.*"/>
     </def-cat>
     <def-cat n="detpos">
       <cat-item tags="det.pos.*"/>
@@ -884,6 +890,23 @@
       </action>
     </rule>
 
+    <rule comment="UNKNOWN sin NIND: *alfdj sin måte => *alfdj sin måte
+                   Override the below rule">
+      <pattern>
+        <pattern-item n="unknown"/>
+        <pattern-item n="sin"/>
+        <pattern-item n="nind"/>
+      </pattern>
+      <action>
+        <out>
+          <chunk><clip pos="1" part="whole"/></chunk>
+          <b pos="1"/>
+          <chunk><clip pos="2" part="whole"/></chunk>
+          <b pos="2"/>
+          <chunk><clip pos="3" part="whole"/></chunk>
+        </out>
+      </action>
+    </rule>
     <rule comment="DETPOS NIND: min mor => mora mi
                                 ditt hus => huset ditt
                    nind makes sure we don't match 'min Per(np)' nor 'min bils(gen)'
