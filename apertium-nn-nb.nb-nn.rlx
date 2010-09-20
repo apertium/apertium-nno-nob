@@ -21244,9 +21244,10 @@ REMOVE:2135 (det) IF
 	(*1 ikke-adv-adj-det BARRIER fork/ukjent-ord)
 	(*1 ikke-adv-adj-det BARRIER parentes)
 	(*1 ikke-adv-adj-det LINK 0 subst LINK NOT 0 ikke-subst LINK NOT 0 adverbialsubst LINK NOT 0 subst-prop LINK NOT 0 fork)
+	(*0 fv)
 ;
 #  "han kjøpte nemlig feil (ikke subst) bok da"))
-
+# (*0 fv) for å unngå titler --KBU
 
 
 #:2033
@@ -21316,8 +21317,10 @@ REMOVE:2135 (det) IF
 	(*1 ikke-adv-adj-det BARRIER fork/ukjent-ord)
 	(*1 ikke-adv-adj-det BARRIER parentes)
 	(*1 ikke-adv-adj-det LINK 0 subst LINK NOT 0 ikke-subst LINK NOT 0 adverbialsubst LINK NOT 0 fork LINK NOT 0 subst-prop LINK 1 setn-gr)
+	(*0 fv)
 ;
 #  "han kjøpte nemlig feil (ikke subst) bok"))
+# (*0 fv) for å unngå titler --KBU
 
 
 
@@ -24518,10 +24521,21 @@ REMOVE:skrev ("<skrev>"ri "skreve") IF
 #  «Les mer:» -KBU
 
 
+
 #:31230
   "<været>"   REMOVE:31230   (vblex)
 ;
 # Veldig heuristisk! Men mest sannsynleg snakkar folk om været. --KBU
+# «Sjekk været der du bor»
+
+#:31231
+  "<mål>"   REMOVE:31231   (vblex)
+;
+#:31231
+  "<Mål>"   REMOVE:31231   (vblex)
+;
+# ...og fotball. --KBU
+# «Mål-thriller»
 
 
 # sec 4
