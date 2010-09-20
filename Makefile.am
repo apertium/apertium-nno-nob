@@ -1,4 +1,4 @@
-VERSION=0.6.5
+VERSION=0.7.0
 LANG1=nn
 # nn_a har a-endingar i infinitiv, nn_e har e-endingar (standard):
 LANG1e=nn_e
