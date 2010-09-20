@@ -104,10 +104,21 @@
                c="arg.1: noun, arg.2: adjective, arg.3: chunk.
                   Nouns always get chunk defnes.
                   Allow adjectives to turn definite (from chunk defnes), but not indefinite.">
-      <let><clip pos="1" part="art"/><clip pos="3" part="art"/></let>
+      <choose><when>
+        <test><not>
+          <and>
+            <equal><clip pos="2" part="nbr"/><lit-tag v="sg"/></equal>
+            <equal><clip pos="1" part="art"/><lit v=""/></equal>
+          </and>
+        </not></test>
+        <let><clip pos="1" part="art"/><clip pos="3" part="art"/></let>
+      </when></choose>
 
       <choose><when>
-        <test><equal><clip pos="2" part="art"/><lit-tag v="ind"/></equal></test>
+        <test><and>
+          <equal><clip pos="2" part="art"/><lit-tag v="ind"/></equal>
+          <equal><clip pos="3" part="art"/><lit-tag v="def"/></equal>
+        </and></test>
         <let><clip pos="2" part="art"/><clip pos="3" part="art"/></let>
       </when></choose>
 
