@@ -85,16 +85,17 @@ $(PREFIX2).bimwe : ../$(BASENAME).$(PREFIX1).dix
 
 INCONSISTENCY = $(PREFIX1).inconsistency $(PREFIX2).inconsistency
 
-TESTFILES = \
+MWETESTS = \
 	$(PREFIX2).mwe $(PREFIX2).bimwe \
+	$(PREFIX1).mwe $(PREFIX1).bimwe
+
+INCONTESTS = \
 	$(PREFIX2).@ $(PREFIX2).hash $(PREFIX2).bislash $(PREFIX2).slash \
-	$(PREFIX1).mwe $(PREFIX1).bimwe \
 	$(PREFIX1).@ $(PREFIX1).hash $(PREFIX1).bislash $(PREFIX1).slash
 
+testvoc : $(INCONTESTS) $(MWETESTS)
 
-testvoc : $(TESTFILES)
-
-wikistats : $(TESTFILES)
+wikistats : $(INCONTESTS)
 	@echo '|  Nynorsk'
 	@wc -l $(PREFIX1).hash $(PREFIX1).@ $(PREFIX1).bislash $(PREFIX1).slash |grep -v "total" |sed "s/^/|/" | sed "s/$(PREFIX1).*//"
 	@echo ""
@@ -103,7 +104,7 @@ wikistats : $(TESTFILES)
 
 
 clean :
-	rm -f $(TESTFILES)
+	rm -f $(INCONTESTS) $(MWETESTS)
 
 reallyclean : 
-	rm -f $(TESTFILES) $(INCONSISTENCY)
+	rm -f $(INCONTESTS) $(MWETESTS) $(INCONSISTENCY)
