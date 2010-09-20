@@ -122,7 +122,8 @@ EXTRA_DIST=$(BASENAME).$(LANG1).dix $(BASENAME).$(PREFIX1).dix \
 	   $(BASENAME).$(PREFIX2).t2x \
 	   $(BASENAME).$(PREFIX2).t3x \
 	   $(BASENAME).$(LANG1).tsx \
-	   $(BASENAME).$(LANG2).tsx modes.xml
+	   $(BASENAME).$(LANG2).tsx \
+	   modes.xml alt.xsl rem-compounds.xsl
 
 clean-dicts:
 	touch $(BASENAME).$(LANG1).dix $(BASENAME).$(LANG2).dix $(BASENAME).$(PREFIX1).dix
