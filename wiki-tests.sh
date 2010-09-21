@@ -62,7 +62,7 @@ if [ -x /usr/bin/calc ]; then
 elif [ -x /opt/local/bin/calc ]; then
     CALC="/opt/local/bin/calc"
 fi
-if [ -n $CALC ]; then
+if [ -n "$CALC" ]; then
 	WORKING=`$CALC $CORRECT" / "$TOTAL" * 100" | head -c 7`;
 	WORKING=", "$WORKING"%";
 fi
