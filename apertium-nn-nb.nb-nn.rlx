@@ -120,6 +120,7 @@ LIST %før%-@adv/%etter%/%etterpå% = "etterpå"  "etter"  ("før"  @adv) ;
 LIST %før%-adv/%etter%/%etterpå% = "etterpå"  "etter"  ("før"  adv) ("før"  pr) ("før"  cnjsub) ;
 LIST %før/etter/rundt/igjennom%-prep = ("før"  pr) ("etter"  pr) ("rundt"  pr) ("igjennom"  pr) ;
 LIST %føre% = "føre"  ;
+LIST %først% = "først" ;
 LIST %første% = ("første"  adj) ;
 LIST %gang% = "gang"  ;
 LIST %ganger% = ("gange"  pres) ;
@@ -4630,6 +4631,13 @@ CONSTRAINTS
 # så langt nedi at han aldri kom opp"
 
 
+#:32340
+  "<så>"   SELECT:32340   (adv) IF
+	(*-3 %først%)
+	(-1 %og%)
+;
+# «først til Venezuela, og så til USA» --KBU
+# (denne vil feile på «først så han til Venezuela, og så så han til USA»? ...ugh...)
 
 
 
@@ -4718,6 +4726,7 @@ CONSTRAINTS
 	(NOT -3 %så%)
 	(*2 setn-gr BARRIER pres/pret)
 	(NOT 1 pres/pret)
+	(NOT *-3 %først%)
 ;
 #  "...og så (pret) hvordan vi hadde det
 # Her er det mange tvetydigheter - her ikke valgt
@@ -4727,7 +4736,7 @@ CONSTRAINTS
 # NOT -2 >>>: Unntar Og så
 # En del feil på skjønnlitteraturen som:
 # og så (adv) han kjernesunne karen!"))
-
+# Ikkje «først til Venezuela, og så til USA» --KBU
 
 
 #:3207
