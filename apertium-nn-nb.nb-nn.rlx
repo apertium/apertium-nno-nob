@@ -370,24 +370,17 @@ LIST %visst% = ("viss"  adj posi nt ind sg) ;
 LIST %være% = "være"  ;
 LIST %være%-inf = ("være"  inf) ;
 LIST %være/bli% = "være"  "bli"  ;
-LIST %være/bli%-fin = ("være"  <auxp> pres) ("være"  <auxp> pret) ("bli"  pres) ("bli"  pret) ;
 LIST %ytterligere% = "ytterligere"  ;
 LIST %å% = "å"  ;
 LIST %år% = "år"  ;
-LIST &annet = &annet ;
-LIST &hend = &hend ;
-LIST &org = &org ;
-LIST &person = &person ;
-LIST &sted = top ;
-LIST &verk = &verk ;
+LIST top = top ;
 LIST <<< = <<< ;
 LIST <<</>>> = <<< >>> ;
-LIST <adj> = <adj> ;
-LIST <adv> = <adv> ;
-LIST <perf-part> = adj pp ;
+LIST <adj> = adj ;
+LIST <adv> = adv ;
+LIST <perf-part> = (adj pp) ;
 LIST <pres-part> = pprs ;
 LIST >>> = >>> ;
-LIST @&lt = @<p-utfyll ;
 LIST @<adv = @<adv ;
 LIST @<p-utfyll = @<p-utfyll ;
 LIST @<sbu = @<sbu ;
@@ -745,13 +738,6 @@ LIST hj-verb = "være"  "ville"  "skulle"  "måtte"  "kunne"  "ha"  "få"  "burd
 LIST hj-verb-ikke-passiv = "ville"  "skulle"  "måtte"  "kunne"  "ha"  "få"  "burde"  ;
 LIST hj-verb-iv = ("bli"  inf) ("bli"  vblex pp) ("ha"  inf) ("ha"  vblex pp) ("være"  inf) ("være"  vblex pp) ("få"  inf) ("få"  vblex pp) ("skulle"  inf) ("skulle"  vblex pp) ("kunne"  inf) ("kunne"  vblex pp) ("ville"  inf) ("ville"  vblex pp) ("måtte"  inf) ("måtte"  vblex pp) ("burde"  inf) ("burde"  vblex pp) ;
 LIST høflig = ("De" det pos p2) ("De" prn p2) ("de" det pos p2) ("de" prn p2)  ;
-LIST ikke-&annet = &hend &org &person top &verk ;
-LIST ikke-&hend = &annet &org &person top &verk ;
-LIST ikke-&org = &annet &hend &person top &verk ;
-LIST ikke-&person = &annet &hend &org top &verk ;
-LIST ikke-&person/&org = &annet &hend top &verk ;
-LIST ikke-&sted = &annet &hend &org &person &verk ;
-LIST ikke-&verk = &annet &hend &org &person top ;
 LIST ikke-@<adv = @fv @iv @subj @obj @i-obj @s-pred @o-pred @adv @adv> @app @tittel @det> @<det @subst> @<subst @<p-utfyll @interj @adj> @kon @løs-np @<sbu @<sbu-rel @s-gr ;
 LIST ikke-@<p-utfyll2 = @fv @iv @subj @i-obj @s-pred @o-pred @adv @adv> @<adv @app @tittel @det> @<det @subst> @<subst @obj @interj @adj> @kon @løs-np @<sbu @<sbu-rel @s-gr ;
 LIST ikke-@adj>-@adv> = @fv @iv @subj @obj @i-obj @s-pred @o-pred @adv @<adv @app @tittel @det> @<det @subst> @<subst @<p-utfyll @interj @kon @løs-np @<sbu @<sbu-rel @s-gr ;
@@ -1103,6 +1089,7 @@ LIST parentes-beg/strek = lpar <strek> ;
 LIST parentes-slutt = rpar ;
 LIST parentes-slutt/strek = rpar <strek> ;
 LIST pass = (vblex pass) ;
+LIST pass_tar_pp = "forsøke" "anta" "meddele" "få" "frykte" "gjøre" "dokumentere" "anse" "begjære" "søke" "holde" "vente" "vurdere" "foreslå" "kreve" ; # blir forsøkt lokket, antas forsvunnet
 LIST passiv = pass ;
 LIST perf-gen = (adj pp gen) (vblex pp pass) ;
 LIST perf-part = (vblex pp) ;
@@ -11261,12 +11248,14 @@ SELECT:2963 (adj nt ind sg) IF
 	(NOT 1 pron/subst/det)
  	(NOT -1 kop)
  	(NOT -1 %ha%)
+	(NOT 1 infmerke)
  	(*-1 setn-gr BARRIER kop-fv)
 ;
 #  "Vi handler utelukkende (adv) med regjeringer
 # 3.4.2003: Not 0 subst: Han spilte piano."
 # KBU (NOT 1 nom) er for strengt, (NOT 1 pron/subst/det) i staden:
 # «at han ikke visste hvor<adv> høy farten var.»
+# NOT 1 infmerke: «de lures til å klikke»
 
 #:2851
  SELECT:2851 (adv) IF
@@ -21644,9 +21633,9 @@ REMOVE:2135 (det) IF
 # 29.5.2001: NOT 0 TIDS (tids er også adjektiv)"))
 
 REMOVE:gen-subst gen-subst IF
-	(0 &sted)
+	(0 top)
 	(1 konj)
-	(2 &sted)
+	(2 top)
 	(NOT 2 gen)
 ;
 # «Troms og Finnmark»
@@ -23870,10 +23859,12 @@ CONSTRAINTS
 	(0C det-kvant + fl)
 	(NEGATE *-1 %ikke% BARRIER setn-gr)
 	(NEGATE *1 spørsmål-t)
+	(NOT -1 %før%)
 ;
 # «Læreren sa jeg hadde noen(nokre) gode poeng i oppgaven min»
 # Ikkje: «Sa læreren at jeg hadde noen(nokon) gode poeng i oppgaven min?»
-# Problem: «Sa læreren at jeg kunne låne noen(nokre) pengar til oppgaven min?»
+# Men: «Sa læreren at jeg kunne låne noen(nokre) pengar til oppgaven min?»
+# Ikkje: «før noen(nokon) kommer»
   "<noen>"   REMOVE:noen-p   (prn neg) IF
 	(0C pron + fl)
 	(NEGATE *-1 %ikke% BARRIER setn-gr)
@@ -25962,6 +25953,17 @@ REMOVE:skrev ("<skrev>"ri "skreve") IF
 # Forholdet mellom dem, representert (perf-p) ved ...
 # 13.9.2001: not lr0 sbu: Barna, som hadde funnet fram massevis av artige klesdrakter fra diverse loft hos tanter og onkler, besteforeldre og svigerforeldre, sprudlet av entusiasme og danseglede."
 
+
+#:24020
+ SELECT:24020 (vblex pp) IF
+	(-1 pass_tar_pp LINK 0 pass)
+;
+# «ansees sonet» --KBU
+#:24021
+ SELECT:24021 (vblex pp) IF
+	(-1 pass_tar_pp LINK 0 perf-part LINK -1 %være/bli% LINK 0 fv)
+;
+# «blir forsøkt lokket» --KBU
 
 
 #:4027
