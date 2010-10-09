@@ -23914,7 +23914,7 @@ CONSTRAINTS
 
 #:4080
   "<som>"   SELECT:4080   (pr) IF
-	(NOT 1 perf-part)
+	(NOT 1 perf-part OR nominativ)
 	(NOT -1 setn-gr)
 	(NOT -2 setn-gr)
 	(NOT -3 setn-gr)
@@ -26819,10 +26819,15 @@ SELECT:4081 (adj) IF
 ;
 
 
-#4072
+#4073
  REMOVE:4073 subst IF
 	    (0 prep)
 	    (0 %tross%)
+;
+
+#40730
+ REMOVE:40730 prep IF
+	    (1 nominativ)
 ;
 
 
