@@ -3,29 +3,32 @@
 # OBT-to-Apertium.sh
 # Convert (most of) the OBT CG into Apertium tag format.
 # usage:
-# ./OBT-to-Apertium nn_morf-utf8.cg > apertium-nn-nb.nn-nb.rlx
+# cat current-OBT/nn_morf.cg | iconv -f latin1 -t utf8 > current-OBT/nn_morf.u8.cg
+# ./OBT-to-Apertium.sh current-OBT/nn_morf.u8.cg > ../apertium-nn-nb.nn-nb.rlx
+
 
 # What the original CG expects: adj pos be ent
-# What the monodix give:        adj pst sg def
+# What the monodix give:        adj posi sg def
+
 
 # OBT CG has no soft delimiters, but when running cg-proc on huge
 # amounts of text, these stop us from getting "hard breaks":
 echo 'SOFT-DELIMITERS = "<,>" ;'
 
-# This would be so much cleaner if I knew of a way to only replace
-# stuff that's after a certain regexp within in a line. Ie. if I could
-# say "look for lines that start with XYZ, do a global replace within
-# the rest of the line but don't touch XYZ".  Of course, I _could_
-# just tear them apart at the equals sign with gsed 's/^.*=//'
-# etc. and then use paste to zip them back together...
-L0="\(^LIST  *[^ ][^ ]*  *=.*[\( ]\)"
-L1="\(^[^:]*REMOVE.*[\( ]\)"
-L2="\(^[^:]*SELECT.*[\( ]\)"
-L3="\(^[^:]*SUBSTITUTE.*[\( ]\)" # I'll do those manually instead
-L="s/\(${L0}\|${L1}\|${L2}\)" # these disjunctions are s..l...o.....w
-M="\([\) ;]\)/\1"	      # hey sed! it's got a ^! use it!
-R="\5/"
-gsed -e "
+
+LISTL=`mktemp -t obtll.XXXXXXXXXX`;
+LISTR=`mktemp -t obtlr.XXXXXXXXXX`;
+NEWLISTR=`mktemp -t obtnlr.XXXXXXXXXX`;
+LISTDONE=`mktemp -t obtld.XXXXXXXXXX`;
+RULEL=`mktemp -t obtrl.XXXXXXXXXX`;
+RULER=`mktemp -t obtrr.XXXXXXXXXX`;
+NEWRULER=`mktemp -t obtrnr.XXXXXXXXXX`;
+
+replace () {
+    L="s/\([\( ]\)"
+    M="\([\) ;]\)/\1"
+    R="\2/g"
+    sed -e "
 :LIST
 ${L}fork subst${M}n acr${R}
 ${L}fork${M}acr${R}
@@ -74,8 +77,27 @@ ${L}<ordenstall>${M}ord${R}
 ${L}<ordenstal>${M}ord${R}
 ${L}interj${M}ij${R}
 tLIST
-" $1
-# ^^ takes file as argument
+"
+}
+
+# remove anything that follows 'LIST name ='
+cat $1 | sed 's/^\(LIST [^=][^=]*\).*/\1/' > $LISTL 
+# keep only what follows 'LIST name ='
+cat $1 | sed 's/^LIST [^=][^=]*/¶/' | sed 's/^[^¶].*//' | sed 's/^¶//' > $LISTR 
+
+cat $LISTR | replace > $NEWLISTR
+paste -d '' $LISTL $NEWLISTR > $LISTDONE
+
+# remove anything that follows 'REMOVE/SELECT/MAP'
+cat $LISTDONE | sed 's/^\([^:]*\)\(REMOVE\|SELECT\|MAP\).*/\1\2/' > $RULEL
+# keep only what follows 'REMOVE/SELECT/MAP'
+cat $1 | sed 's/^[^:]*\(REMOVE\|SELECT\|MAP\)/¶/' | sed 's/^[^¶].*//' | sed 's/^¶//' > $RULER 
+
+cat $RULER | replace > $NEWRULER
+paste -d '' $RULEL $NEWRULER 
+
+
+
 
 ##### TODO: ################################################################
 # 
