@@ -9,52 +9,59 @@ S=/tmp/corpus-stat-sorted.txt
 
 export LC_ALL=
 
+# mac sed is horribly slow for certain operations
+GSED=sed; 
+if test x$(uname -s) = xDarwin; then 
+    type -P gsed &>/dev/null || { echo "This script requires gsed (or a real GNU/Linux machine) but it's not installed.  Aborting." >&2; exit 1; }
+    GSED=gsed; 
+fi
+
 # Calculate the number of tokenised words in the corpus:
 apertium-destxt |\
-gsed 's/\<the\>//g' |\
-gsed 's/\<The\>//g' |\
-gsed 's/\<of\>//g' |\
-gsed 's/\<oblast\>//g' |\
-gsed 's/\<in\>//g' |\
-gsed 's/\<In\>//g' |\
-gsed 's/\<it\>//g' |\
-gsed 's/\<if\>//g' |\
-gsed 's/\<ki\>//g' |\
-gsed 's/\<any\>//g' |\
-gsed 's/\<will\>//g' |\
-gsed 's/\<his\>//g' |\
-gsed 's/\<this\>//g' |\
-gsed 's/\<who\>//g' |\
-gsed 's/\<we\>//g' |\
-gsed 's/\<right\>//g' |\
-gsed 's/\<new\>//g' |\
-gsed 's/\<their\>//g' |\
-gsed 's/\<kraj\>//g' |\
-gsed 's/\<that\>//g' |\
-gsed 's/\<OfNm\>//g' |\
-gsed 's/\<you\>//g' |\
-gsed 's/\<www\>//g' |\
-gsed 's/\<com\>//g' |\
-gsed 's/\<org\>//g' |\
-gsed 's/\<Ob\>//g' |\
-gsed 's/\<http\>//g' |\
-gsed 's/\<px\>//g' |\
-gsed 's/\<inst\>//g' |\
-gsed 's/\<also\>//g' |\
-gsed 's/\<na\>//g' |\
-gsed 's/\<on\>//g' |\
-gsed 's/\<one\>//g' |\
-gsed 's/\<One\>//g' |\
-gsed 's/\<On\>//g' |\
-gsed 's/\<och\>//g' |\
-gsed 's/\<till\>//g' |\
-gsed 's/\<und\>//g' |\
-gsed 's/\<with\>//g' |\
-gsed 's/\<which\>//g' |\
-gsed 's/\<were\>//g' |\
-gsed 's/\<can\>//g' |\
-gsed 's/\<when\>//g' |\
-gsed 's/\<was\>//g' |\
+$GSED 's/\<the\>//g' |\
+$GSED 's/\<The\>//g' |\
+$GSED 's/\<of\>//g' |\
+$GSED 's/\<oblast\>//g' |\
+$GSED 's/\<in\>//g' |\
+$GSED 's/\<In\>//g' |\
+$GSED 's/\<it\>//g' |\
+$GSED 's/\<if\>//g' |\
+$GSED 's/\<ki\>//g' |\
+$GSED 's/\<any\>//g' |\
+$GSED 's/\<will\>//g' |\
+$GSED 's/\<his\>//g' |\
+$GSED 's/\<this\>//g' |\
+$GSED 's/\<who\>//g' |\
+$GSED 's/\<we\>//g' |\
+$GSED 's/\<right\>//g' |\
+$GSED 's/\<new\>//g' |\
+$GSED 's/\<their\>//g' |\
+$GSED 's/\<kraj\>//g' |\
+$GSED 's/\<that\>//g' |\
+$GSED 's/\<OfNm\>//g' |\
+$GSED 's/\<you\>//g' |\
+$GSED 's/\<www\>//g' |\
+$GSED 's/\<com\>//g' |\
+$GSED 's/\<org\>//g' |\
+$GSED 's/\<Ob\>//g' |\
+$GSED 's/\<http\>//g' |\
+$GSED 's/\<px\>//g' |\
+$GSED 's/\<inst\>//g' |\
+$GSED 's/\<also\>//g' |\
+$GSED 's/\<na\>//g' |\
+$GSED 's/\<on\>//g' |\
+$GSED 's/\<one\>//g' |\
+$GSED 's/\<One\>//g' |\
+$GSED 's/\<On\>//g' |\
+$GSED 's/\<och\>//g' |\
+$GSED 's/\<till\>//g' |\
+$GSED 's/\<und\>//g' |\
+$GSED 's/\<with\>//g' |\
+$GSED 's/\<which\>//g' |\
+$GSED 's/\<were\>//g' |\
+$GSED 's/\<can\>//g' |\
+$GSED 's/\<when\>//g' |\
+$GSED 's/\<was\>//g' |\
 lt-proc -w $1 |apertium-retxt |\
 # for some reason putting the newline in directly doesn't work, so two seds
 sed 's/\$[^^]*\^/$^/g' | sed 's/\$\^/$\
