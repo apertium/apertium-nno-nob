@@ -590,6 +590,7 @@ LIST parentes-beg = lpar ;
 LIST parentes-slutt = rpar ;
 LIST pass = (vblex pass) ;
 LIST pass_tar_pp = "forsøke" "anta" "meddele" "få" "frykte" "gjøre" "dokumentere" "anse" "begjære" "søke" "holde" "vente" "vurdere" "foreslå" "kreve" ; # blir forsøkt lokket, antas forsvunnet
+LIST verb_tar_%om%cnjsub = "vurdere" "spørre" "høre" "høres" "vite" "avklare" "tenke" "vise" ;
 LIST perf-gen = (adj pp gen) (vblex pp pass) ;
 LIST perf-part = (vblex pp) ;
 LIST perf-part/<perf-part> = (vblex pp) (adj pp) ;
@@ -2902,12 +2903,10 @@ CONSTRAINTS
 
 #:3370
   "<om>"   SELECT:3370   (cnjsub) IF
-	(-1 %spørre%)
+	(*-1 verb_tar_%om%cnjsub BARRIER ikke-prep LINK 0 verb)
 	(**1C pres/pret BARRIER setn-gr)
 ;
-#  "å spørre om ...
-# 23.3
-# 7.8.2001: Sjekke om det virkelig er en setning bak ..."
+# «å spørre/vurdere/høre om ...»
 
 
 
