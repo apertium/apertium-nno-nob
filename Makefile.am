@@ -43,6 +43,9 @@ TARGETS_COMMON = \
 .deps/$(BASENAME).$(LANG1a)-no-cp.dix: $(BASENAME).$(LANG1).dix alt.xsl .deps/.d
 	xsltproc --stringparam alt $(LANG1a) alt.xsl $(BASENAME).$(LANG1).dix | xsltproc rem-compounds.xsl - > $@
 
+.deps/$(BASENAME).$(PREFIX1).dix: $(BASENAME).$(PREFIX1).dix lexchoicebil.xsl .deps/.d
+	xsltproc lexchoicebil.xsl $(BASENAME).$(PREFIX1).dix > $@
+
 # nn-nb
 $(PREFIX1).automorf-no-cp.bin: .deps/$(BASENAME).$(LANG1)-no-cp.dix
 	apertium-validate-dictionary .deps/$(BASENAME).$(LANG1)-no-cp.dix
@@ -51,9 +54,9 @@ $(PREFIX1).automorf-no-cp.bin: .deps/$(BASENAME).$(LANG1)-no-cp.dix
 $(PREFIX1).rlx.bin: $(BASENAME).$(PREFIX1).rlx
 	cg-comp $(BASENAME).$(PREFIX1).rlx $@
 
-$(PREFIX1).autobil.bin: $(BASENAME).$(PREFIX1).dix
-	apertium-validate-dictionary $(BASENAME).$(PREFIX1).dix
-	lt-comp lr $(BASENAME).$(PREFIX1).dix $@
+$(PREFIX1).autobil.bin: .deps/$(BASENAME).$(PREFIX1).dix
+	apertium-validate-dictionary .deps/$(BASENAME).$(PREFIX1).dix
+	lt-comp lr .deps/$(BASENAME).$(PREFIX1).dix $@
 
 $(PREFIX1).t1x.bin: $(BASENAME).$(PREFIX1).t1x
 	apertium-validate-transfer $(BASENAME).$(PREFIX1).t1x
@@ -72,9 +75,9 @@ $(PREFIX2).automorf-no-cp.bin: .deps/$(BASENAME).$(LANG2)-no-cp.dix
 $(PREFIX2).rlx.bin: $(BASENAME).$(PREFIX2).rlx
 	cg-comp $(BASENAME).$(PREFIX2).rlx $@
 
-$(PREFIX2).autobil.bin: $(BASENAME).$(PREFIX1).dix
-	apertium-validate-dictionary $(BASENAME).$(PREFIX1).dix
-	lt-comp rl $(BASENAME).$(PREFIX1).dix $@
+$(PREFIX2).autobil.bin: .deps/$(BASENAME).$(PREFIX1).dix
+	apertium-validate-dictionary .deps/$(BASENAME).$(PREFIX1).dix
+	lt-comp rl .deps/$(BASENAME).$(PREFIX1).dix $@
 
 $(PREFIX2).t1x.bin: $(BASENAME).$(PREFIX2).t1x
 	apertium-validate-transfer $(BASENAME).$(PREFIX2).t1x
@@ -123,13 +126,7 @@ EXTRA_DIST=$(BASENAME).$(LANG1).dix $(BASENAME).$(PREFIX1).dix \
 	   $(BASENAME).$(PREFIX2).t3x \
 	   $(BASENAME).$(LANG1).tsx \
 	   $(BASENAME).$(LANG2).tsx \
-	   modes.xml alt.xsl rem-compounds.xsl
-
-clean-dicts:
-	touch $(BASENAME).$(LANG1).dix $(BASENAME).$(LANG2).dix $(BASENAME).$(PREFIX1).dix
-	rm $(BASENAME).$(LANG1).dix
-	rm $(BASENAME).$(LANG2).dix
-	rm $(BASENAME).$(PREFIX1).dix
+	   modes.xml alt.xsl rem-compounds.xsl lexchoicebil.xsl
 
 apertium_nn_nbdir=$(prefix)/share/apertium/apertium-$(PREFIX1)/
 apertium_nn_modesdir=$(prefix)/share/apertium/modes/
@@ -154,7 +151,7 @@ apertium_nn_nb_DATA=$(PREFIX1).automorf-no-cp.bin $(PREFIX2).automorf-no-cp.bin 
 		    $(PREFIX1).t1x.bin            $(PREFIX2).t1x.bin \
 		                                  $(PREFIX2).t2x.bin \
 		                                  $(PREFIX2).t3x.bin \
-		    modes.xml 
+		    modes.xml
 
 noinst_DATA=modes/$(PREFIX1).mode modes/$(PREFIX2).mode
 
