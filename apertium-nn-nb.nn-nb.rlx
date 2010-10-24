@@ -393,7 +393,7 @@ LIST farlege-mask-subst = "ville"  "ved"  "skrå"  "like"  "helt"  "heller"  "el
 LIST farlege-nøyt-subst = "vilt"  "venstre"  "var"  "under"  "skrå"  "skal"  "sjølv"  "sett"  "positiv"  "nå"  "ny"  "mot"  "lik"  "konkret"  "høgre"  "godt"  "gode"  "folk"  "bak"  ("beste"  sg ind) ("stikk"  adv) ("gjeld"  ind) ("or"  ind) ("no"  ind) ("skjer"  ind) ("kor"  ind) ("eige"  ind) ("rikt"  ind) ("fort"  ind) ("slag"  gen) ("eg"  sg) ("lo"  pl) ("al"  pl def) ("middel"  gen) ("men"  sg ind) ("men"  pl ind) ("tre"  ind) ("trass"  ind) ;
 LIST farlege-part = "åre"  "vå"  "vogge"  "vite"  "ville"  "vete"  "venne"  "vekkje"  "vekke"  "tørste"  "trøyste"  "tale"  "svare"  "spenne"  "spanne"  "slikje"  "slike"  "slette"  "skulde"  "sitte"  "sitje"  "semje"  "sake"  "rynje"  "rikje"  "rike"  "rette"  "pule"  "prime"  "oppta"  "omvende"  "nære"  "namne"  "minnast"  "lyse"  "love"  "lite"  "lengjast"  "lengast"  "le"  "kontre"  "klokke"  "klare"  "jorde"  "høgje"  "hende"  "helse"  "helle"  "grå"  "greie"  "gale"  "fri"  "felle"  "fare"  "ende"  "elje"  "desidere"  "brå"  "beste"  "ause"  "anne"  "ale"  gen ord ("vinne"  n) ("bygd"  n f) ("var"  adj posi nt) ("pult"  n m) ;
 LIST farlege-prep = "van"  ;
-LIST farlege-verb = "late"  "la"  ("bile"  pres) ("sva"  pres) ("keise"  pres) ("beste"  pret) ("venne"  vblex pret) ("liste"  vblex pret) ("venne"  pres) ("rose"  pres) ("toske"  pres) ("øye"  pres) ("dykke"  pres) ("børse"  pret) ("vege"  pres) ("slute"  pret) ("hå"  pres) ("godte"  pret) ("kan"  adv) ("stie"  pres) ("bøke"  pres) ("senge"  pret) ("rine"  pret) ("neste"  pret) ("deke"  pres) ("ete"  pret) ("anne"  pret) ("grade"  pres) ("åre"  pret) ("kontre"  pret) ("slette"  pres) ("velje"  pres) ("fare"  pret) ("sitje"  pres) ("sitte"  pres) ("sette"  pres) ("nå"  pres) ("elle"  pres) ("fø"  pres) ("helle"  pres) ("dy"  pres) ("dage"  pres) ("vå"  pres) ("vinde"  pres) ("snerte"  pret) ("jorde"  pret) ("ry"  pret) ("rynje"  pret) ("kagge"  pres) ("kroppe"  vblex pres) ("åte"  pret) ("hurre"  pret) ("marke"  pret) "<fila>" ;
+LIST farlege-verb = "late"  "la"  ("bile"  pres) ("sva"  pres) ("keise"  pres) ("beste"  pret) ("venne"  vblex pret) ("liste"  vblex pret) ("venne"  pres) ("rose"  pres) ("toske"  pres) ("øye"  pres) ("dykke"  pres) ("børse"  pret) ("vege"  pres) ("slute"  pret) ("hå"  pres) ("godte"  pret) ("kan"  adv) ("stie"  pres) ("bøke"  pres) ("senge"  pret) ("rine"  pret) ("neste"  pret) ("deke"  pres) ("ete"  pret) ("anne"  pret) ("grade"  pres) ("åre"  pret) ("kontre"  pret) ("slette"  pres) ("velje"  pres) ("fare"  pret) ("sitje"  pres) ("sitte"  pres) ("sette"  pres) ("nå"  pres) ("elle"  pres) ("fø"  pres) ("helle"  pres) ("dy"  pres) ("dage"  pres) ("vå"  pres) ("vinde"  pres) ("snerte"  pret) ("jorde"  pret) ("ry"  pret) ("rynje"  pret) ("kagge"  pres) ("kroppe"  vblex pres) ("åte"  pret) ("hurre"  pret) ("marke"  pret) "<fila>" "høgde" ;
 LIST fem = f mf (adj def) ;
 LIST fem-bu = (f def) ;
 LIST fem-det = (det f) ;
@@ -52730,6 +52730,13 @@ REMOVE:6200 (vblex pret) IF
 # Ikkje: «Langt uti have eller kor det var lynte det»
 # -KBU
 
+#:62000
+REMOVE:62000 (vblex pret) IF
+	(0 subst)
+	(-1 inf)
+;
+# «Noko å gjære safta i» 
+# Treng nok litt nyansering. -KBU
 
 #:6211
 REMOVE:6211 (n pl) IF
