@@ -141,16 +141,9 @@ modes/$(PREFIX2).mode: modes.xml
 	apertium-gen-modes modes.xml
 	cp *.mode modes/
 
-apertium_nn_nb_DATA=$(PREFIX1).automorf-no-cp.bin $(PREFIX2).automorf-no-cp.bin \
-		                                  $(PREFIX2).automorf.bin \
-		    $(PREFIX1).rlx.bin            $(PREFIX2).rlx.bin \
-                    $(PREFIX1).prob               $(PREFIX2).prob \
-                    $(PREFIX1).autobil.bin        $(PREFIX2).autobil.bin \
-                    $(PREFIX1).autogen-no-cp.bin  $(PREFIX2).autogen-no-cp.bin \
-                                                  $(PREFIX2a).autogen-no-cp.bin \
-		    $(PREFIX1).t1x.bin            $(PREFIX2).t1x.bin \
-		                                  $(PREFIX2).t2x.bin \
-		                                  $(PREFIX2).t3x.bin \
+apertium_nn_nb_DATA=$(TARGETS_COMMON) \
+                    $(PREFIX1).prob \
+                    $(PREFIX2).prob \
 		    modes.xml
 
 noinst_DATA=modes/$(PREFIX1).mode modes/$(PREFIX2).mode

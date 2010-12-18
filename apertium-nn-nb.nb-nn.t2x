@@ -498,6 +498,10 @@
       </pattern>
       <action>
         <call-macro n="modify_pp_gen_nbr"><with-param pos="2"/></call-macro>
+        <choose><when>
+          <test><equal><clip pos="1" part="voice"/><lit v=""/></equal></test>
+          <let><clip pos="1" part="temps"/><concat><clip pos="1" part="temps"/><lit-tag v="pass"/></concat></let>
+        </when></choose>
         <out>
           <chunk>
             <get-case-from pos="1"><clip pos="2" part="lemh"/></get-case-from>
