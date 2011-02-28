@@ -31,19 +31,21 @@ print "\n{{språkvask}}\n\n" ;
 
 while (<>) 
 {
+s/\[\[al sitt:/\[\[als:/g ; # iw als
 s/\[\[ase:/\[\[ast:/g ; # iw asturian
 s/\[\[dei:/\[\[de:/g ; # iw german
 s/\[\[ein:/\[\[en:/g ; # iw english
 s/\[\[gav:/\[\[ga:/g ; # iw galician?
 s/\[\[eit:/\[\[et:/g ; # iw estonian
 s/\[\[då:/\[\[da:/g ;  # iw danish
-s/\[\[sjå:/\[\[de:/g ;  # iw north sámi
+s/\[\[sjå:/\[\[se:/g ;  # iw north sámi
 
 s/\[\[nn:/\[\[nb:/g ;  # iw switch 
 
 s/{{.*stubb}}/{{spire}}/g ; # 
 
 s/\]\]ein /\]\]en /g ; # definite suffix -en
+s/\]\]eins /\]\]en sin /g ; # definite suffix -en
 s/\]\]eine /\]\]ane /g ; # definite suffix -ene
 s/\]\]eit /\]\]et /g ; # definite suffix -et
 
