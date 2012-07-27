@@ -423,7 +423,7 @@ LIST fl-be = (pl def) ;
 LIST fl-det = (det pl) ;
 LIST fl-subst = (n pl) (np pl) ;
 LIST fork = acr ;
-LIST fork/ukjent-ord = acr ("\\*.*"r) ;
+LIST fork/ukjent-ord = acr ("\\*.*"r) ukjent ;
 LIST fv = (vblex pres) (vblex pret) (vblex imp) ;
 LIST gen = gen ;
 LIST gen-subst = (n gen) (np gen) ;
@@ -12979,6 +12979,19 @@ SELECT:2963 (adj nt ind sg) IF
 	(-1 >>>)
 ;
 #  "Gå, jeg vil ikke se deg mer"
+
+
+ SELECT:Kopier-til-utklippstavlen-slik-at (imp) IF
+	(NOT 0 farlige-imp)
+	(NOT 0 adv)
+	(NOT 0 adj)
+	(NOT 0 interj)
+	(-1 >>>)
+	(NOT 0 pres/pret)
+	(1 fork/ukjent-ord OR be-subst OR pron-nom)
+	(NOT *1C pres/pret BARRIER setn-gr)
+;
+# «Kopier<imp> skjermbildekopien til utklippstavlen slik at det kan limes inn senere»
 
 
 
@@ -26321,3 +26334,7 @@ REMOVE:anaphora ("de" det pos) IF
 REMOVE:anaphora ("dere" det pos) IF # default: p3
 	(0 ("de" det pos))
 ;
+
+
+LIST uvanleg = ("områ" vblex) ;
+REMOVE:uvanleg uvanleg;
