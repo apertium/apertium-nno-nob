@@ -58,7 +58,7 @@ LIST %enda/endå% = "endå"  "enda"  ;
 LIST %enn% = "enn"  ;
 LIST %etter% = ("etter"  pr) ;
 LIST %famn% = ("famn"  n) ;
-LIST %far% = ("far" ) ; 
+LIST %far% = ("far" ) ;
 LIST %fast% = ("fast"  adj) ;
 LIST %fast%-verb = "tjore"  "surre"  "sette"  "setje"  "klore"  "brenne"  "binde"  ;
 LIST %fatte/krevje/ta% = ("fatte"  vblex) ("krevje"  vblex) ("ta"  vblex) ;
@@ -753,13 +753,13 @@ LIST verb-u-imp = (vblex pres) (vblex pret) (vblex pp) (vblex inf) ;
 # sec 0: MWE / particle verbs TODO!
 CONSTRAINTS
 SELECT (part sep) IF (*-1 (vblex sep)) ;
-SELECT (vblex sep) IF (*1 (part sep)) ; 
+SELECT (vblex sep) IF (*1 (part sep)) ;
 
 
 #Predikativ eller perfpart i nynorsk:
 # Etter ha/hadde/få: perfektum partisipp
 # Etter kopula: predikativ (adjektiv): ekspertise på området er utforma (adj m)
-# Unntak: om det ikke kongruerer i tall/kjønn: perfektum partisipp: meldingar kan lett bli misforstått (perf-part) Noreg (prop utan kjønn) vart oppmoda (perf-part)  
+# Unntak: om det ikke kongruerer i tall/kjønn: perfektum partisipp: meldingar kan lett bli misforstått (perf-part) Noreg (prop utan kjønn) vart oppmoda (perf-part)
 # Perf-part: som nemnt, som sagt
 
 # sec 1
@@ -2103,7 +2103,7 @@ CONSTRAINTS
  "<kostar>"   SELECT:6098   (vblex pres) IF
 	   (*1 det-kvant BARRIER setn-gr)
 	   (NOT -1 adj-fl)
-; 
+;
 
 
 #:4698
@@ -2797,7 +2797,7 @@ CONSTRAINTS
 #6048
  "<rett>"   SELECT:6048   (n) IF
 	 (1 %til/på%)
-; 
+;
 
 #:6108
  "<rett>"   SELECT:6108   (adj posi nt ind sg) IF
@@ -4201,7 +4201,7 @@ CONSTRAINTS
 	(-1 %og%)
 	(-2 %hytt%)
 ;
-#i hytt og ver 
+#i hytt og ver
 
 
 #:4249
@@ -4255,7 +4255,7 @@ CONSTRAINTS
 	(1 %stykke%)
 ;
 #5 øre stykke
-	
+
 
 
 #:4225
@@ -4496,7 +4496,7 @@ CONSTRAINTS
 
 #:6000
  "<bare>"   REMOVE:6000   (adj def sg) IF
-	(NOT **-1C det-eint BARRIER ikkje-adv-adj)
+	(NOT *-1C det-eint BARRIER ikkje-adv-adj)
 ;
 
 
@@ -4510,7 +4510,7 @@ CONSTRAINTS
 
 #:6002
  "<bare>"   REMOVE:6002   (adj pl) IF
-	(NOT **-1C fl-det BARRIER ikkje-adv-adj)
+	(NOT *-1C fl-det BARRIER ikkje-adv-adj)
 ;
 
 #:6003
@@ -5208,7 +5208,7 @@ CONSTRAINTS
 #:6054
  "<i>"   REMOVE:6054   (det)
       (NOT 0 storbokstav)
-; 
+;
 
 
 
@@ -5354,7 +5354,7 @@ CONSTRAINTS
 	(NOT *1 %re%)
 	(NOT *-1 %re%)
 ;
-#  "gå ut ifrå at dette ikkje handlar om musikk om 
+#  "gå ut ifrå at dette ikkje handlar om musikk om
 # ikkje \"re\" òg finst i perioden!"
 
 
@@ -6469,7 +6469,7 @@ CONSTRAINTS
 #:6078
  "<still>"   REMOVE:6078   (n)
 	  (0 adj)
-; 
+;
 #svært lite sannsynlig som subst
 
 
@@ -7142,8 +7142,8 @@ SELECT:4177 (adj def sg) IF
 	(NOT -1 ikkje-det)
 ;
 #  "den misforståtte
-# NOT 0 DET: den andre (det, ikkje adj?) gjorde 
-# 
+# NOT 0 DET: den andre (det, ikkje adj?) gjorde
+#
 # NOT KOMMA/KONJ: ikkje for kompliserte np-ar"
 
 
@@ -7430,7 +7430,7 @@ SELECT:4197 (adj def sg) IF
 	(*1O ub-eint-mask-subst LINK NOT 0 farlege-mask-subst LINK NOT *-1 ikkje-adv-adj)
 	(*1O ub-eint-mask-subst LINK NOT -1 komma/konj)
 ;
-#  "den misforståtte forfattar (NOT LR0 IKKJE-DET så 
+#  "den misforståtte forfattar (NOT LR0 IKKJE-DET så
 # også disamb adj med fleirtydig det:
 # hans (m+f) flittige kone (m+f)"))
 
@@ -7520,7 +7520,7 @@ SELECT:4203 (adj def sg) IF
 	(*1 bu-eint-mask-subst BARRIER ikkje-adv-adj)
 	(*1O bu-eint-mask-subst LINK NOT -1 komma/konj)
 ;
-#  "den misforståtte forfattaren 
+#  "den misforståtte forfattaren
 # NOT 1 ADJ den utruleg (nøyt=adv) misforståtte forfattaren"))
 
 
@@ -7791,7 +7791,7 @@ SELECT:4148 (adj pl) IF
 	(2C adj-fl)
 	(**-1C setn-gr BARRIER det-gen)
 ;
-#  "nye, misforståtte bøker 
+#  "nye, misforståtte bøker
 # nye og misforståtte bøker
 # ikkje økonomisk støtte (adj av støte!)
 # (forts) og gratis varer"))
@@ -7878,11 +7878,11 @@ SELECT:4152 (adj pl) IF
 	(**-1C setn-gr BARRIER det-gen)
 	(*1 fl-subst BARRIER ikkje-adv-adj)
 ;
-#  "kan ta vekk sikringsregel 
+#  "kan ta vekk sikringsregel
 # om eint/fl subst dersom adj berre
 # er bu eint eller fl
 # glade (eint be/fl) mus (eint/fl)
-# men: eineståande (eint ub/be/fl) tal (eint/fl) 
+# men: eineståande (eint ub/be/fl) tal (eint/fl)
 # OBS: gjeld berre utan det/subst gen til venstre!
 # (Det portrettet var Kulleruds fascinerande psykologiske (bu eint/fl)
 # (forts) portrett (eint/fl)"))
@@ -7975,10 +7975,10 @@ SELECT:4156 (adj pl) IF
 ;
 #  "må ha så mange unntak på 0
 # pga: bla via (prep) noko (det) osv
-# misforståtte bøker 
+# misforståtte bøker
 # NOT 0 SISTE/FØRSTE: siste (eint) brev (eint)
 # NOT VERB for å ikkje få med infinitiv:
-# man må opne lukene, eller verb: 
+# man må opne lukene, eller verb:
 # men følgde forelesingane
 # utan det/gen til venstre
 # PROP-DET-EINT: for å unngå at regelen verkar på
@@ -9157,7 +9157,7 @@ SELECT:4021 (adj posi def sg) IF
 	(NOT -1 p-hj-verb)
 	(NOT -1 det)
 ;
-#  "heile hagen var full av 
+#  "heile hagen var full av
 # Ikkje: har vunne miniputtserien"
 
 
@@ -9249,8 +9249,8 @@ SELECT:4028 (adj posi def sg) IF
 	(NOT -1 ikkje-det)
 ;
 #  "den einaste
-# NOT 0 DET: den andre (det, ikkje adj?) gjorde 
-# 
+# NOT 0 DET: den andre (det, ikkje adj?) gjorde
+#
 # NOT KOMMA/KONJ: ikkje for kompliserte np-ar"
 
 
@@ -9553,7 +9553,7 @@ SELECT:4051 (adj posi def sg) IF
 	(*1O ub-eint-mask-subst LINK NOT 0 farlege-mask-subst LINK NOT *-1 ikkje-adv-adj)
 	(*1O ub-eint-mask-subst LINK NOT -1 komma/konj)
 ;
-#  "den gule bil (NOT LR0 IKKJE-DET så 
+#  "den gule bil (NOT LR0 IKKJE-DET så
 # også disamb adj med fleirtydig det:
 # hans (m+f) flittige kone (m+f)"))
 
@@ -9650,7 +9650,7 @@ SELECT:4058 (adj posi def sg) IF
 	(*1 bu-eint-mask-subst BARRIER ikkje-adv-adj)
 	(*1O bu-eint-mask-subst LINK NOT -1 komma/konj)
 ;
-#  "den gule bilen 
+#  "den gule bilen
 # NOT 1 ADJ den eineståande (nøyt=adv) gule bilen"))
 
 
@@ -9840,7 +9840,7 @@ SELECT:3899 (adj posi pl) IF
 	(2C adj-fl)
 	(**-1C setn-gr BARRIER det-gen)
 ;
-#  "fine, store bilar 
+#  "fine, store bilar
 # fine og store bilar
 # ikkje økonomisk støtte (adj av støte!)
 # (forts) og gratis varer"))
@@ -9923,11 +9923,11 @@ SELECT:3903 (adj posi pl) IF
 	(**-1C setn-gr BARRIER det-gen)
 	(*1 fl-subst BARRIER ikkje-adv-adj)
 ;
-#  "kan ta vekk sikringsregel 
+#  "kan ta vekk sikringsregel
 # om eint/fl subst dersom adj berre
 # er bu eint eller fl
 # glade (eint be/fl) mus (eint/fl)
-# men: eineståande (eint ub/be/fl) tal (eint/fl) 
+# men: eineståande (eint ub/be/fl) tal (eint/fl)
 # OBS: gjeld berre utan det/subst gen til venstre!
 # (Det portrettet var Kulleruds fascinerande psykologiske (bu eint/fl)
 # (forts) portrett (eint/fl)"))
@@ -10017,10 +10017,10 @@ SELECT:3907 (adj posi pl) IF
 ;
 #  "må ha så mange unntak på 0
 # pga: bla via (prep) noko (det) osv
-# fine bilar 
+# fine bilar
 # NOT 0 SISTE/FØRSTE: siste (eint) hus (eint)
 # NOT VERB for å ikkje få med infinitiv:
-# man må opne lukene, eller verb: 
+# man må opne lukene, eller verb:
 # men følgde forelesingane
 # utan det/gen til venstre
 # PROP-DET-EINT: for å unngå at regelen verkar på
@@ -15601,8 +15601,8 @@ SELECT:3884 (adj posi nt ind sg) IF
 	(*-1O setn-gr-u-strek LINK *1 subst/pron/%all%/%mang%/%mange% LINK 0 nom-nøyt-eint/prop LINK NOT 0 fl)
 	(*-1O setn-gr-u-strek LINK NOT 1 prep)
 ;
-#  "tilsvarande forrige regel, men tillèt determinativ 
-# eller adjektiv føre om setningsgrense følgjer rett 
+#  "tilsvarande forrige regel, men tillèt determinativ
+# eller adjektiv føre om setningsgrense følgjer rett
 # etter
 # MED PREP SLUTTER HER"
 
@@ -15630,7 +15630,7 @@ SELECT:3885 (adj posi nt ind sg) IF
 	(*-1O setn-gr-u-strek LINK *1 subst/pron/%all%/%mang%/%mange% LINK 0 nom-nøyt-eint/prop LINK NOT 0 fl)
 	(*-1O setn-gr-u-strek LINK NOT 1 prep)
 ;
-#  "tilsvarande forrige regel, men med adverb/nomen 
+#  "tilsvarande forrige regel, men med adverb/nomen
 # i nøytrum etter"
 
 
@@ -15657,8 +15657,8 @@ SELECT:3886 (adj posi nt ind sg) IF
 	(*-1O setn-gr-u-strek LINK *1 subst/pron/%all%/%mang%/%mange% LINK 0 nom-nøyt-eint/prop LINK NOT 0 fl)
 	(*-1O setn-gr-u-strek LINK NOT 1 prep)
 ;
-#  "tilsvarande forrige regel, men gjeld berre adjektiv 
-# som ikkje kan vere mask, fem eller fl, dvs. der valet 
+#  "tilsvarande forrige regel, men gjeld berre adjektiv
+# som ikkje kan vere mask, fem eller fl, dvs. der valet
 # berre står mellom nøytrumsadjektiv og perf-part-verb.
 # Det blir etter måten lagt mykje omtanke i dette."
 
@@ -15716,7 +15716,7 @@ SELECT:3888 (adj posi nt ind sg) IF
 	(*-1O setn-gr-u-strek LINK *1 subst/pron/%all%/%mang%/%mange% LINK 0 nom-nøyt-eint/prop LINK NOT 0 fl)
 	(*-1O setn-gr-u-strek LINK NOT 1 prep)
 ;
-#  "tilsvarande forrige regel, men med kopulaverb rett føre (sidan nokre 
+#  "tilsvarande forrige regel, men med kopulaverb rett føre (sidan nokre
 # former av \"verte\" og \"vere\" er homonyme med adjektiv)"
 
 
@@ -15741,8 +15741,8 @@ SELECT:3889 (adj posi nt ind sg) IF
 	(*-1O setn-gr-u-strek LINK *1 subst/pron/%all%/%mang%/%mange% LINK 0 nom-nøyt-eint/prop LINK NOT 0 fl)
 	(*-1O setn-gr-u-strek LINK NOT 1 prep)
 ;
-#  "tilsvarande forrige regel, men tillèt determinativ 
-# eller adjektiv føre om setningsgrense følgjer rett 
+#  "tilsvarande forrige regel, men tillèt determinativ
+# eller adjektiv føre om setningsgrense følgjer rett
 # etter"
 
 
@@ -15769,7 +15769,7 @@ SELECT:3890 (adj posi nt ind sg) IF
 	(*-1O setn-gr-u-strek LINK *1 subst/pron/%all%/%mang%/%mange% LINK 0 nom-nøyt-eint/prop LINK NOT 0 fl)
 	(*-1O setn-gr-u-strek LINK NOT 1 prep)
 ;
-#  "tilsvarande forrige regel, men med adverb/nomen 
+#  "tilsvarande forrige regel, men med adverb/nomen
 # i nøytrum etter"
 
 
@@ -15796,8 +15796,8 @@ SELECT:3891 (adj posi nt ind sg) IF
 	(*-1O setn-gr-u-strek LINK *1 subst/pron/%all%/%mang%/%mange% LINK 0 nom-nøyt-eint/prop LINK NOT 0 fl)
 	(*-1O setn-gr-u-strek LINK NOT 1 prep)
 ;
-#  "tilsvarande forrige regel, men gjeld berre adjektiv 
-# som ikkje kan vere mask, fem eller fl, dvs. der valet 
+#  "tilsvarande forrige regel, men gjeld berre adjektiv
+# som ikkje kan vere mask, fem eller fl, dvs. der valet
 # berre står mellom nøytrumsadjektiv og perf-part-verb.
 # Det blir lagt mykje omtanke i dette."
 
@@ -15830,10 +15830,10 @@ SELECT:3892 (adj posi nt ind sg) IF
 # venstre: Huset i skogen er grønt
 # ... at huset i skogen er grønt
 # ikkje: barnets sko er ferdig (m)
-# NOT 1 KOMMA: Det var solid (ikkje pred), god mat 
+# NOT 1 KOMMA: Det var solid (ikkje pred), god mat
 # gjeld berre subjekt-verb-(adv)-pred
 # NOT 0 DET: det er noko (det) anna
-# NOT R+1 PREP: Under (prep) slaget er mannen 
+# NOT R+1 PREP: Under (prep) slaget er mannen
 # (forts) vennleg (ikkje nøyt) og ... "))
 
 
@@ -15973,7 +15973,7 @@ SELECT:3714 (adj posi m ind sg) IF
 	(*1O ub-eint-mask-subst LINK NOT -1 adv)
 ;
 #  "ein og annan liten (mask), gul bil
-# 
+#
 
 
 
@@ -18403,7 +18403,7 @@ SELECT:3584 (adj posi mf ind sg) IF
 	(NOT 1 subst)
 	(NOT 1 %som%-sbu)
 	(NOT -1 prep)
-	(NOT 0 farlege-adj) 
+	(NOT 0 farlege-adj)
 	(NOT 0 setningsadv)
 ;
 
@@ -23701,7 +23701,7 @@ SELECT:3190 (adj pp nt ind sg) IF
 	(*-3 ikkje-adv-adj-det LINK 0 prep LINK -1C nom-nøyt-eint/prop)
 ;
 #  "Tilhøvet mellom dei, representert (adj) ved ...
-# NB!! Her veit vi jo ikkje kva for eit ord adjektivet 
+# NB!! Her veit vi jo ikkje kva for eit ord adjektivet
 # står til. Kva skal vi gjere med det?"
 
 
@@ -23823,7 +23823,7 @@ SELECT:3197 (adj pp nt ind sg) IF
 	(*-1O pres/pret LINK 0 kop LINK NOT *1 ikkje-adv)
 	(*-1 pres/pret LINK -1 komma LINK *-1 setn-gr LINK 0 %som% LINK *-1 ikkje-poss-det LINK 0 nom-nøyt-eint/prop LINK NOT 0 fl)
 ;
-#  "tilsvarande forrige regel, men med kopulaverb rett føre (sidan nokre 
+#  "tilsvarande forrige regel, men med kopulaverb rett føre (sidan nokre
 # former av \"verte\" og \"vere\" er homonyme med adjektiv)
 # 18.3"
 
@@ -23843,8 +23843,8 @@ SELECT:3198 (adj pp nt ind sg) IF
 	(*-1O pres/pret LINK 0 kop LINK NOT *1 ikkje-adv)
 	(*-1 pres/pret LINK -1 komma LINK *-1 setn-gr LINK 0 %som% LINK *-1 ikkje-poss-det LINK 0 nom-nøyt-eint/prop LINK NOT 0 fl)
 ;
-#  "tilsvarande forrige regel, men tillèt determinativ 
-# eller adjektiv føre om setningsgrense følgjer rett 
+#  "tilsvarande forrige regel, men tillèt determinativ
+# eller adjektiv føre om setningsgrense følgjer rett
 # etter"
 
 
@@ -23864,7 +23864,7 @@ SELECT:3199 (adj pp nt ind sg) IF
 	(*-1O pres/pret LINK 0 kop LINK NOT *1 ikkje-adv)
 	(*-1 pres/pret LINK -1 komma LINK *-1 setn-gr LINK 0 %som% LINK *-1 ikkje-poss-det LINK 0 nom-nøyt-eint/prop LINK NOT 0 fl)
 ;
-#  "tilsvarande forrige regel, men med adverb/nomen 
+#  "tilsvarande forrige regel, men med adverb/nomen
 # i nøytrum etter"
 
 
@@ -23884,8 +23884,8 @@ SELECT:3200 (adj pp nt ind sg) IF
 	(*-1O pres/pret LINK 0 kop LINK NOT *1 ikkje-adv)
 	(*-1 pres/pret LINK -1 komma LINK *-1 setn-gr LINK 0 %som% LINK *-1 ikkje-poss-det LINK 0 nom-nøyt-eint/prop LINK NOT 0 fl)
 ;
-#  "tilsvarande forrige regel, men gjeld berre adjektiv 
-# som ikkje kan vere mask, fem eller fl, dvs. der valet 
+#  "tilsvarande forrige regel, men gjeld berre adjektiv
+# som ikkje kan vere mask, fem eller fl, dvs. der valet
 # berre står mellom nøytrumsadjektiv og perf-part-verb."
 
 
@@ -23905,8 +23905,8 @@ SELECT:3201 (adj pp nt ind sg) IF
 	(*-1O pres/pret LINK 0 kop LINK NOT *1 ikkje-adv)
 	(*-1 pres/pret LINK -1 komma LINK *-1 setn-gr LINK 0 %som% LINK *-1 ikkje-poss-det LINK 0 nom-nøyt-eint/prop LINK NOT 0 fl)
 ;
-#  "det vesle juridiske apparatet som finst på dette området, 
-# 
+#  "det vesle juridiske apparatet som finst på dette området,
+#
 # er sikta (adj nøyt) inn..."))
 
 
@@ -23929,8 +23929,8 @@ SELECT:3202 (adj pp nt ind sg) IF
 	(*-1O %som% LINK 1 det LINK 1 %gong% LINK NOT *1 ikkje-adv-verb)
 	(*-1 %som% LINK *-1 ikkje-adv LINK 0 konj LINK *-1 ikkje-adv-prep LINK 0 nom-nøyt-eint/prop LINK NOT 0 fl)
 ;
-#  "Det som har vore bra og som ein gong (ikkje) har vore 
-# 
+#  "Det som har vore bra og som ein gong (ikkje) har vore
+#
 # funne, har blitt kasta
 # %GONG% SLUTTER HER"
 
@@ -24130,7 +24130,7 @@ SELECT:3211 (adj pp nt ind sg) IF
 	(*-1O %som% LINK 1 det LINK 1 %gong% LINK NOT *1 ikkje-adv-verb)
 	(*-1O %som% LINK *-1 ikkje-adv-prep2 LINK 0 nom-nøyt-eint/prop LINK NOT 0 fl)
 ;
-#  "tilsvarande forrige regel, men med CLB-komma etter. 
+#  "tilsvarande forrige regel, men med CLB-komma etter.
 # sjekk at det kjem verb etter kommæt.
 # Det som ein gong (ikkje) var funne, kasta han"))
 
@@ -24286,8 +24286,8 @@ SELECT:3218 (adj pp nt ind sg) IF
 	(*-1O %som% LINK 1 prep LINK NOT *1 ikkje-adv-adj-subst-det-prep-verb)
 	(*-1O %som% LINK *-1 ikkje-adv LINK 0 konj LINK *-1 %som% LINK *-1 ikkje-adv-prep2 LINK 0 nom-nøyt-eint/prop LINK NOT 0 fl)
 ;
-#  "Det som har vore bra og som etter måten (ikkje) har 
-# 
+#  "Det som har vore bra og som etter måten (ikkje) har
+#
 # vore funne, har blitt kasta
 # MED PREP 6 SLUTTER HER"
 
@@ -24419,8 +24419,8 @@ SELECT:3224 (adj pp nt ind sg) IF
 	(*-1O %som% LINK 1 prep LINK NOT *1 ikkje-adv-adj-subst-det-prep-verb)
 	(*-1O %som% LINK *-1 ikkje-adv LINK 0 konj LINK *-1 %som% LINK *-1 ikkje-adv-prep2 LINK 0 nom-nøyt-eint/prop LINK NOT 0 fl)
 ;
-#  "Det som har vore bra og som etter måten (ikkje) 
-# 
+#  "Det som har vore bra og som etter måten (ikkje)
+#
 # har vore funne"
 
 
@@ -24467,8 +24467,8 @@ SELECT:3226 (adj pp nt ind sg) IF
 	(*-1O %som% LINK 1 prep LINK NOT *1 ikkje-adv-adj-subst-det-prep-verb)
 	(*-1O %som% LINK *-1 ikkje-adv LINK 0 konj LINK *-1 %som% LINK *-1 ikkje-adv-prep2 LINK 0 nom-nøyt-eint/prop LINK NOT 0 fl)
 ;
-#  "Det som var bra og som etter måten (ikkje) var funne, 
-# 
+#  "Det som var bra og som etter måten (ikkje) var funne,
+#
 # kasta han"
 
 
@@ -24491,7 +24491,7 @@ SELECT:3227 (adj pp nt ind sg) IF
 	(*-1O %som% LINK 1 prep LINK NOT *1 ikkje-adv-adj-subst-det-prep-verb)
 	(*-1O %som% LINK *-1 ikkje-adv-prep2 LINK 0 nom-nøyt-eint/prop LINK NOT 0 fl)
 ;
-#  "tilsvarande forrige regel, men med CLB-komma etter. 
+#  "tilsvarande forrige regel, men med CLB-komma etter.
 # sjekk at det kjem verb etter kommæt.
 # Det som etter måten (ikkje) var funne, kasta han"))
 
@@ -24647,8 +24647,8 @@ SELECT:3234 (adj pp nt ind sg) IF
 	(*-1 %som% BARRIER ikkje-adv-verb)
 	(*-1O %som% LINK *-1 ikkje-adv LINK 0 konj LINK *-1 %som% LINK *-1 ikkje-adv-prep2 LINK 0 nom-nøyt-eint/prop LINK NOT 0 fl)
 ;
-#  "Det som har vore bra og som (ikkje) har vore funne, 
-# 
+#  "Det som har vore bra og som (ikkje) har vore funne,
+#
 # har blitt kasta"
 
 
@@ -24847,7 +24847,7 @@ SELECT:3243 (adj pp nt ind sg) IF
 	(*-1 %som% BARRIER ikkje-adv-verb)
 	(*-1O %som% LINK *-1 ikkje-adv-prep2 LINK 0 nom-nøyt-eint/prop LINK NOT 0 fl)
 ;
-#  "tilsvarande forrige regel, men med CLB-komma etter. 
+#  "tilsvarande forrige regel, men med CLB-komma etter.
 # sjekk at det kjem verb etter kommæt.
 # Det som (ikkje) var funne, kasta han"))
 
@@ -25062,7 +25062,7 @@ SELECT:3253 (adj pp nt ind sg) IF
 	(NOT -2 ikkje-adv-adj-subst-pron-konj-detmdem)
 	(*-2O nom-nøyt-eint/prop LINK NOT 0 fl LINK *1 ikkje-adv-pron-prep LINK 0 kop LINK 0 iv LINK NOT *1 ikkje-adv)
 ;
-#  "Når eg har gått bort til vindauget, 
+#  "Når eg har gått bort til vindauget,
 # har etter måten alt vore stille"
 
 
@@ -25258,7 +25258,7 @@ SELECT:3262 (adj pp nt ind sg) IF
 	(NOT -2 ikkje-adv-adj-subst-pron-konj-detmdem)
 	(*-2O nom-nøyt-eint/prop LINK NOT 0 fl LINK *1 ikkje-adv-pron-prep LINK 0 kop LINK 0 iv LINK NOT *1 ikkje-adv)
 ;
-#  "Når eg har gått bort til vindauget, 
+#  "Når eg har gått bort til vindauget,
 # har alt vore stille"
 
 
@@ -25574,8 +25574,8 @@ SELECT:3277 (adj pp nt ind sg) IF
 	(**-3CO pres/pret LINK 0 hj-verb LINK 1 prep LINK NOT *1 ikkje-adv-adj-subst-pron-konj-detmdem-prep)
 	(**-3CO pres/pret LINK *1 subst/pron/%all%/%mang%/%mange% LINK 0 nom-nøyt-eint/prop LINK NOT 0 fl LINK *1 ikkje-adv-pron-prep LINK 0 iv LINK 0 kop LINK NOT *1 ikkje-adv)
 ;
-#  "For (ikkje disamb.) meg skulle etter måten (ikkje) 
-# 
+#  "For (ikkje disamb.) meg skulle etter måten (ikkje)
+#
 # huset (mitt) vore grønt"))
 
 
@@ -26988,8 +26988,8 @@ SELECT:3341 (adj pp nt ind sg) IF
 	(*-1O setn-gr-u-strek LINK *1 subst/pron/%all%/%mang%/%mange% LINK 0 nom-nøyt-eint/prop LINK NOT 0 fl)
 	(*-1O setn-gr-u-strek LINK NOT 1 prep)
 ;
-#  "tilsvarande forrige regel, men tillèt determinativ 
-# eller adjektiv føre om setningsgrense følgjer rett 
+#  "tilsvarande forrige regel, men tillèt determinativ
+# eller adjektiv føre om setningsgrense følgjer rett
 # etter
 # MED PREP SLUTTER HER"
 
@@ -27016,7 +27016,7 @@ SELECT:3342 (adj pp nt ind sg) IF
 	(*-1O setn-gr-u-strek LINK *1 subst/pron/%all%/%mang%/%mange% LINK 0 nom-nøyt-eint/prop LINK NOT 0 fl)
 	(*-1O setn-gr-u-strek LINK NOT 1 prep)
 ;
-#  "tilsvarande forrige regel, men med adverb/nomen 
+#  "tilsvarande forrige regel, men med adverb/nomen
 # i nøytrum etter"
 
 
@@ -27042,8 +27042,8 @@ SELECT:3343 (adj pp nt ind sg) IF
 	(*-1O setn-gr-u-strek LINK *1 subst/pron/%all%/%mang%/%mange% LINK 0 nom-nøyt-eint/prop LINK NOT 0 fl)
 	(*-1O setn-gr-u-strek LINK NOT 1 prep)
 ;
-#  "tilsvarande forrige regel, men gjeld berre adjektiv 
-# som ikkje kan vere mask, fem eller fl, dvs. der valet 
+#  "tilsvarande forrige regel, men gjeld berre adjektiv
+# som ikkje kan vere mask, fem eller fl, dvs. der valet
 # berre står mellom nøytrumsadjektiv og perf-part-verb.
 # Det blir etter måten lagt mykje omtanke i dette."
 
@@ -27099,7 +27099,7 @@ SELECT:3345 (adj pp nt ind sg) IF
 	(*-1O setn-gr-u-strek LINK *1 subst/pron/%all%/%mang%/%mange% LINK 0 nom-nøyt-eint/prop LINK NOT 0 fl)
 	(*-1O setn-gr-u-strek LINK NOT 1 prep)
 ;
-#  "tilsvarande forrige regel, men med kopulaverb rett føre (sidan nokre 
+#  "tilsvarande forrige regel, men med kopulaverb rett føre (sidan nokre
 # former av \"verte\" og \"vere\" er homonyme med adjektiv)"
 
 
@@ -27123,8 +27123,8 @@ SELECT:3346 (adj pp nt ind sg) IF
 	(*-1O setn-gr-u-strek LINK *1 subst/pron/%all%/%mang%/%mange% LINK 0 nom-nøyt-eint/prop LINK NOT 0 fl)
 	(*-1O setn-gr-u-strek LINK NOT 1 prep)
 ;
-#  "tilsvarande forrige regel, men tillèt determinativ 
-# eller adjektiv føre om setningsgrense følgjer rett 
+#  "tilsvarande forrige regel, men tillèt determinativ
+# eller adjektiv føre om setningsgrense følgjer rett
 # etter"
 
 
@@ -27150,7 +27150,7 @@ SELECT:3347 (adj pp nt ind sg) IF
 	(*-1O setn-gr-u-strek LINK *1 subst/pron/%all%/%mang%/%mange% LINK 0 nom-nøyt-eint/prop LINK NOT 0 fl)
 	(*-1O setn-gr-u-strek LINK NOT 1 prep)
 ;
-#  "tilsvarande forrige regel, men med adverb/nomen 
+#  "tilsvarande forrige regel, men med adverb/nomen
 # i nøytrum etter"
 
 
@@ -27176,8 +27176,8 @@ SELECT:3348 (adj pp nt ind sg) IF
 	(*-1O setn-gr-u-strek LINK *1 subst/pron/%all%/%mang%/%mange% LINK 0 nom-nøyt-eint/prop LINK NOT 0 fl)
 	(*-1O setn-gr-u-strek LINK NOT 1 prep)
 ;
-#  "tilsvarande forrige regel, men gjeld berre adjektiv 
-# som ikkje kan vere mask, fem eller fl, dvs. der valet 
+#  "tilsvarande forrige regel, men gjeld berre adjektiv
+# som ikkje kan vere mask, fem eller fl, dvs. der valet
 # berre står mellom nøytrumsadjektiv og perf-part-verb.
 # Det blir lagt mykje omtanke i dette."
 
@@ -27209,10 +27209,10 @@ SELECT:3349 (adj pp nt ind sg) IF
 # venstre: Huset i skogen er grønt
 # ... at huset i skogen er grønt
 # ikkje: barnets sko er ferdig (m)
-# NOT 1 KOMMA: Det var solid (ikkje pred), god mat 
+# NOT 1 KOMMA: Det var solid (ikkje pred), god mat
 # gjeld berre subjekt-verb-(adv)-pred
 # NOT 0 DET: det er noko (det) anna
-# NOT R+1 PREP: Under (prep) slaget er mannen 
+# NOT R+1 PREP: Under (prep) slaget er mannen
 # (forts) vennleg (ikkje nøyt) og ... "))
 
 
@@ -35692,7 +35692,7 @@ SELECT:6115 (det pl) IF
 	(NOT 0 %hundre/tusen%)
 	(-1 prep)
 	(NOT -1 sbu)
-	(1 adj-fl) 
+	(1 adj-fl)
 	(2C fl-subst)
 ;
 #dei framlagde endringane
@@ -35920,7 +35920,7 @@ SELECT:2697 (det nt) IF
 # NOT -1 VERB: eg har hatt (verb) det (pron)
 # (forts) spennande
 # NOT 0 FL-DET: Dei det-ane som er like i n og fl
-# er heilt fleirtydige: hennes (mf/n/pl) 
+# er heilt fleirtydige: hennes (mf/n/pl)
 # fortrulege (bu mf/n/pl)"))
 
 
@@ -35995,7 +35995,7 @@ SELECT:2703 (det nt) IF
 # godtek fleirtydige subst når valet er
 # nøyt eint/fl
 # NOT SUP for å unngå: er det (ikkje det) mest gras
-# NOT FV for å unngå typen: 
+# NOT FV for å unngå typen:
 # \"braut det (pron) laus tordenvêr ...\""))
 
 
@@ -36526,7 +36526,7 @@ SELECT:2666 (det m) IF
 	(NEGATE *-1 fv BARRIER ikkje-adv LINK -1C clb)
 ;
 #  "ein ganske gul bil"
-# Ikkje: «I gamle dagar feira ein<prn!> bursdag denne dagen» 
+# Ikkje: «I gamle dagar feira ein<prn!> bursdag denne dagen»
 # Ikkje: «og innimellom feira ein<prn!> bursdag denne dagen»
 # Ikkje: «Dersom friaren til slutt fekk dottera ,<clb> heldt<fv> ein<prn!> fest med store ete- og drikkegilde i den store festsalen i Pohjola.»
 
@@ -37011,7 +37011,7 @@ SELECT:2615 (det) IF
 #:2599
 SELECT:2599 (imp) IF
 	(-1 adv)
-	(NOT -1 %no/då/her/der%) 
+	(NOT -1 %no/då/her/der%)
 	(NOT *1 sbu)
 	(NOT *1 komma)
 	(-2 replikk)
@@ -37041,7 +37041,7 @@ SELECT:6057 (imp) IF
 	(2 prep)
 	(3 teiknsetjing/parentes/konj)
 ;
-#- kom dykk vekk, 
+#- kom dykk vekk,
 
 #:2597
 SELECT:2597 (imp) IF
@@ -37186,7 +37186,7 @@ SELECT:2594 (ij) IF
 #:6163
 SELECT:6163 (ij) IF
 	(0 %ja-nei%)
-	(NOT -1 seier-verb) 
+	(NOT -1 seier-verb)
 	(NOT -1 %eit%)
 	(1C setn-gr)
 ;
@@ -37197,7 +37197,7 @@ SELECT:6163 (ij) IF
 #:6164
 SELECT:6164 (ij) IF
 	(0 %ja-nei%)
-	(NOT -1 seier-verb) 
+	(NOT -1 seier-verb)
 	(NOT -1 %eit%)
 	(1 komma)
 ;
@@ -37469,7 +37469,7 @@ SELECT:2567 (pres) IF
 	(-2C pres/pret)
 	(NOT -2 ditrans)
 ;
-#  "27.9.2001: (not -1 subst-prop) 
+#  "27.9.2001: (not -1 subst-prop)
 # not -2 ditrans"
 
 
@@ -37636,18 +37636,18 @@ SELECT:6146 (det pl) IF
 	(NOT 0 %andre%)
 	(NOT 0 %hundre/tusen%)
 	(1 %der%)
-	(NOT 2 prep/komma) 
+	(NOT 2 prep/komma)
 	(*2O fl-subst LINK NOT 0 ikkje-adj-subst LINK NOT *-1 ikkje-adv-adj-prep-komma)
 	(*2 fl-subst LINK NOT 1 subst/adj)
 ;
-# Typisk talemål: dei der lysbrytarane  
+# Typisk talemål: dei der lysbrytarane
 
 
 #:6147
 SELECT:6147 (det m) IF
 	(0 bu-det)
 	(1 %der%)
-	(NOT 2 prep/komma) 
+	(NOT 2 prep/komma)
 	(*2 bu-eint-mask-subst BARRIER ikkje-adv-adj-prep-komma)
 ;
 #den der radioen
@@ -37657,7 +37657,7 @@ SELECT:6147 (det m) IF
 SELECT:6161 (det) IF
 	(0 bu-det)
 	(1 %der%)
-	(NOT 2 prep/komma) 
+	(NOT 2 prep/komma)
 	(*2C subst-prop BARRIER ikkje-adv-adj-prep-komma)
 ;
 #den der Blekksprut
@@ -37666,7 +37666,7 @@ SELECT:6161 (det) IF
 SELECT:6148 (det f) IF
 	(0 bu-det)
 	(1 %der%)
-	(NOT 2 prep/komma) 
+	(NOT 2 prep/komma)
 	(*2O bu-eint-fem-subst LINK NOT 0 fv LINK NOT *-1 ikkje-adv-adj-prep-komma)
 ;
 #den der plata
@@ -37676,7 +37676,7 @@ SELECT:6148 (det f) IF
 SELECT:6149 (det nt) IF
 	(0 bu-det)
 	(1 %der%)
-	(NOT 2 prep/komma) 
+	(NOT 2 prep/komma)
 	(*2O bu-eint-nøyt-subst LINK NOT 0 ikkje-adj-subst LINK NOT *-1 ikkje-adv-adj-prep-komma)
 ;
 #det der systemet
@@ -37686,7 +37686,7 @@ SELECT:6149 (det nt) IF
 SELECT:6159 (det m) IF
 	(0 %sånn/slik%)
 	(1 %der%)
-	(NOT 2 prep/komma) 
+	(NOT 2 prep/komma)
 	(*2 ub-eint-mask-subst BARRIER ikkje-adv-adj-prep-komma)
 	(*2 ub-eint-mask-subst LINK NOT 0 subst-fem)
 ;
@@ -37696,7 +37696,7 @@ SELECT:6159 (det m) IF
 SELECT:6160 (det f) IF
 	(0 %sånn/slik%)
 	(1 %der%)
-	(NOT 2 prep/komma) 
+	(NOT 2 prep/komma)
 	(*2O ub-eint-fem-subst LINK NOT *-1 ikkje-adv-adj-prep-komma)
 	(*2 ub-eint-mask-subst LINK NOT 0 subst-mask)
 ;
@@ -37895,7 +37895,7 @@ SELECT:2533 (prn acc) IF
 	(NOT 0 det)
 	(NOT 0 gen)
 	(-1C iv)
-	(NOT -1 inf/pres) 
+	(NOT -1 inf/pres)
 	(NOT 1 %som%)
 	(*-1O setn-gr LINK NOT 1 adverb/komp/ub-sup)
 	(*-1O setn-gr LINK NOT 1 prep)
@@ -38438,7 +38438,7 @@ SELECT:2482 subst-nøyt-eint IF
 	(NOT 0 adj)
 	(NOT 1 subst-nøyt)
 	(NOT -1 komma/konj)
-	(**-1CO nøyt-det LINK NOT 0 nr2-det LINK NOT *1 ikkje-adv-adj) 
+	(**-1CO nøyt-det LINK NOT 0 nr2-det LINK NOT *1 ikkje-adv-adj)
 ;
 # «eit hus» og «eit klede med»
 
@@ -42921,7 +42921,7 @@ REMOVE:2140 (adj nt) IF
 	(*-1 ikkje-adv LINK 0 %ha%-pres/pret)
 ;
 #  "...som det hittil har vore (ikkje adj nøyt) god norsk
-# 
+#
 # politikk å verne om"
 
 
@@ -43691,8 +43691,8 @@ REMOVE:2084 (adj pp nt) IF
 	(*-1 setn-gr BARRIER kop)
 ;
 #  "Salvesen steig stilt (adj pos) inn i rommet.
-# NOT -1 SUBST-NØYT/KOMMA: eit fargebilde av 
-# 
+# NOT -1 SUBST-NØYT/KOMMA: eit fargebilde av
+#
 # bedrifta, tatt (adj <perf-part>) i mørkret"))
 
 
@@ -43839,8 +43839,8 @@ REMOVE:2065 (adj pp mf) IF
 	(**-1CO setn-gr-u-strek LINK NOT 1 pres/pret)
 	(**-1C setn-gr-u-strek BARRIER subst-prop)
 ;
-#  "meldingar kan lett bli misforstått eller ikkje 
-# 
+#  "meldingar kan lett bli misforstått eller ikkje
+#
 # forstått (ikkje adj m/f) i det heile"))
 
 
@@ -43858,8 +43858,8 @@ REMOVE:2066 (adj pp mf) IF
 	(**-1CO setn-gr-u-strek LINK NOT 1 pres/pret)
 	(**-1C setn-gr-u-strek BARRIER subst-prop)
 ;
-#  "meldingar kan lett bli misforstått eller ikkje 
-# 
+#  "meldingar kan lett bli misforstått eller ikkje
+#
 # forstått (ikkje adj m/f) i det heile"))
 
 
@@ -43889,7 +43889,7 @@ REMOVE:2068 (adj pp mf) IF
 	(**-1C setn-gr-u-strek BARRIER subst-prop)
 ;
 #  "NOT R+1 PRES/PRET: den som eg likar best,(clb) er stoppa;
-# 
+#
 # ... og(clb) er stoppa"))
 
 
@@ -43911,7 +43911,7 @@ REMOVE:2069 (adj pp mf) IF
 	(**-1C setn-gr-u-strek BARRIER subst-prop)
 ;
 #  "NOT R+1 PRES/PRET: den som eg likar best,(clb) er stoppa;
-# 
+#
 # ... og(clb) er stoppa"))
 
 
@@ -43929,7 +43929,7 @@ REMOVE:2070 (adj pp mf) IF
 	(**-1C setn-gr-u-strek BARRIER subst-prop)
 ;
 #  "NOT R+1 PRES/PRET: den som eg likar best,(clb) er stoppa;
-# 
+#
 # ... og(clb) er stoppa"))
 
 
@@ -43949,7 +43949,7 @@ REMOVE:2071 (adj pp mf) IF
 	(**-1C setn-gr-u-strek BARRIER subst-prop)
 ;
 #  "NOT R+1 PRES/PRET: den som eg likar best,(clb) er stoppa;
-# 
+#
 # ... og(clb) er stoppa"))
 
 
@@ -44075,7 +44075,7 @@ REMOVE:2049 (adj pp) IF
 ;
 #  "Dessuten henger speilet (ikkje <perf-part>)
 # (forts) så høyt at ...
-# NOT 1 PREP forhindrer en del feil fordi 
+# NOT 1 PREP forhindrer en del feil fordi
 # <perf-part> er adv: ser skremt forbi henne"
 
 
@@ -44103,7 +44103,7 @@ REMOVE:2051 (adj pp) IF
 	(NOT -1 %som%)
 	(-2 %så%)
 ;
-#  "så lenge paret (ikkje <perf-part>) kom seg unna med 
+#  "så lenge paret (ikkje <perf-part>) kom seg unna med
 # 2.12"
 
 
@@ -44149,8 +44149,8 @@ REMOVE:2055 (adj pp) IF
 	(NOT 1 subst/adj)
 	(NOT -1 %som%)
 ;
-#  "fjernar overflødige lesingar 
-# som adj her: 
+#  "fjernar overflødige lesingar
+# som adj her:
 # burde slå i bordet (ikkje adj <perf-part>) med."))
 
 
@@ -44846,8 +44846,8 @@ REMOVE:1996 (adj) IF
 	(NOT 0 nøyt)
 	(-1C subst)
 	(NOT 1 adj-adv-subst-konj)
-	(*-1O setn-gr LINK NOT **1C pres/pret)
-	(*1O setn-gr LINK NOT **-1C pres/pret)
+	(*-1O setn-gr LINK NOT *1C pres/pret)
+	(*1O setn-gr LINK NOT *-1C pres/pret)
 ;
 #  "som t.d. franskmennene gjer (ikkje adj) i staden for..."))
 
@@ -45586,7 +45586,7 @@ REMOVE:1914 (det pl) IF
 	(NOT 1 adv)
 	(NOT 2 fl)
 ;
-#  "noko (eint) viktig (ikkje fleirtal, men mogleg 
+#  "noko (eint) viktig (ikkje fleirtal, men mogleg
 # adverb, må derfor sjekke 2) "
 
 
@@ -46318,8 +46318,8 @@ REMOVE:1814 pron-pers IF
 	(NOT -1 fv)
 	(2C clb-komma/konj)
 ;
-#  "CLB-komma og konj er greitt: 
-# Ikkje: den store, fine boka 
+#  "CLB-komma og konj er greitt:
+# Ikkje: den store, fine boka
 # ikkje den store, men (clb) den lille."))
 
 
@@ -46337,7 +46337,7 @@ REMOVE:1815 pron-pers IF
 # ..kom den (pron) vaggande
 # NOT 1 FV: den førte (adj+fv) han
 # NOT 1 ADV: ... trynet hans berre (adv) er
-# NOT KOMMA/KONJ fordi denne regelen 
+# NOT KOMMA/KONJ fordi denne regelen
 # ikkje skal verke på np-ar med subst og
 # fleire adj."
 
@@ -46384,7 +46384,7 @@ REMOVE:1819 pron-pers IF
 	(*1 ub-eint-subst LINK NOT 0 pres/pret LINK NOT 0 infmerke)
 ;
 #  "den (m/f) nye tid (m+f)
-# NOT R+1 ADJ-SUBST-KONJ: for ikkje å mistolke 
+# NOT R+1 ADJ-SUBST-KONJ: for ikkje å mistolke
 # adjektiv som subst inne i np-en"
 
 
@@ -47532,7 +47532,7 @@ REMOVE:1708 subst-ubøy IF
 	(0 adj-fl)
 	(1 komma/konj)
 	(*3 fl-subst BARRIER ikkje-adv-adj)
-	(NOT 2 ikkje-adv-adj) 
+	(NOT 2 ikkje-adv-adj)
 ;
 
 
@@ -48581,7 +48581,7 @@ REMOVE:1621 (vblex pp) IF
 	(**-1C setn-gr BARRIER p-hj-verb)
 	(*-1 prep BARRIER ikkje-adv-adj-det-subst)
 	(*-1 prep LINK -1 subst/pron)
-	(NEGATE 1 prep LINK *1 subst/pron BARRIER ikkje-adv-adj-subst-pron-det) 
+	(NEGATE 1 prep LINK *1 subst/pron BARRIER ikkje-adv-adj-subst-pron-det)
 ;
 # NEGATE 1 prep osb. pga. «verdsorden grunna<perf-part> på andelege prinsipp»
 
@@ -49373,19 +49373,19 @@ CONSTRAINTS
 #:6080
  "<lei>"   SELECT:6080   (adj) IF
 	(1 pron-akk)
-; 
+;
 #lei seg
 
 #:6090
  "<lei>"   SELECT:6090   (adj) IF
 	(1 %av%)
-; 
+;
 
 #:6091
  "<lei>"   SELECT:6091   (adj) IF
 	(1 %ut%)
 	(NOT 0 imp)
-; 
+;
 
 
 
@@ -49441,7 +49441,7 @@ CONSTRAINTS
        (1 sbu)
        (NOT -2 %og%)
 ;
-#han understreka og at 
+#han understreka og at
 
 #6063
  "<og>"   SELECT:6063   (adv) IF
@@ -49465,14 +49465,14 @@ CONSTRAINTS
        (2 komma/setn-slutt/%å%)
        (NOT -2 %og%)
 ;
-       
+
 #for seg sjølv og no
 
 #6066
  "<og>"   SELECT:6066   (adv) IF
        (-1 pron)
        (NOT 1 pron)
-       (NOT 1 pres/pret)	
+       (NOT 1 pres/pret)
        (NOT -2 %og%)
 ;
 #var det og i lommedalen
@@ -49481,7 +49481,7 @@ CONSTRAINTS
  "<og>"   SELECT:6068   (adv) IF
        (-1 pron)
        (NOT *-1 pres/pret BARRIER setn-gr)
-       (1 pres/pret)	
+       (1 pres/pret)
        (NOT -2 %og%)
 ;
 
@@ -49681,7 +49681,7 @@ CONSTRAINTS
 
 #:6206
   "<Les>"   REMOVE:6206 (vblex pres) IF
-  	(0 imp)  
+  	(0 imp)
 	(-1 setn-gr)
 ;
 #  «Les òg:» lite sannsynleg at dette er presens av «le»; sjølv om
@@ -49782,7 +49782,7 @@ SELECT:6137 (vblex inf) IF
 # KBU: «no vil dei kunne føra inn sin eigen drikk og selja den i kopp»
 
 #6060
-SELECT:6060 subst-ub 
+SELECT:6060 subst-ub
 	(-2C adv)
 	(-1 adj-komp)
 ;
@@ -51155,8 +51155,8 @@ REMOVE:1371 (adj posi nt ind) IF
 	(NOT 1 subst-nøyt-eint)
 	(*-1O ikkje-adv-adj-det LINK NOT 0 nøyt-det LINK NOT 1 nøyt-det)
 ;
-#  "likevel er ikkje dette viktige feltet 
-# 
+#  "likevel er ikkje dette viktige feltet
+#
 # teke (<perf-part>, ikkje pos) med"))
 
 
@@ -51188,8 +51188,8 @@ REMOVE:1367 (adj posi mf ind) IF
 	(NOT 1 fem-eint-subst)
 	(*-1O ikkje-adv-adj-det LINK NOT 0 fem-det LINK NOT 1 fem-det)
 ;
-#  "tradisjonell ekspertise på området er utforma 
-# 
+#  "tradisjonell ekspertise på området er utforma
+#
 #  (<perf-part>, ikkje pos) på engelsk eller amerikansk
 # 22.3"
 
@@ -52562,7 +52562,7 @@ REMOVE:1324 (vblex pret) IF
 REMOVE:2183 (adj pp) IF
 	(0 subst)
 	(0 samset)
-	(NOT 0 perf-part) 
+	(NOT 0 perf-part)
 ;
 
 
@@ -52693,7 +52693,7 @@ REMOVE:6033 subst-nøyt-eint IF
 #	(*-1 p-hj-verb BARRIER perf-part)
 #	(*-1 p-hj-verb BARRIER setn-gr)
 ;
-#hadde seti	
+#hadde seti
 
 #:6034
 #REMOVE:6034 (vblex pp) IF
@@ -52725,7 +52725,7 @@ REMOVE:6200 (vblex pret) IF
 	(NOT 1 pron/subst)
 	(NEGATE 1 adv LINK 1 pron/subst LINK NOT 0 infmerke)
 ;
-# «vere/synest/blei løyste frå otte og naud» 
+# «vere/synest/blei løyste frå otte og naud»
 # «blir tvinga til<adv/prep> å<infmerke/subst> finne»
 # Ikkje: «Langt uti have eller kor det var lynte det»
 # -KBU
@@ -52735,14 +52735,14 @@ REMOVE:62000 (vblex pret) IF
 	(0 subst)
 	(-1 inf)
 ;
-# «Noko å gjære safta i» 
+# «Noko å gjære safta i»
 # Treng nok litt nyansering. -KBU
 
 #:6211
 REMOVE:6211 (n pl) IF
 	(0 subst-eint)
 	(-1 bu-eint-subst LINK -1 adj-bu BARRIER ikkje-adv-adj-komma LINK -1* bu-det-eint/fl)
-;	
+;
 # KBU: «det viktige, grammatiske trekket imperativ<sg>»
 
 

@@ -6,11 +6,9 @@ LANG1a=nn_a
 LANG2=nb
 PREFIX1=$(LANG1)-$(LANG2)
 PREFIX2=$(LANG2)-$(LANG1)
-PREFIX2a=$(LANG2)-$(LANG1a)
-PREFIX1a=$(LANG1)-$(LANG1a)
-PREFIX1e=$(LANG1a)-$(LANG1)
-PREFIX2cp=$(LANG2)-$(LANG1)-cp
-PREFIX2acp=$(LANG2)-$(LANG1a)-cp
+PREFIX1e1a=$(LANG1e)-$(LANG1)
+PREFIX1a1e=$(LANG1)-$(LANG1e)
+PREFIX2e=$(LANG2)-$(LANG1e)
 
 BASENAME=apertium-$(PREFIX1)
 
@@ -19,12 +17,11 @@ TARGETS_COMMON = \
      $(PREFIX1).rlx.bin \
      $(PREFIX1).autobil.bin $(PREFIX1).t1x.bin \
      $(PREFIX1).autogen-no-cp.bin \
-     $(PREFIX2).automorf-no-cp.bin \
      $(PREFIX2).automorf.bin \
      $(PREFIX2).rlx.bin \
      $(PREFIX2).autobil.bin $(PREFIX2).t1x.bin $(PREFIX2).t2x.bin $(PREFIX2).t3x.bin \
      $(PREFIX2).autogen-no-cp.bin \
-     $(PREFIX2a).autogen-no-cp.bin
+     $(PREFIX2e).autogen-no-cp.bin
 
 # Use this goal for creating .deps, otherwise make -j2 will give problems:
 .deps/.d:
@@ -37,10 +34,10 @@ TARGETS_COMMON = \
 .deps/$(BASENAME).$(LANG2)-no-cp.dix: $(BASENAME).$(LANG2).dix rem-compounds.xsl .deps/.d
 	xsltproc rem-compounds.xsl $(BASENAME).$(LANG2).dix > $@
 
-.deps/$(BASENAME).$(LANG1)-no-cp.dix: $(BASENAME).$(LANG1).dix alt.xsl .deps/.d
+.deps/$(BASENAME).$(LANG1e)-no-cp.dix: $(BASENAME).$(LANG1).dix alt.xsl .deps/.d
 	xsltproc --stringparam alt $(LANG1e) alt.xsl $(BASENAME).$(LANG1).dix | xsltproc rem-compounds.xsl - > $@
 
-.deps/$(BASENAME).$(LANG1a)-no-cp.dix: $(BASENAME).$(LANG1).dix alt.xsl .deps/.d
+.deps/$(BASENAME).$(LANG1)-no-cp.dix: $(BASENAME).$(LANG1).dix alt.xsl .deps/.d
 	xsltproc --stringparam alt $(LANG1a) alt.xsl $(BASENAME).$(LANG1).dix | xsltproc rem-compounds.xsl - > $@
 
 .deps/$(BASENAME).$(PREFIX1).dix: $(BASENAME).$(PREFIX1).dix lexchoicebil.xsl .deps/.d
@@ -68,9 +65,9 @@ $(PREFIX1).autogen-no-cp.bin: .deps/$(BASENAME).$(LANG2)-no-cp.dix
 
 
 # nb-nn
-$(PREFIX2).automorf-no-cp.bin: .deps/$(BASENAME).$(LANG2)-no-cp.dix
-	apertium-validate-dictionary .deps/$(BASENAME).$(LANG2)-no-cp.dix
-	lt-comp lr .deps/$(BASENAME).$(LANG2)-no-cp.dix $@
+$(PREFIX2).automorf.bin: $(BASENAME).$(LANG2).dix
+	apertium-validate-dictionary $(BASENAME).$(LANG2).dix
+	lt-comp lr $(BASENAME).$(LANG2).dix $@
 
 $(PREFIX2).rlx.bin: $(BASENAME).$(PREFIX2).rlx
 	cg-comp $(BASENAME).$(PREFIX2).rlx $@
@@ -95,10 +92,11 @@ $(PREFIX2).autogen-no-cp.bin: .deps/$(BASENAME).$(LANG1)-no-cp.dix
 	apertium-validate-dictionary .deps/$(BASENAME).$(LANG1)-no-cp.dix
 	lt-comp rl .deps/$(BASENAME).$(LANG1)-no-cp.dix $@
 
-# nb-nn_a
-$(PREFIX2a).autogen-no-cp.bin: .deps/$(BASENAME).$(LANG1a)-no-cp.dix
-	apertium-validate-dictionary .deps/$(BASENAME).$(LANG1a)-no-cp.dix
-	lt-comp rl .deps/$(BASENAME).$(LANG1a)-no-cp.dix $@
+# nb-nn_e
+$(PREFIX2e).autogen-no-cp.bin: .deps/$(BASENAME).$(LANG1e)-no-cp.dix
+	apertium-validate-dictionary .deps/$(BASENAME).$(LANG1e)-no-cp.dix
+	lt-comp rl .deps/$(BASENAME).$(LANG1e)-no-cp.dix $@
+
 
 
 # nn-nb-cp TODO
@@ -106,14 +104,14 @@ $(PREFIX2a).autogen-no-cp.bin: .deps/$(BASENAME).$(LANG1a)-no-cp.dix
 # 	apertium-validate-dictionary $(BASENAME).$(LANG2).dix
 # 	lt-comp rl $(BASENAME).$(LANG2).dix $@
 
-# nb-nn-cp
-$(PREFIX2).automorf.bin: $(BASENAME).$(LANG2).dix
-	apertium-validate-dictionary $(BASENAME).$(LANG2).dix
-	lt-comp lr $(BASENAME).$(LANG2).dix $@
 
-TARGETS_CP = $(PREFIX2).automorf.bin
+$(PREFIX2).automorf-no-cp.bin: .deps/$(BASENAME).$(LANG2)-no-cp.dix
+	apertium-validate-dictionary .deps/$(BASENAME).$(LANG2)-no-cp.dix
+	lt-comp lr .deps/$(BASENAME).$(LANG2)-no-cp.dix $@
 
-cp: $(TARGETS_CP)
+TARGETS_NOCP = $(PREFIX2).automorf-no-cp.bin
+
+nocp: $(TARGETS_NOCP)
 
 EXTRA_DIST=$(BASENAME).$(LANG1).dix $(BASENAME).$(PREFIX1).dix \
 	   $(BASENAME).$(LANG2).dix \
@@ -136,17 +134,13 @@ modes/$(PREFIX1).mode: modes.xml
 	apertium-gen-modes modes.xml
 	cp *.mode modes/
 
-modes/$(PREFIX2).mode: modes.xml 
-	apertium-validate-modes modes.xml
-	apertium-gen-modes modes.xml
-	cp *.mode modes/
-
 apertium_nn_nb_DATA=$(TARGETS_COMMON) \
                     $(PREFIX1).prob \
                     $(PREFIX2).prob \
 		    modes.xml
 
-noinst_DATA=modes/$(PREFIX1).mode modes/$(PREFIX2).mode
+# All modes are created by the same goal, listing several will just give problems with make -j2
+noinst_DATA=modes/$(PREFIX1).mode
 
 install-data-local:
 	mv modes modes.bak
@@ -156,16 +150,14 @@ install-data-local:
 	test -d $(DESTDIR)$(apertium_nn_modesdir) || mkdir $(DESTDIR)$(apertium_nn_modesdir)
 	$(INSTALL_DATA) $(PREFIX1).mode $(DESTDIR)$(apertium_nn_modesdir)
 	$(INSTALL_DATA) $(PREFIX2).mode $(DESTDIR)$(apertium_nn_modesdir)
-	$(INSTALL_DATA) $(PREFIX2a).mode $(DESTDIR)$(apertium_nn_modesdir)
-	$(INSTALL_DATA) $(PREFIX1a).mode $(DESTDIR)$(apertium_nn_modesdir)
-	$(INSTALL_DATA) $(PREFIX1e).mode $(DESTDIR)$(apertium_nn_modesdir)
-	$(INSTALL_DATA) $(PREFIX2cp).mode $(DESTDIR)$(apertium_nn_modesdir)
-	$(INSTALL_DATA) $(PREFIX2acp).mode $(DESTDIR)$(apertium_nn_modesdir)
-	rm $(PREFIX1).mode $(PREFIX2).mode $(PREFIX2a).mode $(PREFIX1a).mode $(PREFIX1e).mode
+	$(INSTALL_DATA) $(PREFIX1e1a).mode $(DESTDIR)$(apertium_nn_modesdir)
+	$(INSTALL_DATA) $(PREFIX1a1e).mode $(DESTDIR)$(apertium_nn_modesdir)
+	$(INSTALL_DATA) $(PREFIX2e).mode $(DESTDIR)$(apertium_nn_modesdir)
+	rm $(PREFIX1).mode $(PREFIX2).mode $(PREFIX1e1a).mode $(PREFIX1a1e).mode $(PREFIX2e).mode
 	$(INSTALL_DATA) $(BASENAME).$(PREFIX1).t1x $(DESTDIR)$(apertium_nn_nbdir)
 	$(INSTALL_DATA) $(BASENAME).$(PREFIX2).t1x $(DESTDIR)$(apertium_nn_nbdir)
 	$(INSTALL_DATA) $(BASENAME).$(PREFIX2).t2x $(DESTDIR)$(apertium_nn_nbdir)
 	$(INSTALL_DATA) $(BASENAME).$(PREFIX2).t3x $(DESTDIR)$(apertium_nn_nbdir)
 
 
-CLEANFILES = -rf $(TARGETS_COMMON) $(TARGETS_CP) modes .deps
+CLEANFILES = -rf $(TARGETS_COMMON) $(TARGETS_NOCP) modes .deps
