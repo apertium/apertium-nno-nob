@@ -7,12 +7,12 @@ This is an Apertium language pair for translating between Norwegian
 Nynorsk and Norwegian Bokmål. What you can use this language package for:
 
 * Translating between Nynorsk and Bokmål
-** Includes a Nynorsk "a-mål" variant, nn_a (the default, nn, is "e-mål"),
+** Includes a Nynorsk "e-mål" variant, nn_e (the default, nn, is "a-mål"),
    also allows for translating between these variants
 * Morphological analysis of Nynorsk and Bokmål
 * Part-of-speech tagging of Nynorsk and Bokmål
 
-For information on the latter two points, see subheading "For more 
+For information on the latter two points, see subheading "For more
 information" below
 
 Requirements
@@ -20,9 +20,9 @@ Requirements
 
 You will need the following software installed:
 
-* lttoolbox (>= 3.1.2)
-* apertium (>= 3.1.1)
-* vislcg3 (>= 0.9.7.5129)
+* lttoolbox (>= 3.2.0)
+* apertium (>= 3.2.0)
+* vislcg3 (>= 0.9.7.8381)
 
 If this does not make any sense, we recommend you look at: www.apertium.org
 
@@ -31,7 +31,7 @@ Compiling
 
 Given the requirements being installed, you should be able to just run:
 
-$ ./configure 
+$ ./configure
 $ make
 # make install
 
@@ -58,13 +58,13 @@ Eg vil gå ein tur
 
 The following command runs tests which are on the Apertium wiki page:
 
-$ ./regression-tests.sh 
+$ ./regression-tests.sh
 
 Files and data
 ===============================================================================
 
 * apertium-nn-nb.nn.dix            - Monolingual dictionary for Nynorsk
-* apertium-nn-nb.nn-nb.dix         - Bilingual dictionary 
+* apertium-nn-nb.nn-nb.dix         - Bilingual dictionary
 * apertium-nn-nb.nb.dix            - Monolingual dictionary for Bokmål
 * apertium-nn-nb.nn-nb.rlx         - Constraint Grammar for Nynorsk
 * apertium-nn-nb.nb-nn.rlx         - Constraint Grammar for Bokmål
