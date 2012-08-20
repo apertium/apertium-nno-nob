@@ -228,7 +228,7 @@
       <attr-item tags="pass"/>
     </def-attr>
     <def-attr n="a_det">
-      <attr-item tags="det"/> 
+      <attr-item tags="det"/>
       <attr-item tags="det.emph"/>
       <attr-item tags="det.dem"/>
       <attr-item tags="det.itg"/>
@@ -269,7 +269,7 @@
     <def-var n="pass"/>
     <def-var n="aux"/>
   </section-def-vars>
-  
+
   <section-def-lists>
     <!-- POSSESSED-DEPENDENT EXCEPTIONS TODO: omkretsen til verda,
          lengden på dokumentet, ryktet til styret, lukta av/etter
@@ -316,7 +316,7 @@
       <list-item v="kjøkken"/>
       <list-item v="skip"/>
     </def-list>
-    
+
     <def-list n="det_indef">
       <!-- feels like these should have their own
            sub-pos... «<det><dem> som kan ha <ind> etter seg på
@@ -327,15 +327,15 @@
       <list-item v="den"/>
       <list-item v="de"/>
     </def-list>
-    
-    <def-list n="vere_pass" 
+
+    <def-list n="vere_pass"
               c="Verbs which require vere instead of bli/verte.">
       <list-item v="vite"/>
       <list-item v="eige"/>
     </def-list>
   </section-def-lists>
 
-  <section-def-macros>    
+  <section-def-macros>
     <def-macro n="stash_case_in_ntags" npar="1"
                c="arg.1: noun. Puts tags of noun in ntags (for use as chunk tags), removes case from the word.">
       <let><var n="ntags"/><clip pos="1" side="tl" part="tags"/></let>
@@ -379,7 +379,7 @@
         </when>
       </choose>
     </def-macro>
-    
+
     <def-macro n="set_aux" npar="1"
                c="arg.1: main/content verb">
       <let><var n="aux"/><lit v=""/></let>
@@ -417,7 +417,7 @@
       </append>
     </def-macro>
 
-    <!-- Macros which set concordance variables: -->    
+    <!-- Macros which set concordance variables: -->
     <def-macro n="set_gender1.adj" npar="1"
                c="arg.1: adj">
       <choose><when>
@@ -448,10 +448,10 @@
       <call-macro n="set_gender1.adj"><with-param pos="2"/></call-macro>
     </def-macro>
 
-    <!-- Output macros: -->    
+    <!-- Output macros: -->
     <def-macro n="out_ndef" npar="2">
       <!-- arg.1: possessed noun. arg.2 gives typographic case
-           
+
            Strip case, add definiteness.  -->
       <call-macro n="set_caseFirstWord2">
         <with-param pos="1"/>
@@ -472,7 +472,7 @@
         </chunk>
       </out>
     </def-macro>
-        
+
     <def-macro n="out_posgen_subj" npar="2">
       <!-- arg.1: possessor, either genitive noun or det.pos.
            arg.2: gives typographic case
@@ -510,9 +510,9 @@
           </chunk>
         </out>
       </otherwise>
-      </choose>  
+      </choose>
     </def-macro>
-    
+
     <def-macro n="out_gen-prep" npar="1"
                c="arg.1: noun. Only acts on genitives. Adds a space after.">
       <choose><when>
@@ -537,21 +537,21 @@
       </when></choose>
     </def-macro>
   </section-def-macros>
-  
+
 
 
   <section-rules>
-    <!-- Verbs -->        
+    <!-- Verbs -->
     <rule comment="VBLEX.PASS: leses => vert lest
                    beholdes [ikke] => vert [ikkje] haldt på
                    synes => synest
-                   
+
                    TODO: verb probably should lose possible uppercasing,
                    although it's unlikely to find the passive verb in
                    the beginning of a sentence
-                   
+
                    If we translate into a pstv verb, output like the regular VBLEX rule.
-                   
+
                    If we don't see an infinitive marker in t2x, the aux gets
                    deleted again.">
       <pattern>
@@ -607,7 +607,7 @@
         </when></choose>
       </action>
     </rule>
-        
+
     <rule comment="VBLEXPP
                    This rule has to be above the regular vblex rule,
                    override lemq-moving for pp verbs.">
@@ -637,7 +637,7 @@
         </out>
       </action>
     </rule>
-    
+
     <rule comment="VBLEX
                    If we have nn multiwords, these need the lemq after the
                    inflected part. All lemq's include their own initial space.
@@ -676,7 +676,7 @@
         </when></choose>
       </action>
     </rule>
-    
+
     <rule comment="INFM">
       <pattern>
         <pattern-item n="infm"/>
@@ -714,7 +714,7 @@
       </action>
     </rule>
 
-    
+
     <!-- POSGEN måte å VBLEXINF -->
     <rule comment="sin måte å VBLEXINF: sin måte å referere => sin måte å referere
                    Override the below rule (TODO: use exception tag instead, when accepted to trunk).">
@@ -724,7 +724,7 @@
         <pattern-item n="infm"/>
         <pattern-item n="vblexinf"/>
       </pattern>
-      <action>        
+      <action>
         <out>
           <chunk name="detsin">
             <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
@@ -732,7 +732,7 @@
           </chunk>
           <b pos="1"/>
           <chunk name="n">
-            <tags><tag><clip pos="2" side="tl" part="tags"/></tag></tags>            
+            <tags><tag><clip pos="2" side="tl" part="tags"/></tag></tags>
             <lu><clip pos="2" side="tl" part="whole"/></lu>
           </chunk>
           <b pos="2"/>
@@ -772,7 +772,7 @@
         </when></choose>
       </action>
     </rule>
-    
+
     <rule comment="POSGEN måte å VBLEXINF: hennes måte å sykle => måten ho syklar
                    bokens måte å leses => måten boka vert lesen
 
@@ -784,7 +784,7 @@ Requires rather ugly RL prn lemmas in nn.dix, see personal_pronouns__prn pardef"
         <pattern-item n="vblexinf"/>
       </pattern>
       <action>
-        <call-macro n="switch_cases">          
+        <call-macro n="switch_cases">
 	  <with-param pos="2"/>
 	  <with-param pos="1"/>
         </call-macro>
@@ -816,7 +816,7 @@ Requires rather ugly RL prn lemmas in nn.dix, see personal_pronouns__prn pardef"
               <b pos="3"/>
               <chunk name="vblex" case="caseFirstWord">
                 <tags><tag><clip pos="4" side="tl" part="tags"/></tag></tags>
-                <lu>	    
+                <lu>
                   <clip pos="4" side="tl" part="lemh"/>
                   <clip pos="4" side="tl" part="a_verb"/>
                   <lit-tag v="pp"/>
@@ -830,7 +830,7 @@ Requires rather ugly RL prn lemmas in nn.dix, see personal_pronouns__prn pardef"
               <b pos="3"/>
               <chunk name="vblex" case="caseFirstWord">
                 <tags><tag><clip pos="4" side="tl" part="tags"/></tag></tags>
-                <lu>	    
+                <lu>
                   <clip pos="4" side="tl" part="lemh"/>
                   <clip pos="4" side="tl" part="a_verb"/>
                   <lit-tag v="pres"/>
@@ -869,7 +869,7 @@ Requires rather ugly RL prn lemmas in nn.dix, see personal_pronouns__prn pardef"
         </out>
       </action>
     </rule>
-    
+
     <!-- Nouns -->
     <rule comment="NGEN_TIME_MEAS: dagens => dagens">
       <pattern>
@@ -916,7 +916,7 @@ Requires rather ugly RL prn lemmas in nn.dix, see personal_pronouns__prn pardef"
         </out>
       </action>
     </rule>
-    
+
     <!-- N+ -->
     <rule comment="N
                    Remove cas from lu, but put it in chunk">
@@ -930,7 +930,7 @@ Requires rather ugly RL prn lemmas in nn.dix, see personal_pronouns__prn pardef"
         <call-macro n="stash_case_in_ntags"><with-param pos="1"/></call-macro>
         <out>
           <chunk name="n" case="caseFirstWord">
-            <tags><tag><var n="ntags"/></tag></tags>            
+            <tags><tag><var n="ntags"/></tag></tags>
             <lu><clip pos="1" side="tl" part="whole"/></lu>
           </chunk>
         </out>
@@ -948,7 +948,7 @@ Requires rather ugly RL prn lemmas in nn.dix, see personal_pronouns__prn pardef"
         <call-macro n="stash_case_in_ntags"><with-param pos="2"/></call-macro>
         <out>
           <chunk name="n_n" case="caseFirstWord">
-            <tags><tag><var n="ntags"/></tag></tags>            
+            <tags><tag><var n="ntags"/></tag></tags>
             <lu><clip pos="1" side="tl" part="whole"/></lu>
             <lu><clip pos="2" side="tl" part="whole"/></lu>
           </chunk>
@@ -967,10 +967,32 @@ Requires rather ugly RL prn lemmas in nn.dix, see personal_pronouns__prn pardef"
         <call-macro n="stash_case_in_ntags"><with-param pos="3"/></call-macro>
         <out>
           <chunk name="n_n_n" case="caseFirstWord">
-            <tags><tag><var n="ntags"/></tag></tags>            
+            <tags><tag><var n="ntags"/></tag></tags>
             <lu><clip pos="1" side="tl" part="whole"/></lu>
             <lu><clip pos="2" side="tl" part="whole"/></lu>
             <lu><clip pos="3" side="tl" part="whole"/></lu>
+          </chunk>
+        </out>
+      </action>
+    </rule>
+    <rule comment="NCMP NCMP NCMP N">
+      <pattern>
+        <pattern-item n="ncmp"/>
+        <pattern-item n="ncmp"/>
+        <pattern-item n="ncmp"/>
+        <pattern-item n="n"/>
+      </pattern>
+      <action>
+        <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
+        <call-macro n="out_gen-prep"><with-param pos="4"/></call-macro>
+        <call-macro n="stash_case_in_ntags"><with-param pos="4"/></call-macro>
+        <out>
+          <chunk name="n_n_n_n" case="caseFirstWord">
+            <tags><tag><var n="ntags"/></tag></tags>
+            <lu><clip pos="1" side="tl" part="whole"/></lu>
+            <lu><clip pos="2" side="tl" part="whole"/></lu>
+            <lu><clip pos="3" side="tl" part="whole"/></lu>
+            <lu><clip pos="4" side="tl" part="whole"/></lu>
           </chunk>
         </out>
       </action>
@@ -1210,7 +1232,7 @@ Requires rather ugly RL prn lemmas in nn.dix, see personal_pronouns__prn pardef"
           <test><equal><clip pos="1" side="tl" part="cas"/><lit-tag v="gen"/></equal></test>
           <call-macro n="out_gen-prep"><with-param pos="1"/></call-macro>
           <let><clip pos="1" side="tl" part="cas"/><lit v=""/></let>
-        </when></choose>        
+        </when></choose>
         <out>
           <chunk namefrom="chunkname" case="caseFirstWord">
             <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
@@ -1219,7 +1241,7 @@ Requires rather ugly RL prn lemmas in nn.dix, see personal_pronouns__prn pardef"
         </out>
       </action>
     </rule>
-    
+
     <rule comment="PRN">
       <pattern>
         <pattern-item n="prn"/>
@@ -1234,6 +1256,6 @@ Requires rather ugly RL prn lemmas in nn.dix, see personal_pronouns__prn pardef"
         </out>
       </action>
     </rule>
-    
+
   </section-rules>
 </transfer>

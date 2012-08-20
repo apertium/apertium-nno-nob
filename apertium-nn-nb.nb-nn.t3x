@@ -11,6 +11,9 @@
     <def-cat n="n_n_n">
       <cat-item name="n_n_n"/>
     </def-cat>
+    <def-cat n="n_n_n_n">
+      <cat-item name="n_n_n_n"/>
+    </def-cat>
     <def-cat n="adj">
       <cat-item name="adj"/>
     </def-cat>
@@ -42,7 +45,7 @@
     </def-cat>
   </section-def-cats>
 
-  
+
   <section-def-attrs>
     <def-attr n="gen">
       <attr-item tags="m"/>
@@ -81,7 +84,7 @@
     <def-var n="foo"/>
   </section-def-vars>
 
-  
+
   <section-def-macros>
     <def-macro n="out_adj" npar="1"
                c="arg.1: adjective
@@ -95,7 +98,7 @@
         <let><clip pos="1" part="nbr"/><concat><clip pos="1" part="nbr"/><lit-tag v="def"/></concat></let>
         <let><clip pos="1" part="gen"/><concat><lit v=""/></concat></let>
       </when></choose>
-      
+
       <choose>
         <when>
           <test><equal><clip pos="1" part="temps"/><lit-tag v="pp"/></equal></test>
@@ -109,7 +112,7 @@
         </otherwise>
       </choose>
     </def-macro>
-    
+
     <def-macro n="clean_n.adj" npar="3"
                c="arg.1: noun, arg.2: adjective, arg.3: chunk.
                   Nouns always get chunk defnes.
@@ -153,7 +156,7 @@
         <call-macro n="out_adj"><with-param pos="1"/></call-macro>
       </action>
     </rule>
-    
+
     <rule comment="CHUNK: vblex">
       <pattern>
         <pattern-item n="vblex"/>
@@ -187,7 +190,7 @@
         </choose>
       </action>
     </rule>
-    
+
     <rule comment="CHUNK: det">
       <pattern>
         <pattern-item n="det"/>
@@ -201,14 +204,14 @@
             <equal><clip pos="1" part="gen"/><lit-tag v="mf"/></equal>
           </or></test>
           <let><clip pos="1" part="gen"/><lit-tag v="m"/></let>
-        </when></choose>        
+        </when></choose>
 
         <out>
           <lu><clip pos="1" part="whole"/></lu>
         </out>
       </action>
     </rule>
-    
+
     <!-- N+ -->
     <rule comment="CHUNK: n">
       <pattern>
@@ -246,6 +249,23 @@
           <lu><clip pos="2" part="whole"/></lu>
           <b pos="2"/>
           <lu><clip pos="3" part="whole"/></lu>
+        </out>
+      </action>
+    </rule>
+    <rule comment="CHUNK: n_n_n_n">
+      <pattern>
+        <pattern-item n="n_n_n_n"/>
+      </pattern>
+      <action>
+        <let><clip pos="4" part="art"/><clip pos="0" part="art"/></let>
+        <out>
+          <lu><clip pos="1" part="whole"/></lu>
+          <b pos="1"/>
+          <lu><clip pos="2" part="whole"/></lu>
+          <b pos="2"/>
+          <lu><clip pos="3" part="whole"/></lu>
+          <b pos="3"/>
+          <lu><clip pos="4" part="whole"/></lu>
         </out>
       </action>
     </rule>
