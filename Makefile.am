@@ -160,4 +160,6 @@ install-data-local:
 	$(INSTALL_DATA) $(BASENAME).$(PREFIX2).t3x $(DESTDIR)$(apertium_nn_nbdir)
 
 
-CLEANFILES = -rf $(TARGETS_COMMON) $(TARGETS_NOCP) modes .deps
+CLEANFILES = $(TARGETS_COMMON) $(TARGETS_NOCP)
+clean-local: 
+	-rm -rf .deps modes
