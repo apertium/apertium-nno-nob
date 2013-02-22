@@ -66,10 +66,6 @@
       <tags-item tags="prn.neg.*"/>
     </def-label>
 
-    <def-label name="PART">
-      <tags-item tags="part"/>
-    </def-label>
-
     <def-label name="ADJ">
       <tags-item tags="adj.*"/>
     </def-label>
