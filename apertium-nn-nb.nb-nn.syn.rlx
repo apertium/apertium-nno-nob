@@ -11,9 +11,9 @@ LIST %annen% = "annen" ;
 LIST %annen%-grunnf = "annen" ;
 LIST %annet% = ("annen" det nt ind sg) ;
 LIST %at% = "at" ;
-LIST %at%/infmerke = "at" part ;
+LIST %at%/infmerke = "at" "å" ;
 LIST %at/om% = "om" "at" ;
-LIST %at/om%/infmerke = "om" "at" part ;
+LIST %at/om%/infmerke = "om" "at" "å" ;
 LIST %at/om/som% = "som" "om" "at" ;
 LIST %begge/alle% = "begge" ("all" pl) ;
 LIST %best% = ("god" sup ind) ;
@@ -204,7 +204,7 @@ LIST det-ent = (det sg) ;
 LIST det-kvant = (det qnt) ;
 LIST det-mask-ent = (det m sg) ;
 LIST det-nøyt-ent = (det nt sg) ;
-LIST det/adj/adv/subst/infmerke = det adj adv n part ;
+LIST det/adj/adv/subst/infmerke = det adj adv n "å" ;
 LIST det/adj/tall-subst = "tusen" "trillion" "mrd." "million" "milliard" "mill." "kvadrillion" "hundre" "halvmillion" "billion" "billiard" det adj ;
 LIST ditrans = "donere" "forespeile" d1 d2 d3 d6 d7 rl6 rl7 rl8 ;
 LIST ditrans-prep = "mellom" "imellom" ;
@@ -276,17 +276,17 @@ LIST ikke-@subj = @fv @iv @obj @i-obj @s-pred @o-pred @adv @adv> @<adv @app @tit
 LIST ikke-@subj-@adv = @fv @iv @obj @i-obj @s-pred @o-pred @adv> @<adv @app @tittel @det> @<det @subst> @<subst @<p-utfyll @interj @adj> @kon @laus-np @<sbu @<sbu-rel @s-gr ;
 LIST ikke-@subst> = @fv @iv @subj @obj @i-obj @s-pred @o-pred @adv @adv> @<adv @app @tittel @det> @<det @<subst @<p-utfyll @interj @adj> @kon @laus-np @<sbu @<sbu-rel @s-gr ;
 LIST ikke-@tittel = @fv @iv @subj @obj @i-obj @s-pred @o-pred @adv @adv> @<adv @app @det> @<det @subst> @<subst @<p-utfyll @interj @adj> @kon @laus-np @<sbu @<sbu-rel @s-gr ;
-LIST ikke-adj-adv = vblex pr prn cnjsub part n ij det (clb cnjcoo) <anf> <ellipse> (cnjcoo <adv>) ;
+LIST ikke-adj-adv = vblex pr prn cnjsub "å" n ij det (clb cnjcoo) <anf> <ellipse> (cnjcoo <adv>) ;
 LIST ikke-adj-mask-ub-ent = (adj posi nt ind sg) (adj pl) (adj def) (adj comp) (adj sup) (adj pprs);
 LIST ikke-adj-nøyt-ub-ent = (adj posi mf ind sg) (adj pl) (adj def) (adj comp) (adj sup) (adj pprs);
 LIST ikke-adj-fem-ub-ent = (adj posi nt ind sg) (adj posi m ind sg) (adj pl) (adj def) (adj comp) (adj sup) (adj pprs);
-LIST ikke-adv = "siden" "$," vblex pr prn cnjsub cnjcoo part ij n det <ellipse> (adj m) (adj f) (adj mf) (adj pl) (adj comp) (adj sup) (adj pprs) (adj def) ;
-LIST ikke-adv-adj = "siden" "$:" vblex pr prn cnjsub part n ij det <ellipse> (clb cnjcoo) (clb cm) (cnjcoo <adv>) ;
-LIST ikke-adv-adj-det = "siden" "$:" vblex pr prn cnjsub part n ij <ellipse> (clb cnjcoo) (cnjcoo <adv>) ;
-LIST ikke-adv-adj-nr2det = vblex pr prn cnjsub part n ij <ellipse> <kolon> <semi> ("hin" det) ("denne" det) ("dette" det) ("den" det) ("det" det) ("en" det) ("noen" det m) ("noen" det f) ("noen" det pl) ("ingen" det) (cnjcoo clb) (cm clb) ;
-LIST ikke-adv-adj-nr2det-be-det = vblex pr prn cnjsub part n ij <ellipse> <kolon> <semi> ("en" det) ("noen" det) ("ingen" det) (cnjcoo clb) (cm clb) (cnjcoo <adv>) ;
-LIST ikke-adv-adj-u-konj = vblex pr prn cnjsub part n ij det cnjcoo <ellipse> <kolon> <semi> (cm clb) (cnjcoo <adv>) ;
-LIST ikke-det-inkl-parentes-beg = vblex pr prn cnjsub cnjcoo part n ij adj adv lpar ;
+LIST ikke-adv = "siden" "$," vblex pr prn cnjsub cnjcoo "å" ij n det <ellipse> (adj m) (adj f) (adj mf) (adj pl) (adj comp) (adj sup) (adj pprs) (adj def) ;
+LIST ikke-adv-adj = "siden" "$:" vblex pr prn cnjsub "å" n ij det <ellipse> (clb cnjcoo) (clb cm) (cnjcoo <adv>) ;
+LIST ikke-adv-adj-det = "siden" "$:" vblex pr prn cnjsub "å" n ij <ellipse> (clb cnjcoo) (cnjcoo <adv>) ;
+LIST ikke-adv-adj-nr2det = vblex pr prn cnjsub "å" n ij <ellipse> <kolon> <semi> ("hin" det) ("denne" det) ("dette" det) ("den" det) ("det" det) ("en" det) ("noen" det m) ("noen" det f) ("noen" det pl) ("ingen" det) (cnjcoo clb) (cm clb) ;
+LIST ikke-adv-adj-nr2det-be-det = vblex pr prn cnjsub "å" n ij <ellipse> <kolon> <semi> ("en" det) ("noen" det) ("ingen" det) (cnjcoo clb) (cm clb) (cnjcoo <adv>) ;
+LIST ikke-adv-adj-u-konj = vblex pr prn cnjsub "å" n ij det cnjcoo <ellipse> <kolon> <semi> (cm clb) (cnjcoo <adv>) ;
+LIST ikke-det-inkl-parentes-beg = vblex pr prn cnjsub cnjcoo "å" n ij adj adv lpar ;
 LIST ikke-mod = inf @fv @subj @obj @i-obj @s-pred @o-pred @app @<p-utfyll @laus-np @<sbu @<sbu-rel @s-gr @adv ;
 LIST ikke-mod-@<p-utfyll = inf @fv @subj @obj @i-obj @s-pred @o-pred @adv @<adv @app @interj @laus-np @<sbu @<sbu-rel @s-gr ;
 LIST ikke-mod-@<p-utfyll-@adv = inf @fv @subj @obj @i-obj @s-pred @o-pred @app @laus-np @<sbu @<sbu-rel @s-gr ;
@@ -322,18 +322,18 @@ LIST ikke-premod-u-@det> = @fv @iv @subj @obj @i-obj @s-pred @o-pred @adv @<adv 
 LIST ikke-premod-u-@kon = @fv @iv @subj @obj @i-obj @s-pred @o-pred @adv @<adv @app @<det @<subst @<p-utfyll @interj @kon @laus-np @<sbu @<sbu-rel @s-gr ;
 LIST ikke-premod-u-@kon-@app = @fv @iv @subj @obj @i-obj @s-pred @o-pred @adv @<adv @<det @<subst @<p-utfyll @interj @kon @laus-np @<sbu @<sbu-rel @s-gr ;
 LIST ikke-premod-u-@kon-@s-gr = @fv @iv @subj @obj @i-obj @s-pred @o-pred @adv @<adv @app @<det @<subst @<p-utfyll @interj @kon @laus-np @<sbu @<sbu-rel ;
-LIST ikke-prep = cnjsub adv adj vblex prn part n ij det (clb cnjcoo) <anf> <ellipse> ;
+LIST ikke-prep = cnjsub adv adj vblex prn "å" n ij det (clb cnjcoo) <anf> <ellipse> ;
 LIST ikke-sanns-ditrans = "skrive" "kjøpe" ;
-LIST ikke-sbu = det pr prn cnjcoo part n ij adj adv vblex ;
-LIST ikke-subst = "siden" "$-" "$," vblex pr prn cnjsub cnjcoo part det ij adj adv ;
-LIST ikke-subst-prop = "siden" "$-" "$," vblex pr prn cnjsub cnjcoo part det ij adj adv (n appell) ;
+LIST ikke-sbu = det pr prn cnjcoo "å" n ij adj adv vblex ;
+LIST ikke-subst = "siden" "$-" "$," vblex pr prn cnjsub cnjcoo "å" det ij adj adv ;
+LIST ikke-subst-prop = "siden" "$-" "$," vblex pr prn cnjsub cnjcoo "å" det ij adj adv (n appell) ;
 LIST ikke-tall = "somme" "samtlige" "noen" "ingen" "hver" "enhver" "begge" "all" ;
-LIST ikke-verb-adj-adv = det pr prn cnjsub cnjcoo part n ij ;
+LIST ikke-verb-adj-adv = det pr prn cnjsub cnjcoo "å" n ij ;
 LIST imp = imp ;
 LIST inf = inf ;
 LIST inf/perf-part = (vblex inf) (vblex vblex pp) ;
 LIST inf/pres = (vblex inf pres) ;
-LIST infmerke = part ;
+LIST infmerke = "å" ;
 LIST interj = ij ;
 LIST intrans = i1 i3 i4 ;
 LIST iv = (vblex inf) (vblex vblex pp) ;
@@ -369,7 +369,7 @@ LIST lo#animat = "øyenvitne" "øyensten" "øyenlege" "østtysker" "østerriker"
 LIST lo#animat-pron/det = "vi" "noen" "mange" "man" "jeg" "hvem" "hun" "han" "du" "begge" "annen" ("dere" nom) ("ingen" m) ("ingen" f) ("de" prn pers) ("all" pl) ("en" prn) ;
 LIST lo#animat-prop = "wangerud" "vinmonopolkøere" "vesten" "usa" "toten" "torkill" "smirnov" "skane" "schipper" "regjeringen" "readyjente" "readygutt" "politiforbund" "plesner" "palacio" "oslo" "nato" "nato" "matthew" "matthaus" "mannesmann" "lykambes" "likudregjeringen" "lawrence" "kors" "killengreen" "justisdepartementet" "jarvoll" "indremisjonsselskapet" "hemingkjørerne" "heie" "herman" "gudmunsson" "gudbrandsdalen" "group" "gregard" "gomanbakeri" "giga" "folkpartiet" "fanebust" "elsero" "elgin" "djurhuus" "clinton" "carney" "byutviklingskomiteen" "byutviklingskomiteen" "breiby" "blumenthal" "beth" "bergelevene" "baste" "alpinanlegg" "akershus" "as" <person> <org> ;
 LIST lo#cause-verb = "ødelegge" "varme" "treffe" "tilintetgjøre" "smadre" "skade" "lukke" "knuse" "knekke" "forringe" "drepe" "drepe" "destruere" "brekke" "beskadige" ;
-LIST lo#ikke-mod-@<p-utfyll-@adv-@app = "hvor" @iv @fv @subj @obj @i-obj @s-pred @o-pred @laus-np @<sbu @<sbu-rel @s-gr clb part cnjsub ;
+LIST lo#ikke-mod-@<p-utfyll-@adv-@app = "hvor" @iv @fv @subj @obj @i-obj @s-pred @o-pred @laus-np @<sbu @<sbu-rel @s-gr clb "å" cnjsub ;
 LIST lo#inanimat = "øyenvipp" "øyenskygge" "øyenhule" "øyenbryn" "øyelokk" "øyekrok" "øyeeple" "øye" "øye" "øy" "ørken" "ørering" "øregang" "øreflipp" "øre" "øre" "øre" "øl" "økning" "ødemark" "ødeleggelse" "æresbevisning" "årgangsvin" "åre" "åre" "årbok" "år" "år" "åpningstale" "åpning" "åker" "åk" "østen" "økourt" "zoomobjektiv" "zloty" "yttervegg" "ytterdør" "yoghurt" "yen" "wobler" "wire" "wienerbrød" "whisky" "wc" "walkie-talkie" "væte" "væske" "værmelding" "værmelding" "værhane" "våtområde" "vulkan" "vott" "vom" "vom" "vollgrav" "vokal" "vogn" "vogge" "vodka" "vitaminpille" "vitamin" "visker" "viskelær" "visittkort" "visir" "viser" "vise" "vise" "vise" "virus" "virksomhet" "virkning" "vippe" "vippe" "vinterhage" "vinstokk" "vinmark" "vinkart" "vinge" "vinflaske" "vinedikk" "vindusvisker" "vinduskarm" "vindu" "vindu" "vindrue" "vindjakke" "vindeltrapp" "vinde" "vin" "vin" "villmark" "villa" "viktighet" "vikarbyrå" "vik" "vignett" "vifte" "vielsesattest" "videospiller" "video" "vest" "veske" "veske" "vertsland" "vers" "vers" "vern" "vermut" "verk" "verk" "verdipapir" "verdenshjørne" "verdenshav" "verdensdel" "verdenscupseier" "verden" "verb" "veranda" "ventilator" "ventilasjonsanlegg" "ventil" "venteliste" "ventehall" "venstrehånd" "vennskapsby" "vene" "vending" "velling" "vell" "velferdsstat" "velferdsprogram" "vektskål" "vekst" "vekkerur" "veiledning" "veike" "veikart" "vei" "veggmaleri" "vegg" "vedtekt" "vedtak" "vedovn" "vederlag" "vatt" "vaskeri" "vaskepulver" "vaskemaskin" "vaselin" "vase" "varmeutstyr" "varmestue" "varmeapparat" "varetektsfengsling" "varedeklarasjon" "vannspeil" "vannseng" "vannrør" "vannpytt" "vannmelon" "vannmelon" "vannløp" "vannlilje" "vannledning" "vannkran" "vannkant" "vannfarge" "vanndråpe" "vanndamp" "vannbakkels" "vann" "vandreklitt" "vandelsattest" "valutareserve" "valuta" "vals" "valnøtt" "valmue" "valmue" "valgresultat" "vaktpost" "vaksine" "vagina" "vadested" "uttalelse" "utstyr" "utstyr" "utstillingsvindu" "utstillingsvindu" "utstilling" "utspill" "utsmykning" "utskrift" "utskrift" "utsikt" "utrustning" "utropstegn" "utreisetillatelse" "utløp" "utlån" "utlegg" "utkikkspost" "utkast" "utgivelse" "utgave" "utgang" "utflod" "utetthet" "utenriksdepartement" "utbetaling" "urverk" "urtete" "urtehage" "urt" "urskog" "urne" "urinrør" "urin" "unntak" "unnskyldning" "universitet" "univers" "uniform" "ungdomsskole" "ungdomsklubb" "ungdomsherberge" "ungdomsbolig" "undervisningsdepartement" "undertrøye" "undertittel" "undertekst" "underskriftsinnsamling" "underskrift" "underskjørt" "underretning" "undermunn" "underliv" "underleppe" "underkropp" "underkjeve" "underholdsbidrag" "underetasje" "underarm" "ullgarn" "uland" "ukvemsord" "ukelønn" "ukeblad" "ugress" "tøyle" "tøy" "tørkle" "tørketrommel" "tørkesnor" "tønne" "tømme" "tømme" "tøm" "tøffel" "tåteflaske" "tåspiss" "tåre" "tåre" "tåkelur" "tåke" "tå" "tyverialarm" "tyvegods" "tyttebær" "tyttebær" "tynntarm" "tykktarm" "tvil" "tverrligger" "tvangstrøye" "tut" "tusing" "tusenårsrike" "turistbyrå" "turbin" "turban" "tunnel" "tungmetall" "tunge" "tuner" "tulipan" "tulipan" "tue" "tråd" "tryne" "trykksverte" "trykksak" "trykknapp" "trykkluft" "trykkeri" "trygghetsfølelse" "trutmunn" "trussel" "truse" "trosse" "tronstol" "tromsøpalme" "trommel" "trommehinne" "tro" "triviallitteratur" "triumfbue" "triumfbue" "trisse" "tretopp" "trestubbe" "trestamme" "tresnitt" "tresko" "treningsdrakt" "trekull" "trefot" "tredjeplass" "tredjeland" "tredemølle" "trebein" "tre" "tre" "tre" "trau" "trapp" "transportbånd" "transformator" "transformator" "tranebær" "tranebær" "tram" "traktement" "traktat" "trakt" "trafikkgrunnlag" "torv" "torso" "torpedo" "torn" "topplue" "topp" "tomt" "tomt" "tommeltott" "tommelfinger" "tommel" "tomatpuré" "tomatpure" "tomat" "tolvfingertarm" "tobakk" "tobakk" "toast" "toalettbord" "toalett" "tjære" "tjukkmjølk" "tjor" "tjenestebolig" "tittel" "tissemann" "tippekupong" "tinnsoldat" "tinning" "ting" "tind" "timiankvist" "timeplan" "time" "tiltak" "tilståelse" "tilsetningsstoff" "tilpassing" "tillitt" "tillitserklæring" "tilleggsbevilling" "tillatelse" "tilholdssted" "tilgodehavende" "tilfluktssted" "tilbaketrekning" "tidsskrift" "tidsplan" "tid" "thriller" "thriller" "testikkel" "testamente" "terte" "terrorbombe" "territorium" "territorium" "terrin" "terreng" "terning" "termostat" "termos" "termorute" "terminal" "terminal" "term" "teppe" "tennplugg" "tennisball" "tenning" "temperament" "teltstang" "telt" "telegrambyrå" "telegram" "telefonsvarer" "telefonnummer" "telefonkatalog" "telefon" "tekstil" "tekstil" "tekst" "tekst" "tekopp" "teknikk" "teine" "tein" "tegning" "tegnestift" "tegneserie" "tegnefilm" "tegnebrett" "tegnebord" "tegneblokk" "tegn" "tegltak" "teglstein" "teater" "te" "te" "tavle" "taustige" "tau" "tatovering" "tast" "tarmkanal" "tarm" "tapet" "tannstikker" "tannsett" "tannregulering" "tannpasta" "tannhjul" "tann" "tank" "tangent" "tampong" "tallerken" "tale" "takvindu" "takstein" "takrenne" "taburett" "tablett" "søyle" "søppelpose" "søppelkasse" "søm" "søm" "sølvmedalje" "sølvfat" "sædcelle" "sæd" "sår" "såpestykke" "såpeboble" "såpe" "såle" "sytråd" "system" "syrin" "syre" "syngespill" "synagoge" "symfoni" "symaskin" "syltetøy" "sylte" "sylinderlås" "sykehus" "sydpol" "sydhavsøy" "syden" "swing" "sweatshirt" "svømmebasseng" "svømmebasseng" "svovelstikk" "sviske" "svingdør" "svingdør" "sverte" "svennebrev" "svelg" "svamp" "svalgang" "surmelksprodukt" "surdeig" "suppe" "supermarked" "sund" "sump" "sum" "sukkerrør" "sukkerrø" "sukkerlake" "sukkerert" "sugekopp" "substans" "støvsuger" "støvel" "støvel" "støtte" "støtte" "støtte" "støttann" "støtfanger" "stålrør" "stålampe" "stål" "styrthjelm" "stylte" "stykke" "stutteri" "stump" "stumfilm" "stue" "stue" "studenterlue" "stubbe" "strømpebånd" "strømpe" "stråhatt" "strå" "strupe" "struktur" "strekkode" "strek" "strek" "strede" "strandkant" "strandkant" "strand" "straffelov" "straff" "stortå" "stortingsdebatt" "stortingsbehandling" "storseil" "storby" "stoppeklokke" "stopp" "stolpe" "stol" "stokk" "stoff" "stoff" "stoff" "stoff" "stivelse" "stilk" "stiletthæl" "stikling" "stikkpille" "stikkontakt" "stikkelsbær" "stikkelsbær" "stigtrinn" "stige" "stift" "stift" "stereoanlegg" "steppe" "stemmebånd" "stellebord" "stekepanne" "stekegryte" "steinsetting" "steinfrukt" "stein" "steik" "stedsnavn" "sted" "stav" "stav" "statuett" "statue" "statsobligasjon" "stat" "stasjonsby" "stasjon" "stasjon" "start" "stang" "stall" "stakitt" "stake" "stake" "stag" "staffeli" "stadion" "stad" "stabel" "spørsmålstegn" "spørreskjema" "spøkelseshistorie" "spyttklyse" "sprøytemiddel" "sprøytemiddel" "springform" "springbrett" "sprengstoff" "sprengladning" "sprellemann" "sprekk" "sprayboks" "sporstoff" "spore" "spore" "sponplate" "spon" "spole" "spjeld" "spisestue" "spisesal" "spiserør" "spiselig" "spisekart" "spisebord" "spinner" "spinn" "spindelvev" "spillolje" "spillemål" "spillekort" "spillebord" "spilleautomat" "spill" "spill" "spiker" "spenne" "spekesild" "spekepølse" "speilegg" "speil" "spaserdrakt" "spann" "spagnum" "sovesofa" "sovesal" "sovepose" "sovepille" "sovemiddel" "sosiallov" "sosialkontor" "sosialdepartement" "sopp" "sonate" "solkrem" "solfanger" "solcelle" "solbær" "solbær" "sokk" "sogn" "software" "sofabord" "sofa" "snøscooter" "snømann" "snøklokke" "snøklokke" "snøfonn" "snøfnugg" "snøball" "snute" "snurrebass" "snor" "snittsår" "snitt" "sneip" "snegl" "smørbrød" "smør" "småkake" "smykke" "smutthull" "smokk" "smoking" "sminke" "smilehull" "smie" "smekke" "smekke" "smaragd" "smaksløk" "slør" "slåbrok" "slyngplante" "slynge" "slutt" "sluse" "slumkvarter" "slukt" "slott" "slips" "slimhinne" "slim" "slim" "slikkepinne" "sletteland" "slette" "slep" "slalåm" "slakteri" "slakterforretning" "slaktehus" "slagplan" "slagord" "slagmark" "slagg" "skøytesport" "skøyteforbund" "skøyte" "skøske" "skyttergrav" "skyteskive" "skyskraper" "skylapp" "skur" "skulptur" "skulderveske" "skulderblad" "skulder" "skulder" "skuespill" "skråning" "skrå" "skrue" "skrivepult" "skrivemaskin" "skrivebord" "skriv" "skrin" "skrifttegn" "skrift" "skrent" "skranke" "skramme" "skolebok" "skolebenk" "skole" "skogbunn" "skogbryn" "skog" "sko" "skjøte" "skjøt" "skjørt" "skjørt" "skjønnlitteratur" "skjønnhetsflekk" "skjærgård" "skjærebrett" "skjær" "skjorteerme" "skjorte" "skjold" "skjermterminal" "skjerm" "skjerm" "skjerf" "skjenk" "skjema" "skjelett" "skjeggstubb" "skjegg" "skjede" "skinnklær" "skinnben" "skinn" "skinke" "skilt" "skille" "skildring" "ski" "skattekort" "skattekart" "skatoll" "skap" "skamleppe" "skalle" "skall" "skafott" "sjøkart" "sjøbredd" "sjokoladebolle" "sjokolade" "sjampinjong" "sjakkspill" "sjakkbrett" "situasjon" "sitron" "sitat" "sirene" "silo" "silo" "silketrykk" "silkepapir" "silke" "silikon" "sikte" "sikkerhetssele" "sikkerhetsnål" "sikkerhetslenke" "signal" "sigarkasse" "side" "side" "show" "shampoo" "sett" "setning" "setning" "sete" "sesongbudsjett" "servitutt" "serviett" "service" "servant" "sennep" "senking" "sengeteppe" "seng" "sene" "sendrektighet" "sending" "senat" "seminar" "sement" "selvportrett" "selvbiografi" "selvangivelse" "selskapslokale" "seletøy" "sele" "sele" "seksjon" "seksjon" "sekretariat" "sekret" "sekk" "seil" "seddel" "scooter" "savanne" "saus" "sauna" "satsing" "satelitt" "sarkofag" "sangbok" "sang" "sang" "samme" "samling" "samfunn" "samarbeid" "salt" "sal" "sal" "sak" "sagn" "saga" "safir" "røyksky" "røyk" "rørsopp" "rørledning" "rør" "røntgenstråle" "røntgenbilde" "rødkål" "rødkål" "rødgran" "rødbete" "rævhull" "ræv" "råstoff" "råmateriale" "råk" "råd" "rynke" "ryggsøyle" "ryggstø" "ryggrad" "rygglene" "rygg" "rydning" "rutsjebane" "rutine" "ruteplan" "rute" "rustning" "rundstykke" "rundstokk" "rundskriv" "rundskriv" "rumpe" "rumpe" "rulling" "rulleskøyte" "rullepølse" "rullekake" "rullegardin" "rull" "rulett" "rugbrød" "rubin" "rot" "rosmarin" "rosmarin" "rosenkål" "rose" "rose" "roman" "rom" "rom" "rolle" "robot" "robe" "rist" "ris" "ris" "ripsgele" "ringperm" "ring" "ring" "rille" "riksdag" "rike" "rigg" "rift" "rideskole" "riddersal" "ribbevegg" "ribbein" "revle" "rev" "returbillett" "rettsstat" "rettssal" "rettslokale" "rett" "rett" "restaurant" "respirator" "resept" "resepsjon" "republikk" "reol" "renseri" "renne" "renn" "remulade" "remedium" "relé" "reling" "rekvisitt" "reklamebyrå" "reklame" "rekkverk" "reisebyrå" "reisebeskrivelse" "reip" "reim" "reguleringssak" "reguleringsforslag" "regnskog" "regnfrakk" "regionsykehus" "region" "redningsvest" "redegjørelse" "reddik" "redaksjon" "realskole" "reaktor" "rastaurant" "rapport" "ransel" "ramme" "raffinaderi" "radio" "radikal" "radiator" "radar" "rabarbra" "pøng" "pølse" "pæretre" "pære" "pære" "påvirkning" "påskrift" "påskelilje" "påskeegg" "påmelding" "pålegg" "påle" "påkledningsdukke" "påkledning" "påbygg" "pytt" "pyramide" "pynt" "putevar" "pute" "pustehull" "puss" "puss" "puslespill" "purre" "pupill" "pumpe" "pulver" "pult" "pulsåre" "pudder" "puck" "publikasjon" "pub" "prøveprosjekt" "prærie" "prydplante" "provinsby" "proton" "protokoll" "protokoll" "protese" "protein" "prosti" "prosjektil" "prosjekt" "prosessor" "prosent" "propp" "propell" "pronomen" "program" "program" "program" "prognose" "profil" "produkt" "produksjon" "problem" "problem" "privatskole" "prisme" "prisliste" "pris" "printer" "primærkommune" "presenning" "preparat" "premie" "prekestol" "preg" "praksis" "potteplante" "pote" "postkort" "postkontor" "postkasse" "posthus" "poster" "postei" "post" "posisjon" "pose" "portiere" "port" "port" "porsjon" "porsjon" "porselen" "pornofilm" "pore" "polypp" "polstring" "politistasjon" "politirapport" "politikk" "politikammer" "politietteretning" "pokal" "plombe" "plogfure" "plenklipper" "plen" "pleiehjem" "pledd" "platå" "platte" "platespiller" "plate" "plate" "plaster" "plassering" "plassering" "plassbillett" "plass" "plass" "plass" "plasma" "plantevernmiddel" "planteskole" "plante" "plantasje" "plansje" "plankegjerde" "planke" "planetarium" "planet" "plan" "plan" "plakat" "pizza" "pitabrød" "pistasjenøtt" "pipe" "pinnebrød" "pinne" "pille" "piletre" "pilekvist" "pil" "pil" "pikk" "pigment" "piggtråd" "piggsveis" "pigg" "pidestal" "pessar" "persienne" "permisjon" "perle" "pergola" "pergamentpapir" "pergament" "pepperrot" "pepperrot" "pepperkake" "pensjonat" "penis" "pengestøtte" "penger" "penge" "pendel" "pekefinger" "peisestue" "peis" "pedal" "paviljong" "patte" "patron" "pastinakk" "pastinakk" "pasta" "pass" "partitur" "parti" "parsell" "parlament" "parkeringsbot" "parfymeri" "parfyme" "parasoll" "parasitt" "paragraf" "paradis" "paradis" "parabolantenne" "papir" "pantebrev" "panser" "pannekake" "panne" "panne" "panel" "pamflett" "palmeblad" "palme" "palett" "pai" "pagode" "paddehatt" "pacemaker" "p-pille" "ovnsform" "ovn" "oversikt" "oversettelse" "overmunn" "overligger" "overleppe" "overkropp" "overflate" "overenskomst" "overarm" "overall" "osteløype" "ost" "orkide" "organisasjon" "organ" "organ" "ordrebok" "ordkrig" "ordbok" "ord" "opus" "opus" "opptenningsved" "oppslagsverk" "oppslagstavle" "oppslag" "oppskrift" "oppskrift" "oppholdssted" "oppheng" "oppgradering" "oppgave" "oppgave" "oppgang" "oppfatning" "oppakning" "operasjonsstue" "operasjonsbord" "omstilling" "område" "område" "omelett" "omegn" "oljemaling" "oljefyr" "olje" "olje" "olje" "olje" "oliventre" "oliven" "oldsak" "oker" "odde" "odd" "observatorium" "obligasjon" "objektiv" "oase" "nøytron" "nøtteskall" "nøttekjerne" "nøtt" "nøkkerose" "nøkkelhull" "nødutgang" "nærlys" "næringsmelding" "næring" "nåløye" "nytteplante" "nytte" "nysgjerrighet" "nyre" "nyre" "nummerskilt" "nummer" "novellesamling" "novelle" "nougat" "note" "notatblokk" "notatblokk" "notat" "notat" "nord" "noe" "nobelpris" "nitrat" "nite" "nisje" "neve" "netthinne" "nesebor" "nese" "nervesystem" "nervepille" "nervemedisin" "nerve" "neon" "nellik" "nellik" "nellik" "nekrolog" "nek" "negl" "nedtegnelse" "nedløpsrør" "nedgang" "navneskilt" "navn" "navn" "navlestreng" "navle" "naturmedisin" "naturgass" "natur" "nattklubb" "nasjonalscene" "nasjonalsang" "nasjon" "nasjon" "narresmokk" "nakkestøtte" "nakke" "nagle" "nabokommune" "møydom" "møtested" "mønster" "møne" "møne" "møllpose" "mølle" "møblement" "møbel" "månedsblad" "måne" "myr" "mynte" "mynte" "mynt" "mye" "mutter" "muslingskall" "muskulatur" "muskatt" "muskatnøtt" "muskatnøtt" "musikkstykke" "musikkskole" "musikkonservatorium" "murstein" "mur" "munnvik" "munning" "munnhule" "munn" "mumie" "mule" "mousse" "motor" "motiv" "motgift" "motell" "mosebok" "morkake" "morene" "monument" "montasje" "monopol" "monogram" "monografi" "monitor" "molekyl" "modifikasjon" "missil" "misdannelse" "minnesmerke" "minkfarm" "mineral" "milt" "millionbeløp" "milepæl" "mile" "mikstur" "mikroprosessor" "mikroorganisme" "mikrobølgeovn" "midtgang" "metalltråd" "metall" "merkevare" "merke" "merke" "meny" "mening" "mengde" "melon" "melon" "mellomrom" "mellomnavn" "melding" "melding" "meieri" "medlemskort" "medium" "medisterpølse" "medisin" "medisin" "medikament" "meddelelse" "medaljong" "medaljong" "medalje" "matvare" "matte" "materie" "materiale" "materiale" "mat" "mat" "masse" "massasjeinstitutt" "massasjeinstitutt" "maskinpistol" "maskingevær" "maskineri" "maskin" "maskin" "maskering" "mascara" "marsipanbrød" "marmelade" "markise" "mark" "marionett" "marinade" "margeritt" "margarin" "manual" "manifest" "mango" "mandel" "mandarin" "malm" "malm" "maling" "maleri" "makron" "make-up" "mahogni" "magnet" "magesekk" "mage" "løvtre" "løvskog" "løvetann" "løvetann" "løpstikke" "løpstikke" "løpeseddel" "løkke" "løk" "løgnhistorie" "løe" "lærreim" "læreplan" "lærebok" "lårbein" "lår" "lysstoffrør" "lysning" "lyske" "lyskaster" "lysingstid" "lysekrone" "lysbilde" "lys" "lyktestolpe" "lykt" "lykkehjul" "lydbånd" "lyd" "lunge" "lund" "luftvei" "luftrør" "luft" "lue" "lov" "lov" "lotto" "lotteri" "losji" "losje" "lommebok" "lokk" "lokale" "lokalavis" "loggbok" "loft" "loft" "loft" "lodd" "livmor" "liv" "liv" "litteratur" "liste" "lisse" "linoleum" "lindetre" "lind" "liming" "lillefinger" "lilje" "lilje" "lian" "levested" "leverpostei" "lever" "leseundersøkelse" "leserbrev" "lerret" "lerret" "lerk" "leppestift" "leppe" "leopardskinn" "lenke" "lenestol" "lend" "lem" "lem" "lem" "lekt" "leirbål" "leilighet" "leiebolig" "legg" "legering" "legemsdel" "legemiddel" "legeattest" "ledningsnett" "ledning" "ledning" "leddbånd" "lavland" "lava" "lav" "laurbærblad" "laurbær" "landsted" "landsdel" "land" "land" "lampe" "lagerrom" "lagerplass" "lager" "laboratorium" "køkultur" "kz-leir" "kvarter" "kvalme" "kurs" "kupong" "kunstverk" "kunstmuseum" "kunst" "krypt" "krostue" "kropp" "krone" "krone" "kro" "kritikk" "krig" "krematorium" "krav" "kraft" "kraft" "kostnad" "kort" "kort" "kort" "korridor" "kor" "kopp" "konversasjonsleksikon" "kontrakt" "kontor" "kontakt" "konsulat" "konstruksjon" "konsertsal" "konsentrasjonsleir" "konjakk" "konferanse" "komposisjon" "komponent" "kommunekontor" "kommune" "kommune" "kommandobro" "kombinert" "kok" "kode" "knekt" "knehasene" "kne" "kløver" "klippe" "klinikk" "kleshenger" "kjøttkake" "kjøkkenvifte" "kjøkkenhage" "kjole" "kjennelse" "kjeft" "kjeft" "kiwi" "kirsebær" "kirsebær" "kirke" "kiosk" "kinn" "kilometer" "kasse" "kart" "kantine" "kantine" "kanal" "kanal" "kanal" "kamp" "kalkulator" "kake" "kakao" "kafeteria" "jur" "jorde" "jordbær" "jordbær" "jobb" "is" "inventar" "interesse" "institusjon" "institusjon" "installasjon" "inspirasjon" "inntrykk" "inntrykk" "innslag" "innsjø" "initiativ" "illustrasjon" "idrettshall" "høyhastighetsbane" "hår" "hår" "håp" "håndbok" "håndbak" "hånd" "hånd" "hånd" "hytte" "hybelkanin" "hvitløk" "hvite" "hva" "hus" "hus" "hus" "hurtigløpssport" "hull" "hule" "hud" "hovedfagsoppgave" "hotell" "hospital" "hopp" "hop" "hoftene" "hode" "hjul" "hjul" "hjerte" "hjerne" "hjemstavn" "hjemland" "hjemby" "hjem" "hjelp" "historie" "historie" "historie" "hefte" "hede" "hav" "hav" "hav" "hav" "haug" "haug" "hatt" "hanske" "hank" "hane" "handlingsprogram" "halssmykke" "hals" "hall" "hake" "hagtornhekk" "hagtorn" "grønnsak" "gryte" "gruppering" "gruppe" "grunnstoff" "grunn" "grunn" "grotte" "griljermel" "gressløk" "grense" "grein" "grantre" "gran" "godteri" "glassplint" "glass" "gjenstand" "gjenlyd" "geysir" "genteknologi" "genser" "gemakk" "garderobe" "garderobe" "gang" "galleri" "galleri" "første" "føflekk" "føde" "fyrstikkeske" "fyrstikk" "fyrrom" "fyr" "furutre" "frukt" "fritidsklubb" "fritidshus" "fritidshjem" "fotsåle" "fotnote" "fot" "fossil" "foss" "forventning" "forutsetning" "fortelling" "fortegnelse" "fortann" "forsvar" "forslag" "forslag" "forslag" "forskrift" "forsikringspolise" "forråd" "forretning" "forord" "formålsparagraf" "formular" "formue" "formue" "forkle" "forkjølelsessår" "forhøyning" "forhåndsomtale" "forhold" "forfatning" "fordøyelseskanal" "fordypning" "forbundsstat" "forbundsrepublikk" "forbud" "forbrenning" "forbein" "forandring" "forandring" "folketing" "folkesagn" "folder" "foaje" "fnugg" "flodleie" "flodbredd" "flod" "flis" "flette" "flenge" "flekk" "flate" "flass" "flaske" "flanke" "fjør" "fjære" "fjærdrakt" "fjord" "fjellkjede" "fjell" "fjell" "fitte" "fiskesuppe" "fiskerett" "fiskekort" "fiskekake" "fiskefilet" "firkløver" "fippskjegg" "fiol" "fiol" "finne" "fingerspiss" "finger" "filofax" "film" "film" "film" "filler" "fikentre" "fiber" "fiber" "fettstoff" "fetaost" "feta" "festskrift" "festmåltid" "festmåltid" "ferielandsby" "fennikel" "femøring" "femtedel" "femogtjueøring" "femmer" "feltseng" "feil" "feil" "feber" "fauna" "fatle" "fat" "fat" "fastland" "fasit" "fasade" "fargestoff" "fargefilm" "fang" "familieliv" "fallskjerm" "fakkel" "fajanse" "fajanse" "faglitteratur" "fagbok" "fagblad" "fabrikkhall" "fabrikk" "evighet" "eventyr" "evangelium" "etikett" "eter" "etasje" "estragon" "estragon" "esse" "espalier" "eske" "ert" "ernæring" "erme" "erklæring" "eple" "enzym" "entredør" "ensym" "enkeltbillett" "enhet" "enhet" "enhet" "engangsbeløp" "eng" "endringsforslag" "endring" "endring" "endetarm" "ende" "ende" "emblem" "emalje" "emalje" "elv" "element" "elektron" "ekvator" "ekteseng" "ekstrakt" "einer" "einebær" "eiketre" "eiketre" "eik" "eik" "eiendom" "eiendom" "eiendel" "egn" "eggstokk" "eggleder" "eggeplomme" "eggehvitestoff" "eggehvite" "eggcelle" "egg" "egg" "egg" "egenskap" "effekt" "edelmetall" "eddik" "edb-anlegg" "dørklokke" "dør" "dødsattest" "dødsannonse" "dåpsattest" "dypfryser" "dypfryser" "dynge" "dynetrekk" "dusør" "duell" "drønn" "drue" "drivhus" "dritt" "dressing" "dreieskive" "dreieskive" "dreiebok" "drakt" "drakt" "dragkampen" "drage" "drag" "dongeribukser" "domkirke" "domisil" "dollar" "dokument" "doktoravhandling" "dokke" "dobbeltseng" "dobbeltseier" "distrikt" "diskotek" "diskett" "direktørstol" "direktiv" "direktiv" "diplom" "dinar" "dimensjon" "dill" "dill" "diktsamling" "dikt" "digitalur" "dieselolje" "dieselmotor" "diamant" "dessert" "departement" "departement" "deodorant" "del" "del" "del" "del" "deksel" "deklarasjon" "dataskjerm" "datamaskin" "datamaskin" "dapenge" "dampmaskin" "dam" "dam" "dalføre" "daler" "dagsavis" "daginstitusjon" "daghjem" "dagbok" "container" "computer" "collage" "cocktail" "chutney" "chrysanthemum" "chemise" "champagne" "celle" "celle" "carport" "cardigan" "bøtte" "bøketre" "bøketre" "bøkeskog" "bøk" "bøk" "bærepose" "båtbrygge" "båre" "båndopptaker" "bål" "bygning" "bygging" "byggestein" "byggemateriale" "byggekloss" "byggeareal" "by" "butterdeig" "butikk" "busk" "burgunder" "bunke" "bunke" "buljongterning" "bukser" "brønn" "brødskive" "brød" "brød" "bryst" "bryst" "bruksrett" "brosje" "bronkie" "brokkoli" "brokkoli" "brokke" "brokk" "broderi" "brisk" "bringebær" "bringebær" "bringe" "brilleglass" "brille" "brie" "brevsprekk" "brevkort" "brev" "brev" "brennetid" "brennesle" "bremse" "bregne" "brannsår" "brannalarm" "bowler" "bot" "borg" "bordbein" "bord" "bomullsgarn" "bombe" "bolle" "bolle" "bolig" "bolig" "bokstav" "boks" "boks" "bok" "boikott" "bog" "bløtkake" "blåbær" "blåbær" "bluse" "bluse" "blues" "blonde" "blomsterpotte" "blomkål" "blomkål" "blodåre" "blodkar" "blindtarm" "blikkboks" "blekk" "bleie" "blazer" "blankett" "blad" "blad" "bjørk" "bjerk" "bjelle" "bjelke" "bitter" "bit" "bistro" "bisetning" "biografi" "binge" "bind" "bilradio" "billykt" "billett" "billedrør" "billedbok" "bildekk" "bilde" "bilag" "bil" "bikini" "biff" "bibliotek" "bibliotek" "bibliografi" "betydning" "betong" "betaling" "besvarelse" "bestselger" "bestemmelse" "bestanddel" "beskyldning" "beskjed" "beskadigelse" "bergflette" "bergart" "beretning" "bensinstasjon" "ben" "beløp" "beløp" "beliggenhet" "bekledning" "bekkenbunn" "bekk" "bein" "bein" "beholder" "beholder" "behandlingstilbud" "befalskole" "bedring" "bartre" "bart" "bart" "barskog" "barnetilskudd" "barnehavetilbud" "barnehageplass" "barnebok" "barnebidrag" "barm" "bank" "banestrekning" "banan" "balle" "ball" "bag" "avvisning" "avtrekker" "avsnitt" "avkastning" "avis" "avhandling" "avfallspose" "avdrag" "avdeling" "avdeling" "avdeling" "avdeling" "automat" "attest" "atomkjerne" "atom" "asparges" "ask" "artikkel" "artikkel" "armbånd" "arm" "arm" "ark" "arbeidsplass" "arbeide" "arbeid" "arbeid" "appelsin" "anvisning" "antall" "annonse" "annonse" "anleggsbrakke" "anlegg" "anemone" "anemone" "andedam" "ammoniakk" "alter" "alt" "alpinrenn" "almetre" "alkohol" "alfalfa" "aldershjem" "albue" "akvakultur" "akuttavdeling" "aktstykke" "aktivum" "aktivum" "akademi" "afghaner" "adresse" "administrasjon" "adjektiv" "aceton" "zimbabwe" "zambia" "zaire" "yemen" "yding" "wien" "værløse" "vridsløselille" "vridsløse" "vordingborg" "vojens" "vogesene" "vietnam" "viborg" "vestindia" "vesten" "vesten" "vest-tyskland" "vest-samoa" "venezuela" "venezia" "vendsyssel" "velferdsprogram" "vejle" "vejen" "vatikanstaten" "vatikanet" "varde" "vanuatu" "vanløse" "vallensbæk" "valby" "uruguay" "uranus" "ungarn" "ukraina" "uganda" "usa" "tønder" "tyskland" "tyrol" "tyrkia" "tuvalu" "tunø" "tunisia" "tsjekkoslovakia" "trinidad" "toten" "torshavn" "tonga" "togo" "tibet" "tiberen" "thyborøn" "thy" "thurø" "thule" "thisted" "themsen" "thailand" "tchad" "tanzania" "taiwan" "sør-yemen" "sør-jylland" "sør-afrika" "sønderborg" "sæby" "syria" "sydpolen" "syd-schleswig" "syd-korea" "syd-amerika" "swaziland" "sverige" "svendborg" "sveits" "svartehavet" "svaneke" "sundeved" "sudan" "stubbekøbing" "struer" "storebelt" "storbritannia" "stor-københavn" "stockholm" "stillehavet" "stevns" "stege" "sprogø" "spania" "sovjetunionen" "sovjet" "sorø" "somalia" "slovenia" "slovakia" "slagelse" "skælskør" "skåne" "skottland" "skjern" "skive" "skandinavia" "skanderborg" "skagerrak" "skagen" "sjælland" "sjustjernen" "singapore" "sinai" "silkeborg" "sild" "sicilia" "sibir" "shetlandsøyene" "seychellene" "serbia" "senegal" "seinen" "schleswig" "saturn" "sardinia" "sandvig" "samsø" "samoa" "salomonøyene" "salling" "sakskøbing" "rønne" "rønde" "rømø" "rødehavet" "rødby" "rwanda" "russland" "rudkøbing" "roskilde" "romerriket" "romania" "roma" "ringsted" "ringkøbing" "ribe" "rhinen" "regjeringen" "randers" "Qatar" "påskeøya" "pyreneene" "præstø" "provence" "preussen" "praha" "portugal" "pommern" "polynesia" "politiforbund" "polen" "polarstjernen" "pluto" "peru" "persia" "peloponnes" "pedersker" "paris" "paraguay" "panama" "palestina" "pakistan" "ostindia" "oslo" "oslo" "orkenøyene" "ordrup" "oman" "oljedirektiv" "odense" "odder" "oceania" "olbilletter" "ol-billetter" "nørresundby" "næstved" "nysted" "nykøbing" "nyborg" "nubia" "norskehavet" "norge" "nordsjøen" "nordkapp" "nordkalotten" "nord-yemen" "nord-schleswig" "nord-korea" "nord-jylland" "nord-amerika" "nigeria" "niger" "nicaragua" "nibe" "neptun" "nepal" "neksø" "nederland" "nato" "napoli" "namibia" "nakskov" "nato" "møn" "moskva" "mosambik" "mors" "mongolia" "monaco" "milano" "midt-østen" "middelhavet" "mexico" "merkur" "mellom-europa" "mellom-amerika" "melkeveien" "melanesia" "mauretania" "marstal" "marokko" "marina" "maribo" "mariager" "mandø" "mandsjuria" "malta" "mallorca" "mali" "malaysia" "malaya" "malawi" "makedonia" "løgstør" "limfjorden" "lillebelt" "likudregjeringen" "kypros" "Kors" "Karibien" "Kamerun" "justisdepartementet" "indremisjonsselskapet" "hedmark" "gudbrandsdalen" "gudbrandsdalen" "group" "gomanbakeri" "giga" "fosssaken" "folkpartiet" "flensburg" "flandern" "finland" "filippinene" "fiji" "femø" "femern" "farum" "fanø" "falster" "fakse" "eøsavtalen" "europa" "eurasia" "etruria" "etiopia" "estland" "esrum" "esbjerg" "england" "elsero" "elsass" "elfenbenskysten" "elben" "drejø" "dragør" "dolomittene" "ditmarsken" "damaskus" "cuba" "colombia" "canada" "california" "byutviklingskomiteen" "bretagne" "brasil" "bolivia" "bogense" "bloksberg" "berlin" "bergen" "belgia" "atlanterhavet" "atlanterhavet" "athen" "argentina" "antillene" "angola" "andalusia" "amerika" "alpinanlegg" "akershus" "afrika" "afghanistan" "adriaterhavet" "abessinia" "as" ("denne" prn pers) ("disse" prn pers) ("all" nt sg) ("det" prn pers) ("god" adj sup def) ("hel" adj posi def sg) ("dette" prn pers) ("den" prn pers) ;
 LISt lo#kop-pass = "være" "virke" "hete" "bli" pass ;
 LIST lo#mod-@adv-@<p-utfyll = "seg" "at" @det> @<det @adj> @adv> @<adv @subst> @<subst @kon @<p-utfyll @adv @s-gr clb ;
@@ -387,13 +387,13 @@ LIST m#adv = adv ;
 LIST m#be-ent-adj-nr2det/komp-be-sup-adj/ordenstall = "samme" "eneste" ord (adj def sg) (adj comp) (adj sup def) (adj pprs) ("hver" det qnt pl) ("neste" det) ("annen" dem pl) ("slik" dem pl) ("sånn" dem pl) ("sådan" dem pl) ("egen" emph pl) ("eigen" emph pl) (adj comp) ;
 LIST m#be-fl-subst = (n pl def) (adj comp) (adj sup def) ;
 LIST m#fem = f ;
-LIST m#ikke-adj = adv vblex pr prn cnjsub part n ij det <ellipse> <kolon> <semi> (cnjcoo clb) (cm clb) ;
-LIST m#ikke-adj-subst = adv vblex pr prn cnjsub cnjcoo part ij det >>> ;
-LIST m#ikke-adv = vblex pr prn cnjsub cnjcoo part ij n det (adj m) (adj f) (adj mf) (adj pl) (adj pprs) cm <ellipse> ;
-LIST m#ikke-adv-adj = vblex pr prn cnjsub part n ij det <ellipse> <kolon> <semi> (cnjcoo clb) (cm clb) ;
-LIST m#ikke-adv-adj-det = vblex pr prn cnjsub part n ij <ellipse> <kolon> <semi> (cnjcoo clb) (cm clb) ;
-LIST m#ikke-subst = vblex pr prn cnjsub cnjcoo part det ij adj adv cm <strek> ;
-LIST m#ikke-verb = pr adj adv prn cnjsub part n ij det cnjcoo ;
+LIST m#ikke-adj = adv vblex pr prn cnjsub "å" n ij det <ellipse> <kolon> <semi> (cnjcoo clb) (cm clb) ;
+LIST m#ikke-adj-subst = adv vblex pr prn cnjsub cnjcoo "å" ij det >>> ;
+LIST m#ikke-adv = vblex pr prn cnjsub cnjcoo "å" ij n det (adj m) (adj f) (adj mf) (adj pl) (adj pprs) cm <ellipse> ;
+LIST m#ikke-adv-adj = vblex pr prn cnjsub "å" n ij det <ellipse> <kolon> <semi> (cnjcoo clb) (cm clb) ;
+LIST m#ikke-adv-adj-det = vblex pr prn cnjsub "å" n ij <ellipse> <kolon> <semi> (cnjcoo clb) (cm clb) ;
+LIST m#ikke-subst = vblex pr prn cnjsub cnjcoo "å" det ij adj adv cm <strek> ;
+LIST m#ikke-verb = pr adj adv prn cnjsub "å" n ij det cnjcoo ;
 LIST m#komma = cm ;
 LIST m#komma/konj = cm cnjcoo ;
 LIST m#mask = m ;
@@ -430,7 +430,7 @@ LIST periode-beg = >>> ;
 LIST periode-beg/clb = >>> clb ;
 LIST periode-beg/clb-konj = >>> (cnjcoo clb) ;
 LIST periode-beg/clb-konj/fin-verb = >>> pres pret (clb cnjcoo) ;
-LIST periode-beg/clb-konj/sbu/sp/infmerke = >>> cnjsub itg part (clb cnjcoo) ;
+LIST periode-beg/clb-konj/sbu/sp/infmerke = >>> cnjsub itg "å" (clb cnjcoo) ;
 LIST periode-beg/konj-clb = >>> (clb cnjcoo) ;
 LIST periode-beg/tegnsetting = >>> cm <ellipse> <kolon> <semi> <strek> ;
 LIST periode-slutt = <<< ;
@@ -476,22 +476,22 @@ LIST s#%være% = ("være" <auxp>) ;
 LIST s#%være/bli% = "bli" ("være" <auxp>) ;
 LIST s#%noe% = ("noe" prn pers 3 sg nt) ;
 LIST s#adj = adj ;
-LIST s#ikke-prep = adj adv vblex prn cnjsub part n ij det cnjcoo <anf> cm <ellipse> <kolon> lpar rpar <semi> <strek> ;
-LIST s#ikke-subst = "$-" "$," vblex pr prn cnjsub cnjcoo part det ij adj adv ;
-LIST s#ikke-verb = pr adj adv prn cnjsub part n ij det cnjcoo ;
+LIST s#ikke-prep = adj adv vblex prn cnjsub "å" n ij det cnjcoo <anf> cm <ellipse> <kolon> lpar rpar <semi> <strek> ;
+LIST s#ikke-subst = "$-" "$," vblex pr prn cnjsub cnjcoo "å" det ij adj adv ;
+LIST s#ikke-verb = pr adj adv prn cnjsub "å" n ij det cnjcoo ;
 LIST s#komma = cm ;
 LIST s#komma/konj = cm cnjcoo ;
 LIST s#periode-beg/clb-konj = >>> (clb cnjcoo) ;
 LIST s#sbu = cnjsub ;
 LIST s#setn-gr = "hvorfor" "hvordan" "hvor" "hva" cnjsub >>> <<< clb ;
-LIST s#setn/infkonstr-gr = "hvorfor" "hvordan" "hvor" "hva" part cnjsub >>> <<< clb ;
+LIST s#setn/infkonstr-gr = "hvorfor" "hvordan" "hvor" "hva" "å" cnjsub >>> <<< clb ;
 LIST s#tegnsetting = cm <ellipse> <kolon> <semi> <strek> ;
 LIST s#tegnsetting/konj = cm <ellipse> <kolon> <semi> <strek> cnjcoo ;
 LIST samme/annen/egen = ("samme" det) ("annen" det) ("egen" det) ("eigen" det) ;
 LIST sanseverb = "se" "merke" "la" "kjenne" "høre" "føle" "be" ;
 LIST sbu = "hvor" "hva" cnjsub ;
 LIST sbu-ren = cnjsub ;
-LIST sbu/infmerke = cnjsub part ;
+LIST sbu/infmerke = cnjsub "å" ;
 LIST sbu/sp = "hvorfor" "hvordan" "hvor" cnjsub ;
 LIST selv = "sjøl" "sjæl" "selv" ;
 LIST selv-adv = ("selv" adv) ("sjøl" adv) ("sjæl" adv) ;
@@ -500,8 +500,8 @@ LIST setn-gr/parentes-beg = "hvorledes" "hvorfor" "hvordan" "hvor" "hva" "$--" "
 LIST setn-gr/verb = "hvorledes" "hvorfor" "hvordan" "hvor" "hva" "$--" "$-" vblex cnjsub @sbu >>> <<< ("$:" clb) ("$;" clb) (clb cnjcoo) (clb cm) ;
 LIST setn-gr/verb/subj = "hvorledes" "hvorfor" "hvordan" "hvor" "hva" "$--" "$-" @subj vblex ("at" cnjsub) @sbu >>> <<< ("$:" clb) ("$;" clb) (clb cnjcoo) (clb cm) ;
 LIST setn-slutt/fin-verb = <<< clb (vblex pres) (vblex pret) ;
-LIST setn/infkonstr-gr = "hvorfor" "hvordan" "hvor" "hva" part cnjsub >>> <<< ("$-" clb) ("$;" clb) (clb cnjcoo) (clb cm) ;
-LIST setn/infkonstr-gr/verb = "hvorfor" "hvordan" "hvor" "hva" part cnjsub >>> <<< clb vblex ;
+LIST setn/infkonstr-gr = "hvorfor" "hvordan" "hvor" "hva" "å" cnjsub >>> <<< ("$-" clb) ("$;" clb) (clb cnjcoo) (clb cm) ;
+LIST setn/infkonstr-gr/verb = "hvorfor" "hvordan" "hvor" "hva" "å" cnjsub >>> <<< clb vblex ;
 LIST sitatverb = "utbryte" "understreke" "true" "tro" "tilføye" "tenke" "svare" "sukke" "smile" "skrive" "si" "rope" "replisere" "påpeke" "presisere" "presisere" "opplyse" "oppfordre" "mumle" "mene" "love" "le" "konkludere" "hyle" "hviske" "hevde" "glise" "gjenta" "gaule" "fremholde" "framholde" "fortsette" "fortelle" "forklare" "flire" "fastslå" "erkjenne" "bekjenne" "begynne" "be" "avslutte" "anta" "advare" ;
 LIST slags/for-prep/%annet%/%mer% = "slags" ("for" pr) ("annen" nt) ("mye" comp) ;
 LIST slik-adv = ("slik" adv) ;
@@ -534,7 +534,7 @@ LIST tall/tall-subst = "tusen" "trillion" "mrd." "million" "milliard" "mill." "k
 LIST tegnsetting = cm <ellipse> <kolon> lpar rpar <semi> <strek> ;
 LIST tegnsetting/parentes = cm <ellipse> <kolon> <semi> <strek> lpar rpar ;
 LIST tegnsetting/parentes/konj = cm <ellipse> <kolon> <semi> <strek> lpar rpar cnjcoo ;
-LIST tegnsetting/setn/infkonstr-gr = "hvorfor" "hvordan" "hvor" "hva" cm <ellipse> <semi> <strek> part cnjsub >>> <<< (clb cnjcoo) ;
+LIST tegnsetting/setn/infkonstr-gr = "hvorfor" "hvordan" "hvor" "hva" cm <ellipse> <semi> <strek> "å" cnjsub >>> <<< (clb cnjcoo) ;
 LIST tidsadv = "tidlig" "sen" "sein" "nå" "lenge" "igjen" "før" "etterpå" "da" ("snar" nt ind sg) ;
 LIST tidsadvsubst-nr1 = "torsdag" "tirsdag" "søndag" "september" "onsdag" "oktober" "november" "mars" "mandag" "mai" "lørdag" "juni" "juli" "januar" "fredag" "februar" "desember" "august" "april" ;
 LIST tidsadvsubst-nr2 = "natt" "måned" "morgen" "kveld" "formiddag" "ettermiddag" ;
@@ -3199,7 +3199,7 @@ MAP:1431 (@fv)   (inf pres) IF
 
 
 #:1430
-MAP:1430 (@<p-utfyll)   (part) IF
+MAP:1430 (@<p-utfyll)   ("å") IF
 	(-1C prep)
 ;
 #  " Regler for infinitivsmerke som tilsvarer noen av \"at\"-reglene 
@@ -3209,7 +3209,7 @@ MAP:1430 (@<p-utfyll)   (part) IF
 
 
 #:1429
-MAP:1429 (@<sbu)   (part) IF
+MAP:1429 (@<sbu)   ("å") IF
 	(-1 %det%-pron)
 	(-2 m#setn-gr)
 ;
@@ -3218,7 +3218,7 @@ MAP:1429 (@<sbu)   (part) IF
 
 
 #:1428
-MAP:1428 (@<sbu)   (part) IF
+MAP:1428 (@<sbu)   ("å") IF
 	(-1 %det%-pron)
 	(NOT -2 fin-verb/%kalle%)
 ;
@@ -3227,7 +3227,7 @@ MAP:1428 (@<sbu)   (part) IF
 
 
 #:1427
-MAP:1427 (@<sbu)   (part) IF
+MAP:1427 (@<sbu)   ("å") IF
 	(-1 %være/bli%)
 	(*-4 %hvor/så%-adv LINK 1 adj/adv LINK *1 m#ikke-adv-adj LINK 0 %det%-pron LINK *1 m#ikke-adv-adj LINK NOT *1 m#ikke-verb)
 ;
@@ -3236,7 +3236,7 @@ MAP:1427 (@<sbu)   (part) IF
 
 
 #:1426
-MAP:1426 (@subj @obj @s-pred @o-pred @<sbu)   (part) IF
+MAP:1426 (@subj @obj @s-pred @o-pred @<sbu)   ("å") IF
 	(-1 nom)
 	(*-1 periode-beg/clb-konj LINK *1 %kalle%)
 	(*-1 periode-beg/clb-konj LINK *1 %det%-pron)
@@ -3246,7 +3246,7 @@ MAP:1426 (@subj @obj @s-pred @o-pred @<sbu)   (part) IF
 
 
 #:1425
-MAP:1425 (@subj @obj @s-pred @o-pred @<sbu)   (part) IF
+MAP:1425 (@subj @obj @s-pred @o-pred @<sbu)   ("å") IF
 	(-1 m#setn-gr)
 	(*1 periode-beg/clb-konj LINK *-1 %kalle%)
 	(*1 periode-beg/clb-konj LINK *-1 %det%-pron)
@@ -3256,13 +3256,13 @@ MAP:1425 (@subj @obj @s-pred @o-pred @<sbu)   (part) IF
 
 
 #:1424
-MAP:1424 (@subj @obj @s-pred @<sbu)   (part) IF
+MAP:1424 (@subj @obj @s-pred @<sbu)   ("å") IF
 	(-1 nom)
 ;
 
 
 #:1423
-MAP:1423 (@subj @obj @s-pred @<p-utfyll)   (part) IF
+MAP:1423 (@subj @obj @s-pred @<p-utfyll)   ("å") IF
 	(0 infmerke)
 ;
 

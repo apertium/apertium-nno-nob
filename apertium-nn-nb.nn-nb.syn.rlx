@@ -8,9 +8,9 @@ LIST %anna% = ("annan" f) ("annan" nt) ;
 LIST %annan%-grunnf = "annan" ;
 LIST %annan/annen% = "annen" "annan" ;
 LIST %at% = "at" ;
-LIST %at%/infmerke = "at" part ;
+LIST %at%/infmerke = "at" "å" ;
 LIST %at/om% = "om" "at" ;
-LIST %at/om%/infmerke = "om" "at" part ;
+LIST %at/om%/infmerke = "om" "at" "å" ;
 LIST %at/om/som% = "som" "om" "at" ;
 LIST %begge/båe% = "båe" "begge" ;
 LIST %begge/båe/alle% = "båe" "begge" ("all" pl) ;
@@ -185,7 +185,7 @@ LIST det-gen = det (n gen) ;
 LIST det-kvant = (det qnt) ;
 LIST det-mask-eint = (det m sg) ;
 LIST det-nøyt-eint = (det nt sg) ;
-LIST det/adj/adv/subst/infmerke = det adj adv n part ;
+LIST det/adj/adv/subst/infmerke = det adj adv n "å" ;
 LIST det/adj/tal-subst = "tusen" "trillion" "mrd." "million" "milliard" "mill." "kvadrillion" "hundre" "halvmillion" "billion" "billiard" det adj ;
 LIST det/bu-adj = det (adj def) (adj pprs) ;
 LIST det/subst-gen = det (n gen) ;
@@ -261,18 +261,18 @@ LIST ikkje-@subj = @fv @iv @obj @i-obj @s-pred @o-pred @adv @adv> @<adv @app @ti
 LIST ikkje-@subj-@adv = @fv @iv @obj @i-obj @s-pred @o-pred @adv> @<adv @app @tittel @det> @<det @subst> @<subst @<p-utfyll @interj @adj> @kon @laus-np @<sbu @<sbu-rel @s-gr ;
 LIST ikkje-@subst> = @fv @iv @subj @obj @i-obj @s-pred @o-pred @adv @adv> @<adv @app @tittel @det> @<det @<subst @<p-utfyll @interj @adj> @kon @laus-np @<sbu @<sbu-rel @s-gr ;
 LIST ikkje-@tittel = @fv @iv @subj @obj @i-obj @s-pred @o-pred @adv @adv> @<adv @app @det> @<det @subst> @<subst @<p-utfyll @interj @adj> @kon @laus-np @<sbu @<sbu-rel @s-gr ;
-LIST ikkje-adj-adv = vblex pr prn cnjsub part n ij det (clb cnjcoo) <anf> <ellipse> ;
+LIST ikkje-adj-adv = vblex pr prn cnjsub "å" n ij det (clb cnjcoo) <anf> <ellipse> ;
 LIST ikkje-adj-mask-ub-eint = (adj posi nt ind sg) (adj pl) (adj def) (adj comp) (adj sup) (adj pprs) ;
 LIST ikkje-adj-nøyt-ub-eint = (adj posi mf ind sg) (adj pl) (adj def) (adj comp) (adj sup) (adj pprs);
 LIST ikkje-adj-fem-ub-eint = (adj posi nt ind sg) (adj posi m ind sg) (adj pl) (adj def) (adj comp) (adj sup) (adj pprs);
-LIST ikkje-adj-subst = "sidan" adv vblex pr prn cnjsub cnjcoo part ij det <<< <ellipse> ;
-LIST ikkje-adv = "sidan" "$," vblex pr prn cnjsub cnjcoo part ij n det <ellipse> (adj m) (adj f) (adj mf) (adj def) (adj pl) (adj comp) (adj sup) (adj pprs) ;
-LIST ikkje-adv-adj = "sidan" "$:" vblex pr prn cnjsub part n ij det <ellipse> (clb cnjcoo) ;
-LIST ikkje-adv-adj-det = "sidan" "$:" vblex pr prn cnjsub part n ij <ellipse> (clb cnjcoo) ;
-LIST ikkje-adv-adj-nr2det = vblex pr prn cnjsub part n ij <ellipse> <kolon> <semi> ("hin" det) ("denne" det) ("dette" det) ("den" det) ("det" det) ("ein" det) ("noen" det m) ("nokon" det m) ("noen" det f) ("nokon" det f) ("noen" det pl) ("nokon" det pl) ("ingen" det) (cnjcoo clb) (cm clb) ;
-LIST ikkje-adv-adj-nr2det-bu-det = vblex pr prn cnjsub part n ij <ellipse> <kolon> <semi> ("ein" det) ("noen" det) ("nokon" det) ("ingen" det) (cnjcoo clb) (cm clb) ;
-LIST ikkje-adv-adj-u-konj = vblex pr prn cnjsub part n ij det cnjcoo <ellipse> <kolon> <semi> (cm clb) ;
-LIST ikkje-det-inkl-parentes-beg = vblex pr prn cnjsub cnjcoo part n ij adj adv lpar ;
+LIST ikkje-adj-subst = "sidan" adv vblex pr prn cnjsub cnjcoo "å" ij det <<< <ellipse> ;
+LIST ikkje-adv = "sidan" "$," vblex pr prn cnjsub cnjcoo "å" ij n det <ellipse> (adj m) (adj f) (adj mf) (adj def) (adj pl) (adj comp) (adj sup) (adj pprs) ;
+LIST ikkje-adv-adj = "sidan" "$:" vblex pr prn cnjsub "å" n ij det <ellipse> (clb cnjcoo) ;
+LIST ikkje-adv-adj-det = "sidan" "$:" vblex pr prn cnjsub "å" n ij <ellipse> (clb cnjcoo) ;
+LIST ikkje-adv-adj-nr2det = vblex pr prn cnjsub "å" n ij <ellipse> <kolon> <semi> ("hin" det) ("denne" det) ("dette" det) ("den" det) ("det" det) ("ein" det) ("noen" det m) ("nokon" det m) ("noen" det f) ("nokon" det f) ("noen" det pl) ("nokon" det pl) ("ingen" det) (cnjcoo clb) (cm clb) ;
+LIST ikkje-adv-adj-nr2det-bu-det = vblex pr prn cnjsub "å" n ij <ellipse> <kolon> <semi> ("ein" det) ("noen" det) ("nokon" det) ("ingen" det) (cnjcoo clb) (cm clb) ;
+LIST ikkje-adv-adj-u-konj = vblex pr prn cnjsub "å" n ij det cnjcoo <ellipse> <kolon> <semi> (cm clb) ;
+LIST ikkje-det-inkl-parentes-beg = vblex pr prn cnjsub cnjcoo "å" n ij adj adv lpar ;
 LIST ikkje-mod-@<p-utfyll = inf @fv @subj @obj @i-obj @s-pred @o-pred @adv @<adv @app @interj @laus-np @<sbu @<sbu-rel @s-gr ;
 LIST ikkje-mod-@<p-utfyll-@adv = inf @fv @subj @obj @i-obj @s-pred @o-pred @app @laus-np @<sbu @<sbu-rel @s-gr ;
 LIST ikkje-mod-@<p-utfyll-@adv-@app = inf @fv @subj @obj @i-obj @s-pred @o-pred @laus-np @<sbu @<sbu-rel @s-gr ;
@@ -307,18 +307,18 @@ LIST ikkje-premod-u-@det> = @fv @iv @subj @obj @i-obj @s-pred @o-pred @adv @<adv
 LIST ikkje-premod-u-@kon = @fv @iv @subj @obj @i-obj @s-pred @o-pred @adv @<adv @app @<det @<subst @<p-utfyll @interj @kon @laus-np @<sbu @<sbu-rel @s-gr ;
 LIST ikkje-premod-u-@kon-@app = @fv @iv @subj @obj @i-obj @s-pred @o-pred @adv @<adv @<det @<subst @<p-utfyll @interj @kon @laus-np @<sbu @<sbu-rel @s-gr ;
 LIST ikkje-premod-u-@kon-@s-gr = @fv @iv @subj @obj @i-obj @s-pred @o-pred @adv @<adv @app @<det @<subst @<p-utfyll @interj @kon @laus-np @<sbu @<sbu-rel ;
-LIST ikkje-prep = cnjsub adv adj vblex prn part n ij det (clb cnjcoo) <anf> <ellipse> ;
+LIST ikkje-prep = cnjsub adv adj vblex prn "å" n ij det (clb cnjcoo) <anf> <ellipse> ;
 LIST ikkje-sanns-ditrans = "skrive" ;
-LIST ikkje-sbu = det pr prn cnjcoo part n ij adj adv vblex ;
-LIST ikkje-subst = "sidan" "$-" "$," vblex pr prn cnjsub cnjcoo part det ij adj adv ;
-LIST ikkje-subst-prop = "$-" "$," vblex pr prn cnjsub cnjcoo part det ij adj adv (n appell) ;
+LIST ikkje-sbu = det pr prn cnjcoo "å" n ij adj adv vblex ;
+LIST ikkje-subst = "sidan" "$-" "$," vblex pr prn cnjsub cnjcoo "å" det ij adj adv ;
+LIST ikkje-subst-prop = "$-" "$," vblex pr prn cnjsub cnjcoo "å" det ij adj adv (n appell) ;
 LIST ikkje-tal = "sumt" "som" "nokon" "noen" "kvar" "ingen" "einkvan" "båe" "begge" "all" ;
-LIST ikkje-verb-adj-adv = det pr prn cnjsub cnjcoo part n ij ;
+LIST ikkje-verb-adj-adv = det pr prn cnjsub cnjcoo "å" n ij ;
 LIST imp = imp ;
 LIST inf = inf ;
 LIST inf/perf-part = (vblex inf) (vblex vblex pp) ;
 LIST inf/pres = (vblex inf pres) ;
-LIST infmerke = part ;
+LIST infmerke = "å" ;
 LIST interj = ij ;
 LIST intrans = i1 i3 i4 ;
 LIST iv = (vblex inf) (vblex vblex pp) ;
@@ -356,14 +356,14 @@ LIST m#%vise% = "vise" ;
 LIST m#adv = adv ;
 LIST m#bu-fl-subst = (n pl def) (adj comp) (adj sup def) ;
 LIST m#fem = f ;
-LIST m#ikkje-adj = adv vblex pr prn cnjsub part n ij det <ellipse> <kolon> <semi> (cnjcoo clb) (cm clb) ;
-LIST m#ikkje-adj-subst = adv vblex pr prn cnjsub cnjcoo part ij det >>> ;
-LIST m#ikkje-adv = vblex pr prn cnjsub cnjcoo part ij n det (adj m) (adj f) (adj mf) (adj pl) (adj pprs) cm <ellipse> ;
-LIST m#ikkje-adv-adj = vblex pr prn cnjsub part n ij det <ellipse> <kolon> <semi> (cnjcoo clb) (cm clb) ;
-LIST m#ikkje-adv-adj-det = vblex pr prn cnjsub part n ij <ellipse> <kolon> <semi> (cnjcoo clb) (cm clb) ;
-LIST m#ikkje-subst = vblex pr prn cnjsub cnjcoo part det ij adj adv cm <strek> ;
+LIST m#ikkje-adj = adv vblex pr prn cnjsub "å" n ij det <ellipse> <kolon> <semi> (cnjcoo clb) (cm clb) ;
+LIST m#ikkje-adj-subst = adv vblex pr prn cnjsub cnjcoo "å" ij det >>> ;
+LIST m#ikkje-adv = vblex pr prn cnjsub cnjcoo "å" ij n det (adj m) (adj f) (adj mf) (adj pl) (adj pprs) cm <ellipse> ;
+LIST m#ikkje-adv-adj = vblex pr prn cnjsub "å" n ij det <ellipse> <kolon> <semi> (cnjcoo clb) (cm clb) ;
+LIST m#ikkje-adv-adj-det = vblex pr prn cnjsub "å" n ij <ellipse> <kolon> <semi> (cnjcoo clb) (cm clb) ;
+LIST m#ikkje-subst = vblex pr prn cnjsub cnjcoo "å" det ij adj adv cm <strek> ;
 LIST m#ikkje-tal = "somme" "nokon" "noen" "kvar" "ingen" "båe" "begge" "all" ;
-LIST m#ikkje-verb = pr adj adv prn cnjsub part n ij det cnjcoo ;
+LIST m#ikkje-verb = pr adj adv prn cnjsub "å" n ij det cnjcoo ;
 LIST m#komma = cm ;
 LIST m#komma/konj = cm cnjcoo ;
 LIST m#mask = m ;
@@ -405,7 +405,7 @@ LIST periode-beg = >>> ;
 LIST periode-beg/clb = >>> clb ;
 LIST periode-beg/clb-konj = >>> (cnjcoo clb) ;
 LIST periode-beg/clb-konj/fin-verb = >>> pres pret (clb cnjcoo) ;
-LIST periode-beg/clb-konj/sbu/sp/infmerke = >>> cnjsub itg part (clb cnjcoo) ;
+LIST periode-beg/clb-konj/sbu/sp/infmerke = >>> cnjsub itg "å" (clb cnjcoo) ;
 LIST periode-beg/konj-clb = >>> (clb cnjcoo) ;
 LIST periode-beg/teiknsetjing = >>> cm <ellipse> <kolon> <semi> <strek> ;
 LIST periode-slutt = <<< ;
@@ -449,10 +449,10 @@ LIST s#%seg% = "seg" ;
 LIST s#%vere% = ("vere" <auxp>) ;
 LIST s#%vise% = "vise" ;
 LIST s#ditrans = d1 d2 d3 d7 rl6 rl7 rl8 ;
-LIST s#ikkje-prep = adj adv vblex prn cnjsub part n ij det cnjcoo <anf> cm <ellipse> <kolon> lpar rpar <semi> <strek> ;
-LIST s#ikkje-subst = "$-" "$," vblex pr prn cnjsub cnjcoo part det ij adj adv ;
+LIST s#ikkje-prep = adj adv vblex prn cnjsub "å" n ij det cnjcoo <anf> cm <ellipse> <kolon> lpar rpar <semi> <strek> ;
+LIST s#ikkje-subst = "$-" "$," vblex pr prn cnjsub cnjcoo "å" det ij adj adv ;
 LIST s#ikkje-tal = "somme" "nokon" "noen" "kvar" "ingen" "båe" "begge" "all" ;
-LIST s#ikkje-verb = pr adj adv prn cnjsub part n ij det cnjcoo ;
+LIST s#ikkje-verb = pr adj adv prn cnjsub "å" n ij det cnjcoo ;
 LIST s#komma = cm ;
 LIST s#komma/konj = cm cnjcoo ;
 LIST s#nom = n adj det prn ;
@@ -464,12 +464,12 @@ LIST s#teiknsetjing = cm <ellipse> <kolon> <semi> <strek> ;
 LIST same/annan/eigen = ("same" det) ("annen" det) ("annan" det) ("eigen" det) ;
 LIST sbu = "kva" cnjsub ("kor" adv) ("kvar" adv) ;
 LIST sbu-rein = cnjsub ;
-LIST sbu/infmerke = cnjsub part ;
+LIST sbu/infmerke = cnjsub "å" ;
 LIST sbu/sp = "kvifor" "kvar" "korleis" "korfor" "kor" cnjsub ;
 LIST setn-gr = "kvifor" "korleis" "$--" "$-" cnjsub @sbu >>> <<< ("koss" adv) ("kor" adv) ("kvar" adv) ("kven" prn itg) ("kva" prn itg) ("$:" clb) ("$;" clb) (clb cnjcoo) (clb cm) ;
 LIST setn-slutt/fin-verb = <<< clb (vblex pres) (vblex pret) ;
-LIST setn/infkonstr-gr = "kvifor" "kvar" "kva" "korleis" "korfor" "kor" part cnjsub >>> <<< ("$-" clb) ("$;" clb) (clb cnjcoo) (clb cm) ;
-LIST setn/infkonstr-gr/verb = "kvifor" "korleis" "$--" "$-" vblex part cnjsub @sbu >>> <<< ("koss" adv) ("kor" adv) ("kvar" adv) ("kven" prn itg) ("kva" prn itg) ("$:" clb) ("$;" clb) (clb cnjcoo) (clb cm) ;
+LIST setn/infkonstr-gr = "kvifor" "kvar" "kva" "korleis" "korfor" "kor" "å" cnjsub >>> <<< ("$-" clb) ("$;" clb) (clb cnjcoo) (clb cm) ;
+LIST setn/infkonstr-gr/verb = "kvifor" "korleis" "$--" "$-" vblex "å" cnjsub @sbu >>> <<< ("koss" adv) ("kor" adv) ("kvar" adv) ("kven" prn itg) ("kva" prn itg) ("$:" clb) ("$;" clb) (clb cnjcoo) (clb cm) ;
 LIST sitatverb = "åtvare" "understreke" "truge" "true" "tru" "tenkje" "svare" "sukke" "smile" "skrive" "seie" "rope" "replisere" "påpeike" "presisere" "presisere" "opplyse" "oppfordre" "mumle" "meine" "love" "le" "kviskre" "konkludere" "hyle" "hevde" "glise" "gjenta" "gaule" "fortelje" "forklare" "flire" "fastslå" "erkjenne" "byrje" "begynne" "be" "avslutte" ;
 LIST sjølv = "sjølv" "sjøl" "sjæl" ;
 LIST sjølv-adv = ("sjølv" adv) ("sjøl" adv) ("sjæl" adv) ;
@@ -506,7 +506,7 @@ LIST teiknsetjing = cm <ellipse> <kolon> lpar rpar <semi> <strek> ;
 LIST teiknsetjing/konj = cm <ellipse> <kolon> lpar rpar <semi> <strek> cnjcoo ;
 LIST teiknsetjing/parentes = cm <ellipse> <kolon> <semi> <strek> lpar rpar ;
 LIST teiknsetjing/parentes/konj = cm <ellipse> <kolon> <semi> <strek> lpar rpar cnjcoo ;
-LIST teiknsetjing/setn/infkonstr-gr = "kvifor" "kvar" "kva" "korleis" "korfor" "kor" cm <ellipse> <semi> <strek> part cnjsub >>> <<< (clb cnjcoo) ;
+LIST teiknsetjing/setn/infkonstr-gr = "kvifor" "kvar" "kva" "korleis" "korfor" "kor" cm <ellipse> <semi> <strek> "å" cnjsub >>> <<< (clb cnjcoo) ;
 LIST tidsadv = "tidlig" "tidleg" "sein" "nå" "no" "lenge" "igjen" "før" "etterpå" "då" "da" ("snar" nt ind sg) ;
 LIST tidsadvsubst-nr1 = "tysdag" "torsdag" "søndag" "sundag" "september" "onsdag" "oktober" "november" "måndag" "mars" "mai" "laurdag" "juni" "juli" "januar" "fredag" "februar" "desember" "august" "april" ;
 LIST tidsadvsubst-nr2 = "natt" "månad" "morgon" "kveld" "føremiddag" "formiddag" "ettermiddag" ;
@@ -3416,7 +3416,7 @@ MAP:1073 (@fv) (inf pres) IF
 
 
 #:1072
-MAP:1072 (@<p-utfyll) (part) IF
+MAP:1072 (@<p-utfyll) ("å") IF
 	(-1C prep)
 ;
 #  "vi er avhengige av å kjenne kundene"
@@ -3425,7 +3425,7 @@ MAP:1072 (@<p-utfyll) (part) IF
 
 
 #:1071
-MAP:1071 (@<sbu) (part) IF
+MAP:1071 (@<sbu) ("å") IF
 	(-1 %det%-pron)
 	(-2 m#setn-gr)
 ;
@@ -3435,7 +3435,7 @@ MAP:1071 (@<sbu) (part) IF
 
 
 #:1070
-MAP:1070 (@<sbu) (part) IF
+MAP:1070 (@<sbu) ("å") IF
 	(-1 %det%-pron)
 	(NOT -2 fin-verb/%kalle%)
 ;
@@ -3445,7 +3445,7 @@ MAP:1070 (@<sbu) (part) IF
 
 
 #:1069
-MAP:1069 (@<sbu) (part) IF
+MAP:1069 (@<sbu) ("å") IF
 	(-1 %vere/verte/bli%)
 	(*-4 %kor/så%-adv LINK 1 adj/adv LINK *1 m#ikkje-adv-adj LINK 0 %det%-pron LINK *1 m#ikkje-adv-adj LINK NOT *1 m#ikkje-verb)
 ;
@@ -3455,7 +3455,7 @@ MAP:1069 (@<sbu) (part) IF
 
 
 #:1068
-MAP:1068 (@subj @obj @s-pred @o-pred @<sbu) (part) IF
+MAP:1068 (@subj @obj @s-pred @o-pred @<sbu) ("å") IF
 	(-1 m#nom)
 	(*-1 periode-beg/clb-konj LINK *1 %kalle%)
 	(*-1 periode-beg/clb-konj LINK *1 %det%-pron)
@@ -3466,7 +3466,7 @@ MAP:1068 (@subj @obj @s-pred @o-pred @<sbu) (part) IF
 
 
 #:1067
-MAP:1067 (@subj @obj @s-pred @o-pred @<sbu) (part) IF
+MAP:1067 (@subj @obj @s-pred @o-pred @<sbu) ("å") IF
 	(-1 m#setn-gr)
 	(*1 periode-beg/clb-konj LINK *-1 %kalle%)
 	(*1 periode-beg/clb-konj LINK *-1 %det%-pron)
@@ -3477,7 +3477,7 @@ MAP:1067 (@subj @obj @s-pred @o-pred @<sbu) (part) IF
 
 
 #:1066
-MAP:1066 (@subj @obj @s-pred @<sbu) (part) IF
+MAP:1066 (@subj @obj @s-pred @<sbu) ("å") IF
 	(-1 m#nom)
 ;
 # group: 40
@@ -3485,7 +3485,7 @@ MAP:1066 (@subj @obj @s-pred @<sbu) (part) IF
 
 
 #:1065
-MAP:1065 (@subj @obj @s-pred @<p-utfyll) (part) IF
+MAP:1065 (@subj @obj @s-pred @<p-utfyll) ("å") IF
 	(0 infmerke)
 ;
 # group: 40
