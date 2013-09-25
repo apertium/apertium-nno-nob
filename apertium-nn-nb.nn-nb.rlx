@@ -1,3 +1,5 @@
+# -*- cg-pre-pipe: "apertium -d . nn-nb-morph|cg-conv -a 2>/dev/null" -*-
+
 SOFT-DELIMITERS = "<,>" cm ;
 DELIMITERS = "<.>" "<:>" "<!>" "<?>" "<|>" "<$.>" "<$:>" "<$!>" "<$?>" "<$|>" sent ;
 
@@ -6229,7 +6231,7 @@ CONSTRAINTS
 
 
 #:6079
- "<positiv>"   REMOVE:  (n) IF
+ "<positiv>"   REMOVE  (n) IF
 	(0 adj)
 	(NOT *-1 ub-eint-mask/fem-det BARRIER ikkje-adv-adj)
 	(NOT *-1 ub-nøyt-det BARRIER ikkje-adv-adj)
@@ -47175,6 +47177,12 @@ REMOVE:1745 ub-eint-subst-ikkje-ubøy IF
 ;
 
 
+REMOVE:trekket-imperativ (n pl) IF
+	(0 subst-eint)
+	(-1 bu-eint-subst LINK -1 adj-bu LINK -1* bu-det-eint/fl BARRIER ikkje-adv-adj-komma)
+;
+# KBU: «det viktige, grammatiske trekket imperativ<sg>»
+
 #:1746
 REMOVE:1746 ub-eint-subst-ikkje-ubøy IF
 	(NOT 0 tittel)
@@ -52730,6 +52738,7 @@ REMOVE:6200 (vblex pret) IF
 # Ikkje: «Langt uti have eller kor det var lynte det»
 # -KBU
 
+
 #:62000
 REMOVE:62000 (vblex pret) IF
 	(0 subst)
@@ -52738,12 +52747,6 @@ REMOVE:62000 (vblex pret) IF
 # «Noko å gjære safta i»
 # Treng nok litt nyansering. -KBU
 
-#:6211
-REMOVE:6211 (n pl) IF
-	(0 subst-eint)
-	(-1 bu-eint-subst LINK -1 adj-bu BARRIER ikkje-adv-adj-komma LINK -1* bu-det-eint/fl)
-;
-# KBU: «det viktige, grammatiske trekket imperativ<sg>»
 
 
 REMOVE:rel-ellipse (n) IF

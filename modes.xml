@@ -126,6 +126,13 @@
       </program>
     </pipeline>
   </mode>
+  <mode name="nb-nn-morph" install="no">
+    <pipeline>
+      <program name="lt-proc -w -e">
+        <file name="nb-nn.automorf.bin"/>
+      </program>
+    </pipeline>
+  </mode>
 
   <mode name="nb-nn-from-transfer" install="no"> <!-- debug mode -->
     <pipeline>
@@ -193,6 +200,13 @@
       </program>
       <program name="lt-proc $1">
         <file name="nn-nb.autogen-no-cp.bin"/>
+      </program>
+    </pipeline>
+  </mode>
+  <mode name="nn-nb-morph" install="no"> <!-- compounding todo -->
+    <pipeline>
+      <program name="lt-proc -w -e">
+        <file name="nn-nb.automorf-no-cp.bin"/>
       </program>
     </pipeline>
   </mode>
