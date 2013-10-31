@@ -25,7 +25,7 @@ TARGETS_COMMON = \
 
 # Use this goal for creating .deps, otherwise make -j2 will give problems:
 .deps/.d:
-	if [ ! -d .deps ]; then mkdir .deps; fi
+	test -d .deps || mkdir .deps
 	touch $@
 
 # Prevent the .d file from being removed automatically:
@@ -148,12 +148,9 @@ install-data-local:
 	rm -rf modes
 	mv modes.bak modes
 	test -d $(DESTDIR)$(apertium_nn_modesdir) || mkdir $(DESTDIR)$(apertium_nn_modesdir)
-	$(INSTALL_DATA) $(PREFIX1).mode $(DESTDIR)$(apertium_nn_modesdir)
-	$(INSTALL_DATA) $(PREFIX2).mode $(DESTDIR)$(apertium_nn_modesdir)
-	$(INSTALL_DATA) $(PREFIX1e1a).mode $(DESTDIR)$(apertium_nn_modesdir)
-	$(INSTALL_DATA) $(PREFIX1a1e).mode $(DESTDIR)$(apertium_nn_modesdir)
-	$(INSTALL_DATA) $(PREFIX2e).mode $(DESTDIR)$(apertium_nn_modesdir)
-	rm $(PREFIX1).mode $(PREFIX2).mode $(PREFIX1e1a).mode $(PREFIX1a1e).mode $(PREFIX2e).mode
+	modes=`xmllint --xpath '//mode[@install="yes"]/@name' modes.xml | sed 's/ *name="\([^"]*\)"/\1.mode /g'`; \
+		$(INSTALL_DATA) $$modes $(DESTDIR)$(apertium_nn_modesdir); \
+		rm $$modes
 	$(INSTALL_DATA) $(BASENAME).$(PREFIX1).t1x $(DESTDIR)$(apertium_nn_nbdir)
 	$(INSTALL_DATA) $(BASENAME).$(PREFIX2).t1x $(DESTDIR)$(apertium_nn_nbdir)
 	$(INSTALL_DATA) $(BASENAME).$(PREFIX2).t2x $(DESTDIR)$(apertium_nn_nbdir)
