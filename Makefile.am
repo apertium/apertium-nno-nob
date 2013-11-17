@@ -127,7 +127,7 @@ EXTRA_DIST=$(BASENAME).$(LANG1).dix $(BASENAME).$(PREFIX1).dix \
 	   modes.xml alt.xsl rem-compounds.xsl lexchoicebil.xsl
 
 apertium_nn_nbdir=$(prefix)/share/apertium/apertium-$(PREFIX1)/
-apertium_nn_modesdir=$(prefix)/share/apertium/modes/
+apertium_modesdir=$(prefix)/share/apertium/modes/
 
 modes/$(PREFIX1).mode: modes.xml
 	apertium-validate-modes modes.xml
@@ -147,9 +147,9 @@ install-data-local:
 	apertium-gen-modes modes.xml apertium-$(PREFIX1)
 	rm -rf modes
 	mv modes.bak modes
-	test -d $(DESTDIR)$(apertium_nn_modesdir) || mkdir $(DESTDIR)$(apertium_nn_modesdir)
+	test -d $(DESTDIR)$(apertium_modesdir) || mkdir $(DESTDIR)$(apertium_modesdir)
 	modes=`xmllint --xpath '//mode[@install="yes"]/@name' modes.xml | sed 's/ *name="\([^"]*\)"/\1.mode /g'`; \
-		$(INSTALL_DATA) $$modes $(DESTDIR)$(apertium_nn_modesdir); \
+		$(INSTALL_DATA) $$modes $(DESTDIR)$(apertium_modesdir); \
 		rm $$modes
 	$(INSTALL_DATA) $(BASENAME).$(PREFIX1).t1x $(DESTDIR)$(apertium_nn_nbdir)
 	$(INSTALL_DATA) $(BASENAME).$(PREFIX2).t1x $(DESTDIR)$(apertium_nn_nbdir)
