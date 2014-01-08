@@ -144,7 +144,7 @@ noinst_DATA=modes/$(PREFIX1).mode
 
 install-data-local:
 	mv modes modes.bak
-	apertium-gen-modes modes.xml apertium-$(PREFIX1)
+	apertium-gen-modes modes.xml $(BASENAME)
 	rm -rf modes
 	mv modes.bak modes
 	test -d $(DESTDIR)$(apertium_modesdir) || mkdir $(DESTDIR)$(apertium_modesdir)
