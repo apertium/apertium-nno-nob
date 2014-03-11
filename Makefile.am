@@ -16,7 +16,7 @@ TARGETS_COMMON = \
      $(PREFIX1).automorf-no-cp.bin \
      $(PREFIX1).rlx.bin \
      $(PREFIX1).autobil.bin $(PREFIX1).t1x.bin \
-     $(PREFIX1).autogen-no-cp.bin \
+     $(PREFIX1).autogen.bin \
      $(PREFIX2).automorf.bin \
      $(PREFIX2).rlx.bin \
      $(PREFIX2).autobil.bin $(PREFIX2).t1x.bin $(PREFIX2).t2x.bin $(PREFIX2).t3x.bin \
@@ -31,71 +31,65 @@ TARGETS_COMMON = \
 # Prevent the .d file from being removed automatically:
 .PRECIOUS: .deps/.d
 
-.deps/$(BASENAME).$(LANG2)-no-cp.dix: $(BASENAME).$(LANG2).dix rem-compounds.xsl .deps/.d
-	xsltproc rem-compounds.xsl $(BASENAME).$(LANG2).dix > $@
-
-.deps/$(BASENAME).$(LANG1e)-no-cp.dix: $(BASENAME).$(LANG1).dix alt.xsl .deps/.d
-	xsltproc --stringparam alt $(LANG1e) alt.xsl $(BASENAME).$(LANG1).dix | xsltproc rem-compounds.xsl - > $@
-
-.deps/$(BASENAME).$(LANG1)-no-cp.dix: $(BASENAME).$(LANG1).dix alt.xsl .deps/.d
-	xsltproc --stringparam alt $(LANG1a) alt.xsl $(BASENAME).$(LANG1).dix | xsltproc rem-compounds.xsl - > $@
+.deps/$(BASENAME).$(LANG1)-no-cp.dix: $(BASENAME).$(LANG1).dix rem-compounds.xsl .deps/.d
+	xsltproc rem-compounds.xsl $(BASENAME).$(LANG1).dix > $@
 
 .deps/$(BASENAME).$(PREFIX1).dix: $(BASENAME).$(PREFIX1).dix lexchoicebil.xsl .deps/.d
 	xsltproc lexchoicebil.xsl $(BASENAME).$(PREFIX1).dix > $@
 
 # nn-nb
 $(PREFIX1).automorf-no-cp.bin: .deps/$(BASENAME).$(LANG1)-no-cp.dix
-	apertium-validate-dictionary .deps/$(BASENAME).$(LANG1)-no-cp.dix
-	lt-comp lr .deps/$(BASENAME).$(LANG1)-no-cp.dix $@
+	apertium-validate-dictionary $<
+	lt-comp lr $< $@
 
 $(PREFIX1).rlx.bin: $(BASENAME).$(PREFIX1).rlx
-	cg-comp $(BASENAME).$(PREFIX1).rlx $@
+	cg-comp $< $@
 
 $(PREFIX1).autobil.bin: .deps/$(BASENAME).$(PREFIX1).dix
-	apertium-validate-dictionary .deps/$(BASENAME).$(PREFIX1).dix
-	lt-comp lr .deps/$(BASENAME).$(PREFIX1).dix $@
+	apertium-validate-dictionary $<
+	lt-comp lr $< $@
 
 $(PREFIX1).t1x.bin: $(BASENAME).$(PREFIX1).t1x
-	apertium-validate-transfer $(BASENAME).$(PREFIX1).t1x
-	apertium-preprocess-transfer $(BASENAME).$(PREFIX1).t1x $@
+	apertium-validate-transfer $<
+	apertium-preprocess-transfer $< $@
 
-$(PREFIX1).autogen-no-cp.bin: .deps/$(BASENAME).$(LANG2)-no-cp.dix
-	apertium-validate-dictionary .deps/$(BASENAME).$(LANG2)-no-cp.dix
-	lt-comp rl .deps/$(BASENAME).$(LANG2)-no-cp.dix $@
+$(PREFIX1).autogen.bin: $(BASENAME).$(LANG2).dix
+	apertium-validate-dictionary $<
+	lt-comp rl $< $@
 
 
 # nb-nn
 $(PREFIX2).automorf.bin: $(BASENAME).$(LANG2).dix
-	apertium-validate-dictionary $(BASENAME).$(LANG2).dix
-	lt-comp lr $(BASENAME).$(LANG2).dix $@
+	apertium-validate-dictionary $<
+	lt-comp lr $< $@
 
 $(PREFIX2).rlx.bin: $(BASENAME).$(PREFIX2).rlx
 	cg-comp $(BASENAME).$(PREFIX2).rlx $@
 
 $(PREFIX2).autobil.bin: .deps/$(BASENAME).$(PREFIX1).dix
-	apertium-validate-dictionary .deps/$(BASENAME).$(PREFIX1).dix
-	lt-comp rl .deps/$(BASENAME).$(PREFIX1).dix $@
+	apertium-validate-dictionary $<
+	lt-comp rl $< $@
 
 $(PREFIX2).t1x.bin: $(BASENAME).$(PREFIX2).t1x
-	apertium-validate-transfer $(BASENAME).$(PREFIX2).t1x
-	apertium-preprocess-transfer $(BASENAME).$(PREFIX2).t1x $@
+	apertium-validate-transfer $<
+	apertium-preprocess-transfer $< $@
 
 $(PREFIX2).t2x.bin: $(BASENAME).$(PREFIX2).t2x
-	apertium-validate-interchunk $(BASENAME).$(PREFIX2).t2x
-	apertium-preprocess-transfer $(BASENAME).$(PREFIX2).t2x $@
+	apertium-validate-interchunk $<
+	apertium-preprocess-transfer $< $@
 
 $(PREFIX2).t3x.bin: $(BASENAME).$(PREFIX2).t3x
-	apertium-validate-postchunk $(BASENAME).$(PREFIX2).t3x
-	apertium-preprocess-transfer $(BASENAME).$(PREFIX2).t3x $@
+	apertium-validate-postchunk $<
+	apertium-preprocess-transfer $< $@
 
-$(PREFIX2).autogen-no-cp.bin: .deps/$(BASENAME).$(LANG1)-no-cp.dix
-	apertium-validate-dictionary .deps/$(BASENAME).$(LANG1)-no-cp.dix
-	lt-comp rl .deps/$(BASENAME).$(LANG1)-no-cp.dix $@
+$(PREFIX2).autogen-no-cp.bin: $(BASENAME).$(LANG1).dix
+	apertium-validate-dictionary $<
+	lt-comp --alt $(LANG1a) rl $< $@
 
 # nb-nn_e
-$(PREFIX2e).autogen-no-cp.bin: .deps/$(BASENAME).$(LANG1e)-no-cp.dix
-	apertium-validate-dictionary .deps/$(BASENAME).$(LANG1e)-no-cp.dix
-	lt-comp rl .deps/$(BASENAME).$(LANG1e)-no-cp.dix $@
+$(PREFIX2e).autogen-no-cp.bin: $(BASENAME).$(LANG1).dix
+	apertium-validate-dictionary $<
+	lt-comp --alt $(LANG1e) rl $< $@
 
 
 
@@ -104,14 +98,6 @@ $(PREFIX2e).autogen-no-cp.bin: .deps/$(BASENAME).$(LANG1e)-no-cp.dix
 # 	apertium-validate-dictionary $(BASENAME).$(LANG2).dix
 # 	lt-comp rl $(BASENAME).$(LANG2).dix $@
 
-
-$(PREFIX2).automorf-no-cp.bin: .deps/$(BASENAME).$(LANG2)-no-cp.dix
-	apertium-validate-dictionary .deps/$(BASENAME).$(LANG2)-no-cp.dix
-	lt-comp lr .deps/$(BASENAME).$(LANG2)-no-cp.dix $@
-
-TARGETS_NOCP = $(PREFIX2).automorf-no-cp.bin
-
-nocp: $(TARGETS_NOCP)
 
 EXTRA_DIST=$(BASENAME).$(LANG1).dix $(BASENAME).$(PREFIX1).dix \
 	   $(BASENAME).$(LANG2).dix \
@@ -124,7 +110,7 @@ EXTRA_DIST=$(BASENAME).$(LANG1).dix $(BASENAME).$(PREFIX1).dix \
 	   $(BASENAME).$(PREFIX2).t3x \
 	   $(BASENAME).$(LANG1).tsx \
 	   $(BASENAME).$(LANG2).tsx \
-	   modes.xml alt.xsl rem-compounds.xsl lexchoicebil.xsl
+	   modes.xml rem-compounds.xsl lexchoicebil.xsl
 
 apertium_nn_nbdir=$(prefix)/share/apertium/apertium-$(PREFIX1)/
 apertium_modesdir=$(prefix)/share/apertium/modes/
