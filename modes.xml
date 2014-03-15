@@ -1,165 +1,165 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <modes>
-  <!-- nb=>nn -->
-  <mode name="nb-nn_e" install="yes"> <!-- infinitive verbs ending in -e, with compounding -->
+  <!-- nob=>nno -->
+  <mode name="nob-nno_e" install="yes"> <!-- infinitive verbs ending in -e, with compounding -->
     <pipeline>
       <program name="lt-proc -w -e">
-        <file name="nb-nn.automorf.bin"/>
+        <file name="nob-nno.automorf.bin"/>
       </program>
       <program name="cg-proc -w">
-	<file name="nb-nn.rlx.bin"/>
+	<file name="nob-nno.rlx.bin"/>
       </program>
       <program name="apertium-tagger -g $2">
-        <file name="nb-nn.prob"/>
+        <file name="nob-nno.prob"/>
       </program>
       <program name="apertium-pretransfer"/>
       <program name="apertium-transfer">
-        <file name="apertium-nn-nb.nb-nn.t1x"/>
-        <file name="nb-nn.t1x.bin"/>
-        <file name="nb-nn.autobil.bin"/>
+        <file name="apertium-nno-nob.nob-nno.t1x"/>
+        <file name="nob-nno.t1x.bin"/>
+        <file name="nob-nno.autobil.bin"/>
       </program>
       <program name="apertium-interchunk">
-        <file name="apertium-nn-nb.nb-nn.t2x"/>
-        <file name="nb-nn.t2x.bin"/>
+        <file name="apertium-nno-nob.nob-nno.t2x"/>
+        <file name="nob-nno.t2x.bin"/>
       </program>
       <program name="apertium-postchunk">
-        <file name="apertium-nn-nb.nb-nn.t3x"/>
-        <file name="nb-nn.t3x.bin"/>
+        <file name="apertium-nno-nob.nob-nno.t3x"/>
+        <file name="nob-nno.t3x.bin"/>
       </program>
       <program name="lt-proc $1">
         <!-- using the cp-free one is ok for generation: -->
-        <file name="nb-nn_e.autogen-no-cp.bin"/>
+        <file name="nob-nno_e.autogen-no-cp.bin"/>
       </program>
     </pipeline>
   </mode>
 
-  <mode name="nb-nn" install="yes"> <!-- infinitive verbs ending in -a, with compounding -->
+  <mode name="nob-nno" install="yes"> <!-- infinitive verbs ending in -a, with compounding -->
     <pipeline>
       <program name="lt-proc -w -e">
-        <file name="nb-nn.automorf.bin"/>
+        <file name="nob-nno.automorf.bin"/>
       </program>
       <program name="cg-proc -w">
-	<file name="nb-nn.rlx.bin"/>
+	<file name="nob-nno.rlx.bin"/>
       </program>
       <program name="apertium-tagger -g $2">
-        <file name="nb-nn.prob"/>
+        <file name="nob-nno.prob"/>
       </program>
       <program name="apertium-pretransfer"/>
       <program name="apertium-transfer">
-        <file name="apertium-nn-nb.nb-nn.t1x"/>
-        <file name="nb-nn.t1x.bin"/>
-        <file name="nb-nn.autobil.bin"/>
+        <file name="apertium-nno-nob.nob-nno.t1x"/>
+        <file name="nob-nno.t1x.bin"/>
+        <file name="nob-nno.autobil.bin"/>
       </program>
       <program name="apertium-interchunk">
-        <file name="apertium-nn-nb.nb-nn.t2x"/>
-        <file name="nb-nn.t2x.bin"/>
+        <file name="apertium-nno-nob.nob-nno.t2x"/>
+        <file name="nob-nno.t2x.bin"/>
       </program>
       <program name="apertium-postchunk">
-        <file name="apertium-nn-nb.nb-nn.t3x"/>
-        <file name="nb-nn.t3x.bin"/>
+        <file name="apertium-nno-nob.nob-nno.t3x"/>
+        <file name="nob-nno.t3x.bin"/>
       </program>
       <program name="lt-proc $1">
         <!-- using the cp-free one is ok for generation: -->
-        <file name="nb-nn.autogen-no-cp.bin"/>
+        <file name="nob-nno.autogen-no-cp.bin"/>
       </program>
     </pipeline>
   </mode>
-  <mode name="nb-nn-morph" install="no">
+  <mode name="nob-nno-morph" install="no">
     <pipeline>
       <program name="lt-proc -w -e">
-        <file name="nb-nn.automorf.bin"/>
+        <file name="nob-nno.automorf.bin"/>
       </program>
     </pipeline>
   </mode>
 
-  <mode name="nb-nn-from-transfer" install="no"> <!-- debug mode -->
+  <mode name="nob-nno-from-transfer" install="no"> <!-- debug mode -->
     <pipeline>
       <program name="apertium-pretransfer"/>
       <program name="apertium-transfer">
-        <file name="apertium-nn-nb.nb-nn.t1x"/>
-        <file name="nb-nn.t1x.bin"/>
-        <file name="nb-nn.autobil.bin"/>
+        <file name="apertium-nno-nob.nob-nno.t1x"/>
+        <file name="nob-nno.t1x.bin"/>
+        <file name="nob-nno.autobil.bin"/>
       </program>
       <program name="apertium-interchunk">
-        <file name="apertium-nn-nb.nb-nn.t2x"/>
-        <file name="nb-nn.t2x.bin"/>
+        <file name="apertium-nno-nob.nob-nno.t2x"/>
+        <file name="nob-nno.t2x.bin"/>
       </program>
       <program name="apertium-postchunk">
-        <file name="apertium-nn-nb.nb-nn.t3x"/>
-        <file name="nb-nn.t3x.bin"/>
+        <file name="apertium-nno-nob.nob-nno.t3x"/>
+        <file name="nob-nno.t3x.bin"/>
       </program>
       <program name="lt-proc $1">
-        <file name="nb-nn.autogen-no-cp.bin"/>
+        <file name="nob-nno.autogen-no-cp.bin"/>
       </program>
     </pipeline>
   </mode>
 
 
 
-  <!-- nn=>nb -->
-  <mode name="nn-nb" install="yes"> <!-- compounding todo -->
+  <!-- nno=>nob -->
+  <mode name="nno-nob" install="yes"> <!-- compounding todo -->
     <pipeline>
       <program name="lt-proc -w -e">
-        <file name="nn-nb.automorf-no-cp.bin"/>
+        <file name="nno-nob.automorf-no-cp.bin"/>
       </program>
       <program name="cg-proc -w">
-	<file name="nn-nb.rlx.bin"/>
+	<file name="nno-nob.rlx.bin"/>
       </program>
       <program name="apertium-tagger -g $2">
-        <file name="nn-nb.prob"/>
+        <file name="nno-nob.prob"/>
       </program>
       <program name="apertium-pretransfer"/>
       <program name="apertium-transfer">
-        <file name="apertium-nn-nb.nn-nb.t1x"/>
-        <file name="nn-nb.t1x.bin"/>
-        <file name="nn-nb.autobil.bin"/>
+        <file name="apertium-nno-nob.nno-nob.t1x"/>
+        <file name="nno-nob.t1x.bin"/>
+        <file name="nno-nob.autobil.bin"/>
       </program>
       <program name="lt-proc $1">
-        <file name="nn-nb.autogen.bin"/>
+        <file name="nno-nob.autogen.bin"/>
       </program>
     </pipeline>
   </mode>
-  <mode name="nn-nb-morph" install="no"> <!-- compounding todo -->
+  <mode name="nno-nob-morph" install="no"> <!-- compounding todo -->
     <pipeline>
       <program name="lt-proc -w -e">
-        <file name="nn-nb.automorf-no-cp.bin"/>
+        <file name="nno-nob.automorf-no-cp.bin"/>
       </program>
     </pipeline>
   </mode>
 
-  <!-- nn=>nn (e-mål vs a-mål) -->
-  <mode name="nn-nn_e" install="yes">
+  <!-- nno=>nno (e-mål vs a-mål) -->
+  <mode name="nno-nno_e" install="yes">
     <pipeline>
       <program name="lt-proc -w">
-        <file name="nn-nb.automorf-no-cp.bin"/>
+        <file name="nno-nob.automorf-no-cp.bin"/>
       </program>
       <program name="cg-proc -w">
-	<file name="nn-nb.rlx.bin"/>
+	<file name="nno-nob.rlx.bin"/>
       </program>
       <program name="apertium-tagger -g $2">
-        <file name="nn-nb.prob"/>
+        <file name="nno-nob.prob"/>
       </program>
       <program name="apertium-pretransfer"/>
       <program name="lt-proc $1">
-        <file name="nb-nn.autogen-no-cp.bin"/>
+        <file name="nob-nno.autogen-no-cp.bin"/>
       </program>
     </pipeline>
   </mode>
 
-  <mode name="nn_e-nn" install="yes">
+  <mode name="nno_e-nno" install="yes">
     <pipeline>
       <program name="lt-proc -w">
-        <file name="nn-nb.automorf-no-cp.bin"/>
+        <file name="nno-nob.automorf-no-cp.bin"/>
       </program>
       <program name="cg-proc -w">
-	<file name="nn-nb.rlx.bin"/>
+	<file name="nno-nob.rlx.bin"/>
       </program>
       <program name="apertium-tagger -g $2">
-        <file name="nn-nb.prob"/>
+        <file name="nno-nob.prob"/>
       </program>
       <program name="apertium-pretransfer"/>
       <program name="lt-proc $1">
-        <file name="nb-nn_e.autogen-no-cp.bin"/>
+        <file name="nob-nno_e.autogen-no-cp.bin"/>
       </program>
     </pipeline>
   </mode>

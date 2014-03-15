@@ -3,8 +3,8 @@
 # Script to postedit articles translated from
 # Bokmål Wikipedia to Nynorsk Wikipedia.
 
-# Usage (in the directory apertium-nn-nb/):
-# cat nb-inputarticle | apertium -d . -u nb-nn | ./wikifix-nb-nn.pl | ...
+# Usage (in the directory apertium-nno-nob/):
+# cat nob-inputarticle | apertium -d . -u nob-nno | ./wikifix-nob-nno.pl | ...
 
 use utf8 ;
 

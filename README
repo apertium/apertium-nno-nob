@@ -1,13 +1,13 @@
 Norwegian Nynorsk and Norwegian Bokmål
 
-                            apertium-nn-nb
+                            apertium-nno-nob
 ===============================================================================
 
 This is an Apertium language pair for translating between Norwegian
 Nynorsk and Norwegian Bokmål. What you can use this language package for:
 
 * Translating between Nynorsk and Bokmål
-** Includes a Nynorsk "e-mål" variant, nn_e (the default, nn, is "a-mål"),
+** Includes a Nynorsk "e-mål" variant, nno_e (the default, nno, is "a-mål"),
    also allows for translating between these variants
 * Morphological analysis of Nynorsk and Bokmål
 * Part-of-speech tagging of Nynorsk and Bokmål
@@ -45,15 +45,15 @@ Testing
 If you are in the source directory after running make, the following
 commands should work:
 
-$  echo "Eg vil gå ein tur" | apertium -d . nn-nb
+$  echo "Eg vil gå ein tur" | apertium -d . nno-nob
 Jeg vil gå en tur
 
-$ echo "Jeg vil gå en tur" | apertium -d . nb-nn
+$ echo "Jeg vil gå en tur" | apertium -d . nob-nno
 Eg vil gå ein tur
 
 After installing somewhere in $PATH, you should be able to do eg.
 
-$ echo "Jeg vil gå en tur" | apertium nb-nn
+$ echo "Jeg vil gå en tur" | apertium nob-nno
 Eg vil gå ein tur
 
 The following command runs tests which are on the Apertium wiki page:
@@ -63,22 +63,22 @@ $ ./regression-tests.sh
 Files and data
 ===============================================================================
 
-* apertium-nn-nb.nn.dix            - Monolingual dictionary for Nynorsk
-* apertium-nn-nb.nn-nb.dix         - Bilingual dictionary
-* apertium-nn-nb.nb.dix            - Monolingual dictionary for Bokmål
-* apertium-nn-nb.nn-nb.rlx         - Constraint Grammar for Nynorsk
-* apertium-nn-nb.nb-nn.rlx         - Constraint Grammar for Bokmål
-* apertium-nn-nb.nn-nb.t1x         - Transfer rules for translating into Bokmål
-* apertium-nn-nb.nb-nn.t1x         - Transfer rules for translating into Nynorsk
-* nn-nb.prob                       - Tagger model for Nynorsk
-* nb-nn.prob                       - Tagger model for Bokmål
+* apertium-nno-nob.nno.dix            - Monolingual dictionary for Nynorsk
+* apertium-nno-nob.nno-nob.dix         - Bilingual dictionary
+* apertium-nno-nob.nob.dix            - Monolingual dictionary for Bokmål
+* apertium-nno-nob.nno-nob.rlx         - Constraint Grammar for Nynorsk
+* apertium-nno-nob.nob-nno.rlx         - Constraint Grammar for Bokmål
+* apertium-nno-nob.nno-nob.t1x         - Transfer rules for translating into Bokmål
+* apertium-nno-nob.nob-nno.t1x         - Transfer rules for translating into Nynorsk
+* nno-nob.prob                       - Tagger model for Nynorsk
+* nob-nno.prob                       - Tagger model for Bokmål
 * modes.xml                        - Translation modes
 
 For more information
 ===============================================================================
 
 * http://wiki.apertium.org/wiki/Installation
-* http://wiki.apertium.org/wiki/apertium-nn-nb
+* http://wiki.apertium.org/wiki/apertium-nno-nob
 * http://wiki.apertium.org/wiki/Using_an_lttoolbox_dictionary
 * http://wiki.apertium.org/wiki/Constraint_Grammar
 * http://nn.wikipedia.org/wiki/Wikipedia:Wikiprosjekt_Maskinomsetjing_fr%C3%A5_bokm%C3%A5l

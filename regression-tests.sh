@@ -7,7 +7,7 @@ if [ $# -eq 1 ]; then
     GREP='[*#/]'
 fi
 
-./wiki-tests.sh Regression nb nn  | grep -C $C "$GREP"
+./wiki-tests.sh Regression nob nno  | grep -C $C "$GREP"
 
-./wiki-tests.sh Regression nn nb  | grep -C $C "$GREP"
+./wiki-tests.sh Regression nno nob  | grep -C $C "$GREP"
 
