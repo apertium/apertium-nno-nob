@@ -1,9 +1,9 @@
 VERSION=0.7.0
-LANG1=nn
-# nn_a har a-endingar i infinitiv, nn_e har e-endingar (standard):
-LANG1e=nn_e
-LANG1a=nn_a
-LANG2=nb
+LANG1=nno
+# nno_a har a-endingar i infinitiv, nno_e har e-endingar (standard):
+LANG1e=nno_e
+LANG1a=nno_a
+LANG2=nob
 PREFIX1=$(LANG1)-$(LANG2)
 PREFIX2=$(LANG2)-$(LANG1)
 PREFIX1e1a=$(LANG1e)-$(LANG1)
@@ -37,7 +37,7 @@ TARGETS_COMMON = \
 .deps/$(BASENAME).$(PREFIX1).dix: $(BASENAME).$(PREFIX1).dix lexchoicebil.xsl .deps/.d
 	xsltproc lexchoicebil.xsl $(BASENAME).$(PREFIX1).dix > $@
 
-# nn-nb
+# nno-nob
 $(PREFIX1).automorf-no-cp.bin: .deps/$(BASENAME).$(LANG1)-no-cp.dix
 	apertium-validate-dictionary $<
 	lt-comp lr $< $@
@@ -58,7 +58,7 @@ $(PREFIX1).autogen.bin: $(BASENAME).$(LANG2).dix
 	lt-comp rl $< $@
 
 
-# nb-nn
+# nob-nno
 $(PREFIX2).automorf.bin: $(BASENAME).$(LANG2).dix
 	apertium-validate-dictionary $<
 	lt-comp lr $< $@
@@ -86,14 +86,14 @@ $(PREFIX2).autogen-no-cp.bin: $(BASENAME).$(LANG1).dix
 	apertium-validate-dictionary $<
 	lt-comp --alt $(LANG1a) rl $< $@
 
-# nb-nn_e
+# nob-nno_e
 $(PREFIX2e).autogen-no-cp.bin: $(BASENAME).$(LANG1).dix
 	apertium-validate-dictionary $<
 	lt-comp --alt $(LANG1e) rl $< $@
 
 
 
-# nn-nb-cp TODO
+# nno-nob-cp TODO
 # $(PREFIX1).autogen.bin: $(BASENAME).$(LANG2).dix
 # 	apertium-validate-dictionary $(BASENAME).$(LANG2).dix
 # 	lt-comp rl $(BASENAME).$(LANG2).dix $@
@@ -112,7 +112,7 @@ EXTRA_DIST=$(BASENAME).$(LANG1).dix $(BASENAME).$(PREFIX1).dix \
 	   $(BASENAME).$(LANG2).tsx \
 	   modes.xml rem-compounds.xsl lexchoicebil.xsl
 
-apertium_nn_nbdir=$(prefix)/share/apertium/apertium-$(PREFIX1)/
+apertium_nno_nobdir=$(prefix)/share/apertium/apertium-$(PREFIX1)/
 apertium_modesdir=$(prefix)/share/apertium/modes/
 
 modes/$(PREFIX1).mode: modes.xml
@@ -120,7 +120,7 @@ modes/$(PREFIX1).mode: modes.xml
 	apertium-gen-modes modes.xml
 	cp *.mode modes/
 
-apertium_nn_nb_DATA=$(TARGETS_COMMON) \
+apertium_nno_nob_DATA=$(TARGETS_COMMON) \
                     $(PREFIX1).prob \
                     $(PREFIX2).prob \
 		    modes.xml
@@ -137,10 +137,10 @@ install-data-local:
 	modes=`xmllint --xpath '//mode[@install="yes"]/@name' modes.xml | sed 's/ *name="\([^"]*\)"/\1.mode /g'`; \
 		$(INSTALL_DATA) $$modes $(DESTDIR)$(apertium_modesdir); \
 		rm $$modes
-	$(INSTALL_DATA) $(BASENAME).$(PREFIX1).t1x $(DESTDIR)$(apertium_nn_nbdir)
-	$(INSTALL_DATA) $(BASENAME).$(PREFIX2).t1x $(DESTDIR)$(apertium_nn_nbdir)
-	$(INSTALL_DATA) $(BASENAME).$(PREFIX2).t2x $(DESTDIR)$(apertium_nn_nbdir)
-	$(INSTALL_DATA) $(BASENAME).$(PREFIX2).t3x $(DESTDIR)$(apertium_nn_nbdir)
+	$(INSTALL_DATA) $(BASENAME).$(PREFIX1).t1x $(DESTDIR)$(apertium_nno_nobdir)
+	$(INSTALL_DATA) $(BASENAME).$(PREFIX2).t1x $(DESTDIR)$(apertium_nno_nobdir)
+	$(INSTALL_DATA) $(BASENAME).$(PREFIX2).t2x $(DESTDIR)$(apertium_nno_nobdir)
+	$(INSTALL_DATA) $(BASENAME).$(PREFIX2).t3x $(DESTDIR)$(apertium_nno_nobdir)
 
 
 CLEANFILES = $(TARGETS_COMMON) $(TARGETS_NOCP)

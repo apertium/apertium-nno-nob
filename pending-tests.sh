@@ -8,8 +8,8 @@ C=$1
 GREP='WORKS'
 fi
 
-./wiki-tests.sh Pending nb nn  | grep -C $C "$GREP"
+./wiki-tests.sh Pending nob nno  | grep -C $C "$GREP"
 
-./wiki-tests.sh Pending nn nb  | grep -C $C "$GREP"
+./wiki-tests.sh Pending nno nob  | grep -C $C "$GREP"
 
 
