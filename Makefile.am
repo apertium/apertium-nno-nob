@@ -1,3 +1,7 @@
+###############################################################################
+## Makefile for Nynorsk--Bokmål
+###############################################################################
+
 VERSION=0.7.0
 LANG1=nno
 # nno_a har a-endingar i infinitiv, nno_e har e-endingar (standard):
@@ -20,8 +24,8 @@ TARGETS_COMMON = \
      $(PREFIX2).automorf.bin \
      $(PREFIX2).rlx.bin \
      $(PREFIX2).autobil.bin $(PREFIX2).t1x.bin $(PREFIX2).t2x.bin $(PREFIX2).t3x.bin \
-     $(PREFIX2).autogen-no-cp.bin \
-     $(PREFIX2e).autogen-no-cp.bin
+     $(PREFIX2).autogen.bin \
+     $(PREFIX2e).autogen.bin
 
 # Use this goal for creating .deps, otherwise make -j2 will give problems:
 .deps/.d:
@@ -31,19 +35,19 @@ TARGETS_COMMON = \
 # Prevent the .d file from being removed automatically:
 .PRECIOUS: .deps/.d
 
-.deps/$(BASENAME).$(LANG1)-no-cp.dix: $(BASENAME).$(LANG1).dix rem-compounds.xsl .deps/.d
-	xsltproc rem-compounds.xsl $(BASENAME).$(LANG1).dix > $@
+###############################################################################
+## Transducers, disambiguation rules, transfer
+###############################################################################
 
 .deps/$(BASENAME).$(PREFIX1).dix: $(BASENAME).$(PREFIX1).dix lexchoicebil.xsl .deps/.d
 	xsltproc lexchoicebil.xsl $(BASENAME).$(PREFIX1).dix > $@
 
 # nno-nob
-$(PREFIX1).automorf-no-cp.bin: .deps/$(BASENAME).$(LANG1)-no-cp.dix
-	apertium-validate-dictionary $<
-	lt-comp lr $< $@
+$(PREFIX1).automorf-no-cp.bin: $(AP_LIB1)/$(LANG1).automorf-no-cp.bin $(PREFIX1).autobil.bin
+	lt-trim $^ $@
 
-$(PREFIX1).rlx.bin: $(BASENAME).$(PREFIX1).rlx
-	cg-comp $< $@
+$(PREFIX1).rlx.bin: $(AP_LIB1)/$(LANG1).rlx.bin
+	cp $< $@
 
 $(PREFIX1).autobil.bin: .deps/$(BASENAME).$(PREFIX1).dix
 	apertium-validate-dictionary $<
@@ -53,18 +57,15 @@ $(PREFIX1).t1x.bin: $(BASENAME).$(PREFIX1).t1x
 	apertium-validate-transfer $<
 	apertium-preprocess-transfer $< $@
 
-$(PREFIX1).autogen.bin: $(BASENAME).$(LANG2).dix
-	apertium-validate-dictionary $<
-	lt-comp rl $< $@
-
+$(PREFIX1).autogen.bin: $(AP_LIB2)/$(LANG2).autogen.bin
+	cp $< $@
 
 # nob-nno
-$(PREFIX2).automorf.bin: $(BASENAME).$(LANG2).dix
-	apertium-validate-dictionary $<
-	lt-comp lr $< $@
+$(PREFIX2).automorf.bin: $(AP_LIB2)/$(LANG2).automorf.bin $(PREFIX2).autobil.bin
+	lt-trim $^ $@
 
-$(PREFIX2).rlx.bin: $(BASENAME).$(PREFIX2).rlx
-	cg-comp $(BASENAME).$(PREFIX2).rlx $@
+$(PREFIX2).rlx.bin: $(AP_LIB2)/$(LANG2).rlx.bin
+	cp $< $@
 
 $(PREFIX2).autobil.bin: .deps/$(BASENAME).$(PREFIX1).dix
 	apertium-validate-dictionary $<
@@ -82,27 +83,25 @@ $(PREFIX2).t3x.bin: $(BASENAME).$(PREFIX2).t3x
 	apertium-validate-postchunk $<
 	apertium-preprocess-transfer $< $@
 
-$(PREFIX2).autogen-no-cp.bin: $(BASENAME).$(LANG1).dix
-	apertium-validate-dictionary $<
-	lt-comp --alt $(LANG1a) rl $< $@
+$(PREFIX2).autogen.bin: $(AP_LIB1)/$(LANG1).autogen.bin
+	cp $< $@
 
-# nob-nno_e
-$(PREFIX2e).autogen-no-cp.bin: $(BASENAME).$(LANG1).dix
-	apertium-validate-dictionary $<
-	lt-comp --alt $(LANG1e) rl $< $@
-
-
+$(PREFIX2e).autogen.bin: $(AP_LIB1)/$(LANG1e).autogen.bin
+	cp $< $@
 
 # nno-nob-cp TODO
-# $(PREFIX1).autogen.bin: $(BASENAME).$(LANG2).dix
-# 	apertium-validate-dictionary $(BASENAME).$(LANG2).dix
-# 	lt-comp rl $(BASENAME).$(LANG2).dix $@
 
 
-EXTRA_DIST=$(BASENAME).$(LANG1).dix $(BASENAME).$(PREFIX1).dix \
-	   $(BASENAME).$(LANG2).dix \
-           $(BASENAME).$(PREFIX1).rlx \
-           $(BASENAME).$(PREFIX2).rlx \
+###############################################################################
+## Translation modes
+###############################################################################
+
+modes/$(PREFIX1).mode: modes.xml
+	apertium-validate-modes modes.xml
+	apertium-gen-modes modes.xml
+	cp *.mode modes/
+
+EXTRA_DIST=$(BASENAME).$(PREFIX1).dix \
            $(PREFIX1).prob $(PREFIX2).prob \
 	   $(BASENAME).$(PREFIX1).t1x \
 	   $(BASENAME).$(PREFIX2).t1x \
@@ -114,11 +113,6 @@ EXTRA_DIST=$(BASENAME).$(LANG1).dix $(BASENAME).$(PREFIX1).dix \
 
 apertium_nno_nobdir=$(prefix)/share/apertium/apertium-$(PREFIX1)/
 apertium_modesdir=$(prefix)/share/apertium/modes/
-
-modes/$(PREFIX1).mode: modes.xml
-	apertium-validate-modes modes.xml
-	apertium-gen-modes modes.xml
-	cp *.mode modes/
 
 apertium_nno_nob_DATA=$(TARGETS_COMMON) \
                     $(PREFIX1).prob \
@@ -143,6 +137,6 @@ install-data-local:
 	$(INSTALL_DATA) $(BASENAME).$(PREFIX2).t3x $(DESTDIR)$(apertium_nno_nobdir)
 
 
-CLEANFILES = $(TARGETS_COMMON) $(TARGETS_NOCP)
+CLEANFILES = $(TARGETS_COMMON)
 clean-local: 
 	-rm -rf .deps modes
