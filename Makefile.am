@@ -19,10 +19,12 @@ BASENAME=apertium-$(PREFIX1)
 TARGETS_COMMON = \
      $(PREFIX1).automorf-no-cp.bin \
      $(PREFIX1).rlx.bin \
+     $(PREFIX1).prob \
      $(PREFIX1).autobil.bin $(PREFIX1).t1x.bin \
      $(PREFIX1).autogen.bin \
      $(PREFIX2).automorf.bin \
      $(PREFIX2).rlx.bin \
+     $(PREFIX2).prob \
      $(PREFIX2).autobil.bin $(PREFIX2).t1x.bin $(PREFIX2).t2x.bin $(PREFIX2).t3x.bin \
      $(PREFIX2).autogen.bin \
      $(PREFIX2e).autogen.bin
@@ -49,6 +51,9 @@ $(PREFIX1).automorf-no-cp.bin: $(AP_LIB1)/$(LANG1).automorf-no-cp.bin $(PREFIX1)
 $(PREFIX1).rlx.bin: $(AP_LIB1)/$(LANG1).rlx.bin
 	cp $< $@
 
+$(PREFIX1).prob: $(AP_LIB1)/$(LANG1).prob
+	cp $< $@
+
 $(PREFIX1).autobil.bin: .deps/$(BASENAME).$(PREFIX1).dix
 	apertium-validate-dictionary $<
 	lt-comp lr $< $@
@@ -65,6 +70,9 @@ $(PREFIX2).automorf.bin: $(AP_LIB2)/$(LANG2).automorf.bin $(PREFIX2).autobil.bin
 	lt-trim $^ $@
 
 $(PREFIX2).rlx.bin: $(AP_LIB2)/$(LANG2).rlx.bin
+	cp $< $@
+
+$(PREFIX2).prob: $(AP_LIB2)/$(LANG2).prob
 	cp $< $@
 
 $(PREFIX2).autobil.bin: .deps/$(BASENAME).$(PREFIX1).dix
@@ -102,21 +110,16 @@ modes/$(PREFIX1).mode: modes.xml
 	cp *.mode modes/
 
 EXTRA_DIST=$(BASENAME).$(PREFIX1).dix \
-           $(PREFIX1).prob $(PREFIX2).prob \
 	   $(BASENAME).$(PREFIX1).t1x \
 	   $(BASENAME).$(PREFIX2).t1x \
 	   $(BASENAME).$(PREFIX2).t2x \
 	   $(BASENAME).$(PREFIX2).t3x \
-	   $(BASENAME).$(LANG1).tsx \
-	   $(BASENAME).$(LANG2).tsx \
-	   modes.xml rem-compounds.xsl lexchoicebil.xsl
+	   modes.xml lexchoicebil.xsl
 
 apertium_nno_nobdir=$(prefix)/share/apertium/apertium-$(PREFIX1)/
 apertium_modesdir=$(prefix)/share/apertium/modes/
 
 apertium_nno_nob_DATA=$(TARGETS_COMMON) \
-                    $(PREFIX1).prob \
-                    $(PREFIX2).prob \
 		    modes.xml
 
 # All modes are created by the same goal, listing several will just give problems with make -j2
