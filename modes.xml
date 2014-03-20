@@ -69,6 +69,122 @@
       </program>
     </pipeline>
   </mode>
+  <mode name="nob-nno-dis" install="no">
+    <pipeline>
+      <program name="lt-proc -w -e">
+        <file name="nob-nno.automorf.bin"/>
+      </program>
+      <program name="cg-proc -w">
+	<file name="nob-nno.rlx.bin"/>
+      </program>
+    </pipeline>
+  </mode>
+  <mode name="nob-nno-dis-trace" install="no">
+    <pipeline>
+      <program name="lt-proc -w -e">
+        <file name="nob-nno.automorf.bin"/>
+      </program>
+      <program name="cg-proc -w -t">
+	<file name="nob-nno.rlx.bin"/>
+      </program>
+    </pipeline>
+  </mode>
+  <mode name="nob-nno-tagger" install="no">
+    <pipeline>
+      <program name="lt-proc -w -e">
+        <file name="nob-nno.automorf.bin"/>
+      </program>
+      <program name="cg-proc -w">
+	<file name="nob-nno.rlx.bin"/>
+      </program>
+      <program name="apertium-tagger -g $2">
+        <file name="nob-nno.prob"/>
+      </program>
+    </pipeline>
+  </mode>
+  <mode name="nob-nno-pretransfer" install="no">
+    <pipeline>
+      <program name="lt-proc -w -e">
+        <file name="nob-nno.automorf.bin"/>
+      </program>
+      <program name="cg-proc -w">
+	<file name="nob-nno.rlx.bin"/>
+      </program>
+      <program name="apertium-tagger -g $2">
+        <file name="nob-nno.prob"/>
+      </program>
+      <program name="apertium-pretransfer"/>
+    </pipeline>
+  </mode>
+  <mode name="nob-nno-chunker" install="no">
+    <pipeline>
+      <program name="lt-proc -w -e">
+        <file name="nob-nno.automorf.bin"/>
+      </program>
+      <program name="cg-proc -w">
+	<file name="nob-nno.rlx.bin"/>
+      </program>
+      <program name="apertium-tagger -g $2">
+        <file name="nob-nno.prob"/>
+      </program>
+      <program name="apertium-pretransfer"/>
+      <program name="apertium-transfer">
+        <file name="apertium-nno-nob.nob-nno.t1x"/>
+        <file name="nob-nno.t1x.bin"/>
+        <file name="nob-nno.autobil.bin"/>
+      </program>
+    </pipeline>
+  </mode>
+  <mode name="nob-nno-interchunk" install="no">
+    <pipeline>
+      <program name="lt-proc -w -e">
+        <file name="nob-nno.automorf.bin"/>
+      </program>
+      <program name="cg-proc -w">
+	<file name="nob-nno.rlx.bin"/>
+      </program>
+      <program name="apertium-tagger -g $2">
+        <file name="nob-nno.prob"/>
+      </program>
+      <program name="apertium-pretransfer"/>
+      <program name="apertium-transfer">
+        <file name="apertium-nno-nob.nob-nno.t1x"/>
+        <file name="nob-nno.t1x.bin"/>
+        <file name="nob-nno.autobil.bin"/>
+      </program>
+      <program name="apertium-interchunk">
+        <file name="apertium-nno-nob.nob-nno.t2x"/>
+        <file name="nob-nno.t2x.bin"/>
+      </program>
+    </pipeline>
+  </mode>
+  <mode name="nob-nno-postchunk" install="no">
+    <pipeline>
+      <program name="lt-proc -w -e">
+        <file name="nob-nno.automorf.bin"/>
+      </program>
+      <program name="cg-proc -w">
+	<file name="nob-nno.rlx.bin"/>
+      </program>
+      <program name="apertium-tagger -g $2">
+        <file name="nob-nno.prob"/>
+      </program>
+      <program name="apertium-pretransfer"/>
+      <program name="apertium-transfer">
+        <file name="apertium-nno-nob.nob-nno.t1x"/>
+        <file name="nob-nno.t1x.bin"/>
+        <file name="nob-nno.autobil.bin"/>
+      </program>
+      <program name="apertium-interchunk">
+        <file name="apertium-nno-nob.nob-nno.t2x"/>
+        <file name="nob-nno.t2x.bin"/>
+      </program>
+      <program name="apertium-postchunk">
+        <file name="apertium-nno-nob.nob-nno.t3x"/>
+        <file name="nob-nno.t3x.bin"/>
+      </program>
+    </pipeline>
+  </mode>
 
   <mode name="nob-nno-from-transfer" install="no"> <!-- debug mode -->
     <pipeline>
@@ -117,10 +233,76 @@
       </program>
     </pipeline>
   </mode>
-  <mode name="nno-nob-morph" install="no"> <!-- compounding todo -->
+  <mode name="nno-nob-morph" install="no">
     <pipeline>
       <program name="lt-proc -w -e">
         <file name="nno-nob.automorf-no-cp.bin"/>
+      </program>
+    </pipeline>
+  </mode>
+  <mode name="nno-nob-dis" install="no">
+    <pipeline>
+      <program name="lt-proc -w -e">
+        <file name="nno-nob.automorf-no-cp.bin"/>
+      </program>
+      <program name="cg-proc -w">
+	<file name="nno-nob.rlx.bin"/>
+      </program>
+    </pipeline>
+  </mode>
+  <mode name="nno-nob-dis-trace" install="no">
+    <pipeline>
+      <program name="lt-proc -w -e">
+        <file name="nno-nob.automorf-no-cp.bin"/>
+      </program>
+      <program name="cg-proc -w -t">
+	<file name="nno-nob.rlx.bin"/>
+      </program>
+    </pipeline>
+  </mode>
+  <mode name="nno-nob-tagger" install="no">
+    <pipeline>
+      <program name="lt-proc -w -e">
+        <file name="nno-nob.automorf-no-cp.bin"/>
+      </program>
+      <program name="cg-proc -w">
+	<file name="nno-nob.rlx.bin"/>
+      </program>
+      <program name="apertium-tagger -g $2">
+        <file name="nno-nob.prob"/>
+      </program>
+    </pipeline>
+  </mode>
+  <mode name="nno-nob-pretransfer" install="no">
+    <pipeline>
+      <program name="lt-proc -w -e">
+        <file name="nno-nob.automorf-no-cp.bin"/>
+      </program>
+      <program name="cg-proc -w">
+	<file name="nno-nob.rlx.bin"/>
+      </program>
+      <program name="apertium-tagger -g $2">
+        <file name="nno-nob.prob"/>
+      </program>
+      <program name="apertium-pretransfer"/>
+    </pipeline>
+  </mode>
+  <mode name="nno-nob-transfer" install="no">
+    <pipeline>
+      <program name="lt-proc -w -e">
+        <file name="nno-nob.automorf-no-cp.bin"/>
+      </program>
+      <program name="cg-proc -w">
+	<file name="nno-nob.rlx.bin"/>
+      </program>
+      <program name="apertium-tagger -g $2">
+        <file name="nno-nob.prob"/>
+      </program>
+      <program name="apertium-pretransfer"/>
+      <program name="apertium-transfer">
+        <file name="apertium-nno-nob.nno-nob.t1x"/>
+        <file name="nno-nob.t1x.bin"/>
+        <file name="nno-nob.autobil.bin"/>
       </program>
     </pipeline>
   </mode>
