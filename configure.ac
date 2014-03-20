@@ -7,12 +7,10 @@ AC_PREREQ(2.52)
 m4_define([required_apertium_version], [3.2.0])
 m4_define([required_lttolbox_version], [3.1.2])
 
-AC_INIT([apertium-nno-nob], [0.7.0], [unhammer@gmail.com])
+AC_INIT([apertium-nno-nob], [0.7.0], [unhammer+apertium@mm.st])
 AM_INIT_AUTOMAKE([apertium-nno-nob], [0.7.0], no-define)
 AC_PROG_LN_S
 AC_PROG_AWK
-# todo: only needed if we use a config.in file--should we?
-# AC_CONFIG_HEADER([config])
 
 PKG_CHECK_MODULES(APERTIUM,   apertium >= required_apertium_version, [], [PKG_CHECK_MODULES(APERTIUM,   apertium-3.2 >= required_apertium_version)])
 PKG_CHECK_MODULES(LTTOOLBOX, lttoolbox >= required_lttolbox_version, [], [PKG_CHECK_MODULES(LTTOOLBOX, lttoolbox-3.2 >= required_lttolbox_version)])
