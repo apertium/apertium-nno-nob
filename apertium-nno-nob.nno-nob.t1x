@@ -69,6 +69,11 @@
       <attr-item tags="adj.ord.posi"/>
       <attr-item tags="adj.ord.comp"/>
       <attr-item tags="adj.ord.sup"/>
+
+      <attr-item tags="adj.sint"/>
+      <attr-item tags="adj.sint.posi"/>
+      <attr-item tags="adj.sint.comp"/>
+      <attr-item tags="adj.sint.sup"/>
     </def-attr>
 
     <def-attr n="persona">
@@ -310,11 +315,9 @@
             <or>
               <equal><clip pos="1" side="tl" part="art"/><lit-tag v="def"/></equal>
               <equal><clip pos="1" side="tl" part="nbr"/><lit-tag v="pl"/></equal>
-              <equal><clip pos="1" side="tl" part="a_adj"/><lit-tag v="adj.pprs"/></equal>
-              <equal><clip pos="1" side="tl" part="a_adj"/><lit-tag v="adj.comp"/></equal>
-              <equal><clip pos="1" side="tl" part="a_adj"/><lit-tag v="adj.sup"/></equal>
-              <equal><clip pos="1" side="tl" part="a_adj"/><lit-tag v="adj.ord.comp"/></equal>
-              <equal><clip pos="1" side="tl" part="a_adj"/><lit-tag v="adj.ord.sup"/></equal>
+              <ends-with><clip pos="1" side="tl" part="a_adj"/><lit-tag v="pprs"/></ends-with>
+              <ends-with><clip pos="1" side="tl" part="a_adj"/><lit-tag v="comp"/></ends-with>
+              <ends-with><clip pos="1" side="tl" part="a_adj"/><lit-tag v="sup"/></ends-with>
             </or>
           </test>
           <let><var n="adj_gender"/><lit v=""/></let>
