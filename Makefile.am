@@ -101,13 +101,8 @@ $(PREFIX2e).autogen.bin: $(AP_LIB1)/$(LANG1e).autogen.bin
 
 
 ###############################################################################
-## Translation modes
+## Distribution
 ###############################################################################
-
-modes/$(PREFIX1).mode: modes.xml
-	apertium-validate-modes modes.xml
-	apertium-gen-modes modes.xml
-	cp *.mode modes/
 
 EXTRA_DIST=$(BASENAME).$(PREFIX1).dix \
 	   $(BASENAME).$(PREFIX1).t1x \
@@ -116,29 +111,28 @@ EXTRA_DIST=$(BASENAME).$(PREFIX1).dix \
 	   $(BASENAME).$(PREFIX2).t3x \
 	   modes.xml lexchoicebil.xsl
 
+###############################################################################
+## Installation
+###############################################################################
+
 apertium_nno_nobdir=$(prefix)/share/apertium/apertium-$(PREFIX1)/
-apertium_modesdir=$(prefix)/share/apertium/modes/
 
 apertium_nno_nob_DATA=$(TARGETS_COMMON) \
-		    modes.xml
+	$(BASENAME).$(PREFIX1).t1x \
+	$(BASENAME).$(PREFIX2).t1x \
+	$(BASENAME).$(PREFIX2).t2x \
+	$(BASENAME).$(PREFIX2).t3x
 
 # All modes are created by the same goal, listing several will just give problems with make -j2
 noinst_DATA=modes/$(PREFIX1).mode
 
-install-data-local:
-	mv modes modes.bak
-	apertium-gen-modes modes.xml $(BASENAME)
-	rm -rf modes
-	mv modes.bak modes
-	test -d $(DESTDIR)$(apertium_modesdir) || mkdir $(DESTDIR)$(apertium_modesdir)
-	modes=`xmllint --xpath '//mode[@install="yes"]/@name' modes.xml | sed 's/ *name="\([^"]*\)"/\1.mode /g'`; \
-		$(INSTALL_DATA) $$modes $(DESTDIR)$(apertium_modesdir); \
-		rm $$modes
-	$(INSTALL_DATA) $(BASENAME).$(PREFIX1).t1x $(DESTDIR)$(apertium_nno_nobdir)
-	$(INSTALL_DATA) $(BASENAME).$(PREFIX2).t1x $(DESTDIR)$(apertium_nno_nobdir)
-	$(INSTALL_DATA) $(BASENAME).$(PREFIX2).t2x $(DESTDIR)$(apertium_nno_nobdir)
-	$(INSTALL_DATA) $(BASENAME).$(PREFIX2).t3x $(DESTDIR)$(apertium_nno_nobdir)
+@ap_include@
+install-data-local: install-modes
 
+
+###############################################################################
+## Cleanup
+###############################################################################
 
 CLEANFILES = $(TARGETS_COMMON)
 clean-local: 
