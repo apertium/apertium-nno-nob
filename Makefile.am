@@ -29,13 +29,8 @@ TARGETS_COMMON = \
      $(PREFIX2).autogen.bin \
      $(PREFIX2e).autogen.bin
 
-# Use this goal for creating .deps, otherwise make -j2 will give problems:
-.deps/.d:
-	test -d .deps || mkdir .deps
-	touch $@
-
-# Prevent the .d file from being removed automatically:
-.PRECIOUS: .deps/.d
+# This include defines goals for install-modes, .deps/.d and .mode files:
+@ap_include@
 
 ###############################################################################
 ## Transducers, disambiguation rules, transfer
@@ -115,8 +110,9 @@ EXTRA_DIST=$(BASENAME).$(PREFIX1).dix \
 ## Installation
 ###############################################################################
 
-apertium_nno_nobdir=$(prefix)/share/apertium/apertium-$(PREFIX1)/
+apertium_nno_nobdir=$(prefix)/share/apertium/$(BASENAME)/
 
+# Files which should be installed to $(prefix)/share/apertium/$(BASENAME)/:
 apertium_nno_nob_DATA=$(TARGETS_COMMON) \
 	$(BASENAME).$(PREFIX1).t1x \
 	$(BASENAME).$(PREFIX2).t1x \
@@ -126,7 +122,6 @@ apertium_nno_nob_DATA=$(TARGETS_COMMON) \
 # All modes are created by the same goal, listing several will just give problems with make -j2
 noinst_DATA=modes/$(PREFIX1).mode
 
-@ap_include@
 install-data-local: install-modes
 
 
