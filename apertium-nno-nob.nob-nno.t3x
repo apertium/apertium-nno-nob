@@ -136,6 +136,14 @@
       </when></choose>
 
       <choose><when>
+        <test><and>
+          <equal><clip pos="2" part="nbr"/><lit-tag v="pl"/></equal>
+          <equal><clip pos="2" part="art"/><lit-tag v="def"/></equal>
+        </and></test>
+        <let><clip pos="2" part="nbr"/><lit-tag v="sp"/></let>
+      </when></choose>
+
+      <choose><when>
         <test><equal><clip pos="2" part="art"/><lit-tag v="def"/></equal></test>
         <let><clip pos="2" part="gen"/><lit v=""/></let>
       </when></choose>

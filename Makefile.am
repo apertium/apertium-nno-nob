@@ -2,6 +2,8 @@
 ## Makefile for Nynorsk--Bokmål
 ###############################################################################
 
+SUBDIRS=$(AP_SUBDIRS)
+
 VERSION=0.7.0
 LANG1=nno
 # nno_a har a-endingar i infinitiv, nno_e har e-endingar (standard):
