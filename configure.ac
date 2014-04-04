@@ -4,11 +4,11 @@
 
 AC_PREREQ(2.52)
 
-m4_define([required_apertium_version], [3.2.0])
-m4_define([required_lttolbox_version], [3.1.2])
+m4_define([required_apertium_version], [3.3.0])
+m4_define([required_lttolbox_version], [3.3.0])
 
-AC_INIT([apertium-nno-nob], [0.7.0], [unhammer+apertium@mm.st])
-AM_INIT_AUTOMAKE([apertium-nno-nob], [0.7.0], no-define)
+AC_INIT([apertium-nno-nob], [0.8.0], [unhammer+apertium@mm.st])
+AM_INIT_AUTOMAKE([apertium-nno-nob], [0.8.0], no-define)
 AC_PROG_LN_S
 AC_PROG_AWK
 
