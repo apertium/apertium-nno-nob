@@ -145,7 +145,17 @@
 
       <choose><when>
         <test><equal><clip pos="2" part="art"/><lit-tag v="def"/></equal></test>
-        <let><clip pos="2" part="gen"/><lit v=""/></let>
+        <choose>
+          <when c="pp: always sg and no gender when def">
+            <test><equal><clip pos="2" part="temps"/><lit-tag v="pp"/></equal></test>
+            <let><clip pos="2" part="gen"/><lit v=""/></let>
+            <let><clip pos="2" part="nbr"/><lit-tag v="sg"/></let>
+          </when>
+          <otherwise c="posi/sup: always sp and un when def">
+            <let><clip pos="2" part="gen"/><lit-tag v="un"/></let>
+            <let><clip pos="2" part="nbr"/><lit-tag v="sp"/></let>
+          </otherwise>
+        </choose>
       </when></choose>
     </def-macro>
   </section-def-macros>

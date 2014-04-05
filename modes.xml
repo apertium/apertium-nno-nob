@@ -185,6 +185,36 @@
       </program>
     </pipeline>
   </mode>
+  <mode name="nob-nno-dgen" install="no">
+    <pipeline>
+      <program name="lt-proc -w -e">
+        <file name="nob-nno.automorf.bin"/>
+      </program>
+      <program name="cg-proc -w">
+	<file name="nob-nno.rlx.bin"/>
+      </program>
+      <program name="apertium-tagger -g $2">
+        <file name="nob-nno.prob"/>
+      </program>
+      <program name="apertium-pretransfer"/>
+      <program name="apertium-transfer">
+        <file name="apertium-nno-nob.nob-nno.t1x"/>
+        <file name="nob-nno.t1x.bin"/>
+        <file name="nob-nno.autobil.bin"/>
+      </program>
+      <program name="apertium-interchunk">
+        <file name="apertium-nno-nob.nob-nno.t2x"/>
+        <file name="nob-nno.t2x.bin"/>
+      </program>
+      <program name="apertium-postchunk">
+        <file name="apertium-nno-nob.nob-nno.t3x"/>
+        <file name="nob-nno.t3x.bin"/>
+      </program>
+      <program name="lt-proc -d">
+        <file name="nob-nno.autogen.bin"/>
+      </program>
+    </pipeline>
+  </mode>
 
   <mode name="nob-nno-from-transfer" install="no"> <!-- debug mode -->
     <pipeline>
