@@ -156,9 +156,9 @@
     <def-cat n="adjind">
       <cat-item tags="adj.*.*.*.ind"/>
       <cat-item tags="adj.*.pl"/>
-      <cat-item tags="adj.comp"/>
+      <cat-item tags="adj.comp.*"/>
+      <cat-item tags="adj.sint.comp.*"/>
       <cat-item tags="adj.pprs"/>                              <!--hvor truende-->
-      <cat-item tags="adj.sup.ind"/>
     </def-cat>
     <def-cat n="adv">
       <cat-item tags="adv"/>
@@ -225,6 +225,30 @@
       <attr-item tags="det.qnt.neg"/>
       <attr-item tags="det.pos"/>
     </def-attr>
+    
+    <def-attr n="a_adj">
+      <attr-item tags="adj"/>
+      <attr-item tags="adj.pp"/>
+      <attr-item tags="adj.pprs"/>
+      <attr-item tags="adj.posi"/>
+      <attr-item tags="adj.comp"/>
+      <attr-item tags="adj.sup"/>
+      <attr-item tags="adj.ord.posi"/>
+      <attr-item tags="adj.ord.comp"/>
+      <attr-item tags="adj.ord.sup"/>
+
+      <attr-item tags="adj.sint"/>
+      <attr-item tags="adj.sint.posi"/>
+      <attr-item tags="adj.sint.comp"/>
+      <attr-item tags="adj.sint.sup"/>
+    </def-attr>
+
+    <def-attr n="grau">
+      <attr-item tags="posi"/>
+      <attr-item tags="comp"/>
+      <attr-item tags="sup"/> 
+    </def-attr>
+
     <def-attr n="gen">
       <attr-item tags="m"/>
       <attr-item tags="mf"/>
@@ -253,10 +277,11 @@
   <section-def-vars>
     <def-var n="gen-prep"/>
     <def-var n="caseFirstWord"/>
-    <def-var n="chunkname"/>
+    <def-var n="c_name"         c="chunk name"/>
     <def-var n="ntags"/>
     <def-var n="pass"/>
     <def-var n="aux"/>
+    <def-var n="grau_aux"       c="lexical unit containing meir/mest if translating from sint to non-sint"/>
   </section-def-vars>
 
   <section-def-lists>
@@ -437,6 +462,91 @@
       <call-macro n="set_gender1.adj"><with-param pos="2"/></call-macro>
     </def-macro>
 
+    <def-macro n="set_grau_aux2" npar="2"
+               c="arg.1: adjective arg.2: adjective
+                  When translating from «meir/mest» non-sint to sint, remove «meir/mest», empty grau_aux-variable.
+                  When translating from (first arg) sint to non-sint, put «meir/mest» in grau_aux-variable.
+
+                  Assumes c_name has been set!">
+      <choose>
+        <when>
+          <test><and>
+            <equal><clip pos="1" side="tl" part="lemh"/><lit v="mykje"/></equal>
+            <or>
+              <equal><clip pos="1" side="tl" part="grau"/><lit-tag v="comp"/></equal>
+              <equal><clip pos="1" side="tl" part="grau"/><lit-tag v="sup"/></equal>
+            </or>
+            <not><begins-with><clip pos="2" side="sl" part="a_adj"/><lit-tag v="adj.sint"/></begins-with></not>
+            <begins-with><clip pos="2" side="tl" part="a_adj"/><lit-tag v="adj.sint"/></begins-with>
+          </and></test>
+          <!-- The second adj is synthetic, so copy tags from first adj: -->
+          <let><clip pos="2" side="tl" part="tags"/><clip pos="1" side="tl" part="tags"/></let>
+          <!-- And delete the first (meir/mest) adj: -->
+          <let><clip pos="1" side="tl" part="whole"/><lit v=""/></let>
+          <let><var n="grau_aux"/><lit v=""/></let>
+        </when>
+
+        <otherwise>
+          <!-- Or maybe we want to _add_ meir/mest: -->
+          <call-macro n="set_grau_aux1"><with-param pos="1"/></call-macro>
+        </otherwise>
+      </choose>
+    </def-macro>
+
+    <def-macro n="set_grau_aux1" npar="1"
+               c="arg.1: adjective
+                  When translating from sint to non-sint, put «meir/mest» in grau_aux-variable.
+
+                  Assumes c_name has been set!">
+      <choose>
+        <when>
+          <test><and>
+            <begins-with><clip pos="1" side="sl" part="a_adj"/><lit-tag v="adj.sint"/></begins-with>
+            <not><begins-with><clip pos="1" side="tl" part="a_adj"/><lit-tag v="adj.sint"/></begins-with></not>
+            <or>
+              <equal><clip pos="1" side="tl" part="grau"/><lit-tag v="comp"/></equal>
+              <equal><clip pos="1" side="tl" part="grau"/><lit-tag v="sup"/></equal>
+            </or>
+          </and></test>
+
+          <let>
+            <var n="grau_aux"/>
+            <concat>
+              <lit v="^mykje"/>
+              <lit-tag v="adj"/>
+              <lit-tag v="sint"/>
+              <clip pos="1" side="tl" part="grau"/>
+              <lit-tag v="un"/>
+              <lit-tag v="sp"/>
+            </concat>
+          </let>
+          <choose><when>
+            <test><equal><clip pos="1" side="tl" part="grau"/><lit-tag v="sup"/></equal></test>
+            <append n="grau_aux"><lit-tag v="ind"/></append>
+          </when></choose>
+          <append n="grau_aux"><lit v="$ "/></append>
+
+          <let>
+            <var n="c_name"/>
+            <concat>
+              <lit v="adj_"/>
+              <var n="c_name"/>
+            </concat>
+          </let>
+
+          <let><clip pos="1" side="tl" part="grau"/><lit-tag v="posi"/></let>
+          <let><clip pos="1" side="tl" part="nbr"/><lit-tag v="pl"/></let>
+        </when>
+
+        <otherwise>
+          <let>
+            <var n="grau_aux"/><lit v=""/>
+          </let>
+        </otherwise>
+
+      </choose>
+    </def-macro>
+
     <!-- Output macros: -->
     <def-macro n="out_ndef" npar="2">
       <!-- arg.1: possessed noun. arg.2 gives typographic case
@@ -605,16 +715,16 @@
       </pattern>
       <action>
         <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
-        <let><var n="chunkname"/><lit v="vblex"/></let>
+        <let><var n="c_name"/><lit v="vblex"/></let>
         <choose><when>
           <test><or>
             <equal><clip pos="1" side="tl" part="lemh"/><lit v="bli"/></equal>
             <equal><clip pos="1" side="tl" part="lemh"/><lit v="vere"/></equal>
           </or></test>
-          <let><var n="chunkname"/><lit v="aux"/></let>
+          <let><var n="c_name"/><lit v="aux"/></let>
         </when></choose>
         <out>
-          <chunk namefrom="chunkname" case="caseFirstWord">
+          <chunk namefrom="c_name" case="caseFirstWord">
             <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
             <lu>
               <clip pos="1" side="tl" part="lemh"/>
@@ -636,16 +746,16 @@
       </pattern>
       <action>
         <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
-        <let><var n="chunkname"/><lit v="vblex"/></let>
+        <let><var n="c_name"/><lit v="vblex"/></let>
         <choose><when>
           <test><or>
             <equal><clip pos="1" side="tl" part="lemh"/><lit v="bli"/></equal>
             <equal><clip pos="1" side="tl" part="lemh"/><lit v="vere"/></equal>
           </or></test>
-          <let><var n="chunkname"/><lit v="aux"/></let>
+          <let><var n="c_name"/><lit v="aux"/></let>
         </when></choose>
         <out>
-          <chunk namefrom="chunkname" case="caseFirstWord">
+          <chunk namefrom="c_name" case="caseFirstWord">
             <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
             <lu>
               <clip pos="1" side="tl" part="lemh"/>
@@ -732,16 +842,16 @@
           <b pos="3"/>
         </out>
         <call-macro n="set_caseFirstWord"><with-param pos="4"/></call-macro>
-        <let><var n="chunkname"/><lit v="vblex"/></let>
+        <let><var n="c_name"/><lit v="vblex"/></let>
         <choose><when>
           <test><or>
             <equal><clip pos="4" side="tl" part="lemh"/><lit v="bli"/></equal>
             <equal><clip pos="4" side="tl" part="lemh"/><lit v="vere"/></equal>
           </or></test>
-          <let><var n="chunkname"/><lit v="aux"/></let>
+          <let><var n="c_name"/><lit v="aux"/></let>
         </when></choose>
         <out>
-          <chunk namefrom="chunkname" case="caseFirstWord">
+          <chunk namefrom="c_name" case="caseFirstWord">
             <tags><tag><clip pos="4" side="tl" part="tags"/></tag></tags>
             <lu>
               <clip pos="4" side="tl" part="lemh"/>
@@ -840,15 +950,29 @@ Requires rather ugly RL prn lemmas in nn.dix, see personal_pronouns__prn pardef"
         <pattern-item n="adjind"/>
       </pattern>
       <action>
-        <call-macro n="set_gender1.adj">
-          <with-param pos="2"/>
-        </call-macro>
+        <!-- c_name setting after set_grau_aux since adv first in chunk -->
+        <call-macro n="set_gender1.adj"><with-param pos="2"/></call-macro>
+        <call-macro n="set_grau_aux1"><with-param pos="2"/></call-macro>
         <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
+
+        <choose>
+          <when>
+            <test>
+              <not><equal><var n="grau_aux"/><lit v=""/></equal></not>
+            </test>
+            <let><var n="c_name"/><lit v="adv_adj_adj"/></let>
+          </when>
+          <otherwise>
+            <let><var n="c_name"/><lit v="adv_adj"/></let>
+          </otherwise>
+        </choose>
+
         <out>
-          <chunk name="adv_adj" case="caseFirstWord">
+          <chunk namefrom="c_name" case="caseFirstWord">
             <tags><tag><clip pos="2" side="tl" part="tags"/></tag></tags>
             <lu><clip pos="1" side="tl" part="whole"/></lu>
             <b pos="1"/>
+            <var n="grau_aux"/>
             <lu>
               <clip pos="2" side="tl" part="lemh"/>
               <clip pos="2" side="tl" part="tags"/>
@@ -883,17 +1007,17 @@ Requires rather ugly RL prn lemmas in nn.dix, see personal_pronouns__prn pardef"
         <pattern-item n="ngen_time_meas"/>
       </pattern>
       <action>
-        <call-macro n="set_gender2.n.adj">
-          <with-param pos="2"/>
-          <with-param pos="1"/>
-        </call-macro>
+        <let><var n="c_name"/><lit v="adj_n"/></let>
+        <call-macro n="set_gender2.n.adj"><with-param pos="2"/><with-param pos="1"/></call-macro>
+        <call-macro n="set_grau_aux1"><with-param pos="1"/></call-macro>
         <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
         <out>
-          <chunk name="adj_n" case="caseFirstWord">
+          <chunk namefrom="c_name" case="caseFirstWord">
             <tags>
               <tag><lit-tag v="timemeas"/></tag>
               <tag><clip pos="2" side="tl" part="tags"/></tag>
             </tags>
+            <var n="grau_aux"/>
             <lu>
               <clip pos="1" side="tl" part="lemh"/>
               <clip pos="1" side="tl" part="tags"/>
@@ -1002,17 +1126,16 @@ Requires rather ugly RL prn lemmas in nn.dix, see personal_pronouns__prn pardef"
         <!--     </and> -->
         <!--   </test> -->
         <!-- </exception> -->
-        <call-macro n="set_gender2.n.adj">
-          <with-param pos="2"/>
-          <with-param pos="1"/>
-        </call-macro>
+        <let><var n="c_name"/><lit v="adj_n"/></let>
+        <call-macro n="set_gender2.n.adj"><with-param pos="2"/><with-param pos="1"/></call-macro>
+        <call-macro n="set_grau_aux1"><with-param pos="1"/></call-macro>
         <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
         <call-macro n="out_gen-prep"><with-param pos="2"/></call-macro>
         <call-macro n="stash_case_in_ntags"><with-param pos="2"/></call-macro>
         <out>
-          <chunk name="adj_n" case="caseFirstWord">
-            <tags><tag><var n="ntags"/></tag>
-            </tags>
+          <chunk namefrom="c_name" case="caseFirstWord">
+            <tags><tag><var n="ntags"/></tag></tags>
+            <var n="grau_aux"/>
             <lu>
               <clip pos="1" side="tl" part="lemh"/>
               <clip pos="1" side="tl" part="tags"/>
@@ -1031,14 +1154,16 @@ Requires rather ugly RL prn lemmas in nn.dix, see personal_pronouns__prn pardef"
         <pattern-item n="n"/>
       </pattern>
       <action>
+        <let><var n="c_name"/><lit v="adj_n_n"/></let>
         <call-macro n="set_gender2.n.adj"><with-param pos="3"/><with-param pos="1"/></call-macro>
+        <call-macro n="set_grau_aux1"><with-param pos="1"/></call-macro>
         <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
         <call-macro n="out_gen-prep"><with-param pos="3"/></call-macro>
         <call-macro n="stash_case_in_ntags"><with-param pos="3"/></call-macro>
         <out>
-          <chunk name="adj_n_n" case="caseFirstWord">
-            <tags><tag><var n="ntags"/></tag>
-            </tags>
+          <chunk namefrom="c_name" case="caseFirstWord">
+            <tags><tag><var n="ntags"/></tag></tags>
+            <var n="grau_aux"/>
             <lu>
               <clip pos="1" side="tl" part="lemh"/>
               <clip pos="1" side="tl" part="tags"/>
@@ -1059,14 +1184,16 @@ Requires rather ugly RL prn lemmas in nn.dix, see personal_pronouns__prn pardef"
         <pattern-item n="n"/>
       </pattern>
       <action>
+        <let><var n="c_name"/><lit v="adj_n_n_n"/></let>
         <call-macro n="set_gender2.n.adj"><with-param pos="4"/><with-param pos="1"/></call-macro>
+        <call-macro n="set_grau_aux1"><with-param pos="1"/></call-macro>
         <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
         <call-macro n="out_gen-prep"><with-param pos="4"/></call-macro>
         <call-macro n="stash_case_in_ntags"><with-param pos="4"/></call-macro>
         <out>
-          <chunk name="adj_n_n_n" case="caseFirstWord">
-            <tags><tag><var n="ntags"/></tag>
-            </tags>
+          <chunk namefrom="c_name" case="caseFirstWord">
+            <tags><tag><var n="ntags"/></tag></tags>
+            <var n="grau_aux"/>
             <lu>
               <clip pos="1" side="tl" part="lemh"/>
               <clip pos="1" side="tl" part="tags"/>
@@ -1088,17 +1215,33 @@ Requires rather ugly RL prn lemmas in nn.dix, see personal_pronouns__prn pardef"
         <pattern-item n="n"/>
       </pattern>
       <action>
+        <let><var n="c_name"/><lit v="adj_adj_n"/></let>
         <call-macro n="set_gender2.n.adj"><with-param pos="3"/><with-param pos="1"/></call-macro>
         <call-macro n="set_gender2.n.adj"><with-param pos="3"/><with-param pos="2"/></call-macro>
+        <call-macro n="set_grau_aux2"><with-param pos="1"/><with-param pos="2"/></call-macro>
         <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
         <call-macro n="out_gen-prep"><with-param pos="3"/></call-macro>
         <call-macro n="stash_case_in_ntags"><with-param pos="3"/></call-macro>
+        <choose><when>
+          <!-- set_grau_aux2 may have removed the first adj: -->
+          <test><equal><clip pos="1" side="tl" part="whole"/><lit v=""/></equal></test>
+          <let><var n="c_name"/><lit v="adj_n"/></let>
+        </when></choose>
         <out>
-          <chunk name="adj_adj_n" case="caseFirstWord">
+          <chunk namefrom="c_name" case="caseFirstWord">
             <tags><tag><var n="ntags"/></tag></tags>
-            <lu><clip pos="1" side="tl" part="whole"/></lu>
+            <var n="grau_aux"/>
+            <lu>
+              <clip pos="1" side="tl" part="lemh"/>
+              <clip pos="1" side="tl" part="tags"/>
+              <clip pos="1" side="tl" part="lemq"/>
+            </lu>
             <b pos="1"/>
-            <lu><clip pos="2" side="tl" part="whole"/></lu>
+            <lu>
+              <clip pos="2" side="tl" part="lemh"/>
+              <clip pos="2" side="tl" part="tags"/>
+              <clip pos="2" side="tl" part="lemq"/>
+            </lu>
             <b pos="2"/>
             <lu><clip pos="3" side="tl" part="whole"/></lu>
           </chunk>
@@ -1113,14 +1256,22 @@ Requires rather ugly RL prn lemmas in nn.dix, see personal_pronouns__prn pardef"
         <pattern-item n="n"/>
       </pattern>
       <action>
+        <let><var n="c_name"/><lit v="adj_adj_n_n"/></let>
         <call-macro n="set_gender2.n.adj"><with-param pos="4"/><with-param pos="1"/></call-macro>
         <call-macro n="set_gender2.n.adj"><with-param pos="4"/><with-param pos="2"/></call-macro>
+        <call-macro n="set_grau_aux2"><with-param pos="1"/><with-param pos="2"/></call-macro>
         <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
         <call-macro n="out_gen-prep"><with-param pos="4"/></call-macro>
         <call-macro n="stash_case_in_ntags"><with-param pos="4"/></call-macro>
+        <choose><when>
+          <!-- set_grau_aux2 may have removed the first adj: -->
+          <test><equal><clip pos="1" side="tl" part="whole"/><lit v=""/></equal></test>
+          <let><var n="c_name"/><lit v="adj_n_n"/></let>
+        </when></choose>
         <out>
-          <chunk name="adj_adj_n_n" case="caseFirstWord">
+          <chunk namefrom="c_name" case="caseFirstWord">
             <tags><tag><var n="ntags"/></tag></tags>
+            <var n="grau_aux"/>
             <lu>
               <clip pos="1" side="tl" part="lemh"/>
               <clip pos="1" side="tl" part="tags"/>
@@ -1148,14 +1299,22 @@ Requires rather ugly RL prn lemmas in nn.dix, see personal_pronouns__prn pardef"
         <pattern-item n="n"/>
       </pattern>
       <action>
+        <let><var n="c_name"/><lit v="adj_adj_n_n_n"/></let>
         <call-macro n="set_gender2.n.adj"><with-param pos="5"/><with-param pos="1"/></call-macro>
         <call-macro n="set_gender2.n.adj"><with-param pos="5"/><with-param pos="2"/></call-macro>
+        <call-macro n="set_grau_aux2"><with-param pos="1"/><with-param pos="2"/></call-macro>
         <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
         <call-macro n="out_gen-prep"><with-param pos="5"/></call-macro>
         <call-macro n="stash_case_in_ntags"><with-param pos="5"/></call-macro>
+        <choose><when>
+          <!-- set_grau_aux2 may have removed the first adj: -->
+          <test><equal><clip pos="1" side="tl" part="whole"/><lit v=""/></equal></test>
+          <let><var n="c_name"/><lit v="adj_n_n_n"/></let>
+        </when></choose>
         <out>
-          <chunk name="adj_adj_n_n_n" case="caseFirstWord">
+          <chunk namefrom="c_name" case="caseFirstWord">
             <tags><tag><var n="ntags"/></tag></tags>
+            <var n="grau_aux"/>
             <lu>
               <clip pos="1" side="tl" part="lemh"/>
               <clip pos="1" side="tl" part="tags"/>
@@ -1182,17 +1341,53 @@ Requires rather ugly RL prn lemmas in nn.dix, see personal_pronouns__prn pardef"
         <pattern-item n="adj"/>
       </pattern>
       <action>
-        <call-macro n="set_gender1.adj">
-          <with-param pos="1"/>
-        </call-macro>
+        <let><var n="c_name"/><lit v="adj"/></let>
+        <call-macro n="set_gender1.adj"><with-param pos="1"/></call-macro>
+        <call-macro n="set_grau_aux1"><with-param pos="1"/></call-macro>
         <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
         <out>
-          <chunk name="adj" case="caseFirstWord">
+          <chunk namefrom="c_name" case="caseFirstWord">
             <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
+            <var n="grau_aux"/>
             <lu>
               <clip pos="1" side="tl" part="lemh"/>
               <clip pos="1" side="tl" part="tags"/>
               <clip pos="1" side="tl" part="lemq"/>
+            </lu>
+          </chunk>
+        </out>
+      </action>
+    </rule>
+    <rule comment="ADJ ADJ">
+      <pattern>
+        <pattern-item n="adj"/>
+        <pattern-item n="adj"/>
+      </pattern>
+      <action>
+        <let><var n="c_name"/><lit v="adj_adj"/></let>
+        <call-macro n="set_gender1.adj"><with-param pos="1"/></call-macro>
+        <call-macro n="set_gender1.adj"><with-param pos="2"/></call-macro>
+        <call-macro n="set_grau_aux2"><with-param pos="1"/><with-param pos="2"/></call-macro>
+        <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
+        <choose><when>
+          <!-- set_grau_aux2 may have removed the first adj: -->
+          <test><equal><clip pos="1" side="tl" part="whole"/><lit v=""/></equal></test>
+          <let><var n="c_name"/><lit v="adj"/></let>
+        </when></choose>
+        <out>
+          <chunk namefrom="c_name" case="caseFirstWord">
+            <tags><tag><clip pos="2" side="tl" part="tags"/></tag></tags>
+            <var n="grau_aux"/>
+            <lu>
+              <clip pos="1" side="tl" part="lemh"/>
+              <clip pos="1" side="tl" part="tags"/>
+              <clip pos="1" side="tl" part="lemq"/>
+            </lu>
+            <b pos="1"/>
+            <lu>
+              <clip pos="2" side="tl" part="lemh"/>
+              <clip pos="2" side="tl" part="tags"/>
+              <clip pos="2" side="tl" part="lemq"/>
             </lu>
           </chunk>
         </out>
@@ -1208,13 +1403,13 @@ Requires rather ugly RL prn lemmas in nn.dix, see personal_pronouns__prn pardef"
         <choose>
           <when>
             <test><in caseless="yes"><clip pos="1" side="sl" part="lem"/><list n="det_indef"/></in></test>
-            <let><var n="chunkname"/><lit v="detdd"/></let>
+            <let><var n="c_name"/><lit v="detdd"/></let>
           </when>
           <when>
             <test><equal caseless="yes"><clip pos="1" side="tl" part="lemh"/><lit v="seg"/></equal></test>
-            <let><var n="chunkname"/><lit v="detsin"/></let>
+            <let><var n="c_name"/><lit v="detsin"/></let>
           </when>
-          <otherwise><let><var n="chunkname"/><lit v="det"/></let></otherwise>
+          <otherwise><let><var n="c_name"/><lit v="det"/></let></otherwise>
         </choose>
         <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
         <choose><when c="There are no genitive det's in nn.dix, output prep (most likely changed to 'sin' in t2x)">
@@ -1223,7 +1418,7 @@ Requires rather ugly RL prn lemmas in nn.dix, see personal_pronouns__prn pardef"
           <let><clip pos="1" side="tl" part="cas"/><lit v=""/></let>
         </when></choose>
         <out>
-          <chunk namefrom="chunkname" case="caseFirstWord">
+          <chunk namefrom="c_name" case="caseFirstWord">
             <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
             <lu><clip pos="1" side="tl" part="whole"/></lu>
           </chunk>

@@ -81,6 +81,11 @@
       <cat-item tags="adj.pp"/>
       <cat-item tags="adj.pp.*"/>
     </def-cat>
+    <def-cat n="single-adjpart"> <!-- chunk lemma ensures it's a single-word chunk -->
+      <cat-item lemma="vblex" tags="vblex.pp"/>
+      <cat-item lemma="adj" tags="adj.pp"/>
+      <cat-item lemma="adj" tags="adj.pp.*"/>
+    </def-cat>
   </section-def-cats>
   
   <section-def-attrs>
@@ -483,7 +488,7 @@
                    somewhere and we can keep the original nynorsk passive form.">
       <pattern>
         <pattern-item n="infaux"/>
-        <pattern-item n="adjpart"/>
+        <pattern-item n="single-adjpart"/>
       </pattern>
       <action>
         <call-macro n="modify_pp_gen_nbr"><with-param pos="2"/></call-macro>
@@ -493,7 +498,7 @@
         </when></choose>
         <out>
           <chunk>
-            <get-case-from pos="1"><clip pos="2" part="lemh"/></get-case-from>
+            <get-case-from pos="1"><lit v="adj2vblex"/></get-case-from>
             <clip pos="1" part="tags"/>
             <clip pos="2" part="chcontent"/>
             <clip pos="2" part="lemq"/>
