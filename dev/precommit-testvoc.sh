@@ -2,8 +2,8 @@
 
 set -u
 
-lang1=nn
-lang2=nb
+lang1=nno
+lang2=nob
 
 basename=apertium-$lang1-$lang2
 

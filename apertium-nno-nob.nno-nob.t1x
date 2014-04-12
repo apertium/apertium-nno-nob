@@ -304,25 +304,31 @@
           <let><var n="adj_gender"/><var n="gender"/></let>
         </otherwise>
       </choose>
+
       <choose>
         <when><test><equal><var n="adj_gender"/><lit v=""/></equal></test>
         <let><var n="adj_gender"/><clip pos="1" side="tl" part="gen"/></let>
         </when>
       </choose>
-      <choose>
-        <when>
-          <test>
-            <or>
-              <equal><clip pos="1" side="tl" part="art"/><lit-tag v="def"/></equal>
-              <equal><clip pos="1" side="tl" part="nbr"/><lit-tag v="pl"/></equal>
-              <ends-with><clip pos="1" side="tl" part="a_adj"/><lit-tag v="pprs"/></ends-with>
-              <ends-with><clip pos="1" side="tl" part="a_adj"/><lit-tag v="comp"/></ends-with>
-              <ends-with><clip pos="1" side="tl" part="a_adj"/><lit-tag v="sup"/></ends-with>
-            </or>
-          </test>
-          <let><var n="adj_gender"/><lit v=""/></let>
-        </when>
-      </choose>
+      
+      <choose><when>
+        <test><ends-with><clip pos="1" side="tl" part="a_adj"/><lit-tag v="pprs"/></ends-with></test>
+        <let><var n="adj_gender"/><lit v=""/></let>
+      </when></choose>
+
+      <choose><when>
+        <test><and>
+          <not><equal><clip pos="1" side="tl" part="temps"/><lit-tag v="pp"/></equal></not>
+          <or>
+            <equal><clip pos="1" side="tl" part="nbr"/><lit-tag v="pl"/></equal>
+            <equal><clip pos="1" side="tl" part="art"/><lit-tag v="def"/></equal>
+            <ends-with><clip pos="1" side="tl" part="a_adj"/><lit-tag v="comp"/></ends-with>
+            <ends-with><clip pos="1" side="tl" part="a_adj"/><lit-tag v="sup"/></ends-with>
+          </or>
+        </and></test>
+        <let><var n="adj_gender"/><lit-tag v="un"/></let>
+      </when></choose>
+
     </def-macro>
 
     <def-macro n="out_cp_lhs" npar="1">

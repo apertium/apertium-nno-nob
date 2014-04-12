@@ -14,9 +14,13 @@
     <def-cat n="n_n_n_n">
       <cat-item name="n_n_n_n"/>
     </def-cat>
+    <def-cat n="adj2vblex">
+      <cat-item name="adj2vblex"/>
+    </def-cat>
     <def-cat n="adj">
       <cat-item name="adj"/>
     </def-cat>
+    <!-- ADJ N+ -->
     <def-cat n="adj_n">
       <cat-item name="adj_n"/>
     </def-cat>
@@ -26,6 +30,7 @@
     <def-cat n="adj_n_n_n">
       <cat-item name="adj_n_n_n"/>
     </def-cat>
+    <!-- ADJ ADJ N+ -->
     <def-cat n="adj_adj_n">
       <cat-item name="adj_adj_n"/>
     </def-cat>
@@ -34,6 +39,16 @@
     </def-cat>
     <def-cat n="adj_adj_n_n_n">
       <cat-item name="adj_adj_n_n_n"/>
+    </def-cat>
+    <!-- ADJ ADJ ADJ N+ -->
+    <def-cat n="adj_adj_adj_n">
+      <cat-item name="adj_adj_adj_n"/>
+    </def-cat>
+    <def-cat n="adj_adj_adj_n_n">
+      <cat-item name="adj_adj_adj_n_n"/>
+    </def-cat>
+    <def-cat n="adj_adj_adj_n_n_n">
+      <cat-item name="adj_adj_adj_n_n_n"/>
     </def-cat>
     <def-cat n="det">
       <cat-item name="det"/>
@@ -99,18 +114,20 @@
         <let><clip pos="1" part="gen"/><concat><lit v=""/></concat></let>
       </when></choose>
 
-      <choose>
-        <when>
-          <test><equal><clip pos="1" part="temps"/><lit-tag v="pp"/></equal></test>
-          <out>
-            <lu><clip pos="1" part="lemq"/></lu>
-            <lu><clip pos="1" part="lemh"/><clip pos="1" part="tags"/></lu>
-          </out>
-        </when>
-        <otherwise>
-          <out><lu><clip pos="1" part="whole"/></lu></out>
-        </otherwise>
-      </choose>
+      <out><lu><clip pos="1" part="whole"/></lu></out>
+      <!-- This needs much more extensive testing: -->
+      <!-- <choose> -->
+      <!--   <when> -->
+      <!--     <test><equal><clip pos="1" part="temps"/><lit-tag v="pp"/></equal></test> -->
+      <!--     <out> -->
+      <!--       <lu><clip pos="1" part="lemq"/></lu> -->
+      <!--       <lu><clip pos="1" part="lemh"/><clip pos="1" part="tags"/></lu> -->
+      <!--     </out> -->
+      <!--   </when> -->
+      <!--   <otherwise> -->
+      <!--     <out><lu><clip pos="1" part="whole"/></lu></out> -->
+      <!--   </otherwise> -->
+      <!-- </choose> -->
     </def-macro>
 
     <def-macro n="clean_n.adj" npar="3"
@@ -163,14 +180,23 @@
 
   <section-rules>
 
-    <rule comment="CHUNK: adj
+    <rule comment="CHUNK: adj2vblex
                    boka kan leses => boka kan vert lese => boka kan lesast
                    boken leses => boka vart lese => boka vart lesen">
+      <pattern>
+        <pattern-item n="adj2vblex"/>
+      </pattern>
+      <action>
+        <let><clip pos="1" part="tags"/><clip pos="0" part="tags"/></let>
+        <call-macro n="out_adj"><with-param pos="1"/></call-macro>
+      </action>
+    </rule>
+
+    <rule comment="CHUNK: adj">
       <pattern>
         <pattern-item n="adj"/>
       </pattern>
       <action>
-        <let><clip pos="1" part="tags"/><clip pos="0" part="tags"/></let>
         <call-macro n="out_adj"><with-param pos="1"/></call-macro>
       </action>
     </rule>
@@ -194,13 +220,6 @@
               <clip pos="1" part="lemq"/>
             </lu>
           </out>
-          </when>
-          <when c="See out_adj.">
-            <test><equal><clip pos="1" part="temps"/><lit-tag v="pp"/></equal></test>
-            <out>
-              <lu><clip pos="1" part="lemq"/></lu>
-              <lu><clip pos="1" part="lemh"/><clip pos="1" part="tags"/></lu>
-            </out>
           </when>
           <otherwise>
             <out><lu><clip pos="1" part="whole"/></lu></out>
@@ -391,6 +410,82 @@
           <lu><clip pos="4" part="whole"/></lu>
           <b pos="4"/>
           <lu><clip pos="5" part="whole"/></lu>
+        </out>
+      </action>
+    </rule>
+    <!-- ADJ ADJ ADJ N+ -->
+    <rule comment="CHUNK: adj_adj_adj_n">
+      <pattern>
+        <pattern-item n="adj_adj_adj_n"/>
+      </pattern>
+      <action>
+        <call-macro n="clean_n.adj"><with-param pos="4"/><with-param pos="1"/><with-param pos="0"/></call-macro>
+        <call-macro n="clean_n.adj"><with-param pos="4"/><with-param pos="2"/><with-param pos="0"/></call-macro>
+        <call-macro n="clean_n.adj"><with-param pos="4"/><with-param pos="3"/><with-param pos="0"/></call-macro>
+        <call-macro n="out_adj"><with-param pos="1"/></call-macro>
+        <out>
+          <b pos="1"/>
+        </out>
+        <call-macro n="out_adj"><with-param pos="2"/></call-macro>
+        <out>
+          <b pos="2"/>
+        </out>
+        <call-macro n="out_adj"><with-param pos="3"/></call-macro>
+        <out>
+          <b pos="3"/>
+          <lu><clip pos="4" part="whole"/></lu>
+        </out>
+      </action>
+    </rule>
+    <rule comment="CHUNK: adj_adj_adj_n_n">
+      <pattern>
+        <pattern-item n="adj_adj_adj_n_n"/>
+      </pattern>
+      <action>
+        <call-macro n="clean_n.adj"><with-param pos="5"/><with-param pos="1"/><with-param pos="0"/></call-macro>
+        <call-macro n="clean_n.adj"><with-param pos="5"/><with-param pos="2"/><with-param pos="0"/></call-macro>
+        <call-macro n="clean_n.adj"><with-param pos="5"/><with-param pos="3"/><with-param pos="0"/></call-macro>
+        <call-macro n="out_adj"><with-param pos="1"/></call-macro>
+        <out>
+          <b pos="1"/>
+        </out>
+        <call-macro n="out_adj"><with-param pos="2"/></call-macro>
+        <out>
+          <b pos="2"/>
+        </out>
+        <call-macro n="out_adj"><with-param pos="3"/></call-macro>
+        <out>
+          <b pos="3"/>
+          <lu><clip pos="4" part="whole"/></lu>
+          <b pos="4"/>
+          <lu><clip pos="5" part="whole"/></lu>
+        </out>
+      </action>
+    </rule>
+    <rule comment="CHUNK: adj_adj_adj_n_n_n">
+      <pattern>
+        <pattern-item n="adj_adj_adj_n_n_n"/>
+      </pattern>
+      <action>
+        <call-macro n="clean_n.adj"><with-param pos="6"/><with-param pos="1"/><with-param pos="0"/></call-macro>
+        <call-macro n="clean_n.adj"><with-param pos="6"/><with-param pos="2"/><with-param pos="0"/></call-macro>
+        <call-macro n="clean_n.adj"><with-param pos="6"/><with-param pos="3"/><with-param pos="0"/></call-macro>
+        <call-macro n="out_adj"><with-param pos="1"/></call-macro>
+        <out>
+          <b pos="1"/>
+        </out>
+        <call-macro n="out_adj"><with-param pos="2"/></call-macro>
+        <out>
+          <b pos="2"/>
+        </out>
+        <call-macro n="out_adj"><with-param pos="3"/></call-macro>
+        <out>
+          <b pos="3"/>
+          <lu><clip pos="4" part="whole"/></lu>
+          <b pos="4"/>
+          <lu><clip pos="5" part="whole"/></lu>
+          <b pos="5"/>
+          <lu><clip pos="6" part="whole"/></lu>
         </out>
       </action>
     </rule>
