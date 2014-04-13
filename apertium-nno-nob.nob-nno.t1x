@@ -1207,6 +1207,39 @@ Requires rather ugly RL prn lemmas in nn.dix, see personal_pronouns__prn pardef"
         </out>
       </action>
     </rule>
+    <rule comment="ADJ NCMP NCMP NCMP N">
+      <pattern>
+        <pattern-item n="adj"/>
+        <pattern-item n="ncmp"/>
+        <pattern-item n="ncmp"/>
+        <pattern-item n="ncmp"/>
+        <pattern-item n="n"/>
+      </pattern>
+      <action>
+        <let><var n="c_name"/><lit v="adj_n_n_n_n"/></let>
+        <call-macro n="set_gender2.n.adj"><with-param pos="5"/><with-param pos="1"/></call-macro>
+        <call-macro n="set_grau_aux1"><with-param pos="1"/></call-macro>
+        <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
+        <call-macro n="out_gen-prep"><with-param pos="5"/></call-macro>
+        <call-macro n="stash_case_in_ntags"><with-param pos="5"/></call-macro>
+        <out>
+          <chunk namefrom="c_name" case="caseFirstWord">
+            <tags><tag><var n="ntags"/></tag></tags>
+            <var n="grau_aux"/>
+            <lu>
+              <clip pos="1" side="tl" part="lemh"/>
+              <clip pos="1" side="tl" part="tags"/>
+              <clip pos="1" side="tl" part="lemq"/>
+            </lu>
+            <b pos="1"/>
+            <lu><clip pos="2" side="tl" part="whole"/></lu>
+            <lu><clip pos="3" side="tl" part="whole"/></lu>
+            <lu><clip pos="4" side="tl" part="whole"/></lu>
+            <lu><clip pos="5" side="tl" part="whole"/></lu>
+          </chunk>
+        </out>
+      </action>
+    </rule>
     <!-- ADJ ADJ N+ -->
     <rule comment="ADJ ADJ N">
       <pattern>
@@ -1330,6 +1363,52 @@ Requires rather ugly RL prn lemmas in nn.dix, see personal_pronouns__prn pardef"
             <lu><clip pos="3" side="tl" part="whole"/></lu>
             <lu><clip pos="4" side="tl" part="whole"/></lu>
             <lu><clip pos="5" side="tl" part="whole"/></lu>
+          </chunk>
+        </out>
+      </action>
+    </rule>
+    <rule comment="ADJ ADJ NCMP NCMP NCMP N">
+      <pattern>
+        <pattern-item n="adj"/>
+        <pattern-item n="adj"/>
+        <pattern-item n="ncmp"/>
+        <pattern-item n="ncmp"/>
+        <pattern-item n="ncmp"/>
+        <pattern-item n="n"/>
+      </pattern>
+      <action>
+        <let><var n="c_name"/><lit v="adj_adj_n_n_n_n"/></let>
+        <call-macro n="set_gender2.n.adj"><with-param pos="6"/><with-param pos="1"/></call-macro>
+        <call-macro n="set_gender2.n.adj"><with-param pos="6"/><with-param pos="2"/></call-macro>
+        <call-macro n="set_grau_aux2"><with-param pos="1"/><with-param pos="2"/></call-macro>
+        <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
+        <call-macro n="out_gen-prep"><with-param pos="6"/></call-macro>
+        <call-macro n="stash_case_in_ntags"><with-param pos="6"/></call-macro>
+        <choose><when>
+          <!-- set_grau_aux2 may have removed the first adj: -->
+          <test><equal><clip pos="1" side="tl" part="whole"/><lit v=""/></equal></test>
+          <let><var n="c_name"/><lit v="adj_n_n_n_n"/></let>
+        </when></choose>
+        <out>
+          <chunk namefrom="c_name" case="caseFirstWord">
+            <tags><tag><var n="ntags"/></tag></tags>
+            <var n="grau_aux"/>
+            <lu>
+              <clip pos="1" side="tl" part="lemh"/>
+              <clip pos="1" side="tl" part="tags"/>
+              <clip pos="1" side="tl" part="lemq"/>
+            </lu>
+            <b pos="1"/>
+            <lu>
+              <clip pos="2" side="tl" part="lemh"/>
+              <clip pos="2" side="tl" part="tags"/>
+              <clip pos="2" side="tl" part="lemq"/>
+            </lu>
+            <b pos="2"/>
+            <lu><clip pos="3" side="tl" part="whole"/></lu>
+            <lu><clip pos="4" side="tl" part="whole"/></lu>
+            <lu><clip pos="5" side="tl" part="whole"/></lu>
+            <lu><clip pos="6" side="tl" part="whole"/></lu>
           </chunk>
         </out>
       </action>

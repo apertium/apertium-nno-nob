@@ -19,10 +19,10 @@ PREFIX2e=$(LANG2)-$(LANG1e)
 BASENAME=apertium-$(PREFIX1)
 
 TARGETS_COMMON = \
-     $(PREFIX1).automorf-no-cp.bin \
+     $(PREFIX1).automorf.bin \
      $(PREFIX1).rlx.bin \
      $(PREFIX1).prob \
-     $(PREFIX1).autobil.bin $(PREFIX1).t1x.bin \
+     $(PREFIX1).autobil.bin $(PREFIX1).t1x.bin $(PREFIX1).t2x.bin $(PREFIX1).t3x.bin \
      $(PREFIX1).autogen.bin \
      $(PREFIX2).automorf.bin \
      $(PREFIX2).rlx.bin \
@@ -42,7 +42,7 @@ TARGETS_COMMON = \
 	xsltproc lexchoicebil.xsl $(BASENAME).$(PREFIX1).dix > $@
 
 # nno-nob
-$(PREFIX1).automorf-no-cp.bin: $(AP_LIB1)/$(LANG1).automorf-no-cp.bin $(PREFIX1).autobil.bin
+$(PREFIX1).automorf.bin: $(AP_LIB1)/$(LANG1).automorf.bin $(PREFIX1).autobil.bin
 	lt-trim $^ $@
 
 $(PREFIX1).rlx.bin: $(AP_LIB1)/$(LANG1).rlx.bin
@@ -57,6 +57,14 @@ $(PREFIX1).autobil.bin: .deps/$(BASENAME).$(PREFIX1).dix
 
 $(PREFIX1).t1x.bin: $(BASENAME).$(PREFIX1).t1x
 	apertium-validate-transfer $<
+	apertium-preprocess-transfer $< $@
+
+$(PREFIX1).t2x.bin: $(BASENAME).$(PREFIX1).t2x
+	apertium-validate-interchunk $<
+	apertium-preprocess-transfer $< $@
+
+$(PREFIX1).t3x.bin: $(BASENAME).$(PREFIX1).t3x
+	apertium-validate-postchunk $<
 	apertium-preprocess-transfer $< $@
 
 $(PREFIX1).autogen.bin: $(AP_LIB2)/$(LANG2).autogen.bin
@@ -94,8 +102,6 @@ $(PREFIX2).autogen.bin: $(AP_LIB1)/$(LANG1).autogen.bin
 $(PREFIX2e).autogen.bin: $(AP_LIB1)/$(LANG1e).autogen.bin
 	cp $< $@
 
-# nno-nob-cp TODO
-
 
 ###############################################################################
 ## Distribution
@@ -103,6 +109,8 @@ $(PREFIX2e).autogen.bin: $(AP_LIB1)/$(LANG1e).autogen.bin
 
 EXTRA_DIST=$(BASENAME).$(PREFIX1).dix \
 	   $(BASENAME).$(PREFIX1).t1x \
+	   $(BASENAME).$(PREFIX1).t2x \
+	   $(BASENAME).$(PREFIX1).t3x \
 	   $(BASENAME).$(PREFIX2).t1x \
 	   $(BASENAME).$(PREFIX2).t2x \
 	   $(BASENAME).$(PREFIX2).t3x \
@@ -117,6 +125,8 @@ apertium_nno_nobdir=$(prefix)/share/apertium/$(BASENAME)/
 # Files which should be installed to $(prefix)/share/apertium/$(BASENAME)/:
 apertium_nno_nob_DATA=$(TARGETS_COMMON) \
 	$(BASENAME).$(PREFIX1).t1x \
+	$(BASENAME).$(PREFIX1).t2x \
+	$(BASENAME).$(PREFIX1).t3x \
 	$(BASENAME).$(PREFIX2).t1x \
 	$(BASENAME).$(PREFIX2).t2x \
 	$(BASENAME).$(PREFIX2).t3x
