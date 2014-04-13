@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- -*- nxml -*- -->
+<!-- TODO:
+     * stop using GD, just check whether the determiner (or whatever) has some gender already
+-->
+<interchunk>
+
+  <section-def-cats>
+    <def-cat n="unknown">
+      <cat-item tags="unknown"/>
+    </def-cat>
+    <def-cat n="nom">
+      <cat-item tags="n.*"/>
+      <cat-item tags="n.*.gen"/>
+      <cat-item tags="np.*"/>
+    </def-cat>
+    <def-cat n="nind">
+      <cat-item tags="n.*.ind"/>
+    </def-cat>
+    <def-cat n="ndef">
+      <cat-item tags="n.*.def"/>
+    </def-cat>
+    <def-cat n="prep_gen">
+      <cat-item lemma="gen-prep" tags="pr"/>
+    </def-cat>
+    <def-cat n="ngen">
+      <cat-item tags="n.*.gen"/>
+    </def-cat>
+    <def-cat n="detgen">
+      <cat-item tags="det.*.gen"/>
+    </def-cat>
+    <def-cat n="det">
+      <cat-item tags="det.*"/>
+    </def-cat>
+    <def-cat n="prn">
+      <cat-item tags="prn.*"/>
+    </def-cat>
+    <def-cat n="sin">
+      <cat-item lemma="detsin" tags="det.pos.*"/>
+    </def-cat>
+    <def-cat n="detpos">
+      <cat-item tags="det.pos.*"/>
+    </def-cat>
+    <def-cat n="detnonpos">
+      <cat-item tags="det.def.*"/>
+      <cat-item tags="det.dem.*"/>
+      <cat-item tags="det.emph.*"/>
+      <cat-item tags="det.itg.*"/>
+      <cat-item tags="det.qnt.*"/>
+    </def-cat>
+    
+    <def-cat n="vblex">
+      <cat-item tags="vblex"/>
+      <cat-item tags="vblex.*"/>
+    </def-cat>
+    <def-cat n="aux">
+      <cat-item lemma="aux" tags="vblex"/>
+      <cat-item lemma="aux" tags="vblex.*"/>
+    </def-cat>
+    <def-cat n="auxpass" c="Auxiliary generated in t1x">
+      <cat-item lemma="aux" tags="vblex.*.pass"/>
+    </def-cat>
+    <def-cat n="infaux">
+      <cat-item lemma="aux" tags="vblex.inf"/>
+      <cat-item lemma="aux" tags="vblex.inf.*"/>
+    </def-cat>
+    <def-cat n="adv">
+      <cat-item tags="adv"/>
+      <cat-item tags="adv.*"/>
+    </def-cat>
+    <def-cat n="infm">
+      <cat-item lemma="infm" tags="cnjsub"/>
+      <cat-item lemma="infm" tags="cnjsub.*"/>
+    </def-cat>
+    <def-cat n="lemq">
+      <cat-item tags="vblex.lemq"/>
+      <cat-item tags="vblex.lemq.*"/>
+    </def-cat>
+    <def-cat n="adjpart">
+      <cat-item tags="vblex.pp"/>
+      <cat-item tags="adj.pp"/>
+      <cat-item tags="adj.pp.*"/>
+    </def-cat>
+    <def-cat n="single-adjpart"> <!-- chunk lemma ensures it's a single-word chunk -->
+      <cat-item lemma="vblex" tags="vblex.pp"/>
+      <cat-item lemma="adj" tags="adj.pp"/>
+      <cat-item lemma="adj" tags="adj.pp.*"/>
+    </def-cat>
+  </section-def-cats>
+  
+  <section-def-attrs>
+    <def-attr n="a_nom">
+      <attr-item tags="n"/>
+      <attr-item tags="n.acr"/>
+      <attr-item tags="np"/>
+      <attr-item tags="np.top"/>
+    </def-attr>
+    <def-attr n="persona">
+      <attr-item tags="p1"/>
+      <attr-item tags="p2"/>
+      <attr-item tags="p3"/>
+    </def-attr>
+    <def-attr n="a_verb">
+      <attr-item tags="vblex"/>
+      <attr-item tags="vblex.pstv"/>
+    </def-attr>
+    <def-attr n="temps">
+      <attr-item tags="inf"/>
+      <attr-item tags="imp"/>
+      <attr-item tags="pres"/>
+      <attr-item tags="pret"/>
+      <attr-item tags="pp"/>
+    </def-attr>
+    <def-attr n="voice">
+      <attr-item tags="pass"/>
+    </def-attr>
+    <def-attr n="a_det">
+      <attr-item tags="det"/> 
+      <attr-item tags="det.emph"/>
+      <attr-item tags="det.dem"/>
+      <attr-item tags="det.itg"/>
+      <attr-item tags="det.qnt"/>
+      <attr-item tags="det.qnt.neg"/>
+      <attr-item tags="det.pos"/>
+    </def-attr>
+    <def-attr n="gen">
+      <attr-item tags="m"/>
+      <attr-item tags="mf"/>
+      <attr-item tags="nt"/>
+      <attr-item tags="f"/>
+      <attr-item tags="GD"/>
+    </def-attr>
+    <def-attr n="nbr">
+      <attr-item tags="sg"/>
+      <attr-item tags="pl"/>
+      <attr-item tags="sp"/>
+      <attr-item tags="ND"/>
+    </def-attr>
+    <def-attr n="cas">
+      <attr-item tags="nom"/>
+      <attr-item tags="gen"/>
+      <attr-item tags="acc"/>
+      <attr-item tags="CD"/>
+    </def-attr>
+    <def-attr n="art">
+      <attr-item tags="def"/>
+      <attr-item tags="ind"/>
+    </def-attr>
+  </section-def-attrs>
+
+
+  <section-def-vars>
+    <def-var n="caseFirstWord"/>
+    <def-var n="det_gender"/>
+    <def-var n="number_no_sp"/>  
+    <def-var n="adj_number"/>  
+    <def-var n="adj_gender"/>  
+    <def-var n="adj_defness"/>  
+    <def-var n="n_number"/>
+    <def-var n="case"/>
+    <def-var n="pass"/>
+    <def-var n="n_defness"/>
+    <def-var n="lemh"/>
+    <def-var n="ana_gen"/>
+    <def-var n="ana_nbr"/>
+  </section-def-vars>
+ 
+  <section-def-macros>
+
+    <!-- Macros which set concordance variables etc.: -->
+    <def-macro n="modify_case_detpos" npar="2">
+      <!-- arg.1: possessed noun. arg.2: det.pos, gives typographic case
+           Workaround for Polite forms.
+      -->
+      <choose>
+        <when>
+          <test><not>
+            <and>
+              <equal><clip pos="2" part="lemh"/><lit v="De"/></equal>
+              <equal><clip pos="2" part="a_det"/><lit-tag v="det.pos"/></equal>
+              <equal><clip pos="2" part="persona"/><lit-tag v="p2"/></equal>
+            </and>
+          </not></test>
+          <modify-case><clip pos="2" part="lemh"/><clip pos="1" part="lemh"/></modify-case>
+        </when>
+      </choose>      
+    </def-macro>
+
+    <def-macro n="modify_det_gender2.n.det" npar="2"
+               c="arg.1: noun, arg.2: determiner">      
+      <choose>
+        <when>
+          <test><and>
+            <not><equal><clip pos="1" part="gen"/><lit v=""/></equal></not>
+            <not><equal><clip pos="1" part="nbr"/><lit-tag v="pl"/></equal></not>
+            <not><equal><clip pos="2" part="nbr"/><lit-tag v="pl"/></equal></not>
+          </and></test>
+          <let><clip pos="2" part="gen"/><clip pos="1" part="gen"/></let>
+        </when>
+      </choose>
+    </def-macro>
+
+  </section-def-macros>
+
+
+  <section-rules>
+    <rule comment="VBLEX LEMQ ADV => VBLEX ADV LEMQ
+                   Push blanks one place up since lemq space is inside the chunk.">
+      <pattern>
+        <pattern-item n="vblex"/>
+        <pattern-item n="lemq"/>
+        <pattern-item n="adv"/>
+      </pattern>
+      <action>
+        <out>
+          <chunk>
+            <clip pos="1" part="whole"/>
+          </chunk>
+          <b pos="1"/>
+          <b pos="2"/>
+          <chunk>
+            <clip pos="3" part="whole"/>
+          </chunk>
+          <chunk>
+            <clip pos="2" part="whole"/>
+          </chunk> 
+        </out>
+      </action>
+    </rule>
+    <rule comment="VBLEX LEMQ ADV ADV => VBLEX ADV ADV LEMQ
+                   Push blanks one place up since lemq space is inside the chunk.">
+      <pattern>
+        <pattern-item n="vblex"/>
+        <pattern-item n="lemq"/>
+        <pattern-item n="adv"/>
+        <pattern-item n="adv"/>
+      </pattern>
+      <action>
+        <out>
+          <chunk>
+            <clip pos="1" part="whole"/>
+          </chunk>
+          <b pos="1"/>
+          <b pos="2"/>
+          <chunk>
+            <clip pos="3" part="whole"/>
+          </chunk>
+          <b pos="3"/>
+          <chunk>
+            <clip pos="4" part="whole"/>
+          </chunk>
+          <chunk>
+            <clip pos="2" part="whole"/>
+          </chunk> 
+        </out>
+      </action>
+    </rule>
+    
+    
+    
+    <!-- Possessive noun phrases -->
+    
+
+    <!-- The regular possessive noun phrases, with more complex
+         transfer operations.-->
+    <rule comment="NDEF: (lille) mennesket => (vesle) mennesket
+                   Used to output a determiner with out_det_when_adj, but this lead to
+                   some odd problems.">
+      <pattern>
+        <pattern-item n="ndef"/>
+      </pattern>
+      <action>
+        <call-macro n="modify_case_detpos"><with-param pos="1"/><with-param pos="1"/></call-macro>
+        <out>
+          <chunk>
+            <clip pos="1" part="whole"/>
+          </chunk>
+        </out>
+      </action>
+    </rule>
+
+    <rule comment="NDEF DETPOS: jenten min => jenta mi">
+      <pattern>
+        <pattern-item n="ndef"/>
+        <pattern-item n="detpos"/>
+      </pattern>
+      <action>
+        <call-macro n="modify_det_gender2.n.det"><with-param pos="1"/><with-param pos="2"/></call-macro>
+        <out>
+          <chunk><clip pos="1" part="whole"/></chunk>
+          <b pos="1"/>
+          <chunk><clip pos="2" part="whole"/></chunk>          
+        </out>
+      </action>
+    </rule>
+
+    <rule comment="DET NOM">
+      <pattern>
+        <pattern-item n="det"/>
+        <pattern-item n="nom"/>
+      </pattern>
+      <action>
+        <call-macro n="modify_det_gender2.n.det"><with-param pos="2"/><with-param pos="1"/></call-macro>
+        <out>
+          <chunk><clip pos="1" part="whole"/></chunk>
+          <b pos="1"/>
+          <chunk><clip pos="2" part="whole"/></chunk>
+        </out>
+      </action>
+    </rule>
+    
+  </section-rules>  
+</interchunk>

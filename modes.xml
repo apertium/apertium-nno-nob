@@ -272,10 +272,10 @@
 
 
   <!-- nno=>nob -->
-  <mode name="nno-nob" install="yes"> <!-- compounding todo -->
+  <mode name="nno-nob" install="yes">
     <pipeline>
       <program name="lt-proc -w -e">
-        <file name="nno-nob.automorf-no-cp.bin"/>
+        <file name="nno-nob.automorf.bin"/>
       </program>
       <program name="cg-proc -w">
 	<file name="nno-nob.rlx.bin"/>
@@ -291,6 +291,14 @@
         <file name="apertium-nno-nob.nno-nob.t1x"/>
         <file name="nno-nob.t1x.bin"/>
       </program>
+      <program name="apertium-interchunk">
+        <file name="apertium-nno-nob.nno-nob.t2x"/>
+        <file name="nno-nob.t2x.bin"/>
+      </program>
+      <program name="apertium-postchunk">
+        <file name="apertium-nno-nob.nno-nob.t3x"/>
+        <file name="nno-nob.t3x.bin"/>
+      </program>
       <program name="lt-proc $1">
         <file name="nno-nob.autogen.bin"/>
       </program>
@@ -299,14 +307,14 @@
   <mode name="nno-nob-morph" install="no">
     <pipeline>
       <program name="lt-proc -w -e">
-        <file name="nno-nob.automorf-no-cp.bin"/>
+        <file name="nno-nob.automorf.bin"/>
       </program>
     </pipeline>
   </mode>
   <mode name="nno-nob-dis" install="no">
     <pipeline>
       <program name="lt-proc -w -e">
-        <file name="nno-nob.automorf-no-cp.bin"/>
+        <file name="nno-nob.automorf.bin"/>
       </program>
       <program name="cg-proc -w">
 	<file name="nno-nob.rlx.bin"/>
@@ -316,7 +324,7 @@
   <mode name="nno-nob-dis-trace" install="no">
     <pipeline>
       <program name="lt-proc -w -e">
-        <file name="nno-nob.automorf-no-cp.bin"/>
+        <file name="nno-nob.automorf.bin"/>
       </program>
       <program name="cg-proc -w -t">
 	<file name="nno-nob.rlx.bin"/>
@@ -326,7 +334,7 @@
   <mode name="nno-nob-tagger" install="no">
     <pipeline>
       <program name="lt-proc -w -e">
-        <file name="nno-nob.automorf-no-cp.bin"/>
+        <file name="nno-nob.automorf.bin"/>
       </program>
       <program name="cg-proc -w">
 	<file name="nno-nob.rlx.bin"/>
@@ -339,7 +347,7 @@
   <mode name="nno-nob-pretransfer" install="no">
     <pipeline>
       <program name="lt-proc -w -e">
-        <file name="nno-nob.automorf-no-cp.bin"/>
+        <file name="nno-nob.automorf.bin"/>
       </program>
       <program name="cg-proc -w">
 	<file name="nno-nob.rlx.bin"/>
@@ -353,7 +361,7 @@
   <mode name="nno-nob-biltrans" install="no">
     <pipeline>
       <program name="lt-proc -w -e">
-        <file name="nno-nob.automorf-no-cp.bin"/>
+        <file name="nno-nob.automorf.bin"/>
       </program>
       <program name="cg-proc -w">
 	<file name="nno-nob.rlx.bin"/>
@@ -367,10 +375,10 @@
       </program>
     </pipeline>
   </mode>
-  <mode name="nno-nob-transfer" install="no">
+  <mode name="nno-nob-chunker" install="no">
     <pipeline>
       <program name="lt-proc -w -e">
-        <file name="nno-nob.automorf-no-cp.bin"/>
+        <file name="nno-nob.automorf.bin"/>
       </program>
       <program name="cg-proc -w">
 	<file name="nno-nob.rlx.bin"/>
@@ -388,10 +396,10 @@
       </program>
     </pipeline>
   </mode>
-  <mode name="nno-nob-dgen" install="no">
+  <mode name="nno-nob-interchunk" install="no">
     <pipeline>
       <program name="lt-proc -w -e">
-        <file name="nno-nob.automorf-no-cp.bin"/>
+        <file name="nno-nob.automorf.bin"/>
       </program>
       <program name="cg-proc -w">
 	<file name="nno-nob.rlx.bin"/>
@@ -407,6 +415,68 @@
         <file name="apertium-nno-nob.nno-nob.t1x"/>
         <file name="nno-nob.t1x.bin"/>
       </program>
+      <program name="apertium-interchunk">
+        <file name="apertium-nno-nob.nno-nob.t2x"/>
+        <file name="nno-nob.t2x.bin"/>
+      </program> 
+    </pipeline>
+  </mode>
+  <mode name="nno-nob-postchunk" install="no">
+    <pipeline>
+      <program name="lt-proc -w -e">
+        <file name="nno-nob.automorf.bin"/>
+      </program>
+      <program name="cg-proc -w">
+	<file name="nno-nob.rlx.bin"/>
+      </program>
+      <program name="apertium-tagger -g $2">
+        <file name="nno-nob.prob"/>
+      </program>
+      <program name="apertium-pretransfer"/>
+      <program name="lt-proc -b">
+        <file name="nno-nob.autobil.bin"/>
+      </program>
+      <program name="apertium-transfer -b">
+        <file name="apertium-nno-nob.nno-nob.t1x"/>
+        <file name="nno-nob.t1x.bin"/>
+      </program>
+      <program name="apertium-interchunk">
+        <file name="apertium-nno-nob.nno-nob.t2x"/>
+        <file name="nno-nob.t2x.bin"/>
+      </program>
+      <program name="apertium-postchunk">
+        <file name="apertium-nno-nob.nno-nob.t3x"/>
+        <file name="nno-nob.t3x.bin"/>
+      </program>
+    </pipeline>
+  </mode>
+  <mode name="nno-nob-dgen" install="no">
+    <pipeline>
+      <program name="lt-proc -w -e">
+        <file name="nno-nob.automorf.bin"/>
+      </program>
+      <program name="cg-proc -w">
+	<file name="nno-nob.rlx.bin"/>
+      </program>
+      <program name="apertium-tagger -g $2">
+        <file name="nno-nob.prob"/>
+      </program>
+      <program name="apertium-pretransfer"/>
+      <program name="lt-proc -b">
+        <file name="nno-nob.autobil.bin"/>
+      </program>
+      <program name="apertium-transfer -b">
+        <file name="apertium-nno-nob.nno-nob.t1x"/>
+        <file name="nno-nob.t1x.bin"/>
+      </program>
+      <program name="apertium-interchunk">
+        <file name="apertium-nno-nob.nno-nob.t2x"/>
+        <file name="nno-nob.t2x.bin"/>
+      </program>
+      <program name="apertium-postchunk">
+        <file name="apertium-nno-nob.nno-nob.t3x"/>
+        <file name="nno-nob.t3x.bin"/>
+      </program>
       <program name="lt-proc -d">
         <file name="nno-nob.autogen.bin"/>
       </program>
@@ -417,7 +487,7 @@
   <mode name="nno-nno_e" install="yes">
     <pipeline>
       <program name="lt-proc -w">
-        <file name="nno-nob.automorf-no-cp.bin"/>
+        <file name="nno-nob.automorf.bin"/>
       </program>
       <program name="cg-proc -w">
 	<file name="nno-nob.rlx.bin"/>
@@ -435,7 +505,7 @@
   <mode name="nno_e-nno" install="yes">
     <pipeline>
       <program name="lt-proc -w">
-        <file name="nno-nob.automorf-no-cp.bin"/>
+        <file name="nno-nob.automorf.bin"/>
       </program>
       <program name="cg-proc -w">
 	<file name="nno-nob.rlx.bin"/>
