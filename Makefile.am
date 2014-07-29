@@ -144,3 +144,11 @@ install-data-local: install-modes
 CLEANFILES = $(TARGETS_COMMON)
 clean-local: 
 	-rm -rf .deps modes
+
+###############################################################################
+## Test
+###############################################################################
+
+test: all
+	s="Såg ho ikkje orda?";             t="Så hun ikke ordene?";             mt=`echo "$$s"|apertium -d . nno-nob` && test "$$mt" = "$$t"
+	s="Jeg har åler i min luftputebåt"; t="Eg har ålar i luftputebåten min"; mt=`echo "$$s"|apertium -d . nob-nno` && test "$$mt" = "$$t"
