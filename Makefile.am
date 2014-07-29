@@ -150,5 +150,9 @@ clean-local:
 ###############################################################################
 
 test: all
-	s="Såg ho ikkje orda?";             t="Så hun ikke ordene?";             mt=`echo "$$s"|apertium -d . nno-nob` && test "$$mt" = "$$t"
-	s="Jeg har åler i min luftputebåt"; t="Eg har ålar i luftputebåten min"; mt=`echo "$$s"|apertium -d . nob-nno` && test "$$mt" = "$$t"
+	echo "Såg ho ikkje orda?" | apertium -d . nno-nob | tee .test-mt
+	@echo "Så hun ikke ordene?" > .test-ref
+	@diff .test-ref .test-mt
+	echo "Jeg har åler i min luftputebåt" | apertium -d . nob-nno | tee .test-mt
+	@echo "Eg har ålar i luftputebåten min" > .test-ref
+	@diff .test-ref .test-mt
