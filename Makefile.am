@@ -4,7 +4,7 @@
 
 SUBDIRS=$(AP_SUBDIRS)
 
-VERSION=0.7.0
+VERSION=0.8.0
 LANG1=nno
 # nno_a har a-endingar i infinitiv, nno_e har e-endingar (standard):
 LANG1e=nno_e
