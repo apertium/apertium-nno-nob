@@ -1,0 +1,6 @@
+#!/bin/bash
+
+cd "$(dirname $0)"/../
+t/regression-tests > t/latest-regression.results &
+t/pending-tests > t/latest-pending.results &
+wait

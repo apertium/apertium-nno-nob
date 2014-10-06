@@ -1,0 +1,6 @@
+#!/bin/bash
+
+# run with -p to show only passing tests
+exec -a "$(basename $0)" bash $(dirname $0)/wiki-tests -u "$@" Pending nno nob
+
+exec -a "$(basename $0)" bash $(dirname $0)/wiki-tests -u "$@" Pending nob nno
