@@ -1,0 +1,133 @@
+#!/bin/bash
+
+set -e -u
+
+declare -r PACKAGE=$(grep ^PACKAGE= "$(dirname $0)/../config.log" |grep -o "apertium-[^']*") # e.g. apertium-sme-nob
+declare -r BASEURL="http://wiki.apertium.org/wiki/${PACKAGE}"
+
+UPDATE=false
+ONLYPASS=false
+ONLYFAIL=false
+while getopts "upf" opt; do
+     case "$opt" in
+         u) UPDATE=true;;
+         f) ONLYFAIL=true;;
+         p) ONLYPASS=true;;
+	 \?) echo "Invalid option" >&2; exit 2;;
+	 :) echo "Option requires an argument." >&2; exit 2;;
+     esac
+done
+shift "$((OPTIND-1))"
+if [[ $# -ne 3 ]] || ( $ONLYPASS && $ONLYFAIL ); then
+    echo "Usage: $0 [-u] [-p|-f] {Regression,Pending} srclang trglang"
+    echo "-u       Use updated tests"
+    echo "-p       Show only passing tests"
+    echo "-f       Show only failing tests"
+    exit 2
+fi
+declare -r TESTTYPE="$1_tests"
+declare -r SRCLANG="$2"
+declare -r TRGLANG="$3"
+
+# Derived options:
+declare -r MODE="$SRCLANG-$TRGLANG"
+declare -r HTML="$(dirname $0)/${TESTTYPE}.html"
+
+
+# Workarounds for Mac's:
+SED=sed
+if [[ "$(uname -s)" = Darwin ]]; then
+	SED=gsed
+fi
+declare -r SED
+
+
+
+fetchtests () {
+    if ${UPDATE}; then
+	tmp=$(mktemp -t wiki-tests.html.XXXXXXXXXX)
+	if wget -O "${tmp}" -q "${BASEURL}/${TESTTYPE}" && [[ -s "${tmp}" ]]; then
+	    mv "${tmp}" "${HTML}"
+	else
+	    rm "${tmp}"
+	    echo "Couldn't fetch ${BASEURL}/${TESTTYPE}" >&2
+	fi
+    fi
+
+    if [[ ! -s "${HTML}" ]]; then
+	echo "${HTML} does not exist or is empty (use '-u' option)" >&2
+	exit 1
+    fi
+}
+
+cleantst () {
+    $SED 's/^ *//; s/ *$//; s/\([^,.?!:;]\)$/\1./g; s/   */ /g'
+}
+cleansrc () {
+    grep -o "<li> (${SRCLANG})[^→]*" |$SED "s%</*[^>]*>%%g; s% *(${SRCLANG}) *%%" | cleantst
+}
+cleantrg () {
+    grep -o "<li> (${SRCLANG}).*" | $SED 's%[^→]*→ *%%; s%::.*%%'  | cleantst
+}
+
+summary () {
+    # Output the MT vs ref translations:
+    declare -i total=0
+    declare -i correct=0
+    declare -r sep=''
+    while IFS="${sep}" read -r src trg tst; do
+	if [[ "${trg}" = "${tst}" ]]; then
+	    (( ++correct ))
+	    $ONLYFAIL || printf "%s\t  %s\nWORKS\t  %s\n\n\n" "${MODE}" "${src}" "${tst}"
+	else
+	    (( 1 ))
+	    $ONLYPASS || printf "%s\t  %s\n\t- %s\n\t+ %s\n\n\n" "${MODE}" "${src}" "${trg}" "${tst}"
+	fi
+	(( ++total ))
+    done < <(paste -d "${sep}" "${srclist}" "${trglist}" "${tstlist}")
+
+    # Output the sums:
+    pct=
+    if command -V calc &>/dev/null; then
+	pct=$(calc -p "${correct} / ${total} * 100")
+	pct=", ${pct}%"
+    fi
+    echo "${correct} / ${total}${pct}"
+}
+
+echo_revision () {
+    if rev=$(svn info 2>/dev/null); then
+	echo "${rev}" | grep ^Revision
+    elif git config --get svn-remote.svn.fetch &>/dev/null; then
+	git svn info | grep ^Revision
+    else
+	echo "(doesn't seem to be a repo)"
+    fi
+}
+showrevisions () {
+    echo_revision
+    grep ^AP_SRC "$(dirname $0)/../config.log" | while IFS='=' read -r var dir; do
+	printf "%s " "${var}"
+	( cd "${dir//\'}"; echo_revision )
+    done
+}
+
+cleanup () {
+    rm -f "${srclist}" "${trglist}" "${tstlist}"
+}
+trap 'cleanup' EXIT
+srclist=$(mktemp -t "tmp.${SRCLANG}-src.XXXXXXXXXX")
+trglist=$(mktemp -t "tmp.${SRCLANG}-trg.XXXXXXXXXX")
+tstlist=$(mktemp -t "tmp.${SRCLANG}-tst.XXXXXXXXXX")
+
+showrevisions
+printf "Running $1-tests with mode \"${MODE}\" "; ${UPDATE} && printf "with updated tests "; echo "..."
+echo
+fetchtests
+cleansrc < "${HTML}" > "${srclist}"
+cleantrg < "${HTML}" > "${trglist}"
+(
+    set -o pipefail
+    apertium -d . "${MODE}" < "${srclist}" | cleantst > "${tstlist}"
+)
+summary

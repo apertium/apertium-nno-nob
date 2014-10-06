@@ -1,0 +1,6 @@
+#!/bin/bash
+
+# run with -f to show only failing tests
+exec -a "$(basename $0)" bash $(dirname $0)/wiki-tests -u "$@" Regression nno nob
+
+exec -a "$(basename $0)" bash $(dirname $0)/wiki-tests -u "$@" Regression nob nno
