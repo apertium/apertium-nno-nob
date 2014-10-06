@@ -156,3 +156,4 @@ test: all
 	echo "Jeg har åler i min luftputebåt" | apertium -d . nob-nno | tee .test-mt
 	@echo "Eg har ålar i luftputebåten min" > .test-ref
 	@diff .test-ref .test-mt
+	@rm .test-ref .test-mt
