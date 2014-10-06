@@ -142,9 +142,18 @@
       <!-- </choose> -->
     </def-macro>
 
+    <def-macro n="clean_n" npar="2"
+               c="arg.1: noun, arg.2: chunk.
+                  Nouns typically get chunk defnes.">
+      <choose><when>
+        <test><not><equal><clip pos="1" part="a_cmp"/><lit-tag v="cmp-split"/></equal></not></test>
+        <let><clip pos="1" part="art"/><clip pos="2" part="art"/></let>
+      </when></choose>
+    </def-macro>
+
     <def-macro n="clean_n.adj" npar="3"
                c="arg.1: noun, arg.2: adjective, arg.3: chunk.
-                  Nouns always get chunk defnes.
+                  Nouns typically get chunk defnes.
                   Allow adjectives to turn definite (from chunk defnes), but not indefinite.">
       <choose><when>
         <test><and>
@@ -268,7 +277,7 @@
         <pattern-item n="n"/>
       </pattern>
       <action>
-        <let><clip pos="1" part="art"/><clip pos="0" part="art"/></let>
+        <call-macro n="clean_n"><with-param pos="1"/><with-param pos="0"/></call-macro>
         <out>
           <lu><clip pos="1" part="whole"/></lu>
         </out>
@@ -279,7 +288,7 @@
         <pattern-item n="n_n"/>
       </pattern>
       <action>
-        <let><clip pos="2" part="art"/><clip pos="0" part="art"/></let>
+        <call-macro n="clean_n"><with-param pos="2"/><with-param pos="0"/></call-macro>
         <out>
           <lu><clip pos="1" part="whole"/></lu>
           <b pos="1"/>
@@ -292,7 +301,7 @@
         <pattern-item n="n_n_n"/>
       </pattern>
       <action>
-        <let><clip pos="3" part="art"/><clip pos="0" part="art"/></let>
+        <call-macro n="clean_n"><with-param pos="3"/><with-param pos="0"/></call-macro>
         <out>
           <lu><clip pos="1" part="whole"/></lu>
           <b pos="1"/>
@@ -307,7 +316,7 @@
         <pattern-item n="n_n_n_n"/>
       </pattern>
       <action>
-        <let><clip pos="4" part="art"/><clip pos="0" part="art"/></let>
+        <call-macro n="clean_n"><with-param pos="4"/><with-param pos="0"/></call-macro>
         <out>
           <lu><clip pos="1" part="whole"/></lu>
           <b pos="1"/>
