@@ -1,13 +1,1074 @@
-søn sep 13 13:05:01 CET 2009
+2014-10-25  unhammer
 
-  * Release of apertium-nn-nb version 0.6.1. See the file NEWS in this
-    directory
+	* [r57679] apertium-nno-nob.nno-nob.dix,
+	  apertium-nno-nob.nno-nob.t1x, apertium-nno-nob.nob-nno.t1x,
+	  dev/testvoc/inconsistency.sh,
+	  dev/testvoc/nno-nob.inconsistency.sh,
+	  dev/testvoc/nob-nno.inconsistency.sh, t/latest-pending.results,
+	  t/latest-regression.results: testvoc
+	  
+	  (I think? just getting this out of the way before the major
+	  slv-ita commit)
 
-mån aug 17 23:02:40 CET 2009
+2014-10-06  unhammer
 
-  * Release of apertium-nn-nb version 0.6.0. See
-    https://sourceforge.net/forum/forum.php?forum_id=994990
+	* [r57472] Makefile.am, apertium-nno-nob.nno-nob.dix,
+	  apertium-nno-nob.nno-nob.t1x, apertium-nno-nob.nob-nno.t3x,
+	  configure.ac: testvoc
+	* [r57468] pending-tests.sh, regression-tests.sh, t,
+	  t/pending-tests, t/regression-tests, t/update-latest,
+	  t/wiki-tests, wiki-tests.sh: tests
 
-lun mar 24 20:02:41 GMT 2008
+2014-09-27  unhammer
 
-  * Initial checkin
+	* [r57386] apertium-nno-nob.nno-nob.dix: -brune
+
+2014-09-16  unhammer
+
+	* [r57267] ., Makefile.am: makefile VERSION should probably be the
+	  same as configure.ac
+
+2014-08-11  trondtr
+
+	* [r56471] .: ignore
+
+2014-08-04  unhammer
+
+	* [r56229] README: 'Citing' sections as in -r56202
+
+2014-07-29  unhammer
+
+	* [r56139] Makefile.am: make test – very simple 'just show that it
+	  does something'-tests
+	* [r56138] Makefile.am, apertium-nno-nob.nno-nob.dix: make test –
+	  very simple 'just show that it does something'-tests
+
+2014-07-24  unhammer
+
+	* [r55966] AUTHORS, apertium-nno-nob.nno-nob.dix: clear up some of
+	  the license mess; nno/nob/sme stuff is GPL2-or-later (as are any
+	  of my contributions to Apertium, if that's ever a question)
+
+2014-07-23  unhammer
+
+	* [r55909] apertium-nno-nob.nno-nob.dix: meir unio-feilretting
+
+2014-06-24  unhammer
+
+	* [r54909] apertium-nno-nob.nno-nob.dix: tatarisk osb.
+
+2014-06-13  unhammer
+
+	* [r54196] modes.xml: s/dis/disam;s/syn/syntax;s/mor/morph
+
+2014-06-09  unhammer
+
+	* [r54005] Makefile.am, autogen.sh: Put .pc and compiled data in
+	  /share/, not /lib/ (following Debian/autotools standards)
+	  
+	  pkgconfigdir=$(libdir)/pkgconfig →
+	  pkgconfigdir=$(prefix)/share/pkgconfig AP_LIB → AP_SRC
+	  apertium_XXXdir=$(prefix)/lib/apertium/$(BASENAME)/ →
+	  apertium_XXXdir=$(prefix)/share/apertium/$(BASENAME)/
+	  
+	  put share/pkgconfig in PKG_CONFIG_PATH in autogen.sh
+
+2014-05-20  unhammer
+
+	* [r53217] apertium-nno-nob.nno-nob.syn.rlx,
+	  apertium-nno-nob.nob-nno.syn.rlx: syn.rlx'es (unused) moved to
+	  monolingual dirs
+
+2014-04-14  unhammer
+
+	* [r51954] apertium-nno-nob.nno-nob.dix: moar testvoc
+
+2014-04-13  unhammer
+
+	* [r51936] Makefile.am, apertium-nno-nob.nno-nob.dix,
+	  apertium-nno-nob.nno-nob.t1x, apertium-nno-nob.nno-nob.t2x,
+	  apertium-nno-nob.nno-nob.t3x, apertium-nno-nob.nob-nno.t1x,
+	  apertium-nno-nob.nob-nno.t3x, modes.xml: nno->nob testvoc (and
+	  turn on compounding)
+
+2014-04-12  unhammer
+
+	* [r51922] apertium-nno-nob.nno-nob.dix,
+	  apertium-nno-nob.nno-nob.t1x, apertium-nno-nob.nob-nno.t1x,
+	  apertium-nno-nob.nob-nno.t2x, apertium-nno-nob.nob-nno.t3x,
+	  dev/00readme.bleu.txt, dev/1441.apertium.snt, dev/1441.nb.snt,
+	  dev/1441.nn.snt, dev/1441.nyno.snt, dev/500.apertium.result,
+	  dev/500.apertium.snt, dev/500.apertium.testset, dev/500.nb.snt,
+	  dev/500.nn.snt, dev/500.nyno.result, dev/500.nyno.snt,
+	  dev/500.nyno.testset, dev/500.wiki.snt, dev/CG-errors.txt,
+	  dev/Makefile, dev/bleu.pl, dev/dictionary-trimmer.py,
+	  dev/dix-nn-nb.el, dev/dix-nno-nob.el,
+	  dev/inc-Nordlys2000-not-in-dix.csv, dev/nb-nn.inconsistency.sh,
+	  dev/nn-nb.inconsistency.sh, dev/noreg.no-nb.snt,
+	  dev/noreg.no-nb.txt, dev/noreg.no-nn.snt, dev/noreg.no-nn.txt,
+	  dev/noreg.no-nx.r15236.result, dev/noreg.no-nx.r15236.snt,
+	  dev/noreg.no-nx.r15236.test, dev/precommit-testvoc.sh,
+	  dev/preprocess, dev/r15667_vs_nyno.ods, dev/testnb, dev/testnn,
+	  dev/testvoc, dev/testvoc/Makefile,
+	  dev/testvoc/nno-nob.inconsistency.sh,
+	  dev/testvoc/nob-nno.inconsistency.sh,
+	  dev/untrimmed-apertium-nn-nb.nb.dix,
+	  dev/untrimmed-apertium-nn-nb.nn.dix, freerbmt09_nnnb/eval,
+	  freerbmt09_nnnb/eval/00readme.bleu.txt,
+	  freerbmt09_nnnb/eval/1441.apertium.snt,
+	  freerbmt09_nnnb/eval/1441.nb.snt,
+	  freerbmt09_nnnb/eval/1441.nn.snt,
+	  freerbmt09_nnnb/eval/1441.nyno.snt,
+	  freerbmt09_nnnb/eval/500.apertium.result,
+	  freerbmt09_nnnb/eval/500.apertium.snt,
+	  freerbmt09_nnnb/eval/500.apertium.testset,
+	  freerbmt09_nnnb/eval/500.nb.snt, freerbmt09_nnnb/eval/500.nn.snt,
+	  freerbmt09_nnnb/eval/500.nyno.result,
+	  freerbmt09_nnnb/eval/500.nyno.snt,
+	  freerbmt09_nnnb/eval/500.nyno.testset,
+	  freerbmt09_nnnb/eval/500.wiki.snt,
+	  freerbmt09_nnnb/eval/CG-errors.txt, freerbmt09_nnnb/eval/bleu.pl,
+	  freerbmt09_nnnb/eval/noreg.no-nb.snt,
+	  freerbmt09_nnnb/eval/noreg.no-nb.txt,
+	  freerbmt09_nnnb/eval/noreg.no-nn.snt,
+	  freerbmt09_nnnb/eval/noreg.no-nn.txt,
+	  freerbmt09_nnnb/eval/noreg.no-nx.r15236.result,
+	  freerbmt09_nnnb/eval/noreg.no-nx.r15236.snt,
+	  freerbmt09_nnnb/eval/noreg.no-nx.r15236.test,
+	  freerbmt09_nnnb/eval/r15667_vs_nyno.ods,
+	  freerbmt09_nnnb/eval/testnb, freerbmt09_nnnb/eval/testnn,
+	  inc-Nordlys2000-not-in-dix.csv, modes.xml: some nno-nob testvoc
+	  and cleanup of dev dir
+
+2014-04-05  unhammer
+
+	* [r51693] apertium-nno-nob.nno-nob.dix: more #-testvoc, cmp-split
+	  RL's added to no-cmp pardefs
+	* [r51691] apertium-nno-nob.nno-nob.dix,
+	  apertium-nno-nob.nob-nno.t3x, modes.xml: some #-testvoc
+
+2014-04-04  unhammer
+
+	* [r51671] configure.ac: require 3.3.0
+
+2014-04-02  unhammer
+
+	* [r51635] Makefile.am, apertium-nno-nob.nob-nno.t3x:
+	  dan-nor/{nob,nno}.dix merged in; adjectives pardefs now have un
+	  and sp tags; adj testvoc in sme-nob and nno-nob TODO
+
+2014-03-25  unhammer
+
+	* [r51248] apertium-nno-nob.nno-nob.dix: eh s/pardef/par
+	* [r51245] autogen.sh: new autogen.sh: should make it so users
+	  don't have to set PKG_CONFIG_PATH and similar _PATH's
+	* [r51244] Makefile.am: use ap_include for .deps/.d as well
+
+2014-03-24  unhammer
+
+	* [r51185] Makefile.am, configure.ac: Remove modes mess. Now
+	  requires apertium r51184 or higher
+
+2014-03-20  unhammer
+
+	* [r50963] configure.ac, modes.xml: debug modes
+	* [r50962] apertium-nno-nob.nno-nob.dix,
+	  apertium-nno-nob.nno-nob.t1x, apertium-nno-nob.nob-nno.t1x,
+	  apertium-nno-nob.nob-nno.t2x: adj_sint pardefs + accept them in
+	  transfer
+
+2014-03-16  unhammer
+
+	* [r50852] apertium-nno-nob.nno-nob.dix: wip: merging in sme
+	  nob.dix
+
+2014-03-15  unhammer
+
+	* [r50778] Makefile.am, apertium-nno-nob.nno.tsx,
+	  apertium-nno-nob.nob.tsx, nno-nob.prob, nob-nno.prob: dep on prob
+	  as well
+	* [r50776] Makefile.am, apertium-nno-nob.nno-nob.rlx,
+	  apertium-nno-nob.nno.dix, apertium-nno-nob.nob-nno.rlx,
+	  apertium-nno-nob.nob.dix, autogen.sh, configure.ac, modes.xml,
+	  rem-compounds.xsl: nno-nob depends on nno and nob, using lt-trim
+	* [r50773] Makefile.am, README, apertium-nn-nb.nb-nn.rlx,
+	  apertium-nn-nb.nb-nn.syn.rlx, apertium-nn-nb.nb-nn.t1x,
+	  apertium-nn-nb.nb-nn.t2x, apertium-nn-nb.nb-nn.t3x,
+	  apertium-nn-nb.nb.dix, apertium-nn-nb.nb.tsx,
+	  apertium-nn-nb.nn-nb.dix, apertium-nn-nb.nn-nb.lrx,
+	  apertium-nn-nb.nn-nb.rlx, apertium-nn-nb.nn-nb.syn.rlx,
+	  apertium-nn-nb.nn-nb.t1x, apertium-nn-nb.nn.dix,
+	  apertium-nn-nb.nn.tsx, apertium-nno-nob.nno-nob.dix,
+	  apertium-nno-nob.nno-nob.lrx, apertium-nno-nob.nno-nob.rlx,
+	  apertium-nno-nob.nno-nob.syn.rlx, apertium-nno-nob.nno-nob.t1x,
+	  apertium-nno-nob.nno.dix, apertium-nno-nob.nno.tsx,
+	  apertium-nno-nob.nob-nno.rlx, apertium-nno-nob.nob-nno.syn.rlx,
+	  apertium-nno-nob.nob-nno.t1x, apertium-nno-nob.nob-nno.t2x,
+	  apertium-nno-nob.nob-nno.t3x, apertium-nno-nob.nob.dix,
+	  apertium-nno-nob.nob.tsx, configure.ac, modes.xml,
+	  nb-nn-unsupervised.make, nb-nn.prob, nn-nb-unsupervised.make,
+	  nn-nb.prob, nno-nob-unsupervised.make, nno-nob.prob,
+	  nob-nno-unsupervised.make, nob-nno.prob, pending-tests.sh,
+	  regression-tests.sh, tid.pm, wikifix-nb-nn.pl,
+	  wikifix-nob-nno.pl: mv nn-nb nno-nob in files
+	* [r50772] .: mv nn-nb nno-nob
+
+2014-03-11  unhammer
+
+	* [r50684] deleted alt.xsl (and updated Makefile.am) since lt-comp
+	  now handles alt attribute
+
+2014-02-09  unhammer
+
+	* [r50094] jpeg.re
+
+2014-02-07  unhammer
+
+	* [r50051] some testvoc errors shown by lt-trim
+
+2014-01-31  unhammer
+
+	* [r49900] correct capitalisation on 'Han ol opp hesten til OL'
+
+2014-01-31  trondtr
+
+	* [r49899] Olympics.
+
+2014-01-08  unhammer
+
+	* [r49642] makefile-pirk
+	* [r49641] hovudperson, ungdomstid ++
+
+2013-11-17  unhammer
+
+	* [r48651] minor makefile meh
+
+2013-10-31  unhammer
+
+	* [r48236] let install attribute in in modes.xml dictate whether to
+	  install modes, less redundant/confusing
+	* [r48235] autoreconf always seems to work, why not use it?
+	* [r48232] configure.ac's updated to use apertium.pc (or
+	  apertium-3.2.pc if that doesn't exist)
+	* [r48230] mv infreq to languages (didn't I do this already)
+
+2013-09-25  unhammer
+
+	* [r47644] some nouns, add morph-modes for CG testing
+	* [r47643] script to testvoc uncommitted changes to dix files
+	  
+	  (typically no need for a full testvoc)
+	* [r47630] revert -r 45205 (all of dev/infreq-apertium-nn-nb.nb.dix
+	  dumped into nb.dix without corresponding bidix/nn.dix entries)
+
+2013-06-20  trondtr
+
+	* [r45205] additions
+
+2013-02-22  unhammer
+
+	* [r42837] s/<part>/<cnjsub>/g (or "å" in rlx), <part> should be
+	  participle in apertium; reported by TinoDidriksen
+
+2013-01-08  unhammer
+
+	* [r42254] syntax error
+
+2012-12-17  unhammer
+
+	* [r42074] <Velmont> echo "Betaling: Alle får et armbånd"
+
+2012-10-26  unhammer
+
+	* [r41474] pretty sure we don't need a 57M plain text corpus to be
+	  in svn
+
+2012-10-15  unhammer
+
+	* [r41414] giellatekno: copy all of <section id=infrequent…> into
+	  main nn/nb.dix to use
+	* [r41413] reguleres bøkene (dine) → vert bøkene (dine) regulerte
+	  [not: vert regulerte bøkene dine]
+	* [r41412] .*brott+s epenthetic
+	* [r41411] forfatning
+	* [r41410] wip verbs, just inconsistency test scripting remaining
+	* [r41409] wip verbs, nn and nb pardefs checked, now do bidix RL's
+	* [r41408] wip verbs
+
+2012-08-20  unhammer
+
+	* [r40616] epenthetics; fix "særskrivings feil" for 4-part
+	  compounds in t1x and new nb-nn.prob to hopefully fix that odd
+	  compound error ("kulturminnesminnesmerke")
+
+2012-07-31  unhammer
+
+	* [r39851] more wordnet-stuff (some epenthetic fixes, also let cp
+	  be default since lt-proc -e bug was fixed long ago)
+
+2012-07-27  unhammer
+
+	* [r39702] Merge branch 'wordnet-stuff'
+	* [r39701] whitespace
+
+2012-06-15  trondtr
+
+	* [r38842] word
+	* [r38841] word
+
+2012-06-05  trondtr
+
+	* [r38624] Added several words from the top missing of nb
+	  Wikipedia.
+	* [r38620] Adding a capitalised-words-are-names rule, have a look,
+	  the issue is so banal that there is likely to be a malfunction
+	  somewhere.
+
+2011-11-19  spectre360
+
+	* [r34788] add lrx file
+
+2011-09-15  unhammer
+
+	* [r33904] revert modes.xml, regular mode should be -no-cp
+
+2011-09-09  spectre360
+
+	* [r33871] add some characters that appear in sámi names
+
+2011-08-06  unhammer
+
+	* [r32643] re: r32472, I can't reproduce it, but dele<n> should
+	  probably be commented out in all three dix
+
+2011-08-04  trondtr
+
+	* [r32472] Commented out _et dele_, which overrode _en del_. Look
+	  into this, and write a rule in r1x instead.
+
+2011-07-07  trondtr
+
+	* [r31518] added to gen-i list
+	* [r31517] Added frequent adjs from corpus.
+
+2011-02-28  trondtr
+
+	* [r28901] jk
+
+2011-02-26  trondtr
+
+	* [r28891] Added compounds from FO parallellcorpus with first part
+	  ending in -es.
+
+2011-02-26  unhammer
+
+	* [r28889] move dix-nn-nb.el:dix-compound-guess-pardef into
+	  dix.el:dix-guess-pardef, and make it work even if there's a
+	  'spelling pardef' before the <i> element
+
+2011-01-10  unhammer
+
+	* [r28267] mv tagger-to-visl into apertium-tools, used for sme-nob
+	  etc. too
+
+2010-12-28  trondtr
+
+	* [r28020] additions
+
+2010-12-18  unhammer
+
+	* [r27708] some Makefile cleanup++, allow sme-nob to be installed
+
+2010-11-29  unhammer
+
+	* [r27304] verd typically has -s in compounds
+	* [r27302] Felles<adj, ikkje pass> front
+	* [r27301] not only sport, but Sport, SPORT
+	* [r27300] til fjells<adv>, osb.
+	* [r27299] bestemme seg=>velje
+	* [r27295] fremtidens nett => nettet _i_ framtida
+
+2010-11-19  unhammer
+
+	* [r27198] complete some pardefs
+	* [r27193] complete t/ore__vblex pardef
+
+2010-10-24  unhammer
+
+	* [r26479] gulvnivå, saft, add høgde as farlege-verb (thanks,
+	  dittaeva). Also remove pret if 0 subst, -1 inf -- that rule might
+	  need some more work (or valence tags :/).
+
+2010-10-23  unhammer
+
+	* [r26461] rett has s in compounds
+
+2010-10-19  unhammer
+
+	* [r26377] 'til sin rett' som adv (eigentleg mwe-lemq, men kan ha
+	  objekt og adv mellom, så dette fungerer betre)
+
+2010-10-14  unhammer
+
+	* [r26245] von is f, not nt
+	* [r26236] should be testvoc clean again now
+	* [r26229] buncha nouns from
+	  http://www.sprakrad.no/Sprakhjelp/Raad/Fra_bokmaal_til_nynorsk/,
+	  probably some testvoc todo there
+	* [r26227] support for slr, _and_ srl (wasn't in lexchoicebil
+	  before)
+
+2010-10-12  unhammer
+
+	* [r26182] expand 'spørre om' rule to use a set of verbs taking
+	  'om.cnjsub'
+
+2010-10-10  unhammer
+
+	* [r26124] flush unused sets (all 2467 of them)
+	* [r26123] OBT syntax, converted with dev/OBT-to-Apertium.sh, fixed
+	  l.877 in nb syn
+	* [r26104] use cut and paste before sedding instead of specifying
+	  'contexts', OBT-to-Apertium.sh now takes 2 secs instead of 1
+	  eternity
+	* [r26099] remove 'va' (=vade, messes up 'være' pret)
+
+2010-10-09  unhammer
+
+	* [r26065] pr nom seldom happens
+	* [r26042] tweaked. 'om<pr> godt<adj\!>'
+	* [r26041] (clb) trær(n, not vblex) som(clb) bærer
+
+2010-10-08  unhammer
+
+	* [r26033] don't remove adj from adj/adv preceded by copula
+
+2010-10-07  unhammer
+
+	* [r25970] milliard
+
+2010-10-03  unhammer
+
+	* [r25913] more alphabetics
+
+2010-10-01  unhammer
+
+	* [r25906] sperre
+	* [r25905] sperre
+	* [r25904] VG Nett<np>
+	* [r25903] restrict les.passive RL in nb.dix, just too many
+	  problems
+
+2010-09-23  unhammer
+
+	* [r25768] valgets kvaler
+	* [r25766] slik at de lures til<cnjsub, ikkje adv> å klikke
+	  forsøkes/blir forsøkt lokket<pp, ikkje n> før noen<nokon, ikkje
+	  nokre> kommer
+
+2010-09-22  unhammer
+
+	* [r25756] no-cp on 'love'
+
+2010-09-21  trondtr
+
+	* [r25736] tests
+
+2010-09-21  unhammer
+
+	* [r25723] ingenting->ikkje noko (meir vanleg..) og
+	  forsiden=>forsida
+	* [r25721] another så vs såg
+	* [r25720] fylte=>fylte (ikkje fylla, uheldig formval...), Hits,
+	  Best (sannsynlegvis ikkje «Beist»)
+	* [r25719] if [ -n foo ] requires foo to be quoted
+	* [r25718] LES OGSÅ => LES ÒG (ikkje VERT ÒG LEDDE...)
+	* [r25716] correct some det/prn LISTs that referred to norsk
+	  ordbank taggings rather than ours
+	* [r25715] remove 'sier/si<n><m>', most likely vblex
+
+2010-09-20  unhammer
+
+	* [r25710] Mål-thriller. (tittel, ikkje fjern subst. om det ikkje
+	  finst fv i setninga...burde ha litt betre tittel-oppdaging
+	  eigentleg)
+	* [r25707] De fleste vet ikke hvor pene de er=>Dei fleste veit
+	  ikkje kor (ikkje der!) pene dei er
+	* [r25706] Sjekk været => Sjekk v^eret (ikkje 'Sjekk vore')
+	* [r25705] anmeldelse, pågripe, takling, taus, super
+	* [r25702] install xslt in dist
+	* [r25698] ugh, removed some substitute rules which added new
+	  tags..how long were they in there..
+	* [r25695] handle unknowns a bit safer
+	* [r25694] ^m\/<pr>$
+	* [r25693] a little adj postchunk cleanup
+	* [r25689] only transfer art onto adj if it's non-empty
+	* [r25688] require apertium 3.2.0, version up (regression tests
+	  passed, testvoc scripts report 0 errors)
+	* [r25685] even more testvoc
+	* [r25684] more testvoc, De vs de
+	* [r25683] så/såg
+	* [r25682] toppens mange hunder => dei mange hundane på toppen
+	* [r25681] cleanup, escape / in lemmas so they're not treated as
+	  bidix errors
+	* [r25680] subst.fl(ikkje sg) kopula adj.fl
+	* [r25674] more adj lemq fixes
+	* [r25672] handle mwe's better in testvoc script
+	* [r25671] testvoc
+	* [r25670] make sure all adjs output lemq, pp adjs put it before
+	  the lemh
+	* [r25668] gjenfødes->fødes igjen
+	* [r25667] a cat was missing
+
+2010-09-19  unhammer
+
+	* [r25640] cp-modes
+	* [r25639] more testvoc
+	* [r25637] grep out compounds in non-cp testvoc, add nn_a.autogen
+	  to scripts; minor fixes
+	* [r25613] more testvoc
+	* [r25604] better testvoc scripts
+	* [r25603] some testvoc
+
+2010-09-16  trondtr
+
+	* [r25551] text
+
+2010-09-16  unhammer
+
+	* [r25550] this already is in dev/tagger-to-visl.py in a newer
+	  version
+
+2010-09-16  trondtr
+
+	* [r25549] ignore
+	* [r25548] wikipedia-script
+	* [r25547] ignore
+	* [r25546] From Kevin
+	* [r25539] ignore
+
+2010-09-15  unhammer
+
+	* [r25531] halvannen, tusen, million
+	* [r25496] bileteigenskapar, ikkje biletEeigenskapar
+
+2010-09-09  unhammer
+
+	* [r25321] remove comment
+
+2010-08-21  unhammer
+
+	* [r24981] nokon as default for 'noen'
+
+2010-08-16  unhammer
+
+	* [r24851] påhvile<->kvile på, ein slag/en slags
+
+2010-08-15  trondtr
+
+	* [r24827] Added the name _Åke_, to distinguish it from the verb.
+	  We might need a rule to choose names over nouns when capitalised
+	  sentence-internally (cf. _Det er Bjørn og Åke som kommer_)
+
+2010-08-07  unhammer
+
+	* [r24599] minor fixes
+
+2010-07-28  unhammer
+
+	* [r24282] remove compounds from nn.dix too (o/w they clutter
+	  analysis)
+	* [r24281] use the <cmp> thing from sme-nob for epenthetics in
+	  nn-nb too
+	* [r24277] merge epenthetic markings etc. in from sme-nob, transfer
+	  + nn.dix todo
+	* [r24269] some merges from sme-nob
+
+2010-07-26  unhammer
+
+	* [r24206] minor changes
+
+2010-07-24  unhammer
+
+	* [r24164] minor changes, make dix-compound-guess-pardef remove
+	  suffix based on pardef-slash
+
+2010-07-18  unhammer
+
+	* [r23992] 15000 np's from sme-nob
+	* [r23990] sme-nob-merge
+	* [r23989] remove lóve from compounding, add korleis, neitte
+
+2010-07-13  unhammer
+
+	* [r23867] merging in from sme-nob
+
+2010-07-12  unhammer
+
+	* [r23840] compound <section> not used any more
+	* [r23833] merge in some stuff from sme-nob
+	* [r23832] voice missing from simple vblex transfer rule
+	* [r23828] some words from sme-nob
+
+2010-07-11  unhammer
+
+	* [r23808] hvor<adv, not cnjsub> adj.ind
+	* [r23796] wrong pardef
+
+2010-07-10  unhammer
+
+	* [r23776] removed initial space, <i> indented to col25 or more
+	* [r23774] removed entries which already are in nb.dix
+	* [r23773] Solbakk
+
+2010-07-06  unhammer
+
+	* [r23660] dot goes before the tags in acronyms.. :)
+	* [r23653] make regular nb->nn mode use the new 3-stage transfer
+	  from the compounding mode (compound rules are simply ignored)
+
+2010-07-05  unhammer
+
+	* [r23617] some minor fixes
+	* [r23614] wrong rlx in modes.xml; let nn_a install in Makefile
+	* [r23600] Alternativ mode nn_a for a-endingar i infinitiv. Bruk:
+	  apertium nb-nn_a, i tillegg nn-nn_a og nn_a-nn for å omsetje
+	  nynorsk med e-ending til nynorsk med a-ending og omvendt (nn_e
+	  har a-endingar i _visse_ verb (sitja, vita, ...), men burde
+	  kanskje ha ingen a-endingar?)
+
+2010-07-01  unhammer
+
+	* [r23561] rom/værelse
+	* [r23560] some merges from sme-nob
+	* [r23559] stuff added in sme-nob
+	* [r23558] modes only from transfer and on
+
+2010-06-11  unhammer
+
+	* [r23055] eit par ord, + hugse<=>huske (ajajaj! den skulle vore
+	  der for lenge sidan)
+	* [r23054] for skuld argumentet<=>for argumentets skyld
+	* [r23053] ferdig analysert samisk(ikkje fjern adj!) tekst
+
+2010-06-10  unhammer
+
+	* [r23050] unnskyld
+	* [r23037] -et instead of -te in pret of ønske-pardef, add one
+	  entry to LR_f_to_m in bidix since otherwise we have an empty lhs
+	  error
+
+2010-06-09  unhammer
+
+	* [r22999] ordinal regex
+
+2010-06-07  unhammer
+
+	* [r22949] pardef split yt/e => ønsk/e
+
+2010-06-01  unhammer
+
+	* [r22857] trenge pp, omstende<->omstendighet
+
+2010-05-30  unhammer
+
+	* [r22835] ukjent-tagg i rlx, res for resiprok, synfare
+	  ferdig<-ferdigbefare, halde fram<-fortsette
+
+2010-05-14  unhammer
+
+	* [r22672] minor fix
+	* [r22670] minor changes
+
+2010-05-14  trondtr
+
+	* [r22663] checking
+
+2010-05-07  unhammer
+
+	* [r22602] sentence-end genitives cause way too many errors
+
+2010-05-03  unhammer
+
+	* [r22483] some words
+
+2010-04-23  unhammer
+
+	* [r22187] empty pardef will make lt-proc hang (bug 104), so put
+	  throwaway analyses in there for now...
+
+2010-04-21  unhammer
+
+	* [r22113] regnvêr
+	* [r22112] leave <e> (and everything else) completely untouched if
+	  there's no compound symbol
+
+2010-04-19  unhammer
+
+	* [r22067] compounds also for genitives
+	* [r22065] rem-compounds.xsl: remove all 'e' elements containing
+	  one of the compound symbols. regular make now creates
+	  non-compounding dix, make cp creates compounding :-)
+	* [r22058] Regression tests pass, 'boken blir lest=>boka vert
+	  lesen' etc
+
+2010-04-18  unhammer
+
+	* [r22016] boken leses => boka vert lesen (still TODO: 'boken blir
+	  lest')
+	* [r21999] søndagsord
+
+2010-04-17  unhammer
+
+	* [r21956] verb chunking :-)
+	* [r21955] pst..what was I thinking.. changed to pass
+	* [r21933] merge in some changes from sme-nob
+	* [r21922] Tåre, du tarv ikkje falla
+
+2010-04-16  unhammer
+
+	* [r21834] minor blah
+	* [r21833] nokon vs nokre
+
+2010-04-14  unhammer
+
+	* [r21780] spelling pardef hand/hånd
+	* [r21779] 16 nye ord frå MMDE
+
+2010-04-09  unhammer
+
+	* [r21652] some words
+	* [r21651] Den<det> 21. november
+
+2010-04-06  unhammer
+
+	* [r21546] def-list vere_pass: vites, eies (andre?) skal ha 'vere'
+	  i passiv
+	* [r21545] der is also cnjsub
+
+2010-03-26  spectre360
+
+	* [r21093] minor changes + TROND
+
+2010-03-26  unhammer
+
+	* [r21092] untabify
+	* [r21091] README
+
+2010-03-25  spectre360
+
+	* [r21076] readme
+
+2010-03-21  unhammer
+
+	* [r20971] verdenskjent kråke
+	* [r20970] Per sto på stolen, men den knakk.
+	* [r20969] kapteinen _på_ skipet
+
+2010-03-12  unhammer
+
+	* [r20736] adj_adj_n_n_n (three-noun compounds) Den gamle rufsete
+	  tobakkshavehundens mange store høyesterettsjustitiariusheltedåder
+	  i Falklandskrigen=>Dei mange store
+	  høgsterettsjustitiariusheltedådane til den gamle rufsa
+	  tobakkshavehunden i Falklandskrigen
+	* [r20735] remove fluff from t2x macros, much cleaner det handling
+	* [r20734] cleanup
+	* [r20733] Using <par n=Aa/> etc. instead of one RL/LR on each <e>
+
+2010-03-10  unhammer
+
+	* [r20664] $ echo Kaffeytelsens gamle luktende hastighetskake
+	  ødelegges av rød karaffelkjærlighet|apertium -d . nb-nn-cp Den
+	  gamle luktande fartskaka til kaffiytinga vert øydelagt av raud
+	  karaffelkjærleik
+	* [r20662] 237/241. Using gen_prep chunks now, like in sme-nob
+	* [r20657] lotsa minor fixes, adj cleanup
+
+2010-03-09  unhammer
+
+	* [r20653] den forrige Lamaens bil=> bilen til den forrige Lamaen
+	* [r20648] adj_adj_n
+	* [r20647] minor fixes. 20 to go..
+	* [r20645] bunch more typographical case stuff. 214 down, 26 to
+	  go..
+	* [r20641] 200/240, modify-case stuff (gods I hate case)
+	* [r20640] some acronym-words
+	* [r20638] fix two pardefs here too
+	* [r20637] fix two pardefs
+	* [r20635] 184 down, 56 to go
+
+2010-03-08  unhammer
+
+	* [r20630] macro for 'den' before def.adjs
+	* [r20629] 3-stage compound transfer for nb=>nn
+
+2010-03-05  unhammer
+
+	* [r20593] vi snakkes
+
+2010-03-04  unhammer
+
+	* [r20528] sakleg, sommarsolkverv
+	* [r20527] validate modes
+
+2010-02-28  unhammer
+
+	* [r20394] f_bcond is invalid (but isn't used anyway)
+
+2010-02-27  unhammer
+
+	* [r20376] some testvoc
+
+2010-02-24  unhammer
+
+	* [r20253] higen
+
+2010-02-22  unhammer
+
+	* [r20178] noinst! cool. Added DESTDIR to modes-installation
+
+2010-02-18  unhammer
+
+	* [r20007] sør/syd spelling choices
+
+2010-02-17  unhammer
+
+	* [r19976] flotte (damn you Norsk Ordbank!)
+	* [r19944] i morgen
+
+2010-02-16  unhammer
+
+	* [r19883] more wikipedia contributions
+	* [r19882] paradigmeskifte frå Eirik B. (segla, æra, men klarte,
+	  svarte)
+
+2010-02-09  unhammer
+
+	* [r19516] kake
+
+2010-02-08  unhammer
+
+	* [r19443] reset a variable...
+	* [r19442] New and improved det.pos lemh's (for sme-nob; having the
+	  same lemh's in prn and det.pos allows for easy switching back and
+	  forth)
+
+2010-02-07  unhammer
+
+	* [r19427] mann<pl> (to mann sterkt etc) just causes problems,
+	  needs some distinguishing mark for bidix anyway
+	* [r19408] befinner seg => er (fungerer faktisk i dei fleste
+	  kontekstar...). TODO: tagge refleksiven med person så me kan
+	  _generere_ refleksivar au
+
+2010-02-07  trondtr
+
+	* [r19407] minor additions, updates, from inc list.
+	* [r19406] Removed the hapaxes (sigh, I really love hapaxes)
+	* [r19405] I ran one year of our local newspaper through apertium,
+	  and here is the toplist (øø, the whole list, actually) of the
+	  missing words. Hapaxes might be skipped, at least, but the top
+	  should be added.
+
+2010-02-03  trondtr
+
+	* [r19288] Added sm words
+
+2010-02-02  unhammer
+
+	* [r19251] Det har iallfall jeg tro<n, ikkje pret> på
+
+2010-02-01  unhammer
+
+	* [r19229] caseless! yay, less redundancy
+	* [r19226] a little more testvoc
+	* [r19225] minor fixes
+	* [r19222] noen => nokon vs nokre (difficult one..)
+	* [r19221] fix for gender changes
+
+2010-01-31  unhammer
+
+	* [r19219] cleanup; ADJ NGEN ADJ NIND rule
+	* [r19217] for bestemte personers plikter => pliktene til bestemde
+	  personar
+
+2010-01-29  unhammer
+
+	* [r19193] corrections from wikipedes
+
+2010-01-28  unhammer
+
+	* [r19161] don't output unnecessary spaces..
+
+2010-01-27  unhammer
+
+	* [r19148] multiwords, testvoc clean again. phew.
+	* [r19146] testvoc clean again, apart from mwe verbs
+	* [r19142] lek_LR_leik, more testvoc
+	* [r19141] mel_LR_mjøl spelling paradigm
+	* [r19140] more testvoc, graut_LR_grøt spelling paradigm
+
+2010-01-26  unhammer
+
+	* [r19135] some testvoc, still a bunch todo
+	* [r19134] convenience fn for guessing compound pardefs
+	* [r19130] adjectives from wikipedia
+	* [r19123] more wikipedia contributions (nouns, verbs); change
+	  'bli/verte' to only 'verte' as default
+	* [r19121] buncha wikipedia (Eirik) contributions, nouns
+
+2010-01-24  unhammer
+
+	* [r19059] megler/meklar
+
+2010-01-20  unhammer
+
+	* [r18861] lenge<adv>
+
+2010-01-13  unhammer
+
+	* [r18679] nokon/noen etc. as pronouns
+
+2010-01-10  unhammer
+
+	* [r18549] halvannen/halvannan
+
+2010-01-10  moshagen
+
+	* [r18546] Ignore generated files.
+
+2010-01-07  unhammer
+
+	* [r18452] doh
+	* [r18442] _på_ kjøkkenet
+	* [r18429] løyse<->løshet, for compounds
+	* [r18428] cleanup
+
+2010-01-06  unhammer
+
+	* [r18397] missing sme-nob words (not added to nn/nn-nb yet)
+
+2010-01-05  unhammer
+
+	* [r18336] i ferd med
+	* [r18331] då<cnjsub>
+	* [r18330] han kjøpte mange hefta<adj pl> bøker
+
+2010-01-04  trondtr
+
+	* [r18308] rid of error msgs.
+
+2010-01-01  trondtr
+
+	* [r18264] Added date function and ref to when the article was
+	  fetched from nb.
+
+2009-12-31  unhammer
+
+	* [r18244] det andre buslitet=>den andre konkursen (courtesy of
+	  KGA)
+
+2009-12-29  unhammer
+
+	* [r18205] the case thing for Deres, plus two adj adj rules
+	* [r18197] allow idet in nn too (not sure whether to generate or
+	  not)
+	* [r18196] regression tests pass now - more gen-på/gen-i exceptions
+	* [r18195] - comment out de<pr> since it's really only used as
+	  de<np> (and in that case, CG can check for an <np> after it) -
+	  only let Dykkar have <p2>
+
+2009-12-29  ftyers
+
+	* [r18193] idet -> i det, perhaps this should be idet->idet?
+	* [r18192] some minor changes in transfer and a hack for dykkar ->
+	  Dykkar, Dette er Deres brev. --> Dette er Brevet Dykkar.
+
+2009-12-29  trondtr
+
+	* [r18191] Rules for polite forms.
+	* [r18190] Rules for polite forms.
+
+2009-12-28  ftyers
+
+	* [r18188] tighten bidix to remove double translation
+
+2009-12-28  trondtr
+
+	* [r18187] politeforms
+	* [r18186] Dykkar
+
+2009-12-28  unhammer
+
+	* [r18185] De/Deres
+	* [r18183] øyas=>på øya
+	* [r18178] minor additions
+	* [r18176] litt fleire i-genitivar (no i nb-nn.t1x)
+	* [r18175] more possible translations for viderebefordring
+
+2009-12-28  trondtr
+
+	* [r18172] viderebefordRelse (sic)
+	* [r18161] The henvise business. Added henvise to nb and vise <->
+	  henvise to nn-nb. There might be more aspects to the pair.
+
+2009-12-28  unhammer
+
+	* [r18157] interj => ij; skal nå ungdommen
+	* [r18156] yikes. stupid pardef errors
+
+2009-12-25  unhammer
+
+	* [r18106] compound modes
+	* [r18104] compounding translations
+
+2009-12-22  unhammer
+
+	* [r18018] 323 possible translations from the høgnorskwiki. Still
+	  todo: check/cleanup, LR-ing/splitting, genders on nouns, monodix
+	  entries
+	* [r18013] eit par slektstermer
+	* [r18010] remove 'va' reading from <var>
+
+2009-12-21  unhammer
+
+	* [r17961] new transfer rule for 'hans/hennes/naboens/etc måte å
+	  sykle => måten han/ho/naboen syklar'
+	* [r17960] remove duplicate rule
+	* [r17959] added så<cnjcoo><clb> and cnjsub for better CG (yes,
+	  more entries gives better disambiguation..when the CG expects
+	  it..)
+
+2009-12-20  unhammer
+
+	* [r17945] trass i at / (sjølv) om det er enkelt tyder<vblex> ikkje
+	  det at det er opplagt
+
+2009-12-19  trondtr
+
+	* [r17933] added word.
+	* [r17932] Added vare, and removed nn var n <-> nb var m.
+	* [r17931] Added a rule to choose pl of 'vare' over pl of 'var'.
+
+2009-12-18  unhammer
+
+	* [r17872] så vs såg
+
+2009-12-17  unhammer
+
+	* [r17847] gen-subst heuristic rule
+
+2009-12-17  trondtr
+
+	* [r17846] Added rule for top and top pattern.
+
+2009-12-17  unhammer
+
+	* [r17845] version number 0.6.5
+	* [r17844] last polish on transfer rules
+	* [r17843] another transfer bug fix
+	* [r17842] ..nor for pprs
+	* [r17841] ein slags=>en slags (mf: no gender on det)
+	* [r17839] nor in comp or sup
+
