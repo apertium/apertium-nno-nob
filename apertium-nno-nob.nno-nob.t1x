@@ -109,9 +109,18 @@
       <cat-item tags="vblex.*.pass"/>
       <cat-item tags="vblex.pstv.pres"/>
     </def-cat>
+    <def-cat n="vblex_kan">
+      <cat-item lemma="kunne" tags="vblex.*"/>
+    </def-cat>
     <def-cat n="vblex_bli">
-      <cat-item lemma="bli" tags="vblex.pres"/>
-      <cat-item lemma="bli" tags="vblex.inf"/>
+      <cat-item lemma="bli" tags="vblex.*"/>
+      <cat-item lemma="verte" tags="vblex.*"/>
+    </def-cat>
+    <def-cat n="vblex_brukt">
+      <cat-item lemma="bruke" tags="vblex.pp"/>
+      <cat-item lemma="bruke" tags="adj.pp.*"/>
+      <cat-item lemma="nytte" tags="vblex.pp"/>
+      <cat-item lemma="nytte" tags="adj.pp.*"/>
     </def-cat>
   </section-def-cats>
   <section-def-attrs>
@@ -205,6 +214,7 @@
     <def-var n="ntags"/>
     <def-var n="pass"/>
     <def-var n="aux"/>
+    <def-var n="blank"/>
     <def-var n="grau_aux"       c="lexical unit containing meir/mest if translating from sint to non-sint"/>
   </section-def-vars>
 
@@ -1031,6 +1041,57 @@
           <chunk name="prn" case="caseFirstWord">
             <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
             <lu><clip pos="1" side="tl" part="whole"/></lu>
+          </chunk>
+        </out>
+      </action>
+    </rule>
+
+    <!-- Idiomatic rules: -->
+    <rule comment="KAN BLI BRUKT">
+      <pattern>
+        <pattern-item n="vblex_kan"/>
+        <pattern-item n="vblex_bli"/>
+        <pattern-item n="vblex_brukt"/>
+      </pattern>
+      <action>
+        <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
+
+        <choose c="merge blanks">
+          <when>
+            <test><equal><b pos="1"/><lit v=" "/></equal></test>
+            <let><var n="blank"/><b pos="2"/></let>
+          </when>
+          <when>
+            <test><equal><b pos="2"/><lit v=" "/></equal></test>
+            <let><var n="blank"/><b pos="1"/></let>
+          </when>
+          <otherwise>
+            <let><var n="blank"/><concat><b pos="1"/><b pos="2"/></concat></let>
+          </otherwise>
+        </choose>
+
+        <out>
+          <chunk name="aux" case="caseFirstWord">
+            <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
+            <lu>
+              <clip pos="1" side="tl" part="lemh"/>
+              <clip pos="1" side="tl" part="tags"/>
+              <clip pos="1" side="tl" part="lemq"/>
+            </lu>
+          </chunk>
+          <var n="blank"/>
+          <chunk name="vblex" case="caseFirstWord">
+            <tags>
+              <tag><lit-tag v="vblex"/></tag>
+              <tag><lit-tag v="inf"/></tag>
+              <tag><lit-tag v="pass"/></tag>
+            </tags>
+            <lu>
+              <lit v="bruke"/>
+              <lit-tag v="vblex"/>
+              <lit-tag v="inf"/>
+              <lit-tag v="pass"/>
+            </lu>
           </chunk>
         </out>
       </action>

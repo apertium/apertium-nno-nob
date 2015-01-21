@@ -13,7 +13,7 @@ if [[ -d "$(dirname "$0")"/../.git ]]; then
 fi
 
 
-make -j3
+make -j4 langs
 
 echo "Translating changes from $vc diff:"
 
