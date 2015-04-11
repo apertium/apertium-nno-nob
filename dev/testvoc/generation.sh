@@ -13,7 +13,7 @@ analysis-expansion ()
     lt-expand "$1" \
         | awk -F':|:[<>]:' '
           /:<:/ {next}
-          $2~/<compound-(R|only-L)>/ {next}
+          $2~/<compound-(R|only-L)>|DUE_TO_LT_PROC_HANG/ {next}
           {
             esc=$2
             gsub("/","\\/",esc)
