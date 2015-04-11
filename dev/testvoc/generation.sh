@@ -36,10 +36,13 @@ cd "$(dirname $0)/../.."
 
 eval $(grep ^AP_SRC config.log)
 
+echo "=== ${lang1}-${lang2} ==="
 analysis-expansion "$AP_SRC1"/apertium-${lang1}.${lang1}.dix \
     | mode-after-analysis modes/${lang1}-${lang2}.mode \
     | only-errs
 
+echo "=== ${lang2}-${lang1} ==="
 analysis-expansion "$AP_SRC2"/apertium-${lang2}.${lang2}.dix \
     | mode-after-analysis modes/${lang2}-${lang1}.mode \
     | only-errs
+
