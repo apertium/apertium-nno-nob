@@ -1,12 +1,23 @@
 #!/bin/bash
 
-set -u
+set -e -u
 
-lang1=nno
-lang2=nob
-
-
-basename=apertium-$lang1-$lang2
+if [[ $# -eq 1 ]]; then
+    mode=$1
+    dix=guess
+elif  [[ $# -eq 2 ]]; then
+    mode=$1
+    dix=$2
+else
+    cat >&2 <<EOF
+Usage: $0 lang1-lang2
+For example, do '$0 nno-nob' in trunk/apertium-nno-nob/ to
+find generation errors in the nno-nob direction
+Alternatively: $0 lang1-lang2 foo.dix
+to specify the source .dix to expand.
+EOF
+    exit 1
+fi
 
 analysis-expansion ()
 {
@@ -32,17 +43,14 @@ only-errs () {
     grep '][^<]*[#/]'
 }
 
-cd "$(dirname $0)/../.."
 
-eval $(grep ^AP_SRC config.log)
+lang1=${mode%%-*}
 
-echo "=== ${lang1}-${lang2} ==="
-analysis-expansion "$AP_SRC1"/apertium-${lang1}.${lang1}.dix \
-    | mode-after-analysis modes/${lang1}-${lang2}.mode \
+if [[ ${dix} = guess ]]; then
+    lang1dir=$(grep -m1 "^AP_SRC.*apertium-${lang1}" config.log | sed "s/^[^=]*='//;s/'$//")
+    dix=${lang1dir}/apertium-${lang1}.${lang1}.dix
+fi
+
+analysis-expansion "${dix}" \
+    | mode-after-analysis modes/"${mode}".mode \
     | only-errs
-
-echo "=== ${lang2}-${lang1} ==="
-analysis-expansion "$AP_SRC2"/apertium-${lang2}.${lang2}.dix \
-    | mode-after-analysis modes/${lang2}-${lang1}.mode \
-    | only-errs
-
