@@ -11,10 +11,16 @@ elif  [[ $# -eq 2 ]]; then
 else
     cat >&2 <<EOF
 Usage: $0 lang1-lang2
-For example, do '$0 nno-nob' in trunk/apertium-nno-nob/ to
-find generation errors in the nno-nob direction
-Alternatively: $0 lang1-lang2 foo.dix
-to specify the source .dix to expand.
+or:    $0 lang1-lang2 foo.dix
+
+Replaces the first step of the pipeline with the expanded analyser and
+shows the resulting generation errors.
+
+For example, do \`$0 nno-nob' in trunk/apertium-nno-nob/'
+to find generation errors in the nno-nob direction (assumes that
+modes/nno-nob.mode exists). If the source .dix file has a non-standard
+name, you can specify it in the second argument, for example
+\`$0 eng-sco ../apertium-eng_feil/apertium-eng.eng.dix'
 EOF
     exit 1
 fi
@@ -24,7 +30,7 @@ analysis-expansion ()
     lt-expand "$1" \
         | awk -F':|:[<>]:' '
           /:<:/ {next}
-          $2~/<compound-(R|only-L)>|DUE_TO_LT_PROC_HANG/ {next}
+          $2 ~ /<compound-(R|only-L)>|DUE_TO_LT_PROC_HANG|__REGEXP__/ {next}
           {
             esc=$2
             gsub("/","\\/",esc)
