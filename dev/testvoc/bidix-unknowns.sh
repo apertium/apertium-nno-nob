@@ -7,7 +7,7 @@ if [[ $# -eq 1 ]]; then
     monodix=guess
     bidix=guess
     side=guess
-elif  [[ $# -eq 3 ]]; then
+elif  [[ $# -eq 4 ]]; then
     lang=$1
     monodix=$2
     bidix=$3
