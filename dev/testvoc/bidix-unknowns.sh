@@ -53,22 +53,46 @@ trap 'rm -f "${exp}"' EXIT
 
 echo "Expanding monodix …" >&2
 lt-expand "${monodix}" \
-    | grep -ve __REGEXP__ -e ':<:' \
-    | sed 's/.*://; s/\(<.*>\)\(#.*\)/\2\1/' \
+    | grep -ve __REGEXP__ \
+    | sed 's/[^:]*//; s/\(<.*>\)\(#.*\)/\2\1/' \
     | LC_ALL=C sort -u >"${exp}"
 
+in_mono () {
+    # bidix has prefixes of monodix, have to use look instead of comm :-/
+    LC_ALL=C look "$1" "${exp}" >/dev/null
+}
 echo "Expanding bidix and checking for entries missing from monodix …" >&2
 lt-expand "${bidix}" \
     | awk -vside="${side}" -F':|:[<>]:' '
         BEGIN {
           if(side=="l") {
             nside=1
+            LR=":>:"
+            RL=":<:"
           }
           else {
             nside=2
+            LR=":<:"            # flip it
+            RL=":>:"            # and reverse
           }
         }
-        {print $nside}' \
-    | while read -r bientry;do
-          LC_ALL=C look "${bientry}" "${exp}" >/dev/null || echo "${bientry}"
+        # Make bidix match up with monodix (left=left, right=right):
+        /:>:/ { print LR $nside; next }
+        /:<:/ { print RL $nside; next }
+        /:/   { print ":"$nside }
+' \
+    | while read -r bientry; do
+          # Bidix now normalised to have the requested monodix on the "left"
+          case ${bientry} in
+              ":>:"* ) # If it's LR in bidix, then we check if unmarked / LR is in monodix
+                       in_mono "${bientry##:>}" || in_mono "${bientry}" || echo "${bientry}"
+                       ;;
+              ":<:"* ) # If it's RL in bidix, then we check if unmarked / RL is in monodix
+                       in_mono "${bientry##:<}" || in_mono "${bientry}" || echo "${bientry}"
+                       ;;
+              ":"* ) # If it's unmarked in bidix, then we check if unmarked / LR / RL in monodix
+                     in_mono "${bientry}" || in_mono ":>${bientry}" || in_mono ":<${bientry}" || echo "${bientry}"
+                     ;;
+              *) echo "ERROR: unexpected bientry format: ${bientry}" >&2;;
+          esac
       done
