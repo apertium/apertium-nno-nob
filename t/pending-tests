@@ -1,6 +1,11 @@
 #!/bin/bash
 
-# run with -p to show only passing tests
-exec -a "$(basename $0)" bash $(dirname $0)/wiki-tests -u "$@" Pending nno nob
+# Run with -p to show only passing tests
 
-exec -a "$(basename $0)" bash $(dirname $0)/wiki-tests -u "$@" Pending nob nno
+set -e -u
+
+source "$(dirname $0)"/config.sh
+
+for pair in "${PAIRS[@]}"; do
+    bash "$(dirname $0)"/wiki-tests -u "$@" Pending "${pair}"
+done
