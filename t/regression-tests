@@ -1,6 +1,11 @@
 #!/bin/bash
 
-# run with -f to show only failing tests
-exec -a "$(basename $0)" bash $(dirname $0)/wiki-tests -u "$@" Regression nno nob
+# Run with -f to show only failing tests
 
-exec -a "$(basename $0)" bash $(dirname $0)/wiki-tests -u "$@" Regression nob nno
+set -e -u
+
+source "$(dirname $0)"/config.sh
+
+for pair in "${PAIRS[@]}"; do
+    bash "$(dirname $0)"/wiki-tests -u "$@" Regression "${pair}"
+done

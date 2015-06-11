@@ -1,0 +1,47 @@
+#+STARTUP: showall
+
+
+* Setting up tests for a new language pair
+To add these test scripts to your language pair, go into your language
+pair directory and do:
+
+#+BEGIN_SRC sh
+git clone https://github.com/unhammer/apertium-wiki-tests t
+# edit t/config.sh.in and save as t/config.sh
+svn add --depth=files t
+#+END_SRC
+
+You should have your tests in a page named after your language pair, e.g.
+http://wiki.apertium.org/wiki/apertium-sme-smj/Regression_tests
+and
+http://wiki.apertium.org/wiki/apertium-sme-smj/Pending_tests
+
+
+* Running the tests
+
+To run the tests from your language pair, assuming it's been set up as
+shown above, do
+
+#+BEGIN_SRC sh
+  t/update-latest
+#+END_SRC
+
+This will overwrite the files named t/latest-pending.results and
+t/latest-regression.results. You can view the differences with
+
+#+BEGIN_SRC sh
+  svn diff
+#+END_SRC
+
+Test results are kept in SVN since that means we don't have to keep
+moving things back and forth between "Pending" and "Regression" in the
+wiki whenever we pass a new test (or fail an old one), and we get a
+nice log of our progression.
+
+To run just regression or just pending tests, use t/pending-tests or
+t/regression-tests. Pass the -f argument to those scripts to only see
+failed regression tests or passed pending tests, e.g.
+
+#+BEGIN_SRC sh
+t/regression-tests -f
+#+END_SRC
