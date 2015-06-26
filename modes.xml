@@ -16,6 +16,9 @@
       <program name="lt-proc -b">
         <file name="nob-nno.autobil.bin"/>
       </program>
+      <program name="lrx-proc">
+        <file name="nob-nno.autolex.bin"/>
+      </program>
       <program name="apertium-transfer -b">
         <file name="apertium-nno-nob.nob-nno.t1x"/>
         <file name="nob-nno.t1x.bin"/>
@@ -48,6 +51,9 @@
       <program name="apertium-pretransfer"/>
       <program name="lt-proc -b">
         <file name="nob-nno.autobil.bin"/>
+      </program>
+      <program name="lrx-proc">
+        <file name="nob-nno.autolex.bin"/>
       </program>
       <program name="apertium-transfer -b">
         <file name="apertium-nno-nob.nob-nno.t1x"/>
@@ -137,6 +143,26 @@
       </program>
     </pipeline>
   </mode>
+  <mode name="nob-nno-lex" install="no">
+    <pipeline>
+      <program name="lt-proc -w -e">
+        <file name="nob-nno.automorf.bin"/>
+      </program>
+      <program name="cg-proc -w">
+	<file name="nob-nno.rlx.bin"/>
+      </program>
+      <program name="apertium-tagger -g $2">
+        <file name="nob-nno.prob"/>
+      </program>
+      <program name="apertium-pretransfer"/>
+      <program name="lt-proc -b">
+        <file name="nob-nno.autobil.bin"/>
+      </program>
+      <program name="lrx-proc -t">
+        <file name="nob-nno.autolex.bin"/>
+      </program>
+    </pipeline>
+  </mode>
   <mode name="nob-nno-chunker" install="no">
     <pipeline>
       <program name="lt-proc -w -e">
@@ -151,6 +177,9 @@
       <program name="apertium-pretransfer"/>
       <program name="lt-proc -b">
         <file name="nob-nno.autobil.bin"/>
+      </program>
+      <program name="lrx-proc">
+        <file name="nob-nno.autolex.bin"/>
       </program>
       <program name="apertium-transfer -t -b">
         <file name="apertium-nno-nob.nob-nno.t1x"/>
@@ -172,6 +201,9 @@
       <program name="apertium-pretransfer"/>
       <program name="lt-proc -b">
         <file name="nob-nno.autobil.bin"/>
+      </program>
+      <program name="lrx-proc">
+        <file name="nob-nno.autolex.bin"/>
       </program>
       <program name="apertium-transfer -b">
         <file name="apertium-nno-nob.nob-nno.t1x"/>
@@ -197,6 +229,9 @@
       <program name="apertium-pretransfer"/>
       <program name="lt-proc -b">
         <file name="nob-nno.autobil.bin"/>
+      </program>
+      <program name="lrx-proc">
+        <file name="nob-nno.autolex.bin"/>
       </program>
       <program name="apertium-transfer -b">
         <file name="apertium-nno-nob.nob-nno.t1x"/>
@@ -227,6 +262,9 @@
       <program name="lt-proc -b">
         <file name="nob-nno.autobil.bin"/>
       </program>
+      <program name="lrx-proc">
+        <file name="nob-nno.autolex.bin"/>
+      </program>
       <program name="apertium-transfer -b">
         <file name="apertium-nno-nob.nob-nno.t1x"/>
         <file name="nob-nno.t1x.bin"/>
@@ -250,6 +288,9 @@
       <program name="apertium-pretransfer"/>
       <program name="lt-proc -b">
         <file name="nob-nno.autobil.bin"/>
+      </program>
+      <program name="lrx-proc">
+        <file name="nob-nno.autolex.bin"/>
       </program>
       <program name="apertium-transfer -b">
         <file name="apertium-nno-nob.nob-nno.t1x"/>
@@ -286,6 +327,9 @@
       <program name="apertium-pretransfer"/>
       <program name="lt-proc -b">
         <file name="nno-nob.autobil.bin"/>
+      </program>
+      <program name="lrx-proc">
+        <file name="nno-nob.autolex.bin"/>
       </program>
       <program name="apertium-transfer -b">
         <file name="apertium-nno-nob.nno-nob.t1x"/>
@@ -375,6 +419,26 @@
       </program>
     </pipeline>
   </mode>
+  <mode name="nno-nob-lex" install="no">
+    <pipeline>
+      <program name="lt-proc -w -e">
+        <file name="nno-nob.automorf.bin"/>
+      </program>
+      <program name="cg-proc -w">
+	<file name="nno-nob.rlx.bin"/>
+      </program>
+      <program name="apertium-tagger -g $2">
+        <file name="nno-nob.prob"/>
+      </program>
+      <program name="apertium-pretransfer"/>
+      <program name="lt-proc -b">
+        <file name="nno-nob.autobil.bin"/>
+      </program>
+      <program name="lrx-proc -t">
+        <file name="nno-nob.autolex.bin"/>
+      </program>
+    </pipeline>
+  </mode>
   <mode name="nno-nob-chunker" install="no">
     <pipeline>
       <program name="lt-proc -w -e">
@@ -389,6 +453,9 @@
       <program name="apertium-pretransfer"/>
       <program name="lt-proc -b">
         <file name="nno-nob.autobil.bin"/>
+      </program>
+      <program name="lrx-proc">
+        <file name="nno-nob.autolex.bin"/>
       </program>
       <program name="apertium-transfer -t -b">
         <file name="apertium-nno-nob.nno-nob.t1x"/>
@@ -410,6 +477,9 @@
       <program name="apertium-pretransfer"/>
       <program name="lt-proc -b">
         <file name="nno-nob.autobil.bin"/>
+      </program>
+      <program name="lrx-proc">
+        <file name="nno-nob.autolex.bin"/>
       </program>
       <program name="apertium-transfer -b">
         <file name="apertium-nno-nob.nno-nob.t1x"/>
@@ -435,6 +505,9 @@
       <program name="apertium-pretransfer"/>
       <program name="lt-proc -b">
         <file name="nno-nob.autobil.bin"/>
+      </program>
+      <program name="lrx-proc">
+        <file name="nno-nob.autolex.bin"/>
       </program>
       <program name="apertium-transfer -b">
         <file name="apertium-nno-nob.nno-nob.t1x"/>
@@ -464,6 +537,9 @@
       <program name="apertium-pretransfer"/>
       <program name="lt-proc -b">
         <file name="nno-nob.autobil.bin"/>
+      </program>
+      <program name="lrx-proc">
+        <file name="nno-nob.autolex.bin"/>
       </program>
       <program name="apertium-transfer -b">
         <file name="apertium-nno-nob.nno-nob.t1x"/>

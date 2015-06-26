@@ -20,11 +20,13 @@ TARGETS_COMMON = \
      $(PREFIX1).automorf.bin \
      $(PREFIX1).rlx.bin \
      $(PREFIX1).prob \
+     $(PREFIX1).autolex.bin \
      $(PREFIX1).autobil.bin $(PREFIX1).t1x.bin $(PREFIX1).t2x.bin $(PREFIX1).t3x.bin \
      $(PREFIX1).autogen.bin \
      $(PREFIX2).automorf.bin \
      $(PREFIX2).rlx.bin \
      $(PREFIX2).prob \
+     $(PREFIX2).autolex.bin \
      $(PREFIX2).autobil.bin $(PREFIX2).t1x.bin $(PREFIX2).t2x.bin $(PREFIX2).t3x.bin \
      $(PREFIX2).autogen.bin \
      $(PREFIX2e).autogen.bin
@@ -33,25 +35,88 @@ TARGETS_COMMON = \
 @ap_include@
 
 ###############################################################################
-## Transducers, disambiguation rules, transfer
+## Monolingual transducers
 ###############################################################################
 
-.deps/$(BASENAME).$(PREFIX1).dix: $(BASENAME).$(PREFIX1).dix lexchoicebil.xsl .deps/.d
-	xsltproc lexchoicebil.xsl $(BASENAME).$(PREFIX1).dix > $@
-
-# nno-nob
+# -------------------
+# Nynorsk analysis:
+# ---------------------
 $(PREFIX1).automorf.bin: $(AP_SRC1)/$(LANG1).automorf.bin $(PREFIX1).autobil.bin
 	lt-trim $^ $@
 
-$(PREFIX1).rlx.bin: $(AP_SRC1)/$(LANG1).rlx.bin
+# -------------------
+# Nynorsk generation:
+# ---------------------
+$(PREFIX2).autogen.bin: $(AP_SRC1)/$(LANG1).autogen.bin
 	cp $< $@
+
+$(PREFIX2e).autogen.bin: $(AP_SRC1)/$(LANG1e).autogen.bin
+	cp $< $@
+
+# -------------------
+# Bokmål analysis:
+# ---------------------
+$(PREFIX2).automorf.bin: $(AP_SRC2)/$(LANG2).automorf.bin $(PREFIX2).autobil.bin
+	lt-trim $^ $@
+
+# -------------------
+# Bokmål generation:
+# ---------------------
+$(PREFIX1).autogen.bin: $(AP_SRC2)/$(LANG2).autogen.bin
+	cp $< $@
+
+
+###############################################################################
+## Tagger models
+###############################################################################
 
 $(PREFIX1).prob: $(AP_SRC1)/$(LANG1).prob
 	cp $< $@
 
+$(PREFIX2).prob: $(AP_SRC2)/$(LANG2).prob
+	cp $< $@
+
+
+###############################################################################
+## Disambiguation rules
+###############################################################################
+
+$(PREFIX1).rlx.bin: $(AP_SRC1)/$(LANG1).rlx.bin
+	cp $< $@
+
+$(PREFIX2).rlx.bin: $(AP_SRC2)/$(LANG2).rlx.bin
+	cp $< $@
+
+###############################################################################
+## Bilingual dictionaries
+###############################################################################
+
+# TODO: test if this step is still needed
+.deps/$(BASENAME).$(PREFIX1).dix: $(BASENAME).$(PREFIX1).dix lexchoicebil.xsl .deps/.d
+	xsltproc lexchoicebil.xsl $(BASENAME).$(PREFIX1).dix > $@
+
 $(PREFIX1).autobil.bin: .deps/$(BASENAME).$(PREFIX1).dix
 	apertium-validate-dictionary $<
 	lt-comp lr $< $@
+
+$(PREFIX2).autobil.bin: .deps/$(BASENAME).$(PREFIX1).dix
+	apertium-validate-dictionary $<
+	lt-comp rl $< $@
+
+
+###############################################################################
+## Lexical selection rules
+###############################################################################
+
+$(PREFIX1).autolex.bin: $(BASENAME).$(PREFIX1).lrx
+	lrx-comp $< $@
+
+$(PREFIX2).autolex.bin: $(BASENAME).$(PREFIX2).lrx
+	lrx-comp $< $@
+
+###############################################################################
+## Structural transfer rules
+###############################################################################
 
 $(PREFIX1).t1x.bin: $(BASENAME).$(PREFIX1).t1x
 	apertium-validate-transfer $<
@@ -65,22 +130,6 @@ $(PREFIX1).t3x.bin: $(BASENAME).$(PREFIX1).t3x
 	apertium-validate-postchunk $<
 	apertium-preprocess-transfer $< $@
 
-$(PREFIX1).autogen.bin: $(AP_SRC2)/$(LANG2).autogen.bin
-	cp $< $@
-
-# nob-nno
-$(PREFIX2).automorf.bin: $(AP_SRC2)/$(LANG2).automorf.bin $(PREFIX2).autobil.bin
-	lt-trim $^ $@
-
-$(PREFIX2).rlx.bin: $(AP_SRC2)/$(LANG2).rlx.bin
-	cp $< $@
-
-$(PREFIX2).prob: $(AP_SRC2)/$(LANG2).prob
-	cp $< $@
-
-$(PREFIX2).autobil.bin: .deps/$(BASENAME).$(PREFIX1).dix
-	apertium-validate-dictionary $<
-	lt-comp rl $< $@
 
 $(PREFIX2).t1x.bin: $(BASENAME).$(PREFIX2).t1x
 	apertium-validate-transfer $<
@@ -93,12 +142,6 @@ $(PREFIX2).t2x.bin: $(BASENAME).$(PREFIX2).t2x
 $(PREFIX2).t3x.bin: $(BASENAME).$(PREFIX2).t3x
 	apertium-validate-postchunk $<
 	apertium-preprocess-transfer $< $@
-
-$(PREFIX2).autogen.bin: $(AP_SRC1)/$(LANG1).autogen.bin
-	cp $< $@
-
-$(PREFIX2e).autogen.bin: $(AP_SRC1)/$(LANG1e).autogen.bin
-	cp $< $@
 
 
 ###############################################################################
