@@ -1,0 +1,35 @@
+<rules>
+  <rule>
+    <match lemma="male" tags="vblex.*">
+      <select lemma="male"/>
+    </match>
+    <or>
+      <match lemma="korn"/>
+      <match lemma="mjøl"/>
+      <match lemma="kjøtt"/>
+      <match lemma="mandel"/>
+      <match lemma="kaffi"/>
+      <match lemma="grov"/>
+      <match lemma="fin"/>
+    </or>
+  </rule>
+  <rule>
+    <match lemma="male" tags="vblex.*">
+      <select lemma="måle"/>
+    </match>
+  </rule>
+
+  <rule>
+    <match lemma="forestilling" tags="n.*">
+      <select lemma="førestilling"/>
+    </match>
+    <match lemma="om"/>
+  </rule>
+  <rule>
+    <match lemma="forestilling" tags="n.*">
+      <select lemma="tilstelling"/>
+    </match>
+    <match lemma="den"/>
+  </rule>
+</rules>
+
