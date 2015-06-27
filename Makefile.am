@@ -91,11 +91,7 @@ $(PREFIX2).rlx.bin: $(AP_SRC2)/$(LANG2).rlx.bin
 ## Bilingual dictionaries
 ###############################################################################
 
-# TODO: test if this step is still needed
-.deps/$(BASENAME).$(PREFIX1).dix: $(BASENAME).$(PREFIX1).dix lexchoicebil.xsl .deps/.d
-	xsltproc lexchoicebil.xsl $(BASENAME).$(PREFIX1).dix > $@
-
-$(PREFIX1).autobil.bin: .deps/$(BASENAME).$(PREFIX1).dix
+$(PREFIX1).autobil.bin: $(BASENAME).$(PREFIX1).dix
 	apertium-validate-dictionary $<
 	lt-comp lr $< $@
 
@@ -155,7 +151,7 @@ EXTRA_DIST=$(BASENAME).$(PREFIX1).dix \
 	   $(BASENAME).$(PREFIX2).t1x \
 	   $(BASENAME).$(PREFIX2).t2x \
 	   $(BASENAME).$(PREFIX2).t3x \
-	   modes.xml lexchoicebil.xsl
+	   modes.xml
 
 ###############################################################################
 ## Installation
