@@ -95,7 +95,7 @@ $(PREFIX1).autobil.bin: $(BASENAME).$(PREFIX1).dix
 	apertium-validate-dictionary $<
 	lt-comp lr $< $@
 
-$(PREFIX2).autobil.bin: .deps/$(BASENAME).$(PREFIX1).dix
+$(PREFIX2).autobil.bin: $(BASENAME).$(PREFIX1).dix
 	apertium-validate-dictionary $<
 	lt-comp rl $< $@
 
