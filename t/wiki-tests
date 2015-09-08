@@ -71,7 +71,7 @@ summary () {
     # Output the sums:
     pct=
     if command -V calc &>/dev/null; then
-	pct=$(calc -p "${correct} / ${total} * 100")
+        pct=$(calc -p "round(${correct} / ${total}, 4) * 100")
 	pct=", ${pct}%"
     fi
     echo "${correct} / ${total}${pct}"
@@ -81,7 +81,7 @@ echo_revision () {
     if rev=$(svn info 2>/dev/null); then
 	echo "${rev}" | grep ^Revision
     elif git config --get svn-remote.svn.fetch &>/dev/null; then
-	git svn info | grep ^Revision
+	git svn info | grep -a ^Revision
     else
 	echo "(doesn't seem to be a repo)"
     fi
