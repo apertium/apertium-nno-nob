@@ -25,8 +25,7 @@ EOF
     exit 1
 fi
 
-analysis-expansion ()
-{
+analysis-expansion () {
     lt-expand "$1" \
         | awk -F':|:[<>]:' '
           /:<:/ {next}
@@ -40,9 +39,23 @@ analysis-expansion ()
           }'
 }
 
+split-ambig () {
+    PYTHONPATH="$(dirname "$0"):${PYTHONPATH}" python3 -c '
+from streamparser import *
+import sys
+for blank, lu in parse_file(sys.stdin, withText=True):
+    print(blank+" ".join("^{}/{}$".format(lu.wordform, readingToString(r))
+                         for r in lu.readings),
+          end="")'
+
+}
+
 mode-after-analysis ()
 {
-    eval $(grep '|' "$1" | sed 's/[^|]*|//' | sed 's/\$1/-d/g;s/\$2//g')
+    eval $(grep '|' "$1" |\
+                  sed 's/[^|]*|//' |\
+                  sed 's/autobil.bin *|/& split-ambig |/' |\
+                  sed 's/\$1/-d/g;s/\$2//g')
 }
 
 only-errs () {
