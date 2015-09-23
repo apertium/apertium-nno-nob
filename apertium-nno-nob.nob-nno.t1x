@@ -330,6 +330,9 @@
       <list-item v="kjøkken"/>
       <list-item v="skip"/>
     </def-list>
+    <def-list n="gen-av">
+      <list-item v="bok"/>
+    </def-list>
 
     <def-list n="det_indef">
       <!-- feels like these should have their own
@@ -634,6 +637,8 @@
           <let><var n="gen-prep"/><lit v="i"/></let></when>
           <when><test><in><clip pos="1" side="tl" part="lemh"/><list n="gen-på"/></in></test>
           <let><var n="gen-prep"/><lit v="på"/></let></when>
+          <when><test><in><clip pos="1" side="tl" part="lemh"/><list n="gen-av"/></in></test>
+          <let><var n="gen-prep"/><lit v="av"/></let></when>
           <otherwise><let><var n="gen-prep"/><lit v="til"/></let></otherwise>
         </choose>
         <out>
