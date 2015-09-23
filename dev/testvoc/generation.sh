@@ -40,8 +40,13 @@ analysis-expansion () {
 }
 
 split-ambig () {
-    PYTHONPATH="$(dirname "$0"):${PYTHONPATH}" python3 -c '
-from streamparser import *
+    if command -V pypy3 &>/dev/null; then
+        python=pypy3
+    else
+        python=python3
+    fi
+    PYTHONPATH="$(dirname "$0"):${PYTHONPATH}" pypy3 -c '
+from streamparser import parse_file, readingToString
 import sys
 for blank, lu in parse_file(sys.stdin, withText=True):
     print(blank+" ".join("^{}/{}$".format(lu.wordform, readingToString(r))

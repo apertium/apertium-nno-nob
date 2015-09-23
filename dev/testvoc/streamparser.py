@@ -7,26 +7,9 @@ Consumes input from a file (first argument) or stdin, parsing and pretty printin
 """
 
 import re, pprint, sys, itertools, fileinput
-from enum import Enum
 from collections import namedtuple
 
-
-Knownness = Enum('Knownness', 'known unknown biunknown genunknown')
-Knownness.__doc__ = """Level of knowledge associated with a lexical unit.
-    Values:
-        known
-        unknown: Denoted by '*', analysis not available.
-        biunknown: Denoted by '@', translation not available.
-        genunknown: Denoted by '#', generated form not available.
-"""
-
-
 SReading = namedtuple('SReading', ['baseform', 'tags'])
-SReading.__doc__ = """A single subreading of an analysis of a token.
-    Fields:
-        baseform (str): The base form (lemma, lexical form, citation form) of the reading.
-        tags (list of str): The morphological tags associated with the reading.
-"""
 
 def subreadingToString(sub):
     return sub.baseform+"".join("<"+t+">" for t in sub.tags)
@@ -56,7 +39,6 @@ class LexicalUnit:
         lexicalUnit (str): The lexical unit in Apertium stream format.
         wordform (str): The word form (surface form) of the lexical unit.
         readings (list of list of SReading): The analyses of the lexical unit with sublists containing all subreadings.
-        knownness (Knownness): The level of knowledge of the lexical unit.
     """
 
     def __init__(self, lexicalUnit):
@@ -70,7 +52,6 @@ class LexicalUnit:
         for reading in readings:
             reading = reading.replace(r'\/', '/')
             if readings[0][0] not in '*#@':
-                self.knownness = Knownness.known
                 subreadings = []
 
                 subreadingParts = re.findall(r'([^<]+)((?:<[^>]+>)+)', reading)
@@ -81,8 +62,6 @@ class LexicalUnit:
                     subreadings.append(SReading(baseform=baseform, tags=tags))
 
                 self.readings.append(subreadings)
-            else:
-                self.knownness = {'*': Knownness.unknown, '@': Knownness.biunknown, '#': Knownness.genunknown}[readings[0][0]]
 
     def __repr__(self):
         return self.lexicalUnit
