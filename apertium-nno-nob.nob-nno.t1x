@@ -347,6 +347,14 @@
       <list-item v="vite"/>
       <list-item v="eige"/>
     </def-list>
+
+    <def-list n="adj-genders" c="possible nno/nob adj genders">
+      <list-item v="&lt;m&gt;"/>
+      <list-item v="&lt;mf&gt;"/>
+      <list-item v="&lt;f&gt;"/>
+      <list-item v="&lt;nt&gt;"/>
+      <list-item v="&lt;un&gt;"/>
+    </def-list>
   </section-def-lists>
 
   <section-def-macros>
@@ -450,13 +458,16 @@
                   (We want to allow 'helt.nt svart.mf katt.m', no gender change nor GD on 'helt',
                    but o/w make sure adj corresponds: 'helt.nt forfatterskap => heil.mf forfattarskap')">
       <choose><when>
-        <test><or>
-          <equal><clip pos="2" side="tl" part="gen"/><lit-tag v="GD"/></equal>
-          <and>
-            <not><equal><clip pos="1" side="sl" part="gen"/><clip pos="1" side="tl" part="gen"/></equal></not>
-            <not><equal><clip pos="1" side="tl" part="gen"/><lit-tag v="f"/></equal></not>
-          </and>
-        </or></test>
+        <test><and>
+          <in><clip pos="1" side="tl" part="gen"/><list n="adj-genders"/></in>
+          <or>
+            <equal><clip pos="2" side="tl" part="gen"/><lit-tag v="GD"/></equal>
+            <and>
+              <not><equal><clip pos="1" side="sl" part="gen"/><clip pos="1" side="tl" part="gen"/></equal></not>
+              <not><equal><clip pos="1" side="tl" part="gen"/><lit-tag v="f"/></equal></not>
+            </and>
+          </or>
+        </and></test>
         <let><clip pos="2" side="tl" part="gen"/><clip pos="1" side="tl" part="gen"/></let>
       </when></choose>
       <call-macro n="set_gender1.adj"><with-param pos="2"/></call-macro>
