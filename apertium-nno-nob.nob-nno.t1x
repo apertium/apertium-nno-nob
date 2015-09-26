@@ -131,7 +131,7 @@
     </def-cat>
     <def-cat n="posgen">
       <cat-item tags="det.pos.*"/>
-      <cat-item tags="n.*.*.*.gen"/>
+      <cat-item tags="n.*.gen"/>
     </def-cat>
     <def-cat n="adj">
       <cat-item tags="adj.*"/>
@@ -164,7 +164,7 @@
       <cat-item tags="adv"/>
     </def-cat>
     <def-cat n="infm">
-      <cat-item lemma="å" tags="cnjsub"/>
+      <cat-item lemma="å" tags="part"/>
     </def-cat>
     <def-cat n="sin">
       <cat-item lemma="seg" tags="det.pos.*"/>
@@ -181,6 +181,10 @@
     </def-cat>
     <def-cat n="vblexinf">
       <cat-item tags="vblex.inf"/>
+    </def-cat>
+    <def-cat n="vblexinf_or_infpass">
+      <cat-item tags="vblex.inf"/>
+      <cat-item tags="vblex.inf.pass"/>
     </def-cat>
     <def-cat n="vblexinfpass">
       <cat-item tags="vblex.inf.pass"/>
@@ -898,7 +902,7 @@ Requires rather ugly RL prn lemmas in nn.dix, see personal_pronouns__prn pardef"
         <pattern-item n="posgen"/>
         <pattern-item n="måte"/>
         <pattern-item n="infm"/>
-        <pattern-item n="vblexinf"/>
+        <pattern-item n="vblexinf_or_infpass"/>
       </pattern>
       <action>
         <call-macro n="switch_cases">
@@ -922,7 +926,7 @@ Requires rather ugly RL prn lemmas in nn.dix, see personal_pronouns__prn pardef"
         <choose>
           <when>
             <test>
-              <equal><clip pos="4" side="tl" part="voice"/><lit v="pass"/></equal>
+              <equal><clip pos="4" side="tl" part="voice"/><lit-tag v="pass"/></equal>
             </test>
             <call-macro n="set_aux2"><with-param pos="4"/><with-param pos="4"/></call-macro>
             <out>
