@@ -2,7 +2,7 @@
 ## Makefile for Nynorsk--Bokmål
 ###############################################################################
 
-VERSION=1.0.0
+VERSION=1.0.1
 LANG1=nno
 # nno_a har a-endingar i infinitiv, nno_e har e-endingar (standard):
 LANG1e=nno_e
@@ -151,6 +151,8 @@ EXTRA_DIST=$(BASENAME).$(PREFIX1).dix \
 	   $(BASENAME).$(PREFIX2).t1x \
 	   $(BASENAME).$(PREFIX2).t2x \
 	   $(BASENAME).$(PREFIX2).t3x \
+	   $(BASENAME).$(PREFIX1).lrx \
+	   $(BASENAME).$(PREFIX2).lrx \
 	   modes.xml
 
 ###############################################################################
