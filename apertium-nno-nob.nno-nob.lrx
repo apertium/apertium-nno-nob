@@ -1,5 +1,35 @@
 <rules>
   <rule>
+    <match lemma="måling" tags="n.*.pl.*">
+      <select lemma="måling"/>
+    </match>
+  </rule>
+  <rule>
+    <or>
+      <match lemma="tynn"/>
+      <match lemma="oljebasert"/>
+      <match lemma="svart"/>
+      <match lemma="lag"/>
+      <match lemma="forme"/>
+    </or>
+    <match lemma="måling" tags="n.*.sg.ind">
+      <select lemma="maling"/>
+    </match>
+  </rule>
+  <rule>
+    <match lemma="måling" tags="n.*.sg.ind">
+      <select lemma="maling"/>
+    </match>
+    <match/>
+    <or>
+      <match lemma="altertavle"/>
+      <match lemma="vegg"/>
+      <match lemma="kunst"/>
+      <match lemma="grafisk"/>
+    </or>
+  </rule>
+
+  <rule>
     <match lemma="rett" tags="n.*">
       <select lemma="rett"/>
     </match>
