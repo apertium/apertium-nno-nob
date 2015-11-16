@@ -58,7 +58,7 @@
       <cat-item lemma="aux" tags="vblex.*"/>
     </def-cat>
     <def-cat n="auxpass" c="Auxiliary generated in t1x">
-      <cat-item lemma="aux" tags="vblex.*.pass"/>
+      <cat-item lemma="aux" tags="vblex.*.pasv"/>
     </def-cat>
     <def-cat n="infaux">
       <cat-item lemma="aux" tags="vblex.inf"/>
@@ -112,7 +112,7 @@
       <attr-item tags="pp"/>
     </def-attr>
     <def-attr n="voice">
-      <attr-item tags="pass"/>
+      <attr-item tags="pasv"/>
     </def-attr>
     <def-attr n="a_det">
       <attr-item tags="det"/> 
@@ -158,7 +158,6 @@
     <def-var n="adj_defness"/>  
     <def-var n="n_number"/>
     <def-var n="case"/>
-    <def-var n="pass"/>
     <def-var n="n_defness"/>
     <def-var n="lemh"/>
     <def-var n="ana_gen"/>
@@ -494,7 +493,7 @@
         <call-macro n="modify_pp_gen_nbr"><with-param pos="2"/></call-macro>
         <choose><when>
           <test><equal><clip pos="1" part="voice"/><lit v=""/></equal></test>
-          <let><clip pos="1" part="temps"/><concat><clip pos="1" part="temps"/><lit-tag v="pass"/></concat></let>
+          <let><clip pos="1" part="temps"/><concat><clip pos="1" part="temps"/><lit-tag v="pasv"/></concat></let>
         </when></choose>
         <out>
           <chunk>
