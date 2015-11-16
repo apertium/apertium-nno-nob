@@ -184,13 +184,13 @@
     </def-cat>
     <def-cat n="vblexinf_or_infpass">
       <cat-item tags="vblex.inf"/>
-      <cat-item tags="vblex.inf.pass"/>
+      <cat-item tags="vblex.inf.pasv"/>
     </def-cat>
     <def-cat n="vblexinfpass">
-      <cat-item tags="vblex.inf.pass"/>
+      <cat-item tags="vblex.inf.pasv"/>
     </def-cat>
     <def-cat n="vblexpass">
-      <cat-item tags="vblex.*.pass"/>
+      <cat-item tags="vblex.*.pasv"/>
       <cat-item tags="vblex.pstv.pres"/>
     </def-cat>
   </section-def-cats>
@@ -218,7 +218,7 @@
       <attr-item tags="pp"/>
     </def-attr>
     <def-attr n="voice">
-      <attr-item tags="pass"/>
+      <attr-item tags="pasv"/>
     </def-attr>
     <def-attr n="a_det">
       <attr-item tags="det"/>
@@ -283,7 +283,6 @@
     <def-var n="caseFirstWord"/>
     <def-var n="c_name"         c="chunk name"/>
     <def-var n="ntags"/>
-    <def-var n="pass"/>
     <def-var n="aux"/>
     <def-var n="grau_aux"       c="lexical unit containing meir/mest if translating from sint to non-sint"/>
   </section-def-vars>
@@ -926,7 +925,7 @@ Requires rather ugly RL prn lemmas in nn.dix, see personal_pronouns__prn pardef"
         <choose>
           <when>
             <test>
-              <equal><clip pos="4" side="tl" part="voice"/><lit-tag v="pass"/></equal>
+              <equal><clip pos="4" side="tl" part="voice"/><lit-tag v="pasv"/></equal>
             </test>
             <call-macro n="set_aux2"><with-param pos="4"/><with-param pos="4"/></call-macro>
             <out>
