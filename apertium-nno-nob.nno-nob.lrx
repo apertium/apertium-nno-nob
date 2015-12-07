@@ -1,10 +1,7 @@
 <rules>
-  <rule>
-    <match lemma="måling" tags="n.*.pl.*">
-      <select lemma="måling"/>
-    </match>
+  <rule> <match lemma="måling" tags="n.*.pl.*"> <select lemma="måling"/> </match>
   </rule>
-  <rule>
+  <rule weight="2.0">
     <or>
       <match lemma="tynn"/>
       <match lemma="oljebasert"/>
@@ -16,7 +13,7 @@
       <select lemma="maling"/>
     </match>
   </rule>
-  <rule>
+  <rule weight="2.0">
     <match lemma="måling" tags="n.*.sg.ind">
       <select lemma="maling"/>
     </match>
@@ -29,38 +26,38 @@
     </or>
   </rule>
 
-  <rule>
+  <rule weight="2.0">
     <match lemma="rett" tags="n.*">
       <select lemma="rett"/>
     </match>
     <match lemma="smake" tags="vblex.*"/>
   </rule>
-  <rule>
+  <rule weight="2.0">
     <match lemma="tradisjonell" tags="adj.*"/>
     <match/>
     <match lemma="rett" tags="n.*">
       <select lemma="rett"/>
     </match>
   </rule>
-  <rule>
+  <rule weight="2.0">
     <match lemma="tradisjonell" tags="adj.*"/>
     <match lemma="rett" tags="n.*">
       <select lemma="rett"/>
     </match>
   </rule>
-  <rule>
+  <rule weight="2.0">
     <match lemma="rett" tags="n.*">
       <select lemma="rettighet"/>
     </match>
     <match lemma="du" tags="det.pos.*"/>
   </rule>
-  <rule>
+  <rule weight="2.0">
     <match lemma="rett" tags="n.*">
       <select lemma="rettighet"/>
     </match>
     <match lemma="til" tags="pr.*"/>
   </rule>
-  <rule>
+  <rule weight="2.0">
     <match lemma="rett" tags="n.*">
       <select lemma="rettighet"/>
     </match>
@@ -68,19 +65,15 @@
     <match lemma="plikt"/>
   </rule>
 
-  <rule>
+  <rule weight="2.0">
     <match lemma="verke" tags="vblex.*">
       <select lemma="verke"/>
     </match>
     <match lemma="i"/>
   </rule>
-  <rule>
-    <match lemma="verke" tags="vblex.*">
-      <select lemma="virke"/>
-    </match>
-  </rule>
+  <rule> <match lemma="verke" tags="vblex.*"> <select lemma="virke"/> </match> </rule>
 
-  <rule>
+  <rule weight="2.0">
     <match lemma="tilsetje" tags="vblex.*">
       <select lemma="tilsette"/>
     </match>
@@ -92,9 +85,6 @@
       <match lemma="smak"/>
     </or>
   </rule>
-  <rule>
-    <match lemma="tilsetje" tags="vblex.*">
-      <select lemma="ansette"/>
-    </match>
+  <rule> <match lemma="tilsetje" tags="vblex.*"> <select lemma="ansette"/> </match>
   </rule>
 </rules>
