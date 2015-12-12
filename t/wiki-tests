@@ -40,7 +40,11 @@ fetchtests () {
 }
 
 cleantst () {
-    $SED 's/^ *//; s/ *$//; s/\([^,.?!:;]\)$/\1./g; s/   */ /g'
+    local bom=$(env printf "\uFEFF")
+    local zws=$(env printf "\u200B")
+    $SED 's/^ *//; s/ *$//; s/\([^,.?!:;]\)$/\1./g; s/   */ /g' \
+        | $SED -e "s/﻿//g" \
+        | $SED -e "s/​//g"
 }
 cleansrc () {
     local -r srclang=$1
@@ -79,9 +83,9 @@ summary () {
 
 echo_revision () {
     if rev=$(svn info 2>/dev/null); then
-	echo "${rev}" | grep ^Revision
+	echo "${rev}" | grep -e ^Revisjon -e ^Revision
     elif git config --get svn-remote.svn.fetch &>/dev/null; then
-	git svn info | grep -a ^Revision
+	git svn info | grep -a -e ^Revisjon -e ^Revision
     else
 	echo "(doesn't seem to be a repo)"
     fi
