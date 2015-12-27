@@ -392,6 +392,21 @@
         <otherwise>
           <!-- Or maybe we want to _add_ meir/mest: -->
           <call-macro n="set_grau_aux1"><with-param pos="1"/></call-macro>
+          <!-- and fix tags on the second adj (but no new aux if only second adj is non-pst; TODO better) -->
+          <choose><when>
+            <test><and>
+              <begins-with><clip pos="2" side="sl" part="a_adj"/><lit-tag v="adj.sint"/></begins-with>
+              <not><begins-with><clip pos="2" side="tl" part="a_adj"/><lit-tag v="adj.sint"/></begins-with></not>
+              <or>
+                <equal><clip pos="2" side="tl" part="grau"/><lit-tag v="comp"/></equal>
+                <equal><clip pos="2" side="tl" part="grau"/><lit-tag v="sup"/></equal>
+              </or>
+            </and></test>
+            <let>
+              <clip pos="2" side="tl" part="tags"/>
+              <lit-tag v="adj.pst.un.pl.ind"/>
+            </let>
+          </when></choose>
         </otherwise>
       </choose>
     </def-macro>
