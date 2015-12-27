@@ -479,36 +479,7 @@
       <call-macro n="set_gender1.adj"><with-param pos="2"/></call-macro>
     </def-macro>
 
-    <def-macro n="set_grau_aux2" npar="2"
-               c="arg.1: adjective arg.2: adjective
-                  When translating from «meir/mest» non-sint to sint, remove «meir/mest», empty grau_aux-variable.
-                  When translating from (first arg) sint to non-sint, put «meir/mest» in grau_aux-variable.
-
-                  Assumes c_name has been set!">
-      <choose>
-        <when>
-          <test><and>
-            <equal><clip pos="1" side="tl" part="lemh"/><lit v="mykje"/></equal>
-            <or>
-              <equal><clip pos="1" side="tl" part="grau"/><lit-tag v="comp"/></equal>
-              <equal><clip pos="1" side="tl" part="grau"/><lit-tag v="sup"/></equal>
-            </or>
-            <not><begins-with><clip pos="2" side="sl" part="a_adj"/><lit-tag v="adj.sint"/></begins-with></not>
-            <begins-with><clip pos="2" side="tl" part="a_adj"/><lit-tag v="adj.sint"/></begins-with>
-          </and></test>
-          <!-- The second adj is synthetic, so copy tags from first adj: -->
-          <let><clip pos="2" side="tl" part="tags"/><clip pos="1" side="tl" part="tags"/></let>
-          <!-- And delete the first (meir/mest) adj: -->
-          <let><clip pos="1" side="tl" part="whole"/><lit v=""/></let>
-          <let><var n="grau_aux"/><lit v=""/></let>
-        </when>
-
-        <otherwise>
-          <!-- Or maybe we want to _add_ meir/mest: -->
-          <call-macro n="set_grau_aux1"><with-param pos="1"/></call-macro>
-        </otherwise>
-      </choose>
-    </def-macro>
+    
 
     <def-macro n="set_grau_aux1" npar="1"
                c="arg.1: adjective
@@ -563,6 +534,37 @@
           </let>
         </otherwise>
 
+      </choose>
+    </def-macro>
+
+    <def-macro n="set_grau_aux2" npar="2"
+               c="arg.1: adjective arg.2: adjective
+                  When translating from «meir/mest» non-sint to sint, remove «meir/mest», empty grau_aux-variable.
+                  When translating from (first arg) sint to non-sint, put «meir/mest» in grau_aux-variable.
+
+                  Assumes c_name has been set!">
+      <choose>
+        <when>
+          <test><and>
+            <equal><clip pos="1" side="tl" part="lemh"/><lit v="mykje"/></equal>
+            <or>
+              <equal><clip pos="1" side="tl" part="grau"/><lit-tag v="comp"/></equal>
+              <equal><clip pos="1" side="tl" part="grau"/><lit-tag v="sup"/></equal>
+            </or>
+            <not><begins-with><clip pos="2" side="sl" part="a_adj"/><lit-tag v="adj.sint"/></begins-with></not>
+            <begins-with><clip pos="2" side="tl" part="a_adj"/><lit-tag v="adj.sint"/></begins-with>
+          </and></test>
+          <!-- The second adj is synthetic, so copy tags from first adj: -->
+          <let><clip pos="2" side="tl" part="tags"/><clip pos="1" side="tl" part="tags"/></let>
+          <!-- And delete the first (meir/mest) adj: -->
+          <let><clip pos="1" side="tl" part="whole"/><lit v=""/></let>
+          <let><var n="grau_aux"/><lit v=""/></let>
+        </when>
+
+        <otherwise>
+          <!-- Or maybe we want to _add_ meir/mest: -->
+          <call-macro n="set_grau_aux1"><with-param pos="1"/></call-macro>
+        </otherwise>
       </choose>
     </def-macro>
 
