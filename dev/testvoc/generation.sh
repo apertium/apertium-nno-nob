@@ -80,6 +80,11 @@ case ${lang1} in
     nno|nob) clb="<clb>" ;;
 esac
 
-analysis_expansion "${dix}" "${clb}" \
+# Make it possible to edit the .dix while testvoc is running:
+dixtmp=$(mktemp -t gentestvoc.XXXXXXXXXXX)
+trap 'rm -f "${dixtmp}"' EXIT
+cat "${dix}" > "${dixtmp}"
+
+analysis_expansion "${dixtmp}" "${clb}" \
     | mode_after_analysis modes/"${mode}".mode \
     | only_errs
