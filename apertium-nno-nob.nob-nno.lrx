@@ -63,6 +63,33 @@
     <match lemma="den"/>
   </rule>
 
+  <rule weight="1.0"> <match lemma="stemme" tags="vblex.*"> <select lemma="stemme"/> </match> </rule>
+  <rule weight="2.0">
+    <match lemma="det"/>
+    <match lemma="stemme" tags="vblex.*">
+      <select lemma="stemme"/>
+    </match>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="å"/>
+    <match lemma="stemme" tags="vblex.*">
+      <select lemma="røyste"/>
+    </match>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="stemme" tags="vblex.*">
+      <select lemma="røyste"/>
+    </match>
+    <or>
+      <match lemma="blankt"/>
+      <match lemma="blank"/>
+      <match lemma="nei"/>
+      <match lemma="ja"/>
+      <match tags="pr"/>
+      <match tags="pr.*"/>
+    </or>
+  </rule>
+
   <rule> <match lemma="støtte" tags="n.*"> <select lemma="støtte"/> </match> </rule>
 
   <rule> <match lemma="anse" tags="adj.*"> <select lemma="verdsetje"/> </match> </rule>
