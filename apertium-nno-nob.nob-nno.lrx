@@ -63,6 +63,18 @@
     <match lemma="den"/>
   </rule>
 
+  <rule weight="1.0"> <match lemma="virvel" tags="vblex.*"> <select lemma="virvel"/> </match> </rule>
+  <rule weight="2.0">
+    <match lemma="virvel" tags="vblex.*">
+      <select lemma="kvervel"/>
+    </match>
+    <match/>
+    <or>
+      <match lemma="elv"/>
+      <match lemma="tromme"/>
+    </or>
+  </rule>
+
   <rule weight="1.0"> <match lemma="stemme" tags="vblex.*"> <select lemma="stemme"/> </match> </rule>
   <rule weight="2.0">
     <match lemma="det"/>
