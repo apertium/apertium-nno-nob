@@ -2,7 +2,7 @@
 ## Makefile for Nynorsk--Bokmål
 ###############################################################################
 
-VERSION=1.0.1
+VERSION=1.1.0
 LANG1=nno
 # nno_a har a-endingar i infinitiv, nno_e har e-endingar (standard):
 LANG1e=nno_e
