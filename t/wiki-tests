@@ -5,6 +5,10 @@ set -e -u
 ######## Globals:
 
 # You shouldn't have to change this unless the wiki gets a new host:
+if [[ ! -f "$(dirname $0)/../config.log" ]]; then
+    echo "Can't find $(dirname $0)/../config.log, did you forget to run autogen.sh?" >&2
+    exit 1
+fi
 declare -r PACKAGE=$(grep ^PACKAGE= "$(dirname $0)/../config.log" |grep -o "apertium-[^']*") # e.g. apertium-sme-nob
 declare -r BASEURL="http://wiki.apertium.org/wiki/${PACKAGE}"
 
@@ -40,6 +44,9 @@ fetchtests () {
 }
 
 cleantst () {
+    # Would use these, but printf on Mac doesn't support unicode
+    # names, so the below sed's use *literal* byte-order-marks and
+    # zero-width-spaces:
     local bom=$(env printf "\uFEFF")
     local zws=$(env printf "\u200B")
     $SED 's/^ *//; s/ *$//; s/\([^,.?!:;]\)$/\1./g; s/   */ /g' \
@@ -131,7 +138,8 @@ main () {
     srclist=$(mktemp -t "${mode}-src.XXXXXXXXXX")
     trglist=$(mktemp -t "${mode}-trg.XXXXXXXXXX")
     tstlist=$(mktemp -t "${mode}-tst.XXXXXXXXXX")
-    trap "rm -f \"${srclist}\" \"${trglist}\" \"${tstlist}\"" EXIT
+    rawlist=$(mktemp -t "${mode}-raw.XXXXXXXXXX")
+    trap "rm -f \"${srclist}\" \"${trglist}\" \"${tstlist}\" \"${rawlist}\"" EXIT
 
     showrevisions
     printf "Running $1-tests with mode \"${mode}\" "; ${update} && printf "with updated tests "; echo "..."
@@ -141,7 +149,11 @@ main () {
     cleantrg "${srclang}" < "${html}" > "${trglist}"
     (
         set -o pipefail
-        apertium -d . "${mode}" < "${srclist}" | cleantst > "${tstlist}"
+        if ! apertium -d . "${mode}" < "${srclist}" > "${rawlist}"; then
+            cat "${rawlist}" >&2
+            return 1
+        fi
+        cleantst <"${rawlist}" > "${tstlist}"
     )
     summary "${mode}" "${srclist}" "${trglist}" "${tstlist}" "${onlyfail}" "${onlypass}"
 }
