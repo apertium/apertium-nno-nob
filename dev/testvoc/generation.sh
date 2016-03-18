@@ -59,9 +59,9 @@ analysis_expansion () {
 analysis_expansion_hfst () {
     lt-print "$1" \
         | sed 's/ /@_SPACE_@/g' \
-        | hfst-txt2fst -e ε \
+        | hfst-txt2fst -e ε     \
         | hfst-project -p lower \
-        | hfst-fst2strings  -c0  \
+        | hfst-fst2strings -c1  \
         | awk -v clb="$2" '
           /[][$^{}\\]/{next} # skip escaping hell
           {
