@@ -64,6 +64,7 @@ analysis_expansion_hfst () {
         | hfst-fst2strings -c1  \
         | awk -v clb="$2" '
           /[][$^{}\\]/{next} # skip escaping hell
+          /<compound-(R|only-L)>|DUE_TO_LT_PROC_HANG|__REGEXP__/ {next}
           {
             gsub("]","\\]")
             esc=$0
