@@ -2,6 +2,9 @@
 
 set -e -u
 
+# How many times to follow cycle when expanding with --hfst; gets slow if too high:
+declare -i CYCLES=0
+
 if [[ $# -ge 1 && $1 = --hfst ]]; then
     HFST=true
     shift
@@ -61,7 +64,7 @@ analysis_expansion_hfst () {
         | sed 's/ /@_SPACE_@/g' \
         | hfst-txt2fst -e ε     \
         | hfst-project -p lower \
-        | hfst-fst2strings -c1  \
+        | hfst-fst2strings -c"${CYCLES}"  \
         | awk -v clb="$2" '
           /[][$^{}\\]/{next} # skip escaping hell
           /<compound-(R|only-L)>|DUE_TO_LT_PROC_HANG|__REGEXP__/ {next}
