@@ -969,6 +969,13 @@
         <call-macro n="set_gender1.adj"><with-param pos="1"/></call-macro>
         <call-macro n="set_grau_aux1"><with-param pos="1"/></call-macro>
         <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
+        <choose><when c="No following noun: dei er tekne → dei er tatt (ikkje 'tatte')">
+          <test><or>
+            <equal><clip pos="1" side="tl" part="tags"/><lit-tag v="adj.pp.pl"/></equal>
+            <equal><clip pos="1" side="tl" part="tags"/><lit-tag v="adj.pp.sg.def"/></equal>
+          </or></test>
+          <let><clip pos="1" side="tl" part="nbr"/><lit-tag v="mf.sg.ind"/></let>
+        </when></choose>
         <out>
           <chunk namefrom="c_name" case="caseFirstWord">
             <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
