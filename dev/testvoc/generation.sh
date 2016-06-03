@@ -115,7 +115,9 @@ mode_after_tagger ()
 }
 
 only_errs () {
-    grep '][^<]*[#/]'
+    # turn escaped SOLIDUS into DIVISION SLASH, so we don't grep correct stuff ("A/S" is a possible lemma)
+    sed 's%\\/%∕%g' |\
+        grep '][^<]*[#/]'
 }
 
 
