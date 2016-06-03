@@ -99,7 +99,7 @@ mode_after_analysis ()
 {
     eval $(grep '|' "$1" |\
                   sed 's/[^|]*|//' |\
-                  sed 's/autobil.bin *|/& split_ambig |/' |\
+                  sed "s/autobil.bin'* *|/& split_ambig |/" |\
                   sed 's/\$1/-d/g;s/\$2//g')
 }
 
@@ -109,7 +109,7 @@ mode_after_tagger ()
                   sed 's/[^|]*|//' |\
                   sed 's/.*apertium-pretransfer/apertium-pretransfer/' |\
                   sed 's/lt-proc -p[^|]*/cat/' |\
-                  sed 's/autobil.bin *|/& split_ambig |/' |\
+                  sed "s/autobil.bin'* *|/& split_ambig |/" |\
                   sed 's/\$1/-d/g;s/\$2//g')
     # lt-proc -p fails, that's why we remove that
 }
