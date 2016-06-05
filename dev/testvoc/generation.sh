@@ -38,8 +38,8 @@ the second argument, for example \`$0 eng-sco
 If you pass --hfst, the trimmed analyser will be used, and
 disambiguation will be skipped. This is a lot faster, but assumes you
 don't use mapping rules in CG. With --hfst, the optional dix argument
-is interpreted as the analyser binary (defaulting to
-lang1-lang2.automorf.bin).
+is interpreted as the analyser binary (defaulting to the first file
+name of the first program of the mode).
 
 EOF
     exit 1
@@ -59,10 +59,21 @@ analysis_expansion () {
           }'
 }
 
+analyser_to_hfst () {
+    case "$(head -c4 "$1")" in
+        HFST)
+            hfst-fst2fst -t "$1"
+            ;;
+        *) # lttoolbox bin's start with their <alphabet>'s :(
+            lt-print "$1" \
+                | sed 's/ /@_SPACE_@/g' \
+                | hfst-txt2fst -e ε
+            ;;
+    esac
+}
+
 analysis_expansion_hfst () {
-    lt-print "$1" \
-        | sed 's/ /@_SPACE_@/g' \
-        | hfst-txt2fst -e ε     \
+    analyser_to_hfst "$1" \
         | hfst-project -p lower \
         | hfst-fst2strings -c"${CYCLES}"  \
         | awk -v clb="$2" '
@@ -130,7 +141,7 @@ esac
 
 if $HFST; then
     if [[ ${dix} = guess ]]; then
-        dix="${mode}".automorf.bin
+        dix=$(xmllint --xpath "string(/modes/mode[@name = '${mode}']/pipeline/program[1]/file[1]/@name)" modes.xml)
     fi
     analysis_expansion_hfst "${dix}" "${clb}" \
         | mode_after_tagger modes/"${mode}".mode \
