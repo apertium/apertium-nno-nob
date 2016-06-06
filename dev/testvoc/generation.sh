@@ -96,7 +96,7 @@ split_ambig () {
     else
         python=python3
     fi
-    PYTHONPATH="$(dirname "$0"):${PYTHONPATH}" "${python}" -c '
+    PYTHONPATH="$(dirname "$0"):${PYTHONPATH:-}" "${python}" -c '
 from streamparser import parse_file, readingToString
 import sys
 for blank, lu in parse_file(sys.stdin, withText=True):
