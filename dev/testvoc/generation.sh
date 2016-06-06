@@ -2,8 +2,20 @@
 
 set -e -u
 
+# You can override the below variables by doing e.g.
+# $ export CYCLES=1 BLOCK=1M
+# before running this script.
+
 # How many times to follow cycle when expanding with --hfst; gets slow if too high:
-declare -i CYCLES=0
+declare -ir CYCLES=${CYCLES-0}
+# How many parallel pipelines to run (requires GNU parallel installed;
+# only worth increasing if CPU's are not saturated and there's free
+# RAM while running):
+declare -ir J=${J-1}
+# How much data to translate before restarting the pipeline (some
+# pipelines have memory leaks and need restarting every so often):
+declare -r BLOCK=${BLOCK:-10M}
+
 
 if [[ $# -ge 1 && $1 = --hfst ]]; then
     HFST=true
@@ -90,46 +102,69 @@ analysis_expansion_hfst () {
     # give the "disambiguated" output, no forms
 }
 
-split_ambig () {
-    if command -V pypy3 &>/dev/null; then
-        python=pypy3
-    else
-        python=python3
-    fi
-    PYTHONPATH="$(dirname "$0"):${PYTHONPATH:-}" "${python}" -c '
-from streamparser import parse_file, readingToString
-import sys
-for blank, lu in parse_file(sys.stdin, withText=True):
-    print(blank+" ".join("^{}/{}$".format(lu.wordform, readingToString(r))
-                         for r in lu.readings),
-          end="")'
-
-}
-
-mode_after_analysis ()
-{
-    eval $(grep '|' "$1" |\
-                  sed 's/[^|]*|//' |\
-                  sed "s/autobil.bin'* *|/& split_ambig |/" |\
-                  sed 's/\$1/-d/g;s/\$2//g')
-}
-
-mode_after_tagger ()
-{
-    eval $(grep '|' "$1" |\
-                  sed 's/[^|]*|//' |\
-                  sed 's/.*apertium-pretransfer/apertium-pretransfer/' |\
-                  sed 's/lt-proc -p[^|]*/cat/' |\
-                  sed "s/autobil.bin'* *|/& split_ambig |/" |\
-                  sed 's/\$1/-d/g;s/\$2//g')
-    # lt-proc -p fails, that's why we remove that
-}
-
 only_errs () {
     # turn escaped SOLIDUS into DIVISION SLASH, so we don't grep correct stuff ("A/S" is a possible lemma)
     sed 's%\\/%∕%g' |\
         grep '][^<]*[#/]'
 }
+
+run_mode () {
+    if command -V parallel >/dev/null; then
+        parallel -j"$J" --pipe --block "${BLOCK}" -- bash "$@"
+    else
+        bash "$@"
+    fi
+}
+
+declare -a TMPFILES
+cleanup () {
+    for f in "${TMPFILES[@]}"; do
+        rm -f "$f"
+    done
+}
+trap 'cleanup' EXIT
+
+
+PYTHONPATH="$(dirname "$0"):${PYTHONPATH:-}"
+export PYTHONPATH
+if command -V pypy3 &>/dev/null; then
+    python=pypy3
+else
+    python=python3
+fi
+split_ambig=$(mktemp -t gentestvoc.XXXXXXXXXXX)
+TMPFILES+=("${split_ambig}")
+cat >"${split_ambig}" <<EOF
+#!/usr/bin/env ${python}
+from streamparser import parse_file, readingToString
+import sys
+for blank, lu in parse_file(sys.stdin, withText=True):
+    print(blank+" ".join("^{}/{}\$".format(lu.wordform, readingToString(r))
+                         for r in lu.readings),
+          end="")
+EOF
+chmod +x "${split_ambig}"
+
+# TODO: using modes.xml with gendebug="yes" should make these
+mode_after_analysis=$(mktemp -t gentestvoc.XXXXXXXXXXX)
+TMPFILES+=("${mode_after_analysis}")
+grep '|' modes/"${mode}".mode \
+    | sed 's/[^|]*|//' \
+    | sed 's/lt-proc -p[^|]*/cat/' \
+    | sed "s%autobil.bin'* *|%& ${split_ambig} |%" \
+    | sed 's/\$1/-d/g;s/\$2//g' \
+    > "${mode_after_analysis}"
+
+mode_after_tagger=$(mktemp -t gentestvoc.XXXXXXXXXXX)
+TMPFILES+=("${mode_after_tagger}")
+grep '|' modes/"${mode}".mode \
+    | sed 's/[^|]*|//' \
+    | sed 's/.*apertium-pretransfer/apertium-pretransfer/' \
+    | sed 's/lt-proc -p[^|]*/cat/' \
+    | sed "s%autobil.bin'* *|%& ${split_ambig} |%" \
+    | sed 's/\$1/-d/g;s/\$2//g' \
+    > "${mode_after_tagger}"
+# lt-proc -p fails, that's why we remove that
 
 
 lang1=${mode%%-*}
@@ -144,7 +179,7 @@ if $HFST; then
         dix=$(xmllint --xpath "string(/modes/mode[@name = '${mode}']/pipeline/program[1]/file[1]/@name)" modes.xml)
     fi
     analysis_expansion_hfst "${dix}" "${clb}" \
-        | mode_after_tagger modes/"${mode}".mode \
+        | run_mode "${mode_after_tagger}"     \
         | only_errs
 else
     if [[ ${dix} = guess ]]; then
@@ -153,9 +188,9 @@ else
     fi
     # Make it possible to edit the .dix while testvoc is running:
     dixtmp=$(mktemp -t gentestvoc.XXXXXXXXXXX)
-    trap 'rm -f "${dixtmp}"' EXIT
+    TMPFILES+=("${dixtmp}")
     cat "${dix}" > "${dixtmp}"
     analysis_expansion "${dixtmp}" "${clb}" \
-        | mode_after_analysis modes/"${mode}".mode \
+        | run_mode "${mode_after_analysis}" \
         | only_errs
 fi
