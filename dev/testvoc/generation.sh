@@ -14,7 +14,7 @@ declare -ir CYCLES=${CYCLES-0}
 declare -ir J=${J-1}
 # How much data to translate before restarting the pipeline (some
 # pipelines have memory leaks and need restarting every so often):
-declare -r BLOCK=${BLOCK:-10M}
+declare -r BLOCK=${BLOCK:-100M}
 
 
 if [[ $# -ge 1 && $1 = --hfst ]]; then
@@ -103,13 +103,19 @@ analysis_expansion_hfst () {
 }
 
 only_errs () {
+    if [[ $# -ge 1 && $1 = --no-@ ]]; then
+        atfilter () { grep -v '].*/@'; }
+    else
+        atfilter () { cat; }
+    fi
     # turn escaped SOLIDUS into DIVISION SLASH, so we don't grep correct stuff ("A/S" is a possible lemma)
     sed 's%\\/%∕%g' |\
+        atfilter |\
         grep '][^<]*[#/]'
 }
 
 run_mode () {
-    if command -V parallel >/dev/null; then
+    if command -V parallel &>/dev/null; then
         parallel -j"$J" --pipe --block "${BLOCK}" -- bash "$@"
     else
         bash "$@"
@@ -136,12 +142,16 @@ split_ambig=$(mktemp -t gentestvoc.XXXXXXXXXXX)
 TMPFILES+=("${split_ambig}")
 cat >"${split_ambig}" <<EOF
 #!/usr/bin/env ${python}
-from streamparser import parse_file, readingToString
+from streamparser import parse_file, readingToString, known
 import sys
 for blank, lu in parse_file(sys.stdin, withText=True):
-    print(blank+" ".join("^{}/{}\$".format(lu.wordform, readingToString(r))
-                         for r in lu.readings),
-          end="")
+    if lu.knownness == known:
+        print(blank+" ".join("^{}/{}\$".format(lu.wordform, readingToString(r))
+                            for r in lu.readings),
+            end="")
+    else:
+        print(blank+"^"+lu.wordform+"/"+lu.knownness.symbol+lu.wordform+"$",
+              end="")
 EOF
 chmod +x "${split_ambig}"
 
@@ -192,5 +202,5 @@ else
     cat "${dix}" > "${dixtmp}"
     analysis_expansion "${dixtmp}" "${clb}" \
         | run_mode "${mode_after_analysis}" \
-        | only_errs
+        | only_errs --no-@
 fi
