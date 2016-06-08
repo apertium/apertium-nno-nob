@@ -9,7 +9,36 @@ Consumes input from a file (first argument) or stdin, parsing and pretty printin
 import re, pprint, sys, itertools, fileinput
 from collections import namedtuple
 
+
+class Knownness:
+    __doc__ = """Level of knowledge associated with a lexical unit.
+    Values:
+        known
+        unknown: Denoted by '*', analysis not available.
+        biunknown: Denoted by '@', translation not available.
+        genunknown: Denoted by '#', generated form not available.
+"""
+    symbol = ""
+
+class known(Knownness):
+    pass
+class unknown(Knownness):
+    symbol = "*"
+class biunknown(Knownness):
+    symbol = "@"
+class genunknown(Knownness):
+    symbol = "#"
+
 SReading = namedtuple('SReading', ['baseform', 'tags'])
+try:
+    SReading.__doc__ = """A single subreading of an analysis of a token.
+    Fields:
+        baseform (str): The base form (lemma, lexical form, citation form) of the reading.
+        tags (list of str): The morphological tags associated with the reading.
+"""
+except AttributeError:
+    # Python 3.2 users have to read the source
+    pass
 
 def subreadingToString(sub):
     return sub.baseform+"".join("<"+t+">" for t in sub.tags)
@@ -39,8 +68,10 @@ class LexicalUnit:
         lexicalUnit (str): The lexical unit in Apertium stream format.
         wordform (str): The word form (surface form) of the lexical unit.
         readings (list of list of SReading): The analyses of the lexical unit with sublists containing all subreadings.
+        knownness (Knownness): The level of knowledge of the lexical unit.
     """
 
+    knownness = known
     def __init__(self, lexicalUnit):
         self.lexicalUnit = lexicalUnit
 
@@ -51,7 +82,7 @@ class LexicalUnit:
         self.readings = []
         for reading in readings:
             if len(reading) < 1:
-                print("Couldn't parse {}".format(self.lexicalUnit), file=sys.stderr)
+                print("WARNING: Empty readings for {}".format(self.lexicalUnit), file=sys.stderr)
             elif reading[0] not in '*#@':
                 subreadings = []
 
@@ -63,6 +94,8 @@ class LexicalUnit:
                     subreadings.append(SReading(baseform=baseform, tags=tags))
 
                 self.readings.append(subreadings)
+            else:
+                self.knownness = {'*': unknown, '@': biunknown, '#': genunknown}[readings[0][0]]
 
     def __repr__(self):
         return self.lexicalUnit
