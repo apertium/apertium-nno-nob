@@ -28,6 +28,7 @@ lang1dir=$(grep -m1 "^AP_SRC.*apertium-${lang1}" config.log | sed "s/^[^=]*='//;
     | head -"$MAX_LINES" \
     | cut -f2- \
     | tr '\t' ' ' \
+    | tr -d '#@' \
     | apertium -f html-noent -d . "$pair"-dgen \
     | grep '[#@]'
 
