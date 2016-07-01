@@ -71,6 +71,13 @@
 
 
   <section-def-attrs>
+    <def-attr n="a_adj">
+      <attr-item tags="adj"/>
+      <attr-item tags="adj.pp"/>
+      <attr-item tags="adj.pprs"/>
+      <attr-item tags="adj.ord"/>
+      <attr-item tags="adj.sint"/>
+    </def-attr>
     <def-attr n="gen">
       <attr-item tags="m"/>
       <attr-item tags="mf"/>
@@ -111,6 +118,22 @@
     <def-var n="foo"/>
   </section-def-vars>
 
+  <section-def-lists>
+    <def-list n="months">
+      <list-item v="januar"/>
+      <list-item v="februar"/>
+      <list-item v="mars"/>
+      <list-item v="april"/>
+      <list-item v="mai"/>
+      <list-item v="juni"/>
+      <list-item v="juli"/>
+      <list-item v="august"/>
+      <list-item v="september"/>
+      <list-item v="oktober"/>
+      <list-item v="november"/>
+      <list-item v="desember"/>
+    </def-list>
+  </section-def-lists>
 
   <section-def-macros>
     <def-macro n="out_adj" npar="1"
@@ -161,6 +184,10 @@
           <not><and>
             <equal><clip pos="2" part="nbr"/><lit-tag v="sg"/></equal>
             <equal><clip pos="1" part="art"/><lit v=""/></equal>
+          </and></not>
+          <not><and>
+            <in><clip pos="1" part="lemh"/><list n="months"/></in>
+            <equal><clip pos="2" part="a_adj"/><lit-tag v="adj.ord"/></equal>
           </and></not>
         </and></test>
         <let><clip pos="1" part="art"/><clip pos="3" part="art"/></let>
