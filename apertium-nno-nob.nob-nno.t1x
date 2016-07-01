@@ -238,17 +238,8 @@
       <attr-item tags="adj"/>
       <attr-item tags="adj.pp"/>
       <attr-item tags="adj.pprs"/>
-      <attr-item tags="adj.pst"/>
-      <attr-item tags="adj.comp"/>
-      <attr-item tags="adj.sup"/>
-      <attr-item tags="adj.ord.pst"/>
-      <attr-item tags="adj.ord.comp"/>
-      <attr-item tags="adj.ord.sup"/>
-
+      <attr-item tags="adj.ord"/>
       <attr-item tags="adj.sint"/>
-      <attr-item tags="adj.sint.pst"/>
-      <attr-item tags="adj.sint.comp"/>
-      <attr-item tags="adj.sint.sup"/>
     </def-attr>
 
     <def-attr n="grau">
@@ -504,8 +495,8 @@
       <choose>
         <when>
           <test><and>
-            <begins-with><clip pos="1" side="sl" part="a_adj"/><lit-tag v="adj.sint"/></begins-with>
-            <not><begins-with><clip pos="1" side="tl" part="a_adj"/><lit-tag v="adj.sint"/></begins-with></not>
+            <equal><clip pos="1" side="sl" part="a_adj"/><lit-tag v="adj.sint"/></equal>
+            <not><equal><clip pos="1" side="tl" part="a_adj"/><lit-tag v="adj.sint"/></equal></not>
             <or>
               <equal><clip pos="1" side="tl" part="grau"/><lit-tag v="comp"/></equal>
               <equal><clip pos="1" side="tl" part="grau"/><lit-tag v="sup"/></equal>
@@ -566,8 +557,8 @@
               <equal><clip pos="1" side="tl" part="grau"/><lit-tag v="comp"/></equal>
               <equal><clip pos="1" side="tl" part="grau"/><lit-tag v="sup"/></equal>
             </or>
-            <not><begins-with><clip pos="2" side="sl" part="a_adj"/><lit-tag v="adj.sint"/></begins-with></not>
-            <begins-with><clip pos="2" side="tl" part="a_adj"/><lit-tag v="adj.sint"/></begins-with>
+            <not><equal><clip pos="2" side="sl" part="a_adj"/><lit-tag v="adj.sint"/></equal></not>
+            <equal><clip pos="2" side="tl" part="a_adj"/><lit-tag v="adj.sint"/></equal>
           </and></test>
           <!-- The second adj is synthetic, so copy tags from first adj: -->
           <let><var n="defnes"/><clip pos="2" side="tl" part="art"/></let>
@@ -584,8 +575,8 @@
           <!-- and fix tags on the second adj (but no new aux if only second adj is non-pst; TODO better) -->
           <choose><when>
             <test><and>
-              <begins-with><clip pos="2" side="sl" part="a_adj"/><lit-tag v="adj.sint"/></begins-with>
-              <not><begins-with><clip pos="2" side="tl" part="a_adj"/><lit-tag v="adj.sint"/></begins-with></not>
+              <equal><clip pos="2" side="sl" part="a_adj"/><lit-tag v="adj.sint"/></equal>
+              <not><equal><clip pos="2" side="tl" part="a_adj"/><lit-tag v="adj.sint"/></equal></not>
               <or>
                 <equal><clip pos="2" side="tl" part="grau"/><lit-tag v="comp"/></equal>
                 <equal><clip pos="2" side="tl" part="grau"/><lit-tag v="sup"/></equal>
