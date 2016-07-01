@@ -233,7 +233,7 @@
       <attr-item tags="det.qnt.neg"/>
       <attr-item tags="det.pos"/>
     </def-attr>
-    
+
     <def-attr n="a_adj">
       <attr-item tags="adj"/>
       <attr-item tags="adj.pp"/>
@@ -254,7 +254,7 @@
     <def-attr n="grau">
       <attr-item tags="pst"/>
       <attr-item tags="comp"/>
-      <attr-item tags="sup"/> 
+      <attr-item tags="sup"/>
     </def-attr>
 
     <def-attr n="gen">
@@ -474,18 +474,27 @@
           <in><clip pos="1" side="tl" part="gen"/><list n="adj-genders"/></in>
           <or>
             <equal><clip pos="2" side="tl" part="gen"/><lit-tag v="GD"/></equal>
-            <and>
-              <not><equal><clip pos="1" side="sl" part="gen"/><clip pos="1" side="tl" part="gen"/></equal></not>
-              <not><equal><clip pos="1" side="tl" part="gen"/><lit-tag v="f"/></equal></not>
-            </and>
+            <not><equal><clip pos="1" side="sl" part="gen"/><clip pos="1" side="tl" part="gen"/></equal></not>
           </or>
         </and></test>
-        <let><clip pos="2" side="tl" part="gen"/><clip pos="1" side="tl" part="gen"/></let>
-      </when></choose>
+        <choose>
+          <when>
+            <test><and>
+              <not><equal><clip pos="2" side="tl" part="gen"/><lit-tag v="GD"/></equal></not>
+              <equal><clip pos="1" side="tl" part="gen"/><lit-tag v="f"/></equal>
+            </and></test>
+            <let><clip pos="2" side="tl" part="gen"/><lit-tag v="mf"/></let>
+          </when>
+          <otherwise>
+            <let><clip pos="2" side="tl" part="gen"/><clip pos="1" side="tl" part="gen"/></let>
+          </otherwise>
+        </choose>
+      </when>
+      </choose>
       <call-macro n="set_gender1.adj"><with-param pos="2"/></call-macro>
     </def-macro>
 
-    
+
 
     <def-macro n="set_grau_aux1" npar="1"
                c="arg.1: adjective
