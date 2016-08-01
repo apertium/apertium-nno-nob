@@ -934,13 +934,6 @@
         <call-macro n="set_gender1.adj"><with-param pos="1"/></call-macro>
         <call-macro n="set_grau_aux1"><with-param pos="1"/></call-macro>
         <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
-        <choose><when c="No following noun: dei er tekne → dei er tatt (ikkje 'tatte')">
-          <test><or>
-            <equal><clip pos="1" side="tl" part="tags"/><lit-tag v="adj.pp.pl"/></equal>
-            <equal><clip pos="1" side="tl" part="tags"/><lit-tag v="adj.pp.sg.def"/></equal>
-          </or></test>
-          <let><clip pos="1" side="tl" part="tags"/><lit-tag v="vblex.pp"/></let>
-        </when></choose>
         <out>
           <chunk namefrom="c_name" case="caseFirstWord">
             <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
@@ -980,52 +973,6 @@
               <clip pos="1" side="tl" part="lemq"/>
             </lu>
             <b pos="1"/>
-            <lu>
-              <clip pos="2" side="tl" part="lemh"/>
-              <clip pos="2" side="tl" part="tags"/>
-              <clip pos="2" side="tl" part="lemq"/>
-            </lu>
-          </chunk>
-        </out>
-      </action>
-    </rule>
-    <rule comment="DET ADJ
-                   Override pp-undeclining of lone ADJ rule">
-      <pattern>
-        <pattern-item n="det"/>
-        <pattern-item n="adj"/>
-      </pattern>
-      <action>
-        <choose>
-          <when>
-            <test><in caseless="yes"><clip pos="1" side="sl" part="lem"/><list n="det_indef"/></in></test>
-            <let><var n="c_name"/><lit v="detdd"/></let>
-          </when>
-          <when>
-            <test><equal caseless="yes"><clip pos="1" side="tl" part="lemh"/><lit v="sin"/></equal></test>
-            <let><var n="c_name"/><lit v="detsin"/></let>
-          </when>
-          <otherwise><let><var n="c_name"/><lit v="det"/></let></otherwise>
-        </choose>
-        <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
-        <out>
-          <chunk namefrom="c_name" case="caseFirstWord">
-            <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
-            <lu>
-              <clip pos="1" side="tl" part="lemh"/>
-              <clip pos="1" side="tl" part="tags"/>
-              <clip pos="1" side="tl" part="lemq"/>
-            </lu>
-          </chunk>
-        </out>
-        <let><var n="c_name"/><lit v="adj"/></let>
-        <call-macro n="set_gender1.adj"><with-param pos="2"/></call-macro>
-        <call-macro n="set_grau_aux1"><with-param pos="2"/></call-macro>
-        <out>
-          <b pos="1"/>
-          <chunk namefrom="c_name" case="caseFirstWord">
-            <tags><tag><clip pos="2" side="tl" part="tags"/></tag></tags>
-            <var n="grau_aux"/>
             <lu>
               <clip pos="2" side="tl" part="lemh"/>
               <clip pos="2" side="tl" part="tags"/>

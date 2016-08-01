@@ -26,6 +26,17 @@
     </or>
   </rule>
 
+  <!-- dei er tekne → de er tatt: -->
+  <rule weight="1.0"><match tags="adj.pp.pl"><select tags="adj.pp.mf.sg.ind"/></match></rule>
+  <rule weight="2.0">
+    <match tags="adj.pp.pl"><select tags="adj.pp.pl"/></match>
+    <match tags="n.*"/>
+  </rule>
+  <rule weight="2.0">
+    <match tags="det.*"/>
+    <match tags="adj.pp.pl"><select tags="adj.pp.pl"/></match>
+  </rule>
+
   <rule weight="2.0">
     <match lemma="rett" tags="n.*">
       <select lemma="rett"/>
