@@ -441,46 +441,6 @@
       </out>
     </def-macro>
 
-    <def-macro n="out_posgen_subj" npar="2">
-      <!-- arg.1: possessor, either genitive noun or det.pos.
-           arg.2: gives typographic case
-           Assumes no variables.
-           Turns eg. "min" into "eg", "naboens" into "naboen".
-           Strips case both from chunk and word.
-      -->
-      <choose>
-        <when>
-          <test><equal><clip pos="1" side="sl" part="a_det"/><lit-tag v="det.pos"/></equal></test>
-          <call-macro n="set_caseFirstWord"><with-param pos="2"/></call-macro>
-          <out>
-            <chunk name="prn" case="caseFirstWord">
-              <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
-              <lu>
-                <clip pos="1" side="tl" part="lemh"/>
-                <lit-tag v="prn"/>
-                <clip pos="1" side="tl" part="persona"/>
-                <clip pos="1" side="tl" part="lemq"/>
-              </lu>
-            </chunk>
-          </out>
-        </when>
-      <otherwise>
-        <call-macro n="set_caseFirstWord"><with-param pos="2"/></call-macro>
-        <let><clip pos="1" side="tl" part="cas"/><lit v=""/></let>
-        <out>
-          <chunk name="n" case="caseFirstWord">
-            <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
-            <lu>
-              <get-case-from pos="2"><clip pos="1" side="tl" part="lemh"/></get-case-from>
-              <clip pos="1" side="tl" part="tags"/>
-              <clip pos="1" side="tl" part="lemq"/>
-            </lu>
-          </chunk>
-        </out>
-      </otherwise>
-      </choose>
-    </def-macro>
-
   </section-def-macros>
 
 
