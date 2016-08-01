@@ -637,14 +637,64 @@
         <when>
           <test><equal><clip pos="1" side="sl" part="a_det"/><lit-tag v="det.pos"/></equal></test>
           <call-macro n="set_caseFirstWord"><with-param pos="2"/></call-macro>
+          <choose>
+            <when>
+              <test><equal><clip pos="1" side="tl" part="lemh"/><lit v="min"/></equal></test>
+              <let><clip pos="1" side="tl" part="lemh"/><lit v="eg"/></let>
+              <let><clip pos="1" side="tl" part="tags"/><lit-tag v="prn.pers.p1.mf.sg.nom"/></let>
+            </when>
+            <when>
+              <test><equal><clip pos="1" side="tl" part="lemh"/><lit v="din"/></equal></test>
+              <let><clip pos="1" side="tl" part="lemh"/><lit v="du"/></let>
+              <let><clip pos="1" side="tl" part="tags"/><lit-tag v="prn.pers.p2.mf.sg.nom"/></let>
+            </when>
+            <when>
+              <test><equal><clip pos="1" side="tl" part="lemh"/><lit v="sin"/></equal></test>
+              <let><clip pos="1" side="tl" part="lemh"/><lit v="seg"/></let>
+              <let><clip pos="1" side="tl" part="tags"/><lit-tag v="prn.ref.p3.un.sp.acc"/></let>
+            </when>
+            <when>
+              <test><equal><clip pos="1" side="tl" part="lemh"/><lit v="hennar"/></equal></test>
+              <let><clip pos="1" side="tl" part="lemh"/><lit v="ho"/></let>
+              <let><clip pos="1" side="tl" part="tags"/><lit-tag v="prn.pers.p3.f.sg.nom"/></let>
+            </when>
+            <when>
+              <test><equal><clip pos="1" side="tl" part="lemh"/><lit v="hans"/></equal></test>
+              <let><clip pos="1" side="tl" part="lemh"/><lit v="han"/></let>
+              <let><clip pos="1" side="tl" part="tags"/><lit-tag v="prn.pers.p3.m.sg.nom"/></let>
+            </when>
+            <when>
+              <test><equal><clip pos="1" side="tl" part="lemh"/><lit v="dens"/></equal></test>
+              <let><clip pos="1" side="tl" part="lemh"/><lit v="den"/></let>
+              <let><clip pos="1" side="tl" part="tags"/><lit-tag v="prn.pers.p3.mf.sg.nom"/></let>
+            </when>
+            <when>
+              <test><equal><clip pos="1" side="tl" part="lemh"/><lit v="dets"/></equal></test>
+              <let><clip pos="1" side="tl" part="lemh"/><lit v="den"/></let>
+              <let><clip pos="1" side="tl" part="tags"/><lit-tag v="prn.pers.p3.nt.sg.nom"/></let>
+            </when>
+            <when>
+              <test><equal><clip pos="1" side="tl" part="lemh"/><lit v="vår"/></equal></test>
+              <let><clip pos="1" side="tl" part="lemh"/><lit v="vi"/></let>
+              <let><clip pos="1" side="tl" part="tags"/><lit-tag v="prn.pers.p1.un.pl.nom"/></let>
+            </when>
+            <when>
+              <test><equal><clip pos="1" side="tl" part="lemh"/><lit v="dykkar"/></equal></test>
+              <let><clip pos="1" side="tl" part="lemh"/><lit v="de"/></let>
+              <let><clip pos="1" side="tl" part="tags"/><lit-tag v="prn.pers.p2.un.pl.nom"/></let>
+            </when>
+            <when>
+              <test><equal><clip pos="1" side="tl" part="lemh"/><lit v="deira"/></equal></test>
+              <let><clip pos="1" side="tl" part="lemh"/><lit v="dei"/></let>
+              <let><clip pos="1" side="tl" part="tags"/><lit-tag v="prn.pers.p3.un.pl.nom"/></let>
+            </when>
+          </choose>
           <out>
             <chunk name="prn" case="caseFirstWord">
               <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
               <lu>
                 <clip pos="1" side="tl" part="lemh"/>
-                <lit-tag v="prn"/>
-                <clip pos="1" side="tl" part="persona"/>
-                <clip pos="1" side="tl" part="lemq"/>
+                <clip pos="1" side="tl" part="tags"/>
               </lu>
             </chunk>
           </out>
