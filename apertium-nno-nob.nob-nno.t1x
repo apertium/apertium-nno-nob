@@ -528,10 +528,15 @@
             </concat>
           </let>
 
-          <let>
-            <clip pos="1" side="tl" part="tags"/>
-            <lit-tag v="adj.pst.un.pl.ind"/>
-          </let>
+          <choose>
+            <when>
+              <test><equal><clip pos="1" side="sl" part="art"/><lit-tag v="def"/></equal></test>
+              <let><clip pos="1" side="tl" part="tags"/><lit-tag v="adj.pst.un.sp.def"/></let>
+            </when>
+            <otherwise>
+              <let><clip pos="1" side="tl" part="tags"/><lit-tag v="adj.pst.nt.sg.ind"/></let>
+            </otherwise>
+          </choose>
         </when>
 
         <otherwise>
@@ -582,10 +587,15 @@
                 <equal><clip pos="2" side="tl" part="grau"/><lit-tag v="sup"/></equal>
               </or>
             </and></test>
-            <let>
-              <clip pos="2" side="tl" part="tags"/>
-              <lit-tag v="adj.pst.un.pl.ind"/>
-            </let>
+            <choose>
+              <when>
+                <test><equal><clip pos="2" side="sl" part="art"/><lit-tag v="def"/></equal></test>
+                <let><clip pos="2" side="tl" part="tags"/><lit-tag v="adj.pst.un.sp.def"/></let>
+              </when>
+              <otherwise>
+                <let><clip pos="2" side="tl" part="tags"/><lit-tag v="adj.pst.nt.sg.ind"/></let>
+              </otherwise>
+            </choose>
           </when></choose>
         </otherwise>
       </choose>
