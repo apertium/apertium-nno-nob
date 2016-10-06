@@ -29,6 +29,9 @@ class biunknown(Knownness):
 class genunknown(Knownness):
     symbol = "#"
 
+def symbolToKnownness(symbol):
+    return {"*": unknown, "@": biunknown, "#": genunknown}.get(symbol, known)
+
 SReading = namedtuple('SReading', ['baseform', 'tags'])
 try:
     SReading.__doc__ = """A single subreading of an analysis of a token.
@@ -79,11 +82,14 @@ class LexicalUnit:
         self.wordform = cohort[0]
         readings = cohort[1:]
 
+        if len(readings) == 1:
+            self.knownness = symbolToKnownness(readings[0][:1])
+
         self.readings = []
         for reading in readings:
             if len(reading) < 1:
                 print("WARNING: Empty readings for {}".format(self.lexicalUnit), file=sys.stderr)
-            elif reading[0] not in '*#@':
+            else:
                 subreadings = []
 
                 subreadingParts = re.findall(r'([^<]+)((?:<[^>]+>)+)', reading)
@@ -94,8 +100,6 @@ class LexicalUnit:
                     subreadings.append(SReading(baseform=baseform, tags=tags))
 
                 self.readings.append(subreadings)
-            else:
-                self.knownness = {'*': unknown, '@': biunknown, '#': genunknown}[readings[0][0]]
 
     def __repr__(self):
         return self.lexicalUnit
