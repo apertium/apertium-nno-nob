@@ -483,32 +483,32 @@
       </action>
     </rule>
 
-    <rule comment="INFAUX ADJPART => VBLEXPASS
-                   [kan] leses => [kan] bli lest => [kan] lesast
-                   Delete aux.
+    <!-- <rule comment="INFAUX ADJPART => VBLEXPASS -->
+    <!--                [kan] leses => [kan] bli lest => [kan] lesast -->
+    <!--                Delete aux. -->
 
-                   If we have infinitive without an infinitive marker, there's probably a modal
-                   somewhere and we can keep the original nynorsk passive form.">
-      <pattern>
-        <pattern-item n="infaux"/>
-        <pattern-item n="single-adjpart"/>
-      </pattern>
-      <action>
-        <call-macro n="modify_pp_gen_nbr"><with-param pos="2"/></call-macro>
-        <choose><when>
-          <test><equal><clip pos="1" part="voice"/><lit v=""/></equal></test>
-          <let><clip pos="1" part="temps"/><concat><clip pos="1" part="temps"/><lit-tag v="pasv"/></concat></let>
-        </when></choose>
-        <out>
-          <chunk>
-            <get-case-from pos="1"><lit v="adj2vblex"/></get-case-from>
-            <clip pos="1" part="tags"/>
-            <clip pos="2" part="chcontent"/>
-            <clip pos="2" part="lemq"/>
-          </chunk>
-        </out>
-      </action>
-    </rule>
+    <!--                If we have infinitive without an infinitive marker, there's probably a modal -->
+    <!--                somewhere and we can keep the original nynorsk passive form."> -->
+    <!--   <pattern> -->
+    <!--     <pattern-item n="infaux"/> -->
+    <!--     <pattern-item n="single-adjpart"/> -->
+    <!--   </pattern> -->
+    <!--   <action> -->
+    <!--     <call-macro n="modify_pp_gen_nbr"><with-param pos="2"/></call-macro> -->
+    <!--     <choose><when> -->
+    <!--       <test><equal><clip pos="1" part="voice"/><lit v=""/></equal></test> -->
+    <!--       <let><clip pos="1" part="temps"/><concat><clip pos="1" part="temps"/><lit-tag v="pasv"/></concat></let> -->
+    <!--     </when></choose> -->
+    <!--     <out> -->
+    <!--       <chunk> -->
+    <!--         <get-case-from pos="1"><lit v="adj2vblex"/></get-case-from> -->
+    <!--         <clip pos="1" part="tags"/> -->
+    <!--         <clip pos="2" part="chcontent"/> -->
+    <!--         <clip pos="2" part="lemq"/> -->
+    <!--       </chunk> -->
+    <!--     </out> -->
+    <!--   </action> -->
+    <!-- </rule> -->
 
 
     <!-- AUXPASS ADJPART ADV* => AUXPASS ADV* ADJPART ADV*
