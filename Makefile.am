@@ -16,20 +16,33 @@ PREFIX2e=$(LANG2)-$(LANG1e)
 
 BASENAME=apertium-$(PREFIX1)
 
-TARGETS_COMMON = \
-     $(PREFIX1).automorf.bin \
-     $(PREFIX1).rlx.bin \
-     $(PREFIX1).prob \
-     $(PREFIX1).autolex.bin \
-     $(PREFIX1).autobil.bin $(PREFIX1).t1x.bin $(PREFIX1).t2x.bin $(PREFIX1).t3x.bin \
-     $(PREFIX1).autogen.bin \
-     $(PREFIX2).automorf.bin \
-     $(PREFIX2).rlx.bin \
-     $(PREFIX2).prob \
-     $(PREFIX2).autolex.bin \
-     $(PREFIX2).autobil.bin $(PREFIX2).t1x.bin $(PREFIX2).t2x.bin $(PREFIX2).t3x.bin \
-     $(PREFIX2).autogen.bin \
+TARGETS_COMMON = $(TARGETS_PREFIX1) $(TARGETS_PREFIX2)
+
+TARGETS_PREFIX1 =                                             \
+     $(PREFIX1).automorf.bin                                  \
+     $(PREFIX1).rlx.bin                                       \
+     $(PREFIX1).prob                                          \
+     $(PREFIX1).autolex.bin                                   \
+     $(PREFIX1).autobil.bin                                   \
+     $(PREFIX1).t1x.bin $(PREFIX1).t2x.bin $(PREFIX1).t3x.bin \
+     $(PREFIX1).autogen.bin
+
+TARGETS_PREFIX2 =                                             \
+     $(PREFIX2).automorf.bin                                  \
+     $(PREFIX2).rlx.bin                                       \
+     $(PREFIX2).prob                                          \
+     $(PREFIX2).autolex.bin                                   \
+     $(PREFIX2).autobil.bin                                   \
+     $(PREFIX2).t1x.bin $(PREFIX2).t2x.bin $(PREFIX2).t3x.bin \
+     $(PREFIX2).autogen.bin                                   \
      $(PREFIX2e).autogen.bin
+
+$(PREFIX1): $(TARGETS_PREFIX1)
+$(PREFIX2): $(TARGETS_PREFIX2)
+e:				# build just nob-nno_e
+	cd $(AP_SRC1) && make $(LANG1e).autogen.bin
+	cd $(AP_SRC2) && make $(LANG2).automorf.bin $(LANG2).rlx.bin $(LANG2).prob
+	make nob-nno
 
 # This include defines goals for install-modes, .deps/.d and .mode files:
 @ap_include@
