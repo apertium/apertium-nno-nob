@@ -1,5 +1,27 @@
 <rules>
 
+  <rule> <match lemma="brenne" tags="adj.*"> <select lemma="brenne"/> </match> </rule>
+  <rule> <match lemma="brenne" tags="vblex.*"> <select lemma="brenne"/> </match> </rule>
+  <rule weight="2.0">
+    <match lemma="brenne" tags="vblex.*">
+      <select lemma="brenne¹"/>
+    </match>
+    <or>
+      <match lemma="av"/>
+      <match lemma="alle"/>
+      <match lemma="ein"/>
+    </or>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="brenne" tags="vblex.*">
+      <select lemma="brenne¹"/>
+    </match>
+    <match tags="*"/>
+    <or>
+      <match lemma="noko"/>
+    </or>
+  </rule>
+
   <rule> <match lemma="foreligge" tags="vblex.*"> <select lemma="finnast"/> </match> </rule>
   <rule> <match lemma="foreligge" tags="adj.*"> <select lemma="gjelde"/> </match> </rule>
 
