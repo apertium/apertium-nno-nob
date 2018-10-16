@@ -20,7 +20,7 @@ script:
     - make -j langs
     - make -j test
     - apertium -u -d . nob-nno_e < dev/ntb/articles.orig.nob > dev/ntb/articles.nob-nno
-    - dwdiff -c dev/ntb/articles.nob-nno.20181016 dev/ntb/articles.nob-nno || true
+    - diff -U1 dev/ntb/articles.nob-nno.20181016 dev/ntb/articles.nob-nno | dwdiff --diff-input -c || true
 # the last two steps here are temporary
 
 notifications:
