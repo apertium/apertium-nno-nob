@@ -1,5 +1,27 @@
 <rules>
 
+  <rule> <match lemma="anklage" tags="n.*"> <select lemma="skulding"/> </match> </rule>
+  <rule weight="2.0">
+    <match lemma="anklage" tags="n.*.sg.*">
+      <select lemma="tiltale"/>
+    </match>
+    <or>
+      <match lemma="lyde"/>
+      <match lemma="for"/>
+    </or>
+  </rule>
+
+  <rule> <match lemma="anklage" tags="vblex.*"> <select lemma="skulde"/> </match> </rule>
+  <rule weight="2.0">
+    <match lemma="anklage" tags="vblex.*.sg.*">
+      <select lemma="tiltale"/>
+    </match>
+    <or>
+      <match lemma="lyde"/>
+      <match lemma="for"/>
+    </or>
+  </rule>
+
   <rule> <match lemma="brenne" tags="adj.*"> <select lemma="brenne"/> </match> </rule>
   <rule> <match lemma="brenne" tags="vblex.*"> <select lemma="brenne"/> </match> </rule>
   <rule weight="2.0">
