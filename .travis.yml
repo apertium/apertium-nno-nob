@@ -16,12 +16,13 @@ before_script:
     - ( cd /tmp/apertium-nno && ./autogen.sh )
     - ./autogen.sh --with-lang1=/tmp/apertium-nno --with-lang2=/tmp/apertium-nob
 
+# The apertium/diff steps below are temporary
 script:
     - make -j langs
-    - make -j test
     - apertium -u -d . nob-nno_e < dev/ntb/articles.orig.nob > dev/ntb/articles.nob-nno
     - diff -U1 dev/ntb/articles.nob-nno.20181016 dev/ntb/articles.nob-nno | dwdiff --diff-input -c || true
-# the last two steps here are temporary
+    - make -j langs && make -j test
+# Travis only looks at the exit code of the last command! https://github.com/travis-ci/travis-ci/issues/1066
 
 notifications:
     irc:
