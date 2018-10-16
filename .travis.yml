@@ -9,7 +9,7 @@ python:
 
 before_script:
     - wget https://apertium.projectjj.com/apt/install-nightly.sh -O - | sudo bash
-    - sudo apt-get -f install apertium-all-dev
+    - sudo apt-get -f install apertium-all-dev dwdiff
     - git clone https://github.com/apertium/apertium-nob /tmp/apertium-nob
     - git clone https://github.com/apertium/apertium-nno /tmp/apertium-nno
     - ( cd /tmp/apertium-nob && ./autogen.sh )
@@ -19,7 +19,9 @@ before_script:
 script:
     - make -j langs
     - make -j test
-
+    - apertium -u -d . nob-nno_e < dev/ntb/articles.orig.nob > dev/ntb/articles.nob-nno
+    - dwdiff -c dev/ntb/articles.nob-nno.20181016 dev/ntb/articles.nob-nno || true
+# the last two steps here are temporary
 
 notifications:
     irc:
