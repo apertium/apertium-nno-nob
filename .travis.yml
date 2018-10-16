@@ -20,7 +20,7 @@ before_script:
 script:
     - make -j langs
     - apertium -u -d . nob-nno_e < dev/ntb/articles.orig.nob > dev/ntb/articles.nob-nno
-    - diff -U0 dev/ntb/articles.nob-nno.20181016 dev/ntb/articles.nob-nno | dwdiff --diff-input -c || true
+    - diff -U0 dev/ntb/articles.nob-nno.20181016 dev/ntb/articles.nob-nno | dwdiff --diff-input -c | grep -v "@@.*@@" || true
     - make -j langs && make -j test
 # Travis only looks at the exit code of the last command! https://github.com/travis-ci/travis-ci/issues/1066
 
