@@ -17,6 +17,10 @@
       <cat-item tags="n.*.*.ind"/>
       <cat-item tags="n.*.*.ind.gen"/>
     </def-cat>
+    <def-cat n="nind_keep_gen_s"
+             c="Owned nouns where we want the owner ngen to keep the genitive-s">
+      <cat-item tags="n.*.*.ind" lemma="beste"/>
+    </def-cat>
     <!-- n does not include compound lhs's: -->
     <def-cat n="n">
       <cat-item tags="n.*.cmp-split"/>
@@ -116,6 +120,8 @@
       <cat-item tags="n.m.pl.ind.gen"  lemma="dag"/>
       <cat-item tags="n.*.sg.*.gen"    lemma="uke"/>
       <cat-item tags="n.*.pl.ind.gen"  lemma="uke"/>
+
+      <cat-item tags="n.m.*.gen"  lemma="prosent"/>
     </def-cat>
     <def-cat n="det">
       <cat-item tags="det.*"/>
@@ -1129,6 +1135,26 @@ Requires rather ugly RL prn lemmas in nn.dix, see personal_pronouns__prn pardef"
               <clip pos="1" side="tl" part="tags"/>
               <clip pos="1" side="tl" part="lemq"/>
             </lu>
+            <b pos="1"/>
+            <lu><clip pos="2" side="tl" part="whole"/></lu>
+          </chunk>
+        </out>
+      </action>
+    </rule>
+    <rule comment="NGEN NIND_KEEP_GEN_S: barnets beste => barnets beste">
+      <pattern>
+        <pattern-item n="ngen"/>
+        <pattern-item n="nind_keep_gen_s"/>
+      </pattern>
+      <action>
+        <let><var n="c_name"/><lit v="n_n"/></let>
+        <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
+        <out>
+          <chunk namefrom="c_name" case="caseFirstWord">
+            <tags>
+              <tag><clip pos="2" side="tl" part="tags"/></tag>
+            </tags>
+            <lu><clip pos="1" side="tl" part="whole"/></lu>
             <b pos="1"/>
             <lu><clip pos="2" side="tl" part="whole"/></lu>
           </chunk>
