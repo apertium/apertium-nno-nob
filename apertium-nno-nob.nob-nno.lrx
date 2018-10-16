@@ -21,6 +21,21 @@
       <match lemma="for"/>
     </or>
   </rule>
+  
+  <rule> <match lemma="mengde" tags="n.*"> <select lemma="mengde"/> </match> </rule>
+  <rule weight="2.0">
+    <match lemma="mengde" tags="n.*.sg.def"> <!-- nno only can generate for this tagging -->
+      <select lemma="talet på"/>
+    </match>
+    <match tags="n.*.pl.*"/>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="mengde" tags="n.*.sg.def"> <!-- nno only can generate for this tagging -->
+      <select lemma="talet på"/>
+    </match>
+    <match tags="n.*.*.*.cmp"/>
+    <match tags="n.*.pl.*"/>
+  </rule>
 
   <rule> <match lemma="brenne" tags="adj.*"> <select lemma="brenne"/> </match> </rule>
   <rule> <match lemma="brenne" tags="vblex.*"> <select lemma="brenne"/> </match> </rule>
