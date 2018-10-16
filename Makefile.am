@@ -39,7 +39,7 @@ TARGETS_PREFIX2 =                                             \
 
 $(PREFIX1): $(TARGETS_PREFIX1)
 $(PREFIX2): $(TARGETS_PREFIX2)
-e:				# build just nob-nno_e
+e: modes/$(PREFIX1).mode	# build just nob-nno_e
 	cd $(AP_SRC1) && ${MAKE} $(LANG1e).autogen.bin
 	cd $(AP_SRC2) && ${MAKE} $(LANG2).automorf.bin $(LANG2).rlx.bin $(LANG2).prob
 	${MAKE} nob-nno
