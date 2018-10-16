@@ -745,7 +745,7 @@
       </action>
     </rule>
     <rule comment="AUXPASS ADJPART NDEF => AUXPASS NDEF ADJPART
-                   reguleres bøkene =1> blir regulert bøkene =2> blir bøkene regulert
+                   (nå) reguleres bøkene =1> blir regulert bøkene =2> blir bøkene regulert
                    auxpass are created in t1x
                    (No match if the aux was there originally, then we don't move anything)">
       <pattern>
@@ -767,6 +767,39 @@
           <b pos="2"/>
           <chunk>
             <clip pos="2" part="whole"/>
+          </chunk>
+        </out>
+      </action>
+    </rule>
+    <rule comment="N AUXPASS ADJPART NDEF => N AUXPASS ADJPART NDEF
+                   Overrides the AUXPASS ADJPART NDEF rule.
+                   kroner øremerkes tiltaket =1> kroner blir øremerket tiltaket =2> kroner blir øremerket tiltaket
+                   auxpass are created in t1x
+                   (No match if the aux was there originally, then we don't move anything)">
+      <pattern>
+        <pattern-item n="nom"/>
+        <pattern-item n="auxpass"/>
+        <pattern-item n="adjpart"/>
+        <pattern-item n="ndef"/>
+      </pattern>
+      <action>
+        <call-macro n="set_ana"><with-param pos="4"/></call-macro>
+        <call-macro n="modify_pp_gen_nbr"><with-param pos="3"/></call-macro>
+        <out>
+          <chunk>
+            <clip pos="1" part="whole"/>
+          </chunk>
+          <b pos="1"/>
+          <chunk>
+            <clip pos="2" part="whole"/>
+          </chunk>
+          <b pos="2"/>
+          <chunk>
+            <clip pos="3" part="whole"/>
+          </chunk>
+          <b pos="3"/>
+          <chunk>
+            <clip pos="4" part="whole"/>
           </chunk>
         </out>
       </action>
