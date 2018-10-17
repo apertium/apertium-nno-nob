@@ -124,6 +124,10 @@
 
       <cat-item tags="n.m.*.gen"  lemma="prosent"/>
     </def-cat>
+    <def-cat n="pr">
+      <cat-item tags="pr.*"/>
+      <cat-item tags="pr"/>
+    </def-cat>
     <def-cat n="det">
       <cat-item tags="det.*"/>
     </def-cat>
@@ -284,6 +288,7 @@
     <def-var n="gen-prep"/>
     <def-var n="caseFirstWord"/>
     <def-var n="c_name"         c="chunk name"/>
+    <def-var n="c_lemtag"       c="chunk lemma-tag"/>
     <def-var n="ntags"/>
     <def-var n="aux"/>
     <def-var n="defnes"/>
@@ -307,6 +312,7 @@
       <list-item v="vintertid"/>
       <list-item v="regjeringstid"/>
       <list-item v="mørketid"/>
+      <list-item v="kollektiv"/>
       <list-item v="by"/>
       <list-item v="dal"/>
       <list-item v="luft"/>
@@ -321,6 +327,9 @@
       <list-item v="sak"/>
       <list-item v="århundre"/>
       <list-item v="dokument"/>
+      <list-item v="draperi"/>
+      <list-item v="brev"/>
+      <list-item v="høyringsbrev"/>
     </def-list>
     <def-list n="gen-på">
       <list-item v="måndag"/>
@@ -738,6 +747,8 @@
           <let><var n="gen-prep"/><lit v="på"/></let></when>
           <when><test><in><clip pos="1" side="tl" part="lemh"/><list n="gen-av"/></in></test>
           <let><var n="gen-prep"/><lit v="av"/></let></when>
+          <when><test><in><clip pos="1" side="tl" part="lemh"/><list n="gen-for"/></in></test>
+          <let><var n="gen-prep"/><lit v="for"/></let></when>
           <otherwise><let><var n="gen-prep"/><lit v="til"/></let></otherwise>
         </choose>
         <out>
@@ -1714,6 +1725,28 @@ Requires rather ugly RL prn lemmas in nn.dix, see personal_pronouns__prn pardef"
         <out>
           <chunk name="prn" case="caseFirstWord">
             <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
+            <lu><clip pos="1" side="tl" part="whole"/></lu>
+          </chunk>
+        </out>
+      </action>
+    </rule>
+
+    <rule comment="PR">
+      <pattern>
+        <pattern-item n="pr"/>
+      </pattern>
+      <action>
+        <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
+        <let>
+          <var n="c_lemtag"/>
+          <concat><lit v="&lt;"/><clip pos="1" side="tl" part="lemh"/><lit v="&gt;"/></concat>
+        </let>
+        <out>
+          <chunk name="pr" case="caseFirstWord">
+            <tags>
+              <tag><clip pos="1" side="tl" part="tags"/></tag>
+              <tag><var n="c_lemtag"/></tag>
+            </tags>
             <lu><clip pos="1" side="tl" part="whole"/></lu>
           </chunk>
         </out>
