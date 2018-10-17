@@ -26,6 +26,11 @@
     <def-cat n="ngen">
       <cat-item tags="n.*.gen"/>
     </def-cat>
+    <def-cat n="ngendefpl">
+      <cat-item tags="n.*.def.gen"/>
+      <cat-item tags="n.*.pl.*.gen"/>
+      <cat-item tags="n.*.sp.*.gen"/>
+    </def-cat>
     <def-cat n="detgen">
       <cat-item tags="det.*.gen"/>
     </def-cat>
@@ -89,6 +94,9 @@
       <cat-item lemma="vblex" tags="vblex.pp"/>
       <cat-item lemma="adj" tags="adj.pp"/>
       <cat-item lemma="adj" tags="adj.pp.*"/>
+    </def-cat>
+    <def-cat n="prep_til">
+      <cat-item tags="pr.til"/>
     </def-cat>
   </section-def-cats>
 
@@ -166,6 +174,7 @@
     <def-var n="lemh"/>
     <def-var n="ana_gen"/>
     <def-var n="ana_nbr"/>
+    <def-var n="ana_temps" c="Last seen finite verb temps (pres/pret)"/>
   </section-def-vars>
 
   <section-def-macros>
@@ -262,7 +271,24 @@
     </def-macro>
 
     <def-macro n="set_ana" npar="1"
-               c="arg.1: noun. Set vars for for later use by modify_pp_gender">
+               c="arg.1: noun or verb. Set vars for for later use by modify_pp_gender">
+      <choose>
+        <when>
+          <test><equal><var n="ana_temps"/><lit v=""/></equal></test>
+          <let><var n="ana_temps"/><lit-tag v="pres"/></let>
+        </when>
+      </choose>
+      <choose>
+        <when>
+          <test><and>
+            <not><equal><clip pos="1" part="temps"/><lit v=""/></equal></not>
+            <not><equal><clip pos="1" part="temps"/><lit-tag v="pp"/></equal></not>
+            <not><equal><clip pos="1" part="temps"/><lit-tag v="inf"/></equal></not>
+          </and></test>
+          <let><var n="ana_temps"/><clip pos="1" part="temps"/></let>
+        </when>
+      </choose>
+
       <choose>
         <when>
           <test><and>
@@ -805,6 +831,19 @@
       </action>
     </rule>
 
+    <rule comment="VBLEX => VBLEX">
+      <pattern>
+        <pattern-item n="vblex"/>
+      </pattern>
+      <action>
+        <call-macro n="set_ana"><with-param pos="1"/></call-macro>
+        <out>
+          <chunk>
+            <clip pos="1" part="whole"/>
+          </chunk>
+        </out>
+      </action>
+    </rule>
 
     <rule comment="VBLEX LEMQ => VBLEX LEMQ">
       <pattern>
@@ -812,6 +851,7 @@
         <pattern-item n="lemq"/>
       </pattern>
       <action>
+        <call-macro n="set_ana"><with-param pos="1"/></call-macro>
         <out>
           <chunk>
             <clip pos="1" part="whole"/>
@@ -831,6 +871,7 @@
         <pattern-item n="adv"/>
       </pattern>
       <action>
+        <call-macro n="set_ana"><with-param pos="1"/></call-macro>
         <out>
           <chunk>
             <clip pos="1" part="whole"/>
@@ -855,6 +896,7 @@
         <pattern-item n="adv"/>
       </pattern>
       <action>
+        <call-macro n="set_ana"><with-param pos="1"/></call-macro>
         <out>
           <chunk>
             <clip pos="1" part="whole"/>
@@ -1168,6 +1210,41 @@
           <b pos="3"/>
           <chunk><clip pos="2" part="whole"/></chunk>
           <b pos="4"/>
+          <chunk><clip pos="4" part="whole"/></chunk>
+        </out>
+      </action>
+    </rule>
+
+
+    <rule comment="PREP_GEN NGENDEFPL NIND PREP_TIL
+                   næringslivets tillit til de rådende myndigheter => tillita næringslivet har til dei rådande styresmaktene
+                   drop the prep_gen from t1x and rewrite with «har»">
+      <pattern>
+        <pattern-item n="prep_gen"/>
+        <pattern-item n="ngendefpl"/>
+        <pattern-item n="nind"/>
+        <pattern-item n="prep_til"/>
+      </pattern>
+      <action>
+        <call-macro n="set_ana"><with-param pos="2"/></call-macro>
+        <call-macro n="switch_cases"><with-param pos="3"/><with-param pos="2"/></call-macro>
+
+        <call-macro n="out_det_when_adjlike"><with-param pos="3"/><with-param pos="2"/></call-macro>
+        <call-macro n="out_ndef"><with-param pos="3"/><with-param pos="1"/></call-macro>
+        <out>
+          <b pos="1"/>
+          <chunk><clip pos="2" part="whole"/></chunk>
+          <b pos="2"/>
+          <chunk>
+            <lit v="vblex"/>
+            <lit-tag v="vblex"/>
+            <var n="ana_temps"/>
+            <lit v="{^ha"/>
+            <lit-tag v="vblex"/>
+            <var n="ana_temps"/>
+            <lit v="$}"/>
+          </chunk>
+          <b pos="3"/>
           <chunk><clip pos="4" part="whole"/></chunk>
         </out>
       </action>
