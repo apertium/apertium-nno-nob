@@ -1,27 +1,16 @@
 #!/bin/bash
 
+# Run from apertium-nno-nob and redirect output to file, e.g.
+#
+# $ dev/adj-sint-consistency.sh > fixed-bi.dix
+#
+# Expects nno/nob monolinguals to be in the same parent dir as
+# apertium-nno-nob.
+
 set -e -u
 
 trap 'rm -rf "${d}"' EXIT
 d=$(mktemp -d -t adj-sint-consistency.sh.XXXXXXXXXXX)
-
-for field in 1 2; do
-    lt-expand apertium-nno-nob.nno-nob.dix \
-        | awk -v field=$field -F':|:[<>]:' 'BEGIN{t="<"tag">"}
-{w=$field}
-w~/<adj>/ && w~/<pst>/ {
-  if (w~/<sint>/) sint="sint"
-  else sint="adj"
-  sub(/<.*/,"",w)
-  print sint"\t"w
-}' \
-        | sort -u > "$d"/$field
-done
-
-for tag in adj sint; do
-    grep "^$tag" "$d"/1 | cut -f2- > "$d/nno.$tag"
-    grep "^$tag" "$d"/2 | cut -f2- > "$d/nob.$tag"
-done
 
 for l in nno nob; do
     lt-expand ../apertium-$l/apertium-$l.$l.dix |grep '<pst>'|grep '<adj>'|sort -u > "$d"/mono.$l
@@ -29,13 +18,37 @@ for l in nno nob; do
     grep -v '<sint>' "$d"/mono.$l |sed 's/<.*//;s/.*://' |sort -u >"$d"/mono.$l.adj
 done
 
-r_to_sint () {   comm -13 "$d"/mono.nob.adj  "$d"/nob.adj  | comm -12 - "$d"/mono.nob.sint ; }
-l_to_sint () {   comm -13 "$d"/mono.nno.adj  "$d"/nno.adj  | comm -12 - "$d"/mono.nno.sint ; }
-l_to_unsint () { comm -13 "$d"/mono.nno.sint "$d"/nno.sint | comm -12 - "$d"/mono.nno.adj  ; }
-r_to_unsint () { comm -13 "$d"/mono.nob.sint "$d"/nob.sint | comm -12 - "$d"/mono.nob.adj  ; }
-
-# TODO: fix bidix pardefs
-# for each entry in r_to_sint, add the sint tag on the right hand side, etc.
-
-# Watch out for the adj-f pardefs:
-# <e r="RL"><p><l>einsleg</l><r>einslig</r></p><par n="adj_sint:adj-f"/></e>
+awk                     \
+    -v lsf="$d"/mono.nno.sint \
+    -v laf="$d"/mono.nno.adj \
+    -v rsf="$d"/mono.nob.sint \
+    -v raf="$d"/mono.nob.adj '
+BEGIN {
+    while(getline<lsf)ls[$0]++
+    while(getline<laf)la[$0]++
+    while(getline<rsf)rs[$0]++
+    while(getline<raf)ra[$0]++
+}
+{l=$0; sub(/.*<l>/,"",l); sub(/(<s|<\/l>).*/, "", l); sub(/<b\/>/, " ", l)}
+{r=$0; sub(/.*<r>/,"",r); sub(/(<s|<\/r>).*/, "", r); sub(/<b\/>/, " ", r)}
+/<section/{section++}
+section && /<par n="adj/ {
+    par=""
+    if(/<par n="adj[^"]*f"/) f="-f"
+    else                     f=""
+    if(l in ls && r in rs) {
+        par="adj_sint"f
+    }
+    else if(l in la && r in rs) {
+        par="adj:adj_sint"f
+    }
+    else if(l in ls && r in ra) {
+        par="adj_sint:adj"f
+    }
+    else if(l in la && r in ra) {
+        par="adj"f
+    }
+    if(par) sub(/par n="adj[^"]*/, "par n=\""par)
+}
+{print}
+' apertium-nno-nob.nno-nob.dix
