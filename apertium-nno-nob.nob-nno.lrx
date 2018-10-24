@@ -1,5 +1,24 @@
 <rules>
 
+  <rule> <match lemma="håp" tags="n.*"> <select lemma="von"/> </match> </rule>
+  <rule weight="2.0">
+    <match lemma="håp" tags="n.*.def">
+      <select lemma="håp"/>
+    </match>
+  </rule>
+
+  <rule> <match lemma="bevare" tags="vblex.*"> <select lemma="verne"/> </match> </rule>
+  <rule weight="2.0">
+    <match lemma="bevare" tags="vblex.pp">
+      <select lemma="bevare"/>
+    </match>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="bevare" tags="adj.pp.*">
+      <select lemma="bevare"/>
+    </match>
+  </rule>
+
   <rule> <match lemma="anklage" tags="n.*"> <select lemma="skulding"/> </match> </rule>
   <rule weight="2.0">
     <match lemma="anklage" tags="n.*.sg.*">
