@@ -1,5 +1,7 @@
 <rules>
 
+  <rule> <match lemma="verdighet" tags="n.*"> <select lemma="verd"/> </match> </rule>
+
   <rule> <match lemma="håp" tags="n.*"> <select lemma="von"/> </match> </rule>
   <rule weight="2.0">
     <match lemma="håp" tags="n.*.def">
@@ -40,7 +42,7 @@
       <match lemma="for"/>
     </or>
   </rule>
-  
+
   <rule> <match lemma="mengde" tags="n.*"> <select lemma="mengde"/> </match> </rule>
   <rule weight="2.0">
     <match lemma="mengde" tags="n.*.sg.def"> <!-- nno only can generate for this tagging -->
@@ -186,4 +188,3 @@
   <rule> <match lemma="anse" tags="adj.*"> <select lemma="verdsetje"/> </match> </rule>
   <rule> <match lemma="anse" tags="vblex.*"> <select lemma="sjå# på"/> </match> </rule>
 </rules>
-
