@@ -14,6 +14,9 @@
       <cat-item tags="n.*.cmp"/>
       <cat-item tags="n.*.cmp.guio"/>
     </def-cat>
+    <def-cat n="ngen">
+      <cat-item tags="n.*.gen"/>
+    </def-cat>
     <def-cat n="nind">
       <cat-item tags="n.*.*.ind"/>
       <cat-item tags="n.*.*.ind.gen"/>
@@ -22,6 +25,92 @@
              c="Owned nouns where we want the owner ngen to keep the genitive-s">
       <cat-item tags="n.*.*.ind" lemma="beste"/>
       <cat-item tags="n.*.sg.ind" lemma="tur"/>
+    </def-cat>
+    <def-cat n="nind_gen2cmp"
+             c="Owned nouns where we want to turn it into a compound regardless of preceding lemma">
+      <cat-item tags="n.*.sg.ind" lemma="verdighet"/>
+      <cat-item tags="n.*.sg.ind" lemma="vedtak"/>
+      <cat-item tags="n.*.sg.ind" lemma="ledelse"/>
+      <cat-item tags="n.*.sg.ind" lemma="virksomhet"/>
+      <cat-item tags="n.*.sg.ind" lemma="administrasjon"/>
+    </def-cat>
+    <!-- bigrams2cmp -->
+    <def-cat n="ngen_byplan"
+             c="Owner nouns where we want to turn it into a compound following preceding word">
+      <cat-item tags="n.*.gen" lemma="skole"/>
+      <cat-item tags="n.*.gen" lemma="høgskole"/>
+      <cat-item tags="n.*.gen" lemma="høyskole"/>
+      <cat-item tags="n.*.gen" lemma="universitet"/>
+      <cat-item tags="n.*.gen" lemma="kommune"/>
+      <cat-item tags="n.*.gen" lemma="fylkeskommune"/>
+      <cat-item tags="n.*.gen" lemma="fylke"/>
+      <cat-item tags="n.*.gen" lemma="by"/>
+      <cat-item tags="n.*.gen" lemma="regjering"/>
+      <cat-item tags="n.*.gen" lemma="barnehage"/>
+      <cat-item tags="n.*.gen" lemma="museum"/>
+      <cat-item tags="n.*.gen" lemma="sporvei"/>
+      <cat-item tags="n.*.gen" lemma="sykehus"/>
+      <cat-item tags="n.*.gen" lemma="politi"/>
+      <cat-item tags="n.*.gen" lemma="landbruk"/>
+      <cat-item tags="n.*.gen" lemma="kultur"/>
+      <cat-item tags="n.*.gen" lemma="foretak"/>
+      <cat-item tags="n.*.gen" lemma="selskap"/>
+      <cat-item tags="n.*.gen" lemma="næringsliv"/>
+      <cat-item tags="n.*.gen" lemma="seminar"/>
+      <cat-item tags="n.*.gen" lemma="bank"/>
+      <cat-item tags="n.*.gen" lemma="krone"/>
+      <cat-item tags="n.*.gen" lemma="opsjon"/>
+      <cat-item tags="n.*.gen" lemma="aksje"/>
+      <cat-item tags="n.*.gen" lemma="varelager"/>
+      <cat-item tags="n.*.gen" lemma="kunnskap"/>
+      <cat-item tags="n.*.gen" lemma="forsvar"/>
+      <cat-item tags="n.*.gen" lemma="parti"/>
+      <cat-item tags="n.*.gen" lemma="elevråd"/>
+      <cat-item tags="n.*.gen" lemma="klasse"/>
+      <cat-item tags="n.*.gen" lemma="anlegg"/>
+      <cat-item tags="n.*.gen" lemma="kongress"/>
+      <cat-item tags="n.*.gen" lemma="militær"/>
+      <cat-item tags="n.*.gen" lemma="kommunistparti"/>
+      <cat-item tags="n.*.gen" lemma="departement"/>
+      <cat-item tags="n.*.gen" lemma="skatterett"/>
+      <cat-item tags="n.*.gen" lemma="måned"/>
+      <cat-item tags="n.*.gen" lemma="organisasjon"/>
+      <cat-item tags="n.*.gen" lemma="fakultet"/>
+      <cat-item tags="n.*.gen" lemma="forbund"/>
+      <cat-item tags="n.*.gen" lemma="avdeling"/>
+      <cat-item tags="n.*.gen" lemma="føretak"/>
+      <cat-item tags="n.*.gen" lemma="kommisjon"/>
+      <cat-item tags="n.*.gen" lemma="bruker"/>
+      <cat-item tags="n.*.gen" lemma="bibliotek"/>
+      <cat-item tags="n.*.gen" lemma="tomt"/>
+      <cat-item tags="n.*.gen" lemma="eiendom"/>
+      <cat-item tags="n.*.gen" lemma="sommer"/>
+      <cat-item tags="n.*.gen" lemma="vår"/>
+      <cat-item tags="n.*.gen" lemma="høst"/>
+      <cat-item tags="n.*.gen" lemma="vinter"/>
+    </def-cat>
+    <def-cat n="nind_gen2cmp_byplan"
+             c="Owned nouns where we want to turn it into a compound given preceding word">
+      <cat-item tags="n.*.sg.ind" lemma="bibliotek"/>
+      <cat-item tags="n.*.sg.ind" lemma="område"/>
+      <cat-item tags="n.*.sg.ind" lemma="elev"/>
+      <cat-item tags="n.*.sg.ind" lemma="rektor"/>
+      <cat-item tags="n.*.sg.ind" lemma="lærer"/>
+      <cat-item tags="n.*.sg.ind" lemma="ansatt"/>
+      <cat-item tags="n.*.sg.ind" lemma="kantine"/>
+      <cat-item tags="n.*.sg.ind" lemma="personale"/>
+      <cat-item tags="n.*.sg.ind" lemma="visjon"/>
+      <cat-item tags="n.*.sg.ind" lemma="hverdag"/>
+      <cat-item tags="n.*.sg.ind" lemma="verdi"/>
+      <cat-item tags="n.*.sg.ind" lemma="ferie"/>
+      <cat-item tags="n.*.sg.ind" lemma="reglement"/>
+      <cat-item tags="n.*.sg.ind" lemma="bygning"/>
+      <cat-item tags="n.*.sg.ind" lemma="økonomi"/>
+      <cat-item tags="n.*.sg.ind" lemma="plan"/>
+      <cat-item tags="n.*.sg.ind" lemma="areal"/>
+      <cat-item tags="n.*.sg.ind" lemma="grense"/>
+      <cat-item tags="n.*.sg.ind" lemma="drift"/>
+      <cat-item tags="n.*.sg.ind" lemma="tilbud"/>
     </def-cat>
     <!-- n does not include compound lhs's: -->
     <def-cat n="n">
@@ -45,11 +134,8 @@
       <cat-item tags="n.acr"/>
     </def-cat>
     <def-cat n="ndef">
-      <cat-item tags="n.*.*.def"/>
-      <cat-item tags="n.*.*.def.gen"/>
-    </def-cat>
-    <def-cat n="ngen">
-      <cat-item tags="n.*.*.*.gen"/>
+      <cat-item tags="n.*.def"/>
+      <cat-item tags="n.*.def.gen"/>
     </def-cat>
     <def-cat n="ngen_time_meas">
       <cat-item tags="n.m.sg.*.gen"   lemma="liter"/>
@@ -783,6 +869,44 @@
         </out>
       </when></choose>
     </def-macro>
+
+
+    <def-macro n="gen2cmp" npar="2"
+               c="arg.1: genitive noun
+                  arg.2: owned noun">
+      <choose><when c="avoid samfunnsverdet, regjeringsverdet, kyrkjeverdet">
+        <test><and>
+          <equal><clip pos="2" side="tl" part="lemh"/><lit v="verd"/></equal>
+          <not><or>
+            <equal><clip pos="1" side="tl" part="lemh"/><lit v="menneske"/></equal>
+            <equal><clip pos="1" side="tl" part="lemh"/><lit v="individ"/></equal>
+          </or></not>
+        </and></test>
+        <reject-current-rule shifting="no"/>
+      </when></choose>
+
+      <let><var n="c_name"/><lit v="n_n"/></let>
+      <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
+
+      <call-macro n="stash_case_in_ntags"><with-param pos="1"/></call-macro>
+      <let><clip pos="1" side="tl" part="nbr"/><lit-tag v="sg"/></let>
+      <let><clip pos="1" side="tl" part="art"/><lit-tag v="ind.cmp"/></let>
+      <let><clip pos="2" side="tl" part="art"/><lit-tag v="def"/></let>
+      <out>
+        <chunk namefrom="c_name">
+          <tags>
+            <tag><clip pos="2" side="tl" part="tags"/></tag>
+          </tags>
+          <lu><clip pos="1" side="tl" part="whole"/></lu>
+          <lu><clip pos="2" side="tl" part="whole"/></lu>
+        </chunk>
+      </out>
+      <choose><when>
+        <test><not><equal><b pos="1"/><lit v=" "/></equal></not></test>
+        <out><b pos="1"/></out>
+      </when></choose>
+    </def-macro>
+
   </section-def-macros>
 
 
@@ -1195,6 +1319,44 @@ Requires rather ugly RL prn lemmas in nn.dix, see personal_pronouns__prn pardef"
             <lu><clip pos="2" side="tl" part="whole"/></lu>
           </chunk>
         </out>
+      </action>
+    </rule>
+    <rule comment="NGEN_TIME_MEAS NIND: dagens vedtak => dagens vedtak">
+      <pattern>
+        <pattern-item n="ngen_time_meas"/>
+        <pattern-item n="nind"/>
+      </pattern>
+      <action>
+        <let><var n="c_name"/><lit v="n_n"/></let>
+        <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
+        <out>
+          <chunk namefrom="c_name" case="caseFirstWord">
+            <tags>
+              <tag><clip pos="2" side="tl" part="tags"/></tag>
+            </tags>
+            <lu><clip pos="1" side="tl" part="whole"/></lu>
+            <b pos="1"/>
+            <lu><clip pos="2" side="tl" part="whole"/></lu>
+          </chunk>
+        </out>
+      </action>
+    </rule>
+    <rule comment="NGEN NIND_GEN2CMP: menneskets verdighet → mennesketverdet">
+      <pattern>
+        <pattern-item n="ngen"/>
+        <pattern-item n="nind_gen2cmp"/>
+      </pattern>
+      <action>
+        <call-macro n="gen2cmp"><with-param pos="1"/><with-param pos="2"/></call-macro>
+      </action>
+    </rule>
+    <rule comment="NGEN_BYPLAN NIND_GEN2CMP_BYPLAN: byens plan → byplanen">
+      <pattern>
+        <pattern-item n="ngen_byplan"/>
+        <pattern-item n="nind_gen2cmp_byplan"/>
+      </pattern>
+      <action>
+        <call-macro n="gen2cmp"><with-param pos="1"/><with-param pos="2"/></call-macro>
       </action>
     </rule>
 
