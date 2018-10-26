@@ -840,15 +840,17 @@
 
     <def-macro n="out_gen-prep" npar="1"
                c="arg.1: noun. Only acts on genitives. Adds a space after.">
-      <choose>
-        <when><test><in><clip pos="1" side="tl" part="lemh"/><list n="ind-gen-i"/></in></test>
-        <let><clip pos="1" side="tl" part="art"/><lit-tag v="ind"/></let></when>
-      </choose>
       <choose><when>
         <test><equal><clip pos="1" side="sl" part="cas"/><lit-tag v="gen"/></equal></test>
         <choose>
-          <when><test><in><clip pos="1" side="tl" part="lemh"/><list n="gen-i"/></in></test>
-          <let><var n="gen-prep"/><lit v="i"/></let></when>
+          <when>
+            <test><in><clip pos="1" side="tl" part="lemh"/><list n="gen-i"/></in></test>
+            <choose>
+              <when><test><in><clip pos="1" side="tl" part="lemh"/><list n="ind-gen-i"/></in></test>
+              <let><clip pos="1" side="tl" part="art"/><lit-tag v="ind"/></let></when>
+            </choose>
+            <let><var n="gen-prep"/><lit v="i"/></let>
+          </when>
           <when><test><in><clip pos="1" side="tl" part="lemh"/><list n="gen-på"/></in></test>
           <let><var n="gen-prep"/><lit v="på"/></let></when>
           <when><test><in><clip pos="1" side="tl" part="lemh"/><list n="gen-av"/></in></test>
