@@ -369,6 +369,9 @@
       <attr-item tags="def"/>
       <attr-item tags="ind"/>
     </def-attr>
+    <def-attr n="expl">
+      <attr-item tags="expl"/>
+    </def-attr>
   </section-def-attrs>
 
   <section-def-vars>
@@ -1875,6 +1878,10 @@ Requires rather ugly RL prn lemmas in nn.dix, see personal_pronouns__prn pardef"
       </pattern>
       <action>
         <choose>
+          <when>
+            <test><equal><clip pos="1" side="tl" part="expl"/><lit-tag v="expl"/></equal></test>
+            <let><var n="c_name"/><lit v="detexpl"/></let>
+          </when>
           <when>
             <test><in caseless="yes"><clip pos="1" side="sl" part="lem"/><list n="det_indef"/></in></test>
             <let><var n="c_name"/><lit v="detdd"/></let>
