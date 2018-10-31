@@ -202,6 +202,7 @@ clean-local:
 ###############################################################################
 
 test: all
+	t/bidix-sanity
 	echo "Såg ho ikkje orda?" | apertium -d . nno-nob | tee .test-mt
 	@echo "Så hun ikke ordene?" > .test-ref
 	@diff .test-ref .test-mt
