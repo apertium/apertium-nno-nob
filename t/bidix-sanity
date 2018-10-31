@@ -1,0 +1,14 @@
+#!/bin/bash
+
+cd "$(dirname "$0")"/.. || exit 1
+
+if lt-expand apertium-nno-nob.nno-nob.dix \
+    | sed -En '/:.*<(n|vblex|pr|adv|adj|m|f|nt)>.*<\1>/{p}; /<(n|vblex|pr|adv|adj|m|f|nt)>.*<\1>.*:/{p}' \
+    | grep . ; then
+    cat <<EOF
+
+ERROR: Duplicated (main/pos) tags in bidix, check the above entries
+
+EOF
+    exit 1
+fi
