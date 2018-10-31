@@ -279,6 +279,14 @@
     <def-cat n="sin">
       <cat-item lemma="sin" tags="det.pos.*"/>
     </def-cat>
+    <def-cat n="n_keep_sin" c="keep prefixed 'sin' in 'mot sin vilje', 'på sin side' etc.">
+      <cat-item lemma="vilje" tags="n.*.sg.ind"/>
+      <cat-item lemma="side" tags="n.*.sg.ind"/>
+      <cat-item lemma="sak" tags="n.*.sg.ind"/>
+      <cat-item lemma="tid" tags="n.*.sg.ind"/>
+      <cat-item lemma="vei" tags="n.*.sg.ind"/>
+      <cat-item lemma="veg" tags="n.*.sg.ind"/>
+    </def-cat>
     <def-cat n="måte">
       <cat-item lemma="måte" tags="n.m.sg.ind"/>
     </def-cat>
@@ -1115,6 +1123,26 @@
 
 
     <!-- POSGEN måte å VBLEXINF -->
+    <rule comment="sin N_KEEP_SIN: sin vilje => sin vilje
+                   Override the below rule (TODO: use exception tag instead, when accepted to trunk).">
+      <pattern>
+        <pattern-item n="sin"/>
+        <pattern-item n="n_keep_sin"/>
+      </pattern>
+      <action>
+        <out>
+          <chunk name="detsin-keep">
+            <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
+            <lu><clip pos="1" side="tl" part="whole"/></lu>
+          </chunk>
+          <b pos="1"/>
+          <chunk name="n">
+            <tags><tag><clip pos="2" side="tl" part="tags"/></tag></tags>
+            <lu><clip pos="2" side="tl" part="whole"/></lu>
+          </chunk>
+        </out>
+      </action>
+    </rule>
     <rule comment="sin måte å VBLEXINF: sin måte å referere => sin måte å referere
                    Override the below rule (TODO: use exception tag instead, when accepted to trunk).">
       <pattern>
