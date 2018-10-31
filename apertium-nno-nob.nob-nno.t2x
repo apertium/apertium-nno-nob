@@ -47,6 +47,9 @@
     <def-cat n="sin">
       <cat-item lemma="detsin" tags="det.pos.*"/>
     </def-cat>
+    <def-cat n="sin_keep">
+      <cat-item lemma="detsin-keep" tags="det.pos.*"/>
+    </def-cat>
     <def-cat n="detpos">
       <cat-item tags="det.pos.*"/>
     </def-cat>
@@ -508,34 +511,6 @@
         </out>
       </action>
     </rule>
-
-    <!-- <rule comment="INFAUX ADJPART => VBLEXPASS -->
-    <!--                [kan] leses => [kan] bli lest => [kan] lesast -->
-    <!--                Delete aux. -->
-
-    <!--                If we have infinitive without an infinitive marker, there's probably a modal -->
-    <!--                somewhere and we can keep the original nynorsk passive form."> -->
-    <!--   <pattern> -->
-    <!--     <pattern-item n="infaux"/> -->
-    <!--     <pattern-item n="single-adjpart"/> -->
-    <!--   </pattern> -->
-    <!--   <action> -->
-    <!--     <call-macro n="modify_pp_gen_nbr"><with-param pos="2"/></call-macro> -->
-    <!--     <choose><when> -->
-    <!--       <test><equal><clip pos="1" part="voice"/><lit v=""/></equal></test> -->
-    <!--       <let><clip pos="1" part="temps"/><concat><clip pos="1" part="temps"/><lit-tag v="pasv"/></concat></let> -->
-    <!--     </when></choose> -->
-    <!--     <out> -->
-    <!--       <chunk> -->
-    <!--         <get-case-from pos="1"><lit v="adj2vblex"/></get-case-from> -->
-    <!--         <clip pos="1" part="tags"/> -->
-    <!--         <clip pos="2" part="chcontent"/> -->
-    <!--         <clip pos="2" part="lemq"/> -->
-    <!--       </chunk> -->
-    <!--     </out> -->
-    <!--   </action> -->
-    <!-- </rule> -->
-
 
     <!-- AUXPASS ADJPART ADV* => AUXPASS ADV* ADJPART ADV*
          and AUX ADV* ADJPART => AUX ADV* ADJPART rules -->
@@ -1042,6 +1017,20 @@
           <chunk><clip pos="2" part="whole"/></chunk>
           <b pos="2"/>
           <chunk><clip pos="3" part="whole"/></chunk>
+        </out>
+      </action>
+    </rule>
+    <rule comment="sin_keep NIND: mot sin vilje => mot sin vilje
+                   Override the below rule">
+      <pattern>
+        <pattern-item n="sin_keep"/>
+        <pattern-item n="nind"/>
+      </pattern>
+      <action>
+        <out>
+          <chunk><clip pos="1" part="whole"/></chunk>
+          <b pos="1"/>
+          <chunk><clip pos="2" part="whole"/></chunk>
         </out>
       </action>
     </rule>
