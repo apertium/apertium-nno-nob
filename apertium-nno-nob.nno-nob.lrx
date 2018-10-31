@@ -1,4 +1,20 @@
 <rules>
+
+  <rule> <match lemma="prøve" tags="vblex.*"> <select lemma="prøve"/> </match> </rule>
+  <rule> <match lemma="freiste" tags="vblex.*"> <select lemma="forsøke"/> </match> </rule>
+  <rule weight="2.0">
+    <match lemma="freiste" tags="vblex.*">
+      <select lemma="friste"/>
+    </match>
+    <match lemma="med"/>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="freiste" tags="vblex.*">
+      <select lemma="prøve"/>
+    </match>
+    <match lemma="lykke"/>
+  </rule>
+
   <rule> <match lemma="måling" tags="n.*.pl.*"> <select lemma="måling"/> </match>
   </rule>
   <rule weight="2.0">
