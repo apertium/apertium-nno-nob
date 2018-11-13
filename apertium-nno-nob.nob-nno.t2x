@@ -12,6 +12,7 @@
     <def-cat n="nom">
       <cat-item tags="n.*"/>
       <cat-item tags="n.*.gen"/>
+      <cat-item tags="n.*.gen.*"/>
       <cat-item tags="np.*"/>
     </def-cat>
     <def-cat n="nind">
@@ -25,14 +26,19 @@
     </def-cat>
     <def-cat n="ngen">
       <cat-item tags="n.*.gen"/>
+      <cat-item tags="n.*.gen.*"/>
     </def-cat>
     <def-cat n="ngendefpl">
       <cat-item tags="n.*.def.gen"/>
       <cat-item tags="n.*.pl.*.gen"/>
       <cat-item tags="n.*.sp.*.gen"/>
+      <cat-item tags="n.*.def.gen.*"/>
+      <cat-item tags="n.*.pl.*.gen.*"/>
+      <cat-item tags="n.*.sp.*.gen.*"/>
     </def-cat>
     <def-cat n="detgen">
       <cat-item tags="det.*.gen"/>
+      <cat-item tags="det.*.gen.*"/>
     </def-cat>
     <def-cat n="detind">
       <cat-item tags="det.*.ind"/>
@@ -156,6 +162,9 @@
       <attr-item tags="gen"/>
       <attr-item tags="acc"/>
       <attr-item tags="CD"/>
+    </def-attr>
+    <def-attr n="a_casedrop">
+      <attr-item tags="casedrop"/>
     </def-attr>
     <def-attr n="art">
       <attr-item tags="def"/>
@@ -916,13 +925,16 @@
       </pattern>
       <action>
         <call-macro n="set_ana"><with-param pos="2"/></call-macro>
+        <let><clip pos="2" part="a_casedrop"/><lit v=""/></let>
+        <choose><when>
+          <test><not><equal><b pos="1"/><lit v=" "/></equal></not></test>
+          <out><b pos="1"/></out>
+        </when></choose>
         <out>
           <chunk>
           <clip pos="2" part="whole"/>
           </chunk>
-          <b pos="1"/>
         </out>
-        <call-macro n="out_sin"><with-param pos="2"/></call-macro>
       </action>
     </rule>
     <rule comment="PREP_GEN DET: [til] det => det sin
@@ -939,6 +951,7 @@
           <b pos="1"/>
         </out>
         <call-macro n="out_sin"><with-param pos="2"/></call-macro>
+        <!-- TODO: keep case instead? ie. strip the casedrop -->
       </action>
     </rule>
     <rule comment="DETNONPOS PREP_GEN NGEN: det [til] forfatterskapets => den forfattarskapen sin">
@@ -949,7 +962,11 @@
       </pattern>
       <action>
         <call-macro n="set_ana"><with-param pos="3"/></call-macro>
-        <call-macro n="modify_det_gender2.n.det"><with-param pos="3"/><with-param pos="1"/></call-macro>
+        <let><clip pos="3" part="a_casedrop"/><lit v=""/></let>
+        <choose><when>
+          <test><not><equal><b pos="1"/><lit v=" "/></equal></not></test>
+          <out><b pos="2"/></out>
+        </when></choose>
         <out>
           <chunk>
             <clip pos="1" part="whole"/>
@@ -958,9 +975,7 @@
           <chunk>
             <clip pos="3" part="whole"/>
           </chunk>
-          <b/>
         </out>
-        <call-macro n="out_sin"><with-param pos="3"/></call-macro>
       </action>
     </rule>
     <rule comment="NDEF: (lille) mennesket => (vesle) mennesket

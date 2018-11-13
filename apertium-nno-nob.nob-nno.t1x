@@ -381,6 +381,9 @@
       <attr-item tags="acc"/>
       <attr-item tags="CD"/>
     </def-attr>
+    <def-attr n="a_casedrop">
+      <attr-item tags="casedrop"/>
+    </def-attr>
     <def-attr n="art">
       <attr-item tags="def"/>
       <attr-item tags="ind"/>
@@ -512,9 +515,12 @@
 
   <section-def-macros>
     <def-macro n="stash_case_in_ntags" npar="1"
-               c="arg.1: noun. Puts tags of noun in ntags (for use as chunk tags), removes case from the word.">
+               c="arg.1: noun. Puts tags of noun in ntags (for use as chunk tags).">
       <let><var n="ntags"/><clip pos="1" side="tl" part="tags"/></let>
-      <let><clip pos="1" side="tl" part="cas"/><lit v=""/></let>
+      <choose><when>
+        <test><not><equal><clip pos="1" side="tl" part="cas"/><lit v=""/></equal></not></test>
+        <append n="ntags"><lit-tag v="casedrop"/></append>
+      </when></choose>
     </def-macro>
 
     <def-macro n="switch_cases" npar="2">
@@ -1434,7 +1440,7 @@ no lemq-moving">
 
     <!-- N+ -->
     <rule comment="N
-                   Remove cas from lu, but put it in chunk">
+                   Put cas from lu in chunk">
       <pattern>
         <pattern-item n="n"/>
       </pattern>
