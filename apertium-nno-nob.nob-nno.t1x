@@ -399,6 +399,8 @@
     <def-var n="aux"/>
     <def-var n="defnes"/>
     <def-var n="grau_aux"       c="lexical unit containing meir/mest if translating from sint to non-sint"/>
+    <def-var n="c_lemq"         c="lemq part to output in chunk"/>
+    <def-var n="out_lemq"       c="lemq part to output after chunk"/>
   </section-def-vars>
 
   <section-def-lists>
@@ -536,6 +538,34 @@
       <!-- TODO: Put a marker for acronyms where we don't want to copy case from them; then drop the tag -->
       <let><var n="caseFirstWord"/><get-case-from pos="1"><lit v="aa"/></get-case-from></let>
       <modify-case><clip pos="1" side="tl" part="lemh"/><lit v="aa"/></modify-case>
+    </def-macro>
+
+    <def-macro n="set_lemq" npar="1" c="make lemq its own chunk iff we're translating from non-mwe to mwe">
+      <choose>
+        <when>
+          <test>
+            <and>
+              <equal><clip pos="1" side="sl" part="lemq"/><lit v=""/></equal>
+              <not><equal><clip pos="1" side="tl" part="lemq"/><lit v=""/></equal></not>
+            </and>
+          </test>
+          <let><var n="c_lemq"/><lit v=""/></let>
+          <let>
+            <var n="out_lemq"/>
+            <concat>
+              <lit v="^lemq"/>
+              <lit-tag v="vblex.lemq"/>
+              <lit v="}^"/>
+              <clip pos="1" side="tl" part="lemq"/>
+              <lit v="$}$"/>
+            </concat>
+          </let>
+        </when>
+        <otherwise>
+          <let><var n="c_lemq"/><clip pos="1" side="tl" part="lemq"/></let>
+          <let><var n="out_lemq"/><lit v=""/></let>
+        </otherwise>
+      </choose>
     </def-macro>
 
     <def-macro n="set_caseFirstWord2" npar="2">
@@ -966,6 +996,8 @@
       </pattern>
       <action>
         <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
+        <call-macro n="set_lemq"><with-param pos="1"/></call-macro>
+
         <choose>
           <when>
             <test><equal>
@@ -978,6 +1010,7 @@
                   <clip pos="1" side="tl" part="lemh"/>
                   <clip pos="1" side="tl" part="a_verb"/>
                   <clip pos="1" side="tl" part="temps"/>
+                  <var n="c_lemq"/>
                 </lu>
               </chunk>
             </out>
@@ -998,20 +1031,13 @@
                 <lu>
                   <clip pos="1" side="tl" part="lemh"/>
                   <lit-tag v="adj.pp.nt.sg.ind"/>
+                  <var n="c_lemq"/>
                 </lu>
               </chunk>
             </out>
           </otherwise>
         </choose>
-        <choose><when>
-          <test><not><equal><clip pos="1" side="tl" part="lemq"/><lit v=""/></equal></not></test>
-          <out>
-            <chunk name="lemq">
-              <tags><tag><lit-tag v="vblex.lemq"/></tag></tags>
-              <lu><clip pos="1" side="tl" part="lemq"/></lu>
-            </chunk>
-          </out>
-        </when></choose>
+        <out><var n="out_lemq"/></out>
       </action>
     </rule>
 
@@ -1054,6 +1080,7 @@
       </pattern>
       <action>
         <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
+        <call-macro n="set_lemq"><with-param pos="1"/></call-macro>
         <let><var n="c_name"/><lit v="vblex"/></let>
         <choose><when>
           <test><or>
@@ -1069,18 +1096,11 @@
               <clip pos="1" side="tl" part="lemh"/>
               <clip pos="1" side="tl" part="a_verb"/>
               <clip pos="1" side="tl" part="temps"/>
+              <var n="c_lemq"/>
             </lu>
           </chunk>
         </out>
-        <choose><when>
-          <test><not><equal><clip pos="1" side="tl" part="lemq"/><lit v=""/></equal></not></test>
-          <out>
-            <chunk name="lemq">
-              <tags><tag><lit-tag v="vblex.lemq"/></tag></tags>
-              <lu><clip pos="1" side="tl" part="lemq"/></lu>
-            </chunk>
-          </out>
-        </when></choose>
+        <out><var n="out_lemq"/></out>
       </action>
     </rule>
 
@@ -1152,6 +1172,7 @@
         <pattern-item n="vblexinf"/>
       </pattern>
       <action>
+        <call-macro n="set_lemq"><with-param pos="4"/></call-macro>
         <out>
           <chunk name="detsin">
             <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
@@ -1185,25 +1206,20 @@
               <clip pos="4" side="tl" part="lemh"/>
               <clip pos="4" side="tl" part="a_verb"/>
               <clip pos="4" side="tl" part="temps"/>
+              <var n="c_lemq"/>
             </lu>
           </chunk>
         </out>
-        <choose><when>
-          <test><not><equal><clip pos="4" side="tl" part="lemq"/><lit v=""/></equal></not></test>
-          <out>
-            <chunk name="lemq">
-              <tags><tag><lit-tag v="vblex.lemq"/></tag></tags>
-              <lu><clip pos="4" side="tl" part="lemq"/></lu>
-            </chunk>
-          </out>
-        </when></choose>
+        <out><var n="out_lemq"/></out>
       </action>
     </rule>
 
     <rule comment="POSGEN måte å VBLEXINF: hennes måte å sykle => måten ho syklar
                    bokens måte å leses => måten boka vert lesen
 
-Requires rather ugly RL prn lemmas in nn.dix, see personal_pronouns__prn pardef">
+Requires rather ugly RL prn lemmas in nn.dix, see personal_pronouns__prn pardef
+
+no lemq-moving">
       <pattern>
         <pattern-item n="posgen"/>
         <pattern-item n="måte"/>
