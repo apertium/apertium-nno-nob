@@ -1,0 +1,23 @@
+#!/bin/bash
+
+# Check that we don't get an increase in number of debug symbols [#*@]
+# on some test texts.
+
+set -e -u
+
+cd "$(dirname "$0")"
+
+lastout=../dev/ntb/articles.nob-nno.20181031
+
+out=$(mktemp -t hash-count-nno-nob.XXXXXXXXXX)
+trap 'rm -f "${out}"' EXIT
+
+apertium -f html-noent -d .. nob-nno_e < ../dev/ntb/articles.orig.nob > "${out}"
+
+last=$(grep -c '[#*@]' "${lastout}" || true)
+current=$(grep -c '[#*@]' "${out}" || true)
+
+if [[ "${current}" -gt "${last}" ]]; then
+    echo "ERROR: Number of debug symbols [#*@] increased between ${lastout} and now"
+    exit 1
+fi
