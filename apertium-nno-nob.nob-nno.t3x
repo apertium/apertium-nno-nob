@@ -89,6 +89,15 @@
       <attr-item tags="def"/>
       <attr-item tags="ind"/>
     </def-attr>
+    <def-attr n="cas">
+      <attr-item tags="nom"/>
+      <attr-item tags="gen"/>
+      <attr-item tags="acc"/>
+      <attr-item tags="CD"/>
+    </def-attr>
+    <def-attr n="a_casedrop">
+      <attr-item tags="casedrop"/>
+    </def-attr>
     <def-attr n="a_verb">
       <attr-item tags="vblex"/>
       <attr-item tags="vblex.pstv"/>
@@ -172,12 +181,20 @@
         <test><not><equal><clip pos="1" part="a_cmp"/><lit-tag v="cmp-split"/></equal></not></test>
         <let><clip pos="1" part="art"/><clip pos="2" part="art"/></let>
       </when></choose>
+      <choose><when>
+        <test><equal><clip pos="2" part="a_casedrop"/><lit-tag v="casedrop"/></equal></test>
+        <let><clip pos="1" part="cas"/><lit v=""/></let>
+      </when></choose>
     </def-macro>
 
     <def-macro n="clean_n.adj" npar="3"
                c="arg.1: noun, arg.2: adjective, arg.3: chunk.
                   Nouns typically get chunk defnes.
                   Allow adjectives to turn definite (from chunk defnes), but not indefinite.">
+      <choose><when>
+        <test><equal><clip pos="3" part="a_casedrop"/><lit-tag v="casedrop"/></equal></test>
+        <let><clip pos="1" part="cas"/><lit v=""/></let>
+      </when></choose>
       <choose><when>
         <test><and>
           <not><equal><clip pos="1" part="a_cmp"/><lit-tag v="cmp-split"/></equal></not>
