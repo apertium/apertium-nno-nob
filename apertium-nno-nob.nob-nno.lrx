@@ -1,5 +1,10 @@
 <rules>
 
+  <!-- I have yet to see non-erroneous uses of these words as masc in corpus -->
+  <rule> <match lemma="formannskap">   <select lemma="formannskap"   tags="n.nt.*"/> </match> </rule>
+  <rule> <match lemma="presidentskap"> <select lemma="presidentskap" tags="n.nt.*"/> </match> </rule>
+  <rule> <match lemma="borgerskap">    <select lemma="borgarskap"    tags="n.nt.*"/> </match> </rule>
+
   <rule> <match lemma="prøve" tags="vblex.*"> <select lemma="prøve"/> </match> </rule>
   <rule weight="2.0">
     <match lemma="prøve" tags="vblex.*">
