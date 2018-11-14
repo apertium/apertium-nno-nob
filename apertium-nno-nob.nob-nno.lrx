@@ -31,6 +31,12 @@
       <select lemma="håp"/>
     </match>
   </rule>
+  <rule> <match lemma="forhåpning" tags="n.*"> <select lemma="von"/> </match> </rule>
+  <rule weight="2.0">
+    <match lemma="forhåpning" tags="n.*.def">
+      <select lemma="håp"/>
+    </match>
+  </rule>
 
   <rule> <match lemma="bruk" tags="n.*"> <select lemma="bruk"/> </match> </rule>
 
