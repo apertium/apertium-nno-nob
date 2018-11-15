@@ -986,6 +986,7 @@
       <call-macro n="stash_case_in_ntags"><with-param pos="1"/></call-macro>
       <let><clip pos="1" side="tl" part="nbr"/><lit-tag v="sg"/></let>
       <let><clip pos="1" side="tl" part="art"/><lit-tag v="ind.cmp"/></let>
+      <let><clip pos="1" side="tl" part="cas"/><lit v=""/></let>
       <let><clip pos="2" side="tl" part="art"/><lit-tag v="def"/></let>
       <out>
         <chunk namefrom="c_name">
@@ -1470,7 +1471,6 @@ no lemq-moving">
       <action>
         <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
         <call-macro n="out_gen-prep"><with-param pos="1"/></call-macro>
-
         <call-macro n="stash_case_in_ntags"><with-param pos="1"/></call-macro>
         <out>
           <chunk name="n" case="caseFirstWord">
