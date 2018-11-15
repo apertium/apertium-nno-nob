@@ -163,8 +163,11 @@
       <attr-item tags="acc"/>
       <attr-item tags="CD"/>
     </def-attr>
-    <def-attr n="a_casedrop">
+    <def-attr n="a_casedrop" c="Mark that we'd like to drop gen-case in t3x">
       <attr-item tags="casedrop"/>
+    </def-attr>
+    <def-attr n="a_defdrop" c="Mark that we'd like to change defnes to ind in t3x">
+      <attr-item tags="defdrop"/>
     </def-attr>
     <def-attr n="art">
       <attr-item tags="def"/>
@@ -926,6 +929,7 @@
       <action>
         <call-macro n="set_ana"><with-param pos="2"/></call-macro>
         <let><clip pos="2" part="a_casedrop"/><lit v=""/></let>
+        <let><clip pos="2" part="a_defdrop"/><lit v=""/></let>
         <choose><when>
           <test><not><equal><b pos="1"/><lit v=" "/></equal></not></test>
           <out><b pos="1"/></out>
@@ -963,6 +967,7 @@
       <action>
         <call-macro n="set_ana"><with-param pos="3"/></call-macro>
         <let><clip pos="3" part="a_casedrop"/><lit v=""/></let>
+        <let><clip pos="3" part="a_defdrop"/><lit v=""/></let>
         <choose><when>
           <test><not><equal><b pos="1"/><lit v=" "/></equal></not></test>
           <out><b pos="2"/></out>
