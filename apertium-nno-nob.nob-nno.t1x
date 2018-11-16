@@ -311,6 +311,12 @@
       <cat-item tags="vblex.*.pasv"/>
       <cat-item tags="vblex.pstv.pres"/>
     </def-cat>
+    <def-cat n="vblexaux">
+      <cat-item tags="vblex.*" lemma="kunne"/>
+      <cat-item tags="vblex.*" lemma="burde"/>
+      <cat-item tags="vblex.*" lemma="skulle"/>
+      <cat-item tags="vblex.*" lemma="måtte"/>
+    </def-cat>
   </section-def-cats>
   <section-def-attrs>
     <def-attr n="a_nom">
@@ -1009,6 +1015,45 @@
 
   <section-rules>
     <!-- Verbs -->
+    <rule comment="AUX VBLEX.PASS: burde nevnes => burde nevnast">
+      <pattern>
+        <pattern-item n="vblexaux"/>
+        <pattern-item n="vblexinfpass"/>
+      </pattern>
+      <action>
+        <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
+        <call-macro n="set_lemq"><with-param pos="1"/></call-macro>
+        <out>
+          <chunk name="aux" case="caseFirstWord">
+            <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
+            <lu>
+              <clip pos="1" side="tl" part="lemh"/>
+              <clip pos="1" side="tl" part="a_verb"/>
+              <clip pos="1" side="tl" part="temps"/>
+              <var n="c_lemq"/>
+            </lu>
+          </chunk>
+          <b pos="1"/>
+        </out>
+        <out><var n="out_lemq"/></out>
+
+        <call-macro n="set_lemq"><with-param pos="1"/></call-macro>
+        <out>
+          <chunk name="vblex" case="caseFirstWord">
+            <tags><tag><clip pos="2" side="tl" part="tags"/></tag></tags>
+            <lu>
+              <clip pos="2" side="tl" part="lemh"/>
+              <clip pos="2" side="tl" part="a_verb"/>
+              <clip pos="2" side="tl" part="temps"/>
+              <clip pos="2" side="tl" part="voice"/>
+              <var n="c_lemq"/>
+            </lu>
+          </chunk>
+        </out>
+        <out><var n="out_lemq"/></out>
+      </action>
+    </rule>
+
     <rule comment="VBLEX.PASS: leses => vert lest
                    beholdes [ikke] => vert [ikkje] haldt på
                    synes => synest
