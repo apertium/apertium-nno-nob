@@ -1,0 +1,47 @@
+#!/bin/bash
+
+# Holler if WER worsens
+
+set -e -u
+
+cd "$(dirname "$0")"
+
+prevmt=../dev/ntb/articles.nob-nno.20181113
+gold=../dev/ntb/articles.gold.nno
+
+tmp=$(mktemp -d -t wer-loss-nno-nob.XXXXXXXXXX)
+trap 'rm -rf "${tmp}"' EXIT
+
+< ../dev/ntb/articles.orig.nob apertium -d .. nob-nno_e > "${tmp}"/mt
+
+test -d apertium-eval-translator || git clone https://github.com/apertium/apertium-eval-translator
+
+clean () {
+    sed 's/\(ORIGINAL\|KORREKTUR\):/--------------/g' "$@" \
+        | tr -d '#' \
+        | grep -v -e '^[*][*]*$' -e UKJENTE -e '^\[' \
+        | sed 's/[.] /.\n/g' | grep .
+}
+clean "${prevmt}" >"${tmp}"/prev-test
+clean "${gold}"   >"${tmp}"/ref
+clean "${tmp}"/mt >"${tmp}"/test
+
+prev=$(apertium-eval-translator/beam-eval-until-stable -t "${tmp}"/prev-test -r "${tmp}"/ref 2>/dev/null)
+cur=$(apertium-eval-translator/beam-eval-until-stable  -t "${tmp}"/test      -r "${tmp}"/ref 2>/dev/null)
+
+justwer () {
+    sed -n '/WER/{s/[^0-9]*\([0-9][0-9]*\)[.].*/\1/;p}' \
+        | awk '{print int(10*($0+0.05))}'
+    # Turn into rounded permille
+}
+
+prevwer=$(echo "${prev}" | justwer)
+curwer=$(echo "${cur}"   | justwer)
+if [[ $prevwer < $curwer ]]; then
+    echo
+    echo 'ERROR: WER increased since '
+    echo "diff of previous ${prevmt} and current evaluation results against ${gold}:"
+    echo
+    diff -y <(echo "${prev}") <(echo "${cur}")
+    exit 1
+fi
