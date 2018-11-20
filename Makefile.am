@@ -194,7 +194,7 @@ install-data-local: install-modes
 ###############################################################################
 
 CLEANFILES = $(TARGETS_COMMON)
-clean-local: 
+clean-local:
 	-rm -rf .deps modes
 
 ###############################################################################

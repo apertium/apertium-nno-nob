@@ -4,15 +4,15 @@
 
 set -e -u
 
-cd "$(dirname "$0")"
+cd "$(dirname "$0")"/..
 
-prevmt=../dev/ntb/articles.nob-nno.20181113
-gold=../dev/ntb/articles.gold.nno
+prevmt=dev/ntb/articles.nob-nno.20181113
+gold=dev/ntb/articles.gold.nno
 
 tmp=$(mktemp -d -t wer-loss-nno-nob.XXXXXXXXXX)
 trap 'rm -rf "${tmp}"' EXIT
 
-< ../dev/ntb/articles.orig.nob apertium -d .. nob-nno_e > "${tmp}"/mt
+< dev/ntb/articles.orig.nob apertium -d . nob-nno_e > "${tmp}"/mt
 
 clean () {
     sed 's/\(ORIGINAL\|KORREKTUR\):/--------------/g' "$@" \
@@ -24,8 +24,8 @@ clean "${prevmt}" >"${tmp}"/prev-test
 clean "${gold}"   >"${tmp}"/ref
 clean "${tmp}"/mt >"${tmp}"/test
 
-prev=$(beam-eval-until-stable -t "${tmp}"/prev-test -r "${tmp}"/ref 2>/dev/null)
-cur=$(beam-eval-until-stable  -t "${tmp}"/test      -r "${tmp}"/ref 2>/dev/null)
+prev=$(t/beam-eval-until-stable -t "${tmp}"/prev-test -r "${tmp}"/ref 2>/dev/null)
+cur=$(t/beam-eval-until-stable  -t "${tmp}"/test      -r "${tmp}"/ref 2>/dev/null)
 
 justwer () {
     sed -n '/WER/{s/[^0-9]*\([0-9][0-9]*\)[.].*/\1/;p}' \
