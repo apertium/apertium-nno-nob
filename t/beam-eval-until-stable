@@ -1,0 +1,37 @@
+#!/bin/bash
+
+if [[ $# -ne 4 ]]; then
+    cat <<EOF
+ERROR: Missing -t and -r arguments.
+
+Usage: Run this script with the same parameters as you would give
+apertium-eval-translator.pl when running it without -beam, e.g.:
+
+$0 -t test.txt -r ref.txt
+
+This script will keep running apertium-eval-translator.pl with
+doubling sizes of the -beam parameter until the result seems stable.
+EOF
+    exit 1
+fi
+
+
+last=-1
+
+b=5
+
+while true; do
+    printf "Trying -beam %s …\t" "$b" >&2
+    out=$("$(dirname "$0")"/apertium-eval-translator.pl -b $b "$@")
+    cur=$(grep -m1 WER <<<"${out}")
+    if [[ "$last" = "$cur" ]]; then
+        echo "Stabilised; got the same result as with -beam $lastb: $cur" >&2
+        echo "${out}"
+        break
+    else
+        echo "got $cur" >&2
+        lastb="$b"
+        (( b += b ))
+        last="$cur"
+    fi
+done
