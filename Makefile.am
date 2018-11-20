@@ -211,3 +211,4 @@ test: all
 	@rm .test-ref .test-mt
 	t/bidix-sanity
 	t/hash-count
+	t/wer-loss
