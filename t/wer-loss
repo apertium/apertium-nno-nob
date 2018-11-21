@@ -6,7 +6,13 @@ set -e -u
 
 cd "$(dirname "$0")"/..
 
-prevmt=dev/ntb/articles.nob-nno.20181113
+if [[ $# -eq 1 && $1 = -v ]]; then
+    verbose=true
+else
+    verbose=false
+fi
+
+prevmt=dev/ntb/articles.nob-nno.20181119
 gold=dev/ntb/articles.gold.nno
 
 tmp=$(mktemp -d -t wer-loss-nno-nob.XXXXXXXXXX)
@@ -33,13 +39,19 @@ justwer () {
     # Turn into rounded permille
 }
 
+werdiff () {
+    echo "diff of previous ${prevmt} and current evaluation results against ${gold}:"
+    echo
+    diff -y <(echo "${prev}") <(echo "${cur}")
+}
+
 prevwer=$(echo "${prev}" | justwer)
 curwer=$(echo "${cur}"   | justwer)
 if [[ $prevwer < $curwer ]]; then
     echo
-    echo 'ERROR: WER increased since '
-    echo "diff of previous ${prevmt} and current evaluation results against ${gold}:"
-    echo
-    diff -y <(echo "${prev}") <(echo "${cur}")
+    echo "ERROR: WER increased since ${prevmt}"
+    werdiff
     exit 1
+elif $verbose; then
+    werdiff
 fi
