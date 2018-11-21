@@ -16,10 +16,11 @@
   <rule> <match lemma="forsøke" tags="vblex.*"> <select lemma="prøve"/> </match> </rule>
 
   <rule> <match lemma="domstolsbehandling" tags="n.*"> <select lemma="domstolsbehandling"/> </match> </rule>
-  <rule> <match lemma="behandling" tags="n.*"> <select lemma="behandling"/> </match> </rule>
-  <rule> <match lemma="forening" tags="n.*"> <select lemma="foreining"/> </match> </rule>
-  <rule> <match lemma="verdighet" tags="n.*"> <select lemma="verd"/> </match> </rule>
-  <rule> <match lemma="bedrift" tags="n.*"> <select lemma="bedrift"/> </match> </rule>
+  <rule> <match lemma="forening" tags="n.*">           <select lemma="foreining"/> </match> </rule>
+  <rule> <match lemma="behandling" tags="n.*">         <select lemma="behandling"/> </match> </rule>
+  <rule> <match lemma="forening" tags="n.*">           <select lemma="foreining"/> </match> </rule>
+  <rule> <match lemma="verdighet" tags="n.*">          <select lemma="verd"/> </match> </rule>
+  <rule> <match lemma="bedrift" tags="n.*">            <select lemma="bedrift"/> </match> </rule>
 
   <rule> <match lemma="nødvendigvis" tags="adv.*"> <select lemma="nødvendigvis"/> </match> </rule>
   <rule> <match lemma="muligens" tags="adv.*"> <select lemma="kanskje"/> </match> </rule>
@@ -45,6 +46,11 @@
   <rule> <match lemma="bevare" tags="vblex.*"> <select lemma="verne"/> </match> </rule>
   <rule weight="2.0">
     <match lemma="bevare" tags="vblex.pp">
+      <select lemma="bevare"/>
+    </match>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="bevare" tags="vblex.*.pasv">
       <select lemma="bevare"/>
     </match>
   </rule>
