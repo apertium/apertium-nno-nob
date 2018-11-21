@@ -22,7 +22,7 @@ b=5
 
 while true; do
     printf "Trying -beam %s …\t" "$b" >&2
-    out=$("$(dirname "$0")"/apertium-eval-translator.pl -b $b "$@")
+    out=$(apertium-eval-translator -b $b "$@")
     cur=$(grep -m1 WER <<<"${out}")
     if [[ "$last" = "$cur" ]]; then
         echo "Stabilised; got the same result as with -beam $lastb: $cur" >&2
