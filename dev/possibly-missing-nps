@@ -1,0 +1,20 @@
+#!/bin/bash
+
+maybenp=$(mktemp -t apertium-missing-nps.XXXXXXXXXX);
+trap 'rm -f "${maybenp}"' EXIT
+
+apertium -d . nob-nno_e-morph                                        \
+    | grep '[[:alpha:]][[:alpha:]]*/[^$]*[$] *\^[[:upper:]][^$]*' -o \
+    | grep -v '<np>[^$]*$'                                           \
+    | grep -v '/[*][^$]*'                                            \
+    | sed 's/[^^]*\^//'                                              \
+    | sed 's%/.*%%'                                                  \
+    | grep -v -e '-'                                                 \
+           >"${maybenp}"
+
+hitlist () {
+    export LC_ALL=C
+    sort "${maybenp}" | uniq -c | sort -nr | sed 's/$/ ./'
+}
+
+diff -U0 <(hitlist) <(hitlist|apertium -d . nob-nno_e)
