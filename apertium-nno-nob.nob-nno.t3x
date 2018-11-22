@@ -1,82 +1,158 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- -*- nxml -*- -->
-<postchunk>
+<!--
+    ville-handling
+-->
+<interchunk>
+
   <section-def-cats>
-    <def-cat n="n">
-      <cat-item name="n"/>
+    <def-cat n="unknown">
+      <cat-item tags="unknown"/>
     </def-cat>
-    <def-cat n="n_n">
-      <cat-item name="n_n"/>
+    <def-cat n="any">
+      <cat-item tags="*"/>
     </def-cat>
-    <def-cat n="n_n_n">
-      <cat-item name="n_n_n"/>
+    <def-cat n="nom">
+      <cat-item tags="n.*"/>
+      <cat-item tags="n.*.gen"/>
+      <cat-item tags="n.*.gen.*"/>
+      <cat-item tags="np.*"/>
     </def-cat>
-    <def-cat n="n_n_n_n">
-      <cat-item name="n_n_n_n"/>
+    <def-cat n="nind">
+      <cat-item tags="n.*.ind"/>
     </def-cat>
-    <def-cat n="adj2vblex">
-      <cat-item name="adj2vblex"/>
+    <def-cat n="ndef">
+      <cat-item tags="n.*.def"/>
     </def-cat>
-    <def-cat n="adj">
-      <cat-item name="adj"/>
+    <def-cat n="prep_gen">
+      <cat-item lemma="gen-prep" tags="pr"/>
     </def-cat>
-    <!-- ADJ N+ -->
-    <def-cat n="adj_n">
-      <cat-item name="adj_n"/>
+    <def-cat n="ngen">
+      <cat-item tags="n.*.gen"/>
+      <cat-item tags="n.*.gen.*"/>
     </def-cat>
-    <def-cat n="adj_n_n">
-      <cat-item name="adj_n_n"/>
+    <def-cat n="ngendefpl">
+      <cat-item tags="n.*.def.gen"/>
+      <cat-item tags="n.*.pl.*.gen"/>
+      <cat-item tags="n.*.sp.*.gen"/>
+      <cat-item tags="n.*.def.gen.*"/>
+      <cat-item tags="n.*.pl.*.gen.*"/>
+      <cat-item tags="n.*.sp.*.gen.*"/>
     </def-cat>
-    <def-cat n="adj_n_n_n">
-      <cat-item name="adj_n_n_n"/>
+    <def-cat n="detgen">
+      <cat-item tags="det.*.gen"/>
+      <cat-item tags="det.*.gen.*"/>
     </def-cat>
-    <def-cat n="adj_n_n_n_n">
-      <cat-item name="adj_n_n_n_n"/>
-    </def-cat>
-    <!-- ADJ ADJ N+ -->
-    <def-cat n="adj_adj_n">
-      <cat-item name="adj_adj_n"/>
-    </def-cat>
-    <def-cat n="adj_adj_n_n">
-      <cat-item name="adj_adj_n_n"/>
-    </def-cat>
-    <def-cat n="adj_adj_n_n_n">
-      <cat-item name="adj_adj_n_n_n"/>
-    </def-cat>
-    <def-cat n="adj_adj_n_n_n_n">
-      <cat-item name="adj_adj_n_n_n_n"/>
-    </def-cat>
-    <!-- ADJ ADJ ADJ N+ -->
-    <def-cat n="adj_adj_adj_n">
-      <cat-item name="adj_adj_adj_n"/>
-    </def-cat>
-    <def-cat n="adj_adj_adj_n_n">
-      <cat-item name="adj_adj_adj_n_n"/>
-    </def-cat>
-    <def-cat n="adj_adj_adj_n_n_n">
-      <cat-item name="adj_adj_adj_n_n_n"/>
-    </def-cat>
-    <def-cat n="adj_adj_adj_n_n_n_n">
-      <cat-item name="adj_adj_adj_n_n_n_n"/>
+    <def-cat n="detind">
+      <cat-item tags="det.*.ind"/>
+      <cat-item tags="det.*.sg"/>
     </def-cat>
     <def-cat n="det">
-      <cat-item name="det"/>
-      <cat-item name="detdd"/>
-      <cat-item name="detsin"/>
+      <cat-item tags="det.*"/>
     </def-cat>
+    <def-cat n="prn">
+      <cat-item tags="prn.*"/>
+    </def-cat>
+    <def-cat n="sin">
+      <cat-item lemma="detsin" tags="det.pos.*"/>
+    </def-cat>
+    <def-cat n="sin_keep">
+      <cat-item lemma="detsin-keep" tags="det.pos.*"/>
+    </def-cat>
+    <def-cat n="detpos">
+      <cat-item tags="det.pos.*"/>
+    </def-cat>
+    <def-cat n="detnonpos">
+      <cat-item tags="det.def.*"/>
+      <cat-item tags="det.dem.*"/>
+      <cat-item tags="det.emph.*"/>
+      <cat-item tags="det.itg.*"/>
+      <cat-item tags="det.qnt.*"/>
+    </def-cat>
+
     <def-cat n="vblex">
-      <cat-item name="vblex"/>
+      <cat-item tags="vblex"/>
+      <cat-item tags="vblex.*"/>
+    </def-cat>
+    <def-cat n="vblex.inf">
+      <cat-item tags="vblex.inf"/>
+    </def-cat>
+    <def-cat n="aux-vil.fv">
+      <cat-item lemma="aux-vil" tags="vblex.pres"/>
+      <cat-item lemma="aux-vil" tags="vblex.pret"/>
+    </def-cat>
+    <def-cat n="aux">
+      <cat-item lemma="aux" tags="vblex"/>
+      <cat-item lemma="aux" tags="vblex.*"/>
+    </def-cat>
+    <def-cat n="auxpass" c="Auxiliary generated in t1x">
+      <cat-item lemma="aux" tags="vblex.*.pasv"/>
+    </def-cat>
+    <def-cat n="infaux">
+      <cat-item lemma="aux" tags="vblex.inf"/>
+      <cat-item lemma="aux" tags="vblex.inf.*"/>
+    </def-cat>
+    <def-cat n="adv">
+      <cat-item tags="adv"/>
+      <cat-item tags="adv.*"/>
+    </def-cat>
+    <def-cat n="infm">
+      <cat-item lemma="infm" tags="cnjsub"/>
+      <cat-item lemma="infm" tags="cnjsub.*"/>
+    </def-cat>
+    <def-cat n="lemq">
+      <cat-item tags="vblex.lemq"/>
+      <cat-item tags="vblex.lemq.*"/>
+    </def-cat>
+    <def-cat n="adjpart">
+      <cat-item tags="vblex.pp"/>
+      <cat-item tags="adj.pp"/>
+      <cat-item tags="adj.pp.*"/>
+    </def-cat>
+    <def-cat n="single-adjpart"> <!-- chunk lemma ensures it's a single-word chunk -->
+      <cat-item lemma="vblex" tags="vblex.pp"/>
+      <cat-item lemma="adj" tags="adj.pp"/>
+      <cat-item lemma="adj" tags="adj.pp.*"/>
+    </def-cat>
+    <def-cat n="prep_til">
+      <cat-item tags="pr.til"/>
     </def-cat>
   </section-def-cats>
 
-
   <section-def-attrs>
-    <def-attr n="a_adj">
-      <attr-item tags="adj"/>
-      <attr-item tags="adj.pp"/>
-      <attr-item tags="adj.pprs"/>
-      <attr-item tags="adj.ord"/>
-      <attr-item tags="adj.sint"/>
+    <def-attr n="a_nom">
+      <attr-item tags="n"/>
+      <attr-item tags="n.acr"/>
+      <attr-item tags="np"/>
+      <attr-item tags="np.top"/>
+    </def-attr>
+    <def-attr n="persona">
+      <attr-item tags="p1"/>
+      <attr-item tags="p2"/>
+      <attr-item tags="p3"/>
+    </def-attr>
+    <def-attr n="a_verb">
+      <attr-item tags="vblex"/>
+      <attr-item tags="vblex.pstv"/>
+    </def-attr>
+    <def-attr n="temps">
+      <attr-item tags="inf"/>
+      <attr-item tags="imp"/>
+      <attr-item tags="pres"/>
+      <attr-item tags="pret"/>
+      <attr-item tags="pp"/>
+    </def-attr>
+    <def-attr n="voice">
+      <attr-item tags="pasv"/>
+    </def-attr>
+    <def-attr n="a_det">
+      <attr-item tags="det"/>
+      <attr-item tags="det.emph"/>
+      <attr-item tags="det.dem"/>
+      <attr-item tags="det.itg"/>
+      <attr-item tags="det.qnt"/>
+      <attr-item tags="det.qnt.neg"/>
+      <attr-item tags="det.pos"/>
     </def-attr>
     <def-attr n="gen">
       <attr-item tags="m"/>
@@ -85,9 +161,11 @@
       <attr-item tags="f"/>
       <attr-item tags="GD"/>
     </def-attr>
-    <def-attr n="art">
-      <attr-item tags="def"/>
-      <attr-item tags="ind"/>
+    <def-attr n="nbr">
+      <attr-item tags="sg"/>
+      <attr-item tags="pl"/>
+      <attr-item tags="sp"/>
+      <attr-item tags="ND"/>
     </def-attr>
     <def-attr n="cas">
       <attr-item tags="nom"/>
@@ -101,548 +179,69 @@
     <def-attr n="a_defdrop" c="Mark that we'd like to change defnes to ind in t3x">
       <attr-item tags="defdrop"/>
     </def-attr>
-    <def-attr n="a_verb">
-      <attr-item tags="vblex"/>
-      <attr-item tags="vblex.pstv"/>
-    </def-attr>
-    <def-attr n="a_cmp">
-      <attr-item tags="cmp-split"/>
-    </def-attr>
-    <def-attr n="temps">
-      <attr-item tags="inf"/>
-      <attr-item tags="imp"/>
-      <attr-item tags="pres"/>
-      <attr-item tags="pret"/>
-      <attr-item tags="pp"/>
-    </def-attr>
-    <def-attr n="voice">
-      <attr-item tags="pasv"/>
-    </def-attr>
-    <def-attr n="nbr">
-      <attr-item tags="sg"/>
-      <attr-item tags="pl"/>
-      <attr-item tags="sp"/>
-      <attr-item tags="ND"/>
+    <def-attr n="art">
+      <attr-item tags="def"/>
+      <attr-item tags="ind"/>
     </def-attr>
   </section-def-attrs>
 
+
   <section-def-vars>
-    <def-var n="foo"/>
+    <def-var n="caseFirstWord"/>
   </section-def-vars>
 
-  <section-def-lists>
-    <def-list n="months">
-      <list-item v="januar"/>
-      <list-item v="februar"/>
-      <list-item v="mars"/>
-      <list-item v="april"/>
-      <list-item v="mai"/>
-      <list-item v="juni"/>
-      <list-item v="juli"/>
-      <list-item v="august"/>
-      <list-item v="september"/>
-      <list-item v="oktober"/>
-      <list-item v="november"/>
-      <list-item v="desember"/>
-    </def-list>
-  </section-def-lists>
-
   <section-def-macros>
-    <def-macro n="out_adj" npar="1"
-               c="arg.1: adjective
-                  If we have a pp adj (verb used as adj), the lemq is a particle
-                  which should be output before the adj, with no intervening space.">
-      <choose><when>
-        <test><and>
-          <equal><clip pos="1" part="nbr"/><lit-tag v="sg"/></equal>
-          <equal><clip pos="1" part="art"/><lit v=""/></equal>
-        </and></test>
-        <let><clip pos="1" part="nbr"/><concat><clip pos="1" part="nbr"/><lit-tag v="def"/></concat></let>
-        <let><clip pos="1" part="gen"/><concat><lit v=""/></concat></let>
-      </when></choose>
 
-      <out><lu><clip pos="1" part="whole"/></lu></out>
-      <!-- This needs much more extensive testing: -->
-      <!-- <choose> -->
-      <!--   <when> -->
-      <!--     <test><equal><clip pos="1" part="temps"/><lit-tag v="pp"/></equal></test> -->
-      <!--     <out> -->
-      <!--       <lu><clip pos="1" part="lemq"/></lu> -->
-      <!--       <lu><clip pos="1" part="lemh"/><clip pos="1" part="tags"/></lu> -->
-      <!--     </out> -->
-      <!--   </when> -->
-      <!--   <otherwise> -->
-      <!--     <out><lu><clip pos="1" part="whole"/></lu></out> -->
-      <!--   </otherwise> -->
-      <!-- </choose> -->
+    <!-- Macros which set concordance variables etc.: -->
+    <def-macro n="switch_cases" npar="2">
+      <let><var n="caseFirstWord"/><get-case-from pos="1"><clip pos="1" part="lemh"/></get-case-from></let>
+      <let><clip pos="1" part="lemh"/><get-case-from pos="2"><clip pos="1" part="lemh"/></get-case-from></let>
+      <modify-case><clip pos="2" part="lemh"/><var n="caseFirstWord"/></modify-case>
     </def-macro>
 
-    <def-macro n="apply_casedrop_defdrop" npar="2"
-               c="arg.1: noun, arg.2: chunk.">
-      <choose><when>
-        <test><equal><clip pos="2" part="a_casedrop"/><lit-tag v="casedrop"/></equal></test>
-        <let><clip pos="1" part="cas"/><lit v=""/></let>
-      </when></choose>
-      <choose><when>
-        <test><equal><clip pos="2" part="a_defdrop"/><lit-tag v="defdrop"/></equal></test>
-        <let><clip pos="1" part="art"/><lit-tag v="ind"/></let>
-      </when></choose>
-    </def-macro>
-
-    <def-macro n="clean_n" npar="2"
-               c="arg.1: noun, arg.2: chunk.
-                  Nouns typically get chunk defnes.">
-      <choose><when>
-        <test><not><equal><clip pos="1" part="a_cmp"/><lit-tag v="cmp-split"/></equal></not></test>
-        <let><clip pos="1" part="art"/><clip pos="2" part="art"/></let>
-      </when></choose>
-      <call-macro n="apply_casedrop_defdrop"><with-param pos="1"/><with-param pos="2"/></call-macro>
-      <choose><when>
-        <test><equal><clip pos="2" part="a_casedrop"/><lit-tag v="casedrop"/></equal></test>
-        <let><clip pos="1" part="cas"/><lit v=""/></let>
-      </when></choose>
-      <choose><when>
-        <test><equal><clip pos="2" part="a_defdrop"/><lit-tag v="defdrop"/></equal></test>
-        <let><clip pos="1" part="art"/><lit-tag v="ind"/></let>
-      </when></choose>
-    </def-macro>
-
-    <def-macro n="clean_n.adj" npar="3"
-               c="arg.1: noun, arg.2: adjective, arg.3: chunk.
-                  Nouns typically get chunk defnes.
-                  Allow adjectives to turn definite (from chunk defnes), but not indefinite.">
-      <call-macro n="apply_casedrop_defdrop"><with-param pos="1"/><with-param pos="3"/></call-macro>
-      <choose><when>
-        <test><and>
-          <not><equal><clip pos="1" part="a_cmp"/><lit-tag v="cmp-split"/></equal></not>
-          <not><and>
-            <equal><clip pos="2" part="nbr"/><lit-tag v="sg"/></equal>
-            <equal><clip pos="1" part="art"/><lit v=""/></equal>
-          </and></not>
-          <not><and>
-            <in><clip pos="1" part="lemh"/><list n="months"/></in>
-            <equal><clip pos="2" part="a_adj"/><lit-tag v="adj.ord"/></equal>
-          </and></not>
-        </and></test>
-        <let><clip pos="1" part="art"/><clip pos="3" part="art"/></let>
-      </when></choose>
-
-      <choose><when>
-        <test><and>
-          <equal><clip pos="2" part="art"/><lit-tag v="ind"/></equal>
-          <equal><clip pos="3" part="art"/><lit-tag v="def"/></equal>
-        </and></test>
-        <let><clip pos="2" part="art"/><clip pos="3" part="art"/></let>
-      </when></choose>
-
-      <choose><when>
-        <test><and>
-          <equal><clip pos="2" part="nbr"/><lit-tag v="pl"/></equal>
-          <equal><clip pos="2" part="art"/><lit-tag v="def"/></equal>
-        </and></test>
-        <let><clip pos="2" part="nbr"/><lit-tag v="sp"/></let>
-      </when></choose>
-
-      <choose><when>
-        <test><equal><clip pos="2" part="art"/><lit-tag v="def"/></equal></test>
-        <choose>
-          <when c="pp: always sg and no gender when def">
-            <test><equal><clip pos="2" part="temps"/><lit-tag v="pp"/></equal></test>
-            <let><clip pos="2" part="gen"/><lit v=""/></let>
-            <let><clip pos="2" part="nbr"/><lit-tag v="sg"/></let>
-          </when>
-          <otherwise c="pst/sup: always sp and un when def">
-            <let><clip pos="2" part="gen"/><lit-tag v="un"/></let>
-            <let><clip pos="2" part="nbr"/><lit-tag v="sp"/></let>
-          </otherwise>
-        </choose>
-      </when></choose>
-    </def-macro>
   </section-def-macros>
 
 
   <section-rules>
 
-    <rule comment="CHUNK: adj2vblex
-                   boka kan leses => boka kan vert lese => boka kan lesast
-                   boken leses => boka vart lese => boka vart lesen">
+    <rule comment="AUX-VIL-FV VBLEX.INF => VBLEX.FV
+                   vil gå → går">
       <pattern>
-        <pattern-item n="adj2vblex"/>
+        <pattern-item n="aux-vil.fv"/>
+        <pattern-item n="vblex.inf"/>
       </pattern>
       <action>
-        <let><clip pos="1" part="tags"/><clip pos="0" part="tags"/></let>
-        <call-macro n="out_adj"><with-param pos="1"/></call-macro>
-      </action>
-    </rule>
-
-    <rule comment="CHUNK: adj">
-      <pattern>
-        <pattern-item n="adj"/>
-      </pattern>
-      <action>
-        <call-macro n="out_adj"><with-param pos="1"/></call-macro>
-      </action>
-    </rule>
-
-    <rule comment="CHUNK: vblex">
-      <pattern>
-        <pattern-item n="vblex"/>
-      </pattern>
-      <action>
-        <choose>
-          <when><test><and>
-            <equal><clip pos="0" part="tags"/><lit-tag v="vblex.inf.pasv"/></equal>
-            <equal><clip pos="1" part="temps"/><lit-tag v="pp"/></equal>
-          </and></test>
-          <out>
-            <lu>
-              <clip pos="1" part="lemh"/>
-              <clip pos="1" part="a_verb"/>
-              <clip pos="0" part="temps"/>
-              <clip pos="0" part="voice"/>
-              <clip pos="1" part="lemq"/>
-            </lu>
-          </out>
-          </when>
-          <otherwise>
-            <out><lu><clip pos="1" part="whole"/></lu></out>
-          </otherwise>
-        </choose>
-      </action>
-    </rule>
-
-    <rule comment="CHUNK: det">
-      <pattern>
-        <pattern-item n="det"/>
-      </pattern>
-      <action>
-        <let><clip pos="1" part="nbr"/><clip pos="0" part="nbr"/></let>
-        <let><clip pos="1" part="gen"/><clip pos="0" part="gen"/></let>
+        <let><clip pos="2" part="temps"/><clip pos="1" part="temps"/></let>
         <choose><when>
-          <test><or>
-            <equal><clip pos="1" part="gen"/><lit-tag v="GD"/></equal>
-            <equal><clip pos="1" part="gen"/><lit-tag v="mf"/></equal>
-          </or></test>
-          <let><clip pos="1" part="gen"/><lit-tag v="m"/></let>
+          <test><not><equal><b pos="1"/><lit v=" "/></equal></not></test>
+          <out><b pos="1"/></out>
         </when></choose>
-
         <out>
-          <lu><clip pos="1" part="whole"/></lu>
+          <chunk><clip pos="2" part="whole"/></chunk>
         </out>
       </action>
     </rule>
 
-    <!-- N+ -->
-    <rule comment="CHUNK: n">
+    <rule comment="AUX-VIL-FV ANY VBLEX.INF => VBLEX.FV ANY
+                   vil ikke gå → går ikke">
       <pattern>
-        <pattern-item n="n"/>
+        <pattern-item n="aux-vil.fv"/>
+        <pattern-item n="any"/>
+        <pattern-item n="vblex.inf"/>
       </pattern>
       <action>
-        <call-macro n="clean_n"><with-param pos="1"/><with-param pos="0"/></call-macro>
+        <let><clip pos="3" part="temps"/><clip pos="1" part="temps"/></let>
+        <choose><when>
+          <test><not><equal><b pos="1"/><lit v=" "/></equal></not></test>
+          <out><b pos="1"/></out>
+        </when></choose>
         <out>
-          <lu><clip pos="1" part="whole"/></lu>
-        </out>
-      </action>
-    </rule>
-    <rule comment="CHUNK: n_n">
-      <pattern>
-        <pattern-item n="n_n"/>
-      </pattern>
-      <action>
-        <call-macro n="clean_n"><with-param pos="2"/><with-param pos="0"/></call-macro>
-        <out>
-          <lu><clip pos="1" part="whole"/></lu>
-          <b pos="1"/>
-          <lu><clip pos="2" part="whole"/></lu>
-        </out>
-      </action>
-    </rule>
-    <rule comment="CHUNK: n_n_n">
-      <pattern>
-        <pattern-item n="n_n_n"/>
-      </pattern>
-      <action>
-        <call-macro n="clean_n"><with-param pos="3"/><with-param pos="0"/></call-macro>
-        <out>
-          <lu><clip pos="1" part="whole"/></lu>
-          <b pos="1"/>
-          <lu><clip pos="2" part="whole"/></lu>
+          <chunk><clip pos="3" part="whole"/></chunk>
           <b pos="2"/>
-          <lu><clip pos="3" part="whole"/></lu>
+          <chunk><clip pos="2" part="whole"/></chunk>
         </out>
       </action>
     </rule>
-    <rule comment="CHUNK: n_n_n_n">
-      <pattern>
-        <pattern-item n="n_n_n_n"/>
-      </pattern>
-      <action>
-        <call-macro n="clean_n"><with-param pos="4"/><with-param pos="0"/></call-macro>
-        <out>
-          <lu><clip pos="1" part="whole"/></lu>
-          <b pos="1"/>
-          <lu><clip pos="2" part="whole"/></lu>
-          <b pos="2"/>
-          <lu><clip pos="3" part="whole"/></lu>
-          <b pos="3"/>
-          <lu><clip pos="4" part="whole"/></lu>
-        </out>
-      </action>
-    </rule>
-    <!-- ADJ N+ -->
-    <rule comment="CHUNK: adj_n">
-      <pattern>
-        <pattern-item n="adj_n"/>
-      </pattern>
-      <action>
-        <call-macro n="clean_n.adj"><with-param pos="2"/><with-param pos="1"/><with-param pos="0"/></call-macro>
-        <call-macro n="out_adj"><with-param pos="1"/></call-macro>
-        <out>
-          <b pos="1"/>
-          <lu><clip pos="2" part="whole"/></lu>
-        </out>
-      </action>
-    </rule>
-    <rule comment="CHUNK: adj_n_n">
-      <pattern>
-        <pattern-item n="adj_n_n"/>
-      </pattern>
-      <action>
-        <call-macro n="clean_n.adj"><with-param pos="3"/><with-param pos="1"/><with-param pos="0"/></call-macro>
-        <call-macro n="out_adj"><with-param pos="1"/></call-macro>
-        <out>
-          <b pos="1"/>
-          <lu><clip pos="2" part="whole"/></lu>
-          <b pos="2"/>
-          <lu><clip pos="3" part="whole"/></lu>
-        </out>
-      </action>
-    </rule>
-    <rule comment="CHUNK: adj_n_n_n">
-      <pattern>
-        <pattern-item n="adj_n_n_n"/>
-      </pattern>
-      <action>
-        <call-macro n="clean_n.adj"><with-param pos="4"/><with-param pos="1"/><with-param pos="0"/></call-macro>
-        <call-macro n="out_adj"><with-param pos="1"/></call-macro>
-        <out>
-          <b pos="1"/>
-          <lu><clip pos="2" part="whole"/></lu>
-          <b pos="2"/>
-          <lu><clip pos="3" part="whole"/></lu>
-          <b pos="3"/>
-          <lu><clip pos="4" part="whole"/></lu>
-        </out>
-      </action>
-    </rule>
-    <rule comment="CHUNK: adj_n_n_n_n">
-      <pattern>
-        <pattern-item n="adj_n_n_n_n"/>
-      </pattern>
-      <action>
-        <call-macro n="clean_n.adj"><with-param pos="5"/><with-param pos="1"/><with-param pos="0"/></call-macro>
-        <call-macro n="out_adj"><with-param pos="1"/></call-macro>
-        <out>
-          <b pos="1"/>
-          <lu><clip pos="2" part="whole"/></lu>
-          <b pos="2"/>
-          <lu><clip pos="3" part="whole"/></lu>
-          <b pos="3"/>
-          <lu><clip pos="4" part="whole"/></lu>
-          <b pos="4"/>
-          <lu><clip pos="5" part="whole"/></lu>
-        </out>
-      </action>
-    </rule>
-    <!-- ADJ ADJ N+ -->
-    <rule comment="CHUNK: adj_adj_n">
-      <pattern>
-        <pattern-item n="adj_adj_n"/>
-      </pattern>
-      <action>
-        <call-macro n="clean_n.adj"><with-param pos="3"/><with-param pos="1"/><with-param pos="0"/></call-macro>
-        <call-macro n="clean_n.adj"><with-param pos="3"/><with-param pos="2"/><with-param pos="0"/></call-macro>
-        <call-macro n="out_adj"><with-param pos="1"/></call-macro>
-        <out>
-          <b pos="1"/>
-        </out>
-        <call-macro n="out_adj"><with-param pos="2"/></call-macro>
-        <out>
-          <b pos="2"/>
-          <lu><clip pos="3" part="whole"/></lu>
-        </out>
-      </action>
-    </rule>
-    <rule comment="CHUNK: adj_adj_n_n">
-      <pattern>
-        <pattern-item n="adj_adj_n_n"/>
-      </pattern>
-      <action>
-        <call-macro n="clean_n.adj"><with-param pos="4"/><with-param pos="1"/><with-param pos="0"/></call-macro>
-        <call-macro n="clean_n.adj"><with-param pos="4"/><with-param pos="2"/><with-param pos="0"/></call-macro>
-        <call-macro n="out_adj"><with-param pos="1"/></call-macro>
-        <out>
-          <b pos="1"/>
-        </out>
-        <call-macro n="out_adj"><with-param pos="2"/></call-macro>
-        <out>
-          <b pos="2"/>
-          <lu><clip pos="3" part="whole"/></lu>
-          <b pos="3"/>
-          <lu><clip pos="4" part="whole"/></lu>
-        </out>
-      </action>
-    </rule>
-    <rule comment="CHUNK: adj_adj_n_n_n">
-      <pattern>
-        <pattern-item n="adj_adj_n_n_n"/>
-      </pattern>
-      <action>
-        <call-macro n="clean_n.adj"><with-param pos="5"/><with-param pos="1"/><with-param pos="0"/></call-macro>
-        <call-macro n="clean_n.adj"><with-param pos="5"/><with-param pos="2"/><with-param pos="0"/></call-macro>
-        <call-macro n="out_adj"><with-param pos="1"/></call-macro>
-        <out>
-          <b pos="1"/>
-        </out>
-        <call-macro n="out_adj"><with-param pos="2"/></call-macro>
-        <out>
-          <b pos="2"/>
-          <lu><clip pos="3" part="whole"/></lu>
-          <b pos="3"/>
-          <lu><clip pos="4" part="whole"/></lu>
-          <b pos="4"/>
-          <lu><clip pos="5" part="whole"/></lu>
-        </out>
-      </action>
-    </rule>
-    <rule comment="CHUNK: adj_adj_n_n_n_n">
-      <pattern>
-        <pattern-item n="adj_adj_n_n_n_n"/>
-      </pattern>
-      <action>
-        <call-macro n="clean_n.adj"><with-param pos="6"/><with-param pos="1"/><with-param pos="0"/></call-macro>
-        <call-macro n="clean_n.adj"><with-param pos="6"/><with-param pos="2"/><with-param pos="0"/></call-macro>
-        <call-macro n="out_adj"><with-param pos="1"/></call-macro>
-        <out>
-          <b pos="1"/>
-        </out>
-        <call-macro n="out_adj"><with-param pos="2"/></call-macro>
-        <out>
-          <b pos="2"/>
-          <lu><clip pos="3" part="whole"/></lu>
-          <b pos="3"/>
-          <lu><clip pos="4" part="whole"/></lu>
-          <b pos="4"/>
-          <lu><clip pos="5" part="whole"/></lu>
-          <b pos="5"/>
-          <lu><clip pos="6" part="whole"/></lu>
-        </out>
-      </action>
-    </rule>
-    <!-- ADJ ADJ ADJ N+ -->
-    <rule comment="CHUNK: adj_adj_adj_n">
-      <pattern>
-        <pattern-item n="adj_adj_adj_n"/>
-      </pattern>
-      <action>
-        <call-macro n="clean_n.adj"><with-param pos="4"/><with-param pos="1"/><with-param pos="0"/></call-macro>
-        <call-macro n="clean_n.adj"><with-param pos="4"/><with-param pos="2"/><with-param pos="0"/></call-macro>
-        <call-macro n="clean_n.adj"><with-param pos="4"/><with-param pos="3"/><with-param pos="0"/></call-macro>
-        <call-macro n="out_adj"><with-param pos="1"/></call-macro>
-        <out>
-          <b pos="1"/>
-        </out>
-        <call-macro n="out_adj"><with-param pos="2"/></call-macro>
-        <out>
-          <b pos="2"/>
-        </out>
-        <call-macro n="out_adj"><with-param pos="3"/></call-macro>
-        <out>
-          <b pos="3"/>
-          <lu><clip pos="4" part="whole"/></lu>
-        </out>
-      </action>
-    </rule>
-    <rule comment="CHUNK: adj_adj_adj_n_n">
-      <pattern>
-        <pattern-item n="adj_adj_adj_n_n"/>
-      </pattern>
-      <action>
-        <call-macro n="clean_n.adj"><with-param pos="5"/><with-param pos="1"/><with-param pos="0"/></call-macro>
-        <call-macro n="clean_n.adj"><with-param pos="5"/><with-param pos="2"/><with-param pos="0"/></call-macro>
-        <call-macro n="clean_n.adj"><with-param pos="5"/><with-param pos="3"/><with-param pos="0"/></call-macro>
-        <call-macro n="out_adj"><with-param pos="1"/></call-macro>
-        <out>
-          <b pos="1"/>
-        </out>
-        <call-macro n="out_adj"><with-param pos="2"/></call-macro>
-        <out>
-          <b pos="2"/>
-        </out>
-        <call-macro n="out_adj"><with-param pos="3"/></call-macro>
-        <out>
-          <b pos="3"/>
-          <lu><clip pos="4" part="whole"/></lu>
-          <b pos="4"/>
-          <lu><clip pos="5" part="whole"/></lu>
-        </out>
-      </action>
-    </rule>
-    <rule comment="CHUNK: adj_adj_adj_n_n_n">
-      <pattern>
-        <pattern-item n="adj_adj_adj_n_n_n"/>
-      </pattern>
-      <action>
-        <call-macro n="clean_n.adj"><with-param pos="6"/><with-param pos="1"/><with-param pos="0"/></call-macro>
-        <call-macro n="clean_n.adj"><with-param pos="6"/><with-param pos="2"/><with-param pos="0"/></call-macro>
-        <call-macro n="clean_n.adj"><with-param pos="6"/><with-param pos="3"/><with-param pos="0"/></call-macro>
-        <call-macro n="out_adj"><with-param pos="1"/></call-macro>
-        <out>
-          <b pos="1"/>
-        </out>
-        <call-macro n="out_adj"><with-param pos="2"/></call-macro>
-        <out>
-          <b pos="2"/>
-        </out>
-        <call-macro n="out_adj"><with-param pos="3"/></call-macro>
-        <out>
-          <b pos="3"/>
-          <lu><clip pos="4" part="whole"/></lu>
-          <b pos="4"/>
-          <lu><clip pos="5" part="whole"/></lu>
-          <b pos="5"/>
-          <lu><clip pos="6" part="whole"/></lu>
-        </out>
-      </action>
-    </rule>
-    <rule comment="CHUNK: adj_adj_adj_n_n_n_n">
-      <pattern>
-        <pattern-item n="adj_adj_adj_n_n_n_n"/>
-      </pattern>
-      <action>
-        <call-macro n="clean_n.adj"><with-param pos="7"/><with-param pos="1"/><with-param pos="0"/></call-macro>
-        <call-macro n="clean_n.adj"><with-param pos="7"/><with-param pos="2"/><with-param pos="0"/></call-macro>
-        <call-macro n="clean_n.adj"><with-param pos="7"/><with-param pos="3"/><with-param pos="0"/></call-macro>
-        <call-macro n="out_adj"><with-param pos="1"/></call-macro>
-        <out>
-          <b pos="1"/>
-        </out>
-        <call-macro n="out_adj"><with-param pos="2"/></call-macro>
-        <out>
-          <b pos="2"/>
-        </out>
-        <call-macro n="out_adj"><with-param pos="3"/></call-macro>
-        <out>
-          <b pos="3"/>
-          <lu><clip pos="4" part="whole"/></lu>
-          <b pos="4"/>
-          <lu><clip pos="5" part="whole"/></lu>
-          <b pos="5"/>
-          <lu><clip pos="6" part="whole"/></lu>
-          <b pos="6"/>
-          <lu><clip pos="7" part="whole"/></lu>
-        </out>
-      </action>
-    </rule>
+
   </section-rules>
-</postchunk>
+</interchunk>
