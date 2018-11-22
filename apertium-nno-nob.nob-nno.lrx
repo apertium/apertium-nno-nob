@@ -37,6 +37,50 @@
   <rule> <match lemma="presidentskap"> <select lemma="presidentskap" tags="n.nt.*"/> </match> </rule>
   <rule> <match lemma="borgerskap">    <select lemma="borgarskap"    tags="n.nt.*"/> </match> </rule>
 
+  <rule> <match lemma="være" tags="vblex.*"> <select lemma="vere"/> </match> </rule>
+  <rule weight="2.0" c="er blitt">
+    <match lemma="være" tags="vblex.*">
+      <select lemma="ha"/>
+    </match>
+    <or>
+      <match lemma="bli" tags="vblex.pp"/>
+      <match lemma="bli" tags="adj.pp.nt.sg.ind"/>
+    </or>
+  </rule>
+  <rule weight="2.0" c="er det blitt">
+    <match lemma="være" tags="vblex.*">
+      <select lemma="ha"/>
+    </match>
+    <match tags="*"/>
+    <or>
+      <match lemma="bli" tags="vblex.pp"/>
+      <match lemma="bli" tags="adj.pp.nt.sg.ind"/>
+    </or>
+  </rule>
+  <rule weight="2.0" c="er de også blitt">
+    <match lemma="være" tags="vblex.*">
+      <select lemma="ha"/>
+    </match>
+    <match tags="*"/>
+    <match tags="*"/>
+    <or>
+      <match lemma="bli" tags="vblex.pp"/>
+      <match lemma="bli" tags="adj.pp.nt.sg.ind"/>
+    </or>
+  </rule>
+  <rule weight="2.0" c="er altså Johaug også blitt">
+    <match lemma="være" tags="vblex.*">
+      <select lemma="ha"/>
+    </match>
+    <match tags="*"/>
+    <match tags="*"/>
+    <match tags="*"/>
+    <or>
+      <match lemma="bli" tags="vblex.pp"/>
+      <match lemma="bli" tags="adj.pp.nt.sg.ind"/>
+    </or>
+  </rule>
+
   <rule> <match lemma="prøve" tags="vblex.*"> <select lemma="prøve"/> </match> </rule>
   <rule weight="2.0">
     <match lemma="prøve" tags="vblex.*">
