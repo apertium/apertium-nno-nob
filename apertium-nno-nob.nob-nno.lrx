@@ -1,5 +1,37 @@
 <rules>
 
+  <rule> <match lemma="ville" tags="vblex.*"> <select lemma="ville"/> </match> </rule>
+  <rule weight="2.0">
+    <match lemma="ville" tags="vblex.*">
+      <select lemma="skulle"/>
+    </match>
+    <or>
+      <match lemma="bli" tags="vblex.*"/>
+      <match lemma="se" tags="vblex.*"/>
+    </or>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="ville" tags="vblex.*">
+      <select lemma="skulle"/>
+    </match>
+    <match lemma="ha" tags="vblex.*"/>
+    <or>
+      <match lemma="rett" tags="n.*"/>
+      <match lemma="lov" tags="n.*"/>
+    </or>
+  </rule>
+
+
+  <!-- <rule weight="2.0"> -->
+  <!--   <match lemma="ville" tags="vblex.*"> -->
+  <!--     <select lemma=""/> -->
+  <!--   </match> -->
+  <!--   <or> -->
+  <!--     <match lemma="få" tags="vblex.*"/> -->
+  <!--     <match lemma="bety" tags="vblex.*"/> -->
+  <!--   </or> -->
+  <!-- </rule> -->
+
   <!-- I have yet to see non-erroneous uses of these words as masc in corpus -->
   <rule> <match lemma="formannskap">   <select lemma="formannskap"   tags="n.nt.*"/> </match> </rule>
   <rule> <match lemma="presidentskap"> <select lemma="presidentskap" tags="n.nt.*"/> </match> </rule>
