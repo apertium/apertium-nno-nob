@@ -33,7 +33,7 @@ TARGETS_PREFIX2 =                                             \
      $(PREFIX2).prob                                          \
      $(PREFIX2).autolex.bin                                   \
      $(PREFIX2).autobil.bin                                   \
-     $(PREFIX2).t1x.bin $(PREFIX2).t2x.bin $(PREFIX2).t3x.bin \
+     $(PREFIX2).t1x.bin $(PREFIX2).t2x.bin $(PREFIX2).t3x.bin $(PREFIX2).t4x.bin \
      $(PREFIX2).autogen.bin                                   \
      $(PREFIX2e).autogen.bin
 
@@ -149,6 +149,10 @@ $(PREFIX2).t2x.bin: $(BASENAME).$(PREFIX2).t2x
 	apertium-preprocess-transfer $< $@
 
 $(PREFIX2).t3x.bin: $(BASENAME).$(PREFIX2).t3x
+	apertium-validate-interchunk $<
+	apertium-preprocess-transfer $< $@
+
+$(PREFIX2).t4x.bin: $(BASENAME).$(PREFIX2).t4x
 	apertium-validate-postchunk $<
 	apertium-preprocess-transfer $< $@
 
@@ -164,6 +168,7 @@ EXTRA_DIST=$(BASENAME).$(PREFIX1).dix \
 	   $(BASENAME).$(PREFIX2).t1x \
 	   $(BASENAME).$(PREFIX2).t2x \
 	   $(BASENAME).$(PREFIX2).t3x \
+	   $(BASENAME).$(PREFIX2).t4x \
 	   $(BASENAME).$(PREFIX1).lrx \
 	   $(BASENAME).$(PREFIX2).lrx \
 	   modes.xml
@@ -181,7 +186,8 @@ apertium_nno_nob_DATA=$(TARGETS_COMMON) \
 	$(BASENAME).$(PREFIX1).t3x \
 	$(BASENAME).$(PREFIX2).t1x \
 	$(BASENAME).$(PREFIX2).t2x \
-	$(BASENAME).$(PREFIX2).t3x
+	$(BASENAME).$(PREFIX2).t3x \
+	$(BASENAME).$(PREFIX2).t4x
 
 # All modes are created by the same goal, listing several will just give problems with make -j2
 noinst_DATA=modes/$(PREFIX1).mode
