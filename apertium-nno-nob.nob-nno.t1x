@@ -279,6 +279,14 @@
     <def-cat n="sin">
       <cat-item lemma="sin" tags="det.pos.*"/>
     </def-cat>
+    <def-cat n="totalt">
+      <cat-item lemma="total" tags="adj.pst.nt.sg.ind"/>
+      <cat-item lemma="Total" tags="adj.pst.nt.sg.ind"/>
+    </def-cat>
+    <def-cat n="antall">
+      <cat-item lemma="antall" tags="n.nt.sg.ind"/>
+      <cat-item lemma="antall" tags="n.nt.pl.ind"/>
+    </def-cat>
     <def-cat n="n_keep_sin" c="keep prefixed 'sin' in 'mot sin vilje', 'på sin side' etc.">
       <cat-item lemma="vilje" tags="n.*.sg.ind"/>
       <cat-item lemma="side" tags="n.*.sg.ind"/>
@@ -1015,6 +1023,37 @@
 
 
   <section-rules>
+    <!-- Idiomatic rules first -->
+    <rule comment="totalt antall → det samla talet
+                   idiomatic rule">
+      <pattern>
+        <pattern-item n="totalt"/>
+        <pattern-item n="antall"/>
+      </pattern>
+      <action>
+        <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
+        <out>
+          <chunk name="adv" case="caseFirstWord">
+            <tags><tag><lit-tag v="adv"/></tag></tags>
+            <lu>
+              <lit v="den"/>
+              <lit-tag v="det.dem.nt.sg"/>
+            </lu>
+            <b/>
+            <lu>
+              <lit v="samle"/>
+              <lit-tag v="vblex.pp"/>
+            </lu>
+            <b pos="1"/>
+            <lu>
+              <lit v="tal"/>
+              <lit-tag v="n.nt.sg.def"/>
+            </lu>
+          </chunk>
+        </out>
+      </action>
+    </rule>
+
     <!-- Verbs -->
     <rule comment="VBLEX.PASV.FV: leses => vert lest
                    beholdes [ikke] => vert [ikkje] haldt på
@@ -1178,7 +1217,6 @@
         </out>
       </action>
     </rule>
-
 
     <!-- POSGEN måte å VBLEXINF -->
     <rule comment="sin N_KEEP_SIN: sin vilje => sin vilje
