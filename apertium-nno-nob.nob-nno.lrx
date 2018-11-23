@@ -1,4 +1,38 @@
 <rules>
+  <!-- NOB → NNO -->
+
+  <rule> <match lemma="rystelse" tags="n.*"> <select lemma="risting"/> </match> </rule>
+  <rule weight="2.0">
+    <or>
+      <match lemma="oppleve"/>
+      <match lemma="fornemme"/>
+      <match lemma="kjenne"/>
+      <match lemma="nok"/>
+      <match lemma="være"/>
+      <match lemma="bli"/>
+    </or>
+    <match tags="*"/>
+    <match lemma="rystelse" tags="n.*">
+      <select lemma="skaking"/>
+    </match>
+  </rule>
+  <rule weight="2.0">
+    <or>
+      <match lemma="være"/>
+      <match lemma="bli"/>
+    </or>
+    <match lemma="denne"/>
+    <match lemma="en"/>
+    <match lemma="rystelse" tags="n.*">
+      <select lemma="skaking"/>
+    </match>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="rystelse" tags="n.*">
+      <select lemma="skaking"/>
+    </match>
+    <match lemma="for"/>
+  </rule>
 
   <!-- I have yet to see non-erroneous uses of these words as masc in corpus -->
   <rule> <match lemma="formannskap">   <select lemma="formannskap"   tags="n.nt.*"/> </match> </rule>
