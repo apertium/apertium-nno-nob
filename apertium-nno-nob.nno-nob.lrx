@@ -16,6 +16,21 @@
     <match lemma="lykke"/>
   </rule>
 
+  <rule weight="2.0">
+    <match lemma="måle" tags="vblex.*">
+      <select lemma="male"/>
+    </match>
+    <or>
+      <match lemma="hus"/>
+      <match lemma="vegg"/>
+      <match lemma="graffiti"/>
+      <match lemma="strek"/>
+      <match lemma="bilde"/>
+    </or>
+  </rule>
+
+  <rule> <match lemma="måle" tags="vblex.*"> <select lemma="måle"/> </match> </rule>
+
   <rule> <match lemma="måling" tags="n.*.pl.*"> <select lemma="måling"/> </match>
   </rule>
   <rule weight="2.0">
