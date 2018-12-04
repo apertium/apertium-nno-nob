@@ -34,6 +34,8 @@
     <match lemma="for"/>
   </rule>
 
+  <rule> <match lemma="bety" tags="vblex.*"> <select lemma="bety"/> </match> </rule>
+
   <!-- I have yet to see non-erroneous uses of these words as masc in corpus -->
   <rule> <match lemma="formannskap">   <select lemma="formannskap"   tags="n.nt.*"/> </match> </rule>
   <rule> <match lemma="presidentskap"> <select lemma="presidentskap" tags="n.nt.*"/> </match> </rule>
@@ -109,9 +111,10 @@
     <match lemma="befolkning" tags="n.*">         <select lemma="befolkning"/> </match>
   </rule>
 
-  <rule> <match lemma="nødvendigvis" tags="adv.*"> <select lemma="nødvendigvis"/> </match> </rule>
-  <rule> <match lemma="muligens" tags="adv.*"> <select lemma="kanskje"/> </match> </rule>
-  <rule> <match lemma="muligvis" tags="adv.*"> <select lemma="kanskje"/> </match> </rule>
+  <rule> <match lemma="nødvendigvis" tags="adv"> <select lemma="nødvendigvis"/> </match> </rule>
+  <rule> <match lemma="muligens" tags="adv"> <select lemma="kanskje"/> </match> </rule>
+  <rule> <match lemma="muligvis" tags="adv"> <select lemma="kanskje"/> </match> </rule>
+  <rule> <match lemma="imidlertid" tags="adv"> <select lemma="derimot"/> </match> </rule>
 
   <rule> <match lemma="håp" tags="n.*"> <select lemma="von"/> </match> </rule>
   <rule weight="2.0">
