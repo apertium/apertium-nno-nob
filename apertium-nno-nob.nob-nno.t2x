@@ -17,9 +17,11 @@
     </def-cat>
     <def-cat n="nind">
       <cat-item tags="n.*.ind"/>
+      <cat-item tags="n.*.ind.*"/>
     </def-cat>
     <def-cat n="ndef">
       <cat-item tags="n.*.def"/>
+      <cat-item tags="n.*.def.*"/>
     </def-cat>
     <def-cat n="prep_gen">
       <cat-item lemma="gen-prep" tags="pr"/>
@@ -30,10 +32,10 @@
     </def-cat>
     <def-cat n="ngendefpl">
       <cat-item tags="n.*.def.gen"/>
-      <cat-item tags="n.*.pl.*.gen"/>
-      <cat-item tags="n.*.sp.*.gen"/>
       <cat-item tags="n.*.def.gen.*"/>
+      <cat-item tags="n.*.pl.*.gen"/>
       <cat-item tags="n.*.pl.*.gen.*"/>
+      <cat-item tags="n.*.sp.*.gen"/>
       <cat-item tags="n.*.sp.*.gen.*"/>
     </def-cat>
     <def-cat n="detgen">
@@ -150,6 +152,12 @@
       <attr-item tags="nt"/>
       <attr-item tags="f"/>
       <attr-item tags="GD"/>
+    </def-attr>
+    <def-attr n="sl-gen">
+      <attr-item tags="sl-m"/>
+      <attr-item tags="sl-mf"/>
+      <attr-item tags="sl-nt"/>
+      <attr-item tags="sl-f"/>
     </def-attr>
     <def-attr n="nbr">
       <attr-item tags="sg"/>
@@ -1287,8 +1295,20 @@
       </pattern>
       <action>
         <call-macro n="set_ana"><with-param pos="2"/></call-macro>
-        <call-macro n="modify_det_gender2.n.det"><with-param pos="2"/><with-param pos="1"/></call-macro>
-        <call-macro n="set_n_defness"><with-param pos="2"/><with-param pos="1"/></call-macro>
+        <choose>
+          <when c="don't change gender for '(er) dette kjernen' etc.">
+            <test><and>
+              <equal><clip pos="1" part="gen"/><lit-tag v="nt"/></equal>
+              <not><equal><clip pos="2" part="sl-gen"/><lit-tag v="sl-nt"/></equal></not>
+            </and></test>
+            <!-- TODO: reject-current-rule in interchunk -->
+            <!-- <reject-current-rule shifting="no"/> -->
+          </when>
+          <otherwise>
+            <call-macro n="modify_det_gender2.n.det"><with-param pos="2"/><with-param pos="1"/></call-macro>
+            <call-macro n="set_n_defness"><with-param pos="2"/><with-param pos="1"/></call-macro>
+          </otherwise>
+        </choose>
         <out>
           <chunk><clip pos="1" part="whole"/></chunk>
           <b pos="1"/>
@@ -1304,29 +1324,40 @@
         <pattern-item n="nind"/>
       </pattern>
       <action>
-        <!-- TODO: reject-current-rule in interchunk -->
-        <!-- <choose><when> -->
-        <!--   <test><or> -->
-        <!--     <and> -->
-        <!--       <equal><clip pos="1" part="gen"/><lit-tag v="nt"/></equal> -->
-        <!--       <or> -->
-        <!--         <equal><clip pos="2" part="gen"/><lit-tag v="m"/></equal> -->
-        <!--         <equal><clip pos="2" part="gen"/><lit-tag v="f"/></equal> -->
-        <!--       </or> -->
-        <!--     </and> -->
-        <!--     <and> -->
-        <!--       <or> -->
-        <!--         <equal><clip pos="1" part="gen"/><lit-tag v="m"/></equal> -->
-        <!--         <equal><clip pos="1" part="gen"/><lit-tag v="f"/></equal> -->
-        <!--       </or> -->
-        <!--       <equal><clip pos="2" part="gen"/><lit-tag v="nt"/></equal> -->
-        <!--     </and> -->
-        <!--   </or></test> -->
-        <!--   <reject-current-rule shifting="no"/> -->
-        <!-- </when></choose> -->
         <call-macro n="set_ana"><with-param pos="3"/></call-macro>
-        <call-macro n="modify_det_gender2.n.det"><with-param pos="3"/><with-param pos="2"/></call-macro>
-        <call-macro n="modify_det_gender2.n.det"><with-param pos="3"/><with-param pos="1"/></call-macro>
+        <choose>
+          <when c="don't change gender for 'det andre kvinner' etc.">
+            <test><or>
+              <and>
+                <or>
+                  <equal><clip pos="1" part="gen"/><lit-tag v="nt"/></equal>
+                  <equal><clip pos="2" part="gen"/><lit-tag v="nt"/></equal>
+                </or>
+                <not><equal><clip pos="3" part="sl-gen"/><lit-tag v="sl-nt"/></equal></not>
+              </and>
+              <and>
+                <equal><clip pos="1" part="gen"/><lit-tag v="nt"/></equal>
+                <or>
+                  <equal><clip pos="2" part="gen"/><lit-tag v="m"/></equal>
+                  <equal><clip pos="2" part="gen"/><lit-tag v="f"/></equal>
+                </or>
+              </and>
+              <and>
+                <or>
+                  <equal><clip pos="1" part="gen"/><lit-tag v="m"/></equal>
+                  <equal><clip pos="1" part="gen"/><lit-tag v="f"/></equal>
+                </or>
+                <equal><clip pos="2" part="gen"/><lit-tag v="nt"/></equal>
+              </and>
+            </or></test>
+            <!-- TODO: reject-current-rule in interchunk -->
+            <!-- <reject-current-rule shifting="no"/> -->
+          </when>
+          <otherwise>
+            <call-macro n="modify_det_gender2.n.det"><with-param pos="3"/><with-param pos="2"/></call-macro>
+            <call-macro n="modify_det_gender2.n.det"><with-param pos="3"/><with-param pos="1"/></call-macro>
+          </otherwise>
+        </choose>
         <out>
           <chunk><clip pos="1" part="whole"/></chunk>
           <b pos="1"/>
