@@ -169,13 +169,13 @@
 
   <rule> <match lemma="håp" tags="n.*"> <select lemma="von"/> </match> </rule>
   <rule weight="2.0">
-    <match lemma="håp" tags="n.*.def">
+    <match lemma="håp" tags="n.*.*.def">
       <select lemma="håp"/>
     </match>
   </rule>
   <rule> <match lemma="forhåpning" tags="n.*"> <select lemma="von"/> </match> </rule>
   <rule weight="2.0">
-    <match lemma="forhåpning" tags="n.*.def">
+    <match lemma="forhåpning" tags="n.*.*.def">
       <select lemma="håp"/>
     </match>
   </rule>
@@ -394,4 +394,16 @@
 
   <rule><match lemma="hensikt" tags="n.*"><select lemma="hensikt"/></match></rule>
   <rule><match lemma="formål" tags="n.*"><select lemma="formål"/></match></rule>
+
+  <rule><match lemma="gang" tags="n.*"><select lemma="gong"/></match></rule>
+  <rule weight="2.0">
+    <or>
+      <match lemma="i"/>
+      <match lemma="på"/>
+      <match tags="n.*.*.*.cmp"/>
+    </or>
+    <match lemma="gang" tags="n.*">
+      <select lemma="gang"/>
+    </match>
+  </rule>
 </rules>
