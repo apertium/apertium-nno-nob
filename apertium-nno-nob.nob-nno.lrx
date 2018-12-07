@@ -322,11 +322,15 @@
     </match>
   </rule>
 
+  <rule weight="1.0"><match lemma="forestilling" tags="n.*"><select lemma="framsyning"/></match></rule>
   <rule weight="2.0">
     <match lemma="forestilling" tags="n.*">
       <select lemma="førestilling"/>
     </match>
-    <match lemma="om"/>
+    <or>
+      <match lemma="om"/>
+      <match lemma="at"/>
+    </or>
   </rule>
   <rule weight="2.0">
     <match lemma="forestilling" tags="n.*">
