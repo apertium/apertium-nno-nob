@@ -241,7 +241,10 @@
     <match lemma="antall">
       <select lemma="talet på"/>
     </match>
-    <match lemma="krone"/>
+    <or>
+      <match lemma="krone"/>
+      <match lemma="grad"/>
+    </or>
   </rule>
 
   <rule> <match lemma="brenne" tags="adj.*"> <select lemma="brenne"/> </match> </rule>
