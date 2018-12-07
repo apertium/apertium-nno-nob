@@ -426,4 +426,12 @@
     </match>
   </rule>
   <rule><match lemma="løpe" tags="vblex.*"><select lemma="springe"/></match></rule>
+
+  <rule><match lemma="grusom" tags="adj.*"><select lemma="grufull"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="grusom" tags="adj.*">
+      <select lemma="frykteleg"/>
+    </match>
+    <match lemma="overgriper" tags="n.*"/>
+  </rule>
 </rules>
