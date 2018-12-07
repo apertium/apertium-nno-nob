@@ -591,6 +591,7 @@
   </section-def-lists>
 
   <section-def-macros>
+
     <def-macro n="stash_case_in_ntags" npar="1"
                c="arg.1: noun. Puts tags of noun in ntags (for use as chunk tags).">
       <let><var n="ntags"/><clip pos="1" side="tl" part="tags"/></let>
@@ -602,6 +603,20 @@
         <test><not><equal><clip pos="1" side="tl" part="a_defdrop"/><lit v=""/></equal></not></test>
         <let><clip pos="1" side="tl" part="a_defdrop"/><lit v=""/></let>
       </when></choose>
+      <choose>
+        <when>
+          <test><equal><clip pos="1" side="sl" part="gen"/><lit-tag v="nt"/></equal></test>
+          <append n="ntags"><lit-tag v="sl-nt"/></append>
+        </when>
+        <when>
+          <test><equal><clip pos="1" side="sl" part="gen"/><lit-tag v="m"/></equal></test>
+          <append n="ntags"><lit-tag v="sl-m"/></append>
+        </when>
+        <when>
+          <test><equal><clip pos="1" side="sl" part="gen"/><lit-tag v="f"/></equal></test>
+          <append n="ntags"><lit-tag v="sl-f"/></append>
+        </when>
+      </choose>
     </def-macro>
 
     <def-macro n="switch_cases" npar="2">
@@ -2110,7 +2125,8 @@ no lemq-moving">
         <pattern-item n="det"/>
       </pattern>
       <action>
-        <choose>
+        <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
+        <choose c="set c_name">
           <when>
             <test><equal><clip pos="1" side="tl" part="expl"/><lit-tag v="expl"/></equal></test>
             <let><var n="c_name"/><lit v="detexpl"/></let>
@@ -2125,12 +2141,13 @@ no lemq-moving">
           </when>
           <otherwise><let><var n="c_name"/><lit v="det"/></let></otherwise>
         </choose>
-        <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
+
         <choose><when c="There are no genitive det's in nn.dix, output prep (most likely changed to 'sin' in t2x)">
           <test><equal><clip pos="1" side="tl" part="cas"/><lit-tag v="gen"/></equal></test>
           <call-macro n="out_gen-prep"><with-param pos="1"/></call-macro>
           <let><clip pos="1" side="tl" part="cas"/><lit v=""/></let>
         </when></choose>
+
         <out>
           <chunk namefrom="c_name" case="caseFirstWord">
             <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
