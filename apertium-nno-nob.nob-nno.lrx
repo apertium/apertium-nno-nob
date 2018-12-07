@@ -407,4 +407,11 @@
     </match>
   </rule>
   <rule><match lemma="hemmelig" tags="adj.*"><select lemma="hemmeleg"/></match></rule>
+
+  <rule><match lemma="sikkerhet" tags="n.*"><select lemma="sikkerheit"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="sikkerhet" tags="n.*.*.*.cmp">
+      <select lemma="trygging"/>
+    </match>
+  </rule>
 </rules>
