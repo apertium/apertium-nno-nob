@@ -1,6 +1,50 @@
 <rules>
   <!-- NOB → NNO -->
 
+  <rule> <match lemma="kjennelse" tags="n.*"> <select lemma="rettsavgjerd"/> </match> </rule>
+  <rule weight="2.0">
+    <or>
+      <match lemma="rett"/>
+      <match lemma="rettslig"/>
+      <match lemma="Høyesterett"/>
+    </or>
+    <match lemma="kjennelse" tags="n.*">
+      <select lemma="avgjerd"/>
+    </match>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="kjennelse" tags="n.*">
+      <select lemma="avgjerd"/>
+    </match>
+    <or>
+      <match lemma="rett"/>
+      <match lemma="rettslig"/>
+      <match lemma="Høyesterett"/>
+    </or>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="kjennelse" tags="n.*">
+      <select lemma="avgjerd"/>
+    </match>
+    <match tags="*"/>
+    <or>
+      <match lemma="rett"/>
+      <match lemma="rettslig"/>
+      <match lemma="Høyesterett"/>
+    </or>
+  </rule>
+  <rule weight="2.0">
+    <or>
+      <match lemma="rett"/>
+      <match lemma="rettslig"/>
+      <match lemma="Høyesterett"/>
+    </or>
+    <match tags="*"/>
+    <match lemma="kjennelse" tags="n.*">
+      <select lemma="avgjerd"/>
+    </match>
+  </rule>
+
   <rule> <match lemma="rystelse" tags="n.*"> <select lemma="risting"/> </match> </rule>
   <rule weight="2.0">
     <or>
