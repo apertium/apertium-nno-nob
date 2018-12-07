@@ -378,4 +378,17 @@
 
   <rule> <match lemma="anse" tags="adj.*"> <select lemma="verdsetje"/> </match> </rule>
   <rule> <match lemma="anse" tags="vblex.*"> <select lemma="sjå# på"/> </match> </rule>
+
+  <rule><match lemma="angående" tags="pr.*"><select lemma="rundt"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="angående" tags="pr.*">
+      <select lemma="om"/>
+    </match>
+    <or>
+      <match lemma="at"/>
+      <match tags="adj.*"/>
+      <match tags="det.*"/>
+      <match tags="prn.*"/>
+    </or>
+  </rule>
 </rules>
