@@ -283,6 +283,12 @@
     <def-cat n="det">
       <cat-item tags="det.*"/>
     </def-cat>
+    <def-cat n="detqnt">
+      <cat-item tags="det.qnt.*"/>
+    </def-cat>
+    <def-cat n="remspc">
+      <cat-item tags="sent.clb.remspc"/>
+    </def-cat>
     <def-cat n="prn">
       <cat-item tags="prn.*"/>
     </def-cat>
@@ -413,6 +419,9 @@
     </def-attr>
     <def-attr n="voice">
       <attr-item tags="pasv"/>
+    </def-attr>
+    <def-attr n="a_remspc">
+      <attr-item tags="remspc"/>
     </def-attr>
     <def-attr n="a_det">
       <attr-item tags="det"/>
@@ -984,20 +993,20 @@
             </chunk>
           </out>
         </when>
-      <otherwise>
-        <call-macro n="set_caseFirstWord"><with-param pos="2"/></call-macro>
-        <let><clip pos="1" side="tl" part="cas"/><lit v=""/></let>
-        <out>
-          <chunk name="n" case="caseFirstWord">
-            <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
-            <lu>
-              <get-case-from pos="2"><clip pos="1" side="tl" part="lemh"/></get-case-from>
-              <clip pos="1" side="tl" part="tags"/>
-              <clip pos="1" side="tl" part="lemq"/>
-            </lu>
-          </chunk>
-        </out>
-      </otherwise>
+        <otherwise>
+          <call-macro n="set_caseFirstWord"><with-param pos="2"/></call-macro>
+          <let><clip pos="1" side="tl" part="cas"/><lit v=""/></let>
+          <out>
+            <chunk name="n" case="caseFirstWord">
+              <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
+              <lu>
+                <get-case-from pos="2"><clip pos="1" side="tl" part="lemh"/></get-case-from>
+                <clip pos="1" side="tl" part="tags"/>
+                <clip pos="1" side="tl" part="lemq"/>
+              </lu>
+            </chunk>
+          </out>
+        </otherwise>
       </choose>
     </def-macro>
 
@@ -2155,6 +2164,28 @@ no lemq-moving">
           <chunk namefrom="c_name" case="caseFirstWord">
             <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
             <lu><clip pos="1" side="tl" part="whole"/></lu>
+          </chunk>
+        </out>
+      </action>
+    </rule>
+
+    <rule comment="DETQNT REMSPC: remove space inserted by pretransfer
+                   ">
+      <pattern>
+        <pattern-item n="detqnt"/>
+        <pattern-item n="remspc"/>
+      </pattern>
+      <action>
+        <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
+        <let><clip pos="2" side="tl" part="a_remspc"/><lit v=""/></let>
+        <out>
+          <chunk name="det" case="caseFirstWord">
+            <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
+            <lu><clip pos="1" side="tl" part="whole"/></lu>
+          </chunk>
+          <chunk name="default" case="caseFirstWord">
+            <tags><tag><clip pos="2" side="tl" part="tags"/></tag></tags>
+            <lu><clip pos="2" side="tl" part="whole"/></lu>
           </chunk>
         </out>
       </action>
