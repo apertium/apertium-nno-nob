@@ -451,4 +451,20 @@
     </match>
   </rule>
 
+  <rule><match lemma="voldsom" tags="adj.*"><select lemma="kraftig"/></match></rule>
+  <rule weight="2.0"><match lemma="voldsom" tags="adj.sint.pst.nt.sg.ind"><select lemma="veldig"/></match></rule>
+  <rule weight="3.0">
+    <match lemma="voldsom" tags="adj.*">
+      <select lemma="forrykande"/>
+    </match>
+    <or>
+      <match lemma="fart"/>
+      <match lemma="rask"/>
+      <match lemma="hurtig"/>
+      <match lemma="tempo"/>
+      <match lemma="storm"/>
+      <match lemma="regnvêr"/>
+      <match lemma="vêr"/>
+    </or>
+  </rule>
 </rules>
