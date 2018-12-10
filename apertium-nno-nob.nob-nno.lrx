@@ -483,4 +483,12 @@
 
   <rule><match lemma="fortsette" tags="vblex.*"><select lemma="halde# fram"/></match></rule>
   <rule><match lemma="fortsette" tags="adj.*"><select lemma="fortsetje"/></match></rule>
+
+  <rule><match lemma="enhver" tags="det.*"><select lemma="kvar og ein"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="enhver" tags="det.*">
+      <select lemma="ein kvar"/>
+    </match>
+    <match lemma="pris"/>
+  </rule>
 </rules>
