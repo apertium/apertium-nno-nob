@@ -435,4 +435,20 @@
     <match lemma="overgriper" tags="n.*"/>
   </rule>
   <rule><match lemma="oversikt" tags="n.*"><select lemma="oversikt"/></match></rule>
+
+  <rule><match lemma="utsagn" tags="n.*"><select lemma="fråsegn"/></match></rule>
+  <rule weight="2.0">
+    <match tags="n.*.*.*.cmp"/>
+    <match lemma="utsagn" tags="n.*">
+      <select lemma="utsegn"/>
+    </match>
+  </rule>
+  <rule><match lemma="uttalelse" tags="n.*"><select lemma="fråsegn"/></match></rule>
+  <rule weight="2.0">
+    <match tags="n.*.*.*.cmp"/>
+    <match lemma="uttalelse" tags="n.*">
+      <select lemma="utsegn"/>
+    </match>
+  </rule>
+
 </rules>
