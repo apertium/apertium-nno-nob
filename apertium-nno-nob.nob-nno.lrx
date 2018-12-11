@@ -485,7 +485,15 @@
       <match lemma="vêr"/>
     </or>
   </rule>
+
   <rule><match lemma="utelukke" tags="vblex.*"><select lemma="sjå# bort frå"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="utelukke" tags="vblex.*">
+      <select lemma="avvise"/>
+    </match>
+    <match lemma="noe"/>
+  </rule>
+
   <rule><match lemma="gjenfortelle" tags="vblex.*"><select lemma="fortelje# att"/></match></rule>
 
   <rule><match lemma="uthule" tags="vblex.*"><select lemma="hole# ut"/></match></rule>
