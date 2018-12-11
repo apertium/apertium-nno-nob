@@ -501,4 +501,14 @@
     </match>
     <match lemma="pris"/>
   </rule>
+  <rule><match lemma="etter sigende" tags="adv.*"><select lemma="etter det som blir sagt,"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="etter sigende" tags="adv.*">
+      <select lemma="etter det som blir sagt"/>
+    </match>
+    <or>
+      <match tags="sent"/>
+      <match tags="sent.*"/>
+    </or>
+  </rule>
 </rules>
