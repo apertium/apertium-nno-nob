@@ -429,7 +429,10 @@
     </match>
   </rule>
   <rule weight="2.0">
-    <match lemma="rike"/>
+    <or>
+      <match lemma="rike"/>
+      <match lemma="nasjon"/>
+    </or>
     <match lemma="sikkerhet" tags="n.*">
       <select lemma="tryggleik"/>
     </match>
