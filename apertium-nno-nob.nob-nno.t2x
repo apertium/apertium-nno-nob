@@ -203,10 +203,15 @@
   <section-def-macros>
 
     <!-- Macros which set concordance variables etc.: -->
-    <def-macro n="switch_cases" npar="2">
-      <let><var n="caseFirstWord"/><get-case-from pos="1"><clip pos="1" part="lemh"/></get-case-from></let>
-      <let><clip pos="1" part="lemh"/><get-case-from pos="2"><clip pos="1" part="lemh"/></get-case-from></let>
-      <modify-case><clip pos="2" part="lemh"/><var n="caseFirstWord"/></modify-case>
+    <def-macro n="switch_cases" npar="2"
+               c="arg1: last word, which will be output first,
+                  arg2: first word, which will be output last">
+      <let><var n="caseFirstWord"/><get-case-from pos="1"><lit v="aa"/></get-case-from></let>
+      <choose><when c="only if the last word was lower, do we switch cases">
+        <test><equal><var n="caseFirstWord"/><lit v="aa"/></equal></test>
+        <let><clip pos="1" part="lemh"/><get-case-from pos="2"><clip pos="1" part="lemh"/></get-case-from></let>
+        <modify-case><clip pos="2" part="lemh"/><var n="caseFirstWord"/></modify-case>
+      </when></choose>
     </def-macro>
 
     <def-macro n="get_case_from_detpos" npar="2">
