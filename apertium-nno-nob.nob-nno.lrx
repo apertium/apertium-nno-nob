@@ -536,4 +536,12 @@
       <match tags="sent.*"/>
     </or>
   </rule>
+
+  <rule><match lemma="etterfølge" tags="vblex.*"><select lemma="etterfølgje"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="etterfølge" tags="vblex.*">
+      <select lemma="følgje"/>
+    </match>
+    <match lemma="av"/>
+  </rule>
 </rules>
