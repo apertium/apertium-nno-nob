@@ -1,6 +1,15 @@
 <rules>
   <!-- NOB → NNO -->
 
+
+  <rule><match lemma="forhold" tags="n.*"><select lemma="tilhøve"/></match></rule>
+  <rule weight="2.0">
+    <match tags="n.*.*.*.cmp"/>
+    <match lemma="forhold" tags="n.*">
+      <select lemma="forhold"/>
+    </match>
+  </rule>
+
   <rule> <match lemma="kjennelse" tags="n.*"> <select lemma="rettsavgjerd"/> </match> </rule>
   <rule weight="2.0">
     <or>
