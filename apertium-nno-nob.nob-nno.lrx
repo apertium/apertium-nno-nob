@@ -544,4 +544,12 @@
     </match>
     <match lemma="av"/>
   </rule>
+
+  <rule><match lemma="epost" tags="n.*"><select lemma="e-post"/></match></rule>
+  <rule weight="2.0">
+    <match tags="n.*.*.*.cmp"/>
+    <match lemma="epost" tags="n.*">
+      <select lemma="epost"/>
+    </match>
+  </rule>
 </rules>
