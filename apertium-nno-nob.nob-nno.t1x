@@ -19,7 +19,7 @@
     <def-cat n="ngen">
       <cat-item tags="n.*.gen"/>
     </def-cat>
-    <def-cat n="nind">
+    <def-cat n="nind_indgen">
       <cat-item tags="n.*.*.ind"/>
       <cat-item tags="n.*.*.ind.gen"/>
     </def-cat>
@@ -35,6 +35,10 @@
       <cat-item tags="n.*.sg.ind" lemma="ledelse"/>
       <cat-item tags="n.*.sg.ind" lemma="virksomhet"/>
       <cat-item tags="n.*.sg.ind" lemma="administrasjon"/>
+    </def-cat>
+    <def-cat n="nind_indsplit">
+      <cat-item tags="n.*.*.ind"/>
+      <cat-item tags="n.*.*.ind.cmp-split"/>
     </def-cat>
     <!-- bigrams2cmp -->
     <def-cat n="ngen_byplan"
@@ -1642,7 +1646,7 @@ no lemq-moving">
     <rule comment="NGEN_TIME_MEAS NIND: dagens vedtak => dagens vedtak">
       <pattern>
         <pattern-item n="ngen_time_meas"/>
-        <pattern-item n="nind"/>
+        <pattern-item n="nind_indgen"/>
       </pattern>
       <action>
         <let><var n="c_name"/><lit v="n_n"/></let>
@@ -1769,6 +1773,63 @@ no lemq-moving">
         </out>
       </action>
     </rule>
+
+    <!-- N og N: -->
+    <rule comment="NIND CNJCOO NIND: (kvinners) stemme og deltakelse → stemma og deltakinga til kvinner
+                   Chunk the coordination for genitive-movement in t2x">
+      <pattern>
+        <pattern-item n="nind_indsplit"/>
+        <pattern-item n="cnjcoo"/>
+        <pattern-item n="nind_indsplit"/>
+      </pattern>
+      <action>
+        <call-macro n="set_caseFirstWord2">
+          <with-param pos="1"/>
+          <with-param pos="2"/>
+        </call-macro>
+        <out>
+          <chunk name="n_cnjcoo_n" case="caseFirstWord">
+            <tags>
+              <tag><clip pos="3" side="tl" part="tags"/></tag>
+            </tags>
+            <lu><clip pos="1" side="tl" part="whole"/></lu>
+            <b pos="1"/>
+            <lu><clip pos="2" side="tl" part="whole"/></lu>
+            <b pos="2"/>
+            <lu><clip pos="3" side="tl" part="whole"/></lu>
+          </chunk>
+        </out>
+      </action>
+    </rule>
+    <rule comment="NIND CNJCOO NCMP N: (kvinners) kontroll- og konstitusjonskomité → kontroll- og konstitusjonskomitéen til kvinner
+                   Chunk the coordination for genitive-movement in t2x">
+      <pattern>
+        <pattern-item n="nind_indsplit"/>
+        <pattern-item n="cnjcoo"/>
+        <pattern-item n="ncmp"/>
+        <pattern-item n="n_np"/>
+      </pattern>
+      <action>
+        <call-macro n="set_caseFirstWord2">
+          <with-param pos="1"/>
+          <with-param pos="2"/>
+        </call-macro>
+        <out>
+          <chunk name="n_cnjcoo_n_n" case="caseFirstWord">
+            <tags>
+              <tag><clip pos="4" side="tl" part="tags"/></tag>
+            </tags>
+            <lu><clip pos="1" side="tl" part="whole"/></lu>
+            <b pos="1"/>
+            <lu><clip pos="2" side="tl" part="whole"/></lu>
+            <b pos="2"/>
+            <lu><clip pos="3" side="tl" part="whole"/></lu>
+            <lu><clip pos="4" side="tl" part="whole"/></lu>
+          </chunk>
+        </out>
+      </action>
+    </rule>
+
     <!-- ADJ N+ -->
     <rule comment="ADJ N">
       <pattern>
