@@ -315,6 +315,10 @@
       <cat-item tags="cnjcoo.*"/>
       <cat-item tags="cnjcoo"/>
     </def-cat>
+    <def-cat n="cnjcoo_nkon">
+      <cat-item tags="cnjcoo.@nkon"/>
+      <cat-item tags="cnjcoo.clb.@nkon"/>
+    </def-cat>
     <def-cat n="detpos">
       <cat-item tags="det.pos.*"/>
     </def-cat>
@@ -1775,11 +1779,28 @@ no lemq-moving">
     </rule>
 
     <!-- N og N: -->
+    <rule comment="CNJCOO_NKON
+                   Just drop the @-tag">
+      <pattern>
+        <pattern-item n="cnjcoo_nkon"/>
+      </pattern>
+      <action>
+        <out>
+          <chunk name="default">
+            <tags>
+              <tag><clip pos="1" side="tl" part="tags"/></tag>
+            </tags>
+            <lu><clip pos="1" side="tl" part="lemh"/><lit-tag v="cnjcoo"/></lu>
+          </chunk>
+        </out>
+      </action>
+    </rule>
     <rule comment="NIND CNJCOO NIND: (kvinners) stemme og deltakelse → stemma og deltakinga til kvinner
                    Chunk the coordination for genitive-movement in t2x">
+      <!-- TODO: avoid «landets ambassader og konsulater i utlandet» -->
       <pattern>
         <pattern-item n="nind_indsplit"/>
-        <pattern-item n="cnjcoo"/>
+        <pattern-item n="cnjcoo_nkon"/>
         <pattern-item n="nind_indsplit"/>
       </pattern>
       <action>
@@ -1794,7 +1815,7 @@ no lemq-moving">
             </tags>
             <lu><clip pos="1" side="tl" part="whole"/></lu>
             <b pos="1"/>
-            <lu><clip pos="2" side="tl" part="whole"/></lu>
+            <lu><clip pos="2" side="tl" part="lemh"/><lit-tag v="cnjcoo"/></lu>
             <b pos="2"/>
             <lu><clip pos="3" side="tl" part="whole"/></lu>
           </chunk>
@@ -1805,7 +1826,7 @@ no lemq-moving">
                    Chunk the coordination for genitive-movement in t2x">
       <pattern>
         <pattern-item n="nind_indsplit"/>
-        <pattern-item n="cnjcoo"/>
+        <pattern-item n="cnjcoo_nkon"/>
         <pattern-item n="ncmp"/>
         <pattern-item n="n_np"/>
       </pattern>
@@ -1821,7 +1842,7 @@ no lemq-moving">
             </tags>
             <lu><clip pos="1" side="tl" part="whole"/></lu>
             <b pos="1"/>
-            <lu><clip pos="2" side="tl" part="whole"/></lu>
+            <lu><clip pos="2" side="tl" part="lemh"/><lit-tag v="cnjcoo"/></lu>
             <b pos="2"/>
             <lu><clip pos="3" side="tl" part="whole"/></lu>
             <lu><clip pos="4" side="tl" part="whole"/></lu>
