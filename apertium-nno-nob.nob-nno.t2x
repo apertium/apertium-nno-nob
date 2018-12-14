@@ -52,6 +52,10 @@
     <def-cat n="prn">
       <cat-item tags="prn.*"/>
     </def-cat>
+    <def-cat n="prn_nt">
+      <cat-item tags="prn.*.nt.*"/>
+      <cat-item tags="prn.*.nt"/>
+    </def-cat>
     <def-cat n="sin">
       <cat-item lemma="detsin" tags="det.pos.*"/>
     </def-cat>
@@ -552,6 +556,30 @@
             <clip pos="1" part="whole"/>
           </chunk>
           <b pos="1"/>
+          <chunk>
+            <clip pos="2" part="whole"/>
+          </chunk>
+        </out>
+      </action>
+    </rule>
+    <rule comment="AUX ADJPART PRN_NT => AUX PRN_NT ADJPART
+                   (Videre) påpekes det =1> (Vidare) blir påpeikt det =2> (Vidare) blir det påpeikt">
+      <pattern>
+        <pattern-item n="aux"/>
+        <pattern-item n="adjpart"/>
+        <pattern-item n="prn_nt"/>
+      </pattern>
+      <action>
+        <call-macro n="modify_pp_gen_nbr"><with-param pos="2"/></call-macro>
+        <out>
+          <chunk>
+            <clip pos="1" part="whole"/>
+          </chunk>
+          <b pos="1"/>
+          <chunk>
+            <clip pos="3" part="whole"/>
+          </chunk>
+          <b pos="2"/>
           <chunk>
             <clip pos="2" part="whole"/>
           </chunk>
