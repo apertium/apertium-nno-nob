@@ -310,6 +310,8 @@
     <match tags="prn.*"/>
   </rule>
 
+  <rule> <match lemma="male" tags="vblex.*"> <select lemma="måle¹"/> </match> </rule>
+  <rule> <match lemma="male" tags="adj.*"> <select lemma="måle¹"/> </match> </rule>
   <rule weight="2.0">
     <match lemma="male" tags="vblex.*">
       <select lemma="male"/>
@@ -324,8 +326,20 @@
       <match lemma="fin"/>
     </or>
   </rule>
-
-  <rule> <match lemma="male" tags="vblex.*"> <select lemma="måle"/> </match> </rule>
+  <rule weight="2.0">
+    <match lemma="male" tags="adj.*">
+      <select lemma="male"/>
+    </match>
+    <or>
+      <match lemma="korn"/>
+      <match lemma="mjøl"/>
+      <match lemma="kjøtt"/>
+      <match lemma="mandel"/>
+      <match lemma="kaffi"/>
+      <match lemma="grov"/>
+      <match lemma="fin"/>
+    </or>
+  </rule>
 
   <rule weight="2.0">
     <match lemma="maling" tags="n.*.sg.ind">
