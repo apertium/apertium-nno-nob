@@ -571,4 +571,14 @@
   <rule><match lemma="mild" tags="adj.*"><select lemma="mild"/></match></rule>
   <rule><match lemma="fornøyd" tags="adj.*"><select lemma="fornøgd"/></match></rule>
   <rule><match lemma="beholde" tags="vblex.*"><select lemma="behalde"/></match></rule>
+  <rule><match lemma="når det kommer til" tags="pr"><select lemma="når det gjeld"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="når det kommer til" tags="pr">
+      <select lemma="når det kjem til"/>
+    </match>
+    <or>
+      <match lemma="stykke"/>
+      <match lemma="avstemning"/>
+    </or>
+  </rule>
 </rules>
