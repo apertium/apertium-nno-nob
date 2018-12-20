@@ -581,4 +581,14 @@
       <match lemma="avstemning"/>
     </or>
   </rule>
+  <rule><match lemma="forbigå" tags="adj.*"><select lemma="forbigå"/></match></rule>
+  <rule weight="2.0"><match lemma="forbigå" tags="vblex.pp"><select lemma="forbigå"/></match></rule>
+  <rule weight="3.0">
+    <match lemma="føle"/>
+    <match lemma="seg"/>
+    <match lemma="forbigå">
+      <select lemma="gløyme"/>
+    </match>
+  </rule>
+  <rule><match lemma="forbigå" tags="vblex.*"><select lemma="gå forbi"/></match></rule>
 </rules>
