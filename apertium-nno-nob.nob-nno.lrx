@@ -244,20 +244,23 @@
   <rule> <match lemma="trygghet" tags="n.*"> <select lemma="tryggleik"/> </match> </rule>
 
   <rule> <match lemma="antall" tags="n.*"> <select lemma="mengde"/> </match> </rule>
-  <rule weight="2.0">
+  <rule weight="3.0">
     <match lemma="antall" tags="n.*.sg.def"> <!-- nno only can generate for this tagging -->
       <select lemma="talet på"/>
     </match>
-    <match tags="n.*.pl.*"/>
+    <or>
+      <match tags="n.*"/>
+      <match tags="adj.*"/>
+    </or>
   </rule>
-  <rule weight="2.0">
+  <rule weight="3.0">
     <match lemma="antall" tags="n.*.sg.def"> <!-- nno only can generate for this tagging -->
       <select lemma="talet på"/>
     </match>
     <match tags="n.*.*.*.cmp"/>
     <match tags="n.*.pl.*"/>
   </rule>
-  <rule weight="2.0">
+  <rule weight="3.0">
     <match lemma="antall">
       <select lemma="talet på"/>
     </match>
@@ -265,6 +268,11 @@
       <match lemma="krone"/>
       <match lemma="grad"/>
     </or>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="antall" tags="n.*.sg.def"> <!-- nno only can generate for this tagging -->
+      <select lemma="tal"/>
+    </match>
   </rule>
 
   <rule> <match lemma="brenne" tags="adj.*"> <select lemma="brenne"/> </match> </rule>
