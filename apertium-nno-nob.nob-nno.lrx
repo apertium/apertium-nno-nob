@@ -245,8 +245,10 @@
 
   <rule> <match lemma="antall" tags="n.*"> <select lemma="mengde"/> </match> </rule>
   <rule weight="3.0">
-    <match lemma="antall" tags="n.*.sg.def"> <!-- nno only can generate for this tagging -->
-      <select lemma="talet på"/>
+    <match tags="det.*"/>
+    <match tags="adj.*"/>
+    <match lemma="antall">
+      <select lemma="mengde"/>
     </match>
     <or>
       <match tags="n.*"/>
@@ -254,11 +256,23 @@
     </or>
   </rule>
   <rule weight="3.0">
-    <match lemma="antall" tags="n.*.sg.def"> <!-- nno only can generate for this tagging -->
+    <match tags="det.*"/>
+    <match lemma="antall">
+      <select lemma="mengde"/>
+    </match>
+    <or>
+      <match tags="n.*"/>
+      <match tags="adj.*"/>
+    </or>
+  </rule>
+  <rule weight="3.0">
+    <match lemma="antall">
       <select lemma="talet på"/>
     </match>
-    <match tags="n.*.*.*.cmp"/>
-    <match tags="n.*.pl.*"/>
+    <or>
+      <match tags="n.*"/>
+      <match tags="adj.*"/>
+    </or>
   </rule>
   <rule weight="3.0">
     <match lemma="antall">
