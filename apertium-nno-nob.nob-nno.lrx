@@ -244,9 +244,9 @@
   <rule> <match lemma="trygghet" tags="n.*"> <select lemma="tryggleik"/> </match> </rule>
 
   <rule> <match lemma="antall" tags="n.*"> <select lemma="mengde"/> </match> </rule>
-  <rule weight="3.0">
-    <match tags="det.*"/>
-    <match tags="adj.*"/>
+  <rule weight="3.0" c="ei stor mengd søknader, but det store talet på søknader">
+    <match lemma="en"/>
+    <or><match tags="adj.*"/><match tags="adv"/></or>
     <match lemma="antall">
       <select lemma="mengde"/>
     </match>
@@ -255,8 +255,20 @@
       <match tags="adj.*"/>
     </or>
   </rule>
-  <rule weight="3.0">
-    <match tags="det.*"/>
+  <rule weight="3.0" c="ei særs stor mengd søknader, but det store talet på søknader">
+    <match lemma="en"/>
+    <or><match tags="adj.*"/><match tags="adv"/></or>
+    <or><match tags="adj.*"/><match tags="adv"/></or>
+    <match lemma="antall">
+      <select lemma="mengde"/>
+    </match>
+    <or>
+      <match tags="n.*"/>
+      <match tags="adj.*"/>
+    </or>
+  </rule>
+  <rule weight="3.0" c="ei mengd søknader, but dette talet på søknader">
+    <match lemma="en"/>
     <match lemma="antall">
       <select lemma="mengde"/>
     </match>
@@ -619,5 +631,5 @@
   <rule><match lemma="utallig" tags="adj.*"><select lemma="tallaus"/></match></rule>
   <rule><match lemma="angriper" tags="n.*"><select lemma="angripar"/></match></rule>
   <rule><match lemma="betro" tags="vblex.*"><select lemma="fortru"/></match></rule>
-  <rule><match lemma="før eller siden" tags="adv.*"><select lemma="før eller sidan"/></match></rule>
+  <rule><match lemma="før eller siden" tags="adv"><select lemma="før eller sidan"/></match></rule>
 </rules>
