@@ -647,10 +647,15 @@
     <match lemma="påfølgende" tags="adj.*">
       <select lemma="etterfølgjande"/>
     </match>
-    <or>
-      <match tags="n.*.*.*.cmp"/>
-      <match tags="np.*.cmp"/>
-    </or>
+    <or><match tags="n.*.*.*.cmp"/><match tags="np.*.cmp"/></or>
+    <match tags="n.*.*.ind"/>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="påfølgende" tags="adj.*">
+      <select lemma="etterfølgjande"/>
+    </match>
+    <or><match tags="n.*.*.*.cmp"/><match tags="np.*.cmp"/></or>
+    <or><match tags="n.*.*.*.cmp"/><match tags="np.*.cmp"/></or>
     <match tags="n.*.*.ind"/>
   </rule>
 </rules>
