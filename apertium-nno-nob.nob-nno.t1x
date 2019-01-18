@@ -290,11 +290,29 @@
       <cat-item tags="n.*.pl.ind.gen"  lemma="uke"/>
       <cat-item tags="n.*.sg.*.gen"    lemma="kvarter"/>
       <cat-item tags="n.*.pl.ind.gen"  lemma="kvarter"/>
+      <cat-item tags="n.*.sg.*.gen"    lemma="måned"/>
+      <cat-item tags="n.*.pl.ind.gen"  lemma="måned"/>
+      <cat-item tags="n.*.sg.*.gen"    lemma="helg"/>
+      <cat-item tags="n.*.pl.ind.gen"  lemma="helg"/>
 
       <cat-item tags="n.*.pl.def.gen"  lemma="tid"/>
 
       <cat-item tags="n.m.*.gen"       lemma="prosent"/>
-      <cat-item tags="n.*.sg.def.gen"      lemma="jord"/>
+      <cat-item tags="n.*.sg.def.gen"  lemma="jord"/>
+    </def-cat>
+    <def-cat n="n_time">
+      <cat-item tags="n.*" lemma="fjorår"/>
+      <cat-item tags="n.*" lemma="år"/>
+      <cat-item tags="n.*" lemma="dag"/>
+      <cat-item tags="n.*" lemma="gårsdag"/>
+      <cat-item tags="n.*" lemma="måned"/>
+      <cat-item tags="n.*" lemma="helg"/>
+      <cat-item tags="n.*"  lemma="uke"/>
+      <cat-item tags="n.*" lemma="kvarter"/>
+      <cat-item tags="n.*"  lemma="tid"/>
+    </def-cat>
+    <def-cat n="påfølgende">
+      <cat-item tags="adj.*" lemma="påfølgende"/>
     </def-cat>
     <def-cat n="pr">
       <cat-item tags="pr.*"/>
@@ -516,6 +534,7 @@
     <def-var n="grau_aux"       c="lexical unit containing meir/mest if translating from sint to non-sint"/>
     <def-var n="c_lemq"         c="lemq part to output in chunk"/>
     <def-var n="out_lemq"       c="lemq part to output after chunk"/>
+    <def-var n="det_gen"/>
   </section-def-vars>
 
   <section-def-lists>
@@ -527,7 +546,7 @@
     </def-list>
     <!-- POSSESSED-DEPENDENT EXCEPTIONS TODO: omkretsen til verda,
          lengden på dokumentet, ryktet til styret, lukta av/etter
-         kua... (although this could be coded in all the dictionaries,
+         kua… (although this could be coded in all the dictionaries,
          or added by CG, it's probably simpler and more compact to do
          it with def-list and macros) -->
     <def-list n="gen-i">
@@ -605,7 +624,7 @@
 
     <def-list n="det_indef">
       <!-- feels like these should have their own
-           sub-pos... «<det><dem> som kan ha <ind> etter seg på
+           sub-pos… «<det><dem> som kan ha <ind> etter seg på
            bokmål» -->
       <list-item v="denne"/>
       <list-item v="disse"/>
@@ -1185,6 +1204,61 @@
             <lu>
               <lit v="tal"/>
               <lit-tag v="n.nt.sg.def"/>
+            </lu>
+          </chunk>
+        </out>
+      </action>
+    </rule>
+    <rule comment="påfølgende uke → den følgjande veka">
+      <pattern>
+        <pattern-item n="påfølgende"/>
+        <pattern-item n="n_time"/>
+      </pattern>
+      <action>
+        <call-macro n="set_caseFirstWord2">
+          <with-param pos="1"/>
+          <with-param pos="2"/>
+        </call-macro>
+        <choose>
+          <when>
+            <test><equal><clip pos="2" side="tl" part="nbr"/><lit-tag v="pl"/></equal></test>
+            <let><var n="det_gen"/><lit-tag v="un"/></let>
+          </when>
+          <when>
+            <test><or>
+              <equal><clip pos="2" side="tl" part="gen"/><lit-tag v="m"/></equal>
+              <equal><clip pos="2" side="tl" part="gen"/><lit-tag v="f"/></equal>
+              <equal><clip pos="2" side="tl" part="gen"/><lit-tag v="nt"/></equal>
+            </or></test>
+            <let><var n="det_gen"/><clip pos="2" side="tl" part="gen"/></let>
+          </when>
+          <otherwise>
+            <let><var n="det_gen"/><lit-tag v="m"/></let>
+          </otherwise>
+        </choose>
+        <out>
+          <chunk name="adv" case="caseFirstWord">
+            <tags><tag><lit-tag v="adv"/></tag></tags>
+            <lu>
+              <lit v="den"/>
+              <lit-tag v="det.dem"/>
+              <var n="det_gen"/>
+              <clip pos="2" side="tl" part="nbr"/>
+            </lu>
+            <b/>
+            <lu>
+              <clip pos="1" side="tl" part="lemh"/>
+              <clip pos="1" side="tl" part="a_adj"/>
+              <lit-tag v="pst.un.sp.def"/>
+              <clip pos="1" side="tl" part="lemq"/>
+            </lu>
+            <b pos="1"/>
+            <lu>
+              <clip pos="2" side="tl" part="lemh"/>
+              <clip pos="2" side="tl" part="a_nom"/>
+              <clip pos="2" side="tl" part="gen"/>
+              <clip pos="2" side="tl" part="nbr"/>
+              <lit-tag v="def"/>
             </lu>
           </chunk>
         </out>
