@@ -658,4 +658,23 @@
     <or><match tags="n.*.*.*.cmp"/><match tags="np.*.cmp"/></or>
     <match tags="n.*.*.ind"/>
   </rule>
+  <rule><match lemma="fullstendig" tags="adv"><select lemma="fullstendig"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="fullstendig" tags="adv"><select lemma="fullt"/></match>
+    <or>
+      <match lemma="synlig"/>
+      <match lemma="mulig"/>
+      <match lemma="forberede"/>
+      <match lemma="forberedt"/>
+      <match lemma="berede"/>
+      <match lemma="beredt"/>
+      <match lemma="uforberede"/>
+      <match lemma="uforberedt"/>
+      <match lemma="avvise"/>
+      <match lemma="avvisende"/>
+      <match lemma="utvikle"/>
+      <match lemma="voksen"/>
+    </or>
+  </rule>
+  <rule><match lemma="erklæring" tags="n.*"><select lemma="erklæring"/></match></rule>
 </rules>
