@@ -37,6 +37,44 @@
     </pipeline>
   </mode>
 
+  <mode name="nob-nno_e-notagger" install="yes" gendebug="yes">
+    <!--
+        Due to https://github.com/apertium/apertium/issues/37 we
+        experiment with removing the tagger; but first have to ensure
+        CG is good enough that we don't regress
+    -->
+    <pipeline>
+      <program name="lt-proc -w -e">
+        <file name="nob-nno.automorf.bin"/>
+      </program>
+      <program name="cg-proc -w -1 -n">
+        <file name="nob-nno.rlx.bin"/>
+      </program>
+      <program name="apertium-pretransfer"/>
+      <program name="lt-proc -b">
+        <file name="nob-nno.autobil.bin"/>
+      </program>
+      <program name="lrx-proc -m">
+        <file name="nob-nno.autolex.bin"/>
+      </program>
+      <program name="apertium-transfer -b">
+        <file name="apertium-nno-nob.nob-nno.t1x"/>
+        <file name="nob-nno.t1x.bin"/>
+      </program>
+      <program name="apertium-interchunk">
+        <file name="apertium-nno-nob.nob-nno.t2x"/>
+        <file name="nob-nno.t2x.bin"/>
+      </program>
+      <program name="apertium-postchunk">
+        <file name="apertium-nno-nob.nob-nno.t3x"/>
+        <file name="nob-nno.t3x.bin"/>
+      </program>
+      <program name="lt-proc -N1 $1">
+        <file name="nob-nno_e.autogen.bin"/>
+      </program>
+    </pipeline>
+  </mode>
+
   <mode name="nob-nno" install="yes" gendebug="yes"> <!-- infinitive verbs ending in -a, with compounding -->
     <pipeline>
       <program name="lt-proc -w -e">
