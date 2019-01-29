@@ -676,6 +676,19 @@
       <match lemma="voksen"/>
     </or>
   </rule>
+  <rule><match lemma="i forveien" tags="adv"><select lemma="i forvegen"/></match></rule>
+  <rule weight="2.0">
+    <or>
+      <match lemma="time"/>
+      <match lemma="halvår"/>
+      <match lemma="helg"/>
+      <match lemma="uke"/>
+      <match lemma="år"/>
+      <match lemma="tid"/>
+      <match lemma="dag"/>
+    </or>
+    <match lemma="i forveien" tags="adv"><select lemma="før"/></match>
+  </rule>
   <rule><match lemma="erklæring" tags="n.*"><select lemma="erklæring"/></match></rule>
   <rule><match lemma="beskylde" tags="vblex.*"><select lemma="skylde"/></match></rule>
   <rule><match lemma="likegyldighet" tags="n.*"><select lemma="likegyldigheit"/></match></rule>
