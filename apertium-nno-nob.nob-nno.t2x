@@ -9,6 +9,9 @@
     <def-cat n="unknown">
       <cat-item tags="unknown"/>
     </def-cat>
+    <def-cat n="np">
+      <cat-item tags="np.*"/>
+    </def-cat>
     <def-cat n="nom">
       <cat-item tags="n.*"/>
       <cat-item tags="n.*.gen"/>
@@ -107,6 +110,10 @@
     </def-cat>
     <def-cat n="prep_til">
       <cat-item tags="pr.til"/>
+    </def-cat>
+    <def-cat n="sent">
+      <cat-item tags="sent.*"/>
+      <cat-item tags="sent"/>
     </def-cat>
   </section-def-cats>
 
@@ -319,7 +326,10 @@
       <choose>
         <when>
           <test><and>
-            <equal><clip pos="1" part="nbr"/><lit-tag v="sg"/></equal>
+            <or>
+              <equal><clip pos="1" part="nbr"/><lit-tag v="sg"/></equal>
+              <begins-with><clip pos="1" part="a_nom"/><lit-tag v="np"/></begins-with>
+            </or>
             <or>
               <equal><clip pos="1" part="gen"/><lit-tag v="mf"/></equal>
               <equal><clip pos="1" part="gen"/><lit-tag v="m"/></equal>
@@ -1442,6 +1452,31 @@
     <rule comment="PRN">
       <pattern>
         <pattern-item n="prn"/>
+      </pattern>
+      <action>
+        <call-macro n="set_ana"><with-param pos="1"/></call-macro>
+        <out>
+          <chunk><clip pos="1" part="whole"/></chunk>
+        </out>
+      </action>
+    </rule>
+
+    <rule comment="SENT">
+      <pattern>
+        <pattern-item n="sent"/>
+      </pattern>
+      <action>
+        <let><var n="ana_nbr"/><lit v=""/></let>
+        <let><var n="ana_gen"/><lit v=""/></let>
+        <out>
+          <chunk><clip pos="1" part="whole"/></chunk>
+        </out>
+      </action>
+    </rule>
+
+    <rule comment="NP">
+      <pattern>
+        <pattern-item n="np"/>
       </pattern>
       <action>
         <call-macro n="set_ana"><with-param pos="1"/></call-macro>
