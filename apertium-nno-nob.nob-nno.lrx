@@ -694,4 +694,9 @@
   <rule><match lemma="likegyldighet" tags="n.*"><select lemma="likegyldigheit"/></match></rule>
   <rule><match lemma="skue" tags="n.*"><select lemma="syn"/></match></rule>
   <rule><match lemma="erfare" tags="vblex.*"><select lemma="erfare"/></match></rule>
+  <rule><match lemma="bringe" tags="vblex.*"><select lemma="bringe"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="bringe" tags="vblex.*"><select lemma="frakte"/></match>
+    <match lemma="i" tags="pr"/>
+  </rule>
 </rules>
