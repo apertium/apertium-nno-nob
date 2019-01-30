@@ -699,4 +699,47 @@
     <match lemma="bringe" tags="vblex.*"><select lemma="frakte"/></match>
     <match lemma="i" tags="pr"/>
   </rule>
+
+  <rule><match lemma="i løpet av" tags="pr"><select lemma="i"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="i løpet av" tags="pr"><select lemma=""/></match>
+    <match lemma="den" tags="det.dem.un.pl"/>
+  </rule>
+  <rule weight="2.0" c="På 33 dager er">
+    <match lemma="i løpet av" tags="pr"><select lemma="på"/></match>
+    <or>
+      <!-- <match tags="det.qnt.*"/> TODO: not «på 2018»; need different tagging of years and other numbers in .dix -->
+      <match lemma="tour" tags="n.*"/>
+      <match lemma="tur" tags="n.*"/>
+    </or>
+  </rule>
+  <rule weight="3.0" c="opp 3 prosent gjennom dagen">
+    <match tags="*"/>
+    <match lemma="i løpet av" tags="pr"><select lemma="gjennom"/></match>
+    <or>
+      <match lemma="time"/>
+      <match lemma="halvår"/>
+      <match lemma="helg"/>
+      <match lemma="uke"/>
+      <match lemma="år"/>
+      <match lemma="tid"/>
+      <match lemma="dag"/>
+      <match lemma="handledag"/>
+      <match lemma="mandag" tags="n.m.sg.def"/>
+      <match lemma="mandag" tags="n.m.sg.def.gen"/>
+      <match lemma="tirsdag" tags="n.m.sg.def"/>
+      <match lemma="tirsdag" tags="n.m.sg.def.gen"/>
+      <match lemma="onsdag" tags="n.m.sg.def"/>
+      <match lemma="onsdag" tags="n.m.sg.def.gen"/>
+      <match lemma="torsdag" tags="n.m.sg.def"/>
+      <match lemma="torsdag" tags="n.m.sg.def.gen"/>
+      <match lemma="fredag" tags="n.m.sg.def"/>
+      <match lemma="fredag" tags="n.m.sg.def.gen"/>
+      <match lemma="lørdag" tags="n.m.sg.def"/>
+      <match lemma="lørdag" tags="n.m.sg.def.gen"/>
+      <match lemma="søndag" tags="n.m.sg.def"/>
+      <match lemma="søndag" tags="n.m.sg.def.gen"/>
+    </or>
+  </rule>
+  <rule><match lemma="tilsvare" tags="vblex.*"><select lemma="svare# til"/></match></rule>
 </rules>
