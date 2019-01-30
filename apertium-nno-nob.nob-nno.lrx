@@ -500,13 +500,9 @@
     </match>
   </rule>
 
-  <rule><match lemma="ledighet" tags="n.*"><select lemma="smidigheit"/></match></rule>
-  <rule weight="2.0">
-    <match tags="n.*.*.*.cmp"/>
-    <match lemma="ledighet" tags="n.*">
-      <select lemma="løyse"/>
-    </match>
-  </rule>
+  <!-- all corpus hits seem to be about arbeidsløyse -->
+  <rule><match lemma="ledighet" tags="n.*"><select lemma="arbeidsløyse"/></match></rule>
+
   <rule><match lemma="løpe" tags="vblex.*"><select lemma="springe"/></match></rule>
   <rule><match lemma="løpe" tags="adj.*"><select lemma="springe"/></match></rule>
 
