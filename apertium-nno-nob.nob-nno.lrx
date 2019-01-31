@@ -746,4 +746,10 @@
   </rule>
   <rule><match lemma="tilsvare" tags="vblex.*"><select lemma="svare# til"/></match></rule>
   <rule><match lemma="omsetning" tags="n.*"><select lemma="omsetning"/></match></rule>
+
+  <rule><match lemma="kull" tags="n.*"><select lemma="kol"/></match></rule>
+  <rule weight="2.0" c="ulvekull">
+    <match tags="n.*.*.*.cmp"/>
+    <match lemma="kull" tags="n.*">         <select lemma="kull"/> </match>
+  </rule>
 </rules>
