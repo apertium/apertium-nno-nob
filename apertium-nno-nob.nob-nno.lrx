@@ -752,4 +752,11 @@
     <match tags="n.*.*.*.cmp"/>
     <match lemma="kull" tags="n.*">         <select lemma="kull"/> </match>
   </rule>
+  <rule><match lemma="angivelig" tags="adv"><select lemma="visstnok"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="," tags="sent.*"/>
+    <match lemma="angivelig" tags="adv">
+      <select lemma="truleg"/>
+    </match>
+  </rule>
 </rules>

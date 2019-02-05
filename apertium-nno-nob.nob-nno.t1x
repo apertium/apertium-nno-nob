@@ -396,6 +396,15 @@
       <cat-item lemma="antall" tags="n.nt.sg.ind"/>
       <cat-item lemma="antall" tags="n.nt.pl.ind"/>
     </def-cat>
+    <def-cat n="har">
+      <cat-item lemma="ha" tags="vblex.pres"/>
+      <cat-item lemma="ha" tags="vblex.pret"/>
+    </def-cat>
+    <def-cat n="angivelig">
+      <cat-item lemma="angivelig" tags="adj.*"/>
+      <cat-item lemma="angivelig" tags="adv"/>
+      <cat-item lemma="angivelig" tags="adv.*"/>
+    </def-cat>
     <def-cat n="n_keep_sin" c="keep prefixed 'sin' in 'mot sin vilje', 'på sin side' etc.">
       <cat-item lemma="vilje" tags="n.*.sg.ind"/>
       <cat-item lemma="side" tags="n.*.sg.ind"/>
@@ -1183,6 +1192,36 @@
 
   <section-rules>
     <!-- Idiomatic rules first -->
+    <rule comment="har angivelig → skal ha">
+      <pattern>
+        <pattern-item n="har"/>
+        <pattern-item n="angivelig"/>
+      </pattern>
+      <action>
+        <call-macro n="set_caseFirstWord2">
+          <with-param pos="1"/>
+          <with-param pos="2"/>
+        </call-macro>
+        <out>
+          <chunk name="aux" case="caseFirstWord">
+            <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
+            <lu>
+              <lit v="skulle"/>
+              <clip pos="1" side="tl" part="tags"/>
+            </lu>
+          </chunk>
+          <b pos="1"/>
+          <chunk name="aux" case="caseSecondWord">
+            <tags><tag><lit-tag v="vblex.inf"/></tag></tags>
+            <lu>
+              <clip pos="1" side="tl" part="lemh"/>
+              <lit-tag v="vblex.inf"/>
+            </lu>
+          </chunk>
+        </out>
+      </action>
+    </rule>
+
     <rule comment="totalt antall → det samla talet
                    idiomatic rule">
       <pattern>
