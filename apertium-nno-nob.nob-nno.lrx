@@ -709,12 +709,47 @@
     <match lemma="en" tags="det.qnt.*"/>
   </rule>
 
-  <rule><match lemma="i løpet av" tags="pr"><select lemma="i"/></match></rule>
+  <rule><match lemma="i løpet av" tags="pr"><select lemma="i løpet av"/></match></rule>
   <rule weight="2.0">
+    <match lemma="i løpet av" tags="pr"><select lemma="i"/></match>
+    <or>
+      <match lemma="januar" tags="n.m.sg.ind"/>
+      <match lemma="februar" tags="n.m.sg.ind"/>
+      <match lemma="mars" tags="n.m.sg.ind"/>
+      <match lemma="april" tags="n.m.sg.ind"/>
+      <match lemma="mai" tags="n.m.sg.ind"/>
+      <match lemma="juni" tags="n.m.sg.ind"/>
+      <match lemma="juli" tags="n.m.sg.ind"/>
+      <match lemma="august" tags="n.m.sg.ind"/>
+      <match lemma="september" tags="n.m.sg.ind"/>
+      <match lemma="oktober" tags="n.m.sg.ind"/>
+      <match lemma="november" tags="n.m.sg.ind"/>
+      <match lemma="desember" tags="n.m.sg.ind"/>
+      <match lemma="dag" tags="n.m.sg.def"/> <!-- or gjennom? -->
+      <match lemma="år" tags="n.m.sg.def"/> <!-- or gjennom? -->
+      <!-- TODO: year regex in .dix: -->
+      <match lemma="2018"/>
+      <match lemma="2019"/>
+      <match lemma="2020"/>
+      <match lemma="2021"/>
+      <match lemma="2022"/>
+    </or>
+  </rule>
+  <rule weight="2.0" c="i løpet av de første årene → ∅">
     <match lemma="i løpet av" tags="pr"><select lemma=""/></match>
     <match lemma="den" tags="det.dem.un.pl"/>
   </rule>
-  <rule weight="2.0" c="På 33 dager er">
+  <rule weight="2.0" c="kan forvente å få bil i løpet av første halvår → ∅">
+    <match lemma="i løpet av" tags="pr"><select lemma=""/></match>
+    <match lemma="første" tags="adj.*"/>
+  </rule>
+  <!-- TODO: innan or om or keep here? -->
+  <!-- <rule weight="2.0" c="i løpet av kort tid → om"> -->
+  <!--   <match lemma="i løpet av" tags="pr"><select lemma="om"/></match> -->
+  <!--   <match lemma="kort" tags="adj.*"/> -->
+  <!--   <match lemma="tid" tags="n.*"/> -->
+  <!-- </rule> -->
+  <rule weight="2.0" c="I løpet av 33 dager er → på">
     <match lemma="i løpet av" tags="pr"><select lemma="på"/></match>
     <or>
       <!-- <match tags="det.qnt.*"/> TODO: not «på 2018»; need different tagging of years and other numbers in .dix -->
@@ -722,7 +757,7 @@
       <match lemma="tur" tags="n.*"/>
     </or>
   </rule>
-  <rule weight="3.0" c="opp 3 prosent gjennom dagen">
+  <rule weight="3.0" c="opp 3 prosent i løpet av dagen → gjennom">
     <match tags="*"/>
     <match lemma="i løpet av" tags="pr"><select lemma="gjennom"/></match>
     <or>
