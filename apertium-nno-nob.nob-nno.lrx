@@ -806,4 +806,9 @@
   <rule><match lemma="etterkomme" tags="vblex.*"><select lemma="etterkomme"/></match></rule>
   <rule><match lemma="myndighet" tags="n.*"><select lemma="styresmakt"/></match></rule>
   <rule><match lemma="behefte" tags="vblex.*"><select lemma="hefte"/></match></rule>
+  <rule><match lemma="overtredelse" tags="n.*"><select lemma="regelbrot"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="overtredelse" tags="n.*"><select lemma="brot"/></match>
+    <match lemma="av" tags="pr"/>
+  </rule>
 </rules>
