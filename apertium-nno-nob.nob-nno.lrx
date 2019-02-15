@@ -812,4 +812,9 @@
     <match lemma="av" tags="pr"/>
   </rule>
   <rule><match lemma="eierforhold" tags="n.*"><select lemma="eigarforhold"/></match></rule>
+
+  <rule><match lemma="motta" tags="vblex.*"><select lemma="få"/></match></rule>
+  <rule weight="2.0"><match lemma="motta" tags="vblex.pp"><select lemma="motta"/></match></rule>
+  <rule weight="2.0"><match lemma="motta" tags="vblex.*.pasv"><select lemma="motta"/></match></rule>
+  <rule><match lemma="motta" tags="adj.*"><select lemma="motta"/></match></rule>
 </rules>
