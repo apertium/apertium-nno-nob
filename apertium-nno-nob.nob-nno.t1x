@@ -388,6 +388,9 @@
     <def-cat n="sin">
       <cat-item lemma="sin" tags="det.pos.*"/>
     </def-cat>
+    <def-cat n="britenes">
+      <cat-item lemma="brite" tags="n.m.pl.def.gen"/>
+    </def-cat>
     <def-cat n="totalt">
       <cat-item lemma="total" tags="adj.pst.nt.sg.ind"/>
       <cat-item lemma="Total" tags="adj.pst.nt.sg.ind"/>
@@ -1304,6 +1307,27 @@
               <clip pos="2" side="tl" part="gen"/>
               <clip pos="2" side="tl" part="nbr"/>
               <lit-tag v="def"/>
+            </lu>
+          </chunk>
+        </out>
+      </action>
+    </rule>
+
+    <!-- NGEN → ADJ -->
+    <rule comment="britenes → britisk.ADJ">
+      <pattern>
+        <pattern-item n="britenes"/>
+      </pattern>
+      <action>
+        <let><var n="c_name"/><lit v="adj"/></let>
+        <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
+        <out>
+          <chunk namefrom="c_name" case="caseFirstWord">
+            <tags><tag><lit-tag v="adj.pst.nt.sg.ind"/></tag></tags>
+            <var n="grau_aux"/>
+            <lu>
+              <lit v="britisk"/>
+              <lit-tag v="adj.pst.nt.sg.ind"/>
             </lu>
           </chunk>
         </out>
