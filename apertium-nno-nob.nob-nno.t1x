@@ -1357,12 +1357,25 @@
             <reject-current-rule shifting="no"/>
           </otherwise>
         </choose>
-        <let><var n="c_name"/><lit v="needdet_adj_n"/></let>
+        <choose>
+          <when>
+            <test><or>
+              <equal><clip pos="2" side="tl" part="lemh"/><lit v="side"/></equal>
+              <equal><clip pos="2" side="tl" part="lemh"/><lit v="utmelding"/></equal>
+            </or></test>
+            <let><var n="c_name"/><lit v="adj_n"/></let>
+            <let><var n="defnes"/><lit-tag v="ind"/></let>
+          </when>
+          <otherwise>
+            <let><var n="c_name"/><lit v="needdet_adj_n"/></let>
+            <let><var n="defnes"/><lit-tag v="def"/></let>
+          </otherwise>
+        </choose>
         <call-macro n="set_caseFirstWord2">
           <with-param pos="1"/>
           <with-param pos="2"/>
         </call-macro>
-        <let><clip pos="2" side="tl" part="art"/><lit-tag v="def"/></let>
+        <let><clip pos="2" side="tl" part="art"/><var n="defnes"/></let>
         <call-macro n="stash_case_in_ntags"><with-param pos="2"/></call-macro>
         <out>
           <chunk namefrom="c_name" case="caseFirstWord">
@@ -1370,7 +1383,8 @@
             <var n="grau_aux"/>
             <lu>
               <var n="lu_lemh"/>
-              <lit-tag v="adj.pst.nt.sg.def"/>
+              <lit-tag v="adj.pst.nt.sg"/>
+              <var n="defnes"/>
             </lu>
             <b pos="1"/>
             <lu><clip pos="2" side="tl" part="whole"/></lu>
