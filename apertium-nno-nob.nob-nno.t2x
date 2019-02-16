@@ -115,6 +115,9 @@
       <cat-item tags="sent.*"/>
       <cat-item tags="sent"/>
     </def-cat>
+    <def-cat n="needdet_adj_n">
+      <cat-item lemma="needdet_adj_n" tags="n.*"/>
+    </def-cat>
   </section-def-cats>
 
   <section-def-attrs>
@@ -405,6 +408,7 @@
       <choose><when>
         <test><or>
           <begins-with caseless="yes"><clip pos="1" part="lemh"/><lit v="adj"/></begins-with>
+          <begins-with caseless="yes"><clip pos="1" part="lemh"/><lit v="needdet_"/></begins-with>
           <begins-with caseless="yes"><clip pos="1" part="tags"/><lit-tag v="det.qnt"/></begins-with>
         </or></test>
         <out>
@@ -458,6 +462,21 @@
 
 
   <section-rules>
+
+    <rule comment="NEEDDET_ADJ_N: britiske statsministeren => den britiske statsministeren
+                   Needs to be before NDEF rule.">
+      <pattern>
+        <pattern-item n="needdet_adj_n"/>
+      </pattern>
+      <action>
+        <call-macro n="set_ana"><with-param pos="1"/></call-macro>
+        <call-macro n="out_det_when_adjlike"><with-param pos="1"/><with-param pos="1"/></call-macro>
+        <let><clip pos="1" part="lemh"/><lit v="adj_n"/></let>
+        <out>
+          <chunk><clip pos="1" part="whole"/></chunk>
+        </out>
+      </action>
+    </rule>
 
     <!-- AUX PART rules -->
 

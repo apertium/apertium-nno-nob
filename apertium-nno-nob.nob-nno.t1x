@@ -390,6 +390,11 @@
     </def-cat>
     <def-cat n="britenes">
       <cat-item lemma="brite" tags="n.m.pl.def.gen"/>
+      <cat-item lemma="russer" tags="n.m.pl.def.gen"/>
+      <cat-item lemma="sveitser" tags="n.m.pl.def.gen"/>
+      <cat-item lemma="same" tags="n.m.pl.def.gen"/>
+      <cat-item lemma="Kina" tags="np.top.gen"/>
+      <cat-item lemma="India" tags="np.top.gen"/>
     </def-cat>
     <def-cat n="totalt">
       <cat-item lemma="total" tags="adj.pst.nt.sg.ind"/>
@@ -551,6 +556,7 @@
     <def-var n="c_lemq"         c="lemq part to output in chunk"/>
     <def-var n="out_lemq"       c="lemq part to output after chunk"/>
     <def-var n="det_gen"/>
+    <def-var n="lu_lemh"/>
   </section-def-vars>
 
   <section-def-lists>
@@ -1313,22 +1319,61 @@
       </action>
     </rule>
 
-    <!-- NGEN → ADJ -->
-    <rule comment="britenes → britisk.ADJ">
+    <!-- idiomatic NGEN NIND → (DET) ADJ NDEF -->
+    <rule comment="britenes statsminister → (den) britiske statsministeren">
       <pattern>
         <pattern-item n="britenes"/>
+        <pattern-item n="nind_indgen"/>
       </pattern>
       <action>
-        <let><var n="c_name"/><lit v="adj"/></let>
-        <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
+        <let><var n="lu_lemh"/><clip pos="1" side="sl" part="lemh"/></let>
+        <modify-case><var n="lu_lemh"/><lit v="aa"/></modify-case>
+        <choose>
+          <when>
+            <test><equal><var n="lu_lemh"/><lit v="brite"/></equal></test>
+            <let>        <var n="lu_lemh"/><lit v="britisk"/></let>
+          </when>
+          <when>
+            <test><equal><var n="lu_lemh"/><lit v="russer"/></equal></test>
+            <let>        <var n="lu_lemh"/><lit v="russisk"/></let>
+          </when>
+          <when>
+            <test><equal><var n="lu_lemh"/><lit v="sveitser"/></equal></test>
+            <let>        <var n="lu_lemh"/><lit v="sveitsisk"/></let>
+          </when>
+          <when>
+            <test><equal><var n="lu_lemh"/><lit v="same"/></equal></test>
+            <let>        <var n="lu_lemh"/><lit v="samisk"/></let>
+          </when>
+          <when>
+            <test><equal><var n="lu_lemh"/><lit v="India"/></equal></test>
+            <let>        <var n="lu_lemh"/><lit v="indisk"/></let>
+          </when>
+          <when>
+            <test><equal><var n="lu_lemh"/><lit v="Kina"/></equal></test>
+            <let>        <var n="lu_lemh"/><lit v="kinesisk"/></let>
+          </when>
+          <otherwise>
+            <reject-current-rule shifting="no"/>
+          </otherwise>
+        </choose>
+        <let><var n="c_name"/><lit v="needdet_adj_n"/></let>
+        <call-macro n="set_caseFirstWord2">
+          <with-param pos="1"/>
+          <with-param pos="2"/>
+        </call-macro>
+        <let><clip pos="2" side="tl" part="art"/><lit-tag v="def"/></let>
+        <call-macro n="stash_case_in_ntags"><with-param pos="2"/></call-macro>
         <out>
           <chunk namefrom="c_name" case="caseFirstWord">
-            <tags><tag><lit-tag v="adj.pst.nt.sg.ind"/></tag></tags>
+            <tags><tag><var n="ntags"/></tag></tags>
             <var n="grau_aux"/>
             <lu>
-              <lit v="britisk"/>
-              <lit-tag v="adj.pst.nt.sg.ind"/>
+              <var n="lu_lemh"/>
+              <lit-tag v="adj.pst.nt.sg.def"/>
             </lu>
+            <b pos="1"/>
+            <lu><clip pos="2" side="tl" part="whole"/></lu>
           </chunk>
         </out>
       </action>
