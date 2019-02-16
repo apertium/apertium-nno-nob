@@ -725,28 +725,37 @@
     <def-macro n="set_caseFirstWord" npar="1"
                c="Downcases the argument, unless np">
       <!-- TODO: Put a marker for acronyms where we don't want to copy case from them; then drop the tag -->
-      <let><var n="caseFirstWord"/><get-case-from pos="1"><lit v="aa"/></get-case-from></let>
       <choose><when>
         <test><not><equal><clip pos="1" side="tl" part="a_nom"/><lit-tag v="np"/></equal></not></test>
         <modify-case><clip pos="1" side="tl" part="lemh"/><lit v="aa"/></modify-case>
       </when></choose>
+      <choose>
+        <when c="Proper noun, not first word in sentence: let first word have lowercase">
+          <test><and>
+            <not><equal><var n="caseFirstWord"/><lit v=""/></equal></not>
+            <begins-with><clip pos="1" side="tl" part="a_nom"/><lit-tag v="np"/></begins-with>
+          </and></test>
+          <let><var n="caseFirstWord"/><lit v="aa"/></let>
+        </when>
+        <otherwise>
+          <let><var n="caseFirstWord"/><get-case-from pos="1"><lit v="aa"/></get-case-from></let>
+        </otherwise>
+      </choose>
+
     </def-macro>
 
     <def-macro n="set_caseFirstWord2" npar="2"
                c="arg1: first word, arg2: second word
-                  Downcases arg1, unless np">
-      <let><var n="caseFirstWord"/><get-case-from pos="1"><lit v="aa"/></get-case-from></let>
+                  Downcases arg1, unless np
+                  Avoids applying shouting to whole chunk if only first word shouts">
+      <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
       <let><var n="caseSecondWord"/><get-case-from pos="2"><lit v="aa"/></get-case-from></let>
       <choose><when>
         <test><and>
           <equal><var n="caseFirstWord"/><lit v="AA"/></equal>
           <not><equal><var n="caseSecondWord"/><lit v="AA"/></equal></not>
         </and></test>
-        <let><var n="caseFirstWord"/><lit v="Aa"/></let> <!-- avoid applying shouting to whole chunk if only first word shouts -->
-      </when></choose>
-      <choose><when>
-        <test><not><equal><clip pos="1" side="tl" part="a_nom"/><lit-tag v="np"/></equal></not></test>
-        <modify-case><clip pos="1" side="tl" part="lemh"/><lit v="aa"/></modify-case>
+        <let><var n="caseFirstWord"/><lit v="Aa"/></let>
       </when></choose>
     </def-macro>
 
@@ -2610,6 +2619,7 @@ no lemq-moving">
         <pattern-item n="sent"/>
       </pattern>
       <action>
+        <let><var n="caseFirstWord"/><lit v=""/></let>
         <out>
           <chunk name="sent">
             <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
