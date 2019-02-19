@@ -1571,15 +1571,30 @@
     </rule>
 
     <!-- POSGEN måte å VBLEXINF -->
-    <rule comment="sin N_KEEP_SIN: sin vilje => sin vilje
-                   Override the below rule (TODO: use exception tag instead, when accepted to trunk).">
+    <rule comment="DETPOS N_KEEP_SIN: sin vilje → sin vilje
+                                      deres side → deres side
+                   Tell t2x to not use DETPOS NIND → NDEF DETPOS rule.">
       <pattern>
-        <pattern-item n="sin"/>
+        <pattern-item n="detpos"/>
         <pattern-item n="n_keep_sin"/>
       </pattern>
       <action>
+        <choose>
+          <when>
+            <test><and>
+              <or>
+                <equal><clip pos="2" side="tl" part="gen"/><lit-tag v="m"/></equal>
+                <equal><clip pos="2" side="tl" part="gen"/><lit-tag v="f"/></equal>
+                <equal><clip pos="2" side="tl" part="gen"/><lit-tag v="nt"/></equal>
+              </or>
+              <not><equal><clip pos="2" side="tl" part="nbr"/><lit-tag v="pl"/></equal></not>
+              <not><equal><clip pos="1" side="tl" part="nbr"/><lit-tag v="pl"/></equal></not>
+            </and></test>
+            <let><clip pos="1" side="tl" part="gen"/><clip pos="2" side="tl" part="gen"/></let>
+          </when>
+        </choose>
         <out>
-          <chunk name="detsin-keep">
+          <chunk name="detpos-keep">
             <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
             <lu><clip pos="1" side="tl" part="whole"/></lu>
           </chunk>
