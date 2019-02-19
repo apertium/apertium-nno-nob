@@ -817,4 +817,11 @@
   <rule weight="2.0"><match lemma="motta" tags="vblex.pp"><select lemma="motta"/></match></rule>
   <rule weight="2.0"><match lemma="motta" tags="vblex.*.pasv"><select lemma="motta"/></match></rule>
   <rule><match lemma="motta" tags="adj.*"><select lemma="motta"/></match></rule>
+
+  <rule c="blant de øvrige største selskapene"><match lemma="de øvrige" tags="det.*"><select lemma="resten av dei"/></match></rule>
+  <rule c="blant de øvrige selskapene" weight="2.0">
+    <match lemma="de øvrige" tags="det.*"><select lemma="resten av"/></match>
+    <match tags="n.*.pl.def"/>
+  </rule>
+
 </rules>
