@@ -62,8 +62,8 @@
     <def-cat n="sin">
       <cat-item lemma="detsin" tags="det.pos.*"/>
     </def-cat>
-    <def-cat n="sin_keep">
-      <cat-item lemma="detsin-keep" tags="det.pos.*"/>
+    <def-cat n="detpos_keep">
+      <cat-item lemma="detpos-keep" tags="det.pos.*"/>
     </def-cat>
     <def-cat n="detpos">
       <cat-item tags="det.pos.*"/>
@@ -1105,10 +1105,10 @@
         </out>
       </action>
     </rule>
-    <rule comment="sin_keep NIND: mot sin vilje => mot sin vilje
+    <rule comment="detpos_keep NIND: mot sin vilje => mot sin vilje
                    Override the below rule">
       <pattern>
-        <pattern-item n="sin_keep"/>
+        <pattern-item n="detpos_keep"/>
         <pattern-item n="nind"/>
       </pattern>
       <action>
