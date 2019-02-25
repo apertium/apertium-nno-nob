@@ -35,12 +35,13 @@ TARGETS_PREFIX2 =                                             \
      $(PREFIX2).autobil.bin                                   \
      $(PREFIX2).t1x.bin $(PREFIX2).t2x.bin $(PREFIX2).t3x.bin \
      $(PREFIX2).autogen.bin                                   \
-     $(PREFIX2e).autogen.bin
+     $(PREFIX2e).autogen.bin                                  \
+     $(PREFIX2).autopgen.bin
 
 $(PREFIX1): $(TARGETS_PREFIX1)
 $(PREFIX2): $(TARGETS_PREFIX2)
 e: modes/$(PREFIX1).mode	# build just nob-nno_e
-	cd $(AP_SRC1) && ${MAKE} $(LANG1e).autogen.bin
+	cd $(AP_SRC1) && ${MAKE} $(LANG1e).autogen.bin $(LANG1).autopgen.bin
 	cd $(AP_SRC2) && ${MAKE} $(LANG2).automorf.bin $(LANG2).rlx.bin $(LANG2).prob
 	${MAKE} nob-nno
 
@@ -64,6 +65,9 @@ $(PREFIX2).autogen.bin: $(AP_SRC1)/$(LANG1).autogen.bin
 	cp $< $@
 
 $(PREFIX2e).autogen.bin: $(AP_SRC1)/$(LANG1e).autogen.bin
+	cp $< $@
+
+$(PREFIX2).autopgen.bin: $(AP_SRC1)/$(LANG1).autopgen.bin
 	cp $< $@
 
 # -------------------
