@@ -777,7 +777,7 @@
             <concat>
               <lit v="^lemq"/>
               <lit-tag v="vblex.lemq"/>
-              <lit v="}^"/>
+              <lit v="{^"/>
               <clip pos="1" side="tl" part="lemq"/>
               <lit v="$}$"/>
             </concat>
@@ -1428,9 +1428,10 @@
 
         <choose>
           <when>
-            <test><equal>
-              <clip pos="1" side="tl" part="a_verb"/><lit-tag v="vblex.pstv"/>
-            </equal></test>
+            <test><or>
+              <equal><clip pos="1" side="tl" part="a_verb"/><lit-tag v="vblex.pstv"/></equal>
+              <equal><clip pos="1" side="sl" part="a_verb"/><lit-tag v="vblex.pstv"/></equal>
+            </or></test>
             <out>
               <chunk name="vblex" case="caseFirstWord">
                 <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
