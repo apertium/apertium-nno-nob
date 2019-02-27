@@ -55,6 +55,9 @@
     <def-cat n="prn">
       <cat-item tags="prn.*"/>
     </def-cat>
+    <def-cat n="prn_nom">
+      <cat-item tags="prn.*.nom"/>
+    </def-cat>
     <def-cat n="prn_nt">
       <cat-item tags="prn.*.nt.*"/>
       <cat-item tags="prn.*.nt"/>
@@ -969,6 +972,30 @@
       </action>
     </rule>
 
+    <rule comment="VBLEX LEMQ PRN => VBLEX PRN LEMQ
+                   Push blanks one place up since lemq space is inside the chunk.">
+      <pattern>
+        <pattern-item n="vblex"/>
+        <pattern-item n="lemq"/>
+        <pattern-item n="prn_nom"/>
+      </pattern>
+      <action>
+        <call-macro n="set_ana"><with-param pos="1"/></call-macro>
+        <out>
+          <chunk>
+            <clip pos="1" part="whole"/>
+          </chunk>
+          <b pos="1"/>
+          <b pos="2"/>
+          <chunk>
+            <clip pos="3" part="whole"/>
+          </chunk>
+          <chunk>
+            <clip pos="2" part="whole"/>
+          </chunk>
+        </out>
+      </action>
+    </rule>
 
 
     <!-- Possessive noun phrases -->
