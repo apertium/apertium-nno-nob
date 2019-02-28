@@ -22,6 +22,10 @@
       <cat-item tags="n.*.ind"/>
       <cat-item tags="n.*.ind.*"/>
     </def-cat>
+    <def-cat n="nkeepgenx">
+      <cat-item tags="n.*.keepgenx"/>
+      <cat-item tags="n.*.keepgenx.*"/>
+    </def-cat>
     <def-cat n="ndef">
       <cat-item tags="n.*.def"/>
       <cat-item tags="n.*.def.*"/>
@@ -188,6 +192,9 @@
     </def-attr>
     <def-attr n="a_defdrop" c="Mark that we'd like to change defnes to ind in t3x">
       <attr-item tags="defdrop"/>
+    </def-attr>
+    <def-attr n="a_keepgenx" c="Mark that we'd like to keep gen-case of possessor (throw away prep)">
+      <attr-item tags="keepgenx"/>
     </def-attr>
     <def-attr n="art">
       <attr-item tags="def"/>
@@ -1088,6 +1095,29 @@
           <chunk>
             <clip pos="1" part="whole"/>
           </chunk>
+        </out>
+      </action>
+    </rule>
+
+    <rule comment="PREP_GEN NGEN NKEEPGENX: (for) hovedindeksens del → til hovudindeksen del → hovedindeksens del
+                   Override below prep-moving rules.">
+      <pattern>
+        <pattern-item n="prep_gen"/>
+        <pattern-item n="ngen"/>
+        <pattern-item n="nkeepgenx"/>
+      </pattern>
+      <action>
+        <call-macro n="set_ana"><with-param pos="3"/></call-macro>
+        <let><clip pos="2" part="a_casedrop"/><lit v=""/></let>
+        <let><clip pos="3" part="a_keepgenx"/><lit v=""/></let>
+        <choose><when>
+          <test><not><equal><b pos="1"/><lit v=" "/></equal></not></test>
+          <out><b pos="1"/></out>
+        </when></choose>
+        <out>
+          <chunk><clip pos="2" part="whole"/></chunk>
+          <b pos="2"/>
+          <chunk><clip pos="3" part="whole"/></chunk>
         </out>
       </action>
     </rule>
