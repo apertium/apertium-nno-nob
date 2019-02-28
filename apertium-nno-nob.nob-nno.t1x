@@ -704,8 +704,12 @@
             <append n="ntags"><lit-tag v="sl-f"/></append>
           </when>
         </choose>
-
       </when></choose>
+      <choose><when>
+        <test><equal><clip pos="1" side="tl" part="lemh"/><lit v="del"/></equal></test>
+        <append n="ntags"><lit-tag v="keepgenx"/></append>
+      </when></choose>
+
     </def-macro>
 
     <def-macro n="switch_cases" npar="2">
