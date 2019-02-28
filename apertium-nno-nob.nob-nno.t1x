@@ -40,7 +40,11 @@
       <cat-item tags="n.*.*.ind"/>
       <cat-item tags="n.*.*.ind.cmp-split"/>
     </def-cat>
-    <!-- bigrams2cmp -->
+
+    <!--
+        bigrams2cmp
+        (sets of pairs; kept apart because we might not want to compose prefixes of set1 with suffixes of set2)
+    -->
     <def-cat n="ngen_byplan"
              c="Owner nouns where we want to turn it into a compound following preceding word">
       <cat-item tags="n.*.gen" lemma="skole"/>
@@ -124,6 +128,16 @@
       <cat-item tags="n.*.sg.ind" lemma="forslag"/>
       <cat-item tags="n.*.sg.ind" lemma="stilling"/>
     </def-cat>
+
+    <def-cat n="ngen_sysselmannskontor"
+             c="Owner nouns where we want to turn it into a compound following preceding word">
+      <cat-item tags="n.*.gen" lemma="sysselmann"/>
+    </def-cat>
+    <def-cat n="nind_gen2cmp_sysselmannskontor"
+             c="Owned nouns where we want to turn it into a compound given preceding word">
+      <cat-item tags="n.*.sg.ind" lemma="kontor"/>
+    </def-cat>
+
     <!-- n does not include compound lhs's: -->
     <def-cat n="n_np">
       <cat-item tags="n.*.cmp-split"/>
@@ -1921,6 +1935,15 @@ no lemq-moving">
       <pattern>
         <pattern-item n="ngen_byplan"/>
         <pattern-item n="nind_gen2cmp_byplan"/>
+      </pattern>
+      <action>
+        <call-macro n="gen2cmp"><with-param pos="1"/><with-param pos="2"/></call-macro>
+      </action>
+    </rule>
+    <rule comment="NGEN_SYSSELMANNSKONTOR NIND_GEN2CMP_SYSSELMANNSKONTOR: sysselmannens kontor → sysselmannskontoret">
+      <pattern>
+        <pattern-item n="ngen_sysselmannskontor"/>
+        <pattern-item n="nind_gen2cmp_sysselmannskontor"/>
       </pattern>
       <action>
         <call-macro n="gen2cmp"><with-param pos="1"/><with-param pos="2"/></call-macro>
