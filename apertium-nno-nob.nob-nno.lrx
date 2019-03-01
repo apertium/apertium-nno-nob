@@ -807,7 +807,17 @@
     <match lemma="begjære" tags="vblex.*"><select lemma="krevje"/></match>
   </rule>
   <rule><match lemma="etterkomme" tags="vblex.*"><select lemma="etterkomme"/></match></rule>
+
   <rule><match lemma="myndighet" tags="n.*"><select lemma="styresmakt"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="myndighet" tags="n.*"><select lemma="autoritet"/></match>
+    <match lemma="til" tags="pr"/>
+  </rule>
+  <!-- <rule weight="2.0" c="jf. påtalemyndigheten → påtalemakta, though styresmakt seems more common in cmp too"> -->
+  <!--   <match tags="n.*.*.*.cmp"/> -->
+  <!--   <match lemma="myndighet" tags="n.*">         <select lemma="makt"/> </match> -->
+  <!-- </rule> -->
+
   <rule><match lemma="behefte" tags="vblex.*"><select lemma="hefte"/></match></rule>
   <rule><match lemma="overtredelse" tags="n.*"><select lemma="regelbrot"/></match></rule>
   <rule weight="2.0">
