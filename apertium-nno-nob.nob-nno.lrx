@@ -188,12 +188,7 @@
 
   <rule> <match lemma="i påvente av at" tags="adv"> <select lemma="fram til"/> </match> </rule>
 
-  <rule> <match lemma="håp" tags="n.*"> <select lemma="von"/> </match> </rule>
-  <rule weight="2.0">
-    <match lemma="håp" tags="n.*.*.def">
-      <select lemma="håp"/>
-    </match>
-  </rule>
+  <rule> <match lemma="håp" tags="n.*"> <select lemma="håp"/> </match> </rule>
   <rule> <match lemma="forhåpning" tags="n.*"> <select lemma="von"/> </match> </rule>
   <rule weight="2.0">
     <match lemma="forhåpning" tags="n.*.*.def">
@@ -817,6 +812,17 @@
   <rule><match lemma="myndighet" tags="n.*"><select lemma="styresmakt"/></match></rule>
   <rule weight="2.0">
     <match lemma="myndighet" tags="n.*"><select lemma="autoritet"/></match>
+    <match lemma="til" tags="pr"/>
+  </rule>
+  <rule weight="2.0" c="opptre med myndighet">
+    <match lemma="med" tags="pr"/>
+    <match lemma="myndighet" tags="n.*"><select lemma="autoritet"/></match>
+  </rule>
+  <rule weight="2.0">
+    <or>
+      <match tags="det.pos.*"/>
+    </or>
+    <match lemma="myndighet" tags="n.*"><select lemma="makt"/></match>
     <match lemma="til" tags="pr"/>
   </rule>
   <!-- <rule weight="2.0" c="jf. påtalemyndigheten → påtalemakta, though styresmakt seems more common in cmp too"> -->
