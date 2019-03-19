@@ -469,7 +469,7 @@
   <rule><match lemma="gang" tags="n.*"><select lemma="gong"/></match></rule>
   <rule weight="2.0">
     <!-- TODO: can't merge this with the next rule until we fix https://github.com/apertium/apertium-lex-tools/issues/12 -->
-    <match tags="n.*.*.*.cmp"/> 
+    <match tags="n.*.*.*.cmp"/>
     <match lemma="gang" tags="n.*">
       <select lemma="gang"/>
     </match>
@@ -484,6 +484,12 @@
     </match>
   </rule>
   <rule><match lemma="hemmelig" tags="adj.*"><select lemma="hemmeleg"/></match></rule>
+  <rule weight="3.0">
+    <match tags="det.qnt.*"/>
+    <match lemma="gang" tags="n.*">
+      <select lemma="gong"/>
+    </match>
+  </rule>
 
   <rule><match lemma="sikkerhet" tags="n.*"><select lemma="sikkerheit"/></match></rule>
   <rule weight="2.0">
