@@ -585,6 +585,13 @@
     </match>
     <match lemma="pris"/>
   </rule>
+  <rule weight="2.0">
+    <match lemma="enhver" tags="det.*">
+      <select lemma="kvar"/>
+    </match>
+    <match lemma="tid"/>
+  </rule>
+
   <rule><match lemma="etter sigende" tags="adv"><select lemma="etter det som blir sagt,"/></match></rule>
   <rule weight="2.0">
     <match lemma="etter sigende" tags="adv">
@@ -914,4 +921,5 @@
   <rule><match lemma="pågå" tags="adj.*"><select lemma="pågå"/></match></rule>
   <rule><match lemma="påta" tags="vblex.*"><select lemma="ta# på"/></match></rule>
   <rule><match lemma="påta" tags="adj.*"><select lemma="påta"/></match></rule>
+  <rule><match lemma="nøyaktighet" tags="n.*"><select lemma="nøyaktigheit"/></match></rule>
 </rules>
