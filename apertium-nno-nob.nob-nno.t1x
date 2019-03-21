@@ -572,6 +572,7 @@
     <def-var n="grau_aux"       c="lexical unit containing meir/mest if translating from sint to non-sint"/>
     <def-var n="c_lemq"         c="lemq part to output in chunk"/>
     <def-var n="out_lemq"       c="lemq part to output after chunk"/>
+    <def-var n="lemq-skip"      c="whether lemq can skip ndef's"/>
     <def-var n="det_gen"/>
     <def-var n="lu_lemh"/>
   </section-def-vars>
@@ -687,6 +688,21 @@
       <list-item v="&lt;nt&gt;"/>
       <list-item v="&lt;un&gt;"/>
     </def-list>
+
+    <def-list n="skip-n-lemqverbs" c="An ndef after verb-lemq here is typically a subject, which should be moved before the lemq
+                                 E.g.:
+                                 - , tilføyer medaljevinneren → , legg medaljevinnaren til
+                                 - nå pågår forhandlingene → nå går forhandlingane føre seg
+                                 Also, some lemq's should be after objects even, e.g.
+                                 - beriker verden → gjer verda rik
+                                 ">
+      <list-item v="legge# til"/>
+      <list-item v="halde# fram"/>
+      <list-item v="gå# føre seg"/>
+      <list-item v="gi# frå seg"/>
+      <list-item v="gjere# rik"/>
+      <list-item v="bli# verande"/>
+    </def-list>
   </section-def-lists>
 
   <section-def-macros>
@@ -790,11 +806,19 @@
             </and>
           </test>
           <let><var n="c_lemq"/><lit v=""/></let>
+          <choose>
+            <when>
+              <test><in><clip pos="1" side="tl" part="lem"/><list n="skip-n-lemqverbs"/></in></test>
+              <let><var n="lemq-skip"/><lit-tag v="lemq-skip-n"/></let>
+            </when>
+            <otherwise><let><var n="lemq-skip"/><lit v=""/></let></otherwise>
+          </choose>
           <let>
             <var n="out_lemq"/>
             <concat>
               <lit v="^lemq"/>
               <lit-tag v="vblex.lemq"/>
+              <var n="lemq-skip"/>
               <lit v="{^"/>
               <clip pos="1" side="tl" part="lemq"/>
               <lit v="$}$"/>
