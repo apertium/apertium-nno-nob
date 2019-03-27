@@ -140,7 +140,12 @@
       <cat-item lemma="nytte" tags="vblex.pp"/>
       <cat-item lemma="nytte" tags="adj.pp.*"/>
     </def-cat>
+    <def-cat n="sent">
+      <cat-item tags="sent.*"/>
+      <cat-item tags="sent"/>
+    </def-cat>
   </section-def-cats>
+
   <section-def-attrs>
     <def-attr n="a_nom">
       <attr-item tags="n"/>
@@ -1062,6 +1067,24 @@
             </lu>
           </chunk>
         </out>
+      </action>
+    </rule>
+
+    <rule comment="SENT">
+      <pattern>
+        <pattern-item n="sent"/>
+      </pattern>
+      <action>
+        <let><var n="caseFirstWord"/><lit v=""/></let>
+        <choose><when>
+          <test><not><equal><clip pos="1" side="tl" part="lemh"/><lit v=""/></equal></not></test>
+          <out>
+            <chunk name="sent">
+              <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
+              <lu><clip pos="1" side="tl" part="whole"/></lu>
+            </chunk>
+          </out>
+        </when></choose>
       </action>
     </rule>
 

@@ -2691,12 +2691,15 @@ no lemq-moving">
       </pattern>
       <action>
         <let><var n="caseFirstWord"/><lit v=""/></let>
-        <out>
-          <chunk name="sent">
-            <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
-            <lu><clip pos="1" side="tl" part="whole"/></lu>
-          </chunk>
-        </out>
+        <choose><when>
+          <test><not><equal><clip pos="1" side="tl" part="lemh"/><lit v=""/></equal></not></test>
+          <out>
+            <chunk name="sent">
+              <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
+              <lu><clip pos="1" side="tl" part="whole"/></lu>
+            </chunk>
+          </out>
+        </when></choose>
       </action>
     </rule>
 
