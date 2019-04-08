@@ -966,4 +966,23 @@
   <rule><match lemma="toneangivende" tags="adj.*"><select lemma="leiande"/></match></rule>
   <rule><match lemma="tilrettelegge" tags="vblex.*"><select lemma="legge# til rette"/></match></rule>
   <rule><match lemma="uaktsom" tags="adj.*"><select lemma="aktlaus"/></match></rule>
+
+  <rule><match lemma="merke" tags="vblex.*"><select lemma="merke"/></match></rule>
+  <rule><match lemma="merke" tags="adj.*"><select lemma="merke"/></match></rule>
+  <rule weight="2.0">
+    <or>
+      <match lemma="riktig"/>
+      <match lemma="være"/>
+      <match lemma="-"/>
+    </or>
+    <match lemma="merke">
+      <select lemma="merke¹"/>
+    </match>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="merke">
+      <select lemma="merke¹"/>
+    </match>
+    <match lemma="som"/>
+  </rule>
 </rules>
