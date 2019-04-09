@@ -691,6 +691,11 @@
       <list-item v="&lt;un&gt;"/>
     </def-list>
 
+    <def-list n="pres-pret" c="finite temps taking subjects">
+      <list-item v="&lt;pres&gt;"/>
+      <list-item v="&lt;pret&gt;"/>
+    </def-list>
+
     <def-list n="skip-n-lemqverbs" c="An ndef after verb-lemq here is typically a subject, which should be moved before the lemq
                                  E.g.:
                                  - , tilføyer medaljevinneren → , legg medaljevinnaren til
@@ -700,6 +705,25 @@
                                  ">
       <list-item v="legge# til"/>
       <list-item v="halde# fram"/>
+      <!-- Korrekt her:
+           - Etter debatten tysdag, heldt motgangen fram for May
+           - … å vere med, held 64-åringen fram.
+           - Tysdag held jakta fram på det som kan bli eit eventyr-VM for langrennstjerna frå Dalsbygda.
+             (betre med «fortset» her?)
+           - Dermed held tyskaren fram å tone ned draumane
+           - , då held viruset fram å sirkulere
+           - , held demonstrantane fram å planlegge
+           -  Held utviklinga fram, vil …
+           - , heldt forsvarssjefen fram
+           - og for mange av dei heldt problema fram
+
+           Men me ikkje etter proprium/nominativ (sjå t2x-regel NP_PRNNOM_OG VBLEX LEMQ-SKIP-N NDEF):
+           - *Det britiske parlamentet held debatten fram om statsminister
+           - *Saudiarabisk kronprins held turneen fram
+           - *Carlsen heldt sigersrekka fram
+           - *Vi held dialogen fram med autoritetane
+
+      -->
       <list-item v="gå# føre seg"/>
       <list-item v="gi# frå seg"/>
       <list-item v="gjere# rik"/>
@@ -810,7 +834,10 @@
           <let><var n="c_lemq"/><lit v=""/></let>
           <choose>
             <when>
-              <test><in><clip pos="1" side="tl" part="lem"/><list n="skip-n-lemqverbs"/></in></test>
+              <test><and>
+                <in><clip pos="1" side="tl" part="lem"/><list n="skip-n-lemqverbs"/></in>
+                <in><clip pos="1" side="tl" part="temps"/><list n="pres-pret"/></in>
+              </and></test>
               <let><var n="lemq-skip"/><lit-tag v="lemq-skip-n"/></let>
             </when>
             <otherwise><let><var n="lemq-skip"/><lit v=""/></let></otherwise>
