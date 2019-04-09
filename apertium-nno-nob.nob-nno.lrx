@@ -608,12 +608,70 @@
   <rule><match lemma="uthule" tags="vblex.*"><select lemma="hole# ut"/></match></rule>
   <rule><match lemma="uthule" tags="adj.*"><select lemma="uthule"/></match></rule>
 
-  <rule weight="2.0">
-    <match lemma="," tags="cm.*"/>
+  <rule><match lemma="fortsette" tags="vblex.*"><select lemma="halde# fram"/></match></rule>
+  <rule><match lemma="fortsette" tags="adj.*"><select lemma="halde# fram"/></match></rule>
+  <!-- Beginning-of-sentence rules: -->
+  <rule weight="2.0" c="Tyrkiske myndigheter fortsetter etterforskningen">
+    <match tags="adj.*"/>
+    <match tags="n.*.*.ind"/>
+    <match lemma="fortsette" tags="vblex.*"><select lemma="fortsetje"/></match>
+    <or>
+      <match tags="n.*.*.def"/>
+      <match tags="n.*.*.def.gen"/>
+    </or>
+  </rule>
+  <rule weight="2.0" c="Det norske landslaget fortsetter etterforskningen">
+    <match tags="det.*"/>
+    <match tags="adj.*"/>
+    <match tags="n.*.*.def"/>
+    <match lemma="fortsette" tags="vblex.*"><select lemma="fortsetje"/></match>
+    <or>
+      <match tags="n.*.*.def"/>
+      <match tags="n.*.*.def.gen"/>
+    </or>
+  </rule>
+  <rule weight="2.0" c="Redningsmannskapene fortsetter arbeidet">
+    <match tags="n.*.*.def"/>
+    <match lemma="fortsette" tags="vblex.*"><select lemma="fortsetje"/></match>
+  </rule>
+  <rule weight="2.0" c="Tyrkiske myndigheter fortsetter etterforskningen">
+    <match tags="sent.clb"/>
+    <match tags="adj.*"/>
+    <match tags="n.*.*.ind"/>
+    <match lemma="fortsette" tags="vblex.*"><select lemma="fortsetje"/></match>
+    <or>
+      <match tags="n.*.*.def"/>
+      <match tags="n.*.*.def.gen"/>
+    </or>
+  </rule>
+  <rule weight="2.0" c="Det norske landslaget fortsetter etterforskningen">
+    <match tags="sent.clb"/>
+    <match tags="det.*"/>
+    <match tags="adj.*"/>
+    <match tags="n.*.*.def"/>
+    <match lemma="fortsette" tags="vblex.*"><select lemma="fortsetje"/></match>
+    <or>
+      <match tags="n.*.*.def"/>
+      <match tags="n.*.*.def.gen"/>
+    </or>
+  </rule>
+  <rule weight="2.0" c="Redningsmannskapene fortsetter arbeidet">
+    <match tags="n.*.*.*.cmp"/>
+    <match tags="n.*.*.def"/>
+    <match lemma="fortsette" tags="vblex.*"><select lemma="fortsetje"/></match>
+  </rule>
+  <!-- Override above rules if not at beginning of sentence: -->
+  <rule weight="3.0" c="etter avbruddet fortsetter arbeidet">
+    <match tags="*"/>
+    <match tags="n.*.*.def"/>
     <match lemma="fortsette" tags="vblex.*"><select lemma="halde# fram"/></match>
   </rule>
-  <rule><match lemma="fortsette" tags="vblex.*"><select lemma="fortsetje"/></match></rule>
-  <rule><match lemma="fortsette" tags="adj.*"><select lemma="fortsetje"/></match></rule>
+  <rule weight="3.0" c="etter gårsdagens avbrudd fortsetter arbeidet">
+    <match tags="*"/>
+    <match tags="*"/>
+    <match tags="n.*.*.ind"/>
+    <match lemma="fortsette" tags="vblex.*"><select lemma="halde# fram"/></match>
+  </rule>
 
   <rule><match lemma="enhver" tags="det.*"><select lemma="kvar og ein"/></match></rule>
   <rule weight="2.0">
