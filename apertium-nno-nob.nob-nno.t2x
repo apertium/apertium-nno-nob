@@ -115,6 +115,10 @@
       <cat-item tags="adv"/>
       <cat-item tags="adv.*"/>
     </def-cat>
+    <def-cat n="adv_movable">
+      <cat-item tags="adv.movable"/>
+      <cat-item tags="adv.movable.*"/>
+    </def-cat>
     <def-cat n="infm">
       <cat-item lemma="infm" tags="part"/>
       <cat-item lemma="infm" tags="part.*"/>
@@ -640,14 +644,14 @@
         </out>
       </action>
     </rule>
-    <rule comment="AUXPASS ADJPART ADV => AUXPASS ADV ADJPART
+    <rule comment="AUXPASS ADJPART ADV_MOVABLE => AUXPASS ADV_MOVABLE ADJPART
                    boken leses ofte =1> boka blir lest ofte =2> boka blir ofte lest
                    auxpass are created in t1x; move adv's behind these
                    (No match if the aux was there originally, then we don't move any adverbs)">
       <pattern>
         <pattern-item n="auxpass"/>
         <pattern-item n="adjpart"/>
-        <pattern-item n="adv"/>
+        <pattern-item n="adv_movable"/>
       </pattern>
       <action>
         <call-macro n="modify_pp_gen_nbr"><with-param pos="2"/></call-macro>
@@ -666,7 +670,7 @@
         </out>
       </action>
     </rule>
-    <rule comment="AUXPASS ADJPART LEMQ ADV => AUXPASS ADV ADJPART LEMQ
+    <rule comment="AUXPASS ADJPART LEMQ ADV_MOVABLE => AUXPASS ADV_MOVABLE ADJPART LEMQ
                    påberopes ofte =1> vert skulda på ofte =2> vert ofte skulda på
                    auxpass are created in t1x; move adv's behind these
                    (No match if the aux was there originally, then we don't move any adverbs)">
@@ -674,7 +678,7 @@
         <pattern-item n="auxpass"/>
         <pattern-item n="adjpart"/>
         <pattern-item n="lemq"/>
-        <pattern-item n="adv"/>
+        <pattern-item n="adv_movable"/>
       </pattern>
       <action>
         <call-macro n="modify_pp_gen_nbr"><with-param pos="2"/></call-macro>
@@ -697,15 +701,15 @@
         </out>
       </action>
     </rule>
-    <rule comment="AUXPASS ADJPART ADV ADV => AUXPASS ADV ADV ADJPART
+    <rule comment="AUXPASS ADJPART ADV_MOVABLE ADV_MOVABLE => AUXPASS ADV_MOVABLE ADV_MOVABLE ADJPART
                    boken leses heller ofte =1> boka blir lest heller ofte =2> boka blir heller ofte lest
                    auxpass are created in t1x; move adv's behind these
                    (No match if the aux was there originally, then we don't move any adverbs)">
       <pattern>
         <pattern-item n="auxpass"/>
         <pattern-item n="adjpart"/>
-        <pattern-item n="adv"/>
-        <pattern-item n="adv"/>
+        <pattern-item n="adv_movable"/>
+        <pattern-item n="adv_movable"/>
       </pattern>
       <action>
         <call-macro n="modify_pp_gen_nbr"><with-param pos="2"/></call-macro>
@@ -728,16 +732,16 @@
         </out>
       </action>
     </rule>
-    <rule comment="AUXPASS ADJPART LEMQ ADV ADV => AUXPASS ADV ADV ADJPART LEMQ
+    <rule comment="AUXPASS ADJPART LEMQ ADV_MOVABLE ADV_MOVABLE => AUXPASS ADV_MOVABLE ADV_MOVABLE ADJPART LEMQ
                    påberopes heller ofte =1> vert skulda på heller ofte =2> vert heller ofte skulda på
-                   auxpass are created in t1x; move adv's behind these
-                   (No match if the aux was there originally, then we don't move any adverbs)">
+                   auxpass are created in t1x; move adv_movable's behind these
+                   (No match if the aux was there originally, then we don't move any adv_movableerbs)">
       <pattern>
         <pattern-item n="auxpass"/>
         <pattern-item n="adjpart"/>
         <pattern-item n="lemq"/>
-        <pattern-item n="adv"/>
-        <pattern-item n="adv"/>
+        <pattern-item n="adv_movable"/>
+        <pattern-item n="adv_movable"/>
       </pattern>
       <action>
         <call-macro n="modify_pp_gen_nbr"><with-param pos="2"/></call-macro>
@@ -945,12 +949,12 @@
         </out>
       </action>
     </rule>
-    <rule comment="VBLEX LEMQ ADV => VBLEX ADV LEMQ
+    <rule comment="VBLEX LEMQ ADV_MOVABLE => VBLEX ADV_MOVABLE LEMQ
                    Push blanks one place up since lemq space is inside the chunk.">
       <pattern>
         <pattern-item n="vblex"/>
         <pattern-item n="lemq"/>
-        <pattern-item n="adv"/>
+        <pattern-item n="adv_movable"/>
       </pattern>
       <action>
         <call-macro n="set_ana"><with-param pos="1"/></call-macro>
@@ -969,13 +973,13 @@
         </out>
       </action>
     </rule>
-    <rule comment="VBLEX LEMQ ADV ADV => VBLEX ADV ADV LEMQ
+    <rule comment="VBLEX LEMQ ADV_MOVABLE ADV_MOVABLE => VBLEX ADV_MOVABLE ADV_MOVABLE LEMQ
                    Push blanks one place up since lemq space is inside the chunk.">
       <pattern>
         <pattern-item n="vblex"/>
         <pattern-item n="lemq"/>
-        <pattern-item n="adv"/>
-        <pattern-item n="adv"/>
+        <pattern-item n="adv_movable"/>
+        <pattern-item n="adv_movable"/>
       </pattern>
       <action>
         <call-macro n="set_ana"><with-param pos="1"/></call-macro>
