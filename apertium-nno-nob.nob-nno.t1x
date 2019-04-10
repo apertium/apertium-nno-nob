@@ -567,6 +567,7 @@
     <def-var n="c_lemtag"       c="chunk lemma-tag"/>
     <def-var n="ntags"/>
     <def-var n="adjtags"/>
+    <def-var n="advtags"/>
     <def-var n="aux"/>
     <def-var n="defnes"/>
     <def-var n="grau_aux"       c="lexical unit containing meir/mest if translating from sint to non-sint"/>
@@ -1629,10 +1630,17 @@
       </pattern>
       <action>
         <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
+        <let><var n="advtags"/><clip pos="1" side="tl" part="tags"/></let>
+        <choose><when>
+          <test><not><equal><clip pos="1" side="tl" part="lemh"/><lit v="inn"/></equal></not></test>
+          <append n="advtags">
+            <lit-tag v="movable"/>
+          </append>
+        </when></choose>
         <out>
           <chunk name="adv" case="caseFirstWord">
             <tags>
-              <tag><clip pos="1" side="tl" part="tags"/></tag>
+              <tag><var n="advtags"/></tag>
             </tags>
             <lu>
               <clip pos="1" side="tl" part="whole"/>
