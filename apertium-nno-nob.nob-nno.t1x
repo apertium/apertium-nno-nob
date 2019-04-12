@@ -697,6 +697,11 @@
       <list-item v="&lt;pret&gt;"/>
     </def-list>
 
+    <def-list n="immovable-adv" c="Shouldn't be moved in passives or across lemq's, typically ambig with prep's">
+      <list-item v="inn"/>
+      <list-item v="med"/>
+    </def-list>
+
     <def-list n="skip-n-lemqverbs" c="An ndef after verb-lemq here is typically a subject, which should be moved before the lemq
                                  E.g.:
                                  - , tilføyer medaljevinneren → , legg medaljevinnaren til
@@ -1632,7 +1637,7 @@
         <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
         <let><var n="advtags"/><clip pos="1" side="tl" part="tags"/></let>
         <choose><when>
-          <test><not><equal><clip pos="1" side="tl" part="lemh"/><lit v="inn"/></equal></not></test>
+          <test><not><in><clip pos="1" side="tl" part="lemh"/><list n="immovable-adv"/></in></not></test>
           <append n="advtags">
             <lit-tag v="movable"/>
           </append>
