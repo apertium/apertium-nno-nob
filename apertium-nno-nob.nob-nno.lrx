@@ -1059,4 +1059,15 @@
     </match>
     <match lemma="som"/>
   </rule>
+
+  <rule><match lemma="avvente" tags="adj.*"><select lemma="avvente"/></match></rule>
+  <rule><match lemma="avvente" tags="vblex.*"><select lemma="vente# på"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="avvente" tags="vblex.*"><select lemma="sjå# det an"/></match>
+    <or>
+      <match lemma=","/>
+      <match tags="sent"/>
+      <match tags="sent.*"/>
+    </or>
+  </rule>
 </rules>
