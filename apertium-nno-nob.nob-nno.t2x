@@ -69,6 +69,9 @@
     <def-cat n="det">
       <cat-item tags="det.*"/>
     </def-cat>
+    <def-cat n="detemph">
+      <cat-item tags="det.emph.*"/>
+    </def-cat>
     <def-cat n="prn">
       <cat-item tags="prn.*"/>
     </def-cat>
@@ -91,7 +94,7 @@
     <def-cat n="detnonpos">
       <cat-item tags="det.def.*"/>
       <cat-item tags="det.dem.*"/>
-      <cat-item tags="det.emph.*"/>
+      <!-- <cat-item tags="det.emph.*"/> -->
       <cat-item tags="det.itg.*"/>
       <cat-item tags="det.qnt.*"/>
     </def-cat>
@@ -1345,7 +1348,6 @@
       </action>
     </rule>
 
-
     <rule comment="PREP_GEN NGEN DETNONPOS NIND:
                    toppens mange hunder =1> på toppen mange hunder =2> dei mange hundane på toppen
                    nind makes sure we don't match 'min Per(np)' nor 'min bils(gen)'">
@@ -1370,6 +1372,34 @@
           <chunk><clip pos="1" part="whole"/></chunk>
           <b pos="3"/>
           <chunk><clip pos="2" part="whole"/></chunk>
+        </out>
+      </action>
+    </rule>
+    <rule comment="sin DETEMPH PREP_GEN NGEN NIND: sin egen administrasjons innsats → innsatsen til sin egen administrasjon">
+      <pattern>
+        <pattern-item n="sin"/>
+        <pattern-item n="detemph"/>
+        <pattern-item n="prep_gen"/>
+        <pattern-item n="ngen"/>
+        <pattern-item n="nind"/>
+      </pattern>
+      <action>
+        <call-macro n="set_ana"><with-param pos="5"/></call-macro>
+        <call-macro n="switch_cases"><with-param pos="5"/><with-param pos="1"/></call-macro>
+        <call-macro n="out_det_when_adjlike"><with-param pos="5"/><with-param pos="1"/></call-macro>
+        <call-macro n="out_ndef"><with-param pos="5"/><with-param pos="1"/></call-macro>
+
+        <call-macro n="modify_det_gender2.n.det"><with-param pos="4"/><with-param pos="1"/></call-macro>
+        <call-macro n="modify_det_gender2.n.det"><with-param pos="4"/><with-param pos="2"/></call-macro>
+        <out>
+          <b pos="1"/>
+          <chunk><clip pos="3" part="whole"/></chunk>
+          <b pos="2"/>
+          <chunk><clip pos="1" part="whole"/></chunk>
+          <b pos="3"/>
+          <chunk><clip pos="2" part="whole"/></chunk>
+          <b pos="4"/>
+          <chunk><clip pos="4" part="whole"/></chunk>
         </out>
       </action>
     </rule>
