@@ -1073,4 +1073,30 @@
   <rule><match lemma="befeste" tags="vblex.*"><select lemma="styrke"/></match></rule>
   <rule><match lemma="befeste" tags="adj.*"><select lemma="styrke"/></match></rule>
   <rule><match lemma="begravelse" tags="n.*"><select lemma="gravferd"/></match></rule>
+  <rule><match lemma="foregå" tags="vblex.*"><select lemma="føregå"/></match></rule>
+  <rule><match lemma="foregå" tags="adj.*"><select lemma="føregå"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="foregå" tags="vblex.*">
+      <select lemma="gå# føre seg"/>
+    </match>
+    <or>
+      <match tags="adv"/>
+      <match tags="sent.clb"/>
+    </or>
+  </rule>
+
+  <rule><match lemma="forutgående" tags="adj.*"><select lemma="førre"/></match></rule>
+  <rule weight="2.0">
+    <match tags="det.*"/>
+    <match lemma="forutgående" tags="adj.*">
+      <select lemma="tidlegare"/>
+    </match>
+  </rule>
+  <rule><match lemma="foregående" tags="adj.*"><select lemma="førre"/></match></rule>
+  <rule weight="2.0" c="en foregående periode">
+    <match tags="det.qnt.*"/>
+    <match lemma="foregående" tags="adj.*">
+      <select lemma="tidlegare"/>
+    </match>
+  </rule>
 </rules>
