@@ -85,6 +85,11 @@
       <attr-item tags="adj.ord"/>
       <attr-item tags="adj.sint"/>
     </def-attr>
+    <def-attr n="grau">
+      <attr-item tags="pst"/>
+      <attr-item tags="comp"/>
+      <attr-item tags="sup"/>
+    </def-attr>
     <def-attr n="gen">
       <attr-item tags="m"/>
       <attr-item tags="mf"/>
@@ -138,6 +143,9 @@
   </section-def-vars>
 
   <section-def-lists>
+    <def-list n="gradsadv">
+      <list-item v="mykje"/>
+    </def-list>
     <def-list n="months">
       <list-item v="januar"/>
       <list-item v="februar"/>
@@ -238,6 +246,10 @@
         <test><and>
           <equal><clip pos="2" part="art"/><lit-tag v="ind"/></equal>
           <equal><clip pos="3" part="art"/><lit-tag v="def"/></equal>
+          <not><and>         <!-- avoid 'den meste viktige tingen' -->
+            <in><clip pos="2" part="lemh"/><list n="gradsadv"/></in>
+            <equal><clip pos="2" part="grau"/><lit-tag v="sup"/></equal>
+          </and></not>
         </and></test>
         <let><clip pos="2" part="art"/><clip pos="3" part="art"/></let>
       </when></choose>
