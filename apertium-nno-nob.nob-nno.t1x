@@ -1266,9 +1266,18 @@
       <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
 
       <call-macro n="stash_case_in_ntags"><with-param pos="1"/></call-macro>
-      <let><clip pos="1" side="tl" part="nbr"/><lit-tag v="sg"/></let>
-      <let><clip pos="1" side="tl" part="art"/><lit-tag v="ind.cmp"/></let>
-      <let><clip pos="1" side="tl" part="cas"/><lit v=""/></let>
+      <choose>
+        <when>
+          <test><equal><clip pos="1" side="tl" part="nbr"/><lit-tag v="sp"/></equal></test>
+          <let><clip pos="1" side="tl" part="nbr"/><lit-tag v="sp.cmp"/></let>
+          <let><clip pos="1" side="tl" part="cas"/><lit v=""/></let>
+        </when>
+        <otherwise>
+          <let><clip pos="1" side="tl" part="nbr"/><lit-tag v="sg"/></let>
+          <let><clip pos="1" side="tl" part="art"/><lit-tag v="ind.cmp"/></let>
+          <let><clip pos="1" side="tl" part="cas"/><lit v=""/></let>
+        </otherwise>
+      </choose>
       <let><clip pos="2" side="tl" part="art"/><lit-tag v="def"/></let>
       <out>
         <chunk namefrom="c_name">
