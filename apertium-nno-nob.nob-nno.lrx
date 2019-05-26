@@ -1132,4 +1132,10 @@
   <rule weight="2.0">
     <match lemma="bevegelse" tags="n.*.*.*.cmp"><select lemma="bevegelse"/></match>
   </rule>
+  <rule><match lemma="forskjell" tags="n.*"><select lemma="skilnad"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="gjøre"/>
+    <match tags="det.*"/>
+    <match lemma="forskjell" tags="n.*"><select lemma="forskjell"/></match>
+  </rule>
 </rules>
