@@ -1134,8 +1134,30 @@
   </rule>
   <rule><match lemma="forskjell" tags="n.*"><select lemma="skilnad"/></match></rule>
   <rule weight="2.0">
-    <match lemma="gjøre"/>
-    <match tags="det.*"/>
+    <or>
+      <match lemma="gjøre"/>
+      <match lemma="utgjøre"/>
+    </or>
+    <or>
+      <match tags="det.*"/>
+      <match lemma="noe"/>
+    </or>
+    <match lemma="forskjell" tags="n.*"><select lemma="forskjell"/></match>
+  </rule>
+  <rule weight="2.0">
+    <or>
+      <match lemma="gjøre"/>
+      <match lemma="utgjøre"/>
+    </or>
+    <or>
+      <match tags="det.*"/>
+      <match lemma="noe"/>
+    </or>
+    <match tags="adj.*"/>
+    <match lemma="forskjell" tags="n.*"><select lemma="forskjell"/></match>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="vite"/>
     <match lemma="forskjell" tags="n.*"><select lemma="forskjell"/></match>
   </rule>
 </rules>
