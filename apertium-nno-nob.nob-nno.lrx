@@ -1160,4 +1160,26 @@
     <match lemma="vite"/>
     <match lemma="forskjell" tags="n.*"><select lemma="forskjell"/></match>
   </rule>
+  <rule><match lemma="fuge" tags="n.*"><select tags="n.m.*" lemma="fuge"/></match></rule>
+  <rule weight="2.0">
+    <or>
+      <match lemma="vise"/>
+      <match lemma="brun"/>
+      <match lemma="hvit"/>
+      <match lemma="i"/>
+      <match lemma="teipe"/>
+      <match lemma="rense"/>
+      <match lemma="mette"/>
+      <match lemma="slipe"/>
+      <match lemma="lime"/>
+    </or>
+    <match lemma="fuge" tags="n.*"><select tags="n.f.*" lemma="fuge"/></match>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="fuge" tags="n.*"><select tags="n.f.*" lemma="fuge"/></match>
+    <or>
+      <match lemma="i"/>
+      <match lemma="mellom"/>
+    </or>
+  </rule>
 </rules>
