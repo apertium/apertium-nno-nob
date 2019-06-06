@@ -457,6 +457,11 @@
     <def-cat n="i">
       <cat-item lemma="i" tags="pr"/>
     </def-cat>
+    <def-cat n="utover_ut_inn">
+      <cat-item lemma="inn" tags="pr"/>
+      <cat-item lemma="ut" tags="pr"/>
+      <cat-item lemma="utover" tags="pr"/>
+    </def-cat>
     <def-cat n="forrige_neste">
       <cat-item lemma="forrige" tags="det.*"/>
       <cat-item lemma="neste" tags="det.*"/>
@@ -2767,6 +2772,40 @@ no lemq-moving">
               <tag><var n="c_lemtag"/></tag>
             </tags>
             <lu><clip pos="1" side="tl" part="whole"/></lu>
+          </chunk>
+        </out>
+      </action>
+    </rule>
+
+    <rule comment="INN I FORRIGE MÅNED: utover i neste uke => utover i neste uke
+                   Override below rule">
+      <pattern>
+        <pattern-item n="utover_ut_inn"/>
+        <pattern-item n="i"/>
+        <pattern-item n="forrige_neste"/>
+        <pattern-item n="nind_periode"/>
+      </pattern>
+      <action>
+        <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
+        <out>
+          <chunk name="pr" case="caseFirstWord">
+            <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
+            <lu><clip pos="1" side="tl" part="whole"/></lu>
+          </chunk>
+          <b pos="1"/>
+          <chunk name="pr" case="caseFirstWord">
+            <tags><tag><clip pos="2" side="tl" part="tags"/></tag></tags>
+            <lu><clip pos="2" side="tl" part="whole"/></lu>
+          </chunk>
+          <b pos="2"/>
+          <chunk name="det">
+            <tags><tag><clip pos="3" side="tl" part="tags"/></tag></tags>
+            <lu><clip pos="3" side="tl" part="whole"/></lu>
+          </chunk>
+          <b pos="3"/>
+          <chunk name="n">
+            <tags><tag><clip pos="4" side="tl" part="tags"/></tag></tags>
+            <lu><clip pos="4" side="tl" part="whole"/></lu>
           </chunk>
         </out>
       </action>
