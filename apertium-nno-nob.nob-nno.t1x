@@ -2800,9 +2800,9 @@ no lemq-moving">
       <action>
         <choose><when c="Don't drop for 'utover i neste uke'">
           <test><or>
-            <equal><var n="prevlem"/><lit v="utover"/></equal>
-            <equal><var n="prevlem"/><lit v="ut"/></equal>
-            <equal><var n="prevlem"/><lit v="inn"/></equal>
+            <equal caseless="yes"><var n="prevlem"/><lit v="utover"/></equal>
+            <equal caseless="yes"><var n="prevlem"/><lit v="ut"/></equal>
+            <equal caseless="yes"><var n="prevlem"/><lit v="inn"/></equal>
           </or></test>
           <reject-current-rule shifting="no"/>
         </when></choose>
@@ -2834,10 +2834,10 @@ no lemq-moving">
       <action>
         <choose><when c="Don't drop for 'etter hvert på søndag'">
           <test><or>
-            <equal><var n="prevlem"/><lit v="etter hvert"/></equal>
-            <equal><var n="prevlem"/><lit v="spesielt"/></equal>
-            <equal><var n="prevlem"/><lit v="spesiell"/></equal>
-            <equal><var n="prevlem"/><lit v="–"/></equal>
+            <equal caseless="yes"><var n="prevlem"/><lit v="etter hvert"/></equal>
+            <equal caseless="yes"><var n="prevlem"/><lit v="spesielt"/></equal>
+            <equal caseless="yes"><var n="prevlem"/><lit v="spesiell"/></equal>
+            <equal caseless="yes"><var n="prevlem"/><lit v="–"/></equal>
           </or></test>
           <reject-current-rule shifting="no"/>
         </when></choose>
