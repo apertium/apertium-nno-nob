@@ -454,6 +454,27 @@
     <def-cat n="måte">
       <cat-item lemma="måte" tags="n.m.sg.ind"/>
     </def-cat>
+    <def-cat n="i">
+      <cat-item lemma="i" tags="pr"/>
+    </def-cat>
+    <def-cat n="forrige_neste">
+      <cat-item lemma="forrige" tags="det.*"/>
+      <cat-item lemma="neste" tags="det.*"/>
+    </def-cat>
+    <def-cat n="nind_periode">
+      <cat-item lemma="måned" tags="n.*.ind"/>
+      <cat-item lemma="uke" tags="n.*.ind"/>
+      <cat-item lemma="sesong" tags="n.*.ind"/>
+      <cat-item lemma="år" tags="n.*.ind"/>
+      <cat-item lemma="halvår" tags="n.*.ind"/>
+      <cat-item lemma="sommerhalvår" tags="n.*.ind"/>
+      <cat-item lemma="vinterhalvår" tags="n.*.ind"/>
+      <cat-item lemma="runde" tags="n.*.ind"/>
+      <cat-item lemma="kvartal" tags="n.*.ind"/>
+      <cat-item lemma="periode" tags="n.*.ind"/>
+      <cat-item lemma="fireårsperiode" tags="n.*.ind"/>
+      <cat-item lemma="skoleår" tags="n.*.ind"/>
+    </def-cat>
     <def-cat n="vblex">
       <cat-item tags="vblex.*"/>
     </def-cat>
@@ -2746,6 +2767,32 @@ no lemq-moving">
               <tag><var n="c_lemtag"/></tag>
             </tags>
             <lu><clip pos="1" side="tl" part="whole"/></lu>
+          </chunk>
+        </out>
+      </action>
+    </rule>
+
+    <rule comment="I FORRIGE MÅNED: i neste uke => neste uke">
+      <pattern>
+        <pattern-item n="i"/>
+        <pattern-item n="forrige_neste"/>
+        <pattern-item n="nind_periode"/>
+      </pattern>
+      <action>
+        <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
+        <choose><when>
+          <test><not><equal><b pos="1"/><lit v=" "/></equal></not></test>
+          <out><b pos="1"/></out>
+        </when></choose>
+        <out>
+          <chunk name="det" case="caseFirstWord">
+            <tags><tag><clip pos="2" side="tl" part="tags"/></tag></tags>
+            <lu><clip pos="2" side="tl" part="whole"/></lu>
+          </chunk>
+          <b pos="2"/>
+          <chunk name="n">
+            <tags><tag><clip pos="3" side="tl" part="tags"/></tag></tags>
+            <lu><clip pos="3" side="tl" part="whole"/></lu>
           </chunk>
         </out>
       </action>
