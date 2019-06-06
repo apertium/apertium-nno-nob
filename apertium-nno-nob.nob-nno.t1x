@@ -454,6 +454,18 @@
     <def-cat n="måte">
       <cat-item lemma="måte" tags="n.m.sg.ind"/>
     </def-cat>
+    <def-cat n="på">
+      <cat-item lemma="på" tags="pr"/>
+    </def-cat>
+    <def-cat n="nind_vekedag">
+      <cat-item lemma="mandag" tags="n.*.ind"/>
+      <cat-item lemma="tirsdag" tags="n.*.ind"/>
+      <cat-item lemma="onsdag" tags="n.*.ind"/>
+      <cat-item lemma="torsdag" tags="n.*.ind"/>
+      <cat-item lemma="fredag" tags="n.*.ind"/>
+      <cat-item lemma="lørdag" tags="n.*.ind"/>
+      <cat-item lemma="søndag" tags="n.*.ind"/>
+    </def-cat>
     <def-cat n="i">
       <cat-item lemma="i" tags="pr"/>
     </def-cat>
@@ -506,6 +518,10 @@
     <def-cat n="sent">
       <cat-item tags="sent.*"/>
       <cat-item tags="sent"/>
+    </def-cat>
+    <def-cat n="guio">
+      <cat-item tags="guio.*"/>
+      <cat-item tags="guio"/>
     </def-cat>
   </section-def-cats>
   <section-def-attrs>
@@ -2782,6 +2798,14 @@ no lemq-moving">
         <pattern-item n="nind_periode"/>
       </pattern>
       <action>
+        <choose><when c="Don't drop for 'utover i neste uke'">
+          <test><or>
+            <equal><var n="prevlem"/><lit v="utover"/></equal>
+            <equal><var n="prevlem"/><lit v="ut"/></equal>
+            <equal><var n="prevlem"/><lit v="inn"/></equal>
+          </or></test>
+          <reject-current-rule shifting="no"/>
+        </when></choose>
         <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
         <choose><when>
           <test><not><equal><b pos="1"/><lit v=" "/></equal></not></test>
@@ -2798,6 +2822,51 @@ no lemq-moving">
             <lu><clip pos="3" side="tl" part="whole"/></lu>
           </chunk>
         </out>
+      </action>
+    </rule>
+
+    <rule comment="PÅ MANDAG: på måndag => måndag
+                   Unntak: særlig på søndag, etter hvert på onsdag, – på lørdag">
+      <pattern>
+        <pattern-item n="på"/>
+        <pattern-item n="nind_vekedag"/>
+      </pattern>
+      <action>
+        <choose><when c="Don't drop for 'etter hvert på søndag'">
+          <test><or>
+            <equal><var n="prevlem"/><lit v="etter hvert"/></equal>
+            <equal><var n="prevlem"/><lit v="spesielt"/></equal>
+            <equal><var n="prevlem"/><lit v="spesiell"/></equal>
+            <equal><var n="prevlem"/><lit v="–"/></equal>
+          </or></test>
+          <reject-current-rule shifting="no"/>
+        </when></choose>
+        <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
+        <choose><when>
+          <test><not><equal><b pos="1"/><lit v=" "/></equal></not></test>
+          <out><b pos="1"/></out>
+        </when></choose>
+        <out>
+          <chunk name="n" case="caseFirstWord">
+            <tags><tag><clip pos="2" side="tl" part="tags"/></tag></tags>
+            <lu><clip pos="2" side="tl" part="whole"/></lu>
+          </chunk>
+        </out>
+      </action>
+    </rule>
+
+    <rule comment="GUIO">
+      <pattern>
+        <pattern-item n="guio"/>
+      </pattern>
+      <action>
+        <out>
+          <chunk name="guio">
+            <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
+            <lu><clip pos="1" side="tl" part="whole"/></lu>
+          </chunk>
+        </out>
+        <let><var n="prevlem"/><clip pos="1" side="tl" part="lem"/></let>
       </action>
     </rule>
 
