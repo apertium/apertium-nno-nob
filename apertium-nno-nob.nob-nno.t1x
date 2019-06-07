@@ -37,17 +37,11 @@
       <cat-item tags="n.*.sg.ind" lemma="virksomhet"/>
       <cat-item tags="n.*.sg.ind" lemma="administrasjon"/>
     </def-cat>
-    <def-cat n="n_split">
+    <def-cat n="n_nsplit">
       <cat-item tags="n.*.*.ind"/>
       <cat-item tags="n.*.*.def"/>
       <cat-item tags="n.*.*.ind.cmp-split"/>
       <cat-item tags="n.*.*.def.cmp-split"/>
-    </def-cat>
-    <def-cat n="n_ngen_split">
-      <cat-item tags="n.*.*.ind"/>
-      <cat-item tags="n.*.*.def"/>
-      <cat-item tags="n.*.*.*.cmp-split"/>
-      <cat-item tags="n.*.*.*.gen"/>
     </def-cat>
 
     <!--
@@ -1931,41 +1925,6 @@ no lemq-moving">
     </rule>
 
     <!-- Nouns -->
-    <rule comment="NGEN CNJCOO NGEN: lørdagens og søndagens => laurdagens og søndagens">
-      <pattern>
-        <pattern-item n="ngen"/>
-        <pattern-item n="cnjcoo"/>
-        <pattern-item n="ngen"/>
-      </pattern>
-      <action>
-        <call-macro n="set_caseFirstWord2">
-          <with-param pos="1"/>
-          <with-param pos="2"/>
-        </call-macro>
-        <out>
-          <chunk name="n" case="caseFirstWord">
-            <tags>
-              <tag><clip pos="1" side="tl" part="tags"/></tag>
-            </tags>
-            <lu><clip pos="1" side="tl" part="whole"/></lu>
-          </chunk>
-          <b pos="1"/>
-          <chunk name="default" case="caseFirstWord">
-            <tags>
-              <tag><clip pos="2" side="tl" part="tags"/></tag>
-            </tags>
-            <lu><clip pos="2" side="tl" part="whole"/></lu>
-          </chunk>
-          <b pos="2"/>
-          <chunk name="n" case="caseFirstWord">
-            <tags>
-              <tag><clip pos="3" side="tl" part="tags"/></tag>
-            </tags>
-            <lu><clip pos="3" side="tl" part="whole"/></lu>
-          </chunk>
-        </out>
-      </action>
-    </rule>
     <rule comment="NGEN_TIME_MEAS: dagens => dagens">
       <pattern>
         <pattern-item n="ngen_time_meas"/>
@@ -2195,10 +2154,11 @@ no lemq-moving">
       </action>
     </rule>
     <rule comment="NIND CNJCOO NIND: (kvinners) stemme og deltakelse → stemma og deltakinga til kvinner
+                                                barn og unges filminteresse → filminteressa til barn og unge
                    Chunk the coordination for genitive-movement in t2x">
       <!-- TODO: avoid «landets ambassader og konsulater i utlandet» -->
       <pattern>
-        <pattern-item n="n_split"/>
+        <pattern-item n="n_np"/>
         <pattern-item n="cnjcoo_nkon"/>
         <pattern-item n="n_np"/>
       </pattern>
@@ -2224,7 +2184,7 @@ no lemq-moving">
     <rule comment="NIND CNJCOO NCMP N: (kvinners) kontroll- og konstitusjonskomité → kontroll- og konstitusjonskomitéen til kvinner
                    Chunk the coordination for genitive-movement in t2x">
       <pattern>
-        <pattern-item n="n_split"/>
+        <pattern-item n="n_np"/>
         <pattern-item n="cnjcoo_nkon"/>
         <pattern-item n="ncmp"/>
         <pattern-item n="n_np"/>
@@ -2245,6 +2205,36 @@ no lemq-moving">
             <b pos="2"/>
             <lu><clip pos="3" side="tl" part="whole"/></lu>
             <lu><clip pos="4" side="tl" part="whole"/></lu>
+          </chunk>
+        </out>
+      </action>
+    </rule>
+    <rule comment="NGEN CNJCOO NGEN: lørdagens og søndagens => laurdagens og søndagens
+                   If above rules didn't match (no @nkon tag), we keep genitive, unchunked">
+      <pattern>
+        <pattern-item n="ngen"/>
+        <pattern-item n="cnjcoo"/>
+        <pattern-item n="ngen"/>
+      </pattern>
+      <action>
+        <call-macro n="set_caseFirstWord2">
+          <with-param pos="1"/>
+          <with-param pos="2"/>
+        </call-macro>
+        <out>
+          <chunk name="n" case="caseFirstWord">
+            <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
+            <lu><clip pos="1" side="tl" part="whole"/></lu>
+          </chunk>
+          <b pos="1"/>
+          <chunk name="default" case="caseFirstWord">
+            <tags><tag><clip pos="2" side="tl" part="tags"/></tag></tags>
+            <lu><clip pos="2" side="tl" part="lemh"/><lit-tag v="cnjcoo"/></lu>
+          </chunk>
+          <b pos="2"/>
+          <chunk name="n" case="caseFirstWord">
+            <tags><tag><clip pos="3" side="tl" part="tags"/></tag></tags>
+            <lu><clip pos="3" side="tl" part="whole"/></lu>
           </chunk>
         </out>
       </action>
