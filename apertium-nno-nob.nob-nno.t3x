@@ -27,6 +27,9 @@
     <def-cat n="n_cnjcoo_n_n">
       <cat-item name="n_cnjcoo_n_n"/>
     </def-cat>
+    <def-cat n="n_cnjcoo_det_adj_n">
+      <cat-item name="n_cnjcoo_det_adj_n"/>
+    </def-cat>
     <!-- ADJ N+ -->
     <def-cat n="adj_n">
       <cat-item name="adj_n"/>
@@ -277,6 +280,19 @@
         </choose>
       </when></choose>
     </def-macro>
+
+    <def-macro n="clean_det" npar="2"
+               c="arg.1: determiner, arg.2: chunk">
+      <let><clip pos="1" part="nbr"/><clip pos="2" part="nbr"/></let>
+      <let><clip pos="1" part="gen"/><clip pos="2" part="gen"/></let>
+      <choose><when>
+        <test><or>
+          <equal><clip pos="1" part="gen"/><lit-tag v="GD"/></equal>
+          <equal><clip pos="1" part="gen"/><lit-tag v="mf"/></equal>
+        </or></test>
+        <let><clip pos="1" part="gen"/><lit-tag v="m"/></let>
+      </when></choose>
+    </def-macro>
   </section-def-macros>
 
 
@@ -335,16 +351,7 @@
         <pattern-item n="det"/>
       </pattern>
       <action>
-        <let><clip pos="1" part="nbr"/><clip pos="0" part="nbr"/></let>
-        <let><clip pos="1" part="gen"/><clip pos="0" part="gen"/></let>
-        <choose><when>
-          <test><or>
-            <equal><clip pos="1" part="gen"/><lit-tag v="GD"/></equal>
-            <equal><clip pos="1" part="gen"/><lit-tag v="mf"/></equal>
-          </or></test>
-          <let><clip pos="1" part="gen"/><lit-tag v="m"/></let>
-        </when></choose>
-
+        <call-macro n="clean_det"><with-param pos="1"/><with-param pos="0"/></call-macro>
         <out>
           <lu><clip pos="1" part="whole"/></lu>
         </out>
@@ -440,6 +447,27 @@
           <lu><clip pos="3" part="whole"/></lu>
           <b pos="3"/>
           <lu><clip pos="4" part="whole"/></lu>
+        </out>
+      </action>
+    </rule>
+    <rule comment="CHUNK: n_cnjcoo_det_adj_n">
+      <pattern>
+        <pattern-item n="n_cnjcoo_det_adj_n"/>
+      </pattern>
+      <action>
+        <call-macro n="clean_n.adj"><with-param pos="5"/><with-param pos="4"/><with-param pos="0"/></call-macro>
+        <call-macro n="clean_n"><with-param pos="1"/><with-param pos="0"/></call-macro>
+        <call-macro n="clean_det"><with-param pos="3"/><with-param pos="0"/></call-macro>
+        <out>
+          <lu><clip pos="1" part="whole"/></lu>
+          <b pos="1"/>
+          <lu><clip pos="2" part="whole"/></lu>
+          <b pos="2"/>
+          <lu><clip pos="3" part="whole"/></lu>
+          <b pos="3"/>
+          <lu><clip pos="4" part="whole"/></lu>
+          <b pos="4"/>
+          <lu><clip pos="5" part="whole"/></lu>
         </out>
       </action>
     </rule>
