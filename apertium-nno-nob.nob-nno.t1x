@@ -23,6 +23,7 @@
       <cat-item tags="n.*.*.ind"/>
       <cat-item tags="n.*.*.ind.gen"/>
     </def-cat>
+    <!-- TODO: kan we put keepgenx into nind_keep_gen_s? -->
     <def-cat n="nind_keep_gen_s"
              c="Owned nouns where we want the owner ngen to keep the genitive-s">
       <cat-item tags="n.*.*.ind" lemma="beste"/>
@@ -36,9 +37,17 @@
       <cat-item tags="n.*.sg.ind" lemma="virksomhet"/>
       <cat-item tags="n.*.sg.ind" lemma="administrasjon"/>
     </def-cat>
-    <def-cat n="nind_indsplit">
+    <def-cat n="n_split">
       <cat-item tags="n.*.*.ind"/>
+      <cat-item tags="n.*.*.def"/>
       <cat-item tags="n.*.*.ind.cmp-split"/>
+      <cat-item tags="n.*.*.def.cmp-split"/>
+    </def-cat>
+    <def-cat n="n_ngen_split">
+      <cat-item tags="n.*.*.ind"/>
+      <cat-item tags="n.*.*.def"/>
+      <cat-item tags="n.*.*.*.cmp-split"/>
+      <cat-item tags="n.*.*.*.gen"/>
     </def-cat>
 
     <!--
@@ -2189,20 +2198,20 @@ no lemq-moving">
                    Chunk the coordination for genitive-movement in t2x">
       <!-- TODO: avoid «landets ambassader og konsulater i utlandet» -->
       <pattern>
-        <pattern-item n="nind_indsplit"/>
+        <pattern-item n="n_split"/>
         <pattern-item n="cnjcoo_nkon"/>
-        <pattern-item n="nind_indsplit"/>
+        <pattern-item n="n_np"/>
       </pattern>
       <action>
         <call-macro n="set_caseFirstWord2">
           <with-param pos="1"/>
           <with-param pos="2"/>
         </call-macro>
+        <call-macro n="out_gen-prep"><with-param pos="3"/></call-macro>
+        <call-macro n="stash_case_in_ntags"><with-param pos="3"/></call-macro>
         <out>
           <chunk name="n_cnjcoo_n" case="caseFirstWord">
-            <tags>
-              <tag><clip pos="3" side="tl" part="tags"/></tag>
-            </tags>
+            <tags><tag><var n="ntags"/></tag></tags>
             <lu><clip pos="1" side="tl" part="whole"/></lu>
             <b pos="1"/>
             <lu><clip pos="2" side="tl" part="lemh"/><lit-tag v="cnjcoo"/></lu>
@@ -2215,7 +2224,7 @@ no lemq-moving">
     <rule comment="NIND CNJCOO NCMP N: (kvinners) kontroll- og konstitusjonskomité → kontroll- og konstitusjonskomitéen til kvinner
                    Chunk the coordination for genitive-movement in t2x">
       <pattern>
-        <pattern-item n="nind_indsplit"/>
+        <pattern-item n="n_split"/>
         <pattern-item n="cnjcoo_nkon"/>
         <pattern-item n="ncmp"/>
         <pattern-item n="n_np"/>
@@ -2225,11 +2234,11 @@ no lemq-moving">
           <with-param pos="1"/>
           <with-param pos="2"/>
         </call-macro>
+        <call-macro n="out_gen-prep"><with-param pos="4"/></call-macro>
+        <call-macro n="stash_case_in_ntags"><with-param pos="4"/></call-macro>
         <out>
           <chunk name="n_cnjcoo_n_n" case="caseFirstWord">
-            <tags>
-              <tag><clip pos="4" side="tl" part="tags"/></tag>
-            </tags>
+            <tags><tag><var n="ntags"/></tag></tags>
             <lu><clip pos="1" side="tl" part="whole"/></lu>
             <b pos="1"/>
             <lu><clip pos="2" side="tl" part="lemh"/><lit-tag v="cnjcoo"/></lu>
