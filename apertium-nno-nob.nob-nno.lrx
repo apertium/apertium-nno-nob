@@ -752,6 +752,7 @@
       <match lemma="avstemning"/>
     </or>
   </rule>
+
   <rule><match lemma="forbigå" tags="adj.*"><select lemma="forbigå"/></match></rule>
   <rule weight="2.0"><match lemma="forbigå" tags="vblex.pp"><select lemma="forbigå"/></match></rule>
   <rule weight="3.0">
@@ -761,17 +762,21 @@
       <select lemma="gløyme"/>
     </match>
   </rule>
-  <rule><match lemma="forbigå" tags="vblex.*"><select lemma="gå forbi"/></match></rule>
+  <rule><match lemma="forbigå" tags="vblex.*"><select lemma="gå# forbi"/></match></rule>
+
   <rule><match lemma="bekrefte" tags="vblex.*"><select lemma="stadfeste"/></match></rule>
+  <rule><match lemma="bekrefte" tags="adj.*"><select lemma="stadfeste"/></match></rule>
   <rule><match lemma="overveiende" tags="adv"><select lemma="hovudsakleg"/></match></rule>
   <rule><match lemma="århundre" tags="n.*"><select lemma="hundreår"/></match></rule>
   <rule><match lemma="utallig" tags="adj.*"><select lemma="tallaus"/></match></rule>
   <rule><match lemma="angriper" tags="n.*"><select lemma="angripar"/></match></rule>
   <rule><match lemma="betro" tags="vblex.*"><select lemma="fortru"/></match></rule>
+  <rule><match lemma="betro" tags="adj.*"><select lemma="fortru"/></match></rule>
   <rule><match lemma="før eller siden" tags="adv"><select lemma="før eller sidan"/></match></rule>
   <rule><match lemma="beskjed" tags="n.*"><select lemma="beskjed"/></match></rule>
   <rule><match lemma="voldgift" tags="n.*"><select lemma="valdgift"/></match></rule>
   <rule><match lemma="innta" tags="vblex.*"><select lemma="innta"/></match></rule>
+  <rule><match lemma="innta" tags="adj.*"><select lemma="innta"/></match></rule>
 
   <rule><match lemma="påfølgende" tags="adj.*"><select lemma="følgjande"/></match></rule>
   <rule weight="2.0">
@@ -942,12 +947,12 @@
 
   <rule><match lemma="myndighet" tags="n.*"><select lemma="styresmakt"/></match></rule>
   <rule weight="2.0">
-    <match lemma="myndighet" tags="n.*"><select lemma="autoritet"/></match>
+    <match lemma="myndighet" tags="n.*.sg.ind"><select lemma="autoritet"/></match>
     <match lemma="til" tags="pr"/>
   </rule>
   <rule weight="2.0" c="opptre med myndighet">
     <match lemma="med" tags="pr"/>
-    <match lemma="myndighet" tags="n.*"><select lemma="autoritet"/></match>
+    <match lemma="myndighet" tags="n.*.sg.ind"><select lemma="autoritet"/></match>
   </rule>
   <rule weight="2.0">
     <or>
@@ -1166,4 +1171,6 @@
     <match tags="n.*.*.*.cmp"/>
     <match lemma="dødelighet" tags="n.*"><select lemma="døying"/></match>
   </rule>
+  <rule><match lemma="bestemme" tags="vblex.*"><select lemma="bestemme"/></match></rule>
+  <rule><match lemma="bestemme" tags="adj.*"><select lemma="bestemme"/></match></rule>
 </rules>
