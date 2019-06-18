@@ -149,6 +149,14 @@
     <def-list n="gradsadv">
       <list-item v="mykje"/>
     </def-list>
+    <def-list n="dem_sg_genders">
+      <list-item v="m"/>
+      <list-item v="f"/>
+      <list-item v="nt"/>
+    </def-list>
+    <def-list n="n_needs_det">
+      <list-item v="tilsett"/>
+    </def-list>
     <def-list n="months">
       <list-item v="januar"/>
       <list-item v="februar"/>
@@ -215,13 +223,36 @@
         <let><clip pos="1" part="art"/><clip pos="2" part="art"/></let>
       </when></choose>
       <call-macro n="apply_casedrop_defdrop"><with-param pos="1"/><with-param pos="2"/></call-macro>
+    </def-macro>
+
+    <def-macro n="maybe_out_ndem" npar="2"
+               c="arg.1: noun, arg.2: chunk.
+                  Use *before* clean_n">
       <choose><when>
-        <test><equal><clip pos="2" part="a_casedrop"/><lit-tag v="casedrop"/></equal></test>
-        <let><clip pos="1" part="cas"/><lit v=""/></let>
-      </when></choose>
-      <choose><when>
-        <test><equal><clip pos="2" part="a_defdrop"/><lit-tag v="defdrop"/></equal></test>
-        <let><clip pos="1" part="art"/><lit-tag v="ind"/></let>
+        <test><and>
+          <equal><clip pos="1" part="art"/><lit-tag v="ind"/></equal>
+          <equal><clip pos="2" part="art"/><lit-tag v="def"/></equal>
+          <equal><clip pos="2" part="a_defdrop"/><lit v=""/></equal>
+          <equal><clip pos="2" part="a_casedrop"/><lit v=""/></equal>
+          <in><clip pos="1" part="lem"/><list n="n_needs_det"/></in>
+        </and></test>
+        <choose>
+          <when>
+            <test><in><clip pos="1" part="gen"/><list n="dem_sg_genders"/></in></test>
+            <out>
+              <lu>
+                <lit v="den"/>
+                <lit-tag v="det.dem"/>
+                <clip pos="1" part="gen"/>
+                <lit-tag v="sg"/>
+              </lu>
+              <b/>
+            </out>
+          </when>
+          <otherwise>
+            <out><lu><lit v="den"/><lit-tag v="det.dem.un.pl"/></lu><b/></out>
+          </otherwise>
+        </choose>
       </when></choose>
     </def-macro>
 
@@ -364,6 +395,7 @@
         <pattern-item n="n"/>
       </pattern>
       <action>
+        <call-macro n="maybe_out_ndem"><with-param pos="1"/><with-param pos="0"/></call-macro>
         <call-macro n="clean_n"><with-param pos="1"/><with-param pos="0"/></call-macro>
         <out>
           <lu><clip pos="1" part="whole"/></lu>
@@ -375,6 +407,7 @@
         <pattern-item n="n_n"/>
       </pattern>
       <action>
+        <call-macro n="maybe_out_ndem"><with-param pos="2"/><with-param pos="0"/></call-macro>
         <call-macro n="clean_n"><with-param pos="2"/><with-param pos="0"/></call-macro>
         <out>
           <lu><clip pos="1" part="whole"/></lu>
@@ -388,6 +421,7 @@
         <pattern-item n="n_n_n"/>
       </pattern>
       <action>
+        <call-macro n="maybe_out_ndem"><with-param pos="3"/><with-param pos="0"/></call-macro>
         <call-macro n="clean_n"><with-param pos="3"/><with-param pos="0"/></call-macro>
         <out>
           <lu><clip pos="1" part="whole"/></lu>
@@ -403,6 +437,7 @@
         <pattern-item n="n_n_n_n"/>
       </pattern>
       <action>
+        <call-macro n="maybe_out_ndem"><with-param pos="4"/><with-param pos="0"/></call-macro>
         <call-macro n="clean_n"><with-param pos="4"/><with-param pos="0"/></call-macro>
         <out>
           <lu><clip pos="1" part="whole"/></lu>
@@ -421,13 +456,17 @@
         <pattern-item n="n_cnjcoo_n"/>
       </pattern>
       <action>
-        <call-macro n="clean_n"><with-param pos="3"/><with-param pos="0"/></call-macro>
+        <call-macro n="maybe_out_ndem"><with-param pos="1"/><with-param pos="0"/></call-macro>
         <call-macro n="clean_n"><with-param pos="1"/><with-param pos="0"/></call-macro>
         <out>
           <lu><clip pos="1" part="whole"/></lu>
           <b pos="1"/>
           <lu><clip pos="2" part="whole"/></lu>
           <b pos="2"/>
+        </out>
+        <call-macro n="maybe_out_ndem"><with-param pos="3"/><with-param pos="0"/></call-macro>
+        <call-macro n="clean_n"><with-param pos="3"/><with-param pos="0"/></call-macro>
+        <out>
           <lu><clip pos="3" part="whole"/></lu>
         </out>
       </action>
@@ -437,13 +476,17 @@
         <pattern-item n="n_cnjcoo_n_n"/>
       </pattern>
       <action>
-        <call-macro n="clean_n"><with-param pos="4"/><with-param pos="0"/></call-macro>
+        <call-macro n="maybe_out_ndem"><with-param pos="1"/><with-param pos="0"/></call-macro>
         <call-macro n="clean_n"><with-param pos="1"/><with-param pos="0"/></call-macro>
         <out>
           <lu><clip pos="1" part="whole"/></lu>
           <b pos="1"/>
           <lu><clip pos="2" part="whole"/></lu>
           <b pos="2"/>
+        </out>
+        <call-macro n="maybe_out_ndem"><with-param pos="4"/><with-param pos="0"/></call-macro>
+        <call-macro n="clean_n"><with-param pos="4"/><with-param pos="0"/></call-macro>
+        <out>
           <lu><clip pos="3" part="whole"/></lu>
           <b pos="3"/>
           <lu><clip pos="4" part="whole"/></lu>
@@ -455,8 +498,9 @@
         <pattern-item n="n_cnjcoo_det_adj_n"/>
       </pattern>
       <action>
-        <call-macro n="clean_n.adj"><with-param pos="5"/><with-param pos="4"/><with-param pos="0"/></call-macro>
+        <call-macro n="maybe_out_ndem"><with-param pos="1"/><with-param pos="0"/></call-macro>
         <call-macro n="clean_n"><with-param pos="1"/><with-param pos="0"/></call-macro>
+        <call-macro n="clean_n.adj"><with-param pos="5"/><with-param pos="4"/><with-param pos="0"/></call-macro>
         <call-macro n="clean_det"><with-param pos="3"/><with-param pos="0"/></call-macro>
         <out>
           <lu><clip pos="1" part="whole"/></lu>
