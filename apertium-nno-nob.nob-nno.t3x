@@ -146,8 +146,9 @@
   </section-def-vars>
 
   <section-def-lists>
-    <def-list n="gradsadv">
+    <def-list n="adj-ind-def" c="Allow ind adj followed by def noun for these adv-like adjectives (tl/nno)">
       <list-item v="mykje"/>
+      <list-item v="mellombels"/>
     </def-list>
     <def-list n="dem_sg_genders">
       <list-item v="m"/>
@@ -280,10 +281,8 @@
         <test><and>
           <equal><clip pos="2" part="art"/><lit-tag v="ind"/></equal>
           <equal><clip pos="3" part="art"/><lit-tag v="def"/></equal>
-          <not><and>         <!-- avoid 'den meste viktige tingen' -->
-            <in><clip pos="2" part="lemh"/><list n="gradsadv"/></in>
-            <equal><clip pos="2" part="grau"/><lit-tag v="sup"/></equal>
-          </and></not>
+          <!-- avoid 'den meste viktige tingen' / 'dei mellombelse tilsette': -->
+          <not><in><clip pos="2" part="lemh"/><list n="adj-ind-def"/></in></not>
         </and></test>
         <let><clip pos="2" part="art"/><clip pos="3" part="art"/></let>
       </when></choose>
