@@ -841,7 +841,10 @@
     <match lemma="bringe" tags="vblex.*"><select lemma="frakte"/></match>
     <match lemma="i" tags="pr"/>
   </rule>
+
+  <!-- unngå «pågripe», som Språkrådet reknar som utanfor allmennspråket: -->
   <rule><match lemma="pågripe" tags="vblex.*"><select lemma="arrestere"/></match></rule>
+  <rule><match lemma="pågripe" tags="adj.*"><select lemma="arrestere"/></match></rule>
 
   <rule><match lemma="nok" tags="adv"><select lemma="nok"/></match></rule>
   <rule weight="2.0">
