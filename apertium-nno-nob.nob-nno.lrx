@@ -1174,6 +1174,44 @@
     <match tags="n.*.*.*.cmp"/>
     <match lemma="dødelighet" tags="n.*"><select lemma="døying"/></match>
   </rule>
+
   <rule><match lemma="bestemme" tags="vblex.*"><select lemma="bestemme"/></match></rule>
   <rule><match lemma="bestemme" tags="adj.*"><select lemma="bestemme"/></match></rule>
+
+  <rule><match lemma="unndra" tags="vblex.*"><select lemma="unndra"/></match></rule>
+  <rule><match lemma="unndra" tags="adj.*"><select lemma="unndra"/></match></rule>
+
+  <rule><match lemma="oppsette" tags="vblex.*"><select lemma="oppsetje"/></match></rule>
+  <rule><match lemma="oppsette" tags="adj.*"><select lemma="oppsetje"/></match></rule>
+
+  <rule weight="2.0">
+    <match lemma="oppsette" tags="adj.*">
+      <select lemma="utsetje"/>
+    </match>
+    <match lemma="virkning" tags="n.*"/>
+  </rule>
+
+  <rule weight="2.0">
+    <match lemma="oppsette" tags="vblex.*">
+      <select lemma="setje# opp"/>
+    </match>
+    <or>
+      <match lemma="på" tags="pr"/>
+      <match lemma="med" tags="pr"/>
+      <match lemma="en" tags="det.*"/>
+    </or>
+  </rule>
+
+  <rule weight="3.0">
+    <match lemma="oppsette" tags="vblex.*">
+      <select lemma="oppsetje"/>
+    </match>
+    <match lemma="på" tags="pr"/>
+    <match lemma="å" tags="part"/>
+  </rule>
+
+  <rule><match lemma="senest" tags="adv"><select lemma="seinast"/></match></rule>
+
+  <rule><match lemma="tilspisse" tags="vblex.*"><select lemma="tilspisse"/></match></rule>
+  <rule><match lemma="tilspisse" tags="adj.*"><select lemma="tilspisse"/></match></rule>
 </rules>
