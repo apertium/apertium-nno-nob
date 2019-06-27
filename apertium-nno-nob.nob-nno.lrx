@@ -1214,4 +1214,16 @@
 
   <rule><match lemma="tilspisse" tags="vblex.*"><select lemma="tilspisse"/></match></rule>
   <rule><match lemma="tilspisse" tags="adj.*"><select lemma="tilspisse"/></match></rule>
+
+  <rule><match lemma="sulte" tags="vblex.*"><select lemma="svelte¹"/></match></rule>
+  <rule><match lemma="adj" tags="vblex.*"><select lemma="svelte"/></match></rule>
+  <rule weight="2.0" c="de sulter dem ut, han sulter seg, oppdretteren sulter fisken">
+    <match lemma="sulte" tags="vblex.*"><select lemma="svelte"/></match>
+    <or>
+      <match lemma="fisk" tags="n.*"/>
+      <match lemma="laks" tags="n.*"/>
+      <match tags="prn.*.acc"/>
+      <match tags="prn.*.acc.*"/>
+    </or>
+  </rule>
 </rules>
