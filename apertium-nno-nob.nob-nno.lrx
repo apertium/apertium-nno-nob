@@ -261,10 +261,20 @@
     </match>
     <or>
       <match tags="adj.pp.*"/>
+      <match tags="adj.*.comp.*"/>
       <match tags="vblex.pp"/>
       <match tags="vblex.pret"/>
     </or>
     <match tags="n.*"/>
+  </rule>
+  <rule weight="4.0" c="Antallet eldre → Talet på eldre (first in sentence)">
+    <match lemma="antall">
+      <select lemma="talet på"/>
+    </match>
+    <or>
+      <match tags="adj.*.comp.*"/>
+      <match tags="n.*"/>
+    </or>
   </rule>
   <rule weight="1.0" c="… antall (not first in sentence) → tal">
     <match tags="*"/>
@@ -340,6 +350,36 @@
     </match>
   </rule>
   <!-- /antall -->
+
+  <!-- andel -->
+  <rule weight="1.0" c="default del">
+    <match lemma="andel" tags="n.*"> <select lemma="del"/> </match>
+  </rule>
+  <rule weight="4.0" c="Andelen felte elg → Talet på felte elg (first in sentence)">
+    <match lemma="andel">
+      <select lemma="talet på"/>
+    </match>
+    <or>
+      <match tags="adj.pp.*"/>
+      <match tags="vblex.pp"/>
+      <match tags="vblex.pret"/>
+    </or>
+    <match tags="n.*"/>
+  </rule>
+  <rule weight="4.0" c="Andelen eldre → Talet på eldre (first in sentence)">
+    <match lemma="andel">
+      <select lemma="talet på"/>
+    </match>
+    <or>
+      <match tags="adj.*.comp.*"/>
+      <match tags="n.*"/>
+    </or>
+  </rule>
+  <rule weight="1.0" c="… andel (not first in sentence) → del">
+    <match tags="*"/>
+    <match lemma="andel"><select lemma="del"/></match>
+  </rule>
+  <!-- /andel -->
 
   <rule> <match lemma="brenne" tags="adj.*"> <select lemma="brenne"/> </match> </rule>
   <rule> <match lemma="brenne" tags="vblex.*"> <select lemma="brenne"/> </match> </rule>
