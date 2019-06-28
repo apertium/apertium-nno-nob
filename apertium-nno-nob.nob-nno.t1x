@@ -191,7 +191,7 @@
       <cat-item tags="n.*.def"/>
       <cat-item tags="n.*.def.gen"/>
     </def-cat>
-    <def-cat n="ngen_time_meas">
+    <def-cat n="ngen_keep_gen_s">
       <cat-item tags="n.m.sg.*.gen"   lemma="liter"/>
       <cat-item tags="n.m.pl.ind.gen" lemma="liter"/>
       <cat-item tags="n.m.sg.*.gen"   lemma="centimeter"/>
@@ -371,6 +371,8 @@
 
       <cat-item tags="n.m.*.gen"       lemma="prosent"/>
       <cat-item tags="n.*.sg.def.gen"  lemma="jord"/>
+      <cat-item tags="n.*.sg.*.gen"    lemma="folk"/>
+      <cat-item tags="n.*.pl.ind.gen"  lemma="folk"/>
     </def-cat>
     <def-cat n="n_time">
       <cat-item tags="n.*" lemma="fjorår"/>
@@ -1971,7 +1973,7 @@ no lemq-moving">
     <!-- Nouns -->
     <rule comment="NGEN_TIME_MEAS: dagens => dagens">
       <pattern>
-        <pattern-item n="ngen_time_meas"/>
+        <pattern-item n="ngen_keep_gen_s"/>
       </pattern>
       <action>
         <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
@@ -1989,7 +1991,7 @@ no lemq-moving">
     <rule comment="ADJ NGEN_TIME_MEAS: flere års => fleire års">
       <pattern>
         <pattern-item n="adj"/>
-        <pattern-item n="ngen_time_meas"/>
+        <pattern-item n="ngen_keep_gen_s"/>
       </pattern>
       <action>
         <let><var n="c_name"/><lit v="adj_n"/></let>
@@ -2042,7 +2044,7 @@ no lemq-moving">
     </rule>
     <rule comment="NGEN_TIME_MEAS NIND: dagens vedtak => dagens vedtak">
       <pattern>
-        <pattern-item n="ngen_time_meas"/>
+        <pattern-item n="ngen_keep_gen_s"/>
         <pattern-item n="nind_indgen"/>
       </pattern>
       <action>
