@@ -1545,6 +1545,25 @@
       </action>
     </rule>
 
+    <rule comment="NOM: synspunkt
+                   Just set_ana">
+      <pattern>
+        <pattern-item n="nom"/>
+      </pattern>
+      <action>
+        <choose><when c="only set ana based on det if no ana, or if n is def">
+          <test><or>
+            <equal><var n="ana_nbr"/><lit v=""/></equal>
+            <equal><clip pos="1" part="art"/><lit-tag v="def"/></equal>
+          </or></test>
+          <call-macro n="set_ana"><with-param pos="1"/></call-macro>
+        </when></choose>
+        <out>
+          <chunk><clip pos="1" part="whole"/></chunk>
+        </out>
+      </action>
+    </rule>
+
     <rule comment="DET ADV NOM: et meget stort antall => ei særs stor mengd">
       <pattern>
         <pattern-item n="det"/>
