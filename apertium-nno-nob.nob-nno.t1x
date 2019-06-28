@@ -374,6 +374,16 @@
       <cat-item tags="n.*.sg.*.gen"    lemma="folk"/>
       <cat-item tags="n.*.pl.ind.gen"  lemma="folk"/>
     </def-cat>
+    <def-cat n="ngen_keep_gen_s_kvinners_rettar"
+             c="Owner nouns where we want to keep the genitive-s if followed by nind_keep_gen_s_kvinners_rettar">
+      <cat-item tags="n.*.sg.*.gen"    lemma="kvinne"/>
+      <cat-item tags="n.*.pl.ind.gen"  lemma="kvinne"/>
+    </def-cat>
+    <def-cat n="nind_keep_gen_s_kvinners_retter"
+             c="Owned nouns where we want the owner ngen to keep the genitive-s if preceded by ngen_keep_gen_s_kvinners_rettar">
+      <cat-item tags="n.*.*.ind" lemma="rettighet"/>
+      <cat-item tags="n.*.*.ind" lemma="rett"/>
+    </def-cat>
     <def-cat n="n_time">
       <cat-item tags="n.*" lemma="fjorår"/>
       <cat-item tags="n.*" lemma="år"/>
@@ -1971,7 +1981,7 @@ no lemq-moving">
     </rule>
 
     <!-- Nouns -->
-    <rule comment="NGEN_TIME_MEAS: dagens => dagens">
+    <rule comment="NGEN_KEEP_GEN_S: dagens => dagens">
       <pattern>
         <pattern-item n="ngen_keep_gen_s"/>
       </pattern>
@@ -1988,7 +1998,7 @@ no lemq-moving">
         </out>
       </action>
     </rule>
-    <rule comment="ADJ NGEN_TIME_MEAS: flere års => fleire års">
+    <rule comment="ADJ NGEN_KEEP_GEN_S: flere års => fleire års">
       <pattern>
         <pattern-item n="adj"/>
         <pattern-item n="ngen_keep_gen_s"/>
@@ -2042,10 +2052,33 @@ no lemq-moving">
         </out>
       </action>
     </rule>
-    <rule comment="NGEN_TIME_MEAS NIND: dagens vedtak => dagens vedtak">
+    <rule comment="NGEN_KEEP_GEN_S NIND: dagens vedtak => dagens vedtak">
       <pattern>
         <pattern-item n="ngen_keep_gen_s"/>
         <pattern-item n="nind_indgen"/>
+      </pattern>
+      <action>
+        <let><var n="c_name"/><lit v="n_n"/></let>
+        <call-macro n="set_caseFirstWord2">
+          <with-param pos="1"/>
+          <with-param pos="2"/>
+        </call-macro>
+        <out>
+          <chunk namefrom="c_name" case="caseFirstWord">
+            <tags>
+              <tag><clip pos="2" side="tl" part="tags"/></tag>
+            </tags>
+            <lu><clip pos="1" side="tl" part="whole"/></lu>
+            <b pos="1"/>
+            <lu><clip pos="2" side="tl" part="whole"/></lu>
+          </chunk>
+        </out>
+      </action>
+    </rule>
+    <rule comment="NGEN_KEEP_GEN_S_KVINNERS_RETTAR NIND_KEEP_GEN_S_KVINNERS_RETTER">
+      <pattern>
+        <pattern-item n="ngen_keep_gen_s_kvinners_rettar"/>
+        <pattern-item n="nind_keep_gen_s_kvinners_retter"/>
       </pattern>
       <action>
         <let><var n="c_name"/><lit v="n_n"/></let>
