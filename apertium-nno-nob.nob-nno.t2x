@@ -1670,7 +1670,10 @@
         <pattern-item n="det"/>
       </pattern>
       <action>
-        <call-macro n="set_ana"><with-param pos="1"/></call-macro>
+        <choose><when c="only set ana based on det if no ana">
+          <test><equal><var n="ana_nbr"/><lit v=""/></equal></test>
+          <call-macro n="set_ana"><with-param pos="1"/></call-macro>
+        </when></choose>
         <out>
           <chunk><clip pos="1" part="whole"/></chunk>
         </out>
