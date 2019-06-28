@@ -267,15 +267,6 @@
     </or>
     <match tags="n.*"/>
   </rule>
-  <rule weight="4.0" c="Antallet eldre → Talet på eldre (first in sentence)">
-    <match lemma="antall">
-      <select lemma="talet på"/>
-    </match>
-    <or>
-      <match tags="adj.*.comp.*"/>
-      <match tags="n.*"/>
-    </or>
-  </rule>
   <rule weight="1.0" c="… antall (not first in sentence) → tal">
     <match tags="*"/>
     <match lemma="antall" tags="n.*.sg.def"><select lemma="tal"/></match>
@@ -371,7 +362,7 @@
       <select lemma="talet på"/>
     </match>
     <or>
-      <match tags="adj.*.comp.*"/>
+      <match tags="adj.*"/>
       <match tags="n.*"/>
     </or>
   </rule>
