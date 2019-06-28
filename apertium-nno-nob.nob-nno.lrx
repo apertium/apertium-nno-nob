@@ -346,7 +346,7 @@
   <rule weight="1.0" c="default del">
     <match lemma="andel" tags="n.*"> <select lemma="del"/> </match>
   </rule>
-  <rule weight="4.0" c="Andelen felte elg → Talet på felte elg (first in sentence)">
+  <rule weight="2.0" c="Andelen felte elg → Talet på felte elg (first in sentence)">
     <match lemma="andel">
       <select lemma="talet på"/>
     </match>
@@ -357,7 +357,7 @@
     </or>
     <match tags="n.*"/>
   </rule>
-  <rule weight="4.0" c="Andelen eldre → Talet på eldre (first in sentence)">
+  <rule weight="2.0" c="Andelen eldre → Talet på eldre (first in sentence)">
     <match lemma="andel">
       <select lemma="talet på"/>
     </match>
@@ -366,7 +366,7 @@
       <match tags="n.*"/>
     </or>
   </rule>
-  <rule weight="1.0" c="… andel (not first in sentence) → del">
+  <rule weight="2.0" c="… andel (not first in sentence) → del">
     <match tags="*"/>
     <match lemma="andel"><select lemma="del"/></match>
   </rule>
