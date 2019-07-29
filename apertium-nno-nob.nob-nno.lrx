@@ -1257,4 +1257,25 @@
       <match tags="prn.*.acc.*"/>
     </or>
   </rule>
+  <rule><match lemma="avspise" tags="vblex.*"><select lemma="avfeie"/></match></rule>
+  <rule><match lemma="avspise" tags="adj.*"><select lemma="avfeie"/></match></rule>
+
+  <rule><match lemma="begå" tags="vblex.*"><select lemma="begå"/></match></rule>
+  <rule><match lemma="begå" tags="adj.*"><select lemma="begå"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="begå" tags="vblex.*"><select lemma="gjere"/></match>
+    <or>
+      <match lemma="selvmord" tags="n.*"/>
+      <match lemma="mord" tags="n.*"/>
+    </or>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="begå" tags="vblex.*"><select lemma="gjere"/></match>
+    <match tags="adv"/>
+    <or>
+      <match lemma="selvmord" tags="n.*"/>
+      <match lemma="mord" tags="n.*"/>
+    </or>
+  </rule>
+  <rule><match lemma="sporenstreks" tags="adv"><select lemma="sporenstreks"/></match></rule>
 </rules>
