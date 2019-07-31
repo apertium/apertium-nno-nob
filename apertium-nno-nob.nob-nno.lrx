@@ -1065,8 +1065,6 @@
   <rule><match lemma="avgi" tags="adj.*"><select lemma="avgi"/></match></rule>
   <rule><match lemma="betinge" tags="vblex.*"><select lemma="krevje"/></match></rule>
   <rule><match lemma="betinge" tags="adj.*"><select lemma="betinge"/></match></rule>
-  <rule><match lemma="bistå" tags="vblex.*"><select lemma="hjelpe"/></match></rule>
-  <rule><match lemma="bistå" tags="adj.*"><select lemma="hjelpe"/></match></rule>
   <rule><match lemma="fremkomme" tags="vblex.*"><select lemma="komme# fram"/></match></rule>
   <rule><match lemma="fremkomme" tags="adj.*"><select lemma="komme# fram"/></match></rule>
   <rule><match lemma="framkomme" tags="vblex.*"><select lemma="komme# fram"/></match></rule>
@@ -1279,4 +1277,25 @@
   </rule>
   <rule><match lemma="sporenstreks" tags="adv"><select lemma="sporenstreks"/></match></rule>
   <rule><match lemma="gnist" tags="n.*"><select lemma="gneiste"/></match></rule>
+
+  <rule><match lemma="bistå" tags="vblex.*"><select lemma="hjelpe"/></match></rule>
+  <rule><match lemma="bistå" tags="adj.*"><select lemma="hjelpe"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="bistå" tags="vblex.*"><select lemma="hjelpe# til"/></match>
+    <or>
+      <match lemma="med" tags="pr"/>
+      <match lemma="med" tags="adv"/>
+      <match lemma="i" tags="pr"/>
+      <match lemma="i" tags="ialphabet"/>
+    </or>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="bistå" tags="adj.*"><select lemma="hjelpe# til"/></match>
+    <or>
+      <match lemma="med" tags="pr"/>
+      <match lemma="med" tags="adv"/>
+      <match lemma="i" tags="pr"/>
+      <match lemma="i" tags="ialphabet"/>
+    </or>
+  </rule>
 </rules>
