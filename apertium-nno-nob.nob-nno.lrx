@@ -372,6 +372,7 @@
   </rule>
   <!-- /andel -->
 
+  <!-- brenne¹ is transitive: -->
   <rule> <match lemma="brenne" tags="adj.*"> <select lemma="brenne"/> </match> </rule>
   <rule> <match lemma="brenne" tags="vblex.*"> <select lemma="brenne"/> </match> </rule>
   <rule weight="2.0">
@@ -1090,6 +1091,7 @@
   <rule><match lemma="tilrettelegge" tags="vblex.*"><select lemma="legge# til rette"/></match></rule>
   <rule><match lemma="uaktsom" tags="adj.*"><select lemma="aktlaus"/></match></rule>
 
+  <!-- merke¹ is transitive: -->
   <rule><match lemma="merke" tags="vblex.*"><select lemma="merke"/></match></rule>
   <rule><match lemma="merke" tags="adj.*"><select lemma="merke"/></match></rule>
   <rule weight="2.0">
@@ -1244,10 +1246,10 @@
   <rule><match lemma="tilspisse" tags="vblex.*"><select lemma="tilspisse"/></match></rule>
   <rule><match lemma="tilspisse" tags="adj.*"><select lemma="tilspisse"/></match></rule>
 
-  <rule><match lemma="sulte" tags="vblex.*"><select lemma="svelte¹"/></match></rule>
-  <rule><match lemma="adj" tags="vblex.*"><select lemma="svelte"/></match></rule>
+  <rule><match lemma="sulte" tags="vblex.*"><select lemma="svelte"/></match></rule>
+  <rule><match lemma="adj" tags="vblex.*"><select lemma="svelte¹"/></match></rule>
   <rule weight="2.0" c="de sulter dem ut, han sulter seg, oppdretteren sulter fisken">
-    <match lemma="sulte" tags="vblex.*"><select lemma="svelte"/></match>
+    <match lemma="sulte" tags="vblex.*"><select lemma="svelte¹"/></match>
     <or>
       <match lemma="fisk" tags="n.*"/>
       <match lemma="laks" tags="n.*"/>
@@ -1255,6 +1257,7 @@
       <match tags="prn.*.acc.*"/>
     </or>
   </rule>
+
   <rule><match lemma="avspise" tags="vblex.*"><select lemma="avfeie"/></match></rule>
   <rule><match lemma="avspise" tags="adj.*"><select lemma="avfeie"/></match></rule>
 
@@ -1297,5 +1300,22 @@
       <match lemma="i" tags="pr"/>
       <match lemma="i" tags="ialphabet"/>
     </or>
+  </rule>
+
+  <!-- sleppe¹ is transitive: -->
+  <rule><match lemma="slippe" tags="vblex.*"><select lemma="sleppe¹"/></match></rule>
+  <rule><match lemma="slippe" tags="adj.*"><select lemma="sleppe¹"/></match></rule>
+  <rule weight="2.0"><match lemma="slippe" tags="vblex.*.pasv"><select lemma="sleppe¹"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="slippe" tags="vblex.*"><select lemma="sleppe"/></match>
+    <match lemma="å" tags="part"/>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="slippe" tags="vblex.*"><select lemma="sleppe"/></match>
+    <or>
+      <match tags="adv"/>
+      <match tags="prn.*"/>
+    </or>
+    <match lemma="å" tags="part"/>
   </rule>
 </rules>
