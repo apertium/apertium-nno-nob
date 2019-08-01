@@ -136,8 +136,13 @@
       <cat-item tags="pr"/>
       <cat-item tags="pr.*"/>
     </def-cat>
-    <def-cat n="det_OR_nom">
+    <def-cat n="prenom_OR_nom">
+      <cat-item tags="adv"/>
+      <cat-item tags="adv.*"/>
+      <cat-item tags="adj.*"/>
       <cat-item tags="det.*"/>
+      <cat-item tags="pr"/>
+      <cat-item tags="pr.*"/>
       <cat-item tags="n.*"/>
       <cat-item tags="n.*.gen"/>
       <cat-item tags="n.*.gen.*"/>
@@ -1030,11 +1035,11 @@
       </action>
     </rule>
 
-    <rule comment="ADV_MOVEVERB PRENOM VBLEX => ADV_MOVEVERB VBLEX PRENOM
+    <rule comment="ADV_MOVEVERB PRENOM_OR_NOM VBLEX => ADV_MOVEVERB VBLEX PRENOM_OR_NOM
                    hvorav 15 var => av dei var 15">
       <pattern>
         <pattern-item n="adv_moveverb"/>
-        <pattern-item n="prenom"/>
+        <pattern-item n="prenom_OR_nom"/>
         <pattern-item n="vblex"/>
       </pattern>
       <action>
@@ -1060,13 +1065,13 @@
       </action>
     </rule>
 
-    <rule comment="ADV_MOVEVERB PRENOM DET_OR_NOM VBLEX => ADV_MOVEVERB VBLEX PRENOM DET_OR_NOM
+    <rule comment="ADV_MOVEVERB PRENOM PRENOM_OR_NOM VBLEX => ADV_MOVEVERB VBLEX PRENOM PRENOM_OR_NOM
                    hvorav minst tre var => av dei var minst tre
                    hvorav ett år var => av dei var ett år">
       <pattern>
         <pattern-item n="adv_moveverb"/>
         <pattern-item n="prenom"/>
-        <pattern-item n="det_OR_nom"/>
+        <pattern-item n="prenom_OR_nom"/>
         <pattern-item n="vblex"/>
       </pattern>
       <action>
