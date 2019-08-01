@@ -1284,6 +1284,17 @@
   <rule><match lemma="bistå" tags="vblex.*"><select lemma="hjelpe"/></match></rule>
   <rule><match lemma="bistå" tags="adj.*"><select lemma="hjelpe"/></match></rule>
   <rule weight="2.0">
+    <match lemma="bistå" tags="vblex.*"><select lemma="hjelpe"/></match>
+    <or>
+      <match lemma="i" tags="pr"/>
+      <match lemma="i" tags="ialphabet"/>
+    </or>
+    <or>
+      <match lemma="all" tags="det.*"/>
+      <match lemma="alt" tags="adv"/>
+    </or>
+  </rule>
+  <rule weight="2.0">
     <match lemma="bistå" tags="vblex.*"><select lemma="hjelpe# til"/></match>
     <or>
       <match lemma="med" tags="pr"/>
