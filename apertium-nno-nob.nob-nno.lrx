@@ -1333,4 +1333,9 @@
   <rule><match lemma="dog" tags="adv"><select lemma="likevel"/></match></rule>
   <rule><match lemma="frarøve" tags="vblex.*"><select lemma="ta# frå"/></match></rule>
   <rule><match lemma="henlegge" tags="vblex.*"><select lemma="legge# bort"/></match></rule>
+
+  <!-- The transitive paradigm for "velte" can be used in the
+       intransitive meanings too, so just always use that: -->
+  <rule><match lemma="velte" tags="vblex.*"><select lemma="velte¹"/></match></rule>
+  <rule><match lemma="velte" tags="adj.*"><select lemma="velte¹"/></match></rule>
 </rules>
