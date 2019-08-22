@@ -1346,13 +1346,46 @@
   <rule weight="2.0"><match lemma="utebli" tags="adj.pp.*"><select lemma="svikte"/></match></rule>
   <rule weight="2.0"><match lemma="utebli" tags="vblex.pp"><select lemma="halde# seg borte"/></match></rule>
 
-  <rule><match lemma="hvor" tags="adv"><select lemma="kvar"/></match></rule>
+  <rule><match lemma="hvor" tags="adv"><select lemma="kor"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="hvor" tags="adv"><select lemma="kvar"/></match>
+    <or>
+      <!-- Can't say «kor before unknown», so we explicitly match on everything except unknown: -->
+      <match tags="det.*"/>
+      <match tags="rquot"/>
+      <match tags="rpar"/>
+      <match tags="lpar"/>
+      <match tags="date"/>
+      <match tags="url"/>
+      <match tags="adj.*"/>
+      <match tags="vblex.*"/>
+      <match tags="cm"/>
+      <match tags="cm.*"/>
+      <match tags="sent"/>
+      <match tags="sent.*"/>
+      <match tags="n.*"/>
+      <match tags="np.*"/>
+      <match tags="prn.*"/>
+      <match tags="ij"/>
+      <match tags="ij.*"/>
+      <match tags="pr"/>
+      <match tags="pr.*"/>
+      <match tags="cnjcoo"/>
+      <match tags="cnjcoo.*"/>
+      <match tags="cnjsub"/>
+      <match tags="cnjsub.*"/>
+      <match tags="cnjadv"/>
+      <match tags="cnjadv.*"/>
+    </or>
+  </rule>
   <rule weight="2.0">
     <match lemma="hvor" tags="adv"><select lemma="kor"/></match>
     <or>
       <match lemma="mange" tags="det.*"/>
       <match lemma="mye" tags="det.*"/>
+      <match lemma="av" tags="pr"/> <!-- feilskrive «hvorav» ? -->
       <match tags="adv"/>
+      <match tags="adv.*"/>
       <match tags="lquot"/>
       <match tags="apos"/>
       <match tags="adj.*"/>
