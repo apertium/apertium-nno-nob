@@ -809,6 +809,7 @@
     </def-list>
 
     <def-list n="immovable-adv" c="Shouldn't be moved in passives or across lemq's, typically ambig with prep's or adj's">
+      <list-item v="bort"/>
       <list-item v="inn"/>
       <list-item v="med"/>
       <list-item v="nærare"/>
@@ -906,10 +907,13 @@
     </def-macro>
 
     <def-macro n="set_caseFirstWord" npar="1"
-               c="Downcases the argument, unless np">
+               c="Downcases the argument, unless np or UPPERCASE">
       <!-- TODO: Put a marker for acronyms where we don't want to copy case from them; then drop the tag -->
       <choose><when>
-        <test><not><equal><clip pos="1" side="tl" part="a_nom"/><lit-tag v="np"/></equal></not></test>
+        <test><and>
+          <not><equal><clip pos="1" side="tl" part="a_nom"/><lit-tag v="np"/></equal></not>
+          <equal><lit v="Aa"/><get-case-from pos="1"><lit v="aa"/></get-case-from></equal>
+        </and></test>
         <modify-case><clip pos="1" side="tl" part="lemh"/><lit v="aa"/></modify-case>
       </when></choose>
       <choose>
