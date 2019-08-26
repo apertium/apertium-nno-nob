@@ -1405,4 +1405,14 @@
   <rule weight="2.0" c="utgått av → sett saman av">
     <match lemma="utgå# av" tags="vblex.pp"><select lemma="setje# saman av"/></match>
   </rule>
+
+  <rule><match lemma="pen" tags="adj.*"><select lemma="fin"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="pen" tags="adj.*"><select lemma="pen"/></match>
+    <or>
+      <match lemma="brukt" tags="adj.*"/>
+      <match lemma="bruke" tags="adj.*"/>
+      <match lemma="bruke" tags="vblex.pp"/>
+    </or>
+  </rule>
 </rules>
