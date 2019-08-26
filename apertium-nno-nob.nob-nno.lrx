@@ -1393,4 +1393,16 @@
       <match tags="vblex.pp"/> <!-- «hvor utbredt de er» -->
     </or>
   </rule>
+
+  <rule><match lemma="utgå" tags="adj.*"><select lemma="utgå"/></match></rule>
+  <rule><match lemma="utgå" tags="vblex.*"><select lemma="gå# ut"/></match></rule>
+  <rule weight="2.0" c="utgår av → kjem av">
+    <match lemma="utgå" tags="vblex.*"><select lemma="komme"/></match>
+    <match lemma="fra" tags="pr"/>
+  </rule>
+
+  <rule><match lemma="utgå# av" tags="vblex.*"><select lemma="komme# frå"/></match></rule>
+  <rule weight="2.0" c="utgått av → sett saman av">
+    <match lemma="utgå# av" tags="vblex.pp"><select lemma="setje# saman av"/></match>
+  </rule>
 </rules>
