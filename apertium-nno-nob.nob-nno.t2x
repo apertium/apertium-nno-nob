@@ -29,6 +29,10 @@
       <cat-item tags="n.*.ind"/>
       <cat-item tags="n.*.ind.*"/>
     </def-cat>
+    <def-cat n="nplind">
+      <cat-item tags="n.*.pl.ind"/>
+      <cat-item tags="n.*.pl.ind.*"/>
+    </def-cat>
     <def-cat n="nkeepgenx">
       <cat-item tags="n.*.keepgenx"/>
       <cat-item tags="n.*.keepgenx.*"/>
@@ -44,13 +48,17 @@
       <cat-item tags="n.*.gen"/>
       <cat-item tags="n.*.gen.*"/>
     </def-cat>
-    <def-cat n="ngendefpl">
+    <def-cat n="ngendefORpl">
       <cat-item tags="n.*.def.gen"/>
       <cat-item tags="n.*.def.gen.*"/>
       <cat-item tags="n.*.pl.*.gen"/>
       <cat-item tags="n.*.pl.*.gen.*"/>
       <cat-item tags="n.*.sp.*.gen"/>
       <cat-item tags="n.*.sp.*.gen.*"/>
+    </def-cat>
+    <def-cat n="ngensgdef">
+      <cat-item tags="n.*.sg.def.gen"/>
+      <cat-item tags="n.*.sg.def.gen.*"/>
     </def-cat>
     <def-cat n="npldef">
       <cat-item tags="n.*.pl.def"/>
@@ -99,6 +107,9 @@
       <!-- <cat-item tags="det.emph.*"/> -->
       <cat-item tags="det.itg.*"/>
       <cat-item tags="det.qnt.*"/>
+    </def-cat>
+    <def-cat n="detqntpl">
+      <cat-item tags="det.qnt.*.pl"/>
     </def-cat>
 
     <def-cat n="vblex">
@@ -1498,6 +1509,29 @@
         </out>
       </action>
     </rule>
+    <rule comment="DETQNTPL PREP_GEN NGENSGDEF NPLIND: alle [til] kommunen idrettslag => alle idrettslaga til kommunen">
+      <pattern>
+	<pattern-item n="detqntpl"/>
+	<pattern-item n="prep_gen"/>
+	<pattern-item n="ngensgdef"/>
+	<pattern-item n="nplind"/>
+      </pattern>
+      <action>
+        <call-macro n="set_ana"><with-param pos="4"/></call-macro>
+        <call-macro n="out_det_when_adjlike"><with-param pos="4"/><with-param pos="1"/></call-macro>
+        <out>
+          <chunk><clip pos="1" part="whole"/></chunk>
+          <b pos="1"/>
+        </out>
+        <call-macro n="out_ndef"><with-param pos="4"/><with-param pos="4"/></call-macro>
+        <out>
+          <b pos="2"/>
+          <chunk><clip pos="2" part="whole"/></chunk>
+          <b pos="3"/>
+          <chunk><clip pos="3" part="whole"/></chunk>
+        </out>
+      </action>
+    </rule>
     <rule comment="DETNONPOS PREP_GEN NGEN NIND: en [til] katts snute => snuten til ein katt">
       <pattern>
 	<pattern-item n="detnonpos"/>
@@ -1553,12 +1587,12 @@
     </rule>
 
 
-    <rule comment="PREP_GEN NGENDEFPL NIND PREP_TIL
+    <rule comment="PREP_GEN NGENDEForPL NIND PREP_TIL
                    næringslivets tillit til de rådende myndigheter => tillita næringslivet har til dei rådande styresmaktene
                    drop the prep_gen from t1x and rewrite with «har»">
       <pattern>
         <pattern-item n="prep_gen"/>
-        <pattern-item n="ngendefpl"/>
+        <pattern-item n="ngendefORpl"/>
         <pattern-item n="nind"/>
         <pattern-item n="prep_til"/>
       </pattern>
