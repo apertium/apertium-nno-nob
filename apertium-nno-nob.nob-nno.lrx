@@ -1420,5 +1420,14 @@
   <rule><match lemma="fryse" tags="vblex.*"><select lemma="fryse"/></match></rule>
   <rule><match lemma="fryse" tags="adj.*"><select lemma="fryse"/></match></rule>
 
-  <rule><match lemma="forskjellig" tags="adj.*"><select lemma="annleis"/></match></rule>
+  <rule><match lemma="forskjellig" tags="adj.*"><select lemma="ulik"/></match></rule>
+  
+  <rule><match lemma="løpende" tags="adj.*"><select lemma="løpende"/></match></rule>
+  <rule weight="2.0">
+    <or>
+      <match lemma="komme"/>
+      <match lemma="observere"/>
+    </or>
+    <match lemma="løpende" tags="adj.*"><select lemma="springande"/></match>
+  </rule>
 </rules>
