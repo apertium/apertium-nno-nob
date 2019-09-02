@@ -395,6 +395,10 @@
       <cat-item tags="n.*" lemma="kvarter"/>
       <cat-item tags="n.*"  lemma="tid"/>
     </def-cat>
+    <def-cat n="akkurat">
+      <cat-item tags="adv" lemma="akkurat"/>
+      <cat-item tags="adv" lemma="nettopp"/>
+    </def-cat>
     <def-cat n="påfølgende">
       <cat-item tags="adj.*" lemma="påfølgende"/>
     </def-cat>
@@ -1806,7 +1810,47 @@
       </action>
     </rule>
 
-    <!-- POSGEN måte å VBLEXINF -->
+    <rule comment="akkurat DETPOS: akkurat deres by → akkurat deira by
+                   Tell t2x to not use DETPOS NIND → NDEF DETPOS rule.">
+      <pattern>
+        <pattern-item n="akkurat"/>
+        <pattern-item n="detpos"/>
+        <pattern-item n="n_np"/>
+      </pattern>
+      <action>
+        <choose>
+          <when>
+            <test><and>
+              <or>
+                <equal><clip pos="3" side="tl" part="gen"/><lit-tag v="m"/></equal>
+                <equal><clip pos="3" side="tl" part="gen"/><lit-tag v="f"/></equal>
+                <equal><clip pos="3" side="tl" part="gen"/><lit-tag v="nt"/></equal>
+              </or>
+              <not><equal><clip pos="3" side="tl" part="nbr"/><lit-tag v="pl"/></equal></not>
+              <not><equal><clip pos="2" side="tl" part="nbr"/><lit-tag v="pl"/></equal></not>
+            </and></test>
+            <let><clip pos="2" side="tl" part="gen"/><clip pos="3" side="tl" part="gen"/></let>
+          </when>
+        </choose>
+        <out>
+          <chunk name="adv">
+            <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
+            <lu><clip pos="1" side="tl" part="whole"/></lu>
+          </chunk>
+          <b pos="1"/>
+          <chunk name="detpos-keep">
+            <tags><tag><clip pos="2" side="tl" part="tags"/></tag></tags>
+            <lu><clip pos="2" side="tl" part="whole"/></lu>
+          </chunk>
+          <b pos="2"/>
+          <chunk name="n">
+            <tags><tag><clip pos="3" side="tl" part="tags"/></tag></tags>
+            <lu><clip pos="3" side="tl" part="whole"/></lu>
+          </chunk>
+        </out>
+      </action>
+    </rule>
+
     <rule comment="DETPOS N_KEEP_SIN: sin vilje → sin vilje
                                       deres side → deres side
                    Tell t2x to not use DETPOS NIND → NDEF DETPOS rule.">
@@ -1842,6 +1886,8 @@
         </out>
       </action>
     </rule>
+
+    <!-- POSGEN måte å VBLEXINF -->
     <rule comment="sin måte å VBLEXINF: sin måte å referere => sin måte å referere
                    Override the below rule (TODO: use exception tag instead, when accepted to trunk).">
       <pattern>
