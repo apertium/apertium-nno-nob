@@ -19,6 +19,9 @@
     <def-cat n="ngen">
       <cat-item tags="n.*.gen"/>
     </def-cat>
+    <def-cat n="nindgen">
+      <cat-item tags="n.*.ind.gen"/>
+    </def-cat>
     <def-cat n="nind_indgen">
       <cat-item tags="n.*.*.ind"/>
       <cat-item tags="n.*.*.ind.gen"/>
@@ -2476,12 +2479,12 @@ no lemq-moving">
       </action>
     </rule>
 
-    <!-- NP_NOGEN NGEN -->
-    <rule comment="NP_NOGEN NGEN: Sogn tingretts → Sogn tingretts
+    <!-- NP_NOGEN NINDGEN -->
+    <rule comment="NP_NOGEN NINDGEN: Sogn tingretts → Sogn tingretts
                    Chunk for genitive movement">
       <pattern>
         <pattern-item n="np_nogen"/>
-        <pattern-item n="ngen"/>
+        <pattern-item n="nindgen"/>
       </pattern>
       <action>
         <choose><when c="Only copy case at start of sentence">
@@ -2503,12 +2506,12 @@ no lemq-moving">
         </out>
       </action>
     </rule>
-    <rule comment="NP_NOGEN NCMP NGEN: Sogn politidistrikts → Sogn politidistrikts
+    <rule comment="NP_NOGEN NCMP NINDGEN: Sogn politidistrikts → Sogn politidistrikts
                    Chunk for genitive movement">
       <pattern>
         <pattern-item n="np_nogen"/>
         <pattern-item n="ncmp"/>
-        <pattern-item n="ngen"/>
+        <pattern-item n="nindgen"/>
       </pattern>
       <action>
         <choose><when c="Only copy case at start of sentence">
