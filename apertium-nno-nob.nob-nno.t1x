@@ -184,6 +184,25 @@
       <cat-item tags="np.al"/>
       <cat-item tags="np.attr"/>
     </def-cat>
+    <def-cat n="np_nogen">
+      <cat-item tags="np.top"/>
+      <cat-item tags="np.top.f"/>
+      <cat-item tags="np.top.m"/>
+      <cat-item tags="np.top.nt"/>
+      <cat-item tags="np.org"/>
+      <cat-item tags="np.org.f"/>
+      <cat-item tags="np.org.m"/>
+      <cat-item tags="np.org.nt"/>
+      <cat-item tags="np.ant"/>
+      <cat-item tags="np.ant.f"/>
+      <cat-item tags="np.ant.m"/>
+      <cat-item tags="np.ant.nt"/>
+      <cat-item tags="np.cgguess"/>
+      <cat-item tags="np.guess"/>
+      <cat-item tags="np.cog"/>
+      <cat-item tags="np.al"/>
+      <cat-item tags="np.attr"/>
+    </def-cat>
     <def-cat n="nacr">
       <cat-item tags="n.acr"/>
     </def-cat>
@@ -2451,6 +2470,62 @@ no lemq-moving">
           <b pos="2"/>
           <chunk name="n" case="caseFirstWord">
             <tags><tag><clip pos="3" side="tl" part="tags"/></tag></tags>
+            <lu><clip pos="3" side="tl" part="whole"/></lu>
+          </chunk>
+        </out>
+      </action>
+    </rule>
+
+    <!-- NP_NOGEN NGEN -->
+    <rule comment="NP_NOGEN NGEN: Sogn tingretts → Sogn tingretts
+                   Chunk for genitive movement">
+      <pattern>
+        <pattern-item n="np_nogen"/>
+        <pattern-item n="ngen"/>
+      </pattern>
+      <action>
+        <choose><when c="Only copy case at start of sentence">
+          <test><equal><var n="caseFirstWord"/><lit v=""/></equal></test>
+          <call-macro n="set_caseFirstWord2">
+            <with-param pos="1"/>
+            <with-param pos="2"/>
+          </call-macro>
+        </when></choose>
+        <call-macro n="out_gen-prep"><with-param pos="2"/></call-macro>
+        <call-macro n="stash_case_in_ntags"><with-param pos="2"/></call-macro>
+        <out>
+          <chunk name="n_n" case="caseFirstWord">
+            <tags><tag><var n="ntags"/></tag></tags>
+            <lu><clip pos="1" side="tl" part="whole"/></lu>
+            <b pos="1"/>
+            <lu><clip pos="2" side="tl" part="whole"/></lu>
+          </chunk>
+        </out>
+      </action>
+    </rule>
+    <rule comment="NP_NOGEN NCMP NGEN: Sogn politidistrikts → Sogn politidistrikts
+                   Chunk for genitive movement">
+      <pattern>
+        <pattern-item n="np_nogen"/>
+        <pattern-item n="ncmp"/>
+        <pattern-item n="ngen"/>
+      </pattern>
+      <action>
+        <choose><when c="Only copy case at start of sentence">
+          <test><equal><var n="caseFirstWord"/><lit v=""/></equal></test>
+          <call-macro n="set_caseFirstWord2">
+            <with-param pos="1"/>
+            <with-param pos="2"/>
+          </call-macro>
+        </when></choose>
+        <call-macro n="out_gen-prep"><with-param pos="3"/></call-macro>
+        <call-macro n="stash_case_in_ntags"><with-param pos="3"/></call-macro>
+        <out>
+          <chunk name="n_n_n" case="caseFirstWord">
+            <tags><tag><var n="ntags"/></tag></tags>
+            <lu><clip pos="1" side="tl" part="whole"/></lu>
+            <b pos="1"/>
+            <lu><clip pos="2" side="tl" part="whole"/></lu>
             <lu><clip pos="3" side="tl" part="whole"/></lu>
           </chunk>
         </out>
