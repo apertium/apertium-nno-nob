@@ -176,8 +176,8 @@
       <cat-item tags="adj.pp"/>
       <cat-item tags="adj.pp.*"/>
     </def-cat>
-    <def-cat n="prep_til">
-      <cat-item tags="pr.til"/>
+    <def-cat n="prep_nhead">
+      <cat-item tags="pr.*.nhead"/>
     </def-cat>
     <def-cat n="prep_av">
       <cat-item tags="pr.av"/>
@@ -1587,14 +1587,14 @@
     </rule>
 
 
-    <rule comment="PREP_GEN NGENDEForPL NIND PREP_TIL
+    <rule comment="PREP_GEN NGENDEForPL NIND PREP_NHEAD
                    næringslivets tillit til de rådende myndigheter => tillita næringslivet har til dei rådande styresmaktene
                    drop the prep_gen from t1x and rewrite with «har»">
       <pattern>
         <pattern-item n="prep_gen"/>
         <pattern-item n="ngendefORpl"/>
         <pattern-item n="nind"/>
-        <pattern-item n="prep_til"/>
+        <pattern-item n="prep_nhead"/>
       </pattern>
       <action>
         <call-macro n="set_ana"><with-param pos="2"/></call-macro>

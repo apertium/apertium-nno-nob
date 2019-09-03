@@ -708,6 +708,7 @@
     <def-var n="caseSecondWord"/>
     <def-var n="c_name"         c="chunk name"/>
     <def-var n="c_lemtag"       c="chunk lemma-tag"/>
+    <def-var n="pr_head"        c="if prep-phrase's head is noun or verb"/>
     <def-var n="ntags"/>
     <def-var n="adjtags"/>
     <def-var n="advtags"/>
@@ -723,6 +724,51 @@
   </section-def-vars>
 
   <section-def-lists>
+    <def-list n="noun_takes_til" c="Nouns that take an adverbial with the preposition 'til', e.g. utgift/tilbud">
+      <list-item v="oppkøyring"/>
+      <list-item v="utkast"/>
+      <list-item v="høve"/>
+      <list-item v="moglegheit"/>
+      <list-item v="fridom"/>
+      <list-item v="innstilling"/>
+      <list-item v="råd"/>
+      <list-item v="gåve"/>
+      <list-item v="utsending"/>
+      <list-item v="utsikt"/>
+      <list-item v="kapasitet"/>
+      <list-item v="tilknyting"/>
+      <list-item v="hang"/>
+      <list-item v="tendens"/>
+      <list-item v="nærleik"/>
+      <list-item v="tilnærming"/>
+      <list-item v="melding"/>
+      <list-item v="utstyr"/>
+      <list-item v="klarsignal"/>
+      <list-item v="kjennskap"/>
+      <list-item v="støtte"/>
+      <list-item v="bidrag"/>
+      <list-item v="evne"/>
+      <list-item v="krav"/>
+      <list-item v="kravliste"/>
+      <list-item v="forhold"/>
+      <list-item v="forslag"/>
+      <list-item v="forventing"/>
+      <list-item v="forventning"/>
+      <list-item v="haldning"/>
+      <list-item v="innspel"/>
+      <list-item v="ja"/>
+      <list-item v="nei"/>
+      <list-item v="plikt"/>
+      <list-item v="potensial"/>
+      <list-item v="rett"/>
+      <list-item v="sjanse"/>
+      <list-item v="skepsis"/>
+      <list-item v="tilbod"/>
+      <list-item v="tilgang"/>
+      <list-item v="tillit"/>
+      <list-item v="trong"/>
+      <list-item v="utgift"/>
+    </def-list>
     <def-list n="adj-ind-def" c="Allow ind adj followed by def noun for these adv-like adjectives (tl/nno)">
       <list-item v="mykje"/>
       <list-item v="mellombels"/>
@@ -927,7 +973,7 @@
         <test><equal><clip pos="1" side="tl" part="lemh"/><lit v="del"/></equal></test>
         <append n="ntags"><lit-tag v="keepgenx"/></append>
       </when></choose>
-
+      <let><var n="prevlem"/><clip pos="1" side="tl" part="lem"/></let>
     </def-macro>
 
     <def-macro n="switch_cases" npar="2">
@@ -3072,11 +3118,24 @@ no lemq-moving">
           <var n="c_lemtag"/>
           <concat><lit v="&lt;"/><clip pos="1" side="tl" part="lemh"/><lit v="&gt;"/></concat>
         </let>
+        <choose><when>
+          <test><and>
+            <in caseless="yes"><var n="prevlem"/><list n="noun_takes_til"/></in>
+            <equal caseless="yes"><clip pos="1" side="tl" part="lemh"/><lit v="til"/></equal>
+          </and></test>
+          <let><var n="pr_head"/><lit-tag v="nhead"/></let>
+        </when>
+        <otherwise>
+          <!-- By default no tag, assume verb head: -->
+          <let><var n="pr_head"/><lit v=""/></let>
+        </otherwise>
+        </choose>
         <out>
           <chunk name="pr" case="caseFirstWord">
             <tags>
               <tag><clip pos="1" side="tl" part="tags"/></tag>
               <tag><var n="c_lemtag"/></tag>
+              <tag><var n="pr_head"/></tag>
             </tags>
             <lu><clip pos="1" side="tl" part="whole"/></lu>
           </chunk>
