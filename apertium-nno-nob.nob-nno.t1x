@@ -1936,15 +1936,21 @@
         <when><test><in><var n="bilem"/><list n="bi-gen-unna"/></in></test><append n="ntags"><lit-tag v="pr_unna"/></append></when>
         <when><test><in><var n="bilem"/><list n="bi-gen-ut"/></in></test><append n="ntags"><lit-tag v="pr_ut"/></append></when>
         <when><test><in><var n="bilem"/><list n="bi-gen-ved"/></in></test><append n="ntags"><lit-tag v="pr_ved"/></append></when>
-        <when><test><in><clip pos="1" side="tl" part="lem"/><list n="obj-gen-av"/></in></test><append n="ntags"><lit-tag v="pr_av"/></append></when>
-        <when><test><in><clip pos="1" side="tl" part="lem"/><list n="obj-gen-bak"/></in></test><append n="ntags"><lit-tag v="pr_bak"/></append></when>
-        <when><test><in><clip pos="1" side="tl" part="lem"/><list n="obj-gen-for"/></in></test><append n="ntags"><lit-tag v="pr_for"/></append></when>
-        <when><test><in><clip pos="1" side="tl" part="lem"/><list n="obj-gen-frå"/></in></test><append n="ntags"><lit-tag v="pr_frå"/></append></when>
-        <when><test><in><clip pos="1" side="tl" part="lem"/><list n="obj-gen-gjennom"/></in></test><append n="ntags"><lit-tag v="pr_gjennom"/></append></when>
-        <when><test><in><clip pos="1" side="tl" part="lem"/><list n="obj-gen-i"/></in></test><append n="ntags"><lit-tag v="pr_i"/></append></when>
-        <when><test><in><clip pos="1" side="tl" part="lem"/><list n="obj-gen-med"/></in></test><append n="ntags"><lit-tag v="pr_med"/></append></when>
-        <when><test><in><clip pos="1" side="tl" part="lem"/><list n="obj-gen-på"/></in></test><append n="ntags"><lit-tag v="pr_på"/></append></when>
-
+        <otherwise>
+          <choose><when c="Only use obj unigram if both out_gen-prep and bi-gen didn't pick something first">
+            <test><equal><var n="gen-prep"/><lit v="til"/></equal></test>
+            <choose>
+              <when><test><in><clip pos="1" side="tl" part="lem"/><list n="obj-gen-av"/></in></test><append n="ntags"><lit-tag v="pr_av"/></append></when>
+              <when><test><in><clip pos="1" side="tl" part="lem"/><list n="obj-gen-bak"/></in></test><append n="ntags"><lit-tag v="pr_bak"/></append></when>
+              <when><test><in><clip pos="1" side="tl" part="lem"/><list n="obj-gen-for"/></in></test><append n="ntags"><lit-tag v="pr_for"/></append></when>
+              <when><test><in><clip pos="1" side="tl" part="lem"/><list n="obj-gen-frå"/></in></test><append n="ntags"><lit-tag v="pr_frå"/></append></when>
+              <when><test><in><clip pos="1" side="tl" part="lem"/><list n="obj-gen-gjennom"/></in></test><append n="ntags"><lit-tag v="pr_gjennom"/></append></when>
+              <when><test><in><clip pos="1" side="tl" part="lem"/><list n="obj-gen-i"/></in></test><append n="ntags"><lit-tag v="pr_i"/></append></when>
+              <when><test><in><clip pos="1" side="tl" part="lem"/><list n="obj-gen-med"/></in></test><append n="ntags"><lit-tag v="pr_med"/></append></when>
+              <when><test><in><clip pos="1" side="tl" part="lem"/><list n="obj-gen-på"/></in></test><append n="ntags"><lit-tag v="pr_på"/></append></when>
+            </choose>
+          </when></choose>
+        </otherwise>
       </choose>
       <let><var n="prevlem"/><clip pos="1" side="tl" part="lem"/></let>
     </def-macro>
