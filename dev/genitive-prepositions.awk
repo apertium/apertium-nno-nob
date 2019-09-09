@@ -50,10 +50,12 @@ END{
                     if(nob_s_gen_freq && nno_bi_gt_til && nno_tri_freq) {
                         if(nno_umax_gt_til)
                             unilist[pr][head]++
-                        else if(nno_obj_is_max)
-                            olist[pr][obj]++
                         else {
-                            # No point in bigram entry if selected by unigrams anyway
+                            # No point in bigram entry if this prep is selected by head unigram anyway
+                            # (But we do want bigram entry if it's just selected by obj,
+                            #  obj-lists can't override head unigrams, but bigrams can)
+                            if(nno_obj_is_max)
+                                olist[pr][obj]++
                             objs=obj; sub(/<.*/,"",objs)
                             if(nno_bi_is_max)
                                 bilist[pr][objs"_"heads]++
