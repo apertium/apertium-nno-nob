@@ -1,6 +1,6 @@
 #!/bin/bash
 
-outdir=nobackup
+outdir=nobackup/genitive-prepositions
 
 test -f "${outdir}"/nno.disam ||
     xzcat  ~/corpora/nno/*ntb*xz | apertium -d . nno-nob-disam-notrace >"${outdir}"/nno.disam
