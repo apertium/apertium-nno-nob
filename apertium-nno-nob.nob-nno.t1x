@@ -498,6 +498,14 @@
     <def-cat n="sin">
       <cat-item lemma="sin" tags="det.pos.*"/>
     </def-cat>
+    <def-cat n="så-adv">
+      <cat-item lemma="så" tags="adv"/>
+    </def-cat>
+    <def-cat n="lenge">
+      <cat-item lemma="lenge" tags="adj.*"/>
+      <cat-item lemma="lenge" tags="adv.*"/>
+      <cat-item lemma="lenge" tags="adv"/>
+    </def-cat>
     <def-cat n="britenes">
       <cat-item lemma="brite" tags="n.m.pl.def.gen"/>
       <cat-item lemma="russer" tags="n.m.pl.def.gen"/>
@@ -906,6 +914,7 @@
       <list-item v="nærare"/>
       <list-item v="betydeleg"/>
       <list-item v="frå no av"/>
+      <list-item v="så lenge"/>
     </def-list>
 
     <def-list n="skip-n-lemqverbs" c="An ndef after verb-lemq here is typically a subject, which should be moved before the lemq
@@ -1871,15 +1880,31 @@
         </choose>
         <out>
           <chunk name="adv" case="caseFirstWord">
-            <tags>
-              <tag><var n="advtags"/></tag>
-            </tags>
-            <lu>
-              <clip pos="1" side="tl" part="whole"/>
-            </lu>
+            <tags><tag><var n="advtags"/></tag></tags>
+            <lu><clip pos="1" side="tl" part="whole"/></lu>
           </chunk>
         </out>
         <let><var n="prevlem"/><clip pos="1" side="tl" part="lem"/></let>
+      </action>
+    </rule>
+    <rule comment="så-ADV lenge-ADV/ADJ: så lenge → så lenge">
+      <pattern>
+        <pattern-item n="så-adv"/>
+        <pattern-item n="lenge"/>
+      </pattern>
+      <action>
+        <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
+        <let><var n="advtags"/><clip pos="1" side="tl" part="tags"/></let>
+        <!-- not movable -->
+        <out>
+          <chunk name="adv" case="caseFirstWord">
+            <tags><tag><var n="advtags"/></tag></tags>
+            <lu><clip pos="1" side="tl" part="whole"/></lu>
+            <b pos="1"/>
+            <lu><clip pos="2" side="tl" part="whole"/></lu>
+          </chunk>
+        </out>
+        <let><var n="prevlem"/><clip pos="2" side="tl" part="lem"/></let>
       </action>
     </rule>
 
