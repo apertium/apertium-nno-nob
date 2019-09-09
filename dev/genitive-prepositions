@@ -30,6 +30,7 @@ test -f "${outdir}"/nno.sgen ||
 test -f "${outdir}"/nno.prep3g ||
     <"${outdir}"/nno.disam.lower                                                     \
     grep -o '\^[^$]*<n>[^$/]*<def>[$] [^$]*/[a-zæøå]*<pr>[^$]*[$] [^$]*<n>[^$/]*[$]' \
+    | sed 's,\^[^$]*/\([^<]*<pr>\)[^$]*[$],\1,'                                      \
     | sed 's,\^[^$]*[/+],,g;s/<\(sg\|pl\|sp\|def\|ind\|cmp-split\|gen\)>//g'         \
     | tr -d '$'                                                                      \
          >"${outdir}"/nno.prep3g
