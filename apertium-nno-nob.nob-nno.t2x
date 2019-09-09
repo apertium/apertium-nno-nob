@@ -267,30 +267,33 @@
     <def-attr n="expl">
       <attr-item tags="expl"/>
     </def-attr>
+
     <def-attr n="gen_prep_override">
       <attr-item tags="pr_av"/>
-      <attr-item tags="pr_bak"/>
       <attr-item tags="pr_blant"/>
       <attr-item tags="pr_etter"/>
       <attr-item tags="pr_for"/>
       <attr-item tags="pr_frå"/>
+      <attr-item tags="pr_før"/>
       <attr-item tags="pr_gjennom"/>
       <attr-item tags="pr_hos"/>
       <attr-item tags="pr_i"/>
-      <attr-item tags="pr_innan"/>
       <attr-item tags="pr_med"/>
       <attr-item tags="pr_mellom"/>
       <attr-item tags="pr_mot"/>
       <attr-item tags="pr_om"/>
+      <attr-item tags="pr_over"/>
       <attr-item tags="pr_per"/>
       <attr-item tags="pr_på"/>
       <attr-item tags="pr_rundt"/>
-      <attr-item tags="pr_sidan"/>
       <attr-item tags="pr_som"/>
+      <attr-item tags="pr_uansett"/>
+      <attr-item tags="pr_under"/>
       <attr-item tags="pr_unna"/>
-      <attr-item tags="pr_utover"/>
+      <attr-item tags="pr_ut"/>
       <attr-item tags="pr_ved"/>
     </def-attr>
+
   </section-def-attrs>
 
 
@@ -561,7 +564,7 @@
       </chunk></out>
     </def-macro>
 
-    <def-macro n="out_gen-bi-prep" npar="2"
+    <def-macro n="out_bi-gen-prep" npar="2"
                c="arg.1: preposition, arg.2: owned noun">
       <let><var n="genpr"/><clip pos="2" part="gen_prep_override"/></let>
       <choose>
@@ -1403,7 +1406,7 @@
         <call-macro n="out_det_when_adjlike"><with-param pos="3"/><with-param pos="2"/></call-macro>
         <call-macro n="out_ndef"><with-param pos="3"/><with-param pos="2"/></call-macro>
         <out><b pos="1"/></out>
-        <call-macro n="out_gen-bi-prep"><with-param pos="1"/><with-param pos="3"/></call-macro>
+        <call-macro n="out_bi-gen-prep"><with-param pos="1"/><with-param pos="3"/></call-macro>
         <out><b pos="2"/><chunk><clip pos="2" part="whole"/></chunk></out>
       </action>
     </rule>
@@ -1479,12 +1482,12 @@
         <call-macro n="out_ndef"><with-param pos="5"/><with-param pos="2"/></call-macro>
 
         <out><b pos="1"/></out>
-        <call-macro n="out_gen-bi-prep"><with-param pos="3"/><with-param pos="5"/></call-macro> <!-- 5=_snuten_ til katten -->
+        <call-macro n="out_bi-gen-prep"><with-param pos="3"/><with-param pos="5"/></call-macro> <!-- 5=_snuten_ til katten -->
         <out><b pos="2"/></out>
         <call-macro n="out_det_when_adjlike"><with-param pos="4"/><with-param pos="4"/></call-macro>
         <call-macro n="out_ndef"><with-param pos="4"/><with-param pos="4"/></call-macro>
         <out><b pos="3"/></out>
-        <call-macro n="out_gen-bi-prep"><with-param pos="1"/><with-param pos="4"/></call-macro> <!-- 4=_katten_ på kjøkkenet -->
+        <call-macro n="out_bi-gen-prep"><with-param pos="1"/><with-param pos="4"/></call-macro> <!-- 4=_katten_ på kjøkkenet -->
         <out><b pos="4"/></out>
         <call-macro n="out_det_when_adjlike"><with-param pos="2"/><with-param pos="2"/></call-macro>
         <out><chunk><clip pos="2" part="whole"/></chunk></out>
@@ -1506,7 +1509,7 @@
         <call-macro n="out_ndef"><with-param pos="4"/><with-param pos="1"/></call-macro>
 
         <out><b pos="1"/></out>
-        <call-macro n="out_gen-bi-prep"><with-param pos="2"/><with-param pos="4"/></call-macro> <!-- 4=_snuten_ til katten -->
+        <call-macro n="out_bi-gen-prep"><with-param pos="2"/><with-param pos="4"/></call-macro> <!-- 4=_snuten_ til katten -->
         <out><b pos="2"/></out>
         <call-macro n="out_det_when_adjlike"><with-param pos="3"/><with-param pos="3"/></call-macro>
         <call-macro n="out_ndef"><with-param pos="3"/><with-param pos="3"/></call-macro>
@@ -1539,7 +1542,7 @@
         </out>
         <call-macro n="out_ndef"><with-param pos="4"/><with-param pos="4"/></call-macro>
         <out><b pos="2"/></out>
-        <call-macro n="out_gen-bi-prep"><with-param pos="1"/><with-param pos="4"/></call-macro> <!-- 4=_hundane_ på toppen -->
+        <call-macro n="out_bi-gen-prep"><with-param pos="1"/><with-param pos="4"/></call-macro> <!-- 4=_hundane_ på toppen -->
         <out><b pos="3"/></out>
         <out><chunk><clip pos="2" part="whole"/></chunk></out>
       </action>
