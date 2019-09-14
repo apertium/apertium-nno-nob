@@ -732,7 +732,7 @@
   </section-def-vars>
 
   <section-def-lists>
-    <def-list n="noun_takes_til" c="Nouns that take an adverbial with the preposition 'til', e.g. utgift/tilbud">
+    <def-list n="noun_takes_til" c="Nouns that take an adverbial with the preposition 'til' in Bokmål, e.g. utgift/tilbud">
       <list-item v="oppkøyring"/>
       <list-item v="utkast"/>
       <list-item v="høve"/>
@@ -781,6 +781,15 @@
       <list-item v="tillit"/>
       <list-item v="trong"/>
       <list-item v="utgift"/>
+    </def-list>
+    <def-list n="noun_takes_i" c="Nouns that take an adverbial with the preposition 'i' in Bokmål">
+      <list-item v="investering"/>
+      <list-item v="million"/>  <!-- millioner i inntekter -->
+      <list-item v="milliard"/>
+      <list-item v="billion"/>
+      <list-item v="billiard"/>
+      <list-item v="trillion"/>
+      <list-item v="trilliard"/>
     </def-list>
     <def-list n="adj-ind-def" c="Allow ind adj followed by def noun for these adv-like adjectives (tl/nno)">
       <list-item v="mykje"/>
@@ -3150,13 +3159,14 @@ no lemq-moving">
           <var n="c_lemtag"/>
           <concat><lit v="&lt;"/><clip pos="1" side="tl" part="lemh"/><lit v="&gt;"/></concat>
         </let>
-        <choose><when>
-          <test><and>
-            <in caseless="yes"><var n="prevlem"/><list n="noun_takes_til"/></in>
-            <equal caseless="yes"><clip pos="1" side="tl" part="lemh"/><lit v="til"/></equal>
-          </and></test>
-          <let><var n="pr_head"/><lit-tag v="nhead"/></let>
-        </when>
+        <choose>
+          <when>
+            <test><or>
+              <and><in caseless="yes"><var n="prevlem"/><list n="noun_takes_i"/></in>  <equal caseless="yes"><clip pos="1" side="tl" part="lemh"/><lit v="i"/></equal></and>
+              <and><in caseless="yes"><var n="prevlem"/><list n="noun_takes_til"/></in><equal caseless="yes"><clip pos="1" side="tl" part="lemh"/><lit v="til"/></equal></and>
+            </or></test>
+            <let><var n="pr_head"/><lit-tag v="nhead"/></let>
+          </when>
         <otherwise>
           <!-- By default no tag, assume verb head: -->
           <let><var n="pr_head"/><lit v=""/></let>

@@ -1588,7 +1588,7 @@
 
 
     <rule comment="PREP_GEN NGENDEForPL NIND PREP_NHEAD
-                   næringslivets tillit til de rådende myndigheter => tillita næringslivet har til dei rådande styresmaktene
+                   næringslivets tillit til de rådende myndigheter → til næringslivet tillita de rådende myndigheter → tillita næringslivet har til dei rådande styresmaktene
                    drop the prep_gen from t1x and rewrite with «har»">
       <pattern>
         <pattern-item n="prep_gen"/>
@@ -1617,6 +1617,45 @@
           </chunk>
           <b pos="3"/>
           <chunk><clip pos="4" part="whole"/></chunk>
+        </out>
+      </action>
+    </rule>
+
+    <rule comment="PREP_GEN NGENDEForPL DETNONPOS NIND PREP_NHEAD
+                   senterets 13 millioner i → til senteret 13 millioner i → de 13 millioner senteret har
+                   drop the prep_gen from t1x and rewrite with «har»">
+      <pattern>
+        <pattern-item n="prep_gen"/>
+        <pattern-item n="ngendefORpl"/>
+        <pattern-item n="detnonpos"/>
+        <pattern-item n="nind"/>
+        <pattern-item n="prep_nhead"/>
+      </pattern>
+      <action>
+        <call-macro n="set_ana"><with-param pos="2"/></call-macro>
+        <call-macro n="switch_cases"><with-param pos="3"/><with-param pos="2"/></call-macro>
+
+        <call-macro n="out_det_when_adjlike"><with-param pos="3"/><with-param pos="2"/></call-macro>
+        <out>
+          <chunk><clip pos="3" part="whole"/></chunk>
+          <b pos="1"/>
+        </out>
+        <call-macro n="out_ndef"><with-param pos="4"/><with-param pos="1"/></call-macro>
+        <out>
+          <b pos="2"/>
+          <chunk><clip pos="2" part="whole"/></chunk>
+          <b pos="3"/>
+          <chunk>
+            <lit v="vblex"/>
+            <lit-tag v="vblex"/>
+            <var n="ana_temps"/>
+            <lit v="{^ha"/>
+            <lit-tag v="vblex"/>
+            <var n="ana_temps"/>
+            <lit v="$}"/>
+          </chunk>
+          <b pos="4"/>
+          <chunk><clip pos="5" part="whole"/></chunk>
         </out>
       </action>
     </rule>
