@@ -269,6 +269,8 @@
     </def-attr>
 
     <def-attr n="gen_prep_override">
+      <attr-item tags="pr_til"/>
+
       <attr-item tags="pr_av"/>
       <attr-item tags="pr_blant"/>
       <attr-item tags="pr_etter"/>
@@ -568,6 +570,7 @@
                c="arg.1: preposition, arg.2: owned noun">
       <let><var n="genpr"/><clip pos="2" part="gen_prep_override"/></let>
       <choose>
+        <when><test><equal><var n="genpr"/><lit-tag v="pr_til"/></equal></test><let><var n="pr_lemh"/><lit v="til"/></let></when>
         <!-- dev/genitive-prepositions: -->
         <when><test><equal><var n="genpr"/><lit-tag v="pr_av"/></equal></test><let><var n="pr_lemh"/><lit v="av"/></let></when>
         <when><test><equal><var n="genpr"/><lit-tag v="pr_blant"/></equal></test><let><var n="pr_lemh"/><lit v="blant"/></let></when>
