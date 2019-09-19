@@ -406,16 +406,16 @@
       <cat-item tags="n.*.*.ind" lemma="rettighet"/>
       <cat-item tags="n.*.*.ind" lemma="rett"/>
     </def-cat>
-    <def-cat n="n_time">
-      <cat-item tags="n.*" lemma="fjorår"/>
-      <cat-item tags="n.*" lemma="år"/>
-      <cat-item tags="n.*" lemma="dag"/>
-      <cat-item tags="n.*" lemma="gårsdag"/>
-      <cat-item tags="n.*" lemma="måned"/>
-      <cat-item tags="n.*" lemma="helg"/>
-      <cat-item tags="n.*"  lemma="uke"/>
-      <cat-item tags="n.*" lemma="kvarter"/>
-      <cat-item tags="n.*"  lemma="tid"/>
+    <def-cat n="nind_time">
+      <cat-item tags="n.*.ind" lemma="fjorår"/>
+      <cat-item tags="n.*.ind" lemma="år"/>
+      <cat-item tags="n.*.ind" lemma="dag"/>
+      <cat-item tags="n.*.ind" lemma="gårsdag"/>
+      <cat-item tags="n.*.ind" lemma="måned"/>
+      <cat-item tags="n.*.ind" lemma="helg"/>
+      <cat-item tags="n.*.ind"  lemma="uke"/>
+      <cat-item tags="n.*.ind" lemma="kvarter"/>
+      <cat-item tags="n.*.ind"  lemma="tid"/>
     </def-cat>
     <def-cat n="akkurat">
       <cat-item tags="adv" lemma="akkurat"/>
@@ -1594,7 +1594,7 @@
     <rule comment="påfølgende uke → den følgjande veka">
       <pattern>
         <pattern-item n="påfølgende"/>
-        <pattern-item n="n_time"/>
+        <pattern-item n="nind_time"/>
       </pattern>
       <action>
         <call-macro n="set_caseFirstWord2">
