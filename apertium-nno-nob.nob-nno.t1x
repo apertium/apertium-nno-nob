@@ -813,9 +813,60 @@
       <list-item v="sportssjef_hoppar"/>
       <list-item v="heimeside_liga"/>
       <list-item v="heimeside_parti"/>
+      <list-item v="heimeside_bransje"/>
+      <list-item v="heimeside_senter"/>
+      <list-item v="heimeside_aksjon"/>
       <list-item v="nettside_liga"/>
       <list-item v="nettside_parti"/>
+      <list-item v="nettside_bransje"/>
+      <list-item v="nettside_senter"/>
+      <list-item v="nettside_aksjon"/>
+      <list-item v="nettavis_liga"/>
+      <list-item v="nettavis_parti"/>
+      <list-item v="nettavis_bransje"/>
+      <list-item v="nettavis_senter"/>
+      <list-item v="nettavis_aksjon"/>
+      <list-item v="avis_liga"/>
+      <list-item v="avis_parti"/>
+      <list-item v="avis_bransje"/>
+      <list-item v="avis_senter"/>
+      <list-item v="avis_aksjon"/>
+      <list-item v="nettstad_liga"/>
+      <list-item v="nettstad_parti"/>
+      <list-item v="nettstad_bransje"/>
+      <list-item v="nettstad_senter"/>
+      <list-item v="nettstad_aksjon"/>
       <list-item v="åtferd_bilist"/>
+      <list-item v="tre_bispedømmeråd"/>
+      <list-item v="trygd_forelder"/>
+      <list-item v="tale_president"/>
+      <list-item v="penge_stat"/>
+      <list-item v="samandrag_justisminister"/>
+      <list-item v="ansvar_arrangør"/>
+      <list-item v="arbeidsgiveransvar_arrangør"/>
+      <list-item v="stilling_kaffi"/>
+      <list-item v="funksjon_hjerne"/>
+      <list-item v="statistikk_bransje"/>
+      <list-item v="motpart_fagforbund"/>
+      <list-item v="motpart_forbund"/>
+      <list-item v="direktør_prisvinner"/>
+      <list-item v="forskingspris_forskingsråd"/>
+      <list-item v="pris_forskingsråd"/>
+      <list-item v="pris_råd"/>
+      <list-item v="verdi_forbund"/>
+      <list-item v="ressurs_jord"/>
+      <list-item v="arbeid_utval"/>
+      <list-item v="konklusjon_kommisjon"/>
+      <list-item v="naturskadefond_stat"/>
+      <list-item v="fond_stat"/>
+      <list-item v="tid_løpar"/>
+      <list-item v="tid_lege"/>
+      <list-item v="sak_klient"/>
+      <list-item v="sak_mann"/>
+      <list-item v="sak_kvinne"/>
+      <list-item v="verdi_stat"/>
+      <list-item v="kamp_parti"/>
+      <list-item v="sjanse_lag"/>
     </def-list>
     <def-list n="bi-gen-av2" c="Override generated lists">
       <list-item v="vinnar_liga"/>
@@ -830,6 +881,40 @@
       <list-item v="medlem_parti"/>
       <list-item v="medlem_klubb"/>
       <list-item v="medlem_test"/>
+      <list-item v="eigar_skule"/>
+      <list-item v="eigar_selskap"/>
+      <list-item v="eigar_klubb"/>
+      <list-item v="eksistens_union"/>
+      <list-item v="avkasting_fond"/>
+      <list-item v="avkasting_fond"/>
+      <list-item v="skugge_fotball"/>
+    </def-list>
+    <def-list n="bi-gen-frå2" c="Override generated lists">
+      <list-item v="sanksjon_samfunn"/>
+      <list-item v="sanksjon_verdssamfunn"/>
+      <list-item v="fråsegn_forbund"/>
+      <list-item v="undersøking_forbund"/>
+      <list-item v="fråsegn_råd"/>
+      <list-item v="undersøking_råd"/>
+    </def-list>
+    <def-list n="bi-gen-på2" c="Override generated lists">
+      <list-item v="spelar_lag"/>
+      <list-item v="prislapp_prosjekt"/>
+    </def-list>
+
+    <def-list n="obj-gen-med2" c="Override generated lists">
+      <list-item v="hensikt"/>
+    </def-list>
+    <def-list n="obj-gen-frå2" c="Override generated lists">
+      <list-item v="meiningsmåling"/>
+      <list-item v="fråsegn"/>
+    </def-list>
+    <def-list n="obj-gen-av2" c="Override generated lists">
+      <list-item v="eksistens"/>
+      <list-item v="skugge"/>
+    </def-list>
+    <def-list n="obj-gen-på2" c="Override generated lists">
+      <list-item v="prislapp"/>
     </def-list>
 
 <!-- BEGIN dev/genitive-prepositions: -->
@@ -1187,7 +1272,6 @@
 	<list-item v="drift_klubb"/>
 	<list-item v="dyr_familie"/>
 	<list-item v="dåp_kyrkje"/>
-	<list-item v="eigar_selskap"/>
 	<list-item v="ekspert_etat"/>
 	<list-item v="ekspert_verk"/>
 	<list-item v="endring_reform"/>
@@ -1461,21 +1545,11 @@
 
 <def-list n="bi-gen-rundt">
 	<list-item v="område_skule"/>
-	<list-item v="spelar_lag"/>
 </def-list>
 
 <def-list n="bi-gen-som">
-	<list-item v="avtale_statsminister"/>
-	<list-item v="eigar_skule"/>
-	<list-item v="forslag_torsdag"/>
 	<list-item v="jobb_minister"/>
-	<list-item v="penge_stat"/>
 	<list-item v="rolle_ordførar"/>
-	<list-item v="samandrag_justisminister"/>
-	<list-item v="tal_dag"/>
-	<list-item v="tale_president"/>
-	<list-item v="trygd_forelder"/>
-	<list-item v="undersøking_forbund"/>
 </def-list>
 
 <def-list n="bi-gen-uansett">
@@ -1839,7 +1913,6 @@
 </def-list>
 
 <def-list n="gen-som">
-	<list-item v="opinion"/>
 	<list-item v="rektor"/>
 </def-list>
 
@@ -2038,6 +2111,8 @@
       <choose>
         <when><test><in><var n="bilem"/><list n="bi-gen-til"/></in></test><append n="ntags"><lit-tag v="pr_til"/></append></when>
         <when><test><in><var n="bilem"/><list n="bi-gen-av2"/></in></test><append n="ntags"><lit-tag v="pr_av"/></append></when>
+        <when><test><in><var n="bilem"/><list n="bi-gen-frå2"/></in></test><append n="ntags"><lit-tag v="pr_frå"/></append></when>
+        <when><test><in><var n="bilem"/><list n="bi-gen-på2"/></in></test><append n="ntags"><lit-tag v="pr_på"/></append></when>
         <when c="Some prepositions only on plurals – «blant menn» but not *«blant mannen»">
           <test><and>
             <equal><clip pos="1" side="tl" part="nbr"/><lit-tag v="pl"/></equal>
@@ -2078,6 +2153,10 @@
           <choose><when c="Only use obj unigram if both out_gen-prep and bi-gen didn't pick something first">
             <test><equal><var n="gen-prep"/><lit v="til"/></equal></test>
             <choose>
+              <when><test><in><clip pos="1" side="tl" part="lem"/><list n="obj-gen-frå2"/></in></test><append n="ntags"><lit-tag v="pr_frå"/></append></when>
+              <when><test><in><clip pos="1" side="tl" part="lem"/><list n="obj-gen-med2"/></in></test><append n="ntags"><lit-tag v="pr_med"/></append></when>
+              <when><test><in><clip pos="1" side="tl" part="lem"/><list n="obj-gen-av2"/></in></test><append n="ntags"><lit-tag v="pr_av"/></append></when>
+              <when><test><in><clip pos="1" side="tl" part="lem"/><list n="obj-gen-på2"/></in></test><append n="ntags"><lit-tag v="pr_på"/></append></when>
               <when><test><in><clip pos="1" side="tl" part="lem"/><list n="obj-gen-av"/></in></test><append n="ntags"><lit-tag v="pr_av"/></append></when>
               <when><test><in><clip pos="1" side="tl" part="lem"/><list n="obj-gen-bak"/></in></test><append n="ntags"><lit-tag v="pr_bak"/></append></when>
               <when><test><in><clip pos="1" side="tl" part="lem"/><list n="obj-gen-for"/></in></test><append n="ntags"><lit-tag v="pr_for"/></append></when>
