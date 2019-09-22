@@ -725,6 +725,7 @@
     <def-var n="adjtags"/>
     <def-var n="advtags"/>
     <def-var n="prevlem"/>
+    <def-var n="prevnbr"/>
     <def-var n="bilem"/>
     <def-var n="aux"/>
     <def-var n="defnes"/>
@@ -2115,14 +2116,14 @@
         <when><test><in><var n="bilem"/><list n="bi-gen-på2"/></in></test><append n="ntags"><lit-tag v="pr_på"/></append></when>
         <when c="Some prepositions only on plurals – «blant menn» but not *«blant mannen»">
           <test><and>
-            <equal><clip pos="1" side="tl" part="nbr"/><lit-tag v="pl"/></equal>
+            <equal><var n="prevnbr"/><lit-tag v="pl"/></equal>
             <in><var n="bilem"/><list n="bi-gen-blant"/></in>
           </and></test>
           <append n="ntags"><lit-tag v="pr_blant"/></append>
         </when>
         <when c="Some prepositions only on plurals – «mellom menn» but not *«mellom mannen»">
           <test><and>
-            <equal><clip pos="1" side="tl" part="nbr"/><lit-tag v="pl"/></equal>
+            <equal><var n="prevnbr"/><lit-tag v="pl"/></equal>
             <in><var n="bilem"/><list n="bi-gen-mellom"/></in>
           </and></test>
           <append n="ntags"><lit-tag v="pr_mellom"/></append>
@@ -2172,6 +2173,7 @@
         </otherwise>
       </choose>
       <let><var n="prevlem"/><clip pos="1" side="tl" part="lem"/></let>
+      <let><var n="prevnbr"/><clip pos="1" side="tl" part="nbr"/></let>
     </def-macro>
 
     <def-macro n="stash_case_in_ntags" npar="1"
@@ -4400,6 +4402,7 @@ no lemq-moving">
           </chunk>
         </out>
         <let><var n="prevlem"/><clip pos="1" side="tl" part="lem"/></let>
+        <let><var n="prevnbr"/><clip pos="1" side="tl" part="nbr"/></let>
       </action>
     </rule>
 
