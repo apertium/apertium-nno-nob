@@ -733,7 +733,8 @@
     <def-var n="out_lemq"       c="lemq part to output after chunk"/>
     <def-var n="lemq-skip"      c="whether lemq can skip ndef's"/>
     <def-var n="det_gen"/>
-    <def-var n="lu_lemh"/>
+    <def-var n="lemma"          c="Used within macros"/>
+    <def-var n="brlemma"        c="Only used for 'britenes statsminister'-rule"/>
   </section-def-vars>
 
   <section-def-lists>
@@ -1936,11 +1937,6 @@
       <list-item v="natt"/>
       <list-item v="kveld"/>
     </def-list>
-    <!-- POSSESSED-DEPENDENT EXCEPTIONS TODO: omkretsen til verda,
-         lengden på dokumentet, ryktet til styret, lukta av/etter
-         kua… (although this could be coded in all the dictionaries,
-         or added by CG, it's probably simpler and more compact to do
-         it with def-list and macros) -->
     <def-list n="gen-i2">
       <list-item v="verd"/>
       <list-item v="delstat"/>
@@ -1985,6 +1981,7 @@
       <list-item v="kongedømme"/>
       <list-item v="gruppe"/>
     </def-list>
+
     <def-list n="ind-gen-på" c="fredagens kamp→kampen på fredag, remove definiteness for these">
       <list-item v="måndag"/>
       <list-item v="tysdag"/>
@@ -2110,6 +2107,7 @@
       </when></choose>
       <!-- Override gen-prep on prevlem by looking up bigram -->
       <let><var n="bilem"/><concat><clip pos="1" side="tl" part="lem"/><lit v="_"/><var n="prevlem"/></concat></let>
+      <modify-case><var n="bilem"/><lit v="aa"/></modify-case>
       <choose>
         <when><test><in><var n="bilem"/><list n="bi-gen-til"/></in></test><append n="ntags"><lit-tag v="pr_til"/></append></when>
         <when><test><in><var n="bilem"/><list n="bi-gen-av2"/></in></test><append n="ntags"><lit-tag v="pr_av"/></append></when>
@@ -2152,21 +2150,23 @@
         <when><test><in><var n="bilem"/><list n="bi-gen-ut"/></in></test><append n="ntags"><lit-tag v="pr_ut"/></append></when>
         <when><test><in><var n="bilem"/><list n="bi-gen-ved"/></in></test><append n="ntags"><lit-tag v="pr_ved"/></append></when>
         <otherwise>
+          <let><var n="lemma"/><clip pos="1" side="tl" part="lem"/></let>
+          <modify-case><var n="lemma"/><lit v="aa"/></modify-case>
           <choose><when c="Only use obj unigram if both out_gen-prep and bi-gen didn't pick something first">
             <test><equal><var n="gen-prep"/><lit v="til"/></equal></test>
             <choose>
-              <when><test><in><clip pos="1" side="tl" part="lem"/><list n="obj-gen-frå2"/></in></test><append n="ntags"><lit-tag v="pr_frå"/></append></when>
-              <when><test><in><clip pos="1" side="tl" part="lem"/><list n="obj-gen-med2"/></in></test><append n="ntags"><lit-tag v="pr_med"/></append></when>
-              <when><test><in><clip pos="1" side="tl" part="lem"/><list n="obj-gen-av2"/></in></test><append n="ntags"><lit-tag v="pr_av"/></append></when>
-              <when><test><in><clip pos="1" side="tl" part="lem"/><list n="obj-gen-på2"/></in></test><append n="ntags"><lit-tag v="pr_på"/></append></when>
-              <when><test><in><clip pos="1" side="tl" part="lem"/><list n="obj-gen-av"/></in></test><append n="ntags"><lit-tag v="pr_av"/></append></when>
-              <when><test><in><clip pos="1" side="tl" part="lem"/><list n="obj-gen-bak"/></in></test><append n="ntags"><lit-tag v="pr_bak"/></append></when>
-              <when><test><in><clip pos="1" side="tl" part="lem"/><list n="obj-gen-for"/></in></test><append n="ntags"><lit-tag v="pr_for"/></append></when>
-              <when><test><in><clip pos="1" side="tl" part="lem"/><list n="obj-gen-frå"/></in></test><append n="ntags"><lit-tag v="pr_frå"/></append></when>
-              <when><test><in><clip pos="1" side="tl" part="lem"/><list n="obj-gen-gjennom"/></in></test><append n="ntags"><lit-tag v="pr_gjennom"/></append></when>
-              <when><test><in><clip pos="1" side="tl" part="lem"/><list n="obj-gen-i"/></in></test><append n="ntags"><lit-tag v="pr_i"/></append></when>
-              <when><test><in><clip pos="1" side="tl" part="lem"/><list n="obj-gen-med"/></in></test><append n="ntags"><lit-tag v="pr_med"/></append></when>
-              <when><test><in><clip pos="1" side="tl" part="lem"/><list n="obj-gen-på"/></in></test><append n="ntags"><lit-tag v="pr_på"/></append></when>
+              <when><test><in><var n="lemma"/><list n="obj-gen-frå2"/></in></test><append n="ntags"><lit-tag v="pr_frå"/></append></when>
+              <when><test><in><var n="lemma"/><list n="obj-gen-med2"/></in></test><append n="ntags"><lit-tag v="pr_med"/></append></when>
+              <when><test><in><var n="lemma"/><list n="obj-gen-av2"/></in></test><append n="ntags"><lit-tag v="pr_av"/></append></when>
+              <when><test><in><var n="lemma"/><list n="obj-gen-på2"/></in></test><append n="ntags"><lit-tag v="pr_på"/></append></when>
+              <when><test><in><var n="lemma"/><list n="obj-gen-av"/></in></test><append n="ntags"><lit-tag v="pr_av"/></append></when>
+              <when><test><in><var n="lemma"/><list n="obj-gen-bak"/></in></test><append n="ntags"><lit-tag v="pr_bak"/></append></when>
+              <when><test><in><var n="lemma"/><list n="obj-gen-for"/></in></test><append n="ntags"><lit-tag v="pr_for"/></append></when>
+              <when><test><in><var n="lemma"/><list n="obj-gen-frå"/></in></test><append n="ntags"><lit-tag v="pr_frå"/></append></when>
+              <when><test><in><var n="lemma"/><list n="obj-gen-gjennom"/></in></test><append n="ntags"><lit-tag v="pr_gjennom"/></append></when>
+              <when><test><in><var n="lemma"/><list n="obj-gen-i"/></in></test><append n="ntags"><lit-tag v="pr_i"/></append></when>
+              <when><test><in><var n="lemma"/><list n="obj-gen-med"/></in></test><append n="ntags"><lit-tag v="pr_med"/></append></when>
+              <when><test><in><var n="lemma"/><list n="obj-gen-på"/></in></test><append n="ntags"><lit-tag v="pr_på"/></append></when>
             </choose>
           </when></choose>
         </otherwise>
@@ -2623,8 +2623,8 @@
 
     <def-macro n="out_gen-prep" npar="1"
                c="arg.1: noun. Only acts on genitives. Adds a space after.">
-      <let><var n="lu_lemh"/><clip pos="1" side="tl" part="lemh"/></let>
-      <modify-case><var n="lu_lemh"/><lit v="aa"/></modify-case>
+      <let><var n="lemma"/><clip pos="1" side="tl" part="lemh"/></let>
+      <modify-case><var n="lemma"/><lit v="aa"/></modify-case>
       <choose><when c="gen">
         <test><and>
           <equal><clip pos="1" side="sl" part="cas"/><lit-tag v="gen"/></equal>
@@ -2633,48 +2633,48 @@
         <choose>
           <!-- Manual lists first: -->
           <when c="i+defdrop">
-            <test><in caseless="yes"><var n="lu_lemh"/><list n="ind-gen-i"/></in></test>
+            <test><in caseless="yes"><var n="lemma"/><list n="ind-gen-i"/></in></test>
             <let><clip pos="1" side="tl" part="tags"/><concat><clip pos="1" side="tl" part="tags"/><lit-tag v="defdrop"/></concat></let>
             <let><var n="gen-prep"/><lit v="i"/></let>
           </when>
           <when c="på+defdrop">
-            <test><in><var n="lu_lemh"/><list n="ind-gen-på"/></in></test>
+            <test><in><var n="lemma"/><list n="ind-gen-på"/></in></test>
             <let><clip pos="1" side="tl" part="tags"/><concat><clip pos="1" side="tl" part="tags"/><lit-tag v="defdrop"/></concat></let>
             <let><var n="gen-prep"/><lit v="på"/></let>
           </when>
-          <when><test><in><var n="lu_lemh"/><list n="gen-i2"/></in></test><let><var n="gen-prep"/><lit v="i"/></let></when>
-          <when><test><in><var n="lu_lemh"/><list n="gen-på2"/></in></test><let><var n="gen-prep"/><lit v="på"/></let></when>
-          <when><test><in><var n="lu_lemh"/><list n="gen-av2"/></in></test><let><var n="gen-prep"/><lit v="av"/></let></when>
-          <when><test><in><var n="lu_lemh"/><list n="gen-for2"/></in></test><let><var n="gen-prep"/><lit v="for"/></let></when>
-          <when><test><in><var n="lu_lemh"/><list n="gen-frå2"/></in></test><let><var n="gen-prep"/><lit v="frå"/></let></when>
+          <when><test><in><var n="lemma"/><list n="gen-i2"/></in></test><let><var n="gen-prep"/><lit v="i"/></let></when>
+          <when><test><in><var n="lemma"/><list n="gen-på2"/></in></test><let><var n="gen-prep"/><lit v="på"/></let></when>
+          <when><test><in><var n="lemma"/><list n="gen-av2"/></in></test><let><var n="gen-prep"/><lit v="av"/></let></when>
+          <when><test><in><var n="lemma"/><list n="gen-for2"/></in></test><let><var n="gen-prep"/><lit v="for"/></let></when>
+          <when><test><in><var n="lemma"/><list n="gen-frå2"/></in></test><let><var n="gen-prep"/><lit v="frå"/></let></when>
           <when c="Some prepositions only on plurals – «blant menn» but not *«blant mannen»">
             <test><and>
               <equal><clip pos="1" side="tl" part="nbr"/><lit-tag v="pl"/></equal>
-              <in><var n="lu_lemh"/><list n="gen-blant"/></in>
+              <in><var n="lemma"/><list n="gen-blant"/></in>
             </and></test>
             <let><var n="gen-prep"/><lit v="blant"/></let>
           </when>
           <when c="Some prepositions only on plurals – «mellom menn» but not *«mellom mannen»">
             <test><and>
               <equal><clip pos="1" side="tl" part="nbr"/><lit-tag v="pl"/></equal>
-              <in><var n="lu_lemh"/><list n="gen-mellom"/></in>
+              <in><var n="lemma"/><list n="gen-mellom"/></in>
             </and></test>
             <let><var n="gen-prep"/><lit v="mellom"/></let>
           </when>
           <!-- dev/genitive-prepositions: -->
-          <when><test><in><var n="lu_lemh"/><list n="gen-av"/></in></test><let><var n="gen-prep"/><lit v="av"/></let></when>
-          <when><test><in><var n="lu_lemh"/><list n="gen-bak"/></in></test><let><var n="gen-prep"/><lit v="bak"/></let></when>
-          <when><test><in><var n="lu_lemh"/><list n="gen-etter"/></in></test><let><var n="gen-prep"/><lit v="etter"/></let></when>
-          <when><test><in><var n="lu_lemh"/><list n="gen-for"/></in></test><let><var n="gen-prep"/><lit v="for"/></let></when>
-          <when><test><in><var n="lu_lemh"/><list n="gen-frå"/></in></test><let><var n="gen-prep"/><lit v="frå"/></let></when>
-          <when><test><in><var n="lu_lemh"/><list n="gen-gjennom"/></in></test><let><var n="gen-prep"/><lit v="gjennom"/></let></when>
-          <when><test><in><var n="lu_lemh"/><list n="gen-hos"/></in></test><let><var n="gen-prep"/><lit v="hos"/></let></when>
-          <when><test><in><var n="lu_lemh"/><list n="gen-i"/></in></test><let><var n="gen-prep"/><lit v="i"/></let></when>
-          <when><test><in><var n="lu_lemh"/><list n="gen-innan"/></in></test><let><var n="gen-prep"/><lit v="innan"/></let></when>
-          <when><test><in><var n="lu_lemh"/><list n="gen-om"/></in></test><let><var n="gen-prep"/><lit v="om"/></let></when>
-          <when><test><in><var n="lu_lemh"/><list n="gen-på"/></in></test><let><var n="gen-prep"/><lit v="på"/></let></when>
-          <when><test><in><var n="lu_lemh"/><list n="gen-som"/></in></test><let><var n="gen-prep"/><lit v="som"/></let></when>
-          <when><test><in><var n="lu_lemh"/><list n="gen-ved"/></in></test><let><var n="gen-prep"/><lit v="ved"/></let></when>
+          <when><test><in><var n="lemma"/><list n="gen-av"/></in></test><let><var n="gen-prep"/><lit v="av"/></let></when>
+          <when><test><in><var n="lemma"/><list n="gen-bak"/></in></test><let><var n="gen-prep"/><lit v="bak"/></let></when>
+          <when><test><in><var n="lemma"/><list n="gen-etter"/></in></test><let><var n="gen-prep"/><lit v="etter"/></let></when>
+          <when><test><in><var n="lemma"/><list n="gen-for"/></in></test><let><var n="gen-prep"/><lit v="for"/></let></when>
+          <when><test><in><var n="lemma"/><list n="gen-frå"/></in></test><let><var n="gen-prep"/><lit v="frå"/></let></when>
+          <when><test><in><var n="lemma"/><list n="gen-gjennom"/></in></test><let><var n="gen-prep"/><lit v="gjennom"/></let></when>
+          <when><test><in><var n="lemma"/><list n="gen-hos"/></in></test><let><var n="gen-prep"/><lit v="hos"/></let></when>
+          <when><test><in><var n="lemma"/><list n="gen-i"/></in></test><let><var n="gen-prep"/><lit v="i"/></let></when>
+          <when><test><in><var n="lemma"/><list n="gen-innan"/></in></test><let><var n="gen-prep"/><lit v="innan"/></let></when>
+          <when><test><in><var n="lemma"/><list n="gen-om"/></in></test><let><var n="gen-prep"/><lit v="om"/></let></when>
+          <when><test><in><var n="lemma"/><list n="gen-på"/></in></test><let><var n="gen-prep"/><lit v="på"/></let></when>
+          <when><test><in><var n="lemma"/><list n="gen-som"/></in></test><let><var n="gen-prep"/><lit v="som"/></let></when>
+          <when><test><in><var n="lemma"/><list n="gen-ved"/></in></test><let><var n="gen-prep"/><lit v="ved"/></let></when>
 
           <otherwise c="til">
             <let><var n="gen-prep"/><lit v="til"/></let>
@@ -2871,32 +2871,32 @@
         <pattern-item n="nind_indgen"/>
       </pattern>
       <action>
-        <let><var n="lu_lemh"/><clip pos="1" side="sl" part="lemh"/></let>
-        <modify-case><var n="lu_lemh"/><lit v="aa"/></modify-case>
+        <let><var n="brlemma"/><clip pos="1" side="sl" part="lemh"/></let>
+        <modify-case><var n="brlemma"/><lit v="aa"/></modify-case>
         <choose>
           <when>
-            <test><equal><var n="lu_lemh"/><lit v="brite"/></equal></test>
-            <let>        <var n="lu_lemh"/><lit v="britisk"/></let>
+            <test><equal><var n="brlemma"/><lit v="brite"/></equal></test>
+            <let>        <var n="brlemma"/><lit v="britisk"/></let>
           </when>
           <when>
-            <test><equal><var n="lu_lemh"/><lit v="russer"/></equal></test>
-            <let>        <var n="lu_lemh"/><lit v="russisk"/></let>
+            <test><equal><var n="brlemma"/><lit v="russer"/></equal></test>
+            <let>        <var n="brlemma"/><lit v="russisk"/></let>
           </when>
           <when>
-            <test><equal><var n="lu_lemh"/><lit v="sveitser"/></equal></test>
-            <let>        <var n="lu_lemh"/><lit v="sveitsisk"/></let>
+            <test><equal><var n="brlemma"/><lit v="sveitser"/></equal></test>
+            <let>        <var n="brlemma"/><lit v="sveitsisk"/></let>
           </when>
           <when>
-            <test><equal><var n="lu_lemh"/><lit v="same"/></equal></test>
-            <let>        <var n="lu_lemh"/><lit v="samisk"/></let>
+            <test><equal><var n="brlemma"/><lit v="same"/></equal></test>
+            <let>        <var n="brlemma"/><lit v="samisk"/></let>
           </when>
           <when>
-            <test><equal><var n="lu_lemh"/><lit v="india"/></equal></test>
-            <let>        <var n="lu_lemh"/><lit v="indisk"/></let>
+            <test><equal><var n="brlemma"/><lit v="india"/></equal></test>
+            <let>        <var n="brlemma"/><lit v="indisk"/></let>
           </when>
           <when>
-            <test><equal><var n="lu_lemh"/><lit v="kina"/></equal></test>
-            <let>        <var n="lu_lemh"/><lit v="kinesisk"/></let>
+            <test><equal><var n="brlemma"/><lit v="kina"/></equal></test>
+            <let>        <var n="brlemma"/><lit v="kinesisk"/></let>
           </when>
           <otherwise>
             <reject-current-rule shifting="no"/>
@@ -2929,7 +2929,7 @@
             <tags><tag><var n="ntags"/></tag></tags>
             <var n="grau_aux"/>
             <lu>
-              <var n="lu_lemh"/>
+              <var n="brlemma"/>
               <var n="adjtags"/>
             </lu>
             <b pos="1"/>
