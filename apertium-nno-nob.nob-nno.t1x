@@ -361,8 +361,6 @@
       <cat-item tags="n.*.pl.ind.gen"  lemma="time"/>
       <cat-item tags="n.*.sg.*.gen"    lemma="sekund"/>
       <cat-item tags="n.*.pl.ind.gen"  lemma="sekund"/>
-      <cat-item tags="n.*.sg.*.gen"    lemma="natt"/>
-      <cat-item tags="n.*.pl.ind.gen"  lemma="natt"/>
       <cat-item tags="n.*.sg.*.gen"    lemma="døgn"/>
       <cat-item tags="n.*.pl.ind.gen"  lemma="døgn"/>
 
@@ -1830,7 +1828,6 @@
 	<list-item v="mål"/>
 	<list-item v="måling"/>
 	<list-item v="naboland"/>
-	<list-item v="natt"/>
 	<list-item v="nett"/>
 	<list-item v="parlament"/>
 	<list-item v="prosent"/>
@@ -2626,6 +2623,8 @@
 
     <def-macro n="out_gen-prep" npar="1"
                c="arg.1: noun. Only acts on genitives. Adds a space after.">
+      <let><var n="lu_lemh"/><clip pos="1" side="tl" part="lemh"/></let>
+      <modify-case><var n="lu_lemh"/><lit v="aa"/></modify-case>
       <choose><when c="gen">
         <test><and>
           <equal><clip pos="1" side="sl" part="cas"/><lit-tag v="gen"/></equal>
@@ -2633,72 +2632,49 @@
         </and></test>
         <choose>
           <!-- Manual lists first: -->
-          <when c="i">
-            <test><in><clip pos="1" side="tl" part="lemh"/><list n="gen-i2"/></in></test>
-            <choose>
-              <when>
-                <test><in><clip pos="1" side="tl" part="lemh"/><list n="ind-gen-i"/></in></test>
-                <let>
-                  <clip pos="1" side="tl" part="tags"/>
-                  <concat><clip pos="1" side="tl" part="tags"/><lit-tag v="defdrop"/></concat>
-                </let>
-              </when>
-            </choose>
+          <when c="i+defdrop">
+            <test><in caseless="yes"><var n="lu_lemh"/><list n="ind-gen-i"/></in></test>
+            <let><clip pos="1" side="tl" part="tags"/><concat><clip pos="1" side="tl" part="tags"/><lit-tag v="defdrop"/></concat></let>
             <let><var n="gen-prep"/><lit v="i"/></let>
           </when>
-          <when c="på">
-            <test><in><clip pos="1" side="tl" part="lemh"/><list n="gen-på2"/></in></test>
-            <choose>
-              <when>
-                <test><in><clip pos="1" side="tl" part="lemh"/><list n="ind-gen-på"/></in></test>
-                <let>
-                  <clip pos="1" side="tl" part="tags"/>
-                  <concat><clip pos="1" side="tl" part="tags"/><lit-tag v="defdrop"/></concat>
-                </let>
-              </when>
-            </choose>
+          <when c="på+defdrop">
+            <test><in><var n="lu_lemh"/><list n="ind-gen-på"/></in></test>
+            <let><clip pos="1" side="tl" part="tags"/><concat><clip pos="1" side="tl" part="tags"/><lit-tag v="defdrop"/></concat></let>
             <let><var n="gen-prep"/><lit v="på"/></let>
           </when>
-          <when c="av2">
-            <test><in><clip pos="1" side="tl" part="lemh"/><list n="gen-av2"/></in></test>
-            <let><var n="gen-prep"/><lit v="av"/></let>
-          </when>
-          <when c="for2">
-            <test><in><clip pos="1" side="tl" part="lemh"/><list n="gen-for2"/></in></test>
-            <let><var n="gen-prep"/><lit v="for"/></let>
-          </when>
-          <when c="frå2">
-            <test><in><clip pos="1" side="tl" part="lemh"/><list n="gen-frå2"/></in></test>
-            <let><var n="gen-prep"/><lit v="frå"/></let>
-          </when>
+          <when><test><in><var n="lu_lemh"/><list n="gen-i2"/></in></test><let><var n="gen-prep"/><lit v="i"/></let></when>
+          <when><test><in><var n="lu_lemh"/><list n="gen-på2"/></in></test><let><var n="gen-prep"/><lit v="på"/></let></when>
+          <when><test><in><var n="lu_lemh"/><list n="gen-av2"/></in></test><let><var n="gen-prep"/><lit v="av"/></let></when>
+          <when><test><in><var n="lu_lemh"/><list n="gen-for2"/></in></test><let><var n="gen-prep"/><lit v="for"/></let></when>
+          <when><test><in><var n="lu_lemh"/><list n="gen-frå2"/></in></test><let><var n="gen-prep"/><lit v="frå"/></let></when>
           <when c="Some prepositions only on plurals – «blant menn» but not *«blant mannen»">
             <test><and>
               <equal><clip pos="1" side="tl" part="nbr"/><lit-tag v="pl"/></equal>
-              <in><clip pos="1" side="tl" part="lemh"/><list n="gen-blant"/></in>
+              <in><var n="lu_lemh"/><list n="gen-blant"/></in>
             </and></test>
             <let><var n="gen-prep"/><lit v="blant"/></let>
           </when>
           <when c="Some prepositions only on plurals – «mellom menn» but not *«mellom mannen»">
             <test><and>
               <equal><clip pos="1" side="tl" part="nbr"/><lit-tag v="pl"/></equal>
-              <in><clip pos="1" side="tl" part="lemh"/><list n="gen-mellom"/></in>
+              <in><var n="lu_lemh"/><list n="gen-mellom"/></in>
             </and></test>
             <let><var n="gen-prep"/><lit v="mellom"/></let>
           </when>
           <!-- dev/genitive-prepositions: -->
-          <when><test><in><clip pos="1" side="tl" part="lemh"/><list n="gen-av"/></in></test><let><var n="gen-prep"/><lit v="av"/></let></when>
-          <when><test><in><clip pos="1" side="tl" part="lemh"/><list n="gen-bak"/></in></test><let><var n="gen-prep"/><lit v="bak"/></let></when>
-          <when><test><in><clip pos="1" side="tl" part="lemh"/><list n="gen-etter"/></in></test><let><var n="gen-prep"/><lit v="etter"/></let></when>
-          <when><test><in><clip pos="1" side="tl" part="lemh"/><list n="gen-for"/></in></test><let><var n="gen-prep"/><lit v="for"/></let></when>
-          <when><test><in><clip pos="1" side="tl" part="lemh"/><list n="gen-frå"/></in></test><let><var n="gen-prep"/><lit v="frå"/></let></when>
-          <when><test><in><clip pos="1" side="tl" part="lemh"/><list n="gen-gjennom"/></in></test><let><var n="gen-prep"/><lit v="gjennom"/></let></when>
-          <when><test><in><clip pos="1" side="tl" part="lemh"/><list n="gen-hos"/></in></test><let><var n="gen-prep"/><lit v="hos"/></let></when>
-          <when><test><in><clip pos="1" side="tl" part="lemh"/><list n="gen-i"/></in></test><let><var n="gen-prep"/><lit v="i"/></let></when>
-          <when><test><in><clip pos="1" side="tl" part="lemh"/><list n="gen-innan"/></in></test><let><var n="gen-prep"/><lit v="innan"/></let></when>
-          <when><test><in><clip pos="1" side="tl" part="lemh"/><list n="gen-om"/></in></test><let><var n="gen-prep"/><lit v="om"/></let></when>
-          <when><test><in><clip pos="1" side="tl" part="lemh"/><list n="gen-på"/></in></test><let><var n="gen-prep"/><lit v="på"/></let></when>
-          <when><test><in><clip pos="1" side="tl" part="lemh"/><list n="gen-som"/></in></test><let><var n="gen-prep"/><lit v="som"/></let></when>
-          <when><test><in><clip pos="1" side="tl" part="lemh"/><list n="gen-ved"/></in></test><let><var n="gen-prep"/><lit v="ved"/></let></when>
+          <when><test><in><var n="lu_lemh"/><list n="gen-av"/></in></test><let><var n="gen-prep"/><lit v="av"/></let></when>
+          <when><test><in><var n="lu_lemh"/><list n="gen-bak"/></in></test><let><var n="gen-prep"/><lit v="bak"/></let></when>
+          <when><test><in><var n="lu_lemh"/><list n="gen-etter"/></in></test><let><var n="gen-prep"/><lit v="etter"/></let></when>
+          <when><test><in><var n="lu_lemh"/><list n="gen-for"/></in></test><let><var n="gen-prep"/><lit v="for"/></let></when>
+          <when><test><in><var n="lu_lemh"/><list n="gen-frå"/></in></test><let><var n="gen-prep"/><lit v="frå"/></let></when>
+          <when><test><in><var n="lu_lemh"/><list n="gen-gjennom"/></in></test><let><var n="gen-prep"/><lit v="gjennom"/></let></when>
+          <when><test><in><var n="lu_lemh"/><list n="gen-hos"/></in></test><let><var n="gen-prep"/><lit v="hos"/></let></when>
+          <when><test><in><var n="lu_lemh"/><list n="gen-i"/></in></test><let><var n="gen-prep"/><lit v="i"/></let></when>
+          <when><test><in><var n="lu_lemh"/><list n="gen-innan"/></in></test><let><var n="gen-prep"/><lit v="innan"/></let></when>
+          <when><test><in><var n="lu_lemh"/><list n="gen-om"/></in></test><let><var n="gen-prep"/><lit v="om"/></let></when>
+          <when><test><in><var n="lu_lemh"/><list n="gen-på"/></in></test><let><var n="gen-prep"/><lit v="på"/></let></when>
+          <when><test><in><var n="lu_lemh"/><list n="gen-som"/></in></test><let><var n="gen-prep"/><lit v="som"/></let></when>
+          <when><test><in><var n="lu_lemh"/><list n="gen-ved"/></in></test><let><var n="gen-prep"/><lit v="ved"/></let></when>
 
           <otherwise c="til">
             <let><var n="gen-prep"/><lit v="til"/></let>

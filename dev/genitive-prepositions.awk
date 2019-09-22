@@ -98,7 +98,7 @@ END{
     print "\n<!-- put in t1x out_gen-prep macro choose: -->"
     for(pr in unilist) {
         prs=pr; sub(/<.*/,"",prs)
-        printf "          <when><test><in><clip pos=\"1\" side=\"tl\" part=\"lemh\"/><list n=\"gen-%s\"/></in></test><let><var n=\"gen-prep\"/><lit v=\"%s\"/></let></when>\n", prs, prs
+        printf "          <when><test><in><var n=\"lu_lemh\"/><list n=\"gen-%s\"/></in></test><let><var n=\"gen-prep\"/><lit v=\"%s\"/></let></when>\n", prs, prs
     }
 
     print "\n<!-- put in t1x bigram_genprep macro choose: -->"
