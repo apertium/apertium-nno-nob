@@ -29,6 +29,17 @@
       <cat-item tags="n.*.ind"/>
       <cat-item tags="n.*.ind.*"/>
     </def-cat>
+    <def-cat n="nind_nogen">
+      <cat-item tags="n.*.ind"/>
+      <cat-item tags="n.*.ind.sl-nt"/>
+      <cat-item tags="n.*.ind.sl-m"/>
+      <cat-item tags="n.*.ind.sl-mf"/>
+      <cat-item tags="n.*.ind.sl-f"/>
+      <cat-item tags="n.*.ind.sl-nt.*"/>
+      <cat-item tags="n.*.ind.sl-m.*"/>
+      <cat-item tags="n.*.ind.sl-mf.*"/>
+      <cat-item tags="n.*.ind.sl-f.*"/>
+    </def-cat>
     <def-cat n="nplind">
       <cat-item tags="n.*.pl.ind"/>
       <cat-item tags="n.*.pl.ind.*"/>
@@ -1445,13 +1456,13 @@
         </out>
       </action>
     </rule>
-    <rule comment="DETPOS NIND: min mor => mora mi
-                                ditt hus => huset ditt
-                   nind makes sure we don't match 'min Per(np)' nor 'min bils(gen)'
+    <rule comment="DETPOS NIND_NOGEN: min mor => mora mi
+                                      ditt hus => huset ditt
+                   nind_nogen makes sure we don't match 'min Per(np)' nor 'min bils(gen)'
                    Second example shows how determiners ..um..determine number.">
       <pattern>
         <pattern-item n="detpos"/>
-        <pattern-item n="nind"/>
+        <pattern-item n="nind_nogen"/>
       </pattern>
       <action>
         <call-macro n="set_ana"><with-param pos="2"/></call-macro>
