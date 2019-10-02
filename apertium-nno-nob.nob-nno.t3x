@@ -239,7 +239,10 @@
                   it's called by maybe_out_ndem/maybe_out_ndem2 which decide that.">
       <choose>
         <when>
-          <test><in><clip pos="1" part="gen"/><list n="dem_sg_genders"/></in></test>
+          <test><and>
+            <in><clip pos="1" part="gen"/><list n="dem_sg_genders"/></in>
+            <equal><clip pos="1" part="nbr"/><lit-tag v="sg"/></equal>
+          </and></test>
           <out>
             <lu>
               <lit v="den"/>
