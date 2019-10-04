@@ -122,6 +122,9 @@
     <def-cat n="detqntpl">
       <cat-item tags="det.qnt.*.pl"/>
     </def-cat>
+    <def-cat n="detall_qntpl">
+      <cat-item lemma="detall" tags="det.qnt.*.pl"/>
+    </def-cat>
 
     <def-cat n="vblex">
       <cat-item tags="vblex"/>
@@ -1589,7 +1592,31 @@
         </out>
       </action>
     </rule>
-    <rule comment="DETQNTPL PREP_GEN NGENSGDEF NPLIND: alle [til] kommunen idrettslag => alle idrettslaga til kommunen">
+    <rule comment="DETQNTPL PREP_GEN NGENSGDEF NPLIND: alle [til] kommunen idrettslag => alle [dei] idrettslaga til kommunen">
+      <pattern>
+	<pattern-item n="detall_qntpl"/>
+	<pattern-item n="prep_gen"/>
+	<pattern-item n="ngensgdef"/>
+	<pattern-item n="nplind"/>
+      </pattern>
+      <action>
+        <call-macro n="set_ana"><with-param pos="4"/></call-macro>
+        <out>
+          <chunk><clip pos="1" part="whole"/></chunk>
+          <b pos="1"/>
+        </out>
+        <call-macro n="out_det_when_adjlike"><with-param pos="4"/><with-param pos="2"/></call-macro>
+        <call-macro n="out_ndef"><with-param pos="4"/><with-param pos="4"/></call-macro>
+        <out>
+          <b pos="2"/>
+          <chunk><clip pos="2" part="whole"/></chunk>
+          <b pos="3"/>
+          <chunk><clip pos="3" part="whole"/></chunk>
+        </out>
+      </action>
+    </rule>
+    <rule comment="DETQNTPL PREP_GEN NGENSGDEF NPLIND: mange [til] kommunen idrettslag => [dei] mange idrettslaga til kommunen
+                   As above rule, but opposite order of out_det_when_adjlike and detqntpl">
       <pattern>
 	<pattern-item n="detqntpl"/>
 	<pattern-item n="prep_gen"/>
