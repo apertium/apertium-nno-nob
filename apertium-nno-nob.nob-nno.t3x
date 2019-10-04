@@ -80,6 +80,9 @@
       <cat-item name="detdd"/>
       <cat-item name="detsin"/>
     </def-cat>
+    <def-cat n="prn">
+      <cat-item name="prn"/>
+    </def-cat>
     <def-cat n="vblex">
       <cat-item name="vblex"/>
     </def-cat>
@@ -418,6 +421,31 @@
             <out><lu><clip pos="1" part="whole"/></lu></out>
           </otherwise>
         </choose>
+      </action>
+    </rule>
+
+    <rule comment="CHUNK: prn">
+      <pattern>
+        <pattern-item n="prn"/>
+      </pattern>
+      <action>
+        <choose><when>
+          <test><equal><clip pos="1" part="gen"/><lit-tag v="GD"/></equal></test>
+          <choose><when>
+            <test><in><clip pos="0" part="gen"/><list n="dem_sg_genders"/></in></test>
+            <let><clip pos="1" part="gen"/><clip pos="0" part="gen"/></let>
+          </when></choose>
+          <choose><when>
+            <test><and>
+              <equal><clip pos="1" part="lemh"/><lit v="han"/></equal>
+              <equal><clip pos="1" part="gen"/><lit-tag v="f"/></equal>
+            </and></test>
+            <let><clip pos="1" part="lemh"/><lit v="ho"/></let>
+          </when></choose>
+        </when></choose>
+        <out>
+          <lu><clip pos="1" part="whole"/></lu>
+        </out>
       </action>
     </rule>
 
