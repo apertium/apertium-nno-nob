@@ -326,7 +326,8 @@
     <def-var n="lemh"/>
     <def-var n="pr_lemh"/>
     <def-var n="genpr"/>
-    <def-var n="ana_gen"/>
+    <def-var n="ana_gen"     c="nt or mf"/>
+    <def-var n="ana_gen_m-f" c="m or f"/>
     <def-var n="ana_nbr"/>
     <def-var n="ana_temps" c="Last seen finite verb temps (pres/pret)"/>
   </section-def-vars>
@@ -469,6 +470,7 @@
               <equal><var n="ana_gen"/><lit-tag v="f"/></equal>
               <equal><var n="ana_gen"/><lit-tag v="m"/></equal>
             </or></test>
+            <let><var n="ana_gen_m-f"/><var n="ana_gen"/></let>
             <let><var n="ana_gen"/><lit-tag v="mf"/></let>
           </when></choose>
         </when>
@@ -495,6 +497,21 @@
       <choose><when>
         <test><equal><clip pos="1" part="nbr"/><lit-tag v="pl"/></equal></test>
         <let><clip pos="1" part="art"/><lit v=""/></let>
+      </when></choose>
+    </def-macro>
+    <def-macro n="modify_prn_gen" npar="1"
+               c="arg.1: prn">
+      <choose><when>
+        <test><equal><clip pos="1" part="gen"/><lit-tag v="GD"/></equal></test>
+        <choose>
+          <when>
+            <test><equal><var n="ana_gen_m-f"/><lit v=""/></equal></test>
+            <let><clip pos="1" part="gen"/><lit-tag v="m"/></let>
+          </when>
+          <otherwise>
+            <let><clip pos="1" part="gen"/><var n="ana_gen_m-f"/></let>
+          </otherwise>
+        </choose>
       </when></choose>
     </def-macro>
 
@@ -767,6 +784,7 @@
         <pattern-item n="prn_nt"/>
       </pattern>
       <action>
+        <call-macro n="modify_prn_gen"><with-param pos="3"/></call-macro>
         <call-macro n="modify_pp_gen_nbr"><with-param pos="2"/></call-macro>
         <out>
           <chunk>
@@ -1208,7 +1226,7 @@
       </action>
     </rule>
 
-    <rule comment="VBLEX LEMQ PRN => VBLEX PRN LEMQ
+    <rule comment="VBLEX LEMQ PRN_NOM => VBLEX PRN LEMQ
                    Push blanks one place up since lemq space is inside the chunk.">
       <pattern>
         <pattern-item n="vblex"/>
@@ -1216,6 +1234,7 @@
         <pattern-item n="prn_nom"/>
       </pattern>
       <action>
+        <call-macro n="modify_prn_gen"><with-param pos="3"/></call-macro>
         <call-macro n="set_ana"><with-param pos="1"/></call-macro>
         <out>
           <chunk>
@@ -1243,6 +1262,7 @@
         <pattern-item n="ndef"/>
       </pattern>
       <action>
+        <call-macro n="modify_prn_gen"><with-param pos="1"/></call-macro>
         <call-macro n="set_ana"><with-param pos="1"/></call-macro>
         <out>
           <chunk>
@@ -1981,6 +2001,7 @@
         <pattern-item n="prn"/>
       </pattern>
       <action>
+        <call-macro n="modify_prn_gen"><with-param pos="1"/></call-macro>
         <call-macro n="set_ana"><with-param pos="1"/></call-macro>
         <out>
           <chunk><clip pos="1" part="whole"/></chunk>
