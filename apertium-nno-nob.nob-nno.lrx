@@ -538,8 +538,12 @@
   <rule><match lemma="formål" tags="n.*"><select lemma="formål"/></match></rule>
 
   <rule><match lemma="gang" tags="n.*"><select lemma="gong"/></match></rule>
-  <rule weight="2.0">
+  <rule weight="2.0" c="gang- og sykkelsti">
     <match lemma="gang" tags="n.*.cmp-split"><select lemma="gang"/></match>
+  </rule>
+  <rule weight="2.0" c="rettens gang">
+    <match lemma="rett" tags="n.*.gen"/>
+    <match lemma="gang" tags="n.*"><select lemma="gang"/></match>
   </rule>
   <rule weight="2.0">
     <!-- TODO: can't merge this with the next rule until we fix https://github.com/apertium/apertium-lex-tools/issues/12 -->
