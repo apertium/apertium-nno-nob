@@ -1484,4 +1484,11 @@
     <match lemma="aldeles" tags="adv"><select lemma="slett"/></match>
     <match lemma="ikke" tags="adv"/>
   </rule>
+
+  <rule><match lemma="bevege# seg" tags="adj.*"><select lemma="røre# seg"/></match></rule>
+  <rule><match lemma="bevege# seg" tags="vblex.*"><select lemma="røre# seg"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="bevege# seg" tags="vblex.*"><select lemma="gå"/></match>
+    <match tags="pr"/>
+  </rule>
 </rules>
