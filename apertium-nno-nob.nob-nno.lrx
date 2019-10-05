@@ -539,6 +539,9 @@
 
   <rule><match lemma="gang" tags="n.*"><select lemma="gong"/></match></rule>
   <rule weight="2.0">
+    <match lemma="gang" tags="n.*.cmp-split"><select lemma="gang"/></match>
+  </rule>
+  <rule weight="2.0">
     <!-- TODO: can't merge this with the next rule until we fix https://github.com/apertium/apertium-lex-tools/issues/12 -->
     <match tags="n.*.*.*.cmp"/>
     <match lemma="gang" tags="n.*">
