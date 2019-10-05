@@ -97,11 +97,12 @@
     <def-cat n="prn_nom">
       <cat-item tags="prn.*.nom"/>
     </def-cat>
-    <def-cat n="prn_nt">
+    <def-cat n="prn_subj">
       <cat-item tags="prn.*.nt.*"/>
       <cat-item tags="prn.*.nt"/>
       <cat-item tags="det.*.expl.*"/>
       <cat-item tags="det.*.expl"/>
+      <cat-item tags="prn.pers.*.nom"/>
     </def-cat>
     <def-cat n="sin">
       <cat-item lemma="detsin" tags="det.pos.*"/>
@@ -189,6 +190,11 @@
       <cat-item tags="vblex.pp"/>
       <cat-item tags="adj.pp"/>
       <cat-item tags="adj.pp.*"/>
+    </def-cat>
+    <def-cat n="pasv-pp">
+      <cat-item lemma="adj2vblex" tags="vblex.pp"/>
+      <cat-item lemma="adj2vblex" tags="adj.pp"/>
+      <cat-item lemma="adj2vblex" tags="adj.pp.*"/>
     </def-cat>
     <def-cat n="prep_nhead">
       <cat-item tags="pr.*.nhead"/>
@@ -776,12 +782,12 @@
         </out>
       </action>
     </rule>
-    <rule comment="AUX ADJPART PRN_NT => AUX PRN_NT ADJPART
+    <rule comment="AUX PASV-PP PRN_SUBJ => AUX PRN_SUBJ PASV-PP
                    (Videre) påpekes det =1> (Vidare) blir påpeikt det =2> (Vidare) blir det påpeikt">
       <pattern>
         <pattern-item n="aux"/>
-        <pattern-item n="adjpart"/>
-        <pattern-item n="prn_nt"/>
+        <pattern-item n="pasv-pp"/>
+        <pattern-item n="prn_subj"/>
       </pattern>
       <action>
         <call-macro n="modify_prn_gen"><with-param pos="3"/></call-macro>
