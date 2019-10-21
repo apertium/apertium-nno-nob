@@ -129,6 +129,9 @@
       <attr-item tags="vblex"/>
       <attr-item tags="vblex.pstv"/>
     </def-attr>
+    <def-attr n="a_movable">
+      <attr-item tags="np-movable"/>
+    </def-attr>
     <def-attr n="a_cmp">
       <attr-item tags="cmp-split"/>
     </def-attr>
@@ -384,6 +387,7 @@
       </pattern>
       <action>
         <let><clip pos="1" part="tags"/><clip pos="0" part="tags"/></let>
+        <let><clip pos="1" part="a_movable"/><lit v=""/></let>
         <call-macro n="out_adj"><with-param pos="1"/></call-macro>
       </action>
     </rule>
