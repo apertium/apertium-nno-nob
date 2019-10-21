@@ -729,6 +729,7 @@
     <def-var n="pr_head"        c="if prep-phrase's head is noun or verb"/>
     <def-var n="ntags"/>
     <def-var n="adjtags"/>
+    <def-var n="movable_tag"    c="np-movable iff we can move pp past np"/>
     <def-var n="advtags"/>
     <def-var n="prevlem"/>
     <def-var n="prevnbr"/>
@@ -2058,6 +2059,10 @@
       <list-item v="&lt;pret&gt;"/>
     </def-list>
 
+    <def-list n="np-immovable-verb" c="These verbs in passive-turned-into-participles shouldn't be moved past noun phrases">
+      <list-item v="tildele"/> <!-- Gunnar Sønsteby tildeles denne dekorasjonen → blir tildelt denne dekorasjonen -->
+    </def-list>
+
     <def-list n="immovable-adv" c="Shouldn't be moved in passives or across lemq's, typically ambig with prep's or adj's">
       <list-item v="straks"/>   <!-- «Bildene slettes straks man er ferdig klarert.» -->
       <list-item v="bort"/>
@@ -2069,6 +2074,12 @@
       <list-item v="frå no av"/>
       <list-item v="så lenge"/>
       <list-item v="på alvor"/>
+      <list-item v="denne veka"/>
+      <list-item v="denne hausten"/>
+      <list-item v="denne sommaren"/>
+      <list-item v="denne vinteren"/>
+      <list-item v="denne våren"/>
+      <list-item v="denne månaden"/>
     </def-list>
 
     <def-list n="skip-n-lemqverbs" c="An ndef after verb-lemq here is typically a subject, which should be moved before the lemq
@@ -2992,6 +3003,16 @@
           <otherwise>
             <call-macro n="set_aux"><with-param pos="1"/></call-macro>
             <!-- todo: why do I get a bus error when calling set_aux2 here? -->
+            <choose c="Only movable past an NP if no lemq or not in np-immovable-verb list">
+              <when>
+                <test><or>
+                  <in><clip pos="1" side="tl" part="lemh"/><list n="np-immovable-verb"/></in>
+                  <not><equal><clip pos="1" side="tl" part="lemq"/><lit v=""/></equal></not>
+                </or></test>
+                <let><var n="movable_tag"/><lit v=""/></let>
+              </when>
+              <otherwise><let><var n="movable_tag"/><lit-tag v="np-movable"/></let></otherwise>
+            </choose>
             <out>
               <chunk name="aux" case="caseFirstWord">
                 <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
@@ -3001,6 +3022,7 @@
               <chunk name="adj2vblex">
                 <tags>
                   <tag><lit-tag v="adj.pp.nt.sg.ind"/></tag>
+                  <tag><var n="movable_tag"/></tag>
                 </tags>
                 <lu>
                   <clip pos="1" side="tl" part="lemh"/>
