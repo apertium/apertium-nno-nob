@@ -1518,4 +1518,18 @@
   <rule><match lemma="tilbakebetale" tags="vblex.*"><select lemma="betale# tilbake"/></match></rule>
   <rule weight="2.0"><match lemma="tilbakebetale" tags="vblex.pp"><select lemma="tilbakebetale"/></match></rule>
   <rule weight="2.0"><match lemma="tilbakebetale" tags="adj.*"><select lemma="tilbakebetale"/></match></rule>
+
+  <rule><match lemma="hold" tags="n.*"><select lemma="hald"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="i" tags="pr"/>
+    <match lemma="god" tags="adj.*"/>
+    <match lemma="hold" tags="n.*"><select lemma="hold"/></match>
+  </rule>
+  <rule weight="2.0">
+    <or>
+      <match lemma="få" tags="vblex.*"/>
+      <match lemma="få" tags="adj.*"/>
+    </or>
+    <match lemma="hold" tags="n.*"><select lemma="hold"/></match>
+  </rule>
 </rules>
