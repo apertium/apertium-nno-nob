@@ -1540,4 +1540,15 @@
     </or>
     <match lemma="hold" tags="n.*"><select lemma="hold"/></match>
   </rule>
+
+  <rule><match lemma="anføre" tags="adj.*"><select lemma="oppføre"/></match></rule>
+  <rule><match lemma="anføre" tags="vblex.*"><select lemma="oppføre"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="anføre" tags="vblex.*"><select lemma="leie"/></match>
+    <match lemma="av" tags="pr"/>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="anføre" tags="adj.*"><select lemma="leie"/></match>
+    <match lemma="av" tags="pr"/>
+  </rule>
 </rules>
