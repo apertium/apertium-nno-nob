@@ -532,6 +532,12 @@
       <cat-item lemma="antall" tags="n.nt.sg.ind"/>
       <cat-item lemma="antall" tags="n.nt.pl.ind"/>
     </def-cat>
+    <def-cat n="anført">
+      <cat-item lemma="anføre" tags="vblex.pp"/>
+    </def-cat>
+    <def-cat n="av">
+      <cat-item lemma="av" tags="pr"/>
+    </def-cat>
     <def-cat n="har">
       <cat-item lemma="ha" tags="vblex.pres"/>
       <cat-item lemma="ha" tags="vblex.pret"/>
@@ -631,6 +637,10 @@
       <cat-item tags="sent.*"/>
       <cat-item tags="sent"/>
     </def-cat>
+    <def-cat n="cm">
+      <cat-item tags="cm.*"/>
+      <cat-item tags="cm"/>
+    </def-cat>
     <def-cat n="guio">
       <cat-item tags="guio.*"/>
       <cat-item tags="guio"/>
@@ -650,6 +660,12 @@
     <def-attr n="a_verb">
       <attr-item tags="vblex"/>
       <attr-item tags="vblex.pstv"/>
+    </def-attr>
+    <def-attr n="a_sent">
+      <attr-item tags="sent"/>
+      <attr-item tags="sent.*"/>
+      <attr-item tags="cm"/>
+      <attr-item tags="cm.*"/>
     </def-attr>
     <def-attr n="temps">
       <attr-item tags="inf"/>
@@ -745,6 +761,7 @@
     <def-var n="det_gen"/>
     <def-var n="lemma"          c="Used within macros"/>
     <def-var n="brlemma"        c="Only used for 'britenes statsminister'-rule"/>
+    <def-var n="mwe-queue"      c="Must be output before next verb or sent. TODO: There should be an EOF-rule in case nothing at end."/>
   </section-def-vars>
 
   <section-def-lists>
@@ -2122,6 +2139,22 @@
 
   <section-def-macros>
 
+    <def-macro n="flush-mwe-queue" npar="1">
+      <choose><when>
+        <test><not><equal><var n="mwe-queue"/><lit v=""/></equal></not></test>
+        <choose><when c="output space before, when before punctuation">
+          <test><not><equal><clip pos="1" side="tl" part="a_sent"/><lit v=""/></equal></not></test>
+          <out><b/></out>
+        </when></choose>
+        <out><var n="mwe-queue"/></out>
+        <choose><when c="output space after, unless before punctuation">
+          <test><equal><clip pos="1" side="tl" part="a_sent"/><lit v=""/></equal></test>
+          <out><b/></out>
+        </when></choose>
+        <let><var n="mwe-queue"/><lit v=""/></let>
+      </when></choose>
+    </def-macro>
+
     <def-macro n="bigram_genprep" npar="1"
                c="arg.1: possibly owned noun. Helper for stash_case_in_ntags">
       <!-- TODO: More general handling of owned keepgenx: -->
@@ -2771,6 +2804,48 @@
 
   <section-rules>
     <!-- Idiomatic rules first -->
+    <rule comment="anført av X → med X i spissen
+                   Sets variable `mwe-queue`, which has to be output before the next finite verb or comma or period.">
+      <pattern>
+        <pattern-item n="anført"/>
+        <pattern-item n="av"/>
+      </pattern>
+      <action>
+        <call-macro n="set_caseFirstWord2">
+          <with-param pos="1"/>
+          <with-param pos="2"/>
+        </call-macro>
+        <out>
+          <chunk name="pr" case="caseFirstWord">
+            <tags><tag><lit-tag v="pr.med"/></tag></tags>
+            <lu>
+              <lit v="med"/>
+              <lit-tag v="pr"/>
+            </lu>
+          </chunk>
+        </out>
+        <choose><when>
+          <test><not><equal><b pos="1"/><lit v=" "/></equal></not></test>
+          <out><b pos="1"/></out>
+        </when></choose>
+        <let>
+          <var n="mwe-queue"/>
+          <chunk name="default">
+            <tags><tag><lit-tag v="default"/></tag></tags>
+            <lu>
+              <lit v="i"/>
+              <lit-tag v="pr"/>
+            </lu>
+            <b/>
+            <lu>
+              <lit v="spiss"/>
+              <lit-tag v="n.m.sg.def"/>
+            </lu>
+          </chunk>
+        </let>
+      </action>
+    </rule>
+
     <rule comment="har angivelig → skal ha">
       <pattern>
         <pattern-item n="har"/>
@@ -3077,6 +3152,7 @@
         <pattern-item n="vblex"/>
       </pattern>
       <action>
+        <call-macro n="flush-mwe-queue"><with-param pos="1"/></call-macro>
         <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
         <call-macro n="set_lemq"><with-param pos="1"/></call-macro>
         <let><var n="c_name"/><lit v="vblex"/></let>
@@ -4556,11 +4632,27 @@ no lemq-moving">
       </action>
     </rule>
 
+    <rule comment="CM">
+      <pattern>
+        <pattern-item n="cm"/>
+      </pattern>
+      <action>
+        <call-macro n="flush-mwe-queue"><with-param pos="1"/></call-macro>
+        <out>
+          <chunk name="cm">
+            <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
+            <lu><clip pos="1" side="tl" part="whole"/></lu>
+          </chunk>
+        </out>
+      </action>
+    </rule>
+
     <rule comment="SENT">
       <pattern>
         <pattern-item n="sent"/>
       </pattern>
       <action>
+        <call-macro n="flush-mwe-queue"><with-param pos="1"/></call-macro>
         <let><var n="caseFirstWord"/><lit v=""/></let>
         <choose><when>
           <test><not><equal><clip pos="1" side="tl" part="lemh"/><lit v=""/></equal></not></test>
