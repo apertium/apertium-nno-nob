@@ -1203,11 +1203,40 @@
       <select lemma="tidlegare"/>
     </match>
   </rule>
-  <rule><match lemma="hvilken" tags="det.itg.*"><select lemma="kva for"/></match></rule>
-  <rule weight="2.0">
+
+  <rule><match lemma="hvilken" tags="det.itg.*"><select lemma="kva"/></match></rule>
+  <rule weight="2.0" c="hvilken av + (adj) + subst → kva for ein av  + (adj) + subst">
+    <match lemma="hvilken" tags="det.itg.*"><select lemma="kva for"/></match>
+    <match lemma="av" tags="pr"/>
+  </rule>
+  <rule weight="3.0" c="hvilke av + (adj) + subst → kva for nokre av  + (adj) + subst">
+    <match lemma="hvilken" tags="det.itg.un.pl"><select lemma="kva for nokre"/></match>
+    <match lemma="av" tags="pr"/>
+  </rule>
+  <rule weight="2.0" c="hvilken + adj + subst → kva for ein + adj + subst">
+    <match lemma="hvilken" tags="det.itg.*"><select lemma="kva for"/></match>
+    <match tags="adj.*"/>
+  </rule>
+  <rule weight="3.0" c="hvilke + adj + subst → kva for nokre + adj + subst">
+    <match lemma="hvilken" tags="det.itg.un.pl"><select lemma="kva for nokre"/></match>
+    <match tags="adj.*"/>
+  </rule>
+  <rule weight="2.0" c="i hvilken grad → i kva grad">
     <match lemma="hvilken" tags="det.itg.*"><select lemma="kva"/></match>
     <match lemma="grad" tags="n.*"/>
   </rule>
+  <rule weight="2.0" c="hvilken annen → kva annan">
+    <match lemma="hvilken" tags="det.itg.*"><select lemma="kva"/></match>
+    <match lemma="annen" tags="det.*"/>
+  </rule>
+  <rule weight="2.0" c="hvilken/hvilket eller hvilke → kva">
+    <match lemma="hvilken" tags="det.itg.*"><select lemma="kva"/></match>
+    <or>
+      <match lemma="eller" tags="cnjcoo.*"/>
+      <match lemma="eller" tags="cnjcoo"/>
+    </or>
+  </rule>
+
   <rule><match lemma="belønne" tags="vblex.*"><select lemma="påskjønne"/></match></rule>
   <rule><match lemma="belønne" tags="adj.*"><select lemma="påskjønne"/></match></rule>
   <rule><match lemma="beleiring" tags="n.*"><select lemma="omleiring"/></match></rule>
