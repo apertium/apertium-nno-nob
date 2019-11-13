@@ -547,6 +547,9 @@
     <def-cat n="helst">
       <cat-item lemma="helst" tags="adv"/>
     </def-cat>
+    <def-cat n="annen">
+      <cat-item lemma="annen" tags="det.*"/>
+    </def-cat>
     <def-cat n="har">
       <cat-item lemma="ha" tags="vblex.pres"/>
       <cat-item lemma="ha" tags="vblex.pret"/>
@@ -2898,6 +2901,50 @@
             <lu><clip pos="3" side="tl" part="whole"/></lu>
           </chunk>
         </out>
+      </action>
+    </rule>
+
+    <rule comment="en hvilken som helst annen → kva som helst annan">
+      <pattern>
+        <pattern-item n="detqnt"/>
+        <pattern-item n="hvilken"/>
+        <pattern-item n="som"/>
+        <pattern-item n="helst"/>
+        <pattern-item n="annen"/>
+      </pattern>
+      <action>
+        <call-macro n="set_caseFirstWord2">
+          <with-param pos="1"/>
+          <with-param pos="2"/>
+        </call-macro>
+        <out>
+          <chunk name="det" case="caseFirstWord">
+            <tags><tag><clip pos="2" side="tl" part="tags"/></tag></tags>
+            <lu><clip pos="2" side="tl" part="whole"/></lu>
+          </chunk>
+          <b pos="1"/>
+          <chunk name="pr" case="caseSecondWord">
+            <tags>
+              <tag><clip pos="3" side="tl" part="tags"/></tag>
+              <tag><lit-tag v="som"/></tag>
+            </tags>
+            <lu><clip pos="3" side="tl" part="whole"/></lu>
+          </chunk>
+          <b pos="2"/>
+          <chunk name="adv" case="caseSecondWord">
+            <tags><tag><clip pos="4" side="tl" part="tags"/></tag></tags>
+            <lu><clip pos="4" side="tl" part="whole"/></lu>
+          </chunk>
+          <b pos="3"/>
+          <chunk name="det" case="caseSecondWord">
+            <tags><tag><clip pos="5" side="tl" part="tags"/></tag></tags>
+            <lu><clip pos="5" side="tl" part="whole"/></lu>
+          </chunk>
+        </out>
+        <choose><when>
+          <test><not><equal><b pos="4"/><lit v=" "/></equal></not></test>
+          <out><b pos="4"/></out>
+        </when></choose>
       </action>
     </rule>
 
