@@ -1582,4 +1582,15 @@
   </rule>
 
   <rule><match lemma="oppgi" tags="vblex.*"><select lemma="gje# opp"/></match></rule>
+
+  <rule c="framstår som surrealistisk"><match lemma="framstå# som" tags="vblex.*"><select lemma="verke"/></match></rule>
+  <rule c="framstår som en raring" weight="2.0">
+    <match lemma="framstå# som" tags="vblex.*"><select lemma="verke# som"/></match>
+    <match tags="det.*"/>
+  </rule>
+  <rule c="fremstår som surrealistisk"><match lemma="fremstå# som" tags="vblex.*"><select lemma="verke"/></match></rule>
+  <rule c="fremstår som en raring" weight="2.0">
+    <match lemma="fremstå# som" tags="vblex.*"><select lemma="verke# som"/></match>
+    <match tags="det.*"/>
+  </rule>
 </rules>
