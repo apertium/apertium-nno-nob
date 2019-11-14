@@ -26,14 +26,16 @@
       <cat-item tags="n.*.*.ind"/>
       <cat-item tags="n.*.*.ind.gen"/>
     </def-cat>
-    <!-- TODO: kan we put keepgenx into nind_keep_gen_s? -->
     <def-cat n="nind_keep_gen_s"
-             c="Owned nouns where we want the owner ngen to keep the genitive-s">
+             c="Owned nouns where we want the owner ngen to keep the genitive-s
+                See also def-list keepgenx">
       <cat-item tags="n.*.*.ind" lemma="beste"/>
+      <cat-item tags="n.*.sg.ind" lemma="side"/>
       <cat-item tags="n.*.sg.ind" lemma="tur"/>
       <cat-item tags="n.*.sg.ind" lemma="bekostning"/>
       <cat-item tags="n.*.sg.ind" lemma="historie"/>
       <cat-item tags="n.*.sg.ind" lemma="dag"/> <!-- ungdommenes dag -->
+      <cat-item tags="n.*.sg.ind" lemma="del"/>
     </def-cat>
     <def-cat n="nind_gen2cmp"
              c="Owned nouns where we want to turn it into a compound regardless of preceding lemma">
@@ -2149,6 +2151,13 @@
       <list-item v="gjere# rik"/>
       <list-item v="bli# verande"/>
     </def-list>
+    <def-list n="keepgenx" c="Get tagged keepgenx for t2x to avoid gen-prep-transformation">
+      <list-item v="side"/>
+      <list-item v="del"/>
+      <list-item v="tur"/>
+      <list-item v="bekostning"/>
+      <list-item v="dag"/>
+    </def-list>
   </section-def-lists>
 
   <section-def-macros>
@@ -2173,7 +2182,7 @@
                c="arg.1: possibly owned noun. Helper for stash_case_in_ntags">
       <!-- TODO: More general handling of owned keepgenx: -->
       <choose><when>
-        <test><equal><clip pos="1" side="tl" part="lemh"/><lit v="del"/></equal></test>
+        <test><in caseless="yes"><clip pos="1" side="tl" part="lemh"/><list n="keepgenx"/></in></test>
         <append n="ntags"><lit-tag v="keepgenx"/></append>
       </when></choose>
       <!-- Override gen-prep on prevlem by looking up bigram -->
