@@ -113,6 +113,12 @@
     <def-cat n="detpos">
       <cat-item tags="det.pos.*"/>
     </def-cat>
+    <def-cat n="detitg">
+      <cat-item tags="det.itg.*"/>
+    </def-cat>
+    <def-cat n="detqnt">
+      <cat-item tags="det.qnt.*"/>
+    </def-cat>
     <def-cat n="detnonpos">
       <cat-item tags="det.def.*"/>
       <cat-item tags="det.dem.*"/>
@@ -206,6 +212,9 @@
     </def-cat>
     <def-cat n="prep_av">
       <cat-item tags="pr.av"/>
+    </def-cat>
+    <def-cat n="prep_som">
+      <cat-item tags="pr.som"/>
     </def-cat>
     <def-cat n="sent">
       <cat-item tags="sent.*"/>
@@ -1882,6 +1891,47 @@
           <chunk><clip pos="1" part="whole"/></chunk>
           <b pos="1"/>
           <chunk><clip pos="2" part="whole"/></chunk>
+        </out>
+      </action>
+    </rule>
+
+    <rule comment="DETITG DETQNT PREP_SOM ADV NOM: et hvilket som helst norsk hjem → ein kva som helst norsk heim
+                   Agree gender.">
+      <pattern>
+        <pattern-item n="detqnt"/>
+        <pattern-item n="detitg"/>
+        <pattern-item n="prep_som"/>
+        <pattern-item n="adv"/>
+        <pattern-item n="nom"/>
+      </pattern>
+      <action>
+        <call-macro n="set_ana"><with-param pos="5"/></call-macro>
+        <choose>
+          <when c="don't change gender for '(er) dette kjernen' etc.">
+            <test><and>
+              <equal><clip pos="1" part="gen"/><lit-tag v="nt"/></equal>
+              <not><equal><clip pos="5" part="sl-gen"/><lit-tag v="sl-nt"/></equal></not>
+            </and></test>
+            <!-- TODO: reject-current-rule in interchunk -->
+            <!-- <reject-current-rule shifting="no"/> -->
+          </when>
+          <otherwise>
+            <call-macro n="modify_det_gender2.n.det"><with-param pos="5"/><with-param pos="2"/></call-macro>
+            <call-macro n="set_n_defness"><with-param pos="5"/><with-param pos="2"/></call-macro>
+            <call-macro n="modify_det_gender2.n.det"><with-param pos="5"/><with-param pos="1"/></call-macro>
+            <call-macro n="set_n_defness"><with-param pos="5"/><with-param pos="1"/></call-macro>
+          </otherwise>
+        </choose>
+        <out>
+          <chunk><clip pos="1" part="whole"/></chunk>
+          <b pos="1"/>
+          <chunk><clip pos="2" part="whole"/></chunk>
+          <b pos="2"/>
+          <chunk><clip pos="3" part="whole"/></chunk>
+          <b pos="3"/>
+          <chunk><clip pos="4" part="whole"/></chunk>
+          <b pos="4"/>
+          <chunk><clip pos="5" part="whole"/></chunk>
         </out>
       </action>
     </rule>
