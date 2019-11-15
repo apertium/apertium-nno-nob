@@ -546,6 +546,12 @@
     <def-cat n="hvilken">
       <cat-item lemma="hvilken" tags="det.*"/>
     </def-cat>
+    <def-cat n="hvilken_som_helst">
+      <cat-item lemma="hvilken som helst" tags="adj.*"/>
+    </def-cat>
+    <def-cat n="hvilken_som_helst_annen">
+      <cat-item lemma="hvilken som helst annen" tags="adj.*"/>
+    </def-cat>
     <def-cat n="som">
       <cat-item lemma="som" tags="pr"/>
     </def-cat>
@@ -2830,12 +2836,10 @@
 
   <section-rules>
     <!-- Idiomatic rules first -->
-    <rule comment="en hvilken som helst by → kva by som helst">
+    <rule comment="hvilken som helst by → kva by som helst
+                   put lemq after">
       <pattern>
-        <pattern-item n="detqnt"/>
-        <pattern-item n="hvilken"/>
-        <pattern-item n="som"/>
-        <pattern-item n="helst"/>
+        <pattern-item n="hvilken_som_helst"/>
         <pattern-item n="n_np"/>
       </pattern>
       <action>
@@ -2843,43 +2847,29 @@
           <with-param pos="1"/>
           <with-param pos="2"/>
         </call-macro>
-        <call-macro n="out_gen-prep"><with-param pos="5"/></call-macro>
-        <call-macro n="stash_case_in_ntags"><with-param pos="5"/></call-macro>
+        <call-macro n="out_gen-prep"><with-param pos="2"/></call-macro>
+        <call-macro n="stash_case_in_ntags"><with-param pos="2"/></call-macro>
+        <call-macro n="set_lemq"><with-param pos="1"/></call-macro>
         <out>
-          <chunk name="det" case="caseFirstWord">
-            <tags><tag><clip pos="2" side="tl" part="tags"/></tag></tags>
-            <lu><clip pos="2" side="tl" part="whole"/></lu>
+          <chunk name="adj" case="caseFirstWord">
+            <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
+            <lu><clip pos="1" side="tl" part="lemh"/><clip pos="1" side="tl" part="tags"/><var n="c_lemq"/></lu>
           </chunk>
           <b pos="1"/>
           <chunk name="n" case="caseSecondWord">
             <tags><tag><var n="ntags"/></tag></tags>
-            <lu><clip pos="5" side="tl" part="whole"/></lu>
+            <lu><clip pos="2" side="tl" part="whole"/></lu>
           </chunk>
-          <b pos="2"/>
-          <chunk name="pr" case="caseSecondWord">
-            <tags>
-              <tag><clip pos="3" side="tl" part="tags"/></tag>
-              <tag><lit-tag v="som"/></tag>
-            </tags>
-            <lu><clip pos="3" side="tl" part="whole"/></lu>
-          </chunk>
-          <b pos="3"/>
-          <chunk name="adv" case="caseSecondWord">
-            <tags><tag><clip pos="4" side="tl" part="tags"/></tag></tags>
-            <lu><clip pos="4" side="tl" part="whole"/></lu>
-          </chunk>
+          <var n="out_lemq"/>
         </out>
-        <choose><when>
-          <test><not><equal><b pos="4"/><lit v=" "/></equal></not></test>
-          <out><b pos="4"/></out>
-        </when></choose>
       </action>
     </rule>
-    <rule comment="hvilken som helst by → kva by som helst">
+    <rule comment="en hvilken som helst by → kva by som helst
+                   put lemq after
+                   and drop DETQNT (should we instead tag the adj as det-drop and do it in t2x?)">
       <pattern>
-        <pattern-item n="hvilken"/>
-        <pattern-item n="som"/>
-        <pattern-item n="helst"/>
+        <pattern-item n="detqnt"/>
+        <pattern-item n="hvilken_som_helst"/>
         <pattern-item n="n_np"/>
       </pattern>
       <action>
@@ -2887,42 +2877,30 @@
           <with-param pos="1"/>
           <with-param pos="2"/>
         </call-macro>
-        <call-macro n="out_gen-prep"><with-param pos="4"/></call-macro>
-        <call-macro n="stash_case_in_ntags"><with-param pos="4"/></call-macro>
+        <call-macro n="out_gen-prep"><with-param pos="3"/></call-macro>
+        <call-macro n="stash_case_in_ntags"><with-param pos="3"/></call-macro>
+        <call-macro n="set_lemq"><with-param pos="2"/></call-macro>
         <out>
-          <chunk name="det" case="caseFirstWord">
-            <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
-            <lu><clip pos="1" side="tl" part="whole"/></lu>
+          <chunk name="adj" case="caseFirstWord">
+            <tags><tag><clip pos="2" side="tl" part="tags"/></tag></tags>
+            <lu><clip pos="2" side="tl" part="lemh"/><clip pos="2" side="tl" part="tags"/><var n="c_lemq"/></lu>
           </chunk>
           <b pos="1"/>
           <chunk name="n" case="caseSecondWord">
             <tags><tag><var n="ntags"/></tag></tags>
-            <lu><clip pos="4" side="tl" part="whole"/></lu>
-          </chunk>
-          <b pos="2"/>
-          <chunk name="pr" case="caseSecondWord">
-            <tags>
-              <tag><clip pos="2" side="tl" part="tags"/></tag>
-              <tag><lit-tag v="som"/></tag>
-            </tags>
-            <lu><clip pos="2" side="tl" part="whole"/></lu>
-          </chunk>
-          <b pos="3"/>
-          <chunk name="adv" case="caseSecondWord">
-            <tags><tag><clip pos="3" side="tl" part="tags"/></tag></tags>
             <lu><clip pos="3" side="tl" part="whole"/></lu>
           </chunk>
+          <var n="out_lemq"/>
         </out>
+        <choose><when><test><not><equal><b pos="2"/><lit v=" "/></equal></not></test><out><b pos="3"/></out></when></choose>
       </action>
     </rule>
 
-    <rule comment="en hvilken som helst annen → kva som helst annan">
+    <rule comment="en hvilken som helst annen → kva som helst annan
+                   drop DETQNT (should we instead tag the adj as det-drop and do it in t2x?)">
       <pattern>
         <pattern-item n="detqnt"/>
-        <pattern-item n="hvilken"/>
-        <pattern-item n="som"/>
-        <pattern-item n="helst"/>
-        <pattern-item n="annen"/>
+        <pattern-item n="hvilken_som_helst_annen"/>
       </pattern>
       <action>
         <call-macro n="set_caseFirstWord2">
@@ -2930,33 +2908,12 @@
           <with-param pos="2"/>
         </call-macro>
         <out>
-          <chunk name="det" case="caseFirstWord">
+          <chunk name="adj" case="caseFirstWord">
             <tags><tag><clip pos="2" side="tl" part="tags"/></tag></tags>
             <lu><clip pos="2" side="tl" part="whole"/></lu>
           </chunk>
-          <b pos="1"/>
-          <chunk name="pr" case="caseSecondWord">
-            <tags>
-              <tag><clip pos="3" side="tl" part="tags"/></tag>
-              <tag><lit-tag v="som"/></tag>
-            </tags>
-            <lu><clip pos="3" side="tl" part="whole"/></lu>
-          </chunk>
-          <b pos="2"/>
-          <chunk name="adv" case="caseSecondWord">
-            <tags><tag><clip pos="4" side="tl" part="tags"/></tag></tags>
-            <lu><clip pos="4" side="tl" part="whole"/></lu>
-          </chunk>
-          <b pos="3"/>
-          <chunk name="det" case="caseSecondWord">
-            <tags><tag><clip pos="5" side="tl" part="tags"/></tag></tags>
-            <lu><clip pos="5" side="tl" part="whole"/></lu>
-          </chunk>
         </out>
-        <choose><when>
-          <test><not><equal><b pos="4"/><lit v=" "/></equal></not></test>
-          <out><b pos="4"/></out>
-        </when></choose>
+        <choose><when><test><not><equal><b pos="1"/><lit v=" "/></equal></not></test><out><b pos="1"/></out></when></choose>
       </action>
     </rule>
 

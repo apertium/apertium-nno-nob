@@ -1230,6 +1230,30 @@
     <match lemma="annen" tags="det.*"/>
   </rule>
 
+  <rule c="en hvilken som helst type → kva type som helst">
+    <match lemma="hvilken som helst" tags="adj.*"><select lemma="kva# som helst"/></match>
+  </rule>
+  <rule weight="2.0" c="en hvilken som helst norsk type → ein vanlig norsk type">
+    <match lemma="som" tags="pr"/>
+    <match tags="det.*"/>
+    <match lemma="hvilken som helst" tags="adj.*"><select lemma="vanleg"/></match>
+    <match tags="adj.*"/>
+  </rule>
+  <rule c="en hvilken som helst annen type → kva som helst annan type">
+    <match lemma="hvilken som helst annen" tags="adj.*"><select lemma="kva som helst annan"/></match>
+  </rule>
+  <rule weight="2.0" c="som en hvilken som helst annen type → som alle andre typar">
+    <match lemma="som" tags="pr"/>
+    <match tags="det.*"/>
+    <match lemma="hvilken som helst annen" tags="adj.*"><select lemma="alle andre"/></match>
+  </rule>
+  <rule weight="3.0" c="som en hvilken som helst norsk type → som ein vanlig norsk type">
+    <match lemma="som" tags="pr"/>
+    <match tags="det.*"/>
+    <match lemma="hvilken som helst annen" tags="adj.*"><select lemma="vanleg"/></match>
+    <match tags="adj.*"/>
+  </rule>
+
   <rule><match lemma="belønne" tags="vblex.*"><select lemma="påskjønne"/></match></rule>
   <rule><match lemma="belønne" tags="adj.*"><select lemma="påskjønne"/></match></rule>
   <rule><match lemma="beleiring" tags="n.*"><select lemma="omleiring"/></match></rule>
