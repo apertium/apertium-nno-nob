@@ -116,6 +116,9 @@
     <def-cat n="detitg">
       <cat-item tags="det.itg.*"/>
     </def-cat>
+    <def-cat n="detdem">
+      <cat-item tags="det.dem.*"/>
+    </def-cat>
     <def-cat n="detqnt">
       <cat-item tags="det.qnt.*"/>
     </def-cat>
@@ -442,7 +445,10 @@
         <when>
           <test><and>
             <not><equal><clip pos="1" part="gen"/><lit v=""/></equal></not>
-            <not><equal><clip pos="1" part="nbr"/><lit-tag v="pl"/></equal></not>
+            <or> <!-- only change gender of det for singular nouns *or* if det is «kva for ein (av)» -->
+              <equal><clip pos="2" part="a_det"/><lit-tag v="det.itg"/></equal>
+              <not><equal><clip pos="1" part="nbr"/><lit-tag v="pl"/></equal></not>
+            </or>
             <not><equal><clip pos="2" part="nbr"/><lit-tag v="pl"/></equal></not>
           </and></test>
           <let><clip pos="2" part="gen"/><clip pos="1" part="gen"/></let>
@@ -1918,6 +1924,44 @@
           <otherwise>
             <call-macro n="modify_det_gender2.n.det"><with-param pos="5"/><with-param pos="2"/></call-macro>
             <call-macro n="set_n_defness"><with-param pos="5"/><with-param pos="2"/></call-macro>
+            <call-macro n="modify_det_gender2.n.det"><with-param pos="5"/><with-param pos="1"/></call-macro>
+            <call-macro n="set_n_defness"><with-param pos="5"/><with-param pos="1"/></call-macro>
+          </otherwise>
+        </choose>
+        <out>
+          <chunk><clip pos="1" part="whole"/></chunk>
+          <b pos="1"/>
+          <chunk><clip pos="2" part="whole"/></chunk>
+          <b pos="2"/>
+          <chunk><clip pos="3" part="whole"/></chunk>
+          <b pos="3"/>
+          <chunk><clip pos="4" part="whole"/></chunk>
+          <b pos="4"/>
+          <chunk><clip pos="5" part="whole"/></chunk>
+        </out>
+      </action>
+    </rule>
+
+    <rule comment="DETITG PR_AV NOM: hvilken av de to utleveringsbegjæringene → kva for eit av dei to utleveringskrava">
+      <pattern>
+        <pattern-item n="detitg"/>  <!--1-->
+        <pattern-item n="prep_av"/> <!--2-->
+        <pattern-item n="detdem"/>  <!--3-->
+        <pattern-item n="detqnt"/>  <!--4-->
+        <pattern-item n="nom"/>     <!--5-->
+      </pattern>
+      <action>
+        <call-macro n="set_ana"><with-param pos="5"/></call-macro>
+        <choose>
+          <when c="don't change gender for '(er) dette kjernen' etc.">
+            <test><and>
+              <equal><clip pos="1" part="gen"/><lit-tag v="nt"/></equal>
+              <not><equal><clip pos="5" part="sl-gen"/><lit-tag v="sl-nt"/></equal></not>
+            </and></test>
+            <!-- TODO: reject-current-rule in interchunk -->
+            <!-- <reject-current-rule shifting="no"/> -->
+          </when>
+          <otherwise>
             <call-macro n="modify_det_gender2.n.det"><with-param pos="5"/><with-param pos="1"/></call-macro>
             <call-macro n="set_n_defness"><with-param pos="5"/><with-param pos="1"/></call-macro>
           </otherwise>
