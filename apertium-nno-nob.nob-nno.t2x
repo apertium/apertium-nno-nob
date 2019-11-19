@@ -88,6 +88,9 @@
     <def-cat n="det">
       <cat-item tags="det.*"/>
     </def-cat>
+    <def-cat n="det2adj">
+      <cat-item lemma="det2adj" tags="adj.*"/>
+    </def-cat>
     <def-cat n="detemph">
       <cat-item tags="det.emph.*"/>
     </def-cat>
@@ -1976,6 +1979,28 @@
           <chunk><clip pos="4" part="whole"/></chunk>
           <b pos="4"/>
           <chunk><clip pos="5" part="whole"/></chunk>
+        </out>
+      </action>
+    </rule>
+
+    <rule comment="DET2ADJ NOM: (som) en hvilken som helst annen sak → (som) alle andre sak → (som) alle andre saker">
+      <pattern>
+        <pattern-item n="det2adj"/>
+        <pattern-item n="nom"/>
+      </pattern>
+      <action>
+        <let><clip pos="2" part="nbr"/><clip pos="1" part="nbr"/></let>
+        <choose><when c="only set ana based on det if no ana, or if n is def">
+          <test><or>
+            <equal><var n="ana_nbr"/><lit v=""/></equal>
+            <equal><clip pos="2" part="art"/><lit-tag v="def"/></equal>
+          </or></test>
+          <call-macro n="set_ana"><with-param pos="2"/></call-macro>
+        </when></choose>
+        <out>
+          <chunk><clip pos="1" part="whole"/></chunk>
+          <b pos="1"/>
+          <chunk><clip pos="2" part="whole"/></chunk>
         </out>
       </action>
     </rule>
