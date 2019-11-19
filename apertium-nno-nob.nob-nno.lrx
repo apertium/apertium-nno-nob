@@ -1234,7 +1234,7 @@
     <match lemma="hvilken som helst" tags="adj.*"><select lemma="kva# som helst"/></match>
   </rule>
   <rule weight="2.0" c="en hvilken som helst norsk type → ein vanlig norsk type">
-    <match lemma="som" tags="pr"/>
+    <or><match lemma="som" tags="pr"/><match lemma="som" tags="cnjsub"/></or>
     <match tags="det.*"/>
     <match lemma="hvilken som helst" tags="adj.*"><select lemma="vanleg"/></match>
     <match tags="adj.*"/>
@@ -1243,12 +1243,12 @@
     <match lemma="hvilken som helst annen" tags="adj.*"><select lemma="kva som helst annan"/></match>
   </rule>
   <rule weight="2.0" c="som en hvilken som helst annen type → som alle andre typar">
-    <match lemma="som" tags="pr"/>
+    <or><match lemma="som" tags="pr"/><match lemma="som" tags="cnjsub"/></or>
     <match tags="det.*"/>
     <match lemma="hvilken som helst annen" tags="adj.*"><select lemma="alle andre"/></match>
   </rule>
   <rule weight="3.0" c="som en hvilken som helst norsk type → som ein vanlig norsk type">
-    <match lemma="som" tags="pr"/>
+    <or><match lemma="som" tags="pr"/><match lemma="som" tags="cnjsub"/></or>
     <match tags="det.*"/>
     <match lemma="hvilken som helst annen" tags="adj.*"><select lemma="vanleg"/></match>
     <match tags="adj.*"/>

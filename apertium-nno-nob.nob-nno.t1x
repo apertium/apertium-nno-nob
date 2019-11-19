@@ -2907,104 +2907,18 @@
           <with-param pos="1"/>
           <with-param pos="2"/>
         </call-macro>
+        <choose><when>
+          <test><equal><clip pos="2" side="tl" part="lemh"/><lit v="alle andre"/></equal></test>
+          <let><clip pos="2" side="tl" part="nbr"/><lit-tag v="pl"/></let>
+          <let><clip pos="2" side="tl" part="gen"/><lit-tag v="un"/></let>
+        </when></choose>
         <out>
-          <chunk name="adj" case="caseFirstWord">
+          <chunk name="det2adj" case="caseFirstWord">
             <tags><tag><clip pos="2" side="tl" part="tags"/></tag></tags>
             <lu><clip pos="2" side="tl" part="whole"/></lu>
           </chunk>
         </out>
         <choose><when><test><not><equal><b pos="1"/><lit v=" "/></equal></not></test><out><b pos="1"/></out></when></choose>
-      </action>
-    </rule>
-
-    <rule comment="som en hvilken som helst annen NINDSG → som alle andre NINDPL">
-      <pattern>
-        <pattern-item n="som"/>
-        <pattern-item n="detqnt"/>
-        <pattern-item n="hvilken"/> <!-- deleted -->
-        <pattern-item n="som"/>     <!-- deleted -->
-        <pattern-item n="helst"/>   <!-- deleted -->
-        <pattern-item n="annen"/>   <!-- deleted -->
-        <pattern-item n="nsgind"/>
-      </pattern>
-      <action>
-        <call-macro n="set_caseFirstWord2">
-          <with-param pos="1"/>
-          <with-param pos="2"/>
-        </call-macro>
-        <let><clip pos="7" side="tl" part="nbr"/><lit-tag v="pl"/></let>
-        <out>
-          <chunk name="pr" case="caseFirstWord"> <!--som-->
-            <tags><tag><clip pos="1" side="tl" part="tags"/></tag><tag><lit-tag v="som"/></tag></tags>
-            <lu><clip pos="1" side="tl" part="whole"/></lu>
-          </chunk>
-          <b pos="1"/>
-          <chunk name="detall" case="caseSecondWord"> <!--alle-->
-            <tags><tag><lit-tag v="det.qnt.un.pl"/></tag></tags>
-            <lu><lit v="all"/><lit-tag v="det.qnt.un.pl"/></lu>
-          </chunk>
-          <b pos="2"/>
-          <chunk name="det" case="caseSecondWord"> <!--alle-->
-            <tags><tag><lit-tag v="det.dem.un.pl"/></tag></tags>
-            <lu><lit v="annan"/><lit-tag v="det.dem.un.pl"/></lu>
-          </chunk>
-          <b pos="3"/>
-          <chunk name="n">
-            <tags><tag><clip pos="7" side="tl" part="tags"/></tag></tags>
-            <lu><clip pos="7" side="tl" part="whole"/></lu>
-          </chunk>
-        </out>
-        <choose><when><test><not><equal><b pos="4"/><lit v=" "/></equal></not></test><out><b pos="4"/></out></when></choose>
-        <choose><when><test><not><equal><b pos="5"/><lit v=" "/></equal></not></test><out><b pos="5"/></out></when></choose>
-        <choose><when><test><not><equal><b pos="6"/><lit v=" "/></equal></not></test><out><b pos="6"/></out></when></choose>
-      </action>
-    </rule>
-    <rule comment="som en hvilken som helst annen . → som alle andre .">
-      <pattern>
-        <pattern-item n="som"/>
-        <pattern-item n="detqnt"/>
-        <pattern-item n="hvilken"/> <!-- deleted -->
-        <pattern-item n="som"/>     <!-- deleted -->
-        <pattern-item n="helst"/>   <!-- deleted -->
-        <pattern-item n="annen"/>   <!-- deleted -->
-        <pattern-item n="sent"/>
-      </pattern>
-      <action>
-        <call-macro n="set_caseFirstWord2">
-          <with-param pos="1"/>
-          <with-param pos="2"/>
-        </call-macro>
-        <out>
-          <chunk name="pr" case="caseFirstWord"> <!--som-->
-            <tags><tag><clip pos="1" side="tl" part="tags"/></tag><tag><lit-tag v="som"/></tag></tags>
-            <lu><clip pos="1" side="tl" part="whole"/></lu>
-          </chunk>
-          <b pos="1"/>
-          <chunk name="detall" case="caseSecondWord"> <!--alle-->
-            <tags><tag><lit-tag v="det.qnt.un.pl"/></tag></tags>
-            <lu><lit v="all"/><lit-tag v="det.qnt.un.pl"/></lu>
-          </chunk>
-          <b pos="2"/>
-          <chunk name="det" case="caseSecondWord"> <!--alle-->
-            <tags><tag><lit-tag v="det.dem.un.pl"/></tag></tags>
-            <lu><lit v="annan"/><lit-tag v="det.dem.un.pl"/></lu>
-          </chunk>
-          <b pos="3"/>
-        </out>
-        <choose><when><test><not><equal><b pos="4"/><lit v=" "/></equal></not></test><out><b pos="4"/></out></when></choose>
-        <choose><when><test><not><equal><b pos="5"/><lit v=" "/></equal></not></test><out><b pos="5"/></out></when></choose>
-        <choose><when><test><not><equal><b pos="6"/><lit v=" "/></equal></not></test><out><b pos="6"/></out></when></choose>
-        <call-macro n="flush-mwe-queue"><with-param pos="1"/></call-macro>
-        <let><var n="caseFirstWord"/><lit v=""/></let>
-        <choose><when>
-          <test><not><equal><clip pos="1" side="tl" part="lemh"/><lit v=""/></equal></not></test>
-          <out>
-            <chunk name="sent">
-              <tags><tag><clip pos="7" side="tl" part="tags"/></tag></tags>
-              <lu><clip pos="7" side="tl" part="whole"/></lu>
-            </chunk>
-          </out>
-        </when></choose>
       </action>
     </rule>
 
