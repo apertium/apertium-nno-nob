@@ -1990,6 +1990,7 @@
       </pattern>
       <action>
         <let><clip pos="2" part="nbr"/><clip pos="1" part="nbr"/></let>
+        <call-macro n="modify_det_gender2.n.det"><with-param pos="2"/><with-param pos="1"/></call-macro>
         <choose><when c="only set ana based on det if no ana, or if n is def">
           <test><or>
             <equal><var n="ana_nbr"/><lit v=""/></equal>
