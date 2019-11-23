@@ -20,6 +20,9 @@
     <def-cat n="adj">
       <cat-item name="adj"/>
     </def-cat>
+    <def-cat n="det2adj">
+      <cat-item name="det2adj"/>
+    </def-cat>
     <!-- N og N: -->
     <def-cat n="n_cnjcoo_n">
       <cat-item name="n_cnjcoo_n"/>
@@ -411,6 +414,16 @@
       </pattern>
       <action>
         <call-macro n="out_adj"><with-param pos="1"/></call-macro>
+      </action>
+    </rule>
+
+    <rule comment="CHUNK: det2adj">
+      <pattern>
+        <pattern-item n="det2adj"/>
+      </pattern>
+      <action>
+        <let><clip pos="1" part="gen"/><clip pos="0" part="gen"/></let>
+        <out><lu><clip pos="1" part="whole"/></lu></out>
       </action>
     </rule>
 
