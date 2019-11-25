@@ -20,6 +20,9 @@
     <def-cat n="adj">
       <cat-item name="adj"/>
     </def-cat>
+    <def-cat n="det2adj">
+      <cat-item name="det2adj"/>
+    </def-cat>
     <!-- N og N: -->
     <def-cat n="n_cnjcoo_n">
       <cat-item name="n_cnjcoo_n"/>
@@ -151,6 +154,9 @@
       <attr-item tags="sp"/>
       <attr-item tags="ND"/>
     </def-attr>
+    <def-attr n="a_chunknum">
+      <attr-item tags="chunknum"/>
+    </def-attr>
   </section-def-attrs>
 
   <section-def-vars>
@@ -242,10 +248,7 @@
         <let><clip pos="1" part="art"/><clip pos="2" part="art"/></let>
       </when></choose>
       <choose><when c="som en hvilken som helst annen sak → som alle andre saker">
-        <test><and>
-          <equal><clip pos="1" part="nbr"/><lit-tag v="sg"/></equal>
-          <equal><clip pos="2" part="nbr"/><lit-tag v="pl"/></equal>
-        </and></test>
+        <test><equal><clip pos="2" part="a_chunknum"/><lit-tag v="chunknum"/></equal></test>
         <let><clip pos="1" part="nbr"/><clip pos="2" part="nbr"/></let>
       </when></choose>
       <call-macro n="apply_casedrop_defdrop"><with-param pos="1"/><with-param pos="2"/></call-macro>
@@ -411,6 +414,16 @@
       </pattern>
       <action>
         <call-macro n="out_adj"><with-param pos="1"/></call-macro>
+      </action>
+    </rule>
+
+    <rule comment="CHUNK: det2adj">
+      <pattern>
+        <pattern-item n="det2adj"/>
+      </pattern>
+      <action>
+        <let><clip pos="1" part="gen"/><clip pos="0" part="gen"/></let>
+        <out><lu><clip pos="1" part="whole"/></lu></out>
       </action>
     </rule>
 
