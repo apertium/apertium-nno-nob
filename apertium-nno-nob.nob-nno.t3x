@@ -154,6 +154,9 @@
       <attr-item tags="sp"/>
       <attr-item tags="ND"/>
     </def-attr>
+    <def-attr n="a_chunknum">
+      <attr-item tags="chunknum"/>
+    </def-attr>
   </section-def-attrs>
 
   <section-def-vars>
@@ -245,10 +248,7 @@
         <let><clip pos="1" part="art"/><clip pos="2" part="art"/></let>
       </when></choose>
       <choose><when c="som en hvilken som helst annen sak → som alle andre saker">
-        <test><and>
-          <equal><clip pos="1" part="nbr"/><lit-tag v="sg"/></equal>
-          <equal><clip pos="2" part="nbr"/><lit-tag v="pl"/></equal>
-        </and></test>
+        <test><equal><clip pos="2" part="a_chunknum"/><lit-tag v="chunknum"/></equal></test>
         <let><clip pos="1" part="nbr"/><clip pos="2" part="nbr"/></let>
       </when></choose>
       <call-macro n="apply_casedrop_defdrop"><with-param pos="1"/><with-param pos="2"/></call-macro>
