@@ -12,7 +12,7 @@ else
     verbose=false
 fi
 
-prevmt=dev/ntb/articles.nob-nno.20190119
+prevmt=dev/ntb/articles.nob-nno.20191125
 gold=dev/ntb/articles.gold.nno
 
 tmp=$(mktemp -d -t wer-loss-nno-nob.XXXXXXXXXX)
@@ -35,8 +35,8 @@ cur=$(t/beam-eval-until-stable  -t "${tmp}"/test      -r "${tmp}"/ref 2>/dev/nul
 
 justwer () {
     sed -n '/WER/{s/[^0-9]*\([0-9][0-9]*\)[.].*/\1/;p}' \
-        | awk '{print int(10*($0+0.05))}'
-    # Turn into rounded permille
+        | awk '{print int(10*($0+0.05));exit(0)}'
+    # Turn into rounded permille, only take the first one
 }
 
 werdiff () {
