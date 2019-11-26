@@ -457,6 +457,10 @@
     <def-cat n="prn">
       <cat-item tags="prn.*"/>
     </def-cat>
+    <def-cat n="cnjsub">
+      <cat-item tags="cnjsub.*"/>
+      <cat-item tags="cnjsub"/>
+    </def-cat>
     <def-cat n="cnjcoo">
       <cat-item tags="cnjcoo.*"/>
       <cat-item tags="cnjcoo"/>
@@ -4783,6 +4787,20 @@ no lemq-moving">
             </chunk>
           </out>
         </when></choose>
+      </action>
+    </rule>
+
+    <rule comment="CNJSUB">
+      <pattern>
+        <pattern-item n="cnjsub"/>
+      </pattern>
+      <action>
+        <out>
+          <chunk name="cnjsub">
+            <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
+            <lu><clip pos="1" side="tl" part="whole"/></lu>
+          </chunk>
+        </out>
       </action>
     </rule>
 
