@@ -1140,6 +1140,46 @@
         </out>
       </action>
     </rule>
+    <rule comment="N AUXPASS ADJPART DET NDEF => N AUXPASS ADJPART DET NDEF
+                   Overrides the AUXPASS ADJPART DET NDEF rule.
+                   (mens) avstemningen holdes den påfølgende onsdagen → (mens) avstemminga blir halden den følgjande onsdagen
+                   auxpass are created in t1x
+                   (No match if the aux was there originally, then we don't move anything)">
+      <pattern>
+        <pattern-item n="nom"/>
+        <pattern-item n="auxpass"/>
+        <pattern-item n="adjpart"/>
+        <pattern-item n="det"/>
+        <pattern-item n="ndef"/>
+      </pattern>
+      <action>
+        <call-macro n="set_ana"><with-param pos="1"/></call-macro>
+        <call-macro n="set_ana"><with-param pos="2"/></call-macro>
+        <call-macro n="set_ana"><with-param pos="5"/></call-macro>
+        <call-macro n="modify_pp_gen_nbr"><with-param pos="3"/></call-macro>
+        <out>
+          <chunk>
+            <clip pos="1" part="whole"/>
+          </chunk>
+          <b pos="1"/>
+          <chunk>
+            <clip pos="2" part="whole"/>
+          </chunk>
+          <b pos="2"/>
+          <chunk>
+            <clip pos="3" part="whole"/>
+          </chunk>
+          <b pos="3"/>
+          <chunk>
+            <clip pos="4" part="whole"/>
+          </chunk>
+          <b pos="4"/>
+          <chunk>
+            <clip pos="5" part="whole"/>
+          </chunk>
+        </out>
+      </action>
+    </rule>
 
     <rule comment="VBLEX => VBLEX">
       <pattern>
