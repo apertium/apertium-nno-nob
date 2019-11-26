@@ -2841,6 +2841,61 @@
 
 
   <section-rules>
+    <rule comment="PÅ MANDAG: på måndag => måndag
+                   Unntak: særlig på søndag, etter hvert på onsdag, – på lørdag
+                   Tag as adv for interchunk rules (TODO: actual syntactical tagging)">
+      <pattern>
+        <pattern-item n="på"/>
+        <pattern-item n="nind_vekedag"/>
+      </pattern>
+      <action>
+        <choose><when c="Don't drop for 'etter hvert på søndag'">
+          <test><or>
+            <equal caseless="yes"><var n="prevlem"/><lit v="etter kvart"/></equal>
+            <equal caseless="yes"><var n="prevlem"/><lit v="etterkvart"/></equal>
+            <equal caseless="yes"><var n="prevlem"/><lit v="spesielt"/></equal>
+            <equal caseless="yes"><var n="prevlem"/><lit v="spesiell"/></equal>
+            <equal caseless="yes"><var n="prevlem"/><lit v="–"/></equal>
+          </or></test>
+          <reject-current-rule shifting="no"/>
+        </when></choose>
+        <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
+        <choose><when>
+          <test><not><equal><b pos="1"/><lit v=" "/></equal></not></test>
+          <out><b pos="1"/></out>
+        </when></choose>
+        <out>
+          <chunk name="n" case="caseFirstWord">
+            <tags>
+              <tag><lit-tag v="adv"/></tag>
+              <tag><clip pos="2" side="tl" part="tags"/></tag>
+            </tags>
+            <lu><clip pos="2" side="tl" part="whole"/></lu>
+          </chunk>
+        </out>
+        <let><var n="prevlem"/><clip pos="2" side="tl" part="lem"/></let>
+      </action>
+    </rule>
+    <rule comment="MANDAG: måndag => måndag
+                   Tag as adv for interchunk rules (TODO: actual syntactical tagging)">
+      <pattern>
+        <pattern-item n="nind_vekedag"/>
+      </pattern>
+      <action>
+        <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
+        <out>
+          <chunk name="n" case="caseFirstWord">
+            <tags>
+              <tag><lit-tag v="adv"/></tag>
+              <tag><clip pos="1" side="tl" part="tags"/></tag>
+            </tags>
+            <lu><clip pos="1" side="tl" part="whole"/></lu>
+          </chunk>
+        </out>
+        <let><var n="prevlem"/><clip pos="1" side="tl" part="lem"/></let>
+      </action>
+    </rule>
+
     <!-- Idiomatic rules first -->
     <rule comment="hvilken som helst by → kva by som helst
                    put lemq after">
@@ -4513,7 +4568,8 @@ no lemq-moving">
         </out>
       </action>
     </rule>
-    <rule comment="ADJ ADJ">
+    <rule comment="ADJ ADJ
+                   mest betydningsfulle → viktigaste">
       <pattern>
         <pattern-item n="adj"/>
         <pattern-item n="adj"/>
@@ -4705,37 +4761,6 @@ no lemq-moving">
           <chunk name="n">
             <tags><tag><clip pos="3" side="tl" part="tags"/></tag></tags>
             <lu><clip pos="3" side="tl" part="whole"/></lu>
-          </chunk>
-        </out>
-      </action>
-    </rule>
-
-    <rule comment="PÅ MANDAG: på måndag => måndag
-                   Unntak: særlig på søndag, etter hvert på onsdag, – på lørdag">
-      <pattern>
-        <pattern-item n="på"/>
-        <pattern-item n="nind_vekedag"/>
-      </pattern>
-      <action>
-        <choose><when c="Don't drop for 'etter hvert på søndag'">
-          <test><or>
-            <equal caseless="yes"><var n="prevlem"/><lit v="etter kvart"/></equal>
-            <equal caseless="yes"><var n="prevlem"/><lit v="etterkvart"/></equal>
-            <equal caseless="yes"><var n="prevlem"/><lit v="spesielt"/></equal>
-            <equal caseless="yes"><var n="prevlem"/><lit v="spesiell"/></equal>
-            <equal caseless="yes"><var n="prevlem"/><lit v="–"/></equal>
-          </or></test>
-          <reject-current-rule shifting="no"/>
-        </when></choose>
-        <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
-        <choose><when>
-          <test><not><equal><b pos="1"/><lit v=" "/></equal></not></test>
-          <out><b pos="1"/></out>
-        </when></choose>
-        <out>
-          <chunk name="n" case="caseFirstWord">
-            <tags><tag><clip pos="2" side="tl" part="tags"/></tag></tags>
-            <lu><clip pos="2" side="tl" part="whole"/></lu>
           </chunk>
         </out>
       </action>
