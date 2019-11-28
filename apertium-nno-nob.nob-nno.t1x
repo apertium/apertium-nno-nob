@@ -31,7 +31,7 @@
     </def-cat>
     <def-cat n="nind_keep_gen_s"
              c="Owned nouns where we want the owner ngen to keep the genitive-s
-                See also def-list keepgenx">
+                See also def-list keepgenx, and ngen_keep_gen_s for owner">
       <cat-item tags="n.*.*.ind" lemma="beste"/>
       <cat-item tags="n.*.sg.ind" lemma="side"/>
       <cat-item tags="n.*.sg.ind" lemma="tur"/>
@@ -226,7 +226,8 @@
       <cat-item tags="n.*.def"/>
       <cat-item tags="n.*.def.gen"/>
     </def-cat>
-    <def-cat n="ngen_keep_gen_s">
+    <def-cat n="ngen_keep_gen_s"
+             c="Owner nouns where we want to keep the genitive-s">
       <cat-item tags="n.m.sg.*.gen"   lemma="liter"/>
       <cat-item tags="n.m.pl.ind.gen" lemma="liter"/>
       <cat-item tags="n.m.sg.*.gen"   lemma="centimeter"/>
@@ -281,6 +282,8 @@
       <cat-item tags="n.m.pl.ind.gen" lemma="meter"/>
       <cat-item tags="n.m.sg.*.gen"   lemma="kilometer"/>
       <cat-item tags="n.m.pl.ind.gen" lemma="kilometer"/>
+      <cat-item tags="n.m.sg.*.gen"   lemma="kilo"/>
+      <cat-item tags="n.m.pl.ind.gen" lemma="kilo"/>
       <cat-item tags="n.m.sg.*.gen"   lemma="fot¹"/>
       <cat-item tags="n.m.pl.ind.gen" lemma="fot¹"/>
 
@@ -3764,6 +3767,31 @@ no lemq-moving">
             <lu><clip pos="1" side="tl" part="whole"/></lu>
             <b pos="1"/>
             <lu><clip pos="2" side="tl" part="whole"/></lu>
+          </chunk>
+        </out>
+      </action>
+    </rule>
+    <rule comment="NGEN_KEEP_GEN_S NIND: 710-kilos hai → 710-kilos hai">
+      <pattern>
+        <pattern-item n="ncmp"/>
+        <pattern-item n="ngen_keep_gen_s"/>
+        <pattern-item n="nind_indgen"/>
+      </pattern>
+      <action>
+        <let><var n="c_name"/><lit v="n_n_n"/></let>
+        <call-macro n="set_caseFirstWord2">
+          <with-param pos="1"/>
+          <with-param pos="2"/>
+        </call-macro>
+        <call-macro n="out_gen-prep"><with-param pos="3"/></call-macro>
+        <call-macro n="stash_case_in_ntags"><with-param pos="3"/></call-macro>
+        <out>
+          <chunk namefrom="c_name" case="caseFirstWord">
+            <tags><tag><var n="ntags"/></tag></tags>
+            <lu><clip pos="1" side="tl" part="whole"/></lu>
+            <lu><clip pos="2" side="tl" part="whole"/></lu>
+            <b pos="2"/>
+            <lu><clip pos="3" side="tl" part="whole"/></lu>
           </chunk>
         </out>
       </action>
