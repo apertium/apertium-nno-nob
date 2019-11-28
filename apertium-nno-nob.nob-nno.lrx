@@ -151,8 +151,6 @@
     </or>
   </rule>
 
-  <rule> <match lemma="hvilket" tags="cnjsub"> <select lemma="noko som"/> </match> </rule>
-
   <rule> <match lemma="fremlegge" tags="vblex.*"> <select lemma="framlegge"/> </match> </rule>
   <rule> <match lemma="framlegge" tags="vblex.*"> <select lemma="framlegge"/> </match> </rule>
 
@@ -1204,6 +1202,8 @@
     </match>
   </rule>
 
+  <rule> <match lemma="hvilket" tags="cnjsub"> <select lemma="noko som"/> </match> </rule>
+
   <rule><match lemma="hvilken" tags="det.itg.*"><select lemma="kva"/></match></rule>
   <rule weight="2.0" c="hvilken av + (adj) + subst → kva for ein av  + (adj) + subst">
     <match lemma="hvilken" tags="det.itg.*"><select lemma="kva for"/></match>
@@ -1220,6 +1220,22 @@
   <rule weight="3.0" c="hvilke + adj + subst → kva for nokre + adj + subst">
     <match lemma="hvilken" tags="det.itg.un.pl"><select lemma="kva for nokre"/></match>
     <match tags="adj.*"/>
+  </rule>
+  <rule weight="3.0" c="hvilke + sent → kva for nokre + sent">
+    <match lemma="hvilken" tags="det.itg.*"><select lemma="kva for nokre"/></match>
+    <or>
+      <match tags="sent.*"/>
+      <match tags="cm.*"/>
+      <match tags="cm"/>
+    </or>
+  </rule>
+  <rule weight="2.0" c="hvilken + sent → kva for ein + sent">
+    <match lemma="hvilken" tags="det.itg.*"><select lemma="kva for"/></match>
+    <or>
+      <match tags="sent.*"/>
+      <match tags="cm.*"/>
+      <match tags="cm"/>
+    </or>
   </rule>
   <rule weight="2.0" c="i hvilken grad → i kva grad">
     <match lemma="hvilken" tags="det.itg.*"><select lemma="kva"/></match>

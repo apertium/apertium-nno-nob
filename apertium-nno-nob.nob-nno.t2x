@@ -25,6 +25,13 @@
       <cat-item tags="n.*.gen.*"/>
       <cat-item tags="np.*"/>
     </def-cat>
+    <def-cat n="nom_advnom">
+      <cat-item tags="n.*"/>
+      <cat-item tags="n.*.gen"/>
+      <cat-item tags="n.*.gen.*"/>
+      <cat-item tags="np.*"/>
+      <cat-item tags="adv.n.*"/>
+    </def-cat>
     <def-cat n="nind">
       <cat-item tags="n.*.ind"/>
       <cat-item tags="n.*.ind.*"/>
@@ -2027,11 +2034,11 @@
     <rule comment="DET2ADJ NOM: (som) en hvilken som helst annen sak → (som) alle andre sak → (som) alle andre saker">
       <pattern>
         <pattern-item n="det2adj"/>
-        <pattern-item n="nom"/>
+        <pattern-item n="nom_advnom"/>
       </pattern>
       <action>
         <let><clip pos="2" part="nbr"/><clip pos="1" part="nbr"/></let>
-        <let><clip pos="2" part="tags"/><concat><clip pos="1" part="tags"/><lit-tag v="chunknum"/></concat></let>
+        <let><clip pos="2" part="tags"/><concat><clip pos="2" part="tags"/><lit-tag v="chunknum"/></concat></let>
         <call-macro n="modify_det_gender2.n.det"><with-param pos="2"/><with-param pos="1"/></call-macro>
         <choose><when c="only set ana based on det if no ana, or if n is def">
           <test><or>
