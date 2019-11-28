@@ -1203,6 +1203,14 @@
   </rule>
 
   <rule> <match lemma="hvilket" tags="cnjsub"> <select lemma="noko som"/> </match> </rule>
+  <rule weight="2.0">
+    <match lemma="hvilket" tags="cnjsub"> <select lemma="noko"/> </match>
+    <or>
+      <match tags="prn.*"/>
+      <match tags="det.*"/>
+      <match tags="n.*.def"/>
+    </or>
+  </rule>
 
   <rule><match lemma="hvilken" tags="det.itg.*"><select lemma="kva"/></match></rule>
   <rule weight="2.0" c="hvilken av + (adj) + subst → kva for ein av  + (adj) + subst">
