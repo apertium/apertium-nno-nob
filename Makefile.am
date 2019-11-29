@@ -44,10 +44,10 @@ $(PREFIX2): $(TARGETS_PREFIX2)
 # Debug/development goals:
 e: modes/$(PREFIX1).mode	# build just nob-nno_e
 	cd $(AP_SRC1) && ${MAKE} $(LANG1e).autogen.bin $(LANG1).autopgen.bin
-	cd $(AP_SRC2) && ${MAKE} $(LANG2).automorf.bin $(LANG2).rlx.bin $(LANG2).prob
+	cd $(AP_SRC2) && ${MAKE} $(LANG2).automorf.bin  $(LANG2).seg.rlx.bin $(LANG2).rlx.bin $(LANG2).prob
 	${MAKE} nob-nno
 r: modes/$(PREFIX1).mode $(PREFIX2).autolex.bin $(PREFIX2).t1x.bin $(PREFIX2).t2x.bin $(PREFIX2).t3x.bin # build just transfer and rlx files for nob-nno(_e)
-	cd $(AP_SRC2) && ${MAKE} $(LANG2).rlx.bin
+	cd $(AP_SRC2) && ${MAKE} $(LANG2).seg.rlx.bin $(LANG2).rlx.bin
 	${MAKE} $(PREFIX2).seg.rlx.bin $(PREFIX2).rlx.bin
 
 # This include defines goals for install-modes, .deps/.d and .mode files:
