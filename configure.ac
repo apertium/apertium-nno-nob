@@ -6,7 +6,7 @@ AC_PREREQ(2.52)
 m4_define([required_apertium_version], [3.4.0])
 m4_define([required_lttoolbox_version], [3.3.1])
 
-AC_INIT([Apertium Nynorsk-Bokmål], [1.2.0], [unhammer+apertium@mm.st], [apertium-nno-nob], [http://wiki.apertium.org/wiki/Apertium-nno-nob])
+AC_INIT([Apertium Nynorsk-Bokmål], [1.3.0], [unhammer+apertium@mm.st], [apertium-nno-nob], [http://wiki.apertium.org/wiki/Apertium-nno-nob])
 AM_INIT_AUTOMAKE
 
 AC_PROG_LN_S
@@ -32,8 +32,8 @@ AS_IF([test x$LRXPROC = xfalse], [AC_MSG_ERROR([You don't have lrx-proc installe
 
 m4_ifdef([AP_CHECK_LING],[],[AC_MSG_ERROR([AP_CHECK_LING not defined, is apertium.m4 in ACLOCAL_PATH? See: http://wiki.apertium.org/wiki/Installation_troubleshooting])])
 
-AP_CHECK_LING([1], [apertium-nno])
-AP_CHECK_LING([2], [apertium-nob])
+AP_CHECK_LING([1], [apertium-nno], [1.1.0])
+AP_CHECK_LING([2], [apertium-nob], [1.1.0])
 
 AP_MKINCLUDE
 
