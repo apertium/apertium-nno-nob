@@ -1648,9 +1648,27 @@
   <rule><match lemma="hvorav" tags="adv"><select lemma="kor"/></match></rule>
   <rule weight="2.0">
     <or>
-      <match lemma="," tags="cm"/>
-      <match lemma="," tags="cm.*"/>
+      <match tags="sent"/>
+      <match tags="sent.*"/>
+      <match tags="cm"/>
+      <match tags="cm.*"/>
     </or>
     <match lemma="hvorav" tags="adv"><select lemma="og"/></match>
+  </rule>
+
+  <rule><match lemma="hvorav¹" tags="adv"><select lemma=""/></match></rule>
+  <rule weight="2.0">
+    <match lemma="hvorav¹" tags="adv"><select lemma=", av dei"/></match>
+    <match tags="det.qnt.*"/>
+  </rule>
+  <rule weight="3.0">
+    <or>
+      <match tags="sent"/>
+      <match tags="sent.*"/>
+      <match tags="cm"/>
+      <match tags="cm.*"/>
+    </or>
+    <match lemma="hvorav¹" tags="adv"><select lemma="av dei"/></match>
+    <match tags="det.qnt.*"/>
   </rule>
 </rules>
