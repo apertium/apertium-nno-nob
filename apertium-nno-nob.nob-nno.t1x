@@ -3388,12 +3388,6 @@
         <let><var n="advtags"/><clip pos="1" side="tl" part="tags"/></let>
         <choose>
           <when>
-            <test><equal caseless="yes"><clip pos="1" side="sl" part="lemh"/><lit v="hvorav"/></equal></test>
-            <append n="advtags">
-              <lit-tag v="moveverb"/>
-            </append>
-          </when>
-          <when>
             <test><not><in><clip pos="1" side="tl" part="lemh"/><list n="immovable-adv"/></in></not></test>
             <append n="advtags">
               <lit-tag v="movable"/>

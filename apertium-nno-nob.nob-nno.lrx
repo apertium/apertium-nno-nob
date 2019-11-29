@@ -1644,4 +1644,13 @@
 
   <rule><match lemma="fremstå" tags="vblex.*"><select lemma="verke"/></match></rule>
   <rule><match lemma="framstå" tags="vblex.*"><select lemma="verke"/></match></rule>
+
+  <rule><match lemma="hvorav" tags="adv"><select lemma="kor"/></match></rule>
+  <rule weight="2.0">
+    <or>
+      <match lemma="," tags="cm"/>
+      <match lemma="," tags="cm.*"/>
+    </or>
+    <match lemma="hvorav" tags="adv"><select lemma="og"/></match>
+  </rule>
 </rules>

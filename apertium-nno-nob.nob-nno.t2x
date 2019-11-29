@@ -169,10 +169,6 @@
       <cat-item tags="adv.movable"/>
       <cat-item tags="adv.movable.*"/>
     </def-cat>
-    <def-cat n="adv_moveverb">
-      <cat-item tags="adv.moveverb"/>
-      <cat-item tags="adv.moveverb.*"/>
-    </def-cat>
     <def-cat n="prenom">
       <cat-item tags="adv"/>
       <cat-item tags="adv.*"/>
@@ -1270,72 +1266,6 @@
           </chunk>
           <chunk>
             <clip pos="2" part="whole"/>
-          </chunk>
-        </out>
-      </action>
-    </rule>
-
-    <rule comment="ADV_MOVEVERB PRENOM_OR_NOM VBLEX => ADV_MOVEVERB VBLEX PRENOM_OR_NOM
-                   hvorav 15 var => av dei var 15">
-      <pattern>
-        <pattern-item n="adv_moveverb"/>
-        <pattern-item n="prenom_OR_nom"/>
-        <pattern-item n="vblex"/>
-      </pattern>
-      <action>
-        <call-macro n="set_ana"><with-param pos="3"/></call-macro>
-        <out>
-          <chunk>
-            <clip pos="1" part="lemh"/>
-            <clip pos="1" part="tags"/>
-            <lit v="{^"/>
-              <lit v="av dei"/>
-              <lit-tag v="adv"/>
-            <lit v="$}"/>
-          </chunk>
-          <b pos="1"/>
-          <chunk>
-            <clip pos="3" part="whole"/>
-          </chunk>
-          <b pos="2"/>
-          <chunk>
-            <clip pos="2" part="whole"/>
-          </chunk>
-        </out>
-      </action>
-    </rule>
-
-    <rule comment="ADV_MOVEVERB PRENOM PRENOM_OR_NOM VBLEX => ADV_MOVEVERB VBLEX PRENOM PRENOM_OR_NOM
-                   hvorav minst tre var => av dei var minst tre
-                   hvorav ett år var => av dei var ett år">
-      <pattern>
-        <pattern-item n="adv_moveverb"/>
-        <pattern-item n="prenom"/>
-        <pattern-item n="prenom_OR_nom"/>
-        <pattern-item n="vblex"/>
-      </pattern>
-      <action>
-        <call-macro n="set_ana"><with-param pos="4"/></call-macro>
-        <out>
-          <chunk>
-            <clip pos="1" part="lemh"/>
-            <clip pos="1" part="tags"/>
-            <lit v="{^"/>
-              <lit v="av dei"/>
-              <lit-tag v="adv"/>
-            <lit v="$}"/>
-          </chunk>
-          <b pos="1"/>
-          <chunk>
-            <clip pos="4" part="whole"/>
-          </chunk>
-          <b pos="2"/>
-          <chunk>
-            <clip pos="2" part="whole"/>
-          </chunk>
-          <b pos="3"/>
-          <chunk>
-            <clip pos="3" part="whole"/>
           </chunk>
         </out>
       </action>
