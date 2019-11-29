@@ -28,6 +28,7 @@ TARGETS_PREFIX1 =                                             \
 
 TARGETS_PREFIX2 =                                             \
      $(PREFIX2).automorf.bin                                  \
+     $(PREFIX2).seg.rlx.bin                                   \
      $(PREFIX2).rlx.bin                                       \
      $(PREFIX2).prob                                          \
      $(PREFIX2).autolex.bin                                   \
@@ -47,7 +48,7 @@ e: modes/$(PREFIX1).mode	# build just nob-nno_e
 	${MAKE} nob-nno
 r: modes/$(PREFIX1).mode $(PREFIX2).autolex.bin $(PREFIX2).t1x.bin $(PREFIX2).t2x.bin $(PREFIX2).t3x.bin # build just transfer and rlx files for nob-nno(_e)
 	cd $(AP_SRC2) && ${MAKE} $(LANG2).rlx.bin
-	${MAKE} $(PREFIX2).rlx.bin
+	${MAKE} $(PREFIX2).seg.rlx.bin $(PREFIX2).rlx.bin
 
 # This include defines goals for install-modes, .deps/.d and .mode files:
 @ap_include@
@@ -103,6 +104,9 @@ $(PREFIX2).prob: $(AP_SRC2)/$(LANG2).prob
 ###############################################################################
 
 $(PREFIX1).rlx.bin: $(AP_SRC1)/$(LANG1).rlx.bin
+	cp $< $@
+
+$(PREFIX2).seg.rlx.bin: $(AP_SRC2)/$(LANG2).seg.rlx.bin
 	cp $< $@
 
 $(PREFIX2).rlx.bin: $(AP_SRC2)/$(LANG2).rlx.bin
