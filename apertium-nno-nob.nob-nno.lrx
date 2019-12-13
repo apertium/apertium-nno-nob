@@ -1253,6 +1253,11 @@
     <match lemma="hvilken" tags="det.itg.*"><select lemma="kva"/></match>
     <match lemma="annen" tags="det.*"/>
   </rule>
+  <rule weight="3.0" c="og hvilken som → og kva for nokre av dei som">
+    <or><match lemma="og" tags="cnjcoo"/><match lemma="og" tags="cnjcoo.*"/></or>
+    <match lemma="hvilken" tags="det.itg.*"><select lemma="kva for av dei"/></match>
+    <or><match lemma="som" tags="pr"/><match lemma="som" tags="cnjsub"/></or>
+  </rule>
 
   <rule c="en hvilken som helst type → kva type som helst">
     <match lemma="hvilken som helst" tags="adj.*"><select lemma="kva# som helst"/></match>
