@@ -3385,7 +3385,8 @@
       <pattern>
         <pattern-item n="adv"/>
       </pattern>
-      <action>
+      <action><choose><when c="do nothing if empty target lemma">
+        <test><not><equal><clip pos="1" side="tl" part="lemh"/><lit v=""/></equal></not></test>
         <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
         <let><var n="advtags"/><clip pos="1" side="tl" part="tags"/></let>
         <choose>
@@ -3403,7 +3404,7 @@
           </chunk>
         </out>
         <let><var n="prevlem"/><clip pos="1" side="tl" part="lem"/></let>
-      </action>
+      </when></choose></action>
     </rule>
     <rule comment="så-ADV lenge-ADV/ADJ: så lenge → så lenge">
       <pattern>
