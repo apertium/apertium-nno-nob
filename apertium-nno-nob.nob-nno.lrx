@@ -1,3 +1,141 @@
+<lrx>
+
+    <def-seqs>
+      <def-seq n="ANYTAG">
+        <or>
+          <match tags="n.*"/>
+          <match tags="np.*"/>
+          <match tags="prn.*"/>
+          <match tags="det.*"/>
+          <match tags="vblex.*"/>
+          <match tags="ij"/>
+          <match tags="ij.*"/>
+          <match tags="adv"/>
+          <match tags="adv.*"/>
+          <match tags="pr"/>
+          <match tags="pr.*"/>
+          <match tags="adj.*"/>
+          <match tags="part"/>
+          <match tags="part.*"/>
+          <match tags="cnjsub"/>
+          <match tags="cnjsub.*"/>
+          <match tags="cnjcoo"/>
+          <match tags="cnjcoo.*"/>
+          <match tags="cnjadv"/>
+          <match tags="cnjadv.*"/>
+          <match tags="acr"/>
+          <match tags="acr.*"/>
+          <match tags="sent"/>
+          <match tags="sent.*"/>
+          <match tags="apos"/>
+          <match tags="apos.*"/>
+          <match tags="lpar"/>
+          <match tags="lpar.*"/>
+          <match tags="rpar"/>
+          <match tags="rpar.*"/>
+          <match tags="lquot"/>
+          <match tags="lquot.*"/>
+          <match tags="rquot"/>
+          <match tags="rquot.*"/>
+          <match tags="date"/>
+          <match tags="date.*"/>
+          <match tags="url"/>
+          <match tags="url.*"/>
+          <match tags="guio"/>
+          <match tags="guio.*"/>
+        </or>
+      </def-seq>
+      <def-seq n="NOT_sent_lpar_lquot_rquot">
+        <or>
+          <match tags="n.*"/>
+          <match tags="np.*"/>
+          <match tags="prn.*"/>
+          <match tags="det.*"/>
+          <match tags="vblex.*"/>
+          <match tags="ij"/>
+          <match tags="ij.*"/>
+          <match tags="adv"/>
+          <match tags="adv.*"/>
+          <match tags="pr"/>
+          <match tags="pr.*"/>
+          <match tags="adj.*"/>
+          <match tags="part"/>
+          <match tags="part.*"/>
+          <match tags="cnjsub"/>
+          <match tags="cnjsub.*"/>
+          <match tags="cnjcoo"/>
+          <match tags="cnjcoo.*"/>
+          <match tags="cnjadv"/>
+          <match tags="cnjadv.*"/>
+          <match tags="acr"/>
+          <match tags="acr.*"/>
+          <!-- <match tags="sent"/> -->
+          <!-- <match tags="sent.*"/> -->
+          <match tags="apos"/>
+          <match tags="apos.*"/>
+          <!-- <match tags="lpar"/> -->
+          <!-- <match tags="lpar.*"/> -->
+          <match tags="rpar"/>
+          <match tags="rpar.*"/>
+          <!-- <match tags="lquot"/> -->
+          <!-- <match tags="lquot.*"/> -->
+          <!-- <match tags="rquot"/> -->
+          <!-- <match tags="rquot.*"/> -->
+          <match tags="date"/>
+          <match tags="date.*"/>
+          <match tags="url"/>
+          <match tags="url.*"/>
+          <match tags="guio"/>
+          <match tags="guio.*"/>
+        </or>
+      </def-seq>
+      <def-seq n="NOT_ij_sent_lpar_lquot">
+        <or>
+          <match tags="n.*"/>
+          <match tags="np.*"/>
+          <match tags="prn.*"/>
+          <match tags="det.*"/>
+          <match tags="vblex.*"/>
+          <!-- <match tags="ij"/> -->
+          <!-- <match tags="ij.*"/> -->
+          <match tags="adv"/>
+          <match tags="adv.*"/>
+          <match tags="pr"/>
+          <match tags="pr.*"/>
+          <match tags="adj.*"/>
+          <match tags="part"/>
+          <match tags="part.*"/>
+          <match tags="cnjsub"/>
+          <match tags="cnjsub.*"/>
+          <match tags="cnjcoo"/>
+          <match tags="cnjcoo.*"/>
+          <match tags="cnjadv"/>
+          <match tags="cnjadv.*"/>
+          <match tags="acr"/>
+          <match tags="acr.*"/>
+          <!-- <match tags="sent"/> -->
+          <!-- <match tags="sent.*"/> -->
+          <match tags="apos"/>
+          <match tags="apos.*"/>
+          <!-- <match tags="lpar"/> -->
+          <!-- <match tags="lpar.*"/> -->
+          <match tags="rpar"/>
+          <match tags="rpar.*"/>
+          <!-- <match tags="lquot"/> -->
+          <!-- <match tags="lquot.*"/> -->
+          <match tags="rquot"/>
+          <match tags="rquot.*"/>
+          <match tags="date"/>
+          <match tags="date.*"/>
+          <match tags="url"/>
+          <match tags="url.*"/>
+          <match tags="guio"/>
+          <match tags="guio.*"/>
+        </or>
+      </def-seq>
+  </def-seqs>
+
+
 <rules>
   <!-- NOB → NNO -->
 
@@ -1258,6 +1396,21 @@
     <match lemma="hvilken" tags="det.itg.*"><select lemma="kva for av dei"/></match>
     <or><match lemma="som" tags="pr"/><match lemma="som" tags="cnjsub"/></or>
   </rule>
+  <rule weight="4.0" c="og hvilken .*! → og for ein .*!">
+    <or><match lemma="og" tags="cnjcoo"/><match lemma="og" tags="cnjcoo.*"/></or>
+    <match lemma="hvilken" tags="det.itg.*"><select lemma="for ein" tags="det.itg.*"/></match>
+    <repeat from="1" upto="9"><match tags="*"/></repeat>
+    <match lemma="!" tags="sent.clb"/>
+  </rule>
+  <rule weight="3.1" c="Fjern «for ein» viss me har ord til venstre (så me kan velja «for ein» viss ikkje)">
+    <seq n="NOT_ij_sent_lpar_lquot"/>
+    <match lemma="hvilken" tags="det.itg.*"><remove lemma="for ein" tags="det.itg.*"/></match>
+  </rule>
+  <rule weight="2.1" c="For en prestasjon vi gjorde i dag!">
+    <match lemma="hvilken" tags="det.itg.*"><select lemma="for ein" tags="det.itg.*"/></match>
+    <repeat from="1" upto="9"><seq n="NOT_sent_lpar_lquot_rquot"/></repeat>
+    <match lemma="!" tags="sent.clb"/>
+  </rule>
 
   <rule c="en hvilken som helst type → kva type som helst">
     <match lemma="hvilken som helst" tags="adj.*"><select lemma="kva# som helst"/></match>
@@ -1477,34 +1630,8 @@
   <rule><match lemma="hvor" tags="adv"><select lemma="kor"/></match></rule>
   <rule weight="2.0">
     <match lemma="hvor" tags="adv"><select lemma="kvar"/></match>
-    <or>
-      <!-- Can't say «kor before unknown», so we explicitly match on everything except unknown: -->
-      <match tags="det.*"/>
-      <match tags="rquot"/>
-      <match tags="rpar"/>
-      <match tags="lpar"/>
-      <match tags="date"/>
-      <match tags="url"/>
-      <match tags="adj.*"/>
-      <match tags="vblex.*"/>
-      <match tags="cm"/>
-      <match tags="cm.*"/>
-      <match tags="sent"/>
-      <match tags="sent.*"/>
-      <match tags="n.*"/>
-      <match tags="np.*"/>
-      <match tags="prn.*"/>
-      <match tags="ij"/>
-      <match tags="ij.*"/>
-      <match tags="pr"/>
-      <match tags="pr.*"/>
-      <match tags="cnjcoo"/>
-      <match tags="cnjcoo.*"/>
-      <match tags="cnjsub"/>
-      <match tags="cnjsub.*"/>
-      <match tags="cnjadv"/>
-      <match tags="cnjadv.*"/>
-    </or>
+      <!-- Can't say «kor before unknown», so we explicitly match on everything except unknown (anything tagged): -->
+    <seq n="ANYTAG"/>
   </rule>
   <rule weight="2.0">
     <match lemma="hvor" tags="adv"><select lemma="kor"/></match>
@@ -1685,3 +1812,4 @@
 
   <rule><match lemma="omberegning" tags="n.*"><select lemma="utrekning"/></match></rule>
 </rules>
+</lrx>
