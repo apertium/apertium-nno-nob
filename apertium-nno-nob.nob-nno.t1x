@@ -446,6 +446,9 @@
     <def-cat n="påfølgende">
       <cat-item tags="adj.*" lemma="påfølgende"/>
     </def-cat>
+    <def-cat n="klokken">
+      <cat-item tags="n.*.def" lemma="klokke"/>
+    </def-cat>
     <def-cat n="pr">
       <cat-item tags="pr.*"/>
       <cat-item tags="pr"/>
@@ -3143,6 +3146,54 @@
               <clip pos="2" side="tl" part="nbr"/>
               <lit-tag v="def"/>
             </lu>
+          </chunk>
+        </out>
+      </action>
+    </rule>
+
+    <rule comment="klokken 14 → klokka 14">
+      <pattern>
+        <pattern-item n="klokken"/>
+        <pattern-item n="detqnt"/>
+      </pattern>
+      <action>
+        <call-macro n="set_caseFirstWord2">
+          <with-param pos="1"/>
+          <with-param pos="2"/>
+        </call-macro>
+        <out>
+          <chunk name="adv" case="caseFirstWord">
+            <tags><tag><lit-tag v="adv"/></tag></tags>
+            <lu><clip pos="1" side="tl" part="whole"/></lu>
+            <b pos="1"/>
+            <lu><clip pos="2" side="tl" part="whole"/></lu>
+          </chunk>
+        </out>
+      </action>
+    </rule>
+    <rule comment="klokken 14. → klokka 14.">
+      <pattern>
+        <pattern-item n="klokken"/>
+        <pattern-item n="detqnt"/>
+        <pattern-item n="remspc"/>
+      </pattern>
+      <action>
+        <call-macro n="set_caseFirstWord2">
+          <with-param pos="1"/>
+          <with-param pos="2"/>
+        </call-macro>
+        <let><clip pos="3" side="tl" part="a_remspc"/><lit v=""/></let>
+        <out>
+          <chunk name="adv" case="caseFirstWord">
+            <tags><tag><lit-tag v="adv"/></tag></tags>
+            <lu><clip pos="1" side="tl" part="whole"/></lu>
+            <b pos="1"/>
+            <lu><clip pos="2" side="tl" part="whole"/></lu>
+          </chunk>
+          <b pos="2"/>
+          <chunk name="default" case="caseFirstWord">
+            <tags><tag><clip pos="3" side="tl" part="tags"/></tag></tags>
+            <lu><clip pos="3" side="tl" part="whole"/></lu>
           </chunk>
         </out>
       </action>
