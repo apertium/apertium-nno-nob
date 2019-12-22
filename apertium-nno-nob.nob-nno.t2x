@@ -222,6 +222,10 @@
     <def-cat n="prep_av">
       <cat-item tags="pr.av"/>
     </def-cat>
+    <def-cat n="prep">
+      <cat-item tags="pr.*"/>
+      <cat-item tags="pr"/>
+    </def-cat>
     <def-cat n="prep_som">
       <cat-item tags="pr.som"/>
     </def-cat>
@@ -1180,6 +1184,87 @@
           <b pos="4"/>
           <chunk>
             <clip pos="5" part="whole"/>
+          </chunk>
+        </out>
+      </action>
+    </rule>
+
+    <rule comment="PREP N AUXPASS ADJPART_NP_MOVABLE NDEF => PREP N AUXPASS ADJPART_NP_MOVABLE NDEF
+                   Overrides the rules overriding AUXPASS ADJPART NDEF rules.
+                   etter fremleggelsen beskyldes regjeringen =1> etter fremleggelsen blir regjeringen skulda =2> etter framlegginga blir regjeringen skulda
+                   auxpass are created in t1x
+                   (No match if the aux was there originally, then we don't move anything)">
+      <pattern>
+        <pattern-item n="prep"/>
+        <pattern-item n="nom"/>
+        <pattern-item n="auxpass"/>
+        <pattern-item n="adjpart_np_movable"/>
+        <pattern-item n="ndef"/>
+      </pattern>
+      <action>
+        <call-macro n="set_ana"><with-param pos="4"/></call-macro>
+        <call-macro n="set_ana"><with-param pos="5"/></call-macro>
+        <call-macro n="modify_pp_gen_nbr"><with-param pos="4"/></call-macro>
+        <out>
+          <chunk>
+            <clip pos="1" part="whole"/>
+          </chunk>
+          <b pos="1"/>
+          <chunk>
+            <clip pos="2" part="whole"/>
+          </chunk>
+          <b pos="2"/>
+          <chunk>
+            <clip pos="3" part="whole"/>
+          </chunk>
+          <b pos="3"/>
+          <chunk>
+            <clip pos="5" part="whole"/>
+          </chunk>
+          <b pos="4"/>
+          <chunk>
+            <clip pos="4" part="whole"/>
+          </chunk>
+        </out>
+      </action>
+    </rule>
+    <rule comment="PREP N AUXPASS ADJPART_NP_MOVABLE DET NDEF => PREP N AUXPASS DET NDEF ADJPART_NP_MOVABLE
+                   Overrides the rules overriding AUXPASS ADJPART DET NDEF rules">
+      <pattern>
+        <pattern-item n="prep"/>
+        <pattern-item n="nom"/>
+        <pattern-item n="auxpass"/>
+        <pattern-item n="adjpart_np_movable"/>
+        <pattern-item n="det"/>
+        <pattern-item n="ndef"/>
+      </pattern>
+      <action>
+        <call-macro n="set_ana"><with-param pos="4"/></call-macro>
+        <call-macro n="set_ana"><with-param pos="6"/></call-macro>
+        <call-macro n="modify_pp_gen_nbr"><with-param pos="4"/></call-macro>
+        <out>
+          <chunk>
+            <clip pos="1" part="whole"/>
+          </chunk>
+          <b pos="1"/>
+          <chunk>
+            <clip pos="2" part="whole"/>
+          </chunk>
+          <b pos="2"/>
+          <chunk>
+            <clip pos="3" part="whole"/>
+          </chunk>
+          <b pos="3"/>
+          <chunk>
+            <clip pos="5" part="whole"/>
+          </chunk>
+          <b pos="4"/>
+          <chunk>
+            <clip pos="6" part="whole"/>
+          </chunk>
+          <b pos="5"/>
+          <chunk>
+            <clip pos="4" part="whole"/>
           </chunk>
         </out>
       </action>
