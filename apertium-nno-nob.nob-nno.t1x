@@ -459,6 +459,9 @@
     <def-cat n="detqnt">
       <cat-item tags="det.qnt.*"/>
     </def-cat>
+    <def-cat n="detqntun">      <!-- e.g. digits, not «en/et» -->
+      <cat-item tags="det.qnt.un.*"/>
+    </def-cat>
     <def-cat n="remspc">
       <cat-item tags="sent.clb.remspc"/>
     </def-cat>
@@ -3154,7 +3157,7 @@
     <rule comment="klokken 14 → klokka 14">
       <pattern>
         <pattern-item n="klokken"/>
-        <pattern-item n="detqnt"/>
+        <pattern-item n="detqntun"/>
       </pattern>
       <action>
         <call-macro n="set_caseFirstWord2">
@@ -3174,7 +3177,7 @@
     <rule comment="klokken 14. → klokka 14.">
       <pattern>
         <pattern-item n="klokken"/>
-        <pattern-item n="detqnt"/>
+        <pattern-item n="detqntun"/>
         <pattern-item n="remspc"/>
       </pattern>
       <action>
