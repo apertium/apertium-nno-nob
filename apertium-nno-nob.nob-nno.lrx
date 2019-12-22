@@ -1687,4 +1687,14 @@
 
   <rule><match lemma="fremadstormende" tags="adj.*"><select lemma="framstormande"/></match></rule>
   <rule><match lemma="fremadstrebende" tags="adj.*"><select lemma="framstormande"/></match></rule>
+
+  <rule><match lemma="fremforhandle" tags="vblex.*"><select lemma="forhandle# fram"/></match></rule>
+  <rule><match lemma="fremforhandle" tags="adj.*"><select lemma="forhandle# fram"/></match></rule>
+  <rule weight="2.0">
+    <or>
+      <match lemma="fremforhandle" tags="adj.*"><select lemma="framforhandle"/></match>
+      <match lemma="fremforhandle" tags="vblex.pp"><select lemma="framforhandle"/></match>
+    </or>
+    <match tags="n.*"/>
+  </rule>
 </rules>
