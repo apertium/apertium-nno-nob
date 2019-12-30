@@ -378,23 +378,34 @@
   <!-- brenne¹ is transitive: -->
   <rule> <match lemma="brenne" tags="adj.*"> <select lemma="brenne"/> </match> </rule>
   <rule> <match lemma="brenne" tags="vblex.*"> <select lemma="brenne"/> </match> </rule>
-  <rule weight="2.0">
+  <rule weight="2.0" c="passiv: alltid transitiv">
+    <match lemma="brenne" tags="vblex.*.pasv">
+      <select lemma="brenne¹"/>
+    </match>
+  </rule>
+  <rule weight="2.0" c="passiv: alltid transitiv">
+    <match lemma="bli" tags="vblex.*"/>
+    <match lemma="brenne" tags="vblex.pp">
+      <select lemma="brenne¹"/>
+    </match>
+  </rule>
+  <rule weight="2.0" c="brenne av, brenne en ting">
     <match lemma="brenne" tags="vblex.*">
       <select lemma="brenne¹"/>
     </match>
     <or>
       <match lemma="av"/>
       <match lemma="alle"/>
-      <match lemma="ein"/>
+      <match lemma="en"/>
     </or>
   </rule>
-  <rule weight="2.0">
+  <rule weight="2.0" c="brenne sund noe">
     <match lemma="brenne" tags="vblex.*">
       <select lemma="brenne¹"/>
     </match>
     <match tags="*"/>
     <or>
-      <match lemma="noko"/>
+      <match lemma="noe"/>
     </or>
   </rule>
 
@@ -427,10 +438,12 @@
     </match>
     <or>
       <match lemma="korn"/>
+      <match lemma="mel"/>
       <match lemma="mjøl"/>
       <match lemma="kjøtt"/>
       <match lemma="mandel"/>
       <match lemma="kaffi"/>
+      <match lemma="kaffe"/>
       <match lemma="grov"/>
       <match lemma="fin"/>
     </or>
@@ -441,10 +454,12 @@
     </match>
     <or>
       <match lemma="korn"/>
+      <match lemma="mel"/>
       <match lemma="mjøl"/>
       <match lemma="kjøtt"/>
       <match lemma="mandel"/>
       <match lemma="kaffi"/>
+      <match lemma="kaffe"/>
       <match lemma="grov"/>
       <match lemma="fin"/>
     </or>
@@ -1702,5 +1717,18 @@
   <rule weight="2.0" c="en ubeseiret armé">
     <match tags="det.qnt.*"/>
     <match lemma="ubeseiret" tags="adj.*"><select lemma="ubeseira"/></match>
+  </rule>
+
+  <!-- TODO: is avhending ever right? -->
+  <rule><match lemma="overdragelse" tags="n.*"><select lemma="overdraging"/></match></rule>
+
+  <!-- TODO: is betring ever right? -->
+  <rule><match lemma="forbedring" tags="n.*"><select lemma="forbetring"/></match></rule>
+
+  <rule><match lemma="oppjustere" tags="adj.*"><select lemma="justere# opp"/></match></rule>
+  <rule><match lemma="oppjustere" tags="vblex.*"><select lemma="justere# opp"/></match></rule>
+  <rule weight="2.0">
+    <match tags="det.qnt.*"/>
+    <match lemma="oppjustere" tags="adj.*"><select lemma="oppjustere"/></match>
   </rule>
 </rules>
