@@ -27,6 +27,8 @@
           <match tags="acr.*"/>
           <match tags="sent"/>
           <match tags="sent.*"/>
+          <match tags="cm"/>
+          <match tags="cm.*"/>
           <match tags="apos"/>
           <match tags="apos.*"/>
           <match tags="lpar"/>
@@ -71,6 +73,8 @@
           <match tags="acr.*"/>
           <!-- <match tags="sent"/> -->
           <!-- <match tags="sent.*"/> -->
+          <match tags="cm"/>
+          <match tags="cm.*"/>
           <match tags="apos"/>
           <match tags="apos.*"/>
           <!-- <match tags="lpar"/> -->
@@ -115,6 +119,8 @@
           <match tags="acr.*"/>
           <!-- <match tags="sent"/> -->
           <!-- <match tags="sent.*"/> -->
+          <match tags="cm"/>
+          <match tags="cm.*"/>
           <match tags="apos"/>
           <match tags="apos.*"/>
           <!-- <match tags="lpar"/> -->
@@ -1058,12 +1064,96 @@
   <rule><match lemma="likegyldighet" tags="n.*"><select lemma="likegyldigheit"/></match></rule>
   <rule><match lemma="skue" tags="n.*"><select lemma="syn"/></match></rule>
   <rule><match lemma="erfare" tags="vblex.*"><select lemma="erfare"/></match></rule>
+
   <rule><match lemma="bringe" tags="vblex.*"><select lemma="bringe"/></match></rule>
+  <rule weight="2.0" c="mange blir brakt til legevakten → sende">
+    <or>
+      <match lemma="bringe" tags="vblex.pp"><select lemma="sende"/></match>
+      <match lemma="bringe" tags="adj.*"><select lemma="sende"/></match>
+    </or>
+    <or>
+      <match lemma="til" tags="pr"/>
+      <match lemma="over" tags="pr"/>
+    </or>
+  </rule>
+  <rule weight="2.0" c="mange bringes til legevakten → sende">
+    <match lemma="bringe" tags="vblex.*.pasv"><select lemma="sende"/></match>
+    <or>
+      <match lemma="til" tags="pr"/>
+      <match lemma="over" tags="pr"/>
+    </or>
+  </rule>
+  <rule weight="2.0" c="mange blir brakt fra legevakten → hente">
+    <or>
+      <match lemma="bringe" tags="vblex.pp"><select lemma="hente"/></match>
+      <match lemma="bringe" tags="adj.*"><select lemma="hente"/></match>
+    </or>
+    <or>
+      <match lemma="fra" tags="pr"/>
+      <match lemma="fra" tags="adv"/>
+    </or>
+  </rule>
+  <rule weight="2.0" c="mange bringes fra legevakten → hente">
+    <match lemma="bringe" tags="vblex.*.pasv"><select lemma="hente"/></match>
+    <or>
+      <match lemma="fra" tags="pr"/>
+      <match lemma="fra" tags="adv"/>
+    </or>
+  </rule>
   <rule weight="2.0">
     <match lemma="bringe" tags="vblex.*"><select lemma="frakte"/></match>
     <match lemma="i" tags="pr"/>
   </rule>
-
+  <rule weight="2.0" c="kan bringe fra → formidle">
+    <or>
+      <match lemma="kunne" tags="vblex.*"/>
+      <match lemma="måtte" tags="vblex.*"/>
+      <match lemma="ville" tags="vblex.*"/>
+    </or>
+    <match lemma="bringe" tags="vblex.inf"><select lemma="formidle"/></match>
+    <or>
+      <match lemma="fra" tags="pr"/>
+      <match lemma="fra" tags="adv"/>
+    </or>
+  </rule>
+  <rule weight="2.0" c="brakte den med seg → førte han med seg">
+    <match lemma="bringe" tags="vblex.*"><select lemma="føre"/></match>
+    <or>
+      <match tags="prn.*"/>
+      <match tags="det.*"/>
+    </or>
+    <match lemma="med"/>
+    <match lemma="seg"/>
+  </rule>
+  <rule weight="2.0" c="brakte Man U til toppen → førte Man U til toppen">
+    <match lemma="bringe" tags="vblex.*"><select lemma="føre"/></match>
+    <or>
+      <match tags="np.*"/>
+      <match tags="n.*.def"/>
+      <match tags="n.*.def.*"/>
+      <match tags="prn.pers.*.acc"/>
+    </or>
+  </rule>
+  <rule weight="3.0" c="brakte Man U til taushet → fekk Man U til å teie">
+    <match lemma="bringe" tags="vblex.*"><select lemma="få"/></match>
+    <repeat from="0" upto="15"><match/></repeat>
+    <match lemma="til taushet" tags="adv"/>
+  </rule>
+  <rule weight="2.0" c="brakte håp → gav håp">
+    <or>
+      <match lemma="bringe" tags="vblex.*"><select lemma="gje"/></match>
+      <match lemma="bringe" tags="adj.*"><select lemma="gje"/></match>
+    </or>
+    <match lemma="håp"/>
+  </rule>
+  <rule weight="2.0" c="mange blir brakt til legevakten → sende">
+    <or>
+      <match lemma="bringe" tags="vblex.*"><select lemma="komme"/></match>
+      <match lemma="bringe" tags="adj.*"><select lemma="komme"/></match>
+    </or>
+    <match lemma="i"/>
+    <match lemma="vanry"/>
+  </rule>
   <!-- unngå «pågripe», som Språkrådet reknar som utanfor allmennspråket: -->
   <rule><match lemma="pågripe" tags="vblex.*"><select lemma="arrestere"/></match></rule>
   <rule><match lemma="pågripe" tags="adj.*"><select lemma="arrestere"/></match></rule>
