@@ -1973,4 +1973,13 @@
     <repeat from="0" upto="5"><seq n="NOT_sent_lpar_lquot_rquot"/></repeat>
     <match lemma="bevisst rundt" tags="adj.*"><select lemma="klar over"/></match>
   </rule>
+
+  <rule>
+    <match lemma="være# sitt ansvar bevisst"><select lemma="vere# ansvarsmedvitne"/></match>
+  </rule>
+  <rule weight="2.0" c="WIP: No number on verbs, so this hack. Maybe this should be an idiomatic transfer rule instead, but it's almost always plural">
+    <match tags="n.*.sg.def"/>
+    <repeat from="0" upto="1"><match tags="np.*"/></repeat> <!--kyststaten Norge er seg sitt ansvar bevisst-->
+    <match lemma="være# sitt ansvar bevisst"><select lemma="vere# ansvarsmedviten"/></match>
+  </rule>
 </lrx>
