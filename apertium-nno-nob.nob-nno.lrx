@@ -1954,4 +1954,32 @@
   <rule><match lemma="eter" tags="n.*"><select lemma="eter"/></match></rule>
   <rule><match lemma="klipper" tags="n.*"><select lemma="klippar"/></match></rule>
   <rule><match lemma="vender" tags="n.*"><select lemma="vendar"/></match></rule>
+
+  <rule><match lemma="bevisst på" tags="adj.*"><select lemma="medviten på"/></match></rule>
+  <rule><match lemma="bevisst om" tags="adj.*"><select lemma="medviten om"/></match></rule>
+  <rule><match lemma="bevisst rundt" tags="adj.*"><select lemma="medviten rundt"/></match></rule>
+  <rule weight="2.0">
+    <or><match lemma="være"/><match lemma="bli"/><match lemma="blive"/></or>
+    <repeat from="0" upto="5"><seq n="NOT_sent_lpar_lquot_rquot"/></repeat>
+    <match lemma="bevisst på" tags="adj.*"><select lemma="klar over"/></match>
+  </rule>
+  <rule weight="2.0">
+    <or><match lemma="være"/><match lemma="bli"/><match lemma="blive"/></or>
+    <repeat from="0" upto="5"><seq n="NOT_sent_lpar_lquot_rquot"/></repeat>
+    <match lemma="bevisst om" tags="adj.*"><select lemma="klar over"/></match>
+  </rule>
+  <rule weight="2.0">
+    <or><match lemma="være"/><match lemma="bli"/><match lemma="blive"/></or>
+    <repeat from="0" upto="5"><seq n="NOT_sent_lpar_lquot_rquot"/></repeat>
+    <match lemma="bevisst rundt" tags="adj.*"><select lemma="klar over"/></match>
+  </rule>
+
+  <rule>
+    <match lemma="være# sitt ansvar bevisst"><select lemma="vere# ansvarsmedvitne"/></match>
+  </rule>
+  <rule weight="2.0" c="WIP: No number on verbs, so this hack. Maybe this should be an idiomatic transfer rule instead, but it's almost always plural">
+    <match tags="n.*.sg.def"/>
+    <repeat from="0" upto="1"><match tags="np.*"/></repeat> <!--kyststaten Norge er seg sitt ansvar bevisst-->
+    <match lemma="være# sitt ansvar bevisst"><select lemma="vere# ansvarsmedviten"/></match>
+  </rule>
 </lrx>
