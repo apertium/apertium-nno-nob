@@ -1878,6 +1878,24 @@
     <match lemma="fremstå# som" tags="vblex.*"><select lemma="verke# som"/></match>
     <match tags="det.*"/>
   </rule>
+  <rule c="skal framstå som tullinger" weight="2.0">
+    <match lemma="framstå# som" tags="vblex.*"><select lemma="verke# som"/></match>
+    <match tags="n.*.pl.ind"/>
+  </rule>
+  <rule c="skal fremstå som tullinger" weight="2.0">
+    <match lemma="fremstå# som" tags="vblex.*"><select lemma="verke# som"/></match>
+    <match tags="n.*.pl.ind"/>
+  </rule>
+  <rule c="skal framstå som kulturbærer" weight="2.0">
+    <match lemma="framstå# som" tags="vblex.*"><select lemma="verke# som"/></match>
+    <match tags="n.*.cmp"/>
+    <match tags="n.*.ind"/>
+  </rule>
+  <rule c="skal fremstå som kulturbærer" weight="2.0">
+    <match lemma="fremstå# som" tags="vblex.*"><select lemma="verke# som"/></match>
+    <match tags="n.*.cmp"/>
+    <match tags="n.*.ind"/>
+  </rule>
 
   <rule><match lemma="fremstå" tags="vblex.*"><select lemma="verke"/></match></rule>
   <rule><match lemma="framstå" tags="vblex.*"><select lemma="verke"/></match></rule>
@@ -1984,4 +2002,37 @@
   </rule>
 
   <rule><match lemma="uinnlogget" tags="adj.*"><select lemma="ikkje innlogga"/></match></rule>
+
+  <!-- bevisstheit → medvit
+       bevisstheit om/for/rundt → forståing for
+  -->
+  <rule><match lemma="om" tags="pr"><select lemma="om"/></match></rule>
+  <rule><match lemma="rundt" tags="pr"><select lemma="rundt"/></match></rule>
+  <rule weight="2.0" c="forståing for">
+    <match lemma="bevissthet" tags="n.*"/>
+    <match lemma="om"><select lemma="for"/></match>
+  </rule>
+  <rule weight="2.0" c="forståing for">
+    <match lemma="bevissthet" tags="n.*"/>
+    <match lemma="rundt"><select lemma="for"/></match>
+  </rule>
+  <rule><match lemma="bevissthet" tags="n.*"><select lemma="bevisstheit"/></match></rule>
+  <rule><match lemma="bevissthet" tags="n.*"><select lemma="medvit"/></match></rule>
+  <rule weight="2.0" c="forståing for">
+    <match lemma="bevissthet" tags="n.*"><select lemma="forståing"/></match>
+    <or>
+      <match lemma="for"/>
+      <match lemma="om"/>
+      <match lemma="rundt"/>
+    </or>
+  </rule>
+
+  <rule weight="1.1" c="om han med bevissthet jobbet">
+    <match lemma="med"/>
+    <match lemma="bevissthet" tags="n.*"><select lemma="vilje"/></match>
+    <or>
+      <match tags="vblex.pret"/>
+      <match tags="vblex.pres"/>
+    </or>
+  </rule>
 </lrx>
