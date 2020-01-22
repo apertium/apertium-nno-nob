@@ -1992,9 +1992,14 @@
     <match lemma="bevisst rundt" tags="adj.*"><select lemma="klar over"/></match>
   </rule>
 
-  <rule>
-    <match lemma="være# sitt ansvar bevisst"><select lemma="vere# ansvarsmedvitne"/></match>
+  <rule><match lemma="gjøre# det bevisst"><select lemma="vere# medvitne om det"/></match></rule>
+  <rule weight="2.0" c="WIP: No number on verbs, so this hack. Maybe this should be an idiomatic transfer rule instead, but it's almost always plural">
+    <match tags="n.*.sg.*"/>    <!-- om huseier<sg><ind> gjør det bevisst -->
+    <repeat from="0" upto="1"><match tags="np.*"/></repeat>
+    <match lemma="gjøre# det bevisst"><select lemma="vere# medviten om det"/></match>
   </rule>
+
+  <rule><match lemma="være# sitt ansvar bevisst"><select lemma="vere# ansvarsmedvitne"/></match></rule>
   <rule weight="2.0" c="WIP: No number on verbs, so this hack. Maybe this should be an idiomatic transfer rule instead, but it's almost always plural">
     <match tags="n.*.sg.def"/>
     <repeat from="0" upto="1"><match tags="np.*"/></repeat> <!--kyststaten Norge er seg sitt ansvar bevisst-->
@@ -2025,6 +2030,21 @@
       <match lemma="om"/>
       <match lemma="rundt"/>
     </or>
+  </rule>
+
+  <rule weight="2.0" c="auka medvit om">
+    <or><match lemma="øke"/><match lemma="økt"/></or>
+    <match lemma="bevissthet" tags="n.*"/>
+    <match lemma="om"><select lemma="om"/></match>
+  </rule>
+  <rule weight="2.0" c="auka medvit rundt">
+    <or><match lemma="øke"/><match lemma="økt"/></or>
+    <match lemma="bevissthet" tags="n.*"/>
+    <match lemma="rundt"><select lemma="rundt"/></match>
+  </rule>
+  <rule weight="2.0">
+    <or><match lemma="øke"/><match lemma="økt"/></or>
+    <match lemma="bevissthet" tags="n.*"><select lemma="medvit"/></match>
   </rule>
 
   <rule weight="1.1" c="om han med bevissthet jobbet">
