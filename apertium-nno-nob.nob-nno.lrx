@@ -885,7 +885,19 @@
     <match lemma="fortsette" tags="vblex.*"><select lemma="halde# fram"/></match>
   </rule>
 
-  <rule><match lemma="enhver" tags="det.*"><select lemma="kvar og ein"/></match></rule>
+  <rule><match lemma="enhver" tags="det.*"><select lemma="all"/></match></rule>
+  <rule weight="2.0" c="enhver av → kvar og ein av">
+    <match lemma="enhver" tags="det.qnt.m.sg">
+      <select lemma="kvar og ein"/>
+    </match>
+    <match lemma="av"/>
+  </rule>
+  <rule weight="2.0" c="ethver av → kvart av">
+    <match lemma="enhver" tags="det.qnt.nt.sg">
+      <select lemma="kvar"/>
+    </match>
+    <match lemma="av"/>
+  </rule>
   <rule weight="2.0">
     <match lemma="enhver" tags="det.*">
       <select lemma="ein kvar"/>

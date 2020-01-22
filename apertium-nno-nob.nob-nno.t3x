@@ -199,10 +199,21 @@
   </section-def-lists>
 
   <section-def-macros>
-    <def-macro n="out_adj" npar="1"
+    <def-macro n="out_adj" npar="2"
                c="arg.1: adjective
+                  arg.2: chunk
                   If we have a pp adj (verb used as adj), the lemq is a particle
                   which should be output before the adj, with no intervening space.">
+
+      <choose><when c="enhver aksjon er udiskutabel → alle aksjonar er udiskutable">
+        <test><equal><clip pos="2" part="a_chunknum"/><lit-tag v="chunknum"/></equal></test>
+        <let><clip pos="1" part="nbr"/><clip pos="2" part="nbr"/></let>
+        <choose><when>
+          <test><equal><clip pos="1" part="nbr"/><lit-tag v="pl"/></equal></test>
+          <let><clip pos="1" part="gen"/><lit-tag v="un"/></let>
+        </when></choose>
+      </when></choose>
+
       <choose><when>
         <test><and>
           <equal><clip pos="1" part="nbr"/><lit-tag v="sg"/></equal>
@@ -404,7 +415,7 @@
       <action>
         <let><clip pos="1" part="tags"/><clip pos="0" part="tags"/></let>
         <let><clip pos="1" part="a_movable"/><lit v=""/></let>
-        <call-macro n="out_adj"><with-param pos="1"/></call-macro>
+        <call-macro n="out_adj"><with-param pos="1"/><with-param pos="0"/></call-macro>
       </action>
     </rule>
 
@@ -413,7 +424,7 @@
         <pattern-item n="adj"/>
       </pattern>
       <action>
-        <call-macro n="out_adj"><with-param pos="1"/></call-macro>
+        <call-macro n="out_adj"><with-param pos="1"/><with-param pos="0"/></call-macro>
       </action>
     </rule>
 
@@ -588,7 +599,7 @@
         </out>
         <call-macro n="clean_n.adj"><with-param pos="4"/><with-param pos="3"/><with-param pos="0"/></call-macro>
         <call-macro n="maybe_out_ndem2"><with-param pos="4"/><with-param pos="3"/><with-param pos="0"/></call-macro>
-        <call-macro n="out_adj"><with-param pos="3"/></call-macro>
+        <call-macro n="out_adj"><with-param pos="3"/><with-param pos="0"/></call-macro>
         <out>
           <b pos="3"/>
           <lu><clip pos="4" part="whole"/></lu>
@@ -668,7 +679,7 @@
       </pattern>
       <action>
         <call-macro n="clean_n.adj"><with-param pos="2"/><with-param pos="1"/><with-param pos="0"/></call-macro>
-        <call-macro n="out_adj"><with-param pos="1"/></call-macro>
+        <call-macro n="out_adj"><with-param pos="1"/><with-param pos="0"/></call-macro>
         <out>
           <b pos="1"/>
           <lu><clip pos="2" part="whole"/></lu>
@@ -681,7 +692,7 @@
       </pattern>
       <action>
         <call-macro n="clean_n.adj"><with-param pos="3"/><with-param pos="1"/><with-param pos="0"/></call-macro>
-        <call-macro n="out_adj"><with-param pos="1"/></call-macro>
+        <call-macro n="out_adj"><with-param pos="1"/><with-param pos="0"/></call-macro>
         <out>
           <b pos="1"/>
           <lu><clip pos="2" part="whole"/></lu>
@@ -696,7 +707,7 @@
       </pattern>
       <action>
         <call-macro n="clean_n.adj"><with-param pos="4"/><with-param pos="1"/><with-param pos="0"/></call-macro>
-        <call-macro n="out_adj"><with-param pos="1"/></call-macro>
+        <call-macro n="out_adj"><with-param pos="1"/><with-param pos="0"/></call-macro>
         <out>
           <b pos="1"/>
           <lu><clip pos="2" part="whole"/></lu>
@@ -713,7 +724,7 @@
       </pattern>
       <action>
         <call-macro n="clean_n.adj"><with-param pos="5"/><with-param pos="1"/><with-param pos="0"/></call-macro>
-        <call-macro n="out_adj"><with-param pos="1"/></call-macro>
+        <call-macro n="out_adj"><with-param pos="1"/><with-param pos="0"/></call-macro>
         <out>
           <b pos="1"/>
           <lu><clip pos="2" part="whole"/></lu>
@@ -734,11 +745,11 @@
       <action>
         <call-macro n="clean_n.adj"><with-param pos="3"/><with-param pos="1"/><with-param pos="0"/></call-macro>
         <call-macro n="clean_n.adj"><with-param pos="3"/><with-param pos="2"/><with-param pos="0"/></call-macro>
-        <call-macro n="out_adj"><with-param pos="1"/></call-macro>
+        <call-macro n="out_adj"><with-param pos="1"/><with-param pos="0"/></call-macro>
         <out>
           <b pos="1"/>
         </out>
-        <call-macro n="out_adj"><with-param pos="2"/></call-macro>
+        <call-macro n="out_adj"><with-param pos="2"/><with-param pos="0"/></call-macro>
         <out>
           <b pos="2"/>
           <lu><clip pos="3" part="whole"/></lu>
@@ -752,11 +763,11 @@
       <action>
         <call-macro n="clean_n.adj"><with-param pos="4"/><with-param pos="1"/><with-param pos="0"/></call-macro>
         <call-macro n="clean_n.adj"><with-param pos="4"/><with-param pos="2"/><with-param pos="0"/></call-macro>
-        <call-macro n="out_adj"><with-param pos="1"/></call-macro>
+        <call-macro n="out_adj"><with-param pos="1"/><with-param pos="0"/></call-macro>
         <out>
           <b pos="1"/>
         </out>
-        <call-macro n="out_adj"><with-param pos="2"/></call-macro>
+        <call-macro n="out_adj"><with-param pos="2"/><with-param pos="0"/></call-macro>
         <out>
           <b pos="2"/>
           <lu><clip pos="3" part="whole"/></lu>
@@ -772,11 +783,11 @@
       <action>
         <call-macro n="clean_n.adj"><with-param pos="5"/><with-param pos="1"/><with-param pos="0"/></call-macro>
         <call-macro n="clean_n.adj"><with-param pos="5"/><with-param pos="2"/><with-param pos="0"/></call-macro>
-        <call-macro n="out_adj"><with-param pos="1"/></call-macro>
+        <call-macro n="out_adj"><with-param pos="1"/><with-param pos="0"/></call-macro>
         <out>
           <b pos="1"/>
         </out>
-        <call-macro n="out_adj"><with-param pos="2"/></call-macro>
+        <call-macro n="out_adj"><with-param pos="2"/><with-param pos="0"/></call-macro>
         <out>
           <b pos="2"/>
           <lu><clip pos="3" part="whole"/></lu>
@@ -794,11 +805,11 @@
       <action>
         <call-macro n="clean_n.adj"><with-param pos="6"/><with-param pos="1"/><with-param pos="0"/></call-macro>
         <call-macro n="clean_n.adj"><with-param pos="6"/><with-param pos="2"/><with-param pos="0"/></call-macro>
-        <call-macro n="out_adj"><with-param pos="1"/></call-macro>
+        <call-macro n="out_adj"><with-param pos="1"/><with-param pos="0"/></call-macro>
         <out>
           <b pos="1"/>
         </out>
-        <call-macro n="out_adj"><with-param pos="2"/></call-macro>
+        <call-macro n="out_adj"><with-param pos="2"/><with-param pos="0"/></call-macro>
         <out>
           <b pos="2"/>
           <lu><clip pos="3" part="whole"/></lu>
@@ -820,7 +831,7 @@
         <call-macro n="clean_n.adj"><with-param pos="4"/><with-param pos="1"/><with-param pos="0"/></call-macro>
         <call-macro n="clean_n.adj"><with-param pos="4"/><with-param pos="2"/><with-param pos="0"/></call-macro>
         <call-macro n="clean_n.adj"><with-param pos="4"/><with-param pos="3"/><with-param pos="0"/></call-macro>
-        <call-macro n="out_adj"><with-param pos="1"/></call-macro>
+        <call-macro n="out_adj"><with-param pos="1"/><with-param pos="0"/></call-macro>
         <out>
           <b pos="1"/>
         </out>
@@ -843,7 +854,7 @@
         <call-macro n="clean_n.adj"><with-param pos="5"/><with-param pos="1"/><with-param pos="0"/></call-macro>
         <call-macro n="clean_n.adj"><with-param pos="5"/><with-param pos="2"/><with-param pos="0"/></call-macro>
         <call-macro n="clean_n.adj"><with-param pos="5"/><with-param pos="3"/><with-param pos="0"/></call-macro>
-        <call-macro n="out_adj"><with-param pos="1"/></call-macro>
+        <call-macro n="out_adj"><with-param pos="1"/><with-param pos="0"/></call-macro>
         <out>
           <b pos="1"/>
         </out>
@@ -868,7 +879,7 @@
         <call-macro n="clean_n.adj"><with-param pos="6"/><with-param pos="1"/><with-param pos="0"/></call-macro>
         <call-macro n="clean_n.adj"><with-param pos="6"/><with-param pos="2"/><with-param pos="0"/></call-macro>
         <call-macro n="clean_n.adj"><with-param pos="6"/><with-param pos="3"/><with-param pos="0"/></call-macro>
-        <call-macro n="out_adj"><with-param pos="1"/></call-macro>
+        <call-macro n="out_adj"><with-param pos="1"/><with-param pos="0"/></call-macro>
         <out>
           <b pos="1"/>
         </out>
@@ -895,7 +906,7 @@
         <call-macro n="clean_n.adj"><with-param pos="7"/><with-param pos="1"/><with-param pos="0"/></call-macro>
         <call-macro n="clean_n.adj"><with-param pos="7"/><with-param pos="2"/><with-param pos="0"/></call-macro>
         <call-macro n="clean_n.adj"><with-param pos="7"/><with-param pos="3"/><with-param pos="0"/></call-macro>
-        <call-macro n="out_adj"><with-param pos="1"/></call-macro>
+        <call-macro n="out_adj"><with-param pos="1"/><with-param pos="0"/></call-macro>
         <out>
           <b pos="1"/>
         </out>

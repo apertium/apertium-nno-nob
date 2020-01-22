@@ -169,6 +169,9 @@
       <cat-item tags="adv.movable"/>
       <cat-item tags="adv.movable.*"/>
     </def-cat>
+    <def-cat n="adjsg">
+      <cat-item tags="adj.*.sg.*"/>
+    </def-cat>
     <def-cat n="prenom">
       <cat-item tags="adv"/>
       <cat-item tags="adv.*"/>
@@ -1929,6 +1932,98 @@
           <chunk><clip pos="1" part="whole"/></chunk>
           <b pos="1"/>
           <chunk><clip pos="2" part="whole"/></chunk>
+        </out>
+      </action>
+    </rule>
+
+    <rule comment="DETALL_QNTPL NOM: enhver sak → alle sak → alle saker
+                   (Override general DET NOM rule)">
+      <pattern>
+        <pattern-item n="detall_qntpl"/>
+        <pattern-item n="nom_advnom"/>
+      </pattern>
+      <action>
+        <let><clip pos="2" part="nbr"/><clip pos="1" part="nbr"/></let>
+        <let><clip pos="2" part="tags"/><concat><clip pos="2" part="tags"/><lit-tag v="chunknum"/></concat></let>
+        <call-macro n="modify_det_gender2.n.det"><with-param pos="2"/><with-param pos="1"/></call-macro>
+        <choose><when c="only set ana based on det if no ana, or if n is def">
+          <test><or>
+            <equal><var n="ana_nbr"/><lit v=""/></equal>
+            <equal><clip pos="2" part="art"/><lit-tag v="def"/></equal>
+          </or></test>
+          <call-macro n="set_ana"><with-param pos="2"/></call-macro>
+        </when></choose>
+        <out>
+          <chunk><clip pos="1" part="whole"/></chunk>
+          <b pos="1"/>
+          <chunk><clip pos="2" part="whole"/></chunk>
+        </out>
+      </action>
+    </rule>
+    <rule comment="DETALL_QNTPL NOM AUX ADJSG: enhver aksjon er uakseptabel → alle sak er uakseptabel → alle saker er uakseptable">
+      <pattern>
+        <pattern-item n="detall_qntpl"/>
+        <pattern-item n="nom_advnom"/>
+        <pattern-item n="aux"/>
+        <pattern-item n="adjsg"/>
+      </pattern>
+      <action>
+        <let><clip pos="2" part="nbr"/><clip pos="1" part="nbr"/></let>
+        <let><clip pos="2" part="tags"/><concat><clip pos="2" part="tags"/><lit-tag v="chunknum"/></concat></let>
+        <call-macro n="modify_det_gender2.n.det"><with-param pos="2"/><with-param pos="1"/></call-macro>
+        <choose><when c="only set ana based on det if no ana, or if n is def">
+          <test><or>
+            <equal><var n="ana_nbr"/><lit v=""/></equal>
+            <equal><clip pos="2" part="art"/><lit-tag v="def"/></equal>
+          </or></test>
+          <call-macro n="set_ana"><with-param pos="2"/></call-macro>
+        </when></choose>
+
+        <let><clip pos="4" part="nbr"/><clip pos="1" part="nbr"/></let>
+        <let><clip pos="4" part="tags"/><concat><clip pos="4" part="tags"/><lit-tag v="chunknum"/></concat></let>
+        <out>
+          <chunk><clip pos="1" part="whole"/></chunk>
+          <b pos="1"/>
+          <chunk><clip pos="2" part="whole"/></chunk>
+          <b pos="2"/>
+          <chunk><clip pos="3" part="whole"/></chunk>
+          <b pos="3"/>
+          <chunk><clip pos="4" part="whole"/></chunk>
+        </out>
+      </action>
+    </rule>
+    <rule comment="DETALL_QNTPL NOM AUX ADJSG: enhver aksjon vil være uakseptabel → alle sak vil vere uakseptabel → alle saker vil vere uakseptable">
+      <pattern>
+        <pattern-item n="detall_qntpl"/>
+        <pattern-item n="nom_advnom"/>
+        <pattern-item n="aux"/>
+        <pattern-item n="aux"/>
+        <pattern-item n="adjsg"/>
+      </pattern>
+      <action>
+        <let><clip pos="2" part="nbr"/><clip pos="1" part="nbr"/></let>
+        <let><clip pos="2" part="tags"/><concat><clip pos="2" part="tags"/><lit-tag v="chunknum"/></concat></let>
+        <call-macro n="modify_det_gender2.n.det"><with-param pos="2"/><with-param pos="1"/></call-macro>
+        <choose><when c="only set ana based on det if no ana, or if n is def">
+          <test><or>
+            <equal><var n="ana_nbr"/><lit v=""/></equal>
+            <equal><clip pos="2" part="art"/><lit-tag v="def"/></equal>
+          </or></test>
+          <call-macro n="set_ana"><with-param pos="2"/></call-macro>
+        </when></choose>
+
+        <let><clip pos="5" part="nbr"/><clip pos="1" part="nbr"/></let>
+        <let><clip pos="5" part="tags"/><concat><clip pos="5" part="tags"/><lit-tag v="chunknum"/></concat></let>
+        <out>
+          <chunk><clip pos="1" part="whole"/></chunk>
+          <b pos="1"/>
+          <chunk><clip pos="2" part="whole"/></chunk>
+          <b pos="2"/>
+          <chunk><clip pos="3" part="whole"/></chunk>
+          <b pos="3"/>
+          <chunk><clip pos="4" part="whole"/></chunk>
+          <b pos="4"/>
+          <chunk><clip pos="5" part="whole"/></chunk>
         </out>
       </action>
     </rule>
