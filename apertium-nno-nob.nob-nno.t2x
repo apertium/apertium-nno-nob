@@ -145,6 +145,9 @@
     <def-cat n="detall_qntpl">
       <cat-item lemma="detall" tags="det.qnt.*.pl"/>
     </def-cat>
+    <def-cat n="detenhver">
+      <cat-item lemma="detenhver" tags="det.qnt.*"/>
+    </def-cat>
 
     <def-cat n="vblex">
       <cat-item tags="vblex"/>
@@ -1936,10 +1939,10 @@
       </action>
     </rule>
 
-    <rule comment="DETALL_QNTPL NOM: enhver sak → alle sak → alle saker
+    <rule comment="DETENHVER NOM: enhver sak → alle sak → alle saker
                    (Override general DET NOM rule)">
       <pattern>
-        <pattern-item n="detall_qntpl"/>
+        <pattern-item n="detenhver"/>
         <pattern-item n="nom_advnom"/>
       </pattern>
       <action>
@@ -1960,9 +1963,9 @@
         </out>
       </action>
     </rule>
-    <rule comment="DETALL_QNTPL NOM AUX ADJSG: enhver aksjon er uakseptabel → alle sak er uakseptabel → alle saker er uakseptable">
+    <rule comment="DETENHVER NOM AUX ADJSG: enhver aksjon er uakseptabel → alle sak er uakseptabel → alle saker er uakseptable">
       <pattern>
-        <pattern-item n="detall_qntpl"/>
+        <pattern-item n="detenhver"/>
         <pattern-item n="nom_advnom"/>
         <pattern-item n="aux"/>
         <pattern-item n="adjsg"/>
@@ -1992,9 +1995,9 @@
         </out>
       </action>
     </rule>
-    <rule comment="DETALL_QNTPL NOM AUX ADJSG: enhver aksjon vil være uakseptabel → alle sak vil vere uakseptabel → alle saker vil vere uakseptable">
+    <rule comment="DETENHVER NOM AUX ADJSG: enhver aksjon vil være uakseptabel → alle sak vil vere uakseptabel → alle saker vil vere uakseptable">
       <pattern>
-        <pattern-item n="detall_qntpl"/>
+        <pattern-item n="detenhver"/>
         <pattern-item n="nom_advnom"/>
         <pattern-item n="aux"/>
         <pattern-item n="aux"/>
