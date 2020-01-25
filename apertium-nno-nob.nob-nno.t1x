@@ -546,6 +546,23 @@
       <cat-item lemma="kina" tags="np.top.gen"/>
       <cat-item lemma="india" tags="np.top.gen"/>
     </def-cat>
+    <def-cat n="denne">
+      <cat-item lemma="denne" tags="det.dem.*"/>
+    </def-cat>
+    <def-cat n="ngen_periode">
+      <cat-item lemma="uke" tags="n.*.gen"/>
+      <cat-item lemma="måned" tags="n.*.gen"/>
+      <cat-item lemma="sesong" tags="n.*.gen"/>
+      <cat-item lemma="år" tags="n.*.gen"/>
+      <cat-item lemma="halvår" tags="n.*.gen"/>
+      <cat-item lemma="sommerhalvår" tags="n.*.gen"/>
+      <cat-item lemma="vinterhalvår" tags="n.*.gen"/>
+      <cat-item lemma="runde" tags="n.*.gen"/>
+      <cat-item lemma="kvartal" tags="n.*.gen"/>
+      <cat-item lemma="periode" tags="n.*.gen"/>
+      <cat-item lemma="fireårsperiode" tags="n.*.gen"/>
+      <cat-item lemma="skoleår" tags="n.*.gen"/>
+    </def-cat>
     <def-cat n="totalt">
       <cat-item lemma="total" tags="adj.pst.nt.sg.ind"/>
       <cat-item lemma="Total" tags="adj.pst.nt.sg.ind"/>
@@ -2909,6 +2926,31 @@
     </rule>
 
     <!-- Idiomatic rules first -->
+    <rule comment="DENNE NGEN_PERIODE: denne ukens [kongress] → [kongressen] denne veka">
+      <pattern>
+        <pattern-item n="denne"/>
+        <pattern-item n="ngen_periode"/>
+      </pattern>
+      <action>
+        <call-macro n="set_caseFirstWord2">
+          <with-param pos="1"/>
+          <with-param pos="2"/>
+        </call-macro>
+        <call-macro n="stash_case_in_ntags"><with-param pos="2"/></call-macro>
+        <out>
+          <chunk name="gen-prep" case="caseFirstWord">
+            <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
+            <lu><clip pos="1" side="tl" part="lemh"/><clip pos="1" side="tl" part="tags"/></lu>
+          </chunk>
+          <b pos="1"/>
+          <chunk name="n" case="caseSecondWord">
+            <tags><tag><var n="ntags"/></tag></tags>
+            <lu><clip pos="2" side="tl" part="whole"/></lu>
+          </chunk>
+        </out>
+      </action>
+    </rule>
+
     <rule comment="hvilken som helst by → kva by som helst
                    put lemq after">
       <pattern>
