@@ -574,6 +574,9 @@
     <def-cat n="anført">
       <cat-item lemma="anføre" tags="vblex.pp"/>
     </def-cat>
+    <def-cat n="alle_og_enhver">
+      <cat-item lemma="alle og enhver" tags="det.*"/>
+    </def-cat>
     <def-cat n="av">
       <cat-item lemma="av" tags="pr"/>
     </def-cat>
@@ -2926,6 +2929,31 @@
     </rule>
 
     <!-- Idiomatic rules first -->
+    <rule comment="ALLE OG ENHVER AV PRN → PRN ALLE">
+      <pattern>
+        <pattern-item n="alle_og_enhver"/>
+        <pattern-item n="av"/>
+        <pattern-item n="prn"/>
+      </pattern>
+      <action>
+        <call-macro n="set_caseFirstWord2">
+          <with-param pos="1"/>
+          <with-param pos="2"/>
+        </call-macro>
+        <out>
+          <chunk name="prn" case="caseFirstWord">
+            <tags><tag><clip pos="3" side="tl" part="tags"/></tag></tags>
+            <lu><clip pos="3" side="tl" part="whole"/></lu>
+          </chunk>
+          <b pos="1"/>
+          <chunk name="det" case="caseSecondWord">
+            <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
+            <lu><clip pos="1" side="tl" part="whole"/></lu>
+          </chunk>
+        </out>
+      </action>
+    </rule>
+    
     <rule comment="DENNE NGEN_PERIODE: denne ukens [kongress] → [kongressen] denne veka">
       <pattern>
         <pattern-item n="denne"/>
