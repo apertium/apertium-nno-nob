@@ -2036,4 +2036,20 @@
   <rule><match lemma="skinne" tags="adj.*"><select lemma="skine"/></match></rule>
 
   <rule><match lemma="henvende# seg" tags="vblex.*"><select lemma="vende# seg"/></match></rule>
+
+  <rule><match lemma="tusen" tags="n.*"><select lemma="tusen"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="tusen" tags="n.*"><select lemma="tusenvis"/></match>
+    <match lemma="av"/>
+  </rule>
+  <rule><match lemma="titusen" tags="n.*"><select lemma="titusen"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="titusen" tags="n.*"><select lemma="titusenvis"/></match>
+    <match lemma="av"/>
+  </rule>
+  <rule><match lemma="hundretusen" tags="n.*"><select lemma="hundretusen"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="hundretusen" tags="n.*"><select lemma="hundretusenvis"/></match>
+    <match lemma="av"/>
+  </rule>
 </lrx>
