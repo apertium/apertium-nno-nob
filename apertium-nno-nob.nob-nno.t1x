@@ -806,6 +806,7 @@
     <def-var n="c_lemtag"       c="chunk lemma-tag"/>
     <def-var n="pr_head"        c="if prep-phrase's head is noun or verb"/>
     <def-var n="ntags"/>
+    <def-var n="dettags"/>
     <def-var n="adjtags"/>
     <def-var n="movable_tag"    c="np-movable iff we can move pp past np"/>
     <def-var n="advtags"/>
@@ -3436,6 +3437,7 @@
           <test><or>
             <equal><clip pos="1" side="tl" part="lemh"/><lit v="bli"/></equal>
             <equal><clip pos="1" side="tl" part="lemh"/><lit v="vere"/></equal>
+            <equal><clip pos="1" side="tl" part="lemh"/><lit v="ha"/></equal>
           </or></test>
           <let><var n="c_name"/><lit v="aux"/></let>
         </when></choose>
@@ -3469,6 +3471,7 @@
           <test><or>
             <equal><clip pos="1" side="tl" part="lemh"/><lit v="bli"/></equal>
             <equal><clip pos="1" side="tl" part="lemh"/><lit v="vere"/></equal>
+            <equal><clip pos="1" side="tl" part="lemh"/><lit v="ha"/></equal>
           </or></test>
           <let><var n="c_name"/><lit v="aux"/></let>
         </when></choose>
@@ -4773,21 +4776,27 @@ no lemq-moving">
       </pattern>
       <action>
         <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
+        <let><var n="c_name"/><lit v="det"/></let>
+        <let><var n="dettags"/><clip pos="1" side="tl" part="tags"/></let>
         <choose c="set c_name">
           <when>
             <test><equal><clip pos="1" side="tl" part="expl"/><lit-tag v="expl"/></equal></test>
+            <let><var n="dettags"/><clip pos="1" side="tl" part="tags"/></let>
             <let><var n="c_name"/><lit v="detexpl"/></let>
           </when>
           <when>
             <test><in caseless="yes"><clip pos="1" side="sl" part="lem"/><list n="det_indef"/></in></test>
+            <let><var n="dettags"/><clip pos="1" side="tl" part="tags"/></let>
             <let><var n="c_name"/><lit v="detdd"/></let>
           </when>
           <when>
             <test><equal caseless="yes"><clip pos="1" side="tl" part="lemh"/><lit v="sin"/></equal></test>
+            <let><var n="dettags"/><clip pos="1" side="tl" part="tags"/></let>
             <let><var n="c_name"/><lit v="detsin"/></let>
           </when>
           <when>
             <test><equal caseless="yes"><clip pos="1" side="tl" part="lemh"/><lit v="all"/></equal></test>
+            <let><var n="dettags"/><clip pos="1" side="tl" part="tags"/></let>
             <let><var n="c_name"/><lit v="detall"/></let>
             <choose><when>
               <test><equal caseless="yes"><clip pos="1" side="sl" part="lemh"/><lit v="enhver"/></equal></test>
@@ -4795,9 +4804,13 @@ no lemq-moving">
               <let><clip pos="1" side="tl" part="gen"/><lit-tag v="un"/></let>
               <let><clip pos="1" side="tl" part="nbr"/><lit-tag v="pl"/></let>
             </when></choose>
-
+            <choose><when>
+              <test><equal caseless="yes"><clip pos="1" side="sl" part="lemh"/><lit v="samtlige"/></equal></test>
+              <let><var n="c_name"/><lit v="detsamtlige"/></let>
+              <let><var n="dettags"/><clip pos="1" side="tl" part="tags"/></let>
+              <let><clip pos="1" side="tl" part="art"/><lit v=""/></let>
+            </when></choose>
           </when>
-          <otherwise><let><var n="c_name"/><lit v="det"/></let></otherwise>
         </choose>
 
         <choose><when c="There are no genitive det's in nn.dix, output prep (most likely changed to 'sin' in t2x)">
@@ -4808,7 +4821,7 @@ no lemq-moving">
 
         <out>
           <chunk namefrom="c_name" case="caseFirstWord">
-            <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
+            <tags><tag><var n="dettags"/></tag></tags>
             <lu><clip pos="1" side="tl" part="whole"/></lu>
           </chunk>
         </out>
@@ -4950,6 +4963,7 @@ no lemq-moving">
             <lu><clip pos="1" side="tl" part="whole"/></lu>
           </chunk>
         </out>
+        <let><var n="prevlem"/><clip pos="1" side="tl" part="lem"/></let>
       </action>
     </rule>
 
@@ -4969,6 +4983,7 @@ no lemq-moving">
             </chunk>
           </out>
         </when></choose>
+        <let><var n="prevlem"/><clip pos="1" side="tl" part="lem"/></let>
       </action>
     </rule>
 
@@ -4983,6 +4998,7 @@ no lemq-moving">
             <lu><clip pos="1" side="tl" part="whole"/></lu>
           </chunk>
         </out>
+        <let><var n="prevlem"/><clip pos="1" side="tl" part="lem"/></let>
       </action>
     </rule>
 

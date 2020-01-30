@@ -2055,4 +2055,40 @@
 
   <!-- TODO: ever «i kva grad»? -->
   <rule><match lemma="hvorvidt" tags="adv"><select lemma="om"/></match></rule>
+
+  <rule c="Samtlige hus skal → Alle husa skal
+           (beginning of sentence)">
+    <match lemma="samtlige" tags="det.*"><select lemma="all" tags="det.qnt.def.*"/></match>
+  </rule>
+  <rule weight="2.0"
+        c="tallet omfatter samtlige selskap der → talet omfattar alle selskap der
+           (not beginning of sentence)">
+    <match/>
+    <match lemma="samtlige" tags="det.*"><select lemma="all" tags="det.qnt.ind.*"/></match>
+  </rule>
+  <rule weight="2.0" c="samtlige røde hus → alle dei raude husa">
+    <match lemma="samtlige" tags="det.*"><select lemma="all" tags="det.qnt.def.*"/></match>
+    <or>
+      <match tags="adj.*"/>
+      <match tags="det.qnt.un.pl"/>
+    </or>
+  </rule>
+  <rule weight="2.0" c="at alle røde hus → at alle dei raude husa">
+    <or>
+      <match lemma="ha"/>
+      <match lemma="at"/>
+      <match lemma="i"/>
+      <match lemma="på"/>
+      <match tags="cnjsub"/>
+      <match tags="guio"/>
+      <match tags="cnjcoo.clb"/>
+    </or>
+    <match lemma="samtlige" tags="det.*"><select lemma="all" tags="det.qnt.def.*"/></match>
+  </rule>
+  <rule weight="3.0" c="på samtlige bilag og dokument → på alle bilag og dokument">
+    <match lemma="samtlige" tags="det.*"><select lemma="all" tags="det.qnt.ind.*"/></match>
+    <match tags="n.*"/>
+    <match tags="cnjcoo"/>
+    <match tags="n.*"/>
+  </rule>
 </lrx>
