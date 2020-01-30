@@ -1692,6 +1692,32 @@
         <call-macro n="out_ndef"><with-param pos="3"/><with-param pos="3"/></call-macro>
       </action>
     </rule>
+    <rule comment="DETSAMTLIGE NGEN NIND_NOGEN: samtlige av landets hus → alle i landet hus → alle husa i landet">
+      <pattern>
+        <pattern-item n="detsamtlige_def"/>
+        <pattern-item n="prep_gen"/>
+        <pattern-item n="ngen"/>
+        <pattern-item n="nind_nogen"/>
+      </pattern>
+      <action>
+        <let><clip pos="4" part="nbr"/><lit-tag v="pl"/></let>
+        <let><clip pos="4" part="tags"/><concat><clip pos="4" part="tags"/><lit-tag v="chunknum"/></concat></let>
+        <call-macro n="set_ana"><with-param pos="4"/></call-macro>
+        <call-macro n="modify_det_gender2.n.det"><with-param pos="3"/><with-param pos="1"/></call-macro>
+        <out>
+          <chunk><clip pos="1" part="whole"/></chunk>
+          <b pos="1"/>
+        </out>
+        <call-macro n="out_det_when_adjlike"><with-param pos="4"/><with-param pos="2"/></call-macro>
+        <call-macro n="out_ndef"><with-param pos="4"/><with-param pos="2"/></call-macro>
+        <out>
+          <b pos="2"/>
+          <chunk><clip pos="2" part="whole"/></chunk>
+          <b pos="3"/>
+          <chunk><clip pos="3" part="whole"/></chunk>
+        </out>
+      </action>
+    </rule>
 
 
     <rule comment="PREP_GEN NGEN PREP_GEN NGEN NIND: [på] kjøkkenets [til] katts snute => snuten til katten på kjøkkenet">
