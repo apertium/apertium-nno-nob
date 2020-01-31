@@ -196,6 +196,11 @@
       <list-item v="november"/>
       <list-item v="desember"/>
     </def-list>
+    <def-list n="no-samsvar" c="avoid «gåtte» etc.">
+      <list-item v="unngå"/>
+      <list-item v="gå"/>
+      <list-item v="få"/>
+    </def-list>
   </section-def-lists>
 
   <section-def-macros>
@@ -413,7 +418,12 @@
         <pattern-item n="adj2vblex"/>
       </pattern>
       <action>
-        <let><clip pos="1" part="tags"/><clip pos="0" part="tags"/></let>
+        <choose><when>
+          <test>
+            <not><in><clip pos="1" part="lem"/><list n="no-samsvar"/></in></not>
+          </test>
+          <let><clip pos="1" part="tags"/><clip pos="0" part="tags"/></let>
+        </when></choose>
         <let><clip pos="1" part="a_movable"/><lit v=""/></let>
         <call-macro n="out_adj"><with-param pos="1"/><with-param pos="0"/></call-macro>
       </action>
