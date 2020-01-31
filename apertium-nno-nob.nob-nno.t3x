@@ -276,6 +276,7 @@
       </when></choose>
       <choose><when c="som en hvilken som helst annen sak → som alle andre saker">
         <test><equal><clip pos="2" part="a_chunknum"/><lit-tag v="chunknum"/></equal></test>
+        <let><clip pos="1" part="a_chunknum"/><lit v=""/></let>
         <let><clip pos="1" part="nbr"/><clip pos="2" part="nbr"/></let>
       </when></choose>
       <call-macro n="apply_casedrop_defdrop"><with-param pos="1"/><with-param pos="2"/></call-macro>
@@ -355,6 +356,12 @@
                   Nouns typically get chunk defnes.
                   Allow adjectives to turn definite (from chunk defnes), but not indefinite.">
       <call-macro n="apply_casedrop_defdrop"><with-param pos="1"/><with-param pos="3"/></call-macro>
+      <choose><when c="enhver ny utsettelse → alle nye utsettelser">
+        <test><equal><clip pos="3" part="a_chunknum"/><lit-tag v="chunknum"/></equal></test>
+        <let><clip pos="1" part="a_chunknum"/><lit v=""/></let>
+        <let><clip pos="1" part="nbr"/><clip pos="3" part="nbr"/></let>
+        <let><clip pos="2" part="nbr"/><clip pos="3" part="nbr"/></let>
+      </when></choose>
       <choose><when c="noun gets chunk defnes">
         <test><and>
           <not><equal><clip pos="1" part="a_cmp"/><lit-tag v="cmp-split"/></equal></not>
