@@ -806,6 +806,7 @@
     <def-var n="c_lemtag"       c="chunk lemma-tag"/>
     <def-var n="pr_head"        c="if prep-phrase's head is noun or verb"/>
     <def-var n="ntags"/>
+    <def-var n="dettags"/>
     <def-var n="adjtags"/>
     <def-var n="movable_tag"    c="np-movable iff we can move pp past np"/>
     <def-var n="advtags"/>
@@ -990,6 +991,7 @@
       <list-item v="fråsegn_råd"/>
       <list-item v="undersøking_råd"/>
       <list-item v="bodskap_leiar"/>
+      <list-item v="tilbod_land"/>
     </def-list>
     <def-list n="bi-gen-på2" c="Override generated lists">
       <list-item v="spelar_lag"/>
@@ -2353,26 +2355,44 @@
     <def-macro n="set_caseFirstWord" npar="1"
                c="Downcases the argument, unless np or UPPERCASE">
       <!-- TODO: Put a marker for acronyms where we don't want to copy case from them; then drop the tag -->
-      <choose><when>
-        <test><and>
-          <not><equal><clip pos="1" side="tl" part="a_nom"/><lit-tag v="np"/></equal></not>
-          <equal><lit v="Aa"/><get-case-from pos="1"><lit v="aa"/></get-case-from></equal>
-        </and></test>
-        <modify-case><clip pos="1" side="tl" part="lemh"/><lit v="aa"/></modify-case>
-      </when></choose>
       <choose>
-        <when c="Proper noun, not first word in sentence: let first word have lowercase">
+        <when c="Contains a number: don't downcase, unset caseFirstWord">
+          <test><or>
+            <contains-substring><clip pos="1" side="tl" part="lemh"/><lit v="0"/></contains-substring>
+            <contains-substring><clip pos="1" side="tl" part="lemh"/><lit v="1"/></contains-substring>
+            <contains-substring><clip pos="1" side="tl" part="lemh"/><lit v="2"/></contains-substring>
+            <contains-substring><clip pos="1" side="tl" part="lemh"/><lit v="3"/></contains-substring>
+            <contains-substring><clip pos="1" side="tl" part="lemh"/><lit v="4"/></contains-substring>
+            <contains-substring><clip pos="1" side="tl" part="lemh"/><lit v="5"/></contains-substring>
+            <contains-substring><clip pos="1" side="tl" part="lemh"/><lit v="6"/></contains-substring>
+            <contains-substring><clip pos="1" side="tl" part="lemh"/><lit v="7"/></contains-substring>
+            <contains-substring><clip pos="1" side="tl" part="lemh"/><lit v="8"/></contains-substring>
+            <contains-substring><clip pos="1" side="tl" part="lemh"/><lit v="9"/></contains-substring>
+            <contains-substring><clip pos="1" side="tl" part="lemh"/><lit v="-"/></contains-substring>
+            <ends-with><clip pos="1" side="tl" part="lemh"/><lit v="-basert"/></ends-with> <!-- A-Z-basert -->
+            <ends-with><clip pos="1" side="tl" part="lemh"/><lit v="-ulykke"/></ends-with> <!-- A-Z-ulykka -->
+          </or></test>
+          <let><var n="caseFirstWord"/><lit v=""/></let>
+        </when>
+        <when c="Not proper, but titlecased: downcase, set caseFirstWord Aa">
+          <test><and>
+            <not><begins-with><clip pos="1" side="tl" part="a_nom"/><lit-tag v="np"/></begins-with></not>
+            <equal><lit v="Aa"/><get-case-from pos="1"><lit v="aa"/></get-case-from></equal>
+          </and></test>
+          <modify-case><clip pos="1" side="tl" part="lemh"/><lit v="aa"/></modify-case>
+          <let><var n="caseFirstWord"/><lit v="Aa"/></let>
+        </when>
+        <when c="Proper, not first word in sentence: don't downcase, set caseFirstWord aa">
           <test><and>
             <not><equal><var n="caseFirstWord"/><lit v=""/></equal></not>
             <begins-with><clip pos="1" side="tl" part="a_nom"/><lit-tag v="np"/></begins-with>
           </and></test>
           <let><var n="caseFirstWord"/><lit v="aa"/></let>
         </when>
-        <otherwise>
+        <otherwise c="Else: don't downcase, set caseFirstWord to this word's case?">
           <let><var n="caseFirstWord"/><get-case-from pos="1"><lit v="aa"/></get-case-from></let>
         </otherwise>
       </choose>
-
     </def-macro>
 
     <def-macro n="set_caseFirstWord2" npar="2"
@@ -3436,6 +3456,7 @@
           <test><or>
             <equal><clip pos="1" side="tl" part="lemh"/><lit v="bli"/></equal>
             <equal><clip pos="1" side="tl" part="lemh"/><lit v="vere"/></equal>
+            <equal><clip pos="1" side="tl" part="lemh"/><lit v="ha"/></equal>
           </or></test>
           <let><var n="c_name"/><lit v="aux"/></let>
         </when></choose>
@@ -3469,6 +3490,7 @@
           <test><or>
             <equal><clip pos="1" side="tl" part="lemh"/><lit v="bli"/></equal>
             <equal><clip pos="1" side="tl" part="lemh"/><lit v="vere"/></equal>
+            <equal><clip pos="1" side="tl" part="lemh"/><lit v="ha"/></equal>
           </or></test>
           <let><var n="c_name"/><lit v="aux"/></let>
         </when></choose>
@@ -4773,31 +4795,42 @@ no lemq-moving">
       </pattern>
       <action>
         <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
+        <let><var n="c_name"/><lit v="det"/></let>
+        <let><var n="dettags"/><clip pos="1" side="tl" part="tags"/></let>
         <choose c="set c_name">
           <when>
             <test><equal><clip pos="1" side="tl" part="expl"/><lit-tag v="expl"/></equal></test>
+            <let><var n="dettags"/><clip pos="1" side="tl" part="tags"/></let>
             <let><var n="c_name"/><lit v="detexpl"/></let>
           </when>
           <when>
             <test><in caseless="yes"><clip pos="1" side="sl" part="lem"/><list n="det_indef"/></in></test>
+            <let><var n="dettags"/><clip pos="1" side="tl" part="tags"/></let>
             <let><var n="c_name"/><lit v="detdd"/></let>
           </when>
           <when>
             <test><equal caseless="yes"><clip pos="1" side="tl" part="lemh"/><lit v="sin"/></equal></test>
+            <let><var n="dettags"/><clip pos="1" side="tl" part="tags"/></let>
             <let><var n="c_name"/><lit v="detsin"/></let>
           </when>
           <when>
             <test><equal caseless="yes"><clip pos="1" side="tl" part="lemh"/><lit v="all"/></equal></test>
+            <let><var n="dettags"/><clip pos="1" side="tl" part="tags"/></let>
             <let><var n="c_name"/><lit v="detall"/></let>
             <choose><when>
               <test><equal caseless="yes"><clip pos="1" side="sl" part="lemh"/><lit v="enhver"/></equal></test>
               <let><var n="c_name"/><lit v="detenhver"/></let>
               <let><clip pos="1" side="tl" part="gen"/><lit-tag v="un"/></let>
               <let><clip pos="1" side="tl" part="nbr"/><lit-tag v="pl"/></let>
+              <let><var n="dettags"/><clip pos="1" side="tl" part="tags"/></let>
             </when></choose>
-
+            <choose><when>
+              <test><equal caseless="yes"><clip pos="1" side="sl" part="lemh"/><lit v="samtlige"/></equal></test>
+              <let><var n="c_name"/><lit v="detsamtlige"/></let>
+              <let><var n="dettags"/><clip pos="1" side="tl" part="tags"/></let>
+              <let><clip pos="1" side="tl" part="art"/><lit v=""/></let>
+            </when></choose>
           </when>
-          <otherwise><let><var n="c_name"/><lit v="det"/></let></otherwise>
         </choose>
 
         <choose><when c="There are no genitive det's in nn.dix, output prep (most likely changed to 'sin' in t2x)">
@@ -4808,7 +4841,7 @@ no lemq-moving">
 
         <out>
           <chunk namefrom="c_name" case="caseFirstWord">
-            <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
+            <tags><tag><var n="dettags"/></tag></tags>
             <lu><clip pos="1" side="tl" part="whole"/></lu>
           </chunk>
         </out>
@@ -4950,6 +4983,7 @@ no lemq-moving">
             <lu><clip pos="1" side="tl" part="whole"/></lu>
           </chunk>
         </out>
+        <let><var n="prevlem"/><clip pos="1" side="tl" part="lem"/></let>
       </action>
     </rule>
 
@@ -4969,6 +5003,7 @@ no lemq-moving">
             </chunk>
           </out>
         </when></choose>
+        <let><var n="prevlem"/><clip pos="1" side="tl" part="lem"/></let>
       </action>
     </rule>
 
@@ -4983,6 +5018,7 @@ no lemq-moving">
             <lu><clip pos="1" side="tl" part="whole"/></lu>
           </chunk>
         </out>
+        <let><var n="prevlem"/><clip pos="1" side="tl" part="lem"/></let>
       </action>
     </rule>
 

@@ -196,6 +196,11 @@
       <list-item v="november"/>
       <list-item v="desember"/>
     </def-list>
+    <def-list n="no-samsvar" c="avoid «gåtte» etc.">
+      <list-item v="unngå"/>
+      <list-item v="gå"/>
+      <list-item v="få"/>
+    </def-list>
   </section-def-lists>
 
   <section-def-macros>
@@ -207,11 +212,28 @@
 
       <choose><when c="enhver aksjon er udiskutabel → alle aksjonar er udiskutable">
         <test><equal><clip pos="2" part="a_chunknum"/><lit-tag v="chunknum"/></equal></test>
-        <let><clip pos="1" part="nbr"/><clip pos="2" part="nbr"/></let>
+        <let><clip pos="1" part="a_chunknum"/><lit v=""/></let>
         <choose><when>
-          <test><equal><clip pos="1" part="nbr"/><lit-tag v="pl"/></equal></test>
-          <let><clip pos="1" part="gen"/><lit-tag v="un"/></let>
+          <test>
+            <not><in><clip pos="1" part="lem"/><list n="no-samsvar"/></in></not>
+          </test>
+          <let><clip pos="1" part="nbr"/><clip pos="2" part="nbr"/></let>
         </when></choose>
+        <choose>
+          <when>
+            <test><equal><clip pos="1" part="nbr"/><lit-tag v="pl"/></equal></test>
+            <choose>
+              <when>
+                <test><equal><clip pos="1" part="temps"/><lit-tag v="pp"/></equal></test>
+                <let><clip pos="1" part="gen"/><lit v=""/></let>
+                <let><clip pos="1" part="art"/><lit v=""/></let>
+              </when>
+              <otherwise>
+                <let><clip pos="1" part="gen"/><lit-tag v="un"/></let>
+              </otherwise>
+            </choose>
+          </when>
+        </choose>
       </when></choose>
 
       <choose><when>
@@ -260,6 +282,7 @@
       </when></choose>
       <choose><when c="som en hvilken som helst annen sak → som alle andre saker">
         <test><equal><clip pos="2" part="a_chunknum"/><lit-tag v="chunknum"/></equal></test>
+        <let><clip pos="1" part="a_chunknum"/><lit v=""/></let>
         <let><clip pos="1" part="nbr"/><clip pos="2" part="nbr"/></let>
       </when></choose>
       <call-macro n="apply_casedrop_defdrop"><with-param pos="1"/><with-param pos="2"/></call-macro>
@@ -339,6 +362,12 @@
                   Nouns typically get chunk defnes.
                   Allow adjectives to turn definite (from chunk defnes), but not indefinite.">
       <call-macro n="apply_casedrop_defdrop"><with-param pos="1"/><with-param pos="3"/></call-macro>
+      <choose><when c="enhver ny utsettelse → alle nye utsettelser">
+        <test><equal><clip pos="3" part="a_chunknum"/><lit-tag v="chunknum"/></equal></test>
+        <let><clip pos="1" part="a_chunknum"/><lit v=""/></let>
+        <let><clip pos="1" part="nbr"/><clip pos="3" part="nbr"/></let>
+        <let><clip pos="2" part="nbr"/><clip pos="3" part="nbr"/></let>
+      </when></choose>
       <choose><when c="noun gets chunk defnes">
         <test><and>
           <not><equal><clip pos="1" part="a_cmp"/><lit-tag v="cmp-split"/></equal></not>
@@ -413,7 +442,12 @@
         <pattern-item n="adj2vblex"/>
       </pattern>
       <action>
-        <let><clip pos="1" part="tags"/><clip pos="0" part="tags"/></let>
+        <choose><when>
+          <test>
+            <not><in><clip pos="1" part="lem"/><list n="no-samsvar"/></in></not>
+          </test>
+          <let><clip pos="1" part="tags"/><clip pos="0" part="tags"/></let>
+        </when></choose>
         <let><clip pos="1" part="a_movable"/><lit v=""/></let>
         <call-macro n="out_adj"><with-param pos="1"/><with-param pos="0"/></call-macro>
       </action>
