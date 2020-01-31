@@ -212,11 +212,22 @@
 
       <choose><when c="enhver aksjon er udiskutabel → alle aksjonar er udiskutable">
         <test><equal><clip pos="2" part="a_chunknum"/><lit-tag v="chunknum"/></equal></test>
-        <let><clip pos="1" part="nbr"/><clip pos="2" part="nbr"/></let>
-        <choose><when>
-          <test><equal><clip pos="1" part="nbr"/><lit-tag v="pl"/></equal></test>
-          <let><clip pos="1" part="gen"/><lit-tag v="un"/></let>
-        </when></choose>
+        <let><clip pos="1" part="a_chunknum"/><lit v=""/></let>
+        <choose>
+          <when>
+            <test><equal><clip pos="1" part="nbr"/><lit-tag v="pl"/></equal></test>
+            <choose>
+              <when>
+                <test><equal><clip pos="1" part="temps"/><lit-tag v="pp"/></equal></test>
+                <let><clip pos="1" part="gen"/><lit v=""/></let>
+                <let><clip pos="1" part="art"/><lit v=""/></let>
+              </when>
+              <otherwise>
+                <let><clip pos="1" part="gen"/><lit-tag v="un"/></let>
+              </otherwise>
+            </choose>
+          </when>
+        </choose>
       </when></choose>
 
       <choose><when>
