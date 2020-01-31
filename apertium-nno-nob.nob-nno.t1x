@@ -2355,26 +2355,41 @@
     <def-macro n="set_caseFirstWord" npar="1"
                c="Downcases the argument, unless np or UPPERCASE">
       <!-- TODO: Put a marker for acronyms where we don't want to copy case from them; then drop the tag -->
-      <choose><when>
-        <test><and>
-          <not><equal><clip pos="1" side="tl" part="a_nom"/><lit-tag v="np"/></equal></not>
-          <equal><lit v="Aa"/><get-case-from pos="1"><lit v="aa"/></get-case-from></equal>
-        </and></test>
-        <modify-case><clip pos="1" side="tl" part="lemh"/><lit v="aa"/></modify-case>
-      </when></choose>
       <choose>
-        <when c="Proper noun, not first word in sentence: let first word have lowercase">
+        <when c="Contains a number: don't downcase, unset caseFirstWord">
+          <test><or>
+            <contains-substring><clip pos="1" side="tl" part="lemh"/><lit v="0"/></contains-substring>
+            <contains-substring><clip pos="1" side="tl" part="lemh"/><lit v="1"/></contains-substring>
+            <contains-substring><clip pos="1" side="tl" part="lemh"/><lit v="2"/></contains-substring>
+            <contains-substring><clip pos="1" side="tl" part="lemh"/><lit v="3"/></contains-substring>
+            <contains-substring><clip pos="1" side="tl" part="lemh"/><lit v="4"/></contains-substring>
+            <contains-substring><clip pos="1" side="tl" part="lemh"/><lit v="5"/></contains-substring>
+            <contains-substring><clip pos="1" side="tl" part="lemh"/><lit v="6"/></contains-substring>
+            <contains-substring><clip pos="1" side="tl" part="lemh"/><lit v="7"/></contains-substring>
+            <contains-substring><clip pos="1" side="tl" part="lemh"/><lit v="8"/></contains-substring>
+            <contains-substring><clip pos="1" side="tl" part="lemh"/><lit v="9"/></contains-substring>
+          </or></test>
+          <let><var n="caseFirstWord"/><lit v=""/></let>
+        </when>
+        <when c="Not proper, but titlecased: downcase, set caseFirstWord Aa">
+          <test><and>
+            <not><begins-with><clip pos="1" side="tl" part="a_nom"/><lit-tag v="np"/></begins-with></not>
+            <equal><lit v="Aa"/><get-case-from pos="1"><lit v="aa"/></get-case-from></equal>
+          </and></test>
+          <modify-case><clip pos="1" side="tl" part="lemh"/><lit v="aa"/></modify-case>
+          <let><var n="caseFirstWord"/><lit v="Aa"/></let>
+        </when>
+        <when c="Proper, not first word in sentence: don't downcase, set caseFirstWord aa">
           <test><and>
             <not><equal><var n="caseFirstWord"/><lit v=""/></equal></not>
             <begins-with><clip pos="1" side="tl" part="a_nom"/><lit-tag v="np"/></begins-with>
           </and></test>
           <let><var n="caseFirstWord"/><lit v="aa"/></let>
         </when>
-        <otherwise>
+        <otherwise c="Else: don't downcase, set caseFirstWord to this word's case?">
           <let><var n="caseFirstWord"/><get-case-from pos="1"><lit v="aa"/></get-case-from></let>
         </otherwise>
       </choose>
-
     </def-macro>
 
     <def-macro n="set_caseFirstWord2" npar="2"
