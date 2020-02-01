@@ -2356,7 +2356,7 @@
                c="Downcases the argument, unless np or UPPERCASE">
       <!-- TODO: Put a marker for acronyms where we don't want to copy case from them; then drop the tag -->
       <choose>
-        <when c="Contains a number: don't downcase, unset caseFirstWord">
+        <when c="Contains a number: don't downcase, set caseFirstWord if first in sentence else empty it">
           <test><or>
             <contains-substring><clip pos="1" side="tl" part="lemh"/><lit v="0"/></contains-substring>
             <contains-substring><clip pos="1" side="tl" part="lemh"/><lit v="1"/></contains-substring>
@@ -2372,7 +2372,15 @@
             <ends-with><clip pos="1" side="tl" part="lemh"/><lit v="-basert"/></ends-with> <!-- A-Z-basert -->
             <ends-with><clip pos="1" side="tl" part="lemh"/><lit v="-ulykke"/></ends-with> <!-- A-Z-ulykka -->
           </or></test>
-          <let><var n="caseFirstWord"/><lit v=""/></let>
+          <choose>
+            <when>
+              <test><equal><var n="caseFirstWord"/><lit v=""/></equal></test>
+              <let><var n="caseFirstWord"/><get-case-from pos="1"><lit v="aa"/></get-case-from></let>
+            </when>
+            <otherwise>
+              <let><var n="caseFirstWord"/><lit v=""/></let>
+            </otherwise>
+          </choose>
         </when>
         <when c="Not proper, but titlecased: downcase, set caseFirstWord Aa">
           <test><and>
@@ -5012,8 +5020,24 @@ no lemq-moving">
         <pattern-item n="cnjsub"/>
       </pattern>
       <action>
+        <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
         <out>
-          <chunk name="cnjsub">
+          <chunk name="cnjsub" case="caseFirstWord">
+            <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
+            <lu><clip pos="1" side="tl" part="whole"/></lu>
+          </chunk>
+        </out>
+        <let><var n="prevlem"/><clip pos="1" side="tl" part="lem"/></let>
+      </action>
+    </rule>
+    <rule comment="CNJCOO">
+      <pattern>
+        <pattern-item n="cnjcoo"/>
+      </pattern>
+      <action>
+        <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
+        <out>
+          <chunk name="cnjcoo" case="caseFirstWord">
             <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
             <lu><clip pos="1" side="tl" part="whole"/></lu>
           </chunk>
