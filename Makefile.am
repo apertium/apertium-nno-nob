@@ -214,11 +214,11 @@ clean-local:
 ###############################################################################
 
 test: all
-	echo "Såg ho ikkje orda?" | apertium -d . nno-nob | tee .test-mt
-	@echo "Så hun ikke ordene?" > .test-ref
+	echo "Såg ho ikkje orda? Dei smååt nyplanta hygge." | apertium -d . nno-nob | tee .test-mt
+	@echo "Så hun ikke ordene? De småspiste nyplantet hygge." > .test-ref
 	@diff .test-ref .test-mt
-	echo "Jeg har åler i min luftputebåt" | apertium -d . nob-nno | tee .test-mt
-	@echo "Eg har ålar i luftputebåten min" > .test-ref
+	echo "Jeg har åler i min luftputebåt. Det er bevisst." | apertium -d . nob-nno_e | tee .test-mt
+	@echo "Eg har ålar i luftputebåten min. Det er medvite." > .test-ref
 	@diff .test-ref .test-mt
 	@rm .test-ref .test-mt
 	t/bidix-sanity
