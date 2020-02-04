@@ -1,15 +1,23 @@
 #+STARTUP: showall
 
+* WER-loss
 
-* Setting up tests for a new language pair
-To add these test scripts to your language pair, go into your language
-pair directory and do:
+This test will check WER on some news articles, and ensure we don't
+get worse results than the last time around:
 
 #+BEGIN_SRC sh
-git clone https://github.com/unhammer/apertium-wiki-tests t
-# edit t/config.sh.in and save as t/config.sh
-svn add --depth=files t
+  t/wer-loss
 #+END_SRC
+
+Articles and their post-edits (graciously donated by NTB/NPK) are in
+=t/ntb=, along with the previous good MT output. If our WER is worse
+than the previous good one, we fail.
+
+* Hash count
+
+We should not have more #'s than last time on the =t/ntb= articles.
+
+* Regression/Pending wiki tests
 
 You should have your tests in a page named after your language pair, e.g.
 http://wiki.apertium.org/wiki/apertium-sme-smj/Regression_tests
@@ -17,7 +25,7 @@ and
 http://wiki.apertium.org/wiki/apertium-sme-smj/Pending_tests
 
 
-* Running the tests
+** Running the tests
 
 To run the tests from your language pair, assuming it's been set up as
 shown above, do
@@ -30,10 +38,10 @@ This will overwrite the files named t/latest-pending.results and
 t/latest-regression.results. You can view the differences with
 
 #+BEGIN_SRC sh
-  svn diff
+  git diff
 #+END_SRC
 
-Test results are kept in SVN since that means we don't have to keep
+Test results are kept in git since that means we don't have to keep
 moving things back and forth between "Pending" and "Regression" in the
 wiki whenever we pass a new test (or fail an old one), and we get a
 nice log of our progression.
