@@ -7,12 +7,12 @@ set -e -u
 
 cd "$(dirname "$0")"
 
-lastout=../dev/ntb/articles.nob-nno.20181031
+lastout=../t/ntb/articles.nob-nno.20181031
 
 out=$(mktemp -t hash-count-nno-nob.XXXXXXXXXX)
 trap 'rm -f "${out}"' EXIT
 
-apertium -f html-noent -d .. nob-nno_e < ../dev/ntb/articles.orig.nob > "${out}"
+apertium -f html-noent -d .. nob-nno_e < ../t/ntb/articles.orig.nob > "${out}"
 
 last=$(grep -c '[#*@]' "${lastout}" || true)
 current=$(grep -c '[#*@]' "${out}" || true)

@@ -12,13 +12,13 @@ else
     verbose=false
 fi
 
-prevmt=dev/ntb/articles.nob-nno.20200124
-gold=dev/ntb/articles.gold.nno
+prevmt=t/ntb/articles.nob-nno.20200124
+gold=t/ntb/articles.gold.nno
 
 tmp=$(mktemp -d -t wer-loss-nno-nob.XXXXXXXXXX)
 trap 'rm -rf "${tmp}"' EXIT
 
-< dev/ntb/articles.orig.nob apertium -d . nob-nno_e > "${tmp}"/mt
+< t/ntb/articles.orig.nob apertium -d . nob-nno_e > "${tmp}"/mt
 
 clean () {
     sed 's/\(ORIGINAL\|KORREKTUR\):/--------------/g' "$@" \
