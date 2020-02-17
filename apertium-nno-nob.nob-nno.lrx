@@ -362,78 +362,87 @@
 
 
   <!-- antall → mengd / tal / talet på -->
-  <rule weight="1.0" c="default mengde">
-    <match lemma="antall" tags="n.*"> <select lemma="mengde"/> </match>
+  <rule weight="1.0" c="default tal">
+    <match lemma="antall" tags="n.*"> <select lemma="tal"/> </match>
   </rule>
 
-  <rule weight="4.0" c="Antall felte elg → Talet på felte elg (first in sentence)">
-    <match lemma="antall">
-      <select lemma="talet på"/>
-    </match>
-    <or>
-      <match tags="adj.pp.*"/>
-      <match tags="adj.*.comp.*"/>
-      <match tags="vblex.pp"/>
-      <match tags="vblex.pret"/>
-    </or>
-    <match tags="n.*"/>
-  </rule>
-  <rule weight="1.0" c="… antall (not first in sentence) → tal">
-    <match tags="*"/>
-    <match lemma="antall" tags="n.*.sg.def"><select lemma="tal"/></match>
-  </rule>
-  <rule weight="1.0" c="… antall (not first in sentence) → mengde">
-    <match tags="*"/>
-    <match lemma="antall"><select lemma="mengde"/></match>
-  </rule>
+  <!-- <rule weight="4.0" c="Antall felte elg → Talet på felte elg (first in sentence)"> -->
+  <!--   <match lemma="antall"> -->
+  <!--     <select lemma="talet på"/> -->
+  <!--   </match> -->
+  <!--   <or> -->
+  <!--     <match tags="adj.pp.*"/> -->
+  <!--     <match tags="adj.*.comp.*"/> -->
+  <!--     <match tags="vblex.pp"/> -->
+  <!--     <match tags="vblex.pret"/> -->
+  <!--   </or> -->
+  <!--   <match tags="n.*"/> -->
+  <!-- </rule> -->
+  <!-- <rule weight="1.0" c="… antall (not first in sentence) → tal"> -->
+  <!--   <match tags="*"/> -->
+  <!--   <match lemma="antall" tags="n.*.sg.def"><select lemma="tal"/></match> -->
+  <!-- </rule> -->
+  <!-- <rule weight="1.0" c="… antall (not first in sentence) → mengde"> -->
+  <!--   <match tags="*"/> -->
+  <!--   <match lemma="antall"><select lemma="mengde"/></match> -->
+  <!-- </rule> -->
 
-  <rule weight="4.0" c="ei stor mengd væpna søknader, but det store talet på væpna søknader">
-    <match lemma="en"/>
-    <or><match tags="adj.*"/><match tags="adv"/><match tags="vblex.pp"/></or>
-    <match lemma="antall">
-      <select lemma="mengde"/>
-    </match>
-    <or><match tags="adj.*"/><match tags="adv"/><match tags="vblex.pp"/></or>
-    <or>
-      <match tags="n.*"/>
-      <match tags="adj.*"/>
-    </or>
-  </rule>
-  <rule weight="4.0" c="ei stor mengd søknader, but det store talet på søknader">
-    <match lemma="en"/>
-    <or><match tags="adj.*"/><match tags="adv"/><match tags="vblex.pp"/></or>
-    <match lemma="antall">
-      <select lemma="mengde"/>
-    </match>
-    <or>
-      <match tags="n.*"/>
-      <match tags="adj.*"/>
-    </or>
-  </rule>
-  <rule weight="4.0" c="ei særs stor mengd søknader, but det store talet på søknader">
-    <match lemma="en"/>
-    <or><match tags="adj.*"/><match tags="adv"/><match tags="vblex.pp"/></or>
-    <or><match tags="adj.*"/><match tags="adv"/><match tags="vblex.pp"/></or>
-    <match lemma="antall">
-      <select lemma="mengde"/>
-    </match>
-    <or>
-      <match tags="n.*"/>
-      <match tags="adj.*"/>
-    </or>
-  </rule>
-  <rule weight="4.0" c="ei mengd søknader, but dette talet på søknader">
-    <match lemma="en"/>
-    <match lemma="antall">
-      <select lemma="mengde"/>
-    </match>
+  <!-- <rule weight="4.0" c="ei stor mengd væpna søknader, but det store talet på væpna søknader"> -->
+  <!--   <match lemma="en"/> -->
+  <!--   <or><match tags="adj.*"/><match tags="adv"/><match tags="vblex.pp"/></or> -->
+  <!--   <match lemma="antall"> -->
+  <!--     <select lemma="mengde"/> -->
+  <!--   </match> -->
+  <!--   <or><match tags="adj.*"/><match tags="adv"/><match tags="vblex.pp"/></or> -->
+  <!--   <or> -->
+  <!--     <match tags="n.*"/> -->
+  <!--     <match tags="adj.*"/> -->
+  <!--   </or> -->
+  <!-- </rule> -->
+  <!-- <rule weight="4.0" c="ei stor mengd søknader, but det store talet på søknader"> -->
+  <!--   <match lemma="en"/> -->
+  <!--   <or><match tags="adj.*"/><match tags="adv"/><match tags="vblex.pp"/></or> -->
+  <!--   <match lemma="antall"> -->
+  <!--     <select lemma="mengde"/> -->
+  <!--   </match> -->
+  <!--   <or> -->
+  <!--     <match tags="n.*"/> -->
+  <!--     <match tags="adj.*"/> -->
+  <!--   </or> -->
+  <!-- </rule> -->
+  <!-- <rule weight="4.0" c="ei særs stor mengd søknader, but det store talet på søknader"> -->
+  <!--   <match lemma="en"/> -->
+  <!--   <or><match tags="adj.*"/><match tags="adv"/><match tags="vblex.pp"/></or> -->
+  <!--   <or><match tags="adj.*"/><match tags="adv"/><match tags="vblex.pp"/></or> -->
+  <!--   <match lemma="antall"> -->
+  <!--     <select lemma="mengde"/> -->
+  <!--   </match> -->
+  <!--   <or> -->
+  <!--     <match tags="n.*"/> -->
+  <!--     <match tags="adj.*"/> -->
+  <!--   </or> -->
+  <!-- </rule> -->
+  <!-- <rule weight="4.0" c="ei mengd søknader, but dette talet på søknader"> -->
+  <!--   <match lemma="en"/> -->
+  <!--   <match lemma="antall"> -->
+  <!--     <select lemma="mengde"/> -->
+  <!--   </match> -->
+  <!--   <or> -->
+  <!--     <match tags="n.*"/> -->
+  <!--     <match tags="adj.*"/> -->
+  <!--   </or> -->
+  <!-- </rule> -->
+
+  <rule weight="4.0">
+    <match lemma="antall"><select lemma="talet på"/></match>
     <or>
       <match tags="n.*"/>
       <match tags="adj.*"/>
     </or>
   </rule>
   <rule weight="4.0">
-    <match lemma="antall"><select lemma="talet på"/></match>
+    <match lemma="antall" tags="n.*.sg.def"><select lemma="talet på"/></match>
+    <match tags="vblex.pret"/>
     <or>
       <match tags="n.*"/>
       <match tags="adj.*"/>
@@ -446,12 +455,83 @@
       <match lemma="grad"/>
     </or>
   </rule>
+
   <rule weight="2.0" c="nno only can generate for this tagging">
     <match lemma="antall" tags="n.*.sg.def">
       <select lemma="tal"/>
     </match>
   </rule>
+  <rule weight="5.0" c="det antallet → det talet">
+    <match lemma="den" tags="det.dem.nt.sg"/>
+    <match lemma="antall" tags="n.*.sg.def">
+      <select lemma="tal"/>
+    </match>
+  </rule>
+  <rule weight="8.0" c="et stort antall → eit stort tal">
+    <match lemma="en" tags="det.qnt.nt.sg"/>
+    <match tags="adj.*"/>
+    <match lemma="antall">
+      <select lemma="tal"/>
+    </match>
+  </rule>
+  <rule weight="9.1" c="i et antall av → i eit tal av">
+    <match lemma="i"/>
+    <match lemma="en"/>
+    <match lemma="antall">
+      <select lemma="tal"/>
+    </match>
+    <match lemma="av"/>
+  </rule>
+  <rule weight="5.2" c="et antall → eit tal">
+    <match lemma="en" tags="det.qnt.nt.sg"/>
+    <match lemma="antall">
+      <select lemma="tal"/>
+    </match>
+  </rule>
+
+  <rule weight="9.0" c="ha et antall → ha fleire; over et antall → over fleire">
+    <or>
+      <match lemma="ha" tags="vblex.*"/>
+      <match tags="pr"/>
+      <match lemma="se# på"/>   <!-- TODO all mwe-verbs ending in pr's … -->
+    </or>
+    <match lemma="en" tags="det.qnt.nt.sg"/>
+    <match lemma="antall">
+      <select lemma="fleire"/>
+    </match>
+  </rule>
+
+  <rule weight="8.0" c="et antall av → ein del av">
+    <match lemma="en" tags="det.qnt.nt.sg"/>
+    <match lemma="antall">
+      <select lemma="del"/>
+    </match>
+    <match lemma="av"/>
+  </rule>
+
+  <rule weight="8.0">
+    <match lemma="den"/>
+    <match lemma="total" tags="adj.*"/>
+    <match lemma="antall"><select lemma="tal"/></match>
+    <or>
+      <match tags="n.*"/>
+      <match tags="adj.*"/>
+    </or>
+  </rule>
   <!-- /antall -->
+
+  <rule><match lemma="av det totale antallet"><select lemma="av det samla talet"/></match></rule>
+  <rule weight="2.0" c="av det totalet antallet beslag → av alle beslag">
+    <match lemma="av det totale antallet">
+      <select lemma="av alle"/>
+    </match>
+  </rule>
+
+  <rule><match lemma="total" tags="adj.*"><select lemma="total"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="total" tags="adj.*"><select lemma="samla"/></match>
+    <match lemma="antall"/>
+  </rule>
 
   <!-- andel -->
   <rule weight="1.0" c="default del">

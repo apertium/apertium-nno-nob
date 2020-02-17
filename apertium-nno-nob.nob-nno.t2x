@@ -47,6 +47,16 @@
       <cat-item tags="n.*.ind.sl-mf.*"/>
       <cat-item tags="n.*.ind.sl-f.*"/>
     </def-cat>
+    <def-cat n="nind_noadj">
+      <cat-item lemma="n" tags="n.*.ind"/>
+      <cat-item lemma="n" tags="n.*.ind.*"/>
+      <cat-item lemma="n_n" tags="n.*.ind"/>
+      <cat-item lemma="n_n" tags="n.*.ind.*"/>
+      <cat-item lemma="n_n_n" tags="n.*.ind"/>
+      <cat-item lemma="n_n_n" tags="n.*.ind.*"/>
+      <cat-item lemma="n_n_n_n" tags="n.*.ind"/>
+      <cat-item lemma="n_n_n_n" tags="n.*.ind.*"/>
+    </def-cat>
     <def-cat n="nplind">
       <cat-item tags="n.*.pl.ind"/>
       <cat-item tags="n.*.pl.ind.*"/>
@@ -156,9 +166,19 @@
       <cat-item lemma="detenhver" tags="det.qnt.*"/>
     </def-cat>
 
+    <def-cat n="av_alle">
+      <cat-item tags="pr.av alle"/>
+    </def-cat>
+
     <def-cat n="vblex">
       <cat-item tags="vblex"/>
       <cat-item tags="vblex.*"/>
+    </def-cat>
+    <def-cat n="pr_OR_vblex">
+      <cat-item tags="vblex"/>
+      <cat-item tags="vblex.*"/>
+      <cat-item tags="pr"/>
+      <cat-item tags="pr.*"/>
     </def-cat>
     <def-cat n="aux">
       <cat-item lemma="aux" tags="vblex"/>
@@ -701,6 +721,26 @@
 
 
   <section-rules>
+
+    <rule comment="AV_ALLE N: av alle beslag → av alle beslaga">
+      <pattern>
+        <pattern-item n="av_alle"/>
+        <pattern-item n="nind_noadj"/>
+        <pattern-item n="pr_OR_vblex"/>
+      </pattern>
+      <action>
+        <let><clip pos="2" part="art"/><lit-tag v="def"/></let>
+        <let><clip pos="2" part="nbr"/><lit-tag v="pl.chunknum"/></let>
+        <call-macro n="set_ana"><with-param pos="1"/></call-macro>
+        <out>
+          <chunk><clip pos="1" part="whole"/></chunk>
+          <b/>
+          <chunk><clip pos="2" part="whole"/></chunk>
+          <b/>
+          <chunk><clip pos="3" part="whole"/></chunk>
+        </out>
+      </action>
+    </rule>
 
     <rule comment="NEEDDET_ADJ_N: britiske statsministeren => den britiske statsministeren
                    Needs to be before NDEF rule.">
@@ -2320,6 +2360,7 @@
               </and>
               <and>
                 <equal><clip pos="1" part="gen"/><lit-tag v="nt"/></equal>
+
                 <or>
                   <equal><clip pos="2" part="gen"/><lit-tag v="m"/></equal>
                   <equal><clip pos="2" part="gen"/><lit-tag v="f"/></equal>
