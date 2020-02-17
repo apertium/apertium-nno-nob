@@ -372,14 +372,6 @@
       <match tags="adj.*"/>
     </or>
   </rule>
-  <rule weight="4.0">
-    <match lemma="antall" tags="n.*.sg.def"><select lemma="talet på"/></match>
-    <match tags="vblex.pret"/>
-    <or>
-      <match tags="n.*"/>
-      <match tags="adj.*"/>
-    </or>
-  </rule>
   <rule weight="3.0">
     <match lemma="antall"><select lemma="talet på"/></match>
     <or>
@@ -392,8 +384,12 @@
     <match lemma="antall">
       <select lemma="mengde"/>  <!-- or just "tal"? -->
     </match>
-    <or>
-      <match tags="vblex.*"/>
+    <or>                        <!-- vblex not pp -->
+      <match tags="vblex.pret"/>
+      <match tags="vblex.pres"/>
+      <match tags="vblex.imp"/>
+      <match tags="vblex.pasv.pres"/>
+      <match tags="vblex.pasv.inf"/>
       <match tags="cnjsub"/>
     </or>
   </rule>
@@ -423,7 +419,11 @@
     </match>
   </rule>
   <rule weight="5.0" c="det antallet → det talet">
-    <match lemma="den" tags="det.dem.nt.sg"/>
+    <or>
+      <match lemma="den" tags="det.dem.nt.sg"/>
+      <match lemma="denne" tags="det.dem.nt.sg"/>
+      <match lemma="denne" tags="prn.dem.nt.sg.*"/>
+    </or>
     <match lemma="antall" tags="n.*.sg.def">
       <select lemma="tal"/>
     </match>
