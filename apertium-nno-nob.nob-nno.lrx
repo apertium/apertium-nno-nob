@@ -388,7 +388,23 @@
     </or>
   </rule>
 
-  <rule weight="2.0" c="ei særs stor mengd">
+  <rule weight="2.0" c="Uavhengig av antall gir de folkene i departementene mer enn nok å gjøre">
+    <match lemma="antall">
+      <select lemma="mengde"/>  <!-- or just "tal"? -->
+    </match>
+    <or>
+      <match tags="vblex.*"/>
+      <match tags="cnjsub"/>
+    </or>
+  </rule>
+
+  <rule weight="2.0">
+    <match lemma="stor"/>
+    <match lemma="antall">
+      <select lemma="tal"/>
+    </match>
+  </rule>
+  <rule weight="2.0">
     <match lemma="antall">
       <select lemma="tal"/>
     </match>
