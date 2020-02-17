@@ -449,6 +449,9 @@
     <def-cat n="klokken">
       <cat-item tags="n.*.def" lemma="klokke"/>
     </def-cat>
+    <def-cat n="et">
+      <cat-item tags="det.qnt.nt.sg" lemma="en"/>
+    </def-cat>
     <def-cat n="pr">
       <cat-item tags="pr.*"/>
       <cat-item tags="pr"/>
@@ -3165,6 +3168,75 @@
             </lu>
           </chunk>
         </out>
+      </action>
+    </rule>
+
+    <rule comment="et antall → fleire
+                   idiomatic rule">
+      <pattern>
+        <pattern-item n="et"/>
+        <pattern-item n="antall"/>
+      </pattern>
+      <action>
+        <call-macro n="set_caseFirstWord2">
+          <with-param pos="1"/>
+          <with-param pos="2"/>
+        </call-macro>
+        <choose>
+          <when c="fleire">
+            <test><equal><clip pos="2" side="tl" part="lemh"/><lit v="fleire"/></equal></test>
+            <out>
+              <chunk name="adj" case="caseFirstWord">
+                <tags><tag><lit-tag v="adj.sint.comp.un.sp"/></tag></tags>
+                <lu>
+                  <lit v="mange"/>
+                  <lit-tag v="adj.sint.comp.un.sp"/>
+                </lu>
+              </chunk>
+            </out>
+            <choose><when>
+              <test><not><equal><b pos="1"/><lit v=" "/></equal></not></test>
+              <out><b pos="1"/></out>
+            </when></choose>
+          </when>
+          <otherwise>
+            <call-macro n="stash_case_in_ntags"><with-param pos="2"/></call-macro>
+            <out>
+              <chunk name="det" case="caseFirstWord">
+                <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
+                <lu><clip pos="1" side="tl" part="whole"/></lu>
+              </chunk>
+              <b pos="1"/>
+              <chunk name="n" case="caseSecondWord">
+                <tags><tag><var n="ntags"/></tag></tags>
+                <lu><clip pos="2" side="tl" part="whole"/></lu>
+              </chunk>
+            </out>
+          </otherwise>
+        </choose>
+      </action>
+    </rule>
+
+    <rule comment="et antall på [2 millioner] → ∅ [2 millionar]
+                   idiomatic rule">
+      <pattern>
+        <pattern-item n="et"/>
+        <pattern-item n="antall"/>
+        <pattern-item n="på"/>
+      </pattern>
+      <action>
+        <call-macro n="set_caseFirstWord2">
+          <with-param pos="1"/>
+          <with-param pos="2"/>
+        </call-macro>
+        <choose><when>
+          <test><not><equal><b pos="1"/><lit v=" "/></equal></not></test>
+          <out><b pos="1"/></out>
+        </when></choose>
+        <choose><when>
+          <test><not><equal><b pos="2"/><lit v=" "/></equal></not></test>
+          <out><b pos="2"/></out>
+        </when></choose>
       </action>
     </rule>
 
