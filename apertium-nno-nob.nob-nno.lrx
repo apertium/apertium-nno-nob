@@ -2100,4 +2100,40 @@
     <match tags="n.*"/>
   </rule>
   <rule><match lemma="inhabil" tags="adj.*"><select lemma="inhabil"/></match></rule>
+
+  <rule><match lemma="forbindelse" tags="n.*"><select lemma="samband"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="med"/>
+    <match lemma="forbindelse" tags="n.*"><select lemma="band"/></match>
+    <match lemma="til"/>
+  </rule>
+
+  <rule><match lemma="beklageligvis" tags="adv"><select lemma="dessverre"/></match></rule>
+
+  <rule><match lemma="bekymring" tags="n.*"><select lemma="bekymring"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="uttrykke"/>
+    <repeat from="0" upto="3"><match tags="adv"/></repeat> <!-- han uttrykker også bekymring for -->
+    <match lemma="bekymring" tags="n.*"><select lemma="uro"/></match>
+    <match lemma="for"/>
+  </rule>
+
+  <rule><match lemma="bestå" tags="vblex.*"><select lemma="bestå"/></match></rule>
+  <!-- «bestå av» brukt i korrekturane òg -->
+  <!-- <rule weight="2.0"> -->
+  <!--   <match lemma="bestå" tags="vblex.*"><select lemma="vere# sett saman"/></match> -->
+  <!--   <match lemma="av"/> -->
+  <!-- </rule> -->
+
+  <rule><match lemma="ypperlig" tags="adj.*"><select lemma="framifrå"/></match></rule>
+  <rule><match lemma="fremragende" tags="adj.*"><select lemma="framifrå"/></match></rule>
+
+  <rule><match lemma="ankomme" tags="vblex.*"><select lemma="komme"/></match></rule>
+  <rule weight="2.0" c="har ankommet Norge">
+    <match lemma="ankomme" tags="vblex.*"><select lemma="komme# til"/></match>
+    <or>
+      <match tags="np.top"/>
+      <match tags="n.*.def"/>
+    </or>
+  </rule>
 </lrx>
