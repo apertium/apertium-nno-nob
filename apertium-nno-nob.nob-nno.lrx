@@ -417,7 +417,7 @@
       <match tags="cm.*"/>
     </or>
   </rule>
-  <rule weight="2.0" c="nno only can generate for this tagging">
+  <rule weight="2.0">
     <match lemma="antall" tags="n.*.sg.def">
       <select lemma="tal"/>
     </match>
@@ -452,6 +452,21 @@
     <match lemma="antall">
       <select lemma="tal"/>
     </match>
+  </rule>
+  <rule weight="4.0" c="då har antallet vore søkkande
+                        I løpet av de siste ti årene har antallet steget kraftig">
+    <or>
+      <match lemma="ha"/>
+      <match lemma="ønske" tags="vblex.*"/> <!-- Domstoladministrasjonen ønsker antallet redusert med 30 -->
+    </or>
+    <match lemma="antall" tags="n.*.sg.def">
+      <select lemma="tal"/>
+    </match>
+    <or>
+      <match lemma="være"/>
+      <match tags="adj.pp.*"/>
+      <match tags="vblex.pp.*"/>
+    </or>
   </rule>
 
   <rule weight="9.0" c="ha et antall → ha fleire; over et antall → over fleire">
