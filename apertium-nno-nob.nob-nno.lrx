@@ -394,6 +394,10 @@
     </or>
   </rule>
 
+  <rule weight="9.0" c="opptaksantallet → opptakstalet (compounds always «tal»)">
+    <match tags="n.*.cmp"/>
+    <match lemma="antall" tags="n.*"> <select lemma="tal"/> </match>
+  </rule>
   <rule weight="2.0">
     <match lemma="stor"/>
     <match lemma="antall">
