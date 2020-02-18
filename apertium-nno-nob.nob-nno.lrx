@@ -505,6 +505,23 @@
     <match lemma="av det totale antallet">
       <select lemma="av alle"/>
     </match>
+    <or>
+      <match tags="adj.sint.pst.*"/>
+      <match tags="adj.pst.*"/>
+      <match tags="adj.sint.comp.*"/>
+      <match tags="adj.comp.*"/>
+      <match tags="adj.sint.sup.*"/>
+      <match tags="adj.sup.*"/>
+      <match tags="n.*"/>
+      <match tags="np.*"/>
+    </or>
+  </rule>
+  <rule weight="2.0" c="av det totalet antallet påviste beslag → av alle påviste beslag">
+    <match lemma="av det totale antallet">
+      <select lemma="av alle"/>
+    </match>
+    <match tags="adj.pp.*"/>
+    <match tags="n.*"/>
   </rule>
 
   <rule><match lemma="total" tags="adj.*"><select lemma="total"/></match></rule>
