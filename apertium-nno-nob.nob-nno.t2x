@@ -69,6 +69,22 @@
       <cat-item tags="n.*.def"/>
       <cat-item tags="n.*.def.*"/>
     </def-cat>
+    <def-cat n="ndef_OR_npantcog">
+      <cat-item tags="n.*.def"/>
+      <cat-item tags="n.*.def.*"/>
+      <cat-item tags="np.ant"/>
+      <cat-item tags="np.cog"/>
+      <cat-item tags="np.ant.*"/>
+      <cat-item tags="np.cog.*"/>
+      <cat-item tags="unknown"/>
+    </def-cat>
+    <def-cat n="npantcog">
+      <cat-item tags="np.ant"/>
+      <cat-item tags="np.cog"/>
+      <cat-item tags="np.ant.*"/>
+      <cat-item tags="np.cog.*"/>
+      <cat-item tags="unknown"/>
+    </def-cat>
     <def-cat n="prep_gen">
       <cat-item lemma="gen-prep" tags="pr"/>
       <cat-item lemma="gen-prep" tags="det.*"/>
@@ -1516,13 +1532,14 @@
       </action>
     </rule>
 
-    <rule comment="VBLEX LEMQ-SKIP-N NDEF => VBLEX NDEF LEMQ-SKIP-N
+    <rule comment="VBLEX LEMQ-SKIP-N NDEF_NPANTCOG => VBLEX NDEF_NPANTCOG LEMQ-SKIP-N
                    Push blanks one place up since lemq space is inside the chunk.
-                   - Søndag fortsatte kamphandlingene → Søndag heldt kamphandlingane fram">
+                   - Søndag fortsatte kamphandlingene → Søndag heldt kamphandlingane fram
+                   , fortsatte Ola → , heldt Ola fram">
       <pattern>
         <pattern-item n="vblex"/>
         <pattern-item n="lemq-skip-n"/>
-        <pattern-item n="ndef"/>
+        <pattern-item n="ndef_OR_npantcog"/>
       </pattern>
       <action>
         <call-macro n="set_ana"><with-param pos="1"/></call-macro>
@@ -1534,6 +1551,72 @@
           <b pos="2"/>
           <chunk>
             <clip pos="3" part="whole"/>
+          </chunk>
+          <chunk>
+            <clip pos="2" part="whole"/>
+          </chunk>
+        </out>
+      </action>
+    </rule>
+
+    <rule comment="VBLEX LEMQ-SKIP-N NPANTCOG NPANTCOG => VBLEX NPANTCOG NPANTCOG LEMQ-SKIP-N
+                   Push blanks one place up since lemq space is inside the chunk.
+                   , fortsatte Ola Hansen → , heldt Ola Hansen fram">
+      <pattern>
+        <pattern-item n="vblex"/>
+        <pattern-item n="lemq-skip-n"/>
+        <pattern-item n="npantcog"/>
+        <pattern-item n="npantcog"/>
+      </pattern>
+      <action>
+        <call-macro n="set_ana"><with-param pos="1"/></call-macro>
+        <out>
+          <chunk>
+            <clip pos="1" part="whole"/>
+          </chunk>
+          <b pos="1"/>
+          <b pos="2"/>
+          <chunk>
+            <clip pos="3" part="whole"/>
+          </chunk>
+          <b pos="3"/>
+          <chunk>
+            <clip pos="4" part="whole"/>
+          </chunk>
+          <chunk>
+            <clip pos="2" part="whole"/>
+          </chunk>
+        </out>
+      </action>
+    </rule>
+    <rule comment="VBLEX LEMQ-SKIP-N NPANTCOG NPANTCOG NPANTCOG => VBLEX NPANTCOG NPANTCOG NPANTCOG LEMQ-SKIP-N
+                   Push blanks one place up since lemq space is inside the chunk.
+                   , fortsatte Ole Andre Hansen → , heldt Ole Andre Hansen fram">
+      <pattern>
+        <pattern-item n="vblex"/>
+        <pattern-item n="lemq-skip-n"/>
+        <pattern-item n="npantcog"/>
+        <pattern-item n="npantcog"/>
+        <pattern-item n="npantcog"/>
+      </pattern>
+      <action>
+        <call-macro n="set_ana"><with-param pos="1"/></call-macro>
+        <out>
+          <chunk>
+            <clip pos="1" part="whole"/>
+          </chunk>
+          <b pos="1"/>
+          <b pos="2"/>
+          <chunk>
+            <clip pos="3" part="whole"/>
+          </chunk>
+          <b pos="3"/>
+          <chunk>
+            <clip pos="4" part="whole"/>
+          </chunk>
+          <b pos="4"/>
+          <chunk>
+            <clip pos="5" part="whole"/>
           </chunk>
           <chunk>
             <clip pos="2" part="whole"/>
