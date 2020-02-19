@@ -2235,6 +2235,15 @@
 
   <rule><match lemma="oppveie" tags="vblex.*"><select lemma="vege# opp for"/></match></rule>
 
+  <rule><match lemma="anmeldelse" tags="n.*"><select lemma="melding"/></match></rule>
+  <rule weight="2.0">
+    <or>
+      <match lemma="antall"/>
+      <match lemma="lavt antall"/>
+    </or>
+    <match lemma="anmeldelse" tags="n.*"><select lemma="politimelding"/></match>
+  </rule>
+
   <rule><match lemma="et lite antall" tags="adj.*"><select lemma="nokre få"/></match></rule>
   <rule weight="2.0">
     <or><match lemma="vere" tags="vblex.inf"/><match lemma="vere" tags="vblex.pres"/></or>
