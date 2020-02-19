@@ -439,6 +439,17 @@
       <select lemma="tal"/>
     </match>
   </rule>
+  <rule weight="8.0" c="et langt større antall → eit langt større tal">
+    <match lemma="en" tags="det.qnt.nt.sg"/>
+    <or>
+      <match tags="adv"/>
+      <match tags="adj.*.nt.sg.ind"/>
+    </or>
+    <match tags="adj.*"/>
+    <match lemma="antall">
+      <select lemma="tal"/>
+    </match>
+  </rule>
   <rule weight="9.1" c="i et antall av → i eit tal av">
     <match lemma="i"/>
     <match lemma="en"/>
