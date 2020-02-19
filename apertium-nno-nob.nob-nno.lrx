@@ -2234,4 +2234,30 @@
   </rule>
 
   <rule><match lemma="oppveie" tags="vblex.*"><select lemma="vege# opp for"/></match></rule>
+
+  <rule><match lemma="et lite antall" tags="adj.*"><select lemma="nokre få"/></match></rule>
+  <rule weight="2.0">
+    <or><match lemma="vere" tags="vblex.inf"/><match lemma="vere" tags="vblex.pres"/></or>
+    <match lemma="et lite antall" tags="adj.*"><select lemma="eit lågt tal"/></match>
+  </rule>
+  <rule><match lemma="et lavt antall" tags="adj.*"><select lemma="nokre få"/></match></rule>
+  <rule weight="2.0">
+    <or><match lemma="vere" tags="vblex.inf"/><match lemma="vere" tags="vblex.pres"/></or>
+    <match lemma="et lavt antall" tags="adj.*"><select lemma="eit lågt tal"/></match>
+  </rule>
+  <rule c="først i setninga">
+    <match lemma="et beskjedent antall" tags="adj.*"><select lemma="eit lite tal"/></match>
+  </rule>
+  <rule c="sist i setninga">
+    <match lemma="et beskjedent antall" tags="adj.*"><select lemma="eit lite tal"/></match>
+    <match tags="sent.clb"/>
+  </rule>
+  <rule weight="2.0">
+    <seq n="NOT_sent_lpar_lquot_rquot"/>
+    <match lemma="et beskjedent antall" tags="adj.*"><select lemma="nokre få"/></match>
+  </rule>
+  <rule weight="3.0">
+    <or><match lemma="vere" tags="vblex.inf"/><match lemma="vere" tags="vblex.pres"/></or>
+    <match lemma="et beskjedent antall" tags="adj.*"><select lemma="eit lågt tal"/></match>
+  </rule>
 </lrx>
