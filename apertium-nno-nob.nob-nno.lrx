@@ -491,6 +491,14 @@
 
   <rule weight="8.0">
     <match lemma="den"/>
+    <or>
+      <match lemma="høy"/>
+      <match lemma="stor"/>
+    </or>
+    <match lemma="antall"><select lemma="tal"/></match>
+  </rule>
+  <rule weight="8.0">
+    <match lemma="den"/>
     <match lemma="total" tags="adj.*"/>
     <match lemma="antall"><select lemma="tal"/></match>
     <or>
