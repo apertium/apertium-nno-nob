@@ -47,6 +47,16 @@
       <cat-item tags="n.*.ind.sl-mf.*"/>
       <cat-item tags="n.*.ind.sl-f.*"/>
     </def-cat>
+    <def-cat n="nind_noadj">
+      <cat-item lemma="n" tags="n.*.ind"/>
+      <cat-item lemma="n" tags="n.*.ind.*"/>
+      <cat-item lemma="n_n" tags="n.*.ind"/>
+      <cat-item lemma="n_n" tags="n.*.ind.*"/>
+      <cat-item lemma="n_n_n" tags="n.*.ind"/>
+      <cat-item lemma="n_n_n" tags="n.*.ind.*"/>
+      <cat-item lemma="n_n_n_n" tags="n.*.ind"/>
+      <cat-item lemma="n_n_n_n" tags="n.*.ind.*"/>
+    </def-cat>
     <def-cat n="nplind">
       <cat-item tags="n.*.pl.ind"/>
       <cat-item tags="n.*.pl.ind.*"/>
@@ -58,6 +68,31 @@
     <def-cat n="ndef">
       <cat-item tags="n.*.def"/>
       <cat-item tags="n.*.def.*"/>
+    </def-cat>
+    <def-cat n="ndef_OR_np_pers">
+      <cat-item tags="n.*.def"/>
+      <cat-item tags="n.*.def.*"/>
+      <cat-item tags="np.ant"/>
+      <cat-item tags="np.cog"/>
+      <cat-item tags="np.ant.*"/>
+      <cat-item tags="np.cog.*"/>
+      <cat-item tags="unknown"/>
+    </def-cat>
+    <def-cat n="np_pers">
+      <cat-item tags="np.ant"/>
+      <cat-item tags="np.cog"/>
+      <cat-item tags="np.ant.*"/>
+      <cat-item tags="np.cog.*"/>
+      <cat-item tags="unknown"/>
+    </def-cat>
+    <def-cat n="np_nonorg">
+      <cat-item tags="np.ant"/>
+      <cat-item tags="np.cog"/>
+      <cat-item tags="np.top"/> <!-- so many toponyms allowed as cognomens -->
+      <cat-item tags="np.ant.*"/>
+      <cat-item tags="np.cog.*"/>
+      <cat-item tags="np.top.*"/>
+      <cat-item tags="unknown"/>
     </def-cat>
     <def-cat n="prep_gen">
       <cat-item lemma="gen-prep" tags="pr"/>
@@ -101,6 +136,24 @@
     </def-cat>
     <def-cat n="detemph">
       <cat-item tags="det.emph.*"/>
+    </def-cat>
+    <def-cat n="advladj">
+      <cat-item tags="adj.*.nt.sg.ind"/>
+      <cat-item tags="adv"/>
+    </def-cat>
+    <def-cat n="anom_def">
+      <cat-item lemma="adj_n"               tags="n.*.def.*"/>
+      <cat-item lemma="adj_adj_n"           tags="n.*.def.*"/>
+      <cat-item lemma="adj_adj_adj_n"       tags="n.*.def.*"/>
+      <cat-item lemma="adj_n_n"             tags="n.*.def.*"/>
+      <cat-item lemma="adj_adj_n_n"         tags="n.*.def.*"/>
+      <cat-item lemma="adj_adj_adj_n_n"     tags="n.*.def.*"/>
+      <cat-item lemma="adj_n_n_n"           tags="n.*.def.*"/>
+      <cat-item lemma="adj_adj_n_n_n"       tags="n.*.def.*"/>
+      <cat-item lemma="adj_adj_adj_n_n_n"   tags="n.*.def.*"/>
+      <cat-item lemma="adj_n_n_n_n"         tags="n.*.def.*"/>
+      <cat-item lemma="adj_adj_n_n_n_n"     tags="n.*.def.*"/>
+      <cat-item lemma="adj_adj_adj_n_n_n_n" tags="n.*.def.*"/>
     </def-cat>
     <def-cat n="prn">
       <cat-item tags="prn.*"/>
@@ -156,9 +209,19 @@
       <cat-item lemma="detenhver" tags="det.qnt.*"/>
     </def-cat>
 
+    <def-cat n="av_alle">
+      <cat-item tags="pr.av alle"/>
+    </def-cat>
+
     <def-cat n="vblex">
       <cat-item tags="vblex"/>
       <cat-item tags="vblex.*"/>
+    </def-cat>
+    <def-cat n="pr_OR_vblex">
+      <cat-item tags="vblex"/>
+      <cat-item tags="vblex.*"/>
+      <cat-item tags="pr"/>
+      <cat-item tags="pr.*"/>
     </def-cat>
     <def-cat n="aux">
       <cat-item lemma="aux" tags="vblex"/>
@@ -377,6 +440,25 @@
     <def-var n="ana_nbr"/>
     <def-var n="ana_temps" c="Last seen finite verb temps (pres/pret)"/>
   </section-def-vars>
+
+  <section-def-lists>
+    <def-list n="m_f_mf_GD">
+      <list-item v="&lt;m&gt;"/>
+      <list-item v="&lt;f&gt;"/>
+      <list-item v="&lt;mf&gt;"/>
+      <list-item v="&lt;GD&gt;"/>
+      <list-item v="&lt;sl-m&gt;"/>
+      <list-item v="&lt;sl-f&gt;"/>
+      <list-item v="&lt;sl-mf&gt;"/>
+      <list-item v="&lt;sl-GD&gt;"/>
+    </def-list>
+    <def-list n="nt_GD">
+      <list-item v="&lt;nt&gt;"/>
+      <list-item v="&lt;GD&gt;"/>
+      <list-item v="&lt;sl-nt&gt;"/>
+      <list-item v="&lt;sl-GD&gt;"/>
+    </def-list>
+  </section-def-lists>
 
   <section-def-macros>
 
@@ -701,6 +783,26 @@
 
 
   <section-rules>
+
+    <rule comment="AV_ALLE N: av alle beslag → av alle beslaga">
+      <pattern>
+        <pattern-item n="av_alle"/>
+        <pattern-item n="nind_noadj"/>
+        <pattern-item n="pr_OR_vblex"/>
+      </pattern>
+      <action>
+        <let><clip pos="2" part="art"/><lit-tag v="def"/></let>
+        <let><clip pos="2" part="nbr"/><lit-tag v="pl.chunknum"/></let>
+        <call-macro n="set_ana"><with-param pos="1"/></call-macro>
+        <out>
+          <chunk><clip pos="1" part="whole"/></chunk>
+          <b/>
+          <chunk><clip pos="2" part="whole"/></chunk>
+          <b/>
+          <chunk><clip pos="3" part="whole"/></chunk>
+        </out>
+      </action>
+    </rule>
 
     <rule comment="NEEDDET_ADJ_N: britiske statsministeren => den britiske statsministeren
                    Needs to be before NDEF rule.">
@@ -1369,6 +1471,36 @@
       </action>
     </rule>
 
+    <rule comment="VBLEX LEMQ NDEF NDEF => VBLEX NDEF LEMQ NDEF
+                   Push blanks one place up since lemq space is inside the chunk.">
+      <pattern>
+        <pattern-item n="vblex"/>
+        <pattern-item n="lemq"/>
+        <pattern-item n="ndef"/>
+        <pattern-item n="ndef"/>
+      </pattern>
+      <action>
+        <call-macro n="set_ana"><with-param pos="1"/></call-macro>
+        <out>
+          <chunk>
+            <clip pos="1" part="whole"/>
+          </chunk>
+          <b pos="1"/>
+          <b pos="2"/>
+          <chunk>
+            <clip pos="3" part="whole"/>
+          </chunk>
+          <chunk>
+            <clip pos="2" part="whole"/>
+          </chunk>
+          <b pos="3"/>
+          <chunk>
+            <clip pos="4" part="whole"/>
+          </chunk>
+        </out>
+      </action>
+    </rule>
+
     <rule comment="VBLEX LEMQ PRN_NOM => VBLEX PRN_NOM LEMQ
                    Push blanks one place up since lemq space is inside the chunk.">
       <pattern>
@@ -1427,13 +1559,14 @@
       </action>
     </rule>
 
-    <rule comment="VBLEX LEMQ-SKIP-N NDEF => VBLEX NDEF LEMQ-SKIP-N
+    <rule comment="VBLEX LEMQ-SKIP-N NDEF_NP_PERS => VBLEX NDEF_NP_PERS LEMQ-SKIP-N
                    Push blanks one place up since lemq space is inside the chunk.
-                   - Søndag fortsatte kamphandlingene → Søndag heldt kamphandlingane fram">
+                   - Søndag fortsatte kamphandlingene → Søndag heldt kamphandlingane fram
+                   , fortsatte Ola → , heldt Ola fram">
       <pattern>
         <pattern-item n="vblex"/>
         <pattern-item n="lemq-skip-n"/>
-        <pattern-item n="ndef"/>
+        <pattern-item n="ndef_OR_np_pers"/>
       </pattern>
       <action>
         <call-macro n="set_ana"><with-param pos="1"/></call-macro>
@@ -1445,6 +1578,72 @@
           <b pos="2"/>
           <chunk>
             <clip pos="3" part="whole"/>
+          </chunk>
+          <chunk>
+            <clip pos="2" part="whole"/>
+          </chunk>
+        </out>
+      </action>
+    </rule>
+
+    <rule comment="VBLEX LEMQ-SKIP-N NP_PERS NP_PERS => VBLEX NP_PERS NP_PERS LEMQ-SKIP-N
+                   Push blanks one place up since lemq space is inside the chunk.
+                   , fortsatte Ola Hansen → , heldt Ola Hansen fram">
+      <pattern>
+        <pattern-item n="vblex"/>
+        <pattern-item n="lemq-skip-n"/>
+        <pattern-item n="np_pers"/>
+        <pattern-item n="np_nonorg"/>
+      </pattern>
+      <action>
+        <call-macro n="set_ana"><with-param pos="1"/></call-macro>
+        <out>
+          <chunk>
+            <clip pos="1" part="whole"/>
+          </chunk>
+          <b pos="1"/>
+          <b pos="2"/>
+          <chunk>
+            <clip pos="3" part="whole"/>
+          </chunk>
+          <b pos="3"/>
+          <chunk>
+            <clip pos="4" part="whole"/>
+          </chunk>
+          <chunk>
+            <clip pos="2" part="whole"/>
+          </chunk>
+        </out>
+      </action>
+    </rule>
+    <rule comment="VBLEX LEMQ-SKIP-N NP_PERS NP_PERS NP_PERS => VBLEX NP_PERS NP_PERS NP_PERS LEMQ-SKIP-N
+                   Push blanks one place up since lemq space is inside the chunk.
+                   , fortsatte Ole Andre Hansen → , heldt Ole Andre Hansen fram">
+      <pattern>
+        <pattern-item n="vblex"/>
+        <pattern-item n="lemq-skip-n"/>
+        <pattern-item n="np_pers"/>
+        <pattern-item n="np_nonorg"/>
+        <pattern-item n="np_nonorg"/>
+      </pattern>
+      <action>
+        <call-macro n="set_ana"><with-param pos="1"/></call-macro>
+        <out>
+          <chunk>
+            <clip pos="1" part="whole"/>
+          </chunk>
+          <b pos="1"/>
+          <b pos="2"/>
+          <chunk>
+            <clip pos="3" part="whole"/>
+          </chunk>
+          <b pos="3"/>
+          <chunk>
+            <clip pos="4" part="whole"/>
+          </chunk>
+          <b pos="4"/>
+          <chunk>
+            <clip pos="5" part="whole"/>
           </chunk>
           <chunk>
             <clip pos="2" part="whole"/>
@@ -2146,6 +2345,39 @@
       </action>
     </rule>
 
+    <rule comment="DET ADVLADJ ANOM_DEF: det sterkt høyreorienterte nettstedet → den sterkt høgreorienterte nettstaden">
+      <pattern>
+        <pattern-item n="det"/>
+        <pattern-item n="advladj"/>
+        <pattern-item n="anom_def"/>
+      </pattern>
+      <action>
+        <call-macro n="set_ana"><with-param pos="3"/></call-macro>
+        <choose>
+          <when c="don't change gender for '(er) dette kjernen' etc.">
+            <test><and>
+              <equal><clip pos="1" part="gen"/><lit-tag v="nt"/></equal>
+              <not><equal><clip pos="3" part="sl-gen"/><lit-tag v="sl-nt"/></equal></not>
+            </and></test>
+            <!-- TODO: reject-current-rule in interchunk -->
+            <!-- <reject-current-rule shifting="no"/> -->
+          </when>
+          <otherwise>
+            <!-- pos=2 is adverbial, so no gender change -->
+            <call-macro n="modify_det_gender2.n.det"><with-param pos="3"/><with-param pos="1"/></call-macro>
+            <call-macro n="set_n_defness"><with-param pos="3"/><with-param pos="1"/></call-macro>
+          </otherwise>
+        </choose>
+        <out>
+          <chunk><clip pos="1" part="whole"/></chunk>
+          <b pos="1"/>
+          <chunk><clip pos="2" part="whole"/></chunk>
+          <b pos="2"/>
+          <chunk><clip pos="3" part="whole"/></chunk>
+        </out>
+      </action>
+    </rule>
+
     <rule comment="DETITG DETQNT PREP_SOM ADV NOM: et hvilket som helst norsk hjem → ein kva som helst norsk heim
                    Agree gender.">
       <pattern>
@@ -2308,39 +2540,36 @@
       </pattern>
       <action>
         <call-macro n="set_ana"><with-param pos="3"/></call-macro>
-        <choose>
-          <when c="don't change gender for 'det andre kvinner' etc.">
-            <test><or>
+        <choose><when c="don't change gender for 'det andre kvinner' etc.">
+          <test>
+            <or>
               <and>
-                <or>
-                  <equal><clip pos="1" part="gen"/><lit-tag v="nt"/></equal>
-                  <equal><clip pos="2" part="gen"/><lit-tag v="nt"/></equal>
-                </or>
-                <not><equal><clip pos="3" part="sl-gen"/><lit-tag v="sl-nt"/></equal></not>
+                <in><clip pos="1" part="gen"/><list n="nt_GD"/></in>
+                <in><clip pos="3" part="sl-gen"/><list n="nt_GD"/></in>
               </and>
               <and>
-                <equal><clip pos="1" part="gen"/><lit-tag v="nt"/></equal>
-                <or>
-                  <equal><clip pos="2" part="gen"/><lit-tag v="m"/></equal>
-                  <equal><clip pos="2" part="gen"/><lit-tag v="f"/></equal>
-                </or>
+                <in><clip pos="1" part="gen"/><list n="m_f_mf_GD"/></in>
+                <in><clip pos="3" part="sl-gen"/><list n="m_f_mf_GD"/></in>
+              </and>
+            </or>
+          </test>
+          <call-macro n="modify_det_gender2.n.det"><with-param pos="3"/><with-param pos="1"/></call-macro>
+        </when></choose>
+        <choose><when c="don't change gender for 'den eget kvinner' etc.">
+          <test>
+            <or>
+              <and>
+                <in><clip pos="2" part="gen"/><list n="nt_GD"/></in>
+                <in><clip pos="3" part="sl-gen"/><list n="nt_GD"/></in>
               </and>
               <and>
-                <or>
-                  <equal><clip pos="1" part="gen"/><lit-tag v="m"/></equal>
-                  <equal><clip pos="1" part="gen"/><lit-tag v="f"/></equal>
-                </or>
-                <equal><clip pos="2" part="gen"/><lit-tag v="nt"/></equal>
+                <in><clip pos="2" part="gen"/><list n="m_f_mf_GD"/></in>
+                <in><clip pos="3" part="sl-gen"/><list n="m_f_mf_GD"/></in>
               </and>
-            </or></test>
-            <!-- TODO: reject-current-rule in interchunk -->
-            <!-- <reject-current-rule shifting="no"/> -->
-          </when>
-          <otherwise>
-            <call-macro n="modify_det_gender2.n.det"><with-param pos="3"/><with-param pos="2"/></call-macro>
-            <call-macro n="modify_det_gender2.n.det"><with-param pos="3"/><with-param pos="1"/></call-macro>
-          </otherwise>
-        </choose>
+            </or>
+          </test>
+          <call-macro n="modify_det_gender2.n.det"><with-param pos="3"/><with-param pos="2"/></call-macro>
+        </when></choose>
         <out>
           <chunk><clip pos="1" part="whole"/></chunk>
           <b pos="1"/>

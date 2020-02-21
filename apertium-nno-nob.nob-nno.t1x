@@ -449,6 +449,9 @@
     <def-cat n="klokken">
       <cat-item tags="n.*.def" lemma="klokke"/>
     </def-cat>
+    <def-cat n="et">
+      <cat-item tags="det.qnt.nt.sg" lemma="en"/>
+    </def-cat>
     <def-cat n="pr">
       <cat-item tags="pr.*"/>
       <cat-item tags="pr"/>
@@ -570,6 +573,10 @@
     <def-cat n="antall">
       <cat-item lemma="antall" tags="n.nt.sg.ind"/>
       <cat-item lemma="antall" tags="n.nt.pl.ind"/>
+    </def-cat>
+    <def-cat n="stort_høyt">
+      <cat-item lemma="stor" tags="adj.sint.pst.*"/>
+      <cat-item lemma="høy" tags="adj.sint.pst.*"/>
     </def-cat>
     <def-cat n="anført">
       <cat-item lemma="anføre" tags="vblex.pp"/>
@@ -3165,6 +3172,129 @@
             </lu>
           </chunk>
         </out>
+      </action>
+    </rule>
+
+    <rule comment="et antall → fleire
+                   idiomatic rule">
+      <pattern>
+        <pattern-item n="et"/>
+        <pattern-item n="antall"/>
+      </pattern>
+      <action>
+        <call-macro n="set_caseFirstWord2">
+          <with-param pos="1"/>
+          <with-param pos="2"/>
+        </call-macro>
+        <choose>
+          <when c="fleire">
+            <test><equal><clip pos="2" side="tl" part="lemh"/><lit v="fleire"/></equal></test>
+            <out>
+              <chunk name="adj" case="caseFirstWord">
+                <tags><tag><lit-tag v="adj.sint.comp.un.sp"/></tag></tags>
+                <lu>
+                  <lit v="mange"/>
+                  <lit-tag v="adj.sint.comp.un.sp"/>
+                </lu>
+              </chunk>
+            </out>
+            <choose><when>
+              <test><not><equal><b pos="1"/><lit v=" "/></equal></not></test>
+              <out><b pos="1"/></out>
+            </when></choose>
+          </when>
+          <otherwise>
+            <call-macro n="stash_case_in_ntags"><with-param pos="2"/></call-macro>
+            <out>
+              <chunk name="det" case="caseFirstWord">
+                <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
+                <lu><clip pos="1" side="tl" part="whole"/></lu>
+              </chunk>
+              <b pos="1"/>
+              <chunk name="n" case="caseSecondWord">
+                <tags><tag><var n="ntags"/></tag></tags>
+                <lu><clip pos="2" side="tl" part="whole"/></lu>
+              </chunk>
+            </out>
+          </otherwise>
+        </choose>
+      </action>
+    </rule>
+
+    <rule comment="et stort/høyt antall → mange
+                   idiomatic rule">
+      <pattern>
+        <pattern-item n="et"/>
+        <pattern-item n="stort_høyt"/>
+        <pattern-item n="antall"/>
+      </pattern>
+      <action>
+        <call-macro n="set_caseFirstWord2">
+          <with-param pos="1"/>
+          <with-param pos="2"/>
+        </call-macro>
+        <choose>
+          <when c="mange">
+            <test><or>
+              <equal><clip pos="3" side="tl" part="lemh"/><lit v="fleire"/></equal>
+              <!-- TODO -->
+              <equal><clip pos="3" side="tl" part="lemh"/><clip pos="3" side="tl" part="lemh"/></equal>
+            </or></test>
+            <out>
+              <chunk name="adj" case="caseFirstWord">
+                <tags><tag><lit-tag v="adj.sint.pst.un.pl.ind"/></tag></tags>
+                <lu>
+                  <lit v="mange"/>
+                  <lit-tag v="adj.sint.pst.un.pl.ind"/>
+                </lu>
+              </chunk>
+            </out>
+            <choose><when><test><not><equal><b pos="1"/><lit v=" "/></equal></not></test><out><b pos="1"/></out></when></choose>
+            <choose><when><test><not><equal><b pos="2"/><lit v=" "/></equal></not></test><out><b pos="2"/></out></when></choose>
+          </when>
+          <otherwise>
+            <call-macro n="stash_case_in_ntags"><with-param pos="3"/></call-macro>
+            <out>
+              <chunk name="det" case="caseFirstWord">
+                <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
+                <lu><clip pos="1" side="tl" part="whole"/></lu>
+              </chunk>
+              <b pos="1"/>
+              <chunk name="adj" case="caseSecondWord">
+                <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
+                <lu><clip pos="2" side="tl" part="whole"/></lu>
+              </chunk>
+              <b pos="2"/>
+              <chunk name="n" case="caseSecondWord">
+                <tags><tag><var n="ntags"/></tag></tags>
+                <lu><clip pos="3" side="tl" part="whole"/></lu>
+              </chunk>
+            </out>
+          </otherwise>
+        </choose>
+      </action>
+    </rule>
+
+    <rule comment="et antall på [2 millioner] → ∅ [2 millionar]
+                   idiomatic rule">
+      <pattern>
+        <pattern-item n="et"/>
+        <pattern-item n="antall"/>
+        <pattern-item n="på"/>
+      </pattern>
+      <action>
+        <call-macro n="set_caseFirstWord2">
+          <with-param pos="1"/>
+          <with-param pos="2"/>
+        </call-macro>
+        <choose><when>
+          <test><not><equal><b pos="1"/><lit v=" "/></equal></not></test>
+          <out><b pos="1"/></out>
+        </when></choose>
+        <choose><when>
+          <test><not><equal><b pos="2"/><lit v=" "/></equal></not></test>
+          <out><b pos="2"/></out>
+        </when></choose>
       </action>
     </rule>
 
