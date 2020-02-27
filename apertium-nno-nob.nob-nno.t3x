@@ -39,6 +39,12 @@
     <def-cat n="n_cnjcoo_det_adj_n">
       <cat-item name="n_cnjcoo_det_adj_n"/>
     </def-cat>
+    <def-cat n="adj_cnjcoo_adj_n">
+      <cat-item name="adj_cnjcoo_adj_n"/>
+    </def-cat>
+    <def-cat n="adj_cnjcoo_adj_n_n">
+      <cat-item name="adj_cnjcoo_adj_n_n"/>
+    </def-cat>
     <!-- ADJ N+ -->
     <def-cat n="adj_n">
       <cat-item name="adj_n"/>
@@ -349,7 +355,7 @@
             <equal><clip pos="2" part="art"/><lit-tag v="def"/></equal>
             <!-- Demand that chunk is def – this means we've done genitive movement
                  We don't want to insert determiners when we haven't done genitive movement,
-                 since e.g. «Kværners kontantstrøm og finansielle<def> stilling<ind>» is fine
+                 since e.g. «Kværners kontantstrøm og finansielle.def stilling.ind» is fine
                  (the preceding s-genitive functions as the determiner).
             -->
             <equal><clip pos="3" part="art"/><lit-tag v="def"/></equal>
@@ -703,6 +709,48 @@
           <lu><clip pos="2" part="whole"/></lu>
           <b pos="2"/>
           <lu><clip pos="3" part="whole"/></lu>
+          <b pos="3"/>
+          <lu><clip pos="4" part="whole"/></lu>
+          <b pos="4"/>
+          <lu><clip pos="5" part="whole"/></lu>
+        </out>
+      </action>
+    </rule>
+    <rule comment="CHUNK: adj_cnjcoo_adj_n">
+      <pattern>
+        <pattern-item n="adj_cnjcoo_adj_n"/>
+      </pattern>
+      <action>
+        <call-macro n="clean_n.adj"><with-param pos="4"/><with-param pos="1"/><with-param pos="0"/></call-macro>
+        <call-macro n="clean_n.adj"><with-param pos="4"/><with-param pos="3"/><with-param pos="0"/></call-macro>
+        <call-macro n="out_adj"><with-param pos="1"/><with-param pos="0"/></call-macro>
+        <out>
+          <b pos="1"/>
+          <lu><clip pos="2" part="whole"/></lu>
+          <b pos="2"/>
+        </out>
+        <call-macro n="out_adj"><with-param pos="3"/><with-param pos="0"/></call-macro>
+        <out>
+          <b pos="3"/>
+          <lu><clip pos="4" part="whole"/></lu>
+        </out>
+      </action>
+    </rule>
+    <rule comment="CHUNK: adj_cnjcoo_adj_n_n">
+      <pattern>
+        <pattern-item n="adj_cnjcoo_adj_n_n"/>
+      </pattern>
+      <action>
+        <call-macro n="clean_n.adj"><with-param pos="5"/><with-param pos="1"/><with-param pos="0"/></call-macro>
+        <call-macro n="clean_n.adj"><with-param pos="5"/><with-param pos="3"/><with-param pos="0"/></call-macro>
+        <call-macro n="out_adj"><with-param pos="1"/><with-param pos="0"/></call-macro>
+        <out>
+          <b pos="1"/>
+          <lu><clip pos="2" part="whole"/></lu>
+          <b pos="2"/>
+        </out>
+        <call-macro n="out_adj"><with-param pos="3"/><with-param pos="0"/></call-macro>
+        <out>
           <b pos="3"/>
           <lu><clip pos="4" part="whole"/></lu>
           <b pos="4"/>
