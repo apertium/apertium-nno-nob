@@ -19,5 +19,6 @@ current=$(grep -c '[#*@]' "${out}" || true)
 
 if [[ "${current}" -gt "${last}" ]]; then
     echo "ERROR: Number of debug symbols [#*@] increased between ${lastout} and now"
+    grep '[#@]' "${out}"
     exit 1
 fi
