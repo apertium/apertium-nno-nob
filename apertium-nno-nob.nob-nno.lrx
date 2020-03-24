@@ -2292,4 +2292,15 @@
     <or><match lemma="vere" tags="vblex.inf"/><match lemma="vere" tags="vblex.pres"/></or>
     <match lemma="et beskjedent antall" tags="adj.*"><select lemma="eit lågt tal"/></match>
   </rule>
+
+  <rule><match lemma="fly" tags="vblex.*"><select lemma="flyge"/></match></rule>
+  <rule weight="2.0" c="flyktet (da) til Libya">
+    <match lemma="fly" tags="vblex.*"><select lemma="fly"/></match>
+    <repeat from="0" upto="1"><match tags="adv"/></repeat>
+    <match tags="pr"/>
+    <or>
+      <match tags="np.top"/>
+      <match tags="np.top.*"/>
+    </or>
+  </rule>
 </lrx>
