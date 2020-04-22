@@ -139,6 +139,16 @@
           <match tags="guio.*"/>
         </or>
       </def-seq>
+
+      <def-seq n="søkkbart">
+        <or>
+          <match lemma="tråler"/>
+          <match lemma="båt"/>
+          <match lemma="gummibåt"/>
+          <match lemma="fartøy"/>
+          <match lemma="skip"/>
+        </or>
+      </def-seq>
   </def-seqs>
 
 
@@ -2310,4 +2320,36 @@
 
   <rule><match lemma="klekke" tags="vblex.*"><select lemma="klekke¹"/></match></rule>
   <rule><match lemma="klekke" tags="adj.*"><select lemma="klekke¹"/></match></rule>
+
+  <!-- most likely intrans -->
+  <rule><match lemma="støkke" tags="vblex.*"><select lemma="støkke"/></match></rule>
+  <rule><match lemma="støkke" tags="adj.*"><select lemma="støkke"/></match></rule>
+
+  <rule><match lemma="flekke" tags="vblex.*"><select lemma="flekke"/></match></rule>
+  <rule><match lemma="flekke" tags="adj.*"><select lemma="flekke¹"/></match></rule>
+
+  <rule><match lemma="senke" tags="vblex.*"><select lemma="senke"/></match></rule>
+  <rule><match lemma="senke" tags="adj.*"><select lemma="senke"/></match></rule>
+  <rule weight="2.0" c="tråleren kan da senkes">
+    <seq n="søkkbart"/>
+    <repeat from="0" upto="9"><match tags="NOT_sent_lpar_lquot_rquot"/></repeat>
+    <match lemma="senke" tags="vblex.*"><select lemma="søkke¹"/></match>
+  </rule>
+  <rule weight="2.0" c="senker alle trålerne">
+    <match lemma="senke" tags="vblex.*"><select lemma="søkke¹"/></match>
+    <repeat from="0" upto="9"><match tags="NOT_sent_lpar_lquot_rquot"/></repeat>
+    <seq n="søkkbart"/>
+  </rule>
+
+  <rule weight="2.0" c="strekkje strikken">
+    <match lemma="strekke" tags="vblex.*"><select lemma="strekke¹"/></match>
+    <match tags="n.*.def"/>
+  </rule>
+  <rule weight="2.0" c="sprekkje strikken">
+    <match lemma="sprekke" tags="vblex.*"><select lemma="sprekke¹"/></match>
+    <match tags="n.*.def"/>
+  </rule>
+
+  <rule><match lemma="blinke" tags="vblex.*"><select lemma="blinke"/></match></rule>
+  <rule><match lemma="blinke" tags="adj.*"><select lemma="blinke"/></match></rule>
 </lrx>
