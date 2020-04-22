@@ -2352,4 +2352,11 @@
 
   <rule><match lemma="blinke" tags="vblex.*"><select lemma="blinke"/></match></rule>
   <rule><match lemma="blinke" tags="adj.*"><select lemma="blinke"/></match></rule>
+
+  <rule><match lemma="knekke" tags="vblex.*"><select lemma="knekke"/></match></rule>
+  <rule><match lemma="knekke" tags="adj.*"><select lemma="knekke"/></match></rule>
+  <rule weight="2.0" c="knekkje strikken">
+    <match lemma="knekke" tags="vblex.*"><select lemma="knekke¹"/></match>
+    <match tags="n.*.def"/>
+  </rule>
 </lrx>
