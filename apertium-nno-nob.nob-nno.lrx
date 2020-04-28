@@ -2341,10 +2341,18 @@
     <seq n="søkkbart"/>
   </rule>
 
+  <rule c="strekkje seg">
+    <match lemma="strekke" tags="vblex.*"><select lemma="strekke"/></match>
+  </rule>
+  <rule weight="2.0" c="mandatet ble strukket">
+    <match lemma="bli"/>
+    <match lemma="strekke" tags="vblex.*"><select lemma="strekke¹"/></match>
+  </rule>
   <rule weight="2.0" c="strekkje strikken">
     <match lemma="strekke" tags="vblex.*"><select lemma="strekke¹"/></match>
     <match tags="n.*.def"/>
   </rule>
+
   <rule weight="2.0" c="sprekkje strikken">
     <match lemma="sprekke" tags="vblex.*"><select lemma="sprekke¹"/></match>
     <match tags="n.*.def"/>
