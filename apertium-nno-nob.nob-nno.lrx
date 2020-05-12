@@ -1808,7 +1808,24 @@
   <rule><match lemma="innad" tags="pr"><select lemma="internt"/></match></rule>
   <rule><match lemma="dog" tags="adv"><select lemma="likevel"/></match></rule>
   <rule><match lemma="frarøve" tags="vblex.*"><select lemma="ta# frå"/></match></rule>
-  <rule><match lemma="henlegge" tags="vblex.*"><select lemma="legge# bort"/></match></rule>
+
+  <rule c="Som verb: laust" weight="1.0">
+    <match lemma="henlegge" tags="vblex.*"><select lemma="legge# bort"/></match>
+  </rule>
+  <rule c="Predikativ skal vera laus: legge bort
+           - nå blir saken henlagt → no blir saka lagd bort
+           - saken er henlagt → saka er lagd bort"
+        weight="2.0">
+    <or><match lemma="være"/><match lemma="bli"/><match lemma="blive"/></or>
+    <repeat from="0" upto="1"><seq n="NOT_sent_lpar_lquot_rquot"/></repeat>
+    <match lemma="henlegge"><select lemma="legge# bort"/></match>
+  </rule>
+  <rule c="Attributiv skal vera samla (unormert, men betre enn henlagt).
+           - en henlagt sak → ei bortlagd sak"
+        weight="2.0">
+    <match lemma="henlegge"><select lemma="bortlegge"/></match>
+    <match tags="n."/>
+  </rule>
 
   <!-- The transitive paradigm for "velte" can be used in the
        intransitive meanings too, so just always use that: -->
