@@ -20,7 +20,7 @@ script:
     - ( cd /tmp/apertium-nno && make -j nno.autogen.bin nno_e.autogen.bin )
     - make -j e
     - apertium -d . nob-nno_e < t/ntb/articles.orig.nob > t/ntb/articles.nob-nno
-    - diff -U0 t/ntb/articles.nob-nno.20200203 t/ntb/articles.nob-nno | dwdiff --diff-input -c | grep -v "@@.*@@" || true
+    - diff -U0 t/ntb/articles.nob-nno.mt-latest t/ntb/articles.nob-nno | dwdiff --diff-input -c | grep -v "@@.*@@" || true
     - make -j langs && make test
 # Travis only looks at the exit code of the last command! https://github.com/travis-ci/travis-ci/issues/1066
 
