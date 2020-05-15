@@ -2349,12 +2349,12 @@
   <rule><match lemma="senke" tags="adj.*"><select lemma="senke"/></match></rule>
   <rule weight="2.0" c="tråleren kan da senkes">
     <seq n="søkkbart"/>
-    <repeat from="0" upto="9"><match tags="NOT_sent_lpar_lquot_rquot"/></repeat>
+    <repeat from="0" upto="9"><seq n="NOT_sent_lpar_lquot_rquot"/></repeat>
     <match lemma="senke" tags="vblex.*"><select lemma="søkke¹"/></match>
   </rule>
   <rule weight="2.0" c="senker alle trålerne">
     <match lemma="senke" tags="vblex.*"><select lemma="søkke¹"/></match>
-    <repeat from="0" upto="9"><match tags="NOT_sent_lpar_lquot_rquot"/></repeat>
+    <repeat from="0" upto="9"><seq n="NOT_sent_lpar_lquot_rquot"/></repeat>
     <seq n="søkkbart"/>
   </rule>
 
@@ -2384,4 +2384,13 @@
     <match lemma="knekke" tags="vblex.*"><select lemma="knekke¹"/></match>
     <match tags="n.*.def"/>
   </rule>
+
+  <rule><match lemma="hylle" tags="vblex.*"><select lemma="hylle"/></match></rule>
+  <rule><match lemma="hylle" tags="adj.*"><select lemma="hylle"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="hylle" tags="vblex.*"><select lemma="hylje"/></match>
+    <repeat from="0" upto="1"><seq n="NOT_sent_lpar_lquot_rquot"/></repeat>
+    <match lemma="inn"/>
+  </rule>
+
 </lrx>
