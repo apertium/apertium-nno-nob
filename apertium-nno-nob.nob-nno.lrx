@@ -2357,6 +2357,13 @@
     <repeat from="0" upto="9"><seq n="NOT_sent_lpar_lquot_rquot"/></repeat>
     <seq n="søkkbart"/>
   </rule>
+  <rule weight="4.0" c="redusere antallet båter – eller senke hastigheten">
+    <match lemma="senke" tags="vblex.*"><select lemma="senke"/></match>
+    <or>
+      <match lemma="fart"/>
+      <match lemma="hastighet"/>
+    </or>
+  </rule>
 
   <rule c="strekkje seg">
     <match lemma="strekke" tags="vblex.*"><select lemma="strekke"/></match>
