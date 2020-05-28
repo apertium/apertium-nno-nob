@@ -1240,12 +1240,22 @@
   <rule><match lemma="pågripe" tags="vblex.*"><select lemma="arrestere"/></match></rule>
   <rule><match lemma="pågripe" tags="adj.*"><select lemma="arrestere"/></match></rule>
 
-  <rule><match lemma="nok" tags="adv"><select lemma="nok"/></match></rule>
-  <rule>
+  <rule weight="2.0">
+    <match tags="*"/>           <!-- but sent (below rule) will give 2 points to Endå -->
+    <match lemma="nok" tags="adv"><select lemma="nok"/></match>
+  </rule>
+  <rule weight="2.0">
     <match lemma="naturlig"/>
     <match lemma="nok" tags="adv"><select lemma="nok"/></match>
   </rule>
-  <rule weight="2.0" c="nok en trepoenger fra …">
+  <rule c="Nok et prosjekt blir utsatt">
+    <match lemma="nok" tags="adv"><select lemma="endå"/></match>
+  </rule>
+  <rule weight="3.0" c=". Nok et prosjekt blir utsatt">
+    <match tags="sent.clb"/>
+    <match lemma="nok" tags="adv"><select lemma="endå"/></match>
+  </rule>
+  <rule weight="3.0" c="nok en trepoenger fra …">
     <match lemma="nok" tags="adv"><select lemma="endå"/></match>
     <match lemma="en" tags="det.qnt.*"/>
     <or>
@@ -1263,7 +1273,7 @@
       <match lemma="Vm" tags="n.*.cmp.guio"/>
     </or>
   </rule>
-  <rule weight="2.0" c="be om nok en brexit-utsettelse">
+  <rule weight="3.0" c="be om nok en brexit-utsettelse">
     <match lemma="om"/>
     <match lemma="nok" tags="adv"><select lemma="endå"/></match>
     <match lemma="en" tags="det.qnt.*"/>
