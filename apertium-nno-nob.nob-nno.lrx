@@ -1241,7 +1241,30 @@
   <rule><match lemma="pågripe" tags="adj.*"><select lemma="arrestere"/></match></rule>
 
   <rule><match lemma="nok" tags="adv"><select lemma="nok"/></match></rule>
-  <rule weight="2.0">
+  <rule>
+    <match lemma="naturlig"/>
+    <match lemma="nok" tags="adv"><select lemma="nok"/></match>
+  </rule>
+  <rule weight="2.0" c="nok en trepoenger fra …">
+    <match lemma="nok" tags="adv"><select lemma="endå"/></match>
+    <match lemma="en" tags="det.qnt.*"/>
+    <or>
+      <match lemma="gang"/>
+      <match lemma="seier"/>
+      <match lemma="runde"/>
+      <match lemma="utsettelse"/>
+      <match lemma="periode"/>
+      <match lemma="økning"/>
+      <match lemma="varmerekord"/>
+      <match lemma="trepoenger"/>
+      <match lemma="mulighet"/>
+      <match lemma="nettkjenning"/>
+      <match lemma="birdie"/>
+      <match lemma="Vm" tags="n.*.cmp.guio"/>
+    </or>
+  </rule>
+  <rule weight="2.0" c="be om nok en brexit-utsettelse">
+    <match lemma="om"/>
     <match lemma="nok" tags="adv"><select lemma="endå"/></match>
     <match lemma="en" tags="det.qnt.*"/>
   </rule>
