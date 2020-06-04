@@ -1261,6 +1261,12 @@
     </or>
     <match lemma="nok" tags="adv"><select lemma="endå"/></match>
   </rule>
+  <rule weight="3.1" c="at nok er nok">
+    <match lemma="at"/>
+    <match lemma="nok" tags="adv"><select lemma="nok"/></match>
+    <match lemma="være"/>
+    <match lemma="nok" tags="adv"/>
+  </rule>
   <rule weight="3.0" c="inf/perf + nok en/et/ei → inf/perf + endå ein/eit/ei">
     <or>
       <match tags="vblex.inf"/> <!-- de må vente nok en uke på informasjon (når hovudverbet står i infinitiv, er meininga alltid "endå", ser det ut til.)-->
