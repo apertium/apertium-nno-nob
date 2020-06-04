@@ -1240,6 +1240,8 @@
   <rule><match lemma="pågripe" tags="vblex.*"><select lemma="arrestere"/></match></rule>
   <rule><match lemma="pågripe" tags="adj.*"><select lemma="arrestere"/></match></rule>
 
+
+  <!-- nok → endå vs nok -->
   <rule weight="2.0">
     <match tags="*"/>           <!-- but sent (below rule) will give 2 points to Endå -->
     <match lemma="nok" tags="adv"><select lemma="nok"/></match>
@@ -1251,9 +1253,12 @@
   <rule c="Nok et prosjekt blir utsatt">
     <match lemma="nok" tags="adv"><select lemma="endå"/></match>
   </rule>
-  <rule weight="3.0" c=". Nok et prosjekt blir utsatt">
+  <rule weight="3.005" c=". Nok et prosjekt blir utsatt">
+    <match tags="sent.clb"/>
+    <match lemma="nok" tags="adv"><select lemma="endå"/></match>
+  </rule>
+  <rule weight="3.01" c="om nok et prosjekt blir utsatt">
     <or>
-      <match tags="sent.clb"/>
       <match lemma="at" tags="cnjsub"/>
       <match lemma="at" tags="cnjcoo"/>
       <match lemma="og" tags="cnjcoo.clb"/>
@@ -1261,12 +1266,12 @@
     </or>
     <match lemma="nok" tags="adv"><select lemma="endå"/></match>
   </rule>
-  <rule weight="3.1" c="nok er nok">
+  <rule weight="3.9" c="nok er nok">
     <match lemma="nok" tags="adv"><select lemma="nok"/></match>
     <match lemma="være"/>
     <match lemma="nok" tags="adv"/>
   </rule>
-  <rule weight="3.0" c="inf/perf + nok en/et/ei → inf/perf + endå ein/eit/ei">
+  <rule weight="3.02" c="inf/perf + nok en/et/ei → inf/perf + endå ein/eit/ei">
     <or>
       <match tags="vblex.inf"/> <!-- de må vente nok en uke på informasjon (når hovudverbet står i infinitiv, er meininga alltid "endå", ser det ut til.)-->
       <match tags="vblex.pp"/> <!-- det har vært nok en turbulent uke på Oslo Børs -->
@@ -1274,7 +1279,7 @@
     <match lemma="nok" tags="adv"><select lemma="endå"/></match>
     <match lemma="en" tags="det.qnt.*"/>
   </rule>
-  <rule weight="3.0" c="nok en trepoenger fra …">
+  <rule weight="3.03" c="nok en trepoenger fra …">
     <match lemma="nok" tags="adv"><select lemma="endå"/></match>
     <match lemma="en" tags="det.qnt.*"/>
     <or>
@@ -1295,12 +1300,12 @@
       <match lemma="Vm" tags="n.*.cmp.guio"/>
     </or>
   </rule>
-  <rule weight="3.0" c="be om nok en brexit-utsettelse">
+  <rule weight="3.04" c="be om nok en brexit-utsettelse">
     <match lemma="om"/>
     <match lemma="nok" tags="adv"><select lemma="endå"/></match>
     <match lemma="en" tags="det.qnt.*"/>
   </rule>
-  <rule weight="3.0" c="om/at + dette/det er nok en → om/at + dette/det er endå ein">
+  <rule weight="3.05" c="om/at + dette/det er nok en → om/at + dette/det er endå ein">
     <or>
       <match lemma="om"/>
       <match lemma="at"/>
@@ -1316,7 +1321,7 @@
     <match lemma="nok" tags="adv"><select lemma="endå"/></match>
     <match lemma="en" tags="det.qnt.*"/>
   </rule>
-  <rule weight="3.0" c="nok en/et + subst + som/der/hvor → endå ein/eit + subst + som/der">
+  <rule weight="3.06" c="nok en/et + subst + som/der/hvor → endå ein/eit + subst + som/der">
     <match lemma="nok" tags="adv"><select lemma="endå"/></match>
     <match lemma="en" tags="det.qnt.*"/>
     <match tags="n.*.ind"/>
