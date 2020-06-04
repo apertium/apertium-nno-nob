@@ -1252,7 +1252,14 @@
     <match lemma="nok" tags="adv"><select lemma="endå"/></match>
   </rule>
   <rule weight="3.0" c=". Nok et prosjekt blir utsatt">
-    <match tags="sent.clb"/>
+    <or>
+      <match tags="sent.clb"/>
+      <match lemma="at" tags="cnjsub"/>
+      <match lemma="at" tags="cnjcoo"/>
+      <match lemma="og" tags="cnjcoo.clb"/>
+      <match lemma="om" tags="cnjsub"/>
+      <match tags="vblex.inf"/> <!-- de må vente nok en uke på informasjon (når hovudverbet står i infinitiv, er meininga alltid "endå", ser det ut til.)-->
+    </or>
     <match lemma="nok" tags="adv"><select lemma="endå"/></match>
   </rule>
   <rule weight="3.0" c="nok en trepoenger fra …">
