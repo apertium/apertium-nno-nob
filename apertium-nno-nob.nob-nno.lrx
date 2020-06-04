@@ -1289,6 +1289,22 @@
     <match lemma="nok" tags="adv"><select lemma="endå"/></match>
     <match lemma="en" tags="det.qnt.*"/>
   </rule>
+  <rule weight="3.0" c="om/at + dette/det er nok en → om/at + dette/det er endå ein">
+    <or>
+      <match lemma="om"/>
+      <match lemma="at"/>
+    </or>
+    <or>
+      <match lemma="den"/>
+      <match lemma="denne"/>
+    </or>
+    <or>
+      <match lemma="være" tags="vblex.pres"/>
+      <match lemma="være" tags="vblex.pret"/>
+    </or>
+    <match lemma="nok" tags="adv"><select lemma="endå"/></match>
+    <match lemma="en" tags="det.qnt.*"/>
+  </rule>
 
   <rule><match lemma="i løpet av" tags="pr"><select lemma="i løpet av"/></match></rule>
   <rule weight="2.0">
