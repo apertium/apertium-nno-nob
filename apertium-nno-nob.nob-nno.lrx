@@ -1261,8 +1261,7 @@
     </or>
     <match lemma="nok" tags="adv"><select lemma="endå"/></match>
   </rule>
-  <rule weight="3.1" c="at nok er nok">
-    <match lemma="at"/>
+  <rule weight="3.1" c="nok er nok">
     <match lemma="nok" tags="adv"><select lemma="nok"/></match>
     <match lemma="være"/>
     <match lemma="nok" tags="adv"/>
@@ -2064,6 +2063,49 @@
   </rule>
 
   <rule><match lemma="oppgi" tags="vblex.*"><select lemma="gje# opp"/></match></rule>
+  <rule><match lemma="oppgi" tags="adj.*"><select lemma="oppgje"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="oppgi" tags="vblex.*"><select lemma="oppgje"/></match>
+    <repeat from="0" upto="1">
+      <or>
+        <match tags="adj.*"/>
+        <match lemma="noe"/>
+      </or>
+    </repeat>
+    <or>
+      <match lemma="sluttsum"/>
+      <match lemma="sum"/>
+      <match lemma="tall"/>
+      <match lemma="antall"/>
+      <match lemma="mengde"/>
+      <match lemma="falsk"/>
+      <match lemma="dato"/>
+      <match lemma="svar"/>
+    </or>
+  </rule>
+  <rule weight="2.0" c="var kjønn ikke oppgitt">
+    <match lemma="ikke"/>
+    <match lemma="oppgi" tags="vblex.pp"><select lemma="oppgje"/></match>
+  </rule>
+  <rule weight="2.0" c="ønsker ikke å oppgi hvilken nettbutikk det gjelder">
+    <match lemma="å"/>
+    <match lemma="oppgi" tags="vblex.*"><select lemma="oppgje"/></match>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="oppgi" tags="vblex.*"><select lemma="oppgje"/></match>
+    <or>
+      <match lemma="over"/>
+      <match lemma="at"/>
+      <match lemma="som"/>
+      <match lemma="mandag" tags="n.m.sg.ind"/>
+      <match lemma="tirsdag" tags="n.m.sg.ind"/>
+      <match lemma="onsdag" tags="n.m.sg.ind"/>
+      <match lemma="torsdag" tags="n.m.sg.ind"/>
+      <match lemma="fredag" tags="n.m.sg.ind"/>
+      <match lemma="lørdag" tags="n.m.sg.ind"/>
+      <match lemma="søndag" tags="n.m.sg.ind"/>
+    </or>
+  </rule>
 
   <rule c="framstår som surrealistisk"><match lemma="framstå# som" tags="vblex.*"><select lemma="verke"/></match></rule>
   <rule c="framstår som en raring" weight="2.0">
