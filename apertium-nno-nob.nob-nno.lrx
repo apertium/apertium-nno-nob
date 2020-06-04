@@ -1305,6 +1305,24 @@
     <match lemma="nok" tags="adv"><select lemma="endå"/></match>
     <match lemma="en" tags="det.qnt.*"/>
   </rule>
+  <rule weight="3.0" c="nok en/et + subst + som/der/hvor → endå ein/eit + subst + som/der">
+    <match lemma="nok" tags="adv"><select lemma="endå"/></match>
+    <match lemma="en" tags="det.qnt.*"/>
+    <match tags="n.*.ind"/>
+    <or>
+      <match lemma="som"/>
+      <match lemma="der"/>
+      <match lemma="hvor"/>
+    </or>
+    <or>
+      <match tags="adv"/>
+      <match tags="prn.*"/>
+      <match tags="n.*.def"/>
+      <match tags="vblex.pres"/>
+      <match tags="vblex.pret"/>
+      <match tags="vblex.pres.pasv"/>
+    </or>
+  </rule>
 
   <rule><match lemma="i løpet av" tags="pr"><select lemma="i løpet av"/></match></rule>
   <rule weight="2.0">
