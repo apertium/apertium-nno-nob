@@ -2068,7 +2068,32 @@
   </rule>
 
   <rule><match lemma="oppgi" tags="vblex.*"><select lemma="gje# opp"/></match></rule>
+  <rule weight="2.0" c="Gi litt ekstra vekt til visse lause kontekstar">
+    <match lemma="oppgi" tags="vblex.*"><select lemma="gje# opp"/></match>
+    <repeat from="0" upto="1">
+      <or>
+        <match tags="adj.*"/>
+        <match lemma="noe"/>
+      </or>
+    </repeat>
+    <or>
+      <match lemma="drøm"/>
+      <match lemma="forsøk"/>
+      <match lemma="håp"/>
+      <match lemma="motstand"/>
+      <match lemma="kamp"/>
+      <match lemma="ide"/>
+      <match lemma="idé"/>
+    </or>
+  </rule>
   <rule><match lemma="oppgi" tags="adj.*"><select lemma="oppgje"/></match></rule>
+  <rule c="passiv vanlegvis fast: I tråd med vedtatt praksis oppgis verken identitet eller …">
+    <match lemma="oppgi" tags="vblex.*.pasv"><select lemma="oppgje"/></match>
+  </rule>
+  <rule weight="2.0" c="men passiv etter 'måtte' ofte laus: prosjekter som måtte oppgis → gjevast opp">
+    <match lemma="måtte"/>
+    <match lemma="oppgi" tags="vblex.*.pasv"><select lemma="gje# opp"/></match>
+  </rule>
   <rule weight="2.0">
     <match lemma="oppgi" tags="vblex.*"><select lemma="oppgje"/></match>
     <repeat from="0" upto="1">
@@ -2086,6 +2111,8 @@
       <match lemma="falsk"/>
       <match lemma="dato"/>
       <match lemma="svar"/>
+      <match lemma="begrunnelse"/>
+      <match lemma="grunn"/>
     </or>
   </rule>
   <rule weight="2.0" c="var kjønn ikke oppgitt">
