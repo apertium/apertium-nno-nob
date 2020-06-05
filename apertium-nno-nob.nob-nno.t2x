@@ -952,6 +952,38 @@
         </out>
       </action>
     </rule>
+    <rule comment="AUX PASV-PP PRN_SUBJ ADV_MOVABLE => AUX PRN_SUBJ PASV-PP ADV_MOVABLE
+                   (Videre) oppgis det ikke =1> (Vidare) blir oppgitt det ikkje =2> (Vidare) blir det ikkje oppgitt
+
+                   «I en uttalelse på Twitter oppgis det ikke antall drepte eller sårede»">
+      <pattern>
+        <pattern-item n="aux"/>
+        <pattern-item n="pasv-pp"/>
+        <pattern-item n="prn_subj"/>
+        <pattern-item n="adv_movable"/>
+      </pattern>
+      <action>
+        <call-macro n="modify_prn_gen"><with-param pos="3"/></call-macro>
+        <call-macro n="modify_pp_gen_nbr"><with-param pos="2"/></call-macro>
+        <out>
+          <chunk>
+            <clip pos="1" part="whole"/>
+          </chunk>
+          <b pos="1"/>
+          <chunk>
+            <clip pos="3" part="whole"/>
+          </chunk>
+          <b pos="2"/>
+          <chunk>
+            <clip pos="4" part="whole"/>
+          </chunk>
+          <b pos="3"/>
+          <chunk>
+            <clip pos="2" part="whole"/>
+          </chunk>
+        </out>
+      </action>
+    </rule>
     <rule comment="AUXPASS ADJPART ADV_MOVABLE => AUXPASS ADV_MOVABLE ADJPART
                    boken leses ofte =1> boka blir lest ofte =2> boka blir ofte lest
                    auxpass are created in t1x; move adv's behind these
