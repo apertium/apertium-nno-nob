@@ -383,6 +383,9 @@
     <def-attr n="a_keepgenx" c="Mark that we'd like to keep gen-case of possessor (throw away prep)">
       <attr-item tags="keepgenx"/>
     </def-attr>
+    <def-attr n="a_date">
+      <attr-item tags="date"/>
+    </def-attr>
     <def-attr n="art">
       <attr-item tags="def"/>
       <attr-item tags="ind"/>
@@ -606,7 +609,10 @@
           </when></choose>
         </when>
         <when>
-          <test><equal><clip pos="1" part="nbr"/><lit-tag v="pl"/></equal></test>
+          <test><and>
+            <equal><clip pos="1" part="nbr"/><lit-tag v="pl"/></equal>
+            <not><equal><clip pos="1" part="a_date"/><lit-tag v="date"/></equal></not>
+          </and></test>
           <let><var n="ana_nbr"/><clip pos="1" part="nbr"/></let>
           <let><var n="ana_gen"/><lit v=""/></let>
         </when>
