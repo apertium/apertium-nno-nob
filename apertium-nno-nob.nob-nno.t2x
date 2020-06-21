@@ -161,6 +161,9 @@
     <def-cat n="prn_nom">
       <cat-item tags="prn.*.nom"/>
     </def-cat>
+    <def-cat n="prn_acc">
+      <cat-item tags="prn.*.acc"/>
+    </def-cat>
     <def-cat n="prn_subj">
       <cat-item tags="prn.*.nt.*"/>
       <cat-item tags="prn.*.nt"/>
@@ -1584,6 +1587,80 @@
           <b pos="3"/>
           <chunk><clip pos="4" part="whole"/></chunk>
           <chunk><clip pos="2" part="whole"/></chunk>
+        </out>
+      </action>
+    </rule>
+    <rule comment="VBLEX LEMQ PRN_NOM ADV_MOVABLE ADV_MOVABLE => VBLEX PRN_NOM ADV_MOVABLE ADV_MOVABLE LEMQ
+                   Push blanks one place up since lemq space is inside the chunk.
+                   [Derfor] fraråder vi nå klart [å] → rår mot vi no klart → rår vi no klart mot">
+      <pattern>
+        <pattern-item n="vblex"/>
+        <pattern-item n="lemq"/>
+        <pattern-item n="prn_nom"/>
+        <pattern-item n="adv_movable"/>
+        <pattern-item n="adv_movable"/>
+      </pattern>
+      <action>
+        <call-macro n="modify_prn_gen"><with-param pos="3"/></call-macro>
+        <call-macro n="set_ana"><with-param pos="1"/></call-macro>
+        <out>
+          <chunk><clip pos="1" part="whole"/></chunk>
+          <b pos="1"/>
+          <b pos="2"/>
+          <chunk><clip pos="3" part="whole"/></chunk>
+          <b pos="3"/>
+          <chunk><clip pos="4" part="whole"/></chunk>
+          <b pos="4"/>
+          <chunk><clip pos="5" part="whole"/></chunk>
+          <chunk><clip pos="2" part="whole"/></chunk>
+        </out>
+      </action>
+    </rule>
+
+    <rule comment="VBLEX LEMQ PRN_ACC ADV_MOVABLE => VBLEX PRN_ACC ADV_MOVABLE LEMQ
+                   Push blanks one place up since lemq space is inside the chunk.
+                   [men] utelukker det ikke → ser bort frå det ikkje → ser ikkje bort frå det">
+      <pattern>
+        <pattern-item n="vblex"/> <!-- 1. ser -->
+        <pattern-item n="lemq"/>  <!-- 2. bort frå -->
+        <pattern-item n="prn_acc"/> <!-- 3. det -->
+        <pattern-item n="adv_movable"/> <!-- 4. ikkje -->
+      </pattern>
+      <action>
+        <call-macro n="modify_prn_gen"><with-param pos="3"/></call-macro>
+        <call-macro n="set_ana"><with-param pos="1"/></call-macro>
+        <out>
+          <chunk><clip pos="1" part="whole"/></chunk>
+          <b pos="1"/>
+          <b pos="2"/>
+          <chunk><clip pos="4" part="whole"/></chunk>
+          <chunk><clip pos="2" part="whole"/></chunk>
+          <b pos="3"/>
+          <chunk><clip pos="3" part="whole"/></chunk>
+        </out>
+      </action>
+    </rule>
+
+    <rule comment="ADV VBLEX LEMQ PRN_NOM => ADV VBLEX PRN_NOM LEMQ
+                   Push blanks one place up since lemq space is inside the chunk.
+                   da oppga han → då gav opp han → då gav han opp">
+      <pattern>
+        <pattern-item n="adv_movable"/>
+        <pattern-item n="vblex"/>
+        <pattern-item n="lemq"/>
+        <pattern-item n="prn_nom"/>
+      </pattern>
+      <action>
+        <call-macro n="modify_prn_gen"><with-param pos="4"/></call-macro>
+        <call-macro n="set_ana"><with-param pos="1"/></call-macro>
+        <out>
+          <chunk><clip pos="1" part="whole"/></chunk>
+          <b pos="1"/>
+          <chunk><clip pos="2" part="whole"/></chunk>
+          <b pos="2"/>
+          <b pos="3"/>
+          <chunk><clip pos="4" part="whole"/></chunk>
+          <chunk><clip pos="3" part="whole"/></chunk>
         </out>
       </action>
     </rule>
