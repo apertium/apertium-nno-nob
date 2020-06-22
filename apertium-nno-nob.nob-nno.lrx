@@ -819,7 +819,26 @@
     </match>
   </rule>
 
-  <rule><match lemma="sikkerhet" tags="n.*"><select lemma="sikkerheit"/></match></rule>
+  <rule><match lemma="virkelighet" tags="n.*"><select lemma="verkelegheit"/></match></rule>
+  <rule weight="2.0">
+      <match lemma="virkelighet" tags="n.*"><select lemma="røyndom"/></match>
+  </rule>
+  <rule weight="3.0">
+    <match lemma="i"/>
+    <match lemma="virkelighet" tags="n.*.def">
+      <select lemma="røynd"/>
+    </match>
+  </rule>
+
+  <rule><match lemma="usikkerhet" tags="n.*"><select lemma="uvisse"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="usikkerhet" tags="n.*.*.*.cmp">
+      <select lemma="usikkerheit"/>
+    </match>
+  </rule>
+
+<!-- <rule><match lemma="sikkerhet" tags="n.*"><select lemma="sikkerheit"/></match></rule> -->
+  <rule><match lemma="sikkerhet" tags="n.*"><select lemma="tryggleik"/></match></rule>
   <rule weight="2.0">
     <match lemma="sikkerhet" tags="n.*.*.*.cmp">
       <select lemma="trygging"/>
@@ -1741,10 +1760,13 @@
     <match lemma="intet mindre enn" tags="adv"><select lemma="heile"/></match>
     <match tags="det.qnt.*.pl"/>
   </rule>
+
   <rule><match lemma="bevegelse" tags="n.*"><select lemma="rørsle"/></match></rule>
-  <rule weight="2.0">
+<!--  <rule weight="2.0">
     <match lemma="bevegelse" tags="n.*.*.*.cmp"><select lemma="bevegelse"/></match>
   </rule>
+  -->
+
   <rule><match lemma="forskjell" tags="n.*"><select lemma="forskjell"/></match></rule>
 
   <rule><match lemma="fuge" tags="n.*"><select tags="n.m.*" lemma="fuge"/></match></rule>
@@ -2451,6 +2473,19 @@
     <match lemma="et lite antall" tags="adj.*"><select lemma="eit lågt tal"/></match>
   </rule>
 
+  <rule><match lemma="forsiktig" tags="adj.*"><select lemma="forsiktig"/></match></rule>
+  <rule c="gå forsiktig (fram)">
+      <or>
+          <match tags="vblex.pres"/>
+          <match tags="vblex.pret"/>
+      </or>
+      <match lemma="forsiktig" tags="adj.*"><select lemma="forsiktig"/></match>
+      <or>
+          <match tags="sent.*"/>
+          <match tags="adv"/>
+          <match tags="adv.*"/>
+      </or>
+  </rule>
 
   <rule c="først i setninga">
     <match lemma="et lavt antall" tags="adj.*"><select lemma="eit lågt tal"/></match>
