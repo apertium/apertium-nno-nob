@@ -422,11 +422,14 @@
              c="Owner nouns where we want to keep the genitive-s if followed by nind_keep_gen_s_kvinners_rettar">
       <cat-item tags="n.*.sg.*.gen"    lemma="kvinne"/>
       <cat-item tags="n.*.pl.ind.gen"  lemma="kvinne"/>
+      <cat-item tags="n.*.sg.*.gen"    lemma="liv"/>
+      <cat-item tags="n.*.pl.ind.gen"  lemma="liv"/>
     </def-cat>
     <def-cat n="nind_keep_gen_s_kvinners_retter"
              c="Owned nouns where we want the owner ngen to keep the genitive-s if preceded by ngen_keep_gen_s_kvinners_rettar">
       <cat-item tags="n.*.*.ind" lemma="rettighet"/>
       <cat-item tags="n.*.*.ind" lemma="rett"/>
+      <cat-item tags="n.*.*.ind" lemma="form"/> <!-- i mitt livs form -->
     </def-cat>
     <def-cat n="nind_time">
       <cat-item tags="n.*.ind" lemma="fjorår"/>
@@ -4101,6 +4104,7 @@ no lemq-moving">
           <chunk namefrom="c_name" case="caseFirstWord">
             <tags>
               <tag><clip pos="2" side="tl" part="tags"/></tag>
+              <tag><lit-tag v="gen"/></tag>
             </tags>
             <lu><clip pos="1" side="tl" part="whole"/></lu>
             <b pos="1"/>
