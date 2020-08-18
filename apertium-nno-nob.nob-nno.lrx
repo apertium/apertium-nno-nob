@@ -784,11 +784,12 @@
       <select lemma="gang"/>
     </match>
   </rule>
-  <rule weight="2.0">
+  <rule weight="2.0" c="i (full) gang">
     <or>
       <match lemma="i"/>
       <match lemma="på"/>
     </or>
+    <repeat from="0" upto="1"><match lemma="full"/></repeat>
     <match lemma="gang" tags="n.*">
       <select lemma="gang"/>
     </match>
