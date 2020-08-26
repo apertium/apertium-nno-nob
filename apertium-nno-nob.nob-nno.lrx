@@ -2610,4 +2610,20 @@
 
   <rule><match lemma="unnta" tags="vblex.*"><select lemma="sjå# bort frå"/></match></rule>
   <rule><match lemma="unnta" tags="adj.*"><select lemma="unnta"/></match></rule>
+
+  <!-- mykje meir brukt enn «dekking» i korpus: -->
+  <rule><match lemma="dekning" tags="n.*"><select lemma="dekning"/></match></rule>
+  <rule weight="2.0" c="pressedekking">
+    <match lemma="dekning" tags="n.*"><select lemma="dekking"/></match>
+    <match lemma="av"/>
+    <match lemma="presse"/>
+  </rule>
+
+  <!-- Vi bruker berre forma «trekking»: -->
+  <rule><match lemma="trekning" tags="n.*"><select lemma="trekking"/></match></rule>
+  <rule weight="2.0" c="Utanom ved ansiktstrekningar">
+    <match lemma="trekning" tags="n.*"><select lemma="trekning"/></match>
+    <match lemma="i"/>
+    <match lemma="ansikt"/>
+  </rule>
 </lrx>
