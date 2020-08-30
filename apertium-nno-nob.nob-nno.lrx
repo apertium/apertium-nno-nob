@@ -2626,4 +2626,20 @@
     <match lemma="i"/>
     <match lemma="ansikt"/>
   </rule>
+
+  <rule><match lemma="betydelig"><select lemma="betydeleg"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="betydelig"><select lemma="stor"/></match>
+    <match lemma="fare"/>
+  </rule>
+
+  <rule><match lemma="feste# sin lit" tags="vblex.*"><select lemma="setje# sin lit"/></match></rule>
+
+  <rule><match lemma="feste" tags="vblex.*"><select lemma="feste"/></match></rule>
+  <rule weight="2.0" c="fester (ikke) hans lit til">
+    <match lemma="feste" tags="vblex.*"><select lemma="setje"/></match>
+    <repeat from="0" upto="1"><match tags="adv"/></repeat>
+    <match tags="det.pos.*"/>
+    <match lemma="lit"/>
+  </rule>
 </lrx>
