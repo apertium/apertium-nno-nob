@@ -69,6 +69,10 @@
       <cat-item tags="n.*.def"/>
       <cat-item tags="n.*.def.*"/>
     </def-cat>
+    <def-cat n="ncmpsplit">
+      <cat-item tags="n.*.ind.cmp-split"/>
+      <cat-item tags="n.*.ind.cmp-split.*"/>
+    </def-cat>
     <def-cat n="ndef_OR_np_pers">
       <cat-item tags="n.*.def"/>
       <cat-item tags="n.*.def.*"/>
@@ -274,6 +278,10 @@
     <def-cat n="infm">
       <cat-item lemma="infm" tags="part"/>
       <cat-item lemma="infm" tags="part.*"/>
+    </def-cat>
+    <def-cat n="cnjcoo">
+      <cat-item tags="cnjcoo"/>
+      <cat-item tags="cnjcoo.*"/>
     </def-cat>
     <def-cat n="lemq">
       <cat-item tags="vblex.lemq"/>
@@ -2511,6 +2519,29 @@
           <chunk><clip pos="2" part="whole"/></chunk>
           <b pos="2"/>
           <chunk><clip pos="3" part="whole"/></chunk>
+        </out>
+      </action>
+    </rule>
+
+    <rule comment="DET NCMPSPLIT CNJCOO ANOM_DEF: den narkotika- og korrupsjonstiltalte mannen">
+      <pattern>
+        <pattern-item n="det"/>
+        <pattern-item n="ncmpsplit"/>
+        <pattern-item n="cnjcoo"/>
+        <pattern-item n="anom_def"/>
+      </pattern>
+      <action>
+        <call-macro n="set_ana"><with-param pos="4"/></call-macro>
+        <call-macro n="modify_det_gender2.n.det"><with-param pos="4"/><with-param pos="1"/></call-macro>
+        <call-macro n="set_n_defness"><with-param pos="4"/><with-param pos="1"/></call-macro>
+        <out>
+          <chunk><clip pos="1" part="whole"/></chunk>
+          <b pos="1"/>
+          <chunk><clip pos="2" part="whole"/></chunk>
+          <b pos="2"/>
+          <chunk><clip pos="3" part="whole"/></chunk>
+          <b pos="3"/>
+          <chunk><clip pos="4" part="whole"/></chunk>
         </out>
       </action>
     </rule>
