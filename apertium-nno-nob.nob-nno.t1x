@@ -4030,19 +4030,18 @@ no lemq-moving">
         <pattern-item n="nind_keep_gen_s"/>
       </pattern>
       <action>
-        <let><var n="c_name"/><lit v="n_n"/></let>
         <call-macro n="set_caseFirstWord2">
           <with-param pos="1"/>
           <with-param pos="2"/>
         </call-macro>
         <out>
-          <chunk namefrom="c_name" case="caseFirstWord">
-            <tags>
-              <tag><clip pos="2" side="tl" part="tags"/></tag>
-              <tag><clip pos="1" side="tl" part="cas"/></tag>
-            </tags>
+          <chunk name="n" case="caseFirstWord">
+            <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
             <lu><clip pos="1" side="tl" part="whole"/></lu>
-            <b pos="1"/>
+          </chunk>
+          <b pos="1"/>
+          <chunk name="n" case="caseSecondWord">
+            <tags><tag><clip pos="2" side="tl" part="tags"/></tag></tags>
             <lu><clip pos="2" side="tl" part="whole"/></lu>
           </chunk>
         </out>
@@ -4054,18 +4053,18 @@ no lemq-moving">
         <pattern-item n="nind_indgen"/>
       </pattern>
       <action>
-        <let><var n="c_name"/><lit v="n_n"/></let>
         <call-macro n="set_caseFirstWord2">
           <with-param pos="1"/>
           <with-param pos="2"/>
         </call-macro>
         <out>
-          <chunk namefrom="c_name" case="caseFirstWord">
-            <tags>
-              <tag><clip pos="2" side="tl" part="tags"/></tag>
-            </tags>
+          <chunk name="n" case="caseFirstWord">
+            <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
             <lu><clip pos="1" side="tl" part="whole"/></lu>
-            <b pos="1"/>
+          </chunk>
+          <b pos="1"/>
+          <chunk name="n" case="caseSecondWord">
+            <tags><tag><clip pos="2" side="tl" part="tags"/></tag></tags>
             <lu><clip pos="2" side="tl" part="whole"/></lu>
           </chunk>
         </out>
@@ -4078,7 +4077,6 @@ no lemq-moving">
         <pattern-item n="nind_indgen"/>
       </pattern>
       <action>
-        <let><var n="c_name"/><lit v="n_n_n"/></let>
         <call-macro n="set_caseFirstWord2">
           <with-param pos="1"/>
           <with-param pos="2"/>
@@ -4086,11 +4084,14 @@ no lemq-moving">
         <call-macro n="out_gen-prep"><with-param pos="3"/></call-macro>
         <call-macro n="stash_case_in_ntags"><with-param pos="3"/></call-macro>
         <out>
-          <chunk namefrom="c_name" case="caseFirstWord">
-            <tags><tag><var n="ntags"/></tag></tags>
+          <chunk name="n_n" case="caseFirstWord">
+            <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
             <lu><clip pos="1" side="tl" part="whole"/></lu>
             <lu><clip pos="2" side="tl" part="whole"/></lu>
-            <b pos="2"/>
+          </chunk>
+          <b pos="2"/>
+          <chunk name="n" case="caseSecondWord">
+            <tags><tag><var n="ntags"/></tag></tags>
             <lu><clip pos="3" side="tl" part="whole"/></lu>
           </chunk>
         </out>
@@ -4102,19 +4103,23 @@ no lemq-moving">
         <pattern-item n="nind_keep_gen_s_kvinners_retter"/>
       </pattern>
       <action>
-        <let><var n="c_name"/><lit v="n_n"/></let>
         <call-macro n="set_caseFirstWord2">
           <with-param pos="1"/>
           <with-param pos="2"/>
         </call-macro>
         <out>
-          <chunk namefrom="c_name" case="caseFirstWord">
+          <chunk name="n" case="caseFirstWord">
             <tags>
               <tag><clip pos="2" side="tl" part="tags"/></tag>
               <tag><lit-tag v="gen"/></tag>
             </tags>
             <lu><clip pos="1" side="tl" part="whole"/></lu>
-            <b pos="1"/>
+          </chunk>
+          <b pos="1"/>
+          <chunk name="n" case="caseSecondWord">
+            <tags>
+              <tag><clip pos="2" side="tl" part="tags"/></tag>
+            </tags>
             <lu><clip pos="2" side="tl" part="whole"/></lu>
           </chunk>
         </out>
@@ -4166,7 +4171,7 @@ no lemq-moving">
         </out>
       </action>
     </rule>
-    <rule comment="NCMP N: ytelse ytelse => ytingsyting
+    <rule comment="NCMP N: ytelses ytelse => ytingsyting
                    Remove the space that pretransfer added">
       <pattern>
         <pattern-item n="ncmp"/>
