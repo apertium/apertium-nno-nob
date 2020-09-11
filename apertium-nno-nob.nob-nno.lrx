@@ -2642,4 +2642,10 @@
     <match tags="det.pos.*"/>
     <match lemma="lit"/>
   </rule>
+  <rule><match lemma="betenkelig" tags="adj.*"><select lemma="betenkeleg"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="etisk"/>
+    <match lemma="betenkelig" tags="adj.*"><select lemma="tvilsam"/></match>
+  </rule>
+  <rule><match lemma="sannsynlighetsberegning" tags="n.*"><select lemma="prognose"/></match></rule>
 </lrx>
