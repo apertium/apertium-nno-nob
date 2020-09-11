@@ -167,10 +167,6 @@
   </section-def-attrs>
 
   <section-def-vars>
-    <def-var n="btmp"/>
-    <def-var n="b1"/>
-    <def-var n="b2"/>
-    <def-var n="b3"/>
     <def-var n="space" v=" "/>  <!-- TODO: v attribute doesn't seem to have any effect, have to let-bind it -->
   </section-def-vars>
 
@@ -448,33 +444,7 @@
       </when></choose>
     </def-macro>
 
-    <def-macro n="set_btmp" npar="1"
-               c="arg.1: n
-                  Compounds want to following space, others do.">
-      <choose>
-        <when>
-          <test><equal><clip pos="1" part="a_cmp"/><lit-tag v="cmp"/></equal></test>
-          <let><var n="btmp"/><lit v=""/></let>
-        </when>
-        <otherwise>
-          <let><var n="btmp"/><lit v=" "/></let>
-        </otherwise>
-      </choose>
-    </def-macro>
-
-    <def-macro n="set_b1" npar="1">
-      <call-macro n="set_btmp"><with-param pos="1"/></call-macro><let><var n="b1"/><var n="btmp"/></let>
-    </def-macro>
-
-    <def-macro n="set_b2" npar="1">
-      <call-macro n="set_btmp"><with-param pos="1"/></call-macro><let><var n="b2"/><var n="btmp"/></let>
-    </def-macro>
-
-    <def-macro n="set_b3" npar="1">
-      <call-macro n="set_btmp"><with-param pos="1"/></call-macro><let><var n="b3"/><var n="btmp"/></let>
-    </def-macro>
-
-  </section-def-macros>
+</section-def-macros>
 
 
   <section-rules>
@@ -600,9 +570,8 @@
       <action>
         <call-macro n="maybe_out_ndem"><with-param pos="2"/><with-param pos="0"/></call-macro>
         <call-macro n="clean_n"><with-param pos="2"/><with-param pos="0"/></call-macro>
-        <call-macro n="set_b1"><with-param pos="1"/></call-macro>
         <out>
-          <lu><clip pos="1" part="whole"/></lu><var n="b1"/>
+          <lu><clip pos="1" part="whole"/></lu><b/>
           <lu><clip pos="2" part="whole"/></lu>
         </out>
       </action>
@@ -614,11 +583,9 @@
       <action>
         <call-macro n="maybe_out_ndem"><with-param pos="3"/><with-param pos="0"/></call-macro>
         <call-macro n="clean_n"><with-param pos="3"/><with-param pos="0"/></call-macro>
-        <call-macro n="set_b1"><with-param pos="1"/></call-macro>
-        <call-macro n="set_b2"><with-param pos="2"/></call-macro>
         <out>
-          <lu><clip pos="1" part="whole"/></lu><var n="b1"/>
-          <lu><clip pos="2" part="whole"/></lu><var n="b2"/>
+          <lu><clip pos="1" part="whole"/></lu><b/>
+          <lu><clip pos="2" part="whole"/></lu><b/>
           <lu><clip pos="3" part="whole"/></lu>
         </out>
       </action>
@@ -630,13 +597,10 @@
       <action>
         <call-macro n="maybe_out_ndem"><with-param pos="4"/><with-param pos="0"/></call-macro>
         <call-macro n="clean_n"><with-param pos="4"/><with-param pos="0"/></call-macro>
-        <call-macro n="set_b1"><with-param pos="1"/></call-macro>
-        <call-macro n="set_b2"><with-param pos="2"/></call-macro>
-        <call-macro n="set_b3"><with-param pos="3"/></call-macro>
         <out>
-          <lu><clip pos="1" part="whole"/></lu><var n="b1"/>
-          <lu><clip pos="2" part="whole"/></lu><var n="b2"/>
-          <lu><clip pos="3" part="whole"/></lu><var n="b3"/>
+          <lu><clip pos="1" part="whole"/></lu><b/>
+          <lu><clip pos="2" part="whole"/></lu><b/>
+          <lu><clip pos="3" part="whole"/></lu><b/>
           <lu><clip pos="4" part="whole"/></lu>
         </out>
       </action>
@@ -691,13 +655,13 @@
       <action>
         <call-macro n="maybe_out_ndem"><with-param pos="2"/><with-param pos="0"/></call-macro>
         <call-macro n="clean_n"><with-param pos="2"/><with-param pos="0"/></call-macro>
-        <call-macro n="set_b1"><with-param pos="1"/></call-macro>
         <out>
-          <lu><clip pos="1" part="whole"/></lu><var n="b1"/>
+          <lu><clip pos="1" part="whole"/></lu>
+          <b/>
           <lu><clip pos="2" part="whole"/></lu>
-          <b pos="2"/>
+          <b/>
           <lu><clip pos="3" part="whole"/></lu>
-          <b pos="3"/>
+          <b/>
         </out>
         <call-macro n="maybe_out_ndem"><with-param pos="4"/><with-param pos="0"/></call-macro>
         <call-macro n="clean_n"><with-param pos="4"/><with-param pos="0"/></call-macro>
@@ -713,7 +677,6 @@
       <action>
         <call-macro n="maybe_out_ndem"><with-param pos="1"/><with-param pos="0"/></call-macro>
         <call-macro n="clean_n"><with-param pos="1"/><with-param pos="0"/></call-macro>
-        <call-macro n="set_b1"><with-param pos="3"/></call-macro>
         <out>
           <lu><clip pos="1" part="whole"/></lu>
           <b pos="1"/>
@@ -723,7 +686,7 @@
         <call-macro n="maybe_out_ndem"><with-param pos="4"/><with-param pos="0"/></call-macro>
         <call-macro n="clean_n"><with-param pos="4"/><with-param pos="0"/></call-macro>
         <out>
-          <lu><clip pos="3" part="whole"/></lu><var n="b1"/>
+          <lu><clip pos="3" part="whole"/></lu><b/>
           <lu><clip pos="4" part="whole"/></lu>
         </out>
       </action>
@@ -778,7 +741,6 @@
         <call-macro n="clean_n.adj"><with-param pos="5"/><with-param pos="1"/><with-param pos="0"/></call-macro>
         <call-macro n="clean_n.adj"><with-param pos="5"/><with-param pos="3"/><with-param pos="0"/></call-macro>
         <call-macro n="out_adj"><with-param pos="1"/><with-param pos="0"/></call-macro>
-        <call-macro n="set_b1"><with-param pos="4"/></call-macro>
         <out>
           <b pos="1"/>
           <lu><clip pos="2" part="whole"/></lu>
@@ -787,7 +749,7 @@
         <call-macro n="out_adj"><with-param pos="3"/><with-param pos="0"/></call-macro>
         <out>
           <b pos="3"/>
-          <lu><clip pos="4" part="whole"/></lu><var n="b1"/>
+          <lu><clip pos="4" part="whole"/></lu><b/>
           <lu><clip pos="5" part="whole"/></lu>
         </out>
       </action>
@@ -813,10 +775,9 @@
       <action>
         <call-macro n="clean_n.adj"><with-param pos="3"/><with-param pos="1"/><with-param pos="0"/></call-macro>
         <call-macro n="out_adj"><with-param pos="1"/><with-param pos="0"/></call-macro>
-        <call-macro n="set_b1"><with-param pos="2"/></call-macro>
         <out>
           <b pos="1"/>
-          <lu><clip pos="2" part="whole"/></lu><var n="b1"/>
+          <lu><clip pos="2" part="whole"/></lu><b/>
           <lu><clip pos="3" part="whole"/></lu>
         </out>
       </action>
@@ -828,12 +789,10 @@
       <action>
         <call-macro n="clean_n.adj"><with-param pos="4"/><with-param pos="1"/><with-param pos="0"/></call-macro>
         <call-macro n="out_adj"><with-param pos="1"/><with-param pos="0"/></call-macro>
-        <call-macro n="set_b1"><with-param pos="2"/></call-macro>
-        <call-macro n="set_b2"><with-param pos="3"/></call-macro>
         <out>
           <b pos="1"/>
-          <lu><clip pos="2" part="whole"/></lu><var n="b1"/>
-          <lu><clip pos="3" part="whole"/></lu><var n="b2"/>
+          <lu><clip pos="2" part="whole"/></lu><b/>
+          <lu><clip pos="3" part="whole"/></lu><b/>
           <lu><clip pos="4" part="whole"/></lu>
         </out>
       </action>
@@ -845,14 +804,11 @@
       <action>
         <call-macro n="clean_n.adj"><with-param pos="5"/><with-param pos="1"/><with-param pos="0"/></call-macro>
         <call-macro n="out_adj"><with-param pos="1"/><with-param pos="0"/></call-macro>
-        <call-macro n="set_b1"><with-param pos="2"/></call-macro>
-        <call-macro n="set_b2"><with-param pos="3"/></call-macro>
-        <call-macro n="set_b3"><with-param pos="4"/></call-macro>
         <out>
           <b pos="1"/>
-          <lu><clip pos="2" part="whole"/></lu><var n="b1"/>
-          <lu><clip pos="3" part="whole"/></lu><var n="b2"/>
-          <lu><clip pos="4" part="whole"/></lu><var n="b3"/>
+          <lu><clip pos="2" part="whole"/></lu><b/>
+          <lu><clip pos="3" part="whole"/></lu><b/>
+          <lu><clip pos="4" part="whole"/></lu><b/>
           <lu><clip pos="5" part="whole"/></lu>
         </out>
       </action>
@@ -884,14 +840,13 @@
         <call-macro n="clean_n.adj"><with-param pos="4"/><with-param pos="1"/><with-param pos="0"/></call-macro>
         <call-macro n="clean_n.adj"><with-param pos="4"/><with-param pos="2"/><with-param pos="0"/></call-macro>
         <call-macro n="out_adj"><with-param pos="1"/><with-param pos="0"/></call-macro>
-        <call-macro n="set_b1"><with-param pos="3"/></call-macro>
         <out>
           <b pos="1"/>
         </out>
         <call-macro n="out_adj"><with-param pos="2"/><with-param pos="0"/></call-macro>
         <out>
           <b pos="2"/>
-          <lu><clip pos="3" part="whole"/></lu><var n="b1"/>
+          <lu><clip pos="3" part="whole"/></lu><b/>
           <lu><clip pos="4" part="whole"/></lu>
         </out>
       </action>
@@ -904,16 +859,14 @@
         <call-macro n="clean_n.adj"><with-param pos="5"/><with-param pos="1"/><with-param pos="0"/></call-macro>
         <call-macro n="clean_n.adj"><with-param pos="5"/><with-param pos="2"/><with-param pos="0"/></call-macro>
         <call-macro n="out_adj"><with-param pos="1"/><with-param pos="0"/></call-macro>
-        <call-macro n="set_b1"><with-param pos="3"/></call-macro>
-        <call-macro n="set_b2"><with-param pos="4"/></call-macro>
         <out>
           <b pos="1"/>
         </out>
         <call-macro n="out_adj"><with-param pos="2"/><with-param pos="0"/></call-macro>
         <out>
           <b pos="2"/>
-          <lu><clip pos="3" part="whole"/></lu><var n="b1"/>
-          <lu><clip pos="4" part="whole"/></lu><var n="b2"/>
+          <lu><clip pos="3" part="whole"/></lu><b/>
+          <lu><clip pos="4" part="whole"/></lu><b/>
           <lu><clip pos="5" part="whole"/></lu>
         </out>
       </action>
@@ -926,18 +879,15 @@
         <call-macro n="clean_n.adj"><with-param pos="6"/><with-param pos="1"/><with-param pos="0"/></call-macro>
         <call-macro n="clean_n.adj"><with-param pos="6"/><with-param pos="2"/><with-param pos="0"/></call-macro>
         <call-macro n="out_adj"><with-param pos="1"/><with-param pos="0"/></call-macro>
-        <call-macro n="set_b1"><with-param pos="3"/></call-macro>
-        <call-macro n="set_b2"><with-param pos="4"/></call-macro>
-        <call-macro n="set_b3"><with-param pos="5"/></call-macro>
         <out>
           <b pos="1"/>
         </out>
         <call-macro n="out_adj"><with-param pos="2"/><with-param pos="0"/></call-macro>
         <out>
           <b pos="2"/>
-          <lu><clip pos="3" part="whole"/></lu><var n="b1"/>
-          <lu><clip pos="4" part="whole"/></lu><var n="b2"/>
-          <lu><clip pos="5" part="whole"/></lu><var n="b3"/>
+          <lu><clip pos="3" part="whole"/></lu><b/>
+          <lu><clip pos="4" part="whole"/></lu><b/>
+          <lu><clip pos="5" part="whole"/></lu><b/>
           <lu><clip pos="6" part="whole"/></lu>
         </out>
       </action>
@@ -975,7 +925,6 @@
         <call-macro n="clean_n.adj"><with-param pos="5"/><with-param pos="2"/><with-param pos="0"/></call-macro>
         <call-macro n="clean_n.adj"><with-param pos="5"/><with-param pos="3"/><with-param pos="0"/></call-macro>
         <call-macro n="out_adj"><with-param pos="1"/><with-param pos="0"/></call-macro>
-        <call-macro n="set_b1"><with-param pos="4"/></call-macro>
         <out>
           <b pos="1"/>
         </out>
@@ -986,7 +935,7 @@
         <call-macro n="out_adj"><with-param pos="3"/></call-macro>
         <out>
           <b pos="3"/>
-          <lu><clip pos="4" part="whole"/></lu><var n="b1"/>
+          <lu><clip pos="4" part="whole"/></lu><b/>
           <lu><clip pos="5" part="whole"/></lu>
         </out>
       </action>
@@ -1000,8 +949,6 @@
         <call-macro n="clean_n.adj"><with-param pos="6"/><with-param pos="2"/><with-param pos="0"/></call-macro>
         <call-macro n="clean_n.adj"><with-param pos="6"/><with-param pos="3"/><with-param pos="0"/></call-macro>
         <call-macro n="out_adj"><with-param pos="1"/><with-param pos="0"/></call-macro>
-        <call-macro n="set_b1"><with-param pos="4"/></call-macro>
-        <call-macro n="set_b2"><with-param pos="5"/></call-macro>
         <out>
           <b pos="1"/>
         </out>
@@ -1012,8 +959,8 @@
         <call-macro n="out_adj"><with-param pos="3"/></call-macro>
         <out>
           <b pos="3"/>
-          <lu><clip pos="4" part="whole"/></lu><var n="b1"/>
-          <lu><clip pos="5" part="whole"/></lu><var n="b2"/>
+          <lu><clip pos="4" part="whole"/></lu><b/>
+          <lu><clip pos="5" part="whole"/></lu><b/>
           <lu><clip pos="6" part="whole"/></lu>
         </out>
       </action>
@@ -1027,9 +974,6 @@
         <call-macro n="clean_n.adj"><with-param pos="7"/><with-param pos="2"/><with-param pos="0"/></call-macro>
         <call-macro n="clean_n.adj"><with-param pos="7"/><with-param pos="3"/><with-param pos="0"/></call-macro>
         <call-macro n="out_adj"><with-param pos="1"/><with-param pos="0"/></call-macro>
-        <call-macro n="set_b1"><with-param pos="4"/></call-macro>
-        <call-macro n="set_b2"><with-param pos="5"/></call-macro>
-        <call-macro n="set_b3"><with-param pos="6"/></call-macro>
         <out>
           <b pos="1"/>
         </out>
@@ -1040,9 +984,9 @@
         <call-macro n="out_adj"><with-param pos="3"/></call-macro>
         <out>
           <b pos="3"/>
-          <lu><clip pos="4" part="whole"/></lu><var n="b1"/>
-          <lu><clip pos="5" part="whole"/></lu><var n="b2"/>
-          <lu><clip pos="6" part="whole"/></lu><var n="b3"/>
+          <lu><clip pos="4" part="whole"/></lu><b/>
+          <lu><clip pos="5" part="whole"/></lu><b/>
+          <lu><clip pos="6" part="whole"/></lu><b/>
           <lu><clip pos="7" part="whole"/></lu>
         </out>
       </action>
