@@ -171,6 +171,7 @@
     <def-var n="b1"/>
     <def-var n="b2"/>
     <def-var n="b3"/>
+    <def-var n="space" v=" "/>  <!-- TODO: v attribute doesn't seem to have any effect, have to let-bind it -->
   </section-def-vars>
 
   <section-def-lists>
@@ -308,6 +309,7 @@
                   Output the correct determiner for this noun.
                   This macro doesn't check that we actually *need* a determiner –
                   it's called by maybe_out_ndem/maybe_out_ndem2 which decide that.">
+      <let><var n="space"/><lit v=" "/></let>
       <choose>
         <when>
           <test><and>
@@ -321,13 +323,13 @@
               <clip pos="1" part="gen"/>
               <lit-tag v="sg"/>
             </lu>
-            <b/>
           </out>
         </when>
         <otherwise>
-          <out><lu><lit v="den"/><lit-tag v="det.dem.un.pl"/></lu><b/></out>
+          <out><lu><lit v="den"/><lit-tag v="det.dem.un.pl"/></lu></out>
         </otherwise>
       </choose>
+      <out><var n="space"/></out>
     </def-macro>
 
     <def-macro n="maybe_out_ndem" npar="2"
