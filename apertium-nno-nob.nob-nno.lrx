@@ -2648,4 +2648,11 @@
     <match lemma="betenkelig" tags="adj.*"><select lemma="tvilsam"/></match>
   </rule>
   <rule><match lemma="sannsynlighetsberegning" tags="n.*"><select lemma="prognose"/></match></rule>
+
+  <rule><match lemma="overhodet" tags="adv"><select lemma="i det heile"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="finnes"/>
+    <match lemma="overhodet" tags="adv"><select lemma=""/></match>
+    <match lemma="ikke"/>
+  </rule>
 </lrx>
