@@ -767,6 +767,10 @@
   </rule>
 
   <rule><match lemma="hensikt" tags="n.*"><select lemma="hensikt"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="hensikt" tags="n.*"><select lemma="formål"/></match>
+    <match lemma="med"/>
+  </rule>
   <rule><match lemma="formål" tags="n.*"><select lemma="formål"/></match></rule>
 
   <rule><match lemma="gang" tags="n.*"><select lemma="gong"/></match></rule>
@@ -2650,9 +2654,91 @@
   <rule><match lemma="sannsynlighetsberegning" tags="n.*"><select lemma="prognose"/></match></rule>
 
   <rule><match lemma="overhodet" tags="adv"><select lemma="i det heile"/></match></rule>
+
+  <rule><match lemma="overhodet ikke" tags="adv"><select lemma="på ingen måte"/></match></rule>
   <rule weight="2.0">
     <match lemma="finnes"/>
-    <match lemma="overhodet" tags="adv"><select lemma=""/></match>
-    <match lemma="ikke"/>
+    <match lemma="overhodet ikke" tags="adv"><select lemma="ikkje"/></match>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="overhodet ikke" tags="adv"><select lemma="ikkje"/></match>
+    <match tags="vblex.*"/>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="tro"/>
+    <match lemma="overhodet ikke" tags="adv"><select lemma="ikkje det minste"/></match>
+    <match lemma="på"/>
+  </rule>
+  <rule weight="2.0">
+    <or>
+      <match lemma="ha"/>
+      <match lemma="bli"/>
+      <match lemma="eksistere"/>
+      <match lemma="finne"/>    <!-- but here obj should go after «ikkje» -->
+    </or>
+    <match lemma="overhodet ikke" tags="adv"><select lemma="ikkje i det heile"/></match>
+  </rule>
+
+  <rule><match lemma="beskytter" tags="n.*"><select lemma="vernar"/></match></rule>
+  <rule weight="2.0">
+    <or><match lemma="høy"/><match lemma="høye"/></or>
+    <match lemma="beskytter" tags="n.*"><select lemma="beskyttar"/></match>
+  </rule>
+
+  <rule><match lemma="øyeblikk" tags="n.*"><select lemma="augneblink"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="i"/>
+    <match lemma="en"/>
+    <match lemma="øyeblikk" tags="n.*"><select lemma="opptrinn"/></match>
+    <match lemma="som"/>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="i"/>
+    <match lemma="en"/>
+    <match lemma="øyeblikk" tags="n.*"><select lemma="glimt"/></match>
+    <match lemma="av"/>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="på"/>
+    <match lemma="en"/>
+    <match lemma="øyeblikk" tags="n.*"><select lemma="blunk"/></match>
+  </rule>
+
+  <rule><match lemma="ankomst" tags="n.*"><select lemma="innkomst"/></match></rule>
+
+  <rule><match lemma="knepen" tags="adj.*"><select lemma="hårfin"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="knepen" tags="adj.*"><select lemma="knapp"/></match>
+    <or>
+      <match lemma="flertall"/>
+      <match lemma="majoritet"/>
+    </or>
+  </rule>
+
+  <rule><match lemma="bestemmende" tags="adj.*"><select lemma="bestemmande"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="bestemmende" tags="adj.*"><select lemma="kvalifisert"/></match>
+    <match lemma="mindretall"/>
+  </rule>
+
+  <rule><match lemma="uavhengighet" tags="n.*"><select lemma="sjølvstende"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="uavhengighet" tags="n.*"><select lemma="lausriving"/></match>
+    <match lemma="fra"/>
+  </rule>
+
+  <rule><match lemma="helaftens" tags="adj.*"><select lemma="lengre"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="helaftens" tags="adj.*"><select lemma="lang"/></match>
+    <match lemma="film"/>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="helaftens" tags="adj.*"><select lemma="lang"/></match>
+    <match tags="n.*.cmp"/>
+    <or>
+      <match lemma="film"/>
+      <match lemma="spillefilm"/>
+      <match lemma="dokumentar"/>
+    </or>
   </rule>
 </lrx>
