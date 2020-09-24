@@ -2822,4 +2822,13 @@
     <match lemma="het" tags="adj.*"><select lemma="varm"/></match>
     <match lemma="potet"/>
   </rule>
+
+  <rule><match lemma="tilfeldighet" tags="n.*"><select lemma="tilfeldigheit"/></match></rule>
+  <rule weight="2.0">
+    <or>
+      <match lemma="ren"/>
+      <match lemma="rein"/>
+    </or>
+    <match lemma="tilfeldighet" tags="n.*"><select lemma="slumpetreff"/></match>
+  </rule>
 </lrx>
