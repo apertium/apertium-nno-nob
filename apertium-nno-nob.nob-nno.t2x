@@ -411,6 +411,9 @@
     <def-attr n="expl">
       <attr-item tags="expl"/>
     </def-attr>
+    <def-attr n="n-movable">
+      <attr-item tags="n-movable"/>
+    </def-attr>
 
     <def-attr n="gen_prep_override">
       <attr-item tags="pr_til"/>
@@ -2735,13 +2738,23 @@
             <call-macro n="set_n_defness"><with-param pos="3"/><with-param pos="1"/></call-macro>
           </otherwise>
         </choose>
-        <out>
-          <chunk><clip pos="1" part="whole"/></chunk>
-          <b pos="1"/>
-          <chunk><clip pos="2" part="whole"/></chunk>
-          <b pos="2"/>
-          <chunk><clip pos="3" part="whole"/></chunk>
-        </out>
+        <choose>
+          <when c="en ubevoktet planovergang → en planovergang uten tilsyn">
+            <test><equal><clip pos="2" part="n-movable"/><lit-tag v="n-movable"/></equal></test>
+            <out>
+              <chunk><clip pos="1" part="whole"/></chunk><b/>
+              <chunk><clip pos="3" part="whole"/></chunk><b/>
+              <chunk><clip pos="2" part="whole"/></chunk>
+            </out>
+          </when>
+          <otherwise>
+            <out>
+              <chunk><clip pos="1" part="whole"/></chunk><b/>
+              <chunk><clip pos="2" part="whole"/></chunk><b/>
+              <chunk><clip pos="3" part="whole"/></chunk>
+            </out>
+          </otherwise>
+        </choose>
       </action>
     </rule>
 

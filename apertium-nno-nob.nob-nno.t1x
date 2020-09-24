@@ -429,12 +429,14 @@
       <cat-item tags="n.*.pl.ind.gen"  lemma="kvinne"/>
       <cat-item tags="n.*.sg.*.gen"    lemma="liv"/>
       <cat-item tags="n.*.pl.ind.gen"  lemma="liv"/>
+      <cat-item tags="n.*.sg.def.gen"  lemma="rett"/>
     </def-cat>
     <def-cat n="nind_keep_gen_s_kvinners_retter"
              c="Owned nouns where we want the owner ngen to keep the genitive-s if preceded by ngen_keep_gen_s_kvinners_rettar">
       <cat-item tags="n.*.*.ind" lemma="rettighet"/>
       <cat-item tags="n.*.*.ind" lemma="rett"/>
       <cat-item tags="n.*.*.ind" lemma="form"/> <!-- i mitt livs form -->
+      <cat-item tags="n.*.*.ind" lemma="vei"/>  <!--rettens vei-->
     </def-cat>
     <def-cat n="nind_time">
       <cat-item tags="n.*.ind" lemma="fjorår"/>
@@ -2168,6 +2170,10 @@
       <list-item v="tildele"/> <!-- Gunnar Sønsteby tildeles denne dekorasjonen → blir tildelt denne dekorasjonen -->
     </def-list>
 
+    <def-list n="n-movable-adv" c="These adverbs can move out of noun phrases / past regular nouns">
+      <list-item v="utan tilsyn"/> <!-- nob: ubevoktet -->
+    </def-list>
+
     <def-list n="immovable-adv" c="Shouldn't be moved in passives or across lemq's, typically ambig with prep's or adj's">
       <list-item v="straks"/>   <!-- «Bildene slettes straks man er ferdig klarert.» -->
       <list-item v="bort"/>
@@ -2187,6 +2193,7 @@
       <list-item v="denne våren"/>
       <list-item v="denne månaden"/>
       <list-item v="til å teie"/>
+      <list-item v="som før"/>
       <list-item v="at"/>       <!-- dangerous, typically should be cnjsub -->
     </def-list>
 
@@ -3694,14 +3701,18 @@
         <test><not><equal><clip pos="1" side="tl" part="lemh"/><lit v=""/></equal></not></test>
         <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
         <let><var n="advtags"/><clip pos="1" side="tl" part="tags"/></let>
-        <choose>
-          <when>
-            <test><not><in><clip pos="1" side="tl" part="lemh"/><list n="immovable-adv"/></in></not></test>
-            <append n="advtags">
-              <lit-tag v="movable"/>
-            </append>
-          </when>
-        </choose>
+        <choose><when>
+          <test><not><in><clip pos="1" side="tl" part="lemh"/><list n="immovable-adv"/></in></not></test>
+          <append n="advtags">
+            <lit-tag v="movable"/>
+          </append>
+        </when></choose>
+        <choose><when>
+          <test><in><clip pos="1" side="tl" part="lemh"/><list n="n-movable-adv"/></in></test>
+          <append n="advtags">
+            <lit-tag v="n-movable"/>
+          </append>
+        </when></choose>
         <out>
           <chunk name="adv" case="caseFirstWord">
             <tags><tag><var n="advtags"/></tag></tags>
