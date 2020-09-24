@@ -2726,6 +2726,10 @@
     <match lemma="en"/>
     <match lemma="øyeblikk" tags="n.*"><select lemma="blunk"/></match>
   </rule>
+  <rule weight="2.0">
+    <match lemma="ubevoktet"/>
+    <match lemma="øyeblikk" tags="n.*"><select lemma="stund"/></match>
+  </rule>
 
   <rule><match lemma="ankomst" tags="n.*"><select lemma="innkomst"/></match></rule>
 
@@ -2809,5 +2813,13 @@
   <rule weight="2.0">
     <match lemma="beskjeden" tags="adj.*"><select lemma="låg"/></match>
     <match lemma="antall"/>
+  </rule>
+
+  <rule><match lemma="ubevoktet" tags="adj.*"><select lemma="løynleg"/></match></rule>
+
+  <rule><match lemma="het" tags="adj.*"><select lemma="heit"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="het" tags="adj.*"><select lemma="varm"/></match>
+    <match lemma="potet"/>
   </rule>
 </lrx>
