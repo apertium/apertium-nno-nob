@@ -828,6 +828,25 @@
     </match>
   </rule>
 
+  <rule><match lemma="sin" tags="prn.*"><select lemma="sin"/></match></rule>
+  <rule><match lemma="sin" tags="det.*"><select lemma="sin"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="sin" tags="det.*"><select lemma=""/></match>
+    <match lemma="nasjonal"/>
+    <match lemma="uavhengighet"/>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="sin" tags="det.*"><select lemma=""/></match>
+    <seq n="ANYTAG"/>
+    <or>
+      <match lemma="måned"/>
+      <match lemma="veke"/>
+      <match lemma="år"/>
+      <match lemma="dag"/>
+      <match lemma="time"/>
+    </or>
+  </rule>
+
   <rule><match lemma="virkelighet" tags="n.*"><select lemma="verkelegheit"/></match></rule>
   <rule weight="2.0">
       <match lemma="virkelighet" tags="n.*"><select lemma="røyndom"/></match>
