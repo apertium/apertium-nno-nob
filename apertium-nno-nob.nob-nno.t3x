@@ -205,6 +205,12 @@
       <list-item v="november"/>
       <list-item v="desember"/>
     </def-list>
+    <def-list n="bi-no-double-defnes-adj">
+      <list-item v="liten"/>    <!-- det minste bevis -->
+    </def-list>
+    <def-list n="bi-no-double-defnes-n">
+      <list-item v="bevis"/>
+    </def-list>
     <def-list n="no-samsvar" c="avoid «gåtte» etc.">
       <list-item v="unngå"/>
       <list-item v="gå"/>
@@ -391,6 +397,10 @@
           <not><and>
             <in><clip pos="1" part="lemh"/><list n="months"/></in>
             <equal><clip pos="2" part="a_adj"/><lit-tag v="adj.ord"/></equal>
+          </and></not>
+          <not><and>
+            <in><clip pos="1" part="lemh"/><list n="bi-no-double-defnes-n"/></in>
+            <in><clip pos="2" part="lemh"/><list n="bi-no-double-defnes-adj"/></in>
           </and></not>
         </and></test>
         <let><clip pos="1" part="art"/><clip pos="3" part="art"/></let>
