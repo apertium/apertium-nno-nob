@@ -1984,6 +1984,12 @@
   <rule weight="2.0"><match lemma="utebli" tags="vblex.pp"><select lemma="halde# seg borte"/></match></rule>
 
   <rule><match lemma="hvor" tags="adv"><select lemma="kor"/></match></rule>
+  <rule weight="3.0">
+    <match lemma="hvor" tags="adv"><select lemma="kvar"/></match>
+    <match lemma="bli"/>
+    <match lemma="den"/>
+    <match lemma="av"/>
+  </rule>
   <rule weight="2.0">
     <match lemma="hvor" tags="adv"><select lemma="kvar"/></match>
       <!-- Can't say «kor before unknown», so we explicitly match on everything except unknown (anything tagged): -->
@@ -2769,17 +2775,17 @@
     </or>
   </rule>
 
-  <rule><match lemma="ufortrødent" tags="adv.*"><select lemma="jamt og trutt"/></match></rule>
+  <rule><match lemma="ufortrødent" tags="adv"><select lemma="jamt og trutt"/></match></rule>
   <rule weight="2.0">
-    <match lemma="ufortrødent" tags="adv.*"><select lemma="uforstyrra"/></match>
+    <match lemma="ufortrødent" tags="adv"><select lemma="uforstyrra"/></match>
     <match lemma="videre"/>
   </rule>
   <rule weight="2.0">
     <match lemma="like"/>
-    <match lemma="ufortrødent" tags="adv.*"><select lemma="jamt"/></match>
+    <match lemma="ufortrødent" tags="adv"><select lemma="jamt"/></match>
   </rule>
   <rule weight="2.0">
-    <match lemma="ufortrødent" tags="adv.*"><select lemma="jamt"/></match>
+    <match lemma="ufortrødent" tags="adv"><select lemma="jamt"/></match>
     <or>
       <match lemma="i"/>
       <match lemma="av"/>
@@ -2791,7 +2797,7 @@
   </rule>
   <rule weight="2.0">
     <match lemma="fortsette"/>
-    <match lemma="ufortrødent" tags="adv.*"><select lemma="som før"/></match>
+    <match lemma="ufortrødent" tags="adv"><select lemma="som før"/></match>
   </rule>
 
   <rule><match lemma="ufortrøden" tags="adj.*"><select lemma="iherdig"/></match></rule>
@@ -2800,7 +2806,7 @@
       <match lemma="med"/>
       <match lemma="Med"/>
     </or>
-    <match lemma="ufortrøden" tags="adj.*"><select lemma="iherdig"/></match>
+    <match lemma="ufortrøden" tags="adj.*"><select lemma="vedhaldande"/></match>
   </rule>
 
   <rule><match lemma="middel" tags="n.*"><select lemma="middel"/></match></rule>
