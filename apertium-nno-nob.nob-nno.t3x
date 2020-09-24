@@ -554,9 +554,12 @@
       </pattern>
       <action>
         <call-macro n="clean_det"><with-param pos="1"/><with-param pos="0"/></call-macro>
-        <out>
-          <lu><clip pos="1" part="whole"/></lu>
-        </out>
+        <choose><when>
+          <test><not><equal><clip pos="1" part="lemh"/><lit v=""/></equal></not></test>
+          <out>
+            <lu><clip pos="1" part="whole"/></lu>
+          </out>
+        </when></choose>
       </action>
     </rule>
 
