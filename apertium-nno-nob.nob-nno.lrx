@@ -409,7 +409,10 @@
     <match lemma="antall" tags="n.*"> <select lemma="tal"/> </match>
   </rule>
   <rule weight="2.0">
-    <match lemma="stor"/>
+    <or>
+      <match lemma="stor"/>
+      <match lemma="beskjeden"/>
+    </or>
     <match lemma="antall">
       <select lemma="tal"/>
     </match>
@@ -527,7 +530,6 @@
       <match tags="adj.*"/>
     </or>
   </rule>
-  <!-- /antall -->
 
   <rule><match lemma="av det totale antallet"><select lemma="av det samla talet"/></match></rule>
   <rule weight="2.0" c="av det totalet antallet beslag → av alle beslag">
@@ -558,6 +560,8 @@
     <match lemma="total" tags="adj.*"><select lemma="samla"/></match>
     <match lemma="antall"/>
   </rule>
+  <!-- /antall -->
+
 
   <!-- andel -->
   <rule weight="1.0" c="default del">
@@ -2780,5 +2784,11 @@
   <rule weight="2.0">
     <match lemma="frisk"/>
     <match lemma="middel" tags="n.*"><select lemma="penge"/></match>
+  </rule>
+
+  <rule><match lemma="beskjeden" tags="adj.*"><select lemma="beskjeden"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="beskjeden" tags="adj.*"><select lemma="låg"/></match>
+    <match lemma="antall"/>
   </rule>
 </lrx>
