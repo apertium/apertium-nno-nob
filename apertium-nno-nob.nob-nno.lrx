@@ -409,7 +409,10 @@
     <match lemma="antall" tags="n.*"> <select lemma="tal"/> </match>
   </rule>
   <rule weight="2.0">
-    <match lemma="stor"/>
+    <or>
+      <match lemma="stor"/>
+      <match lemma="beskjeden"/>
+    </or>
     <match lemma="antall">
       <select lemma="tal"/>
     </match>
@@ -527,7 +530,6 @@
       <match tags="adj.*"/>
     </or>
   </rule>
-  <!-- /antall -->
 
   <rule><match lemma="av det totale antallet"><select lemma="av det samla talet"/></match></rule>
   <rule weight="2.0" c="av det totalet antallet beslag → av alle beslag">
@@ -558,6 +560,8 @@
     <match lemma="total" tags="adj.*"><select lemma="samla"/></match>
     <match lemma="antall"/>
   </rule>
+  <!-- /antall -->
+
 
   <!-- andel -->
   <rule weight="1.0" c="default del">
@@ -822,6 +826,25 @@
     <match lemma="gang" tags="n.m.pl.*">
       <select lemma="gang"/>
     </match>
+  </rule>
+
+  <rule><match lemma="sin" tags="prn.*"><select lemma="sin"/></match></rule>
+  <rule><match lemma="sin" tags="det.*"><select lemma="sin"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="sin" tags="det.*"><select lemma=""/></match>
+    <match lemma="nasjonal"/>
+    <match lemma="uavhengighet"/>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="sin" tags="det.*"><select lemma=""/></match>
+    <seq n="ANYTAG"/>
+    <or>
+      <match lemma="måned"/>
+      <match lemma="veke"/>
+      <match lemma="år"/>
+      <match lemma="dag"/>
+      <match lemma="time"/>
+    </or>
   </rule>
 
   <rule><match lemma="virkelighet" tags="n.*"><select lemma="verkelegheit"/></match></rule>
@@ -1961,6 +1984,12 @@
   <rule weight="2.0"><match lemma="utebli" tags="vblex.pp"><select lemma="halde# seg borte"/></match></rule>
 
   <rule><match lemma="hvor" tags="adv"><select lemma="kor"/></match></rule>
+  <rule weight="3.0">
+    <match lemma="hvor" tags="adv"><select lemma="kvar"/></match>
+    <match lemma="bli"/>
+    <match lemma="den"/>
+    <match lemma="av"/>
+  </rule>
   <rule weight="2.0">
     <match lemma="hvor" tags="adv"><select lemma="kvar"/></match>
       <!-- Can't say «kor before unknown», so we explicitly match on everything except unknown (anything tagged): -->
@@ -2703,6 +2732,10 @@
     <match lemma="en"/>
     <match lemma="øyeblikk" tags="n.*"><select lemma="blunk"/></match>
   </rule>
+  <rule weight="2.0">
+    <match lemma="ubevoktet"/>
+    <match lemma="øyeblikk" tags="n.*"><select lemma="stund"/></match>
+  </rule>
 
   <rule><match lemma="ankomst" tags="n.*"><select lemma="innkomst"/></match></rule>
 
@@ -2740,5 +2773,75 @@
       <match lemma="spillefilm"/>
       <match lemma="dokumentar"/>
     </or>
+  </rule>
+
+  <rule><match lemma="ufortrødent" tags="adv"><select lemma="jamt og trutt"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="ufortrødent" tags="adv"><select lemma="uforstyrra"/></match>
+    <match lemma="videre"/>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="like"/>
+    <match lemma="ufortrødent" tags="adv"><select lemma="jamt"/></match>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="ufortrødent" tags="adv"><select lemma="jamt"/></match>
+    <or>
+      <match lemma="i"/>
+      <match lemma="av"/>
+      <match lemma="på"/>
+      <match lemma="med"/>
+      <match lemma="mot"/>
+      <match lemma="mellom"/>
+    </or>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="fortsette"/>
+    <match lemma="ufortrødent" tags="adv"><select lemma="som før"/></match>
+  </rule>
+
+  <rule><match lemma="ufortrøden" tags="adj.*"><select lemma="iherdig"/></match></rule>
+  <rule weight="2.0">
+    <or>
+      <match lemma="med"/>
+      <match lemma="Med"/>
+    </or>
+    <match lemma="ufortrøden" tags="adj.*"><select lemma="vedhaldande"/></match>
+  </rule>
+
+  <rule><match lemma="middel" tags="n.*"><select lemma="middel"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="frisk"/>
+    <match lemma="middel" tags="n.*"><select lemma="penge"/></match>
+  </rule>
+
+  <rule><match lemma="beskjeden" tags="adj.*"><select lemma="beskjeden"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="beskjeden" tags="adj.*"><select lemma="låg"/></match>
+    <match lemma="antall"/>
+  </rule>
+
+  <rule><match lemma="ubevoktet" tags="adj.*"><select lemma="løynleg"/></match></rule>
+  <rule weight="2.0">
+    <or>
+      <match lemma="den"/>
+      <match lemma="de"/>
+    </or>
+    <match lemma="ubevoktet" tags="adj.*"><select lemma="ikkje vakta"/></match>
+  </rule>
+
+  <rule><match lemma="het" tags="adj.*"><select lemma="heit"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="het" tags="adj.*"><select lemma="varm"/></match>
+    <match lemma="potet"/>
+  </rule>
+
+  <rule><match lemma="tilfeldighet" tags="n.*"><select lemma="tilfeldigheit"/></match></rule>
+  <rule weight="2.0">
+    <or>
+      <match lemma="ren"/>
+      <match lemma="rein"/>
+    </or>
+    <match lemma="tilfeldighet" tags="n.*"><select lemma="slumpetreff"/></match>
   </rule>
 </lrx>
