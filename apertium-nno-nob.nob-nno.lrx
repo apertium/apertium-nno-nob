@@ -2741,4 +2741,44 @@
       <match lemma="dokumentar"/>
     </or>
   </rule>
+
+  <rule><match lemma="ufortrødent" tags="adv.*"><select lemma="jamt og trutt"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="ufortrødent" tags="adv.*"><select lemma="uforstyrra"/></match>
+    <match lemma="videre"/>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="like"/>
+    <match lemma="ufortrødent" tags="adv.*"><select lemma="jamt"/></match>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="ufortrødent" tags="adv.*"><select lemma="jamt"/></match>
+    <or>
+      <match lemma="i"/>
+      <match lemma="av"/>
+      <match lemma="på"/>
+      <match lemma="med"/>
+      <match lemma="mot"/>
+      <match lemma="mellom"/>
+    </or>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="fortsette"/>
+    <match lemma="ufortrødent" tags="adv.*"><select lemma="som før"/></match>
+  </rule>
+
+  <rule><match lemma="ufortrøden" tags="adj.*"><select lemma="iherdig"/></match></rule>
+  <rule weight="2.0">
+    <or>
+      <match lemma="med"/>
+      <match lemma="Med"/>
+    </or>
+    <match lemma="ufortrøden" tags="adj.*"><select lemma="iherdig"/></match>
+  </rule>
+
+  <rule><match lemma="middel" tags="n.*"><select lemma="middel"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="frisk"/>
+    <match lemma="middel" tags="n.*"><select lemma="penge"/></match>
+  </rule>
 </lrx>
