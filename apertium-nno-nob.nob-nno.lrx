@@ -2844,4 +2844,44 @@
     </or>
     <match lemma="tilfeldighet" tags="n.*"><select lemma="slumpetreff"/></match>
   </rule>
+
+  <rule><match lemma="tiltrengt" tags="adj.*"><select lemma="svært velkommen"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="tiltrengt" tags="adj.*"><select lemma="nødvendig"/></match>
+    <match lemma="middel"/>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="tiltrengt" tags="adj.*"><select lemma="livsviktig"/></match>
+    <match lemma="nødhjelp"/>
+  </rule>
+
+  <rule><match lemma="sårt tiltrengt" tags="adj.*"><select lemma="svært velkommen"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="sårt tiltrengt" tags="adj.*"><select lemma="nødvendig"/></match>
+    <match lemma="middel"/>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="sårt tiltrengt" tags="adj.*"><select lemma="heilt nødvendig"/></match>
+    <match lemma="hjelp"/>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="sårt tiltrengt" tags="adj.*"><select lemma="livsviktig"/></match>
+    <match lemma="nødhjelp"/>
+  </rule>
+  <rule weight="2.0">
+    <or>
+      <match lemma="vere"/>
+      <match lemma="bli"/>
+    </or>
+    <match lemma="sårt tiltrengt" tags="adj.*"><select lemma="heilt nødvendig"/></match>
+  </rule>
+
+  <rule><match lemma="nødhjelp" tags="n.*"><select lemma="nødhjelp"/></match></rule>
+  <rule weight="2.0">
+    <or>
+      <match lemma="tiltrengt"/>
+      <match lemma="sårt tiltrengt"/>
+    </or>
+    <match lemma="nødhjelp" tags="n.*"><select lemma="hjelp"/></match>
+  </rule>
 </lrx>
