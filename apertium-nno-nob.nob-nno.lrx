@@ -2737,7 +2737,74 @@
     <match lemma="øyeblikk" tags="n.*"><select lemma="stund"/></match>
   </rule>
 
+  <!-- ANKOMST: -->
   <rule><match lemma="ankomst" tags="n.*"><select lemma="innkomst"/></match></rule>
+  <rule weight="2.0">
+    <or>
+      <match lemma="før"/>
+      <match lemma="etter"/>
+      <match lemma="under"/>
+      <match lemma="ved"/>
+    </or>
+    <match lemma="ankomst" tags="n.*"><select lemma="framkomst"/></match>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="ankomst" tags="n.*"><select lemma="framkomst"/></match>
+    <or>
+      <match lemma="innen"/>
+      <match lemma="senest"/>
+      <match lemma="seinest"/>
+      <match lemma="sen" tags="adj.sint.sup.*"/>
+      <match tags="det.pos.*"/>
+    </or>
+  </rule>
+  <rule weight="2.0" c="meldt sin ankomst">
+    <match tags="det.pos.*"/>
+    <match lemma="ankomst" tags="n.*"><select lemma="framkomst"/></match>
+  </rule>
+  <rule weight="2.0" c="innreisehamn">
+    <match lemma="ankomst" tags="n.*.cmp"><select lemma="innreise"/></match>
+    <or>
+      <match lemma="havn"/>
+      <match lemma="tall"/>
+      <match lemma="dag"/>
+    </or>
+  </rule>
+  <rule weight="2.0" c="innkøyringsspor">
+    <match lemma="ankomst" tags="n.*.cmp"><select lemma="innkøyring"/></match>
+    <match lemma="spor"/>
+  </rule>
+  <rule weight="2.0" c="asylinnreise">
+    <match lemma="asyl" tags="n.*.cmp"/>
+    <match lemma="ankomst"><select lemma="innreise"/></match>
+  </rule>
+  <rule weight="2.0" c="turistreise">
+    <match lemma="turist" tags="n.*.cmp"/>
+    <match lemma="ankomst"><select lemma="reise"/></match>
+  </rule>
+
+  <rule><match lemma="melde# sin ankomst" tags="vblex.*"><select lemma="seie# at dei kjem"/></match></rule>
+  <rule weight="2.0">
+    <or>
+      <match lemma="høst"/>
+      <match lemma="vår"/>
+      <match lemma="sommer"/>
+      <match lemma="vinter"/>
+    </or>
+    <match lemma="melde# sin ankomst" tags="vblex.*"><select lemma="vere# på god veg"/></match>
+  </rule>
+  <rule><match lemma="ha# meldt sin ankomst" tags="vblex.*"><select lemma="seie# at dei kjem"/></match></rule>
+  <rule weight="2.0">
+    <or>
+      <match lemma="høst"/>
+      <match lemma="vår"/>
+      <match lemma="sommer"/>
+      <match lemma="vinter"/>
+    </or>
+    <match lemma="ha# meldt sin ankomst" tags="vblex.*"><select lemma="vere# på god veg"/></match>
+  </rule>
+  <!-- /ANKOMST -->
+
 
   <rule><match lemma="knepen" tags="adj.*"><select lemma="hårfin"/></match></rule>
   <rule weight="2.0">
@@ -2884,4 +2951,5 @@
     </or>
     <match lemma="nødhjelp" tags="n.*"><select lemma="hjelp"/></match>
   </rule>
+
 </lrx>
