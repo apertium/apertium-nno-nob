@@ -2739,14 +2739,35 @@
 
   <!-- ANKOMST: -->
   <rule><match lemma="ankomst" tags="n.*"><select lemma="innkomst"/></match></rule>
+  <rule weight="2.0" c="endring/auke i innreisetal">
+    <match lemma="i"/>
+    <match lemma="ankomst" tags="n.*"><select lemma="innreisetal"/></match>
+  </rule>
   <rule weight="2.0">
     <or>
       <match lemma="før"/>
       <match lemma="etter"/>
       <match lemma="under"/>
       <match lemma="ved"/>
+      <match lemma="denne"/>
+      <match tags="np.*.gen"/>
     </or>
     <match lemma="ankomst" tags="n.*"><select lemma="framkomst"/></match>
+  </rule>
+  <rule weight="2.0">
+    <or>
+      <match lemma="konge" tags="n.*.gen"/>
+      <match lemma="kong" tags="n.*.gen"/>
+    </or>
+    <match lemma="ankomst" tags="n.*"><select lemma="besøk"/></match>
+  </rule>
+  <rule weight="2.0">
+    <or>
+      <match lemma="president" tags="n.*.gen"/>
+      <match lemma="statsminister" tags="n.*.gen"/>
+      <match lemma="minister" tags="n.*.gen"/>
+    </or>
+    <match lemma="ankomst" tags="n.*"><select lemma="oppmøte"/></match>
   </rule>
   <rule weight="2.0">
     <match lemma="ankomst" tags="n.*"><select lemma="framkomst"/></match>
@@ -2783,7 +2804,14 @@
     <match lemma="ankomst"><select lemma="reise"/></match>
   </rule>
 
-  <rule><match lemma="melde# sin ankomst" tags="vblex.*"><select lemma="seie# at dei kjem"/></match></rule>
+  <rule><match lemma="melde# sin ankomst" tags="vblex.*"><select lemma="melde# seg"/></match></rule>
+  <rule weight="2.0">
+    <or>
+      <match tags="prn.*"/>
+      <match tags="det.*"/>
+    </or>
+    <match lemma="melde# sin ankomst" tags="vblex.*"><select lemma="seie# at dei kjem"/></match>
+  </rule>
   <rule weight="2.0">
     <or>
       <match lemma="høst"/>
@@ -2791,16 +2819,32 @@
       <match lemma="sommer"/>
       <match lemma="vinter"/>
     </or>
+    <repeat from="0" upto="1"><match lemma="allerede"/></repeat>
+    <repeat from="0" upto="1"><match lemma="for"/><match lemma="alvor"/></repeat>
     <match lemma="melde# sin ankomst" tags="vblex.*"><select lemma="vere# på god veg"/></match>
   </rule>
-  <rule><match lemma="ha# meldt sin ankomst" tags="vblex.*"><select lemma="seie# at dei kjem"/></match></rule>
-  <rule weight="2.0">
+  <!-- hadde meldt sin ankomst → var ventande -->
+  <!-- ha    meldt sin ankomst → ha meldt seg -->
+  <!-- har   meldt sin ankomst → kjem -->
+  <rule><match lemma="ha# meldt sin ankomst"><select lemma="ha# meldt seg"/></match></rule>
+  <rule weight="2.0"><match lemma="ha# meldt sin ankomst" tags="vblex.pret"><select lemma="vere# ventande"/></match></rule>
+  <rule weight="2.0"><match lemma="ha# meldt sin ankomst" tags="vblex.pres"><select lemma="komme"/></match></rule>
+  <rule weight="3.0">
+    <or>
+      <match tags="prn.*"/>
+      <match tags="det.*"/>
+    </or>
+    <match lemma="ha# meldt sin ankomst" tags="vblex.*"><select lemma="seie# at dei kjem"/></match>
+  </rule>
+  <rule weight="3.0">
     <or>
       <match lemma="høst"/>
       <match lemma="vår"/>
       <match lemma="sommer"/>
       <match lemma="vinter"/>
     </or>
+    <repeat from="0" upto="1"><match lemma="allerede"/></repeat>
+    <repeat from="0" upto="1"><match lemma="for"/><match lemma="alvor"/></repeat>
     <match lemma="ha# meldt sin ankomst" tags="vblex.*"><select lemma="vere# på god veg"/></match>
   </rule>
   <!-- /ANKOMST -->
