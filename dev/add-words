@@ -1,0 +1,22 @@
+#!/bin/bash
+
+# Accepts one pair per line, separated by :, nno first, e.g.
+# bustad:bolig
+
+tmpd=$(mktemp -dt apertium-add-words.XXXXXXXXXX)
+echo "${tmpd}" >&2
+
+cat >"${tmpd}/bi"
+
+echo "${tmpd}/nno" >&2
+cut -f1 -d: "${tmpd}"/bi |apertium-destxt -n |apertium -f none  -d ../apertium-nno nno-morph|apertium-retxt >"${tmpd}"/nno
+
+echo "${tmpd}/nob" >&2
+cut -f2 -d: "${tmpd}"/bi |apertium-destxt -n |apertium -f none  -d ../apertium-nob nob-morph|apertium-retxt >"${tmpd}"/nob
+
+echo "${tmpd}/nno-known" >&2
+cut -f1 -d: "${tmpd}"/bi|apertium-destxt -n |apertium -f none -d . nno-nob-morph  |apertium-retxt |grep '^\^[^*+]*\$$'|sed 's,/.*,,'|tr -d ^ >"${tmpd}"/nno-known
+echo "${tmpd}/nob-known" >&2
+cut -f2 -d: "${tmpd}"/bi|apertium-destxt -n |apertium -f none -d . nob-nno_e-morph|apertium-retxt |grep '^\^[^*+]*\$$'|sed 's,/.*,,'|tr -d ^ >"${tmpd}"/nob-known
+
+awk -v tmpd="${tmpd}" -f "$(dirname "$0")"/add-words.awk /dev/null
