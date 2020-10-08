@@ -1709,6 +1709,7 @@
     </match>
     <or>
       <match tags="adv"/>
+      <match tags="pr"/>
       <match tags="sent.clb"/>
     </or>
   </rule>
@@ -3057,11 +3058,27 @@
 
   <rule><match lemma="fremholde" tags="vblex.*"><select lemma="påpeike"/></match></rule>
   <rule><match lemma="framholde" tags="vblex.*"><select lemma="påpeike"/></match></rule>
+  <rule weight="2.0" c="Sejersted fremholder også at …">
+    <seq n="animat"/>
+    <match lemma="framholde" tags="vblex.*"><select lemma="peike# på"/></match>
+    <or>
+      <match lemma="også"/>
+      <match lemma="at"/>
+    </or>
+  </rule>
+  <rule weight="2.0" c="Sejersted fremholder også at …">
+    <seq n="animat"/>
+    <match lemma="fremholde" tags="vblex.*"><select lemma="peike# på"/></match>
+    <or>
+      <match lemma="også"/>
+      <match lemma="at"/>
+    </or>
+  </rule>
   <rule><match lemma="fremholde" tags="adj.*"><select lemma="påpeike"/></match></rule>
   <rule><match lemma="framholde" tags="adj.*"><select lemma="påpeike"/></match></rule>
 
-  <rule><match lemma="avspeile" tags="vblex.*"><select lemma="spegle# seg"/></match></rule>
-  <rule><match lemma="gjenspeile" tags="vblex.*"><select lemma="spegle# seg"/></match></rule>
+  <rule><match lemma="avspeile" tags="vblex.*"><select lemma="spegle"/></match></rule>
+  <rule><match lemma="gjenspeile" tags="vblex.*"><select lemma="spegle"/></match></rule>
   <rule weight="2.0">
     <match lemma="avspeile" tags="vblex.*"><select lemma="spegle# seg av"/></match>
     <or>
@@ -3076,4 +3093,16 @@
       <match lemma="på"/>
     </or>
   </rule>
+
+  <rule><match lemma="utgi" tags="vblex.*"><select lemma="gje# ut"/></match></rule>
+  <rule><match lemma="utgi" tags="adj.*"><select lemma="utgje"/></match></rule>
+
+  <rule><match lemma="innlevere" tags="vblex.*"><select lemma="levere# inn"/></match></rule>
+  <rule><match lemma="innlevere" tags="adj.*"><select lemma="innlevere"/></match></rule>
+
+  <rule><match lemma="omgjøre" tags="vblex.*"><select lemma="gjere# om"/></match></rule>
+  <rule><match lemma="omgjøre" tags="adj.*"><select lemma="omgjere"/></match></rule>
+
+  <rule><match lemma="utestenge" tags="vblex.*"><select lemma="stenge# ute"/></match></rule>
+  <rule><match lemma="utestenge" tags="adj.*"><select lemma="utstenge"/></match></rule>
 </lrx>
