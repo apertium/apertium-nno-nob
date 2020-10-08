@@ -3124,4 +3124,14 @@
 
   <rule><match lemma="utestenge" tags="vblex.*"><select lemma="stenge# ute"/></match></rule>
   <rule><match lemma="utestenge" tags="adj.*"><select lemma="utstenge"/></match></rule>
+
+  <rule><match lemma="hva fremtiden bringer" tags="adv"><select lemma="korleis det skal gå"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="om"/>
+    <match lemma="hva fremtiden bringer" tags="adv"><select lemma="framtidsplanane"/></match>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="på"/>
+    <match lemma="hva fremtiden bringer" tags="adv"><select lemma="framtida"/></match>
+  </rule>
 </lrx>
