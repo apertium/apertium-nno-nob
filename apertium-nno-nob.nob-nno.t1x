@@ -2239,6 +2239,14 @@
       <list-item v="gjere# rik"/>
       <list-item v="bli# verande"/>
     </def-list>
+    <def-list n="skip-obj-lemqverbs" c="An object after verb-lemq here should be moved before the lemq
+                                 E.g.:
+                                 - innleverer dem → leverer dei inn
+                                 ">
+      <list-item v="levere# inn"/>
+      <list-item v="stenge# ute"/>
+      <list-item v="gjere# rik"/>
+    </def-list>
     <def-list n="keepgenx" c="Get tagged keepgenx for t2x to avoid gen-prep-transformation">
       <list-item v="side"/>
       <list-item v="del"/>
@@ -2478,6 +2486,10 @@
             </when>
             <otherwise><let><var n="lemq-skip"/><lit v=""/></let></otherwise>
           </choose>
+          <choose><when>
+            <test><in><clip pos="1" side="tl" part="lem"/><list n="skip-obj-lemqverbs"/></in></test>
+            <append n="lemq-skip"><lit-tag v="lemq-skip-obj"/></append>
+          </when></choose>
           <let>
             <var n="out_lemq"/>
             <concat>
