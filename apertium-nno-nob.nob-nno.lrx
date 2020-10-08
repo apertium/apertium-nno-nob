@@ -149,6 +149,42 @@
           <match lemma="skip"/>
         </or>
       </def-seq>
+
+      <def-seq n="animat">
+        <or>
+          <match tags=""/>            <!-- Unknown, presumably proper -->
+          <match tags="prn.pers.*"/>
+          <match tags="np.ant.*"/>
+          <match tags="np.cog"/>
+          <match tags="np.cgguess"/>
+          <match lemma="forfatter"/>
+          <match lemma="kristiansunder"/>
+          <match lemma="president"/>
+          <match lemma="profil"/>
+          <match lemma="prest"/>
+          <match lemma="trener"/>
+          <match lemma="spanjol"/>
+          <match lemma="belgier"/>
+          <match lemma="leder"/>
+          <match lemma="nestleder"/>
+          <match lemma="driftsleder"/>
+          <match lemma="styreleder"/>
+          <match lemma="kommissær"/>
+          <match lemma="veteran"/>
+          <match lemma="direktør"/>
+          <match lemma="brite"/>
+          <match lemma="advokat"/>
+          <match lemma="riksadvokat"/>
+          <match lemma="inspektør"/>
+          <match lemma="politiinspektør"/>
+          <match lemma="minister"/>
+          <match lemma="justisminister"/>
+          <match lemma="rådgiver"/>
+          <match lemma="sekretær"/>
+          <match lemma="statssekretær"/>
+        </or>
+      </def-seq>
+
   </def-seqs>
 
 
@@ -966,7 +1002,18 @@
 
   <rule><match lemma="fortsette" tags="vblex.*"><select lemma="halde# fram"/></match></rule>
   <rule><match lemma="fortsette" tags="adj.*"><select lemma="halde# fram"/></match></rule>
+  <rule weight="2.0">
+    <match lemma=","/>
+    <match lemma="fortsette" tags="vblex.*"><select lemma="seie"/></match>
+    <seq n="animat"/>
+  </rule>
   <!-- Always «halde fram med» before «å»: -->
+  <rule weight="9.0">
+    <match lemma=","/>
+    <match lemma="fortsette" tags="vblex.*"><select lemma="halde# fram med"/></match>
+    <seq n="animat"/>
+    <match lemma="å" tags="part"/>
+  </rule>
   <rule weight="9.0" c="fortsetter å → held fram med å">
     <match lemma="fortsette" tags="vblex.*"><select lemma="halde# fram med"/></match>
     <match lemma="å" tags="part"/>
@@ -1518,7 +1565,12 @@
   </rule>
   <rule><match lemma="eierforhold" tags="n.*"><select lemma="eigarforhold"/></match></rule>
 
+
   <rule><match lemma="motta" tags="vblex.*"><select lemma="få"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="motta" tags="vblex.*"><select lemma="ta# imot"/></match>
+    <match lemma="applaus"/>
+  </rule>
   <rule weight="2.0">
     <match lemma="ha" tags="vblex.*"/>
     <match lemma="motta" tags="vblex.*"><select lemma="få"/></match>
@@ -3002,4 +3054,26 @@
   <rule><match lemma="ventilator" tags="n.*"><select lemma="respirator"/></match></rule>
 
   <rule><match lemma="forhåpentligvis" tags="adv.*"><select lemma="forhåpentleg"/></match></rule>
+
+  <rule><match lemma="fremholde" tags="vblex.*"><select lemma="påpeike"/></match></rule>
+  <rule><match lemma="framholde" tags="vblex.*"><select lemma="påpeike"/></match></rule>
+  <rule><match lemma="fremholde" tags="adj.*"><select lemma="påpeike"/></match></rule>
+  <rule><match lemma="framholde" tags="adj.*"><select lemma="påpeike"/></match></rule>
+
+  <rule><match lemma="avspeile" tags="vblex.*"><select lemma="spegle# seg"/></match></rule>
+  <rule><match lemma="gjenspeile" tags="vblex.*"><select lemma="spegle# seg"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="avspeile" tags="vblex.*"><select lemma="spegle# seg av"/></match>
+    <or>
+      <match lemma="i"/>
+      <match lemma="på"/>
+    </or>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="gjenspeile" tags="vblex.*"><select lemma="spegle# seg av"/></match>
+    <or>
+      <match lemma="i"/>
+      <match lemma="på"/>
+    </or>
+  </rule>
 </lrx>
