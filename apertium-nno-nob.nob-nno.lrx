@@ -150,9 +150,42 @@
         </or>
       </def-seq>
 
-      <def-seq n="animat">
+      <def-seq n="animat_unk">
         <or>
           <match tags=""/>            <!-- Unknown, presumably proper -->
+          <match tags="prn.pers.*"/>
+          <match tags="np.ant.*"/>
+          <match tags="np.cog"/>
+          <match tags="np.cgguess"/>
+          <match lemma="forfatter"/>
+          <match lemma="kristiansunder"/>
+          <match lemma="president"/>
+          <match lemma="profil"/>
+          <match lemma="prest"/>
+          <match lemma="trener"/>
+          <match lemma="spanjol"/>
+          <match lemma="belgier"/>
+          <match lemma="leder"/>
+          <match lemma="nestleder"/>
+          <match lemma="driftsleder"/>
+          <match lemma="styreleder"/>
+          <match lemma="kommissær"/>
+          <match lemma="veteran"/>
+          <match lemma="direktør"/>
+          <match lemma="brite"/>
+          <match lemma="advokat"/>
+          <match lemma="riksadvokat"/>
+          <match lemma="inspektør"/>
+          <match lemma="politiinspektør"/>
+          <match lemma="minister"/>
+          <match lemma="justisminister"/>
+          <match lemma="rådgiver"/>
+          <match lemma="sekretær"/>
+          <match lemma="statssekretær"/>
+        </or>
+      </def-seq>
+      <def-seq n="animat">
+       <or>
           <match tags="prn.pers.*"/>
           <match tags="np.ant.*"/>
           <match tags="np.cog"/>
@@ -1005,13 +1038,13 @@
   <rule weight="2.0">
     <match lemma=","/>
     <match lemma="fortsette" tags="vblex.*"><select lemma="seie"/></match>
-    <seq n="animat"/>
+    <seq n="animat_unk"/>
   </rule>
   <!-- Always «halde fram med» before «å»: -->
   <rule weight="9.0">
     <match lemma=","/>
     <match lemma="fortsette" tags="vblex.*"><select lemma="halde# fram med"/></match>
-    <seq n="animat"/>
+    <seq n="animat_unk"/>
     <match lemma="å" tags="part"/>
   </rule>
   <rule weight="9.0" c="fortsetter å → held fram med å">
