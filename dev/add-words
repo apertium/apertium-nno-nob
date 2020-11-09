@@ -3,6 +3,12 @@
 # Accepts one pair per line, separated by :, nno first, e.g.
 # bustad:bolig
 
+make -q langs
+if [[ $? = 1 ]]; then
+    echo "make -j langs # do this first" 1>&2
+fi
+
+
 tmpd=$(mktemp -dt apertium-add-words.XXXXXXXXXX)
 echo "${tmpd}" >&2
 
