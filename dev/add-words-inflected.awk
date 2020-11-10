@@ -24,6 +24,7 @@ BEGIN {
     for(lang in langs)while(getline<(tmpd"/"lang)){
       gsub(/[$^]/,"")
       for(a=2;a<=NF;a++){
+          if($a~/<cmp>/)continue
         lm=$a;sub(/<.*/,"",lm);
         # Assume only one lemma per mainpos:
              if($a~"<n><m>"nrestrict)       ana[lang]["m"][$1]=lm;
