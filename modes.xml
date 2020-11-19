@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <modes>
   <!-- nob=>nno -->
-  <mode name="nob-nno_e" install="yes" gendebug="yes"> <!-- infinitive verbs ending in -e, with compounding -->
+  <mode name="nob-nno_e" install="yes" gendebug="yes"> <!-- infinitive verbs ending in -e, pron 3pl vi, with compounding -->
     <pipeline>
       <program name="lt-proc -w -e">
         <file name="nob-nno.automorf.bin"/>
@@ -35,7 +35,7 @@
         <file name="nob-nno.t3x.bin"/>
       </program>
       <program name="lt-proc -N1 $1">
-        <file name="nob-nno_e.autogen.bin"/>
+        <file name="nob-nno_e_vi.autogen.bin"/>
       </program>
       <program name="lt-proc -p">
         <file name="nob-nno.autopgen.bin"/>
@@ -43,7 +43,49 @@
     </pipeline>
   </mode>
 
-  <mode name="nob-nno_e-notagger" install="yes" gendebug="yes">
+  <mode name="nob-nno_e_me" install="yes" gendebug="no"> <!-- infinitive verbs ending in -e, pron 3pl me, with compounding -->
+    <pipeline>
+      <program name="lt-proc -w -e">
+        <file name="nob-nno.automorf.bin"/>
+      </program>
+      <program name="cg-proc" debug-suff="seg">
+	<file name="nob-nno.seg.rlx.bin"/>
+      </program>
+      <program name="cg-proc -w">
+	<file name="nob-nno.rlx.bin"/>
+      </program>
+      <program name="apertium-tagger -g $2">
+        <file name="nob-nno.prob"/>
+      </program>
+      <program name="apertium-pretransfer"/>
+      <program name="lt-proc -b">
+        <file name="nob-nno.autobil.bin"/>
+      </program>
+      <program name="lrx-proc -m">
+        <file name="nob-nno.autolex.bin"/>
+      </program>
+      <program name="apertium-transfer -b">
+        <file name="apertium-nno-nob.nob-nno.t1x"/>
+        <file name="nob-nno.t1x.bin"/>
+      </program>
+      <program name="apertium-interchunk">
+        <file name="apertium-nno-nob.nob-nno.t2x"/>
+        <file name="nob-nno.t2x.bin"/>
+      </program>
+      <program name="apertium-postchunk">
+        <file name="apertium-nno-nob.nob-nno.t3x"/>
+        <file name="nob-nno.t3x.bin"/>
+      </program>
+      <program name="lt-proc -N1 $1">
+        <file name="nob-nno_e_me.autogen.bin"/>
+      </program>
+      <program name="lt-proc -p">
+        <file name="nob-nno.autopgen.bin"/>
+      </program>
+    </pipeline>
+  </mode>
+
+  <mode name="nob-nno_e-notagger" install="no" gendebug="no">
     <!--
         Due to https://github.com/apertium/apertium/issues/37 we
         experiment with removing the tagger; but first have to ensure
@@ -79,7 +121,7 @@
         <file name="nob-nno.t3x.bin"/>
       </program>
       <program name="lt-proc -N1 $1">
-        <file name="nob-nno_e.autogen.bin"/>
+        <file name="nob-nno_e_vi.autogen.bin"/>
       </program>
       <program name="lt-proc -p">
         <file name="nob-nno.autopgen.bin"/>
@@ -87,7 +129,7 @@
     </pipeline>
   </mode>
 
-  <mode name="nob-nno" install="yes" gendebug="yes"> <!-- infinitive verbs ending in -a, with compounding -->
+  <mode name="nob-nno" install="yes" gendebug="yes"> <!-- infinitive verbs ending in -a, pron 3pl me, with compounding -->
     <pipeline>
       <program name="lt-proc -w -e">
         <file name="nob-nno.automorf.bin"/>
@@ -121,7 +163,49 @@
         <file name="nob-nno.t3x.bin"/>
       </program>
       <program name="lt-proc -N1 $1">
-        <file name="nob-nno.autogen.bin"/>
+        <file name="nob-nno_a_me.autogen.bin"/>
+      </program>
+      <program name="lt-proc -p">
+        <file name="nob-nno.autopgen.bin"/>
+      </program>
+    </pipeline>
+  </mode>
+
+  <mode name="nob-nno_a_vi" install="yes" gendebug="no"> <!-- infinitive verbs ending in -a, pron 3pl vi, with compounding -->
+    <pipeline>
+      <program name="lt-proc -w -e">
+        <file name="nob-nno.automorf.bin"/>
+      </program>
+      <program name="cg-proc" debug-suff="seg">
+	<file name="nob-nno.seg.rlx.bin"/>
+      </program>
+      <program name="cg-proc -w">
+	<file name="nob-nno.rlx.bin"/>
+      </program>
+      <program name="apertium-tagger -g $2">
+        <file name="nob-nno.prob"/>
+      </program>
+      <program name="apertium-pretransfer"/>
+      <program name="lt-proc -b">
+        <file name="nob-nno.autobil.bin"/>
+      </program>
+      <program name="lrx-proc -m">
+        <file name="nob-nno.autolex.bin"/>
+      </program>
+      <program name="apertium-transfer -b">
+        <file name="apertium-nno-nob.nob-nno.t1x"/>
+        <file name="nob-nno.t1x.bin"/>
+      </program>
+      <program name="apertium-interchunk">
+        <file name="apertium-nno-nob.nob-nno.t2x"/>
+        <file name="nob-nno.t2x.bin"/>
+      </program>
+      <program name="apertium-postchunk">
+        <file name="apertium-nno-nob.nob-nno.t3x"/>
+        <file name="nob-nno.t3x.bin"/>
+      </program>
+      <program name="lt-proc -N1 $1">
+        <file name="nob-nno_a_vi.autogen.bin"/>
       </program>
       <program name="lt-proc -p">
         <file name="nob-nno.autopgen.bin"/>
@@ -169,7 +253,7 @@
   </mode>
 
   <!-- nno=>nno (e-mål vs a-mål) -->
-  <mode name="nno-nno_e" install="yes" gendebug="yes">
+  <mode name="nno-nno_e" install="yes" gendebug="no">
     <pipeline>
       <program name="lt-proc -w">
         <file name="nno-nob.automorf.bin"/>
@@ -182,12 +266,12 @@
       </program>
       <program name="apertium-pretransfer"/>
       <program name="lt-proc -N1 $1">
-        <file name="nob-nno.autogen.bin"/>
+        <file name="nob-nno_e_me.autogen.bin"/>
       </program>
     </pipeline>
   </mode>
 
-  <mode name="nno_e-nno" install="yes" gendebug="yes">
+  <mode name="nno_e-nno" install="yes" gendebug="no">
     <pipeline>
       <program name="lt-proc -w">
         <file name="nno-nob.automorf.bin"/>
@@ -200,7 +284,7 @@
       </program>
       <program name="apertium-pretransfer"/>
       <program name="lt-proc -N1 $1">
-        <file name="nob-nno_e.autogen.bin"/>
+        <file name="nob-nno_a_me.autogen.bin"/>
       </program>
     </pipeline>
   </mode>
