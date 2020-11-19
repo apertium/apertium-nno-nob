@@ -31,7 +31,7 @@ TARGETS_PREFIX1 =                                             \
      $(PREFIX1).t1x.bin $(PREFIX1).t2x.bin $(PREFIX1).t3x.bin \
      $(PREFIX1).autogen.bin
 
-TARGETS_PREFIX2 =                                             \
+TARGETS_PREFIX2_EXCEPTGEN =                                   \
      $(PREFIX2).automorf.bin                                  \
      $(PREFIX2).seg.rlx.bin                                   \
      $(PREFIX2).rlx.bin                                       \
@@ -39,11 +39,14 @@ TARGETS_PREFIX2 =                                             \
      $(PREFIX2).autolex.bin                                   \
      $(PREFIX2).autobil.bin                                   \
      $(PREFIX2).t1x.bin $(PREFIX2).t2x.bin $(PREFIX2).t3x.bin \
-     $(PREFIX2ame).autogen.bin                                \
-     $(PREFIX2evi).autogen.bin                                \
-     $(PREFIX2eme).autogen.bin                                \
-     $(PREFIX2avi).autogen.bin                                \
      $(PREFIX2).autopgen.bin
+
+TARGETS_PREFIX2 =                 \
+     $(TARGETS_PREFIX2_EXCEPTGEN) \
+     $(PREFIX2ame).autogen.bin    \
+     $(PREFIX2evi).autogen.bin    \
+     $(PREFIX2eme).autogen.bin    \
+     $(PREFIX2avi).autogen.bin
 
 $(PREFIX1): $(TARGETS_PREFIX1)
 $(PREFIX2): $(TARGETS_PREFIX2)
@@ -52,7 +55,7 @@ $(PREFIX2): $(TARGETS_PREFIX2)
 e: modes/$(PREFIX1).mode	# build just nob-nno_e
 	cd $(AP_SRC1) && ${MAKE} $(LANG1evi).autogen.bin $(LANG1).autopgen.bin
 	cd $(AP_SRC2) && ${MAKE} $(LANG2).automorf.bin  $(LANG2).seg.rlx.bin $(LANG2).rlx.bin $(LANG2).prob
-	${MAKE} nob-nno
+	${MAKE} $(TARGETS_PREFIX2_EXCEPTGEN) $(PREFIX2evi).autogen.bin
 r: modes/$(PREFIX1).mode $(PREFIX2).autolex.bin $(PREFIX2).t1x.bin $(PREFIX2).t2x.bin $(PREFIX2).t3x.bin # build just transfer and rlx files for nob-nno(_e)
 	cd $(AP_SRC2) && ${MAKE} $(LANG2).seg.rlx.bin $(LANG2).rlx.bin
 	${MAKE} $(PREFIX2).seg.rlx.bin $(PREFIX2).rlx.bin
