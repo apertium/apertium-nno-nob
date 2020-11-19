@@ -17,7 +17,7 @@ before_script:
 
 # The apertium/diff steps below are temporary
 script:
-    - ( cd /tmp/apertium-nno && make -j nno.autogen.bin nno_e.autogen.bin )
+    - ( cd /tmp/apertium-nno && make -j nno.autogen.bin nno_e_vi.autogen.bin )
     - make -j e
     - apertium -d . nob-nno_e < t/ntb/articles.orig.nob > t/ntb/articles.nob-nno
     - diff -U0 t/ntb/articles.nob-nno.mt-latest t/ntb/articles.nob-nno | dwdiff --diff-input -c | grep -v "@@.*@@" || true
