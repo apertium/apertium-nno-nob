@@ -6,11 +6,12 @@ apertium-nno-nob
 This is an Apertium language pair for translating between Norwegian
 Nynorsk and Norwegian Bokmål. What you can use this language package for:
 
-* Translating between Nynorsk and Bokmål
- * Includes a Nynorsk "e-mål" variant, nno_e (the default, nno, is "a-mål"),
-   also allows for translating between these variants
- * Includes variants for selecting between "vi" or "me" as third
-   person plural pronoun
+* Translating between Nynorsk and Bokmål, including variants:
+    * Default nynorsk variant `nno` is "a-mål" with third person
+      plural "me"
+    * Nynorsk "e-mål" with third person plural "vi": `nno_e`
+    * Nynorsk "e-mål" with third person plural "me": `nno_e_me`
+    * Nynorsk "a-mål" with third person plural "vi": `nno_a_vi`
 * Morphological analysis of Nynorsk and Bokmål
 * Part-of-speech tagging of Nynorsk and Bokmål
 
@@ -78,7 +79,7 @@ Files and data
 ===============================================================================
 
 | File name                    | Description                                            |
-|------------------------------+--------------------------------------------------------|
+| ---------------------------- | ------------------------------------------------------ |
 | apertium-nno-nob.nno-nob.dix | Bilingual dictionary (bidirectional)                   |
 | apertium-nno-nob.nno-nob.lrx | Lexical selection rules for translating into Bokmål    |
 | apertium-nno-nob.nno-nob.t1x | Chunking transfer rules for translating into Bokmål    |
