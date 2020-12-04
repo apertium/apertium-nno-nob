@@ -3136,4 +3136,10 @@
   </rule>
 
   <rule><match lemma="nybegynner" tags="n.*"><select lemma="nybyrjar"/></match></rule>
+
+  <rule><match lemma="ratio" tags="n.*"><select lemma="ratio"/></match></rule>
+  <rule weight="2.0" c="midje-hofte-ratio">
+    <match tags="n.*.cmp"/>
+    <match lemma="ratio" tags="n.*"><select lemma="forhold"/></match>
+  </rule>
 </lrx>
