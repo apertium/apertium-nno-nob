@@ -921,6 +921,25 @@
       <list-item v="mellombels"/>
     </def-list>
 
+    <def-list n="gen-til-objoverride" c="This list checked before the generated unigram obj lists (but bi-gen-lists may override it).
+                                         We typically want 'til' for animate owners, e.g. sjefen til kvinna (but kvinnenes løp → løpet for kvinnene)">
+      <list-item v="hoppar"/>
+      <list-item v="kvinne"/>
+      <list-item v="mann"/>
+      <list-item v="statsråd"/>
+      <list-item v="ombod"/>
+      <list-item v="bilist"/>
+      <list-item v="forelder"/>
+      <list-item v="president"/>
+      <list-item v="justisminister"/>
+      <list-item v="arrangør"/>
+      <list-item v="arrangør"/>
+      <list-item v="løpar"/>
+      <list-item v="lege"/>
+      <list-item v="klient"/>
+      <list-item v="kvinne"/>
+
+    </def-list>
 
     <def-list n="bi-gen-til" c="This list checked before the generated bigram-lists and unigram lists,
                                 for overriding back to «til»">
@@ -931,15 +950,6 @@
       <list-item v="økonomi_sentralbank"/>
       <list-item v="arbeid_utval"/>
       <list-item v="forbund_bansje"/>
-      <list-item v="skrivebord_statsråd"/>
-      <list-item v="bord_statsråd"/>
-      <list-item v="kontor_statsråd"/>
-      <list-item v="skrivebord_ombod"/>
-      <list-item v="bord_ombod"/>
-      <list-item v="kontor_ombod"/>
-      <list-item v="elev_mann"/>
-      <list-item v="sjef_hoppar"/>
-      <list-item v="sportssjef_hoppar"/>
       <list-item v="heimeside_liga"/>
       <list-item v="heimeside_parti"/>
       <list-item v="heimeside_bransje"/>
@@ -965,14 +975,8 @@
       <list-item v="nettstad_bransje"/>
       <list-item v="nettstad_senter"/>
       <list-item v="nettstad_aksjon"/>
-      <list-item v="åtferd_bilist"/>
       <list-item v="tre_bispedømmeråd"/>
-      <list-item v="trygd_forelder"/>
-      <list-item v="tale_president"/>
       <list-item v="penge_stat"/>
-      <list-item v="samandrag_justisminister"/>
-      <list-item v="ansvar_arrangør"/>
-      <list-item v="arbeidsgiveransvar_arrangør"/>
       <list-item v="stilling_kaffi"/>
       <list-item v="funksjon_hjerne"/>
       <list-item v="statistikk_bransje"/>
@@ -988,11 +992,6 @@
       <list-item v="konklusjon_kommisjon"/>
       <list-item v="naturskadefond_stat"/>
       <list-item v="fond_stat"/>
-      <list-item v="tid_løpar"/>
-      <list-item v="tid_lege"/>
-      <list-item v="sak_klient"/>
-      <list-item v="sak_mann"/>
-      <list-item v="sak_kvinne"/>
       <list-item v="verdi_stat"/>
       <list-item v="kamp_parti"/>
       <list-item v="sjanse_lag"/>
@@ -1010,6 +1009,10 @@
       <list-item v="medlem_parti"/>
       <list-item v="medlem_klubb"/>
       <list-item v="medlem_test"/>
+      <list-item v="medlem_råd"/>
+      <list-item v="medlem_statsråd"/>
+      <list-item v="medlem_fylkesråd"/>
+      <list-item v="leiar_provinsråd"/>
       <list-item v="eigar_skule"/>
       <list-item v="eigar_selskap"/>
       <list-item v="eigar_klubb"/>
@@ -1027,6 +1030,7 @@
       <list-item v="undersøking_råd"/>
       <list-item v="bodskap_leiar"/>
       <list-item v="tilbod_land"/>
+      <list-item v="råd_ekspert"/>
     </def-list>
     <def-list n="bi-gen-på2" c="Override generated lists">
       <list-item v="spelar_lag"/>
@@ -1161,8 +1165,10 @@
 	<list-item v="leiar_studie"/>
 	<list-item v="leiar_styre"/>
 	<list-item v="liga_herre"/>
+	<list-item v="liga_dame"/>
 	<list-item v="likning_selskap"/>
 	<list-item v="løp_mann"/>
+	<list-item v="løp_kvinne"/>
 	<list-item v="mandat_politikk"/>
 	<list-item v="meisterskap_kvinne"/>
 	<list-item v="meisterskap_mann"/>
@@ -1199,10 +1205,13 @@
 	<list-item v="skulegang_barn"/>
 	<list-item v="skuleår_elev"/>
 	<list-item v="slalåmrenn_mann"/>
+	<list-item v="slalåmrenn_kvinne"/>
 	<list-item v="sluttspel_herre"/>
 	<list-item v="snø_framtid"/>
 	<list-item v="stafett_herre"/>
 	<list-item v="stafett_mann"/>
+	<list-item v="stafett_dame"/>
+	<list-item v="stafett_kvinne"/>
 	<list-item v="stasjon_by"/>
 	<list-item v="statuett_år"/>
 	<list-item v="stilling_kvinne"/>
@@ -1213,7 +1222,9 @@
 	<list-item v="talsmann_selskap"/>
 	<list-item v="talsperson_departement"/>
 	<list-item v="topp_gut"/>
+	<list-item v="toppserie_mann"/>
 	<list-item v="toppserie_kvinne"/>
+	<list-item v="trekning_mann"/>
 	<list-item v="trekning_kvinne"/>
 	<list-item v="utdanning_lærar"/>
 	<list-item v="utfordring_velferdsstat"/>
@@ -1372,9 +1383,11 @@
 	<list-item v="nedgang_parti"/>
 	<list-item v="vilje_folk"/>
 	<list-item v="yrkesdeltaking_kvinne"/>
+	<list-item v="yrkesdeltaking_mann"/>
 </def-list>
 
 <def-list n="bi-gen-i">
+	<list-item v="ekspert_råd"/>
 	<list-item v="administrasjon_klubb"/>
 	<list-item v="administrator_rett"/>
 	<list-item v="aksje_selskap"/>
@@ -2284,7 +2297,8 @@
     </def-macro>
 
     <def-macro n="bigram_genprep" npar="1"
-               c="arg.1: possibly owned noun. Helper for stash_case_in_ntags">
+               c="arg.1: possibly owned noun. Helper for stash_case_in_ntags
+                  See also out_gen-prep which outputs a preposition chunk (which may be overridden by t2x using the chunk tag set by this macro)">
       <!-- TODO: More general handling of owned keepgenx: -->
       <choose><when>
         <test><in caseless="yes"><clip pos="1" side="tl" part="lemh"/><list n="keepgenx"/></in></test>
@@ -2334,6 +2348,8 @@
         <when><test><in><var n="bilem"/><list n="bi-gen-unna"/></in></test><append n="ntags"><lit-tag v="pr_unna"/></append></when>
         <when><test><in><var n="bilem"/><list n="bi-gen-ut"/></in></test><append n="ntags"><lit-tag v="pr_ut"/></append></when>
         <when><test><in><var n="bilem"/><list n="bi-gen-ved"/></in></test><append n="ntags"><lit-tag v="pr_ved"/></append></when>
+        <!-- This one overrides obj-gen-lists, but bi-gen-lists above take preference: -->
+        <when><test><in><var n="prevlem"/><list n="gen-til-objoverride"/></in></test><append n="ntags"><lit-tag v="pr_til"/></append></when>
         <otherwise>
           <let><var n="lemma"/><clip pos="1" side="tl" part="lem"/></let>
           <modify-case><var n="lemma"/><lit v="aa"/></modify-case>
@@ -2838,7 +2854,8 @@
     </def-macro>
 
     <def-macro n="out_gen-prep" npar="1"
-               c="arg.1: noun. Only acts on genitives. Adds a space after.">
+               c="arg.1: noun. Only acts on genitives. Adds a space after.
+                  See also bigram_genprep which puts a prep-tag on the _chunk_ which may be used to change this one in t2x.">
       <let><var n="lemma"/><clip pos="1" side="tl" part="lemh"/></let>
       <modify-case><var n="lemma"/><lit v="aa"/></modify-case>
       <choose><when c="gen">
