@@ -1,0 +1,40 @@
+#!/bin/bash
+
+set -e -u
+
+if ! command -v dwdiff >/dev/null; then
+    echo 'Please install dwdiff'
+    exit 1
+fi
+if ! command -v calc >/dev/null; then
+    echo 'Please install calc'
+    exit 1
+fi
+
+clear
+
+b=$1
+a=$2
+
+s=
+if [[ $# -gt 2 ]]; then
+    s=$3
+fi
+
+while true; do
+    if [[ -f "$a" && -f "$b" ]];then
+        H=$(calc -p "min($(wc -l <"$b"), $(wc -l <"$a"))") &&
+            clear &&
+            echo "diff on first $H lines:" &&
+            diff -U0 <(head -"$H" "$b" | tr -d '*' ) <(head -"$H" "$a"|tr -d '*' ) \
+                | dwdiff -c -u -d " ^.:?!/\\[]{}()-," --aggregate-changes \
+                | { grep -ve ^@@ || true; }
+    else
+        echo "file(s) empty"
+    fi
+    if [[ -n "$s" ]]; then
+        sleep "$s"
+    else
+        break
+    fi
+done
