@@ -12,6 +12,15 @@ BEGIN {
     FS="/"
     langs["nno"]++
     langs["nob"]++
+    for(lang in langs) {        # initialize so awk doesn't type-fail
+        ana[lang]["m"][""]++; delete ana[lang]["m"][""]
+        ana[lang]["f"][""]++; delete ana[lang]["f"][""]
+        ana[lang]["nt"][""]++; delete ana[lang]["nt"][""]
+        ana[lang]["v"][""]++; delete ana[lang]["v"][""]
+        ana[lang]["as"][""]++; delete ana[lang]["as"][""]
+        ana[lang]["an"][""]++; delete ana[lang]["an"][""]
+        ana[lang]["av"][""]++; delete ana[lang]["av"][""]
+    }
     for(lang in langs)while(getline<(tmpd"/"lang)){
       gsub(/[$^]/,"")
       for(a=2;a<=NF;a++){
