@@ -1,0 +1,61 @@
+#!/bin/bash
+
+set -e -u
+
+for dep in dwdiff calc; do
+    if ! command -v "${dep}" >/dev/null; then
+        echo "Please install ${dep}" >&2
+        exit 1
+    fi
+done
+
+if [[ $# -lt 2 ]]; then
+    cat <<EOF
+ERROR: Please supply two file names.
+
+USAGE:
+
+$ $0 before.txt after.txt
+
+to view word-differences between before.txt and after.txt, or
+
+$ $0 before.txt after.txt 7
+
+to keep showing updated word-differences between before.txt and after.txt
+every 7 seconds (for example).
+
+The files may be of different lengths – this program will only show
+differences in the first N lines where N is the shortest of the
+line-lengths of the files. So you can run corpus tests in one terminal
+and use this program in a different terminal to view in-progress
+results as they happen.
+EOF
+    exit 1
+fi
+
+b=$1
+a=$2
+
+s=
+if [[ $# -gt 2 ]]; then
+    s=$3
+fi
+
+clear
+while true; do
+    if [[ -f "$a" && -f "$b" ]];then
+        H=$(calc -p "min($(wc -l <"$b"), $(wc -l <"$a"))") &&
+            clear &&
+            echo "diff on first $H lines:" &&
+            diff -U0 <(head -"$H" "$b" | tr -d '*' ) <(head -"$H" "$a"|tr -d '*' ) \
+                | dwdiff -c -u -d " ^.:?!/\\[]{}()-," --aggregate-changes \
+                | { grep -ve ^@@ || true; }
+    else
+        echo "file(s) empty"
+    fi
+    if [[ -n "$s" ]]; then
+        sleep "$s"
+    else
+        break
+    fi
+done
