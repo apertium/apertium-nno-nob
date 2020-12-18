@@ -427,15 +427,9 @@
   </rule>
 
   <rule> <match lemma="anklage" tags="vblex.*"> <select lemma="skylde"/> </match> </rule>
-  <rule weight="2.0">
-    <match lemma="anklage" tags="vblex.*.sg.*">
-      <select lemma="tiltale"/>
-    </match>
-    <or>
-      <match lemma="lyde"/>
-      <match lemma="for"/>
-    </or>
-  </rule>
+  <rule> <match lemma="anklage" tags="vblex.*"> <select lemma="skulde"/> </match> </rule>
+  <rule> <match lemma="anklage" tags="adj.*"> <select lemma="skylde"/> </match> </rule>
+  <rule> <match lemma="anklage" tags="adj.*"> <select lemma="skulde"/> </match> </rule>
 
   <rule> <match lemma="trygghet" tags="n.*"> <select lemma="tryggleik"/> </match> </rule>
 
@@ -1270,6 +1264,7 @@
   </rule>
   <rule><match lemma="erklæring" tags="n.*"><select lemma="erklæring"/></match></rule>
   <rule><match lemma="beskylde" tags="vblex.*"><select lemma="skylde"/></match></rule>
+  <rule><match lemma="beskylde" tags="vblex.*"><select lemma="skulde"/></match></rule>
   <rule><match lemma="likegyldighet" tags="n.*"><select lemma="likegyldigheit"/></match></rule>
   <rule><match lemma="skue" tags="n.*"><select lemma="syn"/></match></rule>
   <rule><match lemma="erfare" tags="vblex.*"><select lemma="erfare"/></match></rule>
@@ -3142,4 +3137,21 @@
     <match tags="n.*.cmp"/>
     <match lemma="ratio" tags="n.*"><select lemma="forhold"/></match>
   </rule>
+
+  <rule>
+    <match lemma="fryktinngytende" tags="adj.*"><select lemma="skremmande"/></match>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="fryktinngytende" tags="adj.*"><select lemma="skremmande god"/></match>
+    <match lemma="form"/>
+  </rule>
+
+  <rule><match lemma="hva" tags="prn.*"><select lemma="kva"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="i"/>
+    <match lemma="strid"/>
+    <match lemma="med"/>
+    <match lemma="hva" tags="prn.itg"><select lemma="det"/></match>
+  </rule>
+
 </lrx>
