@@ -1,0 +1,19 @@
+#!/bin/bash
+
+set -e -u
+
+if [[ $# -ne 2 ]]; then
+    cat <<EOF
+Example usage: $0 nob-nno_e dokument.pdf > nynorskdokument.html
+EOF
+    exit 1
+fi
+
+d="$(mktemp -d -t omset-pdf.XXXXXXXX)"
+trap 'rm -rf "$d"' EXIT
+
+cp "$2" "$d/"
+cd "$d"
+pdftohtml "$2" > log.txt
+infile="${2%.*}"
+apertium -f html "$1" < "${infile}s.html"
