@@ -638,6 +638,7 @@
       <cat-item lemma="beste" tags="n.*.sg.ind"/> <!-- gir sitt beste -->
       <cat-item lemma="ordre" tags="n.*.pl.ind"/>
       <cat-item lemma="hjerte" tags="n.*.ind"/> <!--av hele sitt hjerte-->
+      <cat-item lemma="form" tags="n.*.ind"/> <!--i sin beste form-->
       <cat-item lemma="person" tags="n.*.sg.ind"/>
       <cat-item lemma="gang" tags="n.*.sg.ind"/>
       <cat-item lemma="vilje" tags="n.*.sg.ind"/>
@@ -4501,6 +4502,54 @@
           <chunk name="n">
             <tags><tag><clip pos="2" side="tl" part="tags"/></tag></tags>
             <lu><clip pos="2" side="tl" part="whole"/></lu>
+          </chunk>
+        </out>
+      </action>
+    </rule>
+    <rule comment="DETPOS ADJ N_KEEP_SIN: sin beste form → sin beste form
+                   Tell t2x to not use DETPOS NIND → NDEF DETPOS rule.">
+      <pattern>
+        <pattern-item n="detpos"/>
+        <pattern-item n="adj"/>
+        <pattern-item n="n_keep_sin"/>
+      </pattern>
+      <action>
+        <choose>
+          <when>
+            <test><and>
+              <or>
+                <equal><clip pos="3" side="tl" part="gen"/><lit-tag v="m"/></equal>
+                <equal><clip pos="3" side="tl" part="gen"/><lit-tag v="f"/></equal>
+                <equal><clip pos="3" side="tl" part="gen"/><lit-tag v="nt"/></equal>
+              </or>
+              <not><equal><clip pos="3" side="tl" part="nbr"/><lit-tag v="pl"/></equal></not>
+              <not><equal><clip pos="1" side="tl" part="nbr"/><lit-tag v="pl"/></equal></not>
+            </and></test>
+            <let><clip pos="1" side="tl" part="gen"/><clip pos="3" side="tl" part="gen"/></let>
+          </when>
+        </choose>
+        <let><var n="c_name"/><lit v="adj_n"/></let>
+        <call-macro n="set_gender2.n.adj"><with-param pos="3"/><with-param pos="2"/></call-macro>
+        <call-macro n="set_grau_aux1"><with-param pos="2"/></call-macro>
+        <out>
+          <chunk name="detpos-keep">
+            <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
+            <lu><clip pos="1" side="tl" part="whole"/></lu>
+          </chunk>
+          <b pos="1"/>
+          <chunk namefrom="c_name" case="caseFirstWord">
+            <tags>
+              <tag><lit-tag v="timemeas"/></tag>
+              <tag><clip pos="3" side="tl" part="tags"/></tag>
+            </tags>
+            <var n="grau_aux"/>
+            <lu>
+              <clip pos="2" side="tl" part="lemh"/>
+              <clip pos="2" side="tl" part="tags"/>
+              <clip pos="2" side="tl" part="lemq"/>
+            </lu>
+            <b pos="2"/>
+            <lu><clip pos="3" side="tl" part="whole"/></lu>
           </chunk>
         </out>
       </action>
