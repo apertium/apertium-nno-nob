@@ -520,6 +520,10 @@
     <def-cat n="adj">
       <cat-item tags="adj.*"/>
     </def-cat>
+    <def-cat n="adjsup">
+      <cat-item tags="adj.*.sup.*"/>
+      <cat-item tags="adj.sup.*"/>
+    </def-cat>
     <def-cat n="preadj-adv">
       <cat-item lemma="ikke" tags="adv"/>
       <cat-item lemma="for" tags="adv"/>
@@ -4506,12 +4510,12 @@
         </out>
       </action>
     </rule>
-    <rule comment="DETPOS ADJ N_KEEP_SIN: sin beste form → sin beste form
+    <rule comment="DETPOS ADJSUP NIND: sin beste form → sin beste form
                    Tell t2x to not use DETPOS NIND → NDEF DETPOS rule.">
       <pattern>
         <pattern-item n="detpos"/>
-        <pattern-item n="adj"/>
-        <pattern-item n="n_keep_sin"/>
+        <pattern-item n="adjsup"/>
+        <pattern-item n="nind_indgen"/>
       </pattern>
       <action>
         <choose>
@@ -4539,7 +4543,6 @@
           <b pos="1"/>
           <chunk namefrom="c_name" case="caseFirstWord">
             <tags>
-              <tag><lit-tag v="timemeas"/></tag>
               <tag><clip pos="3" side="tl" part="tags"/></tag>
             </tags>
             <var n="grau_aux"/>
