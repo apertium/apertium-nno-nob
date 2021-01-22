@@ -206,6 +206,10 @@
     <def-cat n="detqntpl">
       <cat-item tags="det.qnt.*.pl"/>
     </def-cat>
+    <def-cat n="detqntpl_def">
+      <cat-item tags="det.qnt.*.pl"/>
+      <cat-item tags="det.qnt.*.def"/> <!-- ene→eine -->
+    </def-cat>
     <def-cat n="detqntunpl">
       <cat-item tags="det.qnt.un.pl"/>
     </def-cat>
@@ -703,6 +707,28 @@
     </def-macro>
 
     <!-- Output macros: -->
+    <def-macro n="out_det" npar="2"
+               c="arg.1: adj_n or det chunk, arg.2: gives typographic case to adj/det
+                  Outputs a space afterwards.">
+      <call-macro n="set_det_gender1.n"><with-param pos="1"/></call-macro>
+      <out>
+        <chunk>
+          <get-case-from pos="1"><lit v="det"/></get-case-from>
+          <lit-tag v="det.dem"/>
+          <var n="det_gender"/>
+          <var n="number_no_sp"/>
+          <lit v="{^"/>
+          <get-case-from pos="1"><lit v="den"/></get-case-from>
+          <lit-tag v="det.dem"/>
+          <var n="det_gender"/>
+          <var n="number_no_sp"/>
+          <lit v="$}"/>
+        </chunk>
+        <b/>
+      </out>
+      <let><clip pos="1" part="lemh"/><get-case-from pos="2"><clip pos="1" part="lemh"/></get-case-from></let>
+    </def-macro>
+
     <def-macro n="out_det_when_adjlike" npar="2"
                c="arg.1: adj_n or det chunk, arg.2: gives typographic case to adj/det
                   Outputs a space afterwards.">
@@ -713,22 +739,7 @@
           <begins-with caseless="yes"><clip pos="1" part="lemh"/><lit v="needdet_"/></begins-with>
           <begins-with caseless="yes"><clip pos="1" part="tags"/><lit-tag v="det.qnt"/></begins-with>
         </or></test>
-        <out>
-          <chunk>
-            <get-case-from pos="1"><lit v="det"/></get-case-from>
-            <lit-tag v="det.dem"/>
-            <var n="det_gender"/>
-            <var n="number_no_sp"/>
-            <lit v="{^"/>
-            <get-case-from pos="1"><lit v="den"/></get-case-from>
-            <lit-tag v="det.dem"/>
-            <var n="det_gender"/>
-            <var n="number_no_sp"/>
-            <lit v="$}"/>
-          </chunk>
-          <b/>
-        </out>
-        <let><clip pos="1" part="lemh"/><get-case-from pos="2"><clip pos="1" part="lemh"/></get-case-from></let>
+        <call-macro n="out_det"><with-param pos="1"/><with-param pos="2"/></call-macro>
       </when></choose>
     </def-macro>
 
@@ -2047,6 +2058,24 @@
           <b pos="1"/>
           <chunk><clip pos="1" part="whole"/></chunk>
         </out>
+      </action>
+    </rule>
+    <rule comment="DETPOS DETQNT NIND_NOGEN: sine fire barn → dei fire barna sine">
+      <pattern>
+        <pattern-item n="detpos"/>
+        <pattern-item n="detqntpl_def"/>
+        <pattern-item n="nind_nogen"/>
+      </pattern>
+      <action>
+        <call-macro n="set_ana"><with-param pos="3"/></call-macro>
+        <call-macro n="switch_cases"><with-param pos="3"/><with-param pos="1"/></call-macro>
+
+        <call-macro n="out_det"><with-param pos="3"/><with-param pos="1"/></call-macro>  <!-- dei -->
+        <out><chunk><clip pos="2" part="whole"/></chunk><b pos="1"/></out>               <!-- fire -->
+        <call-macro n="out_ndef"><with-param pos="3"/><with-param pos="1"/></call-macro> <!-- barna -->
+
+        <call-macro n="modify_det_gender2.n.det"><with-param pos="3"/><with-param pos="1"/></call-macro>
+        <out><b pos="2"/><chunk><clip pos="1" part="whole"/></chunk></out>               <!-- sine -->
       </action>
     </rule>
 
