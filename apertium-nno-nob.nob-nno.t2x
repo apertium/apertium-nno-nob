@@ -181,6 +181,9 @@
     <def-cat n="sin">
       <cat-item lemma="detsin" tags="det.pos.*"/>
     </def-cat>
+    <def-cat n="cnjsub">
+      <cat-item lemma="cnjsub" tags="cnjsub"/>
+    </def-cat>
     <def-cat n="detpos_keep">
       <cat-item lemma="detpos-keep" tags="det.pos.*"/>
     </def-cat>
@@ -2769,6 +2772,22 @@
           </or></test>
           <call-macro n="set_ana"><with-param pos="2"/></call-macro>
         </when></choose>
+        <out>
+          <chunk><clip pos="1" part="whole"/></chunk>
+          <b pos="1"/>
+          <chunk><clip pos="2" part="whole"/></chunk>
+        </out>
+      </action>
+    </rule>
+
+    <rule comment="NIND CNJSUB: bomullspinner som → bomullspinnar som
+                   set_ana even if indefinite if following word is 'som'">
+      <pattern>
+        <pattern-item n="nind"/>
+        <pattern-item n="cnjsub"/>
+      </pattern>
+      <action>
+        <call-macro n="set_ana"><with-param pos="1"/></call-macro>
         <out>
           <chunk><clip pos="1" part="whole"/></chunk>
           <b pos="1"/>
