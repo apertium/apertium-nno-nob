@@ -3315,4 +3315,10 @@
     <match tags="n.*.cmp"/>
     <match lemma="rettighetsforkjemper" tags="n.*"><select lemma="rettsforkjempar"/></match>
   </rule>
+
+  <rule><match lemma="splittelse" tags="n.*"><select lemma="usemje"/></match></rule>
+  <rule weight="2.0">
+    <match tags="n.*.cmp"><select lemma="splitting"/></match>
+    <match lemma="splittelse" tags="n.*"><select lemma="splitting"/></match> <!-- eller er usemje betre i cmp òg? -->
+  </rule>
 </lrx>
