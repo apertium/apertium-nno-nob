@@ -3191,6 +3191,94 @@
     <match lemma="fryktinngytende" tags="adj.*"><select lemma="skremmande god"/></match>
     <match lemma="form"/>
   </rule>
+  
+  <!-- BEGIN: uforbeholden -->
+  <rule>
+    <match lemma="uforbeholden" tags="adj.*"><select lemma="atterhaldslaus"/></match>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="uforbeholdent" tags="adv.*"><select lemma="utan atterhald"/></match>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="uforbeholden" tags="adj.*"><select lemma="utvitydig"/></match>
+	<or>
+      <match lemma="unnskyldning" tags="n.*"/>
+      <match lemma="beklagelse" tags="n.*"/>
+	</or>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="uforbeholden" tags="adj.*"><select lemma="reservasjonslaus"/></match>
+	<or>
+      <match lemma="tilståelse" tags="n.*"/>
+      <match lemma="innrømmelse" tags="n.*"/>
+      <match lemma="løfte" tags="n.*"/>
+	</or>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="uforbeholden" tags="adj.*"><select lemma="heilhjarta"/></match>
+	<or>
+      <match lemma="støtte" tags="n.*"/>
+      <match lemma="erklæring" tags="n.*"/>
+      <match lemma="støtteerklæring" tags="n.*"/>
+      <match lemma="kjærlighetserklæring" tags="n.*"/>
+      <match lemma="tillitserklæring" tags="n.*"/>
+	</or>
+  </rule>
+  <!-- END: uforbeholden -->
+
+  <!-- BEGIN: beklagelse -->  
+  <rule weight="2.5">
+    <match lemma="uttrykke"/>
+    <match lemma="beklagelse" tags="n.*"><select lemma="misnøye"/></match>
+	<match lemma="over"><select lemma="med"/></match>
+  </rule>
+  <rule weight="2.3">
+    <match lemma="uttrykk"/>
+    <match lemma="for"/>
+    <match lemma="beklagelse" tags="n.*"><select lemma="misnøye"/></match>
+	<match lemma="over"><select lemma="med"/></match>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="en"/>
+    <match lemma="beklagelse" tags="n.*"><select lemma="unnskyldning"/></match>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="beklagelse" tags="n.*"><select lemma="unnskyldning"/></match>
+	<or>
+      <match lemma="over"><select lemma="for"/></match>
+      <match lemma="for"/>
+	</or>
+  </rule>
+  <rule weight="1.5">
+    <match lemma="beklagelse" tags="n.*"><select lemma="unnskyldning"/></match>
+    <match lemma="til"/>
+  </rule>
+  <rule weight="3.0">
+	<or>
+      <match tags="adv.*"/>
+	  <match tags="adj.*"/>
+	</or>
+    <match lemma="med"/>
+    <match lemma="beklagelse" tags="n.*"><select lemma="unnskyldning"/></match>
+  </rule>
+  <rule weight="1.2">
+    <match lemma="med"/>
+    <match lemma="beklagelse" tags="n.*"><select lemma="vemod"/></match>
+  </rule>
+  <rule weight="1.0">
+    <match lemma="med"/>
+	<or>
+      <match lemma="stor"/>
+      <match lemma="sterk"/>
+      <match lemma="dyp"/>
+      <match lemma="enorm"/>
+	</or>
+    <match lemma="beklagelse" tags="n.*"><select lemma="sorg"/></match>
+  </rule>
+  <rule weight="0.3">
+    <match lemma="beklagelse" tags="n.*"><select lemma="unnskyldning"/>
+  </match></rule>
+  <!-- END: beklagelse -->  
 
   <rule><match lemma="hva" tags="prn.*"><select lemma="kva"/></match></rule>
   <rule weight="2.0">
@@ -3226,5 +3314,11 @@
   <rule weight="2.0">
     <match tags="n.*.cmp"/>
     <match lemma="rettighetsforkjemper" tags="n.*"><select lemma="rettsforkjempar"/></match>
+  </rule>
+
+  <rule><match lemma="splittelse" tags="n.*"><select lemma="usemje"/></match></rule>
+  <rule weight="2.0">
+    <match tags="n.*.cmp"><select lemma="splitting"/></match>
+    <match lemma="splittelse" tags="n.*"><select lemma="splitting"/></match> <!-- eller er usemje betre i cmp òg? -->
   </rule>
 </lrx>
