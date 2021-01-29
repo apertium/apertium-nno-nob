@@ -5996,7 +5996,10 @@ no lemq-moving">
         <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
         <out>
           <chunk name="cnjsub" case="caseFirstWord">
-            <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
+            <tags>
+              <tag><clip pos="1" side="tl" part="tags"/></tag>
+              <tag><concat><lit v="&lt;"/><clip pos="1" side="tl" part="lemh"/><lit v="&gt;"/></concat></tag>
+            </tags>
             <lu><clip pos="1" side="tl" part="whole"/></lu>
           </chunk>
         </out>
