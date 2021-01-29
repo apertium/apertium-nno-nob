@@ -39,7 +39,8 @@ TARGETS_PREFIX2_EXCEPTGEN =                                   \
      $(PREFIX2).autolex.bin                                   \
      $(PREFIX2).autobil.bin                                   \
      $(PREFIX2).t1x.bin $(PREFIX2).t2x.bin $(PREFIX2).t3x.bin \
-     $(PREFIX2).autopgen.bin
+     $(PREFIX2).autopgen.bin                                  \
+     $(PREFIX2).biprefs.rlx.bin
 
 TARGETS_PREFIX2 =                 \
      $(TARGETS_PREFIX2_EXCEPTGEN) \
@@ -140,6 +141,12 @@ $(PREFIX2).autobil.bin: $(BASENAME).$(PREFIX1).dix
 	apertium-validate-dictionary $<
 	lt-comp rl $< $@
 
+###############################################################################
+## Variant preferences
+###############################################################################
+
+$(PREFIX2).biprefs.rlx.bin: $(BASENAME).$(PREFIX2).biprefs.rlx
+	cg-comp $< $@
 
 ###############################################################################
 ## Lexical selection rules
