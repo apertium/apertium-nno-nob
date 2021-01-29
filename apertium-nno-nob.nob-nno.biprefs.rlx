@@ -1,0 +1,29 @@
+#
+# Bilingual dictionary preference rules.
+#
+# We expect stream variables to set or remove variables with naming
+# scheme "VAR:default_override", where "override" is chosen if set,
+# otherwise "default" is chosen. For any "default", there may be
+# multiple possible "override"''s.
+
+DELIMITERS = ".";
+
+
+SELECT:forskjell_skilnad   ("skilnad") IF (0 ("forskjell") + (VAR:forskjell_skilnad));
+REMOVE:forskjell_forskjell ("skilnad") IF (0 ("forskjell"));
+
+SELECT:samd_einig ("einig") IF (0 ("samd") + (VAR:samd_einig));
+REMOVE:samd_samd  ("einig") IF (0 ("samd"));
+SELECT:samd_einig ("ueinig") IF (0 ("usamd") + (VAR:samd_einig));
+REMOVE:samd_samd  ("ueinig") IF (0 ("usamd"));
+
+# $ cg-comp biprefs.nob-nno.rlx biprefs.nob-nno.rlx.bin && echo '[<STREAMCMD:SETVAR:forskjell_skilnad,samd_einig>]^forskjell<n><m><sg><ind>/forskjell<n><m><sg><ind>/skilnad<n><m><sg><ind>$ ^enig<adj><sint><pst><nt><sg><ind>/samd<adj><sint><pst><nt><sg><ind>/einig<adj><sint><pst><nt><sg><ind>$' | ~/src/ap/vislcg3/src/cg-proc -t biprefs.nob-nno.rlx.bin |cg-conv
+# Sections: 0, Rules: 4, Sets: 10, Tags: 22
+# [<STREAMCMD:SETVAR:forskjell_skilnad,samd_einig>]
+# "<forskjell>" n m sg ind
+#         "skilnad" n m sg ind SELECT:12:forskjell_skilnad
+#         "¬forskjell" n m sg ind SELECT:12:forskjell_skilnad
+# "<enig>" adj sint pst nt sg ind
+#         "einig" adj sint pst nt sg ind SELECT:15:samd_einig
+#         "¬samd" adj sint pst nt sg ind SELECT:15:samd_einig
+
