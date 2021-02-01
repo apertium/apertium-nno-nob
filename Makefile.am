@@ -40,7 +40,8 @@ TARGETS_PREFIX2_EXCEPTGEN =                                   \
      $(PREFIX2).autobil.bin                                   \
      $(PREFIX2).t1x.bin $(PREFIX2).t2x.bin $(PREFIX2).t3x.bin \
      $(PREFIX2).autopgen.bin                                  \
-     $(PREFIX2).biprefs.rlx.bin
+     $(PREFIX2).biprefs.rlx.bin                               \
+     $(PREFIX2).genprefs.rlx.bin
 
 TARGETS_PREFIX2 =                 \
      $(TARGETS_PREFIX2_EXCEPTGEN) \
@@ -54,7 +55,7 @@ $(PREFIX2): $(TARGETS_PREFIX2)
 
 # Debug/development goals:
 e: modes/$(PREFIX1).mode	# build just nob-nno_e
-	cd $(AP_SRC1) && ${MAKE} $(LANG1evi).autogen.bin $(LANG1).autopgen.bin
+	cd $(AP_SRC1) && ${MAKE} $(LANG1evi).autogen.bin $(LANG1).prefs.rlx.bin $(LANG1).autopgen.bin
 	cd $(AP_SRC2) && ${MAKE} $(LANG2).automorf.bin  $(LANG2).seg.rlx.bin $(LANG2).rlx.bin $(LANG2).prob
 	${MAKE} $(TARGETS_PREFIX2_EXCEPTGEN) $(PREFIX2evi).autogen.bin
 r: modes/$(PREFIX1).mode $(PREFIX2).autolex.bin $(PREFIX2).t1x.bin $(PREFIX2).t2x.bin $(PREFIX2).t3x.bin # build just transfer and rlx files for nob-nno(_e)
@@ -147,6 +148,9 @@ $(PREFIX2).autobil.bin: $(BASENAME).$(PREFIX1).dix
 
 $(PREFIX2).biprefs.rlx.bin: $(BASENAME).$(PREFIX2).biprefs.rlx
 	cg-comp $< $@
+
+$(PREFIX2).genprefs.rlx.bin: $(AP_SRC1)/$(LANG1).prefs.rlx.bin
+	cp $< $@
 
 ###############################################################################
 ## Lexical selection rules
