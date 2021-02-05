@@ -4828,7 +4828,7 @@ no lemq-moving">
         </out>
       </action>
     </rule>
-    <rule comment="NGEN_KEEP_GEN_S NIND: 710-kilos hai → 710-kilos hai">
+    <rule comment="NCMP NGEN_KEEP_GEN_S NIND: 710-kilos hai → 710-kilos hai">
       <pattern>
         <pattern-item n="ncmp"/>
         <pattern-item n="ngen_keep_gen_s"/>
@@ -4851,6 +4851,43 @@ no lemq-moving">
           <chunk name="n" case="caseSecondWord">
             <tags><tag><var n="ntags"/></tag></tags>
             <lu><clip pos="3" side="tl" part="whole"/></lu>
+          </chunk>
+        </out>
+      </action>
+    </rule>
+    <rule comment="NCMP NGEN_KEEP_GEN_S ADJ NIND: 710-kilos stor hai → 710-kilos stor hai">
+      <pattern>
+        <pattern-item n="ncmp"/>
+        <pattern-item n="ngen_keep_gen_s"/>
+        <pattern-item n="adj"/>
+        <pattern-item n="nind_indgen"/>
+      </pattern>
+      <action>
+        <call-macro n="set_gender2.n.adj"><with-param pos="4"/><with-param pos="3"/></call-macro>
+        <call-macro n="set_grau_aux1"><with-param pos="3"/></call-macro>
+        <call-macro n="set_caseFirstWord2">
+          <with-param pos="1"/>
+          <with-param pos="2"/>
+        </call-macro>
+        <call-macro n="out_gen-prep"><with-param pos="4"/></call-macro>
+        <call-macro n="stash_case_in_ntags"><with-param pos="4"/></call-macro>
+        <out>
+          <chunk name="n_n" case="caseFirstWord">
+            <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
+            <lu><clip pos="1" side="tl" part="whole"/></lu>
+            <lu><clip pos="2" side="tl" part="whole"/></lu>
+          </chunk>
+          <b pos="2"/>
+          <chunk name="adj_n" case="caseSecondWord">
+            <tags><tag><var n="ntags"/></tag></tags>
+            <var n="grau_aux"/>
+            <lu>
+              <clip pos="3" side="tl" part="lemh"/>
+              <clip pos="3" side="tl" part="tags"/>
+              <clip pos="3" side="tl" part="lemq"/>
+            </lu>
+            <b pos="3"/>
+            <lu><clip pos="4" side="tl" part="whole"/></lu>
           </chunk>
         </out>
       </action>
