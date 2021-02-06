@@ -2238,6 +2238,7 @@
         <out><chunk><clip pos="2" part="whole"/></chunk></out>
       </action>
     </rule>
+
     <rule comment="sin DETEMPH PREP_GEN NGEN NIND: sin egen administrasjons innsats → innsatsen til sin egen administrasjon">
       <pattern>
         <pattern-item n="sin"/>
@@ -2266,6 +2267,46 @@
         </out>
       </action>
     </rule>
+
+    <rule comment="PREP_GEN NGEN DETEMPH NIND: naboens egen bil => naboen sin eigen bil
+                                          naboens egne røde bil => naboen sin eigne raude bil
+                                          naboens egne røde biler => naboen sin eigne raude bilar
+                                          naboens eget fly => naboen sitt eige fly
+                                          klubbens egen nettside => klubbben si eiga nettside
+                   nind makes sure we don't match 'min Per(np)' nor 'min bils(gen)'">
+      <pattern>
+        <pattern-item n="prep_gen"/>
+        <pattern-item n="ngen"/>
+        <pattern-item n="detemph"/>
+        <pattern-item n="nind"/>
+      </pattern>
+      <action>
+        <call-macro n="set_ana"><with-param pos="4"/></call-macro>
+        <call-macro n="set_det_gender1.n"><with-param pos="4"/></call-macro>
+        <call-macro n="modify_det_gender2.n.det"><with-param pos="4"/><with-param pos="3"/></call-macro>
+        <out>
+          <chunk><clip pos="2" part="whole"/></chunk>
+          <b pos="1"/>
+          <chunk>               <!-- Introducing Garpegenitiv: -->
+            <lit v="detsin"/>
+            <lit-tag v="det.pos"/>
+            <var n="det_gender"/>
+            <var n="number_no_sp"/>
+            <lit v="{^"/>
+                <lit v="sin"/>
+                <lit-tag v="det.pos"/>
+                <var n="det_gender"/>
+                <var n="number_no_sp"/>
+            <lit v="$}"/>
+          </chunk>
+          <b pos="2"/>
+          <chunk><clip pos="3" part="whole"/></chunk>
+          <b pos="3"/>
+          <chunk><clip pos="4" part="whole"/></chunk>
+        </out>
+      </action>
+    </rule>
+
     <rule comment="DETALL PREP_GEN NGENSGDEF NPLIND: alle [til] kommunen idrettslag => alle [dei] idrettslaga til kommunen">
       <pattern>
 	<pattern-item n="detall"/>
