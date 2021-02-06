@@ -3268,6 +3268,58 @@
   </match></rule>
   <!-- END: beklagelse -->  
 
+  <!-- START: meget -->
+  <rule><match lemma="meget" tags="adv"><select lemma="svært" tags="adv"/></match></rule>
+  <rule weight="4.0" c="godt mogleg">
+    <match lemma="meget" tags="adv"><select lemma="godt" tags="adv"/></match>
+    <match lemma="mulig" tags="adj.*"/>
+  </rule>
+  <rule weight="2.0" c="mykje lenger">
+    <match lemma="meget" tags="adv"><select lemma="mykje" tags="adv"/></match>
+  	<or>
+      <match lemma="lenger" tags="adv"/>
+      <match lemma="oftere" tags="adv"/>
+      <match lemma="sjelndere" tags="adv"/>
+      <match lemma="nærmere" tags="adv"/>
+	</or>
+  </rule>
+  <rule weight="2.0" c="mykje større">
+    <match lemma="meget" tags="adv"><select lemma="mykje" tags="adv"/></match>
+    <or>
+      <match tags="adj.comp.*"/>
+      <match tags="adj.sint.comp.*"/>
+    </or>
+  </rule>
+  <rule weight="2.5" c="svært stor, svært bedageleg">
+    <match lemma="meget" tags="adv"><select lemma="svært" tags="adv"/></match>
+    <or>
+      <match tags="adj.pst.*"/>
+      <match tags="adj.pp.*"/>
+      <match tags="vblex.pp"/>
+      <match tags="adj.sint.pst.*"/>
+      <match tags="adv"/>
+    </or>
+  </rule>
+  <rule weight="1.0" c="svært eller ganske bra">
+    <match lemma="meget" tags="adv"><select lemma="svært" tags="adv"/></match>
+    <or>
+      <match lemma="og"/>
+      <match lemma="eller"/>
+    </or>
+	<match tags="adv"/>
+  </rule>
+  <rule weight="3.5" c="dei reiste mykje, svært mykje.">
+    <or>
+      <match tags="vblex.*"/>
+      <match tags="adv"/>
+    </or>
+    <match lemma="meget" tags="adv"><select lemma="mykje" tags="adv"/></match>
+	<or>
+      <match tags="sent.clb"/>
+	</or>
+  </rule>
+  <!-- END: meget, todo: "han reiste meget hele året rundt" -->
+
   <rule><match lemma="hva" tags="prn.*"><select lemma="kva"/></match></rule>
   <rule weight="2.0">
     <match lemma="i"/>
