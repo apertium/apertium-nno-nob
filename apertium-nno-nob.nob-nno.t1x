@@ -4528,6 +4528,10 @@
         <pattern-item n="nind_indgen"/>
       </pattern>
       <action>
+        <choose><when>
+          <test><equal><clip pos="1" side="tl" part="lemh"/><lit v=""/></equal></test>
+          <reject-current-rule shifting="no"/>
+        </when></choose>
         <choose>
           <when>
             <test><and>
