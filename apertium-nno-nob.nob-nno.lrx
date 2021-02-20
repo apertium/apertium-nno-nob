@@ -3136,6 +3136,34 @@
       <match lemma="at"/>
     </or>
   </rule>
+
+  <rule> <!-- Hele saken har antatt dimensjoner... -->
+    <match lemma="anta" tags="vblex.*"><select lemma="få"/></match>
+      <match lemma="dimensjon"/>
+  </rule>
+
+  <rule> <!-- Hele saken har antatt slike dimensjoner... -->
+    <match lemma="anta" tags="vblex.*"><select lemma="få"/></match>
+    <or>
+      <match tags="det.*"/>
+      <match tags="adj.*"/>
+    </or>
+      <match lemma="dimensjon"/>
+  </rule>
+
+  <rule> <!-- ...praten antar helt andre dimensjoner enn... -->
+    <match lemma="anta" tags="vblex.*"><select lemma="få"/></match>
+    <or>
+      <match tags="det.*"/>
+      <match tags="adj.*"/>
+    </or>
+    <or>
+      <match tags="det.*"/>
+      <match tags="adj.*"/>
+    </or>
+      <match lemma="dimensjon"/>
+  </rule>
+
   <rule><match lemma="fremholde" tags="adj.*"><select lemma="påpeike"/></match></rule>
   <rule><match lemma="framholde" tags="adj.*"><select lemma="påpeike"/></match></rule>
 
