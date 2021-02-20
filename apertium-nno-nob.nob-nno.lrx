@@ -3148,6 +3148,64 @@
       <match lemma="at"/>
     </or>
   </rule>
+
+  <rule> <!-- Hele saken har antatt dimensjoner... -->
+    <match lemma="anta" tags="vblex.*"><select lemma="få"/></match>
+      <match lemma="dimensjon"/>
+  </rule>
+
+  <rule> <!-- Hele saken har antatt slike dimensjoner... -->
+    <match lemma="anta" tags="vblex.*"><select lemma="få"/></match>
+    <or>
+      <match tags="det.*"/>
+      <match tags="adj.*"/>
+    </or>
+      <match lemma="dimensjon"/>
+  </rule>
+
+  <rule> <!-- ...praten antar helt andre dimensjoner enn... -->
+    <match lemma="anta" tags="vblex.*"><select lemma="få"/></match>
+    <or>
+      <match tags="det.*"/>
+      <match tags="adj.*"/>
+    </or>
+    <or>
+      <match tags="det.*"/>
+      <match tags="adj.*"/>
+    </or>
+      <match lemma="dimensjon"/>
+  </rule>
+
+  <rule> <!-- ...i ferd med å anta en karakter... -->
+    <match lemma="anta" tags="vblex.*"><select lemma="få"/></match>
+    <match lemma="en"/>
+    <match lemma="karakter"/>
+  </rule>
+
+  <rule> <!-- ...i ferd med å anta en ny karakter... -->
+    <match lemma="anta" tags="vblex.*"><select lemma="få"/></match>
+    <match lemma="en"/>
+    <or>
+      <match tags="det.*"/>
+      <match tags="adj.*"/>
+    </or>
+    <match lemma="karakter"/>
+  </rule>
+
+  <rule> <!-- ...i ferd med å anta en helt annen karakter... -->
+    <match lemma="anta" tags="vblex.*"><select lemma="få"/></match>
+    <match lemma="en"/>
+    <or>
+      <match tags="det.*"/>
+      <match tags="adj.*"/>
+    </or>
+    <or>
+      <match tags="det.*"/>
+      <match tags="adj.*"/>
+    </or>
+    <match lemma="karakter"/>
+  </rule>
+
   <rule><match lemma="fremholde" tags="adj.*"><select lemma="påpeike"/></match></rule>
   <rule><match lemma="framholde" tags="adj.*"><select lemma="påpeike"/></match></rule>
 
