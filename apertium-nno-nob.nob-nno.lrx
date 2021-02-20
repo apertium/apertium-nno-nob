@@ -3164,6 +3164,36 @@
       <match lemma="dimensjon"/>
   </rule>
 
+  <rule> <!-- ...i ferd med å anta en karakter... -->
+    <match lemma="anta" tags="vblex.*"><select lemma="få"/></match>
+    <match lemma="en"/>
+    <match lemma="karakter"/>
+  </rule>
+
+  <rule> <!-- ...i ferd med å anta en ny karakter... -->
+    <match lemma="anta" tags="vblex.*"><select lemma="få"/></match>
+    <match lemma="en"/>
+    <or>
+      <match tags="det.*"/>
+      <match tags="adj.*"/>
+    </or>
+    <match lemma="karakter"/>
+  </rule>
+
+  <rule> <!-- ...i ferd med å anta en helt annen karakter... -->
+    <match lemma="anta" tags="vblex.*"><select lemma="få"/></match>
+    <match lemma="en"/>
+    <or>
+      <match tags="det.*"/>
+      <match tags="adj.*"/>
+    </or>
+    <or>
+      <match tags="det.*"/>
+      <match tags="adj.*"/>
+    </or>
+    <match lemma="karakter"/>
+  </rule>
+
   <rule><match lemma="fremholde" tags="adj.*"><select lemma="påpeike"/></match></rule>
   <rule><match lemma="framholde" tags="adj.*"><select lemma="påpeike"/></match></rule>
 
