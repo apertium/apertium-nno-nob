@@ -3220,6 +3220,15 @@
     <match lemma="form"/>
   </rule>
 
+  <rule> <!-- ...Krangelen antok nye høyder da... -->
+    <match lemma="anta" tags="vblex.*"><select lemma="nå"/></match>
+    <or>
+      <match tags="det.*"/>
+      <match tags="adj.*"/>
+    </or>
+    <match lemma="høyde"/>
+  </rule>
+
   <rule><match lemma="fremholde" tags="adj.*"><select lemma="påpeike"/></match></rule>
   <rule><match lemma="framholde" tags="adj.*"><select lemma="påpeike"/></match></rule>
 
