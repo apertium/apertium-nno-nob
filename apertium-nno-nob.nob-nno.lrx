@@ -3229,9 +3229,24 @@
     <match lemma="høyde"/>
   </rule>
 
-  <rule> <!-- ...det er grunn til å anta ... -->
+  <rule> <!-- ...det er grunn til å anta... -->
     <match lemma="grunn"/>
     <match lemma="til"/>
+    <match lemma="å"/>
+    <match lemma="anta" tags="vblex.inf"><select lemma="tru"/></match>
+  </rule>
+
+  <rule> <!-- ...det er derfor rimelig å anta... -->
+    <or>
+      <match lemma="feil"/>
+      <match lemma="lett"/>
+      <match lemma="naturlig"/>
+      <match lemma="nærliggende"/>
+      <match lemma="rimelig"/>
+      <match lemma="trygt"/>
+      <match lemma="urealistisk"/>
+      <match lemma="urimelig"/>
+    </or>
     <match lemma="å"/>
     <match lemma="anta" tags="vblex.inf"><select lemma="tru"/></match>
   </rule>
