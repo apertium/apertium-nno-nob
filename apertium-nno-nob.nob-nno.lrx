@@ -3251,6 +3251,20 @@
     <match lemma="anta" tags="vblex.inf"><select lemma="tru"/></match>
   </rule>
 
+  <rule> <!-- Jeg vil anta at avlysning blir konklusjonen. -->
+    <match lemma="ville"/>
+    <match lemma="anta" tags="vblex.*"><select lemma="tru"/></match>
+  </rule>
+
+  <rule> <!-- ...vil eg anta at avlysning... -->
+    <match lemma="ville"/>
+    <or>
+      <match tags="prn.pers.*"/>
+      <match tags="det.qnt.*"/>
+    </or>
+    <match lemma="anta" tags="vblex.*"><select lemma="tru"/></match>
+  </rule>
+
   <rule><match lemma="fremholde" tags="adj.*"><select lemma="påpeike"/></match></rule>
   <rule><match lemma="framholde" tags="adj.*"><select lemma="påpeike"/></match></rule>
 
