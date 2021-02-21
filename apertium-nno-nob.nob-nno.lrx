@@ -3206,6 +3206,20 @@
     <match lemma="karakter"/>
   </rule>
 
+  <rule> <!-- ...B-gjengen antar form av Donald Duck... -->
+    <match lemma="anta" tags="vblex.*"><select lemma="få"/></match>
+    <match lemma="form"/>
+  </rule>
+
+  <rule> <!-- ...og anta nye former... -->
+    <match lemma="anta" tags="vblex.*"><select lemma="få"/></match>
+    <or>
+      <match tags="det.*"/>
+      <match tags="adj.*"/>
+    </or>
+    <match lemma="form"/>
+  </rule>
+
   <rule><match lemma="fremholde" tags="adj.*"><select lemma="påpeike"/></match></rule>
   <rule><match lemma="framholde" tags="adj.*"><select lemma="påpeike"/></match></rule>
 
