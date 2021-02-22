@@ -3198,6 +3198,65 @@
     <match lemma="karakter"/>
   </rule>
 
+  <rule> <!-- ...B-gjengen antar form av Donald Duck... -->
+    <match lemma="anta" tags="vblex.*"><select lemma="få"/></match>
+    <match lemma="form"/>
+  </rule>
+
+  <rule> <!-- ...og anta nye former... -->
+    <match lemma="anta" tags="vblex.*"><select lemma="få"/></match>
+    <or>
+      <match tags="det.*"/>
+      <match tags="adj.*"/>
+    </or>
+    <match lemma="form"/>
+  </rule>
+
+  <rule> <!-- ...Krangelen antok nye høyder da... -->
+    <match lemma="anta" tags="vblex.*"><select lemma="nå"/></match>
+    <or>
+      <match tags="det.*"/>
+      <match tags="adj.*"/>
+    </or>
+    <match lemma="høyde"/>
+  </rule>
+
+  <rule> <!-- ...det er grunn til å anta... -->
+    <match lemma="grunn"/>
+    <match lemma="til"/>
+    <match lemma="å"/>
+    <match lemma="anta" tags="vblex.inf"><select lemma="tru"/></match>
+  </rule>
+
+  <rule> <!-- ...det er derfor rimelig å anta... -->
+    <or>
+      <match lemma="feil"/>
+      <match lemma="lett"/>
+      <match lemma="naturlig"/>
+      <match lemma="nærliggende"/>
+      <match lemma="rimelig"/>
+      <match lemma="trygt"/>
+      <match lemma="urealistisk"/>
+      <match lemma="urimelig"/>
+    </or>
+    <match lemma="å"/>
+    <match lemma="anta" tags="vblex.inf"><select lemma="tru"/></match>
+  </rule>
+
+  <rule> <!-- Jeg vil anta at avlysning blir konklusjonen. -->
+    <match lemma="ville"/>
+    <match lemma="anta" tags="vblex.*"><select lemma="tru"/></match>
+  </rule>
+
+  <rule> <!-- ...vil eg anta at avlysning... -->
+    <match lemma="ville"/>
+    <or>
+      <match tags="prn.pers.*"/>
+      <match tags="det.qnt.*"/>
+    </or>
+    <match lemma="anta" tags="vblex.*"><select lemma="tru"/></match>
+  </rule>
+
   <rule><match lemma="fremholde" tags="adj.*"><select lemma="påpeike"/></match></rule>
   <rule><match lemma="framholde" tags="adj.*"><select lemma="påpeike"/></match></rule>
 
