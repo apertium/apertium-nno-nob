@@ -3483,6 +3483,36 @@
   
   <rule><match lemma="ester" tags="n.m.*"><select lemma="estar"/></match></rule>
   <!-- todo: kontekst for "ein ester", organisk sambinding -->
+
+  <!-- START: storhet -->
+  <rule weight="2.0" c="stordom i korleis">
+    <match lemma="en storhet i hvordan" tags="adv"><select lemma="stordom i korleis"/></match>
+  </rule>
+  <rule weight="2.0" c="stordom i korleis">
+    <match lemma="storhet i hvordan" tags="adv"><select lemma="stordom i korleis"/></match>
+  </rule>
+  <rule weight="2.0" c="gammal stordom">
+    <match lemma="fordums storhet" tags="adv"><select lemma="gammal stordom"/></match>
+  </rule>
+  <rule weight="2.0" c="teknologigiganten">  
+    <match tags="n.*.*.*.cmp"/>
+    <match lemma="storhet" tags="n.m.*"><select lemma="gigant"/></match>
+  </rule>
+  <rule weight="2.0" c="sjå stordommen i">
+    <match lemma="storhet" tags="n.m.sg.def"><select lemma="stordom"/></match>
+	<match lemma="i" tags="pr"/>
+  </rule>
+  <rule weight="1.0" c="kjempa AC Milan">
+    <match lemma="storhet" tags="n.m.sg.def"><select lemma="kjempe"/></match>
+  </rule>
+  <rule weight="2.0" c="ei kjempe">
+    <match tags="det.qnt.*"/>
+    <match lemma="storhet" tags="n.m.sg.ind"><select lemma="kjempe"/></match>
+  </rule>
+  <rule weight="2.0" c="kjemper og kjempene">
+    <match lemma="storhet" tags="n.m.pl.*"><select lemma="kjempe"/></match>
+  </rule>
+  <!-- END: storhet -->
   
   <rule><match lemma="hva" tags="prn.*"><select lemma="kva"/></match></rule>
   <rule weight="2.0">
