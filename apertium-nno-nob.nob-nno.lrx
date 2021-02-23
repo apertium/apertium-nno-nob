@@ -3514,6 +3514,43 @@
   </rule>
   <!-- END: storhet -->
   
+  <!-- START: bestemmelse (avgjerd) -->
+  <rule><match lemma="bestemmelse" tags="n.*"><select lemma="føresegn"/></match></rule>
+  <rule weight="2.0" c="bryte reglane">
+  <or>
+    <match lemma="bryte" tags="vblex.*"/>
+    <match lemma="etterleve" tags="vblex.*"/>
+    <match lemma="brudd" tags="n.*"/>
+    <match lemma="overtredelse" tags="n.*"/>
+    <match lemma="etterlevelse" tags="n.*"/>
+  </or>
+    <repeat from="0" upto="6"><match/></repeat>
+	<match lemma="bestemmelse" tags="n.*"><select lemma="regel"/></match>
+  </rule>
+  <rule weight="2.0" c="ta ei avgjerd">
+  <or>
+    <match lemma="ta" tags="vblex.*"/>
+    <match lemma="treffe" tags="vblex.*"><select lemma="ta"/></match>
+    <match lemma="fatte" tags="vblex.*"><select lemma="ta"/></match>
+  </or>
+    <repeat from="0" upto="6"><match/></repeat>
+	<match lemma="bestemmelse" tags="n.*"><select lemma="avgjerd"/></match>
+  </rule>
+  <rule weight="4.0" c="avgjerda er teken">
+  	<match lemma="bestemmelse" tags="n.*"><select lemma="avgjerd"/></match>
+    <repeat from="0" upto="6"><match/></repeat>
+  <or>
+    <match lemma="ta" tags="adj.pp.*"/>
+    <match lemma="treffe" tags="adj.*"><select lemma="ta" tags="adj.*"/></match>
+    <match lemma="fattet" tags="adj.*"><select lemma="teken" tags="adj.*"/></match>
+  </or>
+  </rule>
+  <rule weight="2.0" c="arbeidstidsregel">  
+    <match tags="n.*.*.*.cmp"/>
+    <match lemma="bestemmelse" tags="n.*"><select lemma="regel"/></match>
+  </rule>
+  <!-- END: bestemmelse -->
+  
   <rule><match lemma="hva" tags="prn.*"><select lemma="kva"/></match></rule>
   <rule weight="2.0">
     <match lemma="i"/>
