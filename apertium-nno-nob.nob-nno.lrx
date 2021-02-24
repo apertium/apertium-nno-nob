@@ -3520,6 +3520,7 @@
   <or>
     <match lemma="bryte" tags="vblex.*"/>
     <match lemma="etterleve" tags="vblex.*"/>
+    <match lemma="overholde" tags="vblex.*"/>
     <match lemma="brudd" tags="n.*"/>
     <match lemma="overtredelse" tags="n.*"/>
     <match lemma="etterlevelse" tags="n.*"/>
@@ -3550,7 +3551,69 @@
     <match lemma="bestemmelse" tags="n.*"><select lemma="regel"/></match>
   </rule>
   <!-- END: bestemmelse -->
-  
+
+  <!-- START: bestemmelsessted -->
+  <rule weight="2.0" c="like i nærleiken (av målet)">
+    <match lemma="i nærheten av bestemmelsesstedet" tags="adv"><select lemma="like i nærleiken"/></match>
+  </rule>
+  <rule weight="3.0" c="komme fram til (målet i) Luster">
+    <match lemma="fram til bestemmelsesstedet i" tags="adv"><select lemma="fram til"/></match>
+  </rule>
+  <rule weight="3.0" c="komme fram til (målet på) Island">
+    <match lemma="fram til bestemmelsesstedet på" tags="adv"><select lemma="fram til"/></match>
+  </rule>
+  <rule weight="3.0" c="sykle til (målet i) Luster">
+    <match lemma="til bestemmelsesstedet i" tags="adv"><select lemma="til"/></match>
+  </rule>
+  <rule weight="3.0" c="reise til (målet på) Island">
+    <match lemma="til bestemmelsesstedet på" tags="adv"><select lemma="til"/></match>
+  </rule>
+  <rule weight="3.0" c="sykle til (målet i) Luster">
+    <match lemma="til sitt bestemmelsessted i" tags="adv"><select lemma="til"/></match>
+  </rule>
+  <rule weight="3.0" c="reise til (målet på) Island">
+    <match lemma="til sitt bestemmelsessted på" tags="adv"><select lemma="til"/></match>
+  </rule>
+  <rule weight="3.0" c="fram (til målet)">
+    <match lemma="fram til bestemmelsesstedet" tags="adv"><select lemma="fram"/></match>
+  </rule>
+  <rule weight="3.0" c="framme (ved målet)">
+    <match lemma="ved bestemmelsesstedet i" tags="adv"><select lemma="ved turmålet i"/></match>
+  </rule>
+  <rule weight="3.0" c="framme (ved målet)">
+    <match lemma="ved bestemmelsesstedet på" tags="adv"><select lemma="ved turmålet på"/></match>
+  </rule>
+  <rule weight="1.0" c="fram til målet,">
+    <match lemma="fram til bestemmelsesstedet" tags="adv"><select lemma="fram til målet"/></match>
+	<or>
+      <match tags="cm"/>
+      <match tags="sent.clb"/>
+	</or>
+  </rule>
+  <rule weight="1.0" c="til målet (sitt)">
+  <or>
+    <match lemma="til"/>
+    <match lemma="nå" tags="vblex.*"/>
+  </or>
+    <match tags="det.pos.*"><remove tags="det.pos.*"/></match>
+    <match lemma="bestemmelsessted" tags="n.nt.*.ind"><select lemma="mål" tags="n.nt.*"/></match>
+  </rule>
+  <rule weight="2.0" c="til målet">
+  <or>
+    <match lemma="til"/>
+    <match lemma="nå" tags="vblex.*"/>
+  </or>
+    <repeat from="0" upto="2"><match/></repeat>
+    <match lemma="bestemmelsessted" tags="n.nt.sg.def"><select lemma="mål" tags="n.nt.sg.def"/></match>
+  </rule>
+  <rule weight="2.0" c="et reisemål">
+    <match tags="det.qnt.nt.*"/>
+    <repeat from="0" upto="3"><match/></repeat>
+    <match lemma="bestemmelsessted" tags="n.nt.sg.ind"><select lemma="reisemål" tags="n.nt.sg.ind"/></match>
+  </rule>
+  <rule><match lemma="bestemmelsessted" tags="n.*"><select lemma="endemål"/></match></rule>
+  <!-- END: bestemmelsessted -->
+
   <rule><match lemma="hva" tags="prn.*"><select lemma="kva"/></match></rule>
   <rule weight="2.0">
     <match lemma="i"/>
