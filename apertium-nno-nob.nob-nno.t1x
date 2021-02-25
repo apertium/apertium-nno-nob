@@ -932,6 +932,8 @@
     <def-list n="adj-ind-def" c="Allow ind adj followed by def noun for these adv-like adjectives (tl/nno)">
       <list-item v="mykje"/>
       <list-item v="mellombels"/>
+      <list-item v="suverent"/>
+      <list-item v="verkeleg"/>
     </def-list>
 
     <def-list n="gen-til-objoverride" c="This list checked before the generated unigram obj lists (but bi-gen-lists may override it).
@@ -5595,7 +5597,7 @@ no lemq-moving">
           <test><and>
             <not><in><clip pos="1" side="tl" part="lemh"/><list n="adj-ind-def"/></in></not>
             <equal><clip pos="1" side="tl" part="art"/><lit-tag v="ind"/></equal>
-            <equal><clip pos="4" side="tl" part="art"/><lit-tag v="def"/></equal>
+            <equal><clip pos="2" side="tl" part="art"/><lit-tag v="def"/></equal> <!-- suverent beste -->
           </and></test>
           <reject-current-rule shifting="no"/>
         </when></choose>
