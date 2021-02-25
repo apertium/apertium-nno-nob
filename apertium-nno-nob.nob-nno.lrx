@@ -3618,6 +3618,15 @@
   <rule><match lemma="bestemmelsessted" tags="n.*"><select lemma="endemål"/></match></rule>
   <!-- END: bestemmelsessted -->
 
+  <!-- START: anvendelse -->
+  <rule weight="2.0" c="bruken av lova">
+    <match lemma="anvendelse" tags="n.m.sg.*"><select lemma="bruk"/></match>
+  </rule>
+  <rule weight="2.0" c="generelle bruksmåtar">
+    <match lemma="anvendelse" tags="n.m.pl.*"><select lemma="bruksmåte"/></match>
+  </rule>
+  <!-- END: anvendelse todo: ? -->
+
   <rule><match lemma="hva" tags="prn.*"><select lemma="kva"/></match></rule>
   <rule weight="2.0">
     <match lemma="i"/>
