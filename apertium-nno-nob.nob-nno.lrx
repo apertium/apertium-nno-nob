@@ -3636,6 +3636,20 @@
   </rule>
   <!-- END: ledsager -->
 
+  <!-- START: boer -> boar/boar-/-buar -->
+  <rule>
+    <match lemma="boer" tags="n.*"><select lemma="boar"/></match>
+  </rule>
+  <rule weight="2.0">
+    <match tags="n.*.*.*.cmp"/>
+    <match lemma="boer" tags="n.*"><select lemma="buar"/></match>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="boer" tags="n.*"><select lemma="boar"/></match>
+    <match tags="n.*.*.*.cmp"/>
+  </rule>
+  <!-- END: boer -->
+
   <rule><match lemma="hva" tags="prn.*"><select lemma="kva"/></match></rule>
   <rule weight="2.0">
     <match lemma="i"/>
