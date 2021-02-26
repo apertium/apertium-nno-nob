@@ -935,6 +935,14 @@
       <list-item v="suverent"/>
       <list-item v="verkeleg"/>
     </def-list>
+    <def-list n="non-adverbial-adjs" c="Allow changing gender for these from nt to m/f in pre-adjective position">
+      <list-item v="framgangsrik"/> <!--Vi har et fortsatt fremgangsrikt norsk kapitalmarked → Vi har ein framleis framgangsrik norsk kapitalmarknad. -->
+      <list-item v="moden"/>        <!--moden og velfungerande marknad -->
+      <list-item v="stor"/>     <!-- stor juridisk forfattarskap -->
+      <list-item v="ny"/>       <!--ny og samlande leiarskap-->
+      <list-item v="rå"/>       <!--rå og autoritær leiarskap-->
+      <list-item v="forvrenge"/>
+    </def-list>
 
     <def-list n="gen-til-objoverride" c="This list checked before the generated unigram obj lists (but bi-gen-lists may override it).
                                          We typically want 'til' for animate owners, e.g. sjefen til kvinna (but kvinnenes løp → løpet for kvinnene)">
@@ -2577,7 +2585,8 @@
 </def-list>
 
 <def-list n="gen-i">
-	<list-item v="analyse"/>
+        <list-item v="tennis"/>       <!-- should be def→ind too-->
+        <list-item v="analyse"/>
 	<list-item v="arbeidsliv"/>
 	<list-item v="arbeidsmiljølov"/>
 	<list-item v="befalsskule"/>
@@ -2587,7 +2596,7 @@
 	<list-item v="bransje"/>
 	<list-item v="by"/>
 	<list-item v="bygning"/>
-  <list-item v="bykasse"/>
+        <list-item v="bykasse"/>
 	<list-item v="dom"/>
 	<list-item v="domkyrkje"/>
 	<list-item v="eining"/>
@@ -2614,7 +2623,7 @@
 	<list-item v="justiskomité"/>
 	<list-item v="kamp"/>
 	<list-item v="kommunistparti"/>
-  <list-item v="kommuneplan"/>
+        <list-item v="kommuneplan"/>
 	<list-item v="konflikt"/>
 	<list-item v="konsumprisindeks"/>
 	<list-item v="kor"/>
@@ -2645,7 +2654,7 @@
 	<list-item v="sone"/>
 	<list-item v="statsbudsjett"/>
 	<list-item v="straffelov"/>
-  <list-item v="strategi"/>
+        <list-item v="strategi"/>
 	<list-item v="styre"/>
 	<list-item v="tarm"/>
 	<list-item v="tekst"/>
@@ -3270,6 +3279,25 @@
       </when>
       </choose>
       <call-macro n="set_gender1.adj"><with-param pos="2"/></call-macro>
+    </def-macro>
+
+    <def-macro n="set_gender2.n.pre-adj" npar="2"
+               c="arg.1: noun, arg.2: adjective before adjective
+                  For use on adjectives that appear before other adjectives – very often adverbial usage.
+                  Do set_gender2.n.adj, but only allow changing m/f→nt (with certain lemma-based exceptions)
+                  (if nob adj is nt, assume adverbial and keep nt even if noun changed gender to m/f, e.g. «helt fint sted» → «heilt(not heil!) fin stad»)">
+      <choose>
+        <when>
+          <test><or>
+            <equal><clip pos="1" side="tl" part="gen"/><lit-tag v="nt"/></equal>
+            <in><clip pos="2" side="tl" part="lemh"/><list n="non-adverbial-adjs"/></in>
+          </or></test>
+          <call-macro n="set_gender2.n.adj"><with-param pos="1"/><with-param pos="2"/></call-macro>
+        </when>
+        <otherwise>
+          <call-macro n="set_gender1.adj"><with-param pos="2"/></call-macro>
+        </otherwise>
+      </choose>
     </def-macro>
 
 
@@ -5550,7 +5578,7 @@ no lemq-moving">
           <reject-current-rule shifting="no"/>
         </when></choose>
         <let><var n="c_name"/><lit v="adj_adj_n"/></let>
-        <call-macro n="set_gender2.n.adj"><with-param pos="3"/><with-param pos="1"/></call-macro>
+        <call-macro n="set_gender2.n.pre-adj"><with-param pos="3"/><with-param pos="1"/></call-macro>
         <call-macro n="set_gender2.n.adj"><with-param pos="3"/><with-param pos="2"/></call-macro>
         <call-macro n="set_grau_aux2"><with-param pos="1"/><with-param pos="2"/></call-macro>
         <call-macro n="set_caseFirstWord2">
@@ -5597,12 +5625,12 @@ no lemq-moving">
           <test><and>
             <not><in><clip pos="1" side="tl" part="lemh"/><list n="adj-ind-def"/></in></not>
             <equal><clip pos="1" side="tl" part="art"/><lit-tag v="ind"/></equal>
-            <equal><clip pos="2" side="tl" part="art"/><lit-tag v="def"/></equal> <!-- suverent beste -->
+            <equal><clip pos="2" side="tl" part="art"/><lit-tag v="def"/></equal>
           </and></test>
           <reject-current-rule shifting="no"/>
         </when></choose>
         <let><var n="c_name"/><lit v="adj_adj_n_n"/></let>
-        <call-macro n="set_gender2.n.adj"><with-param pos="4"/><with-param pos="1"/></call-macro>
+        <call-macro n="set_gender2.n.pre-adj"><with-param pos="4"/><with-param pos="1"/></call-macro>
         <call-macro n="set_gender2.n.adj"><with-param pos="4"/><with-param pos="2"/></call-macro>
         <call-macro n="set_grau_aux2"><with-param pos="1"/><with-param pos="2"/></call-macro>
         <call-macro n="set_caseFirstWord2">
@@ -5656,7 +5684,7 @@ no lemq-moving">
           <reject-current-rule shifting="no"/>
         </when></choose>
         <let><var n="c_name"/><lit v="adj_adj_n_n_n"/></let>
-        <call-macro n="set_gender2.n.adj"><with-param pos="5"/><with-param pos="1"/></call-macro>
+        <call-macro n="set_gender2.n.pre-adj"><with-param pos="5"/><with-param pos="1"/></call-macro>
         <call-macro n="set_gender2.n.adj"><with-param pos="5"/><with-param pos="2"/></call-macro>
         <call-macro n="set_grau_aux2"><with-param pos="1"/><with-param pos="2"/></call-macro>
         <call-macro n="set_caseFirstWord2">
@@ -5712,7 +5740,7 @@ no lemq-moving">
           <reject-current-rule shifting="no"/>
         </when></choose>
         <let><var n="c_name"/><lit v="adj_adj_n_n_n_n"/></let>
-        <call-macro n="set_gender2.n.adj"><with-param pos="6"/><with-param pos="1"/></call-macro>
+        <call-macro n="set_gender2.n.pre-adj"><with-param pos="6"/><with-param pos="1"/></call-macro>
         <call-macro n="set_gender2.n.adj"><with-param pos="6"/><with-param pos="2"/></call-macro>
         <call-macro n="set_grau_aux2"><with-param pos="1"/><with-param pos="2"/></call-macro>
         <call-macro n="set_caseFirstWord2">
