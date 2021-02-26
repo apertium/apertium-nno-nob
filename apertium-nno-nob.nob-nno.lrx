@@ -3629,24 +3629,10 @@
   <!-- END: anvendelse todo: ? -->
   
   <!-- START: ledsager -->
-  <rule><match lemma="ledsager" tags="n.*"><select lemma="følgje"/></match></rule>
-  <rule weight="2.0" c="ein følgjesperson">
-    <match tags="det.qnt.m.*"/>
-    <match lemma="ledsager" tags="n.m.sg.*"><select lemma="følgjesperson"/></match>
-  </rule>
-  <rule weight="2.0" c="følgjesperson Ole">
-    <match lemma="ledsager" tags="n.m.sg.ind"><select lemma="følgjesperson"/></match>
-	<match tags="np.ant.*"/>
-  </rule>
+  <rule><match lemma="ledsager" tags="n.*"><select lemma="følgjesperson"/></match></rule>
   <rule weight="2.0" c="med følgje">
     <match lemma="med"/>
     <match lemma="ledsager" tags="n.m.sg.ind"><select lemma="følgje"/></match>
-  </rule>
-  <rule weight="2.0" c="vaksne følgjespersonar">
-    <match lemma="ledsager" tags="n.m.pl.*"><select lemma="følgjesperson"/></match>
-  </rule>
-  <rule weight="2.0" c="følgjespersonen">
-    <match lemma="ledsager" tags="n.m.sg.def"><select lemma="følgjesperson"/></match>
   </rule>
   <!-- END: ledsager -->
 
