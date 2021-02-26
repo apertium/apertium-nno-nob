@@ -2453,11 +2453,12 @@
     <match lemma="gjøre# det bevisst"><select lemma="vere# medviten om det"/></match>
   </rule>
 
-  <rule><match lemma="være# sitt ansvar bevisst"><select lemma="vere# ansvarsmedvitne"/></match></rule>
+  <rule><match lemma="sitt ansvar bevisst"><select lemma="ansvarsmedvitne"/></match></rule>
   <rule weight="2.0" c="WIP: No number on verbs, so this hack. Maybe this should be an idiomatic transfer rule instead, but it's almost always plural">
     <match tags="n.*.sg.def"/>
     <repeat from="0" upto="1"><match tags="np.*"/></repeat> <!--kyststaten Norge er seg sitt ansvar bevisst-->
-    <match lemma="være# sitt ansvar bevisst"><select lemma="vere# ansvarsmedviten"/></match>
+    <match lemma="være"/>
+    <match lemma="sitt ansvar bevisst"><select lemma="ansvarsmedviten"/></match>
   </rule>
 
   <rule><match lemma="uinnlogget" tags="adj.*"><select lemma="ikkje innlogga"/></match></rule>
