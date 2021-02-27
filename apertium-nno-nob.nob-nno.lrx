@@ -3267,6 +3267,22 @@
     </or>
   </rule>
 
+  <rule weight="2.0"> <!-- ...der det antas å være store reserver... -->
+    <or>
+      <match tags="prn.*"/>
+      <match tags="det.*"/>
+      <match tags="n.*"/>
+    </or>
+    <match lemma="antas å være" tags="adv"><select lemma="truleg er"/></match>
+  </rule>
+
+  <rule weight="2.0"> <!-- Nå er mannen som antas å være hovedgjerningsmannen. -->
+    <or>
+      <match lemma="som"/>
+    </or>
+    <match lemma="antas å være" tags="adv"><select lemma="ein går ut frå er"/></match>
+  </rule>
+
   <rule> <!-- De antas å være bortført av samme gruppe. -->
     <match lemma="antas å være" tags="adv"><select lemma="er truleg"/></match>
   </rule>
