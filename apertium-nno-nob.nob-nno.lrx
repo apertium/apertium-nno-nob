@@ -3669,6 +3669,16 @@
     <match tags="n.*.*.*.cmp"/>
   </rule>
   <!-- END: boer -->
+  
+  <!-- START: -maker -> -makar -->
+  <rule>
+    <match lemma="make" tags="n.m.pl.ind"><select lemma="make"/></match>
+  </rule>
+  <rule weight="2.0">
+    <match tags="n.*.*.*.cmp"/>
+    <match lemma="maker" tags="n.*"><select lemma="makar"/></match>
+  </rule>
+  <!-- END: -maker -->
 
   <rule><match lemma="overlevelsesmulighet" tags="n.m.pl.ind"><select lemma="sjansar til å overleve"/></match></rule>
   <rule><match lemma="overlevelsesmulighet" tags="n.m.sg.ind"><select lemma="sjanse til å overleve"/></match></rule>
