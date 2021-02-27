@@ -3258,6 +3258,19 @@
     <match lemma="anta" tags="vblex.*"><select lemma="tru"/></match>
   </rule>
 
+  <rule weight="2.0"> <!-- ...han antas å være gjerningspersonen... -->
+    <match lemma="antas å være" tags="adv"><select lemma="er mistenkt for å vere"/></match>
+    <or>
+      <match lemma="gjerning"/>
+      <match lemma="gjerningsmann"/>
+      <match lemma="angriper"/>
+    </or>
+  </rule>
+
+  <rule> <!-- De antas å være bortført av samme gruppe. -->
+    <match lemma="antas å være" tags="adv"><select lemma="er truleg"/></match>
+  </rule>
+
   <rule> <!-- ...En avholdt kollega.. -->
     <match lemma="avholdt" tags="adj.*"><select lemma="avhalden"/></match>
   </rule>
