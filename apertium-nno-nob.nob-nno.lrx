@@ -3238,6 +3238,12 @@
     <match lemma="anta" tags="vblex.inf"><select lemma="rekne# med"/></match>
   </rule>
 
+  <rule> <!-- ...enn de fleste hadde antatt. -->
+    <match lemma="ha"/>
+    <match lemma="anta" tags="vblex.*"><select lemma="rekne# med"/></match>
+    <match tags="sent.clb"/>
+  </rule>
+
   <rule weight="2.0"> <!-- ...han antas å være gjerningspersonen... -->
     <match lemma="antas å være" tags="adv"><select lemma="er mistenkt for å vere"/></match>
     <or>
