@@ -3258,6 +3258,23 @@
     <match lemma="anta" tags="vblex.*"><select lemma="tru"/></match>
   </rule>
 
+  <rule> <!-- ...ikke lenger kan anta at smitten sprer seg i samfunnet. -->
+    <or>
+      <match lemma="skulle"/>
+      <match lemma="burde"/>
+      <match lemma="måtte"/>
+      <match lemma="kunne"/>
+    </or>
+    <repeat from="0" upto="1">
+    <or>
+      <match tags="det.*"/>
+      <match tags="prn.*"/>
+      <match tags="n.*"/>
+    </or>
+    </repeat>
+    <match lemma="anta" tags="vblex.inf"><select lemma="rekne# med"/></match>
+  </rule>
+
   <rule weight="2.0"> <!-- ...han antas å være gjerningspersonen... -->
     <match lemma="antas å være" tags="adv"><select lemma="er mistenkt for å vere"/></match>
     <or>
