@@ -3270,6 +3270,19 @@
     <match lemma="avholde# seg fra" tags="adv"><select lemma="la# vere"/></match>
     <match lemma="å"/>
   </rule>
+.*
+  <rule> <!-- Kissingers bevegete ord om sin tidligere sjef . -->
+    <match lemma="beveget" tags="adj.*"><select lemma="rørande"/></match>
+    <or>
+      <match lemma="tale"/>
+      <match lemma="ord"/>
+      <match lemma="hilsen"/>
+      <match lemma="hilsning"/>
+      <match lemma="sekvens"/>
+      <match lemma="seremoni"/>
+      <match lemma="farvel"/>
+    </or>
+  </rule>
 
   <rule><match lemma="fremholde" tags="adj.*"><select lemma="påpeike"/></match></rule>
   <rule><match lemma="framholde" tags="adj.*"><select lemma="påpeike"/></match></rule>
