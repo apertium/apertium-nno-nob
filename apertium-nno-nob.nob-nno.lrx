@@ -3284,6 +3284,17 @@
     </or>
   </rule>
 
+  <rule> <!-- argentineren fikk Ruud til å bevege mye på seg. -->
+    <match lemma="bevege" tags="vblex.*"><select lemma="røre"/></match>
+    <repeat from="0" upto="2">
+    <or>
+      <match tags="adj.*"/>
+    </or>
+    </repeat>
+    <match lemma="på"/>
+    <match lemma="seg"/>
+  </rule>
+
   <rule><match lemma="fremholde" tags="adj.*"><select lemma="påpeike"/></match></rule>
   <rule><match lemma="framholde" tags="adj.*"><select lemma="påpeike"/></match></rule>
 
