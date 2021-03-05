@@ -3270,7 +3270,7 @@
     <match lemma="avholde# seg fra" tags="adv"><select lemma="la# vere"/></match>
     <match lemma="å"/>
   </rule>
-.*
+
   <rule> <!-- Kissingers bevegete ord om sin tidligere sjef . -->
     <match lemma="beveget" tags="adj.*"><select lemma="rørande"/></match>
     <or>
@@ -3284,7 +3284,13 @@
     </or>
   </rule>
 
-  <rule> <!-- argentineren fikk Ruud til å bevege mye på seg. -->
+  <rule> <!-- jeg er svært beveget og rørt  -->
+    <match lemma="beveget" tags="adj.*"><select lemma="gripen"/></match>
+    <match lemma="og"/>
+    <match lemma="røre"/>
+  </rule>
+
+  <rule weight="2.0"> <!-- argentineren fikk Ruud til å bevege mye på seg. -->
     <match lemma="bevege" tags="vblex.*"><select lemma="røre"/></match>
     <repeat from="0" upto="2">
     <or>
