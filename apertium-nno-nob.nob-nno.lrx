@@ -3297,6 +3297,17 @@
     <match lemma="seg"/>
   </rule>
 
+  <rule> <!-- Kasich skal avholde seg fra valgkamp i Indiana. -->
+    <match lemma="avholdt seg fra" tags="vblex.*"><select lemma="halde# seg unna"/></match>
+    <repeat from="0" upto="1">
+    <or>
+      <match tags="adj.*"/>
+    </or>
+    </repeat>
+    <match tags="n.*"/>
+  </rule>
+
+
   <rule><match lemma="fremholde" tags="adj.*"><select lemma="påpeike"/></match></rule>
   <rule><match lemma="framholde" tags="adj.*"><select lemma="påpeike"/></match></rule>
 
