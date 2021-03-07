@@ -3831,7 +3831,8 @@
   </rule>
 
   <rule><match lemma="spising" tags="n.*"><select lemma="eting"/></match></rule>
-  
+
+  <!-- BEGIN: hamstringen/hamstringa -->
   <rule><match lemma="hamstring" tags="n.*"><select lemma="hamstring" tags="n.f.*"/></match></rule>
   <rule weight="2.0" c="ha vondt i hamstringen (lårmuskulatur)">
     <match lemma="i"/>
@@ -3845,6 +3846,8 @@
       <match lemma="skade" tags="n.*"/>
       <match lemma="smerte" tags="n.*"/>
       <match lemma="vond" tags="adj.*"/>
+      <match lemma="stiv" tags="adj.*"/>
+      <match lemma="sliten" tags="adj.*"/>
       <match lemma="venstre" tags="adj.*"/>
       <match lemma="høyre" tags="adj.*"/>
       <match lemma="strekke" tags="vblex.*"/>
@@ -3854,18 +3857,22 @@
       <match lemma="skade" tags="vblex.*"/>
 	</or>
     <repeat from="0" upto="5"><match/></repeat>
-    <match lemma="hamstring" tags="n.m.sg.def"><select lemma="hamstring" tags="n.m.sg.def"/></match>
+    <match lemma="hamstring" tags="n.m.sg.*"><select lemma="hamstring" tags="n.m.sg.*"/></match>
   </rule>
   <rule weight="2.0" c="hamstringen er skadd">
-    <match lemma="hamstring" tags="n.m.sg.def"><select lemma="hamstring" tags="n.m.sg.def"/></match>
+    <match lemma="hamstring" tags="n.m.sg.*"><select lemma="hamstring" tags="n.m.sg.*"/></match>
     <repeat from="0" upto="3"><match/></repeat>
 	<or>
       <match lemma="vond" tags="adj.*"/>
       <match lemma="strekke" tags="adj.*"/>
-      <match lemma="slite" tags="adj.*"/>
       <match lemma="skade" tags="adj.*"/>
       <match lemma="ryke" tags="adj.*"/>
 	</or>
   </rule>
-  
+  <rule weight="2.0" c="ein hamstring (sjeldan: ei hamstring)">
+    <match tags="det.qnt.m.sg"><select tags="det.qnt.m.sg"/></match>
+    <match lemma="hamstring" tags="n.m.sg.ind"><select lemma="hamstring" tags="n.m.sg.ind"/></match>
+  </rule>
+  <!-- END: hamstring, todo: keep original joint letter, hamstringsproblem/hamstringproblem + "ein litt vond hamstring" -->
+
 </lrx>
