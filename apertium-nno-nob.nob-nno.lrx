@@ -1676,16 +1676,7 @@
   </rule>
   <rule><match lemma="belæring" tags="n.*"><select lemma="utgreiing"/></match></rule>
   <rule><match lemma="foruroligende" tags="adj.*"><select lemma="urovekkande"/></match></rule>
-  <rule><match lemma="innvilge" tags="vblex.*"><select lemma="løyve"/></match></rule>
-  <rule weight="2.0">
-    <match lemma="innvilge" tags="vblex.pp"><select lemma="innvilge"/></match>
-  </rule>
-  <rule weight="2.0">
-    <match lemma="innvilge" tags="vblex.pret"><select lemma="innvilge"/></match>
-  </rule>
-  <rule weight="2.0">
-    <match lemma="innvilge" tags="adj.pp.*"><select lemma="innvilge"/></match>
-  </rule>
+
   <rule><match lemma="skyldes" tags="vblex.*"><select lemma="komme# av"/></match></rule>
   <rule><match lemma="tilknytte" tags="vblex.*"><select lemma="knyte# til"/></match></rule>
   <rule><match lemma="forbeholde" tags="vblex.*"><select lemma="reservere# for"/></match></rule>
@@ -3875,4 +3866,35 @@
   </rule>
   <!-- END: hamstring, todo: keep original joint letter, hamstringsproblem/hamstringproblem + "ein litt vond hamstring" -->
 
+
+  <rule><match lemma="uforenlig" tags="adj.*"><select lemma="motstridande" tags="adj.*"/></match></rule>
+  <rule><match lemma="uforenelig" tags="adj.*"><select lemma="motstridande" tags="adj.*"/></match></rule>
+  <rule weight="2.0" c="stri mot">
+	<or>
+      <match lemma="være# uforenlig med" tags="vblex.*"><select lemma="stri# mot" tags="vblex.*"/></match>
+      <match lemma="være# uforenelig med" tags="vblex.*"><select lemma="stri# mot" tags="vblex.*"/></match>
+      <match lemma="være# uforenlige med" tags="vblex.*"><select lemma="stri# mot" tags="vblex.*"/></match>
+      <match lemma="være# uforenelige med" tags="vblex.*"><select lemma="stri# mot" tags="vblex.*"/></match>
+	</or>
+  </rule>
+  <rule weight="3.0" c="ikkje harmonere med">
+    <match lemma="som" tags="cnjsub"/>
+	<or>
+      <match lemma="være# uforenlig med" tags="vblex.*"><select lemma="ikkje harmonere# med" tags="vblex.*"/></match>
+      <match lemma="være# uforenelig med" tags="vblex.*"><select lemma="ikkje harmonere# med" tags="vblex.*"/></match>
+      <match lemma="være# uforenlige med" tags="vblex.*"><select lemma="ikkje harmonere# med" tags="vblex.*"/></match>
+      <match lemma="være# uforenelige med" tags="vblex.*"><select lemma="ikkje harmonere# med" tags="vblex.*"/></match>
+	</or>
+  </rule>
+  <rule weight="1.0" c="åtferd i strid med reglane">
+    <match tags="n.*"/>
+	<or>
+      <match lemma="uforenlig med" tags="adv"><select lemma="i strid med" tags="adv"/></match>
+      <match lemma="uforenelig med" tags="adv"><select lemma="i strid med" tags="adv"/></match>
+      <match lemma="uforenlige med" tags="adv"><select lemma="i strid med" tags="adv"/></match>
+      <match lemma="uforenelige med" tags="adv"><select lemma="i strid med" tags="adv"/></match>
+	</or>
+    <match tags="n.*"/>
+  </rule>
+  
 </lrx>
