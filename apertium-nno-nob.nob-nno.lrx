@@ -3896,5 +3896,15 @@
 	</or>
     <match tags="n.*"/>
   </rule>
-  
+
+  <rule><match lemma="klebe" tags="vblex.*"><select lemma="klistre"/></match></rule>
+  <rule weight="2.0" c="hefte ved">
+    <match lemma="klebe" tags="vblex.*"><select lemma="hefte"/></match>
+    <match lemma="ved" tags="pr"/>
+  </rule>
+  <rule weight="2.0" c="lime igjen">
+    <match lemma="klebe" tags="vblex.*"><select lemma="lime"/></match>
+    <match lemma="igjen" tags="adv"/>
+  </rule>
+
 </lrx>
