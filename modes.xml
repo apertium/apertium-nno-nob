@@ -40,7 +40,7 @@
       <program name="lt-proc -b" debug-suff="dgen">
         <file name="nob-nno_e_vi.autogen.bin"/>
       </program>
-      <program name="~/src/ap/vislcg3/src/cg-proc -n -g -w">
+      <program name="~/src/ap/vislcg3/src/cg-proc -n -g -w" debug-suff="genprefs">
         <file name="nob-nno.genprefs.rlx.bin"/>
       </program>
       <program name="lt-proc -p">
@@ -85,8 +85,11 @@
         <file name="apertium-nno-nob.nob-nno.t3x"/>
         <file name="nob-nno.t3x.bin"/>
       </program>
-      <program name="lt-proc -N1 $1">
+      <program name="lt-proc -b" debug-suff="dgen">
         <file name="nob-nno_e_vi.autogen.bin"/>
+      </program>
+      <program name="~/src/ap/vislcg3/src/cg-proc -1 -n -g" debug-suff="genprefs">
+        <file name="nob-nno.genprefs.rlx.bin"/>
       </program>
       <program name="lt-proc -p">
         <file name="nob-nno.autopgen.bin"/>
@@ -94,7 +97,7 @@
     </pipeline>
   </mode>
 
-  <mode name="nob-nno_e_me" install="yes" gendebug="no"> <!-- infinitive verbs ending in -e, pron 3pl me, with compounding -->
+  <mode name="nob-nno_e_me" install="yes" gendebug="yes"> <!-- infinitive verbs ending in -e, pron 3pl me, with compounding -->
     <pipeline>
       <program name="lt-proc -w -e">
         <file name="nob-nno.automorf.bin"/>
