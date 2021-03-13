@@ -3912,4 +3912,13 @@
     <match lemma="unnta" tags="vblex.pp"><select lemma="unnateken" tags="adj.*"/></match>
   </rule>
 
+  <rule><match lemma="tørre" tags="vblex.*"><select lemma="tore" tags="vblex.*"/></match></rule>
+  <rule weight="2.0" c="tørke tårene (tørre tårene)">
+    <match lemma="tørre" tags="vblex.inf"><select lemma="tørke" tags="vblex.*"/></match>
+    <match lemma="tåre" tags="n.*"/>
+  </rule>
+  <!-- TODO: Forvekslar verb/adjektiv her: "De må få på seg tørre klær, og så må de tørre tårene." 
+  => "Dei må få på seg _tørke_ klede, og så må dei _tørre_ tårene." Adjektivet blir tolka som 
+  infinitiv av å tørre¹, verbet som adjektivet. -->
+
 </lrx>
