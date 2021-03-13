@@ -3,20 +3,12 @@
 ###############################################################################
 
 LANG1=nno
-# nno_a har a-endingar i infinitiv, nno_e har e-endingar (standard):
-LANG1evi=nno_e_vi
-LANG1eme=nno_e_me
-LANG1ame=nno_a_me
-LANG1avi=nno_a_vi
 LANG2=nob
 PREFIX1=$(LANG1)-$(LANG2)
 PREFIX2=$(LANG2)-$(LANG1)
-PREFIX1e1a=$(LANG1e)-$(LANG1)
-PREFIX1a1e=$(LANG1)-$(LANG1e)
-PREFIX2ame=$(LANG2)-$(LANG1ame)
-PREFIX2evi=$(LANG2)-$(LANG1evi)
-PREFIX2eme=$(LANG2)-$(LANG1eme)
-PREFIX2avi=$(LANG2)-$(LANG1avi)
+# TODO:
+# PREFIX1e1a=$(LANG1e)-$(LANG1)
+# PREFIX1a1e=$(LANG1)-$(LANG1e)
 
 BASENAME=apertium-$(PREFIX1)
 
@@ -31,7 +23,7 @@ TARGETS_PREFIX1 =                                             \
      $(PREFIX1).t1x.bin $(PREFIX1).t2x.bin $(PREFIX1).t3x.bin \
      $(PREFIX1).autogen.bin
 
-TARGETS_PREFIX2_EXCEPTGEN =                                   \
+TARGETS_PREFIX2 =                                             \
      $(PREFIX2).automorf.bin                                  \
      $(PREFIX2).seg.rlx.bin                                   \
      $(PREFIX2).rlx.bin                                       \
@@ -41,23 +33,18 @@ TARGETS_PREFIX2_EXCEPTGEN =                                   \
      $(PREFIX2).t1x.bin $(PREFIX2).t2x.bin $(PREFIX2).t3x.bin \
      $(PREFIX2).autopgen.bin                                  \
      $(PREFIX2).biprefs.rlx.bin                               \
+     $(PREFIX2).autogen.bin                                   \
+     $(PREFIX2).e_vi_genprefs.rlx.bin                         \
      $(PREFIX2).genprefs.rlx.bin
-
-TARGETS_PREFIX2 =                 \
-     $(TARGETS_PREFIX2_EXCEPTGEN) \
-     $(PREFIX2ame).autogen.bin    \
-     $(PREFIX2evi).autogen.bin    \
-     $(PREFIX2eme).autogen.bin    \
-     $(PREFIX2avi).autogen.bin
 
 $(PREFIX1): $(TARGETS_PREFIX1)
 $(PREFIX2): $(TARGETS_PREFIX2)
 
 # Debug/development goals:
 e: modes/$(PREFIX1).mode	# build just nob-nno_e
-	cd $(AP_SRC1) && ${MAKE} $(LANG1evi).autogen.bin $(LANG1).prefs.rlx.bin $(LANG1).autopgen.bin
+	cd $(AP_SRC1) && ${MAKE} $(LANG1).autogen.bin $(LANG1).e_vi_prefs.rlx.bin $(LANG1).prefs.rlx.bin $(LANG1).autopgen.bin
 	cd $(AP_SRC2) && ${MAKE} $(LANG2).automorf.bin  $(LANG2).seg.rlx.bin $(LANG2).rlx.bin $(LANG2).prob
-	${MAKE} $(TARGETS_PREFIX2_EXCEPTGEN) $(PREFIX2evi).autogen.bin
+	${MAKE} $(TARGETS_PREFIX2)
 r: modes/$(PREFIX1).mode $(PREFIX2).autolex.bin $(PREFIX2).t1x.bin $(PREFIX2).t2x.bin $(PREFIX2).t3x.bin # build just transfer and rlx files for nob-nno(_e)
 	cd $(AP_SRC2) && ${MAKE} $(LANG2).seg.rlx.bin $(LANG2).rlx.bin
 	${MAKE} $(PREFIX2).seg.rlx.bin $(PREFIX2).rlx.bin
@@ -78,16 +65,7 @@ $(PREFIX1).automorf.bin: $(AP_SRC1)/$(LANG1).automorf.bin $(PREFIX1).autobil.bin
 # -------------------
 # Nynorsk generation:
 # ---------------------
-$(PREFIX2ame).autogen.bin: $(AP_SRC1)/$(LANG1).autogen.bin
-	cp $< $@
-
-$(PREFIX2evi).autogen.bin: $(AP_SRC1)/$(LANG1evi).autogen.bin
-	cp $< $@
-
-$(PREFIX2eme).autogen.bin: $(AP_SRC1)/$(LANG1eme).autogen.bin
-	cp $< $@
-
-$(PREFIX2avi).autogen.bin: $(AP_SRC1)/$(LANG1avi).autogen.bin
+$(PREFIX2).autogen.bin: $(AP_SRC1)/$(LANG1).autogen.bin
 	cp $< $@
 
 $(PREFIX2).autopgen.bin: $(AP_SRC1)/$(LANG1).autopgen.bin
@@ -148,6 +126,9 @@ $(PREFIX2).autobil.bin: $(BASENAME).$(PREFIX1).dix
 
 $(PREFIX2).biprefs.rlx.bin: $(BASENAME).$(PREFIX2).biprefs.rlx
 	cg-comp $< $@
+
+$(PREFIX2).e_vi_genprefs.rlx.bin: $(AP_SRC1)/$(LANG1).e_vi_prefs.rlx.bin
+	cp $< $@
 
 $(PREFIX2).genprefs.rlx.bin: $(AP_SRC1)/$(LANG1).prefs.rlx.bin
 	cp $< $@
