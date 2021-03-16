@@ -2230,11 +2230,12 @@
     <match lemma="tilsi" tags="vblex.*"><select lemma="bety"/></match>
   </rule>
 
-  <rule><match lemma="oppgi" tags="vblex.*"><select lemma="gje# opp"/></match></rule>
+  <rule><match lemma="oppgi" tags="vblex.*"><select lemma="oppgje"/></match></rule>
   <rule weight="2.0" c="Gi litt ekstra vekt til visse lause kontekstar">
     <match lemma="oppgi" tags="vblex.*"><select lemma="gje# opp"/></match>
-    <repeat from="0" upto="1">
+    <repeat from="0" upto="2">
       <or>
+        <match tags="det.*"/>
         <match tags="adj.*"/>
         <match lemma="noe"/>
       </or>
@@ -2249,13 +2250,17 @@
       <match lemma="idé"/>
     </or>
   </rule>
-  <rule><match lemma="oppgi" tags="adj.*"><select lemma="oppgje"/></match></rule>
   <rule c="passiv vanlegvis fast: I tråd med vedtatt praksis oppgis verken identitet eller …">
     <match lemma="oppgi" tags="vblex.*.pasv"><select lemma="oppgje"/></match>
   </rule>
   <rule weight="2.0" c="men passiv etter 'måtte' ofte laus: prosjekter som måtte oppgis → gjevast opp">
     <match lemma="måtte"/>
     <match lemma="oppgi" tags="vblex.*.pasv"><select lemma="gje# opp"/></match>
+  </rule>
+  <rule weight="2.0" c="måtte gi opp å oppnå noko">
+    <match lemma="måtte" tags="vblex.*"/>
+    <match lemma="oppgi" tags="vblex.inf"><select lemma="gje# opp"/></match>
+    <match lemma="å"/>
   </rule>
   <rule weight="2.0">
     <match lemma="oppgi" tags="vblex.*"><select lemma="oppgje"/></match>
