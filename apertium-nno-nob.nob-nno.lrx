@@ -1569,9 +1569,10 @@
       <match lemma="tur" tags="n.*"/>
     </or>
   </rule>
+  <!-- TODO: 'gjennom' does often not work well here, closer analysis needed -->
   <rule weight="3.0" c="opp 3 prosent i løpet av dagen → gjennom">
     <match tags="*"/>
-    <match lemma="i løpet av" tags="pr"><select lemma="gjennom"/></match>
+    <match lemma="i løpet av" tags="pr"><select lemma="i løpet av"/></match>
     <or>
       <match lemma="time"/>
       <match lemma="halvår"/>
@@ -3925,5 +3926,7 @@
   <!-- TODO: Forvekslar verb/adjektiv her: "De må få på seg tørre klær, og så må de tørre tårene." 
   => "Dei må få på seg _tørke_ klede, og så må dei _tørre_ tårene." Adjektivet blir tolka som 
   infinitiv av å tørre¹, verbet som adjektivet. -->
+  
+  <rule><match lemma="samt" tags="adv"><select lemma="og dessutan"/></match></rule>
 
 </lrx>
