@@ -3929,4 +3929,14 @@
   
   <rule><match lemma="samt" tags="adv"><select lemma="og dessutan"/></match></rule>
 
+  <rule><match lemma="anerkjennende" tags="adj.*"><select lemma="anerkjennande"/></match></rule>
+  <rule weight="2.0" c="godkjennande nikk">
+    <match lemma="anerkjennende" tags="adj.*"><select lemma="godkjennande"/></match>
+    <match lemma="nikk" tags="n.*"/>
+  </rule>
+  <rule weight="2.0" c="nikke godkjennande">
+    <match lemma="nikke" tags="vblex.*"/>
+    <match lemma="anerkjennende" tags="adj.*"><select lemma="godkjennande"/></match>
+  </rule>
+
 </lrx>
