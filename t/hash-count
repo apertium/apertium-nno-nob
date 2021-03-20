@@ -12,7 +12,10 @@ lastout=../t/ntb/articles.nob-nno.mt-latest
 out=$(mktemp -t hash-count-nno-nob.XXXXXXXXXX)
 trap 'rm -f "${out}"' EXIT
 
-apertium -f html-noent -d .. nob-nno_e-genprefs < ../t/ntb/articles.orig.nob > "${out}"
+if ! apertium -f html-noent -d .. nob-nno_e-genprefs < ../t/ntb/articles.orig.nob > "${out}"; then
+    echo "apertium exited with $?, output was:"
+    cat "${out}"
+fi
 
 last=$(grep -c '[#*@]' "${lastout}" || true)
 current=$(grep -c '[#*@]' "${out}" || true)
