@@ -13,8 +13,10 @@ out=$(mktemp -t hash-count-nno-nob.XXXXXXXXXX)
 trap 'rm -f "${out}"' EXIT
 
 if ! apertium -f html-noent -d .. nob-nno_e-genprefs < ../t/ntb/articles.orig.nob > "${out}"; then
-    echo "apertium exited with $?, output was:"
+    code=$?
+    echo "apertium exited with ${code}, output was:"
     cat "${out}"
+    exit "${code}"
 fi
 
 last=$(grep -c '[#*@]' "${lastout}" || true)
