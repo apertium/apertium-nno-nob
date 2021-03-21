@@ -3305,6 +3305,23 @@
     <match tags="n.*"/>
   </rule>
 
+  <rule> <!-- Med relativt enkle midler kan man anrette stor skade. -->
+    <match lemma="anrette" tags="vblex.*"><select lemma="gjere"/></match>
+    <repeat from="0" upto="1">
+      <match tags="adv"/>
+    </repeat>
+    <repeat from="0" upto="1">
+      <match lemma="stor"/>
+    </repeat>
+    <or>
+      <match lemma="skade"/>
+      <match lemma="ødeleggelse"/>    
+    </or>
+   </rule>
+
+  <rule> <!-- skiver som anrettes på toppen av riskremen. -->
+    <match lemma="anrette" tags="vblex.*"><select lemma="lage# til"/></match>
+  </rule>
 
   <rule><match lemma="fremholde" tags="adj.*"><select lemma="påpeike"/></match></rule>
   <rule><match lemma="framholde" tags="adj.*"><select lemma="påpeike"/></match></rule>
