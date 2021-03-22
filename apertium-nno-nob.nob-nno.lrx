@@ -3956,4 +3956,32 @@
     <match lemma="anerkjennende" tags="adj.*"><select lemma="godkjennande"/></match>
   </rule>
 
+  <rule><match lemma="begivenhet" tags="n.*"><select lemma="storhending"/></match></rule>
+  <rule weight="2.0" c="sportsevenement">
+    <match tags="n.*.*.*.cmp"/>
+    <match lemma="begivenhet" tags="n.*"><select lemma="evenement"/></match>
+  </rule>
+  <rule weight="2.0" c="TV-evenement">
+    <match tags="n.*.*.*.cmp.guio"/>
+    <match lemma="begivenhet" tags="n.*"><select lemma="evenement"/></match>
+  </rule>
+  <rule weight="2.0" c="små og store hendingar">
+    <match lemma="små og store begivenheter" tags="adv"><select lemma="små og store hendingar" tags="adv"/></match>
+  </rule>
+  <rule weight="2.0" c="store og små hendingar">
+    <match lemma="store og små begivenheter" tags="adv"><select lemma="store og små hendingar" tags="adv"/></match>
+  </rule>
+  <rule weight="2.0" c="storhendinga">
+    <match lemma="den store begivenheten" tags="adv"><select lemma="storhendinga"/></match>
+  </rule>
+  <rule weight="2.0" c="storhendingane">
+    <match lemma="de store begivenhetene" tags="adv"><select lemma="storhendingane"/></match>
+  </rule>
+  <rule weight="1.0" c="storhending">
+    <match lemma="stor begivenhet" tags="n.*"><select lemma="storhending" tags="n.*"/></match>
+  </rule>
+  <rule weight="1.0" c="vere i fokus">
+    <match lemma="i begivenhetenes sentrum" tags="adv"><select lemma="i fokus" tags="adv"/></match>
+  </rule>
+
 </lrx>
