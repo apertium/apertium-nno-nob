@@ -10,6 +10,9 @@
 
 DELIMITERS = ".";
 
+LIST m = m ;
+LIST f = f ;
+
 
 SELECT:forskjell_skilnad   ("skilnad"i) IF (0 ("forskjell"i) + (VAR:forskjell_skilnad));
 REMOVE:forskjell_forskjell ("skilnad"i) IF (0 ("forskjell"i));
@@ -25,6 +28,9 @@ REMOVE:anten_anten ("enten"i) IF (0 ("anten"i));
 SELECT:mellom_blant  ("blant anna"i) IF (0 ("mellom anna"i) + (VAR:mellom_blant));
 REMOVE:mellom_mellom ("blant anna"i) IF (0 ("mellom anna"i));
 
+LIST lm_lov = ".*lov"ri;
+SELECT:lova_loven lm_lov + f IF (0 (VAR:lova_loven));
+REMOVE:lova_loven lm_lov + m;
 
 # $ echo '[<STREAMCMD:SETVAR:forskjell_skilnad,samd_einig>]^forskjell<n><m><sg><ind>/forskjell<n><m><sg><ind>/skilnad<n><m><sg><ind>$ ^enig<adj><sint><pst><nt><sg><ind>/samd<adj><sint><pst><nt><sg><ind>/einig<adj><sint><pst><nt><sg><ind>$' | ~/src/ap/vislcg3/src/cg-proc -t biprefs.nob-nno.rlx.bin |cg-conv
 # [<STREAMCMD:SETVAR:forskjell_skilnad,samd_einig>]
