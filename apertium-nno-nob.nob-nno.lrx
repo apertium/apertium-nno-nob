@@ -3984,4 +3984,17 @@
     <match lemma="i begivenhetenes sentrum" tags="adv"><select lemma="i fokus" tags="adv"/></match>
   </rule>
 
+  <rule><match lemma="påregne" tags="vblex.*"><select lemma="rekne# med"/></match></rule>
+  <rule weight="2.0" c="må påreknast">
+    <match lemma="påregne" tags="vblex.inf.pasv"><select lemma="pårekne"/></match>
+  </rule>
+  <rule weight="2.0" c="vere pårekna">
+    <or>
+      <match lemma="bli" tags="vblex.*"/>
+      <match lemma="være" tags="vblex.*"/>
+	</or>
+    <repeat from="0" upto="5"><match/></repeat>
+    <match lemma="påregne" tags="vblex.pp"><select lemma="pårekne"/></match>
+  </rule>
+
 </lrx>
