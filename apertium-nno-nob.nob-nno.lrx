@@ -3349,6 +3349,42 @@
     <match lemma="at"/>
   </rule>
 
+
+  <rule weight="2.0"> <!-- det er helt usikkert hva som... -->
+    <match lemma="den"  tags="prn.*"/>
+    <match lemma="være"  tags="vblex.pres"/>
+    <repeat from="0" upto="1">
+      <or>
+        <match tags="adj.*"/>
+        <match tags="adv"/>   
+      </or>
+    </repeat>
+    <match lemma="usikker" tags="adj.*"><select lemma="uviss"/></match>
+  </rule>
+
+  <rule weight="2.0"> <!-- Det har vært usikkert om... -->
+    <match lemma="den"  tags="prn.*"/>
+    <match lemma="ha"  tags="vblex.pres"/>
+    <match lemma="være"  tags="vblex.pp"/>
+    <match lemma="usikker" tags="adj.*"><select lemma="uviss"/></match>
+  </rule>
+
+  <rule weight="2.0"> <!-- Selv hvis Trump vinner de fire, er det fortsatt usikkert hvem som vinner. -->
+    <match lemma="være"  tags="vblex.pres"/>
+    <match lemma="den"  tags="prn.*"/>
+    <repeat from="0" upto="1">
+      <or>
+        <match tags="adj.*"/>
+        <match tags="adv"/>   
+      </or>
+    </repeat>
+    <match lemma="usikker" tags="adj.*"><select lemma="uviss"/></match>
+  </rule>
+
+  <rule> <!-- det britiske hoffet går en usikker framtid i møte. -->
+    <match lemma="usikker" tags="adj.*"><select lemma="usikker"/></match>
+  </rule>
+
   <rule><match lemma="fremholde" tags="adj.*"><select lemma="påpeike"/></match></rule>
   <rule><match lemma="framholde" tags="adj.*"><select lemma="påpeike"/></match></rule>
 
