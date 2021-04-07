@@ -3323,6 +3323,19 @@
     <match lemma="anrette" tags="vblex.*"><select lemma="lage# til"/></match>
   </rule>
 
+  <rule> <!-- en vel anrettet fortelling. -->
+    <or>
+      <match tags="adj.*"/>
+      <match tags="adv"/>
+    </or>
+    <match lemma="anrette" tags="adj.pp.*"><select lemma="tillage"/></match>
+    <match tags="n.*"/>
+  </rule>
+
+  <rule> 
+    <match lemma="anrette" tags="adj.pp.*"><select lemma="lage# til"/></match>
+  </rule>
+
   <rule><match lemma="fremholde" tags="adj.*"><select lemma="påpeike"/></match></rule>
   <rule><match lemma="framholde" tags="adj.*"><select lemma="påpeike"/></match></rule>
 
