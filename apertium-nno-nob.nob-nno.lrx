@@ -3375,10 +3375,43 @@
     <repeat from="0" upto="1">
       <or>
         <match tags="adj.*"/>
-        <match tags="adv"/>   
+        <match tags="adv"/>
       </or>
     </repeat>
     <match lemma="usikker" tags="adj.*"><select lemma="uviss"/></match>
+  </rule>
+
+  <rule weight="2.0"> <!-- Her understreket han at framtiden er svært usikker. -->
+    <or>
+      <match lemma="fremtid"/>
+      <match lemma="framtid"/>
+      <match lemma="situasjon"/>
+    </or>
+    <match lemma="være"  tags="vblex.*"/>
+    <repeat from="0" upto="1">
+      <or>
+        <match tags="adj.*"/>
+        <match tags="adv"/>
+      </or>
+    </repeat>
+    <match lemma="usikker" tags="adj.*"><select lemma="uviss"/></match>
+  </rule>
+
+  <rule weight="2.0"> <!-- det britiske hoffet går en usikker framtid i møte. -->
+    <match lemma="en"/>
+    <repeat from="0" upto="1">
+      <or>
+        <match tags="adj.*"/>
+        <match tags="adv"/>
+      </or>
+    </repeat>
+    <match lemma="usikker" tags="adj.*"><select lemma="uviss"/></match>
+    <or>
+      <match lemma="fremtid"/>
+      <match lemma="framtid"/>
+      <match lemma="situasjon"/>
+      <match lemma="skjebne"/>
+    </or>
   </rule>
 
   <rule> <!-- det britiske hoffet går en usikker framtid i møte. -->
