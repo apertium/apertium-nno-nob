@@ -3336,6 +3336,19 @@
     <match lemma="anrette" tags="adj.pp.*"><select lemma="lage# til"/></match>
   </rule>
 
+  <rule weight="2.0"> <!-- Det betinger at Uefa som ventet nøyer seg med... -->
+    <match lemma="betinge" tags="vblex.*"><select lemma="føresetje"/></match>
+    <repeat from="0" upto="3">
+      <or>
+        <match tags="adj.*"/>
+        <match tags="adv"/>  
+        <match tags="pr"/>
+        <match tags="n.*"/>  
+      </or>
+    </repeat>
+    <match lemma="at"/>
+  </rule>
+
   <rule><match lemma="fremholde" tags="adj.*"><select lemma="påpeike"/></match></rule>
   <rule><match lemma="framholde" tags="adj.*"><select lemma="påpeike"/></match></rule>
 
