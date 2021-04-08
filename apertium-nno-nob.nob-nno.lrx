@@ -1740,13 +1740,13 @@
     </or>
   </rule>
 
-<!-- OK avgi/avlegge (en) prøve → ta (ei) prøve -->
-<rule weight="4.0">
-  <or>
-    <match lemma="avlegge" tags="vblex.*"><select lemma="ta"/></match>
-    <match lemma="avgi" tags="vblex.*"><select lemma="ta"/></match>
-  </or>
-  <or>
+  <!-- OK avgi/avlegge (en) prøve → ta (ei) prøve -->
+  <rule weight="4.0">
+    <or>
+      <match lemma="avlegge" tags="vblex.*"><select lemma="ta"/></match>
+      <match lemma="avgi" tags="vblex.*"><select lemma="ta"/></match>
+    </or>
+    <or>
       <match lemma="prøve" tags="n.*"/>
       <match lemma="blodprøve" tags="n.*"/>
       <match lemma="dopingprøve" tags="n.*"/>
@@ -1758,37 +1758,28 @@
       <match lemma="dopingtest" tags="n.*"/>
       <match lemma="farskapstest" tags="n.*"/>
       <match lemma="urintest"  tags="n.*"/>
-  </or>
+    </or>
   </rule>
-  
+
 
   <!-- OK avlegge rapport → gje rapport -->
-<rule weight="2.0">
+  <rule weight="2.0">
     <match lemma="avlegge" tags="vblex.*"><select lemma="gje"/></match>
     <or>
       <match lemma="rapport"/>
     </or>
   </rule>
 
-    <!-- ? avgitte stemmer -->
+  <rule><match lemma="stemme" tags="n.*"><select lemma="stemme"/></match></rule>
+
+  <!-- ? avgitte stemmer -->
   <rule weight="20">
     <or>
-    <match lemma="avgi" tags="adj.*"><select lemma=""/></match>
-    <match lemma="avgi" tags="vblex.pp.*"><select lemma=""/></match>
-  </or>
-  <or>
-    <match lemma="stemme" tags="n.*"/>
+      <match lemma="avgi" tags="adj.*"><select lemma=""/></match>
+      <match lemma="avgi" tags="vblex.pp.*"><select lemma=""/></match>
     </or>
-  </rule>
-
-    <!-- ? avgi blank stemme -> stemme blankt -->
-  <rule weight="20">
-    <match lemma="avgi" tags="vblex.*"><select lemma="stemme" tags="vblex.*"/></match>
-      <or>
-        <match lemma="blank" tags="adj.*"/>
-      </or>
-      <or>
-      <match lemma="stemme" tags="n.*"><select lemma=""/></match>
+    <or>
+      <match lemma="stemme" tags="n.*"/>
     </or>
   </rule>
 
