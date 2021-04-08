@@ -5038,14 +5038,25 @@ no lemq-moving">
       </pattern>
       <action>
         <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
-        <call-macro n="out_gen-prep"><with-param pos="1"/></call-macro>
-        <call-macro n="stash_case_in_ntags"><with-param pos="1"/></call-macro>
-        <out>
-          <chunk name="n" case="caseFirstWord">
-            <tags><tag><var n="ntags"/></tag></tags>
-            <lu><clip pos="1" side="tl" part="whole"/></lu>
-          </chunk>
-        </out>
+        <choose>
+          <when c="Only output if bidix has a lemma in l">
+            <test>
+              <not><equal><clip pos="1" side="tl" part="lem"/><lit v=""/></equal></not>
+            </test>
+            <call-macro n="out_gen-prep"><with-param pos="1"/></call-macro>
+            <call-macro n="stash_case_in_ntags"><with-param pos="1"/></call-macro>
+            <out>
+              <chunk name="n" case="caseFirstWord">
+                <tags><tag><var n="ntags"/></tag></tags>
+                <lu><clip pos="1" side="tl" part="whole"/></lu>
+              </chunk>
+            </out>
+          </when>
+          <otherwise>
+            <let><var n="prevDeletedCase"/><lit v="aa"/></let>
+            <modify-case><var n="prevDeletedCase"/><var n="caseFirstWord"/></modify-case>
+          </otherwise>
+        </choose>
       </action>
     </rule>
     <rule comment="NCMP N: ytelses ytelse => ytingsyting
