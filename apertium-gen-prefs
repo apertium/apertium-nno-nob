@@ -1,0 +1,15 @@
+#!/bin/bash
+
+mkdir -p prefs
+for mode in $(xmllint --xpath '//preferences/../@name' modes.xml); do
+    out=${mode//\"}; out=${out/name=}
+    {
+        echo "<preferences>"
+        for path in $(xmllint --xpath "//mode[@$mode]//preferences/pref/@path" modes.xml); do
+            preffile=${path//\"}; preffile=${preffile/path=}
+            xmllint --xpath '/preferences/preference' "${preffile}"
+        done
+        echo "</preferences>"
+    } > prefs/"${out}".xml
+done
+ls prefs

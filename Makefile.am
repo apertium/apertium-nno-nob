@@ -35,7 +35,8 @@ TARGETS_PREFIX2 =                                             \
      $(PREFIX2).biprefs.rlx.bin                               \
      $(PREFIX2).autogen.bin                                   \
      $(PREFIX2).e_vi_genprefs.rlx.bin                         \
-     $(PREFIX2).genprefs.rlx.bin
+     $(PREFIX2).genprefs.rlx.bin                              \
+     prefs/$(PREFIX2).xml
 
 $(PREFIX1): $(TARGETS_PREFIX1)
 $(PREFIX2): $(TARGETS_PREFIX2)
@@ -172,6 +173,11 @@ $(PREFIX2).t3x.bin: $(BASENAME).$(PREFIX2).t3x
 	apertium-validate-postchunk $<
 	apertium-preprocess-transfer $< $@
 
+$(LANG1).preferences.xml: $(AP_SRC1)/$(LANG1).preferences.xml
+	cp $< $@
+
+prefs/$(PREFIX2).xml: $(LANG1).preferences.xml $(PREFIX2).preferences.xml
+	./apertium-gen-prefs
 
 ###############################################################################
 ## Distribution
@@ -186,6 +192,7 @@ EXTRA_DIST=$(BASENAME).$(PREFIX1).dix \
 	   $(BASENAME).$(PREFIX2).t3x \
 	   $(BASENAME).$(PREFIX1).lrx \
 	   $(BASENAME).$(PREFIX2).lrx \
+	   $(PREFIX2).preferences.xml \
 	   modes.xml
 
 ###############################################################################
@@ -207,7 +214,12 @@ apertium_nno_nob_DATA=$(TARGETS_COMMON) \
 noinst_DATA=modes/$(PREFIX1).mode
 
 install-data-local: install-modes
-
+	$(MKDIR_P) $(DESTDIR)$(apertium_modesdir)/../prefs
+	modes=`xmllint --xpath '//mode[@install="yes" and ./preferences]/@name' modes.xml | sed 's% *name="\([^"]*\)"%prefs/\1.xml %g'`; \
+		if test -n "$$modes"; then \
+			$(INSTALL_DATA) $$modes $(DESTDIR)$(apertium_modesdir)/../prefs; \
+		fi
+# The above is similar to how we install modes; TODO: put in apertium.m4?
 
 ###############################################################################
 ## Cleanup
