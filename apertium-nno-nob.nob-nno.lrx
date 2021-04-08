@@ -3495,6 +3495,14 @@
     </or>
   </rule>
 
+  <rule> <!-- kampen har så langt bare gitt betinget suksess . -->
+    <match lemma="betinget" tags="adj.*"><select lemma="måteleg"/></match>
+    <or>
+      <match lemma="lykke"/>
+      <match lemma="suksess"/>
+    </or>
+  </rule>
+
   <rule> <!-- Og så mener vi at hele straffen skulle vært betinget, hvis han skal dømmes. -->
     <match lemma="betinget" tags="adj.*"><select lemma="vilkårsbunden"/></match>
   </rule>
