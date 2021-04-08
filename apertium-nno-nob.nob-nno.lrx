@@ -4091,5 +4091,41 @@
     <repeat from="0" upto="5"><match/></repeat>
     <match lemma="påregne" tags="vblex.pp"><select lemma="pårekne"/></match>
   </rule>
+  
+  <rule><match lemma="befestning" tags="n.*"><select lemma="forskansing"/></match></rule>
+  <rule><match lemma="befesting" tags="n.*"><select lemma="forskansing"/></match></rule>
+  <rule weight="2.0" c="styrking av">
+    <match lemma="befestning" tags="n.m.sg.ind"><select lemma="styrking"/></match>
+    <match lemma="av"/>
+  </rule>
+  <rule weight="2.0" c="styrking av">
+    <match lemma="befesting" tags="n.m.sg.ind"><select lemma="styrking"/></match>
+    <match lemma="av"/>
+  </rule>
+
+  <rule><match lemma="berike" tags="vblex.*"><select lemma="berike"/></match></rule>
+  <rule weight="2.0" c="sko seg">
+    <match lemma="berike# seg selv" tags="vblex.*"><select lemma="sko# seg"/></match>
+  </rule>
+  <rule weight="2.0" c="sko meg">
+    <match lemma="berike# meg selv" tags="vblex.*"><select lemma="sko# meg"/></match>
+  </rule>
+  <rule weight="2.0" c="sko oss">
+    <match lemma="berike# oss selv" tags="vblex.*"><select lemma="sko# oss"/></match>
+  </rule>
+  <rule weight="2.0" c="sko seg">
+    <match lemma="berike" tags="vblex.*"><select lemma="sko"/></match>
+	<or>
+      <match lemma="seg"/>
+      <match lemma="meg"/>
+      <match lemma="oss"/>
+	</or>
+  </rule>
+  
+  <rule><match lemma="berikelse" tags="n.*"><select lemma="beriking"/></match></rule>
+  <rule weight="2.0" c="ein stimulans">
+    <match lemma="en"/>
+    <match lemma="berikelse" tags="n.*"><select lemma="stimulans"/></match>
+  </rule>
 
 </lrx>
