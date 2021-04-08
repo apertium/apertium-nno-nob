@@ -1727,6 +1727,73 @@
 
   <rule><match lemma="uaktsom" tags="adj.*"><select lemma="aktlaus"/></match></rule>
 
+
+<!-- OK avgi jord/grunn/eiendom/areal/land/område → avstå jord/grunn/eigedom/areal/land/område -->
+<rule weight="2.0">
+    <match lemma="avgi" tags="vblex.*"><select lemma="avstå"/></match>
+    <or>
+      <match lemma="jord"/>
+      <match lemma="eiendom"/>
+      <match lemma="areal"/>
+      <match lemma="land"/>
+      <match lemma="område"/>
+    </or>
+  </rule>
+
+<!-- OK avgi/avlegge (en) prøve → ta (ei) prøve -->
+<rule weight="4.0">
+  <or>
+    <match lemma="avlegge" tags="vblex.*"><select lemma="ta"/></match>
+    <match lemma="avgi" tags="vblex.*"><select lemma="ta"/></match>
+  </or>
+  <or>
+      <match lemma="prøve" tags="n.*"/>
+      <match lemma="blodprøve" tags="n.*"/>
+      <match lemma="dopingprøve" tags="n.*"/>
+      <match lemma="alkoholprøve" tags="n.*"/>
+      <match lemma="promilleprøve" tags="n.*"/>
+      <match lemma="urinprøve"  tags="n.*"/>
+      <match lemma="test" tags="n.*"/>
+      <match lemma="promilletest" tags="n.*"/>
+      <match lemma="dopingtest" tags="n.*"/>
+      <match lemma="farskapstest" tags="n.*"/>
+      <match lemma="urintest"  tags="n.*"/>
+  </or>
+  </rule>
+  
+
+  <!-- OK avlegge rapport → gje rapport -->
+<rule weight="2.0">
+    <match lemma="avlegge" tags="vblex.*"><select lemma="gje"/></match>
+    <or>
+      <match lemma="rapport"/>
+    </or>
+  </rule>
+
+    <!-- ? avgitte stemmer -->
+  <rule weight="20">
+    <or>
+    <match lemma="avgi" tags="adj.*"><select lemma=""/></match>
+    <match lemma="avgi" tags="vblex.pp.*"><select lemma=""/></match>
+  </or>
+  <or>
+    <match lemma="stemme" tags="n.*"/>
+    </or>
+  </rule>
+
+    <!-- ? avgi blank stemme -> stemme blankt -->
+  <rule weight="20">
+    <match lemma="avgi" tags="vblex.*"><select lemma="stemme" tags="vblex.*"/></match>
+      <or>
+        <match lemma="blank" tags="adj.*"/>
+      </or>
+      <or>
+      <match lemma="stemme" tags="n.*"><select lemma=""/></match>
+    </or>
+  </rule>
+
+
+
   <!-- merke¹ is transitive: -->
   <rule><match lemma="merke" tags="vblex.*"><select lemma="merke"/></match></rule>
   <rule><match lemma="merke" tags="adj.*"><select lemma="merke"/></match></rule>
@@ -2308,6 +2375,7 @@
     </or>
   </rule>
 
+ 
   <rule c="framstår som surrealistisk"><match lemma="framstå# som" tags="vblex.*"><select lemma="verke"/></match></rule>
   <rule c="framstår som en raring" weight="2.0">
     <match lemma="framstå# som" tags="vblex.*"><select lemma="verke# som"/></match>
@@ -3474,7 +3542,79 @@
     <match lemma="fryktinngytende" tags="adj.*"><select lemma="skremmande god"/></match>
     <match lemma="form"/>
   </rule>
-  
+
+<!-- BEGIN: ilegge -->
+  <!-- OK ilegge –> gi -->
+  <rule>
+    <match lemma="ilegge" tags="vblex.*"><select lemma="gje" tags="vblex.*"/></match>
+</rule>
+ <!-- OK bot ilegges –> bot blir skriven ut -->
+  <rule weight="40"> 
+    <match lemma="bot" tags="n.*"/>
+    <match lemma="ilegge" tags="vblex.*.pasv"><select lemma="skrive# ut"/></match>
+  </rule>
+    <!-- OK som ilegges -> som blir pålagd -->
+  <rule weight="30">
+    <match lemma="som"/>
+    <match lemma="ilegge" tags="vblex.*.pasv"><select lemma="pålegge"/></match>
+  </rule>
+    <!-- OK ilegge 'pr'/'cnjsub' –> bli pålagd 'pr'/'cnjsub' -->
+  <rule weight="10">
+    <match lemma="ilegge" tags="vblex.*.pasv"><select lemma="pålegge"/></match>
+        <or>
+      <match tags="pr"/>
+      <match tags="cnjsub"/>
+      <match tags="adv"/>
+    </or>
+  </rule>
+   <!-- OK 'modal' ilegges –> påleggjast -->
+  <rule weight="3.0">
+       <or>
+      <match lemma="kunne" tags="vblex.*"/>
+      <match lemma="måtte" tags="vblex.*"/>
+      <match lemma="ville" tags="vblex.*"/>
+      <match lemma="skulle" tags="vblex.*"/>
+      </or>
+    <match lemma="ilegge" tags="vblex.*.pasv"><select lemma="pålegge"/></match>
+  </rule>
+
+  <!-- OK ilegges –> får -->
+  <rule weight="10">
+    <match lemma="ilegge" tags="vblex.*.pasv"><select lemma="få" tags="vblex.*"/></match>
+  </rule>
+
+
+   <!-- DOESN't WORK være ilagt –> ha fått -->
+  <rule weight="10">
+    <repeat from="0" upto="1">
+    <match lemma="ville"/>
+</repeat>
+    <match lemma="være"><select lemma="ha"/></match>
+    <repeat from="0" upto="1">
+    <match tags="prn.*"/>
+  </repeat>
+    <match lemma="ilegge" tags="adj.pp.*"><select lemma="få" tags="vblex.*"/></match>
+  </rule>
+
+        <!-- DOESN't WORK er blitt ilagt –> er blitt pålagd -->
+  <rule weight="40">
+    <match lemma="være"><select lemma="vere"/></match>
+    <match lemma="bli"/><match lemma="bli"/>
+    <match lemma="ilegge" tags="adj.pp.*"><select lemma="pålegge" tags="adj.pp.*"/></match>
+  </rule>
+
+  <!-- DOESN't WORK bli ilagt –> få -->
+  <rule weight="20">
+    <match lemma="bli" tags="vblex.*"><select lemma=""/></match>
+    <match lemma="ilegge" tags="adj.pp.*"><select lemma="få" tags="vblex.*"/></match>
+  </rule>
+
+
+
+<!-- END: ilegge -->
+
+
+
   <!-- BEGIN: uforbeholden -->
   <rule>
     <match lemma="uforbeholden" tags="adj.*"><select lemma="atterhaldslaus"/></match>
