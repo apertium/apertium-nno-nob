@@ -12,6 +12,9 @@ PREFIX2=$(LANG2)-$(LANG1)
 
 BASENAME=apertium-$(PREFIX1)
 
+TARGETS_PREFS=prefs/$(PREFIX2).xml \
+	      prefs/$(PREFIX2)_e.xml
+
 TARGETS_COMMON = $(TARGETS_PREFIX1) $(TARGETS_PREFIX2)
 
 TARGETS_PREFIX1 =                                             \
@@ -173,11 +176,26 @@ $(PREFIX2).t3x.bin: $(BASENAME).$(PREFIX2).t3x
 	apertium-validate-postchunk $<
 	apertium-preprocess-transfer $< $@
 
+###############################################################################
+## Preferences
+###############################################################################
+
 $(LANG1).preferences.xml: $(AP_SRC1)/$(LANG1).preferences.xml
 	cp $< $@
 
+define mergePrefs =
+$(MKDIR_P) prefs
+echo '<preferences>' >$@.tmp
+for f in $^; do xmllint --xpath '/preferences/preference' "$$f"; done >>$@.tmp
+echo '</preferences>' >>$@.tmp
+mv $@.tmp $@
+endef
+
 prefs/$(PREFIX2).xml: $(LANG1).preferences.xml $(PREFIX2).preferences.xml
-	./apertium-gen-prefs
+	$(mergePrefs)
+
+prefs/$(PREFIX2)_e.xml: $(LANG1).preferences.xml $(PREFIX2).preferences.xml
+	$(mergePrefs)
 
 ###############################################################################
 ## Distribution
@@ -211,15 +229,11 @@ apertium_nno_nob_DATA=$(TARGETS_COMMON) \
 	$(BASENAME).$(PREFIX2).t3x
 
 # All modes are created by the same goal, listing several will just give problems with make -j2
-noinst_DATA=modes/$(PREFIX1).mode
+noinst_DATA=modes/$(PREFIX1).mode $(TARGETS_PREFS)
 
 install-data-local: install-modes
 	$(MKDIR_P) $(DESTDIR)$(apertium_modesdir)/../prefs
-	modes=`xmllint --xpath '//mode[@install="yes" and ./preferences]/@name' modes.xml | sed 's% *name="\([^"]*\)"%prefs/\1.xml %g'`; \
-		if test -n "$$modes"; then \
-			$(INSTALL_DATA) $$modes $(DESTDIR)$(apertium_modesdir)/../prefs; \
-		fi
-# The above is similar to how we install modes; TODO: put in apertium.m4?
+	$(INSTALL_DATA) $(TARGETS_PREFS) $(DESTDIR)$(apertium_modesdir)/../prefs
 
 ###############################################################################
 ## Cleanup
