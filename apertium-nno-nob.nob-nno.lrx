@@ -4293,4 +4293,50 @@
     <match lemma="berikelse" tags="n.*"><select lemma="stimulans"/></match>
   </rule>
 
+  <rule><match lemma="april" tags="n.*"><select lemma="april"/></match></rule>
+  <rule><match lemma="måned" tags="n.*"><select lemma="månad"/></match></rule>
+  <rule weight="2.0" c="april-månaden">
+    <or>
+      <match lemma="januar" tags="n.*.*.*.cmp.guio"><select lemma="januar"/></match>
+      <match lemma="februar" tags="n.*.*.*.cmp.guio"><select lemma="februar"/></match>
+      <match lemma="mars" tags="n.*.*.*.cmp.guio"><select lemma="mars"/></match>
+      <match lemma="april" tags="n.*.*.*.cmp.guio"><select lemma="april"/></match>
+      <match lemma="mai" tags="n.*.*.*.cmp.guio"><select lemma="mai"/></match>
+      <match lemma="juni" tags="n.*.*.*.cmp.guio"><select lemma="juni"/></match>
+      <match lemma="juli" tags="n.*.*.*.cmp.guio"><select lemma="juli"/></match>
+      <match lemma="august" tags="n.*.*.*.cmp.guio"><select lemma="august"/></match>
+      <match lemma="september" tags="n.*.*.*.cmp.guio"><select lemma="september"/></match>
+      <match lemma="oktober" tags="n.*.*.*.cmp.guio"><select lemma="oktober"/></match>
+      <match lemma="november" tags="n.*.*.*.cmp.guio"><select lemma="november"/></match>
+      <match lemma="desember" tags="n.*.*.*.cmp.guio"><select lemma="desember"/></match>
+	</or>
+	<match lemma="måned" tags="n.*"><select lemma="månad"/></match>
+  </rule>	
+  <rule weight="2.0" c="den våtaste og nest varmaste aprilmånaden">
+    <match lemma="den"/>
+    <repeat from="0" upto="5">
+      <or>
+        <match tags="adv"/>
+        <match tags="adj.*"/>
+        <match tags="cnjcoo"/>
+        <match tags="cnjcoo.*"/>
+      </or>
+    </repeat>
+	<or>
+      <match lemma="januar" tags="n.*"><select lemma="januarmånad" tags="n.*"/></match>
+      <match lemma="februar" tags="n.*"><select lemma="februarmånad" tags="n.*"/></match>
+      <match lemma="mars" tags="n.*"><select lemma="marsmånad" tags="n.*"/></match>
+      <match lemma="april" tags="n.*"><select lemma="aprilmånad" tags="n.*"/></match>
+      <match lemma="mai" tags="n.*"><select lemma="maimånad" tags="n.*"/></match>
+      <match lemma="juni" tags="n.*"><select lemma="junimånad" tags="n.*"/></match>
+      <match lemma="juli" tags="n.*"><select lemma="julimånad" tags="n.*"/></match>
+      <match lemma="august" tags="n.*"><select lemma="augustmånad" tags="n.*"/></match>
+      <match lemma="september" tags="n.*"><select lemma="septembermånad" tags="n.*"/></match>
+      <match lemma="oktober" tags="n.*"><select lemma="oktobermånad" tags="n.*"/></match>
+      <match lemma="november" tags="n.*"><select lemma="novembermånad" tags="n.*"/></match>
+      <match lemma="desember" tags="n.*"><select lemma="desembermånad" tags="n.*"/></match>
+	</or>
+    <match lemma="måned" tags="n.*"><select lemma=""/></match>
+  </rule>
+
 </lrx>
