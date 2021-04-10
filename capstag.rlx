@@ -1,0 +1,14 @@
+# GPL-2+
+
+DELIMITERS = "<.>" "<:>" "<!>" "<?>" "<|>" "<$.>" "<$:>" "<$!>" "<$?>" "<$|>" sent ;
+
+SECTION
+
+# Based on transfer.cc:Transfer::copycase
+LIST lastupper  = "<.*\\p{Lu}>"r ;
+LIST firstupper = "<\\p{Lu}.*>"r ;
+LIST sizeone    = "<.>"r ;
+MAP (aa) sizeone                 ;
+MAP (AA) firstupper + lastupper  ;
+MAP (Aa) firstupper              ;
+MAP (aa) (*)                     ;
