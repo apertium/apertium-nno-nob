@@ -3214,6 +3214,52 @@
                c="arg1: first cmp-part, arg2: last cmp-part
                   Use nom tags from first part, caps tags from last">
       <choose>
+        <when c="Previous word was deleted – use its case if it was Titled and we're lower">
+          <test><and>
+            <equal><var n="prevDeletedCase"/><lit v="Aa"/></equal>
+            <equal><clip pos="2" side="sl" part="a_caps"/><lit-tag v="aa"/></equal>
+          </and></test>
+          <let><var n="caseFirstWord"/><var n="prevDeletedCase"/></let>
+          <let><var n="prevDeletedCase"/><lit v=""/></let>
+        </when>
+        <when c="Contains a number: don't downcase, set caseFirstWord if first in sentence else empty it">
+          <test><or>
+            <contains-substring><clip pos="1" side="tl" part="lemh"/><lit v="0"/></contains-substring>
+            <contains-substring><clip pos="1" side="tl" part="lemh"/><lit v="1"/></contains-substring>
+            <contains-substring><clip pos="1" side="tl" part="lemh"/><lit v="2"/></contains-substring>
+            <contains-substring><clip pos="1" side="tl" part="lemh"/><lit v="3"/></contains-substring>
+            <contains-substring><clip pos="1" side="tl" part="lemh"/><lit v="4"/></contains-substring>
+            <contains-substring><clip pos="1" side="tl" part="lemh"/><lit v="5"/></contains-substring>
+            <contains-substring><clip pos="1" side="tl" part="lemh"/><lit v="6"/></contains-substring>
+            <contains-substring><clip pos="1" side="tl" part="lemh"/><lit v="7"/></contains-substring>
+            <contains-substring><clip pos="1" side="tl" part="lemh"/><lit v="8"/></contains-substring>
+            <contains-substring><clip pos="1" side="tl" part="lemh"/><lit v="9"/></contains-substring>
+            <contains-substring><clip pos="1" side="tl" part="lemh"/><lit v="-"/></contains-substring>
+            <ends-with><clip pos="1" side="tl" part="lemh"/><lit v="-basert"/></ends-with> <!-- A-Z-basert -->
+            <ends-with><clip pos="1" side="tl" part="lemh"/><lit v="-ulykke"/></ends-with> <!-- A-Z-ulykka -->
+          </or></test>
+          <choose>
+            <when>
+              <test><equal><var n="caseFirstWord"/><lit v=""/></equal></test>
+              <choose>
+                <when><test><equal><clip pos="2" side="sl" part="a_caps"/><lit-tag v="AA"/></equal></test><let><var n="caseFirstWord"/><lit v="AA"/></let></when>
+                <when><test><equal><clip pos="2" side="sl" part="a_caps"/><lit-tag v="Aa"/></equal></test><let><var n="caseFirstWord"/><lit v="Aa"/></let></when>
+                <otherwise><let><var n="caseFirstWord"/><lit v="aa"/></let></otherwise>
+              </choose>
+            </when>
+            <otherwise>
+              <let><var n="caseFirstWord"/><lit v=""/></let>
+            </otherwise>
+          </choose>
+        </when>
+        <when c="Not proper, but titlecased: downcase, set caseFirstWord Aa">
+          <test><and>
+            <not><begins-with><clip pos="1" side="tl" part="a_nom"/><lit-tag v="np"/></begins-with></not>
+            <equal><lit-tag v="Aa"/><clip pos="2" side="sl" part="a_caps"/></equal>
+          </and></test>
+          <!-- <modify-case><clip pos="1" side="tl" part="lemh"/><lit v="aa"/></modify-case> -->
+          <let><var n="caseFirstWord"/><lit v="Aa"/></let>
+        </when>
         <when c="Proper, not first word in sentence: don't downcase, set caseFirstWord aa">
           <test><and>
             <not><equal><var n="caseFirstWord"/><lit v=""/></equal></not>
@@ -3221,22 +3267,10 @@
           </and></test>
           <let><var n="caseFirstWord"/><lit v="aa"/></let>
         </when>
-        <otherwise>
-          <call-macro n="set_caseFirstWord"><with-param pos="2"/></call-macro>
-        </otherwise>
+        <when><test><equal><clip pos="2" side="sl" part="a_caps"/><lit-tag v="AA"/></equal></test><let><var n="caseFirstWord"/><lit v="AA"/></let></when>
+        <when><test><equal><clip pos="2" side="sl" part="a_caps"/><lit-tag v="Aa"/></equal></test><let><var n="caseFirstWord"/><lit v="Aa"/></let></when>
+        <otherwise><let><var n="caseFirstWord"/><lit v="aa"/></let></otherwise>
       </choose>
-      <choose>
-        <when><test><equal><clip pos="2" side="sl" part="a_caps"/><lit-tag v="AA"/></equal></test><let><var n="caseSecondWord"/><lit v="AA"/></let></when>
-        <when><test><equal><clip pos="2" side="sl" part="a_caps"/><lit-tag v="Aa"/></equal></test><let><var n="caseSecondWord"/><lit v="Aa"/></let></when>
-        <otherwise><let><var n="caseSecondWord"/><lit v="aa"/></let></otherwise>
-      </choose>
-      <choose><when>
-        <test><and>
-          <equal><var n="caseFirstWord"/><lit v="AA"/></equal>
-          <not><equal><var n="caseSecondWord"/><lit v="AA"/></equal></not>
-        </and></test>
-        <let><var n="caseFirstWord"/><lit v="Aa"/></let>
-      </when></choose>
     </def-macro>
 
     <def-macro n="set_lemq" npar="1" c="make lemq its own chunk iff we're translating from non-mwe to mwe">
