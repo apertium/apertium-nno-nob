@@ -3381,8 +3381,8 @@
                   assumes caseFirstWord already set
                   Avoids applying shouting to whole chunk if only first word shouts">
       <choose>
-        <when><test><equal><clip pos="2" side="sl" part="a_caps"/><lit-tag v="AA"/></equal></test><let><var n="caseSecondWord"/><lit v="AA"/></let></when>
-        <when><test><equal><clip pos="2" side="sl" part="a_caps"/><lit-tag v="Aa"/></equal></test><let><var n="caseSecondWord"/><lit v="Aa"/></let></when>
+        <when><test><equal><clip pos="1" side="sl" part="a_caps"/><lit-tag v="AA"/></equal></test><let><var n="caseSecondWord"/><lit v="AA"/></let></when>
+        <when><test><equal><clip pos="1" side="sl" part="a_caps"/><lit-tag v="Aa"/></equal></test><let><var n="caseSecondWord"/><lit v="Aa"/></let></when>
         <otherwise><let><var n="caseSecondWord"/><lit v="aa"/></let></otherwise>
       </choose>
       <choose><when>
@@ -3425,7 +3425,7 @@
           <let><var n="caseFirstWord"/><lit v="aa"/></let>
         </when>
         <otherwise>
-          <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
+          <call-macro n="set_caseFirstWord"><with-param pos="2"/></call-macro>
         </otherwise>
       </choose>
       <choose>
