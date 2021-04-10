@@ -39,7 +39,7 @@ TARGETS_PREFIX2 =                                             \
      $(PREFIX2).autogen.bin                                   \
      $(PREFIX2).e_vi_genprefs.rlx.bin                         \
      $(PREFIX2).genprefs.rlx.bin                              \
-     prefs/$(PREFIX2).xml
+     prefs/$(PREFIX2).xml        capstag.rlx.bin
 
 $(PREFIX1): $(TARGETS_PREFIX1)
 $(PREFIX2): $(TARGETS_PREFIX2)
@@ -51,7 +51,7 @@ e: modes/$(PREFIX1).mode	# build just nob-nno_e
 	${MAKE} $(TARGETS_PREFIX2)
 r: modes/$(PREFIX1).mode $(PREFIX2).autolex.bin $(PREFIX2).t1x.bin $(PREFIX2).t2x.bin $(PREFIX2).t3x.bin # build just transfer and rlx files for nob-nno(_e)
 	cd $(AP_SRC2) && ${MAKE} $(LANG2).seg.rlx.bin $(LANG2).rlx.bin
-	${MAKE} $(PREFIX2).seg.rlx.bin $(PREFIX2).rlx.bin $(PREFIX2).biprefs.rlx.bin
+	${MAKE} $(PREFIX2).seg.rlx.bin $(PREFIX2).rlx.bin $(PREFIX2).biprefs.rlx.bin capstag.rlx.bin
 
 # This include defines goals for install-modes, .deps/.d and .mode files:
 @ap_include@
@@ -150,6 +150,9 @@ $(PREFIX2).autolex.bin: $(BASENAME).$(PREFIX2).lrx
 ###############################################################################
 ## Structural transfer rules
 ###############################################################################
+
+capstag.rlx.bin: capstag.rlx
+	cg-comp $< $@
 
 $(PREFIX1).t1x.bin: $(BASENAME).$(PREFIX1).t1x
 	apertium-validate-transfer $<
