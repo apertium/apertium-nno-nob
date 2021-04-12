@@ -8,6 +8,8 @@ SECTION
 LIST lastupper  = "<.*\\p{Lu}>"r ;
 LIST firstupper = "<\\p{Lu}.*>"r ;
 LIST sizeone    = "<.>"r ;
+
+MAP (Aa) sizeone + firstupper    ;
 MAP (aa) sizeone                 ;
 MAP (AA) firstupper + lastupper  ;
 MAP (Aa) firstupper              ;
