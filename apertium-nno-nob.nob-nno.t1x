@@ -9,7 +9,7 @@
          VBLEXPASS rule should have adj.pp.nt.sg.ind as the second chunk
   -->
   <section-def-cats>
-    <!-- compound lhs's are never genitive: -->
+    <!-- compound lhs's are never genitive, and don't get capstags: -->
     <def-cat n="ncmp">
       <cat-item tags="n.*.cmp"/>
       <cat-item tags="n.*.cmp.guio"/>
@@ -18,21 +18,19 @@
     </def-cat>
     <def-cat n="ngen">
       <cat-item tags="n.*.gen.*"/>
-      <cat-item tags="n.*.gen.*"/>
-      <cat-item tags="n.*.gen.*"/>
     </def-cat>
-    <def-cat n="nsgind">
-      <cat-item tags="n.*.sg.ind.*"/>
-      <cat-item tags="n.*.sg.ind.*"/>
-      <cat-item tags="n.*.sg.ind.*"/>
+    <def-cat n="nsgind" c="Not cmp!">
+      <cat-item tags="n.*.sg.ind.aa"/>
+      <cat-item tags="n.*.sg.ind.Aa"/>
+      <cat-item tags="n.*.sg.ind.AA"/>
     </def-cat>
     <def-cat n="nindgen">
       <cat-item tags="n.*.ind.gen.*"/>
-      <cat-item tags="n.*.ind.gen.*"/>
-      <cat-item tags="n.*.ind.gen.*"/>
     </def-cat>
-    <def-cat n="nind_indgen">
-      <cat-item tags="n.*.*.ind.*"/>
+    <def-cat n="nind_indgen" c="Not cmp!">
+      <cat-item tags="n.*.*.ind.aa"/>
+      <cat-item tags="n.*.*.ind.Aa"/>
+      <cat-item tags="n.*.*.ind.AA"/>
       <cat-item tags="n.*.*.ind.gen.*"/>
     </def-cat>
     <def-cat n="nind_keep_gen_s"
@@ -193,7 +191,9 @@
       <cat-item tags="n.*.ind.Aa"/>
       <cat-item tags="n.*.ind.AA"/>
       <cat-item tags="n.*.acr.*"/>
-      <cat-item tags="n.*.sp.*"/>
+      <cat-item tags="n.*.sp.aa"/>
+      <cat-item tags="n.*.sp.Aa"/>
+      <cat-item tags="n.*.sp.AA"/>
       <cat-item tags="n.*.gen.*"/>
       <cat-item tags="np.*.cmp-split.*"/>
       <cat-item tags="np.*.gen.*"/>
