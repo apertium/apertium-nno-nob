@@ -4339,4 +4339,72 @@
     <match lemma="måned" tags="n.*"><select lemma=""/></match>
   </rule>
 
+  <rule><match lemma="befatning" tags="n.*"><select lemma="hopehav"/></match></rule>
+  <rule><match lemma="befatning med" tags="adv"><select lemma="omgang med"/></match></rule>
+  <rule><match lemma="ha# befatning med" tags="vblex.*"><select lemma="ha# noko å gjere med"/></match></rule>
+  <rule><match lemma="benekte" tags="vblex.*"><select lemma="nekte# for"/></match></rule>
+  <rule weight="2.0" c="ulovleg omgang med">
+    <match tags="adj"/>
+    <match lemma="befatning med" tags="adv"><select lemma="omgang med"/></match>
+  </rule>
+  <rule weight="2.0" c="mistenkt for å vere innblanda i">
+	<or>
+      <match lemma="mistanke" tags="n.*"/>
+      <match lemma="mistenke" tags="vblex.*"/>
+      <match lemma="mistenke" tags="adj.pp.*"/>
+	</or>
+    <repeat from="0" upto="3">
+      <or>
+        <match lemma="for"/>
+        <match tags="vblex.inf"/>
+        <match tags="part"/>
+      </or>
+    </repeat>
+	<or>
+      <match lemma="ha# befatning med" tags="vblex.*"><select lemma="vere# innblanda i"/></match>
+      <match lemma="befatning med" tags="adv"><select lemma="hopehav med"/></match>
+	</or>
+  </rule>
+  <rule weight="2.0" c="nekte for å ha noko å gjere med">
+	<or>
+	  <!-- avoiding 'nekte# for': 'nekte å ha noko å gjere med for', better: 'nekte for å ha' -->
+      <match lemma="benekte" tags="vblex.*"><select lemma="nekte"/></match>
+      <match lemma="nekte" tags="vblex.*"/>
+      <match lemma="avvise" tags="vblex.*"/>
+	</or>
+    <repeat from="0" upto="2">
+      <or>
+        <match lemma="ha" tags="vblex.inf"/>
+        <match tags="part"/>
+      </or>
+    </repeat>
+	<or>
+    <match lemma="ha# befatning med" tags="vblex.*"><select lemma="ha# noko å gjere med"/></match>
+    <match lemma="befatning med" tags="adv"><select lemma="å ha noko å gjere med"/></match>
+	</or>
+  </rule>
+  <rule weight="2.0" c="erkjenne hopehav med">
+	<or>
+      <match lemma="erkjenne" tags="vblex.*"/>
+      <match lemma="tilstå" tags="vblex.*"/>
+      <match lemma="innrømme" tags="vblex.*"/>
+	</or>
+    <repeat from="0" upto="2">
+      <or>
+        <match lemma="ha" tags="vblex.inf"/>
+        <match tags="part"/>
+		<match tags="adv"/>
+      </or>
+    </repeat>
+    <match lemma="befatning med" tags="adv"><select lemma="hopehav med"/></match>
+  </rule>
+  <rule weight="2.0" c="statsrådens hopehav med saka, Noregs Banks hopehav med Oljefondet">
+	<or>
+      <match tags="n.*.*.*.gen"/>
+      <match tags="np.*.*.gen"/>
+      <match tags="np.*.gen"/>
+	</or>
+    <match lemma="befatning med" tags="adv"><select lemma="hopehav med"/></match>
+  </rule>
+
 </lrx>
