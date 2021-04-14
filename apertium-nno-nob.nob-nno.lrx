@@ -3514,6 +3514,16 @@
     <match lemma="av"/>
   </rule>
 
+  <rule> <!-- Det er betinget av at smitterisikoen generelt i samfunnet er lav nok. -->
+    <match lemma="være# betinget av" tags="vblex.*"><select lemma="føresetje"/></match>
+    <match lemma="at"/>
+  </rule>
+
+  <rule> <!--Hjelpen kvinner får, er betinget av hvor de bor.. -->
+    <match lemma="være# betinget av" tags="vbelx.*"><select lemma="vere# avgengig av"/></match>
+  </rule>
+
+
   <rule> <!-- Og så mener vi at hele straffen skulle vært betinget, hvis han skal dømmes. -->
     <match lemma="betinget" tags="adj.*"><select lemma="vilkårsbunden"/></match>
   </rule>
