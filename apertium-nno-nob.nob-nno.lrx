@@ -3507,6 +3507,13 @@
     <match lemma="jubel"/>
   </rule>
 
+  <rule weight="2.0"> <!-- ... er således betinget av at ankemotparten har anket innen fristen. -->
+    <match lemma="være"/>
+    <match tags="adv"/>
+    <match lemma="betinget" tags="adj.*"><select lemma="avhengig"/></match>
+    <match lemma="av"/>
+  </rule>
+
   <rule> <!-- Og så mener vi at hele straffen skulle vært betinget, hvis han skal dømmes. -->
     <match lemma="betinget" tags="adj.*"><select lemma="vilkårsbunden"/></match>
   </rule>
