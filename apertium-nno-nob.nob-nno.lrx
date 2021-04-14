@@ -4407,4 +4407,11 @@
     <match lemma="befatning med" tags="adv"><select lemma="hopehav med"/></match>
   </rule>
 
+  <rule><match lemma="for" tags="pr"><select lemma="for"/></match></rule>
+  <rule weight="2.0" c="forsøk på">
+    <match lemma="bestrebelse" tags="n.*"><select lemma="forsøk"/></match>
+    <repeat from="0" upto="3"><match tags="*"/></repeat>
+    <match lemma="for" tags="pr"><select lemma="på"/></match>
+  </rule>
+
 </lrx>
