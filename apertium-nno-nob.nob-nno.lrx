@@ -3514,6 +3514,35 @@
     <match lemma="av"/>
   </rule>
 
+  <rule> <!-- Handel med Iran må være betinget av stans i henrettelser! -->
+    <or>
+      <match lemma="skulle"/>
+      <match lemma="måtte"/>
+      <match lemma="burde"/>
+    </or>
+    <match lemma="være# betinget av" tags="vblex.*"><select lemma="ha# som føresetnad"/></match>
+  </rule>
+
+  <rule weight="2.0"> <!-- støtten skal være betinget av at Chirac slipper tiltale. -->
+    <or>
+      <match lemma="skulle"/>
+      <match lemma="måtte"/>
+      <match lemma="burde"/>
+      <match lemma="ville"/>
+      <match lemma="kunne"/>
+    </or>
+    <match lemma="være# betinget av" tags="vblex.*"><select lemma="ha# som føresetnad"/></match>
+    <match lemma="at"/>
+  </rule>
+
+  <rule> <!-- Disse tilfellene kan være betinget av psykiske belastninger i arbeidsmiljøet. -->
+    <match lemma="kunne"/>
+    <repeat from="0" upto="1">
+      <match tags="adv"/>
+    </repeat>
+    <match lemma="være# betinget av" tags="vblex.*"><select lemma="ha# samanheng med"/></match>
+  </rule>
+
   <rule> <!-- Det er betinget av at smitterisikoen generelt i samfunnet er lav nok. -->
     <match lemma="være# betinget av" tags="vblex.*"><select lemma="føresetje"/></match>
     <match lemma="at"/>
