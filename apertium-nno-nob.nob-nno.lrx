@@ -3323,8 +3323,23 @@
   </rule>
 
   <rule> <!-- 22 avholdt seg fra å stemme . -->
-    <match lemma="avholde# seg fra" tags="adv"><select lemma="la# vere"/></match>
+    <match lemma="avholde# seg fra" tags="vblex.*"><select lemma="la# vere"/></match>
     <match lemma="å"/>
+  </rule>
+
+  <rule> <!-- Vi ville ha avholdt oss fra å bruke uttrykket apartheid-lignende.. -->
+    <match lemma="avholde# oss fra" tags="vblex.*"><select lemma="la# vere"/></match>
+    <match lemma="å"/>
+  </rule>
+
+  <rule> <!-- Kasich skal avholde seg fra valgkamp i Indiana. -->
+    <match lemma="avholde# seg fra" tags="vblex.*"><select lemma="halde# seg unna"/></match>
+    <repeat from="0" upto="1">
+    <or>
+      <match tags="adj.*"/>
+    </or>
+    </repeat>
+    <match tags="n.*"/>
   </rule>
 
   <rule> <!-- Kissingers bevegete ord om sin tidligere sjef . -->
@@ -3352,16 +3367,6 @@
     </repeat>
     <match lemma="på"/>
     <match lemma="seg"/>
-  </rule>
-
-  <rule> <!-- Kasich skal avholde seg fra valgkamp i Indiana. -->
-    <match lemma="avholdt seg fra" tags="vblex.*"><select lemma="halde# seg unna"/></match>
-    <repeat from="0" upto="1">
-    <or>
-      <match tags="adj.*"/>
-    </or>
-    </repeat>
-    <match tags="n.*"/>
   </rule>
 
   <rule> <!-- Med relativt enkle midler kan man anrette stor skade. -->
