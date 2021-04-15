@@ -3322,13 +3322,18 @@
     <match lemma="avholdt" tags="adj.*"><select lemma="avhalden"/></match>
   </rule>
 
-  <rule> <!-- 22 avholdt seg fra å stemme . -->
+  <rule> <!-- 22 avholdt seg fra å stemme. -->
     <match lemma="avholde# seg fra" tags="vblex.*"><select lemma="la# vere"/></match>
     <match lemma="å"/>
   </rule>
 
-  <rule> <!-- Vi ville ha avholdt oss fra å bruke uttrykket apartheid-lignende.. -->
+  <rule> <!-- Vi ville ha avholdt oss fra å bruke uttrykket apartheid-lignende. -->
     <match lemma="avholde# oss fra" tags="vblex.*"><select lemma="la# vere"/></match>
+    <match lemma="å"/>
+  </rule>
+
+  <rule> <!-- Jeg ville ha avholdt meg fra å bruke uttrykket apartheid-lignend. -->
+    <match lemma="avholde# meg fra" tags="vblex.*"><select lemma="la# vere"/></match>
     <match lemma="å"/>
   </rule>
 
@@ -3341,6 +3346,27 @@
     </repeat>
     <match tags="n.*"/>
   </rule>
+
+  <rule> <!-- Jeg har derfor besluttet at jeg fra i dag av avholder meg fra enhver offentlig uttalelse. -->
+    <match lemma="avholde# meg fra" tags="vblex.*"><select lemma="halde# meg unna"/></match>
+    <repeat from="0" upto="1">
+    <or>
+      <match tags="adj.*"/>
+    </or>
+    </repeat>
+    <match tags="n.*"/>
+  </rule>
+
+  <rule> <!-- Vi skal avholde oss fra valgkampeb i Indiana. -->
+    <match lemma="avholde# oss fra" tags="vblex.*"><select lemma="halde# oss unna"/></match>
+    <repeat from="0" upto="1">
+    <or>
+      <match tags="adj.*"/>
+    </or>
+    </repeat>
+    <match tags="n.*"/>
+  </rule>
+
 
   <rule> <!-- Kissingers bevegete ord om sin tidligere sjef . -->
     <match lemma="beveget" tags="adj.*"><select lemma="rørande"/></match>
