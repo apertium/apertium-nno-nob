@@ -4499,5 +4499,88 @@
     <repeat from="0" upto="3"><match tags="*"/></repeat>
     <match lemma="for" tags="pr"><select lemma="på"/></match>
   </rule>
+  
+  <rule><match lemma="løpe# ut" tags="vblex.*"><select lemma="springe# ut"/></match></rule>
+  <rule weight="5.0" c="renne ut i sanden">
+    <match lemma="løpe# ut" tags="vblex.*"><select lemma="renne# ut"/></match>
+    <match lemma="i"/>
+    <match lemma="sand" tags="n.*.sg.def"/>
+  </rule>
+  <rule weight="2.0" c="i ferd med å renne ut">
+    <match lemma="i ferd med"/>
+    <match lemma="å"/>
+    <match lemma="løpe# ut" tags="vblex.inf"><select lemma="renne# ut"/></match>
+  </rule>
+  <rule weight="2.0" c="å springe ut i naturen">
+    <match lemma="å"/>
+    <match lemma="løpe# ut" tags="vblex.inf"><select lemma="springe# ut"/></match>
+    <match lemma="i"/>
+  </rule>
+  <rule weight="5.4" c="springe ut i gata">
+    <match lemma="løpe# ut" tags="vblex.*"><select lemma="springe# ut"/></match>
+    <match lemma="i"/>
+	<or>
+      <match lemma="vei" tags="n.*.sg.def"/>
+      <match lemma="gate" tags="n.*.*.def"/>
+      <match lemma="veibane" tags="n.*.sg.def"/>
+      <match lemma="spor" tags="n.*.*.def"/>
+      <match lemma="vann" tags="n.*.sg.def"/>
+	</or>
+  </rule>
+  <rule weight="2.3" c="gå ut i april, gå ut sommaren">
+    <match lemma="løpe# ut" tags="vblex.*"><select lemma="gå# ut"/></match>
+	<or>
+      <match lemma="i"/>
+      <match tags="n.*.sg.def"/>
+	</or>
+  </rule>
+  <rule weight="2.0" c="kontrakten går ut">
+	<or>
+      <match lemma="kontrakt" tags="n.*"/>
+      <match lemma="arbeidskontrakt" tags="n.*"/>
+      <match lemma="avtale" tags="n.*"/>
+      <match lemma="låneavtale" tags="n.*"/>
+      <match lemma="samarbeidsavtale" tags="n.*"/>
+      <match lemma="tariffavtale" tags="n.*"/>
+      <match lemma="ordning" tags="n.*"/>
+      <match lemma="tiltak" tags="n.*"/>
+      <match lemma="abonnement" tags="n.*"/>
+      <match lemma="program" tags="n.*"/>
+      <match lemma="samarbeid" tags="n.*"/>
+      <match lemma="periode" tags="n.*"/>
+      <match lemma="frist" tags="n.*"/>
+      <match lemma="tidsfrist" tags="n.*"/>
+      <match lemma="unntakstilstand" tags="n.*"/>
+      <match lemma="våpenhvile" tags="n.*"/>
+	</or>
+    <repeat from="0" upto="9"><match tags="*"/></repeat>
+    <match lemma="løpe# ut" tags="vblex.*"><select lemma="gå# ut"/></match>
+  </rule>
+  <rule weight="2.0" c="interimperioden går ut">
+    <match tags="n.*.*.*.cmp"/>
+	<or>
+      <match lemma="kontrakt" tags="n.*"/>
+      <match lemma="avtale" tags="n.*"/>
+      <match lemma="ordning" tags="n.*"/>
+      <match lemma="tiltak" tags="n.*"/>
+      <match lemma="abonnement" tags="n.*"/>
+      <match lemma="program" tags="n.*"/>
+      <match lemma="samarbeid" tags="n.*"/>
+      <match lemma="periode" tags="n.*"/>
+      <match lemma="frist" tags="n.*"/>
+      <match lemma="klokke" tags="n.*"/> <!-- skuddklokka, kampklokka -->
+      <match lemma="erklæring" tags="n.*"/> <!-- kriseerklæring -->
+	</or>
+    <repeat from="0" upto="9"><match tags="*"/></repeat>
+    <match lemma="løpe# ut" tags="vblex.*"><select lemma="gå# ut"/></match>
+  </rule>
+  <rule weight="2.0" c="tida renn ut">
+	<or>
+      <match lemma="tid" tags="n.*"/>
+      <match lemma="timeglass" tags="n.*"/>
+	</or>
+    <repeat from="0" upto="9"><match tags="*"/></repeat>
+    <match lemma="løpe# ut" tags="vblex.*"><select lemma="renne# ut"/></match>
+  </rule>
 
 </lrx>
