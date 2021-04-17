@@ -4583,4 +4583,37 @@
     <match lemma="løpe# ut" tags="vblex.*"><select lemma="renne# ut"/></match>
   </rule>
 
+  <rule><match lemma="løpe" tags="vblex.*"><select lemma="springe"/></match></rule>
+  <rule weight="2.0" c="ha risiko for">
+    <match lemma="løpe" tags="vblex.*"><select lemma="ha"/></match>
+    <repeat from="0" upto="9"><match tags="*"/></repeat>
+    <match lemma="risiko" tags="n.m.sg.ind"/>
+    <match lemma="for"/>
+  </rule>
+  <rule weight="2.5" c="ha ein risiko for">
+    <match lemma="løpe" tags="vblex.*"><select lemma="ha"/></match>
+    <repeat from="0" upto="5"><match tags="*"/></repeat>
+    <match lemma="en"/>
+    <repeat from="0" upto="3">
+	  <or>
+       <match tags="adj.*"/>
+       <match tags="cnjcoo"/>
+	  </or>
+	</repeat>
+    <match lemma="risiko" tags="n.m.sg.ind"/>
+    <match lemma="for"/>
+  </rule>
+  <rule weight="2.2" c="ta ein risiko">
+    <match lemma="løpe" tags="vblex.*"><select lemma="ta"/></match>
+    <repeat from="0" upto="1"><match tags="*"/></repeat>
+    <match lemma="en"/>
+    <repeat from="0" upto="3">
+	  <or>
+       <match tags="adj.*"/>
+       <match tags="cnjcoo"/>
+	  </or>
+	</repeat>
+    <match lemma="risiko" tags="n.m.sg.ind"/>
+  </rule>
+
 </lrx>
