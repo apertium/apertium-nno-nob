@@ -3631,7 +3631,12 @@
 
   <rule> <!-- han har utelukkende vært forsvarer for Norge fram til nå. -->
     <match lemma="utelukkende"><select lemma="berre"/></match>
-    <match tags="vblex.*"/>
+    <or>
+      <match lemma="fordi"/>
+      <match lemma="om"/>
+      <match lemma="når"/>
+      <match tags="vblex.*"/>
+    </or>
   </rule>
 
   <rule> <!-- det var ikke utelukkende enkelt. -->
