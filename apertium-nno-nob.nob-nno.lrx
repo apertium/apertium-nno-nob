@@ -3630,7 +3630,7 @@
   </rule>
 
   <rule> <!-- han har utelukkende vært forsvarer for Norge fram til nå. -->
-    <match lemma="utelukkende"><select lemma="berre"/></match>
+    <match lemma="utelukkende" tags="adv"><select lemma="berre"/></match>
     <or>
       <match lemma="fordi"/>
       <match lemma="om"/>
@@ -3641,7 +3641,12 @@
 
   <rule> <!-- det var ikke utelukkende enkelt. -->
     <match lemma="ikke"/>
-    <match lemma="utelukkende"><select lemma="berre"/></match>
+    <match lemma="utelukkende" tags="adv"><select lemma="berre"/></match>
+  </rule>
+
+  <rule> <!-- til Staff opplyste 21-åringen at det var utelukkende han som skjøt. -->
+    <match lemma="utelukkende" tags="adv"><select lemma="einast"/></match>
+    <match tags="prn.*"/>
   </rule>
 
 
