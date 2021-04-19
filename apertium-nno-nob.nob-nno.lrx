@@ -3629,6 +3629,17 @@
     <match lemma="betinget" tags="adj.*"><select lemma="vilkårsbunden"/></match>
   </rule>
 
+  <rule> <!-- han har utelukkende vært forsvarer for Norge fram til nå. -->
+    <match lemma="utelukkende"><select lemma="berre"/></match>
+    <match tags="vblex.*"/>
+  </rule>
+
+  <rule> <!-- det var ikke utelukkende enkelt. -->
+    <match lemma="ikke"/>
+    <match lemma="utelukkende"><select lemma="berre"/></match>
+  </rule>
+
+
   <rule><match lemma="fremholde" tags="adj.*"><select lemma="påpeike"/></match></rule>
   <rule><match lemma="framholde" tags="adj.*"><select lemma="påpeike"/></match></rule>
 
