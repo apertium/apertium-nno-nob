@@ -3318,8 +3318,40 @@
     <match lemma="antas å være" tags="adv"><select lemma="er truleg"/></match>
   </rule>
 
-  <rule> <!-- ...En avholdt kollega.. -->
+  <rule> <!-- ...En avholdt kollega. -->
     <match lemma="avholdt" tags="adj.*"><select lemma="avhalden"/></match>
+  </rule>
+
+  <rule> <!-- Prinsen var avholdt for sin sjarm. -->
+    <match lemma="avholde" tags="vblex.*"><select lemma="avhalde"/></match>
+    <or>
+      <match lemma="for"/>
+      <match lemma="av"/>
+    </or>
+    <or>
+      <match lemma="sin"/>
+      <match lemma="mange"/>
+    </or>
+  </rule>
+
+  <rule>
+    <match lemma="avholde" tags="vblex.*"><select lemma="halde"/></match>
+  </rule>
+
+  <rule> <!-- Prinsen var avholdt for sin sjarm. -->
+    <match lemma="avholde" tags="adj.*"><select lemma="avhalde"/></match>
+    <or>
+      <match lemma="for"/>
+      <match lemma="av"/>
+    </or>
+    <or>
+      <match lemma="sin"/>
+      <match lemma="mange"/>
+    </or>
+  </rule>
+
+  <rule>
+    <match lemma="avholde" tags="adj.*"><select lemma="halde"/></match>
   </rule>
 
   <rule> <!-- 22 avholdt seg fra å stemme. -->
