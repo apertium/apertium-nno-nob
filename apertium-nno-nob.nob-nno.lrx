@@ -4610,10 +4610,17 @@
     <repeat from="0" upto="3">
 	  <or>
        <match tags="adj.*"/>
+       <match tags="adv"/>
        <match tags="cnjcoo"/>
 	  </or>
 	</repeat>
     <match lemma="risiko" tags="n.m.sg.ind"/>
+  </rule>
+
+  <rule><match lemma="den enkelte" tags="adv"><select lemma="den enkelte"/></match></rule>
+  <rule weight="2.0" c="ha risiko for">
+    <match lemma="den enkelte" tags="adv"><select lemma="kvar enkelt"/></match>
+    <match tags="n.*.sg.ind"/>
   </rule>
 
 </lrx>
