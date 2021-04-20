@@ -2903,7 +2903,17 @@
   </rule>
 
   <!-- ANKOMST: -->
-  <rule><match lemma="ankomst" tags="n.*"><select lemma="innkomst"/></match></rule>
+  <rule>
+    <match lemma="ankomst" tags="n.*"><select lemma="innkomst"/></match>
+    <repeat from="0" upto="1">
+      <or>
+        <match lemma="område"/>
+        <match lemma="havn"/>
+        <match lemma="utland"/>
+        <match lemma="innland"/>
+      </or>
+    </repeat>
+  </rule>
   <rule weight="2.0" c="endring/auke i innreisetal">
     <match lemma="i"/>
     <match lemma="ankomst" tags="n.*"><select lemma="innreisetal"/></match>
@@ -2948,10 +2958,9 @@
     <match tags="det.pos.*"/>
     <match lemma="ankomst" tags="n.*"><select lemma="framkomst"/></match>
   </rule>
-  <rule weight="2.0" c="innreisehamn">
+  <rule weight="2.0" c="innreisetal">
     <match lemma="ankomst" tags="n.*.cmp"><select lemma="innreise"/></match>
     <or>
-      <match lemma="havn"/>
       <match lemma="tall"/>
       <match lemma="dag"/>
     </or>
