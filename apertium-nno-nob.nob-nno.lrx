@@ -3664,7 +3664,10 @@
 
   <rule> <!-- istedenfor får Venezia, som opprinnelig rykket ned, beholde plassen. -->
     <match lemma="istedenfor" tags="pr"><select lemma="i staden"/></match>
-    <match tags="vblex.*"/>
+    <or>
+      <match tags="vblex.*"/>
+      <match tags="sent.*"/>
+    </or>
   </rule>
 
   <rule>
