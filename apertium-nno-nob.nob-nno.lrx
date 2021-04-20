@@ -3674,6 +3674,27 @@
     <match lemma="istedenfor" tags="pr"><select lemma="i staden for"/></match>
   </rule>
 
+  <rule> <!-- like etter skulle istedetfor hjemmelaget punktere. -->
+    <match tags="vblex.*"/>
+    <repeat from="0" upto="1">
+      <match lemma="den"/>
+    </repeat>
+    <match lemma="istedetfor" tags="pr"><select lemma="i staden"/></match>
+  </rule>
+
+  <rule> <!-- istedetfor får Venezia, som opprinnelig rykket ned, beholde plassen. -->
+    <match lemma="istedetfor" tags="pr"><select lemma="i staden"/></match>
+    <or>
+      <match tags="vblex.*"/>
+      <match tags="sent.*"/>
+    </or>
+  </rule>
+
+  <rule>
+    <match lemma="istedetfor" tags="pr"><select lemma="i staden for"/></match>
+  </rule>
+
+
   <rule><match lemma="fremholde" tags="adj.*"><select lemma="påpeike"/></match></rule>
   <rule><match lemma="framholde" tags="adj.*"><select lemma="påpeike"/></match></rule>
 
