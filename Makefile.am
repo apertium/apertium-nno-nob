@@ -30,6 +30,7 @@ TARGETS_PREFIX2 =                                             \
      $(PREFIX2).automorf.bin                                  \
      $(PREFIX2).seg.rlx.bin                                   \
      $(PREFIX2).rlx.bin                                       \
+     $(PREFIX2).autoseq.bin                                   \
      $(PREFIX2).prob                                          \
      $(PREFIX2).autolex.bin                                   \
      $(PREFIX2).autobil.bin                                   \
@@ -111,6 +112,16 @@ $(PREFIX2).seg.rlx.bin: $(AP_SRC2)/$(LANG2).seg.rlx.bin
 
 $(PREFIX2).rlx.bin: $(AP_SRC2)/$(LANG2).rlx.bin
 	cp $< $@
+
+###############################################################################
+## Separable / discontiguous multiwords
+###############################################################################
+
+$(PREFIX1).autoseq.bin: $(BASENAME).$(PREFIX1).lsx
+	lsx-comp lr $< $@
+
+$(PREFIX2).autoseq.bin: $(BASENAME).$(PREFIX2).lsx
+	lsx-comp lr $< $@
 
 ###############################################################################
 ## Bilingual dictionaries

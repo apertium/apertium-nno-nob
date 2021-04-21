@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dictionary type="separable">
+
+  <alphabet></alphabet>
+
+  <sdefs>
+    <sdef n="adj"/>
+    <sdef n="adv"/>
+    <sdef n="n"/>
+    <sdef n="sep"/>
+    <sdef n="det"/>
+    <sdef n="dem"/>
+    <sdef n="qnt"/>
+    <sdef n="vblex"/>
+    <sdef n="sp"/>
+    <sdef n="sg"/>
+    <sdef n="pl"/>
+    <sdef n="ind"/>
+    <sdef n="def"/>
+    <sdef n="pst"/>
+    <sdef n="sint"/>
+    <sdef n="un"/>
+    <sdef n="nt"/>
+    <sdef n="m"/>
+    <sdef n="f"/>
+  </sdefs>
+
+  <pardefs>
+
+    <pardef n="adj">
+      <e><i><w/><s n="adj"/><j/></i></e>
+      <e><i><w/><s n="adj"/><t/><j/></i></e>
+    </pardef>
+
+    <pardef n="n">
+      <e><i><w/><s n="n"/><t/><j/></i></e>
+    </pardef>
+
+    <pardef n="n.sg.ind">
+      <e><i><w/><s n="n"/><t/><s n="sg"/><s n="ind"/><j/></i></e>
+      <e><i><w/><s n="n"/><t/><s n="sg"/><s n="ind"/><t/><j/></i></e>
+    </pardef>
+
+    <pardef n="SN">
+      <e><par n="n"/></e>
+      <e><par n="adj"/><par n="n"/></e>
+      <e><par n="adj"/><par n="adj"/><par n="n"/></e>
+    </pardef>
+
+    <pardef n="SN.sg.ind">
+      <e><par n="n.sg.ind"/></e>
+      <e><par n="adj"/><par n="n.sg.ind"/></e>
+      <e><par n="adj"/><par n="adj"/><par n="n.sg.ind"/></e>
+    </pardef>
+
+    <pardef n="freq-adv">
+      <e><i>alltid<s n="adv"/><j/></i></e>
+      <e><i>ofte<s n="adv"/><j/></i></e>
+      <e><i>nå<s n="adv"/><j/></i></e>
+    </pardef>
+
+  </pardefs>
+
+  <section id="main" type="standard">
+
+    <e lm="den enkelte" c="kvar enkelt">
+      <p>
+        <l>den<s n="det"/><s n="dem"/></l>
+        <r>hver<s n="det"/><s n="qnt"/></r>
+      </p>
+      <i><t/><t/><j/></i>
+      <p>
+        <l>enkelt<s n="adj"/><s n="pst"/><s n="un"/><s n="sp"/><s n="def"/><j/></l>
+        <r>enkelt<s n="adj"/><s n="pst"/><s n="nt"/><s n="sg"/><s n="ind"/><j/></r>
+      </p>
+      <par n="SN.sg.ind"/>
+    </e>
+  </section>
+
+</dictionary>
