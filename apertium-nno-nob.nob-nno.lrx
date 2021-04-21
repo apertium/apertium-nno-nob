@@ -2808,8 +2808,6 @@
   <rule weight="2.0"><match lemma="berøre" tags="vblex.inf"><select lemma="berøre"/></match></rule>
   <rule weight="2.0"><match lemma="berøre" tags="vblex.pres"><select lemma="berøre"/></match></rule>
 
-  <rule><match lemma="unnta" tags="vblex.*"><select lemma="sjå# bort frå"/></match></rule>
-  <rule><match lemma="unnta" tags="adj.*"><select lemma="unnta"/></match></rule>
 
   <!-- mykje meir brukt enn «dekking» i korpus: -->
   <rule><match lemma="dekning" tags="n.*"><select lemma="dekning"/></match></rule>
@@ -4409,11 +4407,6 @@
     <match lemma="klebe" tags="vblex.*"><select lemma="lime"/></match>
     <match lemma="igjen" tags="adv"/>
   </rule>
-  
-  <rule weight="2.0" c="vere unnateken">
-    <match lemma="være" tags="vblex.*"/>
-    <match lemma="unnta" tags="vblex.pp"><select lemma="unnateken" tags="adj.*"/></match>
-  </rule>
 
   <rule><match lemma="tørre" tags="vblex.*"><select lemma="tore" tags="vblex.*"/></match></rule>
   <rule weight="2.0" c="tørke tårene (tørre tårene)">
@@ -4756,5 +4749,181 @@
     <match lemma="den enkelte" tags="adv"><select lemma="kvar enkelt"/></match>
     <match tags="n.*.sg.ind"/>
   </rule>
+
+<!-- BEGIN: unnta --> 
+  <rule><match lemma="unnta" tags="vblex.*"><select lemma="gjere# unntak for" tags="vblex.*"/></match></rule>
+  <rule><match lemma="unnta" tags="adj.*"><select lemma="unnata" tags="adj.*"/></match></rule>
+  <rule><match lemma="offentlighet" tags="n.*"><select lemma="offentlegheit" tags="n.*"/></match></rule>
+  <rule><match lemma="fra" tags="pr"><select lemma="frå"/></match></rule>
+  <rule weight="2.0" c="bortsett frå">
+    <match lemma="unntatt" tags="adv"><select lemma="bortsett frå"/></match>
+	<or>
+      <match tags="n.*"/>
+      <match tags="np.*"/>
+	</or>
+  </rule>
+  <rule weight="2.0" c="vere/bli halden unna offentleg innsyn">
+	<or>
+      <match lemma="være" tags="vblex.*"/>
+      <match lemma="bli" tags="vblex.*"/>
+	</or>
+    <repeat from="0" upto="3"><match tags="*"/></repeat>
+	<or>
+      <match lemma="unnta" tags="vblex.*"><select lemma="halde# unna" tags="vblex.*"/></match>
+      <match lemma="unnta" tags="adj.*"><select lemma="halde# unna" tags="adj.*"/></match>
+      <match lemma="unnta# fra" tags="vblex.*"><select lemma="halde# unna" tags="vblex.*"/></match>
+      <match lemma="unnta# for" tags="vblex.*"><select lemma="halde# unna" tags="vblex.*"/></match>
+	</or>
+    <match lemma="offentlighet" tags="n.*"><select lemma="offentleg innsyn" tags="n.*"/></match>
+  </rule>
+  <rule weight="3.0" c="er friteken frå">
+    <match lemma="være" tags="vblex.*"/>
+    <repeat from="0" upto="3"><match tags="*"/></repeat>
+	<or>
+      <match lemma="unnta" tags="vblex.pp"><select lemma="frita# frå" tags="vblex.pp"/></match>
+      <match lemma="unnta" tags="adj.*"><select lemma="frita# frå" tags="adj.*"/></match>
+	</or>
+    <match tags="n.*"/>
+  </rule>
+  <rule weight="2.0" c="halde unna offentleg innsyn">
+	<or>
+      <match lemma="unnta" tags="vblex.*"><select lemma="halde# unna" tags="vblex.*"/></match>
+      <match lemma="unnta# fra" tags="vblex.*"><select lemma="halde# unna" tags="vblex.*"/></match>
+      <match lemma="unnta# for" tags="vblex.*"><select lemma="halde# unna" tags="vblex.*"/></match>
+	</or>
+    <match lemma="offentlighet" tags="n.*"><select lemma="offentleg innsyn" tags="n.*"/></match>
+  </rule>
+  <rule weight="2.0" c="be om unntak frå offentleg innsyn">
+	<or>
+      <match lemma="å bli unntatt" tags="adv"><select lemma="unntak frå"/></match>
+      <match lemma="å bli unntatt fra" tags="adv"><select lemma="unntak frå"/></match>
+	</or>
+    <match lemma="offentlighet" tags="n.*"><select lemma="offentleg innsyn" tags="n.*"/></match>
+  </rule>
+  <rule weight="2.0" c="be om fritak frå offentleg innsyn">
+    <match lemma="be# seg unntatt fra" tags="vblex.*"><select lemma="be# om fritak frå" tags="vblex.*"/></match>
+    <match lemma="offentlighet" tags="n.*"><select lemma="offentleg innsyn" tags="n.*"/></match>
+  </rule>
+  <rule weight="2.0" c="be om fritak frå offentleg innsyn">
+    <match lemma="be# seg unntatt" tags="vblex.*"><select lemma="be# om fritak frå" tags="vblex.*"/></match>
+    <match lemma="offentlighet" tags="n.*"><select lemma="offentleg innsyn" tags="n.*"/></match>
+  </rule>
+  <rule weight="2.0" c="halde unna søkjarlista">
+    <match lemma="unnta" tags="vblex.*"><select lemma="halde" tags="vblex.*"/></match>
+    <repeat from="0" upto="5"><match tags="*"/></repeat>
+    <match lemma="fra" tags="pr"><select lemma="unna" tags="pr"/></match>
+	<or>
+      <match lemma="liste" tags="n.*"/>
+      <match lemma="søkerliste" tags="n.*"/>
+	</or>
+  </rule>
+  <rule weight="1.2" c="bandleggje dokument">
+    <match lemma="unnta" tags="vblex.*"><select lemma="bandlegge" tags="vblex.*"/></match>
+    <repeat from="0" upto="12"><match/></repeat>
+ 	<or>
+      <match lemma="dokument" tags="n.*"/>
+      <match lemma="brev" tags="n.*"/>
+      <match lemma="utredning" tags="n.*"/>
+      <match lemma="konsekvensutredning" tags="n.*"/>
+      <match lemma="redegjørelse" tags="n.*"/>
+      <match lemma="rapport" tags="n.*"/>
+	</or>
+  </rule>
+  <rule weight="3.5" c="de bør få fritak">
+    <match lemma="unntas" tags="adv"><select lemma="får fritak frå" tags="adv"/></match>
+    <match lemma="offentlighet" tags="n.*"><select lemma="offentleg innsyn" tags="n.*"/></match>
+  </rule>
+  <rule weight="3.5" c="de bør få fritak">
+    <or>
+      <match lemma="skulle"/>
+      <match lemma="burde"/>
+      <match lemma="måtte"/>
+      <match lemma="kunne"/>
+    </or>
+    <repeat from="0" upto="3"><match/></repeat>
+	<or>
+      <match lemma="unntas fra" tags="adv"><select lemma="få fritak frå" tags="adv"/></match>
+      <match lemma="unntas for" tags="adv"><select lemma="få fritak frå" tags="adv"/></match>
+	</or>
+    <match lemma="offentlighet" tags="n.*"><select lemma="offentleg innsyn" tags="n.*"/></match>
+  </rule>
+  <rule weight="2.0" c="de får fritak.">
+	<or>
+      <match lemma="unntas fra" tags="adv"><select lemma="får fritak frå" tags="adv"/></match>
+      <match lemma="unntas for" tags="adv"><select lemma="får fritak frå" tags="adv"/></match>
+      <match lemma="unntas for å" tags="adv"><select lemma="får fritak for å" tags="adv"/></match>
+	</or>
+  </rule>
+  <rule weight="2.5" c="de får fritak frå moms">
+    <match lemma="unntas" tags="adv"><select lemma="får fritak frå" tags="adv"/></match>
+    <match tags="n.*"/>
+  </rule>
+  <rule weight="2.0" c="kan få fritak frå moms">
+    <or>
+      <match lemma="skulle"/>
+      <match lemma="burde"/>
+      <match lemma="måtte"/>
+      <match lemma="kunne"/>
+    </or>
+    <repeat from="0" upto="3"><match/></repeat>
+	<or>
+      <match lemma="unntas" tags="adv"><select lemma="få fritak frå" tags="adv"/></match>
+      <match lemma="unntas fra" tags="adv"><select lemma="få fritak frå" tags="adv"/></match>
+      <match lemma="unntas for" tags="adv"><select lemma="få fritak frå" tags="adv"/></match>
+      <match lemma="unntas for å" tags="adv"><select lemma="få fritak for å" tags="adv"/></match>
+	</or>
+    <match tags="n.*"/>
+  </rule>
+  <rule weight="2.5" c="de kan få fritak.">
+    <or>
+      <match lemma="skulle"/>
+      <match lemma="burde"/>
+      <match lemma="måtte"/>
+      <match lemma="kunne"/>
+    </or>
+    <repeat from="0" upto="3"><match/></repeat>
+    <match lemma="unntas" tags="adv"><select lemma="få fritak" tags="adv"/></match>
+	<or>
+      <match tags="cm"/>
+      <match tags="cm.*"/>
+      <match tags="sent"/>
+      <match tags="sent.*"/>
+	</or>
+  </rule>
+  <rule weight="1.8" c="de får fritak.">
+    <match lemma="unntas" tags="adv"><select lemma="får fritak" tags="adv"/></match>
+  </rule>
+  <rule weight="1.0" c="frita frå">
+	<or>
+      <match lemma="unnta# fra" tags="vblex.*"><select lemma="frita# frå" tags="vblex.*"/></match>
+      <match lemma="unnta# for" tags="vblex.*"><select lemma="frita# frå" tags="vblex.*"/></match>
+	</or>
+    <match tags="n.*"/>
+  </rule>
+  <rule weight="2.0" c="få fritak frå">
+    <match lemma="bli# unntatt fra" tags="vblex.*"><select lemma="få# fritak frå" tags="vblex.*"/></match>
+  </rule>
+  <rule weight="2.0" c="få fritak frå">
+    <match lemma="bli# unntatt" tags="vblex.*"><select lemma="få# fritak frå" tags="vblex.*"/></match>
+    <match tags="n.*"/>
+  </rule>
+  <rule weight="2.0" c="få fritak">
+    <match lemma="bli# unntatt" tags="vblex.*"><select lemma="få# fritak" tags="vblex.*"/></match>
+	<or>
+      <match tags="cm"/>
+      <match tags="cm.*"/>
+      <match tags="sent"/>
+      <match tags="sent.*"/>
+      <match tags="cnjcoo"/>
+	</or>
+  </rule>
+  <rule weight="2.0" c="vere unnateken">
+    <match lemma="være" tags="vblex.*"/>
+    <match lemma="unnta" tags="vblex.pp"><select lemma="unnata" tags="vblex.pp"/></match>
+  </rule>
+<!-- END: unnta; TODO: Fungerer bra på det mest frekvente ('bortsett frå', 'halde unna offentleg innsyn'), 
+men feilar mange stader, særleg i kontekstar med 'være' ('a er unntatt forbudet'). Både partisippbøying og
+preposisjonar gir ekstra utfordringar. -->
+
 
 </lrx>
