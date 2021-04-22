@@ -3298,7 +3298,7 @@
     <match tags="sent.clb"/>
   </rule>
 
-  <rule weight="2.0"> <!-- ...han antas å være gjerningspersonen... -->
+  <rule weight="3.0"> <!-- ...han antas å være gjerningspersonen... -->
     <match lemma="antas å være" tags="adv"><select lemma="er mistenkt for å vere"/></match>
     <or>
       <match lemma="gjerning"/>
@@ -3326,6 +3326,7 @@
   <rule> <!-- De antas å være bortført av samme gruppe. -->
     <match lemma="antas å være" tags="adv"><select lemma="er truleg"/></match>
   </rule>
+
 
   <rule> <!-- ...En avholdt kollega. -->
     <match lemma="avholdt" tags="adj.*"><select lemma="avhalden"/></match>
