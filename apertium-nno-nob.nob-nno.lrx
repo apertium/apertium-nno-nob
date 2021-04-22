@@ -3639,6 +3639,72 @@
     <match lemma="betinget" tags="adj.*"><select lemma="vilkårsbunden"/></match>
   </rule>
 
+  <!-- UBETINGET: START -->
+
+  <rule weight="2.0">
+    <match lemma="ubetinget" tags="adj.*"><select lemma="stor"/></match>
+    <or>
+      <match lemma="suksess"/>
+      <match lemma="seier"/>
+      <match lemma="fordel"/>
+    </or>
+  </rule>
+
+  <rule weight="2.0">
+    <match lemma="ubetinget" tags="adj.*"><select lemma="klar"/></match>
+    <or>
+      <match lemma="ja"/>
+      <match lemma="nei"/>
+      <match lemma="svar"/>
+    </or>
+  </rule>
+
+  <rule>
+    <match lemma="ubetinget" tags="adj.*"><select lemma="absolutt"/></match>
+    <or>
+      <match lemma="gode"/>
+      <match lemma="plikt"/>
+      <match lemma="taushetsplikt"/>
+      <match lemma="krav"/>
+    </or>
+  </rule>
+
+  <rule>
+    <match lemma="ubetinget" tags="adj.*"><select lemma="uhemma"/></match>
+    <match lemma="skryt"/>
+  </rule>
+
+  <rule>
+    <match lemma="ubetinget" tags="adj.*"><select lemma="utvitydig"/></match>
+    <or>
+      <match lemma="ros"/>
+      <match lemma="støtteerklæring"/>
+    </or>
+  </rule>
+
+  <rule weight="2.0">
+    <match lemma="ubetinget" tags="adj.*"><select lemma="full"/></match>
+    <or>
+      <match lemma="tillit" tags="n.*.*.ind"/>
+      <match lemma="støtte" tags="n.*.*.ind"/>
+    </or>
+  </rule>
+
+  <rule weight="2.0">
+    <match lemma="ubetinget" tags="adj.*"><select lemma="solid"/></match>
+    <or>
+      <match lemma="tillit" tags="n.*.*.def"/>
+      <match lemma="støtte" tags="n.*.*.def"/>
+    </or>
+  </rule>
+
+  <rule>
+    <match lemma="ubetinget" tags="adj.*"><select lemma="blind"/></match>
+    <match lemma="lydighet"/>
+  </rule>
+
+  <!-- UBETINGET: END -->
+
   <rule> <!-- han har utelukkende vært forsvarer for Norge fram til nå. -->
     <match lemma="utelukkende" tags="adv"><select lemma="berre"/></match>
     <or>
