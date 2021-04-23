@@ -5010,5 +5010,10 @@
 men feilar mange stader, særleg i kontekstar med 'være' ('a er unntatt forbudet'). Både partisippbøying og
 preposisjonar gir ekstra utfordringar. -->
 
+  <rule><match lemma="myndighetsnivå" tags="n.*"><select lemma="styringsnivå"/></match></rule>
+  <rule weight="2.0" c="møte nokon på styresmaktsnivå">
+    <match lemma="på"/>
+    <match lemma="myndighetsnivå" tags="n.nt.*.ind"><select lemma="styresmaktsnivå"/></match>
+  </rule>
 
 </lrx>
