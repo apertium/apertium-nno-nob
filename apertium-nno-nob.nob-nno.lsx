@@ -23,6 +23,11 @@
     <sdef n="nt"/>
     <sdef n="m"/>
     <sdef n="f"/>
+    <sdef n="gen"/>
+    <sdef n="cmp"/>
+    <sdef n="aa"/>
+    <sdef n="AA"/>
+    <sdef n="Aa"/>
   </sdefs>
 
   <pardefs>
@@ -36,21 +41,37 @@
       <e><i><w/><s n="n"/><t/><j/></i></e>
     </pardef>
 
-    <pardef n="n.sg.ind">
+    <pardef n="n.sg.ind" c="No final t/ – avoid cmp!">
       <e><i><w/><s n="n"/><t/><s n="sg"/><s n="ind"/><j/></i></e>
-      <e><i><w/><s n="n"/><t/><s n="sg"/><s n="ind"/><t/><j/></i></e>
+      <e><i><w/><s n="n"/><t/><s n="sg"/><s n="ind"/><s n="gen"/><j/></i></e>
+      <e><i><w/><s n="n"/><t/><s n="sg"/><s n="ind"/><s n="aa"/><j/></i></e>
+      <e><i><w/><s n="n"/><t/><s n="sg"/><s n="ind"/><s n="Aa"/><j/></i></e>
+      <e><i><w/><s n="n"/><t/><s n="sg"/><s n="ind"/><s n="AA"/><j/></i></e>
+      <e><i><w/><s n="n"/><t/><s n="sg"/><s n="ind"/><s n="gen"/><s n="aa"/><j/></i></e>
+      <e><i><w/><s n="n"/><t/><s n="sg"/><s n="ind"/><s n="gen"/><s n="Aa"/><j/></i></e>
+      <e><i><w/><s n="n"/><t/><s n="sg"/><s n="ind"/><s n="gen"/><s n="AA"/><j/></i></e>
+    </pardef>
+    <pardef n="ncmp">
+      <e><i><w/><s n="n"/><t/><s n="cmp"/><j/></i></e>
+      <e><i><w/><s n="n"/><t/><s n="cmp"/><t/><j/></i></e>
+    </pardef>
+    <pardef n="ncmp*.n.sg.ind">
+      <e>                                             <par n="n.sg.ind"/></e>
+      <e>                              <par n="ncmp"/><par n="n.sg.ind"/></e>
+      <e>               <par n="ncmp"/><par n="ncmp"/><par n="n.sg.ind"/></e>
+      <e><par n="ncmp"/><par n="ncmp"/><par n="ncmp"/><par n="n.sg.ind"/></e>
     </pardef>
 
     <pardef n="SN">
-      <e><par n="n"/></e>
-      <e><par n="adj"/><par n="n"/></e>
+      <e>                            <par n="n"/></e>
+      <e>              <par n="adj"/><par n="n"/></e>
       <e><par n="adj"/><par n="adj"/><par n="n"/></e>
     </pardef>
 
     <pardef n="SN.sg.ind">
-      <e><par n="n.sg.ind"/></e>
-      <e><par n="adj"/><par n="n.sg.ind"/></e>
-      <e><par n="adj"/><par n="adj"/><par n="n.sg.ind"/></e>
+      <e>                            <par n="ncmp*.n.sg.ind"/></e>
+      <e>              <par n="adj"/><par n="ncmp*.n.sg.ind"/></e>
+      <e><par n="adj"/><par n="adj"/><par n="ncmp*.n.sg.ind"/></e>
     </pardef>
 
     <pardef n="freq-adv">
