@@ -4776,6 +4776,12 @@
   </rule>
 
   <rule><match lemma="begivenhet" tags="n.*"><select lemma="storhending"/></match></rule>
+  <rule weight="2.0" c="store og små begivenheter">
+    <or><match lemma="liten"/><match lemma="stor"/></or>
+    <match lemma="og"/>
+    <or><match lemma="liten"/><match lemma="stor"/></or>
+    <match lemma="begivenhet" tags="n.*"><select lemma="hending"/></match>
+  </rule>
   <rule weight="2.0" c="sportsevenement">
     <match tags="n.*.*.*.cmp"/>
     <match lemma="begivenhet" tags="n.*"><select lemma="evenement"/></match>
