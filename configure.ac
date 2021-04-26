@@ -1,6 +1,6 @@
 AC_PREREQ(2.52)
 
-AC_INIT([Apertium Nynorsk-Bokmål], [1.3.0], [apertium-stuff@lists.sourceforge.net], [apertium-nno-nob], [http://wiki.apertium.org/wiki/Apertium-nno-nob])
+AC_INIT([Apertium Nynorsk-Bokmål], [1.4.0], [apertium-stuff@lists.sourceforge.net], [apertium-nno-nob], [http://wiki.apertium.org/wiki/Apertium-nno-nob])
 AM_INIT_AUTOMAKE
 AC_PROG_AWK
 
