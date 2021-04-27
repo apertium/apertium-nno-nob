@@ -4372,6 +4372,34 @@
     <match lemma="med"/>
     <match lemma="hva" tags="prn.itg"><select lemma="det"/></match>
   </rule>
+  <rule weight="2.0">
+    <match lemma="enn"/>
+    <match lemma="hva" tags="prn.itg"><select lemma="det"/></match>
+  </rule>
+  <!-- Unntak ved uvisst 'hva' etter korte leddsetningar utan komparativ innleidde med spørjeord eller at -->
+  <rule weight="2.0" c="viktigare kva dei seier, enn kva dei gjer">
+    <or>
+      <match tags="prn.itg"/>
+      <match lemma="at"/>
+	</or>
+    <repeat from="0" upto="6">
+	<or>
+	  <match tags="vblex.*"/>
+	  <match tags="pr"/>
+	  <match tags="n.*"/>
+	  <match tags="np.*"/>
+	  <match tags="prn.*"/>
+	  <match tags="cm"/>
+	</or>
+    </repeat>
+    <match lemma="enn"/>
+    <match lemma="hva" tags="prn.itg"><select lemma="kva"/></match>
+	<or>
+	  <match tags="n.*"/>
+	  <match tags="np.*"/>
+	  <match tags="prn.*"/>
+	</or>
+  </rule>
 
   <rule><match lemma="noe"><select lemma="noko"/></match></rule>
   <rule weight="2.0" c="ikkje først i heilsetninga">
