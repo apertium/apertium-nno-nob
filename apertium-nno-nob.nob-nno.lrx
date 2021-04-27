@@ -991,6 +991,30 @@
       <select lemma="tryggleik"/>
     </match>
   </rule>
+  <rule weight="2.0" c="stille garanti (for lån)">
+    <match lemma="stille" tags="vblex.*"/>
+    <repeat from="0" upto="5">
+	  <match tags="*"/>
+	</repeat>
+    <match lemma="sikkerhet" tags="n.*.sg.ind"><select lemma="garanti"/></match>
+  </rule>
+  <rule weight="2.0" c="garanti for lån">
+    <match lemma="sikkerhet" tags="n.*.sg.ind"><select lemma="garanti"/></match>
+	<match lemma="for"/>
+	<or>
+      <match lemma="lån" tags="n.*"/>
+      <match lemma="boliglån" tags="n.*"/>
+      <match lemma="forbrukslån" tags="n.*"/>
+      <match lemma="statslån" tags="n.*"/>
+      <match lemma="startlån" tags="n.*"/>
+	</or>
+  </rule>
+  <rule weight="2.0" c="garanti for finanslån">
+    <match lemma="sikkerhet" tags="n.*.sg.ind"><select lemma="garanti"/></match>
+	<match lemma="for"/>
+    <match tags="n.*.cmp"/>
+    <match lemma="lån" tags="n.*"><select lemma="garanti"/> </match>
+  </rule>
 
   <!-- all corpus hits seem to be about arbeidsløyse -->
   <rule><match lemma="ledighet" tags="n.*"><select lemma="arbeidsløyse"/></match></rule>
@@ -5085,4 +5109,6 @@ preposisjonar gir ekstra utfordringar. -->
   </rule>
 
   <rule><match lemma="synes" tags="vblex.*"><select lemma="synast"/></match></rule>
+
+  
 </lrx>
