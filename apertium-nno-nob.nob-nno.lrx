@@ -5110,5 +5110,11 @@ preposisjonar gir ekstra utfordringar. -->
 
   <rule><match lemma="synes" tags="vblex.*"><select lemma="synast"/></match></rule>
 
+  <rule><match lemma="uansett om" tags="adv"><select lemma="sjølv om"/></match></rule>
+  <rule weight="2.0" c="anten ein liker det eller ikkje">
+    <match lemma="uansett om" tags="adv"><select lemma="anten"/></match>
+	<repeat from="0" upto="12"><seq n="NOT_sent_lpar_lquot_rquot"/></repeat>
+	<match lemma="eller"/>
+  </rule>
   
 </lrx>
