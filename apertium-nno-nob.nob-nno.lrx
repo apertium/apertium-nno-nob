@@ -5146,4 +5146,14 @@ preposisjonar gir ekstra utfordringar. -->
       <match lemma="drøyt" tags="adv"><select lemma="godt og vel"/></match>
 	</or>
   </rule>
+  
+  <rule><match lemma="anslagsvis" tags="adv"><select lemma="anslagsvis"/></match></rule>
+  <rule weight="2.0" c="rundt rekna tre millionar">
+    <match lemma="anslagsvis" tags="adv"><select lemma="om lag"/></match>
+	<match tags="det.qnt.*"/>
+  </rule>
+  <rule weight="2.0" c="rundt rekna tre millionar">
+	<match tags="cm"/>
+    <match lemma="anslagsvis" tags="adv"><select lemma="rundt rekna"/></match>
+  </rule>
 </lrx>
