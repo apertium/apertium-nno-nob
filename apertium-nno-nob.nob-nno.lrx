@@ -1648,6 +1648,10 @@
     <match lemma="med" tags="pr"/>
     <match lemma="myndighet" tags="n.*.sg.ind"><select lemma="myndigheit"/></match>
   </rule>
+  <rule c="instruksjonsmyndigheit">
+    <match lemma="instruksjon"/>
+    <match lemma="myndighet" tags="n.*"><select lemma="myndigheit"/></match>
+  </rule>
   <rule weight="2.0">
     <or>
       <match tags="det.pos.*"/>
