@@ -5122,4 +5122,28 @@ preposisjonar gir ekstra utfordringar. -->
   </rule>
 
   <rule><match lemma="tilberedning" tags="n.*"><select lemma="tillaging"/></match></rule>
+  
+  <rule><match lemma="drøye" tags="adv"><select lemma="vel"/></match></rule>
+  <rule><match lemma="drøyt" tags="adv"><select lemma="vel"/></match></rule>
+  <rule weight="2.0" c="øya ligg godt og vel fem kilometer frå kysten">
+    <or>
+	  <match tags="vblex.*"/>
+	  <match tags="adj.pp.*"/>
+	  <match tags="adv"/>
+	</or>
+	<or>
+      <match lemma="drøye" tags="adv"><select lemma="litt over"/></match>
+      <match lemma="drøyt" tags="adv"><select lemma="litt over"/></match>
+	</or>
+  </rule>
+  <rule weight="2.0" c="øya ligg godt og vel fem kilometer frå kysten">
+    <or>
+	  <match lemma="på" tags="pr"/>
+	  <match tags="cm"/>
+	</or>
+	<or>
+      <match lemma="drøye" tags="adv"><select lemma="godt og vel"/></match>
+      <match lemma="drøyt" tags="adv"><select lemma="godt og vel"/></match>
+	</or>
+  </rule>
 </lrx>
