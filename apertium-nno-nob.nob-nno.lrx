@@ -881,19 +881,6 @@
   <rule> <match lemma="anse" tags="adj.*"> <select lemma="verdsetje"/> </match> </rule>
   <rule> <match lemma="anse" tags="vblex.*"> <select lemma="sjå# på"/> </match> </rule>
 
-  <rule><match lemma="angående" tags="pr.*"><select lemma="rundt"/></match></rule>
-  <rule weight="2.0">
-    <match lemma="angående" tags="pr.*">
-      <select lemma="om"/>
-    </match>
-    <or>
-      <match lemma="at"/>
-      <match tags="adj.*"/>
-      <match tags="det.*"/>
-      <match tags="prn.*"/>
-    </or>
-  </rule>
-
   <rule><match lemma="hensikt" tags="n.*"><select lemma="hensikt"/></match></rule>
   <rule weight="2.0">
     <match lemma="hensikt" tags="n.*"><select lemma="formål"/></match>
@@ -3759,6 +3746,63 @@
   </rule>
 
   <!-- ØVRIG: END -->
+
+  <!-- ANGÅ/ANGÅENDE:: START -->
+
+  <rule weight="2.0">
+    <match lemma="som"/>
+    <match lemma="angå" tags="vblex.*"><select lemma="gjelde"/></match>
+  </rule>
+
+  <rule weight="2.0">
+    <match lemma="angå" tags="vblex.*"><select lemma="gjelde"/></match>
+    <match lemma="ikke"/>
+  </rule>
+
+  <rule weight="5.0">
+    <match lemma="angå" tags="vblex.*"><select lemma="vedkomme"/></match>
+    <match lemma="ikke"/>
+    <or>
+      <match tags="np.cog"/>
+      <match tags="np.top"/>
+      <match tags="np.ant"/>
+      <match tags="np.org"/>
+      <match tags="prn.*"/>
+    </or>
+  </rule>
+
+  <rule weight="5.0">
+    <match lemma="ikke"/>
+    <match lemma="angå" tags="vblex.*"><select lemma="vedkomme"/></match>
+    <or>
+      <match tags="np.cog"/>
+      <match tags="np.top"/>
+      <match tags="np.ant"/>
+      <match tags="np.org"/>
+      <match tags="prn.*"/>
+    </or>
+  </rule>
+
+  <rule>
+    <match lemma="skal" tags="vblex.*"/>
+    <match lemma="angå" tags="vblex.*"><select lemma="angå"/></match>
+  </rule>
+
+  <rule><match lemma="angående" tags="pr.*"><select lemma="rundt"/></match></rule>
+  
+  <rule weight="2.0">
+    <match lemma="angående" tags="pr.*">
+      <select lemma="om"/>
+    </match>
+    <or>
+      <match lemma="at"/>
+      <match tags="adj.*"/>
+      <match tags="det.*"/>
+      <match tags="prn.*"/>
+    </or>
+  </rule>
+
+  <!-- ANGÅ/ANGÅENDE: END -->
 
   <!-- UBETINGET: START -->
 
