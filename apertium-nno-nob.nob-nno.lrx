@@ -5156,4 +5156,18 @@ preposisjonar gir ekstra utfordringar. -->
 	<match tags="cm"/>
     <match lemma="anslagsvis" tags="adv"><select lemma="rundt rekna"/></match>
   </rule>
+  
+  <rule><match lemma="tidligere" tags="adv"><select lemma="tidlegare"/></match></rule>
+  <rule weight="2.0" c="enn før">
+    <or>
+      <match lemma="enn"/>
+      <match lemma="fra"/>
+	</or>
+    <match lemma="tidligere" tags="adv"><select lemma="før"/></match>
+	<or>
+	  <match tags="cm"/>
+	  <match tags="cm.clb"/>
+	  <match tags="sent.clb"/>
+	</or>
+  </rule>
 </lrx>
