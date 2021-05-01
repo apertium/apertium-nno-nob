@@ -263,6 +263,20 @@
           <match lemma="statssekretær"/>
         </or>
       </def-seq>
+      <def-seq n="not-noun">
+        <or>
+           <match tags="prn.*"/>
+           <match tags="vblex.*"/>
+           <match tags="adj.*"/>
+           <match tags="adv"/>
+           <match tags="ij"/>
+           <match tags="pr"/>
+           <match tags="det.*"/>
+           <match tags="cnjsub"/>
+           <match tags="cnjcoo"/>
+           <match tags="cnjadv"/>
+         </or>
+       </def-seq>
 
   </def-seqs>
 
@@ -1689,12 +1703,6 @@
   <rule weight="2.0"><match lemma="motta" tags="vblex.pp"><select lemma="motta"/></match></rule>
   <rule weight="2.0"><match lemma="motta" tags="vblex.*.pasv"><select lemma="motta"/></match></rule>
   <rule><match lemma="motta" tags="adj.*"><select lemma="motta"/></match></rule>
-
-  <rule c="blant de øvrige største selskapene"><match lemma="de øvrige" tags="det.*"><select lemma="resten av dei"/></match></rule>
-  <rule c="blant de øvrige selskapene" weight="2.0">
-    <match lemma="de øvrige" tags="det.*"><select lemma="resten av"/></match>
-    <match tags="n.*.pl.def"/>
-  </rule>
 
   <rule><match lemma="fartsovertredelse" tags="n.*"><select lemma="fartsoverskriding"/></match></rule>
   <rule weight="2.0">
@@ -3706,6 +3714,45 @@
   <rule> <!-- Og så mener vi at hele straffen skulle vært betinget, hvis han skal dømmes. -->
     <match lemma="betinget" tags="adj.*"><select lemma="vilkårsbunden"/></match>
   </rule>
+
+  <!-- ØVRIG: START -->
+  <rule>
+    <match lemma="de øvrige" tags="det.*"><select lemma="resten av"/></match>
+  </rule>
+
+  <rule>
+    <match lemma="det øvrige" tags="det.*"><select lemma="resten av"/></match>
+    <or>
+      <match tags="np.cog"/>
+      <match tags="np.top"/>
+      <match tags="np.ant"/>
+      <match tags="np.org"/>
+    </or>
+  </rule>
+
+  <rule weight="3.0">
+    <match lemma="all"/>
+    <match lemma="de øvrige" tags="det.*"><select lemma="dei andre"/></match>
+    <match tag="n.*.*.def"/>
+  </rule>
+
+  <rule>
+    <match lemma="de øvrige" tags="det.*"><select lemma="dei andre"/></match>
+    <seq n="not-noun"/>
+  </rule>
+
+  <rule weight="3.0">
+    <match lemma="av"/>
+    <match lemma="de øvrige" tags="det.*"><select lemma="dei andre"/></match>
+  </rule>
+
+  <rule c="blant de øvrige største selskapene"><match lemma="de øvrige" tags="det.*"><select lemma="resten av dei"/></match></rule>
+  <rule c="blant de øvrige selskapene" weight="2.0">
+    <match lemma="de øvrige" tags="det.*"><select lemma="resten av"/></match>
+    <match tags="n.*.pl.def"/>
+  </rule>
+
+  <!-- ØVRIG: END -->
 
   <!-- UBETINGET: START -->
 
