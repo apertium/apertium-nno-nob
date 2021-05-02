@@ -3755,6 +3755,34 @@
 
   <!-- ØVRIG: END -->
 
+  <!-- GRUNNE: START -->
+  <rule weight="2.0">
+    <match lemma="grunne" tags="vblex.*"><select lemma="grunde"/></match>
+    <or>
+      <match lemma="over"/>
+      <match lemma="på"/>
+      <match lemma="ut"/>
+    </or>
+  </rule>
+  <rule>
+    <match lemma="grunne" tags="vblex.*"><select lemma="grunne"/></match>
+  </rule>
+
+  <rule weight="2.0">
+    <match lemma="grunnet" tags="pr"><select lemma="på grunn av"/></match>
+    <repeat from="0" upto="1">
+      <match tags="det.*"/>
+    </repeat>
+    <repeat from="0" upto="1">
+      <match tags="adj.*"/>
+    </repeat>
+      <match tags="n.*"/>
+  </rule>
+  <rule>
+    <match lemma="grunnet" tags="pr"><select lemma="grunna"/></match>
+  </rule>
+  <!-- GRUNNE: END -->
+
   <!-- ANGÅ/ANGÅENDE:: START -->
 
   <rule weight="2.0">
