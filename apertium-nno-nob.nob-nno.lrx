@@ -3369,6 +3369,20 @@
     <match tags="sent.clb"/>
   </rule>
 
+  <rule weight="2.0"> 
+    <repeat from="0" upto="1">
+    <or>
+      <match lemma="skulle"/>
+      <match lemma="burde"/>
+      <match lemma="måtte"/>
+      <match lemma="kunne"/>
+      <match lemma="ville"/>
+    </or>
+  </repeat>
+    <match lemma="anta" tags="vblex.*"><select lemma="gå# ut frå"/></match>
+    <match tags="vblex.*"/>
+  </rule> 
+  
   <rule weight="3.0"> <!-- ...han antas å være gjerningspersonen... -->
     <match lemma="antas å være" tags="adv"><select lemma="er mistenkt for å vere"/></match>
     <or>
