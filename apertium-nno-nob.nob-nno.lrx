@@ -3361,6 +3361,9 @@
     </or>
     </repeat>
     <match lemma="anta" tags="vblex.inf"><select lemma="rekne# med"/></match>
+    <repeat from="0" upto="1">
+        <match lemma="at"/>
+    </repeat>
   </rule>
 
   <rule> <!-- ...enn de fleste hadde antatt. -->
@@ -3382,7 +3385,17 @@
     <match lemma="anta" tags="vblex.*"><select lemma="gå# ut frå"/></match>
     <match tags="vblex.*"/>
   </rule> 
-  
+
+  <rule> 
+    <match lemma="anta" tags="vblex.*"><select lemma="gå# ut frå"/></match>
+    <match lemma="at"/>
+  </rule> 
+
+  <rule> 
+    <match lemma="anta" tags="vblex.pret"><select lemma="gå# ut frå"/></match>
+    <match tags="pr"/>
+  </rule> 
+
   <rule weight="3.0"> <!-- ...han antas å være gjerningspersonen... -->
     <match lemma="antas å være" tags="adv"><select lemma="er mistenkt for å vere"/></match>
     <or>
