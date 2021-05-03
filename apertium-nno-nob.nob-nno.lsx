@@ -2,29 +2,93 @@
 <dictionary type="separable">
 
   <alphabet></alphabet>
-
   <sdefs>
-    <sdef n="adj"/>
-    <sdef n="adv"/>
-    <sdef n="n"/>
-    <sdef n="sep"/>
-    <sdef n="det"/>
-    <sdef n="dem"/>
-    <sdef n="qnt"/>
-    <sdef n="vblex"/>
-    <sdef n="sp"/>
-    <sdef n="sg"/>
-    <sdef n="pl"/>
-    <sdef n="ind"/>
-    <sdef n="def"/>
-    <sdef n="pst"/>
-    <sdef n="sint"/>
-    <sdef n="un"/>
-    <sdef n="nt"/>
-    <sdef n="m"/>
-    <sdef n="f"/>
-    <sdef n="gen"/>
-    <sdef n="cmp"/>
+    <sdef n="n"       c="Noun"/>
+    <sdef n="np"      c="Proper noun"/>
+    <sdef n="prn"     c="Pronoun"/>
+    <sdef n="det"     c="Determiner"/>
+    <sdef n="pos"     c="Possessive"/>
+
+    <sdef n="p1"      c="1st person"/>
+    <sdef n="p2"      c="2nd person"/>
+    <sdef n="p3"      c="3rd person"/>
+
+    <sdef n="nt"      c="Neuter"/>
+    <sdef n="mf"      c="Masculine / feminine, also utrum in nouns"/>
+    <sdef n="un"      c="No gender"/>
+    <sdef n="f"       c="Feminine"/>
+    <sdef n="m"       c="Masculine"/>
+
+    <sdef n="sp"      c="Singular / plural"/>
+    <sdef n="sg"      c="Singular"/>
+    <sdef n="pl"      c="Plural"/>
+
+    <sdef n="ind"     c="Indefinite"/>
+    <sdef n="def"     c="Definite"/>
+
+    <sdef n="nom"     c="Nominative"/>
+    <sdef n="acc"     c="Accusative"/>        <!-- objective case -->
+    <sdef n="gen"     c="Genitive"/>
+
+    <sdef n="dem"     c="Demonstrative"/>
+    <sdef n="itg"     c="Question word / interrogative"/>
+    <sdef n="qnt"     c="Quantifier"/>
+    <sdef n="neg"     c="Negative"/>
+    <sdef n="emph"    c="Emphatic"/>
+    <sdef n="pers"    c="Personal (pronoun)"/>
+
+    <sdef n="vblex"   c="Verb"/>
+    <sdef n="pstv"    c="-st verb (Nynorsk)"/>
+    <sdef n="pasv"    c="Passive (Bokmål) or -st form (Nynorsk)"/>
+    <sdef n="inf"     c="Infinitive"/>
+    <sdef n="pres"    c="Present"/>
+    <sdef n="imp"     c="Imperative"/>
+    <sdef n="pret"    c="Preterite"/>
+    <sdef n="pp"      c="Perfect participle"/>
+    <sdef n="pprs"  c="Present participle (adjectival)"/>
+
+    <sdef n="pr"      c="Preposition"/>
+    <sdef n="ij"      c="Interjection"/>
+    <sdef n="adv"     c="Adverb"/>
+    <sdef n="adj"     c="Adjective"/>
+    <sdef n="sint"    c="Synthetic (of adjectives)"/>
+    <sdef n="part"    c="Participle (infinitive)"/>
+    <sdef n="cnjsub"  c="Subordinating conjunction"/>
+    <sdef n="cnjcoo"  c="Co-ordinating conjunction"/>
+    <sdef n="cnjadv"  c="Adverbial conjunction"/>
+
+    <sdef n="pst"    c="Positive"/>
+    <sdef n="comp"    c="Comparative"/>
+    <sdef n="sup"     c="Superlative"/>
+
+    <sdef n="ord"     c="Ordinal"/>
+    <sdef n="acr"     c="Acronym"/>
+    <sdef n="sent"    c="Sentence end" />
+    <sdef n="cm"      c="Comma" />
+    <sdef n="guio"      c="Dash" />
+    <sdef n="clb"     c="Possible clause boundary"/>
+    <sdef n="overskrift" c="Headline"/>
+    <sdef n="apos"    c="Apostrophe" />
+    <sdef n="lpar"    c="Left parenthesis" />
+    <sdef n="rpar"    c="Right parenthesis" />
+    <sdef n="lquot"   c="Left quotation mark"/>
+    <sdef n="rquot"   c="Right quotation mark"/>
+
+    <sdef n="top"     c="Toponym" />
+    <sdef n="cog"     c="Cognomen" />
+    <sdef n="org"     c="Organisation" />
+    <sdef n="ant"     c="Anthroponym" />
+
+    <sdef n="cmp"     c="Compound-left-part"/>
+    <sdef n="cmp-split" c="Split compound-left-part"/>
+
+    <sdef n="guess" 	c="Guesser"/>
+    <sdef n="cgguess" 	c="CG Guesser"/>
+    <sdef n="url" 	c="URL/E-mail"/>
+
+    <sdef n="GD"     c="Género por determinar" />
+    <sdef n="ND"     c="Número por determinar" />
+
     <sdef n="aa"/>
     <sdef n="AA"/>
     <sdef n="Aa"/>
@@ -123,6 +187,34 @@
       </p>
       <i>begivenhet<s n="n"/><t/><j/></i>
     </e>
+
+    <e lm="bruktboligmarked" c="marknad for brukte bustader">
+      <p><l>bruktboligmarked</l>         <r>marked</r></p> <i><t/><j/></i>
+      <p><l></l>                         <r>for<s n="pr"/><j/></r></p>
+      <p><l></l>                         <r>bruke<s n="adj"/><s n="pp"/><s n="pl"/><j/></r></p>
+      <p><l></l>                         <r>bolig<s n="n"/><s n="m"/><s n="pl"/><s n="ind"/></r></p>
+    </e>
+
+    <e lm="utleie- og bruktboligmarked" c="marknad for utleigde og brukte bustader">
+      <p><l>utleie<t/><j/>og<t/><j/></l> <r></r></p>
+      <p><l>bruktboligmarked</l>         <r>marked</r></p> <i><t/><j/></i>
+      <p><l></l>                         <r>for<s n="pr"/><j/></r></p>
+      <p><l></l>                         <r>utleid<s n="adj"/><s n="pst"/><s n="un"/><s n="pl"/><s n="ind"/><j/></r></p>
+      <p><l></l>                         <r>og<s n="cnjcoo"/><j/></r></p>
+      <p><l></l>                         <r>bruke<s n="adj"/><s n="pp"/><s n="pl"/><j/></r></p>
+      <p><l></l>                         <r>bolig<s n="n"/><s n="m"/><s n="pl"/><s n="ind"/></r></p>
+    </e>
+
+    <e lm="utleie- og bruktboligmarked" c="marknad for utleigde og brukte bustader">
+      <p><l>utleie<t/><j/>og<t/><j/></l> <r></r></p>
+      <p><l>bruktboligmarked</l>         <r>marked</r></p> <i><t/><j/></i>
+      <p><l></l>                         <r>for<s n="pr"/><j/></r></p>
+      <p><l></l>                         <r>ny<s n="adj"/><s n="sint"/><s n="pst"/><s n="un"/><s n="pl"/><s n="ind"/><j/></r></p>
+      <p><l></l>                         <r>og<s n="cnjcoo"/><j/></r></p>
+      <p><l></l>                         <r>bruke<s n="adj"/><s n="pp"/><s n="pl"/><j/></r></p>
+      <p><l></l>                         <r>bolig<s n="n"/><s n="m"/><s n="pl"/><s n="ind"/></r></p>
+    </e>
+
 
   </section>
 
