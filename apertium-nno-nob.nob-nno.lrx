@@ -195,6 +195,22 @@
           <match lemma="skip"/>
         </or>
       </def-seq>
+      <def-seq n="alle-månedene">
+        <or>
+          <match lemma="januar"/>
+          <match lemma="februar"/>
+          <match lemma="mars"/>
+          <match lemma="april"/>
+          <match lemma="mai"/>
+          <match lemma="juni"/>
+          <match lemma="juni"/>
+          <match lemma="august"/>
+          <match lemma="september"/>
+          <match lemma="oktober"/>
+          <match lemma="november"/>
+          <match lemma="desember"/>
+        </or>
+      </def-seq>
 
       <def-seq n="animat_unk">
         <or>
@@ -3085,6 +3101,18 @@
     <match lemma="ha# meldt sin ankomst" tags="vblex.*"><select lemma="vere# på god veg"/></match>
   </rule>
   <!-- /ANKOMST -->
+
+  <rule><match lemma="utløp" tags="n.*"><select lemma="utløp"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="utløp" tags="n.*"><select lemma="utgang"/></match>
+    <match lemma="av"/>
+    <or>
+      <seq n="alle-månedene"/>
+      <match lemma="måned"/>
+      <match lemma="år"/>
+      <match tags="det.qnt.un.pl.date"/>
+    </or>
+  </rule>
 
 
   <rule><match lemma="knepen" tags="adj.*"><select lemma="hårfin"/></match></rule>
