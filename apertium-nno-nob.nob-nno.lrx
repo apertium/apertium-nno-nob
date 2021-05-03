@@ -508,6 +508,12 @@
   <rule> <match lemma="anklage" tags="adj.*"> <select lemma="skylde"/> </match> </rule>
   <rule> <match lemma="anklage" tags="adj.*"> <select lemma="skulde"/> </match> </rule>
 
+  <rule> <match lemma="skylde" tags="vblex.*"> <select lemma="skylde"/> </match> </rule>
+  <rule weight="2.0"  c="skulde på"> 
+    <match lemma="skylde" tags="vblex.*"> <select lemma="skulde"/> </match> 
+    <match lemma="på"/>
+  </rule>
+
   <rule> <match lemma="trygghet" tags="n.*"> <select lemma="tryggleik"/> </match> </rule>
 
 
