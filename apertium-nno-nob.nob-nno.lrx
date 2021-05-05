@@ -5447,4 +5447,24 @@ preposisjonar gir ekstra utfordringar. -->
   </rule>
 
   <rule><match lemma="tulling" tags="n.*"><select lemma="tulling" tags="n.m.*"/></match></rule>
+
+  <rule><match lemma="begå" tags="vblex.*"><select lemma="gjere"/></match></rule>
+  <rule weight="2.0" c="vere/bli gjort">
+    <or>
+      <match lemma="være" tags="vblex.*"/>
+      <match lemma="bli" tags="vblex.*"/>
+	</or>
+    <match lemma="begå" tags="vblex.pp"><select lemma="gjere"/></match>
+  </rule>
+  <rule weight="2.0" c="blir gjort">
+    <match lemma="begå" tags="vblex.pres.pasv"><select lemma="gjere"/></match>
+  </rule>
+  <rule weight="2.0" c="gjere seg skuldig i">
+    <match lemma="begå" tags="vblex.*"><select lemma="gjere# seg skuldig i"/></match>
+	<or>
+	  <match tags="n.*"/>
+	  <match tags="adj.*"/>
+	  <match tags="det.qnt.*.sg"/>
+	</or>
+  </rule>
 </lrx>
