@@ -1137,10 +1137,16 @@
 
   <rule><match lemma="fortsette" tags="vblex.*"><select lemma="halde# fram"/></match></rule>
   <rule><match lemma="fortsette" tags="adj.*"><select lemma="halde# fram"/></match></rule>
-  <rule weight="2.0">
+  <rule weight="2.0" c=", fortsetter hun.">
     <match lemma=","/>
     <match lemma="fortsette" tags="vblex.*"><select lemma="seie"/></match>
     <seq n="animat_unk"/>
+  </rule>
+  <rule weight="2.0" c=", fortsetter Støre sin reise / , fortsetter hun sin møysommelige praksis">
+    <match lemma=","/>
+    <match lemma="fortsette" tags="vblex.*"><select lemma="halde# fram"/></match>
+    <seq n="animat_unk"/>
+    <match tags="det.pos.*"/>
   </rule>
   <!-- Always «halde fram med» before «å»: -->
   <rule weight="9.0">
