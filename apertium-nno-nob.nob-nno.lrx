@@ -4045,6 +4045,7 @@
     <match lemma="av"/>
   </rule>
 
+  <!-- I STADEN (FOR): START -->
   <rule> <!-- like etter skulle istedenfor hjemmelaget punktere. -->
     <match tags="vblex.*"/>
     <repeat from="0" upto="1">
@@ -4061,16 +4062,22 @@
     </or>
   </rule>
 
-  <rule>
-    <match lemma="istedenfor" tags="pr"><select lemma="i staden for"/></match>
-  </rule>
-
   <rule> <!-- like etter skulle istedetfor hjemmelaget punktere. -->
     <match tags="vblex.*"/>
     <repeat from="0" upto="1">
       <match lemma="den"/>
     </repeat>
     <match lemma="istedetfor" tags="pr"><select lemma="i staden"/></match>
+  </rule>
+
+  <rule>
+    <match lemma="istedenfor" tags="pr"><select lemma="i staden for"/></match>
+  </rule>
+
+  <rule>
+    <match tags="cm.clb"/>
+    <match tags="vblex.*"/>
+    <match lemma="istedenfor" tags="pr"><select lemma="i staden for"/></match>
   </rule>
 
   <rule> <!-- istedetfor får Venezia, som opprinnelig rykket ned, beholde plassen. -->
@@ -4084,6 +4091,7 @@
   <rule>
     <match lemma="istedetfor" tags="pr"><select lemma="i staden for"/></match>
   </rule>
+  <!-- I STADEN (FOR): END -->
 
   <rule weight="2.0"> <!-- spørsmålet er bare om det kan oppnås enighet nå -->
     <or>
