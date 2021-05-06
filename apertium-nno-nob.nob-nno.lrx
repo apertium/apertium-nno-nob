@@ -1870,6 +1870,10 @@
 
   <!-- ? avgitte stemmer -->
   <rule weight="2.0">
+        <or>
+      <match lemma="den"><select lemma=""/></match>
+      <match lemma="de"><select lemma=""/></match>
+    </or>
     <or>
       <match lemma="avgi" tags="vblex.pp.*"><select lemma=""/></match>
       <match lemma="avgi" tags="adj.pp.*"><select lemma=""/></match>
@@ -1879,6 +1883,15 @@
     </or>
   </rule>
 
+<!-- innstillingen + (være/bli) + avgitt → innstillinga + (vere/bli) + levert -->
+  <rule weight="2.0">
+    <match lemma="innstilling"><select lemma="innstilling"/></match>
+    <or>
+      <match lemma="være"/>
+      <match lemma="bli"/>
+    </or>
+    <match lemma="avgi" tags="vblex.*"><select lemma="levere" tags="vblex.*"/></match>
+  </rule>
 
 
   <!-- merke¹ is transitive: -->
