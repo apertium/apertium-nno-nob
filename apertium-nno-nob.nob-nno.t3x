@@ -177,7 +177,7 @@
       <list-item v="suverent"/>
       <list-item v="verkeleg"/>
     </def-list>
-    <def-list n="n-keep-ind" c="Don't change ind→def on these familiar nouns, even if preceding adj gets def (tl/nno)">
+    <def-list n="n-keep-sg.ind" c="Don't change ind→def on these familiar nouns if sg, even if preceding adj gets def (tl/nno)">
       <list-item v="mor"/>
       <list-item v="oldemor"/>
       <list-item v="tippoldemor"/>
@@ -201,6 +201,10 @@
       <list-item v="svigerbror"/>
       <list-item v="tante"/>
       <list-item v="onkel"/>
+      <list-item v="dotter"/>
+      <list-item v="dotterdotter"/>
+      <list-item v="son"/>
+      <list-item v="soneson"/>
     </def-list>
     <def-list n="dem_sg_genders">
       <list-item v="&lt;m&gt;"/>
@@ -324,7 +328,10 @@
       <choose><when>
         <test><and>
           <not><equal><clip pos="1" part="a_cmp"/><lit-tag v="cmp-split"/></equal></not>
-          <not><in><clip pos="1" part="lemh"/><list n="n-keep-ind"/></in></not>
+          <not><and>
+            <equal><clip pos="1" part="nbr"/><lit-tag v="sg"/></equal>
+            <in><clip pos="1" part="lemh"/><list n="n-keep-sg.ind"/></in>
+          </and></not>
         </and></test>
         <let><clip pos="1" part="art"/><clip pos="2" part="art"/></let>
       </when></choose>
@@ -432,7 +439,10 @@
             <in><clip pos="1" part="lemh"/><list n="bi-no-double-defnes-n"/></in>
             <in><clip pos="2" part="lemh"/><list n="bi-no-double-defnes-adj"/></in>
           </and></not>
-          <not><in><clip pos="1" part="lemh"/><list n="n-keep-ind"/></in></not>
+          <not><and>
+            <equal><clip pos="1" part="nbr"/><lit-tag v="sg"/></equal>
+            <in><clip pos="1" part="lemh"/><list n="n-keep-sg.ind"/></in>
+          </and></not>
         </and></test>
         <let><clip pos="1" part="art"/><clip pos="3" part="art"/></let>
       </when></choose>
