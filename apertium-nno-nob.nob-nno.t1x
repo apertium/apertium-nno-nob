@@ -530,9 +530,16 @@
     <def-cat n="adj">
       <cat-item tags="adj.*"/>
     </def-cat>
-    <def-cat n="adjsup">
+    <def-cat n="adjsup_emph">
       <cat-item tags="adj.*.sup.*"/>
       <cat-item tags="adj.sup.*"/>
+      <cat-item lemma="kjær" tags="adj.*"/>
+      <cat-item lemma="jævla" tags="adj.*"/>
+      <cat-item lemma="forbaska" tags="adj.*"/>
+      <cat-item lemma="forbasket" tags="adj.*"/>
+      <cat-item lemma="forbanna" tags="adj.*"/>
+      <cat-item lemma="forbanne" tags="adj.*"/>
+      <cat-item lemma="forbannet" tags="adj.*"/>
     </def-cat>
     <def-cat n="preadj-adv">
       <cat-item lemma="ikke" tags="adv"/>
@@ -4698,11 +4705,12 @@
         </out>
       </action>
     </rule>
-    <rule comment="DETPOS ADJSUP NIND: sin beste form → sin beste form
+    <rule comment="DETPOS ADJSUP_EMPH NIND: sin beste form → sin beste form
+                                            min kjære undulat → min kjære undulat
                    Tell t2x to not use DETPOS NIND → NDEF DETPOS rule.">
       <pattern>
         <pattern-item n="detpos"/>
-        <pattern-item n="adjsup"/>
+        <pattern-item n="adjsup_emph"/>
         <pattern-item n="nind_indgen"/>
       </pattern>
       <action>
