@@ -322,7 +322,10 @@
                c="arg.1: noun, arg.2: chunk.
                   Nouns typically get chunk defnes.">
       <choose><when>
-        <test><not><equal><clip pos="1" part="a_cmp"/><lit-tag v="cmp-split"/></equal></not></test>
+        <test><and>
+          <not><equal><clip pos="1" part="a_cmp"/><lit-tag v="cmp-split"/></equal></not>
+          <not><in><clip pos="1" part="lemh"/><list n="n-keep-ind"/></in></not>
+        </and></test>
         <let><clip pos="1" part="art"/><clip pos="2" part="art"/></let>
       </when></choose>
       <choose><when c="som en hvilken som helst annen sak → som alle andre saker">
