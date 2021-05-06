@@ -5563,11 +5563,14 @@ no lemq-moving">
       </pattern>
       <action>
         <choose><when>
-          <test><and>
-            <not><in><clip pos="1" side="tl" part="lemh"/><list n="adj-ind-def"/></in></not>
-            <equal><clip pos="1" side="tl" part="art"/><lit-tag v="ind"/></equal>
-            <equal><clip pos="2" side="tl" part="art"/><lit-tag v="def"/></equal>
-          </and></test>
+          <test><or>
+            <equal><clip pos="1" side="tl" part="lemh"/><lit v=""/></equal>
+            <and>
+              <not><in><clip pos="1" side="tl" part="lemh"/><list n="adj-ind-def"/></in></not>
+              <equal><clip pos="1" side="tl" part="art"/><lit-tag v="ind"/></equal>
+              <equal><clip pos="2" side="tl" part="art"/><lit-tag v="def"/></equal>
+            </and>
+          </or></test>
           <reject-current-rule shifting="no"/>
         </when></choose>
         <let><var n="c_name"/><lit v="adj_n"/></let>
@@ -5602,11 +5605,14 @@ no lemq-moving">
       </pattern>
       <action>
         <choose><when>
-          <test><and>
-            <not><in><clip pos="1" side="tl" part="lemh"/><list n="adj-ind-def"/></in></not>
-            <equal><clip pos="1" side="tl" part="art"/><lit-tag v="ind"/></equal>
-            <equal><clip pos="3" side="tl" part="art"/><lit-tag v="def"/></equal>
-          </and></test>
+          <test><or>
+            <equal><clip pos="1" side="tl" part="lemh"/><lit v=""/></equal>
+            <and>
+              <not><in><clip pos="1" side="tl" part="lemh"/><list n="adj-ind-def"/></in></not>
+              <equal><clip pos="1" side="tl" part="art"/><lit-tag v="ind"/></equal>
+              <equal><clip pos="3" side="tl" part="art"/><lit-tag v="def"/></equal>
+            </and>
+          </or></test>
           <reject-current-rule shifting="no"/>
         </when></choose>
         <let><var n="c_name"/><lit v="adj_n_n"/></let>
@@ -5643,11 +5649,14 @@ no lemq-moving">
       </pattern>
       <action>
         <choose><when>
-          <test><and>
-            <not><in><clip pos="1" side="tl" part="lemh"/><list n="adj-ind-def"/></in></not>
-            <equal><clip pos="1" side="tl" part="art"/><lit-tag v="ind"/></equal>
-            <equal><clip pos="4" side="tl" part="art"/><lit-tag v="def"/></equal>
-          </and></test>
+          <test><or>
+            <equal><clip pos="1" side="tl" part="lemh"/><lit v=""/></equal>
+            <and>
+              <not><in><clip pos="1" side="tl" part="lemh"/><list n="adj-ind-def"/></in></not>
+              <equal><clip pos="1" side="tl" part="art"/><lit-tag v="ind"/></equal>
+              <equal><clip pos="4" side="tl" part="art"/><lit-tag v="def"/></equal>
+            </and>
+          </or></test>
           <reject-current-rule shifting="no"/>
         </when></choose>
         <let><var n="c_name"/><lit v="adj_n_n_n"/></let>
@@ -5686,11 +5695,14 @@ no lemq-moving">
       </pattern>
       <action>
         <choose><when>
-          <test><and>
-            <not><in><clip pos="1" side="tl" part="lemh"/><list n="adj-ind-def"/></in></not>
-            <equal><clip pos="1" side="tl" part="art"/><lit-tag v="ind"/></equal>
-            <equal><clip pos="5" side="tl" part="art"/><lit-tag v="def"/></equal>
-          </and></test>
+          <test><or>
+            <equal><clip pos="1" side="tl" part="lemh"/><lit v=""/></equal>
+            <and>
+              <not><in><clip pos="1" side="tl" part="lemh"/><list n="adj-ind-def"/></in></not>
+              <equal><clip pos="1" side="tl" part="art"/><lit-tag v="ind"/></equal>
+              <equal><clip pos="5" side="tl" part="art"/><lit-tag v="def"/></equal>
+            </and>
+          </or></test>
           <reject-current-rule shifting="no"/>
         </when></choose>
         <let><var n="c_name"/><lit v="adj_n_n_n_n"/></let>
@@ -5729,11 +5741,14 @@ no lemq-moving">
       </pattern>
       <action>
         <choose><when>
-          <test><and>
-            <not><in><clip pos="1" side="tl" part="lemh"/><list n="adj-ind-def"/></in></not>
-            <equal><clip pos="1" side="tl" part="art"/><lit-tag v="ind"/></equal>
-            <equal><clip pos="3" side="tl" part="art"/><lit-tag v="def"/></equal>
-          </and></test>
+          <test><or>
+            <equal><clip pos="1" side="tl" part="lemh"/><lit v=""/></equal>
+            <and>
+              <not><in><clip pos="1" side="tl" part="lemh"/><list n="adj-ind-def"/></in></not>
+              <equal><clip pos="1" side="tl" part="art"/><lit-tag v="ind"/></equal>
+              <equal><clip pos="3" side="tl" part="art"/><lit-tag v="def"/></equal>
+            </and>
+          </or></test>
           <reject-current-rule shifting="no"/>
         </when></choose>
         <let><var n="c_name"/><lit v="adj_adj_n"/></let>
@@ -5781,11 +5796,14 @@ no lemq-moving">
       </pattern>
       <action>
         <choose><when>
-          <test><and>
-            <not><in><clip pos="1" side="tl" part="lemh"/><list n="adj-ind-def"/></in></not>
-            <equal><clip pos="1" side="tl" part="art"/><lit-tag v="ind"/></equal>
-            <equal><clip pos="2" side="tl" part="art"/><lit-tag v="def"/></equal>
-          </and></test>
+          <test><or>
+            <equal><clip pos="1" side="tl" part="lemh"/><lit v=""/></equal>
+            <and>
+              <not><in><clip pos="1" side="tl" part="lemh"/><list n="adj-ind-def"/></in></not>
+              <equal><clip pos="1" side="tl" part="art"/><lit-tag v="ind"/></equal>
+              <equal><clip pos="2" side="tl" part="art"/><lit-tag v="def"/></equal>
+            </and>
+          </or></test>
           <reject-current-rule shifting="no"/>
         </when></choose>
         <let><var n="c_name"/><lit v="adj_adj_n_n"/></let>
@@ -5835,11 +5853,14 @@ no lemq-moving">
       </pattern>
       <action>
         <choose><when>
-          <test><and>
-            <not><in><clip pos="1" side="tl" part="lemh"/><list n="adj-ind-def"/></in></not>
-            <equal><clip pos="1" side="tl" part="art"/><lit-tag v="ind"/></equal>
-            <equal><clip pos="5" side="tl" part="art"/><lit-tag v="def"/></equal>
-          </and></test>
+          <test><or>
+            <equal><clip pos="1" side="tl" part="lemh"/><lit v=""/></equal>
+            <and>
+              <not><in><clip pos="1" side="tl" part="lemh"/><list n="adj-ind-def"/></in></not>
+              <equal><clip pos="1" side="tl" part="art"/><lit-tag v="ind"/></equal>
+              <equal><clip pos="5" side="tl" part="art"/><lit-tag v="def"/></equal>
+            </and>
+          </or></test>
           <reject-current-rule shifting="no"/>
         </when></choose>
         <let><var n="c_name"/><lit v="adj_adj_n_n_n"/></let>
@@ -5891,11 +5912,14 @@ no lemq-moving">
       </pattern>
       <action>
         <choose><when>
-          <test><and>
-            <not><in><clip pos="1" side="tl" part="lemh"/><list n="adj-ind-def"/></in></not>
-            <equal><clip pos="1" side="tl" part="art"/><lit-tag v="ind"/></equal>
-            <equal><clip pos="6" side="tl" part="art"/><lit-tag v="def"/></equal>
-          </and></test>
+          <test><or>
+            <equal><clip pos="1" side="tl" part="lemh"/><lit v=""/></equal>
+            <and>
+              <not><in><clip pos="1" side="tl" part="lemh"/><list n="adj-ind-def"/></in></not>
+              <equal><clip pos="1" side="tl" part="art"/><lit-tag v="ind"/></equal>
+              <equal><clip pos="6" side="tl" part="art"/><lit-tag v="def"/></equal>
+            </and>
+          </or></test>
           <reject-current-rule shifting="no"/>
         </when></choose>
         <let><var n="c_name"/><lit v="adj_adj_n_n_n_n"/></let>
@@ -5944,23 +5968,32 @@ no lemq-moving">
         <pattern-item n="adj"/>
       </pattern>
       <action>
-        <let><var n="c_name"/><lit v="adj"/></let>
-        <call-macro n="set_gender1.adj"><with-param pos="1"/></call-macro>
-        <call-macro n="set_grau_aux1"><with-param pos="1"/></call-macro>
         <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
-        <out>
-          <chunk namefrom="c_name" case="caseFirstWord">
-            <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
-            <var n="grau_aux"/>
-            <lu>
-              <clip pos="1" side="tl" part="lemh"/>
-              <clip pos="1" side="tl" part="tags"/>
-              <clip pos="1" side="tl" part="lemq"/>
-            </lu>
-          </chunk>
-        </out>
+        <choose>
+          <when c="Only output if bidix has a lemma in l">
+            <test>
+              <not><equal><clip pos="1" side="tl" part="lem"/><lit v=""/></equal></not>
+            </test>
+            <let><var n="c_name"/><lit v="adj"/></let>
+            <call-macro n="set_gender1.adj"><with-param pos="1"/></call-macro>
+            <call-macro n="set_grau_aux1"><with-param pos="1"/></call-macro>
+            <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
+            <out>
+              <chunk namefrom="c_name" case="caseFirstWord">
+                <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
+                <var n="grau_aux"/>
+                <lu><clip pos="1" side="tl" part="whole"/></lu>
+              </chunk>
+            </out>
+          </when>
+          <otherwise>
+            <let><var n="prevDeletedCase"/><lit v="aa"/></let>
+            <modify-case><var n="prevDeletedCase"/><var n="caseFirstWord"/></modify-case>
+          </otherwise>
+        </choose>
       </action>
     </rule>
+
     <rule comment="ADJ ADJ
                    mest betydningsfulle → viktigaste">
       <pattern>
@@ -5969,11 +6002,14 @@ no lemq-moving">
       </pattern>
       <action>
         <choose><when>
-          <test><and>
-            <not><in><clip pos="1" side="tl" part="lemh"/><list n="adj-ind-def"/></in></not>
-            <equal><clip pos="1" side="tl" part="art"/><lit-tag v="ind"/></equal>
-            <equal><clip pos="2" side="tl" part="art"/><lit-tag v="def"/></equal>
-          </and></test>
+          <test><or>
+            <equal><clip pos="1" side="tl" part="lemh"/><lit v=""/></equal>
+            <and>
+              <not><in><clip pos="1" side="tl" part="lemh"/><list n="adj-ind-def"/></in></not>
+              <equal><clip pos="1" side="tl" part="art"/><lit-tag v="ind"/></equal>
+              <equal><clip pos="2" side="tl" part="art"/><lit-tag v="def"/></equal>
+            </and>
+          </or></test>
           <reject-current-rule shifting="no"/>
         </when></choose>
         <let><var n="c_name"/><lit v="adj_adj"/></let>
