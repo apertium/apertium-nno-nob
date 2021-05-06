@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dictionary type="separable">
+  <!--
+      This file rewrites the analysed input Bokmål into a Bokmål that
+      has slightly more idiomatic Nynorsk word order. (Maybe think of
+      it like a multi-word bidix from Bokmål to Nynorsk-ish Bokmål.)
+
+      So both the <l> and the <r> of this file is Bokmål. All
+      mentioned lemmas need to be in bidix (even ones that are removed
+      by rules here, since compilation will remove lemmas from the
+      analyser that are not in bidix).
+  -->
 
   <alphabet></alphabet>
   <sdefs>
@@ -203,6 +213,12 @@
       <p><l></l>                         <r>og<s n="cnjcoo"/><j/></r></p>
       <p><l></l>                         <r>bruke<s n="adj"/><s n="pp"/><s n="pl"/><j/></r></p>
       <p><l></l>                         <r>bolig<s n="n"/><s n="m"/><s n="pl"/><s n="ind"/></r></p>
+    </e>
+
+    <e lm="de øvrige (to|42) er" c="resten av dei er">
+      <p><l>de<b/>øvrige</l><r>resten<b/>av<b/>de</r></p> <i><t/><j/></i>
+      <p><l><w/><s n="det"/><s n="qnt"/><t/><j/></l><r></r></p>
+      <i><w/><s n="vblex"/><t/><j/></i>
     </e>
 
     <e lm="utleie- og bruktboligmarked" c="marknad for utleigde og brukte bustader">
