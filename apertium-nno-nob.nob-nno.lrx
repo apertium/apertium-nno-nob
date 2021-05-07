@@ -4160,6 +4160,26 @@
       <match tags="np.*"/>
      </or>
   </rule>
+  <rule weight="2.0"> 
+    <or>
+      <match lemma="vel"/>
+      <match lemma="høyt"/>
+      <match lemma="svært"/>
+      <match lemma="liten"/>
+      <match lemma="lav"/>
+    </or>
+    <match lemma="anse" tags="vblex.*"><select lemma="respektere"/></match>
+  </rule>
+    <rule weight="2.0"> 
+    <or>
+      <match lemma="vel"/>
+      <match lemma="høyt"/>
+      <match lemma="svært"/>
+      <match lemma="liten"/>
+      <match lemma="lav"/>
+    </or>
+    <match lemma="anse" tags="adj.*"><select lemma="respektere"/></match>
+  </rule>
  <!-- ANSE: END -->
 
  <!-- FORBLI: START -->
