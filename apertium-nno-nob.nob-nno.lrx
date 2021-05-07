@@ -4145,6 +4145,39 @@
   </rule>
  <!-- OPPNÅ ENIGHET/KOMME TIL ENIGHET: END -->
 
+ <!-- FORBLI: START -->
+  <rule> 
+    <match lemma="ikke"/>
+    <match lemma="forbli" tags="vblex.pres"><select lemma="bli# verande"/></match>
+  </rule>
+  <rule> 
+    <match lemma="forbli" tags="vblex.pres"><select lemma="bli# verande"/></match>
+    <match lemma="ikke"/>
+  </rule>
+  <rule> 
+    <match lemma="ikke"/>
+    <match lemma="forbli" tags="vblex.pret"><select lemma="bli# verande"/></match>
+  </rule>
+  <rule> 
+    <match lemma="forbli" tags="vblex.pret"><select lemma="bli# verande"/></match>
+    <match lemma="ikke"/>
+  </rule>
+  <rule weight="2.0"> 
+    <repeat from="0" upto="1">
+      <match lemma="ikke"/>
+    </repeat>
+    <match lemma="forbli" tags="vblex.*"><select lemma="bli# verande"/></match>
+    <match lemma="i"/>
+  </rule>
+  <rule> 
+    <match lemma="ikke"/>
+    <match lemma="forbli" tags="vblex.inf"><select lemma="halde# fram med å vere"/></match>
+  </rule>
+  <rule> 
+    <match lemma="forbli" tags="vblex.*"><select lemma="halde# fram med å vere"/></match>
+  </rule>
+ <!-- FORBLI: END -->
+
   <rule>
     <or>
       <match lemma="kunne"/>
