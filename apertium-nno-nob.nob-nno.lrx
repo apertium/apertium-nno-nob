@@ -4106,6 +4106,7 @@
   </rule>
   <!-- I STADEN (FOR): END -->
 
+  <!-- OPPNÅ ENIGHET/KOMME TIL ENIGHET: START -->
   <rule weight="2.0"> <!-- spørsmålet er bare om det kan oppnås enighet nå -->
     <or>
       <match lemma="kunne" tags="vblex.*"/>
@@ -4120,6 +4121,23 @@
   <rule> <!-- dersom det ikke oppnås enighet, trappes streiken opp  -->
     <match lemma="oppnå# enighet" tags="vblex.inf.pasv"><select lemma="bli# ei semje" tags="vblex.pres"/></match>
   </rule>
+
+  <rule>
+    <match lemma="å"/>
+    <match lemma="komme# til enighet" tags="vblex.*"><select lemma="semjast" tags="vblex.*"/></match>
+  </rule>
+  <rule> 
+      <match lemma="å"/>
+    <match lemma="oppnå# enighet" tags="vblex.*"><select lemma="semjast" tags="vblex.*"/></match>
+  </rule>
+
+  <rule>
+    <match lemma="komme# til enighet" tags="vblex.*"><select lemma="bli# samde" tags="vblex.*"/></match>
+  </rule>
+  <rule> 
+    <match lemma="oppnå# enighet" tags="vblex.*"><select lemma="bli# samde" tags="vblex.*"/></match>
+  </rule>
+ <!-- OPPNÅ ENIGHET/KOMME TIL ENIGHET: END -->
 
   <rule>
     <or>
