@@ -4145,6 +4145,20 @@
   </rule>
  <!-- OPPNÅ ENIGHET/KOMME TIL ENIGHET: END -->
 
+ <!-- ANSE: START -->
+   <rule weight="2.0"> 
+    <match tags="det.*"/>
+    <repeat from="0" upto="2">
+    <or>
+      <match tags="adv"/>
+      <match tags="adj.*"/>
+    </or>
+    </repeat>
+    <match lemma="anse" tags="adj.*"><select lemma="respektere"/></match>
+    <match tags="n.*"/>
+  </rule>
+ <!-- ANSE: END -->
+
  <!-- FORBLI: START -->
   <rule> 
     <match lemma="ikke"/>
