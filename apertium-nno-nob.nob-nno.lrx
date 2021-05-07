@@ -900,9 +900,6 @@
 
   <rule> <match lemma="støtte" tags="n.*"> <select lemma="støtte"/> </match> </rule>
 
-  <rule> <match lemma="anse" tags="adj.*"> <select lemma="verdsetje"/> </match> </rule>
-  <rule> <match lemma="anse" tags="vblex.*"> <select lemma="sjå# på"/> </match> </rule>
-
   <rule><match lemma="hensikt" tags="n.*"><select lemma="hensikt"/></match></rule>
   <rule weight="2.0">
     <match lemma="hensikt" tags="n.*"><select lemma="formål"/></match>
@@ -4146,7 +4143,9 @@
  <!-- OPPNÅ ENIGHET/KOMME TIL ENIGHET: END -->
 
  <!-- ANSE: START -->
-   <rule weight="2.0"> 
+  <rule> <match lemma="anse" tags="adj.*"> <select lemma="verdsetje"/> </match> </rule>
+  
+  <rule weight="2.0"> 
     <match tags="det.*"/>
     <repeat from="0" upto="2">
     <or>
@@ -4194,6 +4193,11 @@
       <match lemma="for"/>
     </or>
   </rule>
+  <rule> 
+    <match lemma="anse# for"><select lemma="rekne# for"/></match>
+    <match lemma="å"/>
+  </rule>
+
  <!-- ANSE: END -->
 
  <!-- FORBLI: START -->
