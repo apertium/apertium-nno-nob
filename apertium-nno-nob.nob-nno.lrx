@@ -2783,6 +2783,21 @@
       <match tags="n.*"/>
     </or>
   </rule>
+  <rule>
+    <match lemma="å"/>
+    <match lemma="være# ankommet" tags="vblex.*"><select lemma="vere# framme i"/></match>
+     <repeat from="0" upto="2">
+        <or>
+           <match tags="det.*"/>
+           <match tags="adv"/>
+           <match tags="adj.*"/>
+        </or>
+    </repeat>
+    <or>
+      <match tags="np.*"/>
+      <match tags="n.*"/>
+    </or>
+  </rule>
   <!-- ANKOMME: END -->
 
   <rule><match lemma="oppveie" tags="vblex.*"><select lemma="vege# opp for"/></match></rule>
