@@ -4180,6 +4180,20 @@
     </or>
     <match lemma="anse" tags="adj.*"><select lemma="respektere"/></match>
   </rule>
+  <rule> 
+    <match lemma="anse"><select lemma="rekne"/></match>
+    <repeat from="0" upto="2">
+    <or>
+      <match tags="pr"/>
+      <match tags="n.*"/>
+      <match tags="np.*"/>
+    </or>
+    </repeat>
+     <or>
+      <match lemma="som"/>
+      <match lemma="for"/>
+    </or>
+  </rule>
  <!-- ANSE: END -->
 
  <!-- FORBLI: START -->
