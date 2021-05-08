@@ -5605,4 +5605,27 @@ preposisjonar gir ekstra utfordringar. -->
 	  <match tags="det.qnt.*.sg"/>
 	</or>
   </rule>
+  
+  <rule><match lemma="oppsummere" tags="vblex.*"><select lemma="oppsummere"/></match></rule>
+  <rule weight="2.0" c=", oppsummerte Giske.">
+  	<match tags="cm.*"/>
+    <match lemma="oppsummere" tags="vblex.*"><select lemma="oppsummere"/></match>
+  </rule>
+  <rule weight="2.0" c="blir oppsummert">
+    <match lemma="oppsummere" tags="vblex.pres.pasv"><select lemma="oppsummere"/></match>
+  </rule>
+  <rule weight="2.0" c="NN summerte opp rapporten">
+    <match lemma="oppsummere" tags="vblex.*"><select lemma="summere# opp"/></match>
+	<or>
+	  <match tags="n.*.*.def"/>
+	  <match tags="n.*.pl.ind"/>
+	  <match tags="np.org"/>
+	</or>
+  </rule>
+  <rule weight="2.0" c="Finanstilsynet summerer opp dei nye reglane slik">
+    <match lemma="oppsummere" tags="vblex.*"><select lemma="summere# opp"/></match>
+	  <match tags="det.dem.*"/>
+	  <match tags="adj.*"/>
+	  <match tags="n.*"/>
+  </rule>
 </lrx>
