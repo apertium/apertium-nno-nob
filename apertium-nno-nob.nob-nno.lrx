@@ -5667,5 +5667,20 @@ preposisjonar gir ekstra utfordringar. -->
     <match lemma="kreve" tags="vblex.pres.pasv"><select lemma="trengast"/></match>
   	<match tags="det.qnt.*.sg"/>
   </rule>
+  
+  <rule><match lemma="lide" tags="vblex.*"><select lemma="lide"/></match></rule>
+  <rule><match lemma="li" tags="vblex.*"><select lemma="lide"/></match></rule>
+  <rule weight="2.5" c="det lei mot kveld">
+    <match lemma="li" tags="vblex.*"><select lemma="li"/></match>
+	<or>
+	  <match lemma="mot"/>
+	  <match lemma="utpå"/>
+	</or>
+  </rule>
+  <rule weight="2.0" c="lakke og li">
+	<match lemma="lakke" tags="vblex.*"/>
+	<match lemma="og"/>
+    <match lemma="li" tags="vblex.*"><select lemma="li"/></match>
+  </rule>
 
 </lrx>
