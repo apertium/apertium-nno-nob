@@ -3492,7 +3492,20 @@
 
   <rule> 
     <match lemma="anta" tags="vblex.pret"><select lemma="gå# ut frå"/></match>
-    <match tags="pr"/>
+    <or>
+      <match tags="pr"/>
+      <match lemma="i dag"/>
+      <match lemma="i går"/>
+    </or>
+  </rule> 
+
+  <rule> 
+    <match lemma="anta" tags="vblex.pres"><select lemma="gå# ut frå"/></match>
+    <or>
+      <match tags="pr"/>
+      <match lemma="i dag"/>
+      <match lemma="i går"/>
+    </or>
   </rule> 
 
   <rule> 
