@@ -1303,13 +1303,6 @@
 
   <rule><match lemma="forbigå" tags="adj.*"><select lemma="forbigå"/></match></rule>
   <rule weight="2.0"><match lemma="forbigå" tags="vblex.pp"><select lemma="forbigå"/></match></rule>
-  <rule weight="3.0">
-    <match lemma="føle"/>
-    <match lemma="seg"/>
-    <match lemma="forbigå">
-      <select lemma="gløyme"/>
-    </match>
-  </rule>
   <rule><match lemma="forbigå" tags="vblex.*"><select lemma="gå# forbi"/></match></rule>
 
   <rule><match lemma="bekrefte" tags="vblex.*"><select lemma="stadfeste"/></match></rule>
@@ -5758,6 +5751,57 @@ preposisjonar gir ekstra utfordringar. -->
   <rule weight="2.0" c="spesialutsendinga av">
     <match lemma="spesialutsending" tags="n.m.*"><select lemma="spesialutsending" tags="n.f.*"/></match>
 	<match lemma="av"/>
+  </rule>
+  
+  <rule><match lemma="føle" tags="vblex.*"><select lemma="kjenne"/></match></rule>
+  <rule><match lemma="føle" tags="adj.*"><select lemma="kjenne"/></match></rule>
+  <rule weight="2.0" c="kjenne seg">
+    <or>
+      <match lemma="føle" tags="vblex.*"><select lemma="kjenne"/></match>
+      <match lemma="føle" tags="adj.pp.*"><select lemma="kjenne"/></match>
+	</or>
+	<repeat from="0" upto="6"><match/></repeat>
+    <seq n="ref-prn"/>
+  </rule>
+  <rule weight="3.0" c="føle seg fram">
+    <or>
+      <match lemma="føle" tags="vblex.*"><select lemma="føle"/></match>
+      <match lemma="føle" tags="adj.pp.*"><select lemma="føle"/></match>
+	</or>
+	<repeat from="0" upto="6"><match/></repeat>
+    <seq n="ref-prn"/>
+	<or>
+	  <match lemma="fram"/>
+	  <match lemma="frem"/>
+	</or>
+  </rule>
+  <rule weight="3.0" c="føler at">
+    <or>
+      <match lemma="føle" tags="vblex.*"><select lemma="føle"/></match>
+      <match lemma="føle" tags="adj.pp.*"><select lemma="føle"/></match>
+	</or>
+	<match lemma="at"/>
+  </rule>
+  <rule weight="3.0" c="føle med (nokon)">
+    <or>
+      <match lemma="føle" tags="vblex.*"><select lemma="føle"/></match>
+      <match lemma="føle" tags="adj.pp.*"><select lemma="føle"/></match>
+	</or>
+	<or>
+	  <match lemma="med"/>
+	  <match lemma="for"/>
+	</or>
+  </rule>
+
+  <rule><match lemma="følelse" tags="n.*"><select lemma="kjensle"/></match></rule>
+  <rule weight="2.0" c="ha/kjenne på følelsen">
+    <or>
+      <match lemma="ha" tags="vblex.*"/>
+      <match lemma="kjenne" tags="vblex.*"/>
+	</or>
+    <repeat from="0" upto="3"><match/></repeat>
+	<match lemma="på"/>
+    <match lemma="følelse" tags="n.*"><select lemma="følelse"/></match>
   </rule>
 
 </lrx>
