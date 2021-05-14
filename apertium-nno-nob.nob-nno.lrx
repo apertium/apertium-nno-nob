@@ -293,7 +293,12 @@
            <match tags="cnjadv"/>
          </or>
        </def-seq>
-
+      <def-seq n="ref-prn">
+        <or>
+          <match tags="prn.ref.*"/>
+          <match tags="prn.pers.*.*.*.acc"/>
+        </or>
+      </def-seq>
   </def-seqs>
 
 
@@ -2666,7 +2671,54 @@
   <rule><match lemma="skinne" tags="vblex.*"><select lemma="skine"/></match></rule>
   <rule><match lemma="skinne" tags="adj.*"><select lemma="skine"/></match></rule>
 
-  <rule><match lemma="henvende# seg" tags="vblex.*"><select lemma="vende# seg"/></match></rule>
+  <rule><match lemma="henvende" tags="vblex.*"><select lemma="vende"/></match></rule>
+  <rule weight="2.3" c="vende seg til (nokon)">
+    <match lemma="henvende" tags="vblex.*"><select lemma="vende"/></match>
+	<repeat from="0" upto="6"><match/></repeat>
+    <seq n="ref-prn"/>
+	<repeat from="0" upto="6"><match/></repeat>
+    <match lemma="til"/>
+  </rule>
+  <rule weight="2.5" c="stad å vende seg">
+    <match lemma="sted"/>
+    <match lemma="å"/>
+    <match lemma="henvende" tags="vblex.*"><select lemma="vende"/></match>
+    <seq n="ref-prn"/>
+  </rule>
+  <rule weight="2.0" c="melde seg i resepsjonen, ved ambassaden, på telefon">
+    <match lemma="henvende" tags="vblex.*"><select lemma="melde"/></match>
+    <seq n="ref-prn"/>
+	<or>
+      <match lemma="i"/>
+      <match lemma="ved"/>
+      <match lemma="på"/>
+	</or>
+    <match tags="n.*"/>
+  </rule>
+  <rule weight="2.0" c="melde seg i økende grad, ved næraste kontor">
+    <match lemma="henvende" tags="vblex.*"><select lemma="melde"/></match>
+    <seq n="ref-prn"/>
+	<or>
+      <match lemma="i"/>
+      <match lemma="ved"/>
+      <match lemma="på"/>
+	</or>
+    <match tags="adj.*"/>
+    <match tags="n.*"/>
+  </rule>
+  <rule weight="2.0" c="melde seg i en">
+    <match lemma="henvende" tags="vblex.*"><select lemma="melde"/></match>
+    <seq n="ref-prn"/>
+    <match lemma="i"/>
+    <match tags="det.qnt.*"/>
+  </rule>
+  <rule weight="2.3" c="retta til (nokon)">
+    <or>
+      <match lemma="henvende" tags="vblex.*"><select lemma="rette"/></match>
+      <match lemma="henvende" tags="adj.pp.*"><select lemma="rette"/></match>
+	</or>
+    <match lemma="til"/>
+  </rule>
 
   <rule><match lemma="tusen" tags="n.*"><select lemma="tusen"/></match></rule>
   <rule weight="2.0">
