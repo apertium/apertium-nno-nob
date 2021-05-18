@@ -5833,4 +5833,21 @@ preposisjonar gir ekstra utfordringar. -->
 	</or>
   </rule>
 
+  <rule><match lemma="i særdeleshet" tags="adv"><select lemma="særleg"/></match></rule>
+  <rule weight="2.0" c="ikkje minst">
+    <match lemma="i særdeleshet" tags="adv"><select lemma="ikkje minst"/></match>
+	<or>
+  	  <match tags="cm"/>
+  	  <match tags="sent.*"/>
+  	  <match lemma="–"/>
+  	  <match tags="np.*"/>
+	</or>
+  </rule>
+  <rule weight="2.0" c="og ikkje minst">
+	<or>
+  	  <match tags="cnjcoo.clb"/>
+	</or>
+    <match lemma="i særdeleshet" tags="adv"><select lemma="ikkje minst"/></match>
+  </rule>
+  
 </lrx>
