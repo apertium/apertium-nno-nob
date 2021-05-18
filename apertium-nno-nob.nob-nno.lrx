@@ -5806,5 +5806,31 @@ preposisjonar gir ekstra utfordringar. -->
 	<match lemma="på"/>
     <match lemma="følelse" tags="n.*"><select lemma="følelse"/></match>
   </rule>
+  
+  <rule><match lemma="forestående" tags="adj.*"><select lemma="kommande"/></match></rule>
+  <rule><match lemma="nær forestående" tags="adj.*"><select lemma="kommande"/></match></rule>
+  <rule><match lemma="nært forestående" tags="adj.*"><select lemma="kommande"/></match></rule>
+  <rule weight="2.0" c="eit snarleg bryllaup">
+	<match tags="det.qnt.*"/>
+    <repeat from="0" upto="1">
+	  <match tags="adj.*"/>
+	</repeat>
+    <or>
+      <match lemma="forestående" tags="adj.*"><select lemma="snarleg"/></match>
+      <match lemma="nær forestående" tags="adj.*"><select lemma="snarleg"/></match>
+      <match lemma="nært forestående" tags="adj.*"><select lemma="snarleg"/></match>
+	</or>
+  </rule>
+  <rule weight="2.0" c="svært snarleg">
+    <or>
+	  <match lemma="svært"/>
+	  <match lemma="meget"/>
+    </or>
+    <or>
+      <match lemma="forestående" tags="adj.*"><select lemma="snarleg"/></match>
+      <match lemma="nær forestående" tags="adj.*"><select lemma="snarleg"/></match>
+      <match lemma="nært forestående" tags="adj.*"><select lemma="snarleg"/></match>
+	</or>
+  </rule>
 
 </lrx>
