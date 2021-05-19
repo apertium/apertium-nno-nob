@@ -1099,20 +1099,131 @@
   </rule>
 
   <rule><match lemma="voldsom" tags="adj.*"><select lemma="kraftig"/></match></rule>
-  <rule weight="2.0"><match lemma="voldsom" tags="adj.sint.pst.nt.sg.ind"><select lemma="veldig"/></match></rule>
-  <rule weight="3.0">
-    <match lemma="voldsom" tags="adj.*">
-      <select lemma="forrykande"/>
-    </match>
+  <rule weight="2.0">
+    <match lemma="voldsom" tags="adj.sint.pst.nt.sg.ind"><select lemma="veldig"/></match>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="voldsom" tags="adj.*"><select lemma="kraftig"/></match>
+    <or>
+      <match lemma="regnvær"/>
+      <match lemma="snøvær"/>
+      <match lemma="vær"/>
+      <match lemma="uvær"/>
+      <match lemma="oppgjør"/>
+    </or>
+  </rule>
+  <rule weight="2.4">
+    <match lemma="voldsom" tags="adj.*"><select lemma="forrykande"/></match>
     <or>
       <match lemma="fart"/>
       <match lemma="rask"/>
       <match lemma="hurtig"/>
       <match lemma="tempo"/>
-      <match lemma="storm"/>
-      <match lemma="regnvêr"/>
-      <match lemma="vêr"/>
     </or>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="voldsom" tags="adj.*"><select lemma="veldig"/></match>
+    <or>
+      <match lemma="kraft"/>
+	  <match lemma="pågang"/>
+	  <match lemma="energi"/>
+    </or>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="voldsom" tags="adj.*"><select lemma="høg"/></match>
+    <or>
+      <match lemma="tall"/>
+      <match lemma="antall"/>
+      <match lemma="aktivitet"/>
+    </or>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="voldsom" tags="adj.*"><select lemma="valdeleg"/></match>
+    <match lemma="død"/>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="voldsom" tags="adj.*"><select lemma="stor"/></match>
+    <or>
+      <match lemma="mengde"/>
+      <match lemma="nedbørsmengde"/>
+      <match lemma="snømengde"/>
+      <match lemma="snømasse"/>
+      <match lemma="topp"/>
+	  <match lemma="belastning"/>
+	  <match lemma="offensiv"/>
+	  <match lemma="forskjell"/>
+      <match lemma="styrke"/>
+      <match lemma="debatt"/>
+      <match lemma="tragedie"/>
+      <match lemma="kostnad"/>
+      <match lemma="utgift"/>
+      <match lemma="tap"/>
+      <match lemma="konsekvens"/>
+      <match lemma="virkning"/>
+      <match lemma="interesse"/>
+      <match lemma="uro"/>
+      <match lemma="etterspørsel"/>
+	</or>
+  </rule>
+  <rule weight="2.4" c="store materielle skadar">
+    <match lemma="voldsom" tags="adj.*"><select lemma="stor"/></match>
+    <match tags="adj.*"/>
+    <match tags="n.*.pl.*"/>
+  </rule>
+  <rule weight="2.2">
+    <match lemma="voldsom" tags="adj.*"><select lemma="veldig"/></match>
+    <match tags="adj.*"/>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="voldsom" tags="adj.*"><select lemma="sterk"/></match>
+    <or>
+      <match lemma="hendelse"/>
+    </or>
+  </rule>
+  <rule weight="2.2">
+    <or>
+      <match lemma="være"/>
+      <match lemma="bli"/>
+    </or>
+    <match lemma="for"/>
+    <match lemma="voldsom" tags="adj.*"><select lemma="sterk"/></match>
+  </rule>
+
+  <rule><match lemma="voldsomt" tags="adv"><select lemma="veldig"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="voldsomt" tags="adv"><select lemma="svært"/></match>
+    <match tags="adj.*"/>
+  </rule>
+  <rule weight="2.2" c="enormt med bær">
+    <match lemma="voldsomt" tags="adv"><select lemma="enormt"/></match>
+    <match lemma="med"/>
+  </rule>
+  <rule weight="2.2" c="glede seg veldig til">
+    <match lemma="glede" tags="vblex.*"/>
+	<repeat from="0" upto="3"><match/></repeat>
+    <match lemma="voldsomt" tags="adv"><select lemma="veldig"/></match>
+  </rule>
+  <rule weight="2.2" c="slå kraftig til">
+    <match lemma="slå" tags="vblex.*"/>
+	<repeat from="0" upto="3"><match/></repeat>
+    <match lemma="voldsomt" tags="adv"><select lemma="kraftig"/></match>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="voldsomt" tags="adv"><select lemma="kraftig"/></match>
+    <match tags="pr"/>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="auke"/>
+    <match lemma="voldsomt" tags="adv"><select lemma="kraftig"/></match>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="hvor"/>
+    <match lemma="voldsomt" tags="adv"><select lemma="kraftig"/></match>
+  </rule>
+  <rule weight="2.0" c="slite veldig i bakkane">
+    <match tags="vblex.*"/>
+    <match lemma="voldsomt" tags="adv"><select lemma="veldig"/></match>
+    <match tags="pr"/>
   </rule>
 
   <rule><match lemma="utelukke" tags="vblex.*"><select lemma="sjå# bort frå"/></match></rule>
@@ -5834,7 +5945,7 @@ preposisjonar gir ekstra utfordringar. -->
   </rule>
 
   <rule><match lemma="i særdeleshet" tags="adv"><select lemma="særleg"/></match></rule>
-  <rule weight="2.0" c="ikkje minst">
+  <rule weight="2.0" c="... Sverige ikkje minst.">
     <match lemma="i særdeleshet" tags="adv"><select lemma="ikkje minst"/></match>
 	<or>
   	  <match tags="cm"/>
@@ -5842,12 +5953,6 @@ preposisjonar gir ekstra utfordringar. -->
   	  <match lemma="–"/>
   	  <match tags="np.*"/>
 	</or>
-  </rule>
-  <rule weight="2.0" c="og ikkje minst">
-	<or>
-  	  <match tags="cnjcoo.clb"/>
-	</or>
-    <match lemma="i særdeleshet" tags="adv"><select lemma="ikkje minst"/></match>
   </rule>
   
 </lrx>
