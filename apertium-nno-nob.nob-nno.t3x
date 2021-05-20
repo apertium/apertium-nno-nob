@@ -347,7 +347,7 @@
           <not><equal><clip pos="1" part="a_cmp"/><lit-tag v="cmp-split"/></equal></not>
           <not><and>
             <equal><clip pos="1" part="nbr"/><lit-tag v="sg"/></equal>
-            <in><clip pos="1" part="lemh"/><list n="n-keep-sg.ind"/></in>
+            <in caseless="yes"><clip pos="1" part="lemh"/><list n="n-keep-sg.ind"/></in>
           </and></not>
         </and></test>
         <let><clip pos="1" part="art"/><clip pos="2" part="art"/></let>
@@ -356,7 +356,7 @@
         <test><and>
           <equal><clip pos="2" part="a_po_sin"/><lit-tag v="po_sin"/></equal>
           <equal><clip pos="1" part="nbr"/><lit-tag v="sg"/></equal>
-          <in><clip pos="1" part="lemh"/><list n="n-keep-sg.ind"/></in>
+          <in caseless="yes"><clip pos="1" part="lemh"/><list n="n-keep-sg.ind"/></in>
         </and></test>
         <let><clip pos="1" part="art"/><lit-tag v="ind"/></let>
       </when></choose>
@@ -467,7 +467,7 @@
           </and></not>
           <not><and>
             <equal><clip pos="1" part="nbr"/><lit-tag v="sg"/></equal>
-            <in><clip pos="1" part="lemh"/><list n="n-keep-sg.ind"/></in>
+            <in caseless="yes"><clip pos="1" part="lemh"/><list n="n-keep-sg.ind"/></in>
           </and></not>
         </and></test>
         <let><clip pos="1" part="art"/><clip pos="3" part="art"/></let>
