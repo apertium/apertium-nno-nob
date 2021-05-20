@@ -4512,28 +4512,32 @@
     <match lemma="bli # ilagt" tags="vblex.*"><select lemma="få" tags="vblex.*"/></match>
   </rule>
 
- <!-- OK bot ilegges –> bot blir skriven ut -->
-  <rule weight="40"> 
+  <!-- ilegges –> får -->
+  <rule weight="1.5">
+    <match lemma="ilegge" tags="vblex.*.pasv"><select lemma="få" tags="vblex.pres"/></match>
+  </rule>
+ <!-- bot ilegges –> bot blir skriven ut -->
+  <rule weight="2.0"> 
     <match lemma="bot" tags="n.*"/>
     <match lemma="ilegge" tags="vblex.*.pasv"><select lemma="skrive# ut"/></match>
   </rule>
-    <!-- OK som ilegges -> som blir pålagd -->
-  <rule weight="30">
+    <!-- som ilegges -> som blir pålagd -->
+  <rule weight="2.0">
     <match lemma="som"/>
     <match lemma="ilegge" tags="vblex.*.pasv"><select lemma="pålegge"/></match>
   </rule>
-    <!-- OK ilegge 'pr'/'cnjsub' –> bli pålagd 'pr'/'cnjsub' -->
-  <rule weight="10">
+    <!-- ilegge 'pr'/'cnjsub' –> bli pålagd 'pr'/'cnjsub' -->
+  <rule weight="2.0">
     <match lemma="ilegge" tags="vblex.*.pasv"><select lemma="pålegge"/></match>
-        <or>
+      <or>
       <match tags="pr"/>
       <match tags="cnjsub"/>
       <match tags="adv"/>
     </or>
   </rule>
-   <!-- OK 'modal' ilegges –> påleggjast -->
-  <rule weight="3.0">
-       <or>
+   <!-- 'modal' ilegges –> påleggjast -->
+  <rule weight="2.0">
+      <or>
       <match lemma="kunne" tags="vblex.*"/>
       <match lemma="måtte" tags="vblex.*"/>
       <match lemma="ville" tags="vblex.*"/>
@@ -4541,12 +4545,6 @@
       </or>
     <match lemma="ilegge" tags="vblex.*.pasv"><select lemma="pålegge"/></match>
   </rule>
-
-  <!-- OK ilegges –> får -->
-  <rule weight="10">
-    <match lemma="ilegge" tags="vblex.*.pasv"><select lemma="få" tags="vblex.*"/></match>
-  </rule>
-
 
 <!-- END: ilegge -->
 
