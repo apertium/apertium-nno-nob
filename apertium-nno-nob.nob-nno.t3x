@@ -89,6 +89,9 @@
       <cat-item name="detdd"/>
       <cat-item name="detsin"/>
     </def-cat>
+    <def-cat n="detsin">
+      <cat-item name="detsin"/>
+    </def-cat>
     <def-cat n="prn">
       <cat-item name="prn"/>
     </def-cat>
@@ -163,6 +166,9 @@
     </def-attr>
     <def-attr n="a_chunknum">
       <attr-item tags="chunknum"/>
+    </def-attr>
+    <def-attr n="a_po_sin">
+      <attr-item tags="po_sin"/>
     </def-attr>
   </section-def-attrs>
 
@@ -346,6 +352,15 @@
         </and></test>
         <let><clip pos="1" part="art"/><clip pos="2" part="art"/></let>
       </when></choose>
+      <choose><when c="force indefinite before 'sin' on n-keep-sg.ind">
+        <test><and>
+          <equal><clip pos="2" part="a_po_sin"/><lit-tag v="po_sin"/></equal>
+          <equal><clip pos="1" part="nbr"/><lit-tag v="sg"/></equal>
+          <in><clip pos="1" part="lemh"/><list n="n-keep-sg.ind"/></in>
+        </and></test>
+        <let><clip pos="1" part="art"/><lit-tag v="ind"/></let>
+      </when></choose>
+
       <choose><when c="som en hvilken som helst annen sak → som alle andre saker">
         <test><equal><clip pos="2" part="a_chunknum"/><lit-tag v="chunknum"/></equal></test>
         <let><clip pos="1" part="a_chunknum"/><lit v=""/></let>
