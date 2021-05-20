@@ -46,6 +46,7 @@
     <sdef n="neg"     c="Negative"/>
     <sdef n="emph"    c="Emphatic"/>
     <sdef n="pers"    c="Personal (pronoun)"/>
+	<sdef n="ref"     c="Reflexive pronoun"/>
 
     <sdef n="vblex"   c="Verb"/>
     <sdef n="pstv"    c="-st verb (Nynorsk)"/>
@@ -152,6 +153,52 @@
       <e><i>alltid<s n="adv"/><j/></i></e>
       <e><i>ofte<s n="adv"/><j/></i></e>
       <e><i>nå<s n="adv"/><j/></i></e>
+    </pardef>
+
+    <pardef n="seg">
+	  <e><i><w/><s n="prn"/><s n="ref"/><t/><j/></i></e>
+    </pardef>
+
+    <pardef n="rem-seg">
+      <e><p><l><w/><s n="prn"/><s n="ref"/><t/><j/></l> <r></r></p></e>
+    </pardef>
+
+    <pardef n="refl-prn">
+	  <e><i><w/><s n="prn"/><s n="ref"/><t/><j/></i></e>
+	  <e><i><w/><s n="prn"/><s n="pers"/><t/><j/></i></e>
+    </pardef>
+
+    <pardef n="rem-refl-prn">
+      <e><p><l><w/><s n="prn"/><s n="ref"/><t/><j/></l> <r></r></p></e>
+      <e><p><l><w/><s n="prn"/><s n="pers"/><t/><j/></l> <r></r></p></e>
+    </pardef>
+	
+    <pardef n="pos">
+	  <e><i><w/><s n="det"/><s n="pos"/><t/><j/></i></e>
+    </pardef>
+	
+    <pardef n="rem-pos">
+      <e><p><l><w/><s n="det"/><s n="pos"/><t/><j/></l> <r></r></p></e>
+    </pardef>
+
+    <pardef n="modal+ville">
+	  <e><i>ville<s n="vblex"/><t/><j/></i></e>
+	  <e><i>skulle<s n="vblex"/><t/><j/></i></e>
+	  <e><i>burde<s n="vblex"/><t/><j/></i></e>
+	  <e><i>måtte<s n="vblex"/><t/><j/></i></e>
+	  <e><i>kunne<s n="vblex"/><t/><j/></i></e>
+    </pardef>
+	
+    <pardef n="modal">
+	  <e><i>skulle<s n="vblex"/><t/><j/></i></e>
+	  <e><i>burde<s n="vblex"/><t/><j/></i></e>
+	  <e><i>måtte<s n="vblex"/><t/><j/></i></e>
+	  <e><i>kunne<s n="vblex"/><t/><j/></i></e>
+    </pardef>
+	
+    <pardef n="være/bli">
+	  <e><i>være<s n="vblex"/><t/><j/></i></e>
+	  <e><i>bli<s n="vblex"/><t/><j/></i></e>
     </pardef>
 
   </pardefs>
@@ -346,28 +393,28 @@
 
     <e lm="henvende seg, -> ta kontakt," c="ta kontakt,">
       <p><l>henvende</l>          <r>ta</r></p> <i><t/><j/></i>
-      <p><l><w/><s n="prn"/><t/><j/></l> <r></r></p> <!-- refleksivt pronomen -->
+      <par n="rem-refl-prn"/>
       <p><l></l>                  <r>kontakt<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/><j/></r></p>
       <i><w/><s n="cm"/><t/><j/></i>
 	</e>
 
     <e lm="henvende seg. -> ta kontakt." c="ta kontakt.">
       <p><l>henvende</l>          <r>ta</r></p> <i><t/><j/></i>
-      <p><l><w/><s n="prn"/><t/><j/></l> <r></r></p> <!-- refleksivt pronomen -->
+      <par n="rem-refl-prn"/>
       <p><l></l>                  <r>kontakt<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/><j/></r></p>
       <i><w/><s n="sent"/><t/><j/></i>
 	</e>
 
     <e lm="henvende seg via -> ta kontakt via" c="ta kontakt via">
       <p><l>henvende</l>          <r>ta</r></p> <i><t/><j/></i>
-      <p><l><w/><s n="prn"/><t/><j/></l> <r></r></p> <!-- refleksivt pronomen -->
+      <par n="rem-refl-prn"/>
       <p><l></l>                  <r>kontakt<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/><j/></r></p>
       <i>via<t/><j/></i>
 	</e>
 
     <e lm="henvende seg der -> ta kontakt der" c="ta kontakt der">
       <p><l>henvende</l>          <r>ta</r></p> <i><t/><j/></i>
-      <p><l><w/><s n="prn"/><t/><j/></l> <r></r></p> <!-- refleksivt pronomen -->
+      <par n="rem-refl-prn"/>
       <p><l></l>                  <r>kontakt<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/><j/></r></p>
       <i>der<t/><j/></i>
 	</e>
@@ -375,17 +422,17 @@
     <e lm="hvor de skal henvende seg -> hvor de skal gå" c="kvar dei skal gå">
       <i>hvor<t/><j/></i>
       <i><w/><s n="prn"/><s n="pers"/><t/><j/></i>
-      <i><w/><s n="vblex"/><t/><j/></i> <!-- modalt hjelpeverb -->
+      <par n="modal"/>
       <p><l>henvende</l>          <r>gå</r></p> <i><t/><j/></i>
-      <p><l><w/><s n="prn"/><t/><j/></l> <r></r></p>
+      <par n="rem-refl-prn"/>
 	</e>
 
     <e lm="hvor skal de henvende seg -> hvor skal de gå" c="kvar skal dei gå">
       <i>hvor<t/><j/></i>
-      <i><w/><s n="vblex"/><t/><j/></i> <!-- modalt hjelpeverb -->
+      <par n="modal"/>
       <i><w/><s n="prn"/><s n="pers"/><t/><j/></i>
       <p><l>henvende</l>          <r>gå</r></p> <i><t/><j/></i>
-      <p><l><w/><s n="prn"/><t/><j/></l> <r></r></p> <!-- refleksivt pronomen -->
+      <p><l><w/><s n="prn"/><t/><j/></l> <r></r></p>
 	</e>
 
     <e lm="være på hell -> synge på siste verset" c="syngje på siste verset">
@@ -434,6 +481,34 @@
   <e lm="avgi forklaring -> forklare seg">
       <p><l>avgi</l>          <r>forklare</r></p> <i><t/><j/></i>
       <p><l>forklaring</l>          <r><s n="prn"/></r></p> <i><t/><j/></i>
+    </e>
+	
+    <e lm="begi seg inn i -> ta veien inn i" c="ta vegen inn i">
+      <p><l>begi</l>              <r>ta</r></p> <i><t/><j/></i>
+      <par n="rem-refl-prn"/>
+      <p><l></l>                  <r>veg<s n="n"/><s n="m"/><s n="sg"/><s n="def"/><j/></r></p>
+      <i>inn<b/>i<t/><j/></i>
+    </e>
+
+    <e lm="begi seg inn på -> gi seg inn på" c="gi seg inn på">
+      <p><l>begi</l>              <r>gi</r></p> <i><t/><j/></i>
+      <par n="refl-prn"/>
+      <i>inn<t/><j/></i>
+      <i>på<t/><j/></i>
+    </e>
+
+    <e lm="begi seg ut på -> gi seg ut på" c="gi seg ut på">
+      <p><l>begi</l>              <r>gi</r></p> <i><t/><j/></i>
+      <par n="refl-prn"/>
+      <i>ut<t/><j/></i>
+      <i>på<t/><j/></i>
+    </e>
+
+    <e lm="begi seg -> legge i vei" c="leggje i veg">
+      <p><l>begi</l>              <r>legge</r></p> <i><t/><j/></i>
+      <par n="rem-refl-prn"/>
+      <p><l></l>                  <r>i<s n="pr"/><j/></r></p>
+      <p><l></l>                  <r>veg<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/><j/></r></p>
     </e>
 
   </section>
