@@ -4501,7 +4501,17 @@
   <!-- OK ilegge –> gi -->
   <rule>
     <match lemma="ilegge" tags="vblex.*"><select lemma="gje" tags="vblex.*"/></match>
-</rule>
+  </rule>
+ <!-- OK er blitt ilagt –> er pålagd -->
+  <rule weight="2.0">
+    <match lemma="være"/>
+    <match lemma="bli# ilagt" tags="vblex.*"><select lemma="pålegge" tags="vblex.*"/></match>
+  </rule>
+  <!-- OK bli ilagt –> få -->
+  <rule>
+    <match lemma="bli # ilagt" tags="vblex.*"><select lemma="få" tags="vblex.*"/></match>
+  </rule>
+
  <!-- OK bot ilegges –> bot blir skriven ut -->
   <rule weight="40"> 
     <match lemma="bot" tags="n.*"/>
@@ -4536,33 +4546,6 @@
   <rule weight="10">
     <match lemma="ilegge" tags="vblex.*.pasv"><select lemma="få" tags="vblex.*"/></match>
   </rule>
-
-
-   <!-- DOESN't WORK være ilagt –> ha fått -->
-  <rule weight="10">
-    <repeat from="0" upto="1">
-    <match lemma="ville"/>
-</repeat>
-    <match lemma="være"><select lemma="ha"/></match>
-    <repeat from="0" upto="1">
-    <match tags="prn.*"/>
-  </repeat>
-    <match lemma="ilegge" tags="adj.pp.*"><select lemma="få" tags="vblex.*"/></match>
-  </rule>
-
-        <!-- DOESN't WORK er blitt ilagt –> er blitt pålagd -->
-  <rule weight="40">
-    <match lemma="være"><select lemma="vere"/></match>
-    <match lemma="bli"/><match lemma="bli"/>
-    <match lemma="ilegge" tags="adj.pp.*"><select lemma="pålegge" tags="adj.pp.*"/></match>
-  </rule>
-
-  <!-- DOESN't WORK bli ilagt –> få -->
-  <rule weight="20">
-    <match lemma="bli" tags="vblex.*"><select lemma=""/></match>
-    <match lemma="ilegge" tags="adj.pp.*"><select lemma="få" tags="vblex.*"/></match>
-  </rule>
-
 
 
 <!-- END: ilegge -->
