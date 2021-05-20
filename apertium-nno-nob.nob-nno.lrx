@@ -313,6 +313,7 @@
   <!--   </match> -->
   <!-- </rule> -->
 
+
   <rule> <match lemma="kjennelse" tags="n.*"> <select lemma="rettsavgjerd"/> </match> </rule>
   <rule weight="2.0">
     <or>
@@ -1956,9 +1957,12 @@
   </rule>
 
 
-  <!-- OK avlegge rapport → gje rapport -->
+  <!-- OK avgi/avlegge rapport → gje rapport -->
   <rule weight="2.0">
-    <match lemma="avlegge" tags="vblex.*"><select lemma="gje"/></match>
+    <or>
+        <match lemma="avlegge" tags="vblex.*"><select lemma="gje"/></match>
+        <match lemma="avgi" tags="vblex.*"><select lemma="gje"/></match>
+    </or>
     <or>
       <match lemma="rapport"/>
     </or>
@@ -1974,7 +1978,23 @@
     </or>
   </rule>
 
-<!-- innstillingen + (være/bli) + avgitt → innstillinga + (vere/bli) + levert -->
+
+  <!-- ? avgitte stemmer -->
+  <rule weight="8.0">
+        <or>
+      <match lemma="den"><select lemma=""/></match>
+      <match lemma="de"><select lemma=""/></match>
+    </or>
+    <or>
+      <match lemma="avgi" tags="vblex.pp.*"><select lemma=""/></match>
+      <match lemma="avgi" tags="adj.pp.*"><select lemma=""/></match>
+    </or>
+    <or>
+      <match lemma="stemme" tags="n.*"/>
+    </or>
+  </rule>
+
+<!-- OK innstillingen + (være/bli) + avgitt → innstillinga + (vere/bli) + levert -->
   <rule weight="2.0">
     <match lemma="innstilling"><select lemma="innstilling"/></match>
     <or>
@@ -1983,6 +2003,16 @@
     </or>
     <match lemma="avgi" tags="vblex.*"><select lemma="levere" tags="vblex.*"/></match>
   </rule>
+
+
+  <!--  avgi poeng → gje frå seg poeng -->
+  <rule weight="2.0">
+        <match lemma="avgi" tags="vblex.*"><select lemma="gje# frå seg"/></match>
+    <or>
+      <match lemma="poeng"/>
+    </or>
+  </rule>
+
 
 
   <!-- merke¹ is transitive: -->
