@@ -429,7 +429,6 @@
 
     <def-attr n="gen_prep_override">
       <attr-item tags="pr_til"/>
-
       <attr-item tags="pr_av"/>
       <attr-item tags="pr_blant"/>
       <attr-item tags="pr_etter"/>
@@ -2490,6 +2489,8 @@
       <action>
         <call-macro n="set_ana"><with-param pos="1"/></call-macro>
         <call-macro n="modify_det_gender2.n.det"><with-param pos="1"/><with-param pos="2"/></call-macro>
+        <let><clip pos="1" part="gen_prep_override"/><lit v=""/></let>
+        <let><clip pos="1" part="tags"/><concat><clip pos="1" part="tags"/><lit-tag v="po_sin"/></concat></let> <!-- notify t3x that we have a post-possessive -->
         <out>
           <chunk><clip pos="1" part="whole"/></chunk>
           <b pos="1"/>
