@@ -4517,16 +4517,16 @@
     <match lemma="ilegge" tags="vblex.*.pasv"><select lemma="få" tags="vblex.pres"/></match>
   </rule>
  <!-- bot ilegges –> bot blir skriven ut -->
-  <rule weight="2.0"> 
-    <match lemma="bot" tags="n.*"/>
-    <match lemma="ilegge" tags="vblex.*.pasv"><select lemma="skrive# ut"/></match>
+  <rule weight="2.5"> 
+    <match lemma="bot"/>
+    <match lemma="ilegge" tags="vblex.*.pasv"><select lemma="skrive# ut" tags="vblex.*"/></match>
   </rule>
-    <!-- som ilegges -> som blir pålagd -->
+  <!-- som ilegges -> som blir pålagd -->
   <rule weight="2.0">
     <match lemma="som"/>
     <match lemma="ilegge" tags="vblex.*.pasv"><select lemma="pålegge"/></match>
   </rule>
-    <!-- ilegge 'pr'/'cnjsub' –> bli pålagd 'pr'/'cnjsub' -->
+  <!-- ilegge 'pr'/'cnjsub' –> bli pålagd 'pr'/'cnjsub' -->
   <rule weight="2.0">
     <match lemma="ilegge" tags="vblex.*.pasv"><select lemma="pålegge"/></match>
       <or>
