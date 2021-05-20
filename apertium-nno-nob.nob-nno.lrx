@@ -5922,4 +5922,64 @@ preposisjonar gir ekstra utfordringar. -->
 	</or>
   </rule>
   
+  <rule><match lemma="utstrakt" tags="adj.*"><select lemma="utstrekt"/></match></rule>
+  <rule weight="2.0" c="utbreidd bruk av">
+    <match lemma="utstrakt" tags="adj.*"><select lemma="utbreidd"/></match>
+	<or>
+	  <match lemma="bruk" tags="n.*"/>
+	  <match lemma="kortbruk" tags="n.*"/>
+	  <match lemma="tvangsbruk" tags="n.*"/>
+	  <match lemma="misbruk" tags="n.*"/>
+	</or>
+  </rule>
+  <rule weight="2.0" c="utbreidd bruk av">
+    <match lemma="utstrakt" tags="adj.*"><select lemma="utbreidd"/></match>
+    <match tags="n.*.*.*.cmp"/>
+	<or>
+	  <match lemma="bruk" tags="n.*"/>
+	  <match lemma="misbruk" tags="n.*"/>
+	</or>
+  </rule>  
+  <rule weight="2.0" c="omfattande samarbeid">
+    <match lemma="utstrakt" tags="adj.*"><select lemma="omfattande"/></match>
+	<or>
+	  <match lemma="samarbeid" tags="n.*"/>
+	  <match lemma="kontakt" tags="n.*"/>
+	  <match lemma="vern" tags="n.*"/>
+	  <match lemma="kontroll" tags="n.*"/>
+	  <match lemma="konsekvens" tags="n.*"/>
+	  <match lemma="påvirkning" tags="n.*"/>
+	  <match lemma="virksomhet" tags="n.*"/>
+	  <match lemma="testing" tags="n.*"/>
+	  <match lemma="festing" tags="n.*"/>
+	</or>
+  </rule>
+  <rule weight="2.0" c="omfattande næringsverksemd">
+    <match lemma="utstrakt" tags="adj.*"><select lemma="omfattande"/></match>
+    <match tags="n.*.*.*.cmp"/>
+	<or>
+	  <match lemma="samarbeid" tags="n.*"/>
+	  <match lemma="kontakt" tags="n.*"/>
+	  <match lemma="vern" tags="n.*"/>
+	  <match lemma="kontroll" tags="n.*"/>
+	  <match lemma="konsekvens" tags="n.*"/>
+	  <match lemma="påvirkning" tags="n.*"/>
+	  <match lemma="virksomhet" tags="n.*"/>
+	  <match lemma="testing" tags="n.*"/>
+	  <match lemma="festing" tags="n.*"/>
+	</or>
+  </rule>  
+  <rule weight="2.0" c="omfattande internasjonal kriminalitet">
+    <match lemma="utstrakt" tags="adj.*"><select lemma="omfattande"/></match>
+	<match tags="adj.*"/>
+  </rule>
+  <rule weight="2.0" c="stor spreiing">
+    <match lemma="utstrakt" tags="adj.*"><select lemma="stor"/></match>
+	<or>
+	  <match lemma="spredning" tags="n.*"/>
+	  <match lemma="frykt" tags="n.*"/>
+	  <match lemma="glede" tags="n.*"/>
+	</or>
+  </rule>
+  
 </lrx>
