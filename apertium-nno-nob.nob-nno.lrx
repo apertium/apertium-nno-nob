@@ -6075,5 +6075,120 @@ preposisjonar gir ekstra utfordringar. -->
     <match lemma="setting" tags="n.*"><select lemma="setting" tags="n.f.*"/></match>
 	<match lemma="av"/>
   </rule>
-  
+
+  <rule><match lemma="bestige" tags="vblex.*"><select lemma="klatre# opp på"/></match></rule>
+  <rule><match lemma="bestige" tags="vblex.pp"><select lemma="erobre"/></match></rule>
+  <rule><match lemma="bestige" tags="adj.pp.*"><select lemma="erobre"/></match></rule>
+  <rule weight="2.0" c="ha klatra opp på">
+	<match lemma="ha" tags="vblex.*"/>
+    <repeat from="0" upto="12"><seq n="NOT_sent_lpar_lquot_rquot"/></repeat>
+    <match lemma="bestige" tags="vblex.pp"><select lemma="klatre# opp på"/></match>
+  </rule>
+  <rule weight="2.0" c="overta trona">
+    <match lemma="bestige" tags="vblex.*"><select lemma="overta"/></match>
+	<match lemma="trone"/>
+  </rule>
+  <rule weight="2.0" c="ha overteke trona">
+	<match lemma="ha" tags="vblex.*"/>
+    <repeat from="0" upto="12"><seq n="NOT_sent_lpar_lquot_rquot"/></repeat>
+    <match lemma="bestige" tags="vblex.pp"><select lemma="overta"/></match>
+  </rule>
+  <rule weight="2.2" c="fjellet er erobra">
+    <or>
+      <match lemma="være"/>
+      <match lemma="bli"/>
+    </or>
+    <repeat from="0" upto="12"><seq n="NOT_sent_lpar_lquot_rquot"/></repeat>
+	<or>
+      <match lemma="bestige" tags="vblex.pp"><select lemma="erobre"/></match>
+      <match lemma="bestige" tags="adj.pp.*"><select lemma="erobre"/></match>
+	</or>
+  </rule>
+  <rule weight="2.2" c="oksen går opp på kua">
+    <match lemma="bestige" tags="vblex.*"><select lemma="gå# opp på"/></match>
+    <or>
+	  <match lemma="ku"/>
+	  <match lemma="kvige"/>
+	  <match lemma="hoppe"/>
+	  <match lemma="merr"/>
+	  <match lemma="søye"/>
+	  <match lemma="tikke"/>
+	  <match lemma="purke"/>
+	  <match lemma="tispe"/>
+	  <match lemma="binne"/>
+	  <match lemma="hunn"/>
+	  <match lemma="hundyr"/>
+	  <match lemma="kjerring"/>
+	  <match lemma="kjæreste"/>
+	  <match lemma="frue"/>
+	</or>
+  </rule>
+  <rule weight="2.2" c="ha gått opp på">
+	<match lemma="ha" tags="vblex.*"/>
+    <repeat from="0" upto="12"><seq n="NOT_sent_lpar_lquot_rquot"/></repeat>
+    <match lemma="bestige" tags="vblex.pp"><select lemma="gå# opp på"/></match>
+    <or>
+	  <match lemma="ku"/>
+	  <match lemma="kvige"/>
+	  <match lemma="hoppe"/>
+	  <match lemma="merr"/>
+	  <match lemma="søye"/>
+	  <match lemma="tikke"/>
+	  <match lemma="purke"/>
+	  <match lemma="tispe"/>
+	  <match lemma="binne"/>
+	  <match lemma="hunn"/>
+	  <match lemma="hundyr"/>
+	  <match lemma="kjerring"/>
+	  <match lemma="kjæreste"/>
+	  <match lemma="frue"/>
+	</or>
+  </rule>
+  <rule weight="2.4" c="kua blir bedekt">
+    <or>
+	  <match lemma="ku"/>
+	  <match lemma="kvige"/>
+	  <match lemma="hoppe"/>
+	  <match lemma="merr"/>
+	  <match lemma="søye"/>
+	  <match lemma="tikke"/>
+	  <match lemma="purke"/>
+	  <match lemma="tispe"/>
+	  <match lemma="binne"/>
+	  <match lemma="hunn"/>
+	  <match lemma="hundyr"/>
+	  <match lemma="kjerring"/>
+	  <match lemma="kjæreste"/>
+	  <match lemma="frue"/>
+	</or>
+    <or>
+      <match lemma="være"/>
+      <match lemma="bli"/>
+    </or>
+    <match lemma="bestige" tags="adj.pp.*"><select lemma="bedekke"/></match>
+  </rule>
+  <rule weight="2.4" c="då er kua bedekt">
+    <or>
+      <match lemma="være"/>
+      <match lemma="bli"/>
+    </or>
+    <or>
+	  <match lemma="ku"/>
+	  <match lemma="kvige"/>
+	  <match lemma="hoppe"/>
+	  <match lemma="merr"/>
+	  <match lemma="søye"/>
+	  <match lemma="tikke"/>
+	  <match lemma="purke"/>
+	  <match lemma="tispe"/>
+	  <match lemma="binne"/>
+	  <match lemma="hunn"/>
+	  <match lemma="hundyr"/>
+	  <match lemma="kjerring"/>
+	  <match lemma="kjæreste"/>
+	  <match lemma="frue"/>
+	</or>
+    <match lemma="bestige" tags="adj.pp.*"><select lemma="bedekke"/></match>
+  </rule>
+
 </lrx>
