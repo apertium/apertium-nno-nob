@@ -4527,6 +4527,66 @@
     <match lemma="form"/>
   </rule>
 
+<!-- START: hinsides -->
+  <!-- hinsides (pr) -->
+  <rule>
+    <match lemma="hinsides" tags="pr"><select lemma="hinsides" tags="pr"/></match>
+  </rule>
+  <rule weight="1.5">
+    <match lemma="hinsides" tags="pr"><select lemma="bortanfor" tags="pr"/></match>
+    <or>
+    <match lemma="alt"/>
+    <match lemma="all"/>
+    </or>
+  </rule>
+  <rule weight="1.5">
+    <match lemma="seg"/>
+    <match lemma="hinsides" tags="pr"><select lemma="bortanfor" tags="pr"/></match>
+  </rule>
+  <!-- hinsides (adj)  -->
+  <rule>
+    <match lemma="være"/>
+    <repeat from="0" upto="2">
+      <or>
+      <match tags="adv"/>
+      <match lemma="helt"/>
+      </or>
+    </repeat>
+    <match lemma="hinsides" tags="adj.*"><select lemma="vanvitig" tags="adj.*"/></match>
+  </rule>
+  <rule>
+    <match lemma="hinsides" tags="adj.*"><select lemma="vanvitig" tags="adj.*"/></match>
+    <match tags="adj.*"/>
+  </rule>
+  <rule>
+    <match lemma="hinsides" tags="adj.*"><select lemma="overhendig" tags="adj.*"/></match>
+    <match tags="n.*"/>
+  </rule>
+  <!-- hinsides all/enhver  -->
+  <rule>
+    <match lemma="hinsides all" tags="adv"><select lemma="mot all" tags="adv"/></match>
+    <repeat from="0" upto="1">
+      <match tags="adj.*"/>
+    </repeat>
+    <match tags="n.*"/>
+  </rule>
+  <rule>
+    <match lemma="hinsides enhver" tags="adv"><select lemma="mot all" tags="adv"/></match>
+    <repeat from="0" upto="1">
+      <match tags="adj.*"/>
+    </repeat>
+    <match tags="n.*"/>
+  </rule>
+  <rule weight="1.5">
+    <match lemma="hinsides all" tags="adv"><select lemma="bortanfor all" tags="adv"/></match>
+    <match lemma="kritikk"/>
+  </rule>
+  <rule weight="1.5">
+    <match lemma="hinsides enhver" tags="adv"><select lemma="bortanfor all" tags="adv"/></match>
+    <match lemma="kritikk"/>
+  </rule>
+<!-- END: hinsides -->
+
 <!-- BEGIN: ilegge -->
   <!-- OK ilegge –> gi -->
   <rule>
