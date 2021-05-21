@@ -3160,11 +3160,6 @@
     <match tags="det.pos.*"/>
     <match lemma="lit"/>
   </rule>
-  <rule><match lemma="betenkelig" tags="adj.*"><select lemma="betenkeleg"/></match></rule>
-  <rule weight="2.0">
-    <match lemma="etisk"/>
-    <match lemma="betenkelig" tags="adj.*"><select lemma="tvilsam"/></match>
-  </rule>
   <rule><match lemma="sannsynlighetsberegning" tags="n.*"><select lemma="prognose"/></match></rule>
 
   <rule><match lemma="overhodet" tags="adv"><select lemma="i det heile"/></match></rule>
@@ -4485,6 +4480,25 @@
 
   <rule><match lemma="anmarsj" tags="n.*"><select lemma="anmarsj"/></match></rule>
   <rule weight="1.5"><match lemma="anmarsj" tags="n.*.sg.def"><select lemma="oppmarsj"/></match></rule>
+ <!-- BETENKELIG: START -->
+  <rule><match lemma="betenkelig" tags="adj.*"><select lemma="urovekkande"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="etisk"/>
+    <match lemma="betenkelig" tags="adj.*"><select lemma="tvilsam"/></match>
+  </rule>
+  <rule weight="2.0">
+      <match lemma="betenkelig" tags="adj.*"><select lemma="farleg"/></match>
+      <match tags="adv"/>
+  </rule>
+  <rule weight="2.0">
+      <match tags="adv"/>
+      <match lemma="betenkelig" tags="adj.*"><select lemma="uheldig"/></match>
+  </rule>
+  <rule weight="2.0">
+      <match lemma="betenkelig" tags="adj.*"><select lemma="problematisk"/></match>
+      <match tags="n.*"/>
+  </rule>
+ <!-- BETENKELIG: END -->
 
   <rule><match lemma="fremholde" tags="adj.*"><select lemma="påpeike"/></match></rule>
   <rule><match lemma="framholde" tags="adj.*"><select lemma="påpeike"/></match></rule>
