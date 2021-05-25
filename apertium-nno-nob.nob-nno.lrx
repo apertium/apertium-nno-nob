@@ -4529,7 +4529,28 @@
   <match tags="n.*"/>
 </rule>
 <!-- ØYEBLIKKELIG: END -->
-
+<!-- YTTERLIGERE: START -->
+<rule><match lemma="ytterlig" tags="adj.*"><select lemma="ytterleg"/></match></rule>
+<rule weight="2.0">
+  <match lemma="ytterlig" tags="adj.*.comp.*"><select lemma="fleire"/></match>
+  <or>
+  <match lemma="detalj"/>
+  <match lemma="opplysning"/>
+  <match lemma="tiltak"/>
+  </or>
+</rule>
+<rule weight="2.0">
+  <match lemma="ytterlig" tags="adj.*.comp.*"><select lemma="nær"/></match>
+  <match lemma="avklaring"/>
+</rule>
+<rule weight="2.0">
+  <match lemma="ytterlig" tags="adj.*.comp.*"><select lemma="vid"/></match>
+  <or>
+  <match lemma="etterforskning"/>
+  <match lemma="undersøkelse"/>
+  </or>
+</rule>
+<!-- YTTERLIGERE: END -->
 
   <rule><match lemma="fremholde" tags="adj.*"><select lemma="påpeike"/></match></rule>
   <rule><match lemma="framholde" tags="adj.*"><select lemma="påpeike"/></match></rule>
