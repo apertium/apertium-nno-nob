@@ -193,6 +193,14 @@
     <def-cat n="cnjsub_som">
       <cat-item tags="cnjsub.som"/>
     </def-cat>
+    <def-cat n="clb">
+      <cat-item tags="cnjsub.clb"/>
+      <cat-item tags="cnjcoo.clb"/>
+      <cat-item tags="sent.clb"/>
+      <cat-item tags="cnjsub.clb.*"/>
+      <cat-item tags="cnjcoo.clb.*"/>
+      <cat-item tags="sent.clb.*"/>
+    </def-cat>
     <def-cat n="detpos_keep">
       <cat-item lemma="detpos-keep" tags="det.pos.*"/>
     </def-cat>
@@ -1568,22 +1576,87 @@
       <action>
         <call-macro n="set_ana"><with-param pos="1"/></call-macro>
         <out>
-          <chunk>
-            <clip pos="1" part="whole"/>
-          </chunk>
+          <chunk><clip pos="1" part="whole"/></chunk>
           <b/>      <!-- extra space since empty blank before lemq -->
           <b/>
-          <chunk>
-            <clip pos="3" part="whole"/>
-          </chunk>
-          <chunk>
-            <clip pos="2" part="whole"/>
-          </chunk>
+          <chunk><clip pos="3" part="whole"/></chunk>
+          <chunk><clip pos="2" part="whole"/></chunk>
           <b/>
-          <chunk>
-            <clip pos="4" part="whole"/>
-          </chunk>
+          <chunk><clip pos="4" part="whole"/></chunk>
         </out>
+      </action>
+    </rule>
+
+    <rule comment="CLB ADV FV-ACTV LEMQ NDEF → CLB ADV FV-ACTV NDEF LEMQ
+                   Push blanks one place up since lemq space is inside the chunk.
+                   men nå bortfaller stillingen → men no fell stillinga bort">
+      <pattern>
+        <pattern-item n="clb"/>
+        <pattern-item n="adv"/>
+        <pattern-item n="vblex"/>
+        <pattern-item n="lemq"/>
+        <pattern-item n="ndef"/>
+      </pattern>
+      <action>
+        <call-macro n="set_ana"><with-param pos="3"/></call-macro>
+        <call-macro n="set_ana"><with-param pos="5"/></call-macro>
+        <out>
+          <chunk><clip pos="1" part="whole"/></chunk>
+          <b/>
+          <chunk><clip pos="2" part="whole"/></chunk>
+          <b/>
+          <chunk><clip pos="3" part="whole"/></chunk>
+          <b/>      <!-- extra space since empty blank before lemq -->
+          <b/>
+          <chunk><clip pos="5" part="whole"/></chunk>
+          <chunk><clip pos="4" part="whole"/></chunk>
+        </out>
+      </action>
+    </rule>
+
+    <rule comment="ADV VBLEX LEMQ NDEF → ADV VBLEX NDEF LEMQ / aDV VBLEX LEMQ NDEF
+                   Push blanks one place up since lemq space is inside the chunk.
+                   Without subj/obj tagging, changing order here becomes dangerous; we only want it to happen when ndef is subj.
+                   So for now we only change order when adv is titlecase (likely subject because ndef early in sentence).
+                   MOVE: Torsdag oppgav 19-åringen [sin forklaring] → Torsdag gav 19-åringen frå seg [si forklaring]
+                   KEEP:  [De 50 millionene som] nå tilfaller forbundet [vil] → [Dei 50 millionane som] no fell forbundet til [vil]">
+      <pattern>
+        <pattern-item n="adv"/>
+        <pattern-item n="vblex"/>
+        <pattern-item n="lemq"/>
+        <pattern-item n="ndef"/>
+      </pattern>
+      <action>
+        <call-macro n="set_ana"><with-param pos="2"/></call-macro>
+        <call-macro n="set_ana"><with-param pos="4"/></call-macro>
+        <choose>
+          <when c="Only when upper case adverbs (first word of sent)">
+            <test><or>
+              <equal><clip pos="1" part="lemh"/><lit v="Adv"/></equal>
+              <equal><clip pos="1" part="lemh"/><lit v="N"/></equal>
+            </or></test>
+            <out>
+              <chunk><clip pos="1" part="whole"/></chunk>
+              <b/>
+              <chunk><clip pos="2" part="whole"/></chunk>
+              <b/>      <!-- extra space since empty blank before lemq -->
+              <b/>
+              <chunk><clip pos="4" part="whole"/></chunk>
+              <chunk><clip pos="3" part="whole"/></chunk>
+            </out>
+          </when>
+          <otherwise c="No change of order">
+            <out>
+              <chunk><clip pos="1" part="whole"/></chunk>
+              <b/>
+              <chunk><clip pos="2" part="whole"/></chunk>
+              <b/>
+              <chunk><clip pos="3" part="whole"/></chunk>
+              <b/>
+              <chunk><clip pos="4" part="whole"/></chunk>
+            </out>
+          </otherwise>
+      </choose>
       </action>
     </rule>
 
