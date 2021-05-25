@@ -4592,6 +4592,20 @@
     </or>
 </rule>
 <!-- UHOLDBAR: END -->
+<!-- UBETALELIG: START -->
+  <rule><match lemma="ubetalelig" tags="adj.*"><select lemma="makelaus"/></match></rule>
+  <rule weight="2.0">
+  <match lemma="ubetalelig" tags="adj.*"><select lemma="uoverkommeleg"/></match>
+    <repeat from="0" upto="1">
+      <match lemma="utenlands"/>
+    </repeat>
+    <or>
+      <match lemma="lån"/>
+      <match lemma="gjeld"/>
+    </or>
+  </rule>
+<!-- UBETALELIG: END -->
+
 
   <rule><match lemma="fremholde" tags="adj.*"><select lemma="påpeike"/></match></rule>
   <rule><match lemma="framholde" tags="adj.*"><select lemma="påpeike"/></match></rule>
