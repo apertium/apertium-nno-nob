@@ -2091,6 +2091,26 @@
       </action>
     </rule>
 
+    <rule comment="DETQNT NDEF_OR_NP_PERS sin NIND: alle dagligvarekjedene sine program → alle daglegvarekjedene sine program
+                   Also include unknowns: alle *alfdj sin måte → alle *alfdj sin måte
+
+                   Hard to know which word «sin» belongs to, but typically the last one.">
+      <pattern>
+        <pattern-item n="detqnt"/>
+        <pattern-item n="ndef_OR_np_pers"/>
+        <pattern-item n="sin"/>
+        <pattern-item n="nind"/>
+      </pattern>
+      <action>
+        <call-macro n="modify_det_gender2.n.det"><with-param pos="4"/><with-param pos="3"/></call-macro>
+        <out>
+          <chunk><clip pos="1" part="whole"/></chunk><b/>
+          <chunk><clip pos="2" part="whole"/></chunk><b/>
+          <chunk><clip pos="3" part="whole"/></chunk><b/>
+          <chunk><clip pos="4" part="whole"/></chunk>
+        </out>
+      </action>
+    </rule>
     <rule comment="NDEF_OR_NP_PERS sin NIND: dagligvarekjeden sin butikk → daglegvarekjeda sin butikk
                    Also include unknowns: *alfdj sin måte → *alfdj sin måte
 
@@ -2103,10 +2123,8 @@
       <action>
         <call-macro n="modify_det_gender2.n.det"><with-param pos="3"/><with-param pos="2"/></call-macro>
         <out>
-          <chunk><clip pos="1" part="whole"/></chunk>
-          <b pos="1"/>
-          <chunk><clip pos="2" part="whole"/></chunk>
-          <b pos="2"/>
+          <chunk><clip pos="1" part="whole"/></chunk><b/>
+          <chunk><clip pos="2" part="whole"/></chunk><b/>
           <chunk><clip pos="3" part="whole"/></chunk>
         </out>
       </action>
