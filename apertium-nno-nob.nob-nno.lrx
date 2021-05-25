@@ -1206,7 +1206,7 @@
   </rule>
   <rule weight="2.2" c="slå kraftig til">
     <match lemma="slå" tags="vblex.*"/>
-	<repeat from="0" upto="3"><match/></repeat>
+    <repeat from="0" upto="3"><match/></repeat>
     <match lemma="voldsomt" tags="adv"><select lemma="kraftig"/></match>
   </rule>
   <rule weight="2.0">
@@ -1234,10 +1234,12 @@
     </match>
     <match lemma="noe"/>
   </rule>
-  <rule weight="3.0">
+  <rule weight="3.0" c="utelukke [selskapet] [helt] fra">
     <match lemma="utelukke" tags="vblex.*">
       <select lemma="stenge# ute"/>
     </match>
+    <repeat from="0" upto="1"><match tags="n.*.def"/></repeat>
+    <repeat from="0" upto="1"><match lemma="hel"/></repeat>
     <match lemma="fra"/>
   </rule>
 
