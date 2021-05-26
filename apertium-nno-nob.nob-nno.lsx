@@ -203,7 +203,12 @@
 	  <e><i>være<s n="vblex"/><t/><j/></i></e>
 	  <e><i>bli<s n="vblex"/><t/><j/></i></e>
     </pardef>
-
+	
+	<pardef n="sent-cm">
+	  <e><i><w/><s n="sent"/><t/><j/></i></e>
+      <e><i><w/><s n="cm"/><j/></i></e>
+    </pardef>
+	
   </pardefs>
 
   <section id="main" type="standard">
@@ -286,6 +291,20 @@
       <p><l></l>                         <r>bolig<s n="n"/><s n="m"/><s n="pl"/><s n="ind"/></r></p>
     </e>
 
+    <e lm="bruktboligsalg -> salg av brukte boliger" c="salg av brukte bustader">
+      <p><l>bruktboligsalg</l>           <r>salg</r></p> <i><t/><j/></i>
+      <p><l></l>                         <r>av<s n="pr"/><j/></r></p>
+      <p><l></l>                         <r>bruke<s n="adj"/><s n="pp"/><s n="pl"/><j/></r></p>
+      <p><l></l>                         <r>bolig<s n="n"/><s n="m"/><s n="pl"/><s n="ind"/></r></p>
+    </e>
+
+    <e lm="nyboligsalg -> salg av nye boliger" c="salg av nye bustader">
+      <p><l>nyboligsalg</l>                     <r>salg</r></p> <i><t/><j/></i>
+      <p><l></l>                         <r>av<s n="pr"/><j/></r></p>
+      <p><l></l>                         <r>ny<s n="adj"/><s n="sint"/><s n="pst"/><s n="un"/><s n="pl"/><s n="ind"/><j/></r></p>
+      <p><l></l>                         <r>bolig<s n="n"/><s n="m"/><s n="pl"/><s n="ind"/></r></p>
+    </e>
+	  
     <e lm="de øvrige (to|42) er" c="resten av dei er">
       <p><l>de<b/>øvrige</l><r>resten<b/>av<b/>de</r></p> <i><t/><j/></i>
       <p><l><w/><s n="det"/><s n="qnt"/><t/><j/></l><r></r></p>
@@ -444,14 +463,7 @@
       <p><l>henvende</l>          <r>ta</r></p> <i><t/><j/></i>
       <par n="rem-refl-prn"/>
       <p><l></l>                  <r>kontakt<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/><j/></r></p>
-      <i><w/><s n="cm"/><t/><j/></i>
-	</e>
-
-    <e lm="henvende seg. -> ta kontakt." c="ta kontakt.">
-      <p><l>henvende</l>          <r>ta</r></p> <i><t/><j/></i>
-      <par n="rem-refl-prn"/>
-      <p><l></l>                  <r>kontakt<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/><j/></r></p>
-      <i><w/><s n="sent"/><t/><j/></i>
+      <par n="sent-cm"/>
 	</e>
 
     <e lm="henvende seg via -> ta kontakt via" c="ta kontakt via">
@@ -588,14 +600,6 @@
       <par n="pr"/>
       <i><w/><s n="np"/><t/></i>
       <p><l><j/>sin<t/><j/></l> <r><s n="gen"/><j/></r></p>
-    </e>
-
-    <e lm="fjorårets motgang var -> motgangen i fjor var" c="motgangen i fjor var">
-      <p><l>fjorår<s n="n"/><s n="nt"/><s n="sg"/><s n="def"/><s n="gen"/><j/></l> <r></r></p>
-      <i><w/><s n="n"/><t/></i>
-      <p><l><s n="ind"/><j/></l>                                                   <r><s n="def"/><j/></r></p>
-      <p><l></l>                                                                   <r>i<b/>fjor<s n="adv"/><j/></r></p>
-      <i><w/><s n="vblex"/><t/><j/></i>
     </e>
 
   </section>
