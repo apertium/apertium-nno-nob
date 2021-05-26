@@ -299,6 +299,28 @@
           <match tags="prn.pers.*.*.*.acc"/>
         </or>
       </def-seq>
+      <def-seq n="tidseining">
+        <or>
+          <match lemma="millisekund"/>
+          <match lemma="mikrosekund"/>
+          <match lemma="hundredel"/>
+          <match lemma="sekund"/>
+          <match lemma="halvsekund"/>
+          <match lemma="minutt"/>
+          <match lemma="halvminutt"/>
+          <match lemma="time"/>
+          <match lemma="halvtime"/>
+          <match lemma="dag"/>
+          <match lemma="døgn"/>
+          <match lemma="uke"/>
+          <match lemma="måned"/>
+          <match lemma="år"/>
+          <match lemma="halvår"/>
+          <match lemma="tiår"/>
+          <match lemma="århundre"/>
+          <match lemma="årtusen"/>
+        </or>
+      </def-seq>
   </def-seqs>
 
 
@@ -6314,6 +6336,392 @@ preposisjonar gir ekstra utfordringar. -->
 	</or>
     <match lemma="bestige" tags="adj.pp.*"><select lemma="bedekke"/></match>
   </rule>
+  
+  <!-- BEGIN: foran (føre, framfor, framme, før (framom, framanfor o.fl.)) -->
+  <rule><match lemma="foran" tags="pr"><select lemma="framfor"/></match></rule>
+  <rule><match lemma="stå# foran" tags="vblex.*"><select lemma="stå# framfor"/></match></rule>
+  <rule><match lemma="stå# foran" tags="adj.pprs"><select lemma="stå# framfor"/></match></rule>
+  <rule c="framfor seg">
+    <match lemma="foran" tags="pr"><select lemma="framfor"/></match>
+    <seq n="ref-prn"/>
+  </rule>
+  <!-- Unntaksvis 'framfor' før konkrete, romlege substantiv: "Det låg eit hestehovud framfor huset." -->
+  <rule weight="2.0" c="(eit ørlite) hestehovud føre">
+    <match lemma="hestehode" tags="n.*"/>
+    <match lemma="foran" tags="pr"><select lemma="føre"/></match>
+  </rule>
+  <rule weight="2.0" c="komme (seg) føre (i mål)">
+    <match lemma="komme" tags="vblex.*"/>
+    <repeat from="0" upto="1">
+      <seq n="ref-prn"/>
+	</repeat>
+    <match lemma="foran" tags="pr"><select lemma="føre"/></match>
+  </rule>
+  <rule weight="2.2" c="det som ligg framfor oss">
+    <or>
+	  <match tags="n.*"/>
+	  <match tags="prn.pers.*.nt.sg.acc"/>
+	  <match tags="det.dem.nt.sg"/>
+	</or>
+    <match lemma="som"/>
+    <repeat from="0" upto="1">
+	  <match seq="adv"/>
+	</repeat>
+    <match lemma="ligge" tags="vblex.*"/>
+    <match lemma="foran" tags="pr"><select lemma="framfor"/></match>
+	<match tags="prn.pers.*"/>
+	<or>
+	  <match seq="cm"/>
+	  <match tags="sent.*"/>
+	</or>
+  </rule>
+  <rule weight="3.0" c="dei som ligg føre oss">
+    <or>
+	  <match lemma="han" tags="prn.pers.*.*.sg.nom"/>
+	  <match lemma="hun" tags="prn.pers.*.*.sg.nom"/>
+	  <match lemma="de" tags="prn.pers.*.*.pl.*"/>
+	  <match lemma="hvem" tags="prn.itg"/>
+	</or>
+    <match lemma="som"/>
+    <match lemma="ligge" tags="vblex.*"/>
+    <match lemma="foran" tags="pr"><select lemma="føre"/></match>
+	<match tags="prn.pers.*.*.*.acc"/>
+  </rule>
+  <rule weight="2.0" c="liggje framfor seg/peisen">
+    <match lemma="ligge" tags="vblex.*"/>
+    <match lemma="foran" tags="pr"><select lemma="framfor"/></match>
+    <seq n="ref-prn"/>
+  </rule>
+  <rule weight="2.0" c="liggje føre">
+    <match lemma="ligge" tags="vblex.*"/>
+    <match lemma="foran" tags="pr"><select lemma="føre"/></match>
+  </rule>
+  <rule weight="2.0" c="no står vi framfor huset">
+    <match lemma="stå" tags="vblex.*"/>
+    <repeat from="0" upto="5">
+	  <or>
+  	    <match tags="n.*"/>
+	    <match tags="adv"/>
+	    <match tags="adj.*"/>
+	    <match tags="np.*"/>
+	    <match tags="prn.pers.*."/>
+	  </or>
+	</repeat>
+    <match lemma="foran" tags="pr"><select lemma="framfor"/></match>
+  </rule>
+  <rule weight="3.0" c="(tre) poeng føre">
+    <or>
+      <seq n="tidseining"/>
+      <match lemma="poeng"/>
+      <match lemma="tidspoeng"/>
+      <match lemma="bonuspoeng"/>
+      <match lemma="verdenscuppoeng"/>
+      <match lemma="worldcuppoeng"/>
+      <match lemma="mål"/>
+      <match lemma="millimeter"/>
+      <match lemma="centimeter"/>
+      <match lemma="desimeter"/>
+	</or>
+    <match lemma="foran" tags="pr"><select lemma="føre"/></match>
+  </rule>
+  <!-- Nokre (vaklande) unntak for avstand -->
+  <rule weight="3.2" c="(tre) meter framfor tunnelen">
+    <or>
+      <match lemma="meter"/>
+      <match lemma="halvmeter"/>
+      <match lemma="kilometer"/>
+      <match lemma="mil"/>
+      <match lemma="lysår"/>
+	</or>
+    <match lemma="foran" tags="pr"><select lemma="framfor"/></match>
+  </rule>
+  <rule weight="2.0" c="han var føre meg i mål">
+    <match lemma="foran" tags="pr"><select lemma="føre"/></match>
+    <seq n="ref-prn"/>
+	<match tags="pr"/>
+  </rule>
+  <!-- Eit (vaklande) unntak for preposisjonen med -->
+  <rule weight="2.4" c="han har veker framfor seg med kampar">
+    <match lemma="foran" tags="pr"><select lemma="framfor"/></match>
+    <seq n="ref-prn"/>
+	<match lemma="med" tags="pr"/>
+  </rule>
+  <rule weight="1.5" c="framfor seg">
+    <match lemma="foran" tags="pr"><select lemma="framfor"/></match>
+    <seq n="ref-prn"/>
+  </rule>
+  <rule weight="2.2" c="halde seg føre">
+    <match lemma="holde" tags="vblex.*"/>
+    <seq n="ref-prn"/>
+    <match lemma="foran" tags="pr"><select lemma="føre"/></match>
+  </rule>
+  <rule weight="2.4" c="leie/vinne/toppe føre">
+    <or>
+      <match lemma="lede" tags="vblex.*"/>
+      <match lemma="vinne" tags="vblex.*"/>
+      <match lemma="toppe" tags="vblex.*"/>
+    </or>
+    <repeat from="0" upto="6">
+	  <or>
+	    <match tags="adv"/>
+	    <match tags="adj.*"/>
+	    <match tags="pr"/>
+	    <match tags="n.*"/>
+	    <match tags="np.*"/>
+	  </or>
+	</repeat>
+    <match lemma="foran" tags="pr"><select lemma="føre"/></match>
+  </rule>
+  <rule weight="2.4" c="love godt før">
+    <match lemma="love" tags="vblex.*"/>
+    <repeat from="0" upto="2">
+	    <match seq="adv"/>
+	</repeat>
+    <match lemma="godt"/>
+    <match lemma="foran" tags="pr"><select lemma="før"/></match>
+  </rule>
+  <rule weight="2.2" c="bli dømd føre (vurdert som vinnar)">
+    <match lemma="dømme" tags="adj.pp.*"/>
+    <match lemma="foran" tags="pr"><select lemma="føre"/></match>
+  </rule>
+  <rule weight="2.2" c="godt føre (konkurrenten)">
+	<match tags="adv"/>
+    <match lemma="foran" tags="pr"><select lemma="føre"/></match>
+  </rule>
+  <rule weight="2.2" c="vere/liggje eit godt stykke føre">
+    <or>
+      <match lemma="være" tags="vblex.*"/>
+      <match lemma="ligge" tags="vblex.*"/>
+    </or>
+    <repeat from="0" upto="1">
+	  <or>
+	    <match tags="det.qnt.*"/>
+	  </or>
+	</repeat>
+	  <or>
+		<match lemma="godt"/>
+		<match lemma="god"/>
+		<match lemma="langt"/>
+		<match lemma="lang"/>
+	  </or>
+    <repeat from="0" upto="1">
+	  <or>
+	    <match lemma="stykke" tags="n.*"/>
+	    <match lemma="steg" tags="n.*"/>
+	  </or>
+	</repeat>
+    <match lemma="foran" tags="pr"><select lemma="føre"/></match>
+  </rule>
+  <rule weight="2.2" c="stå framme i køen">
+    <match lemma="stå# foran" tags="vblex.*"><select lemma="stå# framme"/></match>
+	<or>
+	  <match lemma="i" tags="pr"/>
+	  <match lemma="på" tags="pr"/>
+	  <match lemma="ved" tags="pr"/>
+	</or>
+  </rule>
+  <rule weight="2.2" c="sitte framme i bilen">
+    <match lemma="sitte" tags="vblex.*"><select lemma="sitje"/></match>
+    <repeat from="0" upto="5"><match/></repeat>
+    <match lemma="foran" tags="pr"><select lemma="framme"/></match>
+	<match tags="pr"/>
+  </rule>
+  <rule weight="2.2" c="setje seg framfor noko">
+    <match lemma="sette# seg" tags="vblex.*"/>
+    <match lemma="foran" tags="pr"><select lemma="framfor"/></match>
+  </rule>
+  <rule weight="2.2" c="setje noko føre noko anna, setje seg framfor noko">
+    <match lemma="sette" tags="vblex.*"/>
+    <repeat from="0" upto="6">
+	    <match tags="*"/>
+	</repeat>
+    <match lemma="foran" tags="pr"><select lemma="framfor"/></match>
+  </rule>
+  <rule weight="2.0" c="foran på betre målforskjell">
+    <match lemma="foran" tags="pr"><select lemma="føre"/></match>
+	<match lemma="på"/>
+	<match tags="adj.*"/>
+  </rule>
+  <rule weight="2.0" c="foran på tabellen">
+    <match lemma="foran" tags="pr"><select lemma="føre"/></match>
+	<match lemma="på"/>
+    <or>
+      <match lemma="tabell"/>
+      <match lemma="liste"/>
+      <match lemma="oppløp"/>
+      <match lemma="langside"/>
+      <match lemma="etappe"/>
+      <match lemma="målforskjell"/>
+	</or>
+  </rule>
+  <rule weight="3.5" c="foran på sykkelen">
+    <match lemma="foran" tags="pr"><select lemma="framme"/></match>
+	<match lemma="på"/>
+    <or>
+      <match lemma="sykkel" tags="n.*"/>
+      <match lemma="moped" tags="n.*"/>
+      <match lemma="sparkesykkel" tags="n.*"/>
+      <match lemma="elsparkesykkel" tags="n.*"/>
+      <match lemma="motorsykkel" tags="n.*"/>
+      <match lemma="scooter" tags="n.*"/>
+      <match lemma="bil" tags="n.*"/>
+      <match lemma="varebil" tags="n.*"/>
+      <match lemma="lastebil" tags="n.*"/>
+      <match lemma="vogntog" tags="n.*"/>
+      <match lemma="trailer" tags="n.*"/>
+      <match lemma="kjøretøy" tags="n.*"/>
+      <match lemma="buss" tags="n.*"/>
+      <match lemma="trikk" tags="n.*"/>
+      <match lemma="traktor" tags="n.*"/>
+	</or>
+  </rule>
+  <rule weight="3.5" c="foran i båten, framme i ein båt, framme i den store båten">
+    <match lemma="foran" tags="pr"><select lemma="framme"/></match>
+	<match lemma="i"/>
+    <repeat from="0" upto="2">
+	  <or>
+	    <match tags="det.qnt.*"/>
+	    <match tags="det.dem.*"/>
+	    <match tags="adj.*"/>
+	  </or>
+	</repeat>
+    <or>
+      <match lemma="båt" tags="n.*"/>
+      <match lemma="baug" tags="n.*"/>
+      <match lemma="styrhus" tags="n.*"/>
+      <match lemma="skip" tags="n.*"/>
+      <match lemma="kano" tags="n.*"/>
+      <match lemma="kajakk" tags="n.*"/>
+      <match lemma="robåt" tags="n.*"/>
+      <match lemma="seilbåt" tags="n.*"/>
+      <match lemma="motorbåt" tags="n.*"/>
+      <match lemma="fiskebåt" tags="n.*"/>
+      <match lemma="skøyte" tags="n.*"/>
+      <match lemma="ferje" tags="n.*"/>
+      <match lemma="bil" tags="n.*"/>
+      <match lemma="varebil" tags="n.*"/>
+      <match lemma="lastebil" tags="n.*"/>
+      <match lemma="vogntog" tags="n.*"/>
+      <match lemma="trailer" tags="n.*"/>
+      <match lemma="kjøretøy" tags="n.*"/>
+      <match lemma="buss" tags="n.*"/>
+      <match lemma="trikk" tags="n.*"/>
+      <match lemma="traktor" tags="n.*"/>
+      <match lemma="vogn" tags="n.*"/>
+      <match lemma="tog" tags="n.*"/>
+      <match lemma="felt" tags="n.*"/>
+      <match lemma="sal" tags="n.*"/>
+      <match lemma="hall" tags="n.*"/>
+      <match lemma="klasserom" tags="n.*"/>
+      <match lemma="auditorium" tags="n.*"/>
+      <match lemma="kinosal" tags="n.*"/>
+      <match lemma="kirke" tags="n.*"/>
+      <match lemma="kirkerom" tags="n.*"/>
+      <match lemma="kor" tags="n.*"/>
+      <match lemma="bedehus" tags="n.*"/>
+      <match lemma="forsamling" tags="n.*"/>
+      <match lemma="lokale" tags="n.*"/>
+      <match lemma="rettssal" tags="n.*"/>
+      <match lemma="rett" tags="n.*"/>
+	</or>
+  </rule>
+  <rule weight="3.5" c="foran i båten">
+    <match lemma="foran" tags="pr"><select lemma="føre"/></match>
+	<match lemma="i"/>
+    <or>
+      <match lemma="målforskjell" tags="n.*"/>
+      <match lemma="baug" tags="n.*"/>
+	</or>
+  </rule>
+  <rule weight="2.6" c="framfor auga">
+    <match lemma="foran" tags="pr"><select lemma="framfor"/></match>
+    <repeat from="0" upto="1">
+	    <match tags="prn.*"/>
+	</repeat>
+	<match lemma="øye"/>
+  </rule>
+  <rule weight="2.4" c="rett framfor noko">
+	<match lemma="rett" tags="adj.*"/>
+    <match lemma="foran" tags="pr"><select lemma="framfor"/></match>
+  </rule>
+  <rule weight="2.4" c="framfor ein eikeskog">
+    <match lemma="foran" tags="pr"><select lemma="framfor"/></match>
+	<match tags="det.qnt.*.sg"/>
+  </rule>
+  <rule weight="2.2" c="før den neste">
+    <match lemma="foran" tags="pr"><select lemma="før"/></match>
+	<match tags="det.dem.*"/>
+	<or>
+	  <match tags="adj.ord.*"/>
+	  <match lemma="neste"/>
+	  <match lemma="forrige"/>
+	  <match lemma="sist" tags="adj.*"/>
+	</or>
+  </rule>
+  <!-- Lista med substantiv under kunne vere mykje lenger
+  og gjeld i grunnen alle substantiv som viser til ei eller anna
+  form for arrangement eller planlagd hending -->
+  <rule weight="2.8" c="før kampen søndag">
+    <match lemma="foran" tags="pr"><select lemma="før"/></match>
+    <repeat from="0" upto="1">
+	    <match tags="adj.*"/>
+	    <match lemma="denne" tags="det.dem.*"/>
+	    <match lemma="dette" tags="det.dem.*"/>
+	    <match lemma="disse" tags="det.dem.*"/>
+	</repeat>
+	<or>
+	  <match lemma="mandag" tags="n.m.sg.def.gen"/>
+	  <match lemma="tirsdag" tags="n.m.sg.def.gen"/>
+	  <match lemma="onsdag" tags="n.m.sg.def.gen"/>
+	  <match lemma="torsdag" tags="n.m.sg.def.gen"/>
+	  <match lemma="fredag" tags="n.m.sg.def.gen"/>
+	  <match lemma="lørdag" tags="n.m.sg.def.gen"/>
+	  <match lemma="søndag" tags="n.m.sg.def.gen"/>
+	  <match lemma="dag" tags="n.m.sg.def.gen"/>
+	  <match lemma="kveld" tags="n.m.sg.def.gen"/>
+	  <match lemma="morgendag" tags="n.m.sg.def.gen"/>
+	  <match lemma="år" tags="n.nt.sg.def.gen"/>
+	  <match lemma="fjorår" tags="n.nt.sg.def.gen"/>
+	  <match lemma="møte" tags="n.*"/>
+	  <match lemma="arrangement" tags="n.*"/>
+	  <match lemma="landsmøte" tags="n.*"/>
+	  <match lemma="toppmøte" tags="n.*"/>
+	  <match lemma="ministermøte" tags="n.*"/>
+	  <match lemma="valg" tags="n.*"/>
+	  <match lemma="forhandling" tags="n.*"/>
+	  <match lemma="mekling" tags="n.*"/>
+	  <match lemma="lønnsoppgjør" tags="n.*"/>
+	  <match lemma="kamp" tags="n.*"/>
+	  <match lemma="landskamp" tags="n.*"/>
+	  <match lemma="seriekamp" tags="n.*"/>
+	  <match lemma="cupkamp" tags="n.*"/>
+	  <match lemma="mesterligakamp" tags="n.*"/>
+	  <match lemma="kvalifiseringskamp" tags="n.*"/>
+	  <match lemma="kvalifisering" tags="n.*"/>
+	  <match lemma="oppgjør" tags="n.*"/>
+	  <match lemma="serieoppgjør" tags="n.*"/>
+	  <match lemma="cupoppgjør" tags="n.*"/>
+	  <match lemma="lokaloppgjør" tags="n.*"/>
+	  <match lemma="derby" tags="n.*"/>
+	  <match lemma="finale" tags="n.*"/>
+	  <match lemma="semifinale" tags="n.*"/>
+	  <match lemma="kvartfinale" tags="n.*"/>
+	  <match lemma="renn" tags="n.*"/>
+	  <match lemma="jaktstart" tags="n.*"/>
+	  <match lemma="stevne" tags="n.*"/>
+	  <match lemma="norgesmesterskap" tags="n.*"/>
+	  <match lemma="NM" tags="n.*"/>
+	  <match lemma="kretsmesterskap" tags="n.*"/>
+	  <match lemma="europamesterskap" tags="n.*"/>
+	  <match lemma="EM" tags="n.*"/>
+	  <match lemma="verdensmesterskap" tags="n.*"/>
+	  <match lemma="VM" tags="n.*"/>
+	  <match lemma="OL" tags="n.*"/>
+	  <match lemma="ritt" tags="n.*"/>
+	  <match lemma="etappe" tags="n.*"/>
+	</or>
+  </rule>
+  <!-- END: foran -->
 
   <rule c="sjeldan heleri"><match lemma="heling" tags="n.*"><select lemma="heiling"/></match></rule>
 </lrx>
