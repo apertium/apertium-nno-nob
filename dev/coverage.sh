@@ -1,5 +1,5 @@
 #!/bin/sh
-# http://wiki.apertium.org/wiki/Asturian#Calculating_coverage
+# https://wiki.apertium.org/wiki/Asturian#Calculating_coverage
 # Usage:
 # cat /path/to/corpora/nb.txt | ./coverage.sh ../nb-nn.automorf.bin
 

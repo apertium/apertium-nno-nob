@@ -10,7 +10,7 @@ if [[ ! -f "$(dirname $0)/../config.log" ]]; then
     exit 1
 fi
 declare -r PACKAGE=$(grep ^PACKAGE= "$(dirname $0)/../config.log" |grep -o "apertium-[^']*") # e.g. apertium-sme-nob
-declare -r BASEURL="http://wiki.apertium.org/wiki/${PACKAGE}"
+declare -r BASEURL="https://wiki.apertium.org/wiki/${PACKAGE}"
 
 # Workarounds for Mac's:
 SED=sed
