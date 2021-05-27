@@ -4627,7 +4627,18 @@
     </or>
   </rule>
 <!-- UBETALELIG: END -->
-
+<!-- ANLEGGE: START -->
+  <rule><match lemma="anlegge" tags="vblex.*"><select lemma="lage# til"/></match></rule>
+  <rule><match lemma="anlegge" tags="adj.*"><select lemma="lage# til"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="anlegge" tags="vblex.*"><select lemma="reise"/></match>
+    <match lemma="mot" tags="pr"/>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="anlegge" tags="adj.*"><select lemma="reise"/></match>
+    <match lemma="mot" tags="pr"/>
+  </rule>
+<!-- ANLEGGE: END -->
 
   <rule><match lemma="fremholde" tags="adj.*"><select lemma="påpeike"/></match></rule>
   <rule><match lemma="framholde" tags="adj.*"><select lemma="påpeike"/></match></rule>
