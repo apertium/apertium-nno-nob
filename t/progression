@@ -1,0 +1,74 @@
+#!/bin/bash
+
+set -e -u
+
+name=ymse-nob-nno_e
+step=all
+mode=nob-nno_e
+
+pair=nno-nob
+
+cd "$(dirname "$0")"/..
+
+showrevisions () {
+    printf "${pair}\t%s\n" "$(git log -1 --pretty=%H)"
+    grep ^AP_SRC "config.log" | while IFS='=' read -r var dir; do
+        dirclean="${dir//\'}"
+	printf "%s\t%s\n" "${var}" "$( cd "${dirclean}" && git log -1 --pretty=%H )"
+    done
+}
+
+dif () {
+    diff -U0 tests/."${name}"."${step}".current.txt tests/"${name}"."${step}"."$1".txt |\
+        {
+            if command -V dwdiff &>/dev/null; then
+                dwdiff --color --diff-input
+            else
+                cat
+            fi
+        }
+}
+
+assert-translated () {
+    if [[ ! -f tests/."${name}"."${step}".current.txt ]]; then
+        echo "tests/.${name}.${step}.current.txt not found" >&2
+        echo >&2
+        echo "Please run '$0 translate' first" >&2
+        exit 1
+    fi
+}
+
+assert-usage () {
+        echo "USAGE:
+
+$0 translate      # run this after your edits and compiles
+$0 diff-expected  # compare result of 'translate' with expected output
+$0 diff-gold      # compare result of 'translate' with gold set
+$0 update         # update the current expected output with result of 'translate'
+"
+        exit 1
+}
+
+[[ $# -ne 1 ]] && assert-usage
+
+case $1 in
+    translate)
+        showrevisions >tests/."${name}"."${step}".current.txt
+        apertium -d . "${mode}" < tests/"${name}".input.txt >>tests/."${name}"."${step}".current.txt
+        ;;
+    update)
+        assert-translated
+        cp -v tests/."${name}"."${step}".current.txt tests/"${name}"."${step}".expected.txt
+        ;;
+    diff-expected)
+        assert-translated
+        dif expected
+        ;;
+    diff-gold)
+        assert-translated
+        dif gold
+        ;;
+    *)
+        assert-usage
+        ;;
+esac
