@@ -4650,6 +4650,8 @@
     <or>
       <match lemma="masse"/>
       <match lemma="gruppe"/>
+      <match lemma="mot"/>
+      <match lemma="eiendoms"/>
     </or>
     </repeat>
     <or>
@@ -4657,8 +4659,33 @@
       <match lemma="sak"/>
       <match lemma="søksmål"/>
       <match lemma="injuriesak"/>
+      <match lemma="injuriesøksmål"/>
       <match lemma="erstatningssøksmål"/>
+      <match lemma="erstatningssak"/>
+      <match lemma="straffesak"/>
     </or>
+  </rule>
+    <rule weight="2.0">
+    <repeat from="0" upto="1">
+    <or>
+      <match lemma="masse"/>
+      <match lemma="gruppe"/>
+      <match lemma="mot"/>
+      <match lemma="eiendoms"/>
+    </or>
+    </repeat>
+    <or>
+      <match lemma="ankesak"/>
+      <match lemma="sak"/>
+      <match lemma="søksmål"/>
+      <match lemma="injuriesak"/>
+      <match lemma="injuriesøksmål"/>
+      <match lemma="erstatningssøksmål"/>
+      <match lemma="erstatningssak"/>
+      <match lemma="straffesak"/>
+    </or>
+    <match lemma="anlegge" tags="vblex.*"><select lemma="reise"/></match>
+    <match lemma="av"/>
   </rule>
   <rule>
     <match lemma="anlegge" tags="vblex.*"><select lemma="få# seg"/></match>
