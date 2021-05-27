@@ -4638,6 +4638,28 @@
     <match lemma="anlegge" tags="adj.*"><select lemma="reise"/></match>
     <match lemma="mot" tags="pr"/>
   </rule>
+  <rule weight="2.0">
+    <match lemma="anlegge" tags="vblex.*"><select lemma="reise"/></match>
+    <repeat from="0" upto="2">
+      <or>
+        <match tags="adj.*"/>
+        <match tags="adv"/>
+      </or>
+    </repeat>
+    <repeat from="0" upto="1">
+    <or>
+      <match lemma="masse"/>
+      <match lemma="gruppe"/>
+    </or>
+    </repeat>
+    <or>
+      <match lemma="ankesak"/>
+      <match lemma="sak"/>
+      <match lemma="søksmål"/>
+      <match lemma="injuriesak"/>
+      <match lemma="erstatningssøksmål"/>
+    </or>
+  </rule>
 <!-- ANLEGGE: END -->
 
   <rule><match lemma="fremholde" tags="adj.*"><select lemma="påpeike"/></match></rule>
