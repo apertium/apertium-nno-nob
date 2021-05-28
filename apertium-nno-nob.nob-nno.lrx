@@ -6813,4 +6813,23 @@ preposisjonar gir ekstra utfordringar. -->
     <match tags="det.pos.*"/>
     <match lemma="forlovede" tags="n.*"><select lemma="kjærast"/></match>
   </rule>
+
+  <rule><match lemma="foreta" tags="vblex.*"><select lemma="gjennomføre"/></match></rule>
+  <rule weight="2.0" c="gjere endringar">
+    <match lemma="foreta" tags="vblex.*"><select lemma="gjere"/></match>
+	<or>
+	  <match tags="prn.pers.*.*.*.nom"/>
+	  <match tags="det.qnt.sg.*"/>
+	  <match lemma="endring" tags="n.*.pl.ind"/>
+	  <match lemma="justering" tags="n.*.pl.ind"/>
+	</or>
+  </rule>
+  <rule weight="2.0" c="bli/vere gjennomført">
+    <or>
+      <match lemma="være"/>
+      <match lemma="bli"/>
+    </or>
+    <match lemma="foreta" tags="adj.pp.*"><select lemma="gjennomføre"/></match>
+  </rule>
+  
 </lrx>
