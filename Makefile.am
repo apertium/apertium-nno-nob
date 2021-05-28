@@ -269,3 +269,5 @@ test: all
 	t/bidix-sanity
 	t/hash-count
 	t/wer-loss
+	t/progression translate
+	t/progression diff expected || true # work in progress, allow failures for now

@@ -19,11 +19,12 @@ showrevisions () {
 
 difs () {
     ref=$1
-    errs=0
+    declare -i errs=0
     for f in tests/*.input.txt; do
         name="$(basename "${f%.input.txt}")"
         dif1 "${ref}" "${name}" || (( errs++ ))
     done
+    return ${errs}
 }
 wdif () {
     if command -V dwdiff &>/dev/null; then
