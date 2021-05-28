@@ -258,7 +258,7 @@ clean-local:
 ## Test
 ###############################################################################
 
-test: all
+test: all test-progression
 	echo "Såg ho ikkje orda? Dei smååt nyplanta hygge." | apertium -d . nno-nob | tee .test-mt
 	@echo "Så hun ikke ordene? De småspiste nyplantet hygge." > .test-ref
 	@diff .test-ref .test-mt
@@ -269,5 +269,11 @@ test: all
 	t/bidix-sanity
 	t/hash-count
 	t/wer-loss
+
+test-progression: all
 	t/progression translate
 	t/progression diff-expected || true # work in progress, allow failures for now
+
+update-progression: all
+	t/progression translate
+	t/progression update
