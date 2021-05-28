@@ -43,9 +43,9 @@ dif1 () {
     esac
     (
         set -o pipefail
-        diff -U0                                    \
+        diff -U0 -I'^nno-nob\|AP_SRC'                  \
              tests/out/"${name}"."${step}".current.txt \
-             "${reffile}"     \
+             "${reffile}"                              \
             | wdif
     )
 }
