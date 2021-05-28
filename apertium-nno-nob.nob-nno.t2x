@@ -47,6 +47,12 @@
       <cat-item tags="n.*.ind.sl-mf.*"/>
       <cat-item tags="n.*.ind.sl-f.*"/>
     </def-cat>
+    <def-cat n="keepsin_nind">
+      <cat-item tags="n.*.ind.keep-sin"/>
+      <cat-item tags="n.*.ind.keep-sin.*"/>
+      <cat-item tags="n.*.ind.*.keep-sin"/>
+      <cat-item tags="n.*.ind.*.keep-sin.*"/>
+    </def-cat>
     <def-cat n="nind_noadj">
       <cat-item lemma="n" tags="n.*.ind"/>
       <cat-item lemma="n" tags="n.*.ind.*"/>
@@ -2130,13 +2136,31 @@
       </action>
     </rule>
 
-    <rule comment="detpos_keep NIND: mot sin vilje => mot sin vilje
-                   Override the below rule">
+    <rule comment="DETPOS_KEEP NIND: mot sin vilje => mot sin vilje
+                   Override DETPOS NIND_NOGEN rule">
       <pattern>
         <pattern-item n="detpos_keep"/>
         <pattern-item n="nind"/>
       </pattern>
       <action>
+        <call-macro n="set_ana"><with-param pos="2"/></call-macro>
+        <call-macro n="modify_det_gender2.n.det"><with-param pos="2"/><with-param pos="1"/></call-macro>
+        <out>
+          <chunk><clip pos="1" part="whole"/></chunk>
+          <b pos="1"/>
+          <chunk><clip pos="2" part="whole"/></chunk>
+        </out>
+      </action>
+    </rule>
+    <rule comment="DETPOS KEEPSIN_NIND: min klare og urikkelige overbevisning → mi klare og urikkelege overtying
+                   Override DETPOS NIND_NOGEN rule">
+      <pattern>
+        <pattern-item n="detpos"/>
+        <pattern-item n="keepsin_nind"/>
+      </pattern>
+      <action>
+        <call-macro n="set_ana"><with-param pos="2"/></call-macro>
+        <call-macro n="modify_det_gender2.n.det"><with-param pos="2"/><with-param pos="1"/></call-macro>
         <out>
           <chunk><clip pos="1" part="whole"/></chunk>
           <b pos="1"/>
