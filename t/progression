@@ -9,14 +9,6 @@ pair=nno-nob
 
 cd "$(dirname "$0")"/.. || exit 1
 
-showrevisions () {
-    printf "${pair}\t%s\n" "$(git log -1 --pretty=%H)"
-    grep ^AP_SRC "config.log" | while IFS='=' read -r var dir; do
-        dirclean="${dir//\'}"
-	printf "%s\t%s\n" "${var}" "$( cd "${dirclean}" && git log -1 --pretty=%H )"
-    done
-}
-
 difs () {
     ref=$1
     declare -i errs=0
@@ -80,8 +72,7 @@ case $1 in
     translate)
         for f in tests/*.input.txt; do
             name="$(basename "${f%.input.txt}")"
-            showrevisions >tests/out/"${name}.${step}".current.txt
-            apertium -d . "${mode}" < tests/"${name}".input.txt >>tests/out/"${name}.${step}".current.txt
+            apertium -d . "${mode}" < tests/"${name}".input.txt >tests/out/"${name}.${step}".current.txt
         done
         ;;
     update)
