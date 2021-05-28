@@ -168,12 +168,18 @@
 
     <pardef n="refl-prn">
 	  <e><i><w/><s n="prn"/><s n="ref"/><t/><j/></i></e>
-	  <e><i><w/><s n="prn"/><s n="pers"/><t/><s n="acc"/><j/></i></e>
+	  <e><i>jeg<s n="prn"/><s n="pers"/><s n="p1"/><s n="mf"/><s n="sg"/><s n="acc"/><j/></i></e>
+	  <e><i>du<s n="prn"/><s n="pers"/><s n="p2"/><s n="mf"/><s n="sg"/><s n="acc"/><j/></i></e>
+	  <e><i>vi<s n="prn"/><s n="pers"/><s n="p1"/><s n="un"/><s n="pl"/><s n="acc"/><j/></i></e>
+	  <e><i>dere<s n="prn"/><s n="pers"/><s n="p2"/><s n="un"/><s n="pl"/><s n="acc"/><j/></i></e>
     </pardef>
 
     <pardef n="rem-refl-prn">
       <e><p><l><w/><s n="prn"/><s n="ref"/><t/><j/></l> <r></r></p></e>
-      <e><p><l><w/><s n="prn"/><s n="pers"/><t/><s n="acc"/><j/></l> <r></r></p></e>
+	  <e><p><l>jeg<s n="prn"/><s n="pers"/><s n="p1"/><s n="mf"/><s n="sg"/><s n="acc"/><j/></l> <r></r></p></e>
+      <e><p><l>du<s n="prn"/><s n="pers"/><s n="p2"/><s n="mf"/><s n="sg"/><s n="acc"/><j/></l> <r></r></p></e>
+      <e><p><l>vi<s n="prn"/><s n="pers"/><s n="p1"/><s n="un"/><s n="pl"/><s n="acc"/><j/></l> <r></r></p></e>
+      <e><p><l>dere<s n="prn"/><s n="pers"/><s n="p2"/><s n="un"/><s n="pl"/><s n="acc"/><j/></l> <r></r></p></e>
     </pardef>
 
     <pardef n="pos">
@@ -695,6 +701,32 @@
       <p><l><w/><s n="det"/><s n="pos"/><t/><j/></l>      <r></r></p>
       <p><l>besittelse<t/><j/></l>                    <r></r></p>
       <p><l></l>                                      <r>varetekt<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/><j/></r></p>
+    </e>
+
+    <e lm="foreta seg -> gjøre" c="gjere">
+      <p><l>foreta</l>              <r>gjøre</r></p> <i><t/><j/></i>
+      <par n="rem-refl-prn"/>
+    </e>
+
+    <e lm="foretas det -> blir det gjennomført" c="blir det gjennomført">
+      <i>den<s n="prn"/><s n="pers"/><s n="p3"/><s n="nt"/><s n="sg"/><s n="acc"/><j/></i> <i><t/><j/></i>
+      <p><l>foreta<s n="vblex"/><s n="pres"/><s n="pasv"/><j/></l>              <r></r></p> <i><t/><j/></i>
+      <p><l></l>                                      <r>bli<s n="vblex"/><s n="pres"/><j/></r></p>
+      <p><l></l>                                      <r>gjennomføre<s n="vblex"/><s n="pp"/><j/></r></p>
+    </e>
+	
+    <e lm="foretas det -> blir det gjennomført" c="blir det gjennomført">
+      <p><l>foreta<s n="vblex"/><s n="pres"/><s n="pasv"/><j/></l>              <r></r></p> <i><t/><j/></i>
+      <p><l></l>                                      <r>bli<s n="vblex"/><s n="pres"/><j/></r></p>
+      <i>den<s n="prn"/><s n="pers"/><s n="p3"/><s n="nt"/><s n="sg"/><s n="acc"/><j/></i>
+      <p><l></l>                                      <r>gjennomføre<s n="vblex"/><s n="pp"/><j/></r></p>
+    </e>
+
+    <e lm="foretas sjelden -> blir sjelden gjennomført" c="blir sjeldan gjennomført">
+      <p><l>foreta<s n="vblex"/><s n="pres"/><s n="pasv"/><j/></l>              <r></r></p> <i><t/><j/></i>
+      <p><l></l>                                      <r>bli<s n="vblex"/><s n="pres"/><j/></r></p>
+      <i><s n="adv"/><j/></i> <i><t/><j/></i>
+      <p><l></l>                                      <r>gjennomføre<s n="vblex"/><s n="pp"/><j/></r></p>
     </e>
 
   </section>
