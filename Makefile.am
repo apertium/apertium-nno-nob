@@ -270,4 +270,4 @@ test: all
 	t/hash-count
 	t/wer-loss
 	t/progression translate
-	t/progression diff expected || true # work in progress, allow failures for now
+	t/progression diff-expected || true # work in progress, allow failures for now
