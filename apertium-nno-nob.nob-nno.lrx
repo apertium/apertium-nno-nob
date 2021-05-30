@@ -3554,7 +3554,7 @@
       <match lemma="at"/>
     </or>
   </rule>
-
+<!-- ANTA: START -->
   <rule> <!-- Hele saken har antatt slike dimensjoner... -->
     <match lemma="anta" tags="vblex.*"><select lemma="få"/></match>
     <repeat from="0" upto="2">
@@ -3736,7 +3736,30 @@
   <rule> <!-- De antas å være bortført av samme gruppe. -->
     <match lemma="antas å være" tags="adv"><select lemma="er truleg"/></match>
   </rule>
-
+  <rule> 
+    <match lemma="det antas at" tags="adv"><select lemma="det er grunn til å tru at"/></match>
+  </rule>
+  <rule> 
+    <or>
+      <match lemma="skulle"/>
+      <match lemma="måtte"/>
+      <match lemma="burde"/>
+      <match lemma="ville"/>
+      <match lemma="kunne"/>
+    </or>
+    <match lemma="det antas at" tags="adv"><select lemma="ein gå ut frå at"/></match>
+  </rule>
+  <rule> 
+    <or>
+      <match lemma="skulle"/>
+      <match lemma="måtte"/>
+      <match lemma="burde"/>
+      <match lemma="ville"/>
+      <match lemma="kunne"/>
+    </or>
+    <match lemma="det må antas at" tags="adv"><select lemma="ein må gå ut frå at"/></match>
+  </rule>
+<!-- ANTA: END -->
 
   <rule> <!-- ...En avholdt kollega. -->
     <match lemma="avholdt" tags="adj.*"><select lemma="avhalden"/></match>
