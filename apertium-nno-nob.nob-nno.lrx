@@ -4412,6 +4412,22 @@
       <match tags="np.*"/>
      </or>
   </rule>
+  <rule weight="2.0">   <!-- en (høyt) ansett og populær underviser -->
+    <match lemma="en"/>
+    <repeat from="0" upto="2">
+    <or>
+      <match tags="adv"/>
+      <match tags="adj.*"/>
+    </or>
+    </repeat>
+    <match lemma="anse" tags="adj.*"><select lemma="respektere"/></match>
+    <match lemma="og"/>
+    <match tags="adj.*"/>
+    <or>
+      <match tags="n.*"/>
+      <match tags="np.*"/>
+     </or>
+  </rule>
   <rule weight="2.0"> 
     <or>
       <match lemma="vel"/>
