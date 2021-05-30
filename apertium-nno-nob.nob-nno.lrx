@@ -3774,6 +3774,20 @@
   <match lemma="den"/>
   <match lemma="antyde" tags="adj.pp.*"><select lemma="skissere"/></match>
 </rule>
+<rule weight="2.0">
+  <match lemma="den"/>
+  <match lemma="bli"/>
+  <match lemma="antyde" tags="vblex.pp"><select lemma="seie"/></match>
+  <match lemma="at"/>
+</rule>
+<rule weight="2.0">
+  <match lemma="den"/>
+  <repeat from="0" upto="1">
+    <match tags="adv"/>
+</repeat>
+  <match lemma="antyde" tags="vblex.pres.pasv"><select lemma="seie"/></match>
+  <match lemma="at"/>
+</rule>
 <!-- ANTYDE: END -->
 
 
