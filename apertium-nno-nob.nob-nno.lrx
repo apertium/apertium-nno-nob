@@ -3761,6 +3761,22 @@
   </rule>
 <!-- ANTA: END -->
 
+<!-- ANTYDE: START -->
+<rule>
+  <match lemma="antyde" tags="vblex.*"><select lemma="antyde"/></match>
+</rule>
+<rule weight="2.0">
+  <match lemma="som"/>
+  <match lemma="antyde" tags="vblex.*"><select lemma="tyde# på"/></match>
+  <match lemma="at"/>
+</rule>
+<rule weight="2.0">
+  <match lemma="den"/>
+  <match lemma="antyde" tags="adj.pp.*"><select lemma="skissere"/></match>
+</rule>
+<!-- ANTYDE: END -->
+
+
   <rule> <!-- ...En avholdt kollega. -->
     <match lemma="avholdt" tags="adj.*"><select lemma="avhalden"/></match>
   </rule>
