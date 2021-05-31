@@ -2281,6 +2281,50 @@
     <match lemma="å" tags="part"/>
   </rule>
 
+  <!--  LOSNE/LØYSE: START -->
+  <rule><match lemma="løsne" tags="vblex.*"><select lemma="losne"/></match></rule>
+  <rule>
+    <match lemma="løsne" tags="vblex.*"><select lemma="løyse"/></match>
+    <repeat from="0" upto="2">
+      <or>
+        <match tags="det.*"/>
+        <match tags="adj.*"/>
+      </or>
+    </repeat>
+    <match tags="n.*"/>
+  </rule>
+  <rule>
+    <match lemma="løsne" tags="vblex.*"><select lemma="løyse"/></match>
+    <repeat from="0" upto="2">
+      <or>
+        <match lemma="litt"/>
+        <match lemma="noe"/>
+      </or>
+    </repeat>
+    <or>
+      <match lemma="på"/>
+      <match lemma="opp"/>
+    </or>
+  </rule>
+<rule>
+  <or>
+    <match lemma="være*"/>
+    <match lemma="bli"/>
+  </or>
+  <match lemma="løsne" tags="vblex.*"><select lemma="løyse"/></match>
+</rule>
+<rule>
+<or>
+  <match lemma="skulle"/>
+  <match lemma="burde"/>
+  <match lemma="måtte"/>
+  <match lemma="kunne"/>
+  <match lemma="ville"/>
+</or>
+  <match lemma="løsne" tags="vblex.*.pasv"><select lemma="løyse"/></match>
+</rule>
+  <!--  LOSNE/LØYSE: END  -->
+
   <rule><match lemma="senest" tags="adv"><select lemma="seinast"/></match></rule>
 
   <rule><match lemma="tilspisse" tags="vblex.*"><select lemma="tilspisse"/></match></rule>
