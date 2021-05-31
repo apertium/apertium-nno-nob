@@ -6161,6 +6161,34 @@ no lemq-moving">
     </rule>
 
     <!-- Other classes -->
+    <rule comment="DETPOS CNJCOO DETPOS: don't change order in t2x for conjoined detpos
+                   «min og din mor»
+                   «Mange har stor familie med dine, mine og våre barn»">
+      <pattern>
+        <pattern-item n="detpos"/>
+        <pattern-item n="cnjcoo"/>
+        <pattern-item n="detpos"/>
+      </pattern>
+      <action>
+        <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
+        <out>
+          <chunk name="detpos-keep" case="caseFirstWord">
+            <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
+            <lu><clip pos="1" side="tl" part="whole"/></lu>
+          </chunk>
+          <b/>
+          <chunk name="cnjcoo" case="caseFirstWord">
+            <tags><tag><clip pos="2" side="tl" part="tags"/></tag></tags>
+            <lu><clip pos="2" side="tl" part="whole"/></lu>
+          </chunk>
+          <b/>
+          <chunk name="detpos-keep" case="caseFirstWord">
+            <tags><tag><clip pos="3" side="tl" part="tags"/></tag></tags>
+            <lu><clip pos="3" side="tl" part="whole"/></lu>
+          </chunk>
+        </out>
+      </action>
+    </rule>
     <rule comment="DETPOS-DENS: don't change order in t2x for dets/dens">
       <pattern>
         <pattern-item n="detpos-dens"/>
