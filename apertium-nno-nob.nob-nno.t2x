@@ -2136,6 +2136,42 @@
       </action>
     </rule>
 
+    <rule comment="NDEF DETPOS_KEEP NIND: dagligvarekjeden sin første søndagsåpne butikk
+                   detpos most likely applies to second noun phrase (frequently right, sometimes wrong!)">
+      <pattern>
+        <pattern-item n="ndef"/>
+        <pattern-item n="detpos_keep"/>
+        <pattern-item n="nind"/>
+      </pattern>
+      <action>
+        <call-macro n="set_ana"><with-param pos="1"/></call-macro>
+        <call-macro n="modify_det_gender2.n.det"><with-param pos="3"/><with-param pos="2"/></call-macro>
+        <out>
+          <chunk><clip pos="1" part="whole"/></chunk><b/>
+          <chunk><clip pos="2" part="whole"/></chunk><b/>
+          <chunk><clip pos="3" part="whole"/></chunk>
+        </out>
+      </action>
+    </rule>
+    <rule comment="DETPOS_KEEP CNCJCOO DETPOS_KEEP NIND: din og min lommebok → di og mi lommebok">
+      <pattern>
+        <pattern-item n="detpos_keep"/>
+        <pattern-item n="cnjcoo"/>
+        <pattern-item n="detpos_keep"/>
+        <pattern-item n="nind"/>
+      </pattern>
+      <action>
+        <call-macro n="set_ana"><with-param pos="4"/></call-macro>
+        <call-macro n="modify_det_gender2.n.det"><with-param pos="4"/><with-param pos="1"/></call-macro>
+        <call-macro n="modify_det_gender2.n.det"><with-param pos="4"/><with-param pos="3"/></call-macro>
+        <out>
+          <chunk><clip pos="1" part="whole"/></chunk><b/>
+          <chunk><clip pos="2" part="whole"/></chunk><b/>
+          <chunk><clip pos="3" part="whole"/></chunk><b/>
+          <chunk><clip pos="4" part="whole"/></chunk>
+        </out>
+      </action>
+    </rule>
     <rule comment="DETPOS_KEEP NIND: mot sin vilje => mot sin vilje
                    Override DETPOS NIND_NOGEN rule">
       <pattern>
@@ -2146,8 +2182,7 @@
         <call-macro n="set_ana"><with-param pos="2"/></call-macro>
         <call-macro n="modify_det_gender2.n.det"><with-param pos="2"/><with-param pos="1"/></call-macro>
         <out>
-          <chunk><clip pos="1" part="whole"/></chunk>
-          <b pos="1"/>
+          <chunk><clip pos="1" part="whole"/></chunk><b/>
           <chunk><clip pos="2" part="whole"/></chunk>
         </out>
       </action>
@@ -2162,8 +2197,7 @@
         <call-macro n="set_ana"><with-param pos="2"/></call-macro>
         <call-macro n="modify_det_gender2.n.det"><with-param pos="2"/><with-param pos="1"/></call-macro>
         <out>
-          <chunk><clip pos="1" part="whole"/></chunk>
-          <b pos="1"/>
+          <chunk><clip pos="1" part="whole"/></chunk><b/>
           <chunk><clip pos="2" part="whole"/></chunk>
         </out>
       </action>
