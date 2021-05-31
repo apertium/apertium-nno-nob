@@ -2325,6 +2325,22 @@
 </rule>
   <!--  LOSNE/LØYSE: END  -->
 
+  <!--  FORBEHOLDT: START  -->
+  <rule>
+    <match lemma="forbeholdt noen få" tags="adv"><select lemma="gjeld berre nokre få"/></match>
+    <match tags="n.*"/>
+  </rule>
+  <rule>
+    <match lemma="forbeholdt noen få" tags="adv"><select lemma="for dei få"/></match>
+    <or>
+      <match tags="cm"/>
+      <match tags="sent.*"/>
+    </or>
+  </rule>
+
+  <!--  FORBEHOLDT END  -->
+
+
   <rule><match lemma="senest" tags="adv"><select lemma="seinast"/></match></rule>
 
   <rule><match lemma="tilspisse" tags="vblex.*"><select lemma="tilspisse"/></match></rule>
