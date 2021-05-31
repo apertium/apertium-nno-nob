@@ -7013,4 +7013,68 @@ preposisjonar gir ekstra utfordringar. -->
     <match lemma="foreta" tags="adj.pp.*"><select lemma="gjennomføre"/></match>
   </rule>
   
+  <rule><match lemma="bestride" tags="vblex.*"><select lemma="avvise"/></match></rule>
+  <rule><match lemma="bestridt" tags="adj.*"><select lemma="omstridd"/></match></rule>
+  <rule weight="2.0" c="setje spørsmålsteikn ved">
+    <match lemma="bestride" tags="vblex.*"><select lemma="setje"/></match>
+    <repeat from="0" upto="6"><match/></repeat>
+    <match lemma="riktigheten av" tags="adv"><select lemma="spørsmålsteikn ved"/></match>
+  </rule>
+  <rule weight="2.0">
+	<match lemma="å"/>
+    <match lemma="bestride" tags="vblex.*"><select lemma="opponere# mot"/></match>
+  </rule>
+  <rule weight="2.2">
+    <match lemma="bestride" tags="vblex.*"><select lemma="nekte# for"/></match>
+    <or>
+	  <match lemma="å"/>
+	  <match lemma="at"/>
+	</or>
+  </rule>
+  <rule weight="2.0">
+    <or>
+      <match lemma="være"/>
+      <match lemma="bli"/>
+    </or>
+    <repeat from="0" upto="6"><match/></repeat>
+    <match lemma="bestride" tags="adj.pp.*"><select lemma="trekke# i tvil"/></match>
+  </rule>
+  <rule weight="2.4">
+	<match tags="adj.*"/>
+    <match lemma="bestridt" tags="adj.*"><select lemma="omstridd"/></match>
+  </rule>
+  
+  <rule><match lemma="ubestridt" tags="adj.*"><select lemma="suveren"/></match></rule>
+  <rule weight="2.2">
+    <match lemma="ubestridt" tags="adj.*"><select lemma="udiskutabel"/></match>
+    <match tags="adj.*"/>
+  </rule>
+  <rule weight="2.2">
+    <match lemma="ubestridt" tags="adj.*"><select lemma="suveren"/></match>
+    <match tags="n.*"/>
+  </rule>
+  <rule weight="4.0">
+    <match lemma="ubestridt" tags="adj.*"><select lemma="uomtvisteleg"/></match>
+    <or>
+      <match lemma="sannhet"/>
+      <match lemma="faktum"/>
+    </or>
+  </rule>
+  <rule weight="4.0">
+    <match lemma="ubestridt" tags="adj.*"><select lemma="udiskutabel"/></match>
+    <or>
+      <match lemma="sak"/>
+      <match lemma="tema"/>
+      <match lemma="emne"/>
+    </or>
+  </rule>
+  <rule weight="2.0">
+    <or>
+      <match lemma="være"/>
+      <match lemma="bli"/>
+    </or>
+    <repeat from="0" upto="6"><match/></repeat>
+    <match lemma="ubestridt" tags="adj.*"><select lemma="heva over tvil"/></match>
+  </rule>
+  
 </lrx>
