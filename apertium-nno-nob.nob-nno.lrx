@@ -1798,7 +1798,6 @@
   <rule c="Can't even find 'attrå' used as verb in nno-corpus">
     <match lemma="begjære" tags="vblex.*"><select lemma="krevje"/></match>
   </rule>
-  <rule><match lemma="etterkomme" tags="vblex.*"><select lemma="etterkomme"/></match></rule>
 
   <rule><match lemma="myndighet" tags="n.*"><select lemma="styresmakt"/></match></rule>
   <rule weight="2.0">
@@ -2279,6 +2278,16 @@
   </rule>
   <rule><match lemma="bestemme" tags="adj.*"><select lemma="bestemme"/></match></rule>
   <!--  BESTEMME: END -->
+
+<!--  ETTERKOMME: START -->
+<rule><match lemma="etterkomme" tags="vblex.*"><select lemma="etterkomme"/></match></rule>
+<rule weight="1.5">
+  <match lemma="etterkomme" tags="vblex.*"><select lemma="rette# seg etter"/></match>
+  <match lemma="denne"/>
+</rule>
+
+<!--  ETTERKOMME: END -->
+
 
   <rule><match lemma="unndra" tags="vblex.*"><select lemma="unndra"/></match></rule>
   <rule><match lemma="unndra" tags="adj.*"><select lemma="unndra"/></match></rule>
