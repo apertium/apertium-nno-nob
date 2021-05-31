@@ -2258,7 +2258,9 @@
   <rule weight="1.5">
     <match lemma="bestemme" tags="vblex.*"><select lemma="avgjere"/></match>
     <match lemma="hvor"/>
-    <match tags="adj.*"/>
+    <repeat from="0" upto="1">
+      <match tags="adj.*"/>
+    </repeat>
   </rule>
   <rule weight="1.5">
     <match lemma="bestemme" tags="vblex.*"><select lemma="avgjere"/></match>
