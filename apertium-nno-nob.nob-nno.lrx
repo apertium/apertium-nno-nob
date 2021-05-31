@@ -2300,6 +2300,20 @@
     <match lemma="begjæring"/>
   </or>
 </rule>
+<rule weight="1.5">
+  <match lemma="etterkomme" tags="vblex.*"><select lemma="oppfylle"/></match>
+  <repeat from="0" upto="2">
+    <or>
+      <match tags="det.*"/>
+      <match tags="n.*"/>
+      <match lemma="n.*.*.*.gen"/>
+    </or>
+  </repeat>
+  <or>
+    <match lemma="krav"/>
+    <match lemma="begjæring"/>
+  </or>
+</rule>
 <!--  ETTERKOMME: END -->
 
 
