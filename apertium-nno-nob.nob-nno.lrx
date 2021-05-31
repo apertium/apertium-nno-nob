@@ -2246,8 +2246,17 @@
     <match lemma="dødelighet" tags="n.*"><select lemma="døying"/></match>
   </rule>
 
-  <rule><match lemma="bestemme" tags="vblex.*"><select lemma="bestemme"/></match></rule>
+  <!--  BESTEMME: START -->
+
+  <rule>
+    <match lemma="bestemme" tags="vblex.*"><select lemma="bestemme"/></match>
+  </rule>
+  <rule weight="1.5">
+    <match lemma="bestemme" tags="vblex.*"><select lemma="avgjere"/></match>
+    <match lemma="om"/>
+  </rule>
   <rule><match lemma="bestemme" tags="adj.*"><select lemma="bestemme"/></match></rule>
+  <!--  BESTEMME: END -->
 
   <rule><match lemma="unndra" tags="vblex.*"><select lemma="unndra"/></match></rule>
   <rule><match lemma="unndra" tags="adj.*"><select lemma="unndra"/></match></rule>
