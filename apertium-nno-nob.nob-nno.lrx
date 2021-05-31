@@ -2292,7 +2292,14 @@
     <match lemma="anbefaling"/>
   </or>
 </rule>
-
+<rule weight="1.5">
+  <match lemma="etterkomme" tags="vblex.*"><select lemma="oppfylle"/></match>
+  <match tags="det.pos.*"/>
+  <or>
+    <match lemma="krav"/>
+    <match lemma="begjæring"/>
+  </or>
+</rule>
 <!--  ETTERKOMME: END -->
 
 
