@@ -4751,13 +4751,14 @@
         <let><var n="c_name"/><lit v="adj_n"/></let>
         <call-macro n="set_gender2.n.adj"><with-param pos="3"/><with-param pos="2"/></call-macro>
         <call-macro n="set_grau_aux1"><with-param pos="2"/></call-macro>
+        <call-macro n="set_caseFirstWord2"><with-param pos="1"/><with-param pos="2"/></call-macro>
         <out>
-          <chunk name="detpos-keep">
+          <chunk name="detpos-keep" case="caseFirstWord">
             <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
             <lu><clip pos="1" side="tl" part="whole"/></lu>
           </chunk>
           <b pos="1"/>
-          <chunk namefrom="c_name" case="caseFirstWord">
+          <chunk namefrom="c_name" case="caseSecondWord">
             <tags>
               <tag><clip pos="3" side="tl" part="tags"/></tag>
             </tags>
@@ -4803,13 +4804,14 @@
         <let><var n="c_name"/><lit v="adj_adj_n"/></let>
         <call-macro n="set_gender2.n.adj"><with-param pos="4"/><with-param pos="3"/></call-macro>
         <call-macro n="set_grau_aux1"><with-param pos="3"/></call-macro>
+        <call-macro n="set_caseFirstWord2"><with-param pos="1"/><with-param pos="2"/></call-macro>
         <out>
-          <chunk name="detpos-keep">
+          <chunk name="detpos-keep" case="caseFirstWord">
             <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
             <lu><clip pos="1" side="tl" part="whole"/></lu>
           </chunk>
           <b/>
-          <chunk namefrom="c_name" case="caseFirstWord">
+          <chunk namefrom="c_name" case="caseSecondWord">
             <tags>
               <tag><clip pos="4" side="tl" part="tags"/></tag>
             </tags>
