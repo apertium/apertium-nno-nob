@@ -840,6 +840,17 @@
       <match lemma="fin"/>
       <match lemma="opp"/>
     </or>
+  </rule>  <rule weight="2.0">
+    <or>
+      <match lemma="katt"/>
+      <match lemma="katte" tags="n.*"/>
+      <match lemma="pus"/>
+      <match lemma="kattepus"/>
+      <match lemma="kattunge"/>
+    </or>
+    <match lemma="male" tags="vblex.*">
+      <select lemma="male"/>
+    </match>
   </rule>
   <rule weight="2.0">
     <match lemma="male" tags="adj.*">
