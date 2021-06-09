@@ -118,6 +118,14 @@
     <pardef n="n">
       <e><i><w/><s n="n"/><t/><j/></i></e>
     </pardef>
+    <pardef n="adv">
+      <e><i><w/><s n="adv"/><j/></i></e>
+      <e><i><w/><s n="adv"/><t/><j/></i></e>
+    </pardef>
+    <pardef n="prn">
+      <e><i><w/><s n="prn"/><j/></i></e>
+      <e><i><w/><s n="prn"/><t/><j/></i></e>
+    </pardef>
 
     <pardef n="n.sg.ind" c="No final t/ – avoid cmp!">
       <e><i><w/><s n="n"/><t/><s n="sg"/><s n="ind"/><j/></i></e>
@@ -144,6 +152,13 @@
       <e>                            <par n="n"/></e>
       <e>              <par n="adj"/><par n="n"/></e>
       <e><par n="adj"/><par n="adj"/><par n="n"/></e>
+    </pardef>
+
+    <pardef n="SN|adv|prn|" c="Includes empty!">
+      <e></e>
+      <e><par n="SN"/></e>
+      <e><par n="adv"/></e>
+      <e><par n="prn"/></e>
     </pardef>
 
     <pardef n="SN.sg.ind">
@@ -772,13 +787,21 @@
       <i><w/><s n="adv"/><j/></i> <i><t/><j/></i>
       <p><l></l>                                      <r>gjennomføre<s n="vblex"/><s n="pp"/><j/></r></p>
     </e>
-	
+
     <e lm="være ubestridt at -> være hevet over tvil at" c="vere heva over tvil at">
       <p><l>ubestridt<t/><j/></l>                     <r></r></p>
       <p><l></l>                                      <r>heve<s n="vblex"/><s n="pp"/><j/></r></p>
       <p><l></l>                                      <r>over<s n="pr"/><j/></r></p>
       <p><l></l>                                      <r>tvil<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/><j/></r></p>
       <i>at<s n="adv"/><j/></i>
+    </e>
+
+    <e lm="bestride X riktigheten av -> sette X spørsmålstegn ved" c="setje X spørsmålsteikn ved">
+      <p><l>bestride</l>                      <r>sette</r></p> <i><t/><j/></i>
+      <par n="SN|adv|prn|"/>
+      <par n="SN|adv|prn|"/>
+      <p><l>riktighet<t/></l> <r>spørsmålstegn<s n="n"/><s n="nt"/><s n="sg"/><s n="ind"/></r></p> <i><t/><j/></i>
+      <p><l>av<s n="pr"/></l>                 <r>ved<s n="pr"/></r></p>
     </e>
 
     <e lm="i lovens forstand -> etter loven" c="etter lova">
