@@ -2792,9 +2792,12 @@
       <match lemma="kamp"/>
       <match lemma="ide"/>
       <match lemma="idé"/>
-      <match lemma="søk"/>
       <match lemma="aksjon"/>
     </or>
+  </rule>
+  <rule weight="3.5" c="Gi opp søk">
+    <match lemma="oppgi" tags="vblex.*"><select lemma="gje# opp"/></match>
+      <match lemma="søk"/>
   </rule>
   <rule weight="3.5" c="Gi opp anden">
     <match lemma="oppgi" tags="vblex.*"><select lemma="gje# opp"/></match>
