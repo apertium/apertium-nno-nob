@@ -2748,7 +2748,23 @@
     <match lemma="tilsi" tags="vblex.*"><select lemma="bety"/></match>
   </rule>
 
+  <!-- OPPGI: START -->
+
   <rule><match lemma="oppgi" tags="vblex.*"><select lemma="oppgje"/></match></rule>
+  <rule><match lemma="oppgi" tags="adj.*"><select lemma="oppgje"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="oppgi" tags="vblex.*.pasv"><select lemma="seie"/></match>
+    <match lemma="å"/>
+  </rule>
+  <rule weight="4.0">
+  <match lemma="den" tags="prn.pers.p3.nt.sg.*"/>
+    <match lemma="oppgi" tags="vblex.*.pasv"><select lemma="seie"/></match>
+    <or>
+      <match lemma="ikke"/>
+      <match lemma="at"/>
+    </or>
+  </rule>
+
   <rule weight="2.0" c="Gi litt ekstra vekt til visse lause kontekstar">
     <match lemma="oppgi" tags="vblex.*"><select lemma="gje# opp"/></match>
     <repeat from="0" upto="2">
@@ -2766,7 +2782,13 @@
       <match lemma="kamp"/>
       <match lemma="ide"/>
       <match lemma="idé"/>
+      <match lemma="søk"/>
+      <match lemma="aksjon"/>
     </or>
+  </rule>
+  <rule weight="3.5" c="Gi opp anden">
+    <match lemma="oppgi" tags="vblex.*"><select lemma="gje# opp"/></match>
+      <match lemma="ånd" tags="n.m.sg.def"/>
   </rule>
   <rule c="passiv vanlegvis fast: I tråd med vedtatt praksis oppgis verken identitet eller …">
     <match lemma="oppgi" tags="vblex.*.pasv"><select lemma="oppgje"/></match>
@@ -2824,6 +2846,7 @@
       <match lemma="søndag" tags="n.m.sg.ind"/>
     </or>
   </rule>
+  <!-- OPPGI: END -->
 
  
   <rule c="framstår som surrealistisk"><match lemma="framstå# som" tags="vblex.*"><select lemma="verke"/></match></rule>
