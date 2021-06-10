@@ -767,6 +767,47 @@
   </rule>
   <!-- /andel -->
 
+  <!-- UTSPILLE: START -->
+  <rule>
+    <match lemma="utspille" tags="vblex.*"><select lemma="gå# føre"/></match>
+    <match lemma="seg"/>
+  </rule>
+  <rule>
+    <or>
+      <match lemma="skulle"/>
+      <match lemma="burde"/>
+      <match lemma="måtte"/>
+      <match lemma="kunne"/>
+      <match lemma="ville"/>
+    </or>
+    <match lemma="ha# utspilt sin rolle" tags="vblex.inf"><select lemma="ha# gjort sitt"/></match>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="ha# utspilt sin rolle" tags="vblex.pres"><select lemma="høyre# fortida til"/></match>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="ha# utspilt sin rolle" tags="vblex.pret"><select lemma="høyre# fortida til"/></match>
+  </rule>
+  <rule>
+    <match lemma="være# utspilt" tags="vblex.inf"><select lemma="høyre# fortida til"/></match>
+  </rule>
+  <rule>
+    <match lemma="være# utspilt" tags="vblex.pres"><select lemma="høyre# fortida til"/></match>
+  </rule>
+  <rule>
+    <match lemma="den" tags="prn.pers.p3.nt.sg.*"/>
+    <match lemma="være# utspilt" tags="vblex.pres"><select lemma="vere# gjennomført"/></match>
+  </rule>
+  <rule>
+    <match lemma="være# utspilt" tags="vblex.pret"><select lemma="vere# utmanøvrert"/></match>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="bli"/>
+    <match lemma="utspille" tags=".*.pp"><select lemma="utmanøvrere"/></match>
+  </rule>
+  <!-- UTSPILLE: END -->
+
+
   <!-- brenne¹ is transitive: -->
   <rule> <match lemma="brenne" tags="adj.*"> <select lemma="brenne"/> </match> </rule>
   <rule> <match lemma="brenne" tags="vblex.*"> <select lemma="brenne"/> </match> </rule>
