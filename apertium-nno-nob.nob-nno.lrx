@@ -2756,15 +2756,25 @@
     <match lemma="oppgi" tags="vblex.*.pasv"><select lemma="seie"/></match>
     <match lemma="å"/>
   </rule>
-  <rule weight="4.0">
+  <rule weight="2.0">
   <match lemma="den" tags="prn.pers.p3.nt.sg.*"/>
     <match lemma="oppgi" tags="vblex.*.pasv"><select lemma="seie"/></match>
-    <or>
-      <match lemma="ikke"/>
-      <match lemma="at"/>
-    </or>
+    <match lemma="ikke"/>
   </rule>
-
+  <rule weight="4.0">
+    <match lemma="den" tags="prn.pers.p3.nt.sg.*"/>
+    <match lemma="oppgi" tags="vblex.*.pasv"><select lemma="opplyse"/></match>
+    <match lemma="at"/>
+  </rule>
+  <rule weight="3.0">
+    <match lemma="oppgi" tags="vblex.*.pasv"><select lemma="opplyse"/></match>
+    <match lemma="den" tags="prn.pers.p3.nt.sg.*"/>
+    <match lemma="at"/>
+  </rule>
+  <rule>
+    <match lemma="oppgi" tags="vblex.*"><select lemma="oppgje"/></match>
+    <match lemma="at"/>
+  </rule>
   <rule weight="2.0" c="Gi litt ekstra vekt til visse lause kontekstar">
     <match lemma="oppgi" tags="vblex.*"><select lemma="gje# opp"/></match>
     <repeat from="0" upto="2">
@@ -2835,7 +2845,6 @@
     <match lemma="oppgi" tags="vblex.*"><select lemma="oppgje"/></match>
     <or>
       <match lemma="over"/>
-      <match lemma="at"/>
       <match lemma="som"/>
       <match lemma="mandag" tags="n.m.sg.ind"/>
       <match lemma="tirsdag" tags="n.m.sg.ind"/>
