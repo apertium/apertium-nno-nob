@@ -2775,6 +2775,12 @@
     <match lemma="oppgi" tags="vblex.*"><select lemma="oppgje"/></match>
     <match lemma="at"/>
   </rule>
+  <rule>
+    <match lemma="den" tags="prn.pers.p3.nt.sg.*"/>
+    <match lemma="oppgi" tags="vblex.*.pasv"><select lemma="oppgje"/></match>
+    <match lemma="ikke"/>
+    <match lemma="noe"/>
+  </rule>
   <rule weight="2.0" c="Gi litt ekstra vekt til visse lause kontekstar">
     <match lemma="oppgi" tags="vblex.*"><select lemma="gje# opp"/></match>
     <repeat from="0" upto="2">
