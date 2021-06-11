@@ -3301,8 +3301,35 @@
   <rule><match lemma="fly" tags="adj.*"><select lemma="flyge"/></match></rule>
   <!-- fly (rømme) obsolete and unlikely -->
 
+  <!-- TRENGE/TRENGJE: START -->
   <rule><match lemma="trenge" tags="vblex.*"><select lemma="trenge"/></match></rule>
   <rule><match lemma="trenge" tags="adj.*"><select lemma="trenge"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="trenge" tags="vblex.*"><select lemma="trenge¹"/></match>
+    <repeat from="0" upto="2">
+      <or>
+        <match tags="prn.pers.*.*.*.acc"/>
+        <match tags="prn.ref.*.*.*.acc"/>
+      </or>
+    </repeat>
+    <or>
+      <match lemma="frem"/>
+      <match lemma="på"/>
+      <match lemma="inn"/>
+      <match lemma="inn i"/>
+      <match lemma="innpå"/>
+      <match lemma="ut"/>
+      <match lemma="ut av"/>
+      <match lemma="unna"/>
+      <match lemma="forbi"/>
+      <match lemma="foran"/>
+      <match lemma="til bunns"/>
+      <match lemma="tilbake"/>
+      <match lemma="vekk"/>
+      <match lemma="sammen"/>
+    </or>
+  </rule>
+  <!-- TRENGE/TRENGJE: END -->
 
   <rule><match lemma="klekke" tags="vblex.*"><select lemma="klekke¹"/></match></rule>
   <rule><match lemma="klekke" tags="adj.*"><select lemma="klekke¹"/></match></rule>
