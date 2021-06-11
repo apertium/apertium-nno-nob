@@ -108,8 +108,12 @@
   <pardefs>
 
     <pardef n="adj">
-      <e><i><w/><s n="adj"/><j/></i></e>
       <e><i><w/><s n="adj"/><t/><j/></i></e>
+    </pardef>
+    <pardef n="adj.ord|comp">
+      <e><i><w/><s n="adj"/><s n="ord"/><t/><j/></i></e>
+      <e><i><w/><s n="adj"/><s n="comp"/><t/><j/></i></e>
+      <e><i><w/><s n="adj"/><s n="sint"/><s n="comp"/><t/><j/></i></e>
     </pardef>
     <pardef n="pr">
       <e><i><w/><s n="pr"/><j/></i></e>
@@ -167,10 +171,12 @@
       <e><par n="adj"/><par n="adj"/><par n="ncmp*.n.sg.ind"/></e>
     </pardef>
 
-    <pardef n="freq-adv">
-      <e><i>alltid<s n="adv"/><j/></i></e>
-      <e><i>ofte<s n="adv"/><j/></i></e>
-      <e><i>nå<s n="adv"/><j/></i></e>
+    <pardef n="Tidsuttrykk">
+      <e><i>time<t/><j/></i></e>
+      <e><i>uke<t/><j/></i></e>
+      <e><i>år<t/><j/></i></e>
+      <e><i>måned<t/><j/></i></e>
+      <e><i>dag<t/><j/></i></e>
     </pardef>
 
     <pardef n="seg">
@@ -740,6 +746,20 @@
       <par n="pr"/>
       <i><w/><s n="np"/><t/></i>
       <p><l><j/>sin<t/><j/></l> <r><s n="gen"/><j/></r></p>
+    </e>
+
+    <!-- fjern unødvendig sin: -->
+    <e lm="i sin Nte time/… -> i Nte time/…" c="i Nte time/…
+                                                i yngre år etc.">
+      <i>i<t/><j/></i>
+      <p><l>sin<t/><j/></l> <r></r></p>
+      <par n="adj.ord|comp"/>
+      <par n="Tidsuttrykk"/>
+    </e>
+    <e lm="sin nasjonale uavhengighet -> den nasjonale uavhengigeten" c="det nasjonale sjølvstendet">
+      <p><l>sin<t/><j/></l> <r>den<s n="det"/><s n="dem"/><s n="m"/><s n="sg"/><j/></r></p>
+      <i>nasjonal<t/><j/></i>
+      <i>uavhengighet<t/></i> <p><l><s n="ind"/><j/></l><r><s n="def"/><j/></r></p>
     </e>
 
     <e lm="(det) samme uansett hva -> (det) samme uten hensyn til" c="(det) same utan omsyn til kva">
