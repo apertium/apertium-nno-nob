@@ -6791,7 +6791,7 @@ preposisjonar gir ekstra utfordringar. -->
     <match lemma="foran" tags="pr"><select lemma="framfor"/></match>
 	<match tags="prn.pers.*"/>
 	<or>
-	  <match seq="cm"/>
+	  <match tags="cm"/>
 	  <match tags="sent.*"/>
 	</or>
   </rule>
@@ -7231,6 +7231,15 @@ preposisjonar gir ekstra utfordringar. -->
     </or>
     <repeat from="0" upto="6"><match/></repeat>
     <match lemma="ubestridt" tags="adj.*"><select lemma="heva over tvil"/></match>
+  </rule>
+
+  <rule><match lemma="langt ifra" tags="adv"><select lemma="langt frå"/></match></rule>
+  <rule weight="2.0" c="nei, langt ifrå!">
+    <match lemma="langt ifra" tags="adv"><select lemma="langt ifrå"/></match>
+	<or>
+	  <match tags="cm"/>
+	  <match tags="sent.*"/>
+	</or>
   </rule>
   
 </lrx>
