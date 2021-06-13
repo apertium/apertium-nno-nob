@@ -1821,13 +1821,14 @@
   <rule><match lemma="tilsvare" tags="vblex.*"><select lemma="svare# til"/></match></rule>
   <rule><match lemma="omsetning" tags="n.*"><select lemma="omsetning"/></match></rule>
 
-  <rule><match lemma="angivelig" tags="adv"><select lemma="visstnok"/></match></rule>
+  <rule><match lemma="angivelig" tags="adv"><select lemma="etter seiande"/></match></rule>
   <rule weight="2.0">
-    <match lemma="," tags="sent.*"/>
+    <match tags="cm"/>
     <match lemma="angivelig" tags="adv">
       <select lemma="truleg"/>
     </match>
   </rule>
+
   <rule c="Can't even find 'attrå' used as verb in nno-corpus">
     <match lemma="begjære" tags="vblex.*"><select lemma="krevje"/></match>
   </rule>
