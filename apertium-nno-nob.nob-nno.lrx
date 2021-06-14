@@ -496,15 +496,24 @@
 
   <rule> <match lemma="bruk" tags="n.*"> <select lemma="bruk"/> </match> </rule>
 
-  <rule> <match lemma="beherske" tags="vblex.*"> <select lemma="meistre"/> </match> </rule>
+<rule> <match lemma="vake" tags="vblex.*"> <select lemma="vake"/> </match> </rule>
+  <rule weight="2.0">
+    <match lemma="vake" tags="vblex.pret">
+      <select lemma="vekke"/>
+    </match>
+    <repeat from="0" upto="1"><match tags="adj.*"/></repeat>
+    <match lemma="harme" tags="n.*"/>
+  </rule>
 
-  <rule> <match lemma="bevare" tags="vblex.*"> <select lemma="verne"/> </match> </rule>
+  <rule> <match lemma="beherske" tags="vblex.*"> <select lemma="meistre"/> </match> </rule>
+<rule> <match lemma="bevare" tags="vblex.*"> <select lemma="verne"/> </match> </rule>
   <rule weight="2.0">
     <match lemma="bevare" tags="vblex.imp">
       <select lemma="bevare"/>
     </match>
   </rule>
   <rule weight="2.0">
+  
     <match lemma="bevare" tags="vblex.pp">
       <select lemma="bevare"/>
     </match>
