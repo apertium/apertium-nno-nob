@@ -1651,7 +1651,7 @@
   <rule><match lemma="pågripe" tags="adj.*"><select lemma="arrestere"/></match></rule>
 
 
-  <!-- nok → endå vs nok -->
+  <!-- NOK: START -->
   <rule weight="2.0">
     <match tags="*"/>           <!-- but sent (below rule) will give 2 points to Endå -->
     <match lemma="nok" tags="adv"><select lemma="nok"/></match>
@@ -1749,6 +1749,29 @@
       <match tags="vblex.pres.pasv"/>
     </or>
   </rule>
+  <rule weight="3.07" c="dermed nok en → dermed nok ein">
+    <match lemma="dermed"/>
+    <match lemma="nok" tags="adv"><select lemma="endå"/></match>
+    <match lemma="en" tags="det.qnt.*"/>
+  </rule>
+  <rule weight="3.08" c="med det nok en → med det endå ein">
+    <match lemma="med"/>
+    <match lemma="den" tags="*.nt.*"/>
+    <match lemma="nok" tags="adv"><select lemma="endå"/></match>
+    <match tags="det.qnt.*.sg"/>
+  </rule>
+  <rule weight="3.09" c="og nok en → og endå ein">
+    <match lemma="og"/>
+    <match lemma="nok" tags="adv"><select lemma="endå"/></match>
+    <match tags="det.qnt.*.sg"/>
+  </rule>
+  <rule weight="3.10" c="(gå) på nok en smell → (gå) på endå ein smell">
+    <!-- TODO: vil me ha «endå» i «Haaland gjør seg klar til nok et fotballderby»? -->
+    <match tags="pr"/>
+    <match lemma="nok" tags="adv"><select lemma="endå"/></match>
+    <match tags="det.qnt.*.sg"/>
+  </rule>
+  <!-- NOK: END -->
 
   <rule><match lemma="i løpet av" tags="pr"><select lemma="i løpet av"/></match></rule>
   <rule weight="2.0">
