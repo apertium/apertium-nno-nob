@@ -3190,7 +3190,10 @@
       <choose><when>
         <test><equal><clip pos="1" side="tl" part="a_nom"/><lit-tag v="n"/></equal></test>
         <choose><when>
-          <test><not><equal><clip pos="1" side="tl" part="cas"/><lit v=""/></equal></not></test>
+          <test><and>
+            <not><equal><clip pos="1" side="tl" part="cas"/><lit v=""/></equal></not>
+            <not><equal><clip pos="1" side="tl" part="art"/><lit-tag v="ind"/></equal></not> <!-- to bilers bredde: no gen-drop on ind -->
+          </and></test>
           <append n="ntags"><lit-tag v="casedrop"/></append>
         </when></choose>
         <choose><when>
@@ -3722,6 +3725,7 @@
         <test><and>
           <equal><clip pos="1" side="sl" part="cas"/><lit-tag v="gen"/></equal>
           <equal><clip pos="1" side="tl" part="a_nom"/><lit-tag v="n"/></equal>
+          <not><equal><clip pos="1" side="tl" part="art"/><lit-tag v="ind"/></equal></not> <!-- to bilers bredde: no gen-drop on ind -->
         </and></test>
         <choose>
           <!-- Manual lists first: -->
