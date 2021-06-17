@@ -36,6 +36,10 @@
       <cat-item tags="n.*.ind"/>
       <cat-item tags="n.*.ind.*"/>
     </def-cat>
+    <def-cat n="nsplit">
+      <cat-item tags="n.*.cmp-split"/>
+      <cat-item tags="n.*.cmp-split.*"/>
+    </def-cat>
     <def-cat n="nind_nogen">
       <cat-item tags="n.*.ind"/>
       <cat-item tags="n.*.ind.sl-nt"/>
@@ -2094,6 +2098,31 @@
         <out><b pos="1"/></out>
         <call-macro n="out_bi-gen-prep"><with-param pos="1"/><with-param pos="3"/></call-macro>
         <out><b pos="2"/><chunk><clip pos="2" part="whole"/></chunk></out>
+      </action>
+    </rule>
+
+    <rule comment="PREP_GEN NGEN NSPLIT CNJCOO NIND: naboens bil- og båtkvern => bil- og båtkvernen til naboen
+                   verdens kraftigste informasjons- og kommunikasjonsteknologi => verdast kraftigaste informasjons- og kommunikasjonsteknologi
+                   nind makes sure we don't match 'min Per(np)' nor 'min bils(gen)'">
+      <pattern>
+        <pattern-item n="prep_gen"/>
+        <pattern-item n="ngen"/>
+        <pattern-item n="nsplit"/>
+        <pattern-item n="cnjcoo"/>
+        <pattern-item n="nind"/>
+      </pattern>
+      <action>
+        <call-macro n="set_ana"><with-param pos="5"/></call-macro>
+        <call-macro n="switch_cases"><with-param pos="3"/><with-param pos="2"/></call-macro>
+        <call-macro n="out_det_when_adjlike"><with-param pos="3"/><with-param pos="2"/></call-macro>
+        <out>
+          <chunk><clip pos="3" part="whole"/></chunk><b/>
+          <chunk><clip pos="4" part="whole"/></chunk><b/>
+        </out>
+        <call-macro n="out_ndef"><with-param pos="5"/><with-param pos="3"/></call-macro>
+        <out><b/></out>
+        <call-macro n="out_bi-gen-prep"><with-param pos="1"/><with-param pos="5"/></call-macro>
+        <out><b/><chunk><clip pos="2" part="whole"/></chunk></out>
       </action>
     </rule>
 
