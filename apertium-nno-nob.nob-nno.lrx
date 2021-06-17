@@ -513,7 +513,7 @@
     </match>
   </rule>
   <rule weight="2.0">
-  
+
     <match lemma="bevare" tags="vblex.pp">
       <select lemma="bevare"/>
     </match>
@@ -546,8 +546,8 @@
   <rule> <match lemma="anklage" tags="adj.*"> <select lemma="skulde"/> </match> </rule>
 
   <rule> <match lemma="skylde" tags="vblex.*"> <select lemma="skylde"/> </match> </rule>
-  <rule weight="2.0"  c="skulde på"> 
-    <match lemma="skylde" tags="vblex.*"> <select lemma="skulde"/> </match> 
+  <rule weight="2.0"  c="skulde på">
+    <match lemma="skylde" tags="vblex.*"> <select lemma="skulde"/> </match>
     <match lemma="på"/>
   </rule>
 
@@ -2676,7 +2676,7 @@
   <rule><match lemma="fryse" tags="adj.*"><select lemma="fryse"/></match></rule>
 
   <rule><match lemma="forskjellig" tags="adj.*"><select lemma="ulik"/></match></rule>
-  
+
   <rule><match lemma="løpende" tags="adj.*"><select lemma="løpende"/></match></rule>
   <rule weight="2.0">
     <or>
@@ -2879,7 +2879,7 @@
   </rule>
   <!-- OPPGI: END -->
 
- 
+
   <rule c="framstår som surrealistisk"><match lemma="framstå# som" tags="vblex.*"><select lemma="verke"/></match></rule>
   <rule c="framstår som en raring" weight="2.0">
     <match lemma="framstå# som" tags="vblex.*"><select lemma="verke# som"/></match>
@@ -3206,7 +3206,7 @@
 
   <!-- ANKOMME: START -->
   <rule><match lemma="ankomme" tags="vblex.*"><select lemma="komme"/></match></rule>
-  
+
   <rule weight="2.0" c="har ankommet Norge">
     <match lemma="ankomme" tags="vblex.*"><select lemma="komme# til"/></match>
     <repeat from="0" upto="2">
@@ -3953,7 +3953,7 @@
     <match tags="sent.clb"/>
   </rule>
 
-  <rule weight="2.0"> 
+  <rule weight="2.0">
     <repeat from="0" upto="1">
     <or>
       <match lemma="skulle"/>
@@ -3965,41 +3965,41 @@
   </repeat>
     <match lemma="anta" tags="vblex.*"><select lemma="gå# ut frå"/></match>
     <match tags="vblex.*"/>
-  </rule> 
+  </rule>
 
-  <rule> 
+  <rule>
     <match lemma="anta" tags="vblex.*"><select lemma="gå# ut frå"/></match>
     <match lemma="at"/>
-  </rule> 
+  </rule>
 
-  <rule> 
+  <rule>
     <match lemma="anta" tags="vblex.pret"><select lemma="gå# ut frå"/></match>
     <or>
       <match tags="pr"/>
       <match lemma="i dag"/>
       <match lemma="i går"/>
     </or>
-  </rule> 
+  </rule>
 
-  <rule> 
+  <rule>
     <match lemma="anta" tags="vblex.pres"><select lemma="gå# ut frå"/></match>
     <or>
       <match tags="pr"/>
       <match lemma="i dag"/>
       <match lemma="i går"/>
     </or>
-  </rule> 
+  </rule>
 
-  <rule> 
+  <rule>
     <match lemma="bli# antatt" tags="vblex.pres"><select lemma="vere# grunn til å tru"/></match>
     <match tags="at"/>
-  </rule> 
+  </rule>
 
   <rule>
     <match tags="det"/>
     <match lemma="være# antatt" tags="vblex.pres"><select lemma="vere# grunn til å tru"/></match>
     <match tags="at"/>
-  </rule> 
+  </rule>
 
   <rule weight="3.0"> <!-- ...han antas å være gjerningspersonen... -->
     <match lemma="antas å være" tags="adv"><select lemma="er mistenkt for å vere"/></match>
@@ -4029,10 +4029,10 @@
   <rule> <!-- De antas å være bortført av samme gruppe. -->
     <match lemma="antas å være" tags="adv"><select lemma="er truleg"/></match>
   </rule>
-  <rule> 
+  <rule>
     <match lemma="det antas at" tags="adv"><select lemma="det er grunn til å tru at"/></match>
   </rule>
-  <rule> 
+  <rule>
     <or>
       <match lemma="skulle"/>
       <match lemma="måtte"/>
@@ -4042,7 +4042,7 @@
     </or>
     <match lemma="det antas at" tags="adv"><select lemma="ein gå ut frå at"/></match>
   </rule>
-  <rule> 
+  <rule>
     <or>
       <match lemma="skulle"/>
       <match lemma="måtte"/>
@@ -4208,7 +4208,7 @@
     </repeat>
     <or>
       <match lemma="skade"/>
-      <match lemma="ødeleggelse"/>    
+      <match lemma="ødeleggelse"/>
     </or>
    </rule>
 
@@ -4225,7 +4225,7 @@
     <match tags="n.*"/>
   </rule>
 
-  <rule> 
+  <rule>
     <match lemma="anrette" tags="adj.pp.*"><select lemma="lage# til"/></match>
   </rule>
 
@@ -4234,9 +4234,9 @@
     <repeat from="0" upto="3">
       <or>
         <match tags="adj.*"/>
-        <match tags="adv"/>  
+        <match tags="adv"/>
         <match tags="pr"/>
-        <match tags="n.*"/>  
+        <match tags="n.*"/>
       </or>
     </repeat>
     <match lemma="at"/>
@@ -4258,7 +4258,7 @@
     <repeat from="0" upto="2">
       <or>
         <match tags="adj.*"/>
-        <match tags="adv"/>   
+        <match tags="adv"/>
       </or>
     </repeat>
     <match lemma="usikker" tags="adj.*"><select lemma="uviss"/></match>
@@ -4525,7 +4525,7 @@
   </rule>
 
   <rule><match lemma="angående" tags="pr.*"><select lemma="rundt"/></match></rule>
-  
+
   <rule weight="2.0">
     <match lemma="angående" tags="pr.*">
       <select lemma="om"/>
@@ -4726,7 +4726,7 @@
     <match lemma="å"/>
     <match lemma="komme# til enighet" tags="vblex.*"><select lemma="semjast" tags="vblex.*"/></match>
   </rule>
-  <rule> 
+  <rule>
       <match lemma="å"/>
     <match lemma="oppnå# enighet" tags="vblex.*"><select lemma="semjast" tags="vblex.*"/></match>
   </rule>
@@ -4734,11 +4734,11 @@
   <rule>
     <match lemma="komme# til enighet" tags="vblex.*"><select lemma="bli# samde" tags="vblex.*"/></match>
   </rule>
-  <rule> 
+  <rule>
     <match lemma="oppnå# enighet" tags="vblex.*"><select lemma="bli# samde" tags="vblex.*"/></match>
   </rule>
 
-  <rule> 
+  <rule>
     <match lemma="bli"/>
     <match lemma="den"/>
     <match lemma="ikke oppnådd enighet" tags="adv"><select lemma="inga semje" tags="adv"/></match>
@@ -4749,7 +4749,7 @@
   <rule> <match lemma="anse" tags="adj.*"> <select lemma="verdsetje"/> </match> </rule>
   <rule> <match lemma="anse" tags="adj.*"> <select lemma="sjå# på"/> </match> </rule>
 
-  <rule weight="2.0"> 
+  <rule weight="2.0">
     <match tags="det.*"/>
     <repeat from="0" upto="2">
     <or>
@@ -4779,7 +4779,7 @@
       <match tags="np.*"/>
      </or>
   </rule>
-  <rule weight="2.0"> 
+  <rule weight="2.0">
     <or>
       <match lemma="vel"/>
       <match lemma="høyt"/>
@@ -4789,7 +4789,7 @@
     </or>
     <match lemma="anse" tags="vblex.*"><select lemma="respektere"/></match>
   </rule>
-    <rule weight="2.0"> 
+    <rule weight="2.0">
     <or>
       <match lemma="vel"/>
       <match lemma="høyt"/>
@@ -4799,7 +4799,7 @@
     </or>
     <match lemma="anse" tags="adj.*"><select lemma="respektere"/></match>
   </rule>
-  <rule> 
+  <rule>
     <match lemma="anse"><select lemma="rekne"/></match>
     <repeat from="0" upto="2">
     <or>
@@ -4813,11 +4813,11 @@
       <match lemma="for"/>
     </or>
   </rule>
-  <rule> 
+  <rule>
     <match lemma="anse# for"><select lemma="rekne# for"/></match>
     <match lemma="å"/>
   </rule>
-  <rule weight="2.0"> 
+  <rule weight="2.0">
     <match lemma="anse" tags="vblex.*"><select lemma="meine"/></match>
     <match lemma="seg"/>
     <match lemma="å"/>
@@ -4826,34 +4826,34 @@
  <!-- ANSE: END -->
 
  <!-- FORBLI: START -->
-  <rule> 
+  <rule>
     <match lemma="ikke"/>
     <match lemma="forbli" tags="vblex.pres"><select lemma="bli# verande"/></match>
   </rule>
-  <rule> 
+  <rule>
     <match lemma="forbli" tags="vblex.pres"><select lemma="bli# verande"/></match>
     <match lemma="ikke"/>
   </rule>
-  <rule> 
+  <rule>
     <match lemma="ikke"/>
     <match lemma="forbli" tags="vblex.pret"><select lemma="bli# verande"/></match>
   </rule>
-  <rule> 
+  <rule>
     <match lemma="forbli" tags="vblex.pret"><select lemma="bli# verande"/></match>
     <match lemma="ikke"/>
   </rule>
-  <rule weight="2.0"> 
+  <rule weight="2.0">
     <repeat from="0" upto="1">
       <match lemma="ikke"/>
     </repeat>
     <match lemma="forbli" tags="vblex.*"><select lemma="bli# verande"/></match>
     <match lemma="i"/>
   </rule>
-  <rule> 
+  <rule>
     <match lemma="ikke"/>
     <match lemma="forbli" tags="vblex.inf"><select lemma="halde# fram med å vere"/></match>
   </rule>
-  <rule> 
+  <rule>
     <match lemma="forbli" tags="vblex.*"><select lemma="halde# fram med å vere"/></match>
   </rule>
  <!-- FORBLI: END -->
@@ -5203,7 +5203,7 @@
     <match lemma="ilegge" tags="vblex.*.pasv"><select lemma="få" tags="vblex.pres"/></match>
   </rule>
  <!-- bot ilegges –> bot blir skriven ut -->
-  <rule weight="2.5"> 
+  <rule weight="2.5">
     <match lemma="bot"/>
     <match lemma="ilegge" tags="vblex.*.pasv"><select lemma="skrive# ut" tags="vblex.*"/></match>
   </rule>
@@ -5270,7 +5270,7 @@
   </rule>
   <!-- END: uforbeholden -->
 
-  <!-- BEGIN: beklagelse -->  
+  <!-- BEGIN: beklagelse -->
   <rule weight="2.5">
     <match lemma="uttrykke"/>
     <match lemma="beklagelse" tags="n.*"><select lemma="misnøye"/></match>
@@ -5322,7 +5322,7 @@
   <rule weight="0.3">
     <match lemma="beklagelse" tags="n.*"><select lemma="unnskyldning"/>
   </match></rule>
-  <!-- END: beklagelse -->  
+  <!-- END: beklagelse -->
 
   <!-- START: meget -->
   <rule><match lemma="meget" tags="adv"><select lemma="svært" tags="adv"/></match></rule>
@@ -5375,7 +5375,7 @@
 	</or>
   </rule>
   <!-- END: meget, todo: "han reiste meget hele året rundt" -->
-  
+
   <!-- START: ukentlig -->
   <rule weight="2.0" c="bussen går kvar veke">
     <match lemma="ukentlig" tags="adv"><select lemma="kvar veke"/></match>
@@ -5415,7 +5415,7 @@
 	<match tags="n.*.*.ind"/>
   </rule>
   <!-- END: ukentlig, todo: haltande adjektivløysingar, særleg "vekevis", ofte overflødig? -->
-  
+
   <rule><match lemma="ester" tags="n.m.*"><select lemma="estar"/></match></rule>
   <!-- todo: kontekst for "ein ester", organisk sambinding -->
 
@@ -5429,7 +5429,7 @@
   <rule weight="2.0" c="gammal stordom">
     <match lemma="fordums storhet" tags="adv"><select lemma="gammal stordom"/></match>
   </rule>
-  <rule weight="2.0" c="teknologigiganten">  
+  <rule weight="2.0" c="teknologigiganten">
     <match tags="n.*.*.*.cmp"/>
     <match lemma="storhet" tags="n.m.*"><select lemma="gigant"/></match>
   </rule>
@@ -5448,7 +5448,7 @@
     <match lemma="storhet" tags="n.m.pl.*"><select lemma="kjempe"/></match>
   </rule>
   <!-- END: storhet -->
-  
+
   <!-- START: bestemmelse (avgjerd) -->
   <rule><match lemma="bestemmelse" tags="n.*"><select lemma="føresegn"/></match></rule>
   <rule weight="2.0" c="bryte reglane">
@@ -5481,7 +5481,7 @@
     <match lemma="fattet" tags="adj.*"><select lemma="teken" tags="adj.*"/></match>
   </or>
   </rule>
-  <rule weight="2.0" c="arbeidstidsregel">  
+  <rule weight="2.0" c="arbeidstidsregel">
     <match tags="n.*.*.*.cmp"/>
     <match lemma="bestemmelse" tags="n.*"><select lemma="regel"/></match>
   </rule>
@@ -5557,7 +5557,7 @@
     <match lemma="anvendelse" tags="n.m.pl.*"><select lemma="bruksmåte"/></match>
   </rule>
   <!-- END: anvendelse todo: ? -->
-  
+
   <!-- START: ledsager -->
   <rule><match lemma="ledsager" tags="n.*"><select lemma="følgjesperson"/></match></rule>
   <rule weight="2.0" c="med følgje">
@@ -5832,10 +5832,10 @@
     <match lemma="tørre" tags="vblex.inf"><select lemma="tørke" tags="vblex.*"/></match>
     <match lemma="tåre" tags="n.*"/>
   </rule>
-  <!-- TODO: Forvekslar verb/adjektiv her: "De må få på seg tørre klær, og så må de tørre tårene." 
-  => "Dei må få på seg _tørke_ klede, og så må dei _tørre_ tårene." Adjektivet blir tolka som 
+  <!-- TODO: Forvekslar verb/adjektiv her: "De må få på seg tørre klær, og så må de tørre tårene."
+  => "Dei må få på seg _tørke_ klede, og så må dei _tørre_ tårene." Adjektivet blir tolka som
   infinitiv av å tørre¹, verbet som adjektivet. -->
-  
+
   <rule><match lemma="samt" tags="adv"><select lemma="og dessutan"/></match></rule>
 
   <rule><match lemma="anerkjennende" tags="adj.*"><select lemma="anerkjennande"/></match></rule>
@@ -5894,7 +5894,7 @@
     <repeat from="0" upto="5"><match/></repeat>
     <match lemma="påregne" tags="vblex.pp"><select lemma="pårekne"/></match>
   </rule>
-  
+
   <rule><match lemma="befestning" tags="n.*"><select lemma="forskansing"/></match></rule>
   <rule><match lemma="befesting" tags="n.*"><select lemma="forskansing"/></match></rule>
   <rule weight="2.0" c="styrking av">
@@ -5924,7 +5924,7 @@
       <match lemma="oss"/>
 	</or>
   </rule>
-  
+
   <rule><match lemma="berikelse" tags="n.*"><select lemma="beriking"/></match></rule>
   <rule weight="2.0" c="ein stimulans">
     <match lemma="en"/>
@@ -5949,7 +5949,7 @@
       <match lemma="desember" tags="n.*.*.*.cmp.guio"><select lemma="desember"/></match>
 	</or>
 	<match lemma="måned" tags="n.*"><select lemma="månad"/></match>
-  </rule>	
+  </rule>
   <rule weight="2.0" c="den våtaste og nest varmaste aprilmånaden">
     <match lemma="den"/>
     <repeat from="0" upto="5">
@@ -6051,7 +6051,7 @@
     <repeat from="0" upto="3"><match tags="*"/></repeat>
     <match lemma="for" tags="pr"><select lemma="på"/></match>
   </rule>
-  
+
   <rule><match lemma="løpe# ut" tags="vblex.*"><select lemma="springe# ut"/></match></rule>
   <rule weight="5.0" c="renne ut i sanden">
     <match lemma="løpe# ut" tags="vblex.*"><select lemma="renne# ut"/></match>
@@ -6169,7 +6169,7 @@
     <match lemma="risiko" tags="n.m.sg.ind"/>
   </rule>
 
-<!-- BEGIN: unnta --> 
+<!-- BEGIN: unnta -->
   <rule><match lemma="unnta" tags="vblex.*"><select lemma="gjere# unntak for" tags="vblex.*"/></match></rule>
   <rule><match lemma="unnta" tags="adj.*"><select lemma="unnata" tags="adj.*"/></match></rule>
   <rule><match lemma="offentlighet" tags="n.*"><select lemma="offentlegheit" tags="n.*"/></match></rule>
@@ -6340,7 +6340,7 @@
     <match lemma="være" tags="vblex.*"/>
     <match lemma="unnta" tags="vblex.pp"><select lemma="unnata" tags="vblex.pp"/></match>
   </rule>
-<!-- END: unnta; TODO: Fungerer bra på det mest frekvente ('bortsett frå', 'halde unna offentleg innsyn'), 
+<!-- END: unnta; TODO: Fungerer bra på det mest frekvente ('bortsett frå', 'halde unna offentleg innsyn'),
 men feilar mange stader, særleg i kontekstar med 'være' ('a er unntatt forbudet'). Både partisippbøying og
 preposisjonar gir ekstra utfordringar. -->
 
@@ -6360,7 +6360,7 @@ preposisjonar gir ekstra utfordringar. -->
   </rule>
 
   <rule><match lemma="tilberedning" tags="n.*"><select lemma="tillaging"/></match></rule>
-  
+
   <rule><match lemma="drøye" tags="adv"><select lemma="vel"/></match></rule>
   <rule><match lemma="drøyt" tags="adv"><select lemma="vel"/></match></rule>
   <rule weight="2.0" c="øya ligg godt og vel fem kilometer frå kysten">
@@ -6384,7 +6384,7 @@ preposisjonar gir ekstra utfordringar. -->
       <match lemma="drøyt" tags="adv"><select lemma="godt og vel"/></match>
 	</or>
   </rule>
-  
+
   <rule><match lemma="anslagsvis" tags="adv"><select lemma="anslagsvis"/></match></rule>
   <rule weight="2.0" c="rundt rekna tre millionar">
     <match lemma="anslagsvis" tags="adv"><select lemma="om lag"/></match>
@@ -6394,7 +6394,7 @@ preposisjonar gir ekstra utfordringar. -->
 	<match tags="cm"/>
     <match lemma="anslagsvis" tags="adv"><select lemma="rundt rekna"/></match>
   </rule>
-  
+
   <rule><match lemma="tidligere" tags="adv"><select lemma="tidlegare"/></match></rule>
   <rule weight="2.0" c="enn før">
     <or>
@@ -6431,7 +6431,7 @@ preposisjonar gir ekstra utfordringar. -->
 	  <match tags="det.qnt.*.sg"/>
 	</or>
   </rule>
-  
+
   <rule><match lemma="oppsummere" tags="vblex.*"><select lemma="oppsummere"/></match></rule>
   <rule weight="2.0" c=", oppsummerte Giske.">
   	<match tags="cm.*"/>
@@ -6454,7 +6454,7 @@ preposisjonar gir ekstra utfordringar. -->
 	  <match tags="adj.*"/>
 	  <match tags="n.*"/>
   </rule>
-  
+
   <rule><match lemma="kreve" tags="vblex.*"><select lemma="krevje"/></match></rule>
   <rule weight="2.0" c="det som krevst">
     <match lemma="kreve" tags="vblex.pres.pasv"><select lemma="krevjast"/></match>
@@ -6487,7 +6487,7 @@ preposisjonar gir ekstra utfordringar. -->
     <match lemma="kreve" tags="vblex.pres.pasv"><select lemma="trengast"/></match>
   	<match tags="det.qnt.*.sg"/>
   </rule>
-  
+
   <rule><match lemma="lide" tags="vblex.*"><select lemma="lide"/></match></rule>
   <rule><match lemma="li" tags="vblex.*"><select lemma="lide"/></match></rule>
   <rule weight="2.5" c="det lei mot kveld">
@@ -6512,13 +6512,13 @@ preposisjonar gir ekstra utfordringar. -->
     <match lemma="utsending" tags="n.m.*"><select lemma="utsending" tags="n.f.*"/></match>
 	<match lemma="av"/>
   </rule>
-  
+
   <rule><match lemma="spesialutsending" tags="n.m.*"><select lemma="spesialutsending" tags="n.m.*"/></match></rule>
   <rule weight="2.0" c="spesialutsendinga av">
     <match lemma="spesialutsending" tags="n.m.*"><select lemma="spesialutsending" tags="n.f.*"/></match>
 	<match lemma="av"/>
   </rule>
-  
+
   <rule><match lemma="føle" tags="vblex.*"><select lemma="kjenne"/></match></rule>
   <rule><match lemma="føle" tags="adj.*"><select lemma="kjenne"/></match></rule>
   <rule weight="2.0" c="kjenne seg">
@@ -6572,7 +6572,7 @@ preposisjonar gir ekstra utfordringar. -->
 	<match lemma="på"/>
     <match lemma="følelse" tags="n.*"><select lemma="følelse"/></match>
   </rule>
-  
+
   <rule><match lemma="forestående" tags="adj.*"><select lemma="kommande"/></match></rule>
   <rule><match lemma="nær forestående" tags="adj.*"><select lemma="kommande"/></match></rule>
   <rule><match lemma="nært forestående" tags="adj.*"><select lemma="kommande"/></match></rule>
@@ -6609,7 +6609,7 @@ preposisjonar gir ekstra utfordringar. -->
   	  <match tags="np.*"/>
 	</or>
   </rule>
-  
+
   <rule><match lemma="utstrakt" tags="adj.*"><select lemma="utstrekt"/></match></rule>
   <rule weight="2.0" c="utbreidd bruk av">
     <match lemma="utstrakt" tags="adj.*"><select lemma="utbreidd"/></match>
@@ -6627,7 +6627,7 @@ preposisjonar gir ekstra utfordringar. -->
 	  <match lemma="bruk" tags="n.*"/>
 	  <match lemma="misbruk" tags="n.*"/>
 	</or>
-  </rule>  
+  </rule>
   <rule weight="2.0" c="omfattande samarbeid">
     <match lemma="utstrakt" tags="adj.*"><select lemma="omfattande"/></match>
 	<or>
@@ -6656,7 +6656,7 @@ preposisjonar gir ekstra utfordringar. -->
 	  <match lemma="testing" tags="n.*"/>
 	  <match lemma="festing" tags="n.*"/>
 	</or>
-  </rule>  
+  </rule>
   <rule weight="2.0" c="omfattande internasjonal kriminalitet">
     <match lemma="utstrakt" tags="adj.*"><select lemma="omfattande"/></match>
 	<match tags="adj.*"/>
@@ -6790,7 +6790,7 @@ preposisjonar gir ekstra utfordringar. -->
 	</or>
     <match lemma="bestige" tags="adj.pp.*"><select lemma="bedekke"/></match>
   </rule>
-  
+
   <!-- BEGIN: foran (føre, framfor, framme, før (framom, framanfor o.fl.)) -->
   <rule><match lemma="foran" tags="pr"><select lemma="framfor"/></match></rule>
   <rule><match lemma="stå# foran" tags="vblex.*"><select lemma="stå# framfor"/></match></rule>
@@ -7202,7 +7202,7 @@ preposisjonar gir ekstra utfordringar. -->
     </or>
     <match lemma="foreta" tags="adj.pp.*"><select lemma="gjennomføre"/></match>
   </rule>
-  
+
   <rule><match lemma="bestride" tags="vblex.*"><select lemma="avvise"/></match></rule>
   <rule><match lemma="bestridt" tags="adj.*"><select lemma="omstridd"/></match></rule>
   <rule weight="2.0" c="setje spørsmålsteikn ved">
@@ -7233,7 +7233,7 @@ preposisjonar gir ekstra utfordringar. -->
 	<match tags="adj.*"/>
     <match lemma="bestridt" tags="adj.*"><select lemma="omstridd"/></match>
   </rule>
-  
+
   <rule><match lemma="ubestridt" tags="adj.*"><select lemma="suveren"/></match></rule>
   <rule weight="2.2">
     <match lemma="ubestridt" tags="adj.*"><select lemma="udiskutabel"/></match>
@@ -7275,5 +7275,11 @@ preposisjonar gir ekstra utfordringar. -->
 	  <match tags="sent.*"/>
 	</or>
   </rule>
-  
+
+  <rule><match lemma="etterlate" tags="vblex.*"><select lemma="late# etter seg"/></match></rule>
+  <rule><match lemma="etterlate" tags="adj.*"><select lemma="etterlate"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="etterlate" tags="vblex.*"><select lemma="etterlate"/></match>
+    <match lemma="seg"/>
+  </rule>
 </lrx>
