@@ -779,6 +779,9 @@
 
   <!-- UTSPILLE: START -->
   <rule>
+    <match lemma="utspille" tags=".*"><select lemma="utmanøvrere"/></match>
+  </rule>
+  <rule weight="2.0">
     <match lemma="utspille" tags="vblex.*"><select lemma="gå# føre"/></match>
     <match lemma="seg"/>
   </rule>
@@ -810,10 +813,6 @@
   </rule>
   <rule>
     <match lemma="være# utspilt" tags="vblex.pret"><select lemma="vere# utmanøvrert"/></match>
-  </rule>
-  <rule weight="2.0">
-    <match lemma="bli"/>
-    <match lemma="utspille" tags=".*.pp"><select lemma="utmanøvrere"/></match>
   </rule>
   <!-- UTSPILLE: END -->
 
