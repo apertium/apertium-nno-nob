@@ -384,6 +384,7 @@
     </match>
   </rule>
 
+
   <rule> <match lemma="rystelse" tags="n.*"> <select lemma="risting"/> </match> </rule>
   <rule weight="2.0">
     <or>
@@ -1986,6 +1987,7 @@
       <match lemma="areal"/>
       <match lemma="land"/>
       <match lemma="område"/>
+      <match lemma="grunn"/>
     </or>
   </rule>
 
@@ -2057,6 +2059,8 @@
   </rule>
 
 
+
+
 <!-- OK avgi + (sin) + innstilling → levere innstilling -->
   <rule weight="2.0">
     <match lemma="avgi" tags="vblex.*"><select lemma="levere" tags="vblex.*"/></match>
@@ -2067,7 +2071,7 @@
   </rule>
 
 
-  <!-- ? avgitte stemmer -->
+  <!-- OK avgitte stemmer -> stemmer  -->
   <rule weight="8.0">
         <or>
       <match lemma="den"><select lemma=""/></match>
@@ -2093,7 +2097,7 @@
   </rule>
 
 
-  <!--  avgi poeng → gje frå seg poeng -->
+  <!-- OK avgi poeng → gje frå seg poeng -->
   <rule weight="2.0">
         <match lemma="avgi" tags="vblex.*"><select lemma="gje# frå seg"/></match>
     <or>
