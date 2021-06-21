@@ -2105,6 +2105,18 @@
   </rule>
 
 
+ <!-- avgi stemme til → gje stemme til -->
+  <rule weight="4.0">
+        <match lemma="avgi" tags="vblex.*"><select lemma="gje"/></match>
+    <or>
+      <match lemma="stemme" tags="n.*"/>
+    </or>
+    <or>
+      <match lemma="til"/>
+    </or>
+  </rule>
+
+
 
   <!-- merke¹ is transitive: -->
   <rule><match lemma="merke" tags="vblex.*"><select lemma="merke"/></match></rule>
