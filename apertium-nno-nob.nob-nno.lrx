@@ -850,6 +850,20 @@
       <match lemma="noe"/>
     </or>
   </rule>
+  <rule weight="2.0" c="brenne ned huset">
+    <match lemma="brenne" tags="vblex.*"><select lemma="brenne¹"/></match>
+    <match lemma="ned"/>
+    <or>
+      <match tags="n.*"/>
+    </or>
+  </rule>
+    <rule weight="2.0" c="brenne ned til grunnen">
+    <match lemma="brenne" tags="vblex.*"><select lemma="brenne"/></match>
+    <match lemma="ned"/>
+    <or>
+      <match tags="pr"/>
+    </or>
+  </rule>
 
   <rule> <match lemma="foreligge" tags="vblex.*"> <select lemma="finnast"/> </match> </rule>
   <rule> <match lemma="foreligge" tags="adj.*"> <select lemma="gjelde"/> </match> </rule>
