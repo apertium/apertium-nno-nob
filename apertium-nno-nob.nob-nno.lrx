@@ -3316,8 +3316,15 @@
   <rule><match lemma="forsiktig" tags="adj.*"><select lemma="forsiktig"/></match></rule>
   <rule weight="2.0" c="gå forsiktig (fram)">
       <match tags="vblex.*"/>
-      <repeat from="0" upto="1"><match tags="prn.*"/></repeat>
-      <match lemma="forsiktig" tags="adj.sint.pst.nt.sg.ind"><select lemma="varsam"/></match>
+      <repeat from="0" upto="2">
+      <or>
+        <match tags="prn.*"/>
+        <match tags="n.*"/>
+        <match tags="adj.*"/>
+        <match tags="adv"/>
+      </or>
+      </repeat>
+      <match lemma="forsiktig" tags="adj.sint.pst.*.sg.ind"><select lemma="varsam"/></match>
       <or>
           <match tags="sent.*"/>
           <match tags="adv"/>
