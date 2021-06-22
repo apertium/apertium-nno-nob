@@ -272,7 +272,7 @@ test: all test-progression
 
 test-progression: all
 	t/progression translate
-	t/progression diff-expected || true # work in progress, allow failures for now
+	t/progression diff-expected
 
 update-progression: all
 	t/progression translate
