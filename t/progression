@@ -17,8 +17,9 @@ difs () {
     return ${errs}
 }
 wdif () {
+    colorspec=$1
     if command -V dwdiff &>/dev/null; then
-        dwdiff --color --diff-input
+        dwdiff --color="${colorspec}" --diff-input
     else
         cat
     fi
@@ -27,16 +28,19 @@ dif1 () {
     ref=$1
     name=$2
     case ${ref} in
-        expected) reffile=tests/out/"${name}.${step}".expected.txt ;;
-        gold)     reffile=tests/"${name}.${step}".gold.txt ;;
-        *) echo "ERROR bug in call to dif1" >&2; exit 1 ;;
+        expected) colorspec=bcyan,green
+                  reffile=tests/out/"${name}.${step}".expected.txt ;;
+        gold) colorspec=bcyan,brown
+              reffile=tests/"${name}.${step}".gold.txt ;;
+        *)
+            echo "ERROR bug in call to dif1" >&2; exit 1 ;;
     esac
     (
         set -o pipefail
         diff -U0 -I'^nno-nob\|AP_SRC'                  \
              tests/out/"${name}"."${step}".current.txt \
              "${reffile}"                              \
-            | wdif
+            | wdif "${colorspec}"
     )
 }
 
