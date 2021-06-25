@@ -5012,6 +5012,18 @@
     <or>
       <match tags="adv"/>
       <match tags="adj.*"/>
+      <match tags="n.*"/>
+    </or>
+    </repeat>
+    <match lemma="situasjon"/>
+</rule>
+<rule weight="2.0">
+  <match lemma="uholdbar" tags="adj.*"><select lemma="vanskeleg"/></match>
+    <match lemma="og"/>
+    <repeat from="0" upto="2">
+    <or>
+      <match tags="adv"/>
+      <match tags="adj.*"/>
     </or>
     </repeat>
     <match lemma="situasjon"/>
