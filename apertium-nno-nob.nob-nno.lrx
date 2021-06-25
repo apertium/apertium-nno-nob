@@ -3751,7 +3751,8 @@
     </or>
   </rule>
 
-  <rule><match lemma="ufortrødent" tags="adv"><select lemma="jamt og trutt"/></match></rule>
+<!--ufortrøden: start-->
+  <rule><match lemma="ufortrødent" tags="adv"><select lemma="heilhjarta"/></match></rule>
   <rule weight="2.0">
     <match lemma="ufortrødent" tags="adv"><select lemma="uforstyrra"/></match>
     <match lemma="videre"/>
@@ -3760,15 +3761,16 @@
     <match lemma="like"/>
     <match lemma="ufortrødent" tags="adv"><select lemma="jamt"/></match>
   </rule>
-  <rule weight="2.0">
+  <rule weight="2.5">
     <match lemma="ufortrødent" tags="adv"><select lemma="jamt"/></match>
     <or>
-      <match lemma="i"/>
+      <match lemma="utenfor"/>
       <match lemma="av"/>
       <match lemma="på"/>
       <match lemma="med"/>
       <match lemma="mot"/>
       <match lemma="mellom"/>
+      <match lemma="i"/>
     </or>
   </rule>
   <rule weight="2.0">
@@ -3784,6 +3786,7 @@
     </or>
     <match lemma="ufortrøden" tags="adj.*"><select lemma="vedhaldande"/></match>
   </rule>
+<!--ufortrøden: end-->
 
   <rule><match lemma="middel" tags="n.*"><select lemma="middel"/></match></rule>
   <rule weight="2.0">
