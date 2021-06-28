@@ -554,6 +554,50 @@
 
   <rule> <match lemma="trygghet" tags="n.*"> <select lemma="tryggleik"/> </match> </rule>
 
+<!--ANTAGELSE/ANTAKELSE: START-->
+<rule> <match lemma="antagelse" tags="n.*"> <select lemma="antaking"/> </match> </rule>
+<rule> <match lemma="antakelse" tags="n.*"> <select lemma="antaking"/> </match> </rule>
+<rule weight="2.0"  c="ei hypotese">
+  <match lemma="en"/>
+  <match lemma="antakelse" tags="n.*.*.ind"> <select lemma="hypotese"/> </match> 
+</rule>
+<rule weight="2.0"  c="ei hypotese">
+  <match lemma="en"/>
+  <match lemma="antagelse" tags="n.*.*.ind"> <select lemma="hypotese"/> </match> 
+</rule>
+<rule weight="2.0"  c="denne vurderinga">
+  <or>
+    <match lemma="den"/>
+    <match lemma="denne"/>
+  </or>
+  <match lemma="antakelse" tags="n.*.*.def"> <select lemma="vurdering"/> </match> 
+</rule>
+<rule weight="2.0"  c="denne vurderinga">
+  <or>
+    <match lemma="den"/>
+    <match lemma="denne"/>
+  </or>
+  <match lemma="antagelse" tags="n.*.*.def"> <select lemma="vurdering"/> </match> 
+</rule>
+<rule weight="2.0" c="basere på gjetting">
+  <or>
+    <match lemma="basere"/>
+    <match lemma="bygge"/>
+  </or>
+  <match lemma="på"/>
+  <repeat from="0" upto="2"><match tags="adj.*"/></repeat>
+  <match lemma="antakelse" tags="n.*"> <select lemma="gjetting"/> </match> 
+</rule>
+<rule weight="2.0" c="basere på gjetting">
+  <or>
+    <match lemma="basere"/>
+    <match lemma="bygge"/>
+  </or>
+  <match lemma="på"/>
+  <repeat from="0" upto="2"><match tags="adj.*"/></repeat>
+  <match lemma="antagelse" tags="n.*"> <select lemma="gjetting"/> </match> 
+</rule>
+<!--ANTAGELSE/ANTAKELSE: END-->
 
   <!-- antall → mengd / tal / talet på -->
   <rule weight="1.0" c="default talet på">
