@@ -598,6 +598,31 @@
   <match lemma="antagelse" tags="n.*"> <select lemma="gjetting"/> </match> 
 </rule>
 <!--ANTAGELSE/ANTAKELSE: END-->
+<!--USTABILITET: START-->
+<rule> 
+    <match lemma="ustabilitet" tags="n.*.pl.*"> <select lemma="instabilitet"/> </match> 
+</rule>
+<rule> 
+    <match lemma="ustabilitet" tags="n.*.sg.*"> <select lemma="uro"/> </match> 
+</rule>
+<rule weight="1.5"> 
+  <or>
+    <match lemma="emosjonell"/>
+    <match lemma="psykisk"/>
+    <match lemma="psykologisk"/>
+    <match lemma="mental"/>
+  </or>
+    <match lemma="ustabilitet" tags="n.*"> <select lemma="ubalanse"/> </match> 
+</rule>
+<rule weight="1.5"> 
+  <or>
+    <match lemma="finansiell"/>
+    <match lemma="økonomisk"/>
+    <match lemma="politisk"/>
+  </or>
+    <match lemma="ustabilitet" tags="n.*"> <select lemma="uro"/> </match> 
+</rule>
+<!--USTABILITET END-->
 
   <!-- antall → mengd / tal / talet på -->
   <rule weight="1.0" c="default talet på">
