@@ -3544,6 +3544,15 @@
       <match tags="prn.*"/>
       <match tags="n.*"/>
   </rule>
+  <rule weight="2.0" c="rekkje tunge">
+    <match lemma="rekke" tags="vblex.*"><select lemma="rekke¹"/></match>
+    <or>
+      <match lemma="tunge"/>
+      <match lemma="hånd"/>
+      <match lemma="finger"/>
+      <match lemma="pekefinger"/>
+    </or>
+  </rule>
   <!--REKKE/REKKJE: END-->
 
   <rule c="strekkje seg">
