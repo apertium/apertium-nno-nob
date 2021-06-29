@@ -3517,6 +3517,34 @@
       <match lemma="hastighet"/>
     </or>
   </rule>
+  <!--REKKE/REKKJE: START-->
+  <rule><match lemma="rekke" tags="vblex.*"><select lemma="rekke"/></match></rule>
+  <rule><match lemma="rekke" tags="adj.*"><select lemma="rekke"/></match></rule>
+  <rule weight="2.0" c="rekkje seg">
+    <match lemma="rekke" tags="vblex.*"><select lemma="rekke¹"/></match>
+    <match lemma="seg"/>
+  </rule>
+  <rule weight="2.0" c="rekkje fram handa">
+    <match lemma="rekke" tags="vblex.*"><select lemma="rekke¹"/></match>
+    <or>
+      <match lemma="fram"/>
+      <match lemma="ut"/>
+      <match lemma="opp"/>
+    </or>
+    <repeat from="0" upto="2">
+      <or>
+        <match tags="det.*"/>
+        <match tags="adj.*"/>
+      </or>
+    </repeat>
+    <match tags="n.*"/>
+  </rule>
+    <rule weight="2.0" c="rekkje fram handa">
+    <match lemma="rekke" tags="vblex.*"><select lemma="rekke¹"/></match>
+      <match tags="prn.*"/>
+      <match tags="n.*"/>
+  </rule>
+  <!--REKKE/REKKJE: END-->
 
   <rule c="strekkje seg">
     <match lemma="strekke" tags="vblex.*"><select lemma="strekke¹"/></match>
