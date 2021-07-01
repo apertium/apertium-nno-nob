@@ -2076,7 +2076,7 @@
   <rule><match lemma="uaktsom" tags="adj.*"><select lemma="aktlaus"/></match></rule>
 
 
-<!-- OK avgi jord/grunn/eiendom/areal/land/område → avstå jord/grunn/eigedom/areal/land/område -->
+<!-- avgi jord/grunn/eiendom/areal/land/område → avstå jord/grunn/eigedom/areal/land/område -->
 <rule weight="2.0">
     <match lemma="avgi" tags="vblex.*"><select lemma="avstå"/></match>
     <or>
@@ -2089,7 +2089,7 @@
     </or>
   </rule>
 
-  <!-- OK avgi/avlegge (en) prøve → ta (ei) prøve -->
+  <!-- avgi/avlegge (en) prøve → ta (ei) prøve -->
   <rule weight="4.0">
     <or>
       <match lemma="avlegge" tags="vblex.*"><select lemma="ta"/></match>
@@ -2115,7 +2115,7 @@
     </or>
   </rule>
 
-    <!-- OK avgi/avlegge (en) + adj + prøve → levere (ei) + adj + prøve -->
+    <!-- avgi/avlegge (en) + adj + prøve → levere (ei) + adj + prøve -->
   <rule weight="4.0">
     <or>
       <match lemma="avlegge" tags="vblex.*"><select lemma="levere" tags="vblex.*"/></match>
@@ -2145,7 +2145,7 @@
   </rule>
 
 
-  <!-- OK avgi/avlegge rapport → gje rapport -->
+  <!-- avgi/avlegge rapport → gje rapport -->
   <rule weight="2.0">
     <or>
         <match lemma="avlegge" tags="vblex.*"><select lemma="gje"/></match>
@@ -2160,7 +2160,7 @@
 
 
 
-<!-- OK avgi + (sin) + innstilling → levere innstilling -->
+<!-- avgi + (sin) + innstilling → levere innstilling -->
   <rule weight="2.0">
     <match lemma="avgi" tags="vblex.*"><select lemma="levere" tags="vblex.*"/></match>
      <repeat from="0" upto="1">
@@ -2173,7 +2173,7 @@
   </rule>
 
 
-  <!-- OK avgitte stemmer -> stemmer  -->
+  <!-- avgitte stemmer -> stemmer  -->
   <rule weight="8.0">
         <or>
       <match lemma="den"><select lemma=""/></match>
@@ -2188,7 +2188,7 @@
     </or>
   </rule>
 
-<!-- OK innstillingen + (være/bli) + avgitt → innstillinga + (vere/bli) + levert -->
+<!-- innstillingen + (være/bli) + avgitt → innstillinga + (vere/bli) + levert -->
   <rule weight="2.0">
     <match lemma="innstilling"><select lemma="innstilling"/></match>
     <or>
@@ -2199,7 +2199,7 @@
   </rule>
 
 
-  <!-- OK avgi poeng → gje frå seg poeng -->
+  <!-- avgi poeng → gje frå seg poeng -->
   <rule weight="2.0">
         <match lemma="avgi" tags="vblex.*"><select lemma="gje# frå seg"/></match>
     <or>
