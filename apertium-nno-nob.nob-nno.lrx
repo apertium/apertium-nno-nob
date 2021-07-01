@@ -2039,6 +2039,7 @@
   <rule><match lemma="ønske" tags="adj.*"><select lemma="ønske"/></match></rule>
   <rule><match lemma="oppfordre" tags="vblex.*"><select lemma="oppmode"/></match></rule>
   <rule><match lemma="oppfordre" tags="adj.*"><select lemma="oppmode"/></match></rule>
+  <rule><match lemma="avgi" tags="vblex.*"><select lemma="gje"/></match></rule>
   <rule><match lemma="avgi" tags="vblex.*"><select lemma="gje# frå seg"/></match></rule>
   <rule><match lemma="avgi" tags="adj.*"><select lemma="avgi"/></match></rule>
   <rule><match lemma="betinge" tags="vblex.*"><select lemma="krevje"/></match></rule>
@@ -2117,8 +2118,8 @@
     <!-- OK avgi/avlegge (en) + adj + prøve → levere (ei) + adj + prøve -->
   <rule weight="4.0">
     <or>
-      <match lemma="avlegge" tags="vblex.*"><select lemma="levere"/></match>
-      <match lemma="avgi" tags="vblex.*"><select lemma="levere"/></match>
+      <match lemma="avlegge" tags="vblex.*"><select lemma="levere" tags="vblex.*"/></match>
+      <match lemma="avgi" tags="vblex.*"><select lemma="levere" tags="vblex.*"/></match>
     </or>
      <repeat from="0" upto="1">
         <match tags="det.*"/>
@@ -2152,6 +2153,7 @@
     </or>
     <or>
       <match lemma="rapport"/>
+      <match lemma="vitneforklaring"/>
     </or>
   </rule>
 
@@ -2161,6 +2163,9 @@
 <!-- OK avgi + (sin) + innstilling → levere innstilling -->
   <rule weight="2.0">
     <match lemma="avgi" tags="vblex.*"><select lemma="levere" tags="vblex.*"/></match>
+     <repeat from="0" upto="1">
+        <match tags="n.*"/>
+    </repeat>
     <or>
       <match tags="det.pos.*"/>
       <match lemma="innstilling"/>
