@@ -2689,7 +2689,7 @@
     </or>
   </rule>
 
-  <!-- sleppe¹ is transitive: -->
+  <!-- sleppe¹ is transitive: START-->
   <rule><match lemma="slippe" tags="vblex.*"><select lemma="sleppe¹"/></match></rule>
   <rule><match lemma="slippe" tags="adj.*"><select lemma="sleppe¹"/></match></rule>
   <rule weight="2.0"><match lemma="slippe" tags="vblex.*.pasv"><select lemma="sleppe¹"/></match></rule>
@@ -2705,6 +2705,12 @@
     </or>
     <match lemma="å" tags="part"/>
   </rule>
+  <rule weight="2.0">
+    <match lemma="slippe" tags="vblex.*"><select lemma="sleppe"/></match>
+    <match lemma="til"/>
+    <match tags="pr"/>
+  </rule>
+    <!-- sleppe¹ is transitive: END -->
   <rule><match lemma="innad" tags="pr"><select lemma="internt"/></match></rule>
   <rule><match lemma="dog" tags="adv"><select lemma="likevel"/></match></rule>
   <rule><match lemma="frarøve" tags="vblex.*"><select lemma="ta# frå"/></match></rule>
