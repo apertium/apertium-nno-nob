@@ -3559,7 +3559,7 @@
     </or>
   </rule>
   <!--REKKE/REKKJE: END-->
-
+<!--STREKKE/STREKKJE: START-->
   <rule c="strekkje seg">
     <match lemma="strekke" tags="vblex.*"><select lemma="strekke¹"/></match>
     <match lemma="seg"/>
@@ -3570,8 +3570,19 @@
   </rule>
   <rule weight="2.0" c="strekkje strikken">
     <match lemma="strekke" tags="vblex.*"><select lemma="strekke¹"/></match>
-    <match tags="n.*.def"/>
+    <repeat from="0" upto="1">
+    <or>
+      <match lemma="ut"/>
+      <match lemma="i"/>
+      <match lemma="på"/>
+      <match lemma="opp"/>
+      <match lemma="av"/>
+      <match tags="n.*.*.*.cmp"/>
+    </or>
+    </repeat>
+    <match tags="n.*.*.def"/>
   </rule>
+  <!--STREKKE/STREKKJE: END-->
 
   <rule weight="2.0" c="sprekkje strikken">
     <match lemma="sprekke" tags="vblex.*"><select lemma="sprekke¹"/></match>
