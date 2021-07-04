@@ -2719,8 +2719,50 @@
     <or>
       <match tags="pr"/>
       <match lemma="som"/>
+      <match lemma="slutt"/>
       <match tags="sent.clb"/>
     </or>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="slippe" tags="vblex.*"><select lemma="sleppe¹"/></match>
+    <match tags="n.*"/>
+  </rule>
+  <rule><match lemma="sleppe" tags="vblex.*"><select lemma="sleppe¹"/></match></rule>
+  <rule><match lemma="sleppe" tags="adj.*"><select lemma="sleppe¹"/></match></rule>
+  <rule weight="2.0"><match lemma="sleppe" tags="vblex.*.pasv"><select lemma="sleppe¹"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="sleppe" tags="vblex.*"><select lemma="sleppe"/></match>
+    <or>
+      <match lemma="å" tags="part"/>
+      <match lemma="opp"/>
+      <match lemma="løs"/>
+      <match lemma="fri"/>
+      <match lemma="frem"/>
+      <match lemma="forbi"/>
+      <match lemma="av"/>
+    </or>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="sleppe" tags="vblex.*"><select lemma="sleppe"/></match>
+    <or>
+      <match tags="adv"/>
+      <match tags="prn.*"/>
+    </or>
+    <match lemma="å" tags="part"/>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="sleppe" tags="vblex.*"><select lemma="sleppe"/></match>
+    <match lemma="til"/>
+    <or>
+      <match tags="pr"/>
+      <match lemma="som"/>
+      <match lemma="slutt"/>
+      <match tags="sent.clb"/>
+    </or>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="sleppe" tags="vblex.*"><select lemma="sleppe¹"/></match>
+    <match tags="n.*"/>
   </rule>
     <!-- sleppe¹ is transitive: END -->
   <rule><match lemma="innad" tags="pr"><select lemma="internt"/></match></rule>
