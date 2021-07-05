@@ -3647,6 +3647,7 @@
   <rule><match lemma="blinke" tags="vblex.*"><select lemma="blinke"/></match></rule>
   <rule><match lemma="blinke" tags="adj.*"><select lemma="blinke"/></match></rule>
 
+<!--KNEKKE/KNEKKJE: START-->
   <rule><match lemma="knekke" tags="vblex.*"><select lemma="knekke"/></match></rule>
   <rule><match lemma="knekke" tags="adj.*"><select lemma="knekke"/></match></rule>
   <rule weight="2.0" c="knekkje strikken">
@@ -3660,6 +3661,16 @@
     <match lemma="å"/>
     <match lemma="knekke" tags="vblex.*"><select lemma="knekke¹"/></match>
   </rule>
+  <rule weight="2.0">
+    <match lemma="knekke" tags="vblex.*"><select lemma="bryte"/></match>
+    <or>
+      <match lemma="sammen"/>
+      <match lemma="for"/>
+      <match lemma="arm"/>
+      <match lemma="bein"/>
+    </or>
+  </rule>
+<!--KNEKKE/KNEKKJE: END-->
 
   <rule><match lemma="hylle" tags="vblex.*"><select lemma="hylle"/></match></rule>
   <rule><match lemma="hylle" tags="adj.*"><select lemma="hylle"/></match></rule>
