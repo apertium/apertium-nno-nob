@@ -3680,6 +3680,14 @@
     </or>
   </rule>
 <!--KNEKKE/KNEKKJE: END-->
+<!--BESLEKTET: START-->
+<rule><match lemma="beslektet" tags="adj.*"><select lemma="nærståande"/></match></rule>
+<rule>
+  <match tags="pr"/>
+  <match tags="det.qnt.*"/>
+  <match lemma="beslektet" tags="adj.*"><select lemma="liknande"/></match>
+</rule>
+<!--BESLEKTET END-->
 
   <rule><match lemma="hylle" tags="vblex.*"><select lemma="hylle"/></match></rule>
   <rule><match lemma="hylle" tags="adj.*"><select lemma="hylle"/></match></rule>
