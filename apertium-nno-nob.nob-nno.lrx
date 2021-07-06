@@ -3687,7 +3687,18 @@
   <match tags="det.qnt.*"/>
   <match lemma="beslektet" tags="adj.*"><select lemma="liknande"/></match>
 </rule>
-<!--BESLEKTET END-->
+<!--BESLEKTET: END-->
+<!--GJENSIDIGHET: START-->
+  <rule><match lemma="gjensidighet" tags="n.*"><select lemma="gjensidig påverknad"/></match></rule>
+  <rule>
+    <match lemma="gjensidighet" tags="n.m.sg.def"><select lemma="vekselverknad"/></match>
+  </rule>
+  <rule>
+    <match tags="n.*"/>
+    <match lemma="og"/>
+    <match lemma="gjensidighet" tags="n.*"><select lemma="samhandling"/></match>
+  </rule>
+<!--GJENSIDIGHET: END-->
 
   <rule><match lemma="hylle" tags="vblex.*"><select lemma="hylle"/></match></rule>
   <rule><match lemma="hylle" tags="adj.*"><select lemma="hylle"/></match></rule>
