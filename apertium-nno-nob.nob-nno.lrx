@@ -1105,7 +1105,10 @@
     <match lemma="i"/>
   </rule>
   <rule weight="2.0">
-    <match lemma="være"/>
+    <or>
+      <match lemma="være"/>
+      <match lemma="se"/>
+    </or>
     <repeat from="0" upto="3">
       <or>
         <match tags="*"/>
