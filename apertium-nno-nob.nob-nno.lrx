@@ -1079,11 +1079,18 @@
 
   <rule> <match lemma="støtte" tags="n.*"> <select lemma="støtte"/> </match> </rule>
 
+<!--HENSIKT: START-->
   <rule><match lemma="hensikt" tags="n.*"><select lemma="hensikt"/></match></rule>
   <rule weight="2.0">
     <match lemma="hensikt" tags="n.*"><select lemma="formål"/></match>
-    <match lemma="med"/>
+      <match lemma="med"/>
   </rule>
+  <rule weight="2.0">
+    <match lemma="hensikt" tags="n.*.sg.def"><select lemma="formål"/></match>
+      <match lemma="være"/>
+  </rule>
+<!--HENSIKT: END-->
+
   <rule><match lemma="formål" tags="n.*"><select lemma="formål"/></match></rule>
 
   <rule><match lemma="gang" tags="n.*"><select lemma="gong"/></match></rule>
