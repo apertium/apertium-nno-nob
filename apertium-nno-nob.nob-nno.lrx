@@ -1138,6 +1138,22 @@
     <match lemma="hensikt" tags="n.*"><select lemma="overlegg"/></match>
   </rule>
 <!--HENSIKT: END-->
+<!--UANFEKTET: START-->
+<rule><match lemma="uanfektet" tags="adj.*"><select lemma="uforstyrra"/></match></rule>
+<rule>
+  <or>
+    <match lemma="hel"/>
+    <match lemma="bli"/>
+    <match lemma="virke"/>
+    <match lemma="være"/>
+  </or>
+  <match lemma="uanfektet" tags="adj.*"><select lemma="upåverka"/></match>
+</rule>
+<rule>
+  <match lemma="uanfektet" tags="adj.*"><select lemma="upåverka"/></match>
+  <match lemma="av"/>
+</rule>
+<!--UANFEKTET: END-->
 
   <rule><match lemma="formål" tags="n.*"><select lemma="formål"/></match></rule>
 
