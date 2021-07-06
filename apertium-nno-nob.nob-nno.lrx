@@ -1094,6 +1094,10 @@
     <match tags="det.pos.*"/>
   </rule>
   <rule weight="2.0">
+    <match tags="adj.*"/>
+    <match lemma="hensikt" tags="n.*"><select lemma="intensjon"/></match>
+  </rule>
+  <rule weight="2.0">
     <match lemma="hensikt" tags="n.*.sg.def"><select lemma="mål"/></match>
     <match lemma="hellige"/>
     <match lemma="middel"/>
