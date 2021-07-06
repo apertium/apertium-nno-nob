@@ -1104,6 +1104,21 @@
     <match lemma="hensikt" tags="n.*"><select lemma="meining"/></match>
     <match lemma="i"/>
   </rule>
+  <rule weight="2.0">
+    <match lemma="være"/>
+    <repeat from="0" upto="3">
+      <or>
+        <match tags="*"/>
+        <match lemma="heller"/>
+        <match lemma="ikke"/>
+      </or>
+    </repeat>
+    <or>
+      <match lemma="noe"/>
+      <match lemma="ingen"/>
+    </or>
+    <match lemma="hensikt" tags="n.*"><select lemma="meining"/></match>
+  </rule>
 <!--HENSIKT: END-->
 
   <rule><match lemma="formål" tags="n.*"><select lemma="formål"/></match></rule>
