@@ -1630,6 +1630,7 @@
   </rule>
   <rule><match lemma="mild" tags="adj.*"><select lemma="mild"/></match></rule>
   <rule><match lemma="fornøyd" tags="adj.*"><select lemma="fornøgd"/></match></rule>
+  <rule><match lemma="misfornøyd" tags="adj.*"><select lemma="misfornøgd"/></match></rule>
   <rule><match lemma="beholde" tags="vblex.*"><select lemma="behalde"/></match></rule>
 
   <rule><match lemma="i anledning av" tags="pr"><select lemma="i samband med"/></match></rule>
@@ -2029,6 +2030,17 @@
     <match lemma="angivelig" tags="adv">
       <select lemma="truleg"/>
     </match>
+  </rule>
+
+  <rule><match lemma="fastholde" tags="vblex.*"><select lemma="halde# fast på"/></match></rule>
+   <rule weight="2.0" c=", hevder Haltbrekken">
+    <match tags="cm.*"/>
+    <match lemma="fastholde" tags="vblex.*"><select lemma="hevde"/></match>
+    <or>
+      <match tags="np.*"/>
+      <match tags="n.*"/>
+      <match tags="prn.*"/>
+    </or>
   </rule>
 
   <rule c="Can't even find 'attrå' used as verb in nno-corpus">
