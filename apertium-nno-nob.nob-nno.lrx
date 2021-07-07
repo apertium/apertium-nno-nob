@@ -2480,6 +2480,12 @@
   </rule>
   -->
 
+  <rule weight="2.0" c="bevegelser på børsen -> endringar på børsen">
+    <match lemma="bevegelse" tags="n.*"><select lemma="endring"/></match>
+    <match lemma="på"/>
+    <match lemma="børs" tags="n.m.sg.def"/>
+  </rule>
+
   <rule><match lemma="forskjell" tags="n.*"><select lemma="forskjell"/></match></rule>
 
   <rule><match lemma="fuge" tags="n.*"><select tags="n.m.*" lemma="fuge"/></match></rule>
