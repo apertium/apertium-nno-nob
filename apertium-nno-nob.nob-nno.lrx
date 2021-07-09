@@ -3016,6 +3016,46 @@
   </rule>
   <rule><match lemma="selvantenne" tags="vblex.*"><select lemma="ta# fyr"/></match></rule>
 
+  <rule><match lemma="antenne" tags="vblex.*"><select lemma="ta# fyr"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="antenne" tags="vblex.*"><select lemma="setje# fyr på"/></match>
+    <repeat from="0" upto="2">
+      <or>
+        <match tags="det.*"/>
+        <match tags="adj.*"/>
+        <match tags="n.*"/>
+        <match tags="pr"/>
+      </or>
+    </repeat>
+    <match tags="n.*"/>
+  </rule>
+  <rule weight="3.0" c="starte brann">
+    <match lemma="antenne" tags="vblex.*"><select lemma="starte"/></match>
+    <repeat from="0" upto="2">
+      <or>
+        <match tags="det.*"/>
+        <match tags="adj.*"/>
+      </or>
+    </repeat>
+    <or>
+        <match lemma="brann" tags="n.*"/>
+        <match lemma="skogbrann" tags="n.*"/>
+    </or>
+  </rule>
+  <rule weight="4.0" c="tenne eld">
+    <match lemma="antenne" tags="vblex.*"><select lemma="tenne"/></match>
+    <repeat from="0" upto="4">
+      <or>
+        <match tags="det.*"/>
+        <match tags="adj.*"/>
+        <match tags="n.*"/>
+        <match tags="pr"/>
+      </or>
+    </repeat>
+    <match lemma="ild" tags="n.*"/>
+    </rule>
+
+
   <rule><match lemma="tilsi" tags="vblex.*"><select lemma="tilseie"/></match></rule>
   <rule weight="2.0">
     <match lemma="skulle" tags="vblex.*"/>
