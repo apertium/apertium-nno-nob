@@ -2302,7 +2302,11 @@
     </or>
   </rule>
 
-
+  <rule><match lemma="riktig" tags="adj.*"><select lemma="rett"/></match></rule>
+  <rule weight="2.0" c="riktig god">
+    <match lemma="riktig" tags="adj.*"><select lemma="riktig"/></match>
+    <match tags="adj.*"/>
+  </rule>
 
   <!-- merke¹ is transitive: -->
   <rule><match lemma="merke" tags="vblex.*"><select lemma="merke"/></match></rule>
@@ -3054,7 +3058,6 @@
     </repeat>
     <match lemma="ild" tags="n.*"/>
     </rule>
-
 
   <rule><match lemma="tilsi" tags="vblex.*"><select lemma="tilseie"/></match></rule>
   <rule weight="2.0">
