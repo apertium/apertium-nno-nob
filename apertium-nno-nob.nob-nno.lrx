@@ -4962,7 +4962,6 @@
   <!-- ANGÅ/ANGÅENDE: END -->
 
   <!-- UBETINGET: START -->
-
   <rule weight="2.0">
     <match lemma="ubetinget" tags="adj.*"><select lemma="stor"/></match>
     <or>
@@ -5026,7 +5025,10 @@
       <match lemma="ikke"/>
     </repeat>
     <match lemma="ubetinget" tags="adv"><select lemma="berre"/></match>
-    <match tags="adj.*"/>
+    <or>
+      <match tags="adj.*"/>
+      <match tags="adv"/>
+    </or>
   </rule>
 
   <rule weight="2.0">
