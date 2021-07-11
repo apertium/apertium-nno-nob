@@ -4961,6 +4961,21 @@
 
   <!-- ANGÅ/ANGÅENDE: END -->
 
+  <!-- UANMELDT: START -->
+  <rule weight="2.0">
+    <match lemma="uanmeldt" tags="adj.*"><select lemma="overraskande"/></match>
+    <match lemma="besøk"/>
+  </rule>
+  <rule weight="2.0">
+    <match tags="det.qnt.*"/>
+    <match lemma="uanmeldt" tags="adj.*"><select lemma="ikkje varsla"/></match>
+    <match tags="n.*"/>
+  </rule>
+  <rule>
+    <match lemma="uanmeldt" tags="adj.*"><select lemma="uventa"/></match>
+  </rule>
+  <!-- UANMELDT: END -->
+
   <!-- UBETINGET: START -->
   <rule weight="2.0">
     <match lemma="ubetinget" tags="adj.*"><select lemma="stor"/></match>
