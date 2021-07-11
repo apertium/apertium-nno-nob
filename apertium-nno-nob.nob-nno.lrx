@@ -3954,6 +3954,10 @@
       </or>
     </repeat>
   </rule>
+  <rule>
+    <match lemma="denne" tags="det.*"/>
+    <match lemma="ankomst" tags="n.*.*.def"><select lemma="innkomst"/></match>
+  </rule>
   <rule weight="2.0" c="endring/auke i innreisetal">
     <match lemma="i"/>
     <match lemma="ankomst" tags="n.*"><select lemma="innreisetal"/></match>
