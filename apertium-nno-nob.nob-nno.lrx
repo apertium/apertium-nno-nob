@@ -623,6 +623,40 @@
     <match lemma="ustabilitet" tags="n.*"> <select lemma="uro"/> </match> 
 </rule>
 <!--USTABILITET END-->
+<rule><match lemma="opptreden" tags="n.*.sg.*"><select lemma="framferd"/></match></rule>
+<rule weight="2.0">
+  <match lemma="opptreden" tags="n.*.pl.*"><select lemma="opptreden"/></match>
+</rule>
+<rule weight="2.0">
+  <or>
+    <match lemma="første"/>
+    <match lemma="sist"/>
+    <match lemma="forrige"/>
+    <match lemma="neste"/>
+    <match tags="adj.*.sup.*"/>
+  </or>
+  <match lemma="opptreden" tags="n.*"><select lemma="opptreden"/></match>
+</rule>
+<rule weight="2.0">
+  <or>
+    <match tags="np.*.cmp"/>
+    <match tags="n.*.*.*.cmp.*"/>
+  </or>
+  <match lemma="opptreden" tags="n.*"><select lemma="opptreden"/></match>
+</rule>
+<rule weight="2.0">
+  <match lemma="en"/>
+    <repeat from="0" upto="1">
+        <match tags="adj.*"/>
+    </repeat>
+    <match lemma="opptreden" tags="n.*"><select lemma="opptreden"/></match>
+</rule>
+<rule weight="2.0">
+  <match lemma="år" tags="n.nt.sg.def.gen"/>
+  <match lemma="opptreden" tags="n.*"><select lemma="framføring"/></match>
+</rule>
+<!--OPPTREDEN: START-->
+<!--OPPTREDEN: END-->
 
   <!-- antall → mengd / tal / talet på -->
   <rule weight="1.0" c="default talet på">
