@@ -3827,7 +3827,10 @@
   </rule>
   <rule weight="2.0" c="knekkje strikken">
     <match lemma="knekke" tags="vblex.*"><select lemma="knekke¹"/></match>
-    <match tags="n.*.def"/>
+    <or>
+      <match tags="n.*.def"/>
+      <match tags="prn.*.*.*.*.acc"/>
+    </or>
   </rule>
   <rule weight="2.0" c="ei hard nøtt å knekkje">
     <match lemma="en"/>
