@@ -3877,6 +3877,7 @@
 <!--RENNE: END-->
 <!--SKRELLE: START-->
   <rule><match lemma="skrelle" tags="vblex.*"><select lemma="skrelle¹"/></match></rule>
+  <rule><match lemma="skrelle" tags="adj.pprs"><select lemma="skrelle¹"/></match></rule>
   <rule weight="2.0">
     <match lemma="skrelle" tags="vblex.*"><select lemma="skrelle"/></match>
     <or>
@@ -3884,7 +3885,12 @@
       <match lemma="opp"/>
       <match lemma="igjen"/>
       <match lemma="potet"/>
+      <match tags="prn.pers.*.*.*.acc"/>
     </or>
+  </rule>
+    <rule weight="2.0">
+    <match lemma="bli"/>
+    <match lemma="skrelle" tags="vblex.*"><select lemma="skrelle"/></match>
   </rule>
 <!--SKRELLE: END-->
 
