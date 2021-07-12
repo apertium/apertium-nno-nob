@@ -4222,11 +4222,14 @@
 
   <rule><match lemma="tilfeldighet" tags="n.*"><select lemma="tilfeldigheit"/></match></rule>
   <rule weight="2.0">
-    <or>
-      <match lemma="ren"/>
-      <match lemma="rein"/>
-    </or>
-    <match lemma="tilfeldighet" tags="n.*"><select lemma="slumpetreff"/></match>
+    <match lemma="en"/>
+    <repeat from="0" upto="2">
+      <or>
+        <match tags="adj.*"/>
+        <match tags="adv"/>
+      </or>
+    </repeat>
+    <match lemma="tilfeldighet" tags="n.*.sg.ind"><select lemma="slumpetreff"/></match>
   </rule>
 
   <rule><match lemma="tiltrengt" tags="adj.*"><select lemma="svært velkommen"/></match></rule>
