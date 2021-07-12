@@ -3875,6 +3875,17 @@
     <match lemma="inn i"/>
   </rule>
 <!--RENNE: END-->
+<!--SKRELLE: START-->
+  <rule><match lemma="skrelle" tags="vblex.*"><select lemma="skrelle¹"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="skrelle" tags="vblex.*"><select lemma="skrelle"/></match>
+    <or>
+      <match lemma="til"/>
+      <match lemma="opp"/>
+      <match lemma="igjen"/>
+    </or>
+  </rule>
+<!--SKRELLE: END-->
 
 <!--BESLEKTET: START-->
 <rule><match lemma="beslektet" tags="adj.*"><select lemma="nærståande"/></match></rule>
