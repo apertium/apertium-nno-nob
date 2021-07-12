@@ -3839,6 +3839,14 @@
     <match lemma="å"/>
     <match lemma="knekke" tags="vblex.*"><select lemma="knekke¹"/></match>
   </rule>
+  <rule weight="2.5">
+    <match tags="vblex.*"/>
+    <match lemma="knekke" tags="vblex.*"><select lemma="knekke¹"/></match>
+    <or>
+      <match lemma="arm"/>
+      <match lemma="bein"/>
+    </or>
+  </rule>
   <rule weight="2.0">
     <match lemma="knekke" tags="vblex.*"><select lemma="bryte"/></match>
     <or>
