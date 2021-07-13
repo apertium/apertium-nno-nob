@@ -3886,6 +3886,7 @@
       <match lemma="igjen"/>
       <match lemma="potet"/>
       <match tags="prn.pers.*.*.*.acc"/>
+      <match tags="prn.ref.*.*.*.acc"/>
     </or>
   </rule>
     <rule weight="2.0">
@@ -3893,6 +3894,22 @@
     <match lemma="skrelle" tags="vblex.*"><select lemma="skrelle"/></match>
   </rule>
 <!--SKRELLE: END-->
+<!--SMETTE: START-->
+  <rule><match lemma="smette" tags="vblex.*"><select lemma="smette"/></match></rule>
+  <rule><match lemma="smette" tags="adj.pprs"><select lemma="smette"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="bli"/>
+    <match lemma="smette" tags="vblex.*"><select lemma="smette¹"/></match>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="smette" tags="vblex.*"><select lemma="smette¹"/></match>
+    <or>
+      <match lemma="på"/>
+      <match tags="prn.pers.*.*.*.acc"/>
+      <match tags="prn.ref.*.*.*.acc"/>
+    </or>
+  </rule>
+<!--SMETTE: END-->
 
 <!--BESLEKTET: START-->
 <rule><match lemma="beslektet" tags="adj.*"><select lemma="nærståande"/></match></rule>
