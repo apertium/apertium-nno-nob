@@ -3973,7 +3973,27 @@
     </or>
   </rule>
 <!--SMETTE: END-->
-
+<!--SPRETTE: START-->
+  <rule><match lemma="sprette" tags="vblex.*"><select lemma="sprette"/></match></rule>
+  <rule><match lemma="sprette" tags="adj.pprs"><select lemma="sprette"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="bli"/>
+    <match lemma="sprette" tags="vblex.*"><select lemma="sprette¹"/></match>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="sprette" tags="vblex.*"><select lemma="sprette¹"/></match>
+    <or>
+      <match lemma="opp"/>
+      <match tags="prn.pers.*.*.*.acc"/>
+      <match tags="prn.ref.*.*.*.acc"/>
+    </or>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="sprette" tags="vblex.*"><select lemma="sprette"/></match>
+    <match lemma="opp"/>
+    <match lemma="i"/>
+  </rule>
+<!--SPRETTE: END-->
 <!--BESLEKTET: START-->
 <rule><match lemma="beslektet" tags="adj.*"><select lemma="nærståande"/></match></rule>
 <rule>
