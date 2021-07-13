@@ -3218,34 +3218,97 @@
   <!-- OPPGI: END -->
 
 
-  <rule c="framstår som surrealistisk"><match lemma="framstå# som" tags="vblex.*"><select lemma="verke"/></match></rule>
-  <rule c="framstår som en raring" weight="2.0">
-    <match lemma="framstå# som" tags="vblex.*"><select lemma="verke# som"/></match>
-    <match tags="det.*"/>
+  <rule c="framstår som nybegynner"><match lemma="framstå# som" tags="vblex.*"><select lemma="stå# fram som"/></match></rule>
+  <rule c="fremstår som nybegynner"><match lemma="fremstå# som" tags="vblex.*"><select lemma="stå# fram som"/></match></rule>
+
+  <rule c="framstå som ADJ" weight="2.0">
+    <match lemma="framstå# som" tags="vblex.*"><select lemma="verke"/></match>
+    <repeat from="0" upto="2">
+      <or>
+        <match tags="adv"/>
+        <match tags="adj.*"/>
+        <match lemma="noe" tags="det.*"/>
+        <match lemma="både" tags="cnjcoo"/>
+      </or>
+    </repeat>
+    <or>
+      <match tags="adj.*"/>
+      <match tags="vblex.*"/>
+      <match tags="adv"/>
+    </or>
+    <or>
+      <match tags="adv"/>
+      <match tags="cnjsub"/>
+      <match tags="part"/>
+      <match tags="cnjcoo"/>
+      <match tags="cnjcoo.*"/>
+      <match tags="pr"/>
+      <match tags="prn.*"/>
+      <match tags="sent"/>
+      <match tags="sent.*"/>
+      <match tags="cm"/>
+      <match tags="cm.*"/>
+    </or>
   </rule>
-  <rule c="fremstår som surrealistisk"><match lemma="fremstå# som" tags="vblex.*"><select lemma="verke"/></match></rule>
-  <rule c="fremstår som en raring" weight="2.0">
-    <match lemma="fremstå# som" tags="vblex.*"><select lemma="verke# som"/></match>
-    <match tags="det.*"/>
+
+  <rule c="fremstå som ADJ" weight="2.0">
+    <match lemma="fremstå# som" tags="vblex.*"><select lemma="verke"/></match>
+    <repeat from="0" upto="2">
+      <or>
+        <match tags="adv"/>
+        <match tags="adj.*"/>
+        <match lemma="noe" tags="det.*"/>
+        <match lemma="både" tags="cnjcoo"/>
+      </or>
+    </repeat>
+    <or>
+      <match tags="adj.*"/>
+      <match tags="vblex.*"/>
+      <match tags="adv"/>
+    </or>
+    <or>
+      <match tags="adv"/>
+      <match tags="cnjsub"/>
+      <match tags="part"/>
+      <match tags="cnjcoo"/>
+      <match tags="cnjcoo.*"/>
+      <match tags="pr"/>
+      <match tags="prn.*"/>
+      <match tags="sent"/>
+      <match tags="sent.*"/>
+      <match tags="cm"/>
+      <match tags="cm.*"/>
+    </or>
   </rule>
-  <rule c="skal framstå som tullinger" weight="2.0">
-    <match lemma="framstå# som" tags="vblex.*"><select lemma="verke# som"/></match>
-    <match tags="n.*.pl.ind"/>
+
+  <rule c="framstår som useriøse, helt tomme tankeslott" weight="3.0">
+    <match lemma="framstå# som" tags="vblex.*"><select lemma="stå# fram som"/></match>
+    <match tags="adj.*"/>
+    <match tags="cm"/>
+    <repeat from="0" upto="1">
+      <or>
+        <match tags="adj.*"/>
+        <match tags="adv"/>
+      </or>
+    </repeat>
+    <match tags="adj.*"/>
+    <match tags="n.*"/>
   </rule>
-  <rule c="skal fremstå som tullinger" weight="2.0">
-    <match lemma="fremstå# som" tags="vblex.*"><select lemma="verke# som"/></match>
-    <match tags="n.*.pl.ind"/>
+
+  <rule c="fremstår som useriøse, helt tomme tankeslott" weight="3.0">
+    <match lemma="fremstå# som" tags="vblex.*"><select lemma="stå# fram som"/></match>
+    <match tags="adj.*"/>
+    <match tags="cm"/>
+    <repeat from="0" upto="1">
+      <or>
+        <match tags="adj.*"/>
+        <match tags="adv"/>
+      </or>
+    </repeat>
+    <match tags="adj.*"/>
+    <match tags="n.*"/>
   </rule>
-  <rule c="skal framstå som kulturbærer" weight="2.0">
-    <match lemma="framstå# som" tags="vblex.*"><select lemma="verke# som"/></match>
-    <match tags="n.*.cmp"/>
-    <match tags="n.*.ind"/>
-  </rule>
-  <rule c="skal fremstå som kulturbærer" weight="2.0">
-    <match lemma="fremstå# som" tags="vblex.*"><select lemma="verke# som"/></match>
-    <match tags="n.*.cmp"/>
-    <match tags="n.*.ind"/>
-  </rule>
+  
 
   <rule><match lemma="fremstå" tags="vblex.*"><select lemma="verke"/></match></rule>
   <rule><match lemma="framstå" tags="vblex.*"><select lemma="verke"/></match></rule>
