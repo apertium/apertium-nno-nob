@@ -4052,6 +4052,24 @@
     <match tags="n.*.sg.def"/>
   </rule>
 <!--SMELLE: END-->
+<!--SVI: START-->
+  <rule><match lemma="svi" tags="vblex.*"><select lemma="svi"/></match></rule>
+  <rule><match lemma="svi" tags="adj.*"><select lemma="svi"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="bli"/>
+    <match lemma="svi" tags="vblex.*"><select lemma="svi¹"/></match>
+  </rule>
+    <rule weight="2.0">
+    <match lemma="svi" tags="vblex.*"><select lemma="svi¹"/></match>
+    <or>
+      <match tags="prn.pers.*.*.*.acc"/>
+      <match tags="prn.ref.*.*.*.acc"/>
+      <match lemma="av"/>
+      <match lemma="mat" tags="n.m.sg.def"/>
+      <match lemma="finger" tags="n.m.pl.def"/>
+    </or>
+  </rule>
+<!--SVI: END-->
 <!--BESLEKTET: START-->
 <rule><match lemma="beslektet" tags="adj.*"><select lemma="nærståande"/></match></rule>
 <rule>
