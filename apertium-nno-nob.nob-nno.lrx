@@ -3999,9 +3999,14 @@
     <match lemma="sprette" tags="vblex.*"><select lemma="sprette¹"/></match>
   </rule>
   <rule weight="2.0">
+    <match lemma="bli"/>
+    <match lemma="sprette" tags="adj.*"><select lemma="sprette¹"/></match>
+  </rule>
+  <rule weight="2.0">
     <match lemma="sprette" tags="vblex.*"><select lemma="sprette¹"/></match>
     <or>
       <match lemma="opp"/>
+      <match lemma="en"/>
       <match tags="prn.pers.*.*.*.acc"/>
       <match tags="prn.ref.*.*.*.acc"/>
     </or>
