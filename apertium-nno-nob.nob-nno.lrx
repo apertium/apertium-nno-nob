@@ -3886,15 +3886,16 @@
     </or>
   </rule>
   <!--STREKKE/STREKKJE: END-->
-
+  <!--SPREKKE: START-->
+    <rule><match lemma="sprekke" tags="vblex.*"><select lemma="sprekke"/></match></rule>
+  <rule><match lemma="sprekke" tags="adj.*"><select lemma="sprekke"/></match></rule>
   <rule weight="2.0" c="sprekkje strikken">
     <match lemma="sprekke" tags="vblex.*"><select lemma="sprekke¹"/></match>
-    <match tags="n.*.def"/>
+    <match tags="n.*.sg.def"/>
   </rule>
-
+  <!--SPREKKE: END-->
   <rule><match lemma="blinke" tags="vblex.*"><select lemma="blinke"/></match></rule>
   <rule><match lemma="blinke" tags="adj.*"><select lemma="blinke"/></match></rule>
-
 <!--KNEKKE/KNEKKJE: START-->
   <rule><match lemma="knekke" tags="vblex.*"><select lemma="knekke"/></match></rule>
   <rule><match lemma="knekke" tags="adj.*"><select lemma="knekke¹"/></match></rule>
