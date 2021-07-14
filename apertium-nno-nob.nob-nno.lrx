@@ -3308,7 +3308,24 @@
     <match tags="adj.*"/>
     <match tags="n.*"/>
   </rule>
-  
+
+  <rule c="framstår som om/at" weight="3.0">
+    <match lemma="framstå# som" tags="vblex.*"><select lemma="verke# som"/></match>
+    <or>
+      <match lemma="om" tags="cnjsub"/>
+      <match lemma="at" tags="cnjsub"/>
+      <match tags="prn.pers.*.*.*.nom"/>
+    </or>
+  </rule>
+
+  <rule c="fremstår som om/at" weight="3.0">
+    <match lemma="fremstå# som" tags="vblex.*"><select lemma="verke# som"/></match>
+    <or>
+      <match lemma="om" tags="cnjsub"/>
+      <match lemma="at" tags="cnjsub"/>
+      <match tags="prn.pers.*.*.*.nom"/>
+    </or>
+  </rule>
 
   <rule><match lemma="fremstå" tags="vblex.*"><select lemma="verke"/></match></rule>
   <rule><match lemma="framstå" tags="vblex.*"><select lemma="verke"/></match></rule>
