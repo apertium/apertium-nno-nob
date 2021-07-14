@@ -2912,8 +2912,6 @@
        intransitive meanings too, so just always use that: -->
   <rule><match lemma="velte" tags="vblex.*"><select lemma="velte¹"/></match></rule>
   <rule><match lemma="velte" tags="adj.*"><select lemma="velte¹"/></match></rule>
-  <rule><match lemma="smelle" tags="vblex.*"><select lemma="smelle"/></match></rule>
-  <rule><match lemma="smelle" tags="adj.*"><select lemma="smelle"/></match></rule>
 
   <rule><match lemma="utebli" tags="vblex.*"><select lemma="utebli"/></match></rule>
   <rule><match lemma="utebli" tags="adj.*"><select lemma="utebli"/></match></rule>
@@ -3887,7 +3885,7 @@
   </rule>
   <!--STREKKE/STREKKJE: END-->
   <!--SPREKKE: START-->
-    <rule><match lemma="sprekke" tags="vblex.*"><select lemma="sprekke"/></match></rule>
+  <rule><match lemma="sprekke" tags="vblex.*"><select lemma="sprekke"/></match></rule>
   <rule><match lemma="sprekke" tags="adj.*"><select lemma="sprekke"/></match></rule>
   <rule weight="2.0" c="sprekkje strikken">
     <match lemma="sprekke" tags="vblex.*"><select lemma="sprekke¹"/></match>
@@ -4017,6 +4015,43 @@
     <match lemma="i"/>
   </rule>
 <!--SPRETTE: END-->
+<!--SMELLE: START-->
+  <rule><match lemma="smelle" tags="vblex.*"><select lemma="smelle"/></match></rule>
+  <rule><match lemma="smelle" tags="adj.*"><select lemma="smelle"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="bli"/>
+    <match lemma="smelle" tags="vblex.*"><select lemma="smelle¹"/></match>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="bli"/>
+    <match lemma="smelle" tags="adj.*"><select lemma="smelle¹"/></match>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="smelle" tags="vblex.*"><select lemma="smelle¹"/></match>
+    <or>
+      <match lemma="til"/>
+      <match lemma="igjen"/>
+      <match lemma="med"/>
+    </or>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="skjelle"/>
+    <match lemma="og"/>
+    <match lemma="smelle" tags="vblex.*"><select lemma="smelle¹"/></match>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="smelle" tags="vblex.*"><select lemma="smelle¹"/></match>
+    <or>
+      <match tags="prn.ref.*.*.*.acc"/>
+      <match tags="n.*.sg.def"/>
+    </or>
+  </rule>
+  <rule weight="2.0" c="Rett etterpå small ballen i stolpen">
+    <match tags="adv"/>
+    <match lemma="smelle" tags="vblex.*"><select lemma="smelle"/></match>
+    <match tags="n.*.sg.def"/>
+  </rule>
+<!--SMELLE: END-->
 <!--BESLEKTET: START-->
 <rule><match lemma="beslektet" tags="adj.*"><select lemma="nærståande"/></match></rule>
 <rule>
