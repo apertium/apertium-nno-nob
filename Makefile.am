@@ -259,13 +259,7 @@ clean-local:
 ###############################################################################
 
 test: all test-progression
-	echo "Såg ho ikkje orda? Dei smååt nyplanta hygge." | apertium -d . nno-nob | tee .test-mt
-	@echo "Så hun ikke ordene? De småspiste nyplantet hygge." > .test-ref
-	@diff .test-ref .test-mt
-	echo "Jeg har åler i min luftputebåt. Det er bevisst. Vi kan søke myndighetene." | apertium -d . nob-nno_e | tee .test-mt
-	@echo "Eg har ålar i luftputebåten min. Det er medvite. Vi kan søkje styresmaktene." > .test-ref
-	@diff .test-ref .test-mt
-	@rm .test-ref .test-mt
+	apertium-regtest test
 	t/bidix-sanity
 	t/hash-count
 	t/wer-loss
