@@ -4070,6 +4070,40 @@
     </or>
   </rule>
 <!--SVI: END-->
+<!--SLENGE/SLENGJE: START-->
+  <rule><match lemma="slenge" tags="vblex.*"><select lemma="slenge"/></match></rule>
+  <rule><match lemma="slenge" tags="adj.*"><select lemma="slenge"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="bli"/>
+    <match lemma="slenge"><select lemma="slenge¹"/></match>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="slenge"><select lemma="slenge"/></match>
+    <match lemma="seg"/>
+    <match lemma="med"/>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="slenge"><select lemma="slenge¹"/></match>
+    <repeat from="0" upto="1">
+      <match tags="pr"/>
+    </repeat>
+    <or>
+      <match tags="prn.pers.*.*.*.acc"/>
+      <match tags="prn.ref.*.*.*.acc"/>
+    </or>
+  </rule>
+    <rule weight="2.0">
+    <match lemma="slenge"><select lemma="slenge¹"/></match>
+        <repeat from="0" upto="1">
+    <match lemma="med"/>
+    </repeat>
+    <or>
+    <match tags="n.*.*.def"/>
+    <match tags="det.*"/>
+    </or>
+  </rule>
+<!--SLENGE/SLENGJE: END-->
+
 <!--BESLEKTET: START-->
 <rule><match lemma="beslektet" tags="adj.*"><select lemma="nærståande"/></match></rule>
 <rule>
