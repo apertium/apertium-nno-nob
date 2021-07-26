@@ -4105,13 +4105,22 @@
 <!--SLENGE/SLENGJE: END-->
 <!--SKVETTE: START-->
   <rule><match lemma="skvette" tags="vblex.pret"><select lemma="skvette"/></match></rule>
-    <rule><match lemma="skvette" tags="adj.*"><select lemma="skvette"/></match></rule>
+  <rule><match lemma="skvette" tags="adj.*"><select lemma="skvette"/></match></rule>
   <rule weight="2.0">
     <match lemma="skvette" tags="adj.pp.*"><select lemma="skvette¹"/></match>
   </rule>
   <rule weight="2.0">
     <match lemma="bli"/>
     <match lemma="skvette"><select lemma="skvette¹"/></match>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="skvette"><select lemma="skvette¹"/></match>
+    <match lemma="i"/>
+    <match lemma="busk"/>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="skvette"><select lemma="skvette¹"/></match>
+    <match lemma="på"/>
   </rule>
 <!--SKVETTE: END-->
 
