@@ -2884,6 +2884,17 @@
     </or>
   </rule>
     <!-- sleppe¹ is transitive: END -->
+  <rule><match lemma="fraråde" tags="vblex.*"><select lemma="avrå"/></match></rule>
+  <rule weight="3.0">
+    <match lemma="fraråde" tags="vblex.*"><select lemma="åtvare# mot"/></match>
+    <match lemma="å"/>
+  </rule>
+  <rule><match lemma="frarå" tags="vblex.*"><select lemma="avrå"/></match></rule>
+  <rule weight="3.0">
+    <match lemma="frarå" tags="vblex.*"><select lemma="åtvare# mot"/></match>
+    <match lemma="å"/>
+  </rule>
+
   <rule><match lemma="innad" tags="pr"><select lemma="internt"/></match></rule>
   <rule><match lemma="dog" tags="adv"><select lemma="likevel"/></match></rule>
   <rule><match lemma="frarøve" tags="vblex.*"><select lemma="ta# frå"/></match></rule>
