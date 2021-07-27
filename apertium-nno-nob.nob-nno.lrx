@@ -4094,7 +4094,7 @@
   </rule>
     <rule weight="2.0">
     <match lemma="slenge"><select lemma="slenge¹"/></match>
-        <repeat from="0" upto="1">
+    <repeat from="0" upto="1">
     <match lemma="med"/>
     </repeat>
     <or>
@@ -4123,6 +4123,39 @@
     <match lemma="på"/>
   </rule>
 <!--SKVETTE: END-->
+<!--HENGE/HENGJE: START-->
+  <rule><match lemma="henge" tags="vblex.*"><select lemma="henge"/></match></rule>
+  <rule><match lemma="henge" tags="adj.*"><select lemma="henge"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="bli"/>
+    <match lemma="henge"><select lemma="henge¹"/></match>
+  </rule>
+    <rule weight="2.0">
+    <match lemma="henge"><select lemma="henge¹"/></match>
+    <or>
+      <match tags="prn.pers.*.*.*.acc"/>
+      <match tags="prn.ref.*.*.*.acc"/>
+    </or>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="henge"><select lemma="henge"/></match>
+    <match lemma="ut"/>
+    <match lemma="gjennom"/>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="henge"><select lemma="henge¹"/></match>
+    <repeat from="0" upto="1">
+    <or>
+      <match tags="prn.*"/>
+      <match tags="n.*"/>
+    </or>    
+    </repeat>
+    <or>
+      <match lemma="opp"/>
+      <match lemma="ut"/>
+    </or>
+  </rule>
+<!--HENGE/HENGJE: END-->
 
 <!--BESLEKTET: START-->
 <rule><match lemma="beslektet" tags="adj.*"><select lemma="nærståande"/></match></rule>
