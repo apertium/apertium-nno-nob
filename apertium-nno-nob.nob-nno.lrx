@@ -2743,8 +2743,7 @@
 
   <!--  FORBEHOLDT END  -->
 <!--TILBRINGE: START-->
-<rule><match lemma="tilbringe" tags="vblex.*"><select lemma="halde# til"/></match></rule>
-<rule weight="4.0">
+<rule weight="2.0">
   <match lemma="tilbringe" tags="vblex.*"><select lemma="vere"/></match>
   <or>      
     <match tags="adv"/>
@@ -2753,10 +2752,13 @@
     <match lemma="mange"/>
   </or>
 </rule>
-<rule weight="4.0">
+<rule weight="2.0">
   <match lemma="tilbringe" tags="vblex.*"><select lemma="vere"/></match>
     <repeat from="0" upto="1">
+    <or>
       <match tags="adj.*"/>
+      <match tags="adv"/>
+    </or>
     </repeat>
     <or>
       <match tags="det.qnt.*"/>
@@ -2768,7 +2770,7 @@
   <match lemma="tilbringe" tags="vblex.*"><select lemma="gjennomføre"/></match>
   <match tags="n.*"/>
 </rule>
-<rule weight="3.0">
+<rule weight="4.0">
   <or>
     <match lemma="skulle"/>
     <match lemma="burde"/>
@@ -2785,26 +2787,29 @@
 <rule weight="2.0">
   <match lemma="tilbringe" tags="vblex.*"><select lemma="bruke"/></match>
   <or>
-    <match lemme="mye"/>
-    <match lemme="liten"/>
+    <match lemma="mye"/>
+    <match lemma="liten"/>
   </or>
-  <match lemme="tid"/>
+  <match lemma="tid"/>
 </rule>
 <rule weight="2.0">
   <match lemma="tilbringe" tags="vblex.*"><select lemma="bruke"/></match>
   <or>
-    <match lemme="dag"/>
-    <match lemme="kveld"/>
-    <match lemme="natt"/>
-    <match lemme="morgen"/>
-    <match lemme="formiddag"/>
-    <match lemme="ettermiddag"/>
+    <match lemma="dag"/>
+    <match lemma="kveld"/>
+    <match lemma="natt"/>
+    <match lemma="morgen"/>
+    <match lemma="formiddag"/>
+    <match lemma="ettermiddag"/>
+    <match lemma="time"/>
+    <match lemma="år"/>
+    <match lemma="tiår"/>
   </or>
 </rule>
 <rule weight="2.0">
   <match lemma="tilbringe" tags="vblex.*"><select lemma="ha"/></match>
-  <match lemme="lang"/>
-  <match lemme="dag"/>
+  <match lemma="lang"/>
+  <match lemma="dag"/>
 </rule>
 <!--TILBRINGE: END-->
 
