@@ -2749,11 +2749,18 @@
   <or>      
     <match tags="adv"/>
     <match tags="adj.*"/>
-    <match tags="det.qnt.*"/>
     <match lemma="noe"/>
     <match lemma="mange"/>
   </or>
 </rule>
+<rule weight="4.0">
+  <match lemma="tilbringe" tags="vblex.*"><select lemma="vere"/></match>
+    <repeat from="0" upto="1">
+      <match tags="adj.*"/>
+    </repeat>
+    <match tags="det.qnt.*"/>
+</rule>
+
 <rule weight="2.0">
   <match lemma="tilbringe" tags="vblex.*"><select lemma="gjennomføre"/></match>
   <match tags="n.*"/>
