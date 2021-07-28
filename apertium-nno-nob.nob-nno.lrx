@@ -2742,7 +2742,57 @@
   </rule>
 
   <!--  FORBEHOLDT END  -->
-
+<!--TILBRINGE: START-->
+<rule><match lemma="tilbringe" tags="vblex.*"><select lemma="halde# til"/></match></rule>
+<rule weight="4.0">
+  <match lemma="tilbringe" tags="vblex.*"><select lemma="vere"/></match>
+  <or>      
+    <match tags="adv"/>
+    <match tags="adj.*"/>
+    <match tags="det.qnt.*"/>
+    <match lemma="noe"/>
+    <match lemma="mange"/>
+  </or>
+</rule>
+<rule weight="2.0">
+  <match lemma="tilbringe" tags="vblex.*"><select lemma="gjennomføre"/></match>
+  <match tags="n.*"/>
+</rule>
+<rule weight="2.0">
+  <or>
+    <match lemma="skulle"/>
+    <match lemma="burde"/>
+    <match lemma="måtte"/>
+    <match lemma="kunne"/>
+  </or>
+  <match lemma="tilbringe" tags="vblex.*"><select lemma="bruke"/></match>
+  <match tags="adj.*"/>
+</rule>
+<rule weight="2.0">
+  <match lemma="tilbringe" tags="vblex.*"><select lemma="bruke"/></match>
+  <or>
+    <match lemme="mye"/>
+    <match lemme="liten"/>
+  </or>
+  <match lemme="tid"/>
+</rule>
+<rule weight="2.0">
+  <match lemma="tilbringe" tags="vblex.*"><select lemma="bruke"/></match>
+  <or>
+    <match lemme="dag"/>
+    <match lemme="kveld"/>
+    <match lemme="natt"/>
+    <match lemme="morgen"/>
+    <match lemme="formiddag"/>
+    <match lemme="ettermiddag"/>
+  </or>
+</rule>
+<rule weight="2.0">
+  <match lemma="tilbringe" tags="vblex.*"><select lemma="ha"/></match>
+  <match lemme="lang"/>
+  <match lemme="dag"/>
+</rule>
+<!--TILBRINGE: END-->
 
   <rule><match lemma="senest" tags="adv"><select lemma="seinast"/></match></rule>
 
