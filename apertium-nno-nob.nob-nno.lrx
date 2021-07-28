@@ -2758,22 +2758,29 @@
     <repeat from="0" upto="1">
       <match tags="adj.*"/>
     </repeat>
-    <match tags="det.qnt.*"/>
+    <or>
+      <match tags="det.qnt.*"/>
+    <match lemma="tiår"/>
+    </or>
 </rule>
 
 <rule weight="2.0">
   <match lemma="tilbringe" tags="vblex.*"><select lemma="gjennomføre"/></match>
   <match tags="n.*"/>
 </rule>
-<rule weight="2.0">
+<rule weight="3.0">
   <or>
     <match lemma="skulle"/>
     <match lemma="burde"/>
     <match lemma="måtte"/>
     <match lemma="kunne"/>
+    <match lemma="ville"/>
   </or>
-  <match lemma="tilbringe" tags="vblex.*"><select lemma="bruke"/></match>
-  <match tags="adj.*"/>
+  <match lemma="tilbringe" tags="vblex.*"><select lemma="ha"/></match>
+  <or>
+    <match tags="adj.*"/>
+    <match tags="adv"/>
+  </or>
 </rule>
 <rule weight="2.0">
   <match lemma="tilbringe" tags="vblex.*"><select lemma="bruke"/></match>
