@@ -2762,7 +2762,7 @@
     </repeat>
     <or>
       <match tags="det.qnt.*"/>
-    <match lemma="tiår"/>
+      <match lemma="tiår"/>
     </or>
 </rule>
 
@@ -2991,10 +2991,21 @@
   <rule><match lemma="velte" tags="vblex.*"><select lemma="velte¹"/></match></rule>
   <rule><match lemma="velte" tags="adj.*"><select lemma="velte¹"/></match></rule>
 
-  <rule><match lemma="utebli" tags="vblex.*"><select lemma="utebli"/></match></rule>
+<!--UTEBLI: START-->
+  <rule><match lemma="utebli" tags="vblex.*"><select lemma="glimre# med sitt fravær"/></match></rule>
   <rule><match lemma="utebli" tags="adj.*"><select lemma="utebli"/></match></rule>
-  <rule weight="2.0"><match lemma="utebli" tags="adj.pp.*"><select lemma="svikte"/></match></rule>
-  <rule weight="2.0"><match lemma="utebli" tags="vblex.pp"><select lemma="halde# seg borte"/></match></rule>
+
+    <rule weight="2.0">
+    <match lemma="utebli" tags="vblex.*"><select lemma="svikte"/></match>
+    <or>
+      <match tags="sent.*"/>
+      <match tags="cm.*"/>
+    </or>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="utebli" tags="vblex.pp"><select lemma="halde# seg borte"/></match>
+  </rule>
+<!--UTEBLI: END-->
 
   <rule><match lemma="hvor" tags="adv"><select lemma="kor"/></match></rule>
   <rule weight="3.0">
