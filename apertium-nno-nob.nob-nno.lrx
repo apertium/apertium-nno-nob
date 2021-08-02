@@ -6391,7 +6391,21 @@
   <rule weight="2.0">
     <match lemma="fatte" tags="vblex.*"><select lemma="få"/></match>
     <match lemma="ny"/>
-    <match lemma="håp"/>
+    <or>
+      <match lemma="håp"/>
+      <match lemma="mot"/>
+    </or>
+  </rule>
+    <rule weight="2.0">
+    <match lemma="fatte" tags="vblex.*"><select lemma="gjere"/></match>
+    <repeat from="0" upto="1">
+    <or>
+      <match tags="adv"/>
+      <match tags="adj.*"/>
+      <match lemma="en"/>
+    </or>
+    </repeat>
+    <match lemma="vedtak"/>
   </rule>
   <rule weight="2.0">
     <match lemma="fatte" tags="vblex.*"><select lemma="ta"/></match>
