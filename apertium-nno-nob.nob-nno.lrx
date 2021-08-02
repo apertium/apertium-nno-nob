@@ -6377,6 +6377,37 @@
     <match lemma="bestemmelse" tags="n.*"><select lemma="regel"/></match>
   </rule>
   <!-- END: bestemmelse -->
+  <!--FATTE: START-->
+  <rule>
+    <match lemma="fatte" tags="vblex.*"><select lemma="fatte"/></match>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="fatte" tags="vblex.*"><select lemma="få"/></match>
+    <repeat from="0" upto="1">
+      <match tags="adv"/>
+    </repeat>
+    <match lemma="mistanke"/>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="fatte" tags="vblex.*"><select lemma="få"/></match>
+    <match lemma="ny"/>
+    <match lemma="håp"/>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="fatte" tags="vblex.*"><select lemma="ta"/></match>
+    <repeat from="0" upto="3">
+    <or>
+      <match tags="adv"/>
+      <match tags="adj.*"/>
+      <match lemma="en"/>
+    </or>
+    </repeat>
+    <or>
+      <match lemma="beslutning"/>
+      <match lemma="avgjørelse"/>
+    </or>
+  </rule>
+  <!--FATTE: END-->
 
   <!-- START: bestemmelsessted -->
   <rule weight="2.0" c="like i nærleiken (av målet)">
