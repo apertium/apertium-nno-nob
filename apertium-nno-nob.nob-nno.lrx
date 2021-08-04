@@ -6396,7 +6396,7 @@
       <match lemma="mot"/>
     </or>
   </rule>
-    <rule weight="2.0">
+  <rule weight="2.0">
     <match lemma="fatte" tags="vblex.*"><select lemma="gjere"/></match>
     <repeat from="0" upto="1">
     <or>
@@ -6406,6 +6406,33 @@
     </or>
     </repeat>
     <match lemma="vedtak"/>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="fattet" tags="adj.*"><select lemma="gjord"/></match>
+    <repeat from="0" upto="1">
+    <or>
+      <match tags="adv"/>
+      <match tags="adj.*"/>
+      <match lemma="en"/>
+    </or>
+    </repeat>
+    <match lemma="vedtak"/>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="fattes" tags="vblex.*"><select lemma="gjerast"/></match>
+    <repeat from="0" upto="1">
+    <or>
+      <match tags="adv"/>
+      <match tags="adj.*"/>
+      <match lemma="en"/>
+    </or>
+    </repeat>
+    <match lemma="vedtak"/>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="vedtak"/>
+    <match tags="vblex.*"/>
+    <match lemma="fattet" tags="adj.*"><select lemma="gjord"/></match>
   </rule>
   <rule weight="2.0">
     <match lemma="fatte" tags="vblex.*"><select lemma="ta"/></match>
