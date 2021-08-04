@@ -6421,6 +6421,34 @@
       <match lemma="avgjørelse"/>
     </or>
   </rule>
+  <rule>
+    <match lemma="fattes" tags="vblex.*"><select lemma="fattast"/></match>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="fattes" tags="vblex.*"><select lemma="takast"/></match>
+    <or>
+      <match lemma="beslutning"/>
+      <match lemma="avgjørelse"/>
+    </or>  
+  </rule>
+  <rule>
+    <match lemma="fattet" tags="adj.*"><select lemma="fatta"/></match>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="fattet" tags="adj.*"><select lemma="teken"/></match>
+    <or>
+      <match lemma="beslutning"/>
+      <match lemma="avgjørelse"/>
+    </or>  
+  </rule>
+    <rule weight="2.0">
+    <or>
+      <match lemma="beslutning"/>
+      <match lemma="avgjørelse"/>
+    </or>
+    <match tags="vblex.*"/>
+    <match lemma="fattet" tags="adj.*"><select lemma="teken"/></match>  
+  </rule>
   <!--FATTE: END-->
 
   <!-- START: bestemmelsessted -->
