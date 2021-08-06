@@ -6476,6 +6476,18 @@
       <match lemma="avgjørelse"/>
     </or>
   </rule>
+  <rule weight="2.0" c="avgjørelse om de andre øvelsene i landeveis-NM vil bli fattet">
+  <or>
+      <match lemma="beslutning"/>
+      <match lemma="avgjørelse"/>
+    </or>
+    <repeat from="0" upto="9">
+    <or>
+      <match tags="*"/>
+    </or>
+    </repeat>
+    <match lemma="fatte" tags="vblex.*"><select lemma="ta"/></match>
+  </rule>
   <rule>
     <match lemma="fattes" tags="vblex.*"><select lemma="fattast"/></match>
   </rule>
