@@ -5857,7 +5857,13 @@
   </or>
 </rule>
 <!-- YTTERLIGERE: END -->
-
+<!--YTTERST: START-->
+<rule><match lemma="ytterst" tags="adv"><select lemma="ytst"/></match></rule>
+<rule weight="2.0">
+  <match lemma="ytterst" tags="adv"><select lemma="svært"/></match>
+  <match tags="adj.*"/>
+</rule>
+<!--YTTERST:END-->
 <!-- UHOLDBAR: START -->
 <rule><match lemma="uholdbar" tags="adj.*"><select lemma="uforsvarleg"/></match></rule>
 <rule weight="2.0">
