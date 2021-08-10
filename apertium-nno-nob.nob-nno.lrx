@@ -4319,10 +4319,28 @@
     <match lemma="og"/>
     <match lemma="suksess"/>
   </rule>
+  <rule weight="2.0">
+    <match tags="vblex.*"/>
+    <match lemma="berømmelse" tags="n.*.*.def"><select lemma="popularitet"/></match>
+  </rule>
   <rule weight="1.5">
     <match lemma="berømmelse" tags="n.*"><select lemma="suksess"/></match>
     <match lemma="og"/>
     <match tags="n.*"/>
+  </rule>
+  <rule weight="2.0">
+    <or>
+      <match lemma="om"/>
+      <match lemma="av"/>
+    </or>
+    <match lemma="berømmelse" tags="n.*"><select lemma="kjendisstatus"/></match>
+  </rule>
+    <rule weight="2.0">
+    <or>
+      <match lemma="i"/>
+      <match lemma="ut i"/>
+    </or>
+    <match lemma="berømmelse" tags="n.*"><select lemma="kjendiseri"/></match>
   </rule>
 <!--BERØMMELSE: END-->
 
