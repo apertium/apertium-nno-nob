@@ -4335,12 +4335,24 @@
     </or>
     <match lemma="berømmelse" tags="n.*"><select lemma="kjendisstatus"/></match>
   </rule>
-    <rule weight="2.0">
+  <rule weight="2.0">
     <or>
       <match lemma="i"/>
       <match lemma="ut i"/>
     </or>
     <match lemma="berømmelse" tags="n.*"><select lemma="kjendiseri"/></match>
+  </rule>
+  <rule weight="2.0">
+    <or>
+      <match tags="adj.pprs"/>
+      <match lemma="økende"/>
+      <match lemma="voksende"/>
+    </or>
+    <match lemma="berømmelse" tags="n.*"><select lemma="popularitet"/></match>
+  </rule>
+  <rule weight="1.5">
+    <match tags="adj.*"/>
+    <match lemma="berømmelse" tags="n.*"><select lemma="merksemd"/></match>
   </rule>
 <!--BERØMMELSE: END-->
 
