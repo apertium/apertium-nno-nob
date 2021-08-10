@@ -4297,6 +4297,15 @@
     <match lemma="fra"/>
   </rule>
 <!--GJENSIDIGHET: END-->
+<!--BERØMMELSE: START-->
+  <rule><match lemma="berømmelse" tags="n.*"><select lemma="ry"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="ære"/>
+    <match lemma="og"/>
+    <match lemma="berømmelse" tags="n.*"><select lemma="prestisje"/></match>
+  </rule>
+<!--BERØMMELSE: END-->
+
 
   <rule><match lemma="hylle" tags="vblex.*"><select lemma="hylle"/></match></rule>
   <rule><match lemma="hylle" tags="adj.*"><select lemma="hylle"/></match></rule>
