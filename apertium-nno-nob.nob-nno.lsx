@@ -107,6 +107,22 @@
 
   <pardefs>
 
+    <pardef n="aa|" c="Optional aa tag (includes empty)">
+      <e></e>
+      <e><i><s n="aa"/></i></e>
+      <e><i><s n="Aa"/></i></e>
+      <e><i><s n="AA"/></i></e>
+    </pardef>
+    <pardef n="j" c="Copy over word-separator with optional preceding aa tag">
+      <e><par n="aa|"/><i><j/></i></e>
+    </pardef>
+    <pardef n="j:" c="Delete word-separator and optional preceding aa tag">
+      <e><p><l><j/></l>            <r></r></p></e>
+      <e><p><l><s n="aa"/><j/></l> <r></r></p></e>
+      <e><p><l><s n="Aa"/><j/></l> <r></r></p></e>
+      <e><p><l><s n="AA"/><j/></l> <r></r></p></e>
+    </pardef>
+
     <pardef n="adj">
       <e><i><w/><s n="adj"/><t/><j/></i></e>
     </pardef>
@@ -229,18 +245,18 @@
 
     <pardef n="refl-prn">
       <e><i><w/><s n="prn"/><s n="ref"/><t/><j/></i></e>
-      <e><i>jeg<s n="prn"/><s n="pers"/><s n="p1"/><s n="mf"/><s n="sg"/><s n="acc"/><j/></i></e>
-      <e><i>du<s n="prn"/><s n="pers"/><s n="p2"/><s n="mf"/><s n="sg"/><s n="acc"/><j/></i></e>
-      <e><i>vi<s n="prn"/><s n="pers"/><s n="p1"/><s n="un"/><s n="pl"/><s n="acc"/><j/></i></e>
-      <e><i>dere<s n="prn"/><s n="pers"/><s n="p2"/><s n="un"/><s n="pl"/><s n="acc"/><j/></i></e>
+      <e><i>jeg<s n="prn"/><s n="pers"/><s n="p1"/><s n="mf"/><s n="sg"/><s n="acc"/></i> <par n="j"/></e>
+      <e><i>du<s n="prn"/><s n="pers"/><s n="p2"/><s n="mf"/><s n="sg"/><s n="acc"/></i> <par n="j"/></e>
+      <e><i>vi<s n="prn"/><s n="pers"/><s n="p1"/><s n="un"/><s n="pl"/><s n="acc"/></i> <par n="j"/></e>
+      <e><i>dere<s n="prn"/><s n="pers"/><s n="p2"/><s n="un"/><s n="pl"/><s n="acc"/></i> <par n="j"/></e>
     </pardef>
 
     <pardef n="rem-refl-prn">
       <e><p><l><w/><s n="prn"/><s n="ref"/><t/><j/></l> <r></r></p></e>
-      <e><p><l>jeg<s n="prn"/><s n="pers"/><s n="p1"/><s n="mf"/><s n="sg"/><s n="acc"/><j/></l> <r></r></p></e>
-      <e><p><l>du<s n="prn"/><s n="pers"/><s n="p2"/><s n="mf"/><s n="sg"/><s n="acc"/><j/></l> <r></r></p></e>
-      <e><p><l>vi<s n="prn"/><s n="pers"/><s n="p1"/><s n="un"/><s n="pl"/><s n="acc"/><j/></l> <r></r></p></e>
-      <e><p><l>dere<s n="prn"/><s n="pers"/><s n="p2"/><s n="un"/><s n="pl"/><s n="acc"/><j/></l> <r></r></p></e>
+      <e><p><l>jeg<s n="prn"/><s n="pers"/><s n="p1"/><s n="mf"/><s n="sg"/><s n="acc"/></l> <r></r></p>  <par n="j:"/></e>
+      <e><p><l>du<s n="prn"/><s n="pers"/><s n="p2"/><s n="mf"/><s n="sg"/><s n="acc"/></l> <r></r></p>  <par n="j:"/></e>
+      <e><p><l>vi<s n="prn"/><s n="pers"/><s n="p1"/><s n="un"/><s n="pl"/><s n="acc"/></l> <r></r></p>  <par n="j:"/></e>
+      <e><p><l>dere<s n="prn"/><s n="pers"/><s n="p2"/><s n="un"/><s n="pl"/><s n="acc"/></l> <r></r></p>  <par n="j:"/></e>
     </pardef>
 
     <pardef n="pos">
@@ -273,21 +289,21 @@
 
     <pardef n="sent-cm">
       <e><i><w/><s n="sent"/><t/><j/></i></e>
-      <e><i><w/><s n="cm"/><j/></i></e>
+      <e><i><w/><s n="cm"/></i> <par n="j"/></e>
     </pardef>
 
     <pardef n="spørjeord">
-      <e><i><w/><s n="prn"/><s n="itg"/><j/></i></e>
-      <e><i>hva<s n="adv"/><j/></i></e>
-      <e><i>hvor<s n="adv"/><j/></i></e>
-      <e><i>når<s n="adv"/><j/></i></e>
-      <e><i>hvorfor<s n="adv"/><j/></i></e>
-      <e><i>hvordan<s n="adv"/><j/></i></e>
-      <e><i>hvordan<s n="cnjsub"/><j/></i></e>
-      <e><i>hvor<b/>hen<s n="pr"/><j/></i></e>
-      <e><i>hvor<b/>mange<s n="adv"/><j/></i></e>
-      <e><i>hvor<b/>mange<s n="det"/><s n="qnt"/><s n="un"/><s n="pl"/><j/></i></e>
-      <e><i>hvor<b/>mye<s n="adv"/><j/></i></e>
+      <e><i><w/><s n="prn"/><s n="itg"/></i> <par n="j"/></e>
+      <e><i>hva<s n="adv"/></i> <par n="j"/></e>
+      <e><i>hvor<s n="adv"/></i> <par n="j"/></e>
+      <e><i>når<s n="adv"/></i> <par n="j"/></e>
+      <e><i>hvorfor<s n="adv"/></i> <par n="j"/></e>
+      <e><i>hvordan<s n="adv"/></i> <par n="j"/></e>
+      <e><i>hvordan<s n="cnjsub"/></i> <par n="j"/></e>
+      <e><i>hvor<b/>hen<s n="pr"/></i> <par n="j"/></e>
+      <e><i>hvor<b/>mange<s n="adv"/></i> <par n="j"/></e>
+      <e><i>hvor<b/>mange<s n="det"/><s n="qnt"/><s n="un"/><s n="pl"/></i> <par n="j"/></e>
+      <e><i>hvor<b/>mye<s n="adv"/></i> <par n="j"/></e>
     </pardef>
 
     <pardef n="stor:helt-mye:mer">
@@ -301,18 +317,18 @@
       </e>
       <e>
         <p><l>en<s n="det"/><s n="qnt"/><t/><j/></l>                 <r></r></p>
-        <p><l>del<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/><j/></l> <r></r></p>
+        <p><l>del<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/></l> <r></r></p>  <par n="j:"/>
         <p><l></l>                                                   <r>noe<s n="prn"/><s n="ind"/><s n="nt"/><s n="sg"/><s n="acc"/><j/></r></p>
       </e>
     </pardef>
 
     <pardef n="at/om/av/som">
-      <e><i>at<s n="adv"/><j/></i></e>
-      <e><i>at<s n="cnjsub"/><j/></i></e>
-      <e><i>om<s n="pr"/><j/></i></e>
-      <e><i>om<s n="cnjsub"/><j/></i></e>
-      <e><i>av<s n="pr"/><j/></i></e>
-      <e><i>som<s n="cnjsub"/><j/></i></e>
+      <e><i>at<s n="adv"/></i> <par n="j"/></e>
+      <e><i>at<s n="cnjsub"/></i> <par n="j"/></e>
+      <e><i>om<s n="pr"/></i> <par n="j"/></e>
+      <e><i>om<s n="cnjsub"/></i> <par n="j"/></e>
+      <e><i>av<s n="pr"/></i> <par n="j"/></e>
+      <e><i>som<s n="cnjsub"/></i> <par n="j"/></e>
     </pardef>
 
     <pardef n="ADV|empty" c="Includes empty!">
@@ -332,9 +348,10 @@
       </p>
       <i><t/><t/><j/></i>
       <p>
-        <l>enkelt<s n="adj"/><s n="pst"/><s n="un"/><s n="sp"/><s n="def"/><j/></l>
-        <r>enkelt<s n="adj"/><s n="pst"/><s n="nt"/><s n="sg"/><s n="ind"/><j/></r>
+        <l>enkelt<s n="adj"/><s n="pst"/><s n="un"/><s n="sp"/><s n="def"/></l>
+        <r>enkelt<s n="adj"/><s n="pst"/><s n="nt"/><s n="sg"/><s n="ind"/></r>
       </p>
+      <par n="j"/>
       <par n="SN.sg.ind"/>
     </e>
 
@@ -373,7 +390,7 @@
         <l>stor<s n="adj"/><s n="sint"/><s n="pst"/><t/><j/></l>
         <r></r>
       </p>
-      <i>begivenhet<s n="n"/><t/><s n="ind"/><j/></i>
+      <i>begivenhet<s n="n"/><t/><s n="ind"/></i> <par n="j"/>
     </e>
     <e lm="den store begivenheten" c="storhendinga">
       <p>
@@ -448,14 +465,14 @@
 
     <e lm="i god hensikt -> i beste meining" c="i beste meining">
       <i>i<t/><j/></i>
-      <p><l>god<s n="adj"/><s n="sint"/><s n="pst"/><s n="mf"/><s n="sg"/><s n="ind"/><j/></l> <r></r></p>
+      <p><l>god<s n="adj"/><s n="sint"/><s n="pst"/><s n="mf"/><s n="sg"/><s n="ind"/></l> <r></r></p>  <par n="j:"/>
       <p><l></l>                  <r>god<s n="adj"/><s n="sint"/><s n="sup"/><s n="un"/><s n="sp"/><s n="def"/><j/></r></p>
       <p><l>hensikt</l>           <r>mening</r></p> <i><t/><j/></i>
     </e>
 
     <e lm="hensikten helliger midlene -> hensikten helliger middelet" c="hensikten helgar middelet">
-      <i>hensikt<s n="n"/><s n="m"/><s n="sg"/><s n="def"/><j/></i>
-      <i>hellige<s n="vblex"/><s n="pres"/><j/></i>
+      <i>hensikt<s n="n"/><s n="m"/><s n="sg"/><s n="def"/></i> <par n="j"/>
+      <i>hellige<s n="vblex"/><s n="pres"/></i> <par n="j"/>
       <p><l>middel<t/><j/></l> <r></r></p>
       <p><l></l>                  <r>middel<s n="n"/><s n="nt"/><s n="sg"/><s n="def"/><j/></r></p>
     </e>
@@ -464,7 +481,7 @@
       <p><l>virke</l>                     <r>ha</r></p> <i><t/><j/></i>
       <p><l>mot<t/><j/></l> <r></r></p>
       <p><l>sin<t/><j/></l> <r></r></p>
-      <p><l>hensikt<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/><j/></l> <r></r></p>
+      <p><l>hensikt<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/></l> <r></r></p>  <par n="j:"/>
       <p><l></l>                  <r>motsette<s n="vblex"/><s n="pp"/><j/></r></p>
       <p><l></l>                  <r>effekt<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/><j/></r></p>
     </e>
@@ -479,14 +496,14 @@
     <e lm="med den hensikt å -> for å" c="for å">
       <p><l>med<t/><j/></l> <r></r></p>
       <p><l>den<t/><j/></l> <r></r></p>
-      <p><l>hensikt<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/><j/></l> <r></r></p>
+      <p><l>hensikt<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/></l> <r></r></p>  <par n="j:"/>
       <p><l></l>                  <r>for<s n="pr"/><j/></r></p>
       <i>å<t/><j/></i>
     </e>
 
     <e lm="med hensikt å -> for å" c="for å">
       <p><l>med<t/><j/></l> <r></r></p>
-      <p><l>hensikt<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/><j/></l> <r></r></p>
+      <p><l>hensikt<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/></l> <r></r></p>  <par n="j:"/>
       <p><l></l>                  <r>for<s n="pr"/><j/></r></p>
       <i>å<t/><j/></i>
     </e>
@@ -494,7 +511,7 @@
     <e lm="i den hensikt å -> for å" c="for å">
       <p><l>i<t/><j/></l> <r></r></p>
       <p><l>den<t/><j/></l> <r></r></p>
-      <p><l>hensikt<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/><j/></l> <r></r></p>
+      <p><l>hensikt<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/></l> <r></r></p>  <par n="j:"/>
       <p><l></l>                  <r>for<s n="pr"/><j/></r></p>
       <i>å<t/><j/></i>   
     </e>
@@ -502,7 +519,7 @@
     <e lm="har ingen hensikt om -> har ingen planer om" c="har ingen planar om">
       <i>ha<t/><j/></i>
       <i>ingen<t/><j/></i>
-      <i>hensikt<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/><j/></i>
+      <i>hensikt<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/></i> <par n="j"/>
       <p><l></l>                  <r>plan<s n="n"/><s n="m"/><s n="pl"/><s n="ind"/><j/></r></p>
       <i>om<t/><j/></i>
     </e>
@@ -511,7 +528,7 @@
       <i>ha<t/><j/></i>
       <p><l>liten<t/><j/></l> <r></r></p>
       <p><l></l>                  <r>liten<s n="adj"/><s n="sint"/><s n="pst"/><s n="nt"/><s n="sg"/><s n="ind"/><j/></r></p>
-      <p><l>hensikt<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/><j/></l> <r></r></p>
+      <p><l>hensikt<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/></l> <r></r></p>  <par n="j:"/>
       <p><l></l>                  <r>for<s n="pr"/><j/></r></p>
       <p><l></l>                  <r>seg<s n="prn"/><s n="ref"/><s n="p3"/><s n="un"/><s n="sp"/><s n="acc"/><j/></r></p>
     </e>
@@ -520,7 +537,7 @@
       <p><l>tjene</l>                     <r>ha</r></p> <i><t/><j/></i>
       <p><l>liten<t/><j/></l> <r></r></p>
       <p><l></l>                  <r>liten<s n="adj"/><s n="sint"/><s n="pst"/><s n="nt"/><s n="sg"/><s n="ind"/><j/></r></p>
-      <p><l>hensikt<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/><j/></l> <r></r></p>
+      <p><l>hensikt<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/></l> <r></r></p>  <par n="j:"/>
       <p><l></l>                  <r>for<s n="pr"/><j/></r></p>
       <p><l></l>                  <r>seg<s n="prn"/><s n="ref"/><s n="p3"/><s n="un"/><s n="sp"/><s n="acc"/><j/></r></p>
     </e>
@@ -530,7 +547,7 @@
       <i><w/><s n="prn"/><t/><j/></i>
       <p><l>liten<t/><j/></l> <r></r></p>
       <p><l></l>                  <r>liten<s n="adj"/><s n="sint"/><s n="pst"/><s n="nt"/><s n="sg"/><s n="ind"/><j/></r></p>
-      <p><l>hensikt<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/><j/></l> <r></r></p>
+      <p><l>hensikt<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/></l> <r></r></p>  <par n="j:"/>
       <p><l></l>                  <r>for<s n="pr"/><j/></r></p>
       <p><l></l>                  <r>seg<s n="prn"/><s n="ref"/><s n="p3"/><s n="un"/><s n="sp"/><s n="acc"/><j/></r></p>
     </e>
@@ -538,7 +555,7 @@
     <e lm="har ingen hensikt -> har ikke noe for seg" c="har ikkje noko for seg">
       <i>ha<t/><j/></i>
       <p><l>ingen<t/><j/></l> <r></r></p>
-      <p><l>hensikt<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/><j/></l> <r></r></p>
+      <p><l>hensikt<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/></l> <r></r></p>  <par n="j:"/>
       <p><l></l>                  <r>ikke<s n="adv"/><j/></r></p>
       <p><l></l>                  <r>noe<s n="det"/><s n="qnt"/><s n="nt"/><s n="sg"/><j/></r></p>
       <p><l></l>                  <r>for<s n="pr"/><j/></r></p>
@@ -549,7 +566,7 @@
       <i>ha<t/><j/></i>
       <i><w/><s n="det"/><t/><j/></i>
       <p><l>ingen<t/><j/></l> <r></r></p>
-      <p><l>hensikt<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/><j/></l> <r></r></p>
+      <p><l>hensikt<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/></l> <r></r></p>  <par n="j:"/>
       <p><l></l>                  <r>ikke<s n="adv"/><j/></r></p>
       <p><l></l>                  <r>noe<s n="det"/><s n="qnt"/><s n="nt"/><s n="sg"/><j/></r></p>
       <p><l></l>                  <r>for<s n="pr"/><j/></r></p>
@@ -560,7 +577,7 @@
       <i>ha<t/><j/></i>
       <p><l>ikke<t/><j/></l> <r></r></p>
       <p><l>noe<t/><j/></l> <r></r></p>
-      <p><l>hensikt<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/><j/></l> <r></r></p>
+      <p><l>hensikt<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/></l> <r></r></p>  <par n="j:"/>
       <p><l></l>                  <r>ikke<s n="adv"/><j/></r></p>
       <p><l></l>                  <r>noe<s n="det"/><s n="qnt"/><s n="nt"/><s n="sg"/><j/></r></p>
       <p><l></l>                  <r>for<s n="pr"/><j/></r></p>
@@ -570,7 +587,7 @@
     <e lm="tjener ingen hensikt  -> har ingenting for seg" c="har ingenting for seg">
       <p><l>tjene</l>                     <r>ha</r></p> <i><t/><j/></i>
       <p><l>ingen<t/><j/></l> <r></r></p>
-      <p><l>hensikt<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/><j/></l> <r></r></p>
+      <p><l>hensikt<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/></l> <r></r></p>  <par n="j:"/>
       <p><l></l>                  <r>ingenting<s n="adv"/><j/></r></p>
       <p><l></l>                  <r>for<s n="pr"/><j/></r></p>
       <p><l></l>                  <r>seg<s n="prn"/><s n="ref"/><s n="p3"/><s n="un"/><s n="sp"/><s n="acc"/><j/></r></p>
@@ -580,29 +597,29 @@
       <p><l>tjene</l>                     <r>ha</r></p> <i><t/><j/></i>
       <p><l>ikke<t/><j/></l> <r></r></p>
       <p><l>noe<t/><j/></l> <r></r></p>
-      <p><l>hensikt<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/><j/></l> <r></r></p>
+      <p><l>hensikt<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/></l> <r></r></p>  <par n="j:"/>
       <p><l></l>                  <r>ingenting<s n="adv"/><j/></r></p>
       <p><l></l>                  <r>for<s n="pr"/><j/></r></p>
       <p><l></l>                  <r>seg<s n="prn"/><s n="ref"/><s n="p3"/><s n="un"/><s n="sp"/><s n="acc"/><j/></r></p>
     </e>
 
     <e lm="misligheter -> mislighet" c="misferd">
-      <p><l>mislighet<s n="n"/><s n="m"/><s n="pl"/><s n="ind"/><j/></l> <r></r></p>
+      <p><l>mislighet<s n="n"/><s n="m"/><s n="pl"/><s n="ind"/></l> <r></r></p>  <par n="j:"/>
       <p><l></l>                  <r>mislighet<s n="n"/><s n="f"/><s n="sg"/><s n="ind"/><j/></r></p>
     </e>
 
     <e lm="mislighetene -> misligheten" c="misferda">
-      <p><l>mislighet<s n="n"/><s n="m"/><s n="pl"/><s n="def"/><j/></l> <r></r></p>
+      <p><l>mislighet<s n="n"/><s n="m"/><s n="pl"/><s n="def"/></l> <r></r></p>  <par n="j:"/>
       <p><l></l>                  <r>mislighet<s n="n"/><s n="f"/><s n="sg"/><s n="def"/><j/></r></p>
     </e>
 
     <e lm="misligheter -> mislighet" c="misferd">
-      <p><l>mislighet<s n="n"/><s n="f"/><s n="pl"/><s n="ind"/><j/></l> <r></r></p>
+      <p><l>mislighet<s n="n"/><s n="f"/><s n="pl"/><s n="ind"/></l> <r></r></p>  <par n="j:"/>
       <p><l></l>                  <r>mislighet<s n="n"/><s n="f"/><s n="sg"/><s n="ind"/><j/></r></p>
     </e>
 
     <e lm="mislighetene -> misligheten" c="misferda">
-      <p><l>mislighet<s n="n"/><s n="f"/><s n="pl"/><s n="def"/><j/></l> <r></r></p>
+      <p><l>mislighet<s n="n"/><s n="f"/><s n="pl"/><s n="def"/></l> <r></r></p>  <par n="j:"/>
       <p><l></l>                  <r>mislighet<s n="n"/><s n="f"/><s n="sg"/><s n="def"/><j/></r></p>
     </e>
 
@@ -653,14 +670,14 @@
     <e lm="overlatt til tilfeldighetene -> på slump" c="på slump">
       <p><l>overlate<t/><j/></l> <r></r></p>
       <p><l>til<t/><j/></l> <r></r></p>
-      <p><l>tilfeldighet<s n="n"/><s n="f"/><s n="pl"/><s n="def"/><j/></l> <r></r></p>
+      <p><l>tilfeldighet<s n="n"/><s n="f"/><s n="pl"/><s n="def"/></l> <r></r></p>  <par n="j:"/>
       <p><l></l>                  <r>på<s n="pr"/><j/></r></p>
       <p><l></l>                  <r>slump<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/><j/></r></p>
     </e>
 
     <e lm="overlatt tilfeldighetene -> på slump" c="på slump">
-      <p><l>overlate<s n="vblex"/><s n="pp"/><j/></l> <r></r></p>
-      <p><l>tilfeldighet<s n="n"/><s n="f"/><s n="pl"/><s n="def"/><j/></l> <r></r></p>
+      <p><l>overlate<s n="vblex"/><s n="pp"/></l> <r></r></p>  <par n="j:"/>
+      <p><l>tilfeldighet<s n="n"/><s n="f"/><s n="pl"/><s n="def"/></l> <r></r></p>  <par n="j:"/>
       <p><l></l>                  <r>på<s n="pr"/><j/></r></p>
       <p><l></l>                  <r>slump<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/><j/></r></p>
     </e>
@@ -670,7 +687,7 @@
       <par n="SN|ADV|prn|det"/>
       <par n="SN|ADV|prn|det"/>
       <p><l>til<t/><j/></l>      <r></r></p>
-      <p><l>tilfeldighet<s n="n"/><s n="f"/><s n="pl"/><s n="def"/><j/></l> <r></r></p>
+      <p><l>tilfeldighet<s n="n"/><s n="f"/><s n="pl"/><s n="def"/></l> <r></r></p>  <par n="j:"/>
       <p><l></l>                  <r>gå<s n="vblex"/><s n="inf"/><j/></r></p>
       <p><l></l>                  <r>på<s n="pr"/><j/></r></p>
       <p><l></l>                  <r>slump<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/><j/></r></p>
@@ -679,7 +696,7 @@
     <e lm="alle disse tilfeldighetene -> denne slumpen" c="denne slumpen">
       <p><l>all<t/><j/></l>          <r></r></p>
       <p><l>denne<t/><j/></l>        <r></r></p> 
-      <p><l>tilfeldighet<s n="n"/><s n="m"/><s n="pl"/><s n="def"/><j/></l> <r></r></p>
+      <p><l>tilfeldighet<s n="n"/><s n="m"/><s n="pl"/><s n="def"/></l> <r></r></p>  <par n="j:"/>
       <p><l></l>                  <r>all<s n="det"/><s n="qnt"/><s n="m"/><s n="sg"/><j/></r></p>
       <p><l></l>                  <r>slump<s n="n"/><s n="m"/><s n="sg"/><s n="def"/><j/></r></p>
     </e>
@@ -687,37 +704,37 @@
     <e lm="alle de tilfeldighetene -> denne slumpen" c="denne slumpen">
       <p><l>all<t/><j/></l>          <r></r></p>
       <p><l>den<t/><j/></l>        <r></r></p> 
-      <p><l>tilfeldighet<s n="n"/><s n="m"/><s n="pl"/><s n="def"/><j/></l> <r></r></p>
+      <p><l>tilfeldighet<s n="n"/><s n="m"/><s n="pl"/><s n="def"/></l> <r></r></p>  <par n="j:"/>
       <p><l></l>                  <r>all<s n="det"/><s n="qnt"/><s n="m"/><s n="sg"/><j/></r></p>
       <p><l></l>                  <r>slump<s n="n"/><s n="m"/><s n="sg"/><s n="def"/><j/></r></p>
     </e>
 
     <e lm="disse tilfeldighetene -> denne slumpen" c="denne slumpen">
       <p><l>denne<t/><j/></l>        <r></r></p> 
-      <p><l>tilfeldighet<s n="n"/><s n="m"/><s n="pl"/><s n="def"/><j/></l> <r></r></p>
+      <p><l>tilfeldighet<s n="n"/><s n="m"/><s n="pl"/><s n="def"/></l> <r></r></p>  <par n="j:"/>
       <p><l></l>                  <r>denne<s n="det"/><s n="dem"/><s n="m"/><s n="sg"/><j/></r></p>
       <p><l></l>                  <r>slump<s n="n"/><s n="m"/><s n="sg"/><s n="def"/><j/></r></p>
     </e>
 
     <e lm="tilfeldighetene -> slumpen" c="slumpen">
-      <p><l>tilfeldighet<s n="n"/><s n="m"/><s n="pl"/><s n="def"/><j/></l> <r></r></p>
+      <p><l>tilfeldighet<s n="n"/><s n="m"/><s n="pl"/><s n="def"/></l> <r></r></p>  <par n="j:"/>
       <p><l></l>                  <r>slump<s n="n"/><s n="m"/><s n="sg"/><s n="def"/><j/></r></p>
     </e>
 
     <e lm="tilfeldigheter -> slump" c="slump">
-      <p><l>tilfeldighet<s n="n"/><s n="f"/><s n="pl"/><s n="ind"/><j/></l> <r></r></p>
+      <p><l>tilfeldighet<s n="n"/><s n="f"/><s n="pl"/><s n="ind"/></l> <r></r></p>  <par n="j:"/>
       <p><l></l>                  <r>slump<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/><j/></r></p>
     </e>
 
     <e lm="tilfeldighetenes spill -> et slumpspill" c="eit slumpspel">
-      <p><l>tilfeldighet<s n="n"/><s n="m"/><s n="pl"/><s n="def"/><s n="gen"/><j/></l> <r></r></p>
+      <p><l>tilfeldighet<s n="n"/><s n="m"/><s n="pl"/><s n="def"/><s n="gen"/></l> <r></r></p>  <par n="j:"/>
       <p><l></l>                  <r>en<s n="det"/><s n="qnt"/><s n="nt"/><s n="sg"/><j/></r></p>
       <p><l></l>                  <r>slump<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/><s n="cmp"/><j/></r></p>
       <i>spill<t/><j/></i>
     </e>
 
     <e lm="tilfeldighetens spill -> et slumpspill" c="eit slumpspel">
-      <p><l>tilfeldighet<s n="n"/><s n="m"/><s n="sg"/><s n="def"/><s n="gen"/><j/></l> <r></r></p>
+      <p><l>tilfeldighet<s n="n"/><s n="m"/><s n="sg"/><s n="def"/><s n="gen"/></l> <r></r></p>  <par n="j:"/>
       <p><l></l>                  <r>en<s n="det"/><s n="qnt"/><s n="nt"/><s n="sg"/><j/></r></p>
       <p><l></l>                  <r>slump<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/><s n="cmp"/><j/></r></p>
       <i>spill<t/><j/></i>
@@ -753,8 +770,8 @@
 
     <e lm="knekke i stykker -> knekke sund" c="knekke sund">
       <i>knekke<t/><j/></i>
-      <p><l>i<s n="pr"/><j/></l> <r></r></p>
-      <p><l>stykke<s n="n"/><s n="nt"/><s n="pl"/><s n="ind"/><j/></l> <r></r></p>
+      <p><l>i<s n="pr"/></l> <r></r></p>  <par n="j:"/>
+      <p><l>stykke<s n="n"/><s n="nt"/><s n="pl"/><s n="ind"/></l> <r></r></p>  <par n="j:"/>
       <p><l></l>                  <r>sund<s n="adv"/><j/></r></p>
     </e>
 
@@ -856,7 +873,7 @@
     </e>
 
     <e lm="ustabilitet for -> ustabile forhold for" c="ustabile forhold for">
-      <p><l>ustabilitet<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/><j/></l> <r></r></p>
+      <p><l>ustabilitet<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/></l> <r></r></p>  <par n="j:"/>
       <p><l></l>                  <r>ustabil<s n="adj"/><s n="pst"/><s n="un"/><s n="pl"/><s n="ind"/><j/></r></p>
       <p><l></l>                  <r>forhold<s n="n"/><s n="nt"/><s n="pl"/><s n="ind"/><j/></r></p>
       <i>for<t/><j/></i>
@@ -925,14 +942,14 @@
 
     <e lm="override rule for adj + antagelsen er at" c="den foreløpige antakelsen er at">
       <i><w/><s n="adj"/><t/><j/></i>
-      <i>antagelse<s n="n"/><s n="m"/><s n="sg"/><s n="def"/><j/></i>
-      <i>være<s n="vblex"/><s n="pres"/><j/></i>
+      <i>antagelse<s n="n"/><s n="m"/><s n="sg"/><s n="def"/></i> <par n="j"/>
+      <i>være<s n="vblex"/><s n="pres"/></i> <par n="j"/>
       <i>at<t/><j/></i>
     </e>
 
     <e lm="antagelsen er at -> man går ut fra at" c="ein går ut frå at">
-      <p><l>antagelse<s n="n"/><s n="m"/><s n="sg"/><s n="def"/><j/></l> <r></r></p>
-      <p><l>være<s n="vblex"/><s n="pres"/><j/></l> <r></r></p>
+      <p><l>antagelse<s n="n"/><s n="m"/><s n="sg"/><s n="def"/></l> <r></r></p>  <par n="j:"/>
+      <p><l>være<s n="vblex"/><s n="pres"/></l> <r></r></p>  <par n="j:"/>
       <p><l></l>                 <r>man<s n="prn"/><s n="pers"/><s n="p3"/><s n="un"/><s n="sg"/><s n="nom"/><j/></r></p>
       <p><l></l>                 <r>gå<s n="vblex"/><s n="pres"/><j/></r></p>
       <p><l></l>                 <r>ut<s n="pr"/><j/></r></p>
@@ -942,14 +959,14 @@
 
     <e lm="override rule for adj + antagelsen er at" c="den foreløpige antakelsen er at">
       <i><w/><s n="adj"/><t/><j/></i>
-      <i>antakelse<s n="n"/><s n="m"/><s n="sg"/><s n="def"/><j/></i>
-      <i>være<s n="vblex"/><s n="pres"/><j/></i>
+      <i>antakelse<s n="n"/><s n="m"/><s n="sg"/><s n="def"/></i> <par n="j"/>
+      <i>være<s n="vblex"/><s n="pres"/></i> <par n="j"/>
       <i>at<t/><j/></i>
     </e>
 
     <e lm="antakelsen er at -> man går ut fra at" c="ein går ut frå at">
-      <p><l>antakelse<s n="n"/><s n="m"/><s n="sg"/><s n="def"/><j/></l> <r></r></p>
-      <p><l>være<s n="vblex"/><s n="pres"/><j/></l> <r></r></p>
+      <p><l>antakelse<s n="n"/><s n="m"/><s n="sg"/><s n="def"/></l> <r></r></p>  <par n="j:"/>
+      <p><l>være<s n="vblex"/><s n="pres"/></l> <r></r></p>  <par n="j:"/>
       <p><l></l>                 <r>man<s n="prn"/><s n="pers"/><s n="p3"/><s n="un"/><s n="sg"/><s n="nom"/><j/></r></p>
       <p><l></l>                 <r>gå<s n="vblex"/><s n="pres"/><j/></r></p>
       <p><l></l>                 <r>ut<s n="pr"/><j/></r></p>
@@ -1087,7 +1104,7 @@
     </e>
 
     <e lm="oppgis ikke av X  -> sier ikke X noe om" c="seier ikkje X noko om">
-      <p><l>oppgi<s n="vblex"/><s n="pres"/><s n="pasv"/><j/></l>   <r></r></p>
+      <p><l>oppgi<s n="vblex"/><s n="pres"/><s n="pasv"/></l>   <r></r></p>  <par n="j:"/>
       <p><l></l>              <r>si<s n="vblex"/><s n="pres"/><j/></r></p>
       <i>ikke<t/><j/></i>
       <p><l>av<t/><j/></l>   <r></r></p>
@@ -1097,7 +1114,7 @@
     </e>
 
     <e lm="oppgis ikke av X  -> seier ikkje X noko om" c="seier ikkje X noko om">
-      <p><l>oppgi<s n="vblex"/><s n="pres"/><s n="pasv"/><j/></l>   <r></r></p>
+      <p><l>oppgi<s n="vblex"/><s n="pres"/><s n="pasv"/></l>   <r></r></p>  <par n="j:"/>
       <p><l></l>              <r>si<s n="vblex"/><s n="pres"/><j/></r></p>
       <i>ikke<t/><j/></i>
       <p><l>av<t/><j/></l>   <r></r></p>
@@ -1115,7 +1132,7 @@
 
     <e lm="X oppgis ikke -> X er ikke oppgitt" c="årsaka er ikkje oppgitt">
       <i><w/><s n="n"/><t/><j/></i>
-      <p><l>oppgi<s n="vblex"/><s n="pres"/><s n="pasv"/><j/></l>   <r></r></p>
+      <p><l>oppgi<s n="vblex"/><s n="pres"/><s n="pasv"/></l>   <r></r></p>  <par n="j:"/>
       <p><l></l>              <r>være<s n="vblex"/><s n="pres"/><j/></r></p>
       <i>ikke<t/><j/></i>
       <p><l></l>              <r>oppgitt<s n="adj"/><s n="pst"/><s n="mf"/><s n="sg"/><s n="ind"/><j/></r></p>
@@ -1123,7 +1140,7 @@
 
     <e lm="det oppgis ingen -> det blir ikke oppgitt noen" c="det blir ikkje oppgitt nokon">
       <i>den<t/><j/></i>
-      <i>oppgi<s n="vblex"/><s n="pres"/><s n="pasv"/><j/></i>
+      <i>oppgi<s n="vblex"/><s n="pres"/><s n="pasv"/></i> <par n="j"/>
       <p><l>ingen<t/><j/></l>   <r></r></p>
       <p><l></l>              <r>ikke<s n="adv"/><j/></r></p>
       <p><l></l>              <r>noe<s n="prn"/><s n="neg"/><s n="ind"/><s n="pl"/><s n="acc"/><j/></r></p>
@@ -1131,8 +1148,8 @@
     <!-- /Oppgi -->
 
     <e lm="det fryktes at -> man frykter for at" c="ein fryktar for at">
-      <p><l>den<s n="prn"/><s n="pers"/><s n="p3"/><s n="nt"/><s n="sg"/><s n="acc"/><j/></l> <r>man<s n="prn"/><s n="pers"/><s n="p3"/><s n="un"/><s n="sg"/><s n="nom"/><j/></r></p>
-      <p><l>frykte<s n="vblex"/><s n="pres"/><s n="pasv"/><j/></l> <r>frykte<s n="vblex"/><s n="pres"/><j/></r></p>
+      <p><l>den<s n="prn"/><s n="pers"/><s n="p3"/><s n="nt"/><s n="sg"/><s n="acc"/></l> <r>man<s n="prn"/><s n="pers"/><s n="p3"/><s n="un"/><s n="sg"/><s n="nom"/></r></p>  <par n="j"/>
+      <p><l>frykte<s n="vblex"/><s n="pres"/><s n="pasv"/></l> <r>frykte<s n="vblex"/><s n="pres"/></r></p>  <par n="j"/>
       <p><l></l>      <r>for<s n="pr"/><j/></r></p>
       <i>at<t/><j/></i>
     </e>
@@ -1271,7 +1288,7 @@
 
 
     <e lm="ytterligere (adj) + talord/siffer + subst -> talord/siffer + subst + til" c="ytterligere (adj) talord/siffer + subst + til">
-      <p><l>ytterlig<s n="adj"/><s n="sint"/><s n="comp"/><s n="un"/><s n="sp"/><j/></l>  <r></r></p>      
+      <p><l>ytterlig<s n="adj"/><s n="sint"/><s n="comp"/><s n="un"/><s n="sp"/></l>  <r></r></p>  <par n="j:"/>      
       <i><w/><s n="det"/><s n="qnt"/><s n="un"/><t/><j/></i>
       <par n="ncmp*.n"/>
       <p><l></l>               <r>til<s n="pr"/><j/></r></p>
@@ -1281,7 +1298,7 @@
       <i>vinne<t/><j/></i>
       <par n="SN|empty"/> 
       <p><l>ytterst<t/><j/></l>   <r></r></p>
-      <p><l>knepen<s n="adj"/><s n="pst"/><s n="nt"/><s n="sg"/><s n="ind"/><j/></l>  <r></r></p>      
+      <p><l>knepen<s n="adj"/><s n="pst"/><s n="nt"/><s n="sg"/><s n="ind"/></l>  <r></r></p>  <par n="j:"/>      
       <p><l></l>               <r>med<s n="pr"/><j/></r></p>
       <p><l></l>               <r>knapp<s n="adj"/><s n="sint"/><s n="pst"/><s n="mf"/><s n="sg"/><s n="ind"/><j/></r></p>
       <p><l></l>               <r>margin<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/><j/></r></p>
@@ -1291,7 +1308,7 @@
       <i>tape<t/><j/></i>
       <par n="SN|empty"/>
       <p><l>ytterst<t/><j/></l>   <r></r></p>
-      <p><l>knepen<s n="adj"/><s n="pst"/><s n="nt"/><s n="sg"/><s n="ind"/><j/></l>  <r></r></p>      
+      <p><l>knepen<s n="adj"/><s n="pst"/><s n="nt"/><s n="sg"/><s n="ind"/></l>  <r></r></p>  <par n="j:"/>      
       <p><l></l>               <r>med<s n="pr"/><j/></r></p>
       <p><l></l>               <r>knapp<s n="adj"/><s n="sint"/><s n="pst"/><s n="mf"/><s n="sg"/><s n="ind"/><j/></r></p>
       <p><l></l>               <r>margin<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/><j/></r></p>
@@ -1357,26 +1374,26 @@
       <p><l>avgi</l>  <r>komme</r></p> <i><t/><j/></i>
       <p><l></l>              <r>med<s n="pr"/><j/></r></p>
       <p><l></l>              <r>en<s n="det"/><s n="qnt"/><s n="m"/><s n="sg"/><j/></r></p>
-      <p><l>kjennelse</l>     <r>avgjørelse</r></p> <i><t/><s n="sg"/><s n="ind"/><j/></i>
+      <p><l>kjennelse</l>     <r>avgjørelse</r></p> <i><t/><s n="sg"/><s n="ind"/></i> <par n="j"/>
     </e>
 
 <e lm="avgi kjennelsen" c="komme med avgjerda">
        <p><l>avgi</l>  <r>komme</r></p> <i><t/><j/></i>
       <p><l></l>              <r>med<s n="pr"/><j/></r></p>
-      <p><l>kjennelse</l>     <r>avgjørelse</r></p> <i><t/><s n="sg"/><s n="def"/><j/></i>
+      <p><l>kjennelse</l>     <r>avgjørelse</r></p> <i><t/><s n="sg"/><s n="def"/></i> <par n="j"/>
       </e>
 
   <e lm="avgi kjennelser" c="komme med avgjerder">
        <p><l>avgi</l>  <r>komme</r></p> <i><t/><j/></i>
       <p><l></l>              <r>med<s n="pr"/><j/></r></p>
-      <p><l>kjennelse</l>     <r>avgjørelse</r></p> <i><t/><s n="pl"/><s n="ind"/><j/></i>
+      <p><l>kjennelse</l>     <r>avgjørelse</r></p> <i><t/><s n="pl"/><s n="ind"/></i> <par n="j"/>
     </e>
 
 
  <e lm="avgi kjennelsene" c="komme med avgjerdene">
        <p><l>avgi</l>  <r>komme</r></p> <i><t/><j/></i>
       <p><l></l>              <r>med<s n="pr"/><j/></r></p>
-      <p><l>kjennelse</l>     <r>avgjørelse</r></p> <i><t/><s n="pl"/><s n="def"/><j/></i>
+      <p><l>kjennelse</l>     <r>avgjørelse</r></p> <i><t/><s n="pl"/><s n="def"/></i> <par n="j"/>
     </e>
 
 
@@ -1437,7 +1454,9 @@
           Men tar òg «Per si hytte» – vil me ha unntak?">
       <par n="være/bli"/>
       <i><w/><s n="np"/><t/></i>
-      <p><l><j/>sin<t/><j/></l> <r><s n="gen"/><j/></r></p>
+      <p><l></l>                     <r><s n="gen"/></r></p>
+      <par n="aa|"/>
+      <p><l><j/>sin<t/><j/></l>      <r><j/></r></p>
     </e>
     <e lm="pr NP sin -> pr NP.gen"
        c="Unngå garpegenitiv i særnamn:
@@ -1458,7 +1477,7 @@
     <e lm="sin nasjonale uavhengighet -> den nasjonale uavhengigeten" c="det nasjonale sjølvstendet">
       <p><l>sin<t/><j/></l> <r>den<s n="det"/><s n="dem"/><s n="m"/><s n="sg"/><j/></r></p>
       <i>nasjonal<t/><j/></i>
-      <i>uavhengighet<t/></i> <p><l><s n="ind"/><j/></l><r><s n="def"/><j/></r></p>
+      <i>uavhengighet<t/></i> <p><l><s n="ind"/></l><r><s n="def"/></r></p>  <par n="j"/>
     </e>
 
     <e lm="(det) samme uansett hva -> (det) samme uten hensyn til" c="(det) same utan omsyn til kva">
@@ -1480,48 +1499,48 @@
     <e lm="stor/mye usikkerhet knyttet til hva -> helt/mer uvisst hva" c="heilt/meir uvisst kva(ikkje først i setning)">
       <par n="stor:helt-mye:mer"/>
       <p><l>usikkerhet<t/><j/></l>                          <r></r></p>
-      <p><l>knytte<s n="vblex"/><s n="pp"/><j/></l>   <r></r></p>
-      <p><l>til<s n="pr"/><j/></l>                      <r></r></p>
+      <p><l>knytte<s n="vblex"/><s n="pp"/></l>   <r></r></p>  <par n="j:"/>
+      <p><l>til<s n="pr"/></l>                      <r></r></p>  <par n="j:"/>
       <p><l></l>                      <r>uvisst<s n="adj"/><s n="pst"/><s n="nt"/><s n="sg"/><s n="ind"/><j/></r></p>
       <par n="spørjeord"/>
     </e>
 
     <e lm="usikkerhet knyttet til hva -> uvisst hva" c="uvisst kva (ikkje først i setning)">
       <p><l>usikkerhet<t/><j/></l>                          <r></r></p>
-      <p><l>knytte<s n="vblex"/><s n="pp"/><j/></l>   <r></r></p>
-      <p><l>til<s n="pr"/><j/></l>                      <r></r></p>
+      <p><l>knytte<s n="vblex"/><s n="pp"/></l>   <r></r></p>  <par n="j:"/>
+      <p><l>til<s n="pr"/></l>                      <r></r></p>  <par n="j:"/>
       <p><l></l>                      <r>uvisst<s n="adj"/><s n="pst"/><s n="nt"/><s n="sg"/><s n="ind"/><j/></r></p>
       <par n="spørjeord"/>
     </e>
 
     <e lm="usikkerhet knyttet til om -> uvisst om" c="uvisst om (ikkje først i setning)">
       <p><l>usikkerhet<t/><j/></l>                          <r></r></p>
-      <p><l>knytte<s n="vblex"/><s n="pp"/><j/></l>   <r></r></p>
-      <p><l>til<s n="pr"/><j/></l>                      <r></r></p>
+      <p><l>knytte<s n="vblex"/><s n="pp"/></l>   <r></r></p>  <par n="j:"/>
+      <p><l>til<s n="pr"/></l>                      <r></r></p>  <par n="j:"/>
       <p><l></l>                      <r>uvisst<s n="adj"/><s n="pst"/><s n="nt"/><s n="sg"/><s n="ind"/><j/></r></p>
       <i>om<t/><j/></i>
     </e>
 
     <e lm="usikkerhet knyttet til om -> usikkerhet om " c="uvisse om (først i setning)">
-      <i><w/><s n="sent"/><s n="clb"/><j/></i>
+      <i><w/><s n="sent"/><s n="clb"/></i> <par n="j"/>
       <i>Usikkerhet<t/><j/></i>
-      <p><l>knytte<s n="vblex"/><s n="pp"/><j/></l>   <r></r></p>
-      <p><l>til<s n="pr"/><j/></l>                    <r></r></p>
+      <p><l>knytte<s n="vblex"/><s n="pp"/></l>   <r></r></p>  <par n="j:"/>
+      <p><l>til<s n="pr"/></l>                    <r></r></p>  <par n="j:"/>
       <i>om<t/><j/></i>
     </e>
 
     <e lm="usikkerhet knyttet til -> usikkerhet om" c="uvisse om (først i setning)">
-      <i><w/><s n="sent"/><s n="clb"/><j/></i>
+      <i><w/><s n="sent"/><s n="clb"/></i> <par n="j"/>
       <i>Usikkerhet<t/><j/></i>
-      <p><l>knytte<s n="vblex"/><s n="pp"/><j/></l>   <r></r></p>
-      <p><l>til<s n="pr"/><j/></l>                    <r></r></p>
+      <p><l>knytte<s n="vblex"/><s n="pp"/></l>   <r></r></p>  <par n="j:"/>
+      <p><l>til<s n="pr"/></l>                    <r></r></p>  <par n="j:"/>
       <p><l></l>                                      <r>om<s n="pr"/><j/></r></p>
     </e>
 
     <e lm="usikkerhet knyttet til -> usikkerhet om" c="uvisse om">
       <i>usikkerhet<t/><j/></i>
-      <p><l>knytte<s n="vblex"/><s n="pp"/><j/></l>   <r></r></p>
-      <p><l>til<s n="pr"/><j/></l>                    <r></r></p>
+      <p><l>knytte<s n="vblex"/><s n="pp"/></l>   <r></r></p>  <par n="j:"/>
+      <p><l>til<s n="pr"/></l>                    <r></r></p>  <par n="j:"/>
       <p><l></l>                                      <r>om<s n="pr"/><j/></r></p>
     </e>
 
@@ -1538,7 +1557,7 @@
     </e>
 
     <e lm="(ha) i sin besittelse -> (ha) i varetekt" c="(ha) i varetekt">
-      <i>i<s n="pr"/><j/></i>
+      <i>i<s n="pr"/></i> <par n="j"/>
       <p><l><w/><s n="det"/><s n="pos"/><t/><j/></l>  <r></r></p>
       <p><l>besittelse<t/><j/></l>                    <r></r></p>
       <p><l></l>                                      <r>varetekt<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/><j/></r></p>
@@ -1547,13 +1566,13 @@
     <e lm="sin bedre halvdel -> ektemaken sin" c="ektemaken sin">
       <p><l></l>          <r>ektemake<s n="n"/><s n="m"/><s n="sg"/><s n="def"/><j/></r></p>
       <i><w/><s n="det"/><t/><j/></i>
-      <p><l>god<s n="adj"/><s n="sint"/><s n="comp"/><s n="un"/><s n="sp"/><j/></l>  <r></r></p>
-      <p><l>halvdel<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/><j/></l>  <r></r></p>
+      <p><l>god<s n="adj"/><s n="sint"/><s n="comp"/><s n="un"/><s n="sp"/></l>  <r></r></p>  <par n="j:"/>
+      <p><l>halvdel<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/></l>  <r></r></p>  <par n="j:"/>
     </e>
 
     <e lm="gjenværende N → N som står att" c="N som står att">
       <p><l>gjenværende<t/><j/></l>                   <r></r></p>
-      <i><w/><s n="n"/><t/><s n="def"/><j/></i>
+      <i><w/><s n="n"/><t/><s n="def"/></i> <par n="j"/>
       <p><l></l>                                      <r>som<s n="pr"/><j/></r></p>
       <p><l></l>                                      <r>være<s n="vblex"/><s n="pres"/><j/></r></p>
       <p><l></l>                                      <r>att<s n="pr"/><j/></r></p>
@@ -1565,35 +1584,35 @@
     </e>
 
     <e lm="foretas det -> blir det gjennomført" c="blir det gjennomført">
-      <i>den<s n="prn"/><s n="pers"/><s n="p3"/><s n="nt"/><s n="sg"/><s n="acc"/><j/></i> <i><t/><j/></i>
-      <p><l>foreta<s n="vblex"/><s n="pres"/><s n="pasv"/><j/></l>              <r></r></p> <i><t/><j/></i>
+      <i>den<s n="prn"/><s n="pers"/><s n="p3"/><s n="nt"/><s n="sg"/><s n="acc"/></i> <par n="j"/> <i><t/><j/></i>
+      <p><l>foreta<s n="vblex"/><s n="pres"/><s n="pasv"/></l>              <r></r></p>  <par n="j:"/> <i><t/><j/></i>
       <p><l></l>                                      <r>bli<s n="vblex"/><s n="pres"/><j/></r></p>
       <p><l></l>                                      <r>gjennomføre<s n="vblex"/><s n="pp"/><j/></r></p>
     </e>
 
     <e lm="foretas det -> blir det gjennomført" c="blir det gjennomført">
-      <p><l>foreta<s n="vblex"/><s n="pres"/><s n="pasv"/><j/></l>              <r></r></p> <i><t/><j/></i>
+      <p><l>foreta<s n="vblex"/><s n="pres"/><s n="pasv"/></l>              <r></r></p>  <par n="j:"/> <i><t/><j/></i>
       <p><l></l>                                      <r>bli<s n="vblex"/><s n="pres"/><j/></r></p>
-      <i>den<s n="prn"/><s n="pers"/><s n="p3"/><s n="nt"/><s n="sg"/><s n="acc"/><j/></i>
+      <i>den<s n="prn"/><s n="pers"/><s n="p3"/><s n="nt"/><s n="sg"/><s n="acc"/></i> <par n="j"/>
       <p><l></l>                                      <r>gjennomføre<s n="vblex"/><s n="pp"/><j/></r></p>
     </e>
 
     <e lm="foretas sjelden -> blir sjelden gjennomført" c="blir sjeldan gjennomført">
-      <p><l>foreta<s n="vblex"/><s n="pres"/><s n="pasv"/><j/></l>              <r></r></p> <i><t/><j/></i>
+      <p><l>foreta<s n="vblex"/><s n="pres"/><s n="pasv"/></l>              <r></r></p>  <par n="j:"/> <i><t/><j/></i>
       <p><l></l>                                      <r>bli<s n="vblex"/><s n="pres"/><j/></r></p>
-      <i><w/><s n="adv"/><j/></i> <i><t/><j/></i>
+      <i><w/><s n="adv"/></i> <par n="j"/> <i><t/><j/></i>
       <p><l></l>                                      <r>gjennomføre<s n="vblex"/><s n="pp"/><j/></r></p>
     </e>
 
     <e lm="forbys N -> blir nekta N" c="blir nekta N">
-      <p><l>forby<s n="vblex"/><s n="pres"/><s n="pasv"/><j/></l>              <r></r></p>
+      <p><l>forby<s n="vblex"/><s n="pres"/><s n="pasv"/></l>              <r></r></p>  <par n="j:"/>
       <p><l></l>                                      <r>bli<s n="vblex"/><s n="pres"/><j/></r></p>
       <p><l></l>                                      <r>nekte<s n="vblex"/><s n="pp"/><j/></r></p>
-      <i><w/><s n="n"/><t/><s n="ind"/><j/></i>
+      <i><w/><s n="n"/><t/><s n="ind"/></i> <par n="j"/>
     </e>
 
     <e lm="forbys å -> får forbud mot å" c="for forbod mot å">
-      <p><l>forby<s n="vblex"/><s n="pres"/><s n="pasv"/><j/></l>   <r>få<s n="vblex"/><s n="pres"/><j/></r></p>
+      <p><l>forby<s n="vblex"/><s n="pres"/><s n="pasv"/></l>   <r>få<s n="vblex"/><s n="pres"/></r></p>  <par n="j"/>
       <p><l></l>                                      <r>forbud<s n="n"/><s n="nt"/><s n="sg"/><s n="ind"/><j/></r></p>
       <p><l></l>                                      <r>mot<s n="pr"/><j/></r></p>
       <i>å<t/><j/></i>
@@ -1615,7 +1634,7 @@
       <p><l></l>                                      <r>heve<s n="vblex"/><s n="pp"/><j/></r></p>
       <p><l></l>                                      <r>over<s n="pr"/><j/></r></p>
       <p><l></l>                                      <r>tvil<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/><j/></r></p>
-      <i>at<s n="adv"/><j/></i>
+      <i>at<s n="adv"/></i> <par n="j"/>
     </e>
 
     <e lm="bestride X riktigheten av -> sette X spørsmålstegn ved" c="setje X spørsmålsteikn ved">
@@ -1630,8 +1649,8 @@
       <p><l>stille</l>                      <r>sette</r></p> <i><t/><j/></i>
       <par n="SN|ADV|prn|"/>
       <par n="SN|ADV|prn|"/>
-      <p><l>spørsmål<s n="n"/><s n="nt"/><s n="sg"/><s n="ind"/><j/></l> <r>spørsmålstegn<s n="n"/><s n="nt"/><s n="sg"/><s n="ind"/><j/></r></p>
-      <i>ved<s n="pr"/><j/></i>
+      <p><l>spørsmål<s n="n"/><s n="nt"/><s n="sg"/><s n="ind"/></l> <r>spørsmålstegn<s n="n"/><s n="nt"/><s n="sg"/><s n="ind"/></r></p>  <par n="j"/>
+      <i>ved<s n="pr"/></i> <par n="j"/>
     </e> 
 
 
@@ -1644,13 +1663,13 @@
 
     <e lm="i lovens forstand -> etter loven" c="etter lova">
       <p><l>i<t/><j/></l>                                         <r>etter<s n="pr"/><j/></r></p>
-      <p><l>lov<s n="n"/><t/><s n="gen"/><j/></l>         <r>lov<s n="n"/><t/><j/></r></p>
+      <p><l>lov<s n="n"/><t/><s n="gen"/></l>         <r>lov<s n="n"/><t/></r></p>  <par n="j"/>
       <p><l>forstand<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/></l> <r></r></p>
     </e>
 
     <e lm="omkringliggende områder -> områdene rundt" c="områda rundt">
       <p><l>omkringliggende<t/><j/></l>                    <r></r></p>
-      <p><l>område<s n="n"/><s n="nt"/><s n="pl"/><s n="ind"/><j/></l>         <r>område<s n="n"/><s n="nt"/><s n="pl"/><s n="def"/><j/></r></p>
+      <p><l>område<s n="n"/><s n="nt"/><s n="pl"/><s n="ind"/></l>         <r>område<s n="n"/><s n="nt"/><s n="pl"/><s n="def"/></r></p>  <par n="j"/>
       <p><l></l>                                          <r>rundt<s n="pr"/><j/></r></p>
     </e>
 
@@ -1666,28 +1685,28 @@
     <e lm="et adj_sg aftenantrekk -> adj_pl selskapsklær" c="selskapsklede">
       <p><l>en<t/><j/></l>                    <r></r></p>
       <i><w/><s n="adj"/><t/></i>
-      <p><l><s n="nt"/><s n="sg"/><s n="ind"/><j/></l>        <r><s n="un"/><s n="pl"/><s n="ind"/><j/></r></p>
+      <p><l><s n="nt"/><s n="sg"/><s n="ind"/></l>        <r><s n="un"/><s n="pl"/><s n="ind"/></r></p>  <par n="j"/>
       <p><l>aftenantrekk<s n="n"/><s n="nt"/><s n="sg"/><s n="ind"/></l>        <r>selskapsklær<s n="n"/><s n="nt"/><s n="pl"/><s n="ind"/></r></p><i><j/></i>
     </e>
 
     <e lm="det omkringliggende området -> området rundt" c="området rundt">
-      <p><l>den<s n="det"/><s n="dem"/><s n="nt"/><s n="sg"/><j/></l>        <r></r></p>
+      <p><l>den<s n="det"/><s n="dem"/><s n="nt"/><s n="sg"/></l>        <r></r></p>  <par n="j:"/>
       <p><l>omkringliggende<t/><j/></l>                    <r></r></p>
-      <i>område<s n="n"/><s n="nt"/><s n="sg"/><s n="def"/><j/></i>
+      <i>område<s n="n"/><s n="nt"/><s n="sg"/><s n="def"/></i> <par n="j"/>
       <p><l></l>                                          <r>rundt<s n="pr"/><j/></r></p>
     </e>
 
     <e lm="den nette sum av -> ikke mindre enn" c="ikkje mindre enn">
-      <p><l>den<s n="det"/><s n="dem"/><s n="m"/><s n="sg"/><j/></l> <r>ikke<s n="adv"/><j/></r></p>
-      <p><l>nett<s n="adj"/><s n="sint"/><s n="pst"/><s n="un"/><s n="sp"/><s n="def"/><j/></l> <r>liten<s n="adj"/><s n="sint"/><s n="comp"/><s n="un"/><s n="sp"/><j/></r></p>
-      <p><l>sum<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/><j/></l> <r></r></p>
-      <p><l>av<s n="pr"/><j/></l>  <r>enn<s n="pr"/><j/></r></p>
+      <p><l>den<s n="det"/><s n="dem"/><s n="m"/><s n="sg"/></l> <r>ikke<s n="adv"/></r></p>  <par n="j"/>
+      <p><l>nett<s n="adj"/><s n="sint"/><s n="pst"/><s n="un"/><s n="sp"/><s n="def"/></l> <r>liten<s n="adj"/><s n="sint"/><s n="comp"/><s n="un"/><s n="sp"/></r></p>  <par n="j"/>
+      <p><l>sum<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/></l> <r></r></p>  <par n="j:"/>
+      <p><l>av<s n="pr"/></l>  <r>enn<s n="pr"/></r></p>  <par n="j"/>
     </e>
 
     <e lm="de omkringliggende områdene -> områdene rundt" c="områda rundt">
-      <p><l>den<s n="det"/><s n="dem"/><s n="un"/><s n="pl"/><j/></l>        <r></r></p>
+      <p><l>den<s n="det"/><s n="dem"/><s n="un"/><s n="pl"/></l>        <r></r></p>  <par n="j:"/>
       <p><l>omkringliggende<t/><j/></l>                    <r></r></p>
-      <i>område<s n="n"/><s n="nt"/><s n="pl"/><s n="def"/><j/></i>
+      <i>område<s n="n"/><s n="nt"/><s n="pl"/><s n="def"/></i> <par n="j"/>
       <p><l></l>                                          <r>rundt<s n="pr"/><j/></r></p>
     </e>
 
@@ -1699,42 +1718,42 @@
     <e lm="livets sluttfase -> sluttfasen av livet" c="sluttfasen av livet">
       <p><l></l>  <r>sluttfase<s n="n"/><s n="m"/><s n="sg"/><s n="def"/><j/></r></p>
       <p><l></l>  <r>av<s n="pr"/><j/></r></p>
-      <p><l>liv<s n="n"/><s n="nt"/><s n="sg"/><s n="def"/><s n="gen"/><j/></l> <r>liv<s n="n"/><s n="nt"/><s n="sg"/><s n="def"/><j/></r></p>
-      <p><l>sluttfase<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/><j/></l> <r></r></p>
+      <p><l>liv<s n="n"/><s n="nt"/><s n="sg"/><s n="def"/><s n="gen"/></l> <r>liv<s n="n"/><s n="nt"/><s n="sg"/><s n="def"/></r></p>  <par n="j"/>
+      <p><l>sluttfase<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/></l> <r></r></p>  <par n="j:"/>
     </e>
 
     <e lm="sette sinnene i kok -> vekke harme" c="vekkje harme">
       <p><l>sette</l>                                                <r>vekke</r></p> <i><t/><j/></i>
       <par n="SN|ADV|prn|"/>
       <par n="SN|ADV|prn|"/>
-      <p><l>sinn<s n="n"/><s n="nt"/><t/><s n="def"/><j/></l>        <r></r></p>
-      <p><l>i<s n="pr"/><j/></l>                                     <r></r></p>
-      <p><l>kok<s n="n"/><s n="nt"/><s n="sg"/><s n="ind"/><j/></l> <r></r></p>
+      <p><l>sinn<s n="n"/><s n="nt"/><t/><s n="def"/></l>        <r></r></p>  <par n="j:"/>
+      <p><l>i<s n="pr"/></l>                                     <r></r></p>  <par n="j:"/>
+      <p><l>kok<s n="n"/><s n="nt"/><s n="sg"/><s n="ind"/></l> <r></r></p>  <par n="j:"/>
       <p><l></l>                                                     <r>harme<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/><j/></r></p>
     </e>
 
     <e lm="utspilt sin rolle -> gjort sitt" c="gjort sitt">
-      <p><l>utspille<s n="vblex"/><s n="pp"/><j/></l>                    <r></r></p>
-      <p><l>sin<s n="det"/><s n="pos"/><s n="m"/><s n="sg"/><j/></l>     <r></r></p>
+      <p><l>utspille<s n="vblex"/><s n="pp"/></l>                    <r></r></p>  <par n="j:"/>
+      <p><l>sin<s n="det"/><s n="pos"/><s n="m"/><s n="sg"/></l>     <r></r></p>  <par n="j:"/>
       <p><l></l>                                                  <r>gjøre<g><b/>sitt</g><s n="vblex"/><s n="pp"/><j/></r></p>
       <p><l>rolle<s n="n"/><t/><j/></l>                           <r></r></p>
     </e>
 
     <e lm="ha utspilt sin strategiske rolle -> være ferdig i sin strategiske rolle" c="vere ferdig i den strategiske rolla (si)">
       <p><l>ha</l>                          <r>være</r></p>  <i><t/><j/></i>
-      <p><l>utspille<s n="vblex"/><s n="pp"/><j/></l>             <r></r></p>
+      <p><l>utspille<s n="vblex"/><s n="pp"/></l>             <r></r></p>  <par n="j:"/>
       <p><l></l>                                                  <r>ferdig<s n="adj"/><s n="sint"/><s n="pst"/><s n="nt"/><s n="sg"/><s n="ind"/><j/></r></p>
       <p><l></l>                                                  <r>i<s n="pr"/><j/></r></p>
-      <i>sin<s n="det"/><s n="pos"/><s n="m"/><s n="sg"/><j/></i>
+      <i>sin<s n="det"/><s n="pos"/><s n="m"/><s n="sg"/></i> <par n="j"/>
       <i><w/><s n="adj"/><t/><j/></i>
       <i>rolle<s n="n"/><t/><j/></i>
     </e>
 
     <e lm="Utspilt sin strategiske rolle -> Ferdig i sin strategiske rolle" c="Ferdig i den strategiske rolla (si) (tittelproblem)">
-      <p><l>Utspille<s n="vblex"/><s n="pp"/><j/></l>             <r></r></p>
+      <p><l>Utspille<s n="vblex"/><s n="pp"/></l>             <r></r></p>  <par n="j:"/>
       <p><l></l>                                                  <r>ferdig<s n="adj"/><s n="sint"/><s n="pst"/><s n="nt"/><s n="sg"/><s n="ind"/><j/></r></p>
       <p><l></l>                                                  <r>i<s n="pr"/><j/></r></p>
-      <i>sin<s n="det"/><s n="pos"/><s n="m"/><s n="sg"/><j/></i>
+      <i>sin<s n="det"/><s n="pos"/><s n="m"/><s n="sg"/></i> <par n="j"/>
       <i><w/><s n="adj"/><t/><j/></i>
       <i>rolle<s n="n"/><t/><j/></i>
     </e>
@@ -1747,13 +1766,13 @@
 
     <e lm="modal + tilbringes -> modal + gjøres unna" c="modal + gjerast unna">
       <par n="modal"/>
-      <p><l>tilbringe<s n="vblex"/><s n="inf"/><s n="pasv"/><j/></l>                  <r>gjøre<s n="vblex"/><s n="inf"/><s n="pasv"/><j/></r></p>
+      <p><l>tilbringe<s n="vblex"/><s n="inf"/><s n="pasv"/></l>                  <r>gjøre<s n="vblex"/><s n="inf"/><s n="pasv"/></r></p>  <par n="j"/>
       <p><l></l>                                                       <r>unna<s n="pr"/><j/></r></p>
     </e>
 
     <e lm="tilbringes -> skal gjøres unna" c="skal gjerast unna">
       <p><l></l>                                                  <r>skulle<s n="vblex"/><s n="pres"/><j/></r></p>
-      <p><l>tilbringe<s n="vblex"/><s n="pres"/><s n="pasv"/><j/></l>                  <r>gjøre<s n="vblex"/><s n="inf"/><s n="pasv"/><j/></r></p>
+      <p><l>tilbringe<s n="vblex"/><s n="pres"/><s n="pasv"/></l>                  <r>gjøre<s n="vblex"/><s n="inf"/><s n="pasv"/></r></p>  <par n="j"/>
       <p><l></l>                                                       <r>unna<s n="pr"/><j/></r></p>
     </e>
 
@@ -1774,7 +1793,7 @@
       <p><l>tid<s n="n"/><t/><j/></l>                                     <r></r></p>
       <p><l></l>                                                            <r>i<s n="pr"/><j/></r></p>
       <p><l></l>                                                            <r>lag<s n="n"/><s n="nt"/><s n="sg"/><s n="ind"/><j/></r></p>
-      <i>med<s n="pr"/><j/></i>
+      <i>med<s n="pr"/></i> <par n="j"/>
       <par n="SN"/>
     </e>
 
@@ -1783,7 +1802,7 @@
       <p><l>tid<s n="n"/><t/><j/></l>                                     <r></r></p>
       <p><l></l>                                                            <r>i<s n="pr"/><j/></r></p>
       <p><l></l>                                                            <r>lag<s n="n"/><s n="nt"/><s n="sg"/><s n="ind"/><j/></r></p>
-      <i>med<s n="pr"/><j/></i>
+      <i>med<s n="pr"/></i> <par n="j"/>
       <i><w/><s n="det"/><t/><j/></i>
       <par n="SN"/>
     </e>
@@ -1793,7 +1812,7 @@
       <p><l>tid<s n="n"/><t/><j/></l>                                     <r></r></p>
       <p><l></l>                                                            <r>i<s n="pr"/><j/></r></p>
       <p><l></l>                                                            <r>lag<s n="n"/><s n="nt"/><s n="sg"/><s n="ind"/><j/></r></p>
-      <i>med<s n="pr"/><j/></i>
+      <i>med<s n="pr"/></i> <par n="j"/>
       <i><w/><s n="prn"/><t/><j/></i>
     </e>
 
@@ -1979,7 +1998,7 @@
 
     <e lm="fatt mot-> ikke gi opp" c="ikkje gi opp">
       <p><l></l>                  <r>ikke<s n="adv"/><j/></r></p>
-      <p><l>fatte<s n="vblex"/><s n="imp"/><j/></l>  <r>gi<s n="vblex"/><s n="imp"/><j/></r></p>
+      <p><l>fatte<s n="vblex"/><s n="imp"/></l>  <r>gi<s n="vblex"/><s n="imp"/></r></p>  <par n="j"/>
       <p><l>mot<t/><j/></l>           <r></r></p>
       <p><l></l>                  <r>opp<s n="adv"/><j/></r></p>
     </e>
@@ -2058,8 +2077,8 @@
     <e lm="bli brakt i sikkerhet, og -> bli tatt hånd om, og" c="bli tatt hand om, og">
       <i>bli<s n="vblex"/><t/><j/></i>
       <p><l>bringe</l>                      <r>ta</r></p>  <i><t/><j/></i>   
-      <p><l>i<s n="pr"/><j/></l>            <r></r></p>
-      <p><l>sikkerhet<s n="n"/><t/><s n="sg"/><s n="ind"/><j/></l>            <r></r></p>
+      <p><l>i<s n="pr"/></l>            <r></r></p>  <par n="j:"/>
+      <p><l>sikkerhet<s n="n"/><t/><s n="sg"/><s n="ind"/></l>            <r></r></p>  <par n="j:"/>
       <p><l></l>                            <r>hånd<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/><j/></r></p>
       <p><l></l>                            <r>om<s n="pr"/><j/></r></p>
       <par n="sent-cm"/>
@@ -2069,8 +2088,8 @@
     <e lm="bli brakt i sikkerhet og -> bli tatt hånd om og" c="bli tatt hand om og">
       <i>bli<s n="vblex"/><t/><j/></i>
       <p><l>bringe</l>                      <r>ta</r></p>  <i><t/><j/></i>   
-      <p><l>i<s n="pr"/><j/></l>            <r></r></p>
-      <p><l>sikkerhet<s n="n"/><t/><s n="sg"/><s n="ind"/><j/></l>            <r></r></p>
+      <p><l>i<s n="pr"/></l>            <r></r></p>  <par n="j:"/>
+      <p><l>sikkerhet<s n="n"/><t/><s n="sg"/><s n="ind"/></l>            <r></r></p>  <par n="j:"/>
       <p><l></l>                            <r>hånd<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/><j/></r></p>
       <p><l></l>                            <r>om<s n="pr"/><j/></r></p>
       <i>og<t/><j/></i>  
@@ -2080,8 +2099,8 @@
       <i>bli<s n="vblex"/><t/><j/></i>
       <par n="ADV|empty"/>
       <p><l>bringe</l>                      <r>ta</r></p>  <i><t/><j/></i>   
-      <p><l>i<s n="pr"/><j/></l>            <r></r></p>
-      <p><l>sikkerhet<s n="n"/><t/><s n="sg"/><s n="ind"/><j/></l>            <r></r></p>
+      <p><l>i<s n="pr"/></l>            <r></r></p>  <par n="j:"/>
+      <p><l>sikkerhet<s n="n"/><t/><s n="sg"/><s n="ind"/></l>            <r></r></p>  <par n="j:"/>
       <p><l></l>                            <r>hånd<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/><j/></r></p>
       <p><l></l>                            <r>om<s n="pr"/><j/></r></p>
       <i>på<t/><j/></i>  
@@ -2089,8 +2108,8 @@
 
     <e lm="bli brakt i sikkerhet etter -> bli tatt hånd om etter" c="bli tatt hand om etter">
       <p><l>bringe</l>                      <r>ta</r></p>  <i><t/><j/></i>   
-      <p><l>i<s n="pr"/><j/></l>            <r></r></p>
-      <p><l>sikkerhet<s n="n"/><t/><s n="sg"/><s n="ind"/><j/></l>            <r></r></p>
+      <p><l>i<s n="pr"/></l>            <r></r></p>  <par n="j:"/>
+      <p><l>sikkerhet<s n="n"/><t/><s n="sg"/><s n="ind"/></l>            <r></r></p>  <par n="j:"/>
       <p><l></l>                            <r>hånd<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/><j/></r></p>
       <p><l></l>                            <r>om<s n="pr"/><j/></r></p>
       <i>etter<t/><j/></i>  
@@ -2098,8 +2117,8 @@
 
     <e lm="bli brakt i sikkerhet siden -> bli tatt hånd om siden" c="bli tatt hand om sidan">
       <p><l>bringe</l>                      <r>ta</r></p>  <i><t/><j/></i>   
-      <p><l>i<s n="pr"/><j/></l>            <r></r></p>
-      <p><l>sikkerhet<s n="n"/><t/><s n="sg"/><s n="ind"/><j/></l>            <r></r></p>
+      <p><l>i<s n="pr"/></l>            <r></r></p>  <par n="j:"/>
+      <p><l>sikkerhet<s n="n"/><t/><s n="sg"/><s n="ind"/></l>            <r></r></p>  <par n="j:"/>
       <p><l></l>                            <r>hånd<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/><j/></r></p>
       <p><l></l>                            <r>om<s n="pr"/><j/></r></p>
       <i>siden<t/><j/></i>  
@@ -2108,17 +2127,17 @@
     <e lm="bli brakt i sikkerhet i -> bli berget inn i" c="bli berga inn i">
       <i>bli<s n="vblex"/><t/><j/></i>
       <p><l>bringe</l>                          <r>berge</r></p>  <i><t/><j/></i>   
-      <p><l>i<s n="pr"/><j/></l>            <r></r></p>
-      <p><l>sikkerhet<s n="n"/><t/><s n="sg"/><s n="ind"/><j/></l>            <r></r></p>
+      <p><l>i<s n="pr"/></l>            <r></r></p>  <par n="j:"/>
+      <p><l>sikkerhet<s n="n"/><t/><s n="sg"/><s n="ind"/></l>            <r></r></p>  <par n="j:"/>
       <p><l></l>                                                            <r>inn<s n="pr"/><j/></r></p>
-      <i>i<s n="pr"/><j/></i>
+      <i>i<s n="pr"/></i> <par n="j"/>
     </e> 
 
     <e lm="være brakt i sikkerhet. -> være i trygg forvaring." c="vere i trygg forvaring.">
       <i>være<s n="vblex"/><t/><j/></i>
       <p><l>bringe<t/><j/></l>            <r></r></p>
-      <i>i<s n="pr"/><j/></i>
-      <p><l>sikkerhet<s n="n"/><t/><s n="sg"/><s n="ind"/><j/></l>   <r></r></p>
+      <i>i<s n="pr"/></i> <par n="j"/>
+      <p><l>sikkerhet<s n="n"/><t/><s n="sg"/><s n="ind"/></l>   <r></r></p>  <par n="j:"/>
       <p><l></l>                                    <r>trygg<s n="adj"/><s n="sint"/><s n="pst"/><s n="mf"/><s n="sg"/><s n="ind"/><j/></r></p>
       <p><l></l>                                    <r>forvaring<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/><j/></r></p>
       <par n="sent-cm"/>
@@ -2126,10 +2145,10 @@
 
     <e lm="modalt + bringes i sikkerhet -> modalt + komme i trygg forvaring " c="modalt + komme i trygg forvaring ">
       <par n="modal"/>
-      <p><l>bringe<s n="vblex"/><s n="inf"/><s n="pasv"/><j/></l>            <r></r></p>
+      <p><l>bringe<s n="vblex"/><s n="inf"/><s n="pasv"/></l>            <r></r></p>  <par n="j:"/>
       <p><l></l>                                    <r>komme<s n="vblex"/><s n="inf"/><j/></r></p>
-      <i>i<s n="pr"/><j/></i>
-      <p><l>sikkerhet<s n="n"/><t/><s n="sg"/><s n="ind"/><j/></l>   <r></r></p>
+      <i>i<s n="pr"/></i> <par n="j"/>
+      <p><l>sikkerhet<s n="n"/><t/><s n="sg"/><s n="ind"/></l>   <r></r></p>  <par n="j:"/>
       <p><l></l>                                    <r>trygg<s n="adj"/><s n="sint"/><s n="pst"/><s n="mf"/><s n="sg"/><s n="ind"/><j/></r></p>
       <p><l></l>                                    <r>forvaring<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/><j/></r></p>
     </e> 
@@ -2139,52 +2158,52 @@
       <par n="SN|ADV|prn|"/>
       <par n="SN|ADV|prn|"/>
       <par n="SN|ADV|prn|"/>
-      <i>av<s n="pr"/><j/></i>
-      <p><l>hengsel<s n="n"/><t/><s n="pl"/><s n="def"/><j/></l>            <r></r></p>
+      <i>av<s n="pr"/></i> <par n="j"/>
+      <p><l>hengsel<s n="n"/><t/><s n="pl"/><s n="def"/></l>            <r></r></p>  <par n="j:"/>
       <p><l></l>                                                            <r>skaft<s n="n"/><s n="nt"/><s n="sg"/><s n="def"/><j/></r></p>
     </e>
 
     <e lm="etter hva vi forstår -> etter det vi forstår" c="etter det vi forstår">
-      <i>etter<s n="pr"/><j/></i>
-      <p><l>hva<s n="prn"/><s n="itg"/><j/></l>            <r></r></p>
+      <i>etter<s n="pr"/></i> <par n="j"/>
+      <p><l>hva<s n="prn"/><s n="itg"/></l>            <r></r></p>  <par n="j:"/>
       <p><l></l>                                                            <r>den<s n="prn"/><s n="pers"/><s n="p3"/><s n="nt"/><s n="sg"/><s n="acc"/><j/></r></p>
-      <i><w/><s n="prn"/><s n="pers"/><t/><s n="nom"/><j/></i>
+      <i><w/><s n="prn"/><s n="pers"/><t/><s n="nom"/></i> <par n="j"/>
       <i><w/><s n="vblex"/><t/><j/></i>
     </e>
 
     <e lm="etter all sannsynlighet -> mest sannsynlig" c="mest sannsynleg">
-      <p><l>etter<s n="pr"/><j/></l>        <r></r></p>
-      <p><l>all<s n="det"/><s n="qnt"/><s n="m"/><s n="sg"/><j/></l>  <r>mye<s n="adj"/><s n="sint"/><s n="sup"/><s n="un"/><s n="sp"/><s n="ind"/><j/></r></p>
-      <p><l>sannsynlighet<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/><j/></l>  <r>sannsynlig<s n="adj"/><s n="sint"/><s n="pst"/><s n="mf"/><s n="sg"/><s n="ind"/><j/></r></p>
+      <p><l>etter<s n="pr"/></l>        <r></r></p>  <par n="j:"/>
+      <p><l>all<s n="det"/><s n="qnt"/><s n="m"/><s n="sg"/></l>  <r>mye<s n="adj"/><s n="sint"/><s n="sup"/><s n="un"/><s n="sp"/><s n="ind"/></r></p>  <par n="j"/>
+      <p><l>sannsynlighet<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/></l>  <r>sannsynlig<s n="adj"/><s n="sint"/><s n="pst"/><s n="mf"/><s n="sg"/><s n="ind"/></r></p>  <par n="j"/>
     </e>
 
     <e lm="i det lange løp -> i lengden" c="i lengda">
-      <i>i<s n="pr"/><j/></i>
+      <i>i<s n="pr"/></i> <par n="j"/>
       <p><l>den<t/><j/></l> <r></r></p>
-      <p><l>lang<s n="adj"/><s n="sint"/><s n="pst"/><s n="un"/><s n="sp"/><s n="def"/><j/></l> <r></r></p>
-      <p><l>løp<s n="n"/><s n="nt"/><s n="sg"/><s n="ind"/><j/></l> <r>lengde<s n="n"/><s n="m"/><s n="sg"/><s n="def"/><j/></r></p>
+      <p><l>lang<s n="adj"/><s n="sint"/><s n="pst"/><s n="un"/><s n="sp"/><s n="def"/></l> <r></r></p>  <par n="j:"/>
+      <p><l>løp<s n="n"/><s n="nt"/><s n="sg"/><s n="ind"/></l> <r>lengde<s n="n"/><s n="m"/><s n="sg"/><s n="def"/></r></p>  <par n="j"/>
     </e>
 
 
     <e lm="tingenes tilstand -> stoda" c="stoda">
-      <p><l>ting<s n="n"/><t/><s n="pl"/><s n="def"/><s n="gen"/><j/></l> <r></r></p>
-      <p><l>tilstand<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/><j/></l> <r>stode<s n="n"/><s n="f"/><s n="sg"/><s n="def"/><j/></r></p>
+      <p><l>ting<s n="n"/><t/><s n="pl"/><s n="def"/><s n="gen"/></l> <r></r></p>  <par n="j:"/>
+      <p><l>tilstand<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/></l> <r>stode<s n="n"/><s n="f"/><s n="sg"/><s n="def"/></r></p>  <par n="j"/>
     </e>
 
    <e lm="etter moden overveielse -> etter grundig omtanke" c="etter grundig omtanke">
-    <i>etter<s n="pr"/><j/></i>
-    <p><l>moden<s n="adj"/><s n="sint"/><s n="pst"/><s n="mf"/><s n="sg"/><s n="ind"/><j/></l> <r>grundig<s n="adj"/><s n="sint"/><s n="pst"/><s n="mf"/><s n="sg"/><s n="ind"/><j/></r></p>
-    <p><l>overveielse<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/><j/></l>   <r>omtanke<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/><j/></r></p>
+    <i>etter<s n="pr"/></i> <par n="j"/>
+    <p><l>moden<s n="adj"/><s n="sint"/><s n="pst"/><s n="mf"/><s n="sg"/><s n="ind"/></l> <r>grundig<s n="adj"/><s n="sint"/><s n="pst"/><s n="mf"/><s n="sg"/><s n="ind"/></r></p>  <par n="j"/>
+    <p><l>overveielse<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/></l>   <r>omtanke<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/></r></p>  <par n="j"/>
   </e>
 
   <e lm="under overveielse -> til overveielse" c="til vurdering">
-    <p><l>under<s n="pr"/><j/></l> <r>til<s n="pr"/><j/></r></p>
+    <p><l>under<s n="pr"/></l> <r>til<s n="pr"/></r></p>  <par n="j"/>
     <i>overveielse<t/><j/></i>
   </e>
 
   <e lm="personlig egnethet -> personlige egenskaper" c="personlege eigenskapar">
-    <p><l>personlig<s n="adj"/><s n="pst"/><s n="mf"/><s n="sg"/><s n="ind"/><j/></l> <r>personlig<s n="adj"/><s n="pst"/><s n="un"/><s n="pl"/><s n="ind"/><j/></r></p>
-    <p><l>egnethet<s n="n"/><t/><s n="sg"/><s n="ind"/><j/></l> <r>egenskap<s n="n"/><s n="m"/><s n="pl"/><s n="ind"/><j/></r></p>
+    <p><l>personlig<s n="adj"/><s n="pst"/><s n="mf"/><s n="sg"/><s n="ind"/></l> <r>personlig<s n="adj"/><s n="pst"/><s n="un"/><s n="pl"/><s n="ind"/></r></p>  <par n="j"/>
+    <p><l>egnethet<s n="n"/><t/><s n="sg"/><s n="ind"/></l> <r>egenskap<s n="n"/><s n="m"/><s n="pl"/><s n="ind"/></r></p>  <par n="j"/>
   </e>
 
   </section>
