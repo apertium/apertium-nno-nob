@@ -4304,7 +4304,7 @@
     <match lemma="og"/>
     <match lemma="berømmelse" tags="n.*"><select lemma="prestisje"/></match>
   </rule>
-   <rule weight="2.0">
+  <rule weight="2.0">
     <match lemma="suksess"/>
     <match lemma="og"/>
     <match lemma="berømmelse" tags="n.*"><select lemma="popularitet"/></match>
@@ -4313,6 +4313,16 @@
     <match tags="n.*"/>
     <match lemma="og"/>
     <match lemma="berømmelse" tags="n.*"><select lemma="suksess"/></match>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="berømmelse" tags="n.*"><select lemma="popularitet"/></match>
+    <match lemma="og"/>
+    <match lemma="suksess"/>
+  </rule>
+  <rule weight="1.5">
+    <match lemma="berømmelse" tags="n.*"><select lemma="suksess"/></match>
+    <match lemma="og"/>
+    <match tags="n.*"/>
   </rule>
 <!--BERØMMELSE: END-->
 
