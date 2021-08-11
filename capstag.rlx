@@ -10,6 +10,9 @@ SECTION
 LIST lastupper  = "<.*\\p{Lu}>"r ;
 LIST firstupper = "<\\p{Lu}.*>"r ;
 LIST sizeone    = "<.>"r ;
+LIST unknown = ("\\*.*"r) ;
+
+PROTECT unknown ;
 
 MAP (Aa) sizeone + firstupper    ;
 MAP (aa) sizeone                 ;
