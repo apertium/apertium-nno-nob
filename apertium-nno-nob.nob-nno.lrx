@@ -1835,7 +1835,7 @@
   </rule>
   <rule weight="3.0" c="brakte Man U til taushet → fekk Man U til å teie">
     <match lemma="bringe" tags="vblex.*"><select lemma="få"/></match>
-    <repeat from="0" upto="15"><match/></repeat>
+    <repeat from="0" upto="15"><seq n="NOT_sent_lpar_lquot_rquot"/></repeat>
     <match lemma="til taushet" tags="adv.*"/>
   </rule>
   <rule weight="2.0" c="brakte håp → gav håp">
