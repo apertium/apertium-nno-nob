@@ -1254,6 +1254,20 @@
     </match>
   </rule>
 
+  <rule><match lemma="forsvarlighet" tags="n.*"><select lemma="forsvarlegheit"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="forsvarlighet" tags="n.*.*.*.cmp">
+      <select lemma="forsvarleg"/>
+    </match>
+  </rule>
+
+  <rule><match lemma="overkjøre" tags="vblex.*"><select lemma="køyre# over"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="overkjøre" tags="vblex.pres.pasv">
+      <select lemma="overkøyre"/>
+    </match>
+  </rule>
+
   <rule><match lemma="usikkerhet" tags="n.*"><select lemma="uvisse"/></match></rule>
   <rule weight="2.0">
     <match lemma="usikkerhet" tags="n.*.*.*.cmp">
@@ -3181,7 +3195,33 @@
   </rule>
   <rule><match lemma="selvantenne" tags="vblex.*"><select lemma="ta# fyr"/></match></rule>
 
+  <rule weight="1.5">
+    <match lemma="selvantenne" tags="vblex.pres.pasv"><select lemma="ta# fyr" tags="vblex.pres"/></match>
+  </rule>
+
+  <rule weight="1.5">
+    <match lemma="selvantenne" tags="vblex.inf.pasv"><select lemma="ta# fyr" tags="vblex.inf"/></match>
+  </rule>
+
+  <rule weight="2.0">
+    <match lemma="være" tags="vblex.*"/>
+    <match lemma="selvantenne" tags="adj.pp.*"><select lemma="sjølvtennande" tags="adj.*"/></match>
+  </rule>
+
   <rule><match lemma="antenne" tags="vblex.*"><select lemma="ta# fyr"/></match></rule>
+
+  <rule weight="3.0">
+    <match lemma="antenne" tags="vblex.pres.pasv"><select lemma="påtenne"/></match>
+    <match lemma="av" tags="pr"/>
+  </rule>
+
+  <rule weight="1.5">
+    <match lemma="antenne" tags="vblex.pres.pasv"><select lemma="ta# fyr" tags="vblex.pres"/></match>
+  </rule>
+
+  <rule weight="1.5">
+    <match lemma="antenne" tags="vblex.inf.pasv"><select lemma="ta# fyr" tags="vblex.inf"/></match>
+  </rule>
   
   <rule weight="2.0">
     <or>
