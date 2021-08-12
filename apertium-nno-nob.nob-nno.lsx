@@ -123,6 +123,12 @@
       <e><p><l><s n="AA"/><j/></l> <r></r></p></e>
     </pardef>
 
+    <pardef n="aa:Aa" c="Titlecase if downcased, keep UPPERCASE as-is">
+      <e><p><l><s n="aa"/></l> <r><s n="Aa"/></r></p></e>
+      <e><p><l><s n="Aa"/></l> <r><s n="Aa"/></r></p></e>
+      <e><p><l><s n="AA"/></l> <r><s n="AA"/></r></p></e>
+    </pardef>
+
     <pardef n="adj">
       <e><i><w/><s n="adj"/><t/><j/></i></e>
     </pardef>
@@ -1357,6 +1363,13 @@
       <par n="ncmp*.n"/>
       <p><l></l>               <r>til<s n="pr"/><j/></r></p>
     </e>
+    <e lm="Ytterligere (adv) + talord/siffer + subst -> Talord/siffer + subst + til" c="ytterligere (adv) talord/siffer + subst + til">
+      <!-- Ved setningsstart -->
+      <p><l>ytterligere<t/><s n="Aa"/><j/></l>   <r></r></p>
+      <i><w/><s n="det"/><s n="qnt"/><s n="un"/><t/></i> <par n="aa:Aa"/><par n="j"/>
+      <par n="ncmp*.n"/>
+      <p><l></l>               <r>til<s n="pr"/><j/></r></p>
+    </e>
 
 
     <e lm="ytterligere (adj) + talord/siffer + subst -> talord/siffer + subst + til" c="ytterligere (adj) talord/siffer + subst + til">
@@ -1776,8 +1789,9 @@
     </e>
 
     <e lm="uansett hva -> samme hva" c="same kva">
-      <p><l>uansett<t/><j/></l>       <r></r></p>
-      <p><l></l>                      <r>samme<s n="det"/><s n="dem"/><s n="nt"/><s n="sp"/><s n="def"/><j/></r></p>
+      <p><l>uansett<t/></l>       <r></r></p>
+      <p><l></l>                      <r>samme<s n="det"/><s n="dem"/><s n="nt"/><s n="sp"/><s n="def"/></r></p>
+      <par n="j"/>
       <par n="spørjeord"/>
     </e>
 
