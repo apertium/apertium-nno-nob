@@ -1261,6 +1261,20 @@
     </match>
   </rule>
 
+  <rule><match lemma="antennelse" tags="n.*"><select lemma="påtenning"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="antennelse" tags="n.*.*.*.cmp">
+      <select lemma="tenn"/>
+    </match>
+  </rule>
+
+  <rule><match lemma="antenning" tags="n.*"><select lemma="påtenning"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="antenning" tags="n.*.*.*.cmp">
+      <select lemma="tenn"/>
+    </match>
+  </rule>
+
   <rule><match lemma="overkjøre" tags="vblex.*"><select lemma="køyre# over"/></match></rule>
   <rule weight="2.0">
     <match lemma="overkjøre" tags="vblex.pres.pasv">
