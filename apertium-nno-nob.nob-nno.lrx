@@ -1283,6 +1283,18 @@
     <match tags="n.*"/>
   </rule>
 
+  <rule><match lemma="omdøpe"><select lemma="døype# om"/></match></rule>
+  <rule weith="2.0">
+    <match lemma="omdøpe" tags="vblex.pres.pasv">
+      <select lemma="omdøype"/>
+    </match>
+  </rule>
+  <rule weith="2.0">
+    <match lemma="omdøpe" tags="adj.pp.*">
+      <select lemma="omdøype"/>
+    </match>
+  </rule>
+
   <rule><match lemma="overkjøre" tags="vblex.*"><select lemma="køyre# over"/></match></rule>
   <rule weight="2.0">
     <match lemma="overkjøre" tags="vblex.pres.pasv">
