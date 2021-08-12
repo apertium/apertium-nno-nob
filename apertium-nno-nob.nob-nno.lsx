@@ -328,6 +328,11 @@
       </e>
     </pardef>
 
+    <pardef n="ytterligere:">
+      <e><p><l>ytterlig<s n="adj"/><s n="sint"/><s n="comp"/><s n="un"/><s n="sp"/></l> <r></r></p> </e>
+      <e><p><l>ytterligere<s n="adv"/></l>                                              <r></r></p> </e>
+    </pardef>
+
     <pardef n="at/om/av/som">
       <e><i>at<s n="adv"/></i> <par n="j"/></e>
       <e><i>at<s n="cnjsub"/></i> <par n="j"/></e>
@@ -1285,24 +1290,16 @@
       <i><w/><s n="det"/><s n="qnt"/><t/><j/></i>
     </e> 
     
-    <e lm="ytterligere (adv) + talord/siffer + subst -> talord/siffer + subst + til" c="ytterligere (adv) talord/siffer + subst + til">
-      <p><l>ytterligere<t/><j/></l>   <r></r></p>
+    <e lm="ytterligere + talord/siffer + subst -> talord/siffer + subst + til" c="ytterligere talord/siffer + subst + til">
+      <par n="ytterligere:"/> <par n="j:"/>
       <i><w/><s n="det"/><s n="qnt"/><s n="un"/><t/><j/></i>
       <par n="ncmp*.n"/>
       <p><l></l>               <r>til<s n="pr"/><j/></r></p>
     </e>
-    <e lm="Ytterligere (adv) + talord/siffer + subst -> Talord/siffer + subst + til" c="ytterligere (adv) talord/siffer + subst + til">
-      <!-- Ved setningsstart -->
-      <p><l>ytterligere<t/><s n="Aa"/><j/></l>   <r></r></p>
+    <e lm="Ytterligere + talord/siffer + subst -> Talord/siffer + subst + til" c="ytterligere talord/siffer + subst + til">
+      <!-- Flytt stor forbokstav ved setningsstart -->
+      <par n="ytterligere:"/> <p><l><s n="Aa"/><j/></l>   <r></r></p>
       <i><w/><s n="det"/><s n="qnt"/><s n="un"/><t/></i> <par n="aa:Aa"/><par n="j"/>
-      <par n="ncmp*.n"/>
-      <p><l></l>               <r>til<s n="pr"/><j/></r></p>
-    </e>
-
-
-    <e lm="ytterligere (adj) + talord/siffer + subst -> talord/siffer + subst + til" c="ytterligere (adj) talord/siffer + subst + til">
-      <p><l>ytterlig<s n="adj"/><s n="sint"/><s n="comp"/><s n="un"/><s n="sp"/></l>  <r></r></p>  <par n="j:"/>      
-      <i><w/><s n="det"/><s n="qnt"/><s n="un"/><t/><j/></i>
       <par n="ncmp*.n"/>
       <p><l></l>               <r>til<s n="pr"/><j/></r></p>
     </e>
