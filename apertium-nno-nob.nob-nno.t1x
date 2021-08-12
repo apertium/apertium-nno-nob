@@ -3320,14 +3320,14 @@
       </choose>
     </def-macro>
 
-    <def-macro n="set_caseFirstWord" npar="1"
-               c="Downcases the argument, unless np or UPPERCASE">
+    <def-macro n="set_caseFirstWord" npar="1">
       <!-- TODO: Put a marker for acronyms where we don't want to copy case from them; then drop the tag -->
       <choose>
-        <when c="Previous word was deleted – use its case if it was Titled and we're lower">
+        <when c="Previous word was deleted – use its case if it was Titled and we're lower and not proper">
           <test><and>
             <equal><var n="prevDeletedCase"/><lit v="Aa"/></equal>
             <equal><clip pos="1" side="sl" part="a_caps"/><lit-tag v="aa"/></equal>
+            <not><begins-with><clip pos="1" side="tl" part="a_nom"/><lit-tag v="np"/></begins-with></not>
           </and></test>
           <let><var n="caseFirstWord"/><var n="prevDeletedCase"/></let>
           <let><var n="prevDeletedCase"/><lit v=""/></let>
@@ -3362,22 +3362,27 @@
             </otherwise>
           </choose>
         </when>
-        <when c="Not proper, but titlecased: downcase, set caseFirstWord Aa">
+        <when c="Not proper, but titlecased: set caseFirstWord Aa">
           <test><and>
             <not><begins-with><clip pos="1" side="tl" part="a_nom"/><lit-tag v="np"/></begins-with></not>
             <equal><lit-tag v="Aa"/><clip pos="1" side="sl" part="a_caps"/></equal>
           </and></test>
-          <!-- <modify-case><clip pos="1" side="tl" part="lemh"/><lit v="aa"/></modify-case> -->
           <let><var n="caseFirstWord"/><lit v="Aa"/></let>
         </when>
-        <when c="Proper, not first word in sentence: don't downcase, set caseFirstWord aa">
+        <when c="Not proper, but UPPERCASED: set caseFirstWord AA">
+          <test><and>
+            <not><begins-with><clip pos="1" side="tl" part="a_nom"/><lit-tag v="np"/></begins-with></not>
+            <equal><clip pos="1" side="sl" part="a_caps"/><lit-tag v="AA"/></equal>
+          </and></test>
+          <let><var n="caseFirstWord"/><lit v="AA"/></let>
+        </when>
+        <when c="Proper, not first word in sentence: set caseFirstWord aa">
           <test><and>
             <not><equal><var n="caseFirstWord"/><lit v=""/></equal></not>
             <begins-with><clip pos="1" side="tl" part="a_nom"/><lit-tag v="np"/></begins-with>
           </and></test>
           <let><var n="caseFirstWord"/><lit v="aa"/></let>
         </when>
-        <when><test><equal><clip pos="1" side="sl" part="a_caps"/><lit-tag v="AA"/></equal></test><let><var n="caseFirstWord"/><lit v="AA"/></let></when>
         <when><test><equal><clip pos="1" side="sl" part="a_caps"/><lit-tag v="Aa"/></equal></test><let><var n="caseFirstWord"/><lit v="Aa"/></let></when>
         <otherwise><let><var n="caseFirstWord"/><lit v="aa"/></let></otherwise>
       </choose>
@@ -3421,7 +3426,6 @@
         </and></test>
         <let><var n="caseFirstWord"/><lit v="Aa"/></let>
       </when></choose>
-      <modify-case><clip pos="2" side="tl" part="lemh"/><var n="caseSecondWord"/></modify-case> <!-- TODO: should we? -->
       <let><clip pos="2" side="tl" part="a_caps"/><lit v=""/></let> <!-- discard value -->
     </def-macro>
 
