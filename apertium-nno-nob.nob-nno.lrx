@@ -4466,6 +4466,13 @@
     <match lemma="oppløftende" tags="adj.*"><select lemma="gledeleg"/></match>
     <match lemma="at"/>
   </rule>
+  <rule weight="2.0">
+    <match lemma="oppløftende" tags="adj.*"><select lemma="gledeleg"/></match>
+    <repeat from="0" upto="1">
+      <match tags="n.*.*.*.cmp"/>
+    </repeat>
+    <match lemma="seier"/>
+  </rule>
 <!--OPPLØFTENDE: END-->
 
 <!--BERØMMELSE: START-->
