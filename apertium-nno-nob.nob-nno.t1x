@@ -3507,9 +3507,10 @@
           </and></test>
           <let><var n="caseFirstWord"/><lit v="Aa"/></let>
         </when>
-        <when c="Not proper, but UPPERCASED: set caseFirstWord AA">
+        <when c="Not proper, but *both* UPPERCASED: set caseFirstWord AA">
           <test><and>
             <not><begins-with><clip pos="1" side="tl" part="a_nom"/><lit-tag v="np"/></begins-with></not>
+            <equal><clip pos="1" side="sl" part="a_caps"/><lit-tag v="AA"/></equal>
             <equal><clip pos="2" side="sl" part="a_caps"/><lit-tag v="AA"/></equal>
           </and></test>
           <let><var n="caseFirstWord"/><lit v="AA"/></let>
@@ -3985,22 +3986,9 @@
       </when></choose>
     </def-macro>
 
-
-    <def-macro n="reject_if_cmp" npar="1"
-               c="arg.1: noun
-                  Reject current rule if noun is left part of compound, e.g. 'drifts' in 'politiets drifts+enhet'">
-      <choose>
-        <when>
-          <test><not><equal><clip pos="1" side="tl" part="a_cmp"/><lit v=""/></equal></not></test>
-          <reject-current-rule shifting="no"/>
-        </when>
-      </choose>
-    </def-macro>
-
     <def-macro n="gen2cmp" npar="2"
                c="arg.1: genitive noun
                   arg.2: owned noun">
-      <call-macro n="reject_if_cmp"><with-param pos="2"/></call-macro>
       <choose><when c="avoid samfunnsverdet, regjeringsverdet, kyrkjeverdet">
         <test><and>
           <equal><clip pos="2" side="tl" part="lemh"/><lit v="verd"/></equal>
@@ -4057,7 +4045,7 @@
         <pattern-item n="nind_vekedag"/>
       </pattern>
       <action>
-        <call-macro n="reject_if_cmp"><with-param pos="2"/></call-macro>
+        <choose><when><test><not><equal><clip pos="2" side="tl" part="a_cmp"/><lit v=""/></equal></not></test><reject-current-rule shifting="no"/></when></choose>
         <choose><when c="Don't drop for 'etter hvert på søndag'">
           <test><or>
             <equal caseless="yes"><var n="prevlem"/><lit v="etter kvart"/></equal>
@@ -4091,7 +4079,7 @@
         <pattern-item n="nind_vekedag"/>
       </pattern>
       <action>
-        <call-macro n="reject_if_cmp"><with-param pos="1"/></call-macro>
+        <choose><when><test><not><equal><clip pos="1" side="tl" part="a_cmp"/><lit v=""/></equal></not></test><reject-current-rule shifting="no"/></when></choose>
         <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
         <out>
           <chunk name="nn" case="caseFirstWord">
@@ -4477,7 +4465,7 @@
         <pattern-item n="nind_time"/>
       </pattern>
       <action>
-        <call-macro n="reject_if_cmp"><with-param pos="2"/></call-macro>
+        <choose><when><test><not><equal><clip pos="2" side="tl" part="a_cmp"/><lit v=""/></equal></not></test><reject-current-rule shifting="no"/></when></choose>
         <call-macro n="set_caseFirstWord2">
           <with-param pos="1"/>
           <with-param pos="2"/>
@@ -5411,6 +5399,7 @@ no lemq-moving">
         <pattern-item n="nind_gen2cmp"/>
       </pattern>
       <action>
+        <choose><when><test><not><equal><clip pos="2" side="tl" part="a_cmp"/><lit v=""/></equal></not></test><reject-current-rule shifting="no"/></when></choose>
         <call-macro n="gen2cmp"><with-param pos="1"/><with-param pos="2"/></call-macro>
       </action>
     </rule>
@@ -5420,6 +5409,7 @@ no lemq-moving">
         <pattern-item n="nind_gen2cmp_byplan"/>
       </pattern>
       <action>
+        <choose><when><test><not><equal><clip pos="2" side="tl" part="a_cmp"/><lit v=""/></equal></not></test><reject-current-rule shifting="no"/></when></choose>
         <call-macro n="gen2cmp"><with-param pos="1"/><with-param pos="2"/></call-macro>
       </action>
     </rule>
@@ -5429,6 +5419,7 @@ no lemq-moving">
         <pattern-item n="nind_gen2cmp_sysselmannskontor"/>
       </pattern>
       <action>
+        <choose><when><test><not><equal><clip pos="2" side="tl" part="a_cmp"/><lit v=""/></equal></not></test><reject-current-rule shifting="no"/></when></choose>
         <call-macro n="gen2cmp"><with-param pos="1"/><with-param pos="2"/></call-macro>
       </action>
     </rule>
@@ -6583,7 +6574,7 @@ no lemq-moving">
         <pattern-item n="nind_periode"/>
       </pattern>
       <action>
-        <call-macro n="reject_if_cmp"><with-param pos="3"/></call-macro>
+        <choose><when><test><not><equal><clip pos="3" side="tl" part="a_cmp"/><lit v=""/></equal></not></test><reject-current-rule shifting="no"/></when></choose>
         <choose><when c="Don't drop for 'utover i neste uke'">
           <test><or>
             <equal caseless="yes"><var n="prevlem"/><lit v="utover"/></equal>
