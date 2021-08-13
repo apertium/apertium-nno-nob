@@ -4460,6 +4460,14 @@
   </rule>
 <!--PERMISJON/PERMITTERING: END-->
 
+<!--OPPLØFTENDE: START-->
+  <rule><match lemma="oppløftende" tags="adj.*"><select lemma="oppløftande"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="oppløftende" tags="adj.*"><select lemma="gledeleg"/></match>
+    <match lemma="at"/>
+  </rule>
+<!--OPPLØFTENDE: END-->
+
 <!--BERØMMELSE: START-->
   <rule><match lemma="berømmelse" tags="n.*"><select lemma="ry"/></match></rule>
   <rule weight="2.0">
