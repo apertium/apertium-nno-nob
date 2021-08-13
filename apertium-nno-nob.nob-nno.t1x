@@ -5396,6 +5396,7 @@ no lemq-moving">
         <pattern-item n="nind_gen2cmp"/>
       </pattern>
       <action>
+        <choose><when><test><not><equal><clip pos="2" side="tl" part="a_cmp"/><lit v=""/></equal></not></test><reject-current-rule shifting="no"/></when></choose>
         <call-macro n="gen2cmp"><with-param pos="1"/><with-param pos="2"/></call-macro>
       </action>
     </rule>
@@ -5415,6 +5416,7 @@ no lemq-moving">
         <pattern-item n="nind_gen2cmp_sysselmannskontor"/>
       </pattern>
       <action>
+        <choose><when><test><not><equal><clip pos="2" side="tl" part="a_cmp"/><lit v=""/></equal></not></test><reject-current-rule shifting="no"/></when></choose>
         <call-macro n="gen2cmp"><with-param pos="1"/><with-param pos="2"/></call-macro>
       </action>
     </rule>
