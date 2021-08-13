@@ -4408,6 +4408,46 @@
     <match lemma="fra"/>
   </rule>
 <!--GJENSIDIGHET: END-->
+
+<!--BETROELSE: START-->
+  <rule>
+    <match lemma="betroelse" tags="n.m.sg.ind"><select lemma="fortruleg opplysning"/></match>
+  </rule>
+  <rule>
+    <match lemma="betroelse" tags="n.m.sg.def"><select lemma="fortrulege opplysning"/></match>
+  </rule>
+  <rule weight="1.5">
+    <match lemma="betroelse" tags="n.*"><select lemma="fortrulege ting"/></match>
+  </rule>
+  <rule weight="2.0">
+    <or>
+      <match lemma="den"/>
+      <match lemma="denne"/>
+    </or>
+    <match lemma="betroelse" tags="n.*"><select lemma="fortrulege opplysning"/></match>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="betroelse" tags="n.m.sg.ind"><select lemma="fortruleg opplysning"/></match>
+    <match lemma="til"/>
+  </rule>
+  <rule weight="2.0">
+    <match tags="adj.*"/>
+    <match lemma="betroelse" tags="n.*"><select lemma="avsløring"/></match>
+  </rule>
+  <rule weight="2.5">
+    <match tags="adj.*"/>
+    <match lemma="betroelse" tags="n.*"><select lemma="opplysning"/></match>
+    <match lemma="fra"/>
+  </rule>
+    <rule weight="2.0">
+    <match lemma="betroelse" tags="n.*"><select lemma="fortrulege opplysning"/></match>
+    <or>
+    <match lemma="som"/>
+    <match lemma="fra"/>
+    </or>
+  </rule>
+<!--BETROELSE: END-->
+
 <!--BERØMMELSE: START-->
   <rule><match lemma="berømmelse" tags="n.*"><select lemma="ry"/></match></rule>
   <rule weight="2.0">
