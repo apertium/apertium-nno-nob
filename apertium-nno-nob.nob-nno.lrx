@@ -4473,6 +4473,32 @@
     </repeat>
     <match lemma="seier"/>
   </rule>
+  <rule weight="2.0">
+    <match lemma="oppløftende" tags="adj.*"><select lemma="oppbyggeleg"/></match>
+    <match lemma="tale"/>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="en"/>
+    <match lemma="oppløftende" tags="adj.*"><select lemma="god"/></match>
+    <match tags="n.*"/>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="den"/>
+    <match lemma="oppløftende" tags="adj.*"><select lemma="gledeleg"/></match>
+    <match tags="n.*"/>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="oppløftende" tags="adj.*"><select lemma="oppmuntrande"/></match>
+    <match tags="n.*"/>
+  </rule>
+  <rule weight="2.0">
+    <or>
+      <match lemma="ikke"/>
+      <match tags="adv"/>
+      <match tags="adj.*"/>
+    </or>
+    <match lemma="oppløftende" tags="adj.*"><select lemma="oppmuntrande"/></match>
+  </rule>
 <!--OPPLØFTENDE: END-->
 
 <!--BERØMMELSE: START-->
