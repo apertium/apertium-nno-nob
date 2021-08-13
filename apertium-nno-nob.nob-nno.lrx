@@ -4448,6 +4448,18 @@
   </rule>
 <!--BETROELSE: END-->
 
+<!--PERMISJON/PERMITTERING: START-->
+  <rule><match lemma="permisjon" tags="n.*"><select lemma="permisjon"/></match></rule>
+  <rule><match lemma="permittering" tags="n.*"><select lemma="permittering"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="permittering" tags="n.*.*.*.cmp"><select lemma="permisjon"/></match>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="under"/>
+    <match lemma="permittering" tags="n.*"><select lemma="permisjon"/></match>
+  </rule>
+<!--PERMISJON/PERMITTERING: END-->
+
 <!--BERØMMELSE: START-->
   <rule><match lemma="berømmelse" tags="n.*"><select lemma="ry"/></match></rule>
   <rule weight="2.0">
