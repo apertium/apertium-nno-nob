@@ -184,7 +184,7 @@
       <e><par n="ADV"/></e>
       <e><par n="adj"/></e>
       <e><par n="prn"/></e>
-      <e><i><w/><s n="det"/><s n="dem"/><t/><j/></i></e>
+      <e><i><w/><s n="det"/><s n="dem"/><t/><j/></i><par n="ncmp*.n"/></e>
     </pardef>
 
     <pardef n="SN|ADV|prn|det" c="Includes empty!">
@@ -200,7 +200,17 @@
       <e><par n="SN"/></e>
       <e><par n="prn"/></e>
       <e><i><w/><s n="np"/><t/><j/></i></e>
-      <e><i><w/><s n="det"/><s n="dem"/><t/><j/></i></e>
+      <e><par n="adj"/></e><e><i><w/><s n="np"/><t/><j/></i></e>
+      <e><i><w/><s n="det"/><s n="dem"/><t/><j/></i><par n="ncmp*.n"/></e>
+    </pardef>
+
+    <pardef n="SN|np|prn|empty" c="Includes empty!">
+      <e></e>
+      <e><par n="SN"/></e>
+      <e><par n="prn"/></e>
+      <e><i><w/><s n="np"/><t/><j/></i></e>
+      <e><par n="adj"/></e><e><i><w/><s n="np"/><t/><j/></i></e>
+      <e><i><w/><s n="det"/><s n="dem"/><t/><j/></i><par n="ncmp*.n"/></e>
     </pardef>
 
     <pardef n="SN.sg.ind">
@@ -320,6 +330,18 @@
       <e><par n="ADV"/></e>
     </pardef>
 
+    <pardef n="Sår-og-kroppsord">
+      <e><i>sår<t/><j/></i></e>
+      <e><i>skade<t/><j/></i></e>
+      <e><i>for<t/><j/></i></e>
+      <e><i>ankel<t/><j/></i></e>
+      <e><i>kne<t/><j/></i></e>
+      <e><i>arm<t/><j/></i></e>
+      <e><i>albue<t/><j/></i></e>
+      <e><i>hånd<t/><j/></i></e>
+      <e><i>skulder<t/><j/></i></e>
+      <e><i>lår<t/><j/></i></e>
+    </pardef>
   </pardefs>
 
   <section id="main" type="standard">
@@ -744,8 +766,16 @@
       <i>å<t/><j/></i>
     </e>
 
+    <e lm="Override regel forbinde + sår + med" c="knyte til">
+      <i>forbinde<t/><j/></i>
+      <re>[a-zåæø]?</re>
+      <par n="Sår-og-kroppsord"/>
+      <i>med<t/><j/></i>
+    </e>
+
     <e lm="forbinde med -> knytte til" c="knyte til">
       <p><l>forbinde</l>      <r>knytte</r></p> <i><t/><j/></i>
+      <par n="SN|np|prn|empty"/>
       <p><l>med</l>           <r>til</r></p> <i><t/><j/></i>
     </e>
 
