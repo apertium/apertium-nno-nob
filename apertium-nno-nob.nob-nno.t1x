@@ -528,7 +528,7 @@
       <cat-item tags="det.qnt.nt.sg.*" lemma="en"/>
     </def-cat>
     <def-cat n="pr">
-      <cat-item tags="pr.*"/>
+      <cat-item tags="pr"/>
       <cat-item tags="pr.*"/>
     </def-cat>
     <def-cat n="det">
@@ -553,9 +553,11 @@
       <cat-item tags="cnjcoo.*"/>
     </def-cat>
     <def-cat n="ij">
+      <cat-item tags="ij"/>
       <cat-item tags="ij.*"/>
     </def-cat>
     <def-cat n="url">
+      <cat-item tags="url"/>
       <cat-item tags="url.*"/>
     </def-cat>
     <def-cat n="cnjcoo_nkon">
@@ -622,6 +624,7 @@
       <cat-item tags="adj.pprs.*"/>                              <!--hvor truende-->
     </def-cat>
     <def-cat n="adv">
+      <cat-item tags="adv"/>
       <cat-item tags="adv.*"/>
     </def-cat>
 
@@ -3152,6 +3155,7 @@
 
     <def-list n="keep_lemma_case" c="Keep these lemma-case (don't keep titlecase/input-case unless all upper or first in sentence).
                                      We put lemmas here if we want the first character to stay lowercase mid-sentence.
+                                     (Note: We don't need to list entries where bidix translates Title→lower, like Pandoras eske→pandoreske.)
 
                                      The chunk lemma will then be all lower, so they don't get initial-upper by t3x.
                                      We also assume (hope) t2x never changes their chunk lemma.
@@ -3378,7 +3382,8 @@
           </and></test>
           <let><var n="chunkCase"/><lit v=""/></let>
         </when>
-        <when c="Titlecased, but lemma lowercased: set chunkCase Aa">
+        <when c="Titlecased, but sl lemma is lowercase: set chunkCase Aa
+                 Note: this will *not* match where bidix translated title to lower.">
           <test><and>
             <equal><clip pos="2" side="sl" part="a_caps"/><lit-tag v="Aa"/></equal>
             <equal><get-case-from pos="1"><lit v="aa"/></get-case-from><lit v="aa"/></equal>
@@ -3386,7 +3391,7 @@
           <let><var n="chunkCase"/><lit v="Aa"/></let>
         </when>
         <when c="UPPERCASED: set chunkCase aa, uppercase the argument">
-          <test><equal><clip pos="1" side="sl" part="a_caps"/><lit-tag v="AA"/></equal></test>
+          <test><equal><clip pos="2" side="sl" part="a_caps"/><lit-tag v="AA"/></equal></test>
           <let><var n="chunkCase"/><lit v="aa"/></let>
           <modify-case><clip pos="1" side="tl" part="lem"/><lit v="AA"/></modify-case>
           <modify-case><clip pos="2" side="tl" part="lem"/><lit v="AA"/></modify-case>
@@ -3395,7 +3400,7 @@
           <test><not><equal><var n="chunkCase"/><lit v=""/></equal></not></test>
           <let><var n="chunkCase"/><lit v="aa"/></let>
         </when>
-        <when>
+        <when c="Titlecased, presumably first word in sentence?">
           <test><equal><clip pos="2" side="sl" part="a_caps"/><lit-tag v="Aa"/></equal></test>
           <let><var n="chunkCase"/><lit v="Aa"/></let>
         </when>
