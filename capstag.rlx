@@ -7,8 +7,10 @@ DELIMITERS = "<.>" "<:>" "<!>" "<?>" "<|>" "<$.>" "<$:>" "<$!>" "<$?>" "<$|>" se
 SECTION
 
 # Based on transfer.cc:Transfer::copycase
+# except we don't consider uppercase if there is at least one lowercase in the middle ("Statford A")
 LIST lastupper  = "<.*\\p{Lu}>"r ;
 LIST firstupper = "<\\p{Lu}.*>"r ;
+LIST haslower = "<.*\\p{Ll}.*>"r ;
 LIST sizeone    = "<.>"r ;
 LIST unknown = ("\\*.*"r) ;
 
@@ -16,6 +18,6 @@ PROTECT unknown ;
 
 MAP (Aa) sizeone + firstupper    ;
 MAP (aa) sizeone                 ;
-MAP (AA) firstupper + lastupper  ;
+MAP (AA) firstupper + lastupper - haslower  ;
 MAP (Aa) firstupper              ;
 MAP (aa) (*)                     ;
