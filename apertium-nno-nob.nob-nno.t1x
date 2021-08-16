@@ -3434,6 +3434,37 @@
       <call-macro n="set_chunkCaseCmp"><with-param pos="1"/><with-param pos="2"/></call-macro>
       <let><var n="caseSecondWord"/><var n="chunkCase"/></let>
     </def-macro>
+    <def-macro n="set_caseSecondWordCmp3" npar="3">
+      <let><var n="chunkCase"/><lit v="aa"/></let> <!-- ie. we're not the first word of sentence -->
+      <call-macro n="set_chunkCaseCmp"><with-param pos="2"/><with-param pos="3"/></call-macro>
+      <let><var n="caseSecondWord"/><var n="chunkCase"/></let>
+      <choose>
+        <when c="Uppercase first part if latter parts uppercased">
+          <test><and>
+            <equal><var n="chunkCase"/><lit v="aa"/></equal>
+            <equal><case-of pos="2" side="tl" part="lem"/><lit v="AA"/></equal>
+            <equal><case-of pos="3" side="tl" part="lem"/><lit v="AA"/></equal>
+          </and></test>
+          <modify-case><clip pos="1" side="tl" part="lem"/><lit v="AA"/></modify-case>
+        </when>
+      </choose>
+    </def-macro>
+    <def-macro n="set_caseSecondWordCmp4" npar="4">
+      <let><var n="chunkCase"/><lit v="aa"/></let> <!-- ie. we're not the first word of sentence -->
+      <call-macro n="set_chunkCaseCmp"><with-param pos="3"/><with-param pos="4"/></call-macro>
+      <let><var n="caseSecondWord"/><var n="chunkCase"/></let>
+      <choose>
+        <when c="Uppercase first part if latter parts uppercased">
+          <test><and>
+            <equal><var n="chunkCase"/><lit-tag v="aa"/></equal>
+            <equal><case-of pos="3" side="tl" part="lem"/><lit v="AA"/></equal>
+            <equal><case-of pos="4" side="tl" part="lem"/><lit v="AA"/></equal>
+          </and></test>
+          <modify-case><clip pos="1" side="tl" part="lem"/><lit v="AA"/></modify-case>
+          <modify-case><clip pos="2" side="tl" part="lem"/><lit v="AA"/></modify-case>
+        </when>
+      </choose>
+    </def-macro>
 
     <def-macro n="set_caseFirstWord2" npar="2"
                c="arg1: first word, arg2: second word">
@@ -5458,8 +5489,8 @@ no lemq-moving">
         <pattern-item n="n_np"/>
       </pattern>
       <action>
-        <!-- TODO: set_caseSecondWordCmp3 -->
-        <call-macro n="set_caseFirstWordCmp">
+        <call-macro n="set_caseSecondWordCmp3">
+          <with-param pos="1"/>
           <with-param pos="2"/>
           <with-param pos="3"/>
         </call-macro>
@@ -5483,8 +5514,9 @@ no lemq-moving">
         <pattern-item n="n_np"/>
       </pattern>
       <action>
-        <!-- TODO: set_caseSecondWordCmp4 -->
-        <call-macro n="set_caseFirstWordCmp">
+        <call-macro n="set_caseSecondWordCmp4">
+          <with-param pos="1"/>
+          <with-param pos="2"/>
           <with-param pos="3"/>
           <with-param pos="4"/>
         </call-macro>
@@ -5978,8 +6010,11 @@ no lemq-moving">
         <call-macro n="set_gender2.n.adj"><with-param pos="4"/><with-param pos="1"/></call-macro>
         <call-macro n="set_grau_aux1"><with-param pos="1"/></call-macro>
         <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
-        <!-- TODO: set_caseSecondWordCmp3 -->
-        <call-macro n="set_caseSecondWordCmp"><with-param pos="3"/><with-param pos="4"/></call-macro>
+        <call-macro n="set_caseSecondWordCmp3">
+          <with-param pos="2"/>
+          <with-param pos="3"/>
+          <with-param pos="4"/>
+        </call-macro>
         <call-macro n="out_gen-prep"><with-param pos="4"/></call-macro>
         <call-macro n="stash_case_in_ntags1"><with-param pos="4"/></call-macro>
         <out>
@@ -6023,8 +6058,12 @@ no lemq-moving">
         <call-macro n="set_gender2.n.adj"><with-param pos="5"/><with-param pos="1"/></call-macro>
         <call-macro n="set_grau_aux1"><with-param pos="1"/></call-macro>
         <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
-        <!-- TODO: set_caseSecondWordCmp4 -->
-        <call-macro n="set_caseSecondWordCmp"><with-param pos="4"/><with-param pos="5"/></call-macro>
+        <call-macro n="set_caseSecondWordCmp4">
+          <with-param pos="2"/>
+          <with-param pos="3"/>
+          <with-param pos="4"/>
+          <with-param pos="5"/>
+        </call-macro>
         <call-macro n="out_gen-prep"><with-param pos="5"/></call-macro>
         <call-macro n="stash_case_in_ntags1"><with-param pos="5"/></call-macro>
         <out>
@@ -6186,8 +6225,11 @@ no lemq-moving">
           <with-param pos="1"/>
           <with-param pos="2"/>
         </call-macro>
-        <!-- TODO: set_caseSecondWordCmp3 -->
-        <call-macro n="set_caseSecondWordCmp"><with-param pos="4"/><with-param pos="5"/></call-macro>
+        <call-macro n="set_caseSecondWordCmp3">
+          <with-param pos="3"/>
+          <with-param pos="4"/>
+          <with-param pos="5"/>
+        </call-macro>
         <call-macro n="out_gen-prep"><with-param pos="5"/></call-macro>
         <call-macro n="stash_case_in_ntags1"><with-param pos="5"/></call-macro>
         <choose><when>
@@ -6247,8 +6289,12 @@ no lemq-moving">
           <with-param pos="1"/>
           <with-param pos="2"/>
         </call-macro>
-        <!-- TODO: set_caseSecondWordCmp4 -->
-        <call-macro n="set_caseSecondWordCmp"><with-param pos="5"/><with-param pos="6"/></call-macro>
+        <call-macro n="set_caseSecondWordCmp4">
+          <with-param pos="3"/>
+          <with-param pos="4"/>
+          <with-param pos="5"/>
+          <with-param pos="6"/>
+        </call-macro>
         <call-macro n="out_gen-prep"><with-param pos="6"/></call-macro>
         <call-macro n="stash_case_in_ntags1"><with-param pos="6"/></call-macro>
         <choose><when>
