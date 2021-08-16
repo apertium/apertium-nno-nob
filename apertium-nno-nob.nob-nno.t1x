@@ -3330,23 +3330,6 @@
       <call-macro n="bigram_genprep"><with-param pos="1"/></call-macro>
     </def-macro>
 
-    <def-macro n="switch_cases" npar="2">
-      <choose>
-        <when>
-          <test><not>
-            <and>
-              <equal><clip pos="2" side="tl" part="lemh"/><lit v="De"/></equal>
-              <equal><clip pos="2" side="tl" part="a_det"/><lit-tag v="det.pos"/></equal>
-              <equal><clip pos="2" side="tl" part="persona"/><lit-tag v="p2"/></equal>
-            </and>
-          </not></test>
-          <let><var n="caseFirstWord"/><get-case-from pos="1"><clip pos="1" side="tl" part="lemh"/></get-case-from></let>
-          <let><clip pos="1" side="tl" part="lemh"/><get-case-from pos="2"><clip pos="1" side="tl" part="lemh"/></get-case-from></let>
-          <modify-case><clip pos="2" side="tl" part="lemh"/><var n="caseFirstWord"/></modify-case>
-        </when>
-      </choose>
-    </def-macro>
-
     <def-macro n="set_caseFirstWordCmp" npar="2"
                c="arg1: first cmp-part, arg2: last cmp-part
                   Use nom tags from first part, caps tags from last">
@@ -3733,8 +3716,6 @@
               <equal><clip pos="2" side="tl" part="persona"/><lit-tag v="p2"/></equal>
             </and>
           </not></test>
-          <let><var n="caseFirstWord"/><get-case-from pos="2"><lit v="aa"/></get-case-from></let>
-          <modify-case><clip pos="1" side="tl" part="lemh"/><lit v="aa"/></modify-case>
         </when>
       </choose>
       <let><clip pos="1" side="tl" part="art"/><lit-tag v="def"/></let>
@@ -5032,10 +5013,7 @@ no lemq-moving">
         <pattern-item n="vblexinf_or_infpass"/>
       </pattern>
       <action>
-        <call-macro n="switch_cases">
-	  <with-param pos="2"/>
-	  <with-param pos="1"/>
-        </call-macro>
+        <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
         <call-macro n="out_ndef">
 	  <with-param pos="2"/>
 	  <with-param pos="1"/>
@@ -5045,7 +5023,6 @@ no lemq-moving">
           <with-param pos="1"/>
           <with-param pos="2"/>
         </call-macro>
-        <call-macro n="set_caseFirstWord"><with-param pos="2"/></call-macro>
         <choose><when>
           <test><not><equal><b pos="2"/><lit v=" "/></equal></not></test>
           <out><b pos="2"/></out>
