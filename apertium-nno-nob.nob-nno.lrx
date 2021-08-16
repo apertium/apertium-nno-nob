@@ -5693,6 +5693,34 @@
 
   <!-- ANGÅ/ANGÅENDE: END -->
 
+  <!-- FORBINDE: START -->
+  <rule><match lemma="forbinde" tags="vblex.*"><select lemma="knyte# saman"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="forbinde" tags="vblex.*"><select lemma="forbinde"/></match>
+    <repeat from="0" upto="1">
+      <match tags="n.*.*.*.cmp"/>
+    </repeat>
+    <or>
+      <match lemma="sår"/>
+      <match lemma="skade"/>
+      <match lemma="lår"/>
+      <match lemma="fot"/>
+      <match lemma="ankel"/>
+      <match lemma="kne"/>
+      <match lemma="arm"/>
+      <match lemma="albue"/>
+      <match lemma="hånd"/>
+      <match lemma="skulder"/>
+      <match lemma="skrubbsår"/>
+      <match lemma="brannsår"/>
+      <match lemma="kjøttsår"/>
+      <match lemma="kneskade"/>
+      <match lemma="skuddsår"/>
+    </or>
+  </rule>
+  <!-- FORBINDE: END -->
+
+
   <!-- UANMELDT: START -->
   <rule weight="2.0">
     <match lemma="uanmeldt" tags="adj.*"><select lemma="overraskande"/></match>
