@@ -4823,6 +4823,14 @@
 <!--UAVHENGIGHET: START-->
   <rule><match lemma="uavhengighet" tags="n.*"><select lemma="sjølvstende"/></match></rule>
   <rule weight="2.0">
+    <or>
+      <match lemma="kunngjøre"/>
+      <match lemma="erklære"/>
+    </or>
+    <match lemma="uavhengighet" tags="n.*"><select lemma="sjølvstende"/></match>
+    <match lemma="fra"/>
+  </rule>
+  <rule weight="2.0">
     <match lemma="uavhengighet" tags="n.*"><select lemma="lausriving"/></match>
     <match lemma="fra"/>
   </rule>
