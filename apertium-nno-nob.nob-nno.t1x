@@ -555,6 +555,9 @@
     <def-cat n="ij">
       <cat-item tags="ij.*"/>
     </def-cat>
+    <def-cat n="url">
+      <cat-item tags="url.*"/>
+    </def-cat>
     <def-cat n="cnjcoo_nkon">
       <cat-item tags="cnjcoo.@nkon.*"/>
       <cat-item tags="cnjcoo.clb.@nkon.*"/>
@@ -6625,6 +6628,21 @@ no lemq-moving">
         <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
         <out>
           <chunk name="ij" case="caseFirstWord">
+            <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
+            <lu><clip pos="1" side="tl" part="whole"/></lu>
+          </chunk>
+        </out>
+        <let><var n="prevlem"/><clip pos="1" side="tl" part="lem"/></let>
+      </action>
+    </rule>
+    <rule comment="URL">
+      <pattern>
+        <pattern-item n="url"/>
+      </pattern>
+      <action>
+        <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
+        <out>
+          <chunk name="url" case="caseFirstWord">
             <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
             <lu><clip pos="1" side="tl" part="whole"/></lu>
           </chunk>
