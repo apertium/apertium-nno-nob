@@ -5707,6 +5707,19 @@
     <match lemma="uanmeldt" tags="adj.*"><select lemma="uventa"/></match>
   </rule>
   <!-- UANMELDT: END -->
+<!--OPPRETTHOLDELSE: START-->
+  <rule><match lemma="opprettholdelse" tags="n.*"><select lemma="vidareføring"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="opprettholdelse" tags="n.*"><select lemma="sikring"/></match>
+    <match lemma="av"/>
+    <or>
+      <match lemma="ro"/>
+      <match lemma="lov"/>
+    </or>
+    <match lemma="og"/>
+    <match lemma="orden"/>
+  </rule>
+<!--OPPRETTHOLDELSE: END-->
 
   <!-- UBETINGET: START -->
   <rule weight="2.0">
