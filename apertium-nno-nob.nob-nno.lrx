@@ -4840,6 +4840,12 @@
     <match lemma="uavhengighet" tags="n.*"><select lemma="fridom"/></match>
   </rule>
 <!--UAVHENGIGHET: END-->
+  <rule><match lemma="upartiskhet" tags="n.*"><select lemma="upartiskheit"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="uavhengighet"/>
+    <match lemma="og"/>
+    <match lemma="upartiskhet" tags="n.*"><select lemma="nøytralitet"/></match>
+  </rule>
 
   <rule><match lemma="helaftens" tags="adj.*"><select lemma="lengre"/></match></rule>
   <rule weight="2.0">
