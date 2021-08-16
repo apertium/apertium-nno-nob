@@ -4820,11 +4820,17 @@
     <match lemma="mindretall"/>
   </rule>
 
+<!--UAVHENGIGHET: START-->
   <rule><match lemma="uavhengighet" tags="n.*"><select lemma="sjølvstende"/></match></rule>
   <rule weight="2.0">
     <match lemma="uavhengighet" tags="n.*"><select lemma="lausriving"/></match>
     <match lemma="fra"/>
   </rule>
+  <rule weight="2.0">
+    <match lemma="redaksjonell"/>
+    <match lemma="uavhengighet" tags="n.*"><select lemma="fridom"/></match>
+  </rule>
+<!--UAVHENGIGHET: END-->
 
   <rule><match lemma="helaftens" tags="adj.*"><select lemma="lengre"/></match></rule>
   <rule weight="2.0">
