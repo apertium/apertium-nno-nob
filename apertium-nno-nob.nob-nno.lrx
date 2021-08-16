@@ -5694,9 +5694,9 @@
   <!-- ANGÅ/ANGÅENDE: END -->
 
   <!-- FORBINDE: START -->
-  <rule><match lemma="forbinde" tags="vblex.*"><select lemma="knyte# saman"/></match></rule>
+  <rule><match lemma="forbinde" tags=".*"><select lemma="knyte# saman"/></match></rule>
   <rule weight="2.0">
-    <match lemma="forbinde" tags="vblex.*"><select lemma="forbinde"/></match>
+    <match lemma="forbinde" tags=".*"><select lemma="forbinde"/></match>
     <repeat from="0" upto="1">
       <match tags="n.*.*.*.cmp"/>
     </repeat>
@@ -5717,7 +5717,7 @@
       <match lemma="kneskade"/>
       <match lemma="skuddsår"/>
     </or>
-  </rule>
+  </rule> 
   <!-- FORBINDE: END -->
 
 
