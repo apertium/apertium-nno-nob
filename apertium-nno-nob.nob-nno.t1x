@@ -3431,6 +3431,37 @@
       <call-macro n="set_chunkCaseCmp"><with-param pos="1"/><with-param pos="2"/></call-macro>
       <let><var n="caseSecondWord"/><var n="chunkCase"/></let>
     </def-macro>
+    <def-macro n="set_caseFirstWordCmp3" npar="3">
+      <let><var n="chunkCase"/><lit v="aa"/></let> <!-- ie. we're not the first word of sentence -->
+      <call-macro n="set_chunkCaseCmp"><with-param pos="2"/><with-param pos="3"/></call-macro>
+      <let><var n="caseFirstWord"/><var n="chunkCase"/></let>
+      <choose>
+        <when c="Uppercase first part if latter parts uppercased">
+          <test><and>
+            <equal><var n="chunkCase"/><lit v="aa"/></equal>
+            <equal><case-of pos="2" side="tl" part="lem"/><lit v="AA"/></equal>
+            <equal><case-of pos="3" side="tl" part="lem"/><lit v="AA"/></equal>
+          </and></test>
+          <modify-case><clip pos="1" side="tl" part="lem"/><lit v="AA"/></modify-case>
+        </when>
+      </choose>
+    </def-macro>
+    <def-macro n="set_caseFirstWordCmp4" npar="4">
+      <let><var n="chunkCase"/><lit v="aa"/></let> <!-- ie. we're not the first word of sentence -->
+      <call-macro n="set_chunkCaseCmp"><with-param pos="3"/><with-param pos="4"/></call-macro>
+      <let><var n="caseFirstWord"/><var n="chunkCase"/></let>
+      <choose>
+        <when c="Uppercase first part if latter parts uppercased">
+          <test><and>
+            <equal><var n="chunkCase"/><lit-tag v="aa"/></equal>
+            <equal><case-of pos="3" side="tl" part="lem"/><lit v="AA"/></equal>
+            <equal><case-of pos="4" side="tl" part="lem"/><lit v="AA"/></equal>
+          </and></test>
+          <modify-case><clip pos="1" side="tl" part="lem"/><lit v="AA"/></modify-case>
+          <modify-case><clip pos="2" side="tl" part="lem"/><lit v="AA"/></modify-case>
+        </when>
+      </choose>
+    </def-macro>
     <def-macro n="set_caseSecondWordCmp3" npar="3">
       <let><var n="chunkCase"/><lit v="aa"/></let> <!-- ie. we're not the first word of sentence -->
       <call-macro n="set_chunkCaseCmp"><with-param pos="2"/><with-param pos="3"/></call-macro>
@@ -5486,7 +5517,7 @@ no lemq-moving">
         <pattern-item n="n_np"/>
       </pattern>
       <action>
-        <call-macro n="set_caseSecondWordCmp3">
+        <call-macro n="set_caseFirstWordCmp3">
           <with-param pos="1"/>
           <with-param pos="2"/>
           <with-param pos="3"/>
@@ -5511,7 +5542,7 @@ no lemq-moving">
         <pattern-item n="n_np"/>
       </pattern>
       <action>
-        <call-macro n="set_caseSecondWordCmp4">
+        <call-macro n="set_caseFirstWordCmp4">
           <with-param pos="1"/>
           <with-param pos="2"/>
           <with-param pos="3"/>
