@@ -1286,7 +1286,7 @@
 
   <rule><match lemma="omdøpe"><select lemma="døype# om"/></match></rule>
   <rule weith="2.0">
-    <match lemma="omdøpe" tags="vblex.pres.pasv">
+    <match lemma="omdøpe" tags="vblex.pres.pasv.*">
       <select lemma="omdøype"/>
     </match>
   </rule>
@@ -1298,7 +1298,7 @@
 
   <rule><match lemma="overkjøre" tags="vblex.*"><select lemma="køyre# over"/></match></rule>
   <rule weight="2.0">
-    <match lemma="overkjøre" tags="vblex.pres.pasv">
+    <match lemma="overkjøre" tags="vblex.pres.pasv.*">
       <select lemma="overkøyre"/>
     </match>
   </rule>
@@ -2391,16 +2391,16 @@
   <rule weight="2.0" c="riktig god">
     <match lemma="riktig" tags="adj.*"><select lemma="riktig"/></match>
     <repeat from="0" upto="1">
-      <match lemma="så" tags="adv"/>
+      <match lemma="så" tags="adv.*"/>
     </repeat>
     <match tags="adj.*"/>
   </rule>
 
-  <rule><match lemma="riktig" tags="adv"><select lemma="rett"/></match></rule>
+  <rule><match lemma="riktig" tags="adv.*"><select lemma="rett"/></match></rule>
   <rule weight="2.0" c="riktig så lønnsam">
-    <match lemma="riktig" tags="adv"><select lemma="riktig"/></match>
+    <match lemma="riktig" tags="adv.*"><select lemma="riktig"/></match>
     <repeat from="0" upto="1">
-      <match lemma="så" tags="adv"/>
+      <match lemma="så" tags="adv.*"/>
     </repeat>
     <match tags="adj.*"/>
   </rule>
@@ -3232,11 +3232,11 @@
   <rule><match lemma="selvantenne" tags="vblex.*"><select lemma="ta# fyr"/></match></rule>
 
   <rule weight="1.5">
-    <match lemma="selvantenne" tags="vblex.pres.pasv"><select lemma="ta# fyr" tags="vblex.pres"/></match>
+    <match lemma="selvantenne" tags="vblex.pres.pasv.*"><select lemma="ta# fyr" tags="vblex.pres.*"/></match>
   </rule>
 
   <rule weight="1.5">
-    <match lemma="selvantenne" tags="vblex.inf.pasv"><select lemma="ta# fyr" tags="vblex.inf"/></match>
+    <match lemma="selvantenne" tags="vblex.inf.pasv.*"><select lemma="ta# fyr" tags="vblex.inf.*"/></match>
   </rule>
 
   <rule weight="2.0">
@@ -3247,21 +3247,22 @@
   <rule><match lemma="antenne" tags="vblex.*"><select lemma="ta# fyr"/></match></rule>
 
   <rule weight="3.0">
-    <match lemma="antenne" tags="vblex.pres.pasv"><select lemma="påtenne"/></match>
+    <match lemma="antenne" tags="vblex.pres.pasv.*"><select lemma="påtenne"/></match>
     <match lemma="av" tags="pr"/>
   </rule>
 
   <rule weight="1.5">
-    <match lemma="antenne" tags="vblex.pres.pasv"><select lemma="ta# fyr" tags="vblex.pres"/></match>
+    <match lemma="antenne" tags="vblex.pres.pasv.*"><select lemma="ta# fyr" tags="vblex.pres.*"/></match>
   </rule>
 
   <rule weight="1.5">
-    <match lemma="antenne" tags="vblex.inf.pasv"><select lemma="ta# fyr" tags="vblex.inf"/></match>
+    <match lemma="antenne" tags="vblex.inf.pasv.*"><select lemma="ta# fyr" tags="vblex.inf.*"/></match>
   </rule>
   
   <rule weight="2.0">
     <or>
       <match tags="adv"/>
+      <match tags="adv.*"/>
       <match tags="adj.*"/>
     </or>
     <match lemma="antenne" tags="vblex.*"><select lemma="ta# fyr"/></match>
@@ -4413,10 +4414,10 @@
 
 <!--BETROELSE: START-->
   <rule>
-    <match lemma="betroelse" tags="n.m.sg.ind"><select lemma="fortruleg opplysning"/></match>
+    <match lemma="betroelse" tags="n.m.sg.ind.*"><select lemma="fortruleg opplysning"/></match>
   </rule>
   <rule>
-    <match lemma="betroelse" tags="n.m.sg.def"><select lemma="fortrulege opplysning"/></match>
+    <match lemma="betroelse" tags="n.m.sg.def.*"><select lemma="fortrulege opplysning"/></match>
   </rule>
   <rule weight="1.5">
     <match lemma="betroelse" tags="n.*"><select lemma="fortrulege ting"/></match>
@@ -4429,7 +4430,7 @@
     <match lemma="betroelse" tags="n.*"><select lemma="fortrulege opplysning"/></match>
   </rule>
   <rule weight="2.0">
-    <match lemma="betroelse" tags="n.m.sg.ind"><select lemma="fortruleg opplysning"/></match>
+    <match lemma="betroelse" tags="n.m.sg.ind.*"><select lemma="fortruleg opplysning"/></match>
     <match lemma="til"/>
   </rule>
   <rule weight="2.0">
@@ -4497,6 +4498,7 @@
     <or>
       <match lemma="ikke"/>
       <match tags="adv"/>
+      <match tags="adv.*"/>
       <match tags="adj.*"/>
     </or>
     <match lemma="oppløftende" tags="adj.*"><select lemma="oppmuntrande"/></match>
@@ -4527,7 +4529,7 @@
   </rule>
   <rule weight="2.0">
     <match tags="vblex.*"/>
-    <match lemma="berømmelse" tags="n.*.def"><select lemma="popularitet"/></match>
+    <match lemma="berømmelse" tags="n.*.def.*"><select lemma="popularitet"/></match>
   </rule>
   <rule weight="1.5">
     <match lemma="berømmelse" tags="n.*"><select lemma="suksess"/></match>
@@ -4550,7 +4552,7 @@
   </rule>
   <rule weight="2.0">
     <or>
-      <match tags="adj.pprs"/>
+      <match tags="adj.pprs.*"/>
       <match lemma="økende"/>
       <match lemma="voksende"/>
     </or>
@@ -8229,7 +8231,7 @@ preposisjonar gir ekstra utfordringar. -->
 	</or>
     <match lemma="som"/>
     <repeat from="0" upto="1">
-	  <match seq="adv"/>
+	  <match seq="adv.*"/>
 	</repeat>
     <match lemma="ligge" tags="vblex.*"/>
     <match lemma="foran" tags="pr.*"><select lemma="framfor"/></match>
@@ -8339,7 +8341,7 @@ preposisjonar gir ekstra utfordringar. -->
   <rule weight="2.4" c="love godt før">
     <match lemma="love" tags="vblex.*"/>
     <repeat from="0" upto="2">
-	    <match seq="adv"/>
+	    <match seq="adv.*"/>
 	</repeat>
     <match lemma="godt"/>
     <match lemma="foran" tags="pr.*"><select lemma="før"/></match>
