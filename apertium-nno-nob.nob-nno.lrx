@@ -4865,6 +4865,15 @@
     </or>
   </rule>
 
+  <rule><match lemma="forutinntatt" tags="adj.*"><select lemma="fordomsfull"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="forutinntatt" tags="adj.*"><select lemma="fastlåst"/></match>
+    <or>
+      <match lemma="mening"/>
+      <match lemma="holdning"/>
+    </or>
+  </rule>
+
   <rule><match lemma="helaftens" tags="adj.*"><select lemma="lengre"/></match></rule>
   <rule weight="2.0">
     <match lemma="helaftens" tags="adj.*"><select lemma="lang"/></match>
