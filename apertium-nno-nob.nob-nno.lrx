@@ -8,42 +8,42 @@
           <match tags="prn.*"/>
           <match tags="det.*"/>
           <match tags="vblex.*"/>
+          <match tags="ij"/>
           <match tags="ij.*"/>
-          <match tags="ij.*"/>
+          <match tags="adv"/>
           <match tags="adv.*"/>
-          <match tags="adv.*"/>
-          <match tags="pr.*"/>
+          <match tags="pr"/>
           <match tags="pr.*"/>
           <match tags="adj.*"/>
+          <match tags="part"/>
           <match tags="part.*"/>
-          <match tags="part.*"/>
+          <match tags="cnjsub"/>
           <match tags="cnjsub.*"/>
-          <match tags="cnjsub.*"/>
+          <match tags="cnjcoo"/>
           <match tags="cnjcoo.*"/>
-          <match tags="cnjcoo.*"/>
+          <match tags="cnjadv"/>
           <match tags="cnjadv.*"/>
-          <match tags="cnjadv.*"/>
+          <match tags="acr"/>
           <match tags="acr.*"/>
-          <match tags="acr.*"/>
+          <match tags="sent"/>
           <match tags="sent.*"/>
-          <match tags="sent.*"/>
+          <match tags="cm"/>
           <match tags="cm.*"/>
-          <match tags="cm.*"/>
+          <match tags="apos"/>
           <match tags="apos.*"/>
-          <match tags="apos.*"/>
+          <match tags="lpar"/>
           <match tags="lpar.*"/>
-          <match tags="lpar.*"/>
+          <match tags="rpar"/>
           <match tags="rpar.*"/>
-          <match tags="rpar.*"/>
+          <match tags="lquot"/>
           <match tags="lquot.*"/>
-          <match tags="lquot.*"/>
+          <match tags="rquot"/>
           <match tags="rquot.*"/>
-          <match tags="rquot.*"/>
+          <match tags="date"/>
           <match tags="date.*"/>
-          <match tags="date.*"/>
+          <match tags="url"/>
           <match tags="url.*"/>
-          <match tags="url.*"/>
-          <match tags="guio.*"/>
+          <match tags="guio"/>
           <match tags="guio.*"/>
         </or>
       </def-seq>
@@ -1962,7 +1962,8 @@
       <match lemma="tilfelle"/>
       <match lemma="eksempel"/>
       <match lemma="situasjon"/>
-      <match lemma="Vm" tags="n.*.cmp.guio.*"/>
+      <match lemma="Vm" tags="n.*.cmp.guio"/>
+      <match lemma="VM" tags="n.*.cmp.guio"/>
     </or>
   </rule>
   <rule weight="3.04" c="be om nok en brexit-utsettelse">
@@ -7250,7 +7251,7 @@
     <match lemma="begivenhet" tags="n.*"><select lemma="evenement"/></match>
   </rule>
   <rule weight="2.0" c="TV-evenement">
-    <match tags="n.*.*.*.cmp.guio.*"/>
+    <match tags="n.*.*.*.cmp.guio"/>
     <match lemma="begivenhet" tags="n.*"><select lemma="evenement"/></match>
   </rule>
   <rule weight="2.0" c="små og store hendingar">
@@ -7321,24 +7322,36 @@
     <match lemma="berikelse" tags="n.*"><select lemma="stimulans"/></match>
   </rule>
 
+  <!-- TODO: lsx this? -->
+  <rule><match lemma="januar" tags="n.*"><select lemma="januar"/></match></rule>
+  <rule><match lemma="februar" tags="n.*"><select lemma="februar"/></match></rule>
+  <rule><match lemma="mars" tags="n.*"><select lemma="mars"/></match></rule>
   <rule><match lemma="april" tags="n.*"><select lemma="april"/></match></rule>
+  <rule><match lemma="mai" tags="n.*"><select lemma="mai"/></match></rule>
+  <rule><match lemma="juni" tags="n.*"><select lemma="juni"/></match></rule>
+  <rule><match lemma="juli" tags="n.*"><select lemma="juli"/></match></rule>
+  <rule><match lemma="august" tags="n.*"><select lemma="august"/></match></rule>
+  <rule><match lemma="september" tags="n.*"><select lemma="september"/></match></rule>
+  <rule><match lemma="oktober" tags="n.*"><select lemma="oktober"/></match></rule>
+  <rule><match lemma="november" tags="n.*"><select lemma="november"/></match></rule>
+  <rule><match lemma="desember" tags="n.*"><select lemma="desember"/></match></rule>
   <rule><match lemma="måned" tags="n.*"><select lemma="månad"/></match></rule>
-  <rule weight="2.0" c="april-månaden">
+  <rule weight="3.0" c="april-månaden">
     <or>
-      <match lemma="januar" tags="n.*.*.*.cmp.guio.*"><select lemma="januar"/></match>
-      <match lemma="februar" tags="n.*.*.*.cmp.guio.*"><select lemma="februar"/></match>
-      <match lemma="mars" tags="n.*.*.*.cmp.guio.*"><select lemma="mars"/></match>
-      <match lemma="april" tags="n.*.*.*.cmp.guio.*"><select lemma="april"/></match>
-      <match lemma="mai" tags="n.*.*.*.cmp.guio.*"><select lemma="mai"/></match>
-      <match lemma="juni" tags="n.*.*.*.cmp.guio.*"><select lemma="juni"/></match>
-      <match lemma="juli" tags="n.*.*.*.cmp.guio.*"><select lemma="juli"/></match>
-      <match lemma="august" tags="n.*.*.*.cmp.guio.*"><select lemma="august"/></match>
-      <match lemma="september" tags="n.*.*.*.cmp.guio.*"><select lemma="september"/></match>
-      <match lemma="oktober" tags="n.*.*.*.cmp.guio.*"><select lemma="oktober"/></match>
-      <match lemma="november" tags="n.*.*.*.cmp.guio.*"><select lemma="november"/></match>
-      <match lemma="desember" tags="n.*.*.*.cmp.guio.*"><select lemma="desember"/></match>
-	</or>
-	<match lemma="måned" tags="n.*"><select lemma="månad"/></match>
+      <match lemma="januar" tags="n.*.*.*.cmp.guio"><select lemma="januar"/></match>
+      <match lemma="februar" tags="n.*.*.*.cmp.guio"><select lemma="februar"/></match>
+      <match lemma="mars" tags="n.*.*.*.cmp.guio"><select lemma="mars"/></match>
+      <match lemma="april" tags="n.*.*.*.cmp.guio"><select lemma="april"/></match>
+      <match lemma="mai" tags="n.*.*.*.cmp.guio"><select lemma="mai"/></match>
+      <match lemma="juni" tags="n.*.*.*.cmp.guio"><select lemma="juni"/></match>
+      <match lemma="juli" tags="n.*.*.*.cmp.guio"><select lemma="juli"/></match>
+      <match lemma="august" tags="n.*.*.*.cmp.guio"><select lemma="august"/></match>
+      <match lemma="september" tags="n.*.*.*.cmp.guio"><select lemma="september"/></match>
+      <match lemma="oktober" tags="n.*.*.*.cmp.guio"><select lemma="oktober"/></match>
+      <match lemma="november" tags="n.*.*.*.cmp.guio"><select lemma="november"/></match>
+      <match lemma="desember" tags="n.*.*.*.cmp.guio"><select lemma="desember"/></match>
+    </or>
+    <match lemma="måned" tags="n.*"><select lemma="månad"/></match>
   </rule>
   <rule weight="2.0" c="den våtaste og nest varmaste aprilmånaden">
     <match lemma="den"/>
@@ -7350,7 +7363,7 @@
         <match tags="cnjcoo.*"/>
       </or>
     </repeat>
-	<or>
+    <or>
       <match lemma="januar" tags="n.*"><select lemma="januarmånad" tags="n.*"/></match>
       <match lemma="februar" tags="n.*"><select lemma="februarmånad" tags="n.*"/></match>
       <match lemma="mars" tags="n.*"><select lemma="marsmånad" tags="n.*"/></match>
@@ -7363,7 +7376,7 @@
       <match lemma="oktober" tags="n.*"><select lemma="oktobermånad" tags="n.*"/></match>
       <match lemma="november" tags="n.*"><select lemma="novembermånad" tags="n.*"/></match>
       <match lemma="desember" tags="n.*"><select lemma="desembermånad" tags="n.*"/></match>
-	</or>
+    </or>
     <match lemma="måned" tags="n.*"><select lemma=""/></match>
   </rule>
 
