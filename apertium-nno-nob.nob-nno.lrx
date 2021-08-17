@@ -298,7 +298,7 @@
       <def-seq n="ref-prn">
         <or>
           <match tags="prn.ref.*"/>
-          <match tags="prn.pers.*.*.*.acc.*"/>
+          <match tags="prn.pers.*.acc.*"/>
         </or>
       </def-seq>
       <def-seq n="tidseining">
@@ -331,7 +331,7 @@
 
   <rule><match lemma="forhold" tags="n.*"><select lemma="forhold"/></match></rule>
   <!-- <rule weight="2.0"> -->
-  <!--   <match tags="n.*.*.*.cmp"/> -->
+  <!--   <match tags="n.*.cmp"/> -->
   <!--   <match lemma="forhold" tags="n.*"> -->
   <!--     <select lemma="forhold"/> -->
   <!--   </match> -->
@@ -471,10 +471,10 @@
   <rule> <match lemma="befolkning" tags="n.*">         <select lemma="befolkning"/> </match> </rule>
   <rule weight="2.0">
     <match lemma="befolkning" tags="n.*">         <select lemma="befolkning"/> </match>
-    <match tags="n.*.*.*.cmp"/>
+    <match tags="n.*.cmp"/>
   </rule>
   <rule weight="2.0">
-    <match tags="n.*.*.*.cmp"/>
+    <match tags="n.*.cmp"/>
     <match lemma="befolkning" tags="n.*">         <select lemma="befolkning"/> </match>
   </rule>
 
@@ -492,7 +492,7 @@
   <rule> <match lemma="håp" tags="n.*"> <select lemma="håp"/> </match> </rule>
   <rule> <match lemma="forhåpning" tags="n.*"> <select lemma="forhåpning"/> </match> </rule>
   <rule weight="2.0">
-    <match lemma="forhåpning" tags="n.*.*.def.*">
+    <match lemma="forhåpning" tags="n.*.def.*">
       <select lemma="håp"/>
     </match>
   </rule>
@@ -561,11 +561,11 @@
 <rule> <match lemma="antakelse" tags="n.*"> <select lemma="antaking"/> </match> </rule>
 <rule weight="2.0"  c="ei hypotese">
   <match lemma="en"/>
-  <match lemma="antakelse" tags="n.*.*.ind.*"> <select lemma="hypotese"/> </match> 
+  <match lemma="antakelse" tags="n.*.ind.*"> <select lemma="hypotese"/> </match> 
 </rule>
 <rule weight="2.0"  c="ei hypotese">
   <match lemma="en"/>
-  <match lemma="antagelse" tags="n.*.*.ind.*"> <select lemma="hypotese"/> </match> 
+  <match lemma="antagelse" tags="n.*.ind.*"> <select lemma="hypotese"/> </match> 
 </rule>
 <rule weight="2.0"  c="denne vurderinga">
   <or>
@@ -643,7 +643,7 @@
 <rule weight="2.0">
   <or>
     <match tags="np.*.cmp"/>
-    <match tags="n.*.*.*.cmp"/>
+    <match tags="n.*.cmp"/>
   </or>
   <match lemma="opptreden" tags="n.*"><select lemma="opptreden"/></match>
 </rule>
@@ -883,7 +883,7 @@
 
   <!-- UTSPILLE: START -->
   <rule>
-    <match lemma="utspille" tags=".*"><select lemma="utmanøvrere"/></match>
+    <match lemma="utspille"><select lemma="utmanøvrere"/></match>
   </rule>
   <rule weight="2.0">
     <match lemma="utspille" tags="vblex.*"><select lemma="gå# føre"/></match>
@@ -1203,7 +1203,7 @@
   </rule>
   <rule weight="2.0">
     <!-- TODO: can't merge this with the next rule until we fix https://github.com/apertium/apertium-lex-tools/issues/12 -->
-    <match tags="n.*.*.*.cmp"/>
+    <match tags="n.*.cmp"/>
     <match lemma="gang" tags="n.*">
       <select lemma="gang"/>
     </match>
@@ -1257,21 +1257,21 @@
 
   <rule><match lemma="forsvarlighet" tags="n.*"><select lemma="forsvarlegheit"/></match></rule>
   <rule weight="2.0">
-    <match lemma="forsvarlighet" tags="n.*.*.*.cmp">
+    <match lemma="forsvarlighet" tags="n.*.cmp">
       <select lemma="forsvarleg"/>
     </match>
   </rule>
 
   <rule><match lemma="antennelse" tags="n.*"><select lemma="påtenning"/></match></rule>
   <rule weight="2.0">
-    <match lemma="antennelse" tags="n.*.*.*.cmp">
+    <match lemma="antennelse" tags="n.*.cmp">
       <select lemma="tenn"/>
     </match>
   </rule>
 
   <rule><match lemma="antenning" tags="n.*"><select lemma="påtenning"/></match></rule>
   <rule weight="2.0">
-    <match lemma="antenning" tags="n.*.*.*.cmp">
+    <match lemma="antenning" tags="n.*.cmp">
       <select lemma="tenn"/>
     </match>
   </rule>
@@ -1305,7 +1305,7 @@
 
   <rule><match lemma="usikkerhet" tags="n.*"><select lemma="uvisse"/></match></rule>
   <rule weight="2.0">
-    <match lemma="usikkerhet" tags="n.*.*.*.cmp">
+    <match lemma="usikkerhet" tags="n.*.cmp">
       <select lemma="usikkerheit"/>
     </match>
   </rule>
@@ -1322,7 +1322,7 @@
 <!-- <rule><match lemma="sikkerhet" tags="n.*"><select lemma="sikkerheit"/></match></rule> -->
   <rule><match lemma="sikkerhet" tags="n.*"><select lemma="tryggleik"/></match></rule>
   <rule weight="2.0">
-    <match lemma="sikkerhet" tags="n.*.*.*.cmp">
+    <match lemma="sikkerhet" tags="n.*.cmp">
       <select lemma="trygging"/>
     </match>
   </rule>
@@ -1385,7 +1385,7 @@
 
   <rule><match lemma="utsagn" tags="n.*"><select lemma="utsegn"/></match></rule>
   <rule weight="2.0">
-    <match tags="n.*.*.*.cmp"/>
+    <match tags="n.*.cmp"/>
     <match lemma="utsagn" tags="n.*">
       <select lemma="utsegn"/>
     </match>
@@ -1404,7 +1404,7 @@
     <match lemma="fra"/>
   </rule>
   <rule weight="3.0">
-    <match tags="n.*.*.*.cmp"/>
+    <match tags="n.*.cmp"/>
     <match lemma="uttalelse" tags="n.*">
       <select lemma="fråsegn"/>
     </match>
@@ -1600,63 +1600,63 @@
   <!-- Beginning-of-sentence rules: -->
   <rule weight="2.0" c="Tyrkiske myndigheter fortsetter etterforskningen">
     <match tags="adj.*"/>
-    <match tags="n.*.*.ind.*"/>
+    <match tags="n.*.ind.*"/>
     <match lemma="fortsette" tags="vblex.*"><select lemma="fortsetje"/></match>
     <or>
-      <match tags="n.*.*.def.*"/>
-      <match tags="n.*.*.def.gen.*"/>
+      <match tags="n.*.def.*"/>
+      <match tags="n.*.def.gen.*"/>
     </or>
   </rule>
   <rule weight="2.0" c="Det norske landslaget fortsetter etterforskningen">
     <match tags="det.*"/>
     <match tags="adj.*"/>
-    <match tags="n.*.*.def.*"/>
+    <match tags="n.*.def.*"/>
     <match lemma="fortsette" tags="vblex.*"><select lemma="fortsetje"/></match>
     <or>
-      <match tags="n.*.*.def.*"/>
-      <match tags="n.*.*.def.gen.*"/>
+      <match tags="n.*.def.*"/>
+      <match tags="n.*.def.gen.*"/>
     </or>
   </rule>
   <rule weight="2.0" c="Redningsmannskapene fortsetter arbeidet">
-    <match tags="n.*.*.def.*"/>
+    <match tags="n.*.def.*"/>
     <match lemma="fortsette" tags="vblex.*"><select lemma="fortsetje"/></match>
   </rule>
   <rule weight="2.0" c="Tyrkiske myndigheter fortsetter etterforskningen">
     <match tags="sent.clb.*"/>
     <match tags="adj.*"/>
-    <match tags="n.*.*.ind.*"/>
+    <match tags="n.*.ind.*"/>
     <match lemma="fortsette" tags="vblex.*"><select lemma="fortsetje"/></match>
     <or>
-      <match tags="n.*.*.def.*"/>
-      <match tags="n.*.*.def.gen.*"/>
+      <match tags="n.*.def.*"/>
+      <match tags="n.*.def.gen.*"/>
     </or>
   </rule>
   <rule weight="2.0" c="Det norske landslaget fortsetter etterforskningen">
     <match tags="sent.clb.*"/>
     <match tags="det.*"/>
     <match tags="adj.*"/>
-    <match tags="n.*.*.def.*"/>
+    <match tags="n.*.def.*"/>
     <match lemma="fortsette" tags="vblex.*"><select lemma="fortsetje"/></match>
     <or>
-      <match tags="n.*.*.def.*"/>
-      <match tags="n.*.*.def.gen.*"/>
+      <match tags="n.*.def.*"/>
+      <match tags="n.*.def.gen.*"/>
     </or>
   </rule>
   <rule weight="2.0" c="Redningsmannskapene fortsetter arbeidet">
-    <match tags="n.*.*.*.cmp"/>
-    <match tags="n.*.*.def.*"/>
+    <match tags="n.*.cmp"/>
+    <match tags="n.*.def.*"/>
     <match lemma="fortsette" tags="vblex.*"><select lemma="fortsetje"/></match>
   </rule>
   <!-- Override above rules if not at beginning of sentence: -->
   <rule weight="3.0" c="etter avbruddet fortsetter arbeidet">
     <match tags="*"/>
-    <match tags="n.*.*.def.*"/>
+    <match tags="n.*.def.*"/>
     <match lemma="fortsette" tags="vblex.*"><select lemma="halde# fram"/></match>
   </rule>
   <rule weight="3.0" c="etter gårsdagens avbrudd fortsetter arbeidet">
     <match tags="*"/>
     <match tags="*"/>
-    <match tags="n.*.*.ind.*"/>
+    <match tags="n.*.ind.*"/>
     <match lemma="fortsette" tags="vblex.*"><select lemma="halde# fram"/></match>
   </rule>
 
@@ -1707,7 +1707,7 @@
 
   <rule><match lemma="epost" tags="n.*"><select lemma="e-post"/></match></rule>
   <rule weight="2.0">
-    <match tags="n.*.*.*.cmp"/>
+    <match tags="n.*.cmp"/>
     <match lemma="epost" tags="n.*">
       <select lemma="epost"/>
     </match>
@@ -1756,22 +1756,22 @@
     <match lemma="påfølgende" tags="adj.*">
       <select lemma="etterfølgande"/>
     </match>
-    <match tags="n.*.*.ind.aa"/>
+    <match tags="n.*.ind.aa"/>
   </rule>
   <rule weight="2.0">
     <match lemma="påfølgende" tags="adj.*">
       <select lemma="etterfølgande"/>
     </match>
-    <or><match tags="n.*.*.*.cmp"/><match tags="np.*.cmp"/></or>
-    <match tags="n.*.*.ind.aa"/>
+    <or><match tags="n.*.cmp"/><match tags="np.*.cmp"/></or>
+    <match tags="n.*.ind.aa"/>
   </rule>
   <rule weight="2.0">
     <match lemma="påfølgende" tags="adj.*">
       <select lemma="etterfølgande"/>
     </match>
-    <or><match tags="n.*.*.*.cmp"/><match tags="np.*.cmp"/></or>
-    <or><match tags="n.*.*.*.cmp"/><match tags="np.*.cmp"/></or>
-    <match tags="n.*.*.ind.aa"/>
+    <or><match tags="n.*.cmp"/><match tags="np.*.cmp"/></or>
+    <or><match tags="n.*.cmp"/><match tags="np.*.cmp"/></or>
+    <match tags="n.*.ind.aa"/>
   </rule>
 
   <rule><match lemma="fullstendig" tags="adv.*"><select lemma="fullstendig"/></match></rule>
@@ -2153,7 +2153,7 @@
     <match lemma="til" tags="pr.*"/>
   </rule>
   <!-- <rule weight="2.0" c="jf. påtalemyndigheten → påtalemakta, though styresmakt seems more common in cmp too"> -->
-  <!--   <match tags="n.*.*.*.cmp"/> -->
+  <!--   <match tags="n.*.cmp"/> -->
   <!--   <match lemma="myndighet" tags="n.*">         <select lemma="makt"/> </match> -->
   <!-- </rule> -->
 
@@ -2577,7 +2577,7 @@
 
   <rule><match lemma="bevegelse" tags="n.*"><select lemma="rørsle"/></match></rule>
 <!--  <rule weight="2.0">
-    <match lemma="bevegelse" tags="n.*.*.*.cmp"><select lemma="bevegelse"/></match>
+    <match lemma="bevegelse" tags="n.*.cmp"><select lemma="bevegelse"/></match>
   </rule>
   -->
 
@@ -2614,7 +2614,7 @@
 
   <rule><match lemma="dødelighet" tags="n.*"><select lemma="dødelegheit"/></match></rule>
   <rule weight="2.0">
-    <match tags="n.*.*.*.cmp"/>
+    <match tags="n.*.cmp"/>
     <match lemma="dødelighet" tags="n.*"><select lemma="døying"/></match>
   </rule>
 
@@ -2697,7 +2697,7 @@
       <match tags="det.*"/>
       <match tags="n.*"/>
       <match tags="np.*.gen.*"/>
-      <match lemma="n.*.*.*.gen"/>
+      <match lemma="n.*.gen"/>
     </or>
   </repeat>
   <or>
@@ -2729,7 +2729,7 @@
       <match tags="det.*"/>
       <match tags="n.*"/>
       <match tags="np.*.gen.*"/>
-      <match lemma="n.*.*.*.gen"/>
+      <match lemma="n.*.gen"/>
     </or>
   </repeat>
   <or>
@@ -3535,7 +3535,7 @@
     <or>
       <match lemma="om" tags="cnjsub.*"/>
       <match lemma="at" tags="cnjsub.*"/>
-      <match tags="prn.pers.*.*.*.nom.*"/>
+      <match tags="prn.pers.*.nom.*"/>
     </or>
   </rule>
 
@@ -3544,7 +3544,7 @@
     <or>
       <match lemma="om" tags="cnjsub.*"/>
       <match lemma="at" tags="cnjsub.*"/>
-      <match tags="prn.pers.*.*.*.nom.*"/>
+      <match tags="prn.pers.*.nom.*"/>
     </or>
   </rule>
 
@@ -3993,8 +3993,8 @@
     <match lemma="trenge" tags="vblex.*"><select lemma="trenge¹"/></match>
     <repeat from="0" upto="2">
       <or>
-        <match tags="prn.pers.*.*.*.acc.*"/>
-        <match tags="prn.ref.*.*.*.acc.*"/>
+        <match tags="prn.pers.*.acc.*"/>
+        <match tags="prn.ref.*.acc.*"/>
       </or>
     </repeat>
     <or>
@@ -4105,11 +4105,11 @@
       <match lemma="på"/>
       <match lemma="opp"/>
       <match lemma="av"/>
-      <match tags="n.*.*.*.cmp"/>
+      <match tags="n.*.cmp"/>
     </or>
     </repeat>
     <or>
-      <match tags="n.*.*.def.*"/>
+      <match tags="n.*.def.*"/>
       <match tags="prn.*"/>
     </or>
   </rule>
@@ -4138,7 +4138,7 @@
     <match lemma="knekke" tags="vblex.*"><select lemma="knekke¹"/></match>
     <or>
       <match tags="n.*.def.*"/>
-      <match tags="prn.*.*.*.*.acc.*"/>
+      <match tags="prn.*.acc.*"/>
     </or>
   </rule>
   <rule weight="2.0" c="ei hard nøtt å knekkje">
@@ -4194,8 +4194,8 @@
       <match lemma="opp"/>
       <match lemma="igjen"/>
       <match lemma="potet"/>
-      <match tags="prn.pers.*.*.*.acc.*"/>
-      <match tags="prn.ref.*.*.*.acc.*"/>
+      <match tags="prn.pers.*.acc.*"/>
+      <match tags="prn.ref.*.acc.*"/>
     </or>
   </rule>
     <rule weight="2.0">
@@ -4214,8 +4214,8 @@
     <match lemma="smette" tags="vblex.*"><select lemma="smette¹"/></match>
     <or>
       <match lemma="på"/>
-      <match tags="prn.pers.*.*.*.acc.*"/>
-      <match tags="prn.ref.*.*.*.acc.*"/>
+      <match tags="prn.pers.*.acc.*"/>
+      <match tags="prn.ref.*.acc.*"/>
     </or>
   </rule>
 <!--SMETTE: END-->
@@ -4235,8 +4235,8 @@
     <or>
       <match lemma="opp"/>
       <match lemma="en"/>
-      <match tags="prn.pers.*.*.*.acc.*"/>
-      <match tags="prn.ref.*.*.*.acc.*"/>
+      <match tags="prn.pers.*.acc.*"/>
+      <match tags="prn.ref.*.acc.*"/>
     </or>
   </rule>
   <rule weight="2.0">
@@ -4272,7 +4272,7 @@
   <rule weight="2.0">
     <match lemma="smelle" tags="vblex.*"><select lemma="smelle¹"/></match>
     <or>
-      <match tags="prn.ref.*.*.*.acc.*"/>
+      <match tags="prn.ref.*.acc.*"/>
       <match tags="n.*.sg.def.*"/>
     </or>
   </rule>
@@ -4292,8 +4292,8 @@
     <rule weight="2.0">
     <match lemma="svi" tags="vblex.*"><select lemma="svi¹"/></match>
     <or>
-      <match tags="prn.pers.*.*.*.acc.*"/>
-      <match tags="prn.ref.*.*.*.acc.*"/>
+      <match tags="prn.pers.*.acc.*"/>
+      <match tags="prn.ref.*.acc.*"/>
       <match lemma="av"/>
       <match lemma="mat" tags="n.m.sg.def.*"/>
       <match lemma="finger" tags="n.m.pl.def.*"/>
@@ -4318,8 +4318,8 @@
       <match tags="pr.*"/>
     </repeat>
     <or>
-      <match tags="prn.pers.*.*.*.acc.*"/>
-      <match tags="prn.ref.*.*.*.acc.*"/>
+      <match tags="prn.pers.*.acc.*"/>
+      <match tags="prn.ref.*.acc.*"/>
     </or>
   </rule>
     <rule weight="2.0">
@@ -4328,7 +4328,7 @@
     <match lemma="med"/>
     </repeat>
     <or>
-    <match tags="n.*.*.def.*"/>
+    <match tags="n.*.def.*"/>
     <match tags="det.*"/>
     </or>
   </rule>
@@ -4363,8 +4363,8 @@
     <rule weight="2.0">
     <match lemma="henge"><select lemma="henge¹"/></match>
     <or>
-      <match tags="prn.pers.*.*.*.acc.*"/>
-      <match tags="prn.ref.*.*.*.acc.*"/>
+      <match tags="prn.pers.*.acc.*"/>
+      <match tags="prn.ref.*.acc.*"/>
     </or>
   </rule>
   <rule weight="2.0">
@@ -4454,7 +4454,7 @@
   <rule><match lemma="permisjon" tags="n.*"><select lemma="permisjon"/></match></rule>
   <rule><match lemma="permittering" tags="n.*"><select lemma="permittering"/></match></rule>
   <rule weight="2.0">
-    <match lemma="permittering" tags="n.*.*.*.cmp"><select lemma="permisjon"/></match>
+    <match lemma="permittering" tags="n.*.cmp"><select lemma="permisjon"/></match>
   </rule>
   <rule weight="2.0">
     <match lemma="under"/>
@@ -4471,7 +4471,7 @@
   <rule weight="2.0">
     <match lemma="oppløftende" tags="adj.*"><select lemma="gledeleg"/></match>
     <repeat from="0" upto="1">
-      <match tags="n.*.*.*.cmp"/>
+      <match tags="n.*.cmp"/>
     </repeat>
     <match lemma="seier"/>
   </rule>
@@ -4527,7 +4527,7 @@
   </rule>
   <rule weight="2.0">
     <match tags="vblex.*"/>
-    <match lemma="berømmelse" tags="n.*.*.def"><select lemma="popularitet"/></match>
+    <match lemma="berømmelse" tags="n.*.def"><select lemma="popularitet"/></match>
   </rule>
   <rule weight="1.5">
     <match lemma="berømmelse" tags="n.*"><select lemma="suksess"/></match>
@@ -4684,7 +4684,7 @@
   </rule>
   <rule>
     <match lemma="denne" tags="det.*"/>
-    <match lemma="ankomst" tags="n.*.*.def.*"><select lemma="innkomst"/></match>
+    <match lemma="ankomst" tags="n.*.def.*"><select lemma="innkomst"/></match>
   </rule>
   <rule weight="2.0" c="endring/auke i innreisetal">
     <match lemma="i"/>
@@ -5751,11 +5751,11 @@
   <!-- ANGÅ/ANGÅENDE: END -->
 
   <!-- FORBINDE: START -->
-  <rule><match lemma="forbinde" tags=".*"><select lemma="knyte# saman"/></match></rule>
+  <rule><match lemma="forbinde"><select lemma="knyte# saman"/></match></rule>
   <rule weight="2.0">
-    <match lemma="forbinde" tags=".*"><select lemma="forbinde"/></match>
+    <match lemma="forbinde"><select lemma="forbinde"/></match>
     <repeat from="0" upto="1">
-      <match tags="n.*.*.*.cmp"/>
+      <match tags="n.*.cmp"/>
     </repeat>
     <or>
       <match lemma="sår"/>
@@ -5849,7 +5849,7 @@
   </rule>
 
   <rule weight="2.0">
-    <match lemma="ubetinget" tags="adj.*.*.*.ind.*"><select lemma="full"/></match>
+    <match lemma="ubetinget" tags="adj.*.ind.*"><select lemma="full"/></match>
     <or>
       <match lemma="tillit"/>
       <match lemma="støtte"/>
@@ -5857,7 +5857,7 @@
   </rule>
 
   <rule weight="2.0">
-    <match lemma="ubetinget" tags="adj.*.*.*.def.*"><select lemma="solid"/></match>
+    <match lemma="ubetinget" tags="adj.*.def.*"><select lemma="solid"/></match>
     <or>
       <match lemma="tillit"/>
       <match lemma="støtte"/>
@@ -6667,7 +6667,7 @@
     <match lemma="ukentlig" tags="adv.*"><select lemma="kvar veke"/></match>
   </rule>
   <rule weight="2.0" c="bussen går kvar veke">
-    <match lemma="ukentlig" tags="adj.*.*.sg.ind.*"><select lemma="kvar veke"/></match>
+    <match lemma="ukentlig" tags="adj.*.sg.ind.*"><select lemma="kvar veke"/></match>
 	<or>
 	  <match tags="pr.*"/>
 	  <match tags="vblex.*"/>
@@ -6682,7 +6682,7 @@
       <match tags="cnjcoo.*"/>
       <match tags="adv.*"/>
 	</or>
-    <match lemma="ukentlig" tags="adj.*.*.sg.ind.*"><select lemma="kvar veke"/></match>
+    <match lemma="ukentlig" tags="adj.*.sg.ind.*"><select lemma="kvar veke"/></match>
   </rule>
   <rule weight="4.0" c="på vekefast basis">
 	<match tags="pr.*"/>
@@ -6694,11 +6694,11 @@
   </rule>
   <rule weight="2.0" c="det vekefaste møtet">
     <match lemma="ukentlig" tags="adj.*"><select lemma="vekefast"/></match>
-	<match tags="n.*.*.def.*"/>
+	<match tags="n.*.def.*"/>
   </rule>
   <rule  weight="2.0" c="eit vekevis opplegg">
     <match lemma="ukentlig" tags="adj.*"><select lemma="vekevis"/></match>
-	<match tags="n.*.*.ind.*"/>
+	<match tags="n.*.ind.*"/>
   </rule>
   <!-- END: ukentlig, todo: haltande adjektivløysingar, særleg "vekevis", ofte overflødig? -->
 
@@ -6716,7 +6716,7 @@
     <match lemma="fordums storhet" tags="adv.*"><select lemma="gammal stordom"/></match>
   </rule>
   <rule weight="2.0" c="teknologigiganten">
-    <match tags="n.*.*.*.cmp"/>
+    <match tags="n.*.cmp"/>
     <match lemma="storhet" tags="n.m.*"><select lemma="gigant"/></match>
   </rule>
   <rule weight="2.0" c="sjå stordommen i">
@@ -6768,7 +6768,7 @@
   </or>
   </rule>
   <rule weight="2.0" c="arbeidstidsregel">
-    <match tags="n.*.*.*.cmp"/>
+    <match tags="n.*.cmp"/>
     <match lemma="bestemmelse" tags="n.*"><select lemma="regel"/></match>
   </rule>
   <!-- END: bestemmelse -->
@@ -6969,12 +6969,12 @@
     <match lemma="boer" tags="n.*"><select lemma="boar"/></match>
   </rule>
   <rule weight="2.0">
-    <match tags="n.*.*.*.cmp"/>
+    <match tags="n.*.cmp"/>
     <match lemma="boer" tags="n.*"><select lemma="buar"/></match>
   </rule>
   <rule weight="2.0">
     <match lemma="boer" tags="n.*"><select lemma="boar"/></match>
-    <match tags="n.*.*.*.cmp"/>
+    <match tags="n.*.cmp"/>
   </rule>
   <!-- END: boer -->
 
@@ -7030,8 +7030,8 @@
     <match tags="det.qnt.*"/>
     <match tags="det.dem.*"/>
     <match tags="adj.*"/>
-	<match lemma="år" tags="n.*.*.*.gen.*"/>
-	<match lemma="fjorår" tags="n.*.*.*.gen.*"/>
+	<match lemma="år" tags="n.*.gen.*"/>
+	<match lemma="fjorår" tags="n.*.gen.*"/>
 	<match lemma="antall" tags="n.*"/>
   </or>
     <match lemma="kull" tags="n.nt.*"><select lemma="kull"/></match>
@@ -7048,7 +7048,7 @@
   </or>
   </rule>
   <rule weight="2.0" c="jervekull, fjorårskull">
-    <match tags="n.*.*.*.cmp"/>
+    <match tags="n.*.cmp"/>
     <match lemma="kull" tags="n.nt.*"><select lemma="kull"/></match>
   </rule>
   <rule weight="2.0" c="2016-kullet, Politihøgskole-kullet, sølvrev-kull">
@@ -7062,7 +7062,7 @@
   </rule>
   <rule weight="2.0" c="kolfyring, kolforbrenning">
     <match lemma="kull" tags="n.nt.*"><select lemma="kol"/></match>
-    <match tags="n.*.*.*.cmp"/>
+    <match tags="n.*.cmp"/>
   </rule>
   <!-- END: kull -->
 
@@ -7254,11 +7254,11 @@
     <match lemma="begivenhet" tags="n.*"><select lemma="hending"/></match>
   </rule>
   <rule weight="2.0" c="sportsevenement">
-    <match tags="n.*.*.*.cmp"/>
+    <match tags="n.*.cmp"/>
     <match lemma="begivenhet" tags="n.*"><select lemma="evenement"/></match>
   </rule>
   <rule weight="2.0" c="TV-evenement">
-    <match tags="n.*.*.*.cmp.guio"/>
+    <match tags="n.*.cmp.guio"/>
     <match lemma="begivenhet" tags="n.*"><select lemma="evenement"/></match>
   </rule>
   <rule weight="2.0" c="små og store hendingar">
@@ -7345,18 +7345,18 @@
   <rule><match lemma="måned" tags="n.*"><select lemma="månad"/></match></rule>
   <rule weight="3.0" c="april-månaden">
     <or>
-      <match lemma="januar" tags="n.*.*.*.cmp.guio"><select lemma="januar"/></match>
-      <match lemma="februar" tags="n.*.*.*.cmp.guio"><select lemma="februar"/></match>
-      <match lemma="mars" tags="n.*.*.*.cmp.guio"><select lemma="mars"/></match>
-      <match lemma="april" tags="n.*.*.*.cmp.guio"><select lemma="april"/></match>
-      <match lemma="mai" tags="n.*.*.*.cmp.guio"><select lemma="mai"/></match>
-      <match lemma="juni" tags="n.*.*.*.cmp.guio"><select lemma="juni"/></match>
-      <match lemma="juli" tags="n.*.*.*.cmp.guio"><select lemma="juli"/></match>
-      <match lemma="august" tags="n.*.*.*.cmp.guio"><select lemma="august"/></match>
-      <match lemma="september" tags="n.*.*.*.cmp.guio"><select lemma="september"/></match>
-      <match lemma="oktober" tags="n.*.*.*.cmp.guio"><select lemma="oktober"/></match>
-      <match lemma="november" tags="n.*.*.*.cmp.guio"><select lemma="november"/></match>
-      <match lemma="desember" tags="n.*.*.*.cmp.guio"><select lemma="desember"/></match>
+      <match lemma="januar" tags="n.*.cmp.guio"><select lemma="januar"/></match>
+      <match lemma="februar" tags="n.*.cmp.guio"><select lemma="februar"/></match>
+      <match lemma="mars" tags="n.*.cmp.guio"><select lemma="mars"/></match>
+      <match lemma="april" tags="n.*.cmp.guio"><select lemma="april"/></match>
+      <match lemma="mai" tags="n.*.cmp.guio"><select lemma="mai"/></match>
+      <match lemma="juni" tags="n.*.cmp.guio"><select lemma="juni"/></match>
+      <match lemma="juli" tags="n.*.cmp.guio"><select lemma="juli"/></match>
+      <match lemma="august" tags="n.*.cmp.guio"><select lemma="august"/></match>
+      <match lemma="september" tags="n.*.cmp.guio"><select lemma="september"/></match>
+      <match lemma="oktober" tags="n.*.cmp.guio"><select lemma="oktober"/></match>
+      <match lemma="november" tags="n.*.cmp.guio"><select lemma="november"/></match>
+      <match lemma="desember" tags="n.*.cmp.guio"><select lemma="desember"/></match>
     </or>
     <match lemma="måned" tags="n.*"><select lemma="månad"/></match>
   </rule>
@@ -7448,8 +7448,8 @@
   </rule>
   <rule weight="2.0" c="statsrådens hopehav med saka, Noregs Banks hopehav med Oljefondet">
 	<or>
-      <match tags="n.*.*.*.gen.*"/>
-      <match tags="np.*.*.gen.*"/>
+      <match tags="n.*.gen.*"/>
+      <match tags="np.*.gen.*"/>
       <match tags="np.*.gen.*"/>
 	</or>
     <match lemma="befatning med" tags="adv.*"><select lemma="hopehav med"/></match>
@@ -7483,9 +7483,9 @@
     <match lemma="i"/>
 	<or>
       <match lemma="vei" tags="n.*.sg.def.*"/>
-      <match lemma="gate" tags="n.*.*.def.*"/>
+      <match lemma="gate" tags="n.*.def.*"/>
       <match lemma="veibane" tags="n.*.sg.def.*"/>
-      <match lemma="spor" tags="n.*.*.def.*"/>
+      <match lemma="spor" tags="n.*.def.*"/>
       <match lemma="vann" tags="n.*.sg.def.*"/>
 	</or>
   </rule>
@@ -7519,7 +7519,7 @@
     <match lemma="løpe# ut" tags="vblex.*"><select lemma="gå# ut"/></match>
   </rule>
   <rule weight="2.0" c="interimperioden går ut">
-    <match tags="n.*.*.*.cmp"/>
+    <match tags="n.*.cmp"/>
 	<or>
       <match lemma="kontrakt" tags="n.*"/>
       <match lemma="avtale" tags="n.*"/>
@@ -7853,7 +7853,7 @@ preposisjonar gir ekstra utfordringar. -->
   <rule weight="2.0" c="NN summerte opp rapporten">
     <match lemma="oppsummere" tags="vblex.*"><select lemma="summere# opp"/></match>
 	<or>
-	  <match tags="n.*.*.def.*"/>
+	  <match tags="n.*.def.*"/>
 	  <match tags="n.*.pl.ind.*"/>
 	  <match tags="np.org.*"/>
 	</or>
@@ -8032,7 +8032,7 @@ preposisjonar gir ekstra utfordringar. -->
   </rule>
   <rule weight="2.0" c="utbreidd bruk av">
     <match lemma="utstrakt" tags="adj.*"><select lemma="utbreidd"/></match>
-    <match tags="n.*.*.*.cmp"/>
+    <match tags="n.*.cmp"/>
 	<or>
 	  <match lemma="bruk" tags="n.*"/>
 	  <match lemma="misbruk" tags="n.*"/>
@@ -8054,7 +8054,7 @@ preposisjonar gir ekstra utfordringar. -->
   </rule>
   <rule weight="2.0" c="omfattande næringsverksemd">
     <match lemma="utstrakt" tags="adj.*"><select lemma="omfattande"/></match>
-    <match tags="n.*.*.*.cmp"/>
+    <match tags="n.*.cmp"/>
 	<or>
 	  <match lemma="samarbeid" tags="n.*"/>
 	  <match lemma="kontakt" tags="n.*"/>
@@ -8241,15 +8241,15 @@ preposisjonar gir ekstra utfordringar. -->
   </rule>
   <rule weight="3.0" c="dei som ligg føre oss">
     <or>
-	  <match lemma="han" tags="prn.pers.*.*.sg.nom.*"/>
-	  <match lemma="hun" tags="prn.pers.*.*.sg.nom.*"/>
-	  <match lemma="de" tags="prn.pers.*.*.pl.*"/>
+	  <match lemma="han" tags="prn.pers.*.sg.nom.*"/>
+	  <match lemma="hun" tags="prn.pers.*.sg.nom.*"/>
+	  <match lemma="de" tags="prn.pers.*.pl.*"/>
 	  <match lemma="hvem" tags="prn.itg.*"/>
 	</or>
     <match lemma="som"/>
     <match lemma="ligge" tags="vblex.*"/>
     <match lemma="foran" tags="pr.*"><select lemma="føre"/></match>
-	<match tags="prn.pers.*.*.*.acc.*"/>
+	<match tags="prn.pers.*.acc.*"/>
   </rule>
   <rule weight="2.0" c="liggje framfor seg/peisen">
     <match lemma="ligge" tags="vblex.*"/>
@@ -8599,7 +8599,7 @@ preposisjonar gir ekstra utfordringar. -->
   <rule weight="2.0" c="gjere endringar">
     <match lemma="foreta" tags="vblex.*"><select lemma="gjere"/></match>
 	<or>
-	  <match tags="prn.pers.*.*.*.nom.*"/>
+	  <match tags="prn.pers.*.nom.*"/>
 	  <match tags="det.qnt.sg.*"/>
 	  <match lemma="endring" tags="n.*.pl.ind.*"/>
 	  <match lemma="justering" tags="n.*.pl.ind.*"/>
