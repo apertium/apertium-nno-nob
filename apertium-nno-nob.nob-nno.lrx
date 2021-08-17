@@ -4856,6 +4856,15 @@
     <match lemma="upartiskhet" tags="n.*"><select lemma="nøytralitet"/></match>
   </rule>
 
+  <rule><match lemma="fremadskridende" tags="adj.*"><select lemma="progressiv"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="fremadskridende" tags="adj.*"><select lemma="framhaldande"/></match>
+    <or>
+      <match lemma="fortelling"/>
+      <match lemma="historie"/>
+    </or>
+  </rule>
+
   <rule><match lemma="helaftens" tags="adj.*"><select lemma="lengre"/></match></rule>
   <rule weight="2.0">
     <match lemma="helaftens" tags="adj.*"><select lemma="lang"/></match>
