@@ -3335,6 +3335,7 @@
       <call-macro n="bigram_genprep"><with-param pos="1"/></call-macro>
     </def-macro>
 
+    <!-- Should not be used directly, see helpers below (set_caseFirst/SecondWord etc) -->
     <def-macro n="set_chunkCaseCmp" npar="2"
                c="arg1: first cmp-part, arg2: last cmp-part
                   Use nom tags from first part, caps tags from last
@@ -3383,7 +3384,8 @@
           <let><var n="chunkCase"/><lit v=""/></let>
         </when>
         <when c="Titlecased, but sl lemma is lowercase: set chunkCase Aa
-                 Note: this will *not* match where bidix translated title to lower.">
+                 Note: this will *not* match where bidix translated title to lower.
+                 We use the first cmp-part since that's the part that postchunk titlecases.">
           <test><and>
             <equal><clip pos="2" side="sl" part="a_caps"/><lit-tag v="Aa"/></equal>
             <equal><get-case-from pos="1"><lit v="aa"/></get-case-from><lit v="aa"/></equal>
@@ -3411,6 +3413,10 @@
       <let><clip pos="2" side="tl" part="a_caps"/><lit v=""/></let> <!-- discard value -->
     </def-macro>
 
+
+    <!-- These are used for calling set_chunkCaseCmp from the rules,
+         depending on how many words are matched and whether they're
+         compounds and could be first in sentence: -->
     <def-macro n="set_caseFirstWord" npar="1">
       <let><var n="chunkCase"/><var n="caseFirstWord"/></let>
       <call-macro n="set_chunkCaseCmp"><with-param pos="1"/><with-param pos="1"/></call-macro>
@@ -3433,67 +3439,66 @@
     </def-macro>
     <def-macro n="set_caseFirstWordCmp3" npar="3">
       <let><var n="chunkCase"/><lit v="aa"/></let> <!-- ie. we're not the first word of sentence -->
-      <call-macro n="set_chunkCaseCmp"><with-param pos="2"/><with-param pos="3"/></call-macro>
+      <call-macro n="set_chunkCaseCmp"><with-param pos="1"/><with-param pos="3"/></call-macro>
       <let><var n="caseFirstWord"/><var n="chunkCase"/></let>
       <choose>
-        <when c="Uppercase first part if latter parts uppercased">
+        <when c="Uppercase middle part if other parts uppercased">
           <test><and>
             <equal><var n="chunkCase"/><lit v="aa"/></equal>
-            <equal><case-of pos="2" side="tl" part="lem"/><lit v="AA"/></equal>
+            <equal><case-of pos="1" side="tl" part="lem"/><lit v="AA"/></equal>
             <equal><case-of pos="3" side="tl" part="lem"/><lit v="AA"/></equal>
           </and></test>
-          <modify-case><clip pos="1" side="tl" part="lem"/><lit v="AA"/></modify-case>
+          <modify-case><clip pos="2" side="tl" part="lem"/><lit v="AA"/></modify-case>
         </when>
       </choose>
     </def-macro>
     <def-macro n="set_caseFirstWordCmp4" npar="4">
       <let><var n="chunkCase"/><lit v="aa"/></let> <!-- ie. we're not the first word of sentence -->
-      <call-macro n="set_chunkCaseCmp"><with-param pos="3"/><with-param pos="4"/></call-macro>
+      <call-macro n="set_chunkCaseCmp"><with-param pos="1"/><with-param pos="4"/></call-macro>
       <let><var n="caseFirstWord"/><var n="chunkCase"/></let>
       <choose>
-        <when c="Uppercase first part if latter parts uppercased">
+        <when c="Uppercase middle part if other parts uppercased">
           <test><and>
             <equal><var n="chunkCase"/><lit-tag v="aa"/></equal>
-            <equal><case-of pos="3" side="tl" part="lem"/><lit v="AA"/></equal>
+            <equal><case-of pos="1" side="tl" part="lem"/><lit v="AA"/></equal>
             <equal><case-of pos="4" side="tl" part="lem"/><lit v="AA"/></equal>
           </and></test>
-          <modify-case><clip pos="1" side="tl" part="lem"/><lit v="AA"/></modify-case>
           <modify-case><clip pos="2" side="tl" part="lem"/><lit v="AA"/></modify-case>
+          <modify-case><clip pos="3" side="tl" part="lem"/><lit v="AA"/></modify-case>
         </when>
       </choose>
     </def-macro>
     <def-macro n="set_caseSecondWordCmp3" npar="3">
       <let><var n="chunkCase"/><lit v="aa"/></let> <!-- ie. we're not the first word of sentence -->
-      <call-macro n="set_chunkCaseCmp"><with-param pos="2"/><with-param pos="3"/></call-macro>
+      <call-macro n="set_chunkCaseCmp"><with-param pos="1"/><with-param pos="3"/></call-macro>
       <let><var n="caseSecondWord"/><var n="chunkCase"/></let>
       <choose>
-        <when c="Uppercase first part if latter parts uppercased">
+        <when c="Uppercase middle part if other parts uppercased">
           <test><and>
             <equal><var n="chunkCase"/><lit v="aa"/></equal>
-            <equal><case-of pos="2" side="tl" part="lem"/><lit v="AA"/></equal>
+            <equal><case-of pos="1" side="tl" part="lem"/><lit v="AA"/></equal>
             <equal><case-of pos="3" side="tl" part="lem"/><lit v="AA"/></equal>
           </and></test>
-          <modify-case><clip pos="1" side="tl" part="lem"/><lit v="AA"/></modify-case>
+          <modify-case><clip pos="2" side="tl" part="lem"/><lit v="AA"/></modify-case>
         </when>
       </choose>
     </def-macro>
     <def-macro n="set_caseSecondWordCmp4" npar="4">
       <let><var n="chunkCase"/><lit v="aa"/></let> <!-- ie. we're not the first word of sentence -->
-      <call-macro n="set_chunkCaseCmp"><with-param pos="3"/><with-param pos="4"/></call-macro>
+      <call-macro n="set_chunkCaseCmp"><with-param pos="1"/><with-param pos="4"/></call-macro>
       <let><var n="caseSecondWord"/><var n="chunkCase"/></let>
       <choose>
-        <when c="Uppercase first part if latter parts uppercased">
+        <when c="Uppercase middle part if other parts uppercased">
           <test><and>
             <equal><var n="chunkCase"/><lit-tag v="aa"/></equal>
-            <equal><case-of pos="3" side="tl" part="lem"/><lit v="AA"/></equal>
+            <equal><case-of pos="1" side="tl" part="lem"/><lit v="AA"/></equal>
             <equal><case-of pos="4" side="tl" part="lem"/><lit v="AA"/></equal>
           </and></test>
-          <modify-case><clip pos="1" side="tl" part="lem"/><lit v="AA"/></modify-case>
           <modify-case><clip pos="2" side="tl" part="lem"/><lit v="AA"/></modify-case>
+          <modify-case><clip pos="3" side="tl" part="lem"/><lit v="AA"/></modify-case>
         </when>
       </choose>
     </def-macro>
-
     <def-macro n="set_caseFirstWord2" npar="2"
                c="arg1: first word, arg2: second word">
       <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
