@@ -4838,6 +4838,15 @@
   <rule weight="2.0">
     <match lemma="redaksjonell"/>
     <match lemma="uavhengighet" tags="n.*"><select lemma="fridom"/></match>
+  </rule>  
+  <rule weight="2.0">
+    <or>
+      <match lemma="domstol"/>
+      <match lemma="rettsapparat"/>
+      <match lemma="sentralbank"/>
+      <match lemma="påtalemyndighet"/>
+    </or>
+    <match lemma="uavhengighet" tags="n.*"><select lemma="den frie stilling"/></match>
   </rule>
 <!--UAVHENGIGHET: END-->
   <rule><match lemma="upartiskhet" tags="n.*"><select lemma="upartiskheit"/></match></rule>
