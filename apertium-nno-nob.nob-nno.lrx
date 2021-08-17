@@ -1756,14 +1756,14 @@
     <match lemma="påfølgende" tags="adj.*">
       <select lemma="etterfølgande"/>
     </match>
-    <match tags="n.*.*.ind.*"/>
+    <match tags="n.*.*.ind.aa"/>
   </rule>
   <rule weight="2.0">
     <match lemma="påfølgende" tags="adj.*">
       <select lemma="etterfølgande"/>
     </match>
     <or><match tags="n.*.*.*.cmp"/><match tags="np.*.cmp"/></or>
-    <match tags="n.*.*.ind.*"/>
+    <match tags="n.*.*.ind.aa"/>
   </rule>
   <rule weight="2.0">
     <match lemma="påfølgende" tags="adj.*">
@@ -1771,8 +1771,9 @@
     </match>
     <or><match tags="n.*.*.*.cmp"/><match tags="np.*.cmp"/></or>
     <or><match tags="n.*.*.*.cmp"/><match tags="np.*.cmp"/></or>
-    <match tags="n.*.*.ind.*"/>
+    <match tags="n.*.*.ind.aa"/>
   </rule>
+
   <rule><match lemma="fullstendig" tags="adv.*"><select lemma="fullstendig"/></match></rule>
   <rule weight="2.0">
     <match lemma="fullstendig" tags="adv.*"><select lemma="fullt"/></match>
@@ -2138,7 +2139,7 @@
   </rule>
   <rule weight="2.0" c="opptre med myndighet">
     <match lemma="med" tags="pr.*"/>
-    <match lemma="myndighet" tags="n.*.sg.ind.*"><select lemma="myndigheit"/></match>
+    <match lemma="myndighet" tags="n.*.sg.ind.aa"><select lemma="myndigheit"/></match>
   </rule>
   <rule c="instruksjonsmyndigheit">
     <match lemma="instruksjon"/>
@@ -5621,7 +5622,13 @@
   <rule weight="3.0">
     <match lemma="all"/>
     <match lemma="de øvrige" tags="det.*"><select lemma="dei andre"/></match>
-    <match tags="n.*.*.def.*"/>
+    <repeat from="0" upto="3">
+      <or>
+        <match tags="n.*.cmp.*"/>
+        <match tags="np.*.cmp.*"/>
+      </or>
+    </repeat>
+    <match tags="n.*.def.*"/>
   </rule>
 
   <rule>
