@@ -3367,27 +3367,6 @@
           <let><var n="chunkCase"/><var n="prevDeletedCase"/></let>
           <let><var n="prevDeletedCase"/><lit v=""/></let>
         </when>
-        <when c="Contains a number/dash and not first word in sentence: empty chunkCase">
-          <test><and>
-            <not><equal><var n="chunkCase"/><lit v=""/></equal></not>
-            <or>
-              <contains-substring><clip pos="1" side="tl" part="lemh"/><lit v="0"/></contains-substring>
-              <contains-substring><clip pos="1" side="tl" part="lemh"/><lit v="1"/></contains-substring>
-              <contains-substring><clip pos="1" side="tl" part="lemh"/><lit v="2"/></contains-substring>
-              <contains-substring><clip pos="1" side="tl" part="lemh"/><lit v="3"/></contains-substring>
-              <contains-substring><clip pos="1" side="tl" part="lemh"/><lit v="4"/></contains-substring>
-              <contains-substring><clip pos="1" side="tl" part="lemh"/><lit v="5"/></contains-substring>
-              <contains-substring><clip pos="1" side="tl" part="lemh"/><lit v="6"/></contains-substring>
-              <contains-substring><clip pos="1" side="tl" part="lemh"/><lit v="7"/></contains-substring>
-              <contains-substring><clip pos="1" side="tl" part="lemh"/><lit v="8"/></contains-substring>
-              <contains-substring><clip pos="1" side="tl" part="lemh"/><lit v="9"/></contains-substring>
-              <contains-substring><clip pos="1" side="tl" part="lemh"/><lit v="-"/></contains-substring>
-              <ends-with><clip pos="1" side="tl" part="lemh"/><lit v="-basert"/></ends-with> <!-- A-Z-basert -->
-              <ends-with><clip pos="1" side="tl" part="lemh"/><lit v="-ulykke"/></ends-with> <!-- A-Z-ulykka -->
-            </or>
-          </and></test>
-          <let><var n="chunkCase"/><lit v=""/></let>
-        </when>
         <when c="Titlecased, but sl lemma is lowercase: set chunkCase Aa
                  Note: this will *not* match where bidix translated title to lower.
                  We use the first cmp-part since that's the part that postchunk titlecases.">
