@@ -267,10 +267,10 @@ test: all test-progression
 	t/hash-count
 	t/wer-loss
 
-test-progression: all
+test-progression: $(PREFIX2)
 	t/progression translate
 	t/progression diff-expected
 
-update-progression: all
+update-progression: $(PREFIX2)
 	t/progression translate
 	t/progression update
