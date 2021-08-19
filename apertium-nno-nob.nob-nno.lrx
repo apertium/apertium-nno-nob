@@ -4317,6 +4317,26 @@
     <match lemma="slenge"><select lemma="slenge"/></match>
     <match lemma="seg"/>
     <match lemma="med"/>
+  </rule> 
+  <rule weight="2.0">
+    <match lemma="slenge"><select lemma="slenge"/></match>
+    <match lemma="hit"/>
+    <match lemma="og"/>
+    <match lemma="dit"/>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="slenge"><select lemma="slenge"/></match>
+    <match lemma="innom"/>
+  </rule>
+  <rule weight="2.0">
+    <or>
+      <match lemma="ligge"/>
+      <match lemma="gå"/>
+      <match lemma="stå"/>
+      <match lemma="henge"/>
+    </or>
+    <match lemma="og"/>
+    <match lemma="slenge"><select lemma="slenge"/></match>
   </rule>
   <rule weight="2.0">
     <match lemma="slenge"><select lemma="slenge¹"/></match>
@@ -4328,10 +4348,15 @@
       <match tags="prn.ref.*.acc.*"/>
     </or>
   </rule>
-    <rule weight="2.0">
+  <rule weight="2.0">
     <match lemma="slenge"><select lemma="slenge¹"/></match>
     <repeat from="0" upto="1">
-    <match lemma="med"/>
+      <or>
+      <match lemma="med"/>
+      <match lemma="på"/>
+      <match lemma="ut av"/>
+      <match lemma="i"/>
+      </or>
     </repeat>
     <or>
     <match tags="n.*.def.*"/>
