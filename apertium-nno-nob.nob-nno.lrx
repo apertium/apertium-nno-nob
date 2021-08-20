@@ -4678,7 +4678,7 @@
     <or><match lemma="høy"/><match lemma="høye"/></or>
     <match lemma="beskytter" tags="n.*"><select lemma="beskyttar"/></match>
   </rule>
-
+<!--ØYEBLIKK: START-->
   <rule><match lemma="øyeblikk" tags="n.*"><select lemma="augneblink"/></match></rule>
   <rule weight="2.0">
     <match lemma="i"/>
@@ -4697,10 +4697,25 @@
     <match lemma="en"/>
     <match lemma="øyeblikk" tags="n.*"><select lemma="blunk"/></match>
   </rule>
+  
+ <rule><match lemma="sannhetens øyeblikk" tags="adv.aa"><select lemma="skjebnedag"/></match></rule>
   <rule weight="2.0">
     <match lemma="ubevoktet"/>
     <match lemma="øyeblikk" tags="n.*"><select lemma="stund"/></match>
   </rule>
+  <rule weight="2.0">
+    <match lemma="en"/>
+    <match lemma="sannhetens øyeblikk" tags="adv.aa"><select lemma="avgjerande vendepunkt"/></match>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="sannhetens øyeblikk" tags="adv.aa"><select lemma="skjebnedagen"/></match>
+    <match lemma="komme"/>
+  </rule>
+    <rule weight="1.5">
+    <match lemma="sannhetens øyeblikk" tags="adv.aa"><select lemma="ein skjebnedag"/></match>
+    <match lemma="for"/>
+  </rule>
+<!--ØYEBLIKK: END-->
 
   <!-- ANKOMST: -->
   <rule>
