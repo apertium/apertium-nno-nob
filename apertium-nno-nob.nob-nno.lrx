@@ -4734,12 +4734,12 @@
     <match lemma="i"/>
     <match lemma="øyeblikk" tags="n.*"><select lemma="no"/></match>
   </rule>
-
- <rule><match lemma="sannhetens øyeblikk" tags="adv.aa"><select lemma="skjebnedag"/></match></rule>
-  <rule weight="2.0">
+    <rule weight="2.0">
     <match lemma="ubevoktet"/>
     <match lemma="øyeblikk" tags="n.*"><select lemma="stund"/></match>
   </rule>
+
+ <rule><match lemma="sannhetens øyeblikk" tags="adv.aa"><select lemma="skjebnedag"/></match></rule>
   <rule weight="2.0">
     <match lemma="en"/>
     <match lemma="sannhetens øyeblikk" tags="adv.aa"><select lemma="avgjerande vendepunkt"/></match>
@@ -5038,6 +5038,11 @@
       <match lemma="de"/>
     </or>
     <match lemma="ubevoktet" tags="adj.*"><select lemma="ikkje vakta"/></match>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="en"/>
+    <match lemma="ubevoktet" tags="adj.*"><select lemma="løynleg"/></match>
+    <match lemma="øyeblikk"/>
   </rule>
 
   <rule><match lemma="het" tags="adj.*"><select lemma="heit"/></match></rule>
