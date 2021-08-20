@@ -1351,6 +1351,33 @@
     </match>
   </rule>
 
+ <rule><match lemma="synkende" tags="adj.*"><select lemma="søkkande"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="synkende" tags="adj.*">
+      <select lemma="nedgåande"/>
+    </match>
+    <or>
+      <match lemma="trend" tags="n.*"/>
+      <match lemma="smittetrend" tags="n.*"/>
+    </or>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="synkende" tags="adj.*">
+      <select lemma="fallande"/>
+    </match>
+    <or>
+      <match lemma="tall" tags="n.*"/>
+      <match lemma="temperatur" tags="n.*"/>
+      <match lemma="smittetall" tags="n.*"/>
+    </or>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="være" tags="vblex.*"/>
+    <match lemma="synkende" tags="adj.*">
+      <select lemma="fallande"/>
+    </match>
+  </rule>
+
 <!-- <rule><match lemma="sikkerhet" tags="n.*"><select lemma="sikkerheit"/></match></rule> -->
   <rule><match lemma="sikkerhet" tags="n.*"><select lemma="tryggleik"/></match></rule>
   <rule weight="2.0">
