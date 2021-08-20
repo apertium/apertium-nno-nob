@@ -1303,6 +1303,29 @@
     </match>
   </rule>
 
+  <rule><match lemma="framtvinge" tags="vblex.*"><select lemma="tvinge# fram"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="framtvinge" tags="adj.pp.*">
+      <select lemma="framtvinge"/>
+    </match>
+    <match tags="n.*"/>
+  </rule>
+
+  <rule><match lemma="fremtvinge" tags="vblex.*"><select lemma="tvinge# fram"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="fremtvinge" tags="adj.pp.*">
+      <select lemma="framtvinge"/>
+    </match>
+    <match tags="n.*"/>
+  </rule>
+
+  <rule><match lemma="hensynta" tags="vblex.*"><select lemma="ta# omsyn til"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="hensynta" tags="vblex.pres.pasv.*">
+      <select lemma="ta# i betraktning"/>
+    </match>
+  </rule>
+
   <rule><match lemma="usikkerhet" tags="n.*"><select lemma="uvisse"/></match></rule>
   <rule weight="2.0">
     <match lemma="usikkerhet" tags="n.*.cmp">
@@ -1317,6 +1340,15 @@
   <rule weight="2.0">
     <match lemma="sosial"/>
     <match lemma="usikkerhet" tags="n.*"><select lemma="utryggleik"/></match>
+  </rule>
+
+  <rule><match lemma="hel" tags="n.*"><select lemma="hel"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="hakk" tags="n.*"/>
+    <match lemma="i" tags="pr"/>
+    <match lemma="hel" tags="n.*">
+      <select lemma="hæl"/>
+    </match>
   </rule>
 
 <!-- <rule><match lemma="sikkerhet" tags="n.*"><select lemma="sikkerheit"/></match></rule> -->
