@@ -364,6 +364,11 @@
       <e><par n="ADV"/></e>
     </pardef>
 
+    <pardef n="adj|empty" c="Includes empty!">
+      <e></e>
+      <e><par n="adj"/></e>
+    </pardef>
+
     <pardef n="Sår-og-kroppsord">
       <e><i>sår<t/><j/></i></e>
       <e><i>skade<t/><j/></i></e>
@@ -376,7 +381,17 @@
       <e><i>skulder<t/><j/></i></e>
       <e><i>lår<t/><j/></i></e>
     </pardef>
+
+    <pardef n="ANYWORD">
+      <e><i><w/><t/><j/></i></e>
+    </pardef>
+    <pardef n="ANYWORD|">
+      <e></e>
+      <e><i><w/><t/><j/></i></e>
+    </pardef>
   </pardefs>
+
+
 
   <section id="main" type="standard">
 
@@ -1147,6 +1162,31 @@
       <p><l>sorg<t/><j/></l> <r></r></p>
       <p><l></l>              <r>sørgelig<s n="adj"/><s n="sint"/><s n="pst"/><s n="mf"/><s n="sg"/><s n="ind"/><j/></r></p>
       <i>dag<t/><j/></i>
+    </e>
+
+    <e lm="ble hensyntatt -> ble tatt i betraktning" c="vart teke i betraktning">
+      <par n="være/bli"/>
+      <par n="SN|ADV|prn|"/>
+      <p><l>hensynta<t/></l>      <r>ta<s n="vblex"/><s n="pp"/></r></p> <i><t/><j/></i>
+      <p><l></l>                  <r>i<s n="pr"/><j/></r></p>
+      <p><l></l>                  <r>betraktning<s n="n"/><s n="f"/><s n="sg"/><s n="ind"/><j/></r></p>
+    </e>
+
+    <e lm="får sine planer hensyntatt -> får sine planer tatt i betraktning" c="får planane sine tekne i betraktning">
+      <i>få<t/><j/></i>
+      <i><w/><s n="n"/><t/><j/></i>
+      <i><w/><s n="det"/><t/><j/></i>
+      <p><l>hensynta<t/></l>      <r>ta<s n="vblex"/><s n="pp"/></r></p> <i><t/><j/></i>
+      <p><l></l>                  <r>i<s n="pr"/><j/></r></p>
+      <p><l></l>                  <r>betraktning<s n="n"/><s n="f"/><s n="sg"/><s n="ind"/><j/></r></p>
+    </e>
+
+    <e lm="løpe en stor risiko for -> risikere" c="risikere">
+       <p><l>løpe</l>                               <r>risikere</r></p> <i><t/><j/></i>
+       <p><l>en<s n="det"/><t/><j/></l>                 <r></r></p>
+       <par n="adj|empty"/>
+       <p><l>risiko<s n="n"/><t/><j/></l>             <r></r></p>
+       <p><l>for<s n="pr"/><t/><j/></l>                <r></r></p>
     </e>
 
     <!-- Oppgi -->
