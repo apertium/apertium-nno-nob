@@ -4778,6 +4778,14 @@
     <match lemma="øyeblikk" tags="n.*"><select lemma="stund"/></match>
     <match lemma="av"/>
   </rule>
+  <rule weight="2.0">
+    <match lemma="en"/>
+    <match lemma="øyeblikk" tags="n.*"><select lemma="tidspunkt"/></match>
+    <or>
+      <match lemma="der"/>
+      <match lemma="der ute"/>
+    </or>
+  </rule>
 
  <rule><match lemma="sannhetens øyeblikk" tags="adv.aa"><select lemma="skjebnedag"/></match></rule>
   <rule weight="2.0">
