@@ -4746,6 +4746,14 @@
     <match lemma="som"/>
   </rule>
   <rule weight="2.0">
+    <match lemma="en"/>
+    <or>
+      <match lemma="kort"/>
+      <match lemma="liten"/>
+    </or>
+    <match lemma="øyeblikk" tags="n.*"><select lemma="stund"/></match>
+  </rule>
+  <rule weight="2.0">
     <match lemma="i"/>
     <match lemma="en"/>
     <match lemma="øyeblikk" tags="n.*"><select lemma="glimt"/></match>
