@@ -4737,6 +4737,8 @@
     <or><match lemma="høy"/><match lemma="høye"/></or>
     <match lemma="beskytter" tags="n.*"><select lemma="beskyttar"/></match>
   </rule>
+  <rule><match lemma="uforglemmelig" tags="adj.*"><select lemma="uforgløymeleg"/></match></rule>
+
 <!--ØYEBLIKK: START-->
   <rule><match lemma="øyeblikk" tags="n.*"><select lemma="augneblink"/></match></rule>
   <rule weight="2.0">
@@ -4791,6 +4793,11 @@
     <match lemma="en"/>
     <match tags="adj.*"/>
     <match lemma="øyeblikk" tags="n.*"><select lemma="fase"/></match>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="en"/>
+    <match lemma="uforglemmelig" tags="adj.*"><select lemma="ugløymeleg"/></match>
+    <match lemma="øyeblikk" tags="n.*"><select lemma="stund"/></match>
   </rule>
 
  <rule><match lemma="sannhetens øyeblikk" tags="adv.aa"><select lemma="skjebnedag"/></match></rule>
