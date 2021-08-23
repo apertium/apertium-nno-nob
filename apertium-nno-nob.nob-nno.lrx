@@ -1303,6 +1303,14 @@
     </match>
   </rule>
 
+  <rule><match lemma="innkalle" tags="vblex.*"><select lemma="kalle# inn"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="innkalle" tags="vblex.pp.*">
+      <select lemma="innkalle"/>
+    </match>
+    <match tags="n.*"/>
+  </rule>
+
   <rule><match lemma="framtvinge" tags="vblex.*"><select lemma="tvinge# fram"/></match></rule>
   <rule weight="2.0">
     <match lemma="framtvinge" tags="adj.pp.*">
