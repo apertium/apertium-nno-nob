@@ -8743,6 +8743,17 @@ preposisjonar gir ekstra utfordringar. -->
 	  <match lemma="etappe" tags="n.*"/>
 	</or>
   </rule>
+  <rule weight="2.4" c="framme og bak">
+    <match lemma="foran" tags="pr.*"><select lemma="framme"/></match>
+  <match lemma="og"/>
+  <match lemma="bak"/>
+  </rule>
+   <rule weight="2.4" c="bak og framme">
+    <match lemma="bak"/>
+    <match lemma="og"/>
+    <match lemma="foran" tags="pr.*"><select lemma="framme"/></match>
+  </rule>
+
   <!-- END: foran -->
 
   <rule c="sjeldan heleri"><match lemma="heling" tags="n.*"><select lemma="heiling"/></match></rule>
