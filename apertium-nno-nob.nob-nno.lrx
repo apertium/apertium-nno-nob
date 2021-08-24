@@ -3159,7 +3159,10 @@
 <!--UTEBLI: START-->
   <rule><match lemma="utebli" tags="vblex.*"><select lemma="glimre# med sitt fravær"/></match></rule>
   <rule><match lemma="utebli" tags="adj.*"><select lemma="utebli"/></match></rule>
-
+ <rule weight="2.0">
+    <match lemma="utebli" tags="adj.pp.*"><select lemma="mangle"/></match>
+    <match tags="n.*"/>
+  </rule>
     <rule weight="2.0">
     <match lemma="utebli" tags="vblex.*"><select lemma="svikte"/></match>
     <or>
