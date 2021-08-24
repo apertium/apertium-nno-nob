@@ -2925,7 +2925,10 @@
 
 <rule weight="2.0">
   <match lemma="tilbringe" tags="vblex.*"><select lemma="gjennomføre"/></match>
-  <match tags="n.*"/>
+    <repeat from="0" upto="1">
+      <match tags="n.*.*.*.gen.aa"/>
+    </repeat>  
+    <match tags="n.*"/>
 </rule>
 <rule weight="4.0">
   <or>
