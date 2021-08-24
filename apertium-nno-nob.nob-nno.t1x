@@ -3183,6 +3183,13 @@
       <list-item v="KrF"/>
       <list-item v="Ap"/>
     </def-list>
+
+    <def-list n="adj-f" c="Allow generating feminine forms of these adjectives.
+                           Nynorsk lemmas.">
+      <list-item v="liten"/>
+      <list-item v="knøttliten"/>
+      <list-item v="bitte liten"/>
+    </def-list>
   </section-def-lists>
 
   <section-def-macros>
@@ -3597,14 +3604,14 @@
         <test><and>
           <in><clip pos="1" side="tl" part="gen"/><list n="adj-genders"/></in>
           <or>
-            <equal><clip pos="2" side="tl" part="gen"/><lit-tag v="GD"/></equal>
+            <in><clip pos="2" side="tl" part="lem"/><list n="adj-f"/></in>
             <not><equal><clip pos="1" side="sl" part="gen"/><clip pos="1" side="tl" part="gen"/></equal></not>
           </or>
         </and></test>
         <choose>
           <when>
             <test><and>
-              <not><equal><clip pos="2" side="tl" part="gen"/><lit-tag v="GD"/></equal></not>
+              <not><in><clip pos="2" side="tl" part="lem"/><list n="adj-f"/></in></not>
               <equal><clip pos="1" side="tl" part="gen"/><lit-tag v="f"/></equal>
             </and></test>
             <let><clip pos="2" side="tl" part="gen"/><lit-tag v="mf"/></let>
