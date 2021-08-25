@@ -1327,6 +1327,31 @@
     <match tags="n.*"/>
   </rule>
 
+  <rule><match lemma="framskyte" tags="vblex.*"><select lemma="skyte# fram"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="framskyte" tags="vblex.pp.*">
+      <select lemma="framskyte"/>
+    </match>
+  </rule>
+<rule><match lemma="framskyte" tags="vblex.*"><select lemma="skyte# fram"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="framskyte" tags="adj.pp.*">
+      <select lemma="framskyte"/>
+    </match>
+  </rule>
+  <rule><match lemma="fremskyte" tags="vblex.*"><select lemma="skyte# fram"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="fremskyte" tags="vblex.pp.*">
+      <select lemma="framskyte"/>
+    </match>
+  </rule>
+  <rule><match lemma="fremskyte" tags="vblex.*"><select lemma="skyte# fram"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="fremskyte" tags="adj.pp.*">
+      <select lemma="framskyte"/>
+    </match>
+  </rule>
+
   <rule><match lemma="hensynta" tags="vblex.*"><select lemma="ta# omsyn til"/></match></rule>
   <rule weight="2.0">
     <match lemma="hensynta" tags="vblex.pres.pasv.*">
