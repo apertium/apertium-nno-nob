@@ -6093,13 +6093,18 @@ no lemq-moving">
         <pattern-item n="n_np"/>
       </pattern>
       <action>
-        <choose><when>
+        <choose><when c="Don't chunk «generelt lite fugl» etc.">
           <test><or>
             <equal><clip pos="1" side="tl" part="lemh"/><lit v=""/></equal>
             <and>
               <not><in><clip pos="1" side="tl" part="lemh"/><list n="adj-ind-def"/></in></not>
               <equal><clip pos="1" side="tl" part="art"/><lit-tag v="ind"/></equal>
               <equal><clip pos="3" side="tl" part="art"/><lit-tag v="def"/></equal>
+            </and>
+            <and>
+              <equal><clip pos="1" side="sl" part="gen"/><lit-tag v="nt"/></equal>
+              <equal><clip pos="2" side="sl" part="gen"/><lit-tag v="nt"/></equal>
+              <not><equal><clip pos="3" side="sl" part="gen"/><lit-tag v="nt"/></equal></not>
             </and>
           </or></test>
           <reject-current-rule shifting="no"/>
@@ -6149,13 +6154,18 @@ no lemq-moving">
         <pattern-item n="n_np"/>
       </pattern>
       <action>
-        <choose><when>
+        <choose><when c="Don't chunk «generelt lite fugl» etc.">
           <test><or>
             <equal><clip pos="1" side="tl" part="lemh"/><lit v=""/></equal>
             <and>
               <not><in><clip pos="1" side="tl" part="lemh"/><list n="adj-ind-def"/></in></not>
               <equal><clip pos="1" side="tl" part="art"/><lit-tag v="ind"/></equal>
               <equal><clip pos="2" side="tl" part="art"/><lit-tag v="def"/></equal>
+            </and>
+            <and>
+              <equal><clip pos="1" side="sl" part="gen"/><lit-tag v="nt"/></equal>
+              <equal><clip pos="2" side="sl" part="gen"/><lit-tag v="nt"/></equal>
+              <not><equal><clip pos="4" side="sl" part="gen"/><lit-tag v="nt"/></equal></not>
             </and>
           </or></test>
           <reject-current-rule shifting="no"/>
@@ -6207,13 +6217,18 @@ no lemq-moving">
         <pattern-item n="n_np"/>
       </pattern>
       <action>
-        <choose><when>
+        <choose><when c="Don't chunk «generelt lite fugl» etc.">
           <test><or>
             <equal><clip pos="1" side="tl" part="lemh"/><lit v=""/></equal>
             <and>
               <not><in><clip pos="1" side="tl" part="lemh"/><list n="adj-ind-def"/></in></not>
               <equal><clip pos="1" side="tl" part="art"/><lit-tag v="ind"/></equal>
               <equal><clip pos="5" side="tl" part="art"/><lit-tag v="def"/></equal>
+            </and>
+            <and>
+              <equal><clip pos="1" side="sl" part="gen"/><lit-tag v="nt"/></equal>
+              <equal><clip pos="2" side="sl" part="gen"/><lit-tag v="nt"/></equal>
+              <not><equal><clip pos="5" side="sl" part="gen"/><lit-tag v="nt"/></equal></not>
             </and>
           </or></test>
           <reject-current-rule shifting="no"/>
@@ -6271,13 +6286,18 @@ no lemq-moving">
         <pattern-item n="n_np"/>
       </pattern>
       <action>
-        <choose><when>
+        <choose><when c="Don't chunk «generelt lite fugl» etc.">
           <test><or>
             <equal><clip pos="1" side="tl" part="lemh"/><lit v=""/></equal>
             <and>
               <not><in><clip pos="1" side="tl" part="lemh"/><list n="adj-ind-def"/></in></not>
               <equal><clip pos="1" side="tl" part="art"/><lit-tag v="ind"/></equal>
               <equal><clip pos="6" side="tl" part="art"/><lit-tag v="def"/></equal>
+            </and>
+            <and>
+              <equal><clip pos="1" side="sl" part="gen"/><lit-tag v="nt"/></equal>
+              <equal><clip pos="2" side="sl" part="gen"/><lit-tag v="nt"/></equal>
+              <not><equal><clip pos="6" side="sl" part="gen"/><lit-tag v="nt"/></equal></not>
             </and>
           </or></test>
           <reject-current-rule shifting="no"/>
