@@ -5072,7 +5072,10 @@
   <rule><match lemma="helaftens" tags="adj.*"><select lemma="lengre"/></match></rule>
   <rule weight="2.0">
     <match lemma="helaftens" tags="adj.*"><select lemma="lang"/></match>
-    <match lemma="film"/>
+    <or>
+      <match lemma="film"/>
+      <match lemma="animasjonsfilm"/>
+    </or>
   </rule>
   <rule weight="2.0">
     <match lemma="helaftens" tags="adj.*"><select lemma="lang"/></match>
