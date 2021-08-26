@@ -200,6 +200,14 @@
       <e><i><w/><s n="det"/><s n="dem"/><t/><j/></i><par n="ncmp*.n"/></e>
     </pardef>
 
+    <pardef n="det+SN">
+      <e></e>
+      <e>                            <par n="ncmp*.n"/></e>
+      <e>              <par n="adj"/><par n="ncmp*.n"/></e>
+      <e><par n="adj"/><par n="adj"/><par n="ncmp*.n"/></e>
+      <e><i><w/><s n="det"/><s n="dem"/><t/><j/></i><par n="SN"/></e>
+    </pardef>
+
     <pardef n="SN|ADV|prn|" c="Includes empty!">
       <e></e>
       <e><par n="SN"/></e>
@@ -878,6 +886,36 @@
       <p><l></l>                  <r>svært<s n="adv"/><j/></r></p>
       <p><l></l>                  <r>utrygg<s n="adj"/><s n="sint"/><s n="pst"/><s n="nt"/><s n="sg"/><s n="ind"/><j/></r></p>
       <i>å<t/><j/></i>
+    </e>
+
+    <e lm="er risikoutsatt for å -> står i fare for å" c="står i fare for å">
+      <p><l>være<s n="vblex"/><s n="pres"/></l> <r></r></p> <par n="j:"/>
+      <p><l>risikoutsatt<t/><j/></l> <r></r></p>
+      <p><l></l>                  <r>stå<s n="vblex"/><s n="pres"/><j/></r></p>
+      <p><l></l>                  <r>i<s n="pr"/><j/></r></p>
+      <p><l></l>                  <r>fare<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/><s n="aa"/><j/></r></p>
+      <i>for<t/><j/></i>      
+      <i>å<t/><j/></i>
+    </e>
+
+    <e lm="er risikoutsatt for + subst -> er i faresonen for å bli rammet av + subst" c="er i faresona for å bli ramma av + subst">
+      <i>være<s n="vblex"/><s n="pres"/></i> <par n="j"/>
+      <p><l>risikoutsatt<t/><j/></l> <r></r></p>
+      <p><l></l>                  <r>i<s n="pr"/><j/></r></p>
+      <p><l></l>                  <r>faresone<s n="n"/><s n="m"/><s n="sg"/><s n="def"/><j/></r></p>
+      <i>for<t/><j/></i>      
+      <p><l></l>                  <r>å<s n="part"/><j/></r></p>
+      <p><l></l>                  <r>bli<s n="vblex"/><s n="inf"/><s n="sg"/><s n="def"/><j/></r></p>
+      <p><l></l>                  <r>ramme<s n="adj"/><s n="pp"/><s n="mf"/><s n="sg"/><s n="ind"/><j/></r></p>
+      <p><l></l>                  <r>av<s n="pr"/><j/></r></p>
+      <par n="det+SN"/>
+    </e>
+
+    <e lm="er risikoutsatt -> er utsatt for risiko" c="er utsett for risiko">
+      <i>være<s n="vblex"/><s n="pres"/></i> <par n="j"/>
+      <p><l>risikoutsatt</l>      <r>utsatt</r></p> <i><t/><j/></i>
+      <p><l></l>                  <r>for<s n="pr"/><j/></r></p>
+      <p><l></l>                  <r>risiko<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/><j/></r></p>
     </e>
 
     <e lm="Override regel forbinde + sår + med" c="override-regel">
