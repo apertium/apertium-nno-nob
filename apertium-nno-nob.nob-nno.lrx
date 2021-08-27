@@ -4801,6 +4801,12 @@
     <match lemma="prisantydning" tags="n.*"><select lemma="foreslått pris"/></match>
   </rule>
 
+  <rule><match lemma="majoritet" tags="n.*"><select lemma="majoritet"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="knepen"/>
+    <match lemma="majoritet" tags="n.*"><select lemma="fleirtal"/></match>
+  </rule>
+
 <!--ØYEBLIKK: START-->
   <rule><match lemma="øyeblikk" tags="n.*"><select lemma="augneblink"/></match></rule>
   <rule weight="2.0">
