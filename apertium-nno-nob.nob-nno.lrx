@@ -6401,6 +6401,29 @@
 <rule><match lemma="øse" tags="adj.*"><select lemma="ause"/></match></rule>
 <!-- ØSE: END -->
 
+<!-- UMIDDELBAR: START -->
+<rule><match lemma="umiddelbar" tags="adj.*"><select lemma="umiddelbar"/></match></rule>
+<rule weight="2.0">
+  <repeat from="2" upto="2">
+    <or>
+      <match lemma="ikke"/>
+      <match lemma="ha"/>
+    </or>
+    </repeat>
+  <repeat from="0" upto="1">
+    <match lemma="noe"/>
+  </repeat>
+  <match lemma="umiddelbar" tags="adj.*"><select lemma="snarleg"/></match>
+  <match lemma="plan"/>
+</rule>
+<rule weight="2.0">
+  <match lemma="ingen"/>
+  <match lemma="umiddelbar" tags="adj.*"><select lemma="snarleg"/></match>
+  <match lemma="plan"/>
+</rule>
+<!-- UMIDDELBAR: END -->
+
+
 <!-- ØYEBLIKKELIG: START -->
 <rule><match lemma="øyeblikkelig" tags="adj.*"><select lemma="umiddelbar"/></match></rule>
 <rule weight="2.0">
