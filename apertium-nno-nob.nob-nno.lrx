@@ -4782,6 +4782,25 @@
   </rule>
   <rule><match lemma="uforglemmelig" tags="adj.*"><select lemma="uforgløymeleg"/></match></rule>
 
+  <rule><match lemma="prisantydning" tags="n.*"><select lemma="prisforslag"/></match></rule>
+  <rule weight="2.0">
+    <or>
+      <match lemma="over"/>
+      <match lemma="under"/>
+      <match lemma="til"/>
+      <match lemma="for"/>
+    </or>
+    <match lemma="prisantydning" tags="n.*"><select lemma="foreslått pris"/></match>
+  </rule>
+    <rule weight="2.0">
+    <or>
+      <match lemma="liten"/>
+      <match lemma="mye"/>
+    </or>
+    <match lemma="enn"/>
+    <match lemma="prisantydning" tags="n.*"><select lemma="foreslått pris"/></match>
+  </rule>
+
 <!--ØYEBLIKK: START-->
   <rule><match lemma="øyeblikk" tags="n.*"><select lemma="augneblink"/></match></rule>
   <rule weight="2.0">
