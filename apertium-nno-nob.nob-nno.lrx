@@ -6421,6 +6421,19 @@
   <match lemma="umiddelbar" tags="adj.*"><select lemma="snarleg"/></match>
   <match lemma="plan"/>
 </rule>
+<rule weight="3.0">
+  <match lemma="en"/>
+  <match lemma="umiddelbar" tags="adj.*"><select lemma="snarleg"/></match>
+  <or>
+    <match lemma="plan"/>
+    <match lemma="løsning"/>
+  </or>
+</rule>
+<rule weight="2.0">
+  <match lemma="en"/>
+  <match lemma="umiddelbar" tags="adj.*"><select lemma="uvilkårleg"/></match>
+  <match tags="n.*"/>
+</rule>
 <!-- UMIDDELBAR: END -->
 
 
