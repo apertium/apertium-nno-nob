@@ -6463,6 +6463,15 @@
 </rule>
 <!-- UMIDDELBAR: END -->
 
+<!-- FOLD: START -->
+<rule><match lemma="fold" tags="n.*"><select lemma="fold"/></match></rule>
+<rule weight="2.0">
+  <match lemma="den"/>
+  <match lemma="rett"/>
+  <match lemma="fold" tags="n.*"><select lemma="fald"/></match>
+</rule>
+<!-- FOLD: END -->
+
 
 <!-- ØYEBLIKKELIG: START -->
 <rule><match lemma="øyeblikkelig" tags="adj.*"><select lemma="umiddelbar"/></match></rule>
