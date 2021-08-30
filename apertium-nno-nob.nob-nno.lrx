@@ -6403,7 +6403,18 @@
 
 <!-- UMIDDELBAR: START -->
 <rule><match lemma="umiddelbar" tags="adj.*"><select lemma="umiddelbar"/></match></rule>
+<rule> 
+  <match lemma="umiddelbar" tags="adj.*.*.pl.*"><select lemma="umiddelbar"/></match>
+  <match tags="n.*"/>
+</rule>
 <rule weight="2.0">
+  <match lemma="umiddelbar" tags="adj.*"><select lemma="umiddelbar"/></match>
+  <or>
+    <match lemma="beslutning"/>
+    <match lemma="avgjørelse"/>
+  </or>
+</rule>
+<rule weight="3.0">
   <repeat from="2" upto="2">
     <or>
       <match lemma="ikke"/>
@@ -6416,7 +6427,7 @@
   <match lemma="umiddelbar" tags="adj.*"><select lemma="snarleg"/></match>
   <match lemma="plan"/>
 </rule>
-<rule weight="2.0">
+<rule weight="3.0">
   <match lemma="ingen"/>
   <match lemma="umiddelbar" tags="adj.*"><select lemma="snarleg"/></match>
   <match lemma="plan"/>
@@ -6434,7 +6445,11 @@
   <match lemma="umiddelbar" tags="adj.*"><select lemma="uvilkårleg"/></match>
   <match tags="n.*"/>
 </rule>
-<rule weight="2.0">
+<rule weight="1.5">
+  <match lemma="umiddelbar" tags="adj.*"><select lemma="omgåande"/></match>
+  <match tags="n.*"/>
+</rule>
+<rule weight="3.0">
   <match lemma="den"/>
   <match lemma="umiddelbar" tags="adj.*"><select lemma="mellombels"/></match>
   <match lemma="plan"/>
