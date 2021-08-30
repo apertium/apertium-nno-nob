@@ -197,15 +197,15 @@
       <e>                            <par n="ncmp*.n"/></e>
       <e>              <par n="adj"/><par n="ncmp*.n"/></e>
       <e><par n="adj"/><par n="adj"/><par n="ncmp*.n"/></e>
-      <e><i><w/><s n="det"/><s n="dem"/><t/><j/></i><par n="ncmp*.n"/></e>
+      <e><i><w/><s n="det"/><t/><j/></i><par n="ncmp*.n"/></e>
     </pardef>
 
-    <pardef n="det+SN">
+    <pardef n="det+SN" c="Includes empty!">
       <e></e>
       <e>                            <par n="ncmp*.n"/></e>
       <e>              <par n="adj"/><par n="ncmp*.n"/></e>
       <e><par n="adj"/><par n="adj"/><par n="ncmp*.n"/></e>
-      <e><i><w/><s n="det"/><s n="dem"/><t/><j/></i><par n="SN"/></e>
+      <e><i><w/><s n="det"/><t/><j/></i><par n="SN"/></e>
     </pardef>
 
     <pardef n="SN|ADV|prn|" c="Includes empty!">
@@ -214,7 +214,7 @@
       <e><par n="ADV"/></e>
       <e><par n="adj"/></e>
       <e><par n="prn"/></e>
-      <e><i><w/><s n="det"/><s n="dem"/><t/><j/></i><par n="ncmp*.n"/></e>
+      <e><i><w/><s n="det"/><t/><j/></i><par n="ncmp*.n"/></e>
     </pardef>
 
     <pardef n="SN|ADV|prn|det" c="Includes empty!">
@@ -231,7 +231,8 @@
       <e><par n="prn"/></e>
       <e><i><w/><s n="np"/><t/><j/></i></e>
       <e><par n="adj"/></e><e><i><w/><s n="np"/><t/><j/></i></e>
-      <e><i><w/><s n="det"/><s n="dem"/><t/><j/></i><par n="ncmp*.n"/></e>
+      <e><i><w/><s n="det"/><t/><j/></i><par n="ncmp*.n"/></e>
+      <e><i><w/><s n="det"/><t/><j/></i><par n="adj"/><par n="ncmp*.n"/></e>
     </pardef>
 
     <pardef n="SN|np|prn|empty" c="Includes empty!">
@@ -240,7 +241,7 @@
       <e><par n="prn"/></e>
       <e><i><w/><s n="np"/><t/><j/></i></e>
       <e><par n="adj"/></e><e><i><w/><s n="np"/><t/><j/></i></e>
-      <e><i><w/><s n="det"/><s n="dem"/><t/><j/></i><par n="ncmp*.n"/></e>
+      <e><i><w/><s n="det"/><t/><j/></i><par n="ncmp*.n"/></e>
     </pardef>
 
     <pardef n="SN.sg.ind">
@@ -993,6 +994,13 @@
     <e lm="umiddelbart tiltak -> strakstiltak" c="strakstiltak">
       <p><l>umiddelbar<t/><j/></l> <r></r></p>
       <p><l>tiltak</l>         <r>strakstiltak</r></p> <i><t/><j/></i>
+    </e>
+
+    <e lm="umiddelbart etter + subst -> straks etter + subst" c="straks etter + subst">
+      <p><l>umiddelbar<t/><j/></l> <r></r></p>
+      <p><l></l>                  <r>straks<s n="adv"/><j/></r></p>
+      <i>etter<t/><j/></i>
+      <par n="SN|np|prn"/>
     </e>
 
     <e lm="som en dyd av nødvendighet -> som et tvingende nødvendig tiltak" c="som eit tvingande nødvendig tiltak">
