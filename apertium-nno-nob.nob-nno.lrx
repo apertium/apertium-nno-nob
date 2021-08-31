@@ -1428,6 +1428,14 @@
     </or>
   </rule>
 
+  <rule><match lemma="bekjentskap" tags="n.*"><select lemma="kjenning"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="bekjentskap" tags="n.*">
+      <select lemma="kjennskap"/>
+    </match>
+    <match lemma="mellom"/>
+  </rule>
+
 <!-- <rule><match lemma="sikkerhet" tags="n.*"><select lemma="sikkerheit"/></match></rule> -->
   <rule><match lemma="sikkerhet" tags="n.*"><select lemma="tryggleik"/></match></rule>
   <rule weight="2.0">
