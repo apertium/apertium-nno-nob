@@ -244,6 +244,17 @@
       <e><i><w/><s n="det"/><t/><j/></i><par n="ncmp*.n"/></e>
     </pardef>
 
+    <pardef n="SN|np|prn|det|empty" c="Includes empty!">
+      <e></e>
+      <e><par n="SN"/></e>
+      <e><par n="prn"/></e>
+      <e><i><w/><s n="np"/><t/><j/></i></e>
+      <e><par n="adj"/></e><e><i><w/><s n="np"/><t/><j/></i></e>
+      <e><i><w/><s n="det"/><t/><j/></i><par n="ncmp*.n"/></e>
+      <e><i><w/><s n="det"/><t/><j/></i></e>
+      <e><i><w/><s n="np"/><t/><j/></i><par n="ncmp*.n"/></e>
+    </pardef>
+
     <pardef n="SN.sg.ind">
       <e>                            <par n="ncmp*.n.sg.ind"/></e>
       <e>              <par n="adj"/><par n="ncmp*.n.sg.ind"/></e>
@@ -1842,6 +1853,14 @@
       <i>tid<t/><j/></i>
     </e>
 
+    <e lm="stifte bekjentskap med X -> lære X å kjenne" c="lære X å kjenne">
+      <p><l>stifte<s n="vblex"/></l>   <r>lære<s n="vblex"/></r></p> <i><t/><j/></i>
+      <p><l>bekjentskap<s n="n"/><t/></l>             <r></r></p> <par n="j:"/>
+      <p><l>med<s n="pr"/></l>  <r></r></p> <par n="j:"/>
+      <par n="SN|np|prn|det|empty"/>
+      <p><l></l>                  <r>å<s n="part"/><j/></r></p>
+      <p><l></l>                  <r>kjenne<s n="vblex"/><s n="inf"/><j/></r></p>
+    </e>
 
     <!-- Oppgi -->
     <e lm="override regel for å beskytte 'oppgis ikke av sikkerhetsgrunner'" c="override regel for oppgis ikke av sikkerhetsgrunner">
