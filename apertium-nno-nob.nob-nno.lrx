@@ -2275,6 +2275,16 @@
   <!-- </rule> -->
 
   <rule><match lemma="behefte" tags="vblex.*"><select lemma="hefte"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="være"/>
+    <match lemma="behefte" tags="adj.*"><select lemma="hefte"/></match>
+    <match lemma="med"/>
+    <or>
+      <match lemma="gjeld"/>
+      <match lemma="pant"/>
+    </or>
+  </rule>
+
   <rule><match lemma="overtredelse" tags="n.*"><select lemma="regelbrot"/></match></rule>
   <rule weight="2.0">
     <match lemma="overtredelse" tags="n.*"><select lemma="brot"/></match>
