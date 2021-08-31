@@ -6533,7 +6533,13 @@
   <match lemma="regne"/>
 </rule>
 <rule weight="2.0">
-  <match lemma="denne"/>
+  <or>
+    <match lemma="denne"/>
+    <match lemma="den"/>
+  </or>
+    <repeat from="0" upto="5">
+      <match tags=".*"/>
+    </repeat>
   <match lemma="sjeldenhet" tags="n.*"><select lemma="unikum"/></match>
   <match lemma="av"/>
   <match lemma="en"/>
