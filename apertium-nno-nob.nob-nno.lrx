@@ -1411,6 +1411,23 @@
     </match>
   </rule>
 
+  <rule><match lemma="treffe" tags="vblex.*"><select lemma="treffe"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="treffe" tags="vblex.*">
+      <select lemma="gjere"/>
+    </match>
+    <repeat from="0" upto="2">
+      <or>
+        <match tags="det.*"/>
+        <match tags="adj.*"/>
+      </or>
+    </repeat>
+    <or>
+      <match lemma="vedtak"/>
+      <match lemma="valg"/>
+    </or>
+  </rule>
+
 <!-- <rule><match lemma="sikkerhet" tags="n.*"><select lemma="sikkerheit"/></match></rule> -->
   <rule><match lemma="sikkerhet" tags="n.*"><select lemma="tryggleik"/></match></rule>
   <rule weight="2.0">
