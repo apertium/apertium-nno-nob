@@ -1436,6 +1436,55 @@
     <match lemma="mellom"/>
   </rule>
 
+  <rule><match lemma="opphøre" tags="vblex.*"><select lemma="stanse"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="opphøre" tags="vblex.*">
+      <select lemma="slutte"/>
+    </match>
+    <match lemma="å"/>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="ville" tags="vblex.*"/>
+    <match lemma="opphøre" tags="vblex.*">
+      <select lemma="slutte"/>
+    </match>
+    <match lemma="å"/>
+  </rule>
+  <rule weight="3.0">
+    <or>
+      <match lemma="kunne" tags="vblex.*"/>
+      <match lemma="måtte" tags="vblex.*"/>
+      <match lemma="ville" tags="vblex.*"/>
+      <match lemma="skulle" tags="vblex.*"/>
+      <match lemma="burde" tags="vblex.*"/>
+    </or>
+    <match lemma="opphøre" tags="vblex.inf.*">
+      <select lemma="avslutte" tags="vblex.inf.pasv.*"/>
+    </match>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="opphøre" tags="adj.pp.*">
+       <select lemma="avslutte"/>
+    </match>
+    <repeat from="0" upto="2">
+        <match tags="adj.*"/>
+    </repeat>
+    <match tags="n.*"/>
+  </rule>
+  <rule weight="2.0">
+    <or>
+      <match lemma="være"/>
+      <match lemma="bli"/>
+    </or>
+    <repeat from="0" upto="1">
+      <match tags="adv.*"/>
+    </repeat>
+    <match lemma="opphøre" tags="adj.pp.*">
+       <select lemma="avslutte"/>
+    </match>
+  </rule>
+
+
 <!-- <rule><match lemma="sikkerhet" tags="n.*"><select lemma="sikkerheit"/></match></rule> -->
   <rule><match lemma="sikkerhet" tags="n.*"><select lemma="tryggleik"/></match></rule>
   <rule weight="2.0">
