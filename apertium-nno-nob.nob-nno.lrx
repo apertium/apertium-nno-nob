@@ -1492,6 +1492,19 @@
     <match lemma="av"/>
   </rule>
 
+  <rule><match lemma="sammenholde" tags="vblex.*"><select lemma="jamføre"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="sammenholde" tags="adj.pp.*">
+      <select lemma="sameine" tags="adj.pp.*"/>
+    </match>
+    <match tags="n.*"/>
+  </rule>
+  <rule weight="3.0">
+    <match lemma="sammenholde" tags="adj.pp.pl.*">
+      <select lemma="jamføre" tags="adj.pp.pl.*"/>
+    </match>
+    <match lemma="tall" tags="n.*"/>
+  </rule>
 
 <!-- <rule><match lemma="sikkerhet" tags="n.*"><select lemma="sikkerheit"/></match></rule> -->
   <rule><match lemma="sikkerhet" tags="n.*"><select lemma="tryggleik"/></match></rule>
