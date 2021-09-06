@@ -1528,6 +1528,40 @@
     </match>
   </rule>
 
+  <rule><match lemma="bevitne" tags="vblex.*"><select lemma="vere# vitne til"/></match></rule>
+  <rule weight="2.0">
+    <or>
+      <match lemma="kunne" tags="vblex.*"/>
+      <match lemma="måtte" tags="vblex.*"/>
+      <match lemma="ville" tags="vblex.*"/>
+      <match lemma="skulle" tags="vblex.*"/>
+      <match lemma="burde" tags="vblex.*"/>
+    </or>
+    <match lemma="bevitne" tags="vblex.inf.pasv.*">
+      <select lemma="stadfeste"/>
+    </match>
+  </rule>
+  <rule weight="2.0">
+    <or>
+      <match lemma="være" tags="vblex.*"/>
+      <match lemma="bli" tags="vblex.*"/>
+    </or>
+    <match lemma="bevitne" tags="adj.pp.*">
+      <select lemma="stadfeste"/>
+    </match>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="bevitne" tags="vblex.pres.pasv.*">
+      <select lemma="rettkjenne"/>
+    </match>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="bevitne" tags="adj.pp.*">
+      <select lemma="rettkjenne" tags="adj.pp.*"/>
+    </match>
+    <match tags="n.*"/>
+  </rule>
+
 
 <!-- <rule><match lemma="sikkerhet" tags="n.*"><select lemma="sikkerheit"/></match></rule> -->
   <rule><match lemma="sikkerhet" tags="n.*"><select lemma="tryggleik"/></match></rule>
