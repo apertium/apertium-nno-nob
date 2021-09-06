@@ -1571,6 +1571,20 @@
     <match tags="n.*"/>
   </rule>
 
+  <rule><match lemma="bortvise" tags="vblex.*"><select lemma="vise# bort"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="bortvise" tags="vblex.pres.pasv.*">
+      <select lemma="bortvise"/>
+    </match>
+  </rule>
+
+  <rule><match lemma="bortsette" tags="vblex.*"><select lemma="setje# bort"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="bortsette" tags="vblex.pres.pasv.*">
+      <select lemma="bortsetje"/>
+    </match>
+  </rule>
+
 
 <!-- <rule><match lemma="sikkerhet" tags="n.*"><select lemma="sikkerheit"/></match></rule> -->
   <rule><match lemma="sikkerhet" tags="n.*"><select lemma="tryggleik"/></match></rule>
