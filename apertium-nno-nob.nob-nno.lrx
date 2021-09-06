@@ -1484,6 +1484,14 @@
     </match>
   </rule>
 
+  <rule><match lemma="fornemmelse" tags="n.*"><select lemma="sanseinntrykk"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="fornemmelse" tags="n.*">
+      <select lemma="kjensle"/>
+    </match>
+    <match lemma="av"/>
+  </rule>
+
 
 <!-- <rule><match lemma="sikkerhet" tags="n.*"><select lemma="sikkerheit"/></match></rule> -->
   <rule><match lemma="sikkerhet" tags="n.*"><select lemma="tryggleik"/></match></rule>
