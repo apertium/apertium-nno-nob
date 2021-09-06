@@ -1562,6 +1562,15 @@
     <match tags="n.*"/>
   </rule>
 
+  <rule><match lemma="bilegge" tags="vblex.*"><select lemma="legge# bort"/></match></rule>
+  <rule><match lemma="bilegge" tags="adj.*"><select lemma="legge# bort"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="bilegge" tags="adj.pp.*">
+      <select lemma="avslutte" tags="adj.pp.*"/>
+    </match>
+    <match tags="n.*"/>
+  </rule>
+
 
 <!-- <rule><match lemma="sikkerhet" tags="n.*"><select lemma="sikkerheit"/></match></rule> -->
   <rule><match lemma="sikkerhet" tags="n.*"><select lemma="tryggleik"/></match></rule>
