@@ -1506,6 +1506,29 @@
     <match lemma="tall" tags="n.*"/>
   </rule>
 
+  <rule><match lemma="besørge" tags="vblex.*"><select lemma="ta# seg av"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="få" tags="vblex.*"/>
+    <match lemma="besørge" tags="vblex.pp.*">
+      <select lemma="ordne"/>
+    </match>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="besørge" tags="vblex.pres.pasv.*">
+      <select lemma="ordne"/>
+    </match>
+  </rule>
+  <rule weight="2.0">
+    <or>
+      <match lemma="være" tags="vblex.*"/>
+      <match lemma="bli" tags="vblex.*"/>
+    </or>
+    <match lemma="besørge" tags="adj.pp.*">
+      <select lemma="ordne"/>
+    </match>
+  </rule>
+
+
 <!-- <rule><match lemma="sikkerhet" tags="n.*"><select lemma="sikkerheit"/></match></rule> -->
   <rule><match lemma="sikkerhet" tags="n.*"><select lemma="tryggleik"/></match></rule>
   <rule weight="2.0">
