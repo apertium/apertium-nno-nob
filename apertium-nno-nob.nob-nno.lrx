@@ -1585,6 +1585,20 @@
     </match>
   </rule>
 
+  <rule><match lemma="bortkjøre" tags="vblex.*"><select lemma="køyre# bort"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="bortkjøre" tags="vblex.pres.pasv.*">
+      <select lemma="bortkøyre"/>
+    </match>
+  </rule>
+
+  <rule><match lemma="bortødsle" tags="vblex.*"><select lemma="øydsle# bort"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="bortødsle" tags="vblex.pres.pasv.*">
+      <select lemma="bortøydsle"/>
+    </match>
+  </rule>
+
 
 <!-- <rule><match lemma="sikkerhet" tags="n.*"><select lemma="sikkerheit"/></match></rule> -->
   <rule><match lemma="sikkerhet" tags="n.*"><select lemma="tryggleik"/></match></rule>
