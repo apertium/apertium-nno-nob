@@ -187,6 +187,9 @@
       <list-item v="suverent"/>
       <list-item v="verkeleg"/>
     </def-list>
+    <def-list n="n-keep-pl.ind" c="Don't change ind→def on these nouns if pl, even if preceding adj gets def (tl/nno)">
+      <list-item v="par"/>
+    </def-list>
     <def-list n="n-keep-sg.ind" c="Don't change ind→def on these familiar nouns if sg, even if preceding adj gets def (tl/nno)">
       <list-item v="mor"/>
       <list-item v="oldemor"/>
@@ -353,6 +356,10 @@
             <equal><clip pos="1" part="nbr"/><lit-tag v="sg"/></equal>
             <in caseless="yes"><clip pos="1" part="lemh"/><list n="n-keep-sg.ind"/></in>
           </and></not>
+          <not><and>
+            <equal><clip pos="1" part="nbr"/><lit-tag v="pl"/></equal>
+            <in caseless="yes"><clip pos="1" part="lemh"/><list n="n-keep-pl.ind"/></in>
+          </and></not>
         </and></test>
         <let><clip pos="1" part="art"/><clip pos="2" part="art"/></let>
       </when></choose>
@@ -472,6 +479,10 @@
           <not><and>
             <equal><clip pos="1" part="nbr"/><lit-tag v="sg"/></equal>
             <in caseless="yes"><clip pos="1" part="lemh"/><list n="n-keep-sg.ind"/></in>
+          </and></not>
+          <not><and>
+            <equal><clip pos="1" part="nbr"/><lit-tag v="pl"/></equal>
+            <in caseless="yes"><clip pos="1" part="lemh"/><list n="n-keep-pl.ind"/></in>
           </and></not>
         </and></test>
         <let><clip pos="1" part="art"/><clip pos="3" part="art"/></let>
