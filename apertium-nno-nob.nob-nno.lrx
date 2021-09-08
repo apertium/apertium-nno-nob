@@ -2508,6 +2508,15 @@
     <match lemma="myndighet" tags="n.*"><select lemma="makt"/></match>
     <match lemma="til" tags="pr.*"/>
   </rule>
+  <rule weight="2.0">
+    <match lemma="den"/>
+    <or>
+      <match lemma="lovgivende"/>
+      <match lemma="utøvende"/>
+      <match lemma="dømme"/>
+    </or>
+    <match lemma="myndighet" tags="n.*"><select lemma="makt"/></match>
+  </rule>
   <!-- <rule weight="2.0" c="jf. påtalemyndigheten → påtalemakta, though styresmakt seems more common in cmp too"> -->
   <!--   <match tags="n.*.cmp"/> -->
   <!--   <match lemma="myndighet" tags="n.*">         <select lemma="makt"/> </match> -->
