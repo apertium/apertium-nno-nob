@@ -1656,6 +1656,24 @@
     </match>
   </rule>
 
+<rule><match lemma="gjennomtenke" tags="vblex.*"><select lemma="tenke# over"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="gjennomtenke" tags="vblex.pres.pasv.*">
+      <select lemma="gjennomtenke"/>
+    </match>
+  </rule>
+  <rule weight="2.0">
+      <match lemma="være" tags="vblex.*"/>
+    <repeat from="0" upto="1">
+      <or>
+        <match tags="adj.*"/>
+        <match tags="adv.*"/>
+      </or>
+    </repeat>
+    <match lemma="gjennomtenke" tags="vblex.pp.*">
+      <select lemma="gjennomtenke"/>
+    </match>
+  </rule>
 
 <!-- <rule><match lemma="sikkerhet" tags="n.*"><select lemma="sikkerheit"/></match></rule> -->
   <rule><match lemma="sikkerhet" tags="n.*"><select lemma="tryggleik"/></match></rule>
