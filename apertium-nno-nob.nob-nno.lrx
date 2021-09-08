@@ -1607,6 +1607,42 @@
     </match>
   </rule>
 
+  <rule><match lemma="fastlåse" tags="vblex.*"><select lemma="låse"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="fastlåse" tags="adj.pp.*">
+      <select lemma="fastlåse"/>
+    </match>
+  </rule>
+
+  <rule><match lemma="gjennomgå" tags="vblex.*"><select lemma="gå# gjennom"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="gjennomgå" tags="vblex.pres.pasv.*">
+      <select lemma="gjennomgå"/>
+    </match>
+  </rule>
+  <rule weight="2.0">
+    <or>
+      <match lemma="være" tags="vblex.*"/>
+      <match lemma="bli" tags="vblex.*"/>
+    </or>
+    <repeat from="0" upto="1">
+      <or>
+        <match tags="adj.*"/>
+        <match tags="adv.*"/>
+      </or>
+    </repeat>
+    <match lemma="gjennomgå" tags="vblex.pp.*">
+      <select lemma="gjennomgå"/>
+    </match>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="få" tags="vblex.*"/>
+    <match lemma="gjennomgå" tags="vblex.inf.*">
+      <select lemma="gjennomgå"/>
+    </match>
+  </rule>
+
+
 <!-- <rule><match lemma="sikkerhet" tags="n.*"><select lemma="sikkerheit"/></match></rule> -->
   <rule><match lemma="sikkerhet" tags="n.*"><select lemma="tryggleik"/></match></rule>
   <rule weight="2.0">
