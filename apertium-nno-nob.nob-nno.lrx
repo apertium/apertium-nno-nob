@@ -2954,6 +2954,12 @@
   </rule>
 
   <rule><match lemma="forskjell" tags="n.*"><select lemma="forskjell"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="gjøre"/>
+    <match lemma="forskjell" tags="n.*"><select lemma="skil"/></match>
+    <match lemma="på"/>
+  </rule>
+
 
   <rule><match lemma="fuge" tags="n.*"><select tags="n.m.*" lemma="fuge"/></match></rule>
   <rule weight="2.0">
