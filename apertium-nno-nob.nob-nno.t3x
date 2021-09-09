@@ -87,6 +87,11 @@
     <def-cat n="adj_adj_adj_n_n_n_n">
       <cat-item name="adj_adj_adj_n_n_n_n"/>
     </def-cat>
+    <def-cat n="n_adj_n">
+      <cat-item name="n_adj_n"/>
+    </def-cat>
+    <!-- NCMP+ ADJ N+ -->
+    <!-- others -->
     <def-cat n="det">
       <cat-item name="det"/>
       <cat-item name="detdd"/>
@@ -1120,6 +1125,22 @@
           <lu><clip pos="5" part="whole"/></lu><b/>
           <lu><clip pos="6" part="whole"/></lu><b/>
           <lu><clip pos="7" part="whole"/></lu>
+        </out>
+      </action>
+    </rule>
+
+    <!-- NCMP+ ADJ N+ -->
+    <rule comment="CHUNK: n_adj_n">
+      <pattern>
+        <pattern-item n="n_adj_n"/>
+      </pattern>
+      <action>
+        <out><lu><clip pos="1" part="whole"/></lu></out>
+        <call-macro n="clean_n.adj_defnes"><with-param pos="3"/><with-param pos="2"/><with-param pos="0"/></call-macro>
+        <call-macro n="out_adj"><with-param pos="2"/><with-param pos="0"/></call-macro>
+        <out>
+          <b pos="1"/><b pos="2"/>
+          <lu><clip pos="3" part="whole"/></lu>
         </out>
       </action>
     </rule>
