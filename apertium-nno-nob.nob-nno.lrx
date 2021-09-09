@@ -6396,7 +6396,11 @@
       <match lemma="kneskade"/>
       <match lemma="skuddsår"/>
     </or>
-  </rule> 
+  </rule>
+  <rule weight="9.0" c="don't translate into mwe in compounds">
+    <match tags="n.*.cmp"/>
+    <match lemma="forbinde"><select lemma="forbinde"/></match>
+  </rule>
   <!-- FORBINDE: END -->
 
 
