@@ -1743,6 +1743,18 @@
       <select lemma="medrekne"/>
     </match>
   </rule>
+
+  <rule><match lemma="innspille" tags="vblex.*"><select lemma="spele# inn"/></match></rule>
+  <rule weight="2.0">
+    <or>
+      <match lemma="være" tags="vblex.*"/>
+      <match lemma="bli" tags="vblex.*"/>
+    </or>
+    <match lemma="innspille" tags="adj.pp.*">
+      <select lemma="spele# inn"/>
+    </match>
+  </rule>
+
   
 <!-- <rule><match lemma="sikkerhet" tags="n.*"><select lemma="sikkerheit"/></match></rule> -->
   <rule><match lemma="sikkerhet" tags="n.*"><select lemma="tryggleik"/></match></rule>
