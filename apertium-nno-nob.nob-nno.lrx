@@ -5119,6 +5119,13 @@
     <match lemma="overhodet ikke" tags="adv.*"><select lemma="ikkje i det heile"/></match>
   </rule>
 
+  <rule><match lemma="sannsynlighet" tags="n.*"><select lemma="sannsyn"/></match></rule>
+  <rule weight="2.0">
+    <match tags="adj.*.comp.*.*.*"/>
+    <match lemma="sannsynlighet" tags="n.*"><select lemma="risiko"/></match>
+    <match lemma="for"/>
+  </rule>
+
   <rule><match lemma="beskytter" tags="n.*"><select lemma="vernar"/></match></rule>
   <rule weight="2.0">
     <or><match lemma="høy"/><match lemma="høye"/></or>
