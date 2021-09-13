@@ -1685,6 +1685,39 @@
       <select lemma="oppfriske"/>
     </match>
   </rule>
+
+  <rule><match lemma="hemmeligholde" tags="vblex.*"><select lemma="halde# hemmeleg"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="hemmeleghalde" tags="adj.pp.*">
+      <select lemma="hemmeleghalde"/>
+    </match>
+    <match tags="n.*"/>
+  </rule>
+  <rule weight="2.0">
+    <or>
+      <match lemma="være" tags="vblex.*"/>
+      <match lemma="bli" tags="vblex.*"/>
+    </or>
+    <match lemma="hemmeligholde" tags="adj.pp.*">
+      <select lemma="halde# hemmeleg"/>
+    </match>
+  </rule>
+
+  <rule><match lemma="innberette" tags="vblex.*"><select lemma="rapportere# inn"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="innberette" tags="vblex.pres.pasv.*">
+      <select lemma="innrapportere"/>
+    </match>
+  </rule>
+  <rule weight="2.0">
+    <or>
+      <match lemma="være" tags="vblex.*"/>
+      <match lemma="bli" tags="vblex.*"/>
+    </or>
+    <match lemma="innberette" tags="vblex.pp.*">
+      <select lemma="innrapportere"/>
+    </match>
+  </rule>
   
 <!-- <rule><match lemma="sikkerhet" tags="n.*"><select lemma="sikkerheit"/></match></rule> -->
   <rule><match lemma="sikkerhet" tags="n.*"><select lemma="tryggleik"/></match></rule>
