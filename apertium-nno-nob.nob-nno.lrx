@@ -1729,6 +1729,20 @@
       <select lemma="krevje# inn"/>
     </match>
   </rule>
+
+  <rule><match lemma="iberegne" tags="vblex.*"><select lemma="rekne# med"/></match></rule>
+  <rule weight="2.0">
+    <or>
+      <match lemma="være" tags="vblex.*"/>
+      <match lemma="bli" tags="vblex.*"/>
+    </or>
+    <repeat from="0" upto="1">
+      <match tags="adv.*"/>
+    </repeat>
+    <match lemma="iberegne" tags="vblex.pp.*">
+      <select lemma="medrekne"/>
+    </match>
+  </rule>
   
 <!-- <rule><match lemma="sikkerhet" tags="n.*"><select lemma="sikkerheit"/></match></rule> -->
   <rule><match lemma="sikkerhet" tags="n.*"><select lemma="tryggleik"/></match></rule>
