@@ -5105,7 +5105,15 @@
     <match tags="det.pos.*"/>
     <match lemma="lit"/>
   </rule>
+
   <rule><match lemma="sannsynlighetsberegning" tags="n.*"><select lemma="prognose"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="en"/>
+    <match lemma="sannsynlighetsberegning" tags="n.*"><select lemma="prognose"/></match>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="sannsynlighetsberegning" tags="n.*.sg.ind.*"><select lemma="sannsynsrekning"/></match>
+  </rule>
 
   <rule><match lemma="overhodet" tags="adv.*"><select lemma="i det heile"/></match></rule>
 
