@@ -5192,6 +5192,18 @@
     <match lemma="majoritet" tags="n.*"><select lemma="fleirtal"/></match>
   </rule>
 
+  <rule><match lemma="formodning" tags="n.*"><select lemma="hypotese"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="formodning" tags="n.*"><select lemma="oppfatning"/></match>
+    <match lemma="om"/>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="en"/>
+    <match tags="adj.*"/>
+    <match lemma="formodning" tags="n.*"><select lemma="mistanke"/></match>
+    <match lemma="om"/>
+  </rule>
+
 <!--ØYEBLIKK: START-->
   <rule><match lemma="øyeblikk" tags="n.*"><select lemma="augneblink"/></match></rule>
   <rule weight="2.0">
