@@ -1755,6 +1755,21 @@
     </match>
   </rule>
 
+  <rule><match lemma="oppfostre" tags="vblex.*"><select lemma="fostre# opp"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="oppfostre" tags="vblex.pres.pasv.*">
+      <select lemma="oppfostre"/>
+    </match>
+  </rule>
+  <rule weight="2.0">
+    <or>
+      <match lemma="være" tags="vblex.*"/>
+      <match lemma="bli" tags="vblex.*"/>
+    </or>
+    <match lemma="oppfostre" tags="vblex.pp.*">
+      <select lemma="oppfostre"/>
+    </match>
+  </rule>
   
 <!-- <rule><match lemma="sikkerhet" tags="n.*"><select lemma="sikkerheit"/></match></rule> -->
   <rule><match lemma="sikkerhet" tags="n.*"><select lemma="tryggleik"/></match></rule>
