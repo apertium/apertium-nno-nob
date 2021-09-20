@@ -1778,6 +1778,17 @@
     </match>
     <match tags="n.*"/>
   </rule>
+
+  <rule><match lemma="betryggende" tags="adj.*"><select lemma="trygg"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="være" tags="vblex.*"/>
+    <repeat from="0" upto="1">
+      <match tags="adv.*"/>
+    </repeat>
+    <match lemma="betryggende" tags="adj.*">
+      <select lemma="roande"/>
+    </match>
+  </rule>
   
 <!-- <rule><match lemma="sikkerhet" tags="n.*"><select lemma="sikkerheit"/></match></rule> -->
   <rule><match lemma="sikkerhet" tags="n.*"><select lemma="tryggleik"/></match></rule>
