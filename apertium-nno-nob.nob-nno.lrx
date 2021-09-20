@@ -1824,6 +1824,16 @@
       <match lemma="startlån" tags="n.*"/>
 	</or>
   </rule>
+  <rule weight="2.0" c="penger med garanti i">
+  	<or>
+      <match lemma="lån" tags="n.*"/>
+      <match lemma="låneopptak" tags="n.*"/>
+      <match lemma="penge" tags="n.*"/>
+	</or>
+  <match lemma="med"/>
+  <match lemma="sikkerhet" tags="n.*.sg.ind.*"><select lemma="garanti"/></match>
+	<match lemma="i"/>
+  </rule>
   <rule weight="2.0" c="garanti for finanslån">
     <match lemma="sikkerhet" tags="n.*.sg.ind.*"><select lemma="garanti"/></match>
 	<match lemma="for"/>
