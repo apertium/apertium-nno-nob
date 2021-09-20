@@ -1834,6 +1834,23 @@
   <match lemma="sikkerhet" tags="n.*.sg.ind.*"><select lemma="garanti"/></match>
 	<match lemma="i"/>
   </rule>
+  <rule weight="2.0" c="garanti i eigen bustad">
+    <match lemma="sikkerhet" tags="n.*.sg.ind.*"><select lemma="garanti"/></match>
+	  <match lemma="i"/>
+    <match lemma="egen"/>
+    <match lemma="bolig" tags="n.*"/>
+  </rule>
+  <rule weight="2.0" c="garanti i fast eiendom">
+    <match lemma="sikkerhet" tags="n.*.sg.ind.*"><select lemma="garanti"/></match>
+	  <match lemma="i"/>
+    <match lemma="fast"/>
+    <match lemma="eiendom" tags="n.*"/>
+  </rule>
+  <rule weight="2.0" c="garanti i aktivum">
+    <match lemma="sikkerhet" tags="n.*.sg.ind.*"><select lemma="garanti"/></match>
+	  <match lemma="i"/>
+    <match lemma="aktivum" tags="n.*"/>
+  </rule>
   <rule weight="2.0" c="garanti for finanslån">
     <match lemma="sikkerhet" tags="n.*.sg.ind.*"><select lemma="garanti"/></match>
 	<match lemma="for"/>
