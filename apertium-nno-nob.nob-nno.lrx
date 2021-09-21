@@ -509,6 +509,13 @@
   </rule>
 
   <rule> <match lemma="beherske" tags="vblex.*"> <select lemma="meistre"/> </match> </rule>
+  <rule weight="2.0">
+    <match lemma="beherske" tags="vblex.*">
+      <select lemma="beherske"/>
+    </match>
+    <seq n="ref-prn"/>
+  </rule>
+  
 <rule> <match lemma="bevare" tags="vblex.*"> <select lemma="verne"/> </match> </rule>
   <rule weight="2.0">
     <match lemma="bevare" tags="vblex.imp.*">
