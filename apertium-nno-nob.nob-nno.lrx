@@ -1786,6 +1786,38 @@
     <match tags="n.*"/>
   </rule>
 
+  <rule><match lemma="frambringe" tags="vblex.*"><select lemma="få# fram"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="frambringe" tags="vblex.pres.pasv.*">
+      <select lemma="bli# til" tags="vblex.pres.*"/>
+    </match>
+  </rule>
+  <rule weight="2.0">
+    <or>
+      <match lemma="være" tags="vblex.*"/>
+      <match lemma="bli" tags="vblex.*"/>
+    </or>
+    <match lemma="frambringe" tags="vblex.pp.*">
+      <select lemma="tillage"/>
+    </match>
+  </rule>
+
+  <rule><match lemma="frembringe" tags="vblex.*"><select lemma="få# fram"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="frembringe" tags="vblex.pres.pasv.*">
+      <select lemma="bli# til" tags="vblex.pres.*"/>
+    </match>
+  </rule>
+  <rule weight="2.0">
+    <or>
+      <match lemma="være" tags="vblex.*"/>
+      <match lemma="bli" tags="vblex.*"/>
+    </or>
+    <match lemma="frembringe" tags="vblex.pp.*">
+      <select lemma="tillage"/>
+    </match>
+  </rule>
+
   <rule><match lemma="besudle" tags="vblex.*"><select lemma="skitne# til"/></match></rule>
   <rule weight="2.0">
     <match lemma="besudle" tags="vblex.pres.pasv.*">
