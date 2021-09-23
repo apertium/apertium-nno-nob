@@ -3478,6 +3478,17 @@
         <modify-case><clip pos="3" side="tl" part="lem"/><lit v="AA"/></modify-case>
       </when></choose>
     </def-macro>
+    <def-macro n="set_caseFirstWordCmp5" npar="5">
+      <let><var n="chunkCase"/><var n="caseFirstWord"/></let>
+      <call-macro n="set_chunkCaseCmp"><with-param pos="1"/><with-param pos="5"/></call-macro>
+      <let><var n="caseFirstWord"/><var n="chunkCase"/></let>
+      <choose><when>
+        <test><equal><var n="upperMiddleParts"/><lit v="yes"/></equal></test>
+        <modify-case><clip pos="2" side="tl" part="lem"/><lit v="AA"/></modify-case>
+        <modify-case><clip pos="3" side="tl" part="lem"/><lit v="AA"/></modify-case>
+        <modify-case><clip pos="4" side="tl" part="lem"/><lit v="AA"/></modify-case>
+      </when></choose>
+    </def-macro>
 
     <def-macro n="set_caseSecondWord" npar="1">
       <let><var n="chunkCase"/><lit v="aa"/></let> <!-- ie. we're not the first word of sentence -->
@@ -5645,6 +5656,38 @@ no lemq-moving">
             <lu><clip pos="2" side="tl" part="whole"/></lu>
             <lu><clip pos="3" side="tl" part="whole"/></lu>
             <lu><clip pos="4" side="tl" part="whole"/></lu>
+          </chunk>
+        </out>
+      </action>
+    </rule>
+    <rule comment="NCMP NCMP NCMP NCMP ADJ">
+      <pattern>
+        <pattern-item n="ncmp"/>
+        <pattern-item n="ncmp"/>
+        <pattern-item n="ncmp"/>
+        <pattern-item n="ncmp"/>
+        <pattern-item n="adj"/>
+      </pattern>
+      <action>
+        <call-macro n="set_caseFirstWordCmp5">
+          <with-param pos="1"/>
+          <with-param pos="2"/>
+          <with-param pos="3"/>
+          <with-param pos="4"/>
+          <with-param pos="5"/>
+        </call-macro>
+        <let><var n="c_name"/><lit v="n_n_n_n_adj"/></let>
+        <call-macro n="set_gender1.adj"><with-param pos="5"/></call-macro>
+        <call-macro n="set_grau_aux1"><with-param pos="5"/></call-macro>
+        <out>
+          <chunk namefrom="c_name" case="caseFirstWord">
+            <tags><tag><clip pos="5" side="tl" part="tags"/></tag></tags>
+            <var n="grau_aux"/>
+            <lu><clip pos="1" side="tl" part="whole"/></lu>
+            <lu><clip pos="2" side="tl" part="whole"/></lu>
+            <lu><clip pos="3" side="tl" part="whole"/></lu>
+            <lu><clip pos="4" side="tl" part="whole"/></lu>
+            <lu><clip pos="5" side="tl" part="whole"/></lu>
           </chunk>
         </out>
       </action>
