@@ -1818,6 +1818,35 @@
     </match>
   </rule>
 
+  <rule><match lemma="forestå" tags="vblex.*"><select lemma="stå# for"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="forestå" tags="vblex.pres.pasv.*">
+      <select lemma="ta# hand om"/>
+    </match>
+  </rule>
+  <rule weight="2.0">
+    <or>
+      <match lemma="være" tags="vblex.*"/>
+      <match lemma="bli" tags="vblex.*"/>
+    </or>
+    <match lemma="forestå" tags="adj.pp.*">
+      <select lemma="ta# hand om"/>
+    </match>
+  </rule>
+
+  <rule><match lemma="framelske" tags="vblex.*"><select lemma="elske# fram"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="framelske" tags="vblex.pres.pasv.*">
+      <select lemma="framelske"/>
+    </match>
+  </rule>
+  <rule><match lemma="fremelske" tags="vblex.*"><select lemma="elske# fram"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="fremelske" tags="vblex.pres.pasv.*">
+      <select lemma="framelske"/>
+    </match>
+  </rule>
+
   <rule><match lemma="besudle" tags="vblex.*"><select lemma="skitne# til"/></match></rule>
   <rule weight="2.0">
     <match lemma="besudle" tags="vblex.pres.pasv.*">
