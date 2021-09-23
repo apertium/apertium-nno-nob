@@ -1812,6 +1812,20 @@
       <select lemma="roande"/>
     </match>
   </rule>
+
+  <rule><match lemma="hensette" tags="vblex.*"><select lemma="late# etter seg"/></match></rule>
+  <rule weight="2.0">
+    <or>
+      <match lemma="være" tags="vblex.*"/>
+      <match lemma="bli" tags="vblex.*"/>
+    </or>
+    <repeat from="0" upto="1">
+      <match tags="adv.*"/>
+    </repeat>
+    <match lemma="hensette" tags="vblex.pp.*">
+      <select lemma="etterlate"/>
+    </match>
+  </rule>
   
 <!-- <rule><match lemma="sikkerhet" tags="n.*"><select lemma="sikkerheit"/></match></rule> -->
   <rule><match lemma="sikkerhet" tags="n.*"><select lemma="tryggleik"/></match></rule>
