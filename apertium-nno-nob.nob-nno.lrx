@@ -9566,4 +9566,16 @@ preposisjonar gir ekstra utfordringar. -->
   <rule><match lemma="strømming" tags="n.*"><select lemma="strøyming"/></match></rule>
 
   <rule><match lemma="befriende" tags="adj.*"><select lemma="forløysande"/></match></rule>
+
+  <rule><match lemma="overlegge" tags="vblex.*"><select lemma="drøfte"/></match></rule>
+  <rule weight="2.0">
+    <or>
+      <match lemma="overlegge" tags="adj.*"><select lemma="overlegge"/></match>
+      <match lemma="overlegge" tags="vblex.pp.*"><select lemma="overlegge"/></match>
+    </or>
+    <or>
+      <match lemma="aggresjon"/>
+      <match lemma="handling"/>
+    </or>
+  </rule>
 </lrx>
