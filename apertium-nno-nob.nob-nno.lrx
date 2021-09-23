@@ -1826,6 +1826,38 @@
       <select lemma="etterlate"/>
     </match>
   </rule>
+
+  <rule><match lemma="trå" tags="vblex.*"><select lemma="trø"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="trå" tags="vblex.*">
+      <select lemma="tre"/>
+    </match>
+    <repeat from="0" upto="1">
+      <or>
+        <match tag="n.*"/>
+        <match tag="prn.*"/>
+      </or>
+    </repeat>
+    <match lemma="i"/>
+    <match lemma="kraft"/>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="trå" tags="vblex.*">
+      <select lemma="tre"/>
+    </match>
+    <repeat from="0" upto="1">
+      <or>
+        <match tag="n.*"/>
+        <match tag="prn.*"/>
+      </or>
+    </repeat>
+    <or>
+      <match lemma="ut av"/>
+      <match lemma="inn i"/>
+      <match lemma="fram"/>
+      <match lemma="frem"/>
+    </or>
+  </rule>
   
 <!-- <rule><match lemma="sikkerhet" tags="n.*"><select lemma="sikkerheit"/></match></rule> -->
   <rule><match lemma="sikkerhet" tags="n.*"><select lemma="tryggleik"/></match></rule>
