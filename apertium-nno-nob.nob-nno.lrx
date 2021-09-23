@@ -1847,6 +1847,38 @@
     </match>
   </rule>
 
+  <rule><match lemma="beskyte" tags="vblex.*"><select lemma="skyte# mot"/></match></rule>
+  <rule><match lemma="beskyte" tags="adj.*"><select lemma="skyte# mot"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="beskyte" tags="adj.pp.*">
+      <select lemma="påskyte"/>
+    </match>
+    <match tags="n.*"/>
+  </rule>
+
+  <rule><match lemma="besørge" tags="vblex.*"><select lemma="sørge# for"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="besørge" tags="vblex.pres.pasv.*">
+      <select lemma="ta# hand om"/>
+    </match>
+  </rule>
+  <rule weight="2.0">
+    <or>
+      <match lemma="være" tags="vblex.*"/>
+      <match lemma="bli" tags="vblex.*"/>
+    </or>
+    <match lemma="besørge" tags="adj.pp.*">
+      <select lemma="ta# hand om"/>
+    </match>
+  </rule>
+
+  <rule><match lemma="oversende" tags="vblex.*"><select lemma="sende# over"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="oversende" tags="vblex.pres.pasv.*">
+      <select lemma="oversende"/>
+    </match>
+  </rule>
+
   <rule><match lemma="besudle" tags="vblex.*"><select lemma="skitne# til"/></match></rule>
   <rule weight="2.0">
     <match lemma="besudle" tags="vblex.pres.pasv.*">
