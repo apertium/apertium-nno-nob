@@ -591,12 +591,12 @@
     <def-cat n="adj">
       <cat-item tags="adj.*"/>
     </def-cat>
-    <def-cat n="adjord">
+    <def-cat n="adjsup_emph_ord">
       <cat-item tags="adj.ord.*"/>
-    </def-cat>
-    <def-cat n="adjsup_emph">
       <cat-item tags="adj.*.sup.*"/>
       <cat-item tags="adj.sup.*"/>
+      <cat-item lemma="neste" tags="adj.*"/>
+      <cat-item lemma="sist" tags="adj.*"/>
       <cat-item lemma="kjær" tags="adj.*"/>
       <cat-item lemma="jævla" tags="adj.*"/>
       <cat-item lemma="forbaska" tags="adj.*"/>
@@ -4936,12 +4936,12 @@
       </action>
     </rule>
 
-    <rule comment="DETPOS ADJSUP_EMPH NIND: sin beste form → sin beste form
+    <rule comment="DETPOS ADJSUP_EMPH_ORD NIND: sin beste form → sin beste form
                                             min kjære undulat → min kjære undulat
                    Tell t2x to not use DETPOS NIND → NDEF DETPOS rule.">
       <pattern>
         <pattern-item n="detpos"/>
-        <pattern-item n="adjsup_emph"/>
+        <pattern-item n="adjsup_emph_ord"/>
         <pattern-item n="nind_indgen"/>
       </pattern>
       <action>
@@ -4989,11 +4989,11 @@
         </out>
       </action>
     </rule>
-    <rule comment="DETPOS ADJORD ADJ NIND: sin andre gode fangst → sin andre gode fangst
+    <rule comment="DETPOS ADJSUP_EMPH_ORD ADJ NIND: sin andre gode fangst → sin andre gode fangst
                    Tell t2x to not use DETPOS NIND → NDEF DETPOS rule.">
       <pattern>
         <pattern-item n="detpos"/>
-        <pattern-item n="adjord"/>
+        <pattern-item n="adjsup_emph_ord"/>
         <pattern-item n="adj"/>
         <pattern-item n="nind_indgen"/>
       </pattern>
