@@ -446,9 +446,6 @@
     </or>
   </rule>
 
-  <rule> <match lemma="fremlegge" tags="vblex.*"> <select lemma="framlegge"/> </match> </rule>
-  <rule> <match lemma="framlegge" tags="vblex.*"> <select lemma="framlegge"/> </match> </rule>
-
   <rule> <match lemma="anbefaling" tags="n.*"><select lemma="tilråding"/></match> </rule>
   <rule> <match lemma="anbefale" tags="vblex.*"> <select lemma="tilrå"/> </match> </rule>
 
@@ -1912,6 +1909,83 @@
     <match tags="n.*"/>
   </rule>
 
+  <rule><match lemma="fremprovosere" tags="vblex.*"> <select lemma="provosere# fram"/> </match> </rule>
+  <rule weight="2.0">
+    <or>
+      <match lemma="være" tags="vblex.*"/>
+      <match lemma="bli" tags="vblex.*"/>
+    </or>
+    <match lemma="fremprovosere" tags="*.pp.*">
+      <select lemma="framprovosere"/>
+    </match>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="fremprovosere" tags="adj.pp.*">
+      <select lemma="framprovosere"/>
+    </match>
+    <match tags="n.*"/>
+  </rule>
+
+  <rule><match lemma="framprovosere" tags="vblex.*"> <select lemma="provosere# fram"/> </match> </rule>
+  <rule weight="2.0">
+    <or>
+      <match lemma="være" tags="vblex.*"/>
+      <match lemma="bli" tags="vblex.*"/>
+    </or>
+    <match lemma="framprovosere" tags="*.pp.*">
+      <select lemma="framprovosere"/>
+    </match>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="framprovosere" tags="adj.pp.*">
+      <select lemma="framprovosere"/>
+    </match>
+    <match tags="n.*"/>
+  </rule>
+
+  <rule><match lemma="fremlegge" tags="vblex.*"> <select lemma="legge# fram"/> </match> </rule>
+  <rule weight="2.0">
+    <match lemma="fremlegge" tags="vblex.pres.pasv.*">
+      <select lemma="framlegge"/>
+    </match>
+  </rule>
+  <rule weight="2.0">
+    <or>
+      <match lemma="være" tags="vblex.*"/>
+      <match lemma="bli" tags="vblex.*"/>
+    </or>
+    <match lemma="fremlegge" tags="*.pp.*">
+      <select lemma="framlegge"/>
+    </match>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="fremlegge" tags="adj.pp.*">
+      <select lemma="framlegge"/>
+    </match>
+    <match tags="n.*"/>
+  </rule>
+
+  <rule><match lemma="framlegge" tags="vblex.*"> <select lemma="legge# fram"/> </match> </rule>
+  <rule weight="2.0">
+    <match lemma="framlegge" tags="vblex.pres.pasv.*">
+      <select lemma="framlegge"/>
+    </match>
+  </rule>
+  <rule weight="2.0">
+    <or>
+      <match lemma="være" tags="vblex.*"/>
+      <match lemma="bli" tags="vblex.*"/>
+    </or>
+    <match lemma="framlegge" tags="*.pp.*">
+      <select lemma="framlegge"/>
+    </match>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="framlegge" tags="adj.pp.*">
+      <select lemma="framlegge"/>
+    </match>
+    <match tags="n.*"/>
+  </rule>
 
   <rule><match lemma="avlese" tags="vblex.*"><select lemma="lese# av"/></match></rule>
   <rule weight="2.0">
