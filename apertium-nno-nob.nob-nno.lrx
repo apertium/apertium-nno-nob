@@ -1847,6 +1847,49 @@
     </match>
   </rule>
 
+  <rule><match lemma="påtvinge" tags="vblex.*"><select lemma="tvinge# på"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="påtvinge" tags="vblex.pres.pasv.*">
+      <select lemma="påtvinge"/>
+    </match>
+  </rule>
+  <rule weight="2.0">
+    <or>
+      <match lemma="være" tags="vblex.*"/>
+      <match lemma="bli" tags="vblex.*"/>
+    </or>
+    <match lemma="påtvinge" tags="vblex.pp.*">
+      <select lemma="påtvinge"/>
+    </match>
+  </rule>
+
+  <rule><match lemma="inneha" tags="vblex.*"><select lemma="ha"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="inneha" tags="vblex.pres.pasv.*">
+      <select lemma="halde"/>
+    </match>
+  </rule>
+  <rule weight="2.0">
+    <or>
+      <match lemma="være" tags="vblex.*"/>
+      <match lemma="bli" tags="vblex.*"/>
+    </or>
+    <match lemma="inneha" tags="vblex.pp.*">
+      <select lemma="halde"/>
+    </match>
+    <match lemma="av"/>
+  </rule>
+  <rule weight="2.0">
+    <or>
+      <match lemma="være" tags="vblex.*"/>
+      <match lemma="bli" tags="vblex.*"/>
+    </or>
+    <match lemma="inneha" tags="adj.pp.*">
+      <select lemma="halde"/>
+    </match>
+    <match lemma="av"/>
+  </rule>
+
   <rule><match lemma="beskyte" tags="vblex.*"><select lemma="skyte# mot"/></match></rule>
   <rule><match lemma="beskyte" tags="adj.*"><select lemma="skyte# mot"/></match></rule>
   <rule weight="2.0">
