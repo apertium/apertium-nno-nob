@@ -1285,7 +1285,7 @@
   </rule>
 
   <rule><match lemma="oppfange"><select lemma="fange# opp"/></match></rule>
-  <rule weith="2.0">
+  <rule weigth="2.0">
     <match lemma="oppfange" tags="adj.pp.*">
       <select lemma="oppfange"/>
     </match>
@@ -1293,7 +1293,7 @@
   </rule>
 
   <rule><match lemma="omdøpe"><select lemma="døype# om"/></match></rule>
-  <rule weith="2.0">
+  <rule weigth="2.0">
     <match lemma="omdøpe" tags="vblex.pres.pasv.*">
       <select lemma="omdøype"/>
     </match>
@@ -1304,10 +1304,61 @@
     </match>
   </rule>
 
+   <rule><match lemma="omgjøre" tags="vblex.*"><select lemma="gjere# om"/></match></rule>
+   <rule weigth="2.0">
+    <match lemma="omgjøre" tags="vblex.pres.pasv.*">
+      <select lemma="omgjere"/>
+    </match>
+  </rule>
+  <rule weight="2.0">
+    <or>
+      <match lemma="være" tags="vblex.*"/>
+      <match lemma="bli" tags="vblex.*"/>
+    </or>
+    <match lemma="omgjøre" tags="vblex.pp.*">
+      <select lemma="omgjere"/>
+    </match>
+  </rule>
+  <rule><match lemma="omgjøre" tags="adj.*"><select lemma="omgjere"/></match></rule>
+
+  <rule><match lemma="omdanne" tags="vblex.*"><select lemma="gjere# om"/></match></rule>
+   <rule weigth="2.0">
+    <match lemma="omdanne" tags="vblex.pres.pasv.*">
+      <select lemma="omdanne"/>
+    </match>
+  </rule>
+  <rule weight="2.0">
+    <or>
+      <match lemma="være" tags="vblex.*"/>
+      <match lemma="bli" tags="vblex.*"/>
+    </or>
+    <match lemma="omdanne" tags="vblex.pp.*">
+      <select lemma="omdanne"/>
+    </match>
+  </rule>
+  <rule><match lemma="omdanne" tags="adj.*"><select lemma="omdanne"/></match></rule>
+
   <rule><match lemma="overkjøre" tags="vblex.*"><select lemma="køyre# over"/></match></rule>
   <rule weight="2.0">
     <match lemma="overkjøre" tags="vblex.pres.pasv.*">
       <select lemma="overkøyre"/>
+    </match>
+  </rule>
+
+  <rule><match lemma="oppkalle" tags="vblex.*"><select lemma="kalle# opp"/></match></rule>
+  <rule><match lemma="oppkalle" tags="adj.*"><select lemma="oppkalle"/></match></rule>
+   <rule weigth="2.0">
+    <match lemma="oppkalle" tags="vblex.pres.pasv.*">
+      <select lemma="oppkalle"/>
+    </match>
+  </rule>
+  <rule weight="2.0">
+    <or>
+      <match lemma="være" tags="vblex.*"/>
+      <match lemma="bli" tags="vblex.*"/>
+    </or>
+    <match lemma="oppkalle" tags="vblex.pp.*">
+      <select lemma="oppkalle"/>
     </match>
   </rule>
 
@@ -1885,6 +1936,30 @@
       <select lemma="halde"/>
     </match>
     <match lemma="av"/>
+  </rule>
+
+  <rule><match lemma="inndele" tags="vblex.*"><select lemma="dele# inn"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="inndele" tags="vblex.pres.pasv.*">
+      <select lemma="inndele"/>
+    </match>
+  </rule>
+  <rule weight="2.0">
+    <or>
+      <match lemma="være" tags="vblex.*"/>
+      <match lemma="bli" tags="vblex.*"/>
+    </or>
+    <match lemma="inndele" tags="*.pp.*">
+      <select lemma="inndele"/>
+    </match>
+  </rule>
+
+  <rule><match lemma="innlevere" tags="vblex.*"><select lemma="levere# inn"/></match></rule>
+  <rule><match lemma="innlevere" tags="adj.*"><select lemma="innlevere"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="innlevere" tags="vblex.pres.pasv.*">
+      <select lemma="innlevere"/>
+    </match>
   </rule>
 
   <rule><match lemma="forevise" tags="vblex.*"><select lemma="vise# fram"/></match></rule>
@@ -4472,13 +4547,6 @@
 
   <!-- TODO: is betring ever right? -->
   <rule><match lemma="forbedring" tags="n.*"><select lemma="forbetring"/></match></rule>
-
-  <rule><match lemma="oppjustere" tags="adj.*"><select lemma="justere# opp"/></match></rule>
-  <rule><match lemma="oppjustere" tags="vblex.*"><select lemma="justere# opp"/></match></rule>
-  <rule weight="2.0">
-    <match tags="det.qnt.*"/>
-    <match lemma="oppjustere" tags="adj.*"><select lemma="oppjustere"/></match>
-  </rule>
 </rules>
   <rule><match lemma="slager" tags="n.*"><select lemma="slager"/></match></rule>
   <rule><match lemma="kløver" tags="n.*"><select lemma="kløver"/></match></rule>
@@ -7532,12 +7600,6 @@
 
   <rule><match lemma="utgi" tags="vblex.*"><select lemma="gje# ut"/></match></rule>
   <rule><match lemma="utgi" tags="adj.*"><select lemma="utgje"/></match></rule>
-
-  <rule><match lemma="innlevere" tags="vblex.*"><select lemma="levere# inn"/></match></rule>
-  <rule><match lemma="innlevere" tags="adj.*"><select lemma="innlevere"/></match></rule>
-
-  <rule><match lemma="omgjøre" tags="vblex.*"><select lemma="gjere# om"/></match></rule>
-  <rule><match lemma="omgjøre" tags="adj.*"><select lemma="omgjere"/></match></rule>
 
   <rule><match lemma="utestenge" tags="vblex.*"><select lemma="stenge# ute"/></match></rule>
   <rule><match lemma="utestenge" tags="adj.*"><select lemma="utstenge"/></match></rule>
