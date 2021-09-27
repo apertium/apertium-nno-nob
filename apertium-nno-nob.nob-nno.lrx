@@ -982,7 +982,7 @@
     </or>
   </rule>
 
-  <rule> <match lemma="foreligge" tags="vblex.*"> <select lemma="finnast"/> </match> </rule>
+  <rule> <match lemma="foreligge" tags="vblex.*"> <select lemma="ligge# føre"/> </match> </rule>
   <rule> <match lemma="foreligge" tags="adj.*"> <select lemma="gjelde"/> </match> </rule>
 
   <rule> <match lemma="forekomme" tags="vblex.*"> <select lemma="finnast"/> </match> </rule>
@@ -1889,6 +1889,29 @@
     </match>
     <match lemma="av"/>
   </rule>
+
+  <rule><match lemma="forevise" tags="vblex.*"><select lemma="vise# fram"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="forevise" tags="vblex.pres.pasv.*">
+      <select lemma="framvise"/>
+    </match>
+  </rule>
+  <rule weight="2.0">
+    <or>
+      <match lemma="være" tags="vblex.*"/>
+      <match lemma="bli" tags="vblex.*"/>
+    </or>
+    <match lemma="forevise" tags="*.pp.*">
+      <select lemma="presentere# for"/>
+    </match>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="forevise" tags="adj.pp.*">
+      <select lemma="framvise"/>
+    </match>
+    <match tags="n.*"/>
+  </rule>
+
 
   <rule><match lemma="avlese" tags="vblex.*"><select lemma="lese# av"/></match></rule>
   <rule weight="2.0">
