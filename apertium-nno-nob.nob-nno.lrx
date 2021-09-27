@@ -1345,6 +1345,22 @@
     </match>
   </rule>
 
+  <rule><match lemma="påbegynne" tags="vblex.*"><select lemma="gå# i gang med"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="påbegynne" tags="vblex.pres.pasv.*">
+      <select lemma="påbyrje"/>
+    </match>
+  </rule>
+  <rule weight="2.0">
+    <or>
+      <match lemma="være" tags="vblex.*"/>
+      <match lemma="bli" tags="vblex.*"/>
+    </or>
+    <match lemma="påbegynne" tags="vblex.pp.*">
+      <select lemma="påbyrje"/>
+    </match>
+  </rule>
+
   <rule><match lemma="oppkalle" tags="vblex.*"><select lemma="kalle# opp"/></match></rule>
   <rule><match lemma="oppkalle" tags="adj.*"><select lemma="oppkalle"/></match></rule>
    <rule weigth="2.0">
@@ -1360,6 +1376,57 @@
     <match lemma="oppkalle" tags="vblex.pp.*">
       <select lemma="oppkalle"/>
     </match>
+  </rule>
+
+  <rule><match lemma="tilbakebetale" tags="vblex.*"><select lemma="betale# tilbake"/></match></rule>
+  <rule weight="2.0">
+    <or>
+      <match lemma="være" tags="vblex.*"/>
+      <match lemma="bli" tags="vblex.*"/>
+    </or>
+    <match lemma="tilbakebetale" tags="adj.pp.*">
+      <select lemma="betale# tilbake"/>
+    </match>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="tilbakebetale" tags="adj.*">
+      <select lemma="tilbakebetale"/>
+    </match>
+     <match tags="n.*"/>
+  </rule>
+
+  <rule><match lemma="gjennomsøke" tags="vblex.*"><select lemma="søke# gjennom"/></match></rule>
+  <rule><match lemma="gjennomsøke" tags="adj.*"><select lemma="gjennomsøke"/></match></rule>
+  <rule weigth="2.0">
+    <match lemma="gjennomsøke" tags="vblex.pres.pasv.*">
+      <select lemma="gjennomsøke"/>
+    </match>
+  </rule>
+  <rule weight="2.0">
+    <or>
+      <match lemma="være" tags="vblex.*"/>
+      <match lemma="bli" tags="vblex.*"/>
+    </or>
+    <match lemma="gjennomsøke" tags="vblex.pp.*">
+      <select lemma="gjennomsøke"/>
+    </match>
+  </rule>
+
+  <rule><match lemma="utskrive" tags="vblex.*"><select lemma="skrive# ut"/></match></rule>
+  <rule weight="2.0">
+    <or>
+      <match lemma="være" tags="vblex.*"/>
+      <match lemma="bli" tags="vblex.*"/>
+    </or>
+    <match lemma="utskrive" tags="*.pp.*">
+      <select lemma="skrive# ut"/>
+    </match>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="utskrive" tags="adj.pp.*">
+      <select lemma="utskrive"/>
+    </match>
+    <match tags="n.*"/>
   </rule>
 
   <rule><match lemma="innkalle" tags="vblex.*"><select lemma="kalle# inn"/></match></rule>
@@ -4132,10 +4199,6 @@
   </rule>
   <rule><match lemma="sagnomsust" tags="adj.*"><select lemma="segnomspunnen"/></match></rule>
   <rule><match lemma="bark" tags="n.*"><select lemma="bork"/></match></rule>
-
-  <rule><match lemma="tilbakebetale" tags="vblex.*"><select lemma="betale# tilbake"/></match></rule>
-  <rule weight="2.0"><match lemma="tilbakebetale" tags="vblex.pp.*"><select lemma="tilbakebetale"/></match></rule>
-  <rule weight="2.0"><match lemma="tilbakebetale" tags="adj.*"><select lemma="tilbakebetale"/></match></rule>
 
   <rule><match lemma="hold" tags="n.*"><select lemma="hald"/></match></rule>
   <rule weight="2.0">
