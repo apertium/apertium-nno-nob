@@ -1890,6 +1890,27 @@
     <match lemma="av"/>
   </rule>
 
+  <rule><match lemma="avlese" tags="vblex.*"><select lemma="lese# av"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="avlese" tags="vblex.pres.pasv.*">
+      <select lemma="avlese"/>
+    </match>
+  </rule>
+
+  <rule><match lemma="opplese" tags="vblex.*"><select lemma="lese# opp"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="opplese" tags="vblex.pres.pasv.*">
+      <select lemma="opplese"/>
+    </match>
+  </rule>
+
+  <rule><match lemma="innlese" tags="vblex.*"><select lemma="lese# inn"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="innlese" tags="vblex.pres.pasv.*">
+      <select lemma="innlese"/>
+    </match>
+  </rule>
+
   <rule><match lemma="beskyte" tags="vblex.*"><select lemma="skyte# mot"/></match></rule>
   <rule><match lemma="beskyte" tags="adj.*"><select lemma="skyte# mot"/></match></rule>
   <rule weight="2.0">
