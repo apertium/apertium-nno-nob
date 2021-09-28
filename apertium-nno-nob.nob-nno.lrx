@@ -1412,6 +1412,57 @@
     </match>
   </rule>
 
+  <rule><match lemma="unnagjøre" tags="vblex.*"><select lemma="gjere# unna"/></match></rule>
+  <rule><match lemma="unnagjøre" tags="adj.*"><select lemma="unnagjøre"/></match></rule>
+  <rule weigth="2.0">
+    <match lemma="unnagjøre" tags="vblex.pres.pasv.*">
+      <select lemma="unnagjere"/>
+    </match>
+  </rule>
+  <rule weight="2.0">
+    <or>
+      <match lemma="være" tags="vblex.*"/>
+      <match lemma="bli" tags="vblex.*"/>
+    </or>
+    <match lemma="unnagjøre" tags="*.pp.*">
+      <select lemma="unnagjøre"/>
+    </match>
+  </rule>
+
+  <rule><match lemma="tilbakelegge" tags="vblex.*"><select lemma="legge# bak seg"/></match></rule>
+  <rule><match lemma="tilbakelegge" tags="adj.*"><select lemma="tilbakelegge"/></match></rule>
+  <rule weigth="2.0">
+    <match lemma="tilbakelegge" tags="vblex.pres.pasv.*">
+      <select lemma="tilbakelegge"/>
+    </match>
+  </rule>
+  <rule weight="2.0">
+    <or>
+      <match lemma="være" tags="vblex.*"/>
+      <match lemma="bli" tags="vblex.*"/>
+    </or>
+    <match lemma="tilbakelegge" tags="*.pp.*">
+      <select lemma="tilbakelegge"/>
+    </match>
+  </rule>
+
+  <rule><match lemma="tilbakekalle" tags="vblex.*"><select lemma="kalle# tilbake"/></match></rule>
+  <rule weight="2.0">
+    <or>
+      <match lemma="være" tags="vblex.*"/>
+      <match lemma="bli" tags="vblex.*"/>
+    </or>
+    <match lemma="tilbakekalle" tags="*.pp.*">
+      <select lemma="kalle# tilbake"/>
+    </match>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="tilbakekalle" tags="adj.pp.*">
+      <select lemma="tilbakekalle"/>
+    </match>
+    <match tags="n.*"/>
+  </rule>
+
   <rule><match lemma="utskrive" tags="vblex.*"><select lemma="skrive# ut"/></match></rule>
   <rule weight="2.0">
     <or>
