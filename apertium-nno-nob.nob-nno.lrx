@@ -1429,6 +1429,120 @@
     </match>
   </rule>
 
+  <rule><match lemma="utstille" tags="vblex.*"><select lemma="stille# ut"/></match></rule>
+  <rule><match lemma="utstille" tags="adj.*"><select lemma="utstille"/></match></rule>
+  <rule weigth="2.0">
+    <match lemma="utstille" tags="vblex.pres.pasv.*">
+      <select lemma="utstille"/>
+    </match>
+  </rule>
+  <rule weight="2.0">
+    <or>
+      <match lemma="være" tags="vblex.*"/>
+      <match lemma="bli" tags="vblex.*"/>
+    </or>
+    <match lemma="utstille" tags="*.pp.*">
+      <select lemma="utstille"/>
+    </match>
+  </rule>
+
+  <rule><match lemma="utpeke" tags="vblex.*"><select lemma="peike# ut"/></match></rule>
+  <rule><match lemma="utpeke" tags="adj.*"><select lemma="utpeike"/></match></rule>
+  <rule weigth="2.0">
+    <match lemma="utpeke" tags="vblex.pres.pasv.*">
+      <select lemma="utpeike"/>
+    </match>
+  </rule>
+  <rule weight="2.0">
+    <or>
+      <match lemma="være" tags="vblex.*"/>
+      <match lemma="bli" tags="vblex.*"/>
+    </or>
+    <match lemma="utpeke" tags="*.pp.*">
+      <select lemma="utpeike"/>
+    </match>
+  </rule>
+
+  <rule><match lemma="utlove" tags="vblex.*"><select lemma="love# ut"/></match></rule>
+  <rule><match lemma="utlove" tags="adj.*"><select lemma="utlove"/></match></rule>
+  <rule weigth="2.0">
+    <match lemma="utlove" tags="vblex.pres.pasv.*">
+      <select lemma="utlove"/>
+    </match>
+  </rule>
+  <rule weight="2.0">
+    <or>
+      <match lemma="være" tags="vblex.*"/>
+      <match lemma="bli" tags="vblex.*"/>
+    </or>
+    <match lemma="utlove" tags="*.pp.*">
+      <select lemma="utlove"/>
+    </match>
+  </rule>
+
+  <rule><match lemma="utkomme" tags="vblex.*"><select lemma="komme# ut"/></match></rule>
+  <rule><match lemma="utkomme" tags="adj.*"><select lemma="utkomme"/></match></rule>
+  <rule weight="2.0">
+    <or>
+      <match lemma="være" tags="vblex.*"/>
+      <match lemma="bli" tags="vblex.*"/>
+    </or>
+    <match lemma="utkomme" tags="*.pp.*">
+      <select lemma="utkomme"/>
+    </match>
+  </rule>
+
+  <rule><match lemma="utforme" tags="vblex.*"><select lemma="forme# ut"/></match></rule>
+  <rule><match lemma="utforme" tags="adj.*"><select lemma="utforme"/></match></rule>
+  <rule weigth="2.0">
+    <match lemma="utforme" tags="vblex.pres.pasv.*">
+      <select lemma="utforme"/>
+    </match>
+  </rule>
+  <rule weight="2.0">
+    <or>
+      <match lemma="være" tags="vblex.*"/>
+      <match lemma="bli" tags="vblex.*"/>
+    </or>
+    <match lemma="utforme" tags="*.pp.*">
+      <select lemma="utforme"/>
+    </match>
+  </rule>
+
+  <rule><match lemma="utestenge" tags="vblex.*"><select lemma="stenge# ute"/></match></rule>
+  <rule><match lemma="utestenge" tags="adj.*"><select lemma="utstenge"/></match></rule>
+  <rule weigth="2.0">
+    <match lemma="utestenge" tags="vblex.pres.pasv.*">
+      <select lemma="utestenge"/>
+    </match>
+  </rule>
+  <rule weight="2.0">
+    <or>
+      <match lemma="være" tags="vblex.*"/>
+      <match lemma="bli" tags="vblex.*"/>
+    </or>
+    <match lemma="utestenge" tags="*.pp.*">
+      <select lemma="utestenge"/>
+    </match>
+  </rule>
+
+  <rule><match lemma="utdele" tags="vblex.*"><select lemma="dele# ut"/></match></rule>
+  <rule><match lemma="utdele" tags="adj.*"><select lemma="utdele"/></match></rule>
+  <rule weigth="2.0">
+    <match lemma="utdele" tags="vblex.pres.pasv.*">
+      <select lemma="utdele"/>
+    </match>
+  </rule>
+  <rule weight="2.0">
+    <or>
+      <match lemma="være" tags="vblex.*"/>
+      <match lemma="bli" tags="vblex.*"/>
+    </or>
+    <match lemma="utdele" tags="*.pp.*">
+      <select lemma="utdele"/>
+    </match>
+  </rule>
+
   <rule><match lemma="tilbakelegge" tags="vblex.*"><select lemma="legge# bak seg"/></match></rule>
   <rule><match lemma="tilbakelegge" tags="adj.*"><select lemma="tilbakelegge"/></match></rule>
   <rule weigth="2.0">
@@ -7714,9 +7828,6 @@
 
   <rule><match lemma="utgi" tags="vblex.*"><select lemma="gje# ut"/></match></rule>
   <rule><match lemma="utgi" tags="adj.*"><select lemma="utgje"/></match></rule>
-
-  <rule><match lemma="utestenge" tags="vblex.*"><select lemma="stenge# ute"/></match></rule>
-  <rule><match lemma="utestenge" tags="adj.*"><select lemma="utstenge"/></match></rule>
 
   <rule><match lemma="hva fremtiden bringer" tags="adv.*"><select lemma="korleis det skal gå"/></match></rule>
   <rule weight="2.0">
