@@ -1644,8 +1644,14 @@
   </rule>
 
   <rule><match lemma="hensynta" tags="vblex.*"><select lemma="ta# omsyn til"/></match></rule>
+  <rule><match lemma="hensynta" tags="adj.*"><select lemma="vurdere"/></match></rule>
   <rule weight="2.0">
     <match lemma="hensynta" tags="vblex.pres.pasv.*">
+      <select lemma="ta# i betraktning"/>
+    </match>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="hensynta" tags="vblex.pp.*">
       <select lemma="ta# i betraktning"/>
     </match>
   </rule>
@@ -1944,6 +1950,23 @@
   <rule weight="2.0">
     <match lemma="gjennomlese" tags="vblex.pres.pasv.*">
       <select lemma="gjennomlese"/>
+    </match>
+  </rule>
+
+  <rule><match lemma="videreføre" tags="vblex.*"><select lemma="føre# vidare"/></match></rule>
+  <rule><match lemma="videreføre" tags="adj.*"><select lemma="vidareføre"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="videreføre" tags="vblex.pres.pasv.*">
+      <select lemma="vidareføre"/>
+    </match>
+  </rule>
+  <rule weight="2.0">
+    <or>
+      <match lemma="være" tags="vblex.*"/>
+      <match lemma="bli" tags="vblex.*"/>
+    </or>
+    <match lemma="videreføre" tags="vblex.pp.*">
+      <select lemma="vidareføre"/>
     </match>
   </rule>
 
