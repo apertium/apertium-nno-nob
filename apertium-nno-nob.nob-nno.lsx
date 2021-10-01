@@ -227,12 +227,10 @@
     </pardef>
 
     <pardef n="SN|np|prn" c="Nouns, names and pronouns.">
-      <e><par n="SN"/></e>
+      <e><par n="det+SN"/></e>
       <e><par n="prn"/></e>
       <e><i><w/><s n="np"/><t/><j/></i></e>
       <e><par n="adj"/></e><e><i><w/><s n="np"/><t/><j/></i></e>
-      <e><i><w/><s n="det"/><t/><j/></i><par n="ncmp*.n"/></e>
-      <e><i><w/><s n="det"/><t/><j/></i><par n="adj"/><par n="ncmp*.n"/></e>
     </pardef>
 
     <pardef n="SN|np|prn|empty" c="Includes empty!">
@@ -246,11 +244,10 @@
 
     <pardef n="SN|np|prn|det|empty" c="Includes empty!">
       <e></e>
-      <e><par n="SN"/></e>
+      <e><par n="det+SN"/></e>
       <e><par n="prn"/></e>
       <e><i><w/><s n="np"/><t/><j/></i></e>
       <e><par n="adj"/></e><e><i><w/><s n="np"/><t/><j/></i></e>
-      <e><i><w/><s n="det"/><t/><j/></i><par n="ncmp*.n"/></e>
       <e><i><w/><s n="det"/><t/><j/></i></e>
       <e><i><w/><s n="np"/><t/><j/></i><par n="ncmp*.n"/></e>
     </pardef>
@@ -2749,7 +2746,29 @@
       <i>ut<t/><j/></i>
     </e>
 
-   <!--Tiden løper/renner ut: END-->
+   <!--Tiden løper/renner ut: END--> 
+
+    <e lm="pron + ha kommet en lang vei -> pron + ha nådd langt" c="pron + ha nådd langt">
+      <par n="SN|np|prn"/>     
+      <i>ha<t/><j/></i>
+      <p><l>komme<s n="vblex"/><t/></l>  <r></r></p>  <par n="j:"/>
+      <p><l>en<s n="det"/><t/></l>  <r></r></p>  <par n="j:"/>
+      <p><l>lang<s n="adj"/><t/></l>  <r></r></p>  <par n="j:"/>
+      <p><l>vei<s n="n"/><t/></l>  <r></r></p>  <par n="j:"/> 
+      <p><l></l>                  <r>nå<s n="vblex"/><s n="pp"/><j/></r></p>
+      <p><l></l>                  <r>langt<s n="adv"/><j/></r></p>
+    </e> 
+
+    <e lm="ha + pron + kommet en lang vei -> ha + pron + nådd langt" c="ha + pron + nådd langt">
+      <i>ha<t/><j/></i>
+      <par n="SN|np|prn"/>     
+      <p><l>komme<s n="vblex"/><t/></l>  <r></r></p>  <par n="j:"/>
+      <p><l>en<s n="det"/><t/></l>  <r></r></p>  <par n="j:"/>
+      <p><l>lang<s n="adj"/><t/></l>  <r></r></p>  <par n="j:"/>
+      <p><l>vei<s n="n"/><t/></l>  <r></r></p>  <par n="j:"/> 
+      <p><l></l>                  <r>nå<s n="vblex"/><s n="pp"/><j/></r></p>
+      <p><l></l>                  <r>langt<s n="adv"/><j/></r></p>
+    </e> 
 
     <e lm="ha kommet en lang vei videre -> ha komme eit godt stykke vidare" c="ha komme eit godt stykke vidare">
       <i>ha<t/><j/></i>
