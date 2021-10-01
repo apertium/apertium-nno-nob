@@ -427,6 +427,23 @@
       <e><i>lår<t/><j/></i></e>
     </pardef>
 
+    <pardef n="tidssubjunksjon">
+      <e><i>da<s n="cnjsub"/></i> <par n="j"/></e>
+      <e><i>når<s n="cnjsub"/></i> <par n="j"/></e>
+      <e><i>før<s n="cnjsub"/></i> <par n="j"/></e>
+      <e><i>innen<s n="pr"/></i> <par n="j"/></e>
+      <e><i>idet<s n="cnjsub"/></i> <par n="j"/></e>
+      <e><i>mens<s n="cnjsub"/></i> <par n="j"/></e>
+      <e><i>ikke<s n="adv"/>siden<s n="adv"/></i></e>
+    </pardef>
+
+    <pardef n="vilkårssubjunksjon">
+      <e><i>hvis<s n="cnjsub"/></i> <par n="j"/></e>
+      <e><i>dersom<s n="cnjsub"/></i> <par n="j"/></e>
+      <e><i>om<s n="cnjsub"/></i> <par n="j"/></e>
+      <e><i>selv<b/>om<s n="cnjsub"/></i> <par n="j"/></e>
+    </pardef>
+
     <pardef n="ikkje-levande">
       <e><i>bok<t/><j/></i></e>
       <e><i>rapport<t/><j/></i></e>
@@ -2676,6 +2693,63 @@
       <i>sist<t/><j/></i>
       <i>tid<t/><j/></i>
     </e>
+   
+   <!--Tiden løper/renner ut: START-->
+    <e lm="tiden løper ut -> tiden er nesten ute" c="tida er nesten ute">
+      <i>tid<s n="n"/><s n="m"/><s n="sg"/><s n="def"/><t/><j/></i>
+      <p><l>løpe#<b/>ut<s n="vblex"/><s n="pres"/></l>   <r>være<s n="vblex"/><s n="pres"/></r></p> <i><t/><j/></i>
+      <p><l></l>                  <r>nesten<s n="adv"/><j/></r></p>
+      <p><l></l>                  <r>ute<s n="pr"/><j/></r></p>
+    </e>
+
+    <e lm="tiden løp ut -> tiden var ute" c="tida var ute">
+      <i>tid<s n="n"/><s n="m"/><s n="sg"/><s n="def"/><t/><j/></i>
+      <p><l>løpe#<b/>ut<s n="vblex"/><s n="pret"/></l>   <r>være<s n="vblex"/><s n="pret"/></r></p> <i><t/><j/></i>
+      <p><l></l>                  <r>ute<s n="pr"/><j/></r></p>
+    </e>
+
+    <e lm="tiden renner ut -> tiden er nesten ute" c="tida er nesten ute">
+      <i>tid<s n="n"/><s n="m"/><s n="sg"/><s n="def"/><t/><j/></i>
+      <p><l>renne<s n="vblex"/><s n="pres"/></l>   <r>være<s n="vblex"/><s n="pres"/></r></p> <i><t/><j/></i>
+      <p><l></l>                  <r>nesten<s n="adv"/><j/></r></p>
+      <p><l>ut<s n="pr"/></l>     <r>ute<s n="pr"/></r></p> <i><t/><j/></i>
+    </e>
+
+    <e lm="tiden rant ut -> tiden var ute" c="tida var ute">
+      <i>tid<s n="n"/><s n="m"/><s n="sg"/><s n="def"/><t/><j/></i>
+      <p><l>renne<s n="vblex"/><s n="pret"/></l>   <r>være<s n="vblex"/><s n="pret"/></r></p> <i><t/><j/></i>
+      <p><l>ut<s n="pr"/></l>     <r>ute<s n="pr"/></r></p> <i><t/><j/></i>
+    </e>
+
+    <e lm="subj + tiden løper ut -> subj + tiden er ute" c="subj + tida er ute">
+      <par n="tidssubjunksjon"/>
+      <i>tid<s n="n"/><s n="m"/><s n="sg"/><s n="def"/><t/><j/></i>
+      <p><l>løpe#<b/>ut<s n="vblex"/></l>   <r>være<s n="vblex"/></r></p> <i><t/><j/></i>
+      <p><l></l>                  <r>ute<s n="pr"/><j/></r></p>
+    </e>
+
+    <e lm="subj + tiden renner ut -> subj + tiden er ute" c="subj + tida er ute">
+      <par n="tidssubjunksjon"/>
+      <i>tid<s n="n"/><s n="m"/><s n="sg"/><s n="def"/><t/><j/></i>
+      <p><l>renne<s n="vblex"/></l>   <r>være<s n="vblex"/></r></p> <i><t/><j/></i>
+      <p><l>ut<s n="pr"/></l>     <r>ute<s n="pr"/></r></p> <i><t/><j/></i>
+    </e>
+
+    <e lm="subj + tiden løper ut -> subj + tiden er ute" c="vilkårssubj. + tida er ute">
+      <par n="vilkårssubjunksjon"/>
+      <i>tid<s n="n"/><s n="m"/><s n="sg"/><s n="def"/><t/><j/></i>
+      <p><l>løpe#<b/>ut<s n="vblex"/></l>   <r>gå<s n="vblex"/></r></p> <i><t/><j/></i>
+      <p><l></l>                  <r>ut<s n="pr"/><j/></r></p>
+    </e>
+
+    <e lm="subj + tiden renner ut -> subj + tiden er ute" c="vilkårssubj. + tida er ute">
+      <par n="vilkårssubjunksjon"/>
+      <i>tid<s n="n"/><s n="m"/><s n="sg"/><s n="def"/><t/><j/></i>
+      <p><l>renne<s n="vblex"/></l>   <r>gå<s n="vblex"/></r></p> <i><t/><j/></i>
+      <i>ut<t/><j/></i>
+    </e>
+
+   <!--Tiden løper/renner ut: END-->
 
     <e lm="i noen tid -> ei tid" c="ei tid">
       <p><l>i<s n="pr"/></l>  <r></r></p>  <par n="j:"/>
