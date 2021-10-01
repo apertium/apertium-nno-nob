@@ -157,6 +157,10 @@
       <e><i><w/><s n="prn"/><j/></i></e>
       <e><i><w/><s n="prn"/><t/><j/></i></e>
     </pardef>
+    <pardef n="np">
+      <e><i><w/><s n="np"/><j/></i></e>
+      <e><i><w/><s n="np"/><t/><j/></i></e>
+    </pardef>
 
     <pardef n="n.sg.ind" c="No final t/ – avoid cmp!">
       <e><i><w/><s n="n"/><t/><s n="sg"/><s n="ind"/><j/></i></e>
@@ -231,6 +235,16 @@
       <e><par n="prn"/></e>
       <e><i><w/><s n="np"/><t/><j/></i></e>
       <e><par n="adj"/></e><e><i><w/><s n="np"/><t/><j/></i></e>
+    </pardef>
+
+    <pardef n="np|prn" c="Names and pronouns.">
+      <e><par n="prn"/></e>
+      <e><i><w/><s n="np"/><t/><j/></i></e>
+      <e><par n="np"/><par n="np"/></e>
+      <e><par n="np"/><par n="np"/><par n="np"/></e>
+      <e><par n="adj"/><par n="np"/></e>
+      <e><par n="adj"/><par n="np"/><par n="np"/></e>
+      <e><par n="adj"/><par n="np"/><par n="np"/><par n="np"/></e>
     </pardef>
 
     <pardef n="SN|np|prn|empty" c="Includes empty!">
@@ -2748,14 +2762,33 @@
 
    <!--Tiden løper/renner ut: END--> 
 
+    <e lm="kan komme ein lang vei -> kan nå langt" c="kan nå langt">
+      <i>kunne<t/><j/></i>
+      <p><l>komme<s n="vblex"/></l>   <r>nå<s n="vblex"/></r></p> <i><t/><j/></i>
+      <p><l>en<s n="det"/><t/></l>  <r></r></p>  <par n="j:"/>
+      <p><l>lang<s n="adj"/><t/></l>  <r></r></p>  <par n="j:"/>
+      <p><l>vei<s n="n"/><t/></l>  <r></r></p>  <par n="j:"/> 
+      <p><l></l>                  <r>langt<s n="adv"/><j/></r></p>
+    </e> 
+
     <e lm="pron + ha kommet en lang vei -> pron + ha nådd langt" c="pron + ha nådd langt">
-      <par n="SN|np|prn"/>     
+      <par n="np|prn"/>     
       <i>ha<t/><j/></i>
       <p><l>komme<s n="vblex"/><t/></l>  <r></r></p>  <par n="j:"/>
       <p><l>en<s n="det"/><t/></l>  <r></r></p>  <par n="j:"/>
       <p><l>lang<s n="adj"/><t/></l>  <r></r></p>  <par n="j:"/>
       <p><l>vei<s n="n"/><t/></l>  <r></r></p>  <par n="j:"/> 
       <p><l></l>                  <r>nå<s n="vblex"/><s n="pp"/><j/></r></p>
+      <p><l></l>                  <r>langt<s n="adv"/><j/></r></p>
+    </e> 
+
+    <e lm="subst + ha kommet en lang vei -> subst + ha kommet langt" c="subst + ha kommet langt">
+      <par n="det+SN"/>     
+      <i>ha<t/><j/></i>
+      <i>komme<t/><j/></i>
+      <p><l>en<s n="det"/><t/></l>  <r></r></p>  <par n="j:"/>
+      <p><l>lang<s n="adj"/><t/></l>  <r></r></p>  <par n="j:"/>
+      <p><l>vei<s n="n"/><t/></l>  <r></r></p>  <par n="j:"/> 
       <p><l></l>                  <r>langt<s n="adv"/><j/></r></p>
     </e> 
 
