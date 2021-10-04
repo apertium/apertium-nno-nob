@@ -985,6 +985,14 @@
     <match lemma="av"/>
     <match lemma="lyst"/>
   </rule>
+  <rule weight="3.0" c="brenn i omnen">
+    <match lemma="brenne" tags="vblex.*"><select lemma="brenne"/></match>
+    <or>
+      <match lemma="i"/>
+      <match lemma="på"/>
+      <match lemma="etter"/>
+    </or>
+  </rule>
   <rule weight="2.0" c="brenne straffen">
     <match lemma="brenne" tags="vblex.*"><select lemma="brenne¹"/></match>
     <match tags="n.*.*.def.*"/>
@@ -995,7 +1003,7 @@
     <repeat from="0" upto="1">
       <match tags="cnjcoo.*"/>
     </repeat>
-    <match tags="n.*"/>
+    <match tags="n.*.*.ind.*"/>
   </rule>
 
   <rule> <match lemma="foreligge" tags="vblex.*"> <select lemma="ligge# føre"/> </match> </rule>
