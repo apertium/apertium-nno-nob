@@ -978,6 +978,11 @@
       <match tags="pr.*"/>
     </or>
   </rule>
+  <rule weight="2.5" c="brenn av lyst">
+    <match lemma="brenne" tags="vblex.*"><select lemma="brenne"/></match>
+    <match lemma="av"/>
+    <match lemma="lyst"/>
+  </rule>
 
   <rule> <match lemma="foreligge" tags="vblex.*"> <select lemma="ligge# føre"/> </match> </rule>
   <rule> <match lemma="foreligge" tags="adj.*"> <select lemma="gjelde"/> </match> </rule>
