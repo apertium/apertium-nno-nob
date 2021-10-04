@@ -935,12 +935,18 @@
   </rule>
   <rule weight="2.0" c="passiv: alltid transitiv">
     <match lemma="bli" tags="vblex.*"/>
+    <repeat from="0" upto="1">
+      <match tags="*"/>
+    </repeat>
     <match lemma="brenne" tags="vblex.pp.*">
       <select lemma="brenne¹"/>
     </match>
   </rule>
   <rule weight="2.0" c="passiv: alltid transitiv">
     <match lemma="bli" tags="vblex.*"/>
+    <repeat from="0" upto="1">
+      <match tags="*"/>
+    </repeat>
     <match lemma="brenne" tags="adj.pp.*">
       <select lemma="brenne¹"/>
     </match>
@@ -967,21 +973,29 @@
   <rule weight="2.0" c="brenne ned huset">
     <match lemma="brenne" tags="vblex.*"><select lemma="brenne¹"/></match>
     <match lemma="ned"/>
-    <or>
-      <match tags="n.*"/>
-    </or>
+    <match tags="n.*"/>
   </rule>
     <rule weight="2.0" c="brenne ned til grunnen">
     <match lemma="brenne" tags="vblex.*"><select lemma="brenne"/></match>
     <match lemma="ned"/>
-    <or>
-      <match tags="pr.*"/>
-    </or>
+    <match tags="pr.*"/>
   </rule>
-  <rule weight="2.5" c="brenn av lyst">
+  <rule weight="3.0" c="brenn av lyst">
     <match lemma="brenne" tags="vblex.*"><select lemma="brenne"/></match>
     <match lemma="av"/>
     <match lemma="lyst"/>
+  </rule>
+  <rule weight="2.0" c="brenne straffen">
+    <match lemma="brenne" tags="vblex.*"><select lemma="brenne¹"/></match>
+    <match tags="n.*.*.def.*"/>
+  </rule>
+  <rule weight="2.0" c="brent av litt maling, brent inn i både kropp og sjel">
+    <match lemma="brenne" tags="vblex.*"><select lemma="brenne¹"/></match>
+    <match tags="pr.*"/>
+    <repeat from="0" upto="1">
+      <match tags="cnjcoo.*"/>
+    </repeat>
+    <match tags="n.*"/>
   </rule>
 
   <rule> <match lemma="foreligge" tags="vblex.*"> <select lemma="ligge# føre"/> </match> </rule>
