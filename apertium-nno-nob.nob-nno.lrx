@@ -3027,6 +3027,13 @@
     <match lemma="bringe" tags=".*"><select lemma="hente"/></match>
     <match lemma="ut av" tags="pr.*"/>
   </rule>
+  <rule weight="2.5" c="hente (seieren) hjem">
+    <match lemma="bringe" tags=".*"><select lemma="hente"/></match>
+     <repeat from="0" upto="1">
+        <match tags="*"/>
+    </repeat>
+    <match lemma="hjem"/>
+  </rule>
   <rule weight="2.0" c="mange bringes fra legevakten → hente">
     <match lemma="bringe" tags="vblex.*.pasv.*"><select lemma="hente"/></match>
     <or>
