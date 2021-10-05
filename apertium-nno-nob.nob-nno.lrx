@@ -3008,6 +3008,11 @@
       <match lemma="over" tags="pr.*"/>
     </or>
   </rule>
+  <rule weight="4.0" c="sende ut på">
+    <match lemma="bringe" tags=".*"><select lemma="sende"/></match>
+    <match lemma="ut" tags="pr.*"/>
+    <match lemma="på" tags="pr.*"/>
+  </rule>
   <rule weight="2.0" c="mange blir brakt fra legevakten → hente">
     <or>
       <match lemma="bringe" tags="vblex.pp.*"><select lemma="hente"/></match>
