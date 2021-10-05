@@ -9125,6 +9125,19 @@
 	</repeat>
     <match lemma="risiko" tags="n.m.sg.ind.*"/>
   </rule>
+  <rule weight="2.2" c="(ikkje) ta nokon risiko">
+    <match lemma="løpe" tags="vblex.*"><select lemma="ta"/></match>
+    <repeat from="0" upto="1"><match tags="*"/></repeat>
+    <match lemma="noe"/>
+    <repeat from="0" upto="3">
+    <or>
+       <match tags="adj.*"/>
+       <match tags="adv.*"/>
+       <match tags="cnjcoo.*"/>
+    </or>
+  </repeat>
+    <match lemma="risiko" tags="n.m.sg.ind.*"/>
+  </rule>
 
 <!-- BEGIN: unnta -->
   <rule><match lemma="unnta" tags="vblex.*"><select lemma="gjere# unntak for" tags="vblex.*"/></match></rule>
