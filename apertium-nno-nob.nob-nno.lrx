@@ -3064,6 +3064,22 @@
     <repeat from="0" upto="15"><seq n="NOT_sent_lpar_lquot_rquot"/></repeat>
     <match lemma="til taushet" tags="adv.*"/>
   </rule>
+  <rule weight="2.5">
+    <match lemma="bringe" tags="vblex.*"><select lemma="få"/></match>
+     <repeat from="0" upto="1">
+        <match tags="*"/>
+    </repeat>
+    <match lemma="ut" tags="pr.*"/>
+  </rule>
+    <rule weight="2.0">
+    <match lemma="bli"/>
+    <match lemma="bringe" tags="vblex.pp.*"><select lemma="bringe"/></match>
+    <match lemma="ut" tags="pr.*"/>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="bringe" tags="vblex.*.pasv.*"><select lemma="bringe"/></match>
+    <match lemma="ut" tags="pr.*"/>
+  </rule>
   <rule weight="2.0" c="brakte håp → gav håp">
     <or>
       <match lemma="bringe" tags="vblex.*"><select lemma="gje"/></match>
