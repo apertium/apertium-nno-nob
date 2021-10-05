@@ -10150,6 +10150,9 @@ preposisjonar gir ekstra utfordringar. -->
   <rule><match lemma="forlovede" tags="n.*"><select lemma="trulova"/></match></rule>
   <rule weight="2.0">
     <match tags="det.pos.*"/>
+    <repeat from="0" upto="1">
+      <match tags="adj.*"/>
+    </repeat>
     <match lemma="forlovede" tags="n.*"><select lemma="kjærast"/></match>
   </rule>
 
