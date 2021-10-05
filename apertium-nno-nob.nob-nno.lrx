@@ -8531,30 +8531,30 @@
     <match lemma="kull" tags="n.*"><select lemma="kol"/></match>
   </rule>
   <rule weight="2.0" c="fyring med kol">
-  <or>
-    <match lemma="med"/>
-    <match lemma="av"/>
-    <match lemma="uten"/>
-    <match lemma="fra"/>
-  </or>
+    <or>
+      <match lemma="med"/>
+      <match lemma="av"/>
+      <match lemma="uten"/>
+      <match lemma="fra"/>
+    </or>
     <match lemma="kull" tags="n.nt.*.ind.*"><select lemma="kol"/></match>
   </rule>
   <rule weight="3.6" c="fossilt kol">
-  <or>
-    <match lemma="fossil" tags="adj.*"/>
-    <match lemma="kinesisk" tags="adj.*"/>
-    <match lemma="amerikansk" tags="adj.*"/>
-    <match lemma="dyr" tags="adj.*"/>
-    <match lemma="billig" tags="adj.*"/>
-    <match lemma="kostbar" tags="adj.*"/>
-    <match lemma="forurensende" tags="adj.*"/>
-    <match lemma="miljøvennlig" tags="adj.*"/>
-    <match lemma="klimafiendtlig" tags="adj.*"/>
-    <match lemma="klimaødeleggende" tags="adj.*"/>
-    <match lemma="mye" tags="adj.*"/>
-    <match lemma="ren" tags="adj.*"/>
-    <match lemma="rein" tags="adj.*"/>
-  </or>
+    <or>
+      <match lemma="fossil" tags="adj.*"/>
+      <match lemma="kinesisk" tags="adj.*"/>
+      <match lemma="amerikansk" tags="adj.*"/>
+      <match lemma="dyr" tags="adj.*"/>
+      <match lemma="billig" tags="adj.*"/>
+      <match lemma="kostbar" tags="adj.*"/>
+      <match lemma="forurensende" tags="adj.*"/>
+      <match lemma="miljøvennlig" tags="adj.*"/>
+      <match lemma="klimafiendtlig" tags="adj.*"/>
+      <match lemma="klimaødeleggende" tags="adj.*"/>
+      <match lemma="mye" tags="adj.*"/>
+      <match lemma="ren" tags="adj.*"/>
+      <match lemma="rein" tags="adj.*"/>
+    </or>
     <match lemma="kull" tags="n.nt.*"><select lemma="kol"/></match>
   </rule>
   <rule weight="1.8" c="kullet og kulla">
@@ -8562,54 +8562,56 @@
   </rule>
   <rule weight="2.0" c="kol og olje, kol eller oljesand">
     <match lemma="kull" tags="n.nt.*"><select lemma="kol"/></match>
-  <or>
-    <match lemma="og"/>
-    <match lemma="eller"/>
-  </or>
-  <or>
-    <match lemma="olje" tags="n.*"/>
-    <match lemma="gass" tags="n.*"/>
-    <match lemma="oljesand" tags="n.*"/>
-  </or>
+    <or>
+      <match lemma="og"/>
+      <match lemma="eller"/>
+    </or>
+    <or>
+      <match lemma="olje" tags="n.*"/>
+      <match lemma="gass" tags="n.*"/>
+      <match lemma="oljesand" tags="n.*"/>
+    </or>
   </rule>
   <rule weight="2.0" c="tre kull, det siste kullet">
-  <or>
-    <match tags="det.qnt.*"/>
-    <match tags="det.dem.*"/>
-    <match tags="adj.*"/>
-	<match lemma="år" tags="n.*.gen.*"/>
-	<match lemma="fjorår" tags="n.*.gen.*"/>
-	<match lemma="antall" tags="n.*"/>
-  </or>
+    <or>
+      <match tags="det.qnt.*"/>
+      <match tags="det.dem.*"/>
+      <match tags="adj.*"/>
+      <match lemma="år" tags="n.*.gen.*"/>
+      <match lemma="fjorår" tags="n.*.gen.*"/>
+      <match lemma="antall" tags="n.*"/>
+    </or>
     <match lemma="kull" tags="n.nt.*"><select lemma="kull"/></match>
   </rule>
   <rule weight="2.0" c="talet på kull ...">
-	<match lemma="tall" tags="n.*"/>
+    <match lemma="tall" tags="n.*"/>
     <match lemma="på"/>
     <match lemma="kull" tags="n.nt.*.ind.*"><select lemma="kull"/></match>
   </rule>
   <rule weight="2.0" c="kull nummer tre">
-    <match lemma="kull" tags="n.nt.sg.ind.*"><select lemma="kull"/></match>
-  <or>
-	<match lemma="nummer" tags="n.*"/>
-  </or>
+    <match lemma="kull" tags="n.nt.*.ind.*"><select lemma="kull"/></match>
+    <or>
+      <match lemma="nummer" tags="n.*"/>
+    </or>
   </rule>
-  <rule weight="2.0" c="jervekull, fjorårskull">
-    <match tags="n.*.cmp"/>
+  <rule weight="2.07" c="jervekull, fjorårskull, sølvrev-kull">
+    <or>
+      <match tags="n.*.cmp"/>
+      <match tags="n.*.cmp.guio"/>
+    </or>
     <match lemma="kull" tags="n.nt.*"><select lemma="kull"/></match>
   </rule>
-  <rule weight="2.0" c="2016-kullet, Politihøgskole-kullet, sølvrev-kull">
-  <or>
-    <match tags="det.qnt.*"/>
-    <match tags="n.*"/>
-    <match tags="np.*"/>
-  </or>
+  <rule weight="2.06" c="2016-kullet, Politihøgskole-kullet">
+    <or>
+      <match tags="det.qnt.*"/>
+      <match tags="n.*"/>
+      <match tags="np.*"/>
+    </or>
     <match tags="guio.*"/>
     <match lemma="kull" tags="n.nt.*"><select lemma="kull"/> </match>
   </rule>
-  <rule weight="2.0" c="kolfyring, kolforbrenning">
-    <match lemma="kull" tags="n.nt.*"><select lemma="kol"/></match>
-    <match tags="n.*.cmp"/>
+  <rule weight="2.09" c="kolfyring, kolforbrenning, kolpris-prognose">
+    <match lemma="kull" tags="n.nt.*.cmp"><select lemma="kol"/></match>
   </rule>
   <!-- END: kull -->
 
