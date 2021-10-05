@@ -3111,6 +3111,25 @@
     <match lemma="i"/>
     <match lemma="vanry"/>
   </rule>
+  <rule weight="2.0" c="ta opp av">
+    <match lemma="bringe" tags=".*"><select lemma="ta"/></match>
+    <match lemma="opp"/>
+    <or>
+      <match lemma="av" tags="pr.*"/>
+      <match tags="n.*"/>
+    </or>
+  </rule>
+  <rule weight="3.0" c="hente opp av vannet">
+    <match lemma="bringe" tags=".*"><select lemma="hente"/></match>
+    <match lemma="opp"/>
+    <match lemma="av"/>
+    <match lemma="vann"/>
+  </rule>
+  <rule weight="2.0" c="hente opp fra">
+    <match lemma="bringe" tags=".*"><select lemma="hente"/></match>
+    <match lemma="opp"/>
+    <match lemma="fra"/>
+  </rule>
   <!-- unngå «pågripe», som Språkrådet reknar som utanfor allmennspråket: -->
   <rule><match lemma="pågripe" tags="vblex.*"><select lemma="arrestere"/></match></rule>
   <rule><match lemma="pågripe" tags="adj.*"><select lemma="arrestere"/></match></rule>
