@@ -3130,6 +3130,17 @@
     <match lemma="opp"/>
     <match lemma="fra"/>
   </rule>
+  <rule weight="2.0" c="hente opp til overflata">
+    <match lemma="bringe" tags=".*"><select lemma="hente"/></match>
+    <match lemma="opp til"/>
+    <repeat from="0" upto="1">
+        <match lemma="vann"/>
+    </repeat>
+    <or>
+      <match lemma="overflate"/>
+      <match lemma="speil"/>
+    </or>
+  </rule>
   <rule weight="2.0" c="løfte opp til ein/ei/eit">
     <match lemma="bringe" tags=".*"><select lemma="løfte"/></match>
     <match lemma="opp til"/>
