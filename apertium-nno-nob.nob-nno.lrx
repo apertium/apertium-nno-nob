@@ -3130,6 +3130,11 @@
     <match lemma="opp"/>
     <match lemma="fra"/>
   </rule>
+  <rule weight="2.0" c="løfte opp til ein/ei/eit">
+    <match lemma="bringe" tags=".*"><select lemma="løfte"/></match>
+    <match lemma="opp til"/>
+    <match lemma="en"/>
+  </rule>
   <!-- unngå «pågripe», som Språkrådet reknar som utanfor allmennspråket: -->
   <rule><match lemma="pågripe" tags="vblex.*"><select lemma="arrestere"/></match></rule>
   <rule><match lemma="pågripe" tags="adj.*"><select lemma="arrestere"/></match></rule>
