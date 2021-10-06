@@ -2244,6 +2244,21 @@
     </match>
   </rule>
 
+  <rule><match lemma="istemme" tags="vblex.*"><select lemma="tilføye"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="istemme">
+      <select lemma="stemme# i"/>
+    </match>
+    <repeat from="0" upto="1">
+      <match tags="det.*"/>
+    </repeat>
+    <or>
+      <match lemma="lokk"/>
+      <match lemma="sang"/>
+      <match lemma="trall"/>
+    </or>
+  </rule>
+
   <rule><match lemma="forevise" tags="vblex.*"><select lemma="vise# fram"/></match></rule>
   <rule weight="2.0">
     <match lemma="forevise" tags="vblex.pres.pasv.*">
