@@ -7359,6 +7359,20 @@
     </or>
   </rule>
 
+  <rule><match lemma="enkelt"><select lemma="enkelt"/></match></rule>
+  <rule weight="2.0">
+    <or>
+      <match lemma="være"/>
+      <match lemma="bli"/>
+    </or>
+    <repeat from="0" upto="2">
+      <match tags="adv.*"/>
+    </repeat>
+    <match lemma="enkelt" tags="adj.*">
+      <select lemma="lett"/>
+    </match>
+  </rule>
+
   <rule> <!-- det var ikke utelukkende enkelt. -->
     <match lemma="ikke"/>
     <match lemma="utelukkende" tags="adv.*"><select lemma="berre"/></match>
