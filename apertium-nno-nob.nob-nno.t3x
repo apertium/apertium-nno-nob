@@ -123,6 +123,13 @@
       <attr-item tags="comp"/>
       <attr-item tags="sup"/>
     </def-attr>
+    <def-attr n="xgrau">
+      <attr-item tags="xpst"/>
+      <attr-item tags="xpsts"/>
+      <attr-item tags="xpsto"/>
+      <attr-item tags="xcomp"/>
+      <attr-item tags="xsup"/>
+    </def-attr>
     <def-attr n="gen">
       <attr-item tags="m"/>
       <attr-item tags="mf"/>
@@ -350,13 +357,35 @@
 
     <def-macro n="apply_casedrop_defdrop" npar="2"
                c="arg.1: noun, arg.2: chunk.">
-      <choose><when>
-        <test><equal><clip pos="2" part="a_casedrop"/><lit-tag v="casedrop"/></equal></test>
-        <let><clip pos="1" part="cas"/><lit v=""/></let>
-      </when></choose>
-      <choose><when>
+      <choose><when c="DEFDROP">
         <test><equal><clip pos="2" part="a_defdrop"/><lit-tag v="defdrop"/></equal></test>
         <let><clip pos="1" part="art"/><lit-tag v="ind"/></let>
+      </when></choose>
+      <choose><when c="CASEDROP">
+        <test><equal><clip pos="2" part="a_casedrop"/><lit-tag v="casedrop"/></equal></test>
+        <let><clip pos="1" part="cas"/><lit v=""/></let>
+        <choose c="genitive nominalisations of adj's">
+          <when>
+            <test><equal><clip pos="1" part="xgrau"/><lit-tag v="xpst"/></equal></test>
+            <let><clip pos="1" part="tags"/><lit-tag v="adj.pst.un.sp.def"/></let>
+          </when>
+          <when>
+            <test><equal><clip pos="1" part="xgrau"/><lit-tag v="xpsto"/></equal></test>
+            <let><clip pos="1" part="tags"/><lit-tag v="adj.ord.pst.un.sp.def"/></let>
+          </when>
+          <when>
+            <test><equal><clip pos="1" part="xgrau"/><lit-tag v="xpsts"/></equal></test>
+            <let><clip pos="1" part="tags"/><lit-tag v="adj.sint.pst.un.sp.def"/></let>
+          </when>
+          <when>
+            <test><equal><clip pos="1" part="xgrau"/><lit-tag v="xcomp"/></equal></test>
+            <let><clip pos="1" part="tags"/><lit-tag v="adj.sint.comp.un.sp"/></let>
+          </when>
+          <when>
+            <test><equal><clip pos="1" part="xgrau"/><lit-tag v="xsup"/></equal></test>
+            <let><clip pos="1" part="tags"/><lit-tag v="adj.sint.sup.un.sp.def"/></let>
+          </when>
+        </choose>
       </when></choose>
     </def-macro>
 
