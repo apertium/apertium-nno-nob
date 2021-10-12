@@ -5737,6 +5737,14 @@
   <match tags="det.qnt.*"/>
   <match lemma="beslektet" tags="adj.*"><select lemma="liknande"/></match>
 </rule>
+<rule  weight="2.0">
+  <or>
+  <match tags=".*.cmp.*"/> <!--compount with dash-->
+  <match tags=".*.cmp"/> <!--compount without a dash-->
+  </or>
+  <match lemma="beslektet" tags="adj.*"><select lemma="liknande"/></match>
+</rule>
+
 <!--BESLEKTET: END-->
 <!--GJENSIDIGHET: START-->
   <rule><match lemma="gjensidighet" tags="n.*"><select lemma="gjensidig påverknad"/></match></rule>
