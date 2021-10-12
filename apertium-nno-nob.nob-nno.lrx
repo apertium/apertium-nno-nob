@@ -2406,6 +2406,22 @@
   </rule>
 
   <rule><match lemma="oversende" tags="vblex.*"><select lemma="sende# over"/></match></rule>
+<rule><match lemma="gjenkjenne" tags="vblex.*"><select lemma="kjenne# igjen"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="gjenkjenne" tags="vblex.pres.pasv.*">
+      <select lemma="gjenkjenne"/>
+    </match>
+  </rule>
+
+<rule><match lemma="gjennomtrenge" tags="vblex.*"><select lemma="trenge# gjennom"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="gjennomtrenge" tags="vblex.pres.pasv.*">
+      <select lemma="gjennomtrenge"/>
+    </match>
+  </rule>
+
+
+  <rule><match lemma="framelske" tags="vblex.*"><select lemma="elske# fram"/></match></rule>
   <rule weight="2.0">
     <match lemma="oversende" tags="vblex.pres.pasv.*">
       <select lemma="oversende"/>
