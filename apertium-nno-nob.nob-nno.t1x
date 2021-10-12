@@ -1013,6 +1013,17 @@
       <list-item v="suverent"/>
       <list-item v="verkeleg"/>
     </def-list>
+    <def-list n="adj-nt-mf" c="Allow nt adj followed by m/f noun for these adv-like adjectives (tl/nno)
+                               For where an adverbial adj can modify a (typically adjective-derived) noun">
+      <!-- TODO: Need more examples of this phenomenon – should we find it based on noun instead?
+           - uønsket gravides [ansvar]
+           - høyt utdannedes [favoritt]
+           - alminnelig reisendes [utgifter]
+           vs those we don't want to chunk:
+           - [hvor] langt ansattes [taushetsplikt strekker seg]
+      -->
+      <list-item v="offentleg"/> <!-- offentleg ansatte -->
+    </def-list>
     <def-list n="non-adverbial-adjs" c="Allow changing gender for these from nt to m/f in pre-adjective position">
       <list-item v="framgangsrik"/> <!--Vi har et fortsatt fremgangsrikt norsk kapitalmarked → Vi har ein framleis framgangsrik norsk kapitalmarknad. -->
       <list-item v="moden"/>        <!--moden og velfungerande marknad -->
@@ -6439,6 +6450,7 @@ no lemq-moving">
               <equal><clip pos="2" side="tl" part="art"/><lit-tag v="def"/></equal>
             </and>
             <and>
+              <not><in><clip pos="1" side="tl" part="lemh"/><list n="adj-nt-mf"/></in></not>
               <equal><clip pos="1" side="sl" part="gen"/><lit-tag v="nt"/></equal>
               <not><equal><clip pos="2" side="sl" part="gen"/><lit-tag v="nt"/></equal></not>
             </and>
