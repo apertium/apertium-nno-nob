@@ -330,6 +330,12 @@
       <cat-item tags="cnjcoo"/>
       <cat-item tags="cnjcoo.*"/>
     </def-cat>
+    <def-cat n="cnjcoo_not_clb">
+      <cat-item tags="cnjcoo"/>
+      <cat-item tags="cnjcoo.aa"/>
+      <cat-item tags="cnjcoo.Aa"/>
+      <cat-item tags="cnjcoo.AA"/>
+    </def-cat>
     <def-cat n="lemq">
       <cat-item tags="vblex.lemq"/>
       <cat-item tags="vblex.lemq.*"/>
@@ -374,6 +380,10 @@
     <def-cat n="sent">
       <cat-item tags="sent.*"/>
       <cat-item tags="sent"/>
+    </def-cat>
+    <def-cat n="cm">
+      <cat-item tags="cm.*"/>
+      <cat-item tags="cm.*"/>
     </def-cat>
     <def-cat n="needdet_adj_n">
       <cat-item lemma="needdet_adj_n" tags="n.*"/>
@@ -2106,6 +2116,37 @@
           <b pos="2"/>
           <chunk><clip pos="3" part="whole"/></chunk>
         </out>
+      </action>
+    </rule>
+
+    <rule comment="PREP_GEN NGEN NIND CM NIND CNJCOO_NOT_CLB NIND: eldres interesser, rettigheter og behov → interessane, rettane og behova til eldre">
+      <pattern>
+        <pattern-item n="prep_gen"/>
+        <pattern-item n="ngen"/>
+        <pattern-item n="nind"/>
+        <pattern-item n="cm"/>
+        <pattern-item n="nind"/>
+        <pattern-item n="cnjcoo_not_clb"/>
+        <pattern-item n="nind"/>
+      </pattern>
+      <action>
+        <call-macro n="set_ana"><with-param pos="7"/></call-macro>
+        <call-macro n="switch_cases"><with-param pos="7"/><with-param pos="2"/></call-macro>
+
+        <call-macro n="out_det_when_adjlike"><with-param pos="3"/><with-param pos="2"/></call-macro>
+        <call-macro n="out_ndef"><with-param pos="3"/><with-param pos="2"/></call-macro>
+        <out><chunk><clip pos="4" part="whole"/></chunk></out> <!-- cm -->
+        <out><b/></out>
+        <call-macro n="out_ndef"><with-param pos="5"/><with-param pos="2"/></call-macro>
+        <out><b/></out>
+        <out><chunk><clip pos="6" part="whole"/></chunk></out> <!-- cnjcoo -->
+        <out><b/></out>                                        <!-- double <b/> since the one after the comma was empty -->
+        <out><b/></out>
+        <call-macro n="out_ndef"><with-param pos="7"/><with-param pos="2"/></call-macro>
+        <out><b/></out>
+        <call-macro n="out_bi-gen-prep"><with-param pos="1"/><with-param pos="7"/></call-macro>
+        <out><b/></out>
+        <out><chunk><clip pos="2" part="whole"/></chunk></out> <!-- ngen -->
       </action>
     </rule>
 
