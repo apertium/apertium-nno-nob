@@ -2168,6 +2168,7 @@
         <call-macro n="out_ndef"><with-param pos="3"/><with-param pos="2"/></call-macro>
         <out><b pos="1"/></out>
         <call-macro n="out_bi-gen-prep"><with-param pos="1"/><with-param pos="3"/></call-macro>
+        <let><clip pos="2" part="art"/><lit v=""/></let> <!-- don't let postchunk alter defnes of previously-genitive phrase (important for conjunctions of ind+def, e.g. barn og unge) -->
         <out><b pos="2"/><chunk><clip pos="2" part="whole"/></chunk></out>
       </action>
     </rule>
@@ -2195,6 +2196,7 @@
         <call-macro n="out_ndef"><with-param pos="5"/><with-param pos="3"/></call-macro>
         <out><b/></out>
         <call-macro n="out_bi-gen-prep"><with-param pos="1"/><with-param pos="5"/></call-macro>
+        <let><clip pos="2" part="art"/><lit v=""/></let> <!-- don't let postchunk alter defnes of previously-genitive phrase (important for conjunctions of ind+def, e.g. barn og unge) -->
         <out><b/><chunk><clip pos="2" part="whole"/></chunk></out>
       </action>
     </rule>
