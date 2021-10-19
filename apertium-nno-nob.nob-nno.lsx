@@ -524,6 +524,14 @@
       <e><par n="det+SN"/></e>
     </pardef>
 
+    <pardef n="å/at/obj|empty">
+      <e></e>
+      <e><i>at<s n="adv"/></i> <par n="d"/></e>
+      <e><i>at<s n="cnjsub"/></i> <par n="d"/></e>
+      <e><i>å<s n="part"/></i> <par n="d"/></e>
+      <e><par n="det+SN"/></e>
+    </pardef>
+
     <pardef n="sent-cm">
       <e><i><w/><s n="sent"/><d/></i></e>
       <e><i><w/><s n="sent"/><t/><d/></i></e>
@@ -5698,8 +5706,146 @@
   <!-- /ventes -->
 
 
+  <!-- forventes -->
 
-  
+  <!-- flytting -->
+  <e lm="forventes subjekt -> er subjekt forventet" c="er subjekt forventa">
+    <par n="ADVL"/>
+    <p><l>forvente<s n="vblex"/><s n="pres"/><s n="pasv"/></l> <r>være<s n="vblex"/><s n="pres"/></r></p>  <i><t/><d/></i>
+    <par n="SN|np|prn|det|SN+pr+SN"/>
+    <par n="ADV|empty"/>
+    <par n="pr+SN|"/>
+    <par n="pr+np|"/>
+    <p><l></l>    <r>forvente<s n="vblex"/><s n="pp"/><d/></r></p>
+    <par n="å/at/obj"/>
+  </e>
+
+  <e lm="forventes en god del søkere -> er en god del søkere forventet" c="er en god del søkjarar forventa">
+    <par n="ADVL"/>
+    <p><l>forvente<s n="vblex"/><s n="pres"/><s n="pasv"/></l> <r>være<s n="vblex"/><s n="pres"/></r></p>  <i><t/><d/></i>
+    <i>en<t/><d/></i>
+    <i>god<t/><d/></i>
+    <i>del<t/><d/></i>
+    <par n="SN"/>
+    <p><l></l>    <r>forvente<s n="vblex"/><s n="pp"/><d/></r></p>
+    <par n="å/at/obj|empty"/>
+    <par n="ADV|empty"/>
+  </e>
+
+  <e lm="forventes i overkant av 200 soldater -> er i overkant av 200 soldater forventet" c="er en god del søkjarar forventa">
+    <par n="ADVL"/>
+    <p><l>forvente<s n="vblex"/><s n="pres"/><s n="pasv"/></l> <r>være<s n="vblex"/><s n="pres"/></r></p>  <i><t/><d/></i>
+    <i>en<t/><d/></i>
+    <i>god<t/><d/></i>
+    <i>del<t/><d/></i>
+    <par n="SN"/>
+    <p><l></l>    <r>forvente<s n="vblex"/><s n="pp"/><d/></r></p>
+    <par n="å/at/obj|empty"/>
+    <par n="ADV|empty"/>
+  </e>
+  <!-- /flytting -->
+
+  <!-- ikke flytting -->
+  <e lm="det forventes -> det er forventet" c="det er forventa">
+    <i>den<t/><d/></i>
+    <p><l>forvente<s n="vblex"/><s n="pres"/><s n="pasv"/></l> <r>være<s n="vblex"/><s n="pres"/></r></p>  <i><t/><d/></i>
+    <par n="ADV|empty"/>
+    <par n="pr+SN|"/>
+    <p><l></l>    <r>forvente<s n="vblex"/><s n="pp"/><d/></r></p>
+    <par n="SN|np|prn|det|SN+pr+SN"/>
+  </e>
+
+  <e lm="det forventes rundt 100000 passasjerer -> de er ventet rundt 10000 passasjerer" c="dett er venta rundt 10000 passasjerar">
+    <i>den<t/><d/></i>
+    <p><l>forvente<s n="vblex"/><s n="pres"/><s n="pasv"/></l> <r>være<s n="vblex"/><s n="pres"/></r></p>  <i><t/><d/></i>
+    <p><l></l>    <r>forvente<s n="vblex"/><s n="pp"/><d/></r></p>
+    <par n="pr+SN|"/>
+    <par n="pr+np"/>
+    <par n="SN"/>
+  </e>
+  <!-- /ikke flytting -->
+
+  <!-- sett inn "det" -->
+  <e lm="forventes mindre snøsmelteflommer-> er det forventet mindre snøsmelteflommer" c="er det forventa mindre snøsmelteflaumer">
+    <par n="ADVL"/>
+    <p><l>forvente<s n="vblex"/><s n="pres"/><s n="pasv"/></l> <r>være<s n="vblex"/><s n="pres"/></r></p>  <i><t/><d/></i>
+    <p><l></l> <r>den<s n="det"/><s n="dem"/><s n="nt"/><s n="sg"/><s n="expl"/><d/></r></p>
+    <par n="ADV|empty"/>
+    <p><l></l> <r>forvente<s n="vblex"/><s n="pp"/><d/></r></p>
+    <par n="det+SN"/>
+    <par n="pr+SN|"/>
+  </e>
+
+  <e lm="forventes nok en rekord-> er det forventet nok en rekord" c="er det forventa nok ein rekord">
+    <par n="ADVL"/>
+    <p><l>forvente<s n="vblex"/><s n="pres"/><s n="pasv"/></l> <r>være<s n="vblex"/><s n="pres"/></r></p>  <i><t/><d/></i>
+    <p><l></l> <r>den<s n="det"/><s n="dem"/><s n="nt"/><s n="sg"/><s n="expl"/><d/></r></p>
+    <par n="ADV|empty"/>
+    <p><l></l> <r>forvente<s n="vblex"/><s n="pp"/><d/></r></p>
+    <par n="adv"/>
+    <par n="det+SN"/>
+  </e>
+
+  <e lm="forventes rundt 80 prosent av normal avling-> er det forventet rundt 80 prosent av normal avling" c="er det forventa rundt 80 prosent av normal avling">
+    <par n="ADVL"/>
+    <p><l>forvente<s n="vblex"/><s n="pres"/><s n="pasv"/></l> <r>være<s n="vblex"/><s n="pres"/></r></p>  <i><t/><d/></i>
+    <p><l></l> <r>den<s n="det"/><s n="dem"/><s n="nt"/><s n="sg"/><s n="expl"/><d/></r></p>
+    <par n="ADV|empty"/>
+    <p><l></l> <r>forvente<s n="vblex"/><s n="pp"/><d/></r></p>
+    <par n="pr+SN"/>
+    <par n="pr+SN"/>
+  </e>
+
+  <e lm="lokalt forventes og kreves det -> lokalt er det forventet og kreves det" c="lokalt er det forventa og krevst det">
+    <par n="ADVL"/>
+    <p><l>forvente<s n="vblex"/><s n="pres"/><s n="pasv"/></l> <r>være<s n="vblex"/><s n="pres"/></r></p>  <i><t/><d/></i>
+    <p><l></l> <r>den<s n="det"/><s n="dem"/><s n="nt"/><s n="sg"/><s n="expl"/><d/></r></p>
+    <par n="ADV|empty"/>
+    <p><l></l> <r>forvente<s n="vblex"/><s n="pp"/><d/></r></p>
+    <i>og<t/><d/></i>
+    <i><w/><s n="vblex"/><s n="pres"/><s n="pasv"/><t/><d/></i>
+    <i>den<t/><d/></i>
+  </e>
+  <!-- /sett inn "det" -->
+
+  <!-- override -->
+  <e lm="override where we have a logical subject for ventes" c="i alt er avlingene forventa å bli">
+    <par n="ADVL"/>
+    <p><l>forvente<s n="vblex"/><s n="pres"/><s n="pasv"/></l> <r>være<s n="vblex"/><s n="pres"/></r></p>  <i><t/><d/></i>
+    <par n="det+SN"/>
+    <p><l></l> <r>forvente<s n="vblex"/><s n="pp"/><d/></r></p>
+    <par n="å/at"/>
+  </e>
+
+  <e lm="override where we have a logical subject for ventes" c="i alt er årets avling forventa å bli">
+    <par n="ADVL"/>
+    <p><l>forvente<s n="vblex"/><s n="pres"/><s n="pasv"/></l> <r>være<s n="vblex"/><s n="pres"/></r></p>  <i><t/><d/></i>
+    <par n="SN"/>
+    <par n="SN"/>
+    <p><l></l> <r>forvente<s n="vblex"/><s n="pp"/><d/></r></p>
+    <par n="å/at"/>
+  </e>
+
+  <e lm="override where we have a logical subject for ventes" c="der det er forventa høgast auke">
+    <i>der<t/><d/></i>
+    <i>den<t/><d/></i>
+    <par n="ADVL|empty"/>
+    <par n="pr+SN|"/>
+    <p><l>forvente<s n="vblex"/><s n="pres"/><s n="pasv"/></l> <r>være<s n="vblex"/><s n="pres"/></r></p>  <i><t/><d/></i>
+    <p><l></l> <r>forvente<s n="vblex"/><s n="pp"/><d/></r></p>
+  </e>
+
+  <e lm="override where we have a logical subject for ventes" c="at det samtidig er forventa at konsumprisindeksen vil stige">
+    <i>at<t/><d/></i>
+    <i>den<t/><d/></i>
+    <par n="ADVL|empty"/>
+    <p><l>forvente<s n="vblex"/><s n="pres"/><s n="pasv"/></l> <r>være<s n="vblex"/><s n="pres"/></r></p>  <i><t/><d/></i>
+    <p><l></l> <r>forvente<s n="vblex"/><s n="pp"/><d/></r></p>
+  </e>
+  <!-- /override -->
+
+  <!-- /forventes -->
+
 
   </section>
 
