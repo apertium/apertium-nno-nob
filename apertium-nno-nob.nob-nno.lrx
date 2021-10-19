@@ -1923,14 +1923,6 @@
     </match>
   </rule>
 
-   <rule><match lemma="erindring" tags="n.*"><select lemma="minne"/></match></rule>
-  <rule weight="2.0">
-    <match lemma="sin" tags="det.pos.un.pl.*"/>
-    <match lemma="erindring" tags="n.*.pl.ind.*">
-      <select lemma="memoarar"/>
-    </match>
-  </rule>
-
   <rule><match lemma="fastlåse" tags="vblex.*"><select lemma="låse"/></match></rule>
   <rule weight="2.0">
     <match lemma="fastlåse" tags="adj.pp.*">
@@ -7371,6 +7363,13 @@
 
   <rule>
     <match lemma="ubetinget" tags="adv.*"><select lemma="heilt og fullt"/></match>
+  </rule>
+
+  <rule><match lemma="beplante"><select lemma="plante# til"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="beplante" tags="adj.*">
+      <select lemma="tilplante"/>
+    </match>
   </rule>
 
   <!-- UBETINGET: END -->
