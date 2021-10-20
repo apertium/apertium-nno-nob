@@ -3775,7 +3775,12 @@
       <match lemma="av"/>
     </or>
   </rule>
+  <rule weight="2.0">
+    <match lemma="antydning" tags="n.*.*.def.*"> <select lemma="påstand"/> </match>
+    <match lemma="om"/>
+  </rule>
   <!--ANTYYDNING: END-->
+
   <rule><match lemma="hvilken" tags="det.itg.*"><select lemma="kva"/></match></rule>
   <rule weight="2.0" c="hvilken av + (adj) + subst → kva for ein av  + (adj) + subst">
     <match lemma="hvilken" tags="det.itg.*"><select lemma="kva for"/></match>
