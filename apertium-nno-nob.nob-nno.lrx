@@ -3795,6 +3795,14 @@
     <match lemma="antydning" tags="n.*.*.ind.*"> <select lemma="teikn"/> </match>
     <match lemma="til"/>
   </rule>
+  <rule weight="2.0">
+    <match lemma="være"/>
+    <repeat from="0" upto="1">
+      <match lemma="den"/>
+    </repeat>
+    <match lemma="antydning" tags="n.*.*.ind.*"> <select lemma="tilløp"/> </match>
+    <match lemma="til"/>
+  </rule>
   <!--ANTYYDNING: END-->
 
   <rule><match lemma="hvilken" tags="det.itg.*"><select lemma="kva"/></match></rule>
