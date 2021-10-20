@@ -4281,6 +4281,13 @@
   <!-- sleppe¹ is transitive: START-->
   <rule><match lemma="slippe" tags="vblex.*"><select lemma="sleppe¹"/></match></rule>
   <rule><match lemma="slippe" tags="adj.*"><select lemma="sleppe¹"/></match></rule>
+  <rule weight="2.0" c="slippe/sleppe: passiv">
+      <match lemma="bli"/>
+    <or>
+      <match lemma="slippe" tags="vblex.*"><select lemma="sleppe¹"/></match>
+      <match lemma="sleppe" tags="vblex.*"><select lemma="sleppe¹"/></match>
+    </or>
+  </rule>
   <rule weight="2.0">
     <match lemma="slippe" tags="vblex.*"><select lemma="sleppe"/></match>
     <or>
@@ -4292,6 +4299,8 @@
       <match lemma="forbi"/>
       <match lemma="av"/>
       <match lemma="fra"/>
+      <match lemma="ut i"/>
+      <match lemma="ut"/>
     </or>
   </rule>
   <rule weight="2.0">
@@ -4312,6 +4321,7 @@
       <match tags="sent.clb.*"/>
     </or>
   </rule>
+  <!--sleppe: start-->
   <rule><match lemma="sleppe" tags="vblex.*"><select lemma="sleppe¹"/></match></rule>
   <rule><match lemma="sleppe" tags="adj.*"><select lemma="sleppe¹"/></match></rule>
   <rule weight="2.0">
@@ -4325,6 +4335,8 @@
       <match lemma="forbi"/>
       <match lemma="av"/>
       <match lemma="fra"/>
+      <match lemma="ut i"/>
+      <match lemma="ut"/>
     </or>
   </rule>
   <rule weight="2.0">
@@ -4345,7 +4357,8 @@
       <match tags="sent.clb.*"/>
     </or>
   </rule>
-    <!-- sleppe¹ is transitive: END -->
+  <!--sleppe: end-->
+  <!-- sleppe¹ is transitive: END -->
   <rule><match lemma="fraråde" tags="vblex.*"><select lemma="avrå"/></match></rule>
   <rule weight="3.0">
     <match lemma="fraråde" tags="vblex.*"><select lemma="åtvare# mot"/></match>
