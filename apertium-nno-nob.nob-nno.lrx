@@ -3803,6 +3803,14 @@
     <match lemma="antydning" tags="n.*.*.ind.*"> <select lemma="tilløp"/> </match>
     <match lemma="til"/>
   </rule>
+  <rule>
+    <match tags="vblex.*"/>
+    <repeat from="0" upto="1">
+      <match tags="*"/>
+    </repeat>
+    <match lemma="antydning" tags="n.*.*.ind.*"> <select lemma="tilløp"/> </match>
+    <match lemma="til"/>
+  </rule>
   <!--ANTYYDNING: END-->
 
   <rule><match lemma="hvilken" tags="det.itg.*"><select lemma="kva"/></match></rule>
