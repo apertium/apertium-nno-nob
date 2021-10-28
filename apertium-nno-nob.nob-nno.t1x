@@ -1871,6 +1871,7 @@
 </def-list>
 
 <def-list n="bi-gen-for">
+	<list-item v="kamp_kvinne"/>
 	<list-item v="agent_film"/>
 	<list-item v="anslag_år"/>
 	<list-item v="ansvar_samfunn"/>
@@ -2824,10 +2825,6 @@
 <!-- END dev/genitive-prepositions -->
 
 
-    <def-list n="ind-genobj" c="kvinnenes VM-kamp→VM-kampen for kvinner, remove definiteness for these genitive-objects">
-      <list-item v="kamp"/>
-      <list-item v="sprint"/>
-    </def-list>
     <def-list n="ind-gen-i" c="høstens kamp→kampen i haust, remove definiteness for these genitives">
       <list-item v="haust"/>
       <list-item v="vår"/>
@@ -2916,6 +2913,17 @@
       <list-item v="UEFA"/>    <!-- UEFAs forslag TODO (men ikkje UEFAs leder, må sjå på begge ledd …) -->
     </def-list>
 
+
+
+    <def-list n="bi-indgen-owned" c="kvinnenes VM-kamp→VM-kampen for kvinner, remove defnes of genitive if owned is in this list and owner is in bi-indgen-owner">
+      <list-item v="kamp"/>
+      <list-item v="sprint"/>
+      <list-item v="renn"/>
+    </def-list>
+    <def-list n="bi-indgen-owner" c="kvinnenes VM-kamp→VM-kampen for kvinner, remove defnes genitive if owned is in bi-indgen-owned and owner is in this list">
+      <list-item v="kvinne"/>
+      <list-item v="mann"/>
+    </def-list>
 
 
     <def-list n="det_indef">
@@ -3263,7 +3271,10 @@
                   Also sets genind
                   See also out_gen-prep which outputs a preposition chunk (which may be overridden by t2x using the chunk tag set by this macro)">
       <choose><when>
-        <test><in caseless="yes"><clip pos="1" side="tl" part="lemh"/><list n="ind-genobj"/></in></test>
+        <test><and>
+          <in caseless="yes"><var n="prevlem"/><list n="bi-indgen-owner"/></in>                    <!-- kvinnenes-->
+          <in caseless="yes"><clip pos="1" side="tl" part="lemh"/><list n="bi-indgen-owned"/></in> <!-- kamp -->
+        </and></test>
         <append n="ntags"><lit-tag v="gendefdrop"/></append>
       </when></choose>
       <!-- TODO: More general handling of owned keepgenx: -->
