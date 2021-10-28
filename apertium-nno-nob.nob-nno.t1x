@@ -899,6 +899,7 @@
     </def-attr>
     <def-attr n="a_defdrop" c="Mark that we'd like to change defnes to ind in t3x">
       <attr-item tags="defdrop"/>
+      <attr-item tags="gendefdrop"/> <!-- the object would like to drop the genitive's defnes -->
     </def-attr>
     <def-attr n="art">
       <attr-item tags="def"/>
@@ -2823,7 +2824,11 @@
 <!-- END dev/genitive-prepositions -->
 
 
-    <def-list n="ind-gen-i" c="høstens kamp→kampen i haust, remove definiteness for these">
+    <def-list n="ind-genobj" c="kvinnenes VM-kamp→VM-kampen for kvinner, remove definiteness for these genitive-objects">
+      <list-item v="kamp"/>
+      <list-item v="sprint"/>
+    </def-list>
+    <def-list n="ind-gen-i" c="høstens kamp→kampen i haust, remove definiteness for these genitives">
       <list-item v="haust"/>
       <list-item v="vår"/>
       <list-item v="sommar"/>
@@ -3255,7 +3260,12 @@
 
     <def-macro n="bigram_genprep" npar="1"
                c="arg.1: possibly owned noun. Helper for stash_case_in_ntags0
+                  Also sets genind
                   See also out_gen-prep which outputs a preposition chunk (which may be overridden by t2x using the chunk tag set by this macro)">
+      <choose><when>
+        <test><in caseless="yes"><clip pos="1" side="tl" part="lemh"/><list n="ind-genobj"/></in></test>
+        <append n="ntags"><lit-tag v="gendefdrop"/></append>
+      </when></choose>
       <!-- TODO: More general handling of owned keepgenx: -->
       <choose><when>
         <test><in caseless="yes"><clip pos="1" side="tl" part="lemh"/><list n="keepgenx"/></in></test>
