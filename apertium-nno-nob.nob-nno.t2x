@@ -433,6 +433,7 @@
     </def-attr>
     <def-attr n="a_defdrop" c="Mark that we'd like to change defnes to ind in t3x">
       <attr-item tags="defdrop"/>
+      <attr-item tags="gendefdrop"/> <!-- the object would like to drop the genitive's defnes -->
     </def-attr>
     <def-attr n="a_keepgenx" c="Mark that we'd like to keep gen-case of possessor (throw away prep)">
       <attr-item tags="keepgenx"/>
@@ -803,6 +804,16 @@
         <var n="number_no_sp"/>
         <lit v="$}"/>
       </chunk></out>
+    </def-macro>
+
+    <def-macro n="apply_gendefdrop" npar="2"
+               c="arg.1: owner/ex-genitive noun, arg.2: owned noun
+                  Turn gendefdrop on owned noun into defdrop on genitive noun">
+      <choose><when>
+        <test><equal><clip pos="2" part="a_defdrop"/><lit-tag v="gendefdrop"/></equal></test>
+        <let><clip pos="1" part="tags"/><concat><clip pos="1" part="tags"/><lit-tag v="defdrop"/></concat></let>
+        <let><clip pos="2" part="a_defdrop"/><lit v=""/></let>
+      </when></choose>
     </def-macro>
 
     <def-macro n="out_bi-gen-prep" npar="2"
@@ -2097,6 +2108,8 @@
       <action>
         <call-macro n="set_ana"><with-param pos="3"/></call-macro>
         <call-macro n="switch_cases"><with-param pos="3"/><with-param pos="2"/></call-macro>
+        <call-macro n="apply_gendefdrop"><with-param pos="2"/><with-param pos="3"/></call-macro>
+
 
         <call-macro n="out_det_when_adjlike"><with-param pos="3"/><with-param pos="2"/></call-macro>
         <call-macro n="out_ndef"><with-param pos="3"/><with-param pos="2"/></call-macro>
@@ -2119,6 +2132,8 @@
       <action>
         <call-macro n="set_ana"><with-param pos="5"/></call-macro>
         <call-macro n="switch_cases"><with-param pos="3"/><with-param pos="2"/></call-macro>
+        <call-macro n="apply_gendefdrop"><with-param pos="2"/><with-param pos="5"/></call-macro>
+
         <call-macro n="out_det_when_adjlike"><with-param pos="3"/><with-param pos="2"/></call-macro>
         <out>
           <chunk><clip pos="3" part="whole"/></chunk><b/>
@@ -2364,18 +2379,19 @@
       <action>
         <call-macro n="set_ana"><with-param pos="5"/></call-macro>
         <call-macro n="switch_cases"><with-param pos="5"/><with-param pos="2"/></call-macro>
+        <call-macro n="apply_gendefdrop"><with-param pos="2"/><with-param pos="5"/></call-macro>
 
         <call-macro n="out_det_when_adjlike"><with-param pos="5"/><with-param pos="1"/></call-macro>
         <call-macro n="out_ndef"><with-param pos="5"/><with-param pos="2"/></call-macro>
 
-        <out><b pos="1"/></out>
+        <out><b/></out>
         <call-macro n="out_bi-gen-prep"><with-param pos="3"/><with-param pos="5"/></call-macro> <!-- 5=_snuten_ til katten -->
-        <out><b pos="2"/></out>
+        <out><b/></out>
         <call-macro n="out_det_when_adjlike"><with-param pos="4"/><with-param pos="4"/></call-macro>
         <call-macro n="out_ndef"><with-param pos="4"/><with-param pos="4"/></call-macro>
-        <out><b pos="3"/></out>
+        <out><b/></out>
         <call-macro n="out_bi-gen-prep"><with-param pos="1"/><with-param pos="4"/></call-macro> <!-- 4=_katten_ på kjøkkenet -->
-        <out><b pos="4"/></out>
+        <out><b/></out>
         <call-macro n="out_det_when_adjlike"><with-param pos="2"/><with-param pos="2"/></call-macro>
         <out><chunk><clip pos="2" part="whole"/></chunk></out>
       </action>
@@ -2391,6 +2407,7 @@
       <action>
         <call-macro n="set_ana"><with-param pos="4"/></call-macro>
         <call-macro n="switch_cases"><with-param pos="4"/><with-param pos="1"/></call-macro>
+        <call-macro n="apply_gendefdrop"><with-param pos="3"/><with-param pos="4"/></call-macro>
 
         <call-macro n="out_det_when_adjlike"><with-param pos="4"/><with-param pos="1"/></call-macro>
         <call-macro n="out_ndef"><with-param pos="4"/><with-param pos="1"/></call-macro>
@@ -2421,6 +2438,7 @@
       <action>
         <call-macro n="set_ana"><with-param pos="4"/></call-macro>
         <call-macro n="switch_cases"><with-param pos="3"/><with-param pos="2"/></call-macro>
+        <call-macro n="apply_gendefdrop"><with-param pos="2"/><with-param pos="4"/></call-macro>
 
         <call-macro n="out_det_when_adjlike"><with-param pos="3"/><with-param pos="2"/></call-macro>
         <out>
