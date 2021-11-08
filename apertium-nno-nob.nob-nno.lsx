@@ -129,6 +129,11 @@
       <e><p><l><s n="Aa"/></l> <r><s n="Aa"/></r></p></e>
       <e><p><l><s n="AA"/></l> <r><s n="AA"/></r></p></e>
     </pardef>
+    <pardef n="Aa:aa" c="Downcase if titlecased, keep UPPERCASE as-is">
+      <e><p><l><s n="aa"/></l> <r><s n="aa"/></r></p></e>
+      <e><p><l><s n="Aa"/></l> <r><s n="aa"/></r></p></e>
+      <e><p><l><s n="AA"/></l> <r><s n="AA"/></r></p></e>
+    </pardef>
 
     <pardef n="det">
       <e><i><w/><s n="det"/><t/><d/></i></e>
@@ -782,14 +787,15 @@
       </e>
     </pardef>
 
-    <pardef n="fornærma/sikta/tiltalte">
-      <e><i>fornærmet<s n="adj"/><s n="pst"/><t/><d/></i></e>
-      <e><i>fornærme<s n="adj"/><s n="pp"/><t/><d/></i></e>
-      <e><i>siktet<s n="adj"/><s n="pst"/><t/><d/></i></e>
-      <e><i>sikte<s n="adj"/><s n="pp"/><t/><d/></i></e>
-      <e><i>siktede<s n="n"/><t/><d/></i></e>
-      <e><i>tiltalt<s n="n"/><t/><d/></i></e>
-      <e><i>tiltale<s n="adj"/><s n="pp"/><t/><d/></i></e>
+    <pardef n="ndef_fornærma/sikta/tiltalte"
+            c="Ikkje adj-formene!">
+      <e><i>siktede<s n="n"/><t/><s n="def"/></i></e>
+      <e><i>tiltalt<s n="n"/><t/><s n="def"/></i></e>
+      <e><i>fornærmede<s n="n"/><t/><s n="def"/></i></e>
+      <e><i>siktede<s n="n"/><t/><s n="def"/><s n="gen"/></i></e>
+      <e><i>tiltalt<s n="n"/><t/><s n="def"/><s n="gen"/></i></e>
+      <e><i>fornærmede<s n="n"/><t/><s n="def"/><s n="gen"/></i></e>
+      <!-- TODO: kva med resten av LIST adjn (frå rlx-fila)? -->
     </pardef>
 
     <pardef n="stykke/avstemning/toponym">
@@ -6445,175 +6451,30 @@
   </e>
 
   <!-- fornærmede/siktede/tiltalte -->
-
-  <e lm="fornærmede -> den fornærmede" c="den fornærma">
-    <p><l></l> <r>den<s n="det"/><s n="dem"/><s n="m"/><s n="sg"/><d/></r></p>
-    <par n="fornærma/sikta/tiltalte"/>
-  </e>
-
-  <e lm="Fornærmede -> Den fornærmede" c="Den fornærma">
-    <par n="teiknsetjing"/>
-    <p><l></l> <r>den<s n="det"/><s n="dem"/><s n="m"/><s n="sg"/><s n="Aa"/><d/></r></p>
-    <p><l>fornærmet<s n="adj"/><s n="pst"/><t/><s n="Aa"/><d/></l>  <r>fornærmet<s n="adj"/><s n="pst"/><t/><s n="aa"/></r></p>
-  </e>
-
-  <e lm="Siktede -> Den siktede" c="Den sikta">
-    <par n="teiknsetjing"/>
-    <p><l></l> <r>den<s n="det"/><s n="dem"/><s n="m"/><s n="sg"/><s n="Aa"/><d/></r></p>
-    <p><l>siktede<s n="n"/><t/><s n="Aa"/><d/></l>  <r>siktede<s n="n"/><t/><s n="aa"/></r></p>
-  </e>
-
-  <e lm="Tiltalte -> Den tiltalte" c="Den tiltalte">
-    <par n="teiknsetjing"/>
-    <p><l></l> <r>den<s n="det"/><s n="dem"/><s n="m"/><s n="sg"/><s n="Aa"/><d/></r></p>
-    <p><l>tiltalt<s n="n"/><t/><s n="Aa"/><d/></l>  <r>tiltalt<s n="n"/><t/><s n="aa"/></r></p>
-  </e>
-
-  <e lm="Tiltalte -> Den tiltalte" c="Den tiltalte">
-    <par n="teiknsetjing"/>
-    <p><l></l> <r>den<s n="det"/><s n="dem"/><s n="m"/><s n="sg"/><s n="Aa"/><d/></r></p>
-    <p><l>tiltale<s n="adj"/><t/><s n="Aa"/><d/></l>  <r>tiltale<s n="adj"/><t/><s n="aa"/></r></p>
-  </e>
-
-  <e lm="høyere enn det fornærmede ble tilkjent -> høyere enn det den fornærmede ble tilkjent" c="høgare enn det den fornærma vart tilkjent">
+  <!-- First our overrides, in case "den" already exists: -->
+  <e lm="den fornærmede -> den fornærmede" c="den fornærma">
+    <i>den<s n="det"/><s n="dem"/><s n="m"/><s n="sg"/></i> <par n="d"/>
     <par n="adj"/>
-    <i>enn<s n="pr"/><t/><d/></i>
-    <i>den<s n="det"/><s n="dem"/><s n="nt"/><s n="sg"/><t/><d/></i>
-    <p><l></l> <r>den<s n="det"/><s n="dem"/><s n="m"/><s n="sg"/><d/></r></p>
-    <par n="fornærma/sikta/tiltalte"/>
-    <i><w/><s n="vblex"/><t/><d/></i>  
+    <par n="ndef_fornærma/sikta/tiltalte"/> <par n="d"/>
   </e>
-
-  <e lm="en tredjedel av fornærmede -> en tredjedel av de fornærmede" c="ein tredel av dei fornærma">
-    <i>av<t/><d/></i>
-    <p><l></l> <r>den<s n="det"/><s n="dem"/><s n="un"/><s n="pl"/><d/></r></p>
-    <par n="fornærma/sikta/tiltalte"/>
+  <e lm="de fornærmede -> de fornærmede" c="dei fornærma">
+    <i>den<s n="det"/><s n="dem"/><s n="un"/><s n="pl"/></i> <par n="d"/>
+    <par n="adj"/>
+    <par n="ndef_fornærma/sikta/tiltalte"/> <par n="d"/>
   </e>
-
-  <e lm="er den eneste tiltalte har gitt -> er den eneste den tiltalte har gitt" c="er den einaste den tiltalte har gitt">
-    <i>være<t/><d/></i>
-    <par n="det"/>
-    <par n="adv"/>
-    <p><l></l> <r>den<s n="det"/><s n="dem"/><s n="m"/><s n="sg"/><d/></r></p>
-   <par n="fornærma/sikta/tiltalte"/>
+  <e lm="den eldste fornærmede -> den eldste fornærmede" c="den eldste fornærma">
+    <i>den<s n="det"/><s n="dem"/><s n="m"/><s n="sg"/></i> <par n="d"/>
+    <par n="ndef_fornærma/sikta/tiltalte"/> <par n="d"/>
   </e>
-
-  <e lm="override-regel for fornærmede" c="fleire straffbare forhold, fornærma og åstader">
-    <i><w/><s n="n"/><t/><s n="pl"/><s n="ind"/><t/><d/></i>
-    <par n="cm|og|eller"/>
-    <par n="fornærma/sikta/tiltalte"/>
+  <!-- The insertion rule, if none of the overrides hit: -->
+  <e lm="Fornærmede -> Den fornærmede" c="Den fornærma">
+    <p><l></l> <r>den<s n="det"/><s n="dem"/><s n="m"/><s n="sg"/><s n="Aa"/><d/></r></p>
+    <par n="ndef_fornærma/sikta/tiltalte"/>  <p><l><s n="Aa"/></l> <r><s n="aa"/></r></p>
   </e>
-
-  <e lm="override-regel for fornærmede" c="frikjende og fornærma">
-    <i><w/><s n="cm"/><t/><d/></i>
-    <i><w/><s n="adj"/><t/><s n="pl"/><t/><d/></i>
-    <par n="cm|og|eller"/>
-    <par n="fornærma/sikta/tiltalte"/>
+  <e lm="fornærmede -> den fornærmede" c="den fornærma">
+    <p><l></l> <r>den<s n="det"/><s n="dem"/><s n="m"/><s n="sg"/><s n="aa"/><d/></r></p>
+    <par n="ndef_fornærma/sikta/tiltalte"/>  <i><s n="aa"/></i>
   </e>
-
-  <e lm="override-regel for fornærmede" c="dei to fornærma">
-    <par n="det"/>
-    <par n="det|empty"/>
-    <par n="det|empty"/>
-    <par n="adj|empty"/>
-    <par n="ADV|empty"/>
-    <par n="fornærma/sikta/tiltalte"/>
-  </e>
-
-  <e lm="override-regel for fornærmede" c="dei etterlatne og fornærma">
-    <p><l></l> <r>den<s n="det"/><s n="dem"/><s n="un"/><s n="pl"/><d/></r></p>
-    <i>etterlatt<s n="n"/><t/><d/></i>
-    <i><w/><s n="cnjcoo"/><t/><d/></i>
-    <par n="fornærma/sikta/tiltalte"/>
-  </e>
-
-  <e lm="override-regel for fornærmede" c="dei etterlatne og fornærma">
-    <p><l></l> <r>den<s n="det"/><s n="dem"/><s n="un"/><s n="pl"/><d/></r></p>
-    <i>etterlate<s n="adj"/><t/><d/></i>
-    <i><w/><s n="cnjcoo"/><t/><d/></i>
-    <par n="fornærma/sikta/tiltalte"/>
-  </e>
-
-  <e lm="override-regel for fornærmede" c="dei fornærma og etterlatne">
-    <p><l></l> <r>den<s n="det"/><s n="dem"/><s n="un"/><s n="pl"/><d/></r></p>
-    <par n="fornærma/sikta/tiltalte"/>
-    <i><w/><s n="cnjcoo"/><t/><d/></i>
-    <i>etterlatt<s n="n"/><t/><d/></i>
-  </e>
-
-  <e lm="override-regel for fornærmede" c="dei fornærma og etterlatne">
-    <p><l></l> <r>den<s n="det"/><s n="dem"/><s n="un"/><s n="pl"/><d/></r></p>
-    <par n="fornærma/sikta/tiltalte"/>
-    <i><w/><s n="cnjcoo"/><t/><d/></i>
-    <i>etterlate<s n="adj"/><t/><d/></i>
-  </e>
-
-  <e lm="override-regel for fornærmede" c="fornærma og vitne">
-    <par n="fornærma/sikta/tiltalte"/>
-    <i><w/><s n="cnjcoo"/><t/><d/></i>
-    <i>vitne<t/><d/></i>
-  </e>
-
-  <e lm="override-regel for fornærmede" c="mistenkte eller sikta">
-    <i>mistenke<t/><d/></i>
-    <i><w/><s n="cnjcoo"/><t/><d/></i>
-    <par n="fornærma/sikta/tiltalte"/>
-  </e>
-
-  <e lm="override-regel for fornærmede" c="mange fornærma">
-    <i>mange<t/><d/></i>
-    <par n="SN|empty"/>
-    <par n="fornærma/sikta/tiltalte"/>
-  </e>
-
-  <e lm="override-regel for fornærmede" c="ei rekkje sikta">
-    <i>en<t/><d/></i>
-    <i>rekke<t/><d/></i>
-    <par n="fornærma/sikta/tiltalte"/>
-  </e>
-
-  <e lm="override-regel for fornærmede" c="per fornærma">
-    <i>per<s n="pr"/><t/><d/></i>
-    <par n="fornærma/sikta/tiltalte"/>
-  </e>
-
-  <e lm="override-regel for fornærmede" c="talet på fornærma">
-    <i>tall<t/><d/></i>
-    <i>på<t/><d/></i>
-    <par n="fornærma/sikta/tiltalte"/>
-  </e>
-
-  <e lm="override-regel for fornærmede" c="status som fornærma">
-    <i>status<t/><d/></i>
-    <i>som<t/><d/></i>
-    <par n="fornærma/sikta/tiltalte"/>
-  </e>
-
-  <e lm="override-regel for fornærmede" c="meldt seg som fornærma">
-    <i><w/><s n="vblex"/><t/><d/></i>
-    <i>som<t/><d/></i>
-    <par n="fornærma/sikta/tiltalte"/>
-  </e>
-
-  <e lm="override-regel for fornærmede" c="som er sikta">
-    <i>som<t/><d/></i>
-    <par n="ADV|empty"/>
-    <par n="være/bli"/>
-    <par n="fornærma/sikta/tiltalte"/>
-  </e>
-
-  <e lm="override-regel for fornærmede" c="mannen er sikta">
-    <par n="SN"/>
-    <par n="være/bli"/>
-    <par n="ADV|empty"/>
-    <par n="fornærma/sikta/tiltalte"/>
-  </e>
-
-  <e lm="override-regel for fornærmede" c="tiltalte ordførere">
-    <par n="fornærma/sikta/tiltalte"/>
-    <i><w/><s n="n"/><t/><s n="pl"/><s n="ind"/><t/><d/></i>
-  </e>
-
   <!-- /fornærmede/siktede/tiltalt -->
 
 
