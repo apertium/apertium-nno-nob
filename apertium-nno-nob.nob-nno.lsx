@@ -207,18 +207,19 @@
       <e><i><w/><s n="n"/><t/><s n="cmp"/><t/><d/></i></e>
     </pardef>
 
+    <pardef n="ncmp*" c="just the left-hand parts of a compound">
+      <e>                                             </e>
+      <e>                              <par n="ncmp"/></e>
+      <e>               <par n="ncmp"/><par n="ncmp"/></e>
+      <e><par n="ncmp"/><par n="ncmp"/><par n="ncmp"/></e>
+    </pardef>
+
     <pardef n="ncmp*.n.sg.ind">
-      <e>                                             <par n="n.sg.ind"/></e>
-      <e>                              <par n="ncmp"/><par n="n.sg.ind"/></e>
-      <e>               <par n="ncmp"/><par n="ncmp"/><par n="n.sg.ind"/></e>
-      <e><par n="ncmp"/><par n="ncmp"/><par n="ncmp"/><par n="n.sg.ind"/></e>
+      <e> <par n="ncmp*"/> <par n="n.sg.ind"/> </e>
     </pardef>
 
     <pardef n="ncmp*.n">
-      <e>                                             <par n="n"/></e>
-      <e>                              <par n="ncmp"/><par n="n"/></e>
-      <e>               <par n="ncmp"/><par n="ncmp"/><par n="n"/></e>
-      <e><par n="ncmp"/><par n="ncmp"/><par n="ncmp"/><par n="n"/></e>
+      <e> <par n="ncmp*"/> <par n="n"/> </e>
     </pardef>
 
     <pardef n="SN">
@@ -6460,24 +6461,29 @@
   <e lm="den fornærmede -> den fornærmede" c="den fornærma">
     <i>den<s n="det"/><s n="dem"/><s n="m"/><s n="sg"/></i> <par n="d"/>
     <par n="adj"/>
+    <par n="ncmp*"/>
     <par n="ndef_fornærma/sikta/tiltalte"/> <par n="d"/>
   </e>
   <e lm="de fornærmede -> de fornærmede" c="dei fornærma">
     <i>den<s n="det"/><s n="dem"/><s n="un"/><s n="pl"/></i> <par n="d"/>
     <par n="adj"/>
+    <par n="ncmp*"/>
     <par n="ndef_fornærma/sikta/tiltalte"/> <par n="d"/>
   </e>
   <e lm="den eldste fornærmede -> den eldste fornærmede" c="den eldste fornærma">
     <i>den<s n="det"/><s n="dem"/><s n="m"/><s n="sg"/></i> <par n="d"/>
+    <par n="ncmp*"/>
     <par n="ndef_fornærma/sikta/tiltalte"/> <par n="d"/>
   </e>
   <!-- The insertion rule, if none of the overrides hit: -->
   <e lm="Fornærmede -> Den fornærmede" c="Den fornærma">
     <p><l></l> <r>den<s n="det"/><s n="dem"/><s n="m"/><s n="sg"/><s n="Aa"/><d/></r></p>
+    <par n="ncmp*"/>
     <par n="ndef_fornærma/sikta/tiltalte"/>  <p><l><s n="Aa"/></l> <r><s n="aa"/></r></p>
   </e>
   <e lm="fornærmede -> den fornærmede" c="den fornærma">
     <p><l></l> <r>den<s n="det"/><s n="dem"/><s n="m"/><s n="sg"/><s n="aa"/><d/></r></p>
+    <par n="ncmp*"/>
     <par n="ndef_fornærma/sikta/tiltalte"/>  <i><s n="aa"/></i>
   </e>
   <!-- /fornærmede/siktede/tiltalt -->
