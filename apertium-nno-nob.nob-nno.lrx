@@ -558,6 +558,22 @@
     <match lemma="på"/>
   </rule>
 
+  <rule> <match lemma="adlyde" tags="vblex.*"> <select lemma="lyde"/> </match> </rule>
+  <rule weight="2.0"  c="adlyde ordre">
+    <match lemma="adlyde" tags="vblex.*"> <select lemma="lystre"/> </match>
+    <repeat from="0" upto="1"><match tags="*"/></repeat>
+    <match lemma="ordre"/>
+  </rule>
+  <rule weight="2.0">
+    <repeat from="0" upto="1">
+    <or>
+      <match lemma="ikke"/>
+      <match lemma="å"/>
+      </or>
+    </repeat>
+    <match lemma="adlyde" tags="vblex.inf.*"> <select lemma="rette# seg etter"/> </match>
+  </rule>
+
   <rule> <match lemma="trygghet" tags="n.*"> <select lemma="tryggleik"/> </match> </rule>
 
 <!--ANTAGELSE/ANTAKELSE: START-->
