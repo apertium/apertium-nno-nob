@@ -565,6 +565,10 @@
     <match lemma="ordre"/>
   </rule>
   <rule weight="2.0">
+    <match lemma="ha"/>
+    <match lemma="adlyde" tags="vblex.*"> <select lemma="lystre"/> </match>
+  </rule>
+  <rule weight="2.0">
     <repeat from="0" upto="1">
     <or>
       <match lemma="ikke"/>
@@ -572,6 +576,10 @@
       </or>
     </repeat>
     <match lemma="adlyde" tags="vblex.inf.*"> <select lemma="rette# seg etter"/> </match>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="som"/>
+    <match lemma="adlyde" tags="vblex.*"> <select lemma="følgje"/> </match>
   </rule>
 
   <rule> <match lemma="trygghet" tags="n.*"> <select lemma="tryggleik"/> </match> </rule>
