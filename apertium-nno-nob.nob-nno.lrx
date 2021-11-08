@@ -3430,6 +3430,12 @@
   <!--   <match lemma="myndighet" tags="n.*">         <select lemma="makt"/> </match> -->
   <!-- </rule> -->
 
+  <rule><match lemma="aften" tags="n.*"><select lemma="aften"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="i"/>
+    <match lemma="aften" tags="n.*"><select lemma="kveld"/></match>
+  </rule>
+
   <rule><match lemma="behefte" tags="vblex.*"><select lemma="hefte"/></match></rule>
   <rule weight="2.0">
     <match lemma="være"/>
