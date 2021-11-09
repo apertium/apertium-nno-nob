@@ -7501,6 +7501,22 @@
       <select lemma="lett"/>
     </match>
   </rule>
+  <rule weight="2.0" c="Derimot ble enkelte andre i støtteapparatet kritisert">
+    <or>
+      <match lemma="være"/>
+      <match lemma="bli"/>
+    </or>
+    <repeat from="0" upto="2">
+      <match tags="adv.*"/>
+    </repeat>
+    <match lemma="enkelt" tags="adj.*">
+      <select lemma="enkelt"/>
+    </match>
+    <or>
+      <match lemma="annen"/>
+      <match tags="pr.*"/>
+    </or>
+  </rule>
 
   <rule> <!-- det var ikke utelukkende enkelt. -->
     <match lemma="ikke"/>
