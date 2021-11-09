@@ -7509,9 +7509,10 @@
     <repeat from="0" upto="2">
       <match tags="adv.*"/>
     </repeat>
-    <match lemma="enkelt" tags="adj.*">
-      <select lemma="enkelt"/>
-    </match>
+    <or>
+      <match lemma="enkelt" tags="adj.*.pl.*"><select lemma="enkelt"/></match>
+      <match lemma="enkelt" tags="adj.*.def.*"><select lemma="enkelt"/></match>
+    </or>
     <or>
       <match lemma="annen"/>
       <match tags="pr.*"/>
