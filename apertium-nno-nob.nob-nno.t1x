@@ -6453,6 +6453,10 @@ no lemq-moving">
               <equal><clip pos="1" side="tl" part="art"/><lit-tag v="ind"/></equal>
               <equal><clip pos="2" side="tl" part="art"/><lit-tag v="def"/></equal>
             </and>
+            <and>
+              <equal><clip pos="1" side="sl" part="gen"/><lit-tag v="nt"/></equal>
+              <not><equal><clip pos="2" side="sl" part="gen"/><lit-tag v="nt"/></equal></not>
+            </and>
           </or></test>
           <reject-current-rule shifting="no"/>
         </when></choose>
