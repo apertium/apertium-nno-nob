@@ -111,13 +111,14 @@ while(<>) {                             # så lenge det er noe på fila ...
        $total_sentences++;                                 # oppdater antall setninger
     # print STDERR "MISSED THIS ONE: " . $sentence . "\n";
   } else {  # illegalt input hvis man kommer hit
-     die "Dette går ikke: " . $sentence . "\n";
+     # die "Dette går ikke: " . $sentence . "\n";
+     print STDERR ("Dette går ikke: " . $sentence . "\n");
   }
 }
 
 # skriv deretter ut totalresultat for testfila:
 
-#print STDERR "\n\nDOCUMENT BLEU SCORE: " . ($total_score / $total_sentences) . "\n";
+print STDERR "\n\nDOCUMENT BLEU SCORE: " . ($total_score / $total_sentences) . "\n";
 
 ############
 ## subrutiner:
