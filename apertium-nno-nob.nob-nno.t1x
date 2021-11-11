@@ -6469,6 +6469,10 @@ no lemq-moving">
         </call-macro>
         <call-macro n="out_gen-prep"><with-param pos="2"/></call-macro>
         <call-macro n="stash_case_in_ntags1"><with-param pos="2"/></call-macro>
+        <choose><when>
+          <test><equal><clip pos="1" side="tl" part="grau"/><lit-tag v="sup"/></equal></test>
+          <append n="ntags"><lit-tag v="sup"/></append>
+        </when></choose>
         <out>
           <chunk namefrom="c_name" case="caseFirstWord">
             <tags><tag><var n="ntags"/></tag></tags>
