@@ -2807,6 +2807,11 @@
     <seq n="animat_unk"/>
     <match tags="det.pos.*"/>
   </rule>
+  <rule weight="2.0">
+    <match lemma="fortsette" tags="vblex.*"><select lemma="halde# fram"/></match>
+    <match lemma="med"/>
+    <match lemma="å"/>
+  </rule>
   <!-- Always «halde fram med» before «å»: -->
   <rule weight="9.0">
     <match lemma=","/>
