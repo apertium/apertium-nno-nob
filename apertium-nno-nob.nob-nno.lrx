@@ -3196,6 +3196,14 @@
     <match lemma="opp til"/>
     <match lemma="en"/>
   </rule>
+  <rule weight="2.0" c="kalle fram minne">
+    <match lemma="bringe" tags="vblex.*"><select lemma="kalle"/></match>
+    <or>
+      <match lemma="frem"/>
+      <match lemma="fram"/>
+    </or>
+    <match lemma="minne"/>
+  </rule>
   <!-- unngå «pågripe», som Språkrådet reknar som utanfor allmennspråket: -->
   <rule><match lemma="pågripe" tags="vblex.*"><select lemma="arrestere"/></match></rule>
   <rule><match lemma="pågripe" tags="adj.*"><select lemma="arrestere"/></match></rule>
