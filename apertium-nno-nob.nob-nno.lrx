@@ -4158,6 +4158,14 @@
     <match lemma="å" tags="part.*"/>
   </rule>
 
+  <rule><match lemma="smaksette" tags="vblex.*"><select lemma="setje# smak på"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="smaksette" tags="*.pp.*">
+      <select lemma="smaksetje"/>
+    </match>
+    <match tags="n.*"/>
+  </rule>
+
   <!--  LOSNE/LØYSE: START -->
   <rule><match lemma="løsne" tags="adj.*"><select lemma="losne"/></match></rule>
   <rule><match lemma="løsne" tags="vblex.*"><select lemma="losne"/></match></rule>
