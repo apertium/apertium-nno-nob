@@ -2335,6 +2335,15 @@
     <match tags="n.*"/>
   </rule>
 
+  <rule><match lemma="forelegge" tags="vblex.*"> <select lemma="legge# fram"/> </match> </rule>
+  <rule><match lemma="forelegge" tags="adj.*"> <select lemma="legge# fram"/> </match> </rule>
+  <rule weight="2.0">
+    <match lemma="få" tags="vblex.*"/>
+    <match lemma="forelegge" tags="vblex.pp.*">
+      <select lemma="framlegge"/>
+    </match>
+  </rule>
+
   <rule><match lemma="fremlegge" tags="vblex.*"> <select lemma="legge# fram"/> </match> </rule>
   <rule weight="2.0">
     <match lemma="fremlegge" tags="vblex.pres.pasv.*">
