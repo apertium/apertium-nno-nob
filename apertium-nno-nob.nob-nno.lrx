@@ -2409,6 +2409,18 @@
     </match>
   </rule>
 
+  <rule><match lemma="beskatte" tags="vblex.*"><select lemma="skattelegge"/></match></rule>
+  <rule><match lemma="beskatte" tags="adj.*"><select lemma="skattelegge"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="bestand" tags="n.*"/>
+    <repeat from="0" upto="1">
+      <match tags="vblex.*"/>
+    </repeat>
+    <match lemma="beskatte">
+      <select lemma="utnytte"/>
+    </match>
+  </rule>
+
   <rule><match lemma="beskyte" tags="vblex.*"><select lemma="skyte# mot"/></match></rule>
   <rule><match lemma="beskyte" tags="adj.*"><select lemma="skyte# mot"/></match></rule>
   <rule weight="2.0">
