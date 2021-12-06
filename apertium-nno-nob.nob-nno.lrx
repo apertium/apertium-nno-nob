@@ -3167,6 +3167,12 @@
     <match lemma="ut av"/>
     <match lemma="fatning"/>
   </rule>
+  <rule weight="2.0" c="få på det reine">
+    <match lemma="bringe" tags="vblex.*"><select lemma="få"/></match>
+    <match lemma="på"/>
+    <match lemma="den"/>
+    <match lemma="ren" tags="adj.sint.pst.un.sp.def.*"/>
+  </rule>
   <rule weight="3.0" c="brakte Man U til taushet → fekk Man U til å teie">
     <match lemma="bringe" tags="vblex.*"><select lemma="få"/></match>
     <repeat from="0" upto="15"><seq n="NOT_sent_lpar_lquot_rquot"/></repeat>
