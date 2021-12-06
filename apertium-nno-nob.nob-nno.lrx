@@ -3067,6 +3067,14 @@
       <match lemma="over" tags="pr.*"/>
     </or>
   </rule>
+  <rule weight="2.0" c="bringe på bane">
+    <match lemma="bringe" tags="vblex.*"><select lemma="bringe"/></match>
+     <repeat from="0" upto="1">
+        <match tags="*"/>
+    </repeat>
+    <match lemma="på"/>
+    <match lemma="bane"/>
+  </rule>
   <rule weight="2.0" c="mange bringes til legevakten → sende">
     <match lemma="bringe" tags="vblex.*.pasv.*"><select lemma="sende"/></match>
     <or>
