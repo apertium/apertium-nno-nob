@@ -4352,7 +4352,7 @@
         <reject-current-rule shifting="no"/>
       </when></choose>
 
-      <let><var n="c_name"/><lit v="n_n"/></let>
+      <let><var n="c_name"/><lit v="n+n"/></let>
       <call-macro n="set_caseFirstWord2"><with-param pos="1"/><with-param pos="2"/></call-macro>
 
       <call-macro n="stash_case_in_ntags1"><with-param pos="1"/></call-macro>
@@ -5676,7 +5676,7 @@ no lemq-moving">
         <call-macro n="out_gen-prep"><with-param pos="3"/></call-macro>
         <call-macro n="stash_case_in_ntags1"><with-param pos="3"/></call-macro>
         <out>
-          <chunk name="n_n" case="caseFirstWord">
+          <chunk name="n+n" case="caseFirstWord">
             <tags><tag><clip pos="2" side="tl" part="tags"/></tag></tags>
             <lu><clip pos="1" side="tl" part="whole"/></lu>
             <lu><clip pos="2" side="tl" part="whole"/></lu>
@@ -5708,7 +5708,7 @@ no lemq-moving">
         <call-macro n="out_gen-prep"><with-param pos="4"/></call-macro>
         <call-macro n="stash_case_in_ntags1"><with-param pos="4"/></call-macro>
         <out>
-          <chunk name="n_n" case="caseFirstWord">
+          <chunk name="n+n" case="caseFirstWord">
             <tags><tag><clip pos="2" side="tl" part="tags"/></tag></tags>
             <lu><clip pos="1" side="tl" part="whole"/></lu>
             <lu><clip pos="2" side="tl" part="whole"/></lu>
@@ -5857,7 +5857,7 @@ no lemq-moving">
         <call-macro n="out_gen-prep"><with-param pos="2"/></call-macro>
         <call-macro n="stash_case_in_ntags1"><with-param pos="2"/></call-macro>
         <out>
-          <chunk name="n_n" case="caseFirstWord">
+          <chunk name="n+n" case="caseFirstWord">
             <tags><tag><var n="ntags"/></tag></tags>
             <lu><clip pos="1" side="tl" part="whole"/></lu>
             <lu><clip pos="2" side="tl" part="whole"/></lu>
@@ -5880,7 +5880,7 @@ no lemq-moving">
         <call-macro n="out_gen-prep"><with-param pos="3"/></call-macro>
         <call-macro n="stash_case_in_ntags1"><with-param pos="3"/></call-macro>
         <out>
-          <chunk name="n_n_n" case="caseFirstWord">
+          <chunk name="n+n+n" case="caseFirstWord">
             <tags><tag><var n="ntags"/></tag></tags>
             <lu><clip pos="1" side="tl" part="whole"/></lu>
             <lu><clip pos="2" side="tl" part="whole"/></lu>
@@ -5906,7 +5906,7 @@ no lemq-moving">
         <call-macro n="out_gen-prep"><with-param pos="4"/></call-macro>
         <call-macro n="stash_case_in_ntags1"><with-param pos="4"/></call-macro>
         <out>
-          <chunk name="n_n_n_n" case="caseFirstWord">
+          <chunk name="n+n+n+n" case="caseFirstWord">
             <tags><tag><var n="ntags"/></tag></tags>
             <lu><clip pos="1" side="tl" part="whole"/></lu>
             <lu><clip pos="2" side="tl" part="whole"/></lu>
@@ -5928,7 +5928,7 @@ no lemq-moving">
           <with-param pos="1"/>
           <with-param pos="2"/>
         </call-macro>
-        <let><var n="c_name"/><lit v="n_adj"/></let>
+        <let><var n="c_name"/><lit v="n+adj"/></let>
         <call-macro n="set_gender1.adj"><with-param pos="2"/></call-macro>
         <call-macro n="set_grau_aux1"><with-param pos="2"/></call-macro>
         <out>
@@ -5953,7 +5953,7 @@ no lemq-moving">
           <with-param pos="2"/>
           <with-param pos="3"/>
         </call-macro>
-        <let><var n="c_name"/><lit v="n_n_adj"/></let>
+        <let><var n="c_name"/><lit v="n+n+adj"/></let>
         <call-macro n="set_gender1.adj"><with-param pos="3"/></call-macro>
         <call-macro n="set_grau_aux1"><with-param pos="3"/></call-macro>
         <out>
@@ -5981,7 +5981,7 @@ no lemq-moving">
           <with-param pos="3"/>
           <with-param pos="4"/>
         </call-macro>
-        <let><var n="c_name"/><lit v="n_n_n_adj"/></let>
+        <let><var n="c_name"/><lit v="n+n+n+adj"/></let>
         <call-macro n="set_gender1.adj"><with-param pos="4"/></call-macro>
         <call-macro n="set_grau_aux1"><with-param pos="4"/></call-macro>
         <out>
@@ -6012,7 +6012,7 @@ no lemq-moving">
           <with-param pos="4"/>
           <with-param pos="5"/>
         </call-macro>
-        <let><var n="c_name"/><lit v="n_n_n_n_adj"/></let>
+        <let><var n="c_name"/><lit v="n+n+n+n+adj"/></let>
         <call-macro n="set_gender1.adj"><with-param pos="5"/></call-macro>
         <call-macro n="set_grau_aux1"><with-param pos="5"/></call-macro>
         <out>
@@ -6051,7 +6051,7 @@ no lemq-moving">
           </or></test>
           <reject-current-rule shifting="no"/>
         </when></choose>
-        <let><var n="c_name"/><lit v="n_adj_n"/></let>
+        <let><var n="c_name"/><lit v="n+adj_n"/></let>
         <call-macro n="set_gender2.n.adj"><with-param pos="3"/><with-param pos="2"/></call-macro>
         <call-macro n="set_grau_aux1"><with-param pos="2"/></call-macro>
         <call-macro n="set_caseFirstWord2">
@@ -6169,7 +6169,7 @@ no lemq-moving">
         <call-macro n="out_gen-prep"><with-param pos="4"/></call-macro>
         <call-macro n="stash_case_in_ntags1"><with-param pos="4"/></call-macro>
         <out>
-          <chunk name="n_n_cnjcoo_n" case="caseFirstWord">
+          <chunk name="n+n_cnjcoo_n" case="caseFirstWord">
             <tags><tag><var n="ntags"/></tag></tags>
             <lu><clip pos="1" side="tl" part="whole"/></lu>
             <lu><clip pos="2" side="tl" part="whole"/></lu>
@@ -6198,7 +6198,7 @@ no lemq-moving">
         <call-macro n="out_gen-prep"><with-param pos="4"/></call-macro>
         <call-macro n="stash_case_in_ntags1"><with-param pos="4"/></call-macro>
         <out>
-          <chunk name="n_cnjcoo_n_n" case="caseFirstWord">
+          <chunk name="n_cnjcoo_n+n" case="caseFirstWord">
             <tags><tag><var n="ntags"/></tag></tags>
             <lu><clip pos="1" side="tl" part="whole"/></lu>
             <b pos="1"/>
@@ -6371,7 +6371,7 @@ no lemq-moving">
         <call-macro n="out_gen-prep"><with-param pos="5"/></call-macro>
         <call-macro n="stash_case_in_ntags1"><with-param pos="5"/></call-macro>
         <out>
-          <chunk name="adj_cnjcoo_adj_n_n" case="caseFirstWord">
+          <chunk name="adj_cnjcoo_adj_n+n" case="caseFirstWord">
             <tags><tag><var n="ntags"/></tag></tags>
             <lu><clip pos="1" side="tl" part="whole"/></lu>
             <b pos="1"/>
@@ -6404,7 +6404,7 @@ no lemq-moving">
         <call-macro n="out_gen-prep"><with-param pos="2"/></call-macro>
         <call-macro n="stash_case_in_ntags1"><with-param pos="2"/></call-macro>
         <out>
-          <chunk name="n_n" case="caseFirstWord">
+          <chunk name="n+n" case="caseFirstWord">
             <tags><tag><var n="ntags"/></tag></tags>
             <lu><clip pos="1" side="tl" part="whole"/></lu>
             <b pos="1"/>
@@ -6431,7 +6431,7 @@ no lemq-moving">
         <call-macro n="out_gen-prep"><with-param pos="3"/></call-macro>
         <call-macro n="stash_case_in_ntags1"><with-param pos="3"/></call-macro>
         <out>
-          <chunk name="n_n_n" case="caseFirstWord">
+          <chunk name="n+n+n" case="caseFirstWord">
             <tags><tag><var n="ntags"/></tag></tags>
             <lu><clip pos="1" side="tl" part="whole"/></lu>
             <b pos="1"/>
@@ -6515,7 +6515,7 @@ no lemq-moving">
           </or></test>
           <reject-current-rule shifting="no"/>
         </when></choose>
-        <let><var n="c_name"/><lit v="adj_n_n"/></let>
+        <let><var n="c_name"/><lit v="adj_n+n"/></let>
         <call-macro n="set_gender2.n.adj"><with-param pos="3"/><with-param pos="1"/></call-macro>
         <call-macro n="set_grau_aux1"><with-param pos="1"/></call-macro>
         <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
@@ -6561,7 +6561,7 @@ no lemq-moving">
           </or></test>
           <reject-current-rule shifting="no"/>
         </when></choose>
-        <let><var n="c_name"/><lit v="adj_n_n_n"/></let>
+        <let><var n="c_name"/><lit v="adj_n+n+n"/></let>
         <call-macro n="set_gender2.n.adj"><with-param pos="4"/><with-param pos="1"/></call-macro>
         <call-macro n="set_grau_aux1"><with-param pos="1"/></call-macro>
         <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
@@ -6613,7 +6613,7 @@ no lemq-moving">
           </or></test>
           <reject-current-rule shifting="no"/>
         </when></choose>
-        <let><var n="c_name"/><lit v="adj_n_n_n_n"/></let>
+        <let><var n="c_name"/><lit v="adj_n+n+n+n"/></let>
         <call-macro n="set_gender2.n.adj"><with-param pos="5"/><with-param pos="1"/></call-macro>
         <call-macro n="set_grau_aux1"><with-param pos="1"/></call-macro>
         <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
@@ -6728,7 +6728,7 @@ no lemq-moving">
           </or></test>
           <reject-current-rule shifting="no"/>
         </when></choose>
-        <let><var n="c_name"/><lit v="adj_adj_n_n"/></let>
+        <let><var n="c_name"/><lit v="adj_adj_n+n"/></let>
         <call-macro n="set_gender2.n.pre-adj"><with-param pos="4"/><with-param pos="1"/></call-macro>
         <call-macro n="set_gender2.n.adj"><with-param pos="4"/><with-param pos="2"/></call-macro>
         <call-macro n="set_grau_aux2"><with-param pos="1"/><with-param pos="2"/></call-macro>
@@ -6742,7 +6742,7 @@ no lemq-moving">
         <choose><when>
           <!-- set_grau_aux2 may have removed the first adj: -->
           <test><equal><clip pos="1" side="tl" part="whole"/><lit v=""/></equal></test>
-          <let><var n="c_name"/><lit v="adj_n_n"/></let>
+          <let><var n="c_name"/><lit v="adj_n+n"/></let>
         </when></choose>
         <out>
           <chunk namefrom="c_name" case="caseFirstWord">
@@ -6791,7 +6791,7 @@ no lemq-moving">
           </or></test>
           <reject-current-rule shifting="no"/>
         </when></choose>
-        <let><var n="c_name"/><lit v="adj_adj_n_n_n"/></let>
+        <let><var n="c_name"/><lit v="adj_adj_n+n+n"/></let>
         <call-macro n="set_gender2.n.pre-adj"><with-param pos="5"/><with-param pos="1"/></call-macro>
         <call-macro n="set_gender2.n.adj"><with-param pos="5"/><with-param pos="2"/></call-macro>
         <call-macro n="set_grau_aux2"><with-param pos="1"/><with-param pos="2"/></call-macro>
@@ -6809,7 +6809,7 @@ no lemq-moving">
         <choose><when>
           <!-- set_grau_aux2 may have removed the first adj: -->
           <test><equal><clip pos="1" side="tl" part="whole"/><lit v=""/></equal></test>
-          <let><var n="c_name"/><lit v="adj_n_n_n"/></let>
+          <let><var n="c_name"/><lit v="adj_n+n+n"/></let>
         </when></choose>
         <out>
           <chunk namefrom="c_name" case="caseFirstWord">
@@ -6860,7 +6860,7 @@ no lemq-moving">
           </or></test>
           <reject-current-rule shifting="no"/>
         </when></choose>
-        <let><var n="c_name"/><lit v="adj_adj_n_n_n_n"/></let>
+        <let><var n="c_name"/><lit v="adj_adj_n+n+n+n"/></let>
         <call-macro n="set_gender2.n.pre-adj"><with-param pos="6"/><with-param pos="1"/></call-macro>
         <call-macro n="set_gender2.n.adj"><with-param pos="6"/><with-param pos="2"/></call-macro>
         <call-macro n="set_grau_aux2"><with-param pos="1"/><with-param pos="2"/></call-macro>
@@ -6879,7 +6879,7 @@ no lemq-moving">
         <choose><when>
           <!-- set_grau_aux2 may have removed the first adj: -->
           <test><equal><clip pos="1" side="tl" part="whole"/><lit v=""/></equal></test>
-          <let><var n="c_name"/><lit v="adj_n_n_n_n"/></let>
+          <let><var n="c_name"/><lit v="adj_n+n+n+n"/></let>
         </when></choose>
         <out>
           <chunk namefrom="c_name" case="caseFirstWord">
