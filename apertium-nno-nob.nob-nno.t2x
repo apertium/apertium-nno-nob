@@ -60,12 +60,12 @@
     <def-cat n="nind_noadj">
       <cat-item lemma="nn" tags="n.*.ind"/>
       <cat-item lemma="nn" tags="n.*.ind.*"/>
-      <cat-item lemma="n_n" tags="n.*.ind"/>
-      <cat-item lemma="n_n" tags="n.*.ind.*"/>
-      <cat-item lemma="n_n_n" tags="n.*.ind"/>
-      <cat-item lemma="n_n_n" tags="n.*.ind.*"/>
-      <cat-item lemma="n_n_n_n" tags="n.*.ind"/>
-      <cat-item lemma="n_n_n_n" tags="n.*.ind.*"/>
+      <cat-item lemma="n+n" tags="n.*.ind"/>
+      <cat-item lemma="n+n" tags="n.*.ind.*"/>
+      <cat-item lemma="n+n+n" tags="n.*.ind"/>
+      <cat-item lemma="n+n+n" tags="n.*.ind.*"/>
+      <cat-item lemma="n+n+n+n" tags="n.*.ind"/>
+      <cat-item lemma="n+n+n+n" tags="n.*.ind.*"/>
     </def-cat>
     <def-cat n="nplind">
       <cat-item tags="n.*.pl.ind"/>
@@ -184,15 +184,15 @@
       <cat-item lemma="adj_n"               tags="n.*.def.*"/>
       <cat-item lemma="adj_adj_n"           tags="n.*.def.*"/>
       <cat-item lemma="adj_adj_adj_n"       tags="n.*.def.*"/>
-      <cat-item lemma="adj_n_n"             tags="n.*.def.*"/>
-      <cat-item lemma="adj_adj_n_n"         tags="n.*.def.*"/>
-      <cat-item lemma="adj_adj_adj_n_n"     tags="n.*.def.*"/>
-      <cat-item lemma="adj_n_n_n"           tags="n.*.def.*"/>
-      <cat-item lemma="adj_adj_n_n_n"       tags="n.*.def.*"/>
-      <cat-item lemma="adj_adj_adj_n_n_n"   tags="n.*.def.*"/>
-      <cat-item lemma="adj_n_n_n_n"         tags="n.*.def.*"/>
-      <cat-item lemma="adj_adj_n_n_n_n"     tags="n.*.def.*"/>
-      <cat-item lemma="adj_adj_adj_n_n_n_n" tags="n.*.def.*"/>
+      <cat-item lemma="adj_n+n"             tags="n.*.def.*"/>
+      <cat-item lemma="adj_adj_n+n"         tags="n.*.def.*"/>
+      <cat-item lemma="adj_adj_adj_n+n"     tags="n.*.def.*"/>
+      <cat-item lemma="adj_n+n+n"           tags="n.*.def.*"/>
+      <cat-item lemma="adj_adj_n+n+n"       tags="n.*.def.*"/>
+      <cat-item lemma="adj_adj_adj_n+n+n"   tags="n.*.def.*"/>
+      <cat-item lemma="adj_n+n+n+n"         tags="n.*.def.*"/>
+      <cat-item lemma="adj_adj_n+n+n+n"     tags="n.*.def.*"/>
+      <cat-item lemma="adj_adj_adj_n+n+n+n" tags="n.*.def.*"/>
     </def-cat>
     <def-cat n="nom_sup">
       <cat-item tags="n.*.sup"/>
@@ -798,10 +798,10 @@
       <choose><when>
         <test><or>
           <begins-with caseless="yes"><clip pos="1" part="lemh"/><lit v="adj"/></begins-with>
-          <begins-with caseless="yes"><clip pos="1" part="lemh"/><lit v="n_adj"/></begins-with>
-          <begins-with caseless="yes"><clip pos="1" part="lemh"/><lit v="n_n_adj"/></begins-with>
-          <begins-with caseless="yes"><clip pos="1" part="lemh"/><lit v="n_n_n_adj"/></begins-with>
-          <begins-with caseless="yes"><clip pos="1" part="lemh"/><lit v="n_n_n_n_adj"/></begins-with>
+          <begins-with caseless="yes"><clip pos="1" part="lemh"/><lit v="n+adj"/></begins-with>
+          <begins-with caseless="yes"><clip pos="1" part="lemh"/><lit v="n+n+adj"/></begins-with>
+          <begins-with caseless="yes"><clip pos="1" part="lemh"/><lit v="n+n+n+adj"/></begins-with>
+          <begins-with caseless="yes"><clip pos="1" part="lemh"/><lit v="n+n+n+n+adj"/></begins-with>
           <begins-with caseless="yes"><clip pos="1" part="lemh"/><lit v="needdet_"/></begins-with>
           <begins-with caseless="yes"><clip pos="1" part="tags"/><lit-tag v="det.qnt"/></begins-with>
         </or></test>
