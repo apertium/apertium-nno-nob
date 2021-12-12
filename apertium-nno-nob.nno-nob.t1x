@@ -7,6 +7,8 @@
       <cat-item tags="n.*.cmp.guio"/>
       <cat-item tags="np.*.cmp"/>
       <cat-item tags="np.*.cmp.guio"/>
+      <cat-item tags="vblex.*.cmp"/>
+      <cat-item tags="vblex.*.cmp.guio"/>
     </def-cat>
     <def-cat n="nind">
       <cat-item tags="n.*.*.ind"/>
@@ -917,6 +919,143 @@
         </out>
       </action>
     </rule>
+
+
+    <!-- NCMP+ADJ, no following noun -->
+    <rule comment="NCMP NCMP ADJ">
+      <pattern>
+        <pattern-item n="ncmp"/>
+        <pattern-item n="adj"/>
+      </pattern>
+      <action>
+        <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
+        <let><var n="c_name"/><lit v="n_adj"/></let>
+        <call-macro n="set_gender1.adj"><with-param pos="2"/></call-macro>
+        <call-macro n="set_grau_aux1"><with-param pos="2"/></call-macro>
+        <out>
+          <chunk namefrom="c_name" case="caseFirstWord">
+            <tags><tag><clip pos="2" side="tl" part="tags"/></tag></tags>
+            <var n="grau_aux"/>
+            <lu><clip pos="1" side="tl" part="whole"/></lu>
+            <lu><clip pos="2" side="tl" part="whole"/></lu>
+          </chunk>
+        </out>
+      </action>
+    </rule>
+    <rule comment="NCMP NCMP ADJ">
+      <pattern>
+        <pattern-item n="ncmp"/>
+        <pattern-item n="ncmp"/>
+        <pattern-item n="adj"/>
+      </pattern>
+      <action>
+        <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
+        <let><var n="c_name"/><lit v="n_n_adj"/></let>
+        <call-macro n="set_gender1.adj"><with-param pos="3"/></call-macro>
+        <call-macro n="set_grau_aux1"><with-param pos="3"/></call-macro>
+        <out>
+          <chunk namefrom="c_name" case="caseFirstWord">
+            <tags><tag><clip pos="3" side="tl" part="tags"/></tag></tags>
+            <var n="grau_aux"/>
+            <lu><clip pos="1" side="tl" part="whole"/></lu>
+            <lu><clip pos="2" side="tl" part="whole"/></lu>
+            <lu><clip pos="3" side="tl" part="whole"/></lu>
+          </chunk>
+        </out>
+      </action>
+    </rule>
+    <rule comment="NCMP NCMP NCMP ADJ">
+      <pattern>
+        <pattern-item n="ncmp"/>
+        <pattern-item n="ncmp"/>
+        <pattern-item n="ncmp"/>
+        <pattern-item n="adj"/>
+      </pattern>
+      <action>
+        <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
+        <let><var n="c_name"/><lit v="n_n_n_adj"/></let>
+        <call-macro n="set_gender1.adj"><with-param pos="4"/></call-macro>
+        <call-macro n="set_grau_aux1"><with-param pos="4"/></call-macro>
+        <out>
+          <chunk namefrom="c_name" case="caseFirstWord">
+            <tags><tag><clip pos="4" side="tl" part="tags"/></tag></tags>
+            <var n="grau_aux"/>
+            <lu><clip pos="1" side="tl" part="whole"/></lu>
+            <lu><clip pos="2" side="tl" part="whole"/></lu>
+            <lu><clip pos="3" side="tl" part="whole"/></lu>
+            <lu><clip pos="4" side="tl" part="whole"/></lu>
+          </chunk>
+        </out>
+      </action>
+    </rule>
+    <rule comment="NCMP NCMP NCMP NCMP ADJ">
+      <pattern>
+        <pattern-item n="ncmp"/>
+        <pattern-item n="ncmp"/>
+        <pattern-item n="ncmp"/>
+        <pattern-item n="ncmp"/>
+        <pattern-item n="adj"/>
+      </pattern>
+      <action>
+        <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
+        <let><var n="c_name"/><lit v="n_n_n_n_adj"/></let>
+        <call-macro n="set_gender1.adj"><with-param pos="5"/></call-macro>
+        <call-macro n="set_grau_aux1"><with-param pos="5"/></call-macro>
+        <out>
+          <chunk namefrom="c_name" case="caseFirstWord">
+            <tags><tag><clip pos="5" side="tl" part="tags"/></tag></tags>
+            <var n="grau_aux"/>
+            <lu><clip pos="1" side="tl" part="whole"/></lu>
+            <lu><clip pos="2" side="tl" part="whole"/></lu>
+            <lu><clip pos="3" side="tl" part="whole"/></lu>
+            <lu><clip pos="4" side="tl" part="whole"/></lu>
+            <lu><clip pos="5" side="tl" part="whole"/></lu>
+          </chunk>
+        </out>
+      </action>
+    </rule>
+    <!-- NCMP+ADJ N, with following noun -->
+    <rule comment="NCMP ADJ N">
+      <pattern>
+        <pattern-item n="ncmp"/>
+        <pattern-item n="adj"/>
+        <pattern-item n="n_np"/>
+      </pattern>
+      <action>
+        <choose><when c="Don't chunk «lite nedbør» etc.">
+          <test><or>
+            <equal><clip pos="2" side="tl" part="lemh"/><lit v=""/></equal>
+            <and>
+              <equal><clip pos="2" side="tl" part="art"/><lit-tag v="ind"/></equal>
+              <equal><clip pos="3" side="tl" part="art"/><lit-tag v="def"/></equal>
+            </and>
+            <and>
+              <equal><clip pos="2" side="sl" part="gen"/><lit-tag v="nt"/></equal>
+              <not><equal><clip pos="3" side="sl" part="gen"/><lit-tag v="nt"/></equal></not>
+            </and>
+          </or></test>
+          <reject-current-rule shifting="no"/>
+        </when></choose>
+        <let><var n="c_name"/><lit v="n_adj_n"/></let>
+        <call-macro n="set_gender2.n.adj"><with-param pos="3"/><with-param pos="2"/></call-macro>
+        <call-macro n="set_grau_aux1"><with-param pos="2"/></call-macro>
+        <call-macro n="set_caseFirstWord2">
+          <with-param pos="2"/>
+          <with-param pos="3"/>
+        </call-macro>
+        <call-macro n="set_ntags"><with-param pos="3"/></call-macro>
+        <out>
+          <chunk namefrom="c_name" case="caseFirstWord">
+            <tags><tag><var n="ntags"/></tag></tags>
+            <var n="grau_aux"/>
+            <lu><clip pos="1" side="tl" part="whole"/></lu>
+            <lu><clip pos="2" side="tl" part="whole"/></lu><b/>
+            <lu><clip pos="3" side="tl" part="whole"/></lu>
+          </chunk>
+        </out>
+      </action>
+    </rule>
+
 
     <!-- ADJ, no noun -->
     <rule comment="ADJ">
