@@ -5093,7 +5093,6 @@
 
   <!-- TODO: is betring ever right? -->
   <rule><match lemma="forbedring" tags="n.*"><select lemma="forbetring"/></match></rule>
-</rules>
   <rule><match lemma="slager" tags="n.*"><select lemma="slager"/></match></rule>
   <rule><match lemma="kløver" tags="n.*"><select lemma="kløver"/></match></rule>
   <rule><match lemma="eter" tags="n.*"><select lemma="eter"/></match></rule>
@@ -10558,4 +10557,34 @@ preposisjonar gir ekstra utfordringar. -->
       <match lemma="handling"/>
     </or>
   </rule>
+
+  <!-- MWE VS CMP: START -->
+  <!-- Remove multiword expressions from compounds, otherwise prefer them. -->
+  <rule>         <match lemma="printe"><select lemma="skrive# ut"/></match></rule>
+  <rule><match tags="*.cmp"/>   <match><remove lemma="skrive# ut"/></match></rule>
+  <rule><match tags="*.cmp.*"/> <match><remove lemma="skrive# ut"/></match></rule>
+  <rule>           <match tags="*.cmp"><remove lemma="skrive# ut"/></match></rule>
+
+  <rule>      <match lemma="gjenvinne"><select lemma="vinne# tilbake"/></match></rule>
+  <rule><match tags="*.cmp"/>   <match><remove lemma="vinne# tilbake"/></match></rule>
+  <rule><match tags="*.cmp.*"/> <match><remove lemma="vinne# tilbake"/></match></rule>
+  <rule>           <match tags="*.cmp"><remove lemma="vinne# tilbake"/></match></rule>
+
+  <rule>       <match lemma="innvelge"><select lemma="velje# inn"/></match></rule>
+  <rule><match tags="*.cmp"/>   <match><remove lemma="velje# inn"/></match></rule>
+  <rule><match tags="*.cmp.*"/> <match><remove lemma="velje# inn"/></match></rule>
+  <rule>           <match tags="*.cmp"><remove lemma="velje# inn"/></match></rule>
+
+  <rule>         <match lemma="utrede"><select lemma="greie# ut"/></match></rule>
+  <rule><match tags="*.cmp"/>   <match><remove lemma="greie# ut"/></match></rule>
+  <rule><match tags="*.cmp.*"/> <match><remove lemma="greie# ut"/></match></rule>
+  <rule>           <match tags="*.cmp"><remove lemma="greie# ut"/></match></rule>
+
+  <rule>        <match lemma="omforme"><select lemma="forme# om"/></match></rule>
+  <rule><match tags="*.cmp"/>   <match><remove lemma="forme# om"/></match></rule>
+  <rule><match tags="*.cmp.*"/> <match><remove lemma="forme# om"/></match></rule>
+  <rule>           <match tags="*.cmp"><remove lemma="forme# om"/></match></rule>
+  <!-- MWE VS CMP: END -->
+
+</rules>
 </lrx>
