@@ -4458,16 +4458,77 @@
       <match lemma="av"/>
       <match lemma="fra"/>
       <match lemma="ut i"/>
-      <match lemma="ut"/>
+      <match lemma="gjennom"/>
+      <match lemma="igjennom"/>
+      <match lemma="inn i"/>
+      <match lemma="inn til"/>
+      <match lemma="med"/>
     </or>
   </rule>
   <rule weight="2.0">
     <match lemma="slippe" tags="vblex.*"><select lemma="sleppe"/></match>
-    <or>
+    <repeat from="0" upto="2">
+      <or>
+        <match tags="adv.*"/>
+        <match tags="prn.*"/>
+        <match tags="n.*"/>
+        <match tags="adj.*"/>
+      </or>
+    </repeat>
+    <match lemma="unna"/>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="slippe" tags="vblex.*"><select lemma="sleppe"/></match>
+    <match tags="adj.*"/>
+    <match lemma="fra"/>
+    <match tags="n.*"/>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="slippe" tags="vblex.*"><select lemma="sleppe"/></match>
+    <repeat from="0" upto="4">
+      <or>
+        <match tags="n.*"/>
+        <match tags="adv.*"/>
+        <match tags="adv.*"/>
+        <match tags="adv.*"/>
+      </or>
+    </repeat>
+    <match lemma="opp"/>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="slippe" tags="vblex.*"><select lemma="sleppe"/></match>
+    <repeat from="0" upto="1">
+      <or>
       <match tags="adv.*"/>
       <match tags="prn.*"/>
+      <match tags="n.*"/>
+      <match tags="np.*"/>
     </or>
+    </repeat>
+    <match lemma="med"/>
+    <match lemma="skrekk"/>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="slippe" tags="vblex.*"><select lemma="sleppe"/></match>
+    <repeat from="0" upto="1">
+      <match tags="adv.*"/>
+    </repeat>
+    <or>
+      <match tags="n.*"/>
+      <match tags="prn.*"/>
+    </or>
+    <repeat from="0" upto="1">
+      <or>
+        <match tags="np.*"/>
+        <match tags="adj.*"/>
+    </or>
+    </repeat>
     <match lemma="å" tags="part.*"/>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="slippe" tags="vblex.*"><select lemma="sleppe"/></match>
+    <match tags="adv.*"/>
+    <match lemma="som"/>
   </rule>
   <rule weight="2.0">
     <match lemma="slippe" tags="vblex.*"><select lemma="sleppe"/></match>
@@ -4477,7 +4538,52 @@
       <match lemma="som"/>
       <match lemma="slutt"/>
       <match tags="sent.clb.*"/>
+      <match lemma="litt"/>
     </or>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="slippe" tags="vblex.*"><select lemma="sleppe"/></match>
+    <repeat from="0" upto="1">
+      <match tags="adv.*"/>
+    </repeat>
+    <match lemma="inn"/>
+    <or>
+      <match tags="sent.clb.*"/>
+      <match tags="cm.clb.*"/>
+      <match tags="pr.*"/>
+    </or>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="slippe" tags="vblex.*"><select lemma="sleppe"/></match>
+    <repeat from="0" upto="1">
+      <match tags="adj.*"/>
+    </repeat>
+    <or>
+      <match lemma="fengsel"/>
+      <match lemma="sanksjon"/>
+      <match lemma="koking"/>
+      <match lemma="straff"/>
+      <match lemma="runde"/>
+      <match lemma="tiltale"/>
+      <match lemma="karantene"/>
+    </or>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="slippe" tags="vblex.*"><select lemma="sleppe"/></match>
+    <repeat from="0" upto="1">
+      <match tags="adv.*"/>
+    </repeat>
+    <match tags="det.*"/>
+    <match lemma="runde"/>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="slippe" tags="vblex.*"><select lemma="sleppe"/></match>
+    <repeat from="0" upto="3">
+      <match tags="prn.*"/>
+      <match tags="adj.*"/>
+      <match tags="n.*.*.*.cmp"/>
+    </repeat>
+    <match lemma="runde"/>
   </rule>
   <!--sleppe: start-->
   <rule><match lemma="sleppe" tags="vblex.*"><select lemma="sleppe¹"/></match></rule>
@@ -4494,16 +4600,77 @@
       <match lemma="av"/>
       <match lemma="fra"/>
       <match lemma="ut i"/>
-      <match lemma="ut"/>
+      <match lemma="gjennom"/>
+      <match lemma="igjennom"/>
+      <match lemma="inn i"/>
+      <match lemma="inn til"/>
+      <match lemma="med"/>
     </or>
   </rule>
   <rule weight="2.0">
     <match lemma="sleppe" tags="vblex.*"><select lemma="sleppe"/></match>
-    <or>
+    <repeat from="0" upto="2">
+      <or>
+        <match tags="adv.*"/>
+        <match tags="prn.*"/>
+        <match tags="n.*"/>
+        <match tags="adj.*"/>
+      </or>
+    </repeat>
+    <match lemma="unna"/>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="sleppe" tags="vblex.*"><select lemma="sleppe"/></match>
+    <match tags="adj.*"/>
+    <match lemma="fra"/>
+    <match tags="n.*"/>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="sleppe" tags="vblex.*"><select lemma="sleppe"/></match>
+    <repeat from="0" upto="4">
+      <or>
+        <match tags="n.*"/>
+        <match tags="adv.*"/>
+        <match tags="adv.*"/>
+        <match tags="adv.*"/>
+      </or>
+    </repeat>
+    <match lemma="opp"/>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="sleppe" tags="vblex.*"><select lemma="sleppe"/></match>
+    <repeat from="0" upto="1">
+      <or>
       <match tags="adv.*"/>
       <match tags="prn.*"/>
+      <match tags="n.*"/>
+      <match tags="np.*"/>
     </or>
+    </repeat>
+    <match lemma="med"/>
+    <match lemma="skrekk"/>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="sleppe" tags="vblex.*"><select lemma="sleppe"/></match>
+    <repeat from="0" upto="1">
+      <match tags="adv.*"/>
+    </repeat>
+    <or>
+      <match tags="n.*"/>
+      <match tags="prn.*"/>
+    </or>
+     <repeat from="0" upto="1">
+      <or>
+        <match tags="np.*"/>
+        <match tags="adj.*"/>
+    </or>
+    </repeat>
     <match lemma="å" tags="part.*"/>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="sleppe" tags="vblex.*"><select lemma="sleppe"/></match>
+    <match tags="adv.*"/>
+    <match lemma="som"/>
   </rule>
   <rule weight="2.0">
     <match lemma="sleppe" tags="vblex.*"><select lemma="sleppe"/></match>
@@ -4513,7 +4680,51 @@
       <match lemma="som"/>
       <match lemma="slutt"/>
       <match tags="sent.clb.*"/>
+      <match lemma="litt"/>
     </or>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="sleppe" tags="vblex.*"><select lemma="sleppe"/></match>
+    <repeat from="0" upto="1">
+      <match tags="adv.*"/>
+    </repeat>
+    <match lemma="inn"/>
+    <or>
+      <match tags="sent.clb.*"/>
+      <match tags="cm.clb.*"/>
+      <match tags="pr.*"/>
+    </or>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="sleppe" tags="vblex.*"><select lemma="sleppe"/></match>
+    <repeat from="0" upto="1">
+      <match tags="adj.*"/>
+    </repeat>
+    <or>
+      <match lemma="fengsel"/>
+      <match lemma="sanksjon"/>
+      <match lemma="koking"/>
+      <match lemma="straff"/>
+      <match lemma="tiltale"/>
+      <match lemma="karantene"/>
+    </or>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="sleppe" tags="vblex.*"><select lemma="sleppe"/></match>
+    <repeat from="0" upto="1">
+      <match tags="adv.*"/>
+    </repeat>
+    <match tags="det.*"/>
+    <match lemma="runde"/>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="sleppe" tags="vblex.*"><select lemma="sleppe"/></match>
+    <repeat from="0" upto="3">
+      <match tags="prn.*"/>
+      <match tags="adj.*"/>
+      <match tags="n.*.*.*.cmp"/>
+    </repeat>
+    <match lemma="runde"/>
   </rule>
   <!--sleppe: end-->
   <!-- sleppe¹ is transitive: END -->
