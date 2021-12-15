@@ -4588,7 +4588,7 @@
   <!--sleppe: start-->
   <rule><match lemma="sleppe" tags="vblex.*"><select lemma="sleppe¹"/></match></rule>
   <rule><match lemma="sleppe" tags="adj.*"><select lemma="sleppe¹"/></match></rule>
-  <rule weight="2.0">
+  <rule weight="2.0" c="Fangene slapp ut">
     <match lemma="sleppe" tags="vblex.*"><select lemma="sleppe"/></match>
     <or>
       <match lemma="å" tags="part.*"/>
@@ -4600,6 +4600,7 @@
       <match lemma="av"/>
       <match lemma="fra"/>
       <match lemma="ut i"/>
+      <match lemma="ut"/>
       <match lemma="gjennom"/>
       <match lemma="igjennom"/>
       <match lemma="inn i"/>
@@ -4695,7 +4696,7 @@
       <match tags="pr.*"/>
     </or>
   </rule>
-  <rule weight="2.0">
+  <rule weight="2.0" c="Bush slapp militærtjeneste">
     <match lemma="sleppe" tags="vblex.*"><select lemma="sleppe"/></match>
     <repeat from="0" upto="1">
       <match tags="adj.*"/>
@@ -4707,6 +4708,8 @@
       <match lemma="straff"/>
       <match lemma="tiltale"/>
       <match lemma="karantene"/>
+      <match lemma="militær"/>
+      <match lemma="militærtjeneste"/>
     </or>
   </rule>
   <rule weight="2.0">
