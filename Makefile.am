@@ -19,6 +19,7 @@ TARGETS_COMMON = $(TARGETS_PREFIX1) $(TARGETS_PREFIX2)
 
 TARGETS_PREFIX1 =                                             \
      $(PREFIX1).automorf.bin                                  \
+     $(PREFIX1).seg.rlx.bin                                   \
      $(PREFIX1).rlx.bin                                       \
      $(PREFIX1).prob                                          \
      $(PREFIX1).autolex.bin                                   \
@@ -107,10 +108,13 @@ $(PREFIX2).prob: $(AP_SRC2)/$(LANG2).prob
 $(PREFIX1).rlx.bin: $(AP_SRC1)/$(LANG1).rlx.bin
 	cp $< $@
 
-$(PREFIX2).seg.rlx.bin: $(AP_SRC2)/$(LANG2).seg.rlx.bin
+$(PREFIX1).seg.rlx.bin: $(AP_SRC1)/$(LANG1).seg.rlx.bin
 	cp $< $@
 
 $(PREFIX2).rlx.bin: $(AP_SRC2)/$(LANG2).rlx.bin
+	cp $< $@
+
+$(PREFIX2).seg.rlx.bin: $(AP_SRC2)/$(LANG2).seg.rlx.bin
 	cp $< $@
 
 ###############################################################################
