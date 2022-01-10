@@ -4129,6 +4129,14 @@
   <rule><match lemma="bestemme" tags="adj.*"><select lemma="bestemme"/></match></rule>
   <!--  BESTEMME: END -->
 
+<!--  BESLUTTE: START -->
+ <rule><match lemma="beslutte" tags="vblex.*"><select lemma="vedta"/></match></rule>
+ <rule weight="2.0">
+    <match lemma="beslutte" tags="vblex.*"><select lemma="bestemme# seg for"/></match>
+    <match lemma="å"/>
+    <match lemma="vedta"/>
+  </rule>
+
 <!--  ETTERKOMME: START -->
 <rule><match lemma="etterkomme" tags="vblex.*"><select lemma="etterkomme"/></match></rule>
 <rule weight="1.5">
