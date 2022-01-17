@@ -3,7 +3,6 @@
 set -u
 
 step=all
-mode=nob-nno_e
 
 cd "$(dirname "$0")"/.. || exit 1
 
@@ -74,6 +73,14 @@ case $1 in
     translate)
         for f in tests/*.input.txt; do
             name="$(basename "${f%.input.txt}")"
+            # TODO: Get mode from file name (but need an unambiguous file name scheme then)
+            if [[ ${name} = *nob-nno_cappelen ]]; then
+                mode=nob-nno
+                export AP_SETVAR='infa_infe,me_vi,ggj_gg,kj_k'
+            else
+                mode=nob-nno_e
+                export AP_SETVAR=''
+            fi
             apertium -d . "${mode}" < tests/"${name}".input.txt >tests/out/"${name}.${step}".current.txt
         done
         ;;
