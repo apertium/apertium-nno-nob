@@ -11,6 +11,7 @@ difs () {
     declare -i errs=0
     for f in tests/*.input.txt; do
         name="$(basename "${f%.input.txt}")"
+        [[ ${name} = *${namefilter}* ]] || continue
         dif1 "${ref}" "${name}" || (( errs++ ))
     done
     return ${errs}
@@ -46,6 +47,7 @@ dif1 () {
 assert-translated () {
     for f in tests/*.input.txt; do
         name="$(basename "${f%.input.txt}")"
+        [[ ${name} = *${namefilter}* ]] || continue
         cur=tests/out/"${name}"."${step}".current.txt
         if [[ ! -f "${cur}" ]]; then
             echo "${cur} not found" >&2
@@ -67,12 +69,17 @@ $0 update         # update the current expected output with result of 'translate
     exit 1
 }
 
-[[ $# -ne 1 ]] && assert-usage
+
+[[ $# -lt 1 || $# -gt 2 ]] && assert-usage
+
+namefilter=''
+[[ $# -ge 2 ]] && namefilter=$2
 
 case $1 in
     translate)
         for f in tests/*.input.txt; do
             name="$(basename "${f%.input.txt}")"
+            [[ ${name} = *${namefilter}* ]] || continue
             # TODO: Get mode from file name (but need an unambiguous file name scheme then)
             if [[ ${name} = *nob-nno_cappelen ]]; then
                 mode=nob-nno
@@ -85,18 +92,18 @@ case $1 in
         done
         ;;
     update)
-        assert-translated
+        assert-translated "${namefilter}"
         for cur in tests/out/*."${step}".current.txt; do
             cp -v "${cur}" "${cur%current.txt}expected.txt"
         done
         ;;
     diff-expected)
-        assert-translated
-        difs expected
+        assert-translated "${namefilter}"
+        difs expected "${namefilter}"
         ;;
     diff-gold)
-        assert-translated
-        difs gold
+        assert-translated "${namefilter}"
+        difs gold "${namefilter}"
         ;;
     *)
         assert-usage
