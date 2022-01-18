@@ -35,6 +35,9 @@ LIST lm_lov = ".*lov"ri;
 SELECT:lova_loven lm_lov + f IF (0 (VAR:lova_loven));
 REMOVE:lova_loven lm_lov + m;
 
+SELECT:motsetning_motsetnad  ("motsetnad"i) IF (0 ("motsetning"i) + (VAR:motsetning_motsetnad));
+REMOVE:motsetning_motsetning ("motsetnad"i) IF (0 ("motsetning"i));
+
 
 
 # DEBUG NOTES:
