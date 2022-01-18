@@ -1,0 +1,14 @@
+#!/bin/bash
+
+sourced () {
+    [[ "$0" != "${BASH_SOURCE[0]}" ]]
+}
+
+main () {
+    set -e -u
+    apertium -d . nob-nno "$@"
+}
+
+export AP_SETVAR='infa_infe,me_vi,ggj_gg,kj_k,er_ar'
+
+sourced || main "$@"
