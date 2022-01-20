@@ -388,6 +388,21 @@
       <e><i>dag<t/><d/></i></e>
     </pardef>
 
+    <pardef n="Månad">
+      <e><i>januar<t/><d/></i></e>
+      <e><i>februar<t/><d/></i></e>
+      <e><i>mars<t/><d/></i></e>
+      <e><i>april<t/><d/></i></e>
+      <e><i>mai<t/><d/></i></e>
+      <e><i>juni<t/><d/></i></e>
+      <e><i>juli<t/><d/></i></e>
+      <e><i>august<t/><d/></i></e>
+      <e><i>september<t/><d/></i></e>
+      <e><i>oktober<t/><d/></i></e>
+      <e><i>november<t/><d/></i></e>
+      <e><i>desember<t/><d/></i></e>
+    </pardef>
+
     <pardef n="Vekedag">
       <e><i>mandag<t/><d/></i></e>
       <e><i>tirsdag<t/><d/></i></e>
@@ -443,6 +458,14 @@
       <e><i>formiddag<t/><d/></i></e>
       <e><i>ettermiddag<t/><d/></i></e>
       <e><i>kveld<t/><d/></i></e>
+    </pardef>
+
+    <pardef n="alle-tider">
+      <e><par n="tid"/></e>
+      <e><par n="Tidsuttrykk"/></e>
+      <e><par n="Vekedag"/></e>
+      <e><par n="dagtid"/></e>
+      <e><par n="Månad"/></e>
     </pardef>
 
     <pardef n="Tidsuttrykk-gen">
@@ -956,6 +979,21 @@
       <i>Johannes<t/><s n="gen"/><t/><d/></i>
       <par n="1tilførste"/>
       <i>brev<s n="n"/><t/><d/></i>
+    </e>
+
+    <e lm="tid + ankomme + subjekt → tid + komme + subjekt + til" c="tid + komme + subjekt + til">
+      <par n="alle-tider"/>
+      <p><l>ankomme</l>         <r>komme</r></p> <i><t/><d/></i>
+      <par n="SN|np|prn"/>
+      <p><l></l>                <r>til<s n="pr"/><d/></r></p>
+    </e>
+
+    <e lm="tid + ankomme + det+det → tid + komme + det+det  + til" c="tid + komme + det+det + til">
+      <par n="alle-tider"/>
+      <p><l>ankomme</l>         <r>komme</r></p> <i><t/><d/></i>
+      <i><w/><s n="det"/><t/><d/></i>
+      <i><w/><s n="det"/><t/><d/></i>
+      <p><l></l>                <r>til<s n="pr"/><d/></r></p>
     </e>
 
     <e lm="override rule below for «små og store begivenheter»" c="små og store hendingar">
