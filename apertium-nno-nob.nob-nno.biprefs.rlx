@@ -44,6 +44,9 @@ REMOVE:kviss_kviss ("quiz"i) IF (0 ("kviss"i));
 SELECT:veps_kvefs  ("kvefs"i) IF (0 ("veps"i) + (VAR:veps_kvefs));
 REMOVE:veps_veps ("kvefs"i) IF (0 ("veps"i));
 
+SELECT:itilfelle_ifall  ("i fall"i) IF (0 ("i tilfelle"i) + (VAR:itilfelle_ifall));
+REMOVE:itilfelle_itilfelle ("i fall"i) IF (0 ("i tilvelle"i));
+
 SELECT:blomster_blome  ("blome"i) IF (0 ("blomster"i) + (VAR:blomster_blome));
 REMOVE:blomster_blomster ("blome"i) IF (0 ("blomster"i));
 
