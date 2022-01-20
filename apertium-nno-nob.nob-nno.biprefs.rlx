@@ -38,6 +38,8 @@ REMOVE:lova_loven lm_lov + m;
 SELECT:motsetning_motsetnad  ("motsetnad"i) IF (0 ("motsetning"i) + (VAR:motsetning_motsetnad));
 REMOVE:motsetning_motsetning ("motsetnad"i) IF (0 ("motsetning"i));
 
+SELECT:kviss_quiz  ("quiz"i) IF (0 ("kviss"i) + (VAR:kviss_quiz));
+REMOVE:kviss_kviss ("quiz"i) IF (0 ("kviss"i));
 
 
 # DEBUG NOTES:
