@@ -50,6 +50,9 @@ REMOVE:itilfelle_itilfelle ("i fall"i) IF (0 ("i tilvelle"i));
 SELECT:blomster_blome  ("blome"i) IF (0 ("blomster"i) + (VAR:blomster_blome));
 REMOVE:blomster_blomster ("blome"i) IF (0 ("blomster"i));
 
+SELECT:derfor_difor  ("difor"i) IF (0 ("derfor"i) + (VAR:derfor_difor));
+REMOVE:derfor_derfor ("difor"i) IF (0 ("derfor"i));
+
 
 # DEBUG NOTES:
 # $ echo '[<STREAMCMD:SETVAR:forskjell_skilnad,samd_einig>]^forskjell<n><m><sg><ind>/forskjell<n><m><sg><ind>/skilnad<n><m><sg><ind>$ ^enig<adj><sint><pst><nt><sg><ind>/samd<adj><sint><pst><nt><sg><ind>/einig<adj><sint><pst><nt><sg><ind>$' | ~/src/ap/vislcg3/src/cg-proc -t biprefs.nob-nno.rlx.bin |cg-conv
