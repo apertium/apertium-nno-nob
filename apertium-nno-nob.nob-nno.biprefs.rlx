@@ -38,7 +38,7 @@ REMOVE:lova_loven lm_lov + m;
 
 LIST lm_skap = ".*skap"ri;
 SELECT:skapet_skapen lm_skap + m IF (0 (VAR:skapet_skapen));
-REMOVE:skapet_skapet lm_skap + nt;
+REMOVE:skapet_skapet lm_skap + m;
 
 SELECT:motsetning_motsetnad  ("motsetnad"i) IF (0 ("motsetning"i) + (VAR:motsetning_motsetnad));
 REMOVE:motsetning_motsetning ("motsetnad"i) IF (0 ("motsetning"i));
