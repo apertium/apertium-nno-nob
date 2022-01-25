@@ -5814,8 +5814,41 @@
   <!--SPREKKE: START-->
   <rule><match lemma="sprekke" tags="vblex.*"><select lemma="sprekke"/></match></rule>
   <rule><match lemma="sprekke" tags="adj.*"><select lemma="sprekke"/></match></rule>
+  <rule weight="2.0" c="lørdag sprakk strikken">
+    <or>
+      <match lemma="mandag"/>
+      <match lemma="tirsdag"/>
+      <match lemma="onsdag"/>
+      <match lemma="torsdag"/>
+      <match lemma="fredag"/>
+      <match lemma="lørdag"/>
+      <match lemma="søndag"/>
+      <match tags="adv.*"/>
+    </or>
+    <match lemma="sprekke" tags="vblex.*"><select lemma="sprekke"/></match>
+    <match tags="n.*.sg.def.*"/>
+  </rule>
+  <rule weight="2.0" c="senere sprakk strikken">
+    <match tags="det.*"/>
+    <match tags="n.*"/>
+    <match tags="pr.*"/>
+    <match lemma="sprekke" tags="vblex.*"><select lemma="sprekke"/></match>
+    <match tags="n.*.sg.def.*"/>
+  </rule>
+  <rule weight="2.0" c="til slutt sprakk strikken">
+    <or>
+      <match lemma="før"/>
+      <match lemma="til"/>
+    </or>
+    <match lemma="slutt" tags="n.m.sg.ind.*"/>
+    <match lemma="sprekke" tags="vblex.*"><select lemma="sprekke"/></match>
+    <match tags="n.*.sg.def.*"/>
+  </rule>
   <rule weight="2.0" c="sprekkje strikken">
     <match lemma="sprekke" tags="vblex.*"><select lemma="sprekke¹"/></match>
+    <repeat from="0" upto="1">
+      <match tags="*.cmp"/>
+    </repeat>
     <match tags="n.*.sg.def.*"/>
   </rule>
   <!--SPREKKE: END-->
