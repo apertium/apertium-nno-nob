@@ -12,6 +12,7 @@ DELIMITERS = ".";
 
 LIST m = m ;
 LIST f = f ;
+LIST nt = nt ;
 
 # General format of rules:
 # SELECT:default_other   ("other"i) IF (0 ("default"i) + (VAR:default_other));
@@ -35,6 +36,10 @@ LIST lm_lov = ".*lov"ri;
 SELECT:lova_loven lm_lov + f IF (0 (VAR:lova_loven));
 REMOVE:lova_loven lm_lov + m;
 
+LIST lm_skap = ".*skap"ri;
+SELECT:skapet_skapen lm_skap + m IF (0 (VAR:skapet_skapen));
+REMOVE:skapet_skapet lm_skap + nt;
+
 SELECT:motsetning_motsetnad  ("motsetnad"i) IF (0 ("motsetning"i) + (VAR:motsetning_motsetnad));
 REMOVE:motsetning_motsetning ("motsetnad"i) IF (0 ("motsetning"i));
 
@@ -52,7 +57,6 @@ REMOVE:blomster_blomster ("blome"i) IF (0 ("blomster"i));
 
 SELECT:derfor_difor  ("difor"i) IF (0 ("derfor"i) + (VAR:derfor_difor));
 REMOVE:derfor_derfor ("difor"i) IF (0 ("derfor"i));
-
 
 # DEBUG NOTES:
 # $ echo '[<STREAMCMD:SETVAR:forskjell_skilnad,samd_einig>]^forskjell<n><m><sg><ind>/forskjell<n><m><sg><ind>/skilnad<n><m><sg><ind>$ ^enig<adj><sint><pst><nt><sg><ind>/samd<adj><sint><pst><nt><sg><ind>/einig<adj><sint><pst><nt><sg><ind>$' | ~/src/ap/vislcg3/src/cg-proc -t biprefs.nob-nno.rlx.bin |cg-conv
