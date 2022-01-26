@@ -83,7 +83,8 @@ case $1 in
             # TODO: Get mode from file name (but need an unambiguous file name scheme then)
             if [[ ${name} = *nob-nno_cappelen ]]; then
                 mode=nob-nno
-                source dev/cappelen
+                # shellcheck source=./cappelen
+                source t/cappelen
             else
                 mode=nob-nno_e
                 export AP_SETVAR=''
