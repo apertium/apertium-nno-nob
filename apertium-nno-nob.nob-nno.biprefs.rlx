@@ -40,6 +40,16 @@ LIST lm_skap = ".*skap"ri;
 SELECT:skapet_skapen lm_skap + m IF (0 (VAR:skapet_skapen));
 REMOVE:skapet_skapet lm_skap + m;
 
+# words that default to <f>, but can be overridden to <m>:
+LIST lm_ape = ".*ape"ri ".*kasse"ri ".*omtale"ri ".*festning"ri ".*olje"ri;
+SELECT:apa_apen lm_ape + m IF (0 (VAR:apa_apen));
+REMOVE:apa_apen lm_ape + m;
+
+# words that default to <m>, but can be overridden to <f>:
+LIST lm_bane = ".*bane"ri ".*opptakt"ri ".*kai"ri ".*tillit"ri ".*dialekt"ri;
+SELECT:banen_bana lm_bane + f IF (0 (VAR:banen_bana));
+REMOVE:banen_bana lm_bane + f;
+
 SELECT:motsetning_motsetnad  ("motsetnad"i) IF (0 ("motsetning"i) + (VAR:motsetning_motsetnad));
 REMOVE:motsetning_motsetning ("motsetnad"i) IF (0 ("motsetning"i));
 
