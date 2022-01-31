@@ -71,6 +71,9 @@ REMOVE:derfor_derfor ("difor"i) IF (0 ("derfor"i));
 SELECT:verken_korkje  ("korkje"i) IF (0 ("verken"i) + (VAR:verken_korkje));
 REMOVE:verken_verken ("korkje"i) IF (0 ("verken"i));
 
+SELECT:røyndom_røynd  ("røynd"i) IF (0 ("røyndom"i) + (VAR:røyndom_røynd));
+REMOVE:røyndom_røyndom ("røynd"i) IF (0 ("røyndom"i));
+
 # DEBUG NOTES:
 # $ echo '[<STREAMCMD:SETVAR:forskjell_skilnad,samd_einig>]^forskjell<n><m><sg><ind>/forskjell<n><m><sg><ind>/skilnad<n><m><sg><ind>$ ^enig<adj><sint><pst><nt><sg><ind>/samd<adj><sint><pst><nt><sg><ind>/einig<adj><sint><pst><nt><sg><ind>$' | ~/src/ap/vislcg3/src/cg-proc -t biprefs.nob-nno.rlx.bin |cg-conv
 # [<STREAMCMD:SETVAR:forskjell_skilnad,samd_einig>]
