@@ -77,6 +77,9 @@ REMOVE:røyndom_røyndom ("røynd"i) IF (0 ("røyndom"i));
 SELECT:beskrive_skildre  ("skildre"i) IF (0 ("beskrive"i) + (VAR:beskrive_skildre));
 REMOVE:beskrive_beskrive ("skildre"i) IF (0 ("beskrive"i));
 
+SELECT:korstog_krossferd  ("krossferd"i) IF (0 ("korstog"i) + (VAR:korstog_krossferd));
+REMOVE:korstog_korstog ("krossferd"i) IF (0 ("korstog"i));
+
 # DEBUG NOTES:
 # $ echo '[<STREAMCMD:SETVAR:forskjell_skilnad,samd_einig>]^forskjell<n><m><sg><ind>/forskjell<n><m><sg><ind>/skilnad<n><m><sg><ind>$ ^enig<adj><sint><pst><nt><sg><ind>/samd<adj><sint><pst><nt><sg><ind>/einig<adj><sint><pst><nt><sg><ind>$' | ~/src/ap/vislcg3/src/cg-proc -t biprefs.nob-nno.rlx.bin |cg-conv
 # [<STREAMCMD:SETVAR:forskjell_skilnad,samd_einig>]
