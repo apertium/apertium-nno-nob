@@ -77,8 +77,11 @@ REMOVE:røyndom_røyndom ("røynd"i) IF (0 ("røyndom"i));
 SELECT:beskrive_skildre  ("skildre"i) IF (0 ("beskrive"i) + (VAR:beskrive_skildre));
 REMOVE:beskrive_beskrive ("skildre"i) IF (0 ("beskrive"i));
 
-SELECT:korstog_krossferd  ("krossferd"i) IF (0 ("korstog"i) + (VAR:korstog_krossferd));
-REMOVE:korstog_korstog ("krossferd"i) IF (0 ("korstog"i));
+LIST lm_kross = ".*kross"ri;
+SELECT:kors_kross lm_kross + m IF (0 (VAR:kors_kross));
+REMOVE:kors_kross lm_kross + m;
+SELECT:kors_kross ("korsferd"i) IF (0 ("korstog"i) + (VAR:kors_kross));
+REMOVE:kors_kors  ("korsferd"i) IF (0 ("korstog"i));
 
 SELECT:oversikt_oversyn  ("oversyn"i) IF (0 ("oversikt"i) + (VAR:oversikt_oversyn));
 REMOVE:oversikt_oversikt ("oversyn"i) IF (0 ("oversikt"i));
