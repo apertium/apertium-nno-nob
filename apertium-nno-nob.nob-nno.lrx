@@ -1339,6 +1339,20 @@
     </match>
   </rule>
 
+  <rule><match lemma="sin høyre hånd"><select lemma="høgrehanda"/></match></rule>
+  <rule weight="2.0">
+    <or>
+      <match lemma="som"/>
+      <match lemma="til"/>
+      <match lemma="av"/>
+      <match tags="np.*"/>
+    </or>
+    <match lemma="sin høyre hånd">
+      <select lemma="si høgre hand"/>
+    </match>
+  </rule>
+
+
   <rule><match lemma="oppfange"><select lemma="fange# opp"/></match></rule>
   <rule weigth="2.0">
     <match lemma="oppfange" tags="adj.pp.*">
