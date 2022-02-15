@@ -10818,6 +10818,34 @@ preposisjonar gir ekstra utfordringar. -->
     <match lemma="seg"/>
   </rule>
 
+  <rule><match lemma="konsekvensutrede" tags="vblex.*"><select lemma="lage# ei konsekvensutgreiing om"/></match></rule>
+  <rule weigth="2.0">
+    <match lemma="konsekvensutrede" tags="vblex.*">
+      <select lemma="lage# ei konsekvensutgreiing"/>
+    </match>
+    <or>
+      <match tags="*.clb.*"/>
+      <match tags="pr.*"/>
+    </or>
+  </rule>
+  <rule weigth="2.0">
+    <or>
+      <match lemma="være"/>
+      <match lemma="bli"/>
+    </or>
+    <repeat from="0" upto="1">
+      <match tags="adv.*"/>
+    </repeat>
+    <match lemma="konsekvensutrede" tags="*.pp.*">
+      <select lemma="konsekvensutgreie"/>
+    </match>
+  </rule>
+  <rule weigth="3.0">
+    <match lemma="konsekvensutrede" tags="vblex.*.pasv.*">
+      <select lemma="konsekvensutgreie"/>
+    </match>
+  </rule>
+
   <rule><match lemma="strømming" tags="n.*"><select lemma="strøyming"/></match></rule>
 
   <rule><match lemma="befriende" tags="adj.*"><select lemma="forløysande"/></match></rule>
