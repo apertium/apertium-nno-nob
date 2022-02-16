@@ -5555,6 +5555,9 @@
 
   <rule weight="2.0">
     <match lemma="være"/>
+    <repeat from="0" upto="1">
+      <match tags="prn.*"/>
+    </repeat>
     <match lemma="rede" tags="adj.*"><select lemma="klar"/></match>
   </rule>
 
