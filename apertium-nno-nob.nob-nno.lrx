@@ -6414,6 +6414,10 @@
 
   <rule><match lemma="overhodet ikke" tags="adv.*"><select lemma="på ingen måte"/></match></rule>
   <rule weight="2.0">
+    <match lemma="overhodet ikke" tags="adv.*"><select lemma="på ingen måte"/></match>
+    <match lemma="som"/>
+  </rule>
+  <rule weight="2.0">
     <match lemma="finnes"/>
     <match lemma="overhodet ikke" tags="adv.*"><select lemma="ikkje"/></match>
   </rule>
@@ -6422,6 +6426,11 @@
     <match tags="vblex.*"/>
   </rule>
   <rule weight="2.0">
+    <match lemma="ha"/>
+    <match lemma="overhodet ikke" tags="adv.*"><select lemma="ikkje"/></match>
+    <match lemma="tenke" tags="vblex.pp.*"/>
+  </rule>
+  <rule weight="2.5">
     <match lemma="tro"/>
     <match lemma="overhodet ikke" tags="adv.*"><select lemma="ikkje det minste"/></match>
     <match lemma="på"/>
@@ -6434,6 +6443,10 @@
       <match lemma="finne"/>    <!-- but here obj should go after «ikkje» -->
     </or>
     <match lemma="overhodet ikke" tags="adv.*"><select lemma="ikkje i det heile"/></match>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="overhodet ikke" tags="adv.*"><select lemma="absolutt ikkje"/></match>
+    <match tags="pr.*"/>
   </rule>
 
   <rule><match lemma="sannsynlighet" tags="n.*"><select lemma="sannsyn"/></match></rule>
