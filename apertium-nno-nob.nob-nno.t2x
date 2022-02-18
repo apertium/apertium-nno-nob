@@ -194,6 +194,20 @@
       <cat-item lemma="adj_adj_n_n_n_n"     tags="n.*.def.*"/>
       <cat-item lemma="adj_adj_adj_n_n_n_n" tags="n.*.def.*"/>
     </def-cat>
+    <def-cat n="anom_ind">
+      <cat-item lemma="adj_n"               tags="n.*.ind.*"/>
+      <cat-item lemma="adj_adj_n"           tags="n.*.ind.*"/>
+      <cat-item lemma="adj_adj_adj_n"       tags="n.*.ind.*"/>
+      <cat-item lemma="adj_n_n"             tags="n.*.ind.*"/>
+      <cat-item lemma="adj_adj_n_n"         tags="n.*.ind.*"/>
+      <cat-item lemma="adj_adj_adj_n_n"     tags="n.*.ind.*"/>
+      <cat-item lemma="adj_n_n_n"           tags="n.*.ind.*"/>
+      <cat-item lemma="adj_adj_n_n_n"       tags="n.*.ind.*"/>
+      <cat-item lemma="adj_adj_adj_n_n_n"   tags="n.*.ind.*"/>
+      <cat-item lemma="adj_n_n_n_n"         tags="n.*.ind.*"/>
+      <cat-item lemma="adj_adj_n_n_n_n"     tags="n.*.ind.*"/>
+      <cat-item lemma="adj_adj_adj_n_n_n_n" tags="n.*.ind.*"/>
+    </def-cat>
     <def-cat n="nom_sup">
       <cat-item tags="n.*.sup"/>
       <cat-item tags="n.*.sup.*"/>
@@ -2534,6 +2548,34 @@
         <out><b pos="2"/></out>
         <call-macro n="out_bi-gen-prep"><with-param pos="1"/><with-param pos="4"/></call-macro> <!-- 4=_hundane_ på toppen -->
         <out><b pos="3"/></out>
+        <out><chunk><clip pos="2" part="whole"/></chunk></out>
+      </action>
+    </rule>
+    <rule comment="PREP_GEN NGEN DETQNTPL NPL ANOM_IND:
+                   prinsens tre dager lange reise =1> til prinsen tre dager lange reise =2> den tre dagar lange reisa til prinsen">
+      <pattern>
+        <pattern-item n="prep_gen"/> <!--1 til-->
+        <pattern-item n="ngen"/>     <!--2 prinsen -->
+        <pattern-item n="detqntpl"/> <!--3 tre -->
+        <pattern-item n="nplind"/>   <!--4 dager -->
+        <pattern-item n="anom_ind"/> <!--5 lange reise-->
+      </pattern>
+      <action>
+        <call-macro n="set_ana"><with-param pos="5"/></call-macro>
+        <call-macro n="switch_cases"><with-param pos="3"/><with-param pos="2"/></call-macro>
+        <call-macro n="apply_gendefdrop"><with-param pos="2"/><with-param pos="5"/></call-macro>
+
+        <call-macro n="out_det_when_adjlike"><with-param pos="5"/><with-param pos="3"/></call-macro>
+        <out>
+          <chunk><clip pos="3" part="whole"/></chunk>
+          <b/>
+          <chunk><clip pos="4" part="whole"/></chunk>
+          <b/>
+        </out>
+        <call-macro n="out_ndef"><with-param pos="5"/><with-param pos="5"/></call-macro>
+        <out><b/></out>
+        <call-macro n="out_bi-gen-prep"><with-param pos="1"/><with-param pos="5"/></call-macro> <!-- 5=_reise_ -->
+        <out><b/></out>
         <out><chunk><clip pos="2" part="whole"/></chunk></out>
       </action>
     </rule>
