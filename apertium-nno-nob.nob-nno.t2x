@@ -783,18 +783,18 @@
     </def-macro>
 
     <!-- Output macros: -->
-    <def-macro n="out_det" npar="2"
-               c="arg.1: adj_n or det chunk, arg.2: gives typographic case to adj/det
+    <def-macro n="out_det3" npar="3"
+               c="arg.1: adj_n/det chunk for out_det num/gen, arg.2: typ.case for out_det, arg.3: gives typ.case to arg1 adj/det
                   Outputs a space afterwards.">
       <call-macro n="set_det_gender1.n"><with-param pos="1"/></call-macro>
       <out>
         <chunk>
-          <get-case-from pos="1"><lit v="det"/></get-case-from>
+          <get-case-from pos="2"><lit v="det"/></get-case-from>
           <lit-tag v="det.dem"/>
           <var n="det_gender"/>
           <var n="number_no_sp"/>
           <lit v="{^"/>
-          <get-case-from pos="1"><lit v="den"/></get-case-from>
+          <get-case-from pos="2"><lit v="den"/></get-case-from>
           <lit-tag v="det.dem"/>
           <var n="det_gender"/>
           <var n="number_no_sp"/>
@@ -802,7 +802,13 @@
         </chunk>
         <b/>
       </out>
-      <let><clip pos="1" part="lemh"/><get-case-from pos="2"><clip pos="1" part="lemh"/></get-case-from></let>
+      <let><clip pos="1" part="lemh"/><get-case-from pos="3"><clip pos="1" part="lemh"/></get-case-from></let>
+    </def-macro>
+
+    <def-macro n="out_det" npar="2"
+               c="arg.1: adj_n or det chunk, arg.2: gives typographic case to arg1 adj/det
+                  Outputs a space afterwards.">
+      <call-macro n="out_det3"><with-param pos="1"/><with-param pos="1"/><with-param pos="2"/></call-macro>
     </def-macro>
 
     <def-macro n="out_det_when_adjlike" npar="2"
@@ -2565,7 +2571,8 @@
         <call-macro n="switch_cases"><with-param pos="3"/><with-param pos="2"/></call-macro>
         <call-macro n="apply_gendefdrop"><with-param pos="2"/><with-param pos="5"/></call-macro>
 
-        <call-macro n="out_det_when_adjlike"><with-param pos="5"/><with-param pos="3"/></call-macro>
+        <call-macro n="out_det3"><with-param pos="5"/><with-param pos="3"/><with-param pos="5"/></call-macro>
+        <modify-case><clip pos="3" part="lemh"/><lit v="aa"/></modify-case>
         <out>
           <chunk><clip pos="3" part="whole"/></chunk>
           <b/>
