@@ -425,31 +425,39 @@
     </pardef>
 
     <pardef n="tid">
-      <e><i>i<t/>dag<t/></i></e>
-      <e><i>i<t/>helga<t/></i></e>
-      <e><i>i<t/>morgen<t/></i></e>
-      <e><i>i<t/>år<t/></i></e>
-      <e><i>i<t/>framtid<t/></i></e>
-      <e><i>i<t/>fremtid<t/></i></e>
-      <e><i>neste<t/>år<t/></i></e>
-      <e><i>neste<t/>uke<t/></i></e>
-      <e><i>forrige<t/>år<t/></i></e>
-      <e><i>de<t/>siste<t/>dagene<t/></i></e>
+      <e><i>i<b/>dag<t/></i><par n="d"/></e>
+      <e><i>i<t/><d/>helg<t/></i><par n="d"/></e>
+      <e><i>i<b/>morgen<t/></i><par n="d"/></e>
+      <e><i>i<t/><d/>år<t/></i><par n="d"/></e>
+      <e><i>i<t/><d/>framtid<t/></i><par n="d"/></e>
+      <e><i>i<t/><d/>fremtid<t/></i><par n="d"/></e>
+      <e><i>neste<b/>år<t/></i><par n="d"/></e>
+      <e><i>neste<t/>uke<t/></i><par n="d"/></e>
+      <e><i>forrige<t/>år<t/></i><par n="d"/></e>
+      <e><i>de<t/><d/>siste<t/><d/>dagene<t/></i><par n="d"/></e>
+      <e><i>dag<t/><d/>før<t/></i><par n="d"/></e>
+      <e><i>dag<t/><d/>etter<t/></i><par n="d"/></e>
+      <e><i>klokke<t/><d/></i><par n="det"/></e>
+      <e><par n="Månad"/><par n="det"/></e>
       <e><par n="Vekedag"/></e>
     </pardef>
 
     <pardef n="tid|empty">
       <e></e>
-      <e><i>i<t/>dag<t/></i></e>
-      <e><i>i<t/>helga<t/></i></e>
-      <e><i>i<t/>morgen<t/></i></e>
-      <e><i>i<t/>år<t/></i></e>
-      <e><i>i<t/>framtid<t/></i></e>
-      <e><i>i<t/>fremtid<t/></i></e>
-      <e><i>neste<t/>år<t/></i></e>
-      <e><i>neste<t/>uke<t/></i></e>
-      <e><i>forrige<t/>år<t/></i></e>
-      <e><i>de<t/>siste<t/>dagene<t/></i></e>
+      <e><i>i<b/>dag<t/></i><par n="d"/></e>
+      <e><i>i<t/><d/>helg<t/></i><par n="d"/></e>
+      <e><i>i<b/>morgen<t/></i><par n="d"/></e>
+      <e><i>i<t/><d/>år<t/></i><par n="d"/></e>
+      <e><i>i<t/><d/>framtid<t/></i><par n="d"/></e>
+      <e><i>i<t/><d/>fremtid<t/></i><par n="d"/></e>
+      <e><i>neste<b/>år<t/></i><par n="d"/></e>
+      <e><i>neste<t/>uke<t/></i><par n="d"/></e>
+      <e><i>forrige<t/>år<t/></i><par n="d"/></e>
+      <e><i>de<t/><d/>siste<t/><d/>dagene<t/></i><par n="d"/></e>
+      <e><i>dag<t/><d/>før<t/></i><par n="d"/></e>
+      <e><i>dag<t/><d/>etter<t/></i><par n="d"/></e>
+      <e><i>klokke<t/><d/></i></e><e><par n="det"/></e>
+      <e><par n="Månad"/><par n="det"/></e>
       <e><par n="Vekedag"/></e>
     </pardef>
 
@@ -1008,7 +1016,17 @@
     <e lm="tid + ankomme + subjekt → tid + komme + subjekt + til" c="tid + komme + subjekt + til">
       <par n="alle-tider"/>
       <p><l>ankomme</l>         <r>komme</r></p> <i><t/><d/></i>
+      <par n="ADV|empty"/>
       <par n="SN|np|prn"/>
+      <p><l></l>                <r>til<s n="pr"/><d/></r></p>
+    </e>
+
+    <e lm="tid + ankomme + subjekt+pr+np → tid + komme + subjekt+pr+np + til" c="tid + komme + subjekt+pr+np + til">
+      <par n="alle-tider"/>
+      <p><l>ankomme</l>         <r>komme</r></p> <i><t/><d/></i>
+      <par n="ADV|empty"/>
+      <par n="SN"/>
+      <par n="pr+np"/>
       <p><l></l>                <r>til<s n="pr"/><d/></r></p>
     </e>
 
@@ -1017,6 +1035,21 @@
       <p><l>ankomme</l>         <r>komme</r></p> <i><t/><d/></i>
       <i><w/><s n="det"/><t/><d/></i>
       <i><w/><s n="det"/><t/><d/></i>
+      <p><l></l>                <r>til<s n="pr"/><d/></r></p>
+    </e>
+
+    <e lm="før + ankomme + det+det+SN → før + komme + det+det+SN  + til" c="før + komme + det+det+SN + til">
+      <i>før<t/><d/></i>
+      <p><l>ankomme</l>         <r>komme</r></p> <i><t/><d/></i>
+      <par n="det|empty"/>
+      <par n="det+SN"/>
+      <p><l></l>                <r>til<s n="pr"/><d/></r></p>
+    </e>
+
+    <e lm="komma + ankomme + subjekt → komma + komme + subjekt + til" c="komma + komme + subjekt + til">
+      <i><w/><s n="cm"/><t/><d/></i>
+      <p><l>ankomme</l>         <r>komme</r></p> <i><t/><d/></i>
+      <par n="SN|np|prn"/>
       <p><l></l>                <r>til<s n="pr"/><d/></r></p>
     </e>
 
