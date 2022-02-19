@@ -524,7 +524,8 @@
           <not><and>
             <equal><clip pos="1" part="nbr"/><lit-tag v="sg"/></equal>
             <in caseless="yes"><clip pos="1" part="lemh"/><list n="n-keep-sg.ind"/></in>
-            <equal><clip pos="2" part="art"/><lit-tag v="ind"/></equal> <!-- Unngå deres gamle sønn → *den gamle son deira -->
+            <!-- TODO: vil me ha «deres gamle sønn → den gamle son deira»? Viss ikkje, sjekk at adj.art=ind: -->
+            <!-- <equal><clip pos="2" part="art"/><lit-tag v="ind"/></equal> -->
           </and></not>
           <not><and>
             <equal><clip pos="1" part="nbr"/><lit-tag v="pl"/></equal>
