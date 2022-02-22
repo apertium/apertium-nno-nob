@@ -564,6 +564,25 @@
     <repeat from="0" upto="1"><match tags="*"/></repeat>
     <match lemma="ordre"/>
   </rule>
+  <rule weight="2.0"  c="adlyde+clb">
+    <match lemma="adlyde" tags="vblex.*"> <select lemma="lystre"/> </match>
+    <repeat from="0" upto="1">
+      <match lemma="ikke"/>
+    </repeat>
+    <or>
+      <match tags="*.clb.*"/>
+      <match tags="cm.*"/>
+    </or>
+  </rule>
+  <rule weight="2.0"  c="adlyde i 2002 + clb">
+    <match lemma="adlyde" tags="vblex.*"> <select lemma="lystre"/> </match>
+    <match tags="pr.*"/>
+    <match tags="det.qnt.*"/>
+    <or>
+      <match tags="*.clb.*"/>
+      <match tags="cm.*"/>
+    </or>
+  </rule>
   <rule weight="2.0">
     <match lemma="ha"/>
     <match lemma="adlyde" tags="vblex.*"> <select lemma="lystre"/> </match>
