@@ -261,6 +261,11 @@
       <e><i><w/><s n="pr"/><t/><d/></i><par n="det+SN"/></e>
     </pardef>
 
+    <pardef n="pr+gen+SN|" c="Includes empty!">
+      <e></e>                   <!-- under onsdagens møte -->
+      <e><i><w/><s n="pr"/><t/><d/></i><i><w/><s n="n"/><t/><s n="gen"/><t/><d/></i><par n="SN"/></e>
+    </pardef>
+
     <pardef n="det+SN|" c="Includes empty!">
       <e></e>
       <e>                            <par n="ncmp*.n"/></e>
@@ -7848,15 +7853,7 @@
     <par n="Kroppsdel-ind-def"/>
   </e>
 
-  <!-- overhodet -->
-
-  <e lm="fant overhodet ikke X -> fant ikke X overhodet" c="fann ikkje X i det heile">
-    <i>finne<s n="vblex"/><s n="pret"/><t/><d/></i>
-    <p><l>overhodet<b/>ikke<s n="adv"/><t/></l>  <r>ikke<s n="adv"/></r></p> <par n="d"/>
-    <par n="SN|SN+og+SN"/>
-    <par n="pr+SN|"/>
-    <p><l></l>    <r>overhodet<s n="adv"/><d/></r></p>
-  </e>
+  <!-- ha+få-betydning -->
 
   <e lm="ha + betydning -> ha + noe å si" c="ha noko å seie">
     <i>ha<s n="vblex"/><t/><d/></i>
@@ -7982,6 +7979,17 @@
     <p><l></l>                                <r>å<s n="part"/><d/></r></p>
     <p><l></l>                                <r>si<s n="vblex"/><s n="inf"/><d/></r></p>
   </e>
+  <!-- /ha+få-betydning -->
+
+  <!-- overhodet -->
+
+  <e lm="fant overhodet ikke X -> fant ikke X overhodet" c="fann ikkje X i det heile">
+    <i>finne<s n="vblex"/><s n="pret"/><t/><d/></i>
+    <p><l>overhodet<b/>ikke<s n="adv"/><t/></l>  <r>ikke<s n="adv"/></r></p> <par n="d"/>
+    <par n="SN|SN+og+SN"/>
+    <par n="pr+SN|"/>
+    <p><l></l>    <r>overhodet<s n="adv"/><d/></r></p>
+  </e>
 
   <e lm="har overhodet ikke fulgt med -> har ikke fulgt med overhodet" c="har ikkje følgt med i det heile">
     <i>ha<s n="vblex"/><t/><d/></i>
@@ -8103,6 +8111,7 @@
     <par n="pp|adj"/>
     <par n="pr+SN|"/>
     <par n="pr+SN|"/>
+    <par n="pr+gen+SN|"/>
     <par n="Vekedag|empty"/>
     <p><l></l>    <r>overhodet<s n="adv"/><d/></r></p>
   </e>
