@@ -5607,6 +5607,20 @@
     </match>
     <match lemma="klokke"/>
   </rule>
+  <rule weight="2.0" c="senere ankom en bombegruppe">
+    <match tags="adv.*"/>
+    <match lemma="ankomme"><select lemma="komme"/></match>
+    <repeat from="0" upto="2">
+      <or>
+        <match tags="det.*"/>
+        <match tags="adj.*"/>
+      </or>
+    </repeat>
+    <or>
+      <match tags="np.*"/>
+      <match tags="n.*"/>
+    </or>
+  </rule>
     
 
 
