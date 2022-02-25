@@ -5571,6 +5571,26 @@
   <!--   <match lemma="av"/> -->
   <!-- </rule> -->
 
+  <rule>
+    <match tags="det.qnt.nt.sg.*"/>
+    <repeat from="0" upto="1">
+      <match tags="adj.*"/>
+    </repeat>
+    <match lemma="anliggende">
+      <select lemma="sak"/>
+    </match>
+  </rule>
+  <rule>
+    <or>
+      <match lemma="politisk"/>
+      <match lemma="internasjonal"/>
+      <match lemma="viktig"/>
+    </or>
+    <match lemma="anliggende">
+      <select lemma="sak"/>
+    </match>
+  </rule> 
+
 
   <rule weight="2.0">
     <match lemma="være"/>
