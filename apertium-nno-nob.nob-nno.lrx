@@ -9671,13 +9671,14 @@
   </rule>
   <rule weight="2.3" c="gå ut i april, gå ut sommaren">
     <match lemma="løpe# ut" tags="vblex.*"><select lemma="gå# ut"/></match>
-	<or>
+    <or>
       <match lemma="i"/>
+      <match lemma="like"/>     <!-- går ut like før -->
       <match tags="n.*.sg.def.*"/>
-	</or>
+    </or>
   </rule>
   <rule weight="2.0" c="kontrakten går ut">
-	<or>
+    <or>
       <match lemma="kontrakt" tags="n.*"/>
       <match lemma="arbeidskontrakt" tags="n.*"/>
       <match lemma="avtale" tags="n.*"/>
@@ -9694,13 +9695,13 @@
       <match lemma="tidsfrist" tags="n.*"/>
       <match lemma="unntakstilstand" tags="n.*"/>
       <match lemma="våpenhvile" tags="n.*"/>
-	</or>
-    <repeat from="0" upto="9"><match tags="*"/></repeat>
+    </or>
+    <repeat from="0" upto="9"><match/></repeat>
     <match lemma="løpe# ut" tags="vblex.*"><select lemma="gå# ut"/></match>
   </rule>
   <rule weight="2.0" c="interimperioden går ut">
     <match tags="n.*.cmp"/>
-	<or>
+    <or>
       <match lemma="kontrakt" tags="n.*"/>
       <match lemma="avtale" tags="n.*"/>
       <match lemma="ordning" tags="n.*"/>
@@ -9712,15 +9713,15 @@
       <match lemma="frist" tags="n.*"/>
       <match lemma="klokke" tags="n.*"/> <!-- skuddklokka, kampklokka -->
       <match lemma="erklæring" tags="n.*"/> <!-- kriseerklæring -->
-	</or>
+    </or>
     <repeat from="0" upto="9"><match tags="*"/></repeat>
     <match lemma="løpe# ut" tags="vblex.*"><select lemma="gå# ut"/></match>
   </rule>
   <rule weight="2.0" c="tida renn ut">
-	<or>
+    <or>
       <match lemma="tid" tags="n.*"/>
       <match lemma="timeglass" tags="n.*"/>
-	</or>
+    </or>
     <repeat from="0" upto="9"><match tags="*"/></repeat>
     <match lemma="løpe# ut" tags="vblex.*"><select lemma="renne# ut"/></match>
   </rule>
