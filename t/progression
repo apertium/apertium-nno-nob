@@ -106,6 +106,17 @@ case $1 in
         assert-translated "${namefilter}"
         difs gold "${namefilter}"
         ;;
+    expect)
+        mode=nob-nno_e
+        if [[ -z "${namefilter}" ]]; then echo "Needs a test set, e.g. 'ymse'"; exit 1; fi
+        inputf=tests/"${namefilter}"-${mode}.input.txt
+        expf=tests/out/"${namefilter}"-${mode}.all.expected.txt
+        goldf=tests/"${namefilter}"-${mode}.all.gold.txt
+        if [[ ! -e "${inputf}" ]]; then echo "Unknown test set '${namefilter}'"; echo "(couldn't find file ${inputf} – try 'ymse' if unsure)"; exit 1; fi
+        input=$(cat)
+        [[ "${input}" = *[.?\!] ]] || input="${input}." # ensure final punctuation
+        echo "${input}" | tee -a "${inputf}" | apertium -d . "${mode}" | tee -a "${expf}" "${goldf}"
+        ;;
     *)
         assert-usage
         ;;
