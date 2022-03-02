@@ -1708,6 +1708,27 @@
     <match tags="n.*"/>
   </rule>
 
+  <rule><match lemma="fremsette" tags="vblex.*"><select lemma="setje# fram"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="fremsette" tags="vblex.*">
+      <select lemma="komme# med"/>
+    </match>
+    <repeat from="0" upto="1">
+      <match tags="adj.*"/>
+    </repeat>
+    <match lemma="påstand"/>
+  </rule>
+  <rule><match lemma="framsette" tags="vblex.*"><select lemma="setje# fram"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="framsette" tags="vblex.*">
+      <select lemma="komme# med"/>
+    </match>
+    <repeat from="0" upto="1">
+      <match tags="adj.*"/>
+    </repeat>
+    <match lemma="påstand"/>
+  </rule>
+
   <rule><match lemma="framskyte" tags="vblex.*"><select lemma="skyte# fram"/></match></rule>
   <rule weight="2.0">
     <match lemma="framskyte" tags="vblex.pp.*">
