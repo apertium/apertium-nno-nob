@@ -192,6 +192,12 @@
       <e><i><w/><s n="np"/><t/><d/></i></e>
     </pardef>
 
+    <pardef n="prn.nom|np.ant|np.cog" c="Nominativ eller namn – sannsynleg subjekt">
+      <e><i><w/><s n="np"/><s n="ant"/><t/><d/></i></e>
+      <e><i><w/><s n="np"/><s n="cog"/><t/><d/></i></e>
+      <e><i><w/><s n="prn"/><t/><s n="nom"/><t/><d/></i></e>
+    </pardef>
+
     <pardef n="n.sg.ind" c="No final t/ – avoid cmp!">
       <e><i><w/><s n="n"/><t/><s n="sg"/><s n="ind"/><d/></i></e>
       <e><i><w/><s n="n"/><t/><s n="sg"/><s n="ind"/><s n="gen"/><d/></i></e>
@@ -484,6 +490,7 @@
       <e><par n="tid"/></e>
       <e><par n="Tidsuttrykk"/></e>
       <e><par n="Vekedag"/></e>
+      <e><par n="Vekedag"/><par n="dagtid"/></e> <!-- onsdag kveld -->
       <e><par n="dagtid"/></e>
       <e><par n="Månad"/></e>
     </pardef>
@@ -1037,6 +1044,18 @@
       <i>brev<s n="n"/><t/><d/></i>
     </e>
 
+
+    <!-- ankomme → komme til (sjå òg lrx) -->
+    <e lm="da hun torsdag kveld ankom NRK → da hun torsdag kveld kom til NRK" c="då ho torsdag kveld kom til NRK">
+      <!-- override der det ser ut som eit subjekt til venstre -->
+      <par n="prn.nom|np.ant|np.cog"/>
+      <par n="alle-tider"/>
+      <p><l>ankomme</l>         <r>komme</r></p> <i><t/><d/></i>
+      <p><l></l>                <r>til<s n="pr"/><d/></r></p>
+      <par n="ADV|empty"/>
+      <par n="SN|np|prn"/>
+    </e>
+
     <e lm="tid + ankomme + subjekt → tid + komme + subjekt + til" c="tid + komme + subjekt + til">
       <par n="alle-tider"/>
       <p><l>ankomme</l>         <r>komme</r></p> <i><t/><d/></i>
@@ -1076,6 +1095,8 @@
       <par n="SN|np|prn"/>
       <p><l></l>                <r>til<s n="pr"/><d/></r></p>
     </e>
+    <!-- /ankomme -->
+
 
     <e lm="override rule below for «små og store begivenheter»" c="små og store hendingar">
       <i>liten<t/><d/></i>
@@ -7856,18 +7877,16 @@
   </e>
 
   <e lm="stridens kjerne -> det striden står om" c="det striden står om">
-    <p><l>strid<s n="n"/><t/><s n="gen"/><t/></l>  <r></r></p> <par n="d:"/>
+    <p><l>strid<s n="n"/><s n="m"/><s n="sg"/><s n="def"/><s n="gen"/></l>  <r>den<s n="prn"/><s n="pers"/><s n="p3"/><s n="nt"/><s n="sg"/><s n="acc"/></r></p> <par n="d"/>
     <p><l>kjerne<s n="n"/><t/></l>  <r></r></p> <par n="d:"/>
-    <p><l></l>    <r>den<s n="prn"/><s n="pers"/><s n="p3"/><s n="nt"/><s n="sg"/><s n="acc"/><d/></r></p>
     <p><l></l>    <r>strid<s n="n"/><s n="m"/><s n="sg"/><s n="def"/><d/></r></p>
     <p><l></l>    <r>stå<s n="vblex"/><s n="pres"/><d/></r></p>
     <p><l></l>    <r>om<s n="pr"/><d/></r></p>
   </e>
 
   <e lm="stridens eple -> det striden står om" c="det striden står om">
-    <p><l>strid<s n="n"/><t/><s n="gen"/><t/></l>  <r></r></p> <par n="d:"/>
+    <p><l>strid<s n="n"/><s n="m"/><s n="sg"/><s n="def"/><s n="gen"/></l>  <r>den<s n="prn"/><s n="pers"/><s n="p3"/><s n="nt"/><s n="sg"/><s n="acc"/></r></p> <par n="d"/>
     <p><l>eple<s n="n"/><t/></l>  <r></r></p> <par n="d:"/>
-    <p><l></l>    <r>den<s n="prn"/><s n="pers"/><s n="p3"/><s n="nt"/><s n="sg"/><s n="acc"/><d/></r></p>
     <p><l></l>    <r>strid<s n="n"/><s n="m"/><s n="sg"/><s n="def"/><d/></r></p>
     <p><l></l>    <r>stå<s n="vblex"/><s n="pres"/><d/></r></p>
     <p><l></l>    <r>om<s n="pr"/><d/></r></p>
@@ -8540,7 +8559,7 @@
 
       <!-- /blir bedt om å adlyde loven-->
 
-      <!-- ankomme landet og ikke adlyde loven-->
+      <!-- (ankomme landet og) ikke adlyde loven-->
 
   <e lm="når vi ankommer landet og ikke adlyder loven -> når vi ankommer landet og ikke retter oss etter loven" c="når vi kjem til landet og ikkje rettar oss etter lova">
     <i><w/><s n="cnjsub"/><t/><d/></i>
@@ -8620,7 +8639,8 @@
     <i>lov<s n="n"/><t/><d/></i>
   </e>
 
-      <!-- /ankomme landet og ikke adlyde loven-->
+      <!-- /(ankomme landet og) ikke adlyde loven-->
+
 
       <!-- adlyde hva enn-->
 
