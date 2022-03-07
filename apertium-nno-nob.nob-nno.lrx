@@ -322,6 +322,16 @@
           <match lemma="århundre"/>
           <match lemma="årtusen"/>
         </or>
+      </def-seq>      <def-seq n="trussamfunn">
+        <or>
+          <match lemma="muslimsk"/>
+          <match lemma="islamsk"/>
+          <match lemma="sunniislamsk"/>
+          <match lemma="sjiaislamsk"/>
+          <match lemma="jødisk"/>
+          <match lemma="mosaisk"/>
+          <match lemma="hindusistisk"/>
+        </or>
       </def-seq>
   </def-seqs>
 
@@ -3634,10 +3644,14 @@
   <rule weight="2.0">
     <match lemma="fartsovertredelse" tags="n.*.ind.*"><select lemma="brot på fartsgrensene"/></match>
   </rule>
-  <rule><match lemma="menighet" tags="n.*"><select lemma="forsamling"/></match></rule>
+  <rule><match lemma="menighet" tags="n.*"><select lemma="kyrkejelyd"/></match></rule>
+  <rule weight="2.0">
+    <seq n="trussamfunn"/>
+    <match lemma="menighet" tags="n.*"><select lemma="forsamling"/></match>
+  </rule>
   <rule weight="2.0">
     <match tags="np.*"/>
-    <match lemma="menighet" tags="n.*"><select lemma="kyrkjesokn"/></match>
+    <match lemma="menighet" tags="n.*"><select lemma="kyrkjelyd"/></match>
   </rule>
   <rule><match lemma="belæring" tags="n.*"><select lemma="utgreiing"/></match></rule>
   <rule><match lemma="foruroligende" tags="adj.*"><select lemma="urovekkande"/></match></rule>
