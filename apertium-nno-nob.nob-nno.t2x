@@ -2192,9 +2192,9 @@
         <call-macro n="switch_cases"><with-param pos="3"/><with-param pos="2"/></call-macro>
         <call-macro n="apply_gendefdrop"><with-param pos="2"/><with-param pos="3"/></call-macro>
 
-
         <call-macro n="out_det_when_adjlike"><with-param pos="3"/><with-param pos="2"/></call-macro>
         <call-macro n="out_ndef"><with-param pos="3"/><with-param pos="2"/></call-macro>
+
         <out><b pos="1"/></out>
         <call-macro n="out_bi-gen-prep"><with-param pos="1"/><with-param pos="3"/></call-macro>
         <let><clip pos="2" part="art"/><lit v=""/></let> <!-- don't let postchunk alter defnes of previously-genitive phrase (important for conjunctions of ind+def, e.g. barn og unge) -->
@@ -2664,18 +2664,12 @@
       </pattern>
       <action>
         <call-macro n="set_ana"><with-param pos="4"/></call-macro>
-        <out>
-          <chunk><clip pos="1" part="whole"/></chunk>
-          <b pos="1"/>
-        </out>
+        <out><chunk><clip pos="1" part="whole"/></chunk><b/></out>
         <call-macro n="out_det_when_adjlike"><with-param pos="4"/><with-param pos="2"/></call-macro>
         <call-macro n="out_ndef"><with-param pos="4"/><with-param pos="4"/></call-macro>
-        <out>
-          <b pos="2"/>
-          <chunk><clip pos="2" part="whole"/></chunk>
-          <b pos="3"/>
-          <chunk><clip pos="3" part="whole"/></chunk>
-        </out>
+        <out><b/></out>
+        <call-macro n="out_bi-gen-prep"><with-param pos="2"/><with-param pos="4"/></call-macro>
+        <out><b/><chunk><clip pos="3" part="whole"/></chunk></out>
       </action>
     </rule>
     <rule comment="DETQNTPL PREP_GEN NGENSGDEF NPLIND: mange [til] kommunen idrettslag => [dei] mange idrettslaga til kommunen
@@ -2689,17 +2683,11 @@
       <action>
         <call-macro n="set_ana"><with-param pos="4"/></call-macro>
         <call-macro n="out_det_when_adjlike"><with-param pos="4"/><with-param pos="1"/></call-macro>
-        <out>
-          <chunk><clip pos="1" part="whole"/></chunk>
-          <b pos="1"/>
-        </out>
+        <out><chunk><clip pos="1" part="whole"/></chunk><b/></out>
         <call-macro n="out_ndef"><with-param pos="4"/><with-param pos="4"/></call-macro>
-        <out>
-          <b pos="2"/>
-          <chunk><clip pos="2" part="whole"/></chunk>
-          <b pos="3"/>
-          <chunk><clip pos="3" part="whole"/></chunk>
-        </out>
+        <out><b/></out>
+        <call-macro n="out_bi-gen-prep"><with-param pos="2"/><with-param pos="4"/></call-macro>
+        <out><b/><chunk><clip pos="3" part="whole"/></chunk></out>
       </action>
     </rule>
     <rule comment="DETNONPOS PREP_GEN NGEN NIND: en [til] katts snute => snuten til ein katt">
@@ -2712,18 +2700,17 @@
       <action>
         <call-macro n="set_ana"><with-param pos="4"/></call-macro>
         <call-macro n="switch_cases"><with-param pos="4"/><with-param pos="1"/></call-macro>
+        <call-macro n="apply_gendefdrop"><with-param pos="3"/><with-param pos="4"/></call-macro>
+
         <call-macro n="out_det_when_adjlike"><with-param pos="4"/><with-param pos="1"/></call-macro>
         <call-macro n="out_ndef"><with-param pos="4"/><with-param pos="1"/></call-macro>
 
         <call-macro n="modify_det_gender2.n.det"><with-param pos="3"/><with-param pos="1"/></call-macro>
-        <out>
-          <b pos="1"/>
-          <chunk><clip pos="2" part="whole"/></chunk>
-          <b pos="2"/>
-          <chunk><clip pos="1" part="whole"/></chunk>
-          <b pos="3"/>
-          <chunk><clip pos="3" part="whole"/></chunk>
-        </out>
+        <out><b/></out>
+        <call-macro n="out_bi-gen-prep"><with-param pos="2"/><with-param pos="4"/></call-macro>
+        <let><clip pos="3" part="art"/><lit v=""/></let> <!-- don't let postchunk alter defnes of previously-genitive phrase (important for conjunctions of ind+def, e.g. barn og unge) -->
+        <out><b/><chunk><clip pos="1" part="whole"/></chunk></out>
+        <out><b/><chunk><clip pos="3" part="whole"/></chunk></out>
       </action>
     </rule>
     <rule comment="DETNONPOS DETNONPOS PREP_GEN NGEN NIND: den forrige [til] Lamaens bil => bilen til den forrige Lamaen">
@@ -2737,25 +2724,20 @@
       <action>
         <call-macro n="set_ana"><with-param pos="5"/></call-macro>
         <call-macro n="switch_cases"><with-param pos="5"/><with-param pos="1"/></call-macro>
+        <call-macro n="apply_gendefdrop"><with-param pos="4"/><with-param pos="5"/></call-macro>
 
         <call-macro n="out_det_when_adjlike"><with-param pos="5"/><with-param pos="1"/></call-macro>
         <call-macro n="out_ndef"><with-param pos="5"/><with-param pos="1"/></call-macro>
 
         <call-macro n="modify_det_gender2.n.det"><with-param pos="4"/><with-param pos="1"/></call-macro>
         <call-macro n="modify_det_gender2.n.det"><with-param pos="4"/><with-param pos="2"/></call-macro>
-        <out>
-          <b pos="1"/>
-          <chunk><clip pos="3" part="whole"/></chunk>
-          <b pos="2"/>
-          <chunk><clip pos="1" part="whole"/></chunk>
-          <b pos="3"/>
-          <chunk><clip pos="2" part="whole"/></chunk>
-          <b pos="4"/>
-          <chunk><clip pos="4" part="whole"/></chunk>
-        </out>
+        <out><b/></out>
+        <call-macro n="out_bi-gen-prep"><with-param pos="3"/><with-param pos="5"/></call-macro>
+        <out><b/><chunk><clip pos="1" part="whole"/></chunk></out>
+        <out><b/><chunk><clip pos="2" part="whole"/></chunk></out>
+        <out><b/><chunk><clip pos="4" part="whole"/></chunk></out>
       </action>
     </rule>
-
 
     <rule comment="PREP_GEN NGENDEForPL NIND PREP_NHEAD
                    næringslivets tillit til de rådende myndigheter → til næringslivet tillita de rådende myndigheter → tillita næringslivet har til dei rådande styresmaktene
