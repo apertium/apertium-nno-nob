@@ -10995,5 +10995,15 @@ preposisjonar gir ekstra utfordringar. -->
   <rule> <match lemma="utrede">   <select lemma="greie# ut"/></match></rule>
   <rule> <match lemma="omforme">  <select lemma="forme# om"/></match></rule>
 
+  <!-- Catch names including "Norge", like "Microsoft Norge" -->
+  <rule><match lemma="Norge" tags="np.*"><select lemma="Noreg"/></match></rule>
+  <rule weight="2.0">
+    <or>
+      <match tags="np.cgguess.*"/>
+      <match tags="np.org.*"/>
+    </or>
+    <match lemma="Norge" tags="np.*"><select lemma="Norge"/></match>
+  </rule>
+
 </rules>
 </lrx>
