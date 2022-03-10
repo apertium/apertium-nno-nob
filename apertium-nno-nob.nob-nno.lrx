@@ -11005,5 +11005,20 @@ preposisjonar gir ekstra utfordringar. -->
     <match lemma="Norge" tags="np.*"><select lemma="Norge"/></match>
   </rule>
 
+  <rule><match lemma="befrielse" tags="n.*"><select lemma="lette"/></match></rule>
+  <rule weight="2.0" c="frigjering av">
+    <match lemma="befrielse" tags="n.*"><select lemma="frigjering"/></match>
+    <repeat from="0" upto="6"><match/></repeat>
+    <match lemma="av"/>
+  </rule>
+  <rule weight="2.0" c="frigjeringskrig">
+    <match lemma="befrielse" tags="n.*.cmp"><select lemma="frigjering"/></match>
+    <match tags="n.*"/>
+  </rule>
+  <rule weight="2.0" c="fangefrigjering">
+    <match tags="n.*.cmp"/>
+    <match lemma="befrielse" tags="n.*"><select lemma="frigjering"/></match>
+  </rule>
+
 </rules>
 </lrx>
