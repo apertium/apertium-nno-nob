@@ -11019,6 +11019,12 @@ preposisjonar gir ekstra utfordringar. -->
     <match tags="n.*.cmp"/>
     <match lemma="befrielse" tags="n.*"><select lemma="frigjering"/></match>
   </rule>
+  
+  <rule><match lemma="menneskehet" tags="n.*"><select lemma="menneskje"/></match></rule>
+  <rule weight="2.0">
+    <match tags="adj.*"/>
+    <match lemma="menneskehet" tags="n.*"><select lemma="menneskeslekt"/></match>
+  </rule>
 
 </rules>
 </lrx>
