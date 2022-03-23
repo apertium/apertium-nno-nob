@@ -661,6 +661,15 @@
       <cat-item lemma="sp" tags="np.*.gen.*"/>
       <cat-item lemma="ap" tags="np.*.gen.*"/>
     </def-cat>
+    <def-cat n="adj.politisk">
+      <cat-item lemma="finanspolitisk" tags="adj.*"/>
+      <cat-item lemma="landbrukspolitisk" tags="adj.*"/>
+    </def-cat>
+    <def-cat n="person">    
+      <cat-item tags="np.ant.aa"/>
+      <cat-item tags="np.ant.Aa"/>
+      <cat-item tags="np.ant.AA"/>
+    </def-cat>
     <def-cat n="britenes">
       <cat-item lemma="brite" tags="n.m.pl.def.gen.*"/>
       <cat-item lemma="russer" tags="n.m.pl.def.gen.*"/>
@@ -4408,11 +4417,14 @@
 
   <section-rules>
 
-    <rule comment="Sps finanspolitiske talsperson → finanspolitisk talsperson for Sp">
+    <rule comment="Sps finanspolitiske talsperson NN → finanspolitisk talsperson for Sp NN">
       <pattern>
-        <pattern-item n="parti.gen"/> <!-- 1 -->
-        <pattern-item n="adj"/>       <!-- 2 -->
-        <pattern-item n="nsgind"/>    <!-- 3 -->
+        <pattern-item n="parti.gen"/>     <!-- 1 -->
+        <pattern-item n="adj.politisk"/>  <!-- 2 -->
+        <pattern-item n="nsgind"/>        <!-- 3 -->
+<!--
+        <pattern-item n="person"/>
+        --><!-- 4 -->
       </pattern>
       <action>
         <call-macro n="set_caseFirstWord3"><with-param pos="1"/><with-param pos="2"/><with-param pos="3"/></call-macro>
@@ -4431,6 +4443,9 @@
             <lu><clip pos="2" side="tl" part="whole"/></lu> <!-- {^finanspolitisk<adj><pst><un><sp><def>$ ^talsperson<n><m><sg><ind>$}$  -->
             <b/>
             <lu><clip pos="3" side="tl" part="whole"/></lu>
+          <!--- <b/>
+            <lu><clip pos="4" side="tl" part="whole"/></lu> 
+          -->
 
           </chunk>
           <b/>
