@@ -28,9 +28,9 @@ dif1 () {
     ref=$1
     name=$2
     case ${ref} in
-        expected) colorspec=bcyan,green
+        expected) colorspec=green,bcyan
                   reffile=tests/out/"${name}.${step}".expected.txt ;;
-        gold) colorspec=bcyan,brown
+        gold) colorspec=brown,bcyan
               reffile=tests/"${name}.${step}".gold.txt ;;
         *)
             echo "ERROR bug in call to dif1" >&2; exit 1 ;;
@@ -38,8 +38,8 @@ dif1 () {
     (
         set -o pipefail
         diff -U0 -I'^nno-nob\|AP_SRC'                  \
-             tests/out/"${name}"."${step}".current.txt \
              "${reffile}"                              \
+             tests/out/"${name}"."${step}".current.txt \
             | wdif "${colorspec}"
     )
 }
