@@ -322,7 +322,8 @@
           <match lemma="århundre"/>
           <match lemma="årtusen"/>
         </or>
-      </def-seq>      <def-seq n="trussamfunn">
+      </def-seq>
+      <def-seq n="trussamfunn">
         <or>
           <match lemma="muslimsk"/>
           <match lemma="islamsk"/>
@@ -331,6 +332,13 @@
           <match lemma="jødisk"/>
           <match lemma="mosaisk"/>
           <match lemma="hindusistisk"/>
+        </or>
+      </def-seq>
+      <def-seq n="også">
+        <or>
+          <match lemma="også"/>
+          <match lemma="også¹"/>
+          <match lemma="også²"/>
         </or>
       </def-seq>
   </def-seqs>
@@ -7060,7 +7068,7 @@
     <seq n="animat"/>
     <match lemma="framholde" tags="vblex.*"><select lemma="peike# på"/></match>
     <or>
-      <match lemma="også"/>
+      <seq n="også"/>
       <match lemma="at"/>
     </or>
   </rule>
@@ -7068,7 +7076,7 @@
     <seq n="animat"/>
     <match lemma="fremholde" tags="vblex.*"><select lemma="peike# på"/></match>
     <or>
-      <match lemma="også"/>
+      <seq n="også"/>
       <match lemma="at"/>
     </or>
   </rule>
