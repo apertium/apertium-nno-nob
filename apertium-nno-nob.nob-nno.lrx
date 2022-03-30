@@ -2894,6 +2894,15 @@
 
   <rule><match lemma="fortsette" tags="vblex.*"><select lemma="halde# fram"/></match></rule>
   <rule><match lemma="fortsette" tags="adj.*"><select lemma="halde# fram"/></match></rule>
+  <rule weight="2.0" c=", fortsetter Stöckl som herrelandslagstrener">
+    <match lemma=","/>
+    <match lemma="fortsette" tags="vblex.*"><select lemma="halde# fram"/></match>
+    <repeat from="1" upto="3">
+      <seq n="animat_unk"/>
+    </repeat>
+    <match lemma="som"/>
+    <match tags="n.*"/>
+  </rule>  
   <rule weight="2.0" c=", fortsetter hun.">
     <match lemma=","/>
     <match lemma="fortsette" tags="vblex.*"><select lemma="seie"/></match>
