@@ -233,7 +233,48 @@
     <pardef n="ncmp*.n.ind2def">
       <e>
         <par n="ncmp*"/>
-        <i><s n="n"/><t/></i>
+        <i><w/><s n="n"/><t/></i>
+        <p><l><s n="ind"/></l> <r><s n="def"/></r></p> <!-- <ind><aa>$ -->
+        <par n="d"/>
+      </e>
+    </pardef>
+
+    <pardef n="ncmp*.n.ind2def.pl">
+      <e>
+        <par n="ncmp*"/>
+        <i><w/><s n="n"/><t/><s n="pl"/></i>
+        <p><l><s n="ind"/></l> <r><s n="def"/></r></p> <!-- <ind><aa>$ -->
+        <par n="d"/>
+      </e>
+    </pardef>
+
+    <pardef n="ncmp*.n.ind2def.m">
+      <e>
+        <par n="ncmp*"/>
+        <i><w/><s n="n"/><s n="m"/><s n="sg"/></i>
+        <p><l><s n="ind"/></l> <r><s n="def"/></r></p> <!-- <ind><aa>$ -->
+        <par n="d"/>
+      </e>
+    </pardef>
+
+    <pardef n="ncmp*.n.ind2def.f">
+      <e>
+        <par n="ncmp*"/>
+        <i><w/><s n="n"/><s n="f"/><s n="sg"/></i>
+        <p><l><s n="ind"/></l> <r><s n="def"/></r></p> <!-- <ind><aa>$ -->
+        <par n="d"/>
+      </e>
+    </pardef>
+
+    <pardef n="ncmp*.n.ind2def.mf">
+      <e><par n="ncmp*.n.ind2def.m"/></e>
+      <e><par n="ncmp*.n.ind2def.f"/></e>
+    </pardef>
+
+    <pardef n="ncmp*.n.ind2def.nt">
+      <e>
+        <par n="ncmp*"/>
+        <i><w/><s n="n"/><s n="nt"/><s n="sg"/></i>
         <p><l><s n="ind"/></l> <r><s n="def"/></r></p> <!-- <ind><aa>$ -->
         <par n="d"/>
       </e>
@@ -527,7 +568,25 @@
       <e><i>første<t/><d/></i></e>
       <e><i>annen<s n="det"/><s n="dem"/><s n="un"/><s n="pl"/><t/><d/></i></e>
       <e><i>sist<t/><d/></i></e>
-      <e><i><w/><s n="adj"/><s n="ord"/><s n="pst"/><s n="un"/><s n="sp"/><s n="def"/><t/><d/></i></e>
+      <e><par n="adj"/></e>
+    </pardef>
+
+    <pardef n="fjorårs-ord">
+      <e><p><l>utgave<s n="n"/><t/><s n="ind"/></l><r>utgave<s n="n"/><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><p><l>suksess<s n="n"/><t/><s n="ind"/></l><r>suksess<s n="n"/><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><p><l>rekord<s n="n"/><t/><s n="ind"/></l><r>rekord<s n="n"/><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><p><l>sesong<s n="n"/><t/><s n="ind"/></l><r>sesong<s n="n"/><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><p><l>seier<s n="n"/><t/><s n="ind"/></l><r>seier<s n="n"/><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><p><l>tap<s n="n"/><t/><s n="ind"/></l><r>tap<s n="n"/><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><p><l>finale<s n="n"/><t/><s n="ind"/></l><r>finale<s n="n"/><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><p><l>triumf<s n="n"/><t/><s n="ind"/></l><r>triumf<s n="n"/><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><p><l>liste<s n="n"/><t/><s n="ind"/></l><r>liste<s n="n"/><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><p><l>avling<s n="n"/><t/><s n="ind"/></l><r>avling<s n="n"/><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><p><l>fangst<s n="n"/><t/><s n="ind"/></l><r>fangst<s n="n"/><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><p><l>flom<s n="n"/><t/><s n="ind"/></l><r>flom<s n="n"/><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><p><l>storm<s n="n"/><t/><s n="ind"/></l><r>storm<s n="n"/><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><p><l>budsjett<s n="n"/><t/><s n="ind"/></l><r>budsjett<s n="n"/><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><p><l>kull<s n="n"/><t/><s n="ind"/></l><r>kull<s n="n"/><t/><s n="def"/></r></p> <par n="d"/></e>
     </pardef>
 
     <pardef n="kongeleg">
@@ -8876,11 +8935,24 @@
       <p><l>liten<s n="adj"/><s n="sint"/><s n="pst"/><s n="un"/><s n="sp"/><s n="def"/><t/></l>  <r></r></p>  <par n="d:"/>
       <p><l></l>                                  <r>ørliten<s n="adj"/><s n="sint"/><s n="pst"/><s n="un"/><s n="sp"/><s n="def"/><d/></r></p>
     </e>
-    
+
+<!-- fjorårets-reglar -->
+    <e lm="fjorårets utgave -> fjorårsutgaven" c="fjorårsutgåva">
+      <i>fjorår<s n="n"/><s n="nt"/><t/></i> <p><l><t/><s n="def"/><s n="gen"/></l><r><t/><s n="ind"/><s n="cmp"/><d/></r></p> <par n="d:"/>
+      <par n="fjorårs-ord"/>
+    </e>
+
     <e lm="er fjorårets sesong -> er fjorårssesongen" c="er fjorårssesongen">
       <i><w/><s n="vblex"/><t/><d/></i>
       <i>fjorår<s n="n"/><s n="nt"/><t/></i> <p><l><t/><s n="def"/><s n="gen"/></l><r><t/><s n="ind"/><s n="cmp"/><d/></r></p> <par n="d:"/>
       <i><w/><s n="n"/><t/></i>  <p><l><s n="ind"/></l><r><s n="def"/></r></p>  <par n="d"/>
+    </e>
+    
+    <e lm="er fjorårets tørkesommer -> tørkesommeren i fjor" c="tørkesommeren i fjor">
+      <i><w/><s n="vblex"/><t/><d/></i>
+      <i>fjorår<s n="n"/><s n="nt"/><t/></i> <p><l><t/><s n="def"/><s n="gen"/></l><r><t/><s n="ind"/><s n="cmp"/><d/></r></p> <par n="d:"/>
+      <par n="ncmp*.n.ind2def"/>
+      <p><l></l>                                  <r>i<b/>fjor<s n="adv"/><d/></r></p>
     </e>
     
     <e lm="fjorårets sesong er -> fjorårssesongen er" c="fjorårssesongen er">
@@ -8889,18 +8961,9 @@
       <i><w/><s n="vblex"/><t/><d/></i>
     </e>
     
-    <e lm="er fjorårets tørkesommer -> er tørkesommeren i fjor" c="cmp: er tørke|sommaren i fjor">
-      <i><w/><s n="vblex"/><t/><d/></i>
+    <e lm="fjorårets tørkesommer er -> tørkesommeren i fjor er" c="tørkesommaren i fjor er">
       <p><l>fjorår<s n="n"/><s n="nt"/><s n="sg"/><s n="def"/><s n="gen"/></l>  <r></r></p>  <par n="d:"/>
-      <i><w/><s n="n"/><t/><s n="cmp"/><d/></i>
-      <i><w/><s n="n"/><t/></i>  <p><l><s n="ind"/></l><r><s n="def"/></r></p>  <par n="d"/>
-      <p><l></l>                                  <r>i<b/>fjor<s n="adv"/><d/></r></p>
-    </e>
-    
-    <e lm="fjorårets tørkesommer var -> tørkesommeren i fjor var" c="cmp: tørke|sommaren i fjor var">
-      <p><l>fjorår<s n="n"/><s n="nt"/><s n="sg"/><s n="def"/><s n="gen"/></l>  <r></r></p>  <par n="d:"/>
-      <i><w/><s n="n"/><t/><s n="cmp"/><d/></i>
-      <i><w/><s n="n"/><t/></i>  <p><l><s n="ind"/></l><r><s n="def"/></r></p>  <par n="d"/>
+      <par n="ncmp*.n.ind2def"/>
       <p><l></l>                                  <r>i<b/>fjor<s n="adv"/><d/></r></p>
       <i><w/><s n="vblex"/><t/><d/></i>
     </e>
@@ -8908,15 +8971,7 @@
     <e lm="i fjorårets sesong -> i sesongen i fjor" c="i sesongen i fjor">
       <i><w/><s n="pr"/><t/><d/></i>
       <p><l>fjorår<s n="n"/><s n="nt"/><s n="sg"/><s n="def"/><s n="gen"/></l>  <r></r></p>  <par n="d:"/>
-      <i><w/><s n="n"/><t/></i>  <p><l><s n="ind"/></l><r><s n="def"/></r></p>  <par n="d"/>
-      <p><l></l>                                  <r>i<b/>fjor<s n="adv"/><d/></r></p>
-    </e>
-    
-    <e lm="av fjorårets hasjbeslag -> av hasjbeslagene i fjor" c="cmp: av hasj|beslaga i fjor">
-      <i><w/><s n="pr"/><t/><d/></i>
-      <p><l>fjorår<s n="n"/><s n="nt"/><s n="sg"/><s n="def"/><s n="gen"/></l>  <r></r></p>  <par n="d:"/>
-      <i><w/><s n="n"/><t/><s n="cmp"/><d/></i>
-      <i><w/><s n="n"/><t/></i>  <p><l><s n="ind"/></l><r><s n="def"/></r></p>  <par n="d"/>
+      <par n="ncmp*.n.ind2def"/>
       <p><l></l>                                  <r>i<b/>fjor<s n="adv"/><d/></r></p>
     </e>
 
@@ -8930,11 +8985,21 @@
       <p><l></l>                                  <r>fjorår<s n="n"/><s n="nt"/><s n="sg"/><s n="def"/><d/></r></p>
     </e>
 
+    <e lm="fjorårets første ti måneder -> de første ti månedene av fjoråret" c="dei første ti månadene av fjoråret">
+      <p><l>fjorår<s n="n"/><s n="nt"/><s n="sg"/><s n="def"/><s n="gen"/></l>  <r></r></p>  <par n="d:"/>
+      <p><l></l>                                  <r>den<s n="det"/><s n="dem"/><s n="un"/><s n="pl"/><d/></r></p>
+      <par n="første-neste-siste"/>
+      <i><w/><s n="det"/><s n="qnt"/><t/><d/></i>
+      <i><w/><s n="n"/><t/></i>  <p><l><s n="ind"/></l><r><s n="def"/></r></p>  <par n="d"/>
+      <p><l></l>                                  <r>av<s n="pr"/><d/></r></p>
+      <p><l></l>                                  <r>fjorår<s n="n"/><s n="nt"/><s n="sg"/><s n="def"/><d/></r></p>
+    </e>
+
     <e lm="fjorårets siste kamper -> de siste kampene i fjor" c="dei siste kampane i fjor">
       <p><l>fjorår<s n="n"/><s n="nt"/><s n="sg"/><s n="def"/><s n="gen"/></l>  <r></r></p>  <par n="d:"/>
       <p><l></l>                                  <r>den<s n="det"/><s n="dem"/><s n="un"/><s n="pl"/><d/></r></p>
       <par n="første-andre"/>
-      <i><w/><s n="n"/><t/><s n="pl"/></i>  <p><l><s n="ind"/></l><r><s n="def"/></r></p>  <par n="d"/>
+      <par n="ncmp*.n.ind2def.pl"/>
       <p><l></l>                                  <r>i<b/>fjor<s n="adv"/><d/></r></p>
     </e>
 
@@ -8942,7 +9007,7 @@
       <p><l>fjorår<s n="n"/><s n="nt"/><s n="sg"/><s n="def"/><s n="gen"/></l>  <r></r></p>  <par n="d:"/>
       <p><l></l>                                  <r>den<s n="det"/><s n="dem"/><s n="nt"/><s n="sg"/><d/></r></p>
       <par n="første-andre"/>
-      <i><w/><s n="n"/><s n="nt"/><s n="sg"/></i>  <p><l><s n="ind"/></l><r><s n="def"/></r></p>  <par n="d"/>
+      <par n="ncmp*.n.ind2def.nt"/>
       <p><l></l>                                  <r>i<b/>fjor<s n="adv"/><d/></r></p>
     </e>
 
@@ -8950,16 +9015,15 @@
       <p><l>fjorår<s n="n"/><s n="nt"/><s n="sg"/><s n="def"/><s n="gen"/></l>  <r></r></p>  <par n="d:"/>
       <p><l></l>                                  <r>den<s n="det"/><s n="dem"/><s n="mf"/><s n="sg"/><d/></r></p>
       <par n="første-andre"/>
-      <i><w/><s n="n"/><s n="m"/><s n="sg"/></i>  <p><l><s n="ind"/></l><r><s n="def"/></r></p>  <par n="d"/>
+      <par n="ncmp*.n.ind2def.mf"/>
       <p><l></l>                                  <r>i<b/>fjor<s n="adv"/><d/></r></p>
     </e>
 
-    <e lm="fjorårets siste klatring -> den siste klatringa i fjor" c="den siste klatringa i fjor">
-      <p><l>fjorår<s n="n"/><s n="nt"/><s n="sg"/><s n="def"/><s n="gen"/></l>  <r></r></p>  <par n="d:"/>
-      <p><l></l>                                  <r>den<s n="det"/><s n="dem"/><s n="mf"/><s n="sg"/><d/></r></p>
-      <par n="første-andre"/>
-      <i><w/><s n="n"/><s n="f"/><s n="sg"/></i>  <p><l><s n="ind"/></l><r><s n="def"/></r></p>  <par n="d"/>
-      <p><l></l>                                  <r>i<b/>fjor<s n="adv"/><d/></r></p>
+    <e lm="fjorårets 30.000 -> fjorårsnivået på 30.000" c="fjorårsnivået på 30.000">
+      <i>fjorår<s n="n"/><s n="nt"/><t/></i> <p><l><t/><s n="def"/><s n="gen"/></l><r><t/><s n="ind"/><s n="cmp"/><d/></r></p> <par n="d:"/>
+      <p><l></l>                                  <r>nivå<s n="n"/><s n="nt"/><s n="sg"/><s n="def"/><d/></r></p>
+      <p><l></l>                                  <r>på<s n="pr"/><d/></r></p>
+      <i><w/><s n="det"/><s n="qnt"/><s n="un"/><s n="pl"/><t/></i>  <par n="d"/>
     </e>
 
 </section>
