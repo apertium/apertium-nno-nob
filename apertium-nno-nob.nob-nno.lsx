@@ -234,9 +234,23 @@
       <e>
         <par n="ncmp*"/>
         <i><w/><s n="n"/><t/></i>
-        <p><l><s n="ind"/></l> <r><s n="def"/></r></p> <!-- <ind><aa>$ -->
+        <p><l><s n="ind"/><s n="aa"/></l> <r><s n="def"/><s n="aa"/></r></p> <!-- <ind><aa>$ -->
         <par n="d"/>
       </e>
+    </pardef>
+
+    <pardef n="ncmp*.n.ind2ind.AA"> <!-- VM -->
+      <e>
+        <par n="ncmp*"/>
+        <i><w/><s n="n"/><t/></i>
+        <p><l><s n="AA"/></l> <r><s n="AA"/></r></p> <!-- <ind><AA>$ -->
+        <par n="d"/>
+      </e>
+    </pardef>
+
+    <pardef n="ncmp*.n.ind-or-def">
+      <e><par n="ncmp*.n.ind2def"/></e>     <!-- stevne > stemnet -->
+      <e><par n="ncmp*.n.ind2ind.AA"/></e>  <!-- VM > VM -->
     </pardef>
 
     <pardef n="ncmp*.n.ind2def.pl">
@@ -8937,10 +8951,11 @@
     </e>
 
 <!-- fjorårets-reglar -->
-    <e lm="fjorårets utgave -> fjorårsutgaven" c="fjorårsutgåva">
+
+    <e lm="fjorårets arrangement i Doha -> arrangementet i Doha i fjor" c="arrangementet i Doha i fjor">
       <i><w/><s n="pr"/><t/><d/></i>
       <p><l>fjorår<s n="n"/><s n="nt"/><s n="sg"/><s n="def"/><s n="gen"/></l>  <r></r></p>  <par n="d:"/>
-      <par n="ncmp*.n.ind2def"/>
+      <par n="ncmp*.n.ind-or-def"/>
        <par n="pr+np"/>
       <p><l></l>                                  <r>i<b/>fjor<s n="adv"/><d/></r></p>
     </e>
@@ -9027,6 +9042,15 @@
       <p><l></l>                                  <r>nivå<s n="n"/><s n="nt"/><s n="sg"/><s n="def"/><d/></r></p>
       <p><l></l>                                  <r>på<s n="pr"/><d/></r></p>
       <i><w/><s n="det"/><s n="qnt"/><s n="un"/><s n="pl"/></i>  <par n="d"/>
+    </e>
+
+    <e lm="fjorårets antall x -> antallet på x i fjor" c="talet på x i fjor">
+      <i><w/><s n="vblex"/><t/><d/></i>
+      <p><l>fjorår<s n="n"/><s n="nt"/><s n="sg"/><s n="def"/><s n="gen"/></l>  <r></r></p>  <par n="d:"/>
+      <i>antall<s n="n"/><s n="nt"/><t/></i> <p><l><t/><s n="ind"/></l><r><t/><s n="def"/><d/></r></p> <par n="d:"/>
+      <p><l></l>                                  <r>på<s n="pr"/><d/></r></p>
+      <i><w/><s n="n"/><t/><d/></i>
+      <p><l></l>                                  <r>i<b/>fjor<s n="adv"/><d/></r></p>
     </e>
 
 </section>
