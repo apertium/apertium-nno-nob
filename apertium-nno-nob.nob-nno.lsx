@@ -158,6 +158,11 @@
       <e><par n="adj"/><par n="adj"/></e>
       <e><par n="adj"/><par n="adj"/><par n="adj"/></e>
     </pardef>
+    <pardef n="og|eller|komma">
+      <e><i>og<s n="cnjcoo"/><t/><d/></i></e>
+      <e><i>eller<s n="cnjcoo"/><t/><d/></i></e>
+      <e><i><w/><s n="cm"/><t/><d/></i></e>
+    </pardef>
     <pardef n="pr">
       <e><i><w/><s n="pr"/><d/></i></e>
       <e><i><w/><s n="pr"/><t/><d/></i></e>
@@ -329,6 +334,42 @@
     <pardef n="pr+SN">
       <e><i><w/><s n="pr"/><t/><d/></i><par n="SN"/></e>
       <e><i><w/><s n="pr"/><t/><d/></i><par n="det+SN"/></e>
+      <e>
+        <i><w/><s n="pr"/><t/><d/></i>
+        <par n="SN"/>
+        <par n="og|eller|komma"/>
+        <par n="SN"/>
+      </e>
+      <e>
+        <i><w/><s n="pr"/><t/><d/></i>
+        <par n="SN"/>
+        <par n="og|eller|komma"/>
+        <par n="SN"/>
+        <par n="og|eller|komma"/>
+        <par n="SN"/>
+      </e>
+    </pardef>
+
+    <pardef n="prepledd-np-SN">
+      <e>
+        <i><w/><s n="pr"/><t/><d/></i><par n="np"/>
+      </e>
+      <e>
+        <i><w/><s n="pr"/><t/><d/></i>
+        <par n="np"/>
+        <par n="og|eller|komma"/>
+        <par n="np"/>
+      </e>
+      <e>
+        <par n="pr+SN"/>
+      </e>
+    </pardef>
+
+    <pardef n="prepledd|empty">
+      <e></e>
+      <e>                                                  <par n="prepledd-np-SN"/></e>
+      <e>                         <par n="prepledd-np-SN"/><par n="prepledd-np-SN"/></e>
+      <e><par n="prepledd-np-SN"/><par n="prepledd-np-SN"/><par n="prepledd-np-SN"/></e>
     </pardef>
 
     <pardef n="pr+SN|" c="Includes empty!">
@@ -8956,7 +8997,7 @@
       <i><w/><s n="pr"/><t/><d/></i>
       <p><l>fjorår<s n="n"/><s n="nt"/><s n="sg"/><s n="def"/><s n="gen"/></l>  <r></r></p>  <par n="d:"/>
       <par n="ncmp*.n.ind-or-def"/>
-       <par n="pr+np"/>
+       <par n="prepledd|empty"/>
       <p><l></l>                                  <r>i<b/>fjor<s n="adv"/><d/></r></p>
     </e>
 
@@ -8964,6 +9005,13 @@
       <i><w/><s n="vblex"/><t/><d/></i>
       <i>fjorår<s n="n"/><s n="nt"/><t/></i> <p><l><t/><s n="def"/><s n="gen"/></l><r><t/><s n="ind"/><s n="cmp"/><d/></r></p> <par n="d:"/>
       <i><w/><s n="n"/><t/></i>  <p><l><s n="ind"/></l><r><s n="def"/></r></p>  <par n="d"/>
+    </e>
+    
+    <e lm="fjorårets vinner Strømsgodset -> fjorårsvinneren Strømsgodset" c="fjorårsvinneren Strømsgodset">
+      <i><w/><s n="vblex"/><t/><d/></i>
+      <i>fjorår<s n="n"/><s n="nt"/><t/></i> <p><l><t/><s n="def"/><s n="gen"/></l><r><t/><s n="ind"/><s n="cmp"/><d/></r></p> <par n="d:"/>
+      <par n="ncmp*.n.ind2def"/>
+      <par n="np"/>
     </e>
     
     <e lm="er fjorårets tørkesommer -> tørkesommeren i fjor" c="tørkesommeren i fjor">
@@ -8990,6 +9038,7 @@
       <i><w/><s n="pr"/><t/><d/></i>
       <p><l>fjorår<s n="n"/><s n="nt"/><s n="sg"/><s n="def"/><s n="gen"/></l>  <r></r></p>  <par n="d:"/>
       <par n="ncmp*.n.ind2def"/>
+       <par n="prepledd|empty"/>
       <p><l></l>                                  <r>i<b/>fjor<s n="adv"/><d/></r></p>
     </e>
 
