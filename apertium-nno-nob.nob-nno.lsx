@@ -135,6 +135,14 @@
       <e><p><l><s n="AA"/></l> <r><s n="AA"/></r></p></e>
     </pardef>
 
+    <pardef n="cm" c="Ensure no space before, space after">
+      <e>
+        <p><l/><r><d space="no"/></r></p>    <!-- no space before-->
+        <i><w/><s n="cm"/></i><par n="aa|"/> <!-- , -->
+        <p><l/><r><d space="yes"/></r></p>   <!-- space after-->
+      </e>
+    </pardef>
+
     <pardef n="det">
       <e><i><w/><s n="det"/><t/><d/></i></e>
     </pardef>
@@ -769,22 +777,14 @@
     </pardef>
 
     <pardef n="cm|og|eller">
-      <e>
-        <p><l/><r><d space="no"/></r></p>    <!-- no space before-->
-        <i><w/><s n="cm"/></i><par n="aa|"/> <!-- , -->
-        <p><l/><r><d space="yes"/></r></p>   <!-- space after-->
-      </e>
+      <e><par n="cm"/></e>
       <e><i>og<s n="cnjcoo"/><t/></i> <par n="d"/></e>
       <e><i>eller<s n="cnjcoo"/><t/></i> <par n="d"/></e>
     </pardef>
 
     <pardef n="cm|og|eller|empty">
       <e></e>
-      <e>
-        <p><l/><r><d space="no"/></r></p>    <!-- no space before-->
-        <i><w/><s n="cm"/></i><par n="aa|"/> <!-- , -->
-        <p><l/><r><d space="yes"/></r></p>   <!-- space after-->
-      </e>
+      <e><par n="cm"/></e>
       <e><i>og<s n="cnjcoo"/><t/></i> <par n="d"/></e>
       <e><i>eller<s n="cnjcoo"/><t/></i> <par n="d"/></e>
     </pardef>
