@@ -143,6 +143,13 @@
       </e>
     </pardef>
 
+    <pardef n="cm-insert">
+      <e>
+        <p><l/><r><d space="no"/></r></p>    <!-- no space before-->
+        <p><l></l>            <r>,<s n="cm"/><d space="yes"/></r></p>
+      </e>
+    </pardef>
+
     <pardef n="det">
       <e><i><w/><s n="det"/><t/><d/></i></e>
     </pardef>
@@ -660,6 +667,8 @@
       <e><i>annen<s n="det"/><s n="dem"/><s n="un"/><s n="pl"/><t/><d/></i></e>
       <e><i>sist<t/><d/></i></e>
       <e><par n="adj"/></e>
+      <e><par n="adj"/><par n="adj"/></e>
+      <e><par n="adj"/><par n="adj"/><par n="adj"/></e>
     </pardef>
 
     <pardef n="fjorårs-ord">
@@ -678,7 +687,11 @@
       <e><p><l>storm<s n="n"/><t/><s n="ind"/></l><r>storm<s n="n"/><t/><s n="def"/></r></p> <par n="d"/></e>
       <e><p><l>budsjett<s n="n"/><t/><s n="ind"/></l><r>budsjett<s n="n"/><t/><s n="def"/></r></p> <par n="d"/></e>
       <e><p><l>kull<s n="n"/><t/><s n="ind"/></l><r>kull<s n="n"/><t/><s n="def"/></r></p> <par n="d"/></e>
-      <e><p><l>vekst<s n="n"/><t/><s n="ind"/></l><r>kull<s n="n"/><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><p><l>vekst<s n="n"/><t/><s n="ind"/></l><r>vekst<s n="n"/><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><p><l>økning<s n="n"/><t/><s n="ind"/></l><r>økning<s n="n"/><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><p><l>kutt<s n="n"/><t/><s n="ind"/></l><r>kutt<s n="n"/><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><p><l>jakt<s n="n"/><t/><s n="ind"/></l><r>jakt<s n="n"/><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><p><l>tur<s n="n"/><t/><s n="ind"/></l><r>tur<s n="n"/><t/><s n="def"/></r></p> <par n="d"/></e>
     </pardef>
 
     <pardef n="kongeleg">
@@ -9074,13 +9087,18 @@
     <e lm="fjorårets sesong -> fjorårssesongen" c="fjorårssesongen">
       <i>fjorår<s n="n"/><s n="nt"/><t/></i> <p><l><t/><s n="def"/><s n="gen"/></l><r><t/><s n="ind"/><s n="cmp"/><d/></r></p> <par n="d:"/>
       <par n="fjorårs-ord"/>
-      <i><w/><t/><d/></i>
     </e>
 
     <e lm="fjorårets sesong -> fjorårssesongen" c="fjorårssesongen">
-      <i><w/><t/><d/></i>                                                                                     <!-- Missar setningsstart: Fjorårets sesong var ... -->
+      <i><w/><t/><d/></i>                                                                                     
       <i>fjorår<s n="n"/><s n="nt"/><t/></i> <p><l><t/><s n="def"/><s n="gen"/></l><r><t/><s n="ind"/><s n="cmp"/><d/></r></p> <par n="d:"/>
       <par n="fjorårs-ord"/>
+    </e>
+
+    <e lm="fjorårets sesong -> fjorårssesongen" c="fjorårssesongen">                                                                                  
+      <i>fjorår<s n="n"/><s n="nt"/><t/></i> <p><l><t/><s n="def"/><s n="gen"/></l><r><t/><s n="ind"/><s n="cmp"/><d/></r></p> <par n="d:"/>
+      <par n="fjorårs-ord"/>
+      <i><w/><t/><d/></i>   
     </e>
 
     <e lm="fjorårets juni måned -> junimåneden i fjor" c="junimåneden i fjor">
@@ -9106,13 +9124,12 @@
     </e>
     
     <e lm="fjorårets vinner Strømsgodset -> fjorårsvinneren Strømsgodset" c="fjorårsvinneren Strømsgodset">
-      <i><w/><s n="vblex"/><t/><d/></i>
       <i>fjorår<s n="n"/><s n="nt"/><t/></i> <p><l><t/><s n="def"/><s n="gen"/></l><r><t/><s n="ind"/><s n="cmp"/><d/></r></p> <par n="d:"/>
       <par n="ncmp*.n.ind-or-def"/>
       <par n="np"/>
     </e>
     
-    <e lm="er fjorårets tørkesommer -> tørkesommeren i fjor" c="tørkesommeren i fjor">
+    <!--e lm="er fjorårets tørkesommer -> tørkesommeren i fjor" c="tørkesommeren i fjor">
       <i><w/><s n="vblex"/><t/><d/></i>
       <p><l>fjorår<s n="n"/><s n="nt"/><s n="sg"/><s n="def"/><s n="gen"/></l>  <r></r></p>  <par n="d:"/>
       <par n="ncmp*.n.ind-or-def"/>
@@ -9138,7 +9155,7 @@
       <par n="ncmp*.n.ind2def"/>
        <par n="prepledd|empty"/>
       <p><l></l>                                  <r>i<b/>fjor<s n="adv"/><d/></r></p>
-    </e>
+    </e-->
 
     <e lm="fjorårets ti første måneder -> de ti første månedene av fjoråret" c="dei ti første månadene av fjoråret">
       <p><l>fjorår<s n="n"/><s n="nt"/><s n="sg"/><s n="def"/><s n="gen"/></l>  <r></r></p>  <par n="d:"/>
