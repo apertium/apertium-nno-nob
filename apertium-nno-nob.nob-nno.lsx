@@ -769,14 +769,22 @@
     </pardef>
 
     <pardef n="cm|og|eller">
-      <e><i><w/><s n="cm"/><t/></i> <par n="d"/></e>
+      <e>
+        <p><l/><r><d space="no"/></r></p>    <!-- no space before-->
+        <i><w/><s n="cm"/></i><par n="aa|"/> <!-- , -->
+        <p><l/><r><d space="yes"/></r></p>   <!-- space after-->
+      </e>
       <e><i>og<s n="cnjcoo"/><t/></i> <par n="d"/></e>
       <e><i>eller<s n="cnjcoo"/><t/></i> <par n="d"/></e>
     </pardef>
 
     <pardef n="cm|og|eller|empty">
       <e></e>
-      <e><i><w/><s n="cm"/><t/></i> <par n="d"/></e>
+      <e>
+        <p><l/><r><d space="no"/></r></p>    <!-- no space before-->
+        <i><w/><s n="cm"/></i><par n="aa|"/> <!-- , -->
+        <p><l/><r><d space="yes"/></r></p>   <!-- space after-->
+      </e>
       <e><i>og<s n="cnjcoo"/><t/></i> <par n="d"/></e>
       <e><i>eller<s n="cnjcoo"/><t/></i> <par n="d"/></e>
     </pardef>
@@ -9118,6 +9126,18 @@
       <i>antall<s n="n"/><s n="nt"/><t/></i> <p><l><t/><s n="ind"/></l><r><t/><s n="def"/><d/></r></p> <par n="d:"/>
       <p><l></l>                                  <r>på<s n="pr"/><d/></r></p>
       <i><w/><s n="n"/><t/><d/></i>
+      <p><l></l>                                  <r>i<b/>fjor<s n="adv"/><d/></r></p>
+    </e>
+
+    <e lm="FIXME :)" c="">
+      <p><l>fjorår<s n="n"/><s n="nt"/><s n="sg"/><s n="def"/><s n="gen"/></l>  <r></r></p>  <par n="d:"/>
+      <par n="ncmp*.n.ind2def.mf"/> <!-- rekord -->
+      <i><w/><s n="pr"/><t/><d/></i> <!-- på -->
+      <par n="SN"/>             <!-- tobis -->
+      <par n="cm|og|eller"/>
+      <par n="SN"/>
+      <par n="cm|og|eller"/>
+      <par n="SN"/>
       <p><l></l>                                  <r>i<b/>fjor<s n="adv"/><d/></r></p>
     </e>
 
