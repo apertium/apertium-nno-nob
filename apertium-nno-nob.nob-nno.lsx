@@ -158,11 +158,6 @@
       <e><par n="adj"/><par n="adj"/></e>
       <e><par n="adj"/><par n="adj"/><par n="adj"/></e>
     </pardef>
-    <pardef n="og|eller|komma">
-      <e><i>og<s n="cnjcoo"/><t/><d/></i></e>
-      <e><i>eller<s n="cnjcoo"/><t/><d/></i></e>
-      <e><i><w/><s n="cm"/><t/><d/></i></e>
-    </pardef>
     <pardef n="pr">
       <e><i><w/><s n="pr"/><d/></i></e>
       <e><i><w/><s n="pr"/><t/><d/></i></e>
@@ -340,47 +335,6 @@
      <pardef n="pr+np|">
       <e></e>
       <e><i><w/><s n="pr"/><t/><d/></i><par n="np"/></e>
-    </pardef>
-
-    <pardef n="pr+SN">
-      <e><i><w/><s n="pr"/><t/><d/></i><par n="SN"/></e>
-      <e><i><w/><s n="pr"/><t/><d/></i><par n="det+SN"/></e>
-      <e>
-        <i><w/><s n="pr"/><t/><d/></i>
-        <par n="SN"/>
-        <par n="og|eller|komma"/>
-        <par n="SN"/>
-      </e>
-      <e>
-        <i><w/><s n="pr"/><t/><d/></i>
-        <par n="SN"/>
-        <par n="og|eller|komma"/>
-        <par n="SN"/>
-        <par n="og|eller|komma"/>
-        <par n="SN"/>
-      </e>
-    </pardef>
-
-    <pardef n="prepledd-np-SN">
-      <e>
-        <i><w/><s n="pr"/><t/><d/></i><par n="np"/>
-      </e>
-      <e>
-        <i><w/><s n="pr"/><t/><d/></i>
-        <par n="np"/>
-        <par n="og|eller|komma"/>
-        <par n="np"/>
-      </e>
-      <e>
-        <par n="pr+SN"/>
-      </e>
-    </pardef>
-
-    <pardef n="prepledd|empty">
-      <e></e>
-      <e>                                                  <par n="prepledd-np-SN"/></e>
-      <e>                         <par n="prepledd-np-SN"/><par n="prepledd-np-SN"/></e>
-      <e><par n="prepledd-np-SN"/><par n="prepledd-np-SN"/><par n="prepledd-np-SN"/></e>
     </pardef>
 
     <pardef n="pr+SN|" c="Includes empty!">
@@ -835,6 +789,47 @@
       <e></e>
       <e><par n="det+SN"/></e>
       <e><par n="det+SN"/><par n="og|eller"/><par n="det+SN"/></e>
+    </pardef>
+
+    <pardef n="pr+SN">
+      <e><i><w/><s n="pr"/><t/><d/></i><par n="SN"/></e>
+      <e><i><w/><s n="pr"/><t/><d/></i><par n="det+SN"/></e>
+      <e>
+        <i><w/><s n="pr"/><t/><d/></i>
+        <par n="SN"/>
+        <par n="cm|og|eller"/>
+        <par n="SN"/>
+      </e>
+      <e>
+        <i><w/><s n="pr"/><t/><d/></i>
+        <par n="SN"/>
+        <par n="cm|og|eller"/>
+        <par n="SN"/>
+        <par n="cm|og|eller"/>
+        <par n="SN"/>
+      </e>
+    </pardef>
+
+    <pardef n="prepledd-np-SN">
+      <e>
+        <i><w/><s n="pr"/><t/><d/></i><par n="np"/>
+      </e>
+      <e>
+        <i><w/><s n="pr"/><t/><d/></i>
+        <par n="np"/>
+        <par n="cm|og|eller"/>
+        <par n="np"/>
+      </e>
+      <e>
+        <par n="pr+SN"/>
+      </e>
+    </pardef>
+
+    <pardef n="prepledd|empty">
+      <e></e>
+      <e>                                                  <par n="prepledd-np-SN"/></e>
+      <e>                         <par n="prepledd-np-SN"/><par n="prepledd-np-SN"/></e>
+      <e><par n="prepledd-np-SN"/><par n="prepledd-np-SN"/><par n="prepledd-np-SN"/></e>
     </pardef>
 
     <pardef n="teiknsetjing">
