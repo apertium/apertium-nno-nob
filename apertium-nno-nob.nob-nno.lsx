@@ -182,6 +182,11 @@
       <e><i><w/><s n="pr"/><d/></i></e>
       <e><i><w/><s n="pr"/><t/><d/></i></e>
     </pardef>
+    <pardef n="pr-tid">
+      <e><i>før<s n="pr"/><t/><d/></i></e>
+      <e><i>etter<s n="pr"/><t/><d/></i></e>
+      <e><i>innen<s n="pr"/><t/><d/></i></e>
+    </pardef>
     <pardef n="n">
       <e><i><w/><s n="n"/><t/><d/></i></e>
     </pardef>
@@ -699,6 +704,7 @@
       <e><p><l>tur<s n="n"/><t/><s n="ind"/></l><r>tur<s n="n"/><t/><s n="def"/></r></p> <par n="d"/></e>
       <e><p><l>ferie<s n="n"/><t/><s n="ind"/></l><r>ferie<s n="n"/><t/><s n="def"/></r></p> <par n="d"/></e>
       <e><p><l>tall<s n="n"/><t/><s n="ind"/></l><r>tall<s n="n"/><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><p><l>antall<s n="n"/><t/><s n="ind"/></l><r>antall<s n="n"/><t/><s n="def"/></r></p> <par n="d"/></e>
       <e><p><l>festival<s n="n"/><t/><s n="ind"/></l><r>festival<s n="n"/><t/><s n="def"/></r></p> <par n="d"/></e>
     </pardef>
 
@@ -904,6 +910,11 @@
     </pardef>
 
     <pardef n="prepledd-np-SN">
+      <e>                                       <!-- i Ungarns asyllover -->
+        <i><w/><s n="pr"/><t/><d/></i>
+        <i><w/><s n="np"/><t/><s n="gen"/><t/><d/></i>
+        <par n="SN"/>
+      </e>
       <e>
         <i><w/><s n="pr"/><t/><d/></i><par n="np"/>
       </e>
@@ -9100,13 +9111,13 @@
     <e lm="fjorårets sesong -> fjorårssesongen" c="fjorårssesongen">
       <i><w/><t/><d/></i>                                                                                     
       <i>fjorår<s n="n"/><s n="nt"/><t/></i> <p><l><t/><s n="def"/><s n="gen"/></l><r><t/><s n="ind"/><s n="cmp"/><d/></r></p> <par n="d:"/>
-      <par n="fjorårs-ord"/>
+      <par n="fjorårs-ord"/>          
     </e>
 
-    <e lm="fjorårets sesong -> fjorårssesongen" c="fjorårssesongen">                                                                                  
+    <e lm="fjorårets sesong -> fjorårssesongen" c="fjorårssesongen">                                                                       
       <i>fjorår<s n="n"/><s n="nt"/><t/></i> <p><l><t/><s n="def"/><s n="gen"/></l><r><t/><s n="ind"/><s n="cmp"/><d/></r></p> <par n="d:"/>
       <par n="fjorårs-ord"/>
-      <i><w/><t/><d/></i>   
+      <i><w/><t/><d/></i>                
     </e>
 
     <e lm="fjorårets juni måned -> junimåneden i fjor" c="junimåneden i fjor">
@@ -9123,8 +9134,28 @@
       <p><l></l>                                  <r>i<b/>fjor<s n="adv"/><d/></r></p>
     </e>
 
-    <e lm="fjorårets arrangement i Doha -> arrangementet i Doha i fjor" c="arrangementet i Doha i fjor">
+    <e lm="(vedta) fjorårets innstilling i juni -> (vedta) innstillinga fra i fjor i juni" c="innstillinga frå i fjor i juni">
+      <i><w/><t/><d/></i>                  
+      <p><l>fjorår<s n="n"/><s n="nt"/><s n="sg"/><s n="def"/><s n="gen"/></l>  <r></r></p>  <par n="d:"/>
+      <par n="ncmp*.n.ind-or-def"/>
+      <p><l></l>                                  <r>frå<s n="pr"/><d/></r></p>
+      <p><l></l>                                  <r>i<b/>fjor<s n="adv"/><d/></r></p>
       <i><w/><s n="pr"/><t/><d/></i>
+      <par n="Månad"/>
+    </e>
+
+    <e lm="(vedta) fjorårets innstilling før sommeren -> (vedta) innstillinga fra i fjor før sommeren" c="innstillinga frå i fjor før sommaren"> 
+      <i><w/><t/><d/></i>                
+      <p><l>fjorår<s n="n"/><s n="nt"/><s n="sg"/><s n="def"/><s n="gen"/></l>  <r></r></p>  <par n="d:"/>
+      <par n="ncmp*.n.ind-or-def"/>
+      <p><l></l>                                  <r>frå<s n="pr"/><d/></r></p>
+      <p><l></l>                                  <r>i<b/>fjor<s n="adv"/><d/></r></p>
+      <par n="pr-tid"/>
+      <i><w/><s n="n"/><t/><d/></i>   
+    </e>
+
+    <e lm="fjorårets arrangement i Doha -> arrangementet i Doha i fjor" c="arrangementet i Doha i fjor">
+      <i><w/><t/><d/></i>
       <p><l>fjorår<s n="n"/><s n="nt"/><s n="sg"/><s n="def"/><s n="gen"/></l>  <r></r></p>  <par n="d:"/>
       <par n="ncmp*.n.ind-or-def"/>
        <par n="prepledd|empty"/>
@@ -9138,33 +9169,13 @@
       <par n="np"/>
     </e>
     
-    <!--e lm="er fjorårets tørkesommer -> tørkesommeren i fjor" c="tørkesommeren i fjor">
-      <i><w/><s n="vblex"/><t/><d/></i>
-      <p><l>fjorår<s n="n"/><s n="nt"/><s n="sg"/><s n="def"/><s n="gen"/></l>  <r></r></p>  <par n="d:"/>
-      <par n="ncmp*.n.ind-or-def"/>
+    <e lm="som besøkte fjorårets x -> som i fjor besøkte x" c="som i fjor besøkte x">
+      <i>som<s n="cnjsub"/><t/><d/></i>
       <p><l></l>                                  <r>i<b/>fjor<s n="adv"/><d/></r></p>
-    </e>
-    
-    <e lm="fjorårets sesong er -> fjorårssesongen er" c="fjorårssesongen er">
-      <i>fjorår<s n="n"/><s n="nt"/><t/></i> <p><l><t/><s n="def"/><s n="gen"/></l><r><t/><s n="ind"/><s n="cmp"/><d/></r></p> <par n="d:"/>
-      <i><w/><s n="n"/><t/></i>  <p><l><s n="ind"/></l><r><s n="def"/></r></p>  <par n="d"/>
       <i><w/><s n="vblex"/><t/><d/></i>
-    </e>
-    
-    <e lm="fjorårets tørkesommer er -> tørkesommeren i fjor er" c="tørkesommaren i fjor er">
       <p><l>fjorår<s n="n"/><s n="nt"/><s n="sg"/><s n="def"/><s n="gen"/></l>  <r></r></p>  <par n="d:"/>
       <par n="ncmp*.n.ind2def"/>
-      <p><l></l>                                  <r>i<b/>fjor<s n="adv"/><d/></r></p>
-      <i><w/><s n="vblex"/><t/><d/></i>
     </e>
-    
-    <e lm="i fjorårets sesong -> i sesongen i fjor" c="i sesongen i fjor">
-      <i><w/><s n="pr"/><t/><d/></i>
-      <p><l>fjorår<s n="n"/><s n="nt"/><s n="sg"/><s n="def"/><s n="gen"/></l>  <r></r></p>  <par n="d:"/>
-      <par n="ncmp*.n.ind2def"/>
-       <par n="prepledd|empty"/>
-      <p><l></l>                                  <r>i<b/>fjor<s n="adv"/><d/></r></p>
-    </e-->
 
     <e lm="fjorårets ti første måneder -> de ti første månedene av fjoråret" c="dei ti første månadene av fjoråret">
       <p><l>fjorår<s n="n"/><s n="nt"/><s n="sg"/><s n="def"/><s n="gen"/></l>  <r></r></p>  <par n="d:"/>
