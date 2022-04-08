@@ -2615,6 +2615,15 @@
       <match lemma="frem"/>
     </or>
   </rule>
+  <rule weight="2.0">
+    <match lemma="trå" tags="vblex.*">
+      <select lemma="trakke"/>
+    </match>
+    <or>
+    <match lemma="over"/>
+    <match lemma="feil"/>
+    </or>
+  </rule>
 
 <!-- <rule><match lemma="sikkerhet" tags="n.*"><select lemma="sikkerheit"/></match></rule> -->
   <rule><match lemma="sikkerhet" tags="n.*"><select lemma="tryggleik"/></match></rule>
