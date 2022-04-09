@@ -7675,12 +7675,7 @@
   <rule weight="3.0">
     <match lemma="all"/>
     <match lemma="de øvrige" tags="det.*"><select lemma="dei andre"/></match>
-    <repeat from="0" upto="3">
-      <or>
-        <match tags="n.*.cmp.*"/>
-        <match tags="np.*.cmp.*"/>
-      </or>
-    </repeat>
+    <repeat from="0" upto="3"><match tags="*.cmp"/></repeat>
     <match tags="n.*.def.*"/>
   </rule>
 
