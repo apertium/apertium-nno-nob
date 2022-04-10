@@ -211,6 +211,24 @@
     <pardef n="np">
       <e><i><w/><s n="np"/><d/></i></e>
       <e><i><w/><s n="np"/><t/><d/></i></e>
+      <e>
+        <i><w/><s n="np"/><d/></i>
+        <i><w/><s n="np"/><d/></i>
+      </e>
+      <e>
+        <i><w/><s n="np"/><t/><d/></i>
+        <i><w/><s n="np"/><t/><d/></i>
+      </e>
+      <e>
+        <i><w/><s n="np"/><d/></i>
+        <i><w/><s n="np"/><d/></i>
+        <i><w/><s n="np"/><d/></i>
+      </e>
+      <e>
+        <i><w/><s n="np"/><t/><d/></i>
+        <i><w/><s n="np"/><t/><d/></i>
+        <i><w/><s n="np"/><t/><d/></i>
+      </e>
     </pardef>
     <pardef n="np|empty">
       <e></e>
@@ -9175,7 +9193,7 @@
     <e lm="fjorårets sesong -> fjorårssesongen" c="fjorårssesongen">                                                                       
       <i>fjorår<s n="n"/><s n="nt"/><t/></i> <p><l><t/><s n="def"/><s n="gen"/></l><r><t/><s n="ind"/><s n="cmp"/><d/></r></p> <par n="d:"/>
       <par n="fjorårs-ord"/>
-      <i><w/><t/><d/></i>                
+      <i><w/><t/><d/></i>            
     </e>
 
     <e lm="fjorårets juni måned -> junimåneden i fjor" c="junimåneden i fjor">
@@ -9209,24 +9227,50 @@
       <p><l></l>                                  <r>frå<s n="pr"/><d/></r></p>
       <p><l></l>                                  <r>i<b/>fjor<s n="adv"/><d/></r></p>
       <par n="pr-tid"/>
-      <i><w/><s n="n"/><t/><d/></i>   
+      <i><w/><s n="n"/><t/><d/></i>
     </e>
 
-    <e lm="fjorårets arrangement i Doha -> arrangementet i Doha i fjor" c="arrangementet i Doha i fjor">
+    <e lm="fjorårets arrangement (i Doha) -> arrangementet (i Doha) i fjor" c="arrangementet (i Doha) i fjor">
       <p><l>fjorår<s n="n"/><s n="nt"/><s n="sg"/><s n="def"/><s n="gen"/></l>  <r></r></p>  <par n="d:"/>
       <par n="ncmp*.n.ind-or-def"/>
-       <par n="prepledd|empty"/>
-      <p><l></l>                                  <r>i<b/>fjor<s n="adv"/><d/></r></p>
-    </e>
-
-    <e lm="fjorårets OL-finale -> OL-finalen i fjor" c="OL-finalen i fjor">
-      <p><l>fjorår<s n="n"/><s n="nt"/><s n="sg"/><s n="def"/><s n="gen"/></l>  <r></r></p>  <par n="d:"/>
-      <par n="ncmp*.n.ind-or-def"/>
-       <par n="prepledd|empty"/>
+      <par n="prepledd|empty"/>
       <p><l></l>                                  <r>i<b/>fjor<s n="adv"/><d/></r></p>
     </e>
     
-    <e lm="fjorårets vinner Strømsgodset -> fjorårsvinneren Strømsgodset" c="fjorårsvinneren Strømsgodset">
+    <e lm="fjorårets Black Friday (i Bergen) -> Black Friday (i Bergen) i fjor" c="Black Friday (i Bergen) i fjor">
+      <p><l>fjorår<s n="n"/><s n="nt"/><s n="sg"/><s n="def"/><s n="gen"/></l>  <r></r></p>  <par n="d:"/>
+      <par n="np"/>
+      <par n="prepledd|empty"/>
+      <p><l></l>                                  <r>i<b/>fjor<s n="adv"/><d/></r></p>
+    </e>
+    <!-- TODO: Denne regelen slår ikkje til ...? -->
+
+    <e lm="fjorårets finale i tirsdagens lagkonkurranse -> finalen i fjor i lagkonkurransen tirsdag" c="finalen i fjor i lagkonkurransen tysdag">
+      <p><l>fjorår<s n="n"/><s n="nt"/><s n="sg"/><s n="def"/><s n="gen"/></l>  <r></r></p>  <par n="d:"/>
+      <par n="ncmp*.n.ind-or-def"/>
+      <p><l></l>                                  <r>i<b/>fjor<s n="adv"/><d/></r></p>
+      <i><w/><s n="pr"/><t/><d/></i>
+      <i><w/><s n="n"/><t/><s n= "gen"/><t/><d/></i>
+    </e>
+
+    <e lm="fjorårets VM på grunn av -> VM i fjor på grunn av" c="VM i fjor på grunn av">
+      <i><w/><t/><d/></i> 
+      <p><l>fjorår<s n="n"/><s n="nt"/><s n="sg"/><s n="def"/><s n="gen"/></l>  <r></r></p>  <par n="d:"/>
+      <par n="ncmp*.n.ind-or-def"/>
+      <p><l></l>                                  <r>i<b/>fjor<s n="adv"/><d/></r></p>
+      <i>på<s n="pr"/><t/><d/></i>
+      <i>grunn<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/><t/><d/></i>
+      <i>av<s n="pr"/><t/><d/></i>
+    </e>
+
+    <e lm="fjorårets OL-finale (i Berlin) -> OL-finalen (i Berlin) i fjor" c="OL-finalen (i Berlin) i fjor">
+      <p><l>fjorår<s n="n"/><s n="nt"/><s n="sg"/><s n="def"/><s n="gen"/></l>  <r></r></p>  <par n="d:"/>
+      <par n="ncmp*.n.ind-or-def"/>
+      <par n="prepledd|empty"/>
+      <p><l></l>                                  <r>i<b/>fjor<s n="adv"/><d/></r></p>
+    </e>
+    
+    <e lm="fjorårets vinner Strømsgodset -> vinneren i fjor Strømsgodset" c="vinnaren i fjor Strømsgodset">
       <p><l>fjorår<s n="n"/><s n="nt"/><s n="sg"/><s n="def"/><s n="gen"/></l>  <r></r></p>  <par n="d:"/>
       <par n="ncmp*.n.ind2def"/>
       <p><l></l>                                  <r>i<b/>fjor<s n="adv"/><d/></r></p>
