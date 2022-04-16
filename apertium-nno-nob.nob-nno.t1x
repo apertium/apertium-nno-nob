@@ -499,6 +499,7 @@
       <cat-item tags="n.*.pl.ind.gen.*"  lemma="liv"/>
       <cat-item tags="n.*.sg.def.gen.*"  lemma="rett"/>
       <cat-item tags="n.*.sg.def.gen.*"  lemma="historie"/>
+      <cat-item tags="n.*.sg.def.gen.*"  lemma="mur"/>
     </def-cat>
     <def-cat n="nind_keep_gen_s_kvinners_retter"
              c="Owned nouns where we want the owner ngen to keep the genitive-s if preceded by ngen_keep_gen_s_kvinners_rettar">
@@ -507,6 +508,7 @@
       <cat-item tags="n.*.*.ind.*" lemma="form"/> <!-- i mitt livs form -->
       <cat-item tags="n.*.*.ind.*" lemma="vei"/>  <!--rettens vei-->
       <cat-item tags="n.*.*.ind.*" lemma="skraphaug"/>  <!--historiens skraphaug-->
+      <cat-item tags="n.*.*.ind.*" lemma="fall"/>  <!--murens fall-->
     </def-cat>
     <def-cat n="nind_time">
       <cat-item tags="n.*.ind.*" lemma="fjorår"/>
@@ -660,15 +662,38 @@
     <def-cat n="parti.gen">
       <cat-item lemma="sp" tags="np.*.gen.*"/>
       <cat-item lemma="ap" tags="np.*.gen.*"/>
+      <cat-item lemma="mdg" tags="np.*.gen.*"/>
+      <cat-item lemma="krf" tags="np.*.gen.*"/>
+      <cat-item lemma="sv" tags="np.*.gen.*"/>
+      <cat-item lemma="frp" tags="np.*.gen.*"/>
+      <cat-item lemma="høyre" tags="np.*.gen.*"/>
+      <cat-item lemma="venstre" tags="np.*.gen.*"/>
+      <cat-item lemma="rødt" tags="np.*.gen.*"/>
+      <cat-item lemma="arbeiderpartiet" tags="np.*.gen.*"/>
+      <cat-item lemma="senterpartiet" tags="np.*.gen.*"/>
+      <cat-item lemma="miljøpartiet de grønne" tags="np.*.gen.*"/>
+      <cat-item lemma="kristelig folkeparti" tags="np.*.gen.*"/>
+      <cat-item lemma="sosialistisk venstreparti" tags="np.*.gen.*"/>
+      <cat-item lemma="fremskrittspartiet" tags="np.*.gen.*"/>
     </def-cat>
-    <def-cat n="adj.politisk">
-      <cat-item lemma="finanspolitisk" tags="adj.*"/>
-      <cat-item lemma="landbrukspolitisk" tags="adj.*"/>
+    <def-cat n="np.org.gen">
+      <cat-item tags="np.org.gen.*"/>
     </def-cat>
-    <def-cat n="person">    
-      <cat-item tags="np.ant.aa"/>
-      <cat-item tags="np.ant.Aa"/>
-      <cat-item tags="np.ant.AA"/>
+    <def-cat n="talsperson" c="Not cmp!">
+      <cat-item lemma="talsperson" tags="n.*.sg.ind.aa"/>
+      <cat-item lemma="talsmann" tags="n.*.sg.ind.aa"/>
+      <cat-item lemma="talskvinne" tags="n.*.sg.ind.aa"/>
+    </def-cat>
+    <def-cat n="personnamn">    
+      <cat-item tags="np.ant.*"/>
+      <cat-item tags="np.cog.*"/>
+      <cat-item tags="n.acr.Aa"/>
+    </def-cat>
+    <def-cat n="adj.nye">
+      <cat-item tags="adj.sint.pst.un.sp.def.aa"/>                <!-- nye, gamle -->
+      <cat-item tags="adj.pp.sg.def.aa"/>                         <!-- fryktede -->
+      <cat-item lemma="legendarisk" tags="adj.pst.un.sp.def.aa"/>
+      <cat-item lemma="totalitær" tags="adj.pst.un.sp.def.aa"/>
     </def-cat>
     <def-cat n="britenes">
       <cat-item lemma="brite" tags="n.m.pl.def.gen.*"/>
@@ -925,6 +950,10 @@
     <def-attr n="art">
       <attr-item tags="def"/>
       <attr-item tags="ind"/>
+    </def-attr>
+    <def-attr n="art_sg">
+      <attr-item tags="un.sp.def"/>
+      <attr-item tags="mf.sg.ind"/>
     </def-attr>
     <def-attr n="expl">
       <attr-item tags="expl"/>
@@ -3477,7 +3506,7 @@
       <list-item v="paradis"/>
       <list-item v="part"/>
       <list-item v="periode"/>
-      <list-item v="person"/>
+      <list-item v="personnamn"/>
       <list-item v="plass"/>
       <list-item v="plikt"/>
       <list-item v="posisjon"/>
@@ -4432,33 +4461,32 @@
 
     <rule comment="Sps finanspolitiske talsperson NN → finanspolitisk talsperson for Sp NN">
       <pattern>
-        <pattern-item n="parti.gen"/>     <!-- 1 -->
-        <pattern-item n="adj.politisk"/>  <!-- 2 -->
-        <pattern-item n="nsgind"/>        <!-- 3 -->
-<!--
-        <pattern-item n="person"/>
-        --><!-- 4 -->
+        <!--pattern-item n="parti.gen"/-->
+        <pattern-item n="np.org.gen"/>     <!--  -->
+        <pattern-item n="adj"/>           <!-- 2 -->
+        <pattern-item n="talsperson"/>        <!-- 3 -->
+        <pattern-item n="personnamn"/>        <!-- 4 -->
       </pattern>
       <action>
-        <call-macro n="set_caseFirstWord3"><with-param pos="1"/><with-param pos="2"/><with-param pos="3"/></call-macro>
-
-        <!-- FØR: -->
-<!-- ^Nn<np><org><gen>{^Sp<np><org><gen>$}$ -->
-<!-- ^adj_n<n><m><sg><ind><sl-m>{^finanspolitisk<adj><pst><un><sp><def>$ ^talsperson<n><m><sg><ind>$}$  -->
+        <call-macro n="set_caseFirstWord4">
+          <with-param pos="1"/>
+          <with-param pos="2"/>
+          <with-param pos="3"/>
+          <with-param pos="4"/>
+        </call-macro>
 
         <let><clip pos="1" side="tl" part="cas"/><lit v=""/></let>
-        <let><clip pos="2" side="tl" part="art"/><lit-tag v="ind"/></let>
+        <let><clip pos="2" side="tl" part="art_sg"/><lit-tag v="mf.sg.ind"/></let>
 
         <out>
           <chunk name="adj_n">
-            <tags><tag><clip pos="3" side="tl" part="tags"/></tag></tags>
+            <tags>
+              <tag><clip pos="2" side="tl" part="tags"/></tag>
+            </tags>
 
             <lu><clip pos="2" side="tl" part="whole"/></lu> <!-- {^finanspolitisk<adj><pst><un><sp><def>$ ^talsperson<n><m><sg><ind>$}$  -->
             <b/>
             <lu><clip pos="3" side="tl" part="whole"/></lu>
-          <!--- <b/>
-            <lu><clip pos="4" side="tl" part="whole"/></lu> 
-          -->
 
           </chunk>
           <b/>
@@ -4470,6 +4498,119 @@
           <chunk name="nn">
             <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
             <lu><clip pos="1" side="tl" part="whole"/></lu>
+          </chunk>
+          <b/>
+          <chunk name="nn">
+            <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
+            <lu><clip pos="4" side="tl" part="whole"/></lu>
+          </chunk>
+        </out>
+      </action>
+    </rule>
+
+    <!-- Handle exeptions from the rule below -->
+    <rule comment="Rikskonsertenes nye direktør NN → den nye direktøren i Rikskonsertane NN">
+      <pattern>
+        <pattern-item n="np.org.gen"/>     <!-- 1 -->
+        <pattern-item n="adj.nye"/>           <!-- 2 -->
+        <pattern-item n="nsgind"/>        <!-- typisk direktør, leiar osv. -->
+        <pattern-item n="personnamn"/>    <!-- Helst skilt ut med komma, føreset at heile namnet er identifisert -->
+      </pattern>
+      <action>
+        <call-macro n="set_caseFirstWord4">
+          <with-param pos="1"/>
+          <with-param pos="2"/>
+          <with-param pos="3"/>
+          <with-param pos="4"/>
+        </call-macro>
+        
+        <let><clip pos="1" side="tl" part="cas"/><lit v=""/></let>
+
+        <out>
+          <chunk name="adv">
+            <tags><tag><lit-tag v="adv"/></tag></tags>
+            <lu>
+              <lit v="den"/>
+              <lit-tag v="det.dem.m.sg"/>
+            </lu>
+          </chunk>
+          <b/>
+          <chunk name="adj_n">
+            <tags>
+              <tag><clip pos="2" side="tl" part="tags"/></tag>
+            </tags>
+
+            <lu><clip pos="2" side="tl" part="whole"/></lu> <!-- {^finanspolitisk<adj><pst><un><sp><def>$ ^talsperson<n><m><sg><ind>$}$  -->
+            <b/>
+            <lu><clip pos="3" side="tl" part="whole"/></lu>
+
+          </chunk>
+          <b/>
+          <chunk name="pr">
+            <tags><tag><lit-tag v="pr"/></tag></tags>
+            <lu><lit v="i"/><lit-tag v="pr"/></lu>
+          </chunk>
+          <b/>
+          <chunk name="nn">
+            <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
+            <lu><clip pos="1" side="tl" part="whole"/></lu>
+          </chunk>
+          <!--chunk name="cm">
+            <tags><tag><lit-tag v="cm"/></tag></tags>
+            <lu><lit v=","/><lit-tag v="cm"/></lu>
+          </chunk-->
+          <b/>
+          <chunk name="nn">
+            <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
+            <lu><clip pos="4" side="tl" part="whole"/></lu>
+          </chunk>
+        </out>
+      </action>
+    </rule>
+
+    <rule comment="Telenors administrerende direktør NN → administrerande direktør i Telenor NN">
+      <pattern>
+        <pattern-item n="np.org.gen"/>     <!-- 1 -->
+        <pattern-item n="adj"/>           <!-- 2 -->
+        <pattern-item n="nsgind"/>        <!-- 3 direktør, leiar osv. -->
+        <pattern-item n="personnamn"/>        <!-- 4 -->
+      </pattern>
+      <action>
+        <call-macro n="set_caseFirstWord4">
+          <with-param pos="1"/>
+          <with-param pos="2"/>
+          <with-param pos="3"/>
+          <with-param pos="4"/>
+        </call-macro>
+
+        <let><clip pos="1" side="tl" part="cas"/><lit v=""/></let>
+        <let><clip pos="2" side="tl" part="art_sg"/><lit-tag v="mf.sg.ind"/></let>
+
+        <out>
+          <chunk name="adj_n">
+            <tags>
+              <tag><clip pos="2" side="tl" part="tags"/></tag>
+            </tags>
+
+            <lu><clip pos="2" side="tl" part="whole"/></lu> <!-- {^finanspolitisk<adj><pst><un><sp><def>$ ^talsperson<n><m><sg><ind>$}$  -->
+            <b/>
+            <lu><clip pos="3" side="tl" part="whole"/></lu>
+
+          </chunk>
+          <b/>
+          <chunk name="pr">
+            <tags><tag><lit-tag v="pr"/></tag></tags>
+            <lu><lit v="i"/><lit-tag v="pr"/></lu>
+          </chunk>
+          <b/>
+          <chunk name="nn">
+            <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
+            <lu><clip pos="1" side="tl" part="whole"/></lu>
+          </chunk>
+          <b/>
+          <chunk name="nn">
+            <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
+            <lu><clip pos="4" side="tl" part="whole"/></lu>
           </chunk>
         </out>
       </action>
