@@ -3608,8 +3608,8 @@
       <list-item v="iPhone"/>
       <list-item v="døparen Johannes"/>
     </def-list>
-    <def-list n="keep_lemma_case_upper" c="Keep these lemma-case even if all caps.
-                                           We put lemmas here if we want them specialCased even if input was UPPERCASE.">
+    <def-list n="keep_lemma_case_upper" c="Keep these lemma-case if all caps.
+                                           We put lemmas here if we want to correct them to specialCased if input was UPPERCASE.">
       <list-item v="KrF"/>
       <list-item v="Ap"/>
     </def-list>
@@ -3797,19 +3797,26 @@
                   Reads chunkCase to see if we're the first word of sentence.
                   Writes to chunkCase.
                   May UPPERCASE if a_case was AA.">
+      <choose>
+        <when c="Use lemma case when upper (even when first in sentence)?">
+          <test><and>
+            <in><clip pos="2" side="tl" part="lem"/><list n="keep_lemma_case_upper"/></in>
+            <equal><clip pos="2" side="sl" part="a_caps"/><lit-tag v="AA"/></equal>
+          </and></test>
+          <let><clip pos="2" side="sl" part="a_caps"/><lit-tag v="Aa"/></let>
+        </when>
+        <when c="Use lemma case when not upper (and not first in sentence)?">
+          <test><and>
+            <in><clip pos="2" side="tl" part="lem"/><list n="keep_lemma_case"/></in>
+            <not><equal><clip pos="2" side="sl" part="a_caps"/><lit-tag v="AA"/></equal></not>
+            <not><equal><var n="chunkCase"/><lit v=""/></equal></not>
+          </and></test>
+          <let><clip pos="2" side="sl" part="a_caps"/><lit-tag v="aa"/></let>
+        </when>
+      </choose>
+
       <let><var n="upperMiddleParts"/><lit v="no"/></let>
       <choose>
-        <when c="Keep lemma case?">
-          <test><or>
-            <in><clip pos="2" side="tl" part="lem"/><list n="keep_lemma_case_upper"/></in>
-            <and>
-              <in><clip pos="2" side="tl" part="lem"/><list n="keep_lemma_case"/></in>
-              <not><equal><clip pos="2" side="sl" part="a_caps"/><lit-tag v="AA"/></equal></not>
-            </and>
-          </or></test>
-          <let><var n="prevDeletedCase"/><lit v=""/></let>
-          <let><var n="chunkCase"/><lit v="aa"/></let>
-        </when>
         <when c="Previous word was deleted – use its case if it was Titled and we're lower">
           <test><and>
             <equal><var n="prevDeletedCase"/><lit v="Aa"/></equal>
