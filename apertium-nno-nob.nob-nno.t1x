@@ -4579,6 +4579,13 @@
         <pattern-item n="personnamn"/>        <!-- 4 -->
       </pattern>
       <action>
+        <choose><when c="Skip if word before org-name is a noun, 'avisa VGs politiske redaktør NN'">
+          <test><or>
+            <equal caseless="yes"><var n="prevlem"/><lit v="avis"/></equal>
+            <equal caseless="yes"><var n="prevlem"/><lit v="nyhetsbyrå"/></equal>
+          </or></test>
+          <reject-current-rule shifting="no"/>
+        </when></choose>
         <call-macro n="set_caseFirstWord4">
           <with-param pos="1"/>
           <with-param pos="2"/>
