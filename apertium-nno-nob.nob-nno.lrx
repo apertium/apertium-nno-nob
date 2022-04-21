@@ -7382,6 +7382,11 @@
     </or>
   </rule>
 
+  <rule weight="2.0"> <!-- og Kina stemte avholdende -->
+    <match lemma="stemme"/>
+    <match lemma="avholde" tags="adj.pprs.*"><select lemma="avhalde"/></match>
+  </rule>
+
   <rule>
     <match lemma="avholde" tags="adj.*"><select lemma="halde"/></match>
   </rule>
