@@ -751,6 +751,22 @@
       <e><p><l>antall<s n="n"/><t/><s n="ind"/></l><r>antall<s n="n"/><t/><s n="def"/></r></p> <par n="d"/></e>
       <e><p><l>festival<s n="n"/><t/><s n="ind"/></l><r>festival<s n="n"/><t/><s n="def"/></r></p> <par n="d"/></e>
     </pardef>
+    
+    <pardef n="morgondagens-ord">
+      <e><p><l>kamp<s n="n"/><t/><s n="ind"/></l><r>kamp<s n="n"/><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><p><l>fotballkamp<s n="n"/><t/><s n="ind"/></l><r>fotballkamp<s n="n"/><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><p><l>håndballkamp<s n="n"/><t/><s n="ind"/></l><r>håndballkamp<s n="n"/><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><p><l>vennskapskamp<s n="n"/><t/><s n="ind"/></l><r>vennskapskamp<s n="n"/><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><p><l>løp<s n="n"/><t/><s n="ind"/></l><r>løp<s n="n"/><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><p><l>oppgjør<s n="n"/><t/><s n="ind"/></l><r>oppgjør<s n="n"/><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><p><l>konkurranse<s n="n"/><t/><s n="ind"/></l><r>konkurranse<s n="n"/><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><p><l>lagkonkurranse<s n="n"/><t/><s n="ind"/></l><r>lagkonkurranse<s n="n"/><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><p><l>møte<s n="n"/><t/><s n="ind"/></l><r>møte<s n="n"/><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><p><l>valg<s n="n"/><t/><s n="ind"/></l><r>valg<s n="n"/><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><p><l>forhandling<s n="n"/><t/><s n="ind"/></l><r>forhandling<s n="n"/><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><p><l>høring<s n="n"/><t/><s n="ind"/></l><r>høring<s n="n"/><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><p><l>prisutdeling<s n="n"/><t/><s n="ind"/></l><r>prisutdeling<s n="n"/><t/><s n="def"/></r></p> <par n="d"/></e>
+    </pardef>
 
     <pardef n="måleiningar">
       <e><i>prosent<t/><d/></i></e>
@@ -9412,6 +9428,57 @@
       <i>antall<s n="n"/><s n="nt"/><t/></i> <p><l><t/><s n="ind"/></l><r><t/><s n="def"/><d/></r></p> <par n="d:"/>
       <i><w/><s n="n"/><t/><d/></i>
       <p><l></l>                                  <r>i<b/>fjor<s n="adv"/><d/></r></p>
+    </e>
+
+    <!-- gårsdagens -->
+
+    <e lm="gårsdagens kamp i Stockholm -> kampen i Stockholm i går" c="kampen i Stockholm i går">
+      <i><w/><t/><d/></i>
+      <p><l>gårsdag<s n="n"/><s n="m"/><s n="sg"/><s n="def"/><s n="gen"/></l>  <r></r></p>  <par n="d:"/>
+      <par n="ncmp*.n.ind-or-def"/>
+      <par n="prepledd|empty"/>
+      <p><l></l>                                  <r>i<b/>går<s n="adv"/><d/></r></p>
+    </e>
+
+    <e lm="gårsdagens ufrie valg -> de ufrie valgene i går" c="dei ufrie vala i går">
+      <p><l>gårsdag<s n="n"/><s n="m"/><s n="sg"/><s n="def"/><s n="gen"/></l>  <r></r></p>  <par n="d:"/>
+      <p><l></l>                                  <r>den<s n="det"/><s n="dem"/><s n="un"/><s n="pl"/><d/></r></p>
+      <par n="første-andre"/>
+      <par n="ncmp*.n.ind2def.pl"/>
+      <p><l></l>                                  <r>i<b/>går<s n="adv"/><d/></r></p>
+    </e>
+
+    <e lm="gårsdagens første heat -> det første heatet i går" c="det første heatet i går">
+      <p><l>gårsdag<s n="n"/><s n="m"/><s n="sg"/><s n="def"/><s n="gen"/></l>  <r></r></p>  <par n="d:"/>
+      <p><l></l>                                  <r>den<s n="det"/><s n="dem"/><s n="nt"/><s n="sg"/><d/></r></p>
+      <par n="første-andre"/>
+      <par n="ncmp*.n.ind2def.nt"/>
+      <p><l></l>                                  <r>i<b/>går<s n="adv"/><d/></r></p>
+    </e>
+
+    <e lm="gårsdagens siste vinner -> den siste vinnaren i går" c="den siste vinnaren i går">
+      <p><l>gårsdag<s n="n"/><s n="m"/><s n="sg"/><s n="def"/><s n="gen"/></l>  <r></r></p>  <par n="d:"/>
+      <p><l></l>                                  <r>den<s n="det"/><s n="dem"/><s n="mf"/><s n="sg"/><d/></r></p>
+      <par n="første-andre"/>
+      <par n="ncmp*.n.ind2def.mf"/>
+      <p><l></l>                                  <r>i<b/>går<s n="adv"/><d/></r></p>
+    </e>
+
+    <!-- morgondagens, som oftast greitt, t.d. 'morgondagens krav'; omskriving i konkrete kontekstar: 'kampen i morgon' -->
+
+    <e lm="morgendagens kamp i London -> kampen i London i morgon" c="kampen i London i morgon">
+      <p><l>morgendag<s n="n"/><s n="m"/><s n="sg"/><s n="def"/><s n="gen"/></l>  <r></r></p>  <par n="d:"/>
+      <par n="morgondagens-ord"/>
+      <par n="prepledd|empty"/>
+      <p><l></l>                                  <r>i<b/>morgen<s n="adv"/><d/></r></p>
+    </e>
+
+    <e lm="morgendagens storkamp i London -> storkampen i London i morgon" c="storkampen i London i morgon"> <!-- cmp-ord -->
+      <p><l>morgendag<s n="n"/><s n="m"/><s n="sg"/><s n="def"/><s n="gen"/></l>  <r></r></p>  <par n="d:"/>
+      <par n="ncmp*"/>
+      <par n="morgondagens-ord"/>
+      <par n="prepledd|empty"/>
+      <p><l></l>                                  <r>i<b/>morgen<s n="adv"/><d/></r></p>
     </e>
 
 </section>
