@@ -767,6 +767,29 @@
       <e><p><l>høring<s n="n"/><t/><s n="ind"/></l><r>høring<s n="n"/><t/><s n="def"/></r></p> <par n="d"/></e>
       <e><p><l>prisutdeling<s n="n"/><t/><s n="ind"/></l><r>prisutdeling<s n="n"/><t/><s n="def"/></r></p> <par n="d"/></e>
     </pardef>
+    
+    <pardef n="årets-sesong-ord">
+      <e><i>sesong<s n="n"/><s n="m"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><i>skisesong<s n="n"/><s n="m"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><i>vårsesong<s n="n"/><s n="m"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><i>vintersesong<s n="n"/><s n="m"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><i>høstsesong<s n="n"/><s n="m"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><i>høysesong<s n="n"/><s n="m"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><i>lavsesong<s n="n"/><s n="m"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><i>badesesong<s n="n"/><s n="m"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><i>fangstsesong<s n="n"/><s n="m"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><i>fyringssesong<s n="n"/><s n="m"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><i>jaktsesong<s n="n"/><s n="m"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><i>krepsesesong<s n="n"/><s n="m"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><i>teatersesong<s n="n"/><s n="m"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><i>turistsesong<s n="n"/><s n="m"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><i>hekkesesong<s n="n"/><s n="m"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><i>beitesesong<s n="n"/><s n="m"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e>
+        <par n="ncmp*"/>
+        <i>sesong<s n="n"/><s n="m"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/>
+      </e>
+    </pardef>
 
     <pardef n="måleiningar">
       <e><i>prosent<t/><d/></i></e>
@@ -9491,6 +9514,29 @@
       <par n="morgondagens-ord"/>
       <par n="prepledd|empty"/>
       <p><l></l>                                  <r>i<b/>morgen<s n="adv"/><d/></r></p>
+    </e>
+
+    <!-- årets-reglar -->
+
+    <e lm="i årets sesong -> denne sesongen" c="denne sesongen">
+      <p><l>i<s n="pr"/></l>            <r></r></p>  <par n="d:"/>
+      <p><l>år<s n="n"/><s n="nt"/><s n="sg"/><s n="def"/><s n="gen"/></l>  <r></r></p>  <par n="d:"/>
+      <par n="prepledd|empty"/>
+      <p><l></l>                                  <r>denne<s n="det"/><s n="dem"/><s n="m"/><s n="sg"/><d/></r></p>
+      <par n="årets-sesong-ord"/>
+    </e>
+
+    <e lm="årets sesong (i utfor) -> sesongen (i utfor)" c="sesongen (i utfor)">
+      <p><l>år<s n="n"/><s n="nt"/><s n="sg"/><s n="def"/><s n="gen"/></l>  <r></r></p>  <par n="d:"/>
+      <par n="årets-sesong-ord"/>
+      <i><w/><s n="pr"/><t/><d/></i>
+    </e>
+
+    <e lm="årets sesong -> sesongen i år" c="sesongen i år">
+      <p><l>år<s n="n"/><s n="nt"/><s n="sg"/><s n="def"/><s n="gen"/></l>  <r></r></p>  <par n="d:"/>
+      <par n="årets-sesong-ord"/>
+      <p><l></l>                                  <r>i<s n="pr"/><d/></r></p>
+      <p><l></l>                                  <r>år<s n="n"/><s n="nt"/><s n="sg"/><s n="ind"/><d/></r></p>
     </e>
 
 </section>
