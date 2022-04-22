@@ -135,6 +135,21 @@
       <e><p><l><s n="AA"/></l> <r><s n="AA"/></r></p></e>
     </pardef>
 
+    <pardef n="sent" c="Ensure no space before, space after">
+      <e>
+        <p><l/><r><d space="no"/></r></p>    <!-- no space before-->
+        <i><w/><s n="sent"/></i>
+        <i><d space="yes"/></i>
+      </e>
+    </pardef>
+
+    <pardef n="sent-insert">
+      <e>
+        <p><l/><r><d space="no"/></r></p>    <!-- no space before-->
+        <p><l></l>            <r>.<s n="sent"/><d space="yes"/></r></p>
+      </e>
+    </pardef>
+
     <pardef n="cm" c="Ensure no space before, space after">
       <e>
         <p><l/><r><d space="no"/></r></p>    <!-- no space before-->
@@ -172,6 +187,10 @@
       <e><par n="adj"/></e>
       <e><par n="adj"/><par n="adj"/></e>
       <e><par n="adj"/><par n="adj"/><par n="adj"/></e>
+      <e>
+        <i><w/><t/><s n="cmp"/><d/></i>
+        <par n="adj"/>
+      </e>
     </pardef>
     <pardef n="pr">
       <e><i><w/><s n="pr"/><d/></i></e>
@@ -385,6 +404,11 @@
       <e>              <par n="adj"/><par n="ncmp*.n"/></e>
       <e><par n="adj"/><par n="adj"/><par n="ncmp*.n"/></e>
       <e><i><w/><s n="det"/><t/><d/></i><par n="ncmp*.n"/></e>
+    </pardef>
+
+    <pardef n="SN-mange">
+      <e><par n="SN"/></e>
+      <e><i>mange<s n="adj"/><t/><d/></i></e>
     </pardef>
 
     <pardef n="det+SN">
@@ -711,7 +735,13 @@
       <e><i>neste<t/><d/></i></e>
     </pardef>
 
-    <pardef n="første-andre">
+    <pardef n="første-andre-siste-neste">
+      <e><par n="første-neste-siste"/></e>
+      <e><i>annen<s n="det"/><s n="dem"/><s n="un"/><s n="pl"/><t/><d/></i></e>
+      <e><i><w/><s n="adj"/><s n="ord"/><s n="pst"/><t/><d/></i></e>
+    </pardef>
+
+    <pardef n="første-andre-adj">
       <e><i>første<t/><d/></i></e>
       <e><i>annen<s n="det"/><s n="dem"/><s n="un"/><s n="pl"/><t/><d/></i></e>
       <e><i>sist<t/><d/></i></e>
@@ -797,6 +827,12 @@
       <e><i>i<b/>forhold<b/>til<s n="pr"/><t/><d/></i></e>
       <e><i>sammenlignet<b/>med<s n="pr"/><t/><d/></i></e>
       <e><i>sammenliknet<b/>med<s n="pr"/><t/><d/></i></e>
+    </pardef>
+
+    <pardef n="rem-i-løpet-av|empty">
+      <e></e>
+      <e><p><l>i<s n="pr"/></l>  <r></r></p>  <par n="d:"/></e>
+      <e><p><l>i<b/>løpet<b/>av<s n="pr"/></l>  <r></r></p>  <par n="d:"/></e>
     </pardef>
 
     <pardef n="måleiningar">
@@ -9414,7 +9450,7 @@
     <e lm="fjorårets siste kamper -> de siste kampene i fjor" c="dei siste kampane i fjor">
       <p><l>fjorår<s n="n"/><s n="nt"/><s n="sg"/><s n="def"/><s n="gen"/></l>  <r></r></p>  <par n="d:"/>
       <p><l></l>                                  <r>den<s n="det"/><s n="dem"/><s n="un"/><s n="pl"/><d/></r></p>
-      <par n="første-andre"/>
+      <par n="første-andre-adj"/>
       <par n="ncmp*.n.ind2def.pl"/>
       <p><l></l>                                  <r>i<b/>fjor<s n="adv"/><d/></r></p>
     </e>
@@ -9422,7 +9458,7 @@
     <e lm="fjorårets første kvartal -> det første kvartalet i fjor" c="det første kvartalet i fjor">
       <p><l>fjorår<s n="n"/><s n="nt"/><s n="sg"/><s n="def"/><s n="gen"/></l>  <r></r></p>  <par n="d:"/>
       <p><l></l>                                  <r>den<s n="det"/><s n="dem"/><s n="nt"/><s n="sg"/><d/></r></p>
-      <par n="første-andre"/>
+      <par n="første-andre-adj"/>
       <par n="ncmp*.n.ind2def.nt"/>
       <p><l></l>                                  <r>i<b/>fjor<s n="adv"/><d/></r></p>
     </e>
@@ -9430,7 +9466,7 @@
     <e lm="fjorårets siste dag -> den siste dagen i fjor" c="den siste dagen i fjor">
       <p><l>fjorår<s n="n"/><s n="nt"/><s n="sg"/><s n="def"/><s n="gen"/></l>  <r></r></p>  <par n="d:"/>
       <p><l></l>                                  <r>den<s n="det"/><s n="dem"/><s n="mf"/><s n="sg"/><d/></r></p>
-      <par n="første-andre"/>
+      <par n="første-andre-adj"/>
       <par n="ncmp*.n.ind2def.mf"/>
       <p><l></l>                                  <r>i<b/>fjor<s n="adv"/><d/></r></p>
     </e>
@@ -9493,7 +9529,7 @@
     <e lm="gårsdagens ufrie valg -> de ufrie valgene i går" c="dei ufrie vala i går">
       <p><l>gårsdag<s n="n"/><s n="m"/><s n="sg"/><s n="def"/><s n="gen"/></l>  <r></r></p>  <par n="d:"/>
       <p><l></l>                                  <r>den<s n="det"/><s n="dem"/><s n="un"/><s n="pl"/><d/></r></p>
-      <par n="første-andre"/>
+      <par n="første-andre-adj"/>
       <par n="ncmp*.n.ind2def.pl"/>
       <p><l></l>                                  <r>i<b/>går<s n="adv"/><d/></r></p>
     </e>
@@ -9501,7 +9537,7 @@
     <e lm="gårsdagens første heat -> det første heatet i går" c="det første heatet i går">
       <p><l>gårsdag<s n="n"/><s n="m"/><s n="sg"/><s n="def"/><s n="gen"/></l>  <r></r></p>  <par n="d:"/>
       <p><l></l>                                  <r>den<s n="det"/><s n="dem"/><s n="nt"/><s n="sg"/><d/></r></p>
-      <par n="første-andre"/>
+      <par n="første-andre-adj"/>
       <par n="ncmp*.n.ind2def.nt"/>
       <p><l></l>                                  <r>i<b/>går<s n="adv"/><d/></r></p>
     </e>
@@ -9509,7 +9545,7 @@
     <e lm="gårsdagens siste vinner -> den siste vinnaren i går" c="den siste vinnaren i går">
       <p><l>gårsdag<s n="n"/><s n="m"/><s n="sg"/><s n="def"/><s n="gen"/></l>  <r></r></p>  <par n="d:"/>
       <p><l></l>                                  <r>den<s n="det"/><s n="dem"/><s n="mf"/><s n="sg"/><d/></r></p>
-      <par n="første-andre"/>
+      <par n="første-andre-adj"/>
       <par n="ncmp*.n.ind2def.mf"/>
       <p><l></l>                                  <r>i<b/>går<s n="adv"/><d/></r></p>
     </e>
@@ -9550,6 +9586,122 @@
     <e lm="årets sesong -> sesongen i år" c="sesongen i år">
       <p><l>år<s n="n"/><s n="nt"/><s n="sg"/><s n="def"/><s n="gen"/></l>  <r></r></p>  <par n="d:"/>
       <par n="årets-sesong-ord"/>
+      <p><l></l>                                  <r>i<s n="pr"/><d/></r></p>
+      <p><l></l>                                  <r>år<s n="n"/><s n="nt"/><s n="sg"/><s n="ind"/><d/></r></p>
+    </e>
+
+    <e lm="årets ti første måneder -> de ti første månedene i år" c="dei ti første månadene i år">
+      <par n="rem-i-løpet-av|empty"/>
+      <p><l>år<s n="n"/><s n="nt"/><s n="sg"/><s n="def"/><s n="gen"/></l>  <r></r></p>  <par n="d:"/>
+      <p><l></l>                                  <r>den<s n="det"/><s n="dem"/><s n="un"/><s n="pl"/><s n="aa"/><d/></r></p>
+      <i><w/><s n="det"/><s n="qnt"/><t/><d/></i>
+      <par n="første-neste-siste"/>
+      <i><w/><s n="n"/><t/></i>  <p><l><s n="ind"/></l><r><s n="def"/></r></p>  <par n="d"/>
+      <p><l></l>                                  <r>i<s n="pr"/><d/></r></p>
+      <p><l></l>                                  <r>år<s n="n"/><s n="nt"/><s n="sg"/><s n="ind"/><d/></r></p>
+    </e>
+
+    <e lm="årets første ti måneder -> de første ti månedene i år" c="dei første ti månadene i år">
+      <par n="rem-i-løpet-av|empty"/>
+      <p><l>år<s n="n"/><s n="nt"/><s n="sg"/><s n="def"/><s n="gen"/></l>  <r></r></p>  <par n="d:"/>
+      <p><l></l>                                  <r>den<s n="det"/><s n="dem"/><s n="un"/><s n="pl"/><s n="aa"/><d/></r></p>
+      <par n="første-neste-siste"/>
+      <i><w/><s n="det"/><s n="qnt"/><t/><d/></i>
+      <i><w/><s n="n"/><t/></i>  <p><l><s n="ind"/></l><r><s n="def"/></r></p>  <par n="d"/>
+      <p><l></l>                                  <r>i<s n="pr"/><d/></r></p>
+      <p><l></l>                                  <r>år<s n="n"/><s n="nt"/><s n="sg"/><s n="ind"/><d/></r></p>
+    </e>
+
+    <e lm="årets 17 kamper (for Raufoss) -> de 17 kampene (for Raufoss) i år" c="dei 17 kampane (for Raufoss) i år">
+      <p><l>år<s n="n"/><s n="nt"/><s n="sg"/><s n="def"/><s n="gen"/></l>  <r></r></p>  <par n="d:"/>
+      <p><l></l>                                  <r>den<s n="det"/><s n="dem"/><s n="un"/><s n="pl"/><s n="aa"/><d/></r></p>
+      <i><w/><s n="det"/><s n="qnt"/><s n="un"/><s n="pl"/></i>  <par n="d"/>
+      <par n="ncmp*.n.ind2def.pl"/>
+      <par n="prepledd|empty"/>
+      <p><l></l>                                  <r>i<s n="pr"/><d/></r></p>
+      <p><l></l>                                  <r>år<s n="n"/><s n="nt"/><s n="sg"/><s n="ind"/><d/></r></p>
+    </e>
+
+    <e lm="årets siste (store) kåringer -> de siste (store) kåringene i år" c="dei siste (store) kåringane i år">
+      <par n="rem-i-løpet-av|empty"/>
+      <p><l>år<s n="n"/><s n="nt"/><s n="sg"/><s n="def"/><s n="gen"/></l>  <r></r></p>  <par n="d:"/>
+      <p><l></l>                                  <r>den<s n="det"/><s n="dem"/><s n="un"/><s n="pl"/><s n="aa"/><d/></r></p>
+      <par n="første-andre-siste-neste"/>
+      <par n="adj|empty"/>
+      <par n="ncmp*.n.ind2def.pl"/>
+      <p><l></l>                                  <r>i<s n="pr"/><d/></r></p>
+      <p><l></l>                                  <r>år<s n="n"/><s n="nt"/><s n="sg"/><s n="ind"/><d/></r></p>
+    </e>
+ 
+    <e lm="årests første (friske) bad  -> det første (friske) badet i år" c="det første (friske) badet i år">
+      <par n="rem-i-løpet-av|empty"/>
+      <p><l>år<s n="n"/><s n="nt"/><s n="sg"/><s n="def"/><s n="gen"/></l>  <r></r></p>  <par n="d:"/>
+      <p><l></l>                                  <r>den<s n="det"/><s n="dem"/><s n="nt"/><s n="sg"/><s n="aa"/><d/></r></p>
+      <par n="første-andre-siste-neste"/>
+      <par n="adj|empty"/>
+      <par n="ncmp*.n.ind2def.nt"/>
+      <p><l></l>                                  <r>i<s n="pr"/><d/></r></p>
+      <p><l></l>                                  <r>år<s n="n"/><s n="nt"/><s n="sg"/><s n="ind"/><d/></r></p>
+    </e>
+ 
+    <e lm="årets siste (fortærande) flause -> den siste (fortærande) flausen i år" c="den siste (fortærande) flausen i år">
+      <par n="rem-i-løpet-av|empty"/>
+      <p><l>år<s n="n"/><s n="nt"/><s n="sg"/><s n="def"/><s n="gen"/></l>  <r></r></p>  <par n="d:"/>
+      <p><l></l>                                  <r>den<s n="det"/><s n="dem"/><s n="mf"/><s n="sg"/><s n="aa"/><d/></r></p>
+      <par n="første-andre-siste-neste"/>
+      <par n="adj|empty"/>
+      <par n="ncmp*.n.ind2def.mf"/>
+      <p><l></l>                                  <r>i<s n="pr"/><d/></r></p>
+      <p><l></l>                                  <r>år<s n="n"/><s n="nt"/><s n="sg"/><s n="ind"/><d/></r></p>
+    </e>
+
+    <e lm="årets siste (store) kåringer for mange -> de siste (store) kåringene for i år for mange" c="dei siste (store) kåringane for i år for mange">
+      <par n="rem-i-løpet-av|empty"/>
+      <p><l>år<s n="n"/><s n="nt"/><s n="sg"/><s n="def"/><s n="gen"/></l>  <r></r></p>  <par n="d:"/>
+      <p><l></l>                                  <r>den<s n="det"/><s n="dem"/><s n="un"/><s n="pl"/><s n="aa"/><d/></r></p>
+      <par n="første-andre-siste-neste"/>
+      <par n="adj|empty"/>
+      <par n="ncmp*.n.ind2def.pl"/>
+      <p><l></l>                                  <r>for<s n="pr"/><d/></r></p>
+      <p><l></l>                                  <r>i<s n="pr"/><d/></r></p>
+      <p><l></l>                                  <r>år<s n="n"/><s n="nt"/><s n="sg"/><s n="ind"/><d/></r></p>
+      <i>for<s n="pr"/></i>  <par n="d"/>
+      <par n="SN-mange"/>
+    </e>
+ 
+    <e lm="årets første (friske) bad for mange -> det første (friske) badet for i år for mange" c="det første (friske) badet for i år for mange">
+      <par n="rem-i-løpet-av|empty"/>
+      <p><l>år<s n="n"/><s n="nt"/><s n="sg"/><s n="def"/><s n="gen"/></l>  <r></r></p>  <par n="d:"/>
+      <p><l></l>                                  <r>den<s n="det"/><s n="dem"/><s n="nt"/><s n="sg"/><s n="aa"/><d/></r></p>
+      <par n="første-andre-siste-neste"/>
+      <par n="adj|empty"/>
+      <par n="ncmp*.n.ind2def.nt"/>
+      <p><l></l>                                  <r>for<s n="pr"/><d/></r></p>
+      <p><l></l>                                  <r>i<s n="pr"/><d/></r></p>
+      <p><l></l>                                  <r>år<s n="n"/><s n="nt"/><s n="sg"/><s n="ind"/><d/></r></p>
+      <i>for<s n="pr"/></i>  <par n="d"/>
+      <par n="SN-mange"/>
+    </e>
+ 
+    <e lm="årets siste (fortærande) flause for mange -> den siste (fortærande) flausen for i år for mange" c="den siste (fortærande) flausen for i år for mange">
+      <par n="rem-i-løpet-av|empty"/>
+      <p><l>år<s n="n"/><s n="nt"/><s n="sg"/><s n="def"/><s n="gen"/></l>  <r></r></p>  <par n="d:"/>
+      <p><l></l>                                  <r>den<s n="det"/><s n="dem"/><s n="mf"/><s n="sg"/><s n="aa"/><d/></r></p>
+      <par n="første-andre-siste-neste"/>
+      <par n="adj|empty"/>
+      <par n="ncmp*.n.ind2def.mf"/>
+      <p><l></l>                                  <r>for<s n="pr"/><d/></r></p>
+      <p><l></l>                                  <r>i<s n="pr"/><d/></r></p>
+      <p><l></l>                                  <r>år<s n="n"/><s n="nt"/><s n="sg"/><s n="ind"/><d/></r></p>
+      <i>for<s n="pr"/></i>  <par n="d"/>
+      <par n="SN-mange"/>
+    </e>
+ 
+    <e lm="årets fjerde kvartal  -> fjerde kvartal i år" c="fjerde kvartal i år">
+      <i><w/><s n="pr"/></i>  <par n="d"/>
+      <p><l>år<s n="n"/><s n="nt"/><s n="sg"/><s n="def"/><s n="gen"/></l>  <r></r></p>  <par n="d:"/>
+      <par n="første-andre-siste-neste"/>
+      <i>kvartal<s n="n"/><t/></i>  <par n="d"/>
       <p><l></l>                                  <r>i<s n="pr"/><d/></r></p>
       <p><l></l>                                  <r>år<s n="n"/><s n="nt"/><s n="sg"/><s n="ind"/><d/></r></p>
     </e>
