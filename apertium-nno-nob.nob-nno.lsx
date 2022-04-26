@@ -135,30 +135,26 @@
       <e><p><l><s n="AA"/></l> <r><s n="AA"/></r></p></e>
     </pardef>
 
-    <pardef n="sent" c="Ensure no space before, space after">
+    <pardef n="sent">
       <e>
-        <p><l/><r><d space="no"/></r></p>    <!-- no space before-->
         <i><w/><s n="sent"/></i>
-        <i><d space="yes"/></i>
       </e>
     </pardef>
 
-    <pardef n="sent-insert">
+    <pardef n="sent-insert" c="Ensure no space before, space after">
       <e>
         <p><l/><r><d space="no"/></r></p>    <!-- no space before-->
         <p><l></l>            <r>.<s n="sent"/><d space="yes"/></r></p>
       </e>
     </pardef>
 
-    <pardef n="cm" c="Ensure no space before, space after">
+    <pardef n="cm">
       <e>
-        <p><l/><r><d space="no"/></r></p>    <!-- no space before-->
         <i><w/><s n="cm"/></i> <par n="aa|"/> <!-- , -->
-        <i><d space="yes"/></i>
       </e>
     </pardef>
 
-    <pardef n="cm-insert">
+    <pardef n="cm-insert" c="Ensure no space before, space after">
       <e>
         <p><l/><r><d space="no"/></r></p>    <!-- no space before-->
         <p><l></l>            <r>,<s n="cm"/><d space="yes"/></r></p>
@@ -409,6 +405,29 @@
     <pardef n="SN-mange">
       <e><par n="SN"/></e>
       <e><i>mange<s n="adj"/><t/><d/></i></e>
+    </pardef>
+
+    <pardef n="SN-np">
+      <e><par n="SN"/></e>
+      <e><i><w/><s n="np"/><t/><d/></i></e>
+    </pardef>
+
+    <pardef n="SN+np">
+      <e>
+        <par n="SN"/>
+        <i><w/><s n="np"/><t/><d/></i>
+      </e>
+      <e>
+        <par n="SN"/>
+        <i><w/><s n="np"/><s n="ant"/><t/><d/></i>
+        <i><w/><s n="np"/><s n="cog"/><t/><d/></i>
+      </e>
+      <e>
+        <par n="SN"/>
+        <i><w/><s n="np"/><s n="ant"/><t/><d/></i>
+        <i><w/><s n="np"/><t/><d/></i>
+        <i><w/><s n="np"/><s n="cog"/><t/><d/></i>
+      </e>
     </pardef>
 
     <pardef n="det+SN">
@@ -885,16 +904,30 @@
       </e>
       <e><i>film<s n="n"/><s n="m"/><t/></i>  <par n="d"/></e>
       <e><i>ord<s n="n"/><s n="nt"/><t/></i>  <par n="d"/></e>
-      <e><i>mål<s n="n"/><s n="m"/><t/></i>  <par n="d"/></e>
+      <e><i>nyord<s n="n"/><s n="nt"/><t/></i>  <par n="d"/></e>
+      <e><i>mål<s n="n"/><s n="nt"/><t/></i>  <par n="d"/></e>
       <e><i>scoring<s n="n"/><s n="m"/><t/></i>  <par n="d"/></e>
       <e><i>skåring<s n="n"/><s n="m"/><t/></i>  <par n="d"/></e>
-      <e><i>lag<s n="n"/><s n="nt"/><t/></i>  <par n="d"/></e>
+      <e><i>gjennombrudd<s n="n"/><s n="nt"/><t/></i>  <par n="d"/></e>
       <e><i>bilde<s n="n"/><s n="nt"/><t/></i>  <par n="d"/></e>
+      <e>
+        <par n="ncmp*"/>
+        <i>bilde<s n="n"/><s n="nt"/><t/></i>  <par n="d"/>
+      </e>
+      <e><i>foto<s n="n"/><s n="nt"/><t/></i>  <par n="d"/></e>
+      <e>
+        <par n="ncmp*"/>
+        <i>foto<s n="n"/><s n="nt"/><t/></i>  <par n="d"/>
+      </e>
       <e><i>mottager<s n="n"/><s n="m"/><t/></i>  <par n="d"/></e>
       <e><i>kommune<s n="n"/><s n="m"/><t/></i>  <par n="d"/></e>
       <e><i>fylkeskommune<s n="n"/><s n="m"/><t/></i>  <par n="d"/></e>
       <e><i>nynorskkommune<s n="n"/><s n="m"/><t/></i>  <par n="d"/></e>
       <e><i>nynorskbruker<s n="n"/><s n="m"/><t/></i>  <par n="d"/></e>
+      <e>
+        <par n="ncmp*"/>
+        <i>kommune<s n="n"/><s n="m"/><t/></i>  <par n="d"/>
+      </e>
     </pardef>
 
     <pardef n="enn-i-forhold-til-sammenlignet-med-pr">
@@ -1079,6 +1112,15 @@
       <e><i><w/><s n="cm"/></i> <par n="d"/></e>
     </pardef>
 
+    <pardef n="sent-cm-guio">
+      <e><i><w/><s n="sent"/><d/></i></e>
+      <e><i><w/><s n="sent"/><t/><d/></i></e>
+      <e><i><w/><s n="cm"/></i> <par n="d"/></e>
+      <e><i><w/><s n="cm"/><t/></i> <par n="d"/></e>
+      <e><i><w/><s n="guio"/></i> <par n="d"/></e>
+      <e><i><w/><s n="guio"/><t/></i> <par n="d"/></e>
+    </pardef>
+
     <pardef n="og|eller">
       <e><i>og<s n="cnjcoo"/><t/></i> <par n="d"/></e>
       <e><i>eller<s n="cnjcoo"/><t/></i> <par n="d"/></e>
@@ -1141,6 +1183,9 @@
       </e>
       <e>
         <i><w/><s n="pr"/><t/><d/></i><par n="np"/>
+      </e>
+      <e>
+        <par n="SN+np"/>
       </e>
       <e>
         <i><w/><s n="pr"/><t/><d/></i>
@@ -1356,25 +1401,39 @@
     <pardef n="årets-pris-prefiks">
       <e>
         <i>kåre<s n="adj"/><s n="pp"/><t/></i>  <par n="d"/>
-        <i>til<s n="pr"/></i>  <par n="d"/>
-      </e>
-      <e>
-        <i>kåre<s n="vblex"/><s n="pp"/><t/></i>  <par n="d"/>
+        <par n="prepledd|empty"/>
         <i>til<s n="pr"/></i>  <par n="d"/>
       </e>
       <e>
         <i>kåre<s n="vblex"/><t/></i>  <par n="d"/>
+        <par n="prepledd|empty"/>
+        <i>til<s n="pr"/></i>  <par n="d"/>
+      </e>
+      <e><i>kåre<s n="vblex"/><t/></i>  <par n="d"/></e>
+      <e>
+        <i>kåring<s n="n"/><s n="m"/><t/></i>  <par n="d"/>
+        <i>av<s n="pr"/></i>  <par n="d"/>
       </e>
       <e>
-        <i>vinne<s n="vblex"/><t/></i>  <par n="d"/>
+        <i>kandidat<s n="n"/><s n="m"/><t/></i>  <par n="d"/>
+        <i>til<s n="pr"/></i>  <par n="d"/>
       </e>
+      <e><i>vinne<s n="vblex"/><t/></i>  <par n="d"/></e>
+      <e><i>tildele<s n="vblex"/><t/></i>  <par n="d"/></e>
+      <e><i>gi<s n="vblex"/><t/></i>  <par n="d"/></e>
+      <e><i>score<s n="vblex"/><t/></i>  <par n="d"/></e>
+      <e><i>skåre<s n="vblex"/><t/></i>  <par n="d"/></e>
+      <e><i>velge<g><b/>ut</g><s n="vblex"/><t/></i>  <par n="d"/></e>
       <e>
         <i>nominere<s n="adj"/><s n="pp"/><t/></i>  <par n="d"/>
-        <i>til<s n="pr"/></i>  <par n="d"/>
+        <i><w/><s n="pr"/></i>  <par n="d"/>
       </e>
       <e>
-        <i>nominere<s n="vblex"/><s n="pp"/><t/></i>  <par n="d"/>
-        <i>til<s n="pr"/></i>  <par n="d"/>
+        <i>nominere<s n="vblex"/><t/></i>  <par n="d"/>
+        <i><w/><s n="pr"/></i>  <par n="d"/>
+      </e>
+      <e>
+        <i>som<s n="pr"/></i>  <par n="d"/>
       </e>
       <e>
         <i>nominere<s n="vblex"/><t/></i>  <par n="d"/>
@@ -9778,20 +9837,7 @@
       <p><l></l>                                  <r>år<s n="n"/><s n="nt"/><s n="sg"/><s n="ind"/><d/></r></p>
     </e>
 
-    <e lm="kåre til årets x  -> kåre til årets x" c="kåre til årets x">
-      <par n="årets-pris-prefiks"/>
-      <i>år<s n="n"/><s n="nt"/><s n="sg"/><s n="def"/><s n="gen"/></i>  <par n="d"/>
-      <par n="årets-prisvinnar-ord"/>
-      <par n="prepledd|empty"/>
-    </e>
 
-    <e lm="årets valgkamp  -> valgkampen i år" c="valkampen i år">
-      <p><l>år<s n="n"/><s n="nt"/><s n="sg"/><s n="def"/><s n="gen"/></l>  <r></r></p>  <par n="d:"/>
-      <par n="ncmp*.n.ind2def"/>
-      <par n="prepledd|empty"/>
-      <p><l></l>                                  <r>i<s n="pr"/><d/></r></p>
-      <p><l></l>                                  <r>år<s n="n"/><s n="nt"/><s n="sg"/><s n="ind"/><d/></r></p>
-    </e>
 
 </section>
 
