@@ -761,9 +761,7 @@
     </pardef>
 
     <pardef n="første-andre-adj">
-      <e><i>første<t/><d/></i></e>
-      <e><i>annen<s n="det"/><s n="dem"/><s n="un"/><s n="pl"/><t/><d/></i></e>
-      <e><i>sist<t/><d/></i></e>
+      <e><par n="første-andre-siste-neste"/></e>
       <e><par n="adj"/></e>
       <e><par n="adj"/><par n="adj"/></e>
       <e><par n="adj"/><par n="adj"/><par n="adj"/></e>
@@ -898,6 +896,11 @@
       <par n="ncmp*"/>
       <i>finale<s n="n"/><s n="m"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/>
     </e>
+  </pardef>
+    
+  <pardef n="uke-mf-gen-rem">
+    <e><p><l>uke<s n="n"/><s n="m"/><s n="sg"/><s n="def"/><s n="gen"/></l>  <r></r></p>  <par n="d:"/></e>
+    <e><p><l>uke<s n="n"/><s n="f"/><s n="sg"/><s n="def"/><s n="gen"/></l>  <r></r></p>  <par n="d:"/></e>
   </pardef>
 
     <pardef n="enn-i-forhold-til-sammenlignet-med-pr">
@@ -2795,12 +2798,6 @@
       <p><l></l>                  <r>av<s n="pr"/><d/></r></p>
       <i>penge<s n="n"/><t/></i> <p><l><s n="gen"/></l><r></r></p> <par n="d"/>
       <p><l>skyld<s n="n"/><t/><s n="sg"/><s n="ind"/></l> <r></r></p> <par n="d:"/>
-    </e>
-
-    <e lm="ukens rett -> retten denne uken" c="retten denne veka">
-      <p><l>uke<s n="n"/><s n="m"/><s n="sg"/><s n="def"/><s n="gen"/></l> <r></r></p> <par n="d:"/>
-      <p><l>rett<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/></l><r>rett<s n="n"/><s n="m"/><s n="sg"/><s n="def"/></r> </p><i><t/><t/><d/></i>
-      <p><l></l>                  <r>denne<b/>uken<s n="adv"/><d/></r></p>
     </e>
 
     <e lm="til X (gen) fordel -> til fordel for X" c="til fordel for X">
@@ -9810,6 +9807,112 @@
       <p><l></l>                                  <r>i<s n="pr"/><d/></r></p>
       <p><l></l>                                  <r>år<s n="n"/><s n="nt"/><s n="sg"/><s n="ind"/><d/></r></p>
     </e-->
+
+<!-- ukens/ukas -->
+
+    <e lm="denne ukens forhandlingsrunde -> forhandlingsrunden denne uken" c="forhandlingsrunden denne veka">
+      <p><l>denne<s n="det"/><s n="dem"/><s n="m"/><s n="sg"/></l>     <r></r></p>  <par n="d:"/>
+      <par n="uke-mf-gen-rem"/>
+      <par n="ncmp*.n.ind2def"/>
+      <par n="prepledd|empty"/>
+      <p><l></l>                                  <r>denne<b/>uken<s n="adv"/><d/></r></p>
+    </e>
+
+    <e lm="neste ukes forhandlingsrunde -> forhandlingsrunden neste uke" c="forhandlingsrunden neste veke">
+      <p><l>neste<s n="det"/><s n="dem"/><s n="nt"/><s n="sp"/><s n="def"/></l>     <r></r></p>  <par n="d:"/>
+      <p><l>uke<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/><s n="gen"/></l>  <r></r></p>  <par n="d:"/>
+      <par n="ncmp*.n.ind2def"/>
+      <par n="prepledd|empty"/>
+      <p><l></l>                                  <r>neste<s n="det"/><s n="dem"/><s n="nt"/><s n="sp"/><s n="def"/><d/></r></p>
+      <p><l></l>                                  <r>uke<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/><d/></r></p>
+    </e>
+
+    <e lm="forrige ukes runde -> runden forrige uke" c="runden førre veke">
+      <p><l>forrige<s n="det"/><s n="dem"/><s n="nt"/><s n="sp"/><s n="def"/></l>     <r></r></p>  <par n="d:"/>
+      <p><l>uke<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/><s n="gen"/></l>  <r></r></p>  <par n="d:"/>
+      <par n="ncmp*.n.ind2def"/>
+      <par n="prepledd|empty"/>
+      <p><l></l>                                  <r>forrige<s n="det"/><s n="dem"/><s n="nt"/><s n="sp"/><s n="def"/><d/></r></p>
+      <p><l></l>                                  <r>uke<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/><d/></r></p>
+    </e>
+
+    <e lm="denne ukens mange ulykker -> de mange ulykkene denne uken" c="dei mange ulykkene denne veka">
+      <p><l>denne<s n="det"/><s n="dem"/><s n="m"/><s n="sg"/></l>     <r></r></p>  <par n="d:"/>
+      <par n="uke-mf-gen-rem"/>
+      <p><l></l>                                  <r>den<s n="det"/><s n="dem"/><s n="un"/><s n="pl"/><s n="aa"/><d/></r></p>
+      <par n="første-andre-adj"/>
+      <par n="ncmp*.n.ind2def.pl"/>
+      <par n="prepledd|empty"/>
+      <p><l></l>                                  <r>denne<b/>uken<s n="adv"/><d/></r></p>
+    </e>
+
+    <e lm="denne ukens første handelsdag -> den første handelsdagen denne uken" c="den første handelsdagen denne veka">
+      <p><l>denne<s n="det"/><s n="dem"/><s n="m"/><s n="sg"/></l>     <r></r></p>  <par n="d:"/>
+      <par n="uke-mf-gen-rem"/>
+      <p><l></l>                                  <r>den<s n="det"/><s n="dem"/><s n="mf"/><s n="sg"/><s n="aa"/><d/></r></p>
+      <par n="første-andre-adj"/>
+      <par n="ncmp*.n.ind2def.mf"/>
+      <par n="prepledd|empty"/>
+      <p><l></l>                                  <r>denne<b/>uken<s n="adv"/><d/></r></p>
+    </e>
+
+    <e lm="denne ukens foreløpige resultat -> det foreløpige resultatet denne uken" c="det førebelse resultatet denne veka">
+      <p><l>denne<s n="det"/><s n="dem"/><s n="m"/><s n="sg"/></l>     <r></r></p>  <par n="d:"/>
+      <par n="uke-mf-gen-rem"/>
+      <p><l></l>                                  <r>den<s n="det"/><s n="dem"/><s n="nt"/><s n="sg"/><s n="aa"/><d/></r></p>
+      <par n="første-andre-adj"/>
+      <par n="ncmp*.n.ind2def.nt"/>
+      <par n="prepledd|empty"/>
+      <p><l></l>                                  <r>denne<b/>uken<s n="adv"/><d/></r></p>
+    </e>
+
+    <e lm="ukens siste handelsdag -> den siste handelsdagen denne uken" c="den siste handelsdagen denne veka">
+      <par n="uke-mf-gen-rem"/>
+      <p><l></l>                                  <r>den<s n="det"/><s n="dem"/><s n="mf"/><s n="sg"/><s n="aa"/><d/></r></p>
+      <par n="første-andre-siste-neste"/>
+      <par n="ncmp*.n.ind2def.mf"/>
+      <p><l></l>                                  <r>denne<b/>uken<s n="adv"/><d/></r></p>
+    </e>
+
+    <e lm="denne ukens to første dager -> de to første dagene denne uken" c="dei to første dagane denne veka">
+      <p><l>denne<s n="det"/><s n="dem"/><s n="m"/><s n="sg"/></l>     <r></r></p>  <par n="d:"/>
+      <par n="uke-mf-gen-rem"/>
+      <p><l></l>                                  <r>den<s n="det"/><s n="dem"/><s n="un"/><s n="pl"/><s n="aa"/><d/></r></p>
+      <i><w/><s n="det"/><s n="qnt"/><t/><d/></i>
+      <par n="første-neste-siste"/>
+      <i><w/><s n="n"/><t/></i>  <p><l><s n="ind"/></l><r><s n="def"/></r></p>  <par n="d"/>
+      <p><l></l>                                  <r>denne<b/>uken<s n="adv"/><d/></r></p>
+    </e>
+
+    <e lm="ukens to første dager -> de to første dagene av uken" c="dei to første dagane av veka">
+      <par n="uke-mf-gen-rem"/>
+      <p><l></l>                                  <r>den<s n="det"/><s n="dem"/><s n="un"/><s n="pl"/><s n="aa"/><d/></r></p>
+      <i><w/><s n="det"/><s n="qnt"/><t/><d/></i>
+      <par n="første-neste-siste"/>
+      <i><w/><s n="n"/><t/></i>  <p><l><s n="ind"/></l><r><s n="def"/></r></p>  <par n="d"/>
+      <p><l></l>                                  <r>av<s n="pr"/><d/></r></p>
+      <p><l></l>                                  <r>uke<s n="n"/><s n="m"/><s n="sg"/><s n="def"/><d/></r></p>
+    </e>
+
+    <e lm="denne ukens siste tre dager -> de siste tre dagene denne uken" c="dei siste tre dagane denne veka">
+      <p><l>denne<s n="det"/><s n="dem"/><s n="m"/><s n="sg"/></l>     <r></r></p>  <par n="d:"/>
+      <par n="uke-mf-gen-rem"/>
+      <p><l></l>                                  <r>den<s n="det"/><s n="dem"/><s n="un"/><s n="pl"/><s n="aa"/><d/></r></p>
+      <i><w/><s n="det"/><s n="qnt"/><t/><d/></i>
+      <par n="første-neste-siste"/>
+      <i><w/><s n="n"/><t/></i>  <p><l><s n="ind"/></l><r><s n="def"/></r></p>  <par n="d"/>
+      <p><l></l>                                  <r>denne<b/>uken<s n="adv"/><d/></r></p>
+    </e>
+
+    <e lm="ukens siste tre dager -> de siste tre dagene av uken" c="dei siste tre dagane av veka">
+      <par n="uke-mf-gen-rem"/>
+      <p><l></l>                                  <r>den<s n="det"/><s n="dem"/><s n="un"/><s n="pl"/><s n="aa"/><d/></r></p>
+      <i><w/><s n="det"/><s n="qnt"/><t/><d/></i>
+      <par n="første-neste-siste"/>
+      <i><w/><s n="n"/><t/></i>  <p><l><s n="ind"/></l><r><s n="def"/></r></p>  <par n="d"/>
+      <p><l></l>                                  <r>av<s n="pr"/><d/></r></p>
+      <p><l></l>                                  <r>uke<s n="n"/><s n="m"/><s n="sg"/><s n="def"/><d/></r></p>
+    </e>
 
 </section>
 
