@@ -384,6 +384,39 @@
       </e>
     </pardef>
 
+    <pardef n="ncmp*.n.ind.m">
+      <e>
+        <i><w/><s n="n"/><s n="m"/><s n="sg"/><s n="ind"/><t/></i>
+        <par n="d"/>
+      </e>
+      <e>
+        <i><w/><t/><s n="cmp"/></i>
+        <i><w/><s n="n"/><s n="m"/><s n="sg"/><s n="ind"/><t/></i>
+        <par n="d"/>
+      </e>
+    </pardef>
+
+    <pardef n="ncmp*.n.ind.f">
+      <e>
+        <par n="ncmp*"/>
+        <i><w/><s n="n"/><s n="f"/><s n="sg"/><t/></i>
+        <p><l><s n="ind"/><s n="aa"/></l> <r><s n="ind"/><s n="aa"/></r></p>
+        <par n="d"/>
+      </e>
+    </pardef>
+
+    <pardef n="ncmp*.n.ind.nt">
+      <e>
+        <i><w/><s n="n"/><s n="nt"/><s n="sg"/><s n="ind"/></i>
+        <par n="d"/>
+      </e>
+      <e>
+        <par n="ncmp*"/>
+        <i><w/><s n="n"/><s n="nt"/><s n="sg"/><s n="ind"/><t/></i>
+        <par n="d"/>
+      </e>
+    </pardef>
+
     <pardef n="ncmp*.n">
       <e> <par n="ncmp*"/> <par n="n"/> </e>
     </pardef>
@@ -9967,6 +10000,55 @@
     </e>
     <!-- TODO: Enkle toleddsvariantar -->
 
+    <!-- tidenes -->
+
+    <e lm="tidenes handel -> en historisk handel" c="ein historisk handel">
+      <p><l>tid<s n="n"/><s n="f"/><s n="pl"/><s n="def"/><s n="gen"/></l>  <r></r></p>  <par n="d:"/>
+      <p><l></l>                                  <r>en<s n="det"/><s n="qnt"/><s n="m"/><s n="sg"/><s n="aa"/><d/></r></p>
+      <p><l></l>                                  <r>historisk<s n="adj"/><s n="pst"/><s n="mf"/><s n="sg"/><s n="ind"/><s n="aa"/><d/></r></p>
+      <!--par n="ncmp*.n.ind.m"/-->
+      <i><w/><s n="n"/><s n="m"/><s n="sg"/><s n="ind"/><d/></i>
+    </e>
+
+    <e lm="tidenes ugjerning -> ei historisk ugjerning" c="ei historisk ugjerning">
+      <p><l>tid<s n="n"/><s n="f"/><s n="pl"/><s n="def"/><s n="gen"/></l>  <r></r></p>  <par n="d:"/>
+      <p><l></l>                                  <r>en<s n="det"/><s n="qnt"/><s n="f"/><s n="sg"/><s n="aa"/><d/></r></p>
+      <p><l></l>                                  <r>historisk<s n="adj"/><s n="pst"/><s n="mf"/><s n="sg"/><s n="ind"/><s n="aa"/><d/></r></p>
+      <!--par n="ncmp*.n.ind.f"/-->
+      <i><w/><s n="n"/><s n="f"/><s n="sg"/><s n="ind"/><d/></i>
+    </e>
+
+    <e lm="tidenes engasjement -> et historisk engasjement" c="eit historisk engasjement">
+      <p><l>tid<s n="n"/><s n="f"/><s n="pl"/><s n="def"/><s n="gen"/></l>  <r></r></p>  <par n="d:"/>
+      <p><l></l>                                  <r>en<s n="det"/><s n="qnt"/><s n="nt"/><s n="sg"/><s n="aa"/><d/></r></p>
+      <p><l></l>                                  <r>historisk<s n="adj"/><s n="pst"/><s n="nt"/><s n="sg"/><s n="ind"/><s n="aa"/><d/></r></p>
+      <!--par n="ncmp*.n.ind.nt"/-->
+      <i><w/><s n="n"/><s n="nt"/><s n="sg"/><s n="ind"/><d/></i>
+    </e>
+
+    <e lm="tidenes syklister -> historiske syklister" c="historiske syklister">
+      <p><l>tid<s n="n"/><s n="f"/><s n="pl"/><s n="def"/><s n="gen"/></l>  <r></r></p>  <par n="d:"/>
+      <p><l></l>                                  <r>historisk<s n="adj"/><s n="pst"/><s n="un"/><s n="pl"/><s n="ind"/><d/></r></p>
+      <i><w/><s n="n"/><t/><s n="pl"/><s n="ind"/><t/><d/></i>
+    </e>
+
+    <e lm="tidenes største båt -> den største båten i historien" c="den største båten i historia">
+      <p><l>tid<s n="n"/><s n="f"/><s n="pl"/><s n="def"/><s n="gen"/></l>  <r></r></p>  <par n="d:"/>
+      <p><l></l>                                  <r>den<s n="det"/><s n="dem"/><s n="mf"/><s n="sg"/><s n="aa"/><d/></r></p>
+      <par n="første-andre-adj"/>
+      <par n="ncmp*.n.ind2def.mf"/>
+      <p><l></l>                                  <r>i<s n="pr"/><d/></r></p>
+      <p><l></l>                                  <r>historie<s n="n"/><s n="f"/><s n="sg"/><s n="def"/><d/></r></p>
+    </e>
+
+    <e lm="tidenes største skip -> det største skipet i historien" c="det største skipet i historia">
+      <p><l>tid<s n="n"/><s n="f"/><s n="pl"/><s n="def"/><s n="gen"/></l>  <r></r></p>  <par n="d:"/>
+      <p><l></l>                                  <r>den<s n="det"/><s n="dem"/><s n="nt"/><s n="sg"/><s n="aa"/><d/></r></p>
+      <par n="første-andre-adj"/>
+      <par n="ncmp*.n.ind2def.nt"/>
+      <p><l></l>                                  <r>i<s n="pr"/><d/></r></p>  <par n="d"/>
+      <p><l></l>                                  <r>historie<s n="n"/><s n="f"/><s n="sg"/><s n="def"/><d/></r></p>   <par n="d"/>
+    </e>
 
 </section>
 
