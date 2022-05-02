@@ -148,7 +148,13 @@
     </pardef>
 
     <pardef n="cm">
-      <e><i><w/><s n="cm"/></i> <par n="aa|"/></e>
+      <e>
+        <i><w/><s n="cm"/></i> <par n="aa|"/>
+      </e>
+      <e>
+        <p><l/><r><d space="no"/></r></p>    <!-- no space before-->
+        <i><w/><s n="cm"/><t/><d space="yes"/></i>
+      </e>
     </pardef>
 
     <pardef n="cm-insert" c="Ensure no space before, space after">
@@ -249,6 +255,15 @@
       <e><i><w/><s n="prn"/><d/></i></e>
       <e><i><w/><s n="prn"/><t/><d/></i></e>
     </pardef>
+    <pardef n="np-institution">
+      <e><i>fengsel<s n="n"/><s n="nt"/><s n="sg"/><s n="ind"/><t/><d/></i></e>
+      <e><i>hotell<s n="n"/><s n="nt"/><s n="sg"/><s n="ind"/><t/><d/></i></e>
+      <e><i>turisthotell<s n="n"/><s n="nt"/><s n="sg"/><s n="ind"/><t/><d/></i></e>
+      <e><i>skole<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/><t/><d/></i></e>
+      <e><i>folkehøyskole<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/><t/><d/></i></e>
+      <e><i>kommune<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/><t/><d/></i></e>
+      <e><i>fylkeskommune<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/><t/><d/></i></e>
+    </pardef>
     <pardef n="np">
       <e><i><w/><s n="np"/><d/></i></e>
       <e><i><w/><s n="np"/><t/><d/></i></e>
@@ -269,6 +284,10 @@
         <i><w/><s n="np"/><t/><d/></i>
         <i><w/><s n="np"/><t/><d/></i>
         <i><w/><s n="np"/><t/><d/></i>
+      </e>
+      <e>
+        <i><w/><s n="np"/><t/><d/></i>
+        <par n="np-institution"/>
       </e>
     </pardef>
     <pardef n="np|empty">
@@ -470,7 +489,7 @@
     <pardef n="SN+np">
       <e>
         <par n="SN"/>
-        <i><w/><s n="np"/><t/><d/></i>
+        <par n="np"/>
       </e>
       <e>
         <par n="SN"/>
@@ -480,7 +499,7 @@
       <e>
         <par n="SN"/>
         <i><w/><s n="np"/><s n="ant"/><t/><d/></i>
-        <i><w/><s n="np"/><t/><d/></i>
+        <i><w/><t/><d/></i>
         <i><w/><s n="np"/><s n="cog"/><t/><d/></i>
       </e>
     </pardef>
@@ -1243,7 +1262,13 @@
         <par n="SN"/>
       </e>
       <e>
-        <i><w/><s n="pr"/><t/><d/></i><par n="np"/>
+        <i><w/><s n="pr"/><t/><d/></i>
+        <par n="np"/>
+      </e>
+      <e>
+        <i><w/><s n="pr"/><t/><d/></i>
+        <par n="adj"/>
+        <par n="np"/>
       </e>
       <e>
         <par n="SN+np"/>
@@ -1256,6 +1281,16 @@
       </e>
       <e>
         <i><w/><s n="pr"/><t/><d/></i>
+        <par n="np"/>
+        <par n="cm|og|eller"/>
+        <par n="np"/>
+        <par n="cm|og|eller"/>
+        <par n="np"/>
+      </e>
+      <e>
+        <i><w/><s n="pr"/><t/><d/></i>
+        <par n="np"/>
+        <par n="cm|og|eller"/>
         <par n="np"/>
         <par n="cm|og|eller"/>
         <par n="np"/>
@@ -10147,6 +10182,50 @@
       <p><l></l>                                  <r>enn<s n="pr"/><s n="aa"/><d space="yes"/></r></p>
       <p><l></l>                                  <r>noen gang<s n="adv"/><s n="aa"/><d space="no"/></r></p>
       <par n="sent-cm"/>
+    </e>
+
+<!-- tysdagens -->
+
+    <e lm="tirdagens VG -> VG tirsdag" c="VG tysdag">
+      <p><l>tirsdag<s n="n"/><s n="m"/><s n="sg"/><s n="def"/><s n="gen"/></l>  <r></r></p>  <par n="d:"/>
+      <par n="np"/>
+      <p><l></l>                                  <r>tirsdag<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/><d/></r></p>
+    </e>
+
+    <e lm="tirdagens møte i Stockholm -> møtet i Stockholm tirsdag" c="møtet i Stockholm tysdag">
+      <i><w/><t/><d/></i>
+      <p><l>tirsdag<s n="n"/><s n="m"/><s n="sg"/><s n="def"/><s n="gen"/></l>  <r></r></p>  <par n="d:"/>
+      <par n="ncmp*.n.ind-or-def"/>
+      <par n="prepledd|empty"/>
+      <p><l></l>                                  <r>tirsdag<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/><d/></r></p>
+    </e>
+
+    <e lm="tirdagens svært viktige kamp i Stockholm -> den svært viktige kampen i Stockholm tirsdag" c="den svært viktige kampen i Stockholm tysdag">
+      <p><l>tirsdag<s n="n"/><s n="m"/><s n="sg"/><s n="def"/><s n="gen"/></l>  <r></r></p>  <par n="d:"/>    
+      <p><l></l>                                  <r>den<s n="det"/><s n="dem"/><s n="mf"/><s n="sg"/><s n="aa"/><d/></r></p>
+      <par n="første-andre-adj"/>
+      <par n="ncmp*.n.ind2def.mf"/>
+      <par n="prepledd|empty"/>
+      <p><l></l>                                  <r>tirsdag<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/><d/></r></p>
+    </e>
+
+    <e lm="tirdagens svært viktige møte i Stockholm -> det svært viktige møtet i Stockholm tirsdag" c="det svært viktige møtet i Stockholm tysdag">
+      <p><l>tirsdag<s n="n"/><s n="m"/><s n="sg"/><s n="def"/><s n="gen"/></l>  <r></r></p>  <par n="d:"/>    
+      <p><l></l>                                  <r>den<s n="det"/><s n="dem"/><s n="nt"/><s n="sg"/><s n="aa"/><d/></r></p>
+      <par n="første-andre-adj"/>
+      <par n="ncmp*.n.ind2def.nt"/>
+      <par n="prepledd|empty"/>
+      <p><l></l>                                  <r>tirsdag<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/><d/></r></p>
+    </e>
+
+    <!-- Verbalsubstantiv før 'av' og ny genitiv -->
+    <e lm="tirdagens oppjustering av (ulykkens ...) -> oppjusteringen tirsdag av (ulykkens ...)" c="oppjusteringa tysdag av (...)">
+      <i><w/><t/><d/></i>
+      <p><l>tirsdag<s n="n"/><s n="m"/><s n="sg"/><s n="def"/><s n="gen"/></l>  <r></r></p>  <par n="d:"/>    
+      <par n="ncmp*.n.ind2def.mf"/>
+      <p><l></l>                                  <r>tirsdag<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/><d/></r></p>
+      <i>av<s n="pr"/></i>  <par n="d"/>
+      <i><w/><s n="n"/><t/><s n="def"/><s n="gen"/><t/></i>  <par n="d"/>
     </e>
 
 </section>
