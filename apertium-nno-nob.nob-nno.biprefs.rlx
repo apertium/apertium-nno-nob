@@ -35,7 +35,7 @@ REMOVE:mellom_mellom ("blant anna"i) IF (0 ("mellom anna"i));
 LIST lm_lov = ".*lov"ri;
 SELECT:lova_loven lm_lov + m IF (0 (VAR:lova_loven));
 SELECT:lova_loven lm_lov + m IF
-    (1 ("§"))
+    (1 ("§") OR ("paragraf"))
     ;
 # utlendingsloven § 21 -> utlendingsloven § 21
 REMOVE:lova_loven lm_lov + m;
