@@ -9487,6 +9487,16 @@
   => "Dei må få på seg _tørke_ klede, og så må dei _tørre_ tårene." Adjektivet blir tolka som
   infinitiv av å tørre¹, verbet som adjektivet. -->
 
+  <rule><match lemma="utlendingsforskrift" tags="n.m.*"><select lemma="utlendingsforskrift" tags="n.f.*"/></match></rule>
+  <rule weight="2.0" c="utlendingsforskrift §">
+    <match lemma="utlendingsforskrift" tags="n.m.*"><select lemma="utlendingsforskrift" tags="n.m.*"/></match>
+    <or>
+  	  <match lemma="§"/>
+  	  <match lemma="paragraf"/>
+    </or>
+  	<match tags="det.qnt.*"/>
+  </rule>
+
   <rule><match lemma="samt" tags="adv.*"><select lemma="og dessutan"/></match></rule>
 
   <rule><match lemma="anerkjennende" tags="adj.*"><select lemma="anerkjennande"/></match></rule>
