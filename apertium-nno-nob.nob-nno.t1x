@@ -183,6 +183,19 @@
       <cat-item tags="n.*.sg.ind.*" lemma="øye"/>
       <cat-item tags="n.*.sg.ind.*" lemma="ankomst"/>
     </def-cat>
+    <def-cat n="ngen_vekedag">
+      <cat-item tags="n.*.gen.*" lemma="mandag"/>
+      <cat-item tags="n.*.gen.*" lemma="tirsdag"/>
+      <cat-item tags="n.*.gen.*" lemma="onsdag"/>
+      <cat-item tags="n.*.gen.*" lemma="torsdag"/>
+      <cat-item tags="n.*.gen.*" lemma="fredag"/>
+      <cat-item tags="n.*.gen.*" lemma="lørdag"/>
+      <cat-item tags="n.*.gen.*" lemma="søndag"/>
+    </def-cat>
+    <def-cat n="nind_gen2cmp_vekedag">
+      <cat-item tags="n.*.*.ind.*" lemma="etappe"/>
+      <cat-item tags="n.*.*.ind.*" lemma="utgave"/>
+    </def-cat>
 
     <!-- n does not include compound lhs's: -->
     <def-cat n="n_np">
@@ -4472,7 +4485,7 @@
 
 
   <section-rules>
-
+    
     <rule comment="Sps finanspolitiske talsperson NN → finanspolitisk talsperson for Sp NN">
       <pattern>
         <!--pattern-item n="parti.gen"/-->
@@ -6004,6 +6017,16 @@ no lemq-moving">
             <lu><clip pos="2" side="tl" part="whole"/></lu>
           </chunk>
         </out>
+      </action>
+    </rule>
+    <rule comment="NGEN NIND_GEN2CMP: søndagens etappe => søndagsetappen">
+      <pattern>
+        <pattern-item n="ngen_vekedag"/>
+        <pattern-item n="nind_gen2cmp_vekedag"/>
+      </pattern>
+      <action>
+        <choose><when><test><not><equal><clip pos="2" side="tl" part="a_cmp"/><lit v=""/></equal></not></test><reject-current-rule shifting="no"/></when></choose>
+        <call-macro n="gen2cmp"><with-param pos="1"/><with-param pos="2"/></call-macro>
       </action>
     </rule>
     <rule comment="NGEN NIND_GEN2CMP: menneskets verdighet → mennesketverdet">
