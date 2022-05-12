@@ -4229,7 +4229,9 @@
   <!--  BESTEMME: END -->
 
 <!--  BESLUTTE: START -->
- <rule><match lemma="beslutte" tags="vblex.*"><select lemma="vedta"/></match></rule>
+ <rule>
+    <match lemma="beslutte" tags=".*"><select lemma="vedta"/></match>
+ </rule>
  <rule weight="2.0">
     <match lemma="beslutte" tags="vblex.*"><select lemma="bestemme# seg for"/></match>
     <match lemma="å"/>
@@ -4237,7 +4239,7 @@
   </rule>
  <rule weight="2.0">
     <match lemma="fast"/>
-    <match lemma="beslutte" tags="vblex.*"><select lemma="bestemme"/></match>
+    <match lemma="beslutte" tags=".*"><select lemma="bestemme"/></match>
     <match lemma="på"/>
     <match lemma="å"/>
   </rule>
