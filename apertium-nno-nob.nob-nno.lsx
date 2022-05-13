@@ -313,6 +313,25 @@
       <e><i><w/><s n="n"/><t/><s n="sg"/><s n="ind"/><s n="gen"/><s n="Aa"/><d/></i></e>
       <e><i><w/><s n="n"/><t/><s n="sg"/><s n="ind"/><s n="gen"/><s n="AA"/><d/></i></e>
     </pardef>
+
+    <pardef n="n.ind" c="Sg and pl, no gen. No final t/ – avoid cmp!">
+      <e><i><w/><s n="n"/><t/><s n="ind"/><d/></i></e>
+      <e><i><w/><s n="n"/><t/><s n="ind"/><s n="aa"/><d/></i></e>
+      <e><i><w/><s n="n"/><t/><s n="ind"/><s n="Aa"/><d/></i></e>
+      <e><i><w/><s n="n"/><t/><s n="ind"/><s n="AA"/><d/></i></e>
+      <e>
+        <i><w/><s n="n"/><t/><s n="ind"/><s n="cmp-split"/><t/><d/></i>
+        <i><w/><s n="cnjcoo"/><t/><d/></i>
+        <i><w/><s n="n"/><t/><s n="ind"/><t/><d/></i>
+      </e>
+      <e>
+        <i><w/><s n="n"/><t/><s n="ind"/><s n="cmp-split"/><s n="aa"/><d/></i>
+        <i><w/><s n="cnjcoo"/><t/><d/></i>
+        <i><w/><s n="n"/><t/><s n="ind"/><s n="cmp"/><d/></i>
+        <i><w/><s n="n"/><t/><s n="ind"/><s n="aa"/><d/></i>
+      </e>
+    </pardef>
+
     <pardef n="ncmp">
       <e><i><w/><t/><s n="cmp"/><d/></i></e>
       <e><i><w/><t/><s n="cmp"/><t/><d/></i></e>
@@ -327,6 +346,10 @@
 
     <pardef n="ncmp*.n.sg.ind">
       <e> <par n="ncmp*"/> <par n="n.sg.ind"/> </e>
+    </pardef>
+
+    <pardef n="ncmp*.n.ind">
+      <e> <par n="ncmp*"/> <par n="n.ind"/> </e>
     </pardef>
 
     <pardef n="ncmp*.n.ind2def">
@@ -349,6 +372,21 @@
         <par n="d"/>
         <i>og<s n="cnjcoo"/><t/><d/></i>
         <par n="ncmp*"/>
+        <i><w/><s n="n"/><t/></i>
+        <p><l><s n="ind"/><s n="aa"/></l> <r><s n="def"/><s n="aa"/></r></p>
+        <par n="d"/>
+      </e>
+      <e>                                                                 <!-- herre- og damestafett -->
+        <i><w/><s n="n"/><t/><s n="ind"/><s n="cmp-split"/><t/><d/></i>
+        <i><w/><s n="cnjcoo"/><t/><d/></i>
+        <i><w/><s n="n"/><t/></i>
+        <p><l><s n="ind"/><s n="aa"/></l> <r><s n="def"/><s n="aa"/></r></p>
+        <par n="d"/>
+      </e>
+      <e>
+        <i><w/><s n="n"/><t/><s n="ind"/><s n="cmp-split"/><s n="aa"/><d/></i>
+        <i><w/><s n="cnjcoo"/><t/><d/></i>
+        <i><w/><s n="n"/><t/><s n="ind"/><s n="cmp"/><d/></i>
         <i><w/><s n="n"/><t/></i>
         <p><l><s n="ind"/><s n="aa"/></l> <r><s n="def"/><s n="aa"/></r></p>
         <par n="d"/>
@@ -645,6 +683,12 @@
       <e>                            <par n="ncmp*.n.sg.ind"/></e>
       <e>              <par n="adj"/><par n="ncmp*.n.sg.ind"/></e>
       <e><par n="adj"/><par n="adj"/><par n="ncmp*.n.sg.ind"/></e>
+    </pardef>
+
+    <pardef n="SN.ind">
+      <e>                            <par n="ncmp*.n.ind"/></e>
+      <e>              <par n="adj"/><par n="ncmp*.n.ind"/></e>
+      <e><par n="adj"/><par n="adj"/><par n="ncmp*.n.ind"/></e>
     </pardef>
 
     <pardef n="og|eller">
@@ -1355,13 +1399,37 @@
       </e>
     </pardef>
 
+    <pardef n="pr+SN.ind">
+      <e><i><w/><s n="pr"/><t/><d/></i><par n="SN.ind"/></e>
+      <e><i><w/><s n="pr"/><t/><d/></i><par n="det+SN"/></e>
+      <e>
+        <i><w/><s n="pr"/><t/><d/></i>
+        <par n="SN.ind"/>
+        <par n="cm|og|eller"/>
+        <par n="SN.ind"/>
+      </e>
+      <e>
+        <i><w/><s n="pr"/><t/><d/></i>
+        <par n="SN.ind"/>
+        <par n="cm|og|eller"/>
+        <par n="SN.ind"/>
+        <par n="cm|og|eller"/>
+        <par n="SN.ind"/>
+      </e>
+    </pardef>
+
     <pardef n="prepledd-np-SN">
       <e>                                       <!-- i Ungarns asyllover -->
         <i><w/><s n="pr"/><t/><d/></i>
         <i><w/><s n="np"/><t/><s n="gen"/><t/><d/></i>
-        <par n="SN"/>
+        <par n="SN.ind"/>
       </e>
       <e>
+        <i><w/><s n="pr"/><t/><d/></i>
+        <par n="np"/>
+      </e>
+      <e>                                             <!-- borte/heime mot Real Madrid -->
+        <i><w/><s n="pr"/><t/><d/></i>
         <i><w/><s n="pr"/><t/><d/></i>
         <par n="np"/>
       </e>
@@ -1403,15 +1471,20 @@
         <par n="np"/>
       </e>
       <e>
-        <par n="pr+SN"/>
+        <par n="pr+SN.ind"/>
+      </e>
+      <e>                                   <!-- frå 1994 -->
+        <i><w/><s n="pr"/><t/><d/></i>
+        <i><w/><s n="det"/><s n="qnt"/><s n="un"/><s n="pl"/><d/></i>
       </e>
     </pardef>
 
     <pardef n="prepledd|empty">
       <e></e>
-      <e>                                                  <par n="prepledd-np-SN"/></e>
-      <e>                         <par n="prepledd-np-SN"/><par n="prepledd-np-SN"/></e>
-      <e><par n="prepledd-np-SN"/><par n="prepledd-np-SN"/><par n="prepledd-np-SN"/></e>
+      <e>                                                                           <par n="prepledd-np-SN"/></e>
+      <e>                                                  <par n="prepledd-np-SN"/><par n="prepledd-np-SN"/></e>
+      <e>                         <par n="prepledd-np-SN"/><par n="prepledd-np-SN"/><par n="prepledd-np-SN"/></e>
+      <e><par n="prepledd-np-SN"/><par n="prepledd-np-SN"/><par n="prepledd-np-SN"/><par n="prepledd-np-SN"/></e>
     </pardef>
 
     <pardef n="teiknsetjing">
@@ -9632,6 +9705,7 @@
       <i>brann<s n="n"/><t/></i>  <par n="d"/>
     </e>
 
+
 <!-- fjorårets-reglar -->
 
     <e lm="fjorårets sesong -> fjorårssesongen" c="fjorårssesongen">
@@ -10682,6 +10756,25 @@
       <p><l></l>                                  <r>søndag<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/><d/></r></p>
       <i>av<s n="pr"/></i>  <par n="d"/>
       <i><w/><s n="n"/><t/><s n="def"/><s n="gen"/><t/></i>  <par n="d"/>
+    </e>
+
+<!-- helgens -->
+    
+    <e lm="helgens mekling -> meklingen i helgen" c="meklinga i helga">
+      <p><l>helg<s n="n"/><s n="m"/><s n="sg"/><s n="def"/><s n="gen"/></l>  <r></r></p>  <par n="d:"/>
+      <par n="ncmp*.n.ind-or-def"/>
+      <par n="prepledd|empty"/>
+      <p><l></l>                                  <r>i<s n="pr"/><s n="aa"/><d/></r></p>
+      <p><l></l>                                  <r>helg<s n="n"/><s n="f"/><s n="sg"/><s n="def"/><s n="aa"/><d/></r></p>
+    </e>
+    
+    <e lm="helgens mekling -> meklingen i helgen" c="meklinga i helga">
+      <p><l>helg<s n="n"/><s n="m"/><s n="sg"/><s n="def"/><s n="gen"/></l>  <r></r></p>  <par n="d:"/>
+      <par n="første-andre-adj"/>
+      <par n="ncmp*.n.ind-or-def"/>
+      <par n="prepledd|empty"/>
+      <p><l></l>                                  <r>i<s n="pr"/><s n="aa"/><d/></r></p>
+      <p><l></l>                                  <r>helg<s n="n"/><s n="f"/><s n="sg"/><s n="def"/><s n="aa"/><d/></r></p>
     </e>
 
 <!-- morgenens -->
