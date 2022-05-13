@@ -1672,6 +1672,11 @@
       <e><i>Johannesbrev<t/><d/></i></e>
     </pardef>
 
+    <pardef n="foran2før|empty">
+      <e></e>
+      <e><p><l>foran<s n="pr"/><t/></l> <r>før<s n="pr"/><t/></r></p> <par n="d"/></e>
+    </pardef>
+
     <pardef n="1tilførste">
       <e>
         <p><l>1<s n="det"/><t/><d/></l> <r></r></p>
@@ -7470,6 +7475,12 @@
       <p><l></l>                            <r>fremfor<s n="pr"/><d/></r></p>
     </e>
 
+    <e lm="foran neste (møte) -> før neste (møte)" c="før nestre (møte)">
+      <p><l>foran<t/><d/></l>               <r></r></p>
+      <p><l></l>                            <r>før<s n="pr"/><s n="aa"/><d/></r></p>
+      <i>neste<t/><d/></i>
+    </e>
+
     <e lm="uteble ikke + subst -> lot ikkje + subst + vente på seg" c="lét ikkje reaksjonene vente på seg">
       <p><l>utebli</l>                          <r>la</r></p>  <i><t/><d/></i>
       <i>ikke<t/><d/></i>
@@ -10410,7 +10421,7 @@
     </e>
 
     <e lm="mandagens møte i Stockholm -> møtet i Stockholm mandag" c="møtet i Stockholm måndag">
-      <i><w/><t/><d/></i>
+      <par n="foran2før|empty"/>
       <p><l>mandag<s n="n"/><s n="m"/><s n="sg"/><s n="def"/><s n="gen"/></l>  <r></r></p>  <par n="d:"/>
       <par n="ncmp*.n.ind-or-def"/>
       <par n="prepledd|empty"/>
@@ -10463,7 +10474,7 @@
     </e>
 
     <e lm="tirdagens møte i Stockholm -> møtet i Stockholm tirsdag" c="møtet i Stockholm tysdag">
-      <i><w/><t/><d/></i>
+      <par n="foran2før|empty"/>
       <p><l>tirsdag<s n="n"/><s n="m"/><s n="sg"/><s n="def"/><s n="gen"/></l>  <r></r></p>  <par n="d:"/>
       <par n="ncmp*.n.ind-or-def"/>
       <par n="prepledd|empty"/>
@@ -10515,7 +10526,7 @@
     </e>
 
     <e lm="onsdagens møte i Stockholm -> møtet i Stockholm onsdag" c="møtet i Stockholm onsdag">
-      <i><w/><t/><d/></i>
+      <par n="foran2før|empty"/>
       <p><l>onsdag<s n="n"/><s n="m"/><s n="sg"/><s n="def"/><s n="gen"/></l>  <r></r></p>  <par n="d:"/>
       <par n="ncmp*.n.ind-or-def"/>
       <par n="prepledd|empty"/>
@@ -10567,7 +10578,7 @@
     </e>
 
     <e lm="torsdagens møte i Stockholm -> møtet i Stockholm torsdag" c="møtet i Stockholm torsdag">
-      <i><w/><t/><d/></i>
+      <par n="foran2før|empty"/>
       <p><l>torsdag<s n="n"/><s n="m"/><s n="sg"/><s n="def"/><s n="gen"/></l>  <r></r></p>  <par n="d:"/>
       <par n="ncmp*.n.ind-or-def"/>
       <par n="prepledd|empty"/>
@@ -10619,7 +10630,7 @@
     </e>
 
     <e lm="fredagens møte i Stockholm -> møtet i Stockholm fredag" c="møtet i Stockholm fredag">
-      <i><w/><t/><d/></i>
+      <par n="foran2før|empty"/>
       <p><l>fredag<s n="n"/><s n="m"/><s n="sg"/><s n="def"/><s n="gen"/></l>  <r></r></p>  <par n="d:"/>
       <par n="ncmp*.n.ind-or-def"/>
       <par n="prepledd|empty"/>
@@ -10671,7 +10682,7 @@
     </e>
 
     <e lm="lørdagens møte i Stockholm -> møtet i Stockholm lørdag" c="møtet i Stockholm laurdag">
-      <i><w/><t/><d/></i>
+      <par n="foran2før|empty"/>
       <p><l>lørdag<s n="n"/><s n="m"/><s n="sg"/><s n="def"/><s n="gen"/></l>  <r></r></p>  <par n="d:"/>
       <par n="ncmp*.n.ind-or-def"/>
       <par n="prepledd|empty"/>
@@ -10723,7 +10734,7 @@
     </e>
 
     <e lm="søndagens møte i Stockholm -> møtet i Stockholm søndag" c="møtet i Stockholm søndag">
-      <i><w/><t/><d/></i>
+      <par n="foran2før|empty"/>
       <p><l>søndag<s n="n"/><s n="m"/><s n="sg"/><s n="def"/><s n="gen"/></l>  <r></r></p>  <par n="d:"/>
       <par n="ncmp*.n.ind-or-def"/>
       <par n="prepledd|empty"/>
@@ -10761,6 +10772,7 @@
 <!-- helgens -->
     
     <e lm="helgens mekling -> meklingen i helgen" c="meklinga i helga">
+      <par n="foran2før|empty"/>
       <p><l>helg<s n="n"/><s n="m"/><s n="sg"/><s n="def"/><s n="gen"/></l>  <r></r></p>  <par n="d:"/>
       <par n="ncmp*.n.ind-or-def"/>
       <par n="prepledd|empty"/>
@@ -10768,10 +10780,23 @@
       <p><l></l>                                  <r>helg<s n="n"/><s n="f"/><s n="sg"/><s n="def"/><s n="aa"/><d/></r></p>
     </e>
     
-    <e lm="helgens mekling -> meklingen i helgen" c="meklinga i helga">
+    <e lm="helgens første kamp -> den første kampen i helgen" c="den første kampen i helga">
+      <par n="foran2før|empty"/>
       <p><l>helg<s n="n"/><s n="m"/><s n="sg"/><s n="def"/><s n="gen"/></l>  <r></r></p>  <par n="d:"/>
+      <p><l></l>                                  <r>den<s n="det"/><s n="dem"/><s n="mf"/><s n="sg"/><s n="aa"/><d/></r></p>
       <par n="første-andre-adj"/>
-      <par n="ncmp*.n.ind-or-def"/>
+      <par n="ncmp*.n.ind2def.mf"/>
+      <par n="prepledd|empty"/>
+      <p><l></l>                                  <r>i<s n="pr"/><s n="aa"/><d/></r></p>
+      <p><l></l>                                  <r>helg<s n="n"/><s n="f"/><s n="sg"/><s n="def"/><s n="aa"/><d/></r></p>
+    </e>
+
+    <e lm="helgens viktige møte -> det viktige møtet i helga" c="det viktige møtet i helga">
+      <par n="foran2før|empty"/>
+      <p><l>helg<s n="n"/><s n="m"/><s n="sg"/><s n="def"/><s n="gen"/></l>  <r></r></p>  <par n="d:"/>    
+      <p><l></l>                                  <r>den<s n="det"/><s n="dem"/><s n="nt"/><s n="sg"/><s n="aa"/><d/></r></p>
+      <par n="første-andre-adj"/>
+      <par n="ncmp*.n.ind2def.nt"/>
       <par n="prepledd|empty"/>
       <p><l></l>                                  <r>i<s n="pr"/><s n="aa"/><d/></r></p>
       <p><l></l>                                  <r>helg<s n="n"/><s n="f"/><s n="sg"/><s n="def"/><s n="aa"/><d/></r></p>
@@ -10852,7 +10877,7 @@
 </e>
 
 <e lm="morgenens møte -> møtet denne morgenen" c="møtet denne morgenen">
-  <par n="uke-mf-gen-rem"/>
+  <p><l>morgen<s n="n"/><s n="m"/><s n="sg"/><s n="def"/><s n="gen"/></l>  <r></r></p>  <par n="d:"/> 
   <par n="ncmp*.n.ind2def"/>
   <p><l></l>                                  <r>denne<s n="det"/><s n="dem"/><s n="m"/><s n="sg"/><s n="aa"/><d/></r></p>
   <p><l></l>                                  <r>morgen<s n="n"/><s n="m"/><s n="sg"/><s n="def"/><s n="aa"/><d/></r></p>
