@@ -127,10 +127,11 @@ case $1 in
             setvars "${name}"
             expf=tests/out/"${name}".all.expected.txt
             goldf=tests/"${name}".all.gold.txt
-            seen=true
             input=$(cat)
             [[ "${input}" = *[.?\!] ]] || input="${input}." # ensure final punctuation
             echo "${input}" | tee -a "${f}" | apertium -d . "${mode}" | tee -a "${expf}" "${goldf}"
+            seen=true
+            break
         done
         if ! ${seen}; then echo "Unknown test set '${namefilter}'"; echo "(couldn't find file matching tests/*${namefilter}*.input.txt – try 'ymse' if unsure)"; exit 1; fi
         ;;
