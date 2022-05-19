@@ -1,0 +1,6 @@
+#!/bin/sh
+
+if ! command -V entr >/dev/null;   then echo "Please install entr" >&2;   exit 1; fi
+if ! command -V dwdiff >/dev/null; then echo "Please install dwdiff" >&2; exit 1; fi
+
+find ../apertium-nob/*rlx . -type f -maxdepth 1 | entr -cs "make -j r && <'$1' apertium -d . nob-nno_e | diff -sU1 - '$2' | dwdiff -uc"
