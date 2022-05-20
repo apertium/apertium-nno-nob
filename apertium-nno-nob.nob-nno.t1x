@@ -6658,6 +6658,41 @@ no lemq-moving">
         </out>
       </action>
     </rule>
+    <rule comment="NCMP ADJ CNJCOO ADJ NCMP N: robotdedikert og nyhetsdrevet lokalavis
+                   Chunk the coordination for GD-setting (DET NOM-rule) in t2x">
+      <pattern>
+        <pattern-item n="ncmp"/>        <!-- 1 robot -->
+        <pattern-item n="adj"/>         <!-- 2 dedikert -->
+        <pattern-item n="cnjcoo"/>      <!-- 3 og -->
+        <pattern-item n="adj"/>         <!-- 4 nyhetsdrevet -->
+        <pattern-item n="ncmp"/>        <!-- 5 lokal -->
+        <pattern-item n="n_np"/>        <!-- 6 avis-->
+      </pattern>
+      <action>
+        <call-macro n="set_caseFirstWordCmp"><with-param pos="1"/><with-param pos="2"/></call-macro>
+        <call-macro n="set_caseFirstWord2"><with-param pos="3"/><with-param pos="4"/></call-macro>
+        <call-macro n="set_caseSecondWordCmp"><with-param pos="5"/><with-param pos="6"/></call-macro>
+        <call-macro n="set_gender2.n.adj"><with-param pos="6"/><with-param pos="2"/></call-macro>
+        <call-macro n="set_gender2.n.adj"><with-param pos="6"/><with-param pos="4"/></call-macro>
+        <!-- TODO grau_aux <call-macro n="set_grau_aux2"><with-param pos="2"/></call-macro> -->
+        <call-macro n="out_gen-prep"><with-param pos="6"/></call-macro>
+        <call-macro n="stash_case_in_ntags1"><with-param pos="6"/></call-macro>
+        <out>
+          <chunk name="n_adj_cnjcoo_adj_n_n" case="caseFirstWord">
+            <tags><tag><var n="ntags"/></tag></tags>
+            <lu><clip pos="1" side="tl" part="whole"/></lu>
+            <lu><clip pos="2" side="tl" part="whole"/></lu>
+            <b/>
+            <lu><clip pos="3" side="tl" part="lemh"/><lit-tag v="cnjcoo"/></lu>
+            <b/>
+            <lu><clip pos="4" side="tl" part="whole"/></lu>
+            <b/>
+            <lu><clip pos="5" side="tl" part="whole"/></lu>
+            <lu><clip pos="6" side="tl" part="whole"/></lu>
+          </chunk>
+        </out>
+      </action>
+    </rule>
 
     <!-- NP_NOGEN NINDGEN -->
     <rule comment="NP_NOGEN NINDGEN: Sogn tingretts → Sogn tingretts
