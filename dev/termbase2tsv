@@ -1,0 +1,8 @@
+#!/bin/bash
+
+xmlstarlet sel -t                                          \
+           -m '//langSet[@xml:lang="nob"]//term'           \
+           --var 'nob=./text()'                            \
+           -m '../../../../langSet[@xml:lang="nno"]//term' \
+           -v '$nob' -o $'\t' -v 'text()' -o $'\n'         \
+           "$@"
