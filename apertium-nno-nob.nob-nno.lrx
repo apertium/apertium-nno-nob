@@ -11063,6 +11063,20 @@ preposisjonar gir ekstra utfordringar. -->
     <match tags="adj.*"/>
     <match lemma="menneskehet" tags="n.*"><select lemma="menneskeslekt"/></match>
   </rule>
+  
+  <rule><match lemma="bekjempe" tags="vblex.*"><select lemma="nedkjempe"/></match></rule>
+  <rule><match lemma="bekjempe" tags="adj.*"><select lemma="nedkjempe"/></match></rule>
+  <rule weight="2.0" c="nedkjempe med alle middel">
+    <match lemma="bekjempe" tags="vblex.*"><select lemma="nedkjempe"/></match>
+    <repeat from="0" upto="3"><match/></repeat>
+    <match lemma="med"/>
+    <match lemma="all" tags="det.qnt.un.pl.*"/>
+    <match lemma="middel" tags="n.nt.pl.ind.*"/>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="å"/>
+    <match lemma="bekjempe" tags="vblex.inf.*"><select lemma="få# bukt med"/></match>
+  </rule>
 
 </rules>
 </lrx>
