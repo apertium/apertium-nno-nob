@@ -11084,13 +11084,36 @@ preposisjonar gir ekstra utfordringar. -->
   </rule>
   <rule weight="2.0" c="dei måtte få bukt med viruset">
       <or>
-      <match lemma="kunne" tags="vblex.*"/>
-      <match lemma="måtte" tags="vblex.*"/>
-      <match lemma="burde" tags="vblex.*"/>
-      <match lemma="skulle" tags="vblex.*"/>
+        <match lemma="kunne" tags="vblex.*"/>
+        <match lemma="måtte" tags="vblex.*"/>
+        <match lemma="burde" tags="vblex.*"/>
+        <match lemma="skulle" tags="vblex.*"/>
       </or>
     <repeat from="0" upto="3"><match/></repeat>
     <match lemma="bekjempe" tags="vblex.inf.*"><select lemma="få# bukt med"/></match>
+  </rule>
+  <rule weight="2.0" c="viruset måtte nedkjempast">
+      <or>
+        <match lemma="ville" tags="vblex.*"/>
+        <match lemma="kunne" tags="vblex.*"/>
+        <match lemma="måtte" tags="vblex.*"/>
+        <match lemma="burde" tags="vblex.*"/>
+        <match lemma="skulle" tags="vblex.*"/>
+      </or>
+    <repeat from="0" upto="3"><match/></repeat>
+    <match lemma="bekjempe" tags="vblex.inf.pasv.*"><select lemma="nedkjempe"/></match>
+  </rule>
+  <rule weight="2.0" c="ein dommar som kjempar mot politivald">
+    <match lemma="som"/>
+    <match lemma="bekjempe" tags="vblex.*"><select lemma="kjempe# mot"/></match>
+  </rule>
+  <rule weight="2.0" c="eit middel som motverkar hovudverk">
+    <or>
+      <match lemma="middel" tags="n.*"/>
+      <match lemma="medisin" tags="n.*"/>
+    </or>
+    <match lemma="som"/>
+    <match lemma="bekjempe" tags="vblex.*"><select lemma="motverke"/></match>
   </rule>
 
 </rules>
