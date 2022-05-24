@@ -11073,8 +11073,23 @@ preposisjonar gir ekstra utfordringar. -->
     <match lemma="all" tags="det.qnt.un.pl.*"/>
     <match lemma="middel" tags="n.nt.pl.ind.*"/>
   </rule>
-  <rule weight="2.0">
+  <rule weight="2.0" c="å få bukt med problemet">
     <match lemma="å"/>
+    <match lemma="bekjempe" tags="vblex.inf.*"><select lemma="få# bukt med"/></match>
+  </rule>
+  <rule weight="2.0" c="dei vil ta opp kampen mot ugraset">
+    <match lemma="ville" tags="vblex.*"/>
+    <repeat from="0" upto="3"><match/></repeat>
+    <match lemma="bekjempe" tags="vblex.inf.*"><select lemma="ta# opp kampen mot"/></match>
+  </rule>
+  <rule weight="2.0" c="dei måtte få bukt med viruset">
+      <or>
+      <match lemma="kunne" tags="vblex.*"/>
+      <match lemma="måtte" tags="vblex.*"/>
+      <match lemma="burde" tags="vblex.*"/>
+      <match lemma="skulle" tags="vblex.*"/>
+      </or>
+    <repeat from="0" upto="3"><match/></repeat>
     <match lemma="bekjempe" tags="vblex.inf.*"><select lemma="få# bukt med"/></match>
   </rule>
 
