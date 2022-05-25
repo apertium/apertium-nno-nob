@@ -22,6 +22,9 @@
       <program name="lsx-proc -w">
         <file name="nob-nno.autoseq.bin"/>
       </program>
+      <program name="lsx-proc -w" debug-suff="capsautoseq">
+        <file name="capstag.autoseq.bin"/>
+      </program>
       <program name="lt-proc -b">
         <file name="nob-nno.autobil.bin"/>
       </program>
@@ -42,6 +45,9 @@
       <program name="apertium-postchunk">
         <file name="apertium-nno-nob.nob-nno.t3x"/>
         <file name="nob-nno.t3x.bin"/>
+      </program>
+      <program name="lsx-proc -w" debug-suff="tlseq">
+        <file name="nno.autoseq.bin"/>
       </program>
       <program name="lt-proc $1 -b" debug-suff="dgen">
         <file name="nob-nno.autogen.bin"/>
@@ -76,6 +82,9 @@
       <program name="lsx-proc -w">
         <file name="nob-nno.autoseq.bin"/>
       </program>
+      <program name="lsx-proc -w" debug-suff="capsautoseq">
+        <file name="capstag.autoseq.bin"/>
+      </program>
       <program name="lt-proc -b">
         <file name="nob-nno.autobil.bin"/>
       </program>
@@ -96,6 +105,9 @@
       <program name="apertium-postchunk">
         <file name="apertium-nno-nob.nob-nno.t3x"/>
         <file name="nob-nno.t3x.bin"/>
+      </program>
+      <program name="lsx-proc -w" debug-suff="tlseq">
+        <file name="nno.autoseq.bin"/>
       </program>
       <program name="lt-proc $1 -b" debug-suff="dgen">
         <file name="nob-nno.autogen.bin"/>
@@ -214,14 +226,14 @@
         <file name="nno-nob.prob"/>
       </program>
       <program name="apertium-pretransfer"/>
-      <program name="lt-proc -N1 $1">
+      <program name="lt-proc $1 -b">
         <file name="nob-nno.autogen.bin"/>
       </program>
       <program name="cg-proc" debug-suff="e_vi-genprefs">
         <file name="nob-nno.e_vi_genprefs.rlx.bin"/>
       </program>
-      <program name="cg-proc -n -g -w" debug-suff="genprefs">
-        <file name="nob-nno.e_vi_genprefs.rlx.bin"/>
+      <program name="cg-proc -1 -n -g" debug-suff="genprefs">
+        <file name="nob-nno.genprefs.rlx.bin"/>
       </program>
     </pipeline>
   </mode>
@@ -241,10 +253,10 @@
         <file name="nno-nob.prob"/>
       </program>
       <program name="apertium-pretransfer"/>
-      <program name="lt-proc -N1 $1">
+      <program name="lt-proc $1 -b">
         <file name="nob-nno.autogen.bin"/>
       </program>
-      <program name="cg-proc -n -g -w" debug-suff="genprefs">
+      <program name="cg-proc -1 -n -g" debug-suff="genprefs">
         <file name="nob-nno.genprefs.rlx.bin"/>
       </program>
     </pipeline>

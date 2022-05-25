@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dictionary type="separable">
+  <!--
+      This file matches leftover ^<Aa>$ tags from words that were
+      deleted by the preceding lsx step and puts them on the following
+      word.
+  -->
+
+  <alphabet></alphabet>
+  <sdefs>
+    <sdef n="aa"/>
+    <sdef n="AA"/>
+    <sdef n="Aa"/>
+  </sdefs>
+
+  <pardefs>
+    <pardef n="toTitle">
+      <e><p><l><s n="aa"/></l><r><s n="Aa"/></r></p></e>
+      <e><p><l><s n="Aa"/></l><r><s n="Aa"/></r></p></e>
+      <e><p><l><s n="AA"/></l><r><s n="Aa"/></r></p></e>
+      <e><p><l></l>           <r><s n="Aa"/></r></p></e>
+    </pardef>
+
+    <pardef n="dropAa">
+      <e><p><l><s n="Aa"/><d/></l><r></r></p></e>
+    </pardef>
+    <pardef n="dropAaTags" c="In case preceding lsx gave multiple ^Aa$'s in a row">
+      <e><par n="dropAa"/></e>
+      <e><par n="dropAa"/><par n="dropAa"/></e>
+      <e><par n="dropAa"/><par n="dropAa"/><par n="dropAa"/></e>
+      <e><par n="dropAa"/><par n="dropAa"/><par n="dropAa"/><par n="dropAa"/></e>
+    </pardef>
+  </pardefs>
+
+
+
+  <section id="main" type="standard">
+
+    <e lm="shiftTitleCase" c="Drop lone ^Aa$, titlecase the following word">
+      <par n="dropAaTags"/>
+      <i><w/><t/></i>
+      <par n="toTitle"/>
+      <i><d/></i>
+    </e>
+
+</section>
+
+</dictionary>
