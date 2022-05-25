@@ -1,0 +1,1785 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dictionary type="separable">
+  <!--
+      This file rewrites the post-transfer Nynorsk into a Nynorsk that
+      has slightly more idiomatic word order.
+
+      So both the <l> and the <r> of this file is Nynorsk. All
+      output lemmas need to be in the generator.
+  -->
+
+  <alphabet></alphabet>
+  <sdefs>
+    <sdef n="n"       c="Noun"/>
+    <sdef n="np"      c="Proper noun"/>
+    <sdef n="prn"     c="Pronoun"/>
+    <sdef n="det"     c="Determiner"/>
+    <sdef n="pos"     c="Possessive"/>
+
+    <sdef n="p1"      c="1st person"/>
+    <sdef n="p2"      c="2nd person"/>
+    <sdef n="p3"      c="3rd person"/>
+
+    <sdef n="nt"      c="Neuter"/>
+    <sdef n="mf"      c="Masculine / feminine, also utrum in nouns"/>
+    <sdef n="un"      c="No gender"/>
+    <sdef n="f"       c="Feminine"/>
+    <sdef n="m"       c="Masculine"/>
+
+    <sdef n="sp"      c="Singular / plural"/>
+    <sdef n="sg"      c="Singular"/>
+    <sdef n="pl"      c="Plural"/>
+
+    <sdef n="ind"     c="Indefinite"/>
+    <sdef n="def"     c="Definite"/>
+
+    <sdef n="nom"     c="Nominative"/>
+    <sdef n="acc"     c="Accusative"/>        <!-- objective case -->
+    <sdef n="gen"     c="Genitive"/>
+
+    <sdef n="dem"     c="Demonstrative"/>
+    <sdef n="itg"     c="Question word / interrogative"/>
+    <sdef n="qnt"     c="Quantifier"/>
+    <sdef n="neg"     c="Negative"/>
+    <sdef n="emph"    c="Emphatic"/>
+    <sdef n="pers"    c="Personal (pronoun)"/>
+    <sdef n="ref"     c="Reflexive pronoun"/>
+    <sdef n="expl"     c="Expletive pronoun"/>
+
+    <sdef n="vblex"   c="Verb"/>
+    <sdef n="pstv"    c="-st verb (Nynorsk)"/>
+    <sdef n="pasv"    c="Passive (Bokmål) or -st form (Nynorsk)"/>
+    <sdef n="inf"     c="Infinitive"/>
+    <sdef n="pres"    c="Present"/>
+    <sdef n="imp"     c="Imperative"/>
+    <sdef n="pret"    c="Preterite"/>
+    <sdef n="pp"      c="Perfect participle"/>
+    <sdef n="pprs"  c="Present participle (adjectival)"/>
+
+    <sdef n="pr"      c="Preposition"/>
+    <sdef n="ij"      c="Interjection"/>
+    <sdef n="adv"     c="Adverb"/>
+    <sdef n="adj"     c="Adjective"/>
+    <sdef n="sint"    c="Synthetic (of adjectives)"/>
+    <sdef n="part"    c="Participle (infinitive)"/>
+    <sdef n="cnjsub"  c="Subordinating conjunction"/>
+    <sdef n="cnjcoo"  c="Co-ordinating conjunction"/>
+    <sdef n="cnjadv"  c="Adverbial conjunction"/>
+
+    <sdef n="pst"    c="Positive"/>
+    <sdef n="comp"    c="Comparative"/>
+    <sdef n="sup"     c="Superlative"/>
+
+    <sdef n="ord"     c="Ordinal"/>
+    <sdef n="acr"     c="Acronym"/>
+    <sdef n="sent"    c="Sentence end" />
+    <sdef n="cm"      c="Comma" />
+    <sdef n="guio"      c="Dash" />
+    <sdef n="clb"     c="Possible clause boundary"/>
+    <sdef n="overskrift" c="Headline"/>
+    <sdef n="apos"    c="Apostrophe" />
+    <sdef n="lpar"    c="Left parenthesis" />
+    <sdef n="rpar"    c="Right parenthesis" />
+    <sdef n="lquot"   c="Left quotation mark"/>
+    <sdef n="rquot"   c="Right quotation mark"/>
+
+    <sdef n="top"     c="Toponym" />
+    <sdef n="cog"     c="Cognomen" />
+    <sdef n="org"     c="Organisation" />
+    <sdef n="ant"     c="Anthroponym" />
+
+    <sdef n="cmp"     c="Compound-left-part"/>
+    <sdef n="cmp-split" c="Split compound-left-part"/>
+
+    <sdef n="guess" 	c="Guesser"/>
+    <sdef n="cgguess" 	c="CG Guesser"/>
+    <sdef n="url" 	c="URL/E-mail"/>
+
+    <sdef n="GD"     c="Género por determinar" />
+    <sdef n="ND"     c="Número por determinar" />
+
+    <sdef n="aa"/>
+    <sdef n="AA"/>
+    <sdef n="Aa"/>
+  </sdefs>
+
+  <pardefs>
+
+    <pardef n="aa|" c="Optional aa tag (includes empty)">
+      <e></e>
+      <e><i><s n="aa"/></i></e>
+      <e><i><s n="Aa"/></i></e>
+      <e><i><s n="AA"/></i></e>
+    </pardef>
+    <pardef n="d" c="Copy over word-separator with optional preceding aa tag">
+      <e><par n="aa|"/><i><d/></i></e>
+    </pardef>
+    <pardef n="d:" c="Delete word-separator and optional preceding aa tag">
+      <e><p><l><d/></l>            <r></r></p></e>
+      <e><p><l><s n="aa"/><d/></l> <r></r></p></e>
+      <e><p><l><s n="Aa"/><d/></l> <r></r></p></e>
+      <e><p><l><s n="AA"/><d/></l> <r></r></p></e>
+    </pardef>
+
+    <pardef n="aa:Aa" c="Titlecase if downcased, keep UPPERCASE as-is">
+      <e><p><l><s n="aa"/></l> <r><s n="Aa"/></r></p></e>
+      <e><p><l><s n="Aa"/></l> <r><s n="Aa"/></r></p></e>
+      <e><p><l><s n="AA"/></l> <r><s n="AA"/></r></p></e>
+    </pardef>
+    <pardef n="Aa:aa" c="Downcase if titlecased, keep UPPERCASE as-is">
+      <e><p><l><s n="aa"/></l> <r><s n="aa"/></r></p></e>
+      <e><p><l><s n="Aa"/></l> <r><s n="aa"/></r></p></e>
+      <e><p><l><s n="AA"/></l> <r><s n="AA"/></r></p></e>
+    </pardef>
+
+    <pardef n="sent">
+      <e><i><w/><s n="sent"/></i></e>
+      <e><i><w/><s n="sent"/><t/></i></e>
+    </pardef>
+
+    <pardef n="sent-insert" c="Ensure no space before, space after">
+      <e>
+        <p><l/><r><d space="no"/></r></p>    <!-- no space before-->
+        <p><l></l>            <r>.<s n="sent"/><d space="yes"/></r></p>
+      </e>
+    </pardef>
+
+    <pardef n="cm">
+      <e>
+        <i><w/><s n="cm"/></i> <par n="aa|"/>
+      </e>
+      <e>
+        <p><l/><r><d space="no"/></r></p>    <!-- no space before-->
+        <i><w/><s n="cm"/><t/><d space="yes"/></i>
+      </e>
+    </pardef>
+
+    <pardef n="cm-insert" c="Ensure no space before, space after">
+      <e>
+        <p><l/><r><d space="no"/></r></p>    <!-- no space before-->
+        <p><l></l>            <r>,<s n="cm"/><d space="yes"/></r></p>
+      </e>
+    </pardef>
+
+    <pardef n="det">
+      <e><i><w/><s n="det"/><t/><d/></i></e>
+    </pardef>
+
+    <pardef n="det|empty">
+      <e></e>
+      <e><i><w/><s n="det"/><t/><d/></i></e>
+    </pardef>
+
+    <pardef n="adj">
+      <e><i><w/><s n="adj"/><t/><d/></i></e>
+      <e>
+        <i><w/><t/><s n="cmp"/><d/></i>
+        <i><w/><s n="adj"/><t/><d/></i>
+      </e>
+    </pardef>
+    <pardef n="adj.ord|comp">
+      <e><i><w/><s n="adj"/><s n="ord"/><t/><d/></i></e>
+      <e><i><w/><s n="adj"/><s n="comp"/><t/><d/></i></e>
+      <e><i><w/><s n="adj"/><s n="sint"/><s n="comp"/><t/><d/></i></e>
+    </pardef>
+    <pardef n="adj|empty">
+      <e></e>
+      <e><par n="adj"/></e>
+      <e><par n="adj"/><par n="adj"/></e>
+      <e><par n="adj"/><par n="adj"/><par n="adj"/></e>
+    </pardef>
+    <pardef n="adj.ord|sup">
+      <e><i><w/><s n="adj"/><s n="ord"/><t/><d/></i></e>
+      <e><i><w/><s n="adj"/><s n="sup"/><t/><d/></i></e>
+      <e><i><w/><s n="adj"/><s n="sint"/><s n="sup"/><t/><d/></i></e>
+    </pardef>
+    <pardef n="adj.ord|sup+adv">
+      <e><par n="adj.ord|sup"/></e>
+      <e>
+        <i><w/><s n="adv"/><t/><d/></i>
+        <par n="adj.ord|sup"/>
+      </e>
+      <e><par n="adj.ord|sup"/></e>
+      <e>
+        <par n="adj.ord|sup"/>
+        <par n="adj"/>
+      </e>
+    </pardef>
+    <pardef n="adj.sup2comp">
+      <e>
+        <i><w/><s n="adj"/><s n="sup"/></i>
+        <p><l><s n="sup"/><t/></l><r><s n="comp"/><t/></r></p>
+        <par n="d" space="no"/>
+      </e>
+      <e>
+        <i><w/><s n="adj"/><s n="sint"/></i>
+        <p><l><s n="sup"/><t/></l><r><s n="comp"/><t/></r></p>
+        <par n="d" space="no"/>
+      </e>
+    </pardef>
+    <pardef n="pr">
+      <e><i><w/><s n="pr"/><d/></i></e>
+      <e><i><w/><s n="pr"/><t/><d/></i></e>
+    </pardef>
+    <pardef n="pr|empty" c="Includes empty!">
+      <e></e>
+      <e><i><w/><s n="pr"/><d/></i></e>
+      <e><i><w/><s n="pr"/><t/><d/></i></e>
+    </pardef>
+    <pardef n="pr-tid">
+      <e><i>før<s n="pr"/><t/><d/></i></e>
+      <e><i>etter<s n="pr"/><t/><d/></i></e>
+      <e><i>innen<s n="pr"/><t/><d/></i></e>
+    </pardef>
+    <pardef n="n">
+      <e><i><w/><s n="n"/><t/><d/></i></e>
+    </pardef>
+    <pardef n="adv">
+      <e><i><w/><s n="adv"/><d/></i></e>
+      <e><i><w/><s n="adv"/><t/><d/></i></e>
+    </pardef>
+    <pardef n="ADV" c="adv-phrase, 1–3 adv's in a row">
+      <e><par n="adv"/></e>
+      <e><par n="adv"/><par n="adv"/></e>
+      <e><par n="adv"/><par n="adv"/><par n="adv"/></e>
+    </pardef>
+    <pardef n="prn">
+      <e><i><w/><s n="prn"/><d/></i></e>
+      <e><i><w/><s n="prn"/><t/><d/></i></e>
+    </pardef>
+    <pardef n="prn|empty" c="Includes empty!">
+      <e></e>
+      <e><i><w/><s n="prn"/><d/></i></e>
+      <e><i><w/><s n="prn"/><t/><d/></i></e>
+    </pardef>
+    <pardef n="np-institution">
+      <e><i>fengsel<s n="n"/><s n="nt"/><s n="sg"/><s n="ind"/><t/><d/></i></e>
+      <e><i>hotell<s n="n"/><s n="nt"/><s n="sg"/><s n="ind"/><t/><d/></i></e>
+      <e><i>turisthotell<s n="n"/><s n="nt"/><s n="sg"/><s n="ind"/><t/><d/></i></e>
+      <e><i>skole<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/><t/><d/></i></e>
+      <e><i>folkehøyskole<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/><t/><d/></i></e>
+      <e><i>kommune<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/><t/><d/></i></e>
+      <e><i>fylkeskommune<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/><t/><d/></i></e>
+      <e><i>stadion<s n="n"/><s n="nt"/><s n="sg"/><s n="ind"/><t/><d/></i></e>
+    </pardef>
+    <pardef n="np">
+      <e><i><w/><s n="np"/><d/></i></e>
+      <e><i><w/><s n="np"/><t/><d/></i></e>
+      <e>
+        <i><w/><s n="np"/><d/></i>
+        <i><w/><s n="np"/><d/></i>
+      </e>
+      <e>
+        <i><w/><s n="np"/><t/><d/></i>
+        <i><w/><s n="np"/><t/><d/></i>
+      </e>
+      <e>
+        <i><w/><s n="np"/><d/></i>
+        <i><w/><s n="np"/><d/></i>
+        <i><w/><s n="np"/><d/></i>
+      </e>
+      <e>
+        <i><w/><s n="np"/><t/><d/></i>
+        <i><w/><s n="np"/><t/><d/></i>
+        <i><w/><s n="np"/><t/><d/></i>
+      </e>
+      <e>
+        <i><w/><s n="np"/><t/><d/></i>
+        <par n="np-institution"/>
+      </e>
+    </pardef>
+    <pardef n="np|empty">
+      <e></e>
+      <e><i><w/><s n="np"/><d/></i></e>
+      <e><i><w/><s n="np"/><t/><d/></i></e>
+    </pardef>
+
+    <pardef n="prn.nom|np.ant|np.cog" c="Nominativ eller namn – sannsynleg subjekt">
+      <e><i><w/><s n="np"/><s n="ant"/><t/><d/></i></e>
+      <e><i><w/><s n="np"/><s n="cog"/><t/><d/></i></e>
+      <e><i><w/><s n="prn"/><t/><s n="nom"/><t/><d/></i></e>
+    </pardef>
+
+    <pardef n="n.sg.ind" c="No final t/ – avoid cmp!">
+      <e><i><w/><s n="n"/><t/><s n="sg"/><s n="ind"/><d/></i></e>
+      <e><i><w/><s n="n"/><t/><s n="sg"/><s n="ind"/><s n="gen"/><d/></i></e>
+      <e><i><w/><s n="n"/><t/><s n="sg"/><s n="ind"/><s n="aa"/><d/></i></e>
+      <e><i><w/><s n="n"/><t/><s n="sg"/><s n="ind"/><s n="Aa"/><d/></i></e>
+      <e><i><w/><s n="n"/><t/><s n="sg"/><s n="ind"/><s n="AA"/><d/></i></e>
+      <e><i><w/><s n="n"/><t/><s n="sg"/><s n="ind"/><s n="gen"/><s n="aa"/><d/></i></e>
+      <e><i><w/><s n="n"/><t/><s n="sg"/><s n="ind"/><s n="gen"/><s n="Aa"/><d/></i></e>
+      <e><i><w/><s n="n"/><t/><s n="sg"/><s n="ind"/><s n="gen"/><s n="AA"/><d/></i></e>
+    </pardef>
+
+    <pardef n="n.ind" c="Sg and pl, no gen. No final t/ – avoid cmp!">
+      <e><i><w/><s n="n"/><t/><s n="ind"/><d/></i></e>
+      <e><i><w/><s n="n"/><t/><s n="ind"/><s n="aa"/><d/></i></e>
+      <e><i><w/><s n="n"/><t/><s n="ind"/><s n="Aa"/><d/></i></e>
+      <e><i><w/><s n="n"/><t/><s n="ind"/><s n="AA"/><d/></i></e>
+      <e>
+        <i><w/><s n="n"/><t/><s n="ind"/><s n="cmp-split"/><t/><d/></i>
+        <i><w/><s n="cnjcoo"/><t/><d/></i>
+        <i><w/><s n="n"/><t/><s n="ind"/><t/><d/></i>
+      </e>
+      <e>
+        <i><w/><s n="n"/><t/><s n="ind"/><s n="cmp-split"/><s n="aa"/><d/></i>
+        <i><w/><s n="cnjcoo"/><t/><d/></i>
+        <i><w/><s n="n"/><t/><s n="ind"/><s n="cmp"/><d/></i>
+        <i><w/><s n="n"/><t/><s n="ind"/><s n="aa"/><d/></i>
+      </e>
+    </pardef>
+
+    <pardef n="ncmp">
+      <e><i><w/><t/><s n="cmp"/><d/></i></e>
+      <e><i><w/><t/><s n="cmp"/><t/><d/></i></e>
+    </pardef>
+
+    <pardef n="ncmp*" c="just the left-hand parts of a compound">
+      <e>                                             </e>
+      <e>                              <par n="ncmp"/></e>
+      <e>               <par n="ncmp"/><par n="ncmp"/></e>
+      <e><par n="ncmp"/><par n="ncmp"/><par n="ncmp"/></e>
+    </pardef>
+
+    <pardef n="ncmp*.n.sg.ind">
+      <e> <par n="ncmp*"/> <par n="n.sg.ind"/> </e>
+    </pardef>
+
+    <pardef n="ncmp*.n.ind">
+      <e> <par n="ncmp*"/> <par n="n.ind"/> </e>
+    </pardef>
+
+    <pardef n="ncmp*.n.ind2def">
+      <e>
+        <par n="ncmp*"/>
+        <i><w/><s n="n"/><t/></i>
+        <p><l><s n="ind"/><s n="aa"/></l> <r><s n="def"/><s n="aa"/></r></p>
+        <par n="d"/>
+      </e>
+      <e>
+        <par n="ncmp*"/>
+        <i><w/><s n="n"/><t/></i>
+        <p><l><s n="ind"/><s n="Aa"/></l> <r><s n="def"/><s n="Aa"/></r></p>
+        <par n="d"/>
+      </e>
+      <e>
+        <par n="ncmp*"/>
+        <i><w/><s n="n"/><t/></i>
+        <p><l><s n="ind"/><s n="aa"/></l> <r><s n="def"/><s n="aa"/></r></p>
+        <par n="d"/>
+        <i>og<s n="cnjcoo"/><t/><d/></i>
+        <par n="ncmp*"/>
+        <i><w/><s n="n"/><t/></i>
+        <p><l><s n="ind"/><s n="aa"/></l> <r><s n="def"/><s n="aa"/></r></p>
+        <par n="d"/>
+      </e>
+      <e>                                                                 <!-- herre- og damestafett -->
+        <i><w/><s n="n"/><t/><s n="ind"/><s n="cmp-split"/><t/><d/></i>
+        <i><w/><s n="cnjcoo"/><t/><d/></i>
+        <i><w/><s n="n"/><t/></i>
+        <p><l><s n="ind"/><s n="aa"/></l> <r><s n="def"/><s n="aa"/></r></p>
+        <par n="d"/>
+      </e>
+      <e>
+        <i><w/><s n="n"/><t/><s n="ind"/><s n="cmp-split"/><s n="aa"/><d/></i>
+        <i><w/><s n="cnjcoo"/><t/><d/></i>
+        <i><w/><s n="n"/><t/><s n="ind"/><s n="cmp"/><d/></i>
+        <i><w/><s n="n"/><t/></i>
+        <p><l><s n="ind"/><s n="aa"/></l> <r><s n="def"/><s n="aa"/></r></p>
+        <par n="d"/>
+      </e>
+    </pardef>
+
+    <pardef n="ncmp*.n.ind2ind.AA"> <!-- VM -->
+      <e>
+        <par n="ncmp*"/>
+        <i><w/><s n="n"/><t/></i>
+        <p><l><s n="AA"/></l> <r><s n="AA"/></r></p> <!-- <ind><AA>$ -->
+        <par n="d"/>
+      </e>
+      <e>
+        <par n="ncmp*"/>
+        <i>VM<s n="n"/><s n="nt"/><s n="sg"/><s n="ind"/><t/></i>
+        <par n="d"/>
+      </e>
+      <e>
+        <par n="ncmp*"/>
+        <i>EM<s n="n"/><s n="nt"/><s n="sg"/><s n="ind"/><t/></i>
+        <par n="d"/>
+      </e>
+      <e>
+        <par n="ncmp*"/>
+        <i>NM<s n="n"/><s n="nt"/><s n="sg"/><s n="ind"/><t/></i>
+        <par n="d"/>
+      </e>
+      <e>
+        <par n="ncmp*"/>
+        <i>OL<s n="n"/><s n="nt"/><s n="sg"/><s n="ind"/><t/></i>
+        <par n="d"/>
+      </e>
+    </pardef>
+
+    <pardef n="ncmp*.n.ind-or-def">
+      <e><par n="ncmp*.n.ind2def"/></e>     <!-- stevne > stemnet -->
+      <e><par n="ncmp*.n.ind2ind.AA"/></e>  <!-- VM > VM -->
+    </pardef>
+
+    <pardef n="ncmp*.n.ind2def.pl">
+      <e>
+        <par n="ncmp*"/>
+        <i><w/><s n="n"/><t/><s n="pl"/></i>
+        <p><l><s n="ind"/></l> <r><s n="def"/></r></p> <!-- <ind><aa>$ -->
+        <par n="d"/>
+      </e>
+    </pardef>
+
+    <pardef n="ncmp*.n.ind2def.m">
+      <e>
+        <par n="ncmp*"/>
+        <i><w/><s n="n"/><s n="m"/><s n="sg"/></i>
+        <p><l><s n="ind"/></l> <r><s n="def"/></r></p> <!-- <ind><aa>$ -->
+        <par n="d"/>
+      </e>
+    </pardef>
+
+    <pardef n="ncmp*.n.ind2def.f">
+      <e>
+        <par n="ncmp*"/>
+        <i><w/><s n="n"/><s n="f"/><s n="sg"/></i>
+        <p><l><s n="ind"/></l> <r><s n="def"/></r></p> <!-- <ind><aa>$ -->
+        <par n="d"/>
+      </e>
+    </pardef>
+
+    <pardef n="ncmp*.n.ind2def.mf">
+      <e><par n="ncmp*.n.ind2def.m"/></e>
+      <e><par n="ncmp*.n.ind2def.f"/></e>
+    </pardef>
+
+    <pardef n="ncmp*.n.ind2def.nt">
+      <e>
+        <par n="ncmp*"/>
+        <i><w/><s n="n"/><s n="nt"/><s n="sg"/></i>
+        <p><l><s n="ind"/></l> <r><s n="def"/></r></p> <!-- <ind><aa>$ -->
+        <par n="d"/>
+      </e>
+    </pardef>
+
+    <pardef n="ncmp*.n.ind.m">
+      <e>
+        <par n="ncmp*"/>
+        <i><w/><s n="n"/><s n="m"/><s n="sg"/><s n="ind"/><t/></i>
+        <par n="d"/>
+      </e>
+    </pardef>
+
+    <pardef n="ncmp*.n.ind.f">
+      <e>
+        <par n="ncmp*"/>
+        <i><w/><s n="n"/><s n="f"/><s n="sg"/><s n="ind"/><t/></i>
+        <par n="d"/>
+      </e>
+    </pardef>
+
+    <pardef n="ncmp*.n.ind.nt">
+      <e>
+        <par n="ncmp*"/>
+        <i><w/><s n="n"/><s n="nt"/><s n="sg"/><s n="ind"/><t/></i>
+        <par n="d"/>
+      </e>
+      <e>
+        <par n="ncmp*"/>
+        <i><w/><s n="n"/><s n="nt"/><s n="sg"/><s n="ind"/><t/></i>
+        <par n="d"/>
+      </e>
+    </pardef>
+
+    <pardef n="ncmp*.n">
+      <e> <par n="ncmp*"/> <par n="n"/> </e>
+    </pardef>
+
+    <pardef n="SN">
+      <e>                            <par n="ncmp*.n"/></e>
+      <e>              <par n="adj"/><par n="ncmp*.n"/></e>
+      <e><par n="adj"/><par n="adj"/><par n="ncmp*.n"/></e>
+    </pardef>
+
+    <pardef n="SN|empty" c="Includes empty!">
+      <e></e>
+      <e>                            <par n="ncmp*.n"/></e>
+      <e>              <par n="adj"/><par n="ncmp*.n"/></e>
+      <e><par n="adj"/><par n="adj"/><par n="ncmp*.n"/></e>
+      <e><i><w/><s n="det"/><t/><d/></i><par n="ncmp*.n"/></e>
+    </pardef>
+
+    <pardef n="SN-mange">
+      <e><par n="SN"/></e>
+      <e><i>mange<s n="adj"/><t/><d/></i></e>
+    </pardef>
+
+    <pardef n="SN-np">
+      <e><par n="SN"/></e>
+      <e><i><w/><s n="np"/><t/><d/></i></e>
+    </pardef>
+
+    <pardef n="SN+np">
+      <e>
+        <par n="SN"/>
+        <par n="np"/>
+      </e>
+      <e>
+        <par n="SN"/>
+        <i><w/><s n="np"/><s n="ant"/><t/><d/></i>
+        <i><w/><s n="np"/><s n="cog"/><t/><d/></i>
+      </e>
+      <e>
+        <par n="SN"/>
+        <i><w/><s n="np"/><s n="ant"/><t/><d/></i>
+        <i><w/><t/><d/></i>
+        <i><w/><s n="np"/><s n="cog"/><t/><d/></i>
+      </e>
+    </pardef>
+
+    <pardef n="det+SN">
+      <e><par n="SN"/></e>
+      <e><i><w/><s n="det"/><t/><d/></i><par n="SN"/></e>
+    </pardef>
+
+    <pardef n="pr+np">
+      <e><i><w/><s n="pr"/><t/><d/></i><par n="np"/></e>
+    </pardef>
+
+     <pardef n="pr+np|">
+      <e></e>
+      <e><i><w/><s n="pr"/><t/><d/></i><par n="np"/></e>
+    </pardef>
+
+    <pardef n="pr+SN|" c="Includes empty!">
+      <e></e>
+      <e><i><w/><s n="pr"/><t/><d/></i><par n="SN"/></e>
+      <e><i><w/><s n="pr"/><t/><d/></i><par n="det+SN"/></e>
+    </pardef>
+
+    <pardef n="pr+gen+SN|" c="Includes empty!">
+      <e></e>                   <!-- under onsdagens møte -->
+      <e><i><w/><s n="pr"/><t/><d/></i><i><w/><s n="n"/><t/><s n="gen"/><t/><d/></i><par n="SN"/></e>
+    </pardef>
+
+    <pardef n="det+SN|" c="Includes empty!">
+      <e></e>
+      <e>                            <par n="ncmp*.n"/></e>
+      <e>              <par n="adj"/><par n="ncmp*.n"/></e>
+      <e><par n="adj"/><par n="adj"/><par n="ncmp*.n"/></e>
+      <e><i><w/><s n="det"/><t/><d/></i><par n="SN"/></e>
+    </pardef>
+
+    <pardef n="det+det+SN" c="Includes empty!">
+      <e></e>
+      <e><i><w/><s n="det"/><t/><d/></i><par n="det+SN"/></e>
+    </pardef>
+
+    <pardef n="SN+cnj+vblex">
+      <e><par n="SN"/><i><w/><s n="cnjsub"/><t/><d/></i><i><w/><s n="vblex"/><t/><d/></i></e>
+    </pardef>
+
+    <pardef n="pr+SN+cnj+vblex" c="Includes empty!">
+      <e></e>
+      <e><i><w/><s n="pr"/><t/><d/></i><par n="SN+cnj+vblex"/></e>
+    </pardef>
+
+    <pardef n="adv+SN" c="Includes empty!">
+      <e></e>
+      <e><i><w/><s n="adv"/><t/><d/></i><par n="SN"/></e>
+      <e><i><w/><s n="adv"/><t/><d/></i><par n="det+SN"/></e>
+    </pardef>
+
+    <pardef n="SN|ADV|prn|" c="Includes empty!">
+      <e></e>
+      <e><par n="SN"/></e>
+      <e><par n="ADV"/></e>
+      <e><par n="adj"/></e>
+      <e><par n="prn"/></e>
+      <e><i><w/><s n="det"/><t/><d/></i><par n="ncmp*.n"/></e>
+    </pardef>
+
+    <pardef n="SN|ADV|prn|det" c="Includes empty!">
+      <e></e>
+      <e><par n="SN"/></e>
+      <e><par n="ADV"/></e>
+      <e><par n="adj"/></e>
+      <e><par n="prn"/></e>
+      <e><i><w/><s n="det"/><t/><d/></i></e>
+    </pardef>
+
+    <pardef n="SN|np|prn" c="Nouns, names and pronouns.">
+      <e><par n="SN"/></e>
+      <e><par n="det+SN"/></e>
+      <e><par n="prn"/></e>
+      <e><i><w/><s n="np"/><t/><d/></i></e>
+      <e><par n="adj"/></e><e><i><w/><s n="np"/><t/><d/></i></e>
+    </pardef>
+
+    <pardef n="np|prn" c="Names and pronouns.">
+      <e><par n="prn"/></e>
+      <e><i><w/><s n="np"/><t/><d/></i></e>
+      <e><par n="np"/><par n="np"/></e>
+      <e><par n="np"/><par n="np"/><par n="np"/></e>
+      <e><par n="adj"/><par n="np"/></e>
+      <e><par n="adj"/><par n="np"/><par n="np"/></e>
+      <e><par n="adj"/><par n="np"/><par n="np"/><par n="np"/></e>
+    </pardef>
+
+    <pardef n="SN|np|prn|empty" c="Includes empty!">
+      <e></e>
+      <e><par n="SN"/></e>
+      <e><par n="prn"/></e>
+      <e><i><w/><s n="np"/><t/><d/></i></e>
+      <e><par n="adj"/></e><e><i><w/><s n="np"/><t/><d/></i></e>
+      <e><i><w/><s n="det"/><t/><d/></i><par n="ncmp*.n"/></e>
+    </pardef>
+
+    <pardef n="SN|np|prn|det|empty" c="Includes empty!">
+      <e></e>
+      <e><par n="det+SN"/></e>
+      <e><par n="prn"/></e>
+      <e><i><w/><s n="np"/><t/><d/></i></e>
+      <e><par n="adj"/></e><e><i><w/><s n="np"/><t/><d/></i></e>
+      <e><i><w/><s n="det"/><t/><d/></i></e>
+      <e><i><w/><s n="np"/><t/><d/></i><par n="ncmp*.n"/></e>
+    </pardef>
+
+    <pardef n="SN|np|prn|det">
+      <e></e>
+      <e><par n="det+SN"/></e>
+      <e><par n="prn"/></e>
+      <e><i><w/><s n="np"/><t/><d/></i></e>
+      <e><par n="adj"/></e><e><i><w/><s n="np"/><t/><d/></i></e>
+      <e><i><w/><s n="det"/><t/><d/></i></e>
+      <e><i><w/><s n="np"/><t/><d/></i><par n="ncmp*.n"/></e>
+    </pardef>
+
+    <pardef n="SN|np|prn|det|SN+pr+SN">
+      <e><par n="det+SN"/></e>
+      <e><par n="prn"/></e>
+      <e><i><w/><s n="np"/><t/><d/></i></e>
+      <e><par n="adj"/></e><e><i><w/><s n="np"/><t/><d/></i></e>
+      <e><i><w/><s n="det"/><t/><d/></i></e>
+      <e><i><w/><s n="np"/><t/><d/></i><par n="ncmp*.n"/></e>
+      <e><par n="SN"/><par n="pr"/><par n="SN"/></e>
+      <e><par n="pr"/><par n="det+det+SN"/></e>
+      <e><par n="SN"/><par n="np"/></e>
+    </pardef>
+
+    <pardef n="Verbs|prep|adv">
+      <e><i><w/><s n="vblex"/><t/><d/></i></e>
+      <e><i><w/><s n="pr"/><t/><d/></i></e>
+      <e><i><w/><s n="adv"/><t/><d/></i></e>
+    </pardef>
+
+    <pardef n="SN.sg.ind">
+      <e>                            <par n="ncmp*.n.sg.ind"/></e>
+      <e>              <par n="adj"/><par n="ncmp*.n.sg.ind"/></e>
+      <e><par n="adj"/><par n="adj"/><par n="ncmp*.n.sg.ind"/></e>
+    </pardef>
+
+    <pardef n="SN.ind">
+      <e>                            <par n="ncmp*.n.ind"/></e>
+      <e>              <par n="adj"/><par n="ncmp*.n.ind"/></e>
+      <e><par n="adj"/><par n="adj"/><par n="ncmp*.n.ind"/></e>
+    </pardef>
+
+    <pardef n="og|eller">
+      <e><i>og<s n="cnjcoo"/><t/></i> <par n="d"/></e>
+      <e><i>eller<s n="cnjcoo"/><t/></i> <par n="d"/></e>
+    </pardef>
+
+    <pardef n="og|eller|empty">
+      <e></e>
+      <e><i>og<s n="cnjcoo"/><t/></i> <par n="d"/></e>
+      <e><i>eller<s n="cnjcoo"/><t/></i> <par n="d"/></e>
+    </pardef>
+
+    <pardef n="cm|og|eller">
+      <e><par n="cm"/></e>
+      <e><i>og<s n="cnjcoo"/><t/></i> <par n="d"/></e>
+      <e><i>eller<s n="cnjcoo"/><t/></i> <par n="d"/></e>
+    </pardef>
+
+    <pardef n="cm|og|eller|empty">
+      <e></e>
+      <e><par n="cm"/></e>
+      <e><i>og<s n="cnjcoo"/><t/></i> <par n="d"/></e>
+      <e><i>eller<s n="cnjcoo"/><t/></i> <par n="d"/></e>
+    </pardef>
+
+    <pardef n="Tidsuttrykk">
+      <e><i>sekund<t/><d/></i></e>
+      <e><i>minutt<t/><d/></i></e>
+      <e><i>time<t/><d/></i></e>
+      <e><i>uke<t/><d/></i></e>
+      <e><i>år<t/><d/></i></e>
+      <e><i>måned<t/><d/></i></e>
+      <e><i>dag<t/><d/></i></e>
+    </pardef>
+
+    <pardef n="Årstid">
+      <e><i>høst<t/><d/></i></e>
+      <e><i>vår<t/><d/></i></e>
+      <e><i>sommer<t/><d/></i></e>
+      <e><i>vinter<t/><d/></i></e>
+    </pardef>
+
+    <pardef n="Månad">
+      <e><i>januar<t/><d/></i></e>
+      <e><i>februar<t/><d/></i></e>
+      <e><i>mars<t/><d/></i></e>
+      <e><i>april<t/><d/></i></e>
+      <e><i>mai<t/><d/></i></e>
+      <e><i>juni<t/><d/></i></e>
+      <e><i>juli<t/><d/></i></e>
+      <e><i>august<t/><d/></i></e>
+      <e><i>september<t/><d/></i></e>
+      <e><i>oktober<t/><d/></i></e>
+      <e><i>november<t/><d/></i></e>
+      <e><i>desember<t/><d/></i></e>
+    </pardef>
+
+    <pardef n="Vekedag">
+      <e><i>mandag<t/><d/></i></e>
+      <e><i>tirsdag<t/><d/></i></e>
+      <e><i>onsdag<t/><d/></i></e>
+      <e><i>torsdag<t/><d/></i></e>
+      <e><i>fredag<t/><d/></i></e>
+      <e><i>lørdag<t/><d/></i></e>
+      <e><i>søndag<t/><d/></i></e>
+    </pardef>
+
+    <pardef n="Vekedag|empty">
+      <e></e>
+      <e><i>mandag<t/><d/></i></e>
+      <e><i>tirsdag<t/><d/></i></e>
+      <e><i>onsdag<t/><d/></i></e>
+      <e><i>torsdag<t/><d/></i></e>
+      <e><i>fredag<t/><d/></i></e>
+      <e><i>lørdag<t/><d/></i></e>
+      <e><i>søndag<t/><d/></i></e>
+    </pardef>
+
+    <pardef n="tid">
+      <e><i>i<b/>dag<t/></i><par n="d"/></e>
+      <e><i>i<t/><d/>helg<t/></i><par n="d"/></e>
+      <e><i>i<b/>morgen<t/></i><par n="d"/></e>
+      <e><i>i<t/><d/>år<t/></i><par n="d"/></e>
+      <e><i>i<t/><d/>framtid<t/></i><par n="d"/></e>
+      <e><i>i<t/><d/>fremtid<t/></i><par n="d"/></e>
+      <e><i>neste<b/>år<t/></i><par n="d"/></e>
+      <e><i>neste<t/>uke<t/></i><par n="d"/></e>
+      <e><i>forrige<t/>år<t/></i><par n="d"/></e>
+      <e><i>de<t/><d/>siste<t/><d/>dagene<t/></i><par n="d"/></e>
+      <e><i>dag<t/><d/>før<t/></i><par n="d"/></e>
+      <e><i>dag<t/><d/>etter<t/></i><par n="d"/></e>
+      <e><i>klokke<t/><d/></i><par n="det"/></e>
+      <e><par n="Månad"/><par n="det"/></e>
+      <e><par n="Vekedag"/></e>
+    </pardef>
+
+    <pardef n="tid|empty">
+      <e></e>
+      <e><i>i<b/>dag<t/></i><par n="d"/></e>
+      <e><i>i<t/><d/>helg<t/></i><par n="d"/></e>
+      <e><i>i<b/>morgen<t/></i><par n="d"/></e>
+      <e><i>i<t/><d/>år<t/></i><par n="d"/></e>
+      <e><i>i<t/><d/>framtid<t/></i><par n="d"/></e>
+      <e><i>i<t/><d/>fremtid<t/></i><par n="d"/></e>
+      <e><i>neste<b/>år<t/></i><par n="d"/></e>
+      <e><i>neste<t/>uke<t/></i><par n="d"/></e>
+      <e><i>forrige<t/>år<t/></i><par n="d"/></e>
+      <e><i>de<t/><d/>siste<t/><d/>dagene<t/></i><par n="d"/></e>
+      <e><i>dag<t/><d/>før<t/></i><par n="d"/></e>
+      <e><i>dag<t/><d/>etter<t/></i><par n="d"/></e>
+      <e><i>klokke<t/><d/></i></e><e><par n="det"/></e>
+      <e><par n="Månad"/><par n="det"/></e>
+      <e><par n="Vekedag"/></e>
+    </pardef>
+
+    <pardef n="dagtid">
+      <e><i>morgen<t/><d/></i></e>
+      <e><i>formiddag<t/><d/></i></e>
+      <e><i>ettermiddag<t/><d/></i></e>
+      <e><i>kveld<t/><d/></i></e>
+    </pardef>
+
+    <pardef n="alle-tider">
+      <e><par n="tid"/></e>
+      <e><par n="Tidsuttrykk"/></e>
+      <e><par n="Vekedag"/></e>
+      <e><par n="Vekedag"/><par n="dagtid"/></e> <!-- onsdag kveld -->
+      <e><par n="dagtid"/></e>
+      <e><par n="Månad"/></e>
+    </pardef>
+
+    <pardef n="Tidsuttrykk-gen">
+      <e><p><l>uke<s n="n"/><s n="m"/><s n="sg"/><s n="def"/><s n="gen"/></l><r>uke<s n="n"/><s n="m"/><s n="sg"/><s n="def"/></r></p> <par n="d"/></e>
+      <e><p><l>uke<s n="n"/><s n="f"/><s n="sg"/><s n="def"/><s n="gen"/></l><r>uke<s n="n"/><s n="f"/><s n="sg"/><s n="def"/></r></p> <par n="d"/></e>
+      <e><p><l>år<s n="n"/><s n="nt"/><s n="sg"/><s n="def"/><s n="gen"/></l><r>år<s n="n"/><s n="nt"/><s n="sg"/><s n="def"/></r></p> <par n="d"/></e>
+      <e><p><l>måned<s n="n"/><s n="m"/><s n="sg"/><s n="def"/><s n="gen"/></l><r>måned<s n="n"/><s n="m"/><s n="sg"/><s n="def"/></r></p> <par n="d"/></e>
+    </pardef>
+
+    <pardef n="Månadmånad">    <!-- mai måned > maimånaden -->
+      <e>
+        <p><l>januar<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/></l>   <r></r></p>  <par n="d:"/>
+        <p><l>måned<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/></l>      <r></r></p>  <par n="d:"/>
+        <p><l></l>                          <r>januarmåned<s n="n"/><s n="m"/><s n="sg"/><s n="def"/><d/></r></p>
+      </e>
+      <e>
+        <p><l>februar<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/></l>   <r></r></p>  <par n="d:"/>
+        <p><l>måned<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/></l>      <r></r></p>  <par n="d:"/>
+        <p><l></l>                          <r>februarmåned<s n="n"/><s n="m"/><s n="sg"/><s n="def"/><d/></r></p>
+      </e>
+      <e>
+        <p><l>mars<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/></l>   <r></r></p>  <par n="d:"/>
+        <p><l>måned<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/></l>      <r></r></p>  <par n="d:"/>
+        <p><l></l>                          <r>marsrmåned<s n="n"/><s n="m"/><s n="sg"/><s n="def"/><d/></r></p>
+      </e>
+      <e>
+        <p><l>april<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/></l>   <r></r></p>  <par n="d:"/>
+        <p><l>måned<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/></l>      <r></r></p>  <par n="d:"/>
+        <p><l></l>                          <r>aprilmåned<s n="n"/><s n="m"/><s n="sg"/><s n="def"/><d/></r></p>
+      </e>
+      <e>
+        <p><l>mai<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/></l>   <r></r></p>  <par n="d:"/>
+        <p><l>måned<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/></l>      <r></r></p>  <par n="d:"/>
+        <p><l></l>                          <r>maimåned<s n="n"/><s n="m"/><s n="sg"/><s n="def"/><d/></r></p>
+      </e>
+      <e>
+        <p><l>juni<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/></l>   <r></r></p>  <par n="d:"/>
+        <p><l>måned<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/></l>      <r></r></p>  <par n="d:"/>
+        <p><l></l>                          <r>junimåned<s n="n"/><s n="m"/><s n="sg"/><s n="def"/><d/></r></p>
+      </e>
+      <e>
+        <p><l>juli<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/></l>   <r></r></p>  <par n="d:"/>
+        <p><l>måned<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/></l>      <r></r></p>  <par n="d:"/>
+        <p><l></l>                          <r>julimåned<s n="n"/><s n="m"/><s n="sg"/><s n="def"/><d/></r></p>
+      </e>
+      <e>
+        <p><l>august<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/></l>   <r></r></p>  <par n="d:"/>
+        <p><l>måned<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/></l>      <r></r></p>  <par n="d:"/>
+        <p><l></l>                          <r>augustmåned<s n="n"/><s n="m"/><s n="sg"/><s n="def"/><d/></r></p>
+      </e>
+      <e>
+        <p><l>september<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/></l>   <r></r></p>  <par n="d:"/>
+        <p><l>måned<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/></l>      <r></r></p>  <par n="d:"/>
+        <p><l></l>                          <r>septembermåned<s n="n"/><s n="m"/><s n="sg"/><s n="def"/><d/></r></p>
+      </e>
+      <e>
+        <p><l>oktober<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/></l>   <r></r></p>  <par n="d:"/>
+        <p><l>måned<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/></l>      <r></r></p>  <par n="d:"/>
+        <p><l></l>                          <r>oktobermåned<s n="n"/><s n="m"/><s n="sg"/><s n="def"/><d/></r></p>
+      </e>
+      <e>
+        <p><l>november<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/></l>   <r></r></p>  <par n="d:"/>
+        <p><l>måned<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/></l>      <r></r></p>  <par n="d:"/>
+        <p><l></l>                          <r>novembermåned<s n="n"/><s n="m"/><s n="sg"/><s n="def"/><d/></r></p>
+      </e>
+      <e>
+        <p><l>desember<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/></l>   <r></r></p>  <par n="d:"/>
+        <p><l>måned<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/></l>      <r></r></p>  <par n="d:"/>
+        <p><l></l>                          <r>desembermåned<s n="n"/><s n="m"/><s n="sg"/><s n="def"/><d/></r></p>
+      </e>
+    </pardef>
+
+    <pardef n="første-neste-siste">
+      <e><i>første<t/><d/></i></e>
+      <e><i>sist<t/><d/></i></e>
+      <e><i>neste<t/><d/></i></e>
+    </pardef>
+
+    <pardef n="første-andre-siste-neste">
+      <e><par n="første-neste-siste"/></e>
+      <e><i>annen<s n="det"/><s n="dem"/><s n="un"/><s n="pl"/><t/><d/></i></e>
+      <e><i><w/><s n="adj"/><s n="ord"/><s n="pst"/><t/><d/></i></e>
+    </pardef>
+
+    <pardef n="første-andre-adj">
+      <e><par n="første-andre-siste-neste"/></e>
+      <e><i>mange<s n="det"/><s n="qnt"/><s n="un"/><s n="pl"/><t/><d/></i></e>
+      <e><par n="adj"/></e>
+      <e><par n="adv"/><par n="adj"/></e>
+      <e><par n="adj"/><par n="adj"/></e>
+      <e><par n="adj"/><par n="adj"/><par n="adj"/></e>
+      <e><par n="adj"/><par n="og|eller"/><par n="adj"/></e>
+      <e><par n="adj"/><par n="cm"/><par n="adj"/><par n="og|eller"/><par n="adj"/></e>
+    </pardef>
+
+    <pardef n="fjorårs-ord">
+      <e><p><l>utgave<s n="n"/><t/><s n="ind"/></l><r>utgave<s n="n"/><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><p><l>trend<s n="n"/><t/><s n="ind"/></l><r>trend<s n="n"/><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><p><l>suksess<s n="n"/><t/><s n="ind"/></l><r>suksess<s n="n"/><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><p><l>rekord<s n="n"/><t/><s n="ind"/></l><r>rekord<s n="n"/><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><p><l>sesong<s n="n"/><t/><s n="ind"/></l><r>sesong<s n="n"/><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><p><l>seier<s n="n"/><t/><s n="ind"/></l><r>seier<s n="n"/><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><p><l>tap<s n="n"/><t/><s n="ind"/></l><r>tap<s n="n"/><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><p><l>finale<s n="n"/><t/><s n="ind"/></l><r>finale<s n="n"/><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><p><l>triumf<s n="n"/><t/><s n="ind"/></l><r>triumf<s n="n"/><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><p><l>mester<s n="n"/><t/><s n="ind"/></l><r>mester<s n="n"/><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><p><l>tittel<s n="n"/><t/><s n="ind"/></l><r>tittel<s n="n"/><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><p><l>vinner<s n="n"/><t/><s n="ind"/></l><r>vinner<s n="n"/><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><p><l>rekord<s n="n"/><t/><s n="ind"/></l><r>rekord<s n="n"/><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><p><l>løp<s n="n"/><t/><s n="ind"/></l><r>løp<s n="n"/><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><p><l>avling<s n="n"/><t/><s n="ind"/></l><r>avling<s n="n"/><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><p><l>fangst<s n="n"/><t/><s n="ind"/></l><r>fangst<s n="n"/><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><p><l>flom<s n="n"/><t/><s n="ind"/></l><r>flom<s n="n"/><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><p><l>storm<s n="n"/><t/><s n="ind"/></l><r>storm<s n="n"/><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><p><l>budsjett<s n="n"/><t/><s n="ind"/></l><r>budsjett<s n="n"/><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><p><l>kull<s n="n"/><t/><s n="ind"/></l><r>kull<s n="n"/><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><p><l>vekst<s n="n"/><t/><s n="ind"/></l><r>vekst<s n="n"/><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><p><l>økning<s n="n"/><t/><s n="ind"/></l><r>økning<s n="n"/><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><p><l>kutt<s n="n"/><t/><s n="ind"/></l><r>kutt<s n="n"/><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><p><l>jakt<s n="n"/><t/><s n="ind"/></l><r>jakt<s n="n"/><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><p><l>tur<s n="n"/><t/><s n="ind"/></l><r>tur<s n="n"/><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><p><l>ferie<s n="n"/><t/><s n="ind"/></l><r>ferie<s n="n"/><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><p><l>tall<s n="n"/><t/><s n="ind"/></l><r>tall<s n="n"/><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><p><l>antall<s n="n"/><t/><s n="ind"/></l><r>antall<s n="n"/><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><p><l>festival<s n="n"/><t/><s n="ind"/></l><r>festival<s n="n"/><t/><s n="def"/></r></p> <par n="d"/></e>
+    </pardef>
+
+    <pardef n="morgondagens-ord">
+      <e><p><l>kamp<s n="n"/><t/><s n="ind"/></l><r>kamp<s n="n"/><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><p><l>finale<s n="n"/><t/><s n="ind"/></l><r>finale<s n="n"/><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><p><l>fotballkamp<s n="n"/><t/><s n="ind"/></l><r>fotballkamp<s n="n"/><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><p><l>håndballkamp<s n="n"/><t/><s n="ind"/></l><r>håndballkamp<s n="n"/><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><p><l>vennskapskamp<s n="n"/><t/><s n="ind"/></l><r>vennskapskamp<s n="n"/><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><p><l>løp<s n="n"/><t/><s n="ind"/></l><r>løp<s n="n"/><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><p><l>oppgjør<s n="n"/><t/><s n="ind"/></l><r>oppgjør<s n="n"/><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><p><l>konkurranse<s n="n"/><t/><s n="ind"/></l><r>konkurranse<s n="n"/><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><p><l>lagkonkurranse<s n="n"/><t/><s n="ind"/></l><r>lagkonkurranse<s n="n"/><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><p><l>møte<s n="n"/><t/><s n="ind"/></l><r>møte<s n="n"/><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><p><l>valg<s n="n"/><t/><s n="ind"/></l><r>valg<s n="n"/><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><p><l>forhandling<s n="n"/><t/><s n="ind"/></l><r>forhandling<s n="n"/><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><p><l>høring<s n="n"/><t/><s n="ind"/></l><r>høring<s n="n"/><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><p><l>prisutdeling<s n="n"/><t/><s n="ind"/></l><r>prisutdeling<s n="n"/><t/><s n="def"/></r></p> <par n="d"/></e>
+    </pardef>
+
+    <pardef n="årets-sesong-ord">
+      <e><i>sesong<s n="n"/><s n="m"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><i>skisesong<s n="n"/><s n="m"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><i>vårsesong<s n="n"/><s n="m"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><i>vintersesong<s n="n"/><s n="m"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><i>høstsesong<s n="n"/><s n="m"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><i>høysesong<s n="n"/><s n="m"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><i>lavsesong<s n="n"/><s n="m"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><i>badesesong<s n="n"/><s n="m"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><i>fangstsesong<s n="n"/><s n="m"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><i>fyringssesong<s n="n"/><s n="m"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><i>jaktsesong<s n="n"/><s n="m"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><i>krepsesesong<s n="n"/><s n="m"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><i>teatersesong<s n="n"/><s n="m"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><i>turistsesong<s n="n"/><s n="m"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><i>hekkesesong<s n="n"/><s n="m"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><i>beitesesong<s n="n"/><s n="m"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><par n="ncmp*"/><i>sesong<s n="n"/><s n="m"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><i>sommer<s n="n"/><s n="m"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><i>vinter<s n="n"/><s n="m"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><i>vår<s n="n"/><s n="m"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><i>høst<s n="n"/><s n="m"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+    </pardef>
+
+    <pardef n="årets-unntaksord">
+    <e><i>vårsemester<s n="n"/><s n="nt"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+    <e><i>høstsemester<s n="n"/><s n="nt"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+    <e><par n="Månad"/></e>
+    <e><par n="ncmp*"/><i>barometer<s n="n"/><s n="nt"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+    <e><i>måling<s n="n"/><s n="f"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+    <e><i>meningsmåling<s n="n"/><s n="f"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+    <e><par n="ncmp*"/><i>måling<s n="n"/><s n="f"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+    <e><i>vinner<s n="n"/><s n="m"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+    <e><i>nobelprisvinner<s n="n"/><s n="m"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+    <e><par n="ncmp*"/><i>vinner<s n="n"/><s n="m"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+    <e><i>trafikk<s n="n"/><s n="m"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+    <e><par n="ncmp*"/><i>trafikk<s n="n"/><s n="m"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+    <e><i>undersøkelse<s n="n"/><s n="m"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+    <e><par n="ncmp*"/><i>undersøkelse<s n="n"/><s n="m"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+    <e><i>program<s n="n"/><s n="nt"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+    <e><i>TV-program<s n="n"/><s n="nt"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+    <e> <par n="ncmp*"/> <i>program<s n="n"/><s n="nt"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/> </e>
+    <e><i>aksjon<s n="n"/><s n="m"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+    <e><i>TV-aksjon<s n="n"/><s n="m"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+    <e> <par n="ncmp*"/> <i>aksjon<s n="n"/><s n="m"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/> </e>
+    <e><i>valg<s n="n"/><s n="nt"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+    <e><par n="ncmp*"/><i>valg<s n="n"/><s n="nt"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+    <e><i>kommunevalg<s n="n"/><s n="nt"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+    <e><i>stortingsvalg<s n="n"/><s n="nt"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+    <e><i>presidentvalg<s n="n"/><s n="nt"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+    <e><i>primærvalg<s n="n"/><s n="nt"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+    <e><i>sametingsvalg<s n="n"/><s n="nt"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+    <e><i>nyvalg<s n="n"/><s n="nt"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+  </pardef>
+
+  <pardef n="årets-unntaksord-for-i-år">
+    <e><i>budsjett<s n="n"/><s n="nt"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+    <e><i>statsbudsjett<s n="n"/><s n="nt"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+    <e>
+      <par n="ncmp*"/>
+      <i>budsjett<s n="n"/><s n="nt"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/>
+    </e>
+  </pardef>
+
+  <pardef n="årets-unntaksord-stryking">
+    <e><i>finale<s n="n"/><s n="m"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+    <e><i>cupfinale<s n="n"/><s n="m"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+    <e>
+      <par n="ncmp*"/>
+      <i>finale<s n="n"/><s n="m"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/>
+    </e>
+  </pardef>
+
+  <pardef n="uke-mf-gen-rem">
+    <e><p><l>uke<s n="n"/><s n="m"/><s n="sg"/><s n="def"/><s n="gen"/></l>  <r></r></p>  <par n="d:"/></e>
+    <e><p><l>uke<s n="n"/><s n="f"/><s n="sg"/><s n="def"/><s n="gen"/></l>  <r></r></p>  <par n="d:"/></e>
+  </pardef>
+
+  <pardef n="ukens-ord">
+    <e><i>oppskrift<s n="n"/><s n="f"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+    <e><i>samling<s n="n"/><s n="f"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+    <e>
+      <par n="ncmp*"/>
+      <i>samling<s n="n"/><s n="f"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/>
+    </e>
+    <e><i>møte<s n="n"/><s n="nt"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+    <e><i>stiftelsesmøte<s n="n"/><s n="nt"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+    <e><i>allmøte<s n="n"/><s n="nt"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+    <e><i>bispemøte<s n="n"/><s n="nt"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+    <e><i>budsjettmøte<s n="n"/><s n="nt"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+    <e><i>diskusjonsmøte<s n="n"/><s n="nt"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+    <e><i>fakultetsmøte<s n="n"/><s n="nt"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+    <e><i>folkemøte<s n="n"/><s n="nt"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+    <e><i>foreldremøte<s n="n"/><s n="nt"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+    <e><i>forliksmøte<s n="n"/><s n="nt"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+    <e><i>formannskapsmøte<s n="n"/><s n="nt"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+    <e><i>friluftsmøte<s n="n"/><s n="nt"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+    <e><i>gruppemøte<s n="n"/><s n="nt"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+    <e><i>husmøte<s n="n"/><s n="nt"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+    <e><i>kollegiemøte<s n="n"/><s n="nt"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+    <e><i>komitémøte<s n="n"/><s n="nt"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+    <e><i>kontaktmøte<s n="n"/><s n="nt"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+    <e><i>maratonmøte<s n="n"/><s n="nt"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+    <e><i>nominasjonsmøte<s n="n"/><s n="nt"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+    <e><i>orienteringsmøte<s n="n"/><s n="nt"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+    <e><i>plenumsmøte<s n="n"/><s n="nt"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+    <e><i>rabaldermøte<s n="n"/><s n="nt"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+    <e><i>rettsmøte<s n="n"/><s n="nt"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+    <e><i>styremøte<s n="n"/><s n="nt"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+    <e><i>toppmøte<s n="n"/><s n="nt"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+    <e><i>årsmøte<s n="n"/><s n="nt"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+    <e><i>hjemmemøte<s n="n"/><s n="nt"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+    <e><i>bortemøte<s n="n"/><s n="nt"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+    <e><i>bystyremøte<s n="n"/><s n="nt"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+    <e><i>fengslingsmøte<s n="n"/><s n="nt"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+    <e><i>forhandlingsmøte<s n="n"/><s n="nt"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+    <e><i>hastemøte<s n="n"/><s n="nt"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+    <e><i>infomøte<s n="n"/><s n="nt"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+    <e><i>informasjonsmøte<s n="n"/><s n="nt"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+    <e><i>regjeringsmøte<s n="n"/><s n="nt"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+    <e><par n="ncmp*"/><i>møte<s n="n"/><s n="nt"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+    <e><i>renn<s n="n"/><s n="nt"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+    <e><i>hopprenn<s n="n"/><s n="nt"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+    <e><i>kombinertrenn<s n="n"/><s n="nt"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+    <e><i>super-G-renn<s n="n"/><s n="nt"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+    <e><i>utforrenn<s n="n"/><s n="nt"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+    <e>
+      <par n="ncmp*"/>
+      <i>renn<s n="n"/><s n="nt"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/>
+    </e>
+  </pardef>
+
+    <pardef n="tidenes-rem">
+      <e><p><l>tid<s n="n"/><s n="m"/><s n="pl"/><s n="def"/><s n="gen"/></l>  <r></r></p>  <par n="d:"/></e>
+      <e><p><l>tid<s n="n"/><s n="f"/><s n="pl"/><s n="def"/><s n="gen"/></l>  <r></r></p>  <par n="d:"/></e>
+    </pardef>
+
+    <pardef n="dagens-rem">
+      <e><p><l>dag<s n="n"/><s n="m"/><s n="sg"/><s n="def"/><s n="gen"/></l>  <r></r></p>  <par n="d:"/></e>
+      <e><p><l>dagens<s n="adj"/><s n="pst"/><t/></l>  <r></r></p>  <par n="d:"/></e>
+    </pardef>
+
+    <pardef n="dagens-ord">
+      <e><i>møte<s n="n"/><s n="nt"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><i>stiftelsesmøte<s n="n"/><s n="nt"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><i>allmøte<s n="n"/><s n="nt"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><i>bispemøte<s n="n"/><s n="nt"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><i>budsjettmøte<s n="n"/><s n="nt"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><i>diskusjonsmøte<s n="n"/><s n="nt"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><i>fakultetsmøte<s n="n"/><s n="nt"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><i>folkemøte<s n="n"/><s n="nt"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><i>foreldremøte<s n="n"/><s n="nt"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><i>forliksmøte<s n="n"/><s n="nt"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><i>formannskapsmøte<s n="n"/><s n="nt"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><i>friluftsmøte<s n="n"/><s n="nt"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><i>gruppemøte<s n="n"/><s n="nt"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><i>husmøte<s n="n"/><s n="nt"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><i>kollegiemøte<s n="n"/><s n="nt"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><i>komitémøte<s n="n"/><s n="nt"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><i>kontaktmøte<s n="n"/><s n="nt"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><i>maratonmøte<s n="n"/><s n="nt"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><i>nominasjonsmøte<s n="n"/><s n="nt"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><i>orienteringsmøte<s n="n"/><s n="nt"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><i>plenumsmøte<s n="n"/><s n="nt"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><i>rabaldermøte<s n="n"/><s n="nt"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><i>rettsmøte<s n="n"/><s n="nt"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><i>styremøte<s n="n"/><s n="nt"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><i>toppmøte<s n="n"/><s n="nt"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><i>årsmøte<s n="n"/><s n="nt"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><i>hjemmemøte<s n="n"/><s n="nt"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><i>bortemøte<s n="n"/><s n="nt"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><i>bystyremøte<s n="n"/><s n="nt"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><i>fengslingsmøte<s n="n"/><s n="nt"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><i>forhandlingsmøte<s n="n"/><s n="nt"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><i>hastemøte<s n="n"/><s n="nt"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><i>infomøte<s n="n"/><s n="nt"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><i>informasjonsmøte<s n="n"/><s n="nt"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><i>regjeringsmøte<s n="n"/><s n="nt"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><par n="ncmp*"/><i>møte<s n="n"/><s n="nt"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><i>konferanse<s n="n"/><s n="m"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><i>konferanse<s n="n"/><s n="m"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><i>fredskonferanse<s n="n"/><s n="m"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><i>pressekonferanse<s n="n"/><s n="m"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><i>rundebordskonferanse<s n="n"/><s n="m"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><i>videokonferanse<s n="n"/><s n="m"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><i>regjeringskonferanse<s n="n"/><s n="m"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><par n="ncmp*"/><i>konferanse<s n="n"/><s n="m"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><i>kamp<s n="n"/><s n="m"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><i>trening<s n="n"/><s n="f"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><i>trening<s n="n"/><s n="m"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><i>seier<s n="n"/><s n="m"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+      <e><i>program<s n="n"/><s n="nt"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
+    </pardef>
+
+    <pardef n="vekedag-cmp-ind2def">              <!-- torsdagens utgave => torsdagsutgåva -->
+      <e><i>utgave<s n="n"/><s n="f"/><t/></i>
+      <p><l><t/><s n="ind"/></l>                                  <r><t/><s n="def"/></r></p>
+      <par n="d"/></e>
+      <e><i>etappe<s n="n"/><s n="m"/><t/></i>
+      <p><l><t/><s n="ind"/></l>                                  <r><t/><s n="def"/></r></p>
+      <par n="d"/></e>
+      <e><i>avis<s n="n"/><s n="f"/><t/></i>
+      <p><l><t/><s n="ind"/></l>                                  <r><t/><s n="def"/></r></p>
+      <par n="d"/></e>
+      <e><i>gjest<s n="n"/><s n="m"/><t/></i>
+      <p><l><t/><s n="ind"/></l>                                  <r><t/><s n="def"/></r></p>
+      <par n="d"/></e>
+      <e><i>program<s n="n"/><s n="nt"/><t/></i>
+      <p><l><t/><s n="ind"/></l>                                  <r><t/><s n="def"/></r></p>
+      <par n="d"/></e>
+      <e><i>økt<s n="n"/><s n="m"/><t/></i>
+      <p><l><t/><s n="ind"/></l>                                  <r><t/><s n="def"/></r></p>
+      <par n="d"/></e>
+    </pardef>
+
+    <pardef n="enn-i-forhold-til-sammenlignet-med-pr">
+      <e><i>som<s n="pr"/><t/><d/></i></e>
+      <e><i>enn<s n="pr"/><t/><d/></i></e>
+      <e><i>i<b/>forhold<b/>til<s n="pr"/><t/><d/></i></e>
+      <e><i>sammenlignet<b/>med<s n="pr"/><t/><d/></i></e>
+      <e><i>sammenliknet<b/>med<s n="pr"/><t/><d/></i></e>
+    </pardef>
+
+    <pardef n="rem-i-løpet-av|empty">
+      <e></e>
+      <e><p><l>i<s n="pr"/></l>  <r></r></p>  <par n="d:"/></e>
+      <e><p><l>i<b/>løpet<b/>av<s n="pr"/></l>  <r></r></p>  <par n="d:"/></e>
+    </pardef>
+
+    <pardef n="måleiningar">
+      <e><i>prosent<t/><d/></i></e>
+      <e><i>krone<t/><d/></i></e>
+      <e><i>euro<t/><d/></i></e>
+      <e><i>dollar<t/><d/></i></e>
+      <e><i>pund<t/><d/></i></e>
+      <e><i>tonn<t/><d/></i></e>
+      <e><i>kilo<t/><d/></i></e>
+      <e><i>gram<t/><d/></i></e>
+      <e><i>liter<t/><d/></i></e>
+      <e><i>desiliter<t/><d/></i></e>
+      <e><i>meter<t/><d/></i></e>
+      <e><i>centimeter<t/><d/></i></e>
+      <e><i>millimeter<t/><d/></i></e>
+    </pardef>
+
+    <pardef n="måleiningar|empty">
+      <e></e>
+      <e><par n="måleiningar"/></e>
+    </pardef>
+
+    <pardef n="kongeleg">
+      <e><p><l>konge<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/><t/></l> <r>konge<s n="n"/><s n="m"/><s n="sg"/><s n="def"/><t/></r></p> <par n="d"/></e>
+      <e><p><l>arveprins<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/><t/></l> <r>arveprins<s n="n"/><s n="m"/><s n="sg"/><s n="def"/><t/></r></p> <par n="d"/></e>
+      <e><p><l>arveprinsesse<s n="n"/><t/><s n="sg"/><s n="ind"/><t/></l> <r>arveprinsesse<s n="n"/><s n="f"/><s n="sg"/><s n="def"/><t/></r></p> <par n="d"/></e>
+      <e><p><l>dronning<s n="n"/><t/><s n="sg"/><s n="ind"/><t/></l> <r>dronning<s n="n"/><s n="f"/><s n="sg"/><s n="def"/><t/></r></p> <par n="d"/></e>
+      <e><p><l>prinsesse<s n="n"/><t/><s n="sg"/><s n="ind"/><t/></l> <r>prinsesse<s n="n"/><s n="f"/><s n="sg"/><s n="def"/><t/></r></p> <par n="d"/></e>
+      <e><p><l>prins<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/><t/></l> <r>prins<s n="n"/><s n="m"/><s n="sg"/><s n="def"/><t/></r></p> <par n="d"/></e>
+      <e><p><l>kronprinsesse<s n="n"/><t/><s n="sg"/><s n="ind"/><t/></l> <r>kronprinsesse<s n="n"/><s n="f"/><s n="sg"/><s n="def"/><t/></r></p> <par n="d"/></e>
+      <e><p><l>kronprins<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/><t/></l> <r>kronprins<s n="n"/><s n="m"/><s n="sg"/><s n="def"/><t/></r></p> <par n="d"/></e>
+      <e><p><l>regent<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/><t/></l> <r>regent<s n="n"/><s n="m"/><s n="sg"/><s n="def"/><t/></r></p> <par n="d"/></e>
+      <e><p><l>tronarving<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/><t/></l> <r>tronarving<s n="n"/><s n="m"/><s n="sg"/><s n="def"/><t/></r></p> <par n="d"/></e>
+    </pardef>
+
+    <pardef n="berøre i X (def)">
+      <e><i>tale<s n="n"/><s n="m"/><s n="sg"/><s n="def"/><t/><d/></i></e>
+      <e><i>orientering<s n="n"/><s n="m"/><s n="sg"/><s n="def"/><t/><d/></i></e>
+      <e><i>orientering<s n="n"/><s n="f"/><s n="sg"/><s n="def"/><t/><d/></i></e>
+      <e><i>oppsummering<s n="n"/><s n="m"/><s n="sg"/><s n="def"/><t/><d/></i></e>
+      <e><i>oppsummering<s n="n"/><s n="f"/><s n="sg"/><s n="def"/><t/><d/></i></e>
+      <e><i>innledning<s n="n"/><s n="m"/><s n="sg"/><s n="def"/><t/><d/></i></e>
+      <e><i>innledning<s n="n"/><s n="f"/><s n="sg"/><s n="def"/><t/><d/></i></e>
+      <e><i>samtale<s n="n"/><s n="m"/><s n="sg"/><s n="def"/><t/><d/></i></e>
+      <e><i>forhandling<s n="n"/><s n="m"/><s n="sg"/><s n="def"/><t/><d/></i></e>
+      <e><i>forhandling<s n="n"/><s n="f"/><s n="sg"/><s n="def"/><t/><d/></i></e>
+      <e><i>debatt<s n="n"/><s n="m"/><s n="sg"/><s n="def"/><t/><d/></i></e>
+      <e><i>rapport<s n="n"/><s n="m"/><s n="sg"/><s n="def"/><t/><d/></i></e>
+      <e><i>dokument<s n="n"/><s n="nt"/><s n="sg"/><s n="def"/><t/><d/></i></e>
+      <e><i>avhandling<s n="n"/><s n="m"/><s n="sg"/><s n="def"/><t/><d/></i></e>
+      <e><i>avhandling<s n="n"/><s n="f"/><s n="sg"/><s n="def"/><t/><d/></i></e>
+      <e><i>pressemelding<s n="n"/><s n="m"/><s n="sg"/><s n="def"/><t/><d/></i></e>
+      <e><i>pressemelding<s n="n"/><s n="f"/><s n="sg"/><s n="def"/><t/><d/></i></e>
+      <e><i>undersøkelse<s n="n"/><s n="m"/><s n="sg"/><s n="def"/><t/><d/></i></e>
+      <e><i>gransking<s n="n"/><s n="m"/><s n="sg"/><s n="def"/><t/><d/></i></e>
+      <e><i>gransking<s n="n"/><s n="f"/><s n="sg"/><s n="def"/><t/><d/></i></e>
+      <e><i>granskning<s n="n"/><s n="m"/><s n="sg"/><s n="def"/><t/><d/></i></e>
+      <e><i>granskning<s n="n"/><s n="f"/><s n="sg"/><s n="def"/><t/><d/></i></e>
+    </pardef>
+
+    <pardef n="seg">
+      <e><i><w/><s n="prn"/><s n="ref"/><t/><d/></i></e>
+    </pardef>
+
+    <pardef n="rem-seg">
+      <e><p><l><w/><s n="prn"/><s n="ref"/><t/><d/></l> <r></r></p></e>
+    </pardef>
+
+    <pardef n="refl-prn">
+      <e><i><w/><s n="prn"/><s n="ref"/><t/><d/></i></e>
+      <e><i>jeg<s n="prn"/><s n="pers"/><s n="p1"/><s n="mf"/><s n="sg"/><s n="acc"/></i> <par n="d"/></e>
+      <e><i>du<s n="prn"/><s n="pers"/><s n="p2"/><s n="mf"/><s n="sg"/><s n="acc"/></i> <par n="d"/></e>
+      <e><i>vi<s n="prn"/><s n="pers"/><s n="p1"/><s n="un"/><s n="pl"/><s n="acc"/></i> <par n="d"/></e>
+      <e><i>dere<s n="prn"/><s n="pers"/><s n="p2"/><s n="un"/><s n="pl"/><s n="acc"/></i> <par n="d"/></e>
+    </pardef>
+
+    <pardef n="rem-refl-prn">
+      <e><p><l><w/><s n="prn"/><s n="ref"/><t/><d/></l> <r></r></p></e>
+      <e><p><l>jeg<s n="prn"/><s n="pers"/><s n="p1"/><s n="mf"/><s n="sg"/><s n="acc"/></l> <r></r></p>  <par n="d:"/></e>
+      <e><p><l>du<s n="prn"/><s n="pers"/><s n="p2"/><s n="mf"/><s n="sg"/><s n="acc"/></l> <r></r></p>  <par n="d:"/></e>
+      <e><p><l>vi<s n="prn"/><s n="pers"/><s n="p1"/><s n="un"/><s n="pl"/><s n="acc"/></l> <r></r></p>  <par n="d:"/></e>
+      <e><p><l>dere<s n="prn"/><s n="pers"/><s n="p2"/><s n="un"/><s n="pl"/><s n="acc"/></l> <r></r></p>  <par n="d:"/></e>
+    </pardef>
+
+    <pardef n="pos">
+      <e><i><w/><s n="det"/><s n="pos"/><t/><d/></i></e>
+    </pardef>
+
+    <pardef n="rem-pos">
+      <e><p><l><w/><s n="det"/><s n="pos"/><t/><d/></l> <r></r></p></e>
+    </pardef>
+
+    <pardef n="modal+ville">
+      <e><i>ville<s n="vblex"/><t/><d/></i></e>
+      <e><i>skulle<s n="vblex"/><t/><d/></i></e>
+      <e><i>burde<s n="vblex"/><t/><d/></i></e>
+      <e><i>måtte<s n="vblex"/><t/><d/></i></e>
+      <e><i>kunne<s n="vblex"/><t/><d/></i></e>
+    </pardef>
+
+    <pardef n="modal+ville|empty">
+      <e></e>
+      <e><i>ville<s n="vblex"/><t/><d/></i></e>
+      <e><i>skulle<s n="vblex"/><t/><d/></i></e>
+      <e><i>burde<s n="vblex"/><t/><d/></i></e>
+      <e><i>måtte<s n="vblex"/><t/><d/></i></e>
+      <e><i>kunne<s n="vblex"/><t/><d/></i></e>
+    </pardef>
+
+    <pardef n="modal">
+      <e><i>skulle<s n="vblex"/><t/><d/></i></e>
+      <e><i>burde<s n="vblex"/><t/><d/></i></e>
+      <e><i>måtte<s n="vblex"/><t/><d/></i></e>
+      <e><i>kunne<s n="vblex"/><t/><d/></i></e>
+    </pardef>
+
+    <pardef n="være/bli">
+      <e><i>være<s n="vblex"/><t/><d/></i></e>
+      <e><i>bli<s n="vblex"/><t/><d/></i></e>
+    </pardef>
+
+    <pardef n="være/ha">
+      <e><i>være<s n="vblex"/><t/><d/></i></e>
+      <e><i>ha<s n="vblex"/><t/><d/></i></e>
+    </pardef>
+
+    <pardef n="kun/bare">
+      <e><i>kun<s n="adv"/><t/><d/></i></e>
+      <e><i>bare<s n="adv"/><t/><d/></i></e>
+    </pardef>
+
+    <pardef n="delvis/ganske/svært">
+      <e><i>delvis<s n="adv"/><t/><d/></i></e>
+      <e><i>ganske<s n="adv"/><t/><d/></i></e>
+      <e><i>svært<s n="adv"/><t/><d/></i></e>
+    </pardef>
+
+    <pardef n="å/at">
+      <e><i>at<s n="adv"/></i> <par n="d"/></e>
+      <e><i>at<s n="cnjsub"/></i> <par n="d"/></e>
+      <e><i>å<s n="part"/></i> <par n="d"/></e>
+    </pardef>
+
+    <pardef n="å/at/obj">
+      <e><par n="å/at"/></e>
+      <e><par n="det+SN"/></e>
+    </pardef>
+
+    <pardef n="å/at/obj|empty">
+      <e></e>
+      <e><i>at<s n="adv"/></i> <par n="d"/></e>
+      <e><i>at<s n="cnjsub"/></i> <par n="d"/></e>
+      <e><i>å<s n="part"/></i> <par n="d"/></e>
+      <e><par n="det+SN"/></e>
+    </pardef>
+
+    <pardef n="sent-cm">
+      <e><i><w/><s n="sent"/></i></e>
+      <e><i><w/><s n="sent"/><t/></i></e>
+      <e><i><w/><s n="cm"/></i> <par n="d"/></e>
+      <e><i><w/><s n="cm"/><t/></i> <par n="d"/></e>
+    </pardef>
+
+    <pardef n="sent-cm|empty" c="Includes empty!">
+      <e></e>
+      <e><i><w/><s n="sent"/><t/><d/></i></e>
+      <e><i><w/><s n="cm"/></i> <par n="d"/></e>
+    </pardef>
+
+    <pardef n="sent-cm-guio">
+      <e><i><w/><s n="sent"/><d/></i></e>
+      <e><i><w/><s n="sent"/><t/><d/></i></e>
+      <e><i><w/><s n="cm"/></i> <par n="d"/></e>
+      <e><i><w/><s n="cm"/><t/></i> <par n="d"/></e>
+      <e><i><w/><s n="guio"/></i> <par n="d"/></e>
+      <e><i><w/><s n="guio"/><t/></i> <par n="d"/></e>
+    </pardef>
+
+    <pardef n="SN|SN+og+SN">
+      <e><par n="det+SN"/></e>
+      <e><par n="det+SN"/><par n="og|eller"/><par n="det+SN"/></e>
+    </pardef>
+
+    <pardef n="SN|SN+og+SN|empty">
+      <e></e>
+      <e><par n="det+SN"/></e>
+      <e><par n="det+SN"/><par n="og|eller"/><par n="det+SN"/></e>
+    </pardef>
+
+    <pardef n="pr+SN">
+      <e><i><w/><s n="pr"/><t/><d/></i><par n="SN"/></e>
+      <e><i><w/><s n="pr"/><t/><d/></i><par n="det+SN"/></e>
+      <e>
+        <i><w/><s n="pr"/><t/><d/></i>
+        <par n="SN"/>
+        <par n="cm|og|eller"/>
+        <par n="SN"/>
+      </e>
+      <e>
+        <i><w/><s n="pr"/><t/><d/></i>
+        <par n="SN"/>
+        <par n="cm|og|eller"/>
+        <par n="SN"/>
+        <par n="cm|og|eller"/>
+        <par n="SN"/>
+      </e>
+    </pardef>
+
+    <pardef n="pr+SN.ind">
+      <e><i><w/><s n="pr"/><t/><d/></i><par n="SN.ind"/></e>
+      <e><i><w/><s n="pr"/><t/><d/></i><par n="det+SN"/></e>
+      <e>
+        <i><w/><s n="pr"/><t/><d/></i>
+        <par n="SN.ind"/>
+        <par n="cm|og|eller"/>
+        <par n="SN.ind"/>
+      </e>
+      <e>
+        <i><w/><s n="pr"/><t/><d/></i>
+        <par n="SN.ind"/>
+        <par n="cm|og|eller"/>
+        <par n="SN.ind"/>
+        <par n="cm|og|eller"/>
+        <par n="SN.ind"/>
+      </e>
+    </pardef>
+
+    <pardef n="prepledd-np-SN">
+      <e>                                       <!-- i Ungarns asyllover -->
+        <i><w/><s n="pr"/><t/><d/></i>
+        <i><w/><s n="np"/><t/><s n="gen"/><t/><d/></i>
+        <par n="SN.ind"/>
+      </e>
+      <e>
+        <i><w/><s n="pr"/><t/><d/></i>
+        <par n="np"/>
+      </e>
+      <e>                                             <!-- borte/heime mot Real Madrid -->
+        <i><w/><s n="pr"/><t/><d/></i>
+        <i><w/><s n="pr"/><t/><d/></i>
+        <par n="np"/>
+      </e>
+      <e>
+        <i><w/><s n="pr"/><t/><d/></i>
+        <i><w/><s n="n"/><t/><s n="sg"/><t/><d/></i> <!-- yrkestittel, utestedet Blå o.l -->
+        <par n="np"/>
+      </e>
+      <e>
+        <i><w/><s n="pr"/><t/><d/></i>
+        <par n="adj"/>
+        <par n="np"/>
+      </e>
+      <e>
+        <par n="SN+np"/>
+      </e>
+      <e>
+        <i><w/><s n="pr"/><t/><d/></i>
+        <par n="np"/>
+        <par n="cm|og|eller"/>
+        <par n="np"/>
+      </e>
+      <e>
+        <i><w/><s n="pr"/><t/><d/></i>
+        <par n="np"/>
+        <par n="cm|og|eller"/>
+        <par n="np"/>
+        <par n="cm|og|eller"/>
+        <par n="np"/>
+      </e>
+      <e>
+        <i><w/><s n="pr"/><t/><d/></i>
+        <par n="np"/>
+        <par n="cm|og|eller"/>
+        <par n="np"/>
+        <par n="cm|og|eller"/>
+        <par n="np"/>
+        <par n="cm|og|eller"/>
+        <par n="np"/>
+      </e>
+      <e>
+        <par n="pr+SN.ind"/>
+      </e>
+      <e>                                   <!-- frå 1994 -->
+        <i><w/><s n="pr"/><t/><d/></i>
+        <i><w/><s n="det"/><s n="qnt"/><s n="un"/><s n="pl"/><d/></i>
+      </e>
+    </pardef>
+
+    <pardef n="prepledd|empty">
+      <e></e>
+      <e>                                                                           <par n="prepledd-np-SN"/></e>
+      <e>                                                  <par n="prepledd-np-SN"/><par n="prepledd-np-SN"/></e>
+      <e>                         <par n="prepledd-np-SN"/><par n="prepledd-np-SN"/><par n="prepledd-np-SN"/></e>
+      <e><par n="prepledd-np-SN"/><par n="prepledd-np-SN"/><par n="prepledd-np-SN"/><par n="prepledd-np-SN"/></e>
+    </pardef>
+
+    <pardef n="teiknsetjing">
+      <e><i><w/><s n="sent"/><d/></i></e>
+      <e><i><w/><s n="sent"/><t/><d/></i></e>
+      <e><i><w/><s n="cm"/></i> <par n="d"/></e>
+      <e><i><w/><s n="cm"/><t/></i> <par n="d"/></e>
+      <e><i><w/><s n="guio"/></i> <par n="d"/></e>
+      <e><i><w/><s n="guio"/><t/></i> <par n="d"/></e>
+      <e><i><w/><s n="lpar"/></i> <par n="d"/></e>
+      <e><i><w/><s n="lpar"/><t/></i> <par n="d"/></e>
+      <e><i><w/><s n="rpar"/></i> <par n="d"/></e>
+      <e><i><w/><s n="rpar"/><t/></i> <par n="d"/></e>
+      <e><i><w/><s n="lquot"/></i> <par n="d"/></e>
+      <e><i><w/><s n="lquot"/><t/></i> <par n="d"/></e>
+      <e><i><w/><s n="rquot"/></i> <par n="d"/></e>
+      <e><i><w/><s n="rquot"/><t/></i> <par n="d"/></e>
+    </pardef>
+
+    <pardef n="teiknsetjing|empty" c="Includes empty!">
+      <e></e>
+      <e><par n="teiknsetjing"/></e>
+    </pardef>
+
+
+
+    <pardef n="spørjeord">
+      <e><i><w/><s n="prn"/><s n="itg"/></i> <par n="d"/></e>
+      <e><i>hva<s n="adv"/></i> <par n="d"/></e>
+      <e><i>hvor<s n="adv"/></i> <par n="d"/></e>
+      <e><i>når<s n="adv"/></i> <par n="d"/></e>
+      <e><i>hvorfor<s n="adv"/></i> <par n="d"/></e>
+      <e><i>hvordan<s n="adv"/></i> <par n="d"/></e>
+      <e><i>hvordan<s n="cnjsub"/></i> <par n="d"/></e>
+      <e><i>hvor<b/>hen<s n="pr"/></i> <par n="d"/></e>
+      <e><i>hvor<b/>mange<s n="adv"/></i> <par n="d"/></e>
+      <e><i>hvor<b/>mange<s n="det"/><s n="qnt"/><s n="un"/><s n="pl"/></i> <par n="d"/></e>
+      <e><i>hvor<b/>mye<s n="adv"/></i> <par n="d"/></e>
+    </pardef>
+
+    <pardef n="stor:helt-mye:mer">
+      <e>
+        <p><l>stor<s n="adj"/><t/><d/></l> <r></r></p>
+        <p><l></l>                         <r>hel<s n="adj"/><s n="sint"/><s n="pst"/><s n="nt"/><s n="sg"/><s n="ind"/><d/></r></p>
+      </e>
+      <e>
+        <p><l>mye<s n="adj"/><t/><d/></l> <r></r></p>
+        <p><l></l>                        <r>mye<s n="adj"/><s n="sint"/><s n="comp"/><s n="un"/><s n="sp"/><d/></r></p>
+      </e>
+      <e>
+        <p><l>en<s n="det"/><s n="qnt"/><t/><d/></l>                 <r></r></p>
+        <p><l>del<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/></l> <r></r></p>  <par n="d:"/>
+        <p><l></l>                                                   <r>noe<s n="prn"/><s n="ind"/><s n="nt"/><s n="sg"/><s n="acc"/><d/></r></p>
+      </e>
+    </pardef>
+
+    <pardef n="ytterligere:">
+      <e><p><l>ytterlig<s n="adj"/><s n="sint"/><s n="comp"/><s n="un"/><s n="sp"/></l> <r></r></p> </e>
+      <e><p><l>ytterligere<s n="adv"/></l>                                              <r></r></p> </e>
+    </pardef>
+
+    <pardef n="at/om/av/som">
+      <e><i>at<s n="adv"/></i> <par n="d"/></e>
+      <e><i>at<s n="cnjsub"/></i> <par n="d"/></e>
+      <e><i>om<s n="pr"/></i> <par n="d"/></e>
+      <e><i>om<s n="cnjsub"/></i> <par n="d"/></e>
+      <e><i>av<s n="pr"/></i> <par n="d"/></e>
+      <e><i>som<s n="cnjsub"/></i> <par n="d"/></e>
+    </pardef>
+
+    <pardef n="ADVL">
+      <e><par n="adv"/></e>
+      <e><par n="pr"/><par n="np"/></e>
+      <e><par n="pr"/></e><e><i><w/><s n="url"/></i><par n="d"/></e>
+      <e><par n="pr"/><par n="prn"/></e>
+      <e><par n="pr"/><par n="det+det+SN"/></e>
+      <e><par n="pr+SN"/></e>
+      <e><par n="pr+SN"/><par n="SN"/></e>
+      <e><par n="pr+SN"/><par n="np"/></e>
+      <e><par n="pr"/></e><e><i><w/><s n="det"/><t/><d/></i></e>
+      <e><par n="tid"/></e>
+      <e><par n="Vekedag"/></e>
+      <e><par n="Vekedag"/><par n="dagtid"/></e>
+      <e><par n="adj"/><par n="Vekedag"/></e>
+      <e><par n="adj"/><par n="Vekedag"/><par n="dagtid"/></e>
+      <e><par n="pr"/><par n="Vekedag"/><par n="dagtid"/></e>
+      <e><par n="adj"/></e><e><i><w/><s n="vblex"/><s n="pp"/></i><par n="d"/></e>
+      <e><par n="adj"/></e><e><i><w/><s n="adj"/><s n="pp"/></i><par n="d"/></e>
+      <e><i><w/><s n="cnjcoo"/><t/><d/></i><par n="SN"/></e>
+    </pardef>
+
+     <pardef n="ADVL|empty" c="Includes empty!">
+      <e></e>
+      <e><par n="ADVL"/></e>
+    </pardef>
+
+    <pardef n="ADV|empty" c="Includes empty!">
+      <e></e>
+      <e><par n="ADV"/></e>
+    </pardef>
+
+    <pardef n="adj|empty" c="Includes empty!">
+      <e></e>
+      <e><par n="adj"/></e>
+    </pardef>
+
+    <pardef n="pp|adj">
+      <e><par n="adj"/></e>
+      <e><i><w/><s n="vblex"/><s n="pp"/><t/><d/></i></e>
+    </pardef>
+
+    <pardef n="adj.pst-pp">
+      <e><i><w/><s n="adj"/><s n="pst"/><t/><d/></i></e>
+      <e><i><w/><s n="adj"/><s n="sint"/><s n="pst"/><t/><d/></i></e>
+      <e><i><w/><s n="adj"/><s n="pp"/><t/><d/></i></e>
+    </pardef>
+
+    <pardef n="Sår-og-kroppsord">
+      <e><i>sår<t/><d/></i></e>
+      <e><i>skade<t/><d/></i></e>
+      <e><i>for<t/><d/></i></e>
+      <e><i>ankel<t/><d/></i></e>
+      <e><i>kne<t/><d/></i></e>
+      <e><i>arm<t/><d/></i></e>
+      <e><i>albue<t/><d/></i></e>
+      <e><i>hånd<t/><d/></i></e>
+      <e><i>skulder<t/><d/></i></e>
+      <e><i>lår<t/><d/></i></e>
+    </pardef>
+
+    <pardef n="Kroppsdel-ind-def">
+      <e><p><l>hånd<t/><s n="ind"/><t/></l> <r>hånd<t/><s n="def"/><t/></r></p><par n="d"/></e>
+      <e><p><l>kne<t/><s n="ind"/><t/></l> <r>kne<t/><s n="def"/><t/></r></p><par n="d"/></e>
+      <e><p><l>arm<t/><s n="ind"/><t/></l> <r>arm<t/><s n="def"/><t/></r></p><par n="d"/></e>
+      <e><p><l>fot<t/><s n="ind"/><t/></l> <r>fot<t/><s n="def"/><t/></r></p><par n="d"/></e>
+      <e><p><l>legg<t/><s n="ind"/><t/></l> <r>legg<t/><s n="def"/><t/></r></p><par n="d"/></e>
+      <e><p><l>lår<t/><s n="ind"/><t/></l> <r>lår<t/><s n="def"/><t/></r></p><par n="d"/></e>
+    </pardef>
+
+    <pardef n="avstemning">
+      <e><i>avstemning<t/><d/></i></e>
+      <e><i>votering<t/><d/></i></e>
+      <e><i>behandling<t/><d/></i></e>
+      <e><i>debatt<t/><d/></i></e>
+      <e><i>diskusjon<t/><d/></i></e>
+    </pardef>
+
+    <pardef n="tidssubjunksjon">
+      <e><i>da<s n="cnjsub"/></i> <par n="d"/></e>
+      <e><i>når<s n="cnjsub"/></i> <par n="d"/></e>
+      <e><i>før<s n="cnjsub"/></i> <par n="d"/></e>
+      <e><i>innen<s n="pr"/></i> <par n="d"/></e>
+      <e><i>idet<s n="cnjsub"/></i> <par n="d"/></e>
+      <e><i>mens<s n="cnjsub"/></i> <par n="d"/></e>
+      <e><i>ikke<s n="adv"/>siden<s n="adv"/></i></e>
+    </pardef>
+
+    <pardef n="vilkårssubjunksjon">
+      <e><i>hvis<s n="cnjsub"/></i> <par n="d"/></e>
+      <e><i>dersom<s n="cnjsub"/></i> <par n="d"/></e>
+      <e><i>om<s n="cnjsub"/></i> <par n="d"/></e>
+      <e><i>selv<b/>om<s n="cnjsub"/></i> <par n="d"/></e>
+    </pardef>
+
+    <pardef n="ikkje-levande">
+      <e><i>bok<t/><d/></i></e>
+      <e><i>rapport<t/><d/></i></e>
+      <e><i>utgreiing<t/><d/></i></e>
+      <e><i>program<t/><d/></i></e>
+      <e><i>serie<t/><d/></i></e>
+      <e><i>film<t/><d/></i></e>
+      <e><i>dokumentar<t/><d/></i></e>
+      <e><i>roman<t/><d/></i></e>
+    </pardef>
+
+    <pardef n="bibelbøker">
+      <e><i>Mosebok<t/><d/></i></e>
+      <e><i>Petersbrev<t/><d/></i></e>
+      <e><i>Kongebok<t/><d/></i></e>
+      <e><i>Krønikebok<t/><d/></i></e>
+      <e><i>Samuelsbok<t/><d/></i></e>
+      <e><i>Korinterbrev<t/><d/></i></e>
+      <e><i>Tessalonikerbrev<t/><d/></i></e>
+      <e><i>Timoteus<t/><d/></i></e>
+      <e><i>Johannesbrev<t/><d/></i></e>
+    </pardef>
+
+    <pardef n="foran2før|empty">
+      <e></e>
+      <e><p><l>foran<s n="pr"/><t/></l> <r>før<s n="pr"/><t/></r></p> <par n="d"/></e>
+    </pardef>
+
+    <pardef n="1tilførste">
+      <e>
+        <p><l>1<s n="det"/><t/><d/></l> <r></r></p>
+        <p><l>.<s n="sent"/><t/><d/></l> <r></r></p>
+        <p><l></l>               <r>første<s n="adj"/><s n="ord"/><s n="pst"/><s n="un"/><s n="sp"/><s n="def"/><s n="Aa"/><d/></r></p>
+      </e>
+      <e>
+        <p><l>2<s n="det"/><t/><d/></l> <r></r></p>
+        <p><l>.<s n="sent"/><t/><d/></l> <r></r></p>
+        <p><l></l>               <r>andre<s n="adj"/><s n="ord"/><s n="pst"/><s n="un"/><s n="sp"/><s n="def"/><s n="Aa"/><d/></r></p>
+      </e>
+      <e>
+        <p><l>3<s n="det"/><t/><d/></l> <r></r></p>
+        <p><l>.<s n="sent"/><t/><d/></l> <r></r></p>
+        <p><l></l>               <r>tredje<s n="adj"/><s n="ord"/><s n="pst"/><s n="un"/><s n="sp"/><s n="def"/><s n="Aa"/><d/></r></p>
+      </e>
+      <e>
+        <p><l>4<s n="det"/><t/><d/></l> <r></r></p>
+        <p><l>.<s n="sent"/><t/><d/></l> <r></r></p>
+        <p><l></l>               <r>fjerde<s n="adj"/><s n="ord"/><s n="pst"/><s n="un"/><s n="sp"/><s n="def"/><s n="Aa"/><d/></r></p>
+      </e>
+      <e>
+        <p><l>5<s n="det"/><t/><d/></l> <r></r></p>
+        <p><l>.<s n="sent"/><t/><d/></l> <r></r></p>
+        <p><l></l>               <r>femte<s n="adj"/><s n="ord"/><s n="pst"/><s n="un"/><s n="sp"/><s n="def"/><s n="Aa"/><d/></r></p>
+      </e>
+     <e>
+        <p><l>1.<s n="adj"/><s n="ord"/><s n="pst"/><s n="un"/><s n="sp"/><s n="def"/><t/><d/></l> <r></r></p>
+        <p><l></l>               <r>første<s n="adj"/><s n="ord"/><s n="pst"/><s n="un"/><s n="sp"/><s n="def"/><s n="aa"/><d/></r></p>
+      </e>
+     <e>
+        <p><l>2.<s n="adj"/><s n="ord"/><s n="pst"/><s n="un"/><s n="sp"/><s n="def"/><t/><d/></l> <r></r></p>
+        <p><l></l>               <r>andre<s n="adj"/><s n="ord"/><s n="pst"/><s n="un"/><s n="sp"/><s n="def"/><s n="aa"/><d/></r></p>
+      </e>
+     <e>
+        <p><l>3.<s n="adj"/><s n="ord"/><s n="pst"/><s n="un"/><s n="sp"/><s n="def"/><t/><d/></l> <r></r></p>
+        <p><l></l>               <r>tredje<s n="adj"/><s n="ord"/><s n="pst"/><s n="un"/><s n="sp"/><s n="def"/><s n="aa"/><d/></r></p>
+      </e>
+     <e>
+        <p><l>4.<s n="adj"/><s n="ord"/><s n="pst"/><s n="un"/><s n="sp"/><s n="def"/><t/><d/></l> <r></r></p>
+        <p><l></l>               <r>fjerde<s n="adj"/><s n="ord"/><s n="pst"/><s n="un"/><s n="sp"/><s n="def"/><s n="aa"/><d/></r></p>
+      </e>
+     <e>
+        <p><l>5.<s n="adj"/><s n="ord"/><s n="pst"/><s n="un"/><s n="sp"/><s n="def"/><t/><d/></l> <r></r></p>
+        <p><l></l>               <r>femte<s n="adj"/><s n="ord"/><s n="pst"/><s n="un"/><s n="sp"/><s n="def"/><s n="aa"/><d/></r></p>
+      </e>
+    </pardef>
+
+    <pardef n="ndef_fornærma/sikta/tiltalte"
+            c="Ikkje adj-formene!">
+      <e><i>siktede<s n="n"/><t/><s n="def"/></i></e>
+      <e><i>tiltalt<s n="n"/><t/><s n="def"/></i></e>
+      <e><i>fornærmede<s n="n"/><t/><s n="def"/></i></e>
+      <e><i>siktede<s n="n"/><t/><s n="def"/><s n="gen"/></i></e>
+      <e><i>tiltalt<s n="n"/><t/><s n="def"/><s n="gen"/></i></e>
+      <e><i>fornærmede<s n="n"/><t/><s n="def"/><s n="gen"/></i></e>
+      <!-- TODO: kva med resten av LIST adjn (frå rlx-fila)? -->
+    </pardef>
+
+    <pardef n="for_Xs_skyld:for_X_i_seg_selv">
+      <e lm="for Xs skyld -> for X i seg selv" c="for X i seg sjølv">
+        <i>for<t/><d/></i>
+        <i><w/><s n="n"/><t/><s n="def"/></i>  <p><l><s n="gen"/></l><r></r></p>  <par n="d"/>
+        <p><l>skyld<s n="n"/><t/><s n="sg"/><s n="ind"/></l> <r></r></p> <par n="d:"/>
+        <p><l></l>                  <r>i<s n="pr"/><d/></r></p>
+        <p><l></l>                  <r>seg<b/>selv<s n="prn"/><s n="ref"/><s n="p3"/><s n="un"/><s n="pl"/><s n="acc"/><d/></r></p>
+      </e>
+    </pardef>
+
+    <pardef n="stykke/avstemning/toponym">
+      <e><i>stykke<t/><d/></i></e>
+      <e><i>avstemning<t/><d/></i></e>
+      <e><i><w/><s n="np"/><s n="top"/><t/><d/></i></e>
+    </pardef>
+
+    <pardef n="paragraf">
+      <e><i>paragraf<t/><d/></i></e>
+      <e><i>§<t/><d/></i></e>
+    </pardef>
+
+    <pardef n="pp:">
+      <e><p><l><s n="vblex"/><s n="pp"/></l><r></r></p><par n="d:"/></e>
+      <e><p><l><s n="adj"/><s n="pp"/><t/></l><r></r></p><par n="d:"/></e>
+    </pardef>
+    <pardef n="pp">
+      <e><i><s n="vblex"/><s n="pp"/></i><par n="d"/></e>
+      <e><i><s n="adj"/><s n="pp"/><t/></i><par n="d"/></e>
+    </pardef>
+
+    <pardef n="ANYWORD">
+      <e><i><w/><t/><d/></i></e>
+    </pardef>
+    <pardef n="ANYWORD|">
+      <e></e>
+      <e><i><w/><t/><d/></i></e>
+    </pardef>
+
+  </pardefs>
+
+
+  <section id="main" type="standard">
+
+    <e lm="noko" c="lag ein regel her">
+      <i>kake<t/><d/></i>
+    </e>
+
+</section>
+
+</dictionary>
