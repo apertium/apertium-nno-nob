@@ -4656,42 +4656,6 @@
       </action>
     </rule>
 
-    <rule comment="PÅ MANDAG: på måndag => måndag
-                   Unntak: særlig på søndag, etter hvert på onsdag, – på lørdag
-                   Tag as adv for interchunk rules (TODO: actual syntactical tagging)">
-      <pattern>
-        <pattern-item n="på"/>
-        <pattern-item n="nind_vekedag"/>
-      </pattern>
-      <action>
-        <choose><when><test><not><equal><clip pos="2" side="tl" part="a_cmp"/><lit v=""/></equal></not></test><reject-current-rule shifting="no"/></when></choose>
-        <choose><when c="Don't drop for 'etter hvert på søndag'">
-          <test><or>
-            <equal caseless="yes"><var n="prevlem"/><lit v="etter kvart"/></equal>
-            <equal caseless="yes"><var n="prevlem"/><lit v="etterkvart"/></equal>
-            <equal caseless="yes"><var n="prevlem"/><lit v="spesielt"/></equal>
-            <equal caseless="yes"><var n="prevlem"/><lit v="spesiell"/></equal>
-            <equal>               <var n="prevlem"/><lit v="–"/></equal>
-          </or></test>
-          <reject-current-rule shifting="no"/>
-        </when></choose>
-        <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
-        <choose><when>
-          <test><not><equal><b pos="1"/><lit v=" "/></equal></not></test>
-          <out><b pos="1"/></out>
-        </when></choose>
-        <out>
-          <chunk name="nn" case="caseFirstWord">
-            <tags>
-              <tag><lit-tag v="adv"/></tag>
-              <tag><clip pos="2" side="tl" part="tags"/></tag>
-            </tags>
-            <lu><clip pos="2" side="tl" part="whole"/></lu>
-          </chunk>
-        </out>
-        <let><var n="prevlem"/><clip pos="2" side="tl" part="lem"/></let>
-      </action>
-    </rule>
     <rule comment="MANDAG: måndag => måndag
                    Tag as adv for interchunk rules (TODO: actual syntactical tagging)">
       <pattern>
