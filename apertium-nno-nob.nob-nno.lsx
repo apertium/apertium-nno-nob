@@ -117,10 +117,10 @@
     <pardef n="d" c="Copy over word-separator with optional preceding aa tag">
       <e><par n="aa|"/><i><d/></i></e>
     </pardef>
-    <pardef n="d:" c="Delete word-separator and optional preceding aa tag">
+    <pardef n="d:" c="Delete word-separator and optional preceding aa tag – but output titlecase as lone ^Aa$ marker for post-nob-nno.lsx to handle">
       <e><p><l><d/></l>            <r></r></p></e>
       <e><p><l><s n="aa"/><d/></l> <r></r></p></e>
-      <e><p><l><s n="Aa"/><d/></l> <r></r></p></e>
+      <e><p><l><s n="Aa"/><d/></l> <r><s n="Aa"/><d/></r></p></e> <!-- handled in post-nob-nno.lsx -->
       <e><p><l><s n="AA"/><d/></l> <r></r></p></e>
     </pardef>
 
