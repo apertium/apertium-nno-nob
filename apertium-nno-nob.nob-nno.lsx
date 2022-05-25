@@ -1672,6 +1672,18 @@
       <e><i>Johannesbrev<t/><d/></i></e>
     </pardef>
 
+    <pardef n="bekjempelse/bekjemping-kamp">
+      <e><p><l>bekjempelse<s n="n"/><s n="m"/></l><r>kamp<s n="n"/><s n="m"/></r></p> <i><t/><d/></i></e>
+      <e><p><l>bekjemping<s n="n"/><s n="m"/></l><r>kamp<s n="n"/><s n="m"/></r></p> <i><t/><d/></i></e>
+      <e><p><l>bekjemping<s n="n"/><s n="f"/></l><r>kamp<s n="n"/><s n="m"/></r></p> <i><t/><d/></i></e>
+    </pardef>
+
+    <pardef n="bekjempelse/bekjemping-tiltak">
+      <e><p><l>bekjempelse<s n="n"/><s n="m"/></l><r>tiltak<s n="n"/><s n="nt"/></r></p> <i><t/><d/></i></e>
+      <e><p><l>bekjemping<s n="n"/><s n="m"/></l><r>tiltak<s n="n"/><s n="nt"/></r></p> <i><t/><d/></i></e>
+      <e><p><l>bekjemping<s n="n"/><s n="f"/></l><r>tiltak<s n="n"/><s n="nt"/></r></p> <i><t/><d/></i></e>
+    </pardef>
+
     <pardef n="foran2før|empty">
       <e></e>
       <e><p><l>foran<s n="pr"/><t/></l> <r>før<s n="pr"/><t/></r></p> <par n="d"/></e>
@@ -11137,11 +11149,24 @@
   <p><l></l>                                  <r>dag<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/><s n="aa"/><d/></r></p>
 </e>
 
-<e lm="bekjempelse av -> kamp mot" c="kamp mot">
-  <p><l>bekjempelse<s n="n"/><s n="m"/></l>   <r>kamp<s n="n"/><s n="m"/></r></p> <i><t/><d/></i>
+<e lm="etter bekjempelse av -> etter tiltak mot" c="etter tiltak mot">
+  <i><w/><s n="pr"/><t/></i>  <par n="d"/>
+  <par n="bekjempelse/bekjemping-kamp"/>
   <p><l>av<s n="pr"/><t/></l>                 <r></r></p> <par n="d:"/>
   <p><l></l>                                  <r>mot<s n="pr"/><d/></r></p>
 </e>
+
+<e lm="bekjempelse av -> kamp mot" c="kamp mot">
+  <par n="bekjempelse/bekjemping-kamp"/>
+  <p><l>av<s n="pr"/><t/></l>                 <r></r></p> <par n="d:"/>
+  <p><l></l>                                  <r>mot<s n="pr"/><d/></r></p>
+</e>
+
+<e lm="om bekjempelse -> om tiltak" c="om tiltak">
+  <i><w/><s n="pr"/><t/></i>  <par n="d"/>
+  <par n="bekjempelse/bekjemping-tiltak"/>
+</e>
+
 
 
 </section>
