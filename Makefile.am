@@ -32,6 +32,7 @@ TARGETS_PREFIX2 =                                             \
      $(PREFIX2).seg.rlx.bin                                   \
      $(PREFIX2).rlx.bin                                       \
      $(PREFIX2).autoseq.bin                                   \
+     $(LANG1).autoseq.bin                                     \
      $(PREFIX2).prob                                          \
      $(PREFIX2).autolex.bin                                   \
      $(PREFIX2).autobil.bin                                   \
@@ -53,7 +54,7 @@ e: modes/$(PREFIX1).mode	# build just nob-nno_e
 	${MAKE} $(TARGETS_PREFIX2)
 r: modes/$(PREFIX1).mode $(PREFIX2).autolex.bin $(PREFIX2).t1x.bin $(PREFIX2).t2x.bin $(PREFIX2).t3x.bin # build just transfer and rlx files for nob-nno(_e)
 	cd $(AP_SRC2) && ${MAKE} $(LANG2).seg.rlx.bin $(LANG2).rlx.bin
-	${MAKE} $(PREFIX2).seg.rlx.bin $(PREFIX2).rlx.bin $(PREFIX2).biprefs.rlx.bin $(PREFIX2).autoseq.bin capstag.rlx.bin
+	${MAKE} $(PREFIX2).seg.rlx.bin $(PREFIX2).rlx.bin $(PREFIX2).biprefs.rlx.bin $(PREFIX2).autoseq.bin $(LANG1).autoseq.bin capstag.rlx.bin
 
 # This include defines goals for install-modes, .deps/.d and .mode files:
 @ap_include@
@@ -125,6 +126,9 @@ $(PREFIX1).autoseq.bin: $(BASENAME).$(PREFIX1).lsx
 	lsx-comp lr $< $@
 
 $(PREFIX2).autoseq.bin: $(BASENAME).$(PREFIX2).lsx
+	lsx-comp lr $< $@
+
+$(LANG1).autoseq.bin: $(BASENAME).$(LANG1).lsx
 	lsx-comp lr $< $@
 
 ###############################################################################
