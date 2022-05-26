@@ -11116,5 +11116,14 @@ preposisjonar gir ekstra utfordringar. -->
     <match lemma="bekjempe" tags="vblex.*"><select lemma="motverke"/></match>
   </rule>
 
+  <rule><match lemma="betegnende" tags="adj.*"><select lemma="treffande"/></match></rule>
+  <rule weight="2.0" c="betegnende for/at -> typisk for/at">
+    <match lemma="betegnende" tags="adj.*"><select lemma="typisk"/></match>
+    <or>
+      <match lemma="for"/>
+      <match lemma="at"/>
+    </or>
+  </rule>
+
 </rules>
 </lrx>
