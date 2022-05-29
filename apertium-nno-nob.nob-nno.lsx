@@ -1107,6 +1107,13 @@
       <e><p><l>dagens<s n="adj"/><s n="pst"/><t/></l>  <r></r></p>  <par n="d:"/></e>
     </pardef>
 
+    <pardef n="framtidens-rem">
+      <e><p><l>framtid<s n="n"/><s n="m"/><s n="sg"/><s n="def"/><s n="gen"/></l>  <r></r></p>  <par n="d:"/></e>
+      <e><p><l>fremtid<s n="n"/><s n="m"/><s n="sg"/><s n="def"/><s n="gen"/></l>  <r></r></p>  <par n="d:"/></e>
+      <e><p><l>framtid<s n="n"/><s n="f"/><s n="sg"/><s n="def"/><s n="gen"/></l>  <r></r></p>  <par n="d:"/></e>
+      <e><p><l>fremtid<s n="n"/><s n="f"/><s n="sg"/><s n="def"/><s n="gen"/></l>  <r></r></p>  <par n="d:"/></e>
+    </pardef>
+
     <pardef n="dagens-ord">
       <e><i>møte<s n="n"/><s n="nt"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
       <e><i>stiftelsesmøte<s n="n"/><s n="nt"/><t/></i>  <p><l><t/><s n="ind"/></l><r><t/><s n="def"/></r></p> <par n="d"/></e>
@@ -1206,6 +1213,11 @@
       <e><i>mobil<s n="n"/><t/></i></e>
     </pardef>
 
+    <pardef n="framtid-fremtid">
+      <e><i>fremtid<s n="n"/><t/></i></e>
+      <e><i>framtid<s n="n"/><t/></i></e>
+    </pardef>
+
     <pardef n="genitiv2cmp" c="politiets arrest -> politiarresten; jf. t1x-reglar">
       <e c="politiarresten">
         <i>politi<s n="n"/><t/></i>
@@ -1247,6 +1259,41 @@
         <i>kommune<s n="n"/><t/></i>
         <p><l><s n="def"/><s n="gen"/><s n="aa"/></l> <r><s n="ind"/><s n="cmp"/></r></p>  <par n="d"/>
         <i>arkiv<s n="n"/><t/></i>
+        <p><l><s n="ind"/><s n="aa"/></l> <r><s n="def"/><s n="aa"/></r></p>  <par n="d"/>
+      </e>
+      <e c="framtidslaget"> <!-- førebels innleiande ord, bør ha prioritet (også først i setning) -->
+        <i><w/><t/></i>  <par n="d"/>
+        <par n="framtid-fremtid"/>
+        <p><l><s n="def"/><s n="gen"/><s n="aa"/></l> <r><s n="ind"/><s n="cmp"/></r></p>  <par n="d"/>
+        <i>lag<s n="n"/><t/></i>
+        <p><l><s n="ind"/><s n="aa"/></l> <r><s n="def"/><s n="aa"/></r></p>  <par n="d"/>
+      </e>
+      <e c="framtidssamfunnet"> <!-- førebels, bør ha prioritet -->
+        <i><w/><t/></i>  <par n="d"/>
+        <par n="framtid-fremtid"/>
+        <p><l><s n="def"/><s n="gen"/><s n="aa"/></l> <r><s n="ind"/><s n="cmp"/></r></p>  <par n="d"/>
+        <i>samfunn<s n="n"/><t/></i>
+        <p><l><s n="ind"/><s n="aa"/></l> <r><s n="def"/><s n="aa"/></r></p>  <par n="d"/>
+      </e>
+      <e c="framtidsnæringane"> <!-- førebels, bør ha prioritet -->
+        <i><w/><t/></i>  <par n="d"/>
+        <par n="framtid-fremtid"/>
+        <p><l><s n="def"/><s n="gen"/><s n="aa"/></l> <r><s n="ind"/><s n="cmp"/></r></p>  <par n="d"/>
+        <i>næring<s n="n"/><t/></i>
+        <p><l><s n="ind"/><s n="aa"/></l> <r><s n="def"/><s n="aa"/></r></p>  <par n="d"/>
+      </e>
+      <e c="framtidsoppgåvene"> <!-- førebels, bør ha prioritet -->
+        <i><w/><t/></i>  <par n="d"/>
+        <par n="framtid-fremtid"/>
+        <p><l><s n="def"/><s n="gen"/><s n="aa"/></l> <r><s n="ind"/><s n="cmp"/></r></p>  <par n="d"/>
+        <i>oppgave<s n="n"/><t/></i>
+        <p><l><s n="ind"/><s n="aa"/></l> <r><s n="def"/><s n="aa"/></r></p>  <par n="d"/>
+      </e>
+      <e c="framtidsløysingane"> <!-- førebels, bør ha prioritet; 'Fjerdingstad seier at framtidsløysingane for miljøvennleg energi ligg i mange teknologiar' -->
+        <i><w/><t/></i>  <par n="d"/>
+        <par n="framtid-fremtid"/>
+        <p><l><s n="def"/><s n="gen"/><s n="aa"/></l> <r><s n="ind"/><s n="cmp"/></r></p>  <par n="d"/>
+        <i>løsning<s n="n"/><t/></i>
         <p><l><s n="ind"/><s n="aa"/></l> <r><s n="def"/><s n="aa"/></r></p>  <par n="d"/>
       </e>
       <e c="bilbatteriet, elbilbatteriet osv">
@@ -11344,6 +11391,21 @@
   <par n="dagens-ord"/>
   <p><l></l>                                  <r>i<s n="pr"/><s n="aa"/><d/></r></p>
   <p><l></l>                                  <r>dag<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/><s n="aa"/><d/></r></p>
+</e>
+
+<e lm="dagens og framtidens brukere -> nåværende og framtidige brukere" c="noverande og framtidige brukarar">
+  <par n="dagens-rem"/>
+  <p><l></l>                                  <r>nåværende<s n="adj"/><s n="pst"/><s n="un"/><s n="pl"/><s n="ind"/><s n="aa"/><d/></r></p>
+  <par n="og|eller"/>
+  <par n="framtidens-rem"/>
+  <p><l></l>                                  <r>framtidig<s n="adj"/><s n="pst"/><s n="un"/><s n="pl"/><s n="ind"/><s n="aa"/><d/></r></p>
+  <par n="ncmp*.n"/>
+</e>
+
+<e lm="framtidens generasjoner -> kommende generasjoner" c="kommande generasjonar">
+  <par n="framtidens-rem"/>
+  <p><l></l>                                  <r>kommende<s n="adj"/><s n="pst"/><s n="un"/><s n="pl"/><s n="ind"/><s n="aa"/><d/></r></p>
+  <i>generasjon<s n="n"/><t/></i>  <par n="d"/>
 </e>
 
 <e lm="etter bekjempelse av -> etter tiltak mot" c="etter tiltak mot">
