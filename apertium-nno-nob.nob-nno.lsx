@@ -1218,6 +1218,15 @@
       <e><i>framtid<s n="n"/><t/></i></e>
     </pardef>
 
+    <pardef n="kvinner-menn">
+      <e><i>kvinne<s n="n"/><t/></i></e>
+      <!--e><i>mann<s n="n"/><t/></i></e-->
+      <e><i>dame<s n="n"/><t/></i></e>
+      <e><i>herre<s n="n"/><t/></i></e>
+      <e><i>gutt<s n="n"/><t/></i></e>
+      <e><i>jente<s n="n"/><t/></i></e>
+    </pardef>
+
     <pardef n="genitiv2cmp" c="politiets arrest -> politiarresten; jf. t1x-reglar">
       <e c="politiarresten">
         <i>politi<s n="n"/><t/></i>
@@ -1259,6 +1268,18 @@
         <i>kommune<s n="n"/><t/></i>
         <p><l><s n="def"/><s n="gen"/><s n="aa"/></l> <r><s n="ind"/><s n="cmp"/></r></p>  <par n="d"/>
         <i>arkiv<s n="n"/><t/></i>
+        <p><l><s n="ind"/><s n="aa"/></l> <r><s n="def"/><s n="aa"/></r></p>  <par n="d"/>
+      </e>
+      <e c="kvinnesprinten">
+        <par n="kvinner-menn"/>
+        <p><l><s n="pl"/><s n="def"/><s n="gen"/><s n="aa"/></l> <r><s n="sg"/><s n="ind"/><s n="cmp"/></r></p>  <par n="d"/>
+        <i>sprint<s n="n"/><t/></i>
+        <p><l><s n="ind"/><s n="aa"/></l> <r><s n="def"/><s n="aa"/></r></p>  <par n="d"/>
+      </e>
+      <e c="kvinnestafetten">
+        <par n="kvinner-menn"/>
+        <p><l><s n="pl"/><s n="def"/><s n="gen"/><s n="aa"/></l> <r><s n="sg"/><s n="ind"/><s n="cmp"/></r></p>  <par n="d"/>
+        <i>stafett<s n="n"/><t/></i>
         <p><l><s n="ind"/><s n="aa"/></l> <r><s n="def"/><s n="aa"/></r></p>  <par n="d"/>
       </e>
       <e c="framtidslaget"> <!-- førebels innleiande ord, bør ha prioritet (også først i setning) -->
@@ -11403,7 +11424,7 @@
 </e>
 
 <e lm="framtidens generasjoner -> kommende generasjoner" c="kommande generasjonar">
-  <par n="framtidens-rem"/>
+  <i><w/><s n="pr"/><t/></i>  <par n="d"/>
   <p><l></l>                                  <r>kommende<s n="adj"/><s n="pst"/><s n="un"/><s n="pl"/><s n="ind"/><s n="aa"/><d/></r></p>
   <i>generasjon<s n="n"/><t/></i>  <par n="d"/>
 </e>
@@ -11464,6 +11485,7 @@
   <i><w/><s n="n"/><t/><s n="ind"/><s n="aa"/></i>  <par n="d"/>
 </e>
 
+<!-- cmp; genitiv til samanskriving -->
 <e lm="politiets arrest -> politiarresten" c="politiarresten">
   <par n="genitiv2cmp"/>
 </e>
