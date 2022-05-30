@@ -8,6 +8,8 @@
 
   <alphabet></alphabet>
   <sdefs>
+    <sdef n="guio"/>
+    <sdef n="cmp"/>
     <sdef n="aa"/>
     <sdef n="AA"/>
     <sdef n="Aa"/>
@@ -24,12 +26,25 @@
     <pardef n="dropAa">
       <e><p><l><s n="Aa"/><d/></l><r></r></p></e>
     </pardef>
+
     <pardef n="dropAaTags" c="In case preceding lsx gave multiple ^Aa$'s in a row">
       <e><par n="dropAa"/></e>
       <e><par n="dropAa"/><par n="dropAa"/></e>
       <e><par n="dropAa"/><par n="dropAa"/><par n="dropAa"/></e>
       <e><par n="dropAa"/><par n="dropAa"/><par n="dropAa"/><par n="dropAa"/></e>
     </pardef>
+
+    <pardef n="cmp" c="Output as-is compound-left-part as-is">
+      <e><i><w/><t/><s n="cmp"/><d/></i></e>
+      <e><i><w/><t/><s n="cmp"/><s n="guio"/><d/></i></e>
+    </pardef>
+    <pardef n="word" c="Output as-is, but without final word delimiter, allow compound-left-parts">
+      <e>                                          <i><w/><t/></i></e>
+      <e>                            <par n="cmp"/><i><w/><t/></i></e>
+      <e>              <par n="cmp"/><par n="cmp"/><i><w/><t/></i></e>
+      <e><par n="cmp"/><par n="cmp"/><par n="cmp"/><i><w/><t/></i></e>
+    </pardef>
+
   </pardefs>
 
 
@@ -38,7 +53,7 @@
 
     <e lm="shiftTitleCase" c="Drop lone ^Aa$, titlecase the following word">
       <par n="dropAaTags"/>
-      <i><w/><t/></i>
+      <par n="word"/>
       <par n="toTitle"/>
       <i><d/></i>
     </e>
