@@ -11125,5 +11125,14 @@ preposisjonar gir ekstra utfordringar. -->
     </or>
   </rule>
 
+  <rule><match lemma="beroligelse" tags="n.*"><select lemma="trøyst"/></match></rule>
+  <rule weight="2.0" c="ei trøyst">
+    <match lemma="en" tags="det.qnt.m.sg.*"/>
+    <match lemma="beroligelse" tags="n.*.sg.ind.*"><select lemma="trøyst"/></match>
+  </rule>
+  <rule weight="2.0" c="avdemping og føreseilegheit">
+    <match lemma="beroligelse" tags="n.*.*.ind.*"><select lemma="avdemping"/></match>
+  </rule>
+
 </rules>
 </lrx>
