@@ -502,24 +502,8 @@
       <cat-item tags="n.*.sg.*.gen.*"    lemma="folk"/>
       <cat-item tags="n.*.pl.ind.gen.*"  lemma="folk"/>
     </def-cat>
-    <def-cat n="ngen_keep_gen_s_kvinners_rettar"
-             c="Owner nouns where we want to keep the genitive-s if followed by nind_keep_gen_s_kvinners_rettar">
-      <cat-item tags="n.*.sg.*.gen.*"    lemma="kvinne"/>
-      <cat-item tags="n.*.pl.ind.gen.*"  lemma="kvinne"/>
-      <cat-item tags="n.*.sg.*.gen.*"    lemma="liv"/>
-      <cat-item tags="n.*.pl.ind.gen.*"  lemma="liv"/>
-      <cat-item tags="n.*.sg.def.gen.*"  lemma="rett"/>
-      <cat-item tags="n.*.sg.def.gen.*"  lemma="historie"/>
-      <cat-item tags="n.*.sg.def.gen.*"  lemma="mur"/>
-    </def-cat>
-    <def-cat n="nind_keep_gen_s_kvinners_retter"
-             c="Owned nouns where we want the owner ngen to keep the genitive-s if preceded by ngen_keep_gen_s_kvinners_rettar">
-      <cat-item tags="n.*.*.ind.*" lemma="rettighet"/>
-      <cat-item tags="n.*.*.ind.*" lemma="rett"/>
-      <cat-item tags="n.*.*.ind.*" lemma="form"/> <!-- i mitt livs form -->
-      <cat-item tags="n.*.*.ind.*" lemma="vei"/>  <!--rettens vei-->
-      <cat-item tags="n.*.*.ind.*" lemma="skraphaug"/>  <!--historiens skraphaug-->
-      <cat-item tags="n.*.*.ind.*" lemma="fall"/>  <!--murens fall-->
+    <def-cat n="nind">
+      <cat-item tags="n.*.*.ind.*"/>
     </def-cat>
     <def-cat n="nind_time">
       <cat-item tags="n.*.ind.*" lemma="fjorår"/>
@@ -1088,6 +1072,15 @@
       <list-item v="ny"/>       <!--ny og samlande leiarskap-->
       <list-item v="rå"/>       <!--rå og autoritær leiarskap-->
       <list-item v="forvrenge"/>
+    </def-list>
+
+    <def-list n="bi-keep-gen-s" c="Keep the s-genitive construction for these bigrams. Target-language lemmas.">
+      <list-item v="kvinne_rett"/>        <!--kvinners rettar -->
+      <list-item v="mur_fall"/>           <!--murens fall -->
+      <list-item v="liv_rett"/>           <!--livets rett -->
+      <list-item v="rett_veg"/>           <!--rettens veg -->
+      <list-item v="historie_skraphaug"/> <!--historias skraphaug -->
+      <list-item v="liv_form"/>           <!--i mitt livs form -->
     </def-list>
 
     <def-list n="gen-til-objoverride" c="This list checked before the generated unigram obj lists (but bi-gen-lists may override it).
@@ -6072,12 +6065,20 @@ no lemq-moving">
         </out>
       </action>
     </rule>
-    <rule comment="NGEN_KEEP_GEN_S_KVINNERS_RETTAR NIND_KEEP_GEN_S_KVINNERS_RETTER">
+    <rule comment="NGEN NIND: kvinners retter → kvinners rettar – ONLY IF LEMMA-PAIR IN LIST bi-keep-gen-s">
       <pattern>
-        <pattern-item n="ngen_keep_gen_s_kvinners_rettar"/>
-        <pattern-item n="nind_keep_gen_s_kvinners_retter"/>
+        <pattern-item n="ngen"/>
+        <pattern-item n="nind"/>
       </pattern>
       <action>
+        <!-- Don't run this rule if the lemmas are not in bi-keep-gen-s: -->
+        <let><var n="bilem"/><concat><clip pos="1" side="tl" part="lem"/><lit v="_"/><clip pos="2" side="tl" part="lem"/></concat></let>
+        <modify-case><var n="bilem"/><lit v="aa"/></modify-case>
+        <choose><when>
+          <test><not><in><var n="bilem"/><list n="bi-keep-gen-s"/></in></not></test>
+          <reject-current-rule shifting="no"/>
+        </when></choose>
+        <!-- They were in the list – keep the s-genitive: -->
         <call-macro n="set_caseFirstWord2">
           <with-param pos="1"/>
           <with-param pos="2"/>
