@@ -674,7 +674,7 @@
     <def-cat n="np.org.gen">
       <cat-item tags="np.org.gen.*"/>
     </def-cat>
-    <def-cat n="n.def.gen.parti">
+    <def-cat n="ngen.parti">
       <cat-item lemma="parti" tags="n.nt.sg.def.gen.*"/>
       <cat-item lemma="forbund" tags="n.nt.sg.def.gen.*"/>
       <cat-item lemma="forening" tags="n.*.sg.def.gen.*"/>
@@ -688,6 +688,11 @@
       <cat-item lemma="talsperson" tags="n.*.sg.ind.aa"/>
       <cat-item lemma="talsmann" tags="n.*.sg.ind.aa"/>
       <cat-item lemma="talskvinne" tags="n.*.sg.ind.aa"/>
+    </def-cat>
+    <def-cat n="nsgind.direktør">
+      <cat-item lemma="direktør" tags="n.*.sg.ind.aa"/>
+      <cat-item lemma="leder" tags="n.*.sg.ind.aa"/>
+      <cat-item lemma="sjef" tags="n.*.sg.ind.aa"/>
     </def-cat>
     <def-cat n="personnamn">    
       <cat-item tags="np.ant.*"/>
@@ -2627,7 +2632,6 @@
 	<list-item v="ordning_regjering"/>
 	<list-item v="organisasjon_næringsliv"/>
 	<list-item v="overhovud_kyrkje"/>
-	<list-item v="partnar_selskap"/>
 	<list-item v="person_studie"/>
 	<list-item v="politikar_parti"/>
 	<list-item v="praktisering_kommune"/>
@@ -2969,6 +2973,12 @@
 	<list-item v="fleirtal"/>
 	<list-item v="mindretal"/>
 	<list-item v="grunnplan"/>
+	<list-item v="tryggleik"/>
+	<list-item v="bemanning"/>
+	<list-item v="konsernsjef"/>
+	<list-item v="arbeidsstyrke"/>
+	<list-item v="kjerneverksemd"/>
+	<list-item v="bedriftsforsamling"/>
 </def-list>
 
 <def-list n="obj-gen-med">
@@ -4772,9 +4782,9 @@
 
     <rule comment="administrerende direktør i selskapet → administrerande direktør i selskapet">
       <pattern>
-        <pattern-item n="n.def.gen.parti"/>     <!-- forbund, organisasjon, selskap osv.  -->
+        <pattern-item n="ngen.parti"/>     <!-- forbund, organisasjon, selskap osv.  -->
         <pattern-item n="adj"/>           <!-- 2 -->
-        <pattern-item n="nsgind"/>        <!-- 3 direktør, leiar osv. -->
+        <pattern-item n="nsgind.direktør"/>        <!-- 3 direktør, leiar osv. -->
       </pattern>
       <action>
         <call-macro n="set_caseFirstWord3">
