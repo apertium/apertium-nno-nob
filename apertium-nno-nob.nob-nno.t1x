@@ -1096,6 +1096,7 @@
       <list-item v="rett_veg"/>           <!--rettens veg -->
       <list-item v="historie_skraphaug"/> <!--historias skraphaug -->
       <list-item v="liv_form"/>           <!--i mitt livs form -->
+      <list-item v="liv_dans"/>           <!--livets siste dans -->
     </def-list>
 
     <def-list n="gen-til-objoverride" c="This list checked before the generated unigram obj lists (but bi-gen-lists may override it).
@@ -6111,7 +6112,7 @@ no lemq-moving">
             <lu><clip pos="1" side="tl" part="whole"/></lu>
             <lu><clip pos="2" side="tl" part="whole"/></lu>
           </chunk>
-          <b pos="2"/>
+          <b/>
           <chunk name="adj_n" case="caseSecondWord">
             <tags><tag><var n="ntags"/></tag></tags>
             <var n="grau_aux"/>
@@ -6126,7 +6127,7 @@ no lemq-moving">
         </out>
       </action>
     </rule>
-    <rule comment="NGEN NIND: kvinners retter → kvinners rettar – ONLY IF LEMMA-PAIR IN LIST bi-keep-gen-s">
+    <rule comment="NGEN NIND: kvinners retter → kvinners rettar – ONLY IF NOUN LEMMA-PAIR IN LIST bi-keep-gen-s">
       <pattern>
         <pattern-item n="ngen"/>
         <pattern-item n="nind"/>
@@ -6152,12 +6153,57 @@ no lemq-moving">
             </tags>
             <lu><clip pos="1" side="tl" part="whole"/></lu>
           </chunk>
-          <b pos="1"/>
+          <b/>
           <chunk name="nn" case="caseSecondWord">
             <tags>
               <tag><clip pos="2" side="tl" part="tags"/></tag>
             </tags>
             <lu><clip pos="2" side="tl" part="whole"/></lu>
+          </chunk>
+        </out>
+      </action>
+    </rule>
+    <rule comment="NGEN ADJ NIND: livets siste dans → livets siste dans – ONLY IF NOUN LEMMA-PAIR IN LIST bi-keep-gen-s">
+      <pattern>
+        <pattern-item n="ngen"/>
+        <pattern-item n="adj"/>
+        <pattern-item n="nind"/>
+      </pattern>
+      <action>
+        <!-- Don't run this rule if the lemmas are not in bi-keep-gen-s: -->
+        <let><var n="bilem"/><concat><clip pos="1" side="tl" part="lem"/><lit v="_"/><clip pos="3" side="tl" part="lem"/></concat></let>
+        <modify-case><var n="bilem"/><lit v="aa"/></modify-case>
+        <choose><when>
+          <test><not><in><var n="bilem"/><list n="bi-keep-gen-s"/></in></not></test>
+          <reject-current-rule shifting="no"/>
+        </when></choose>
+        <!-- They were in the list – keep the s-genitive: -->
+        <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
+        <out>
+          <chunk name="nn" case="caseFirstWord">
+            <tags>
+              <tag><clip pos="1" side="tl" part="tags"/></tag>
+              <tag><lit-tag v="gen"/></tag>
+            </tags>
+            <lu><clip pos="1" side="tl" part="whole"/></lu>
+          </chunk>
+          <b/>
+        </out>
+        <call-macro n="set_caseFirstWord2"><with-param pos="2"/><with-param pos="3"/></call-macro>
+        <call-macro n="set_gender2.n.adj"><with-param pos="3"/><with-param pos="2"/></call-macro>
+        <let><var n="c_name"/><lit v="adj_n"/></let>
+        <call-macro n="set_grau_aux1"><with-param pos="2"/></call-macro>
+        <out>
+          <chunk namefrom="c_name" case="caseFirstWord">
+            <tags><tag><clip pos="3" side="tl" part="tags"/></tag></tags>
+            <var n="grau_aux"/>
+            <lu>
+              <clip pos="2" side="tl" part="lemh"/>
+              <clip pos="2" side="tl" part="tags"/>
+              <clip pos="2" side="tl" part="lemq"/>
+            </lu>
+            <b/>
+            <lu><clip pos="3" side="tl" part="whole"/></lu>
           </chunk>
         </out>
       </action>
