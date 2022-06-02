@@ -1,6 +1,10 @@
 #!/bin/bash
 
 outdir=nobackup/genitive-prepositions
+mkdir -p "${outdir}"
+
+test -f modes/nno-nob-disam-notrace.mode ||
+    sed 's/ -t / /g' modes/nno-nob-disam.mode > modes/nno-nob-disam-notrace.mode
 
 test -f "${outdir}"/nno.disam ||
     xzcat  ~/corpora/nno/*ntb*xz | apertium -d . nno-nob-disam-notrace >"${outdir}"/nno.disam
