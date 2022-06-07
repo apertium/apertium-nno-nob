@@ -5,7 +5,10 @@ mkdir -p "${outdir}"
 
 test -f modes/nno-nob-disam-notrace.mode ||
     sed 's/ -t / /g' modes/nno-nob-disam.mode > modes/nno-nob-disam-notrace.mode
+test -f modes/nob-nno_e-disam-notrace.mode ||
+    sed 's/ -t / /g' modes/nob-nno_e-disam.mode > modes/nob-nno_e-disam-notrace.mode
 
+echo "${outdir}"/nno.disam
 test -f "${outdir}"/nno.disam ||
     xzcat  ~/corpora/nno/*ntb*xz | apertium -d . nno-nob-disam-notrace >"${outdir}"/nno.disam
 test -f "${outdir}"/nno.disam.lower ||
@@ -13,11 +16,13 @@ test -f "${outdir}"/nno.disam.lower ||
      awk '{print tolower($0)}' \
      >"${outdir}"/nno.disam.lower
 
+echo "${outdir}"/nob.disam
 test -f "${outdir}"/nob.disam ||
     xzcat  ~/corpora/nob/*ntb*xz                \
     | apertium -d . nob-nno_e-disam-notrace \
         >"${outdir}"/nob.disam
 
+echo "${outdir}"/nno.sgen
 test -f "${outdir}"/nno.sgen ||
     <"${outdir}"/nob.disam                                                               \
     grep '/[^</$]*<n>[^/$]*<gen>[$] \^[^$]*<n>[^$]*[$]' -o                               \
@@ -31,6 +36,7 @@ test -f "${outdir}"/nno.sgen ||
     | sed 's/<sg><ind>//g;s,\^[^/]*/,,g;s/\$//g'                                         \
           >"${outdir}"/nno.sgen
 
+echo "${outdir}"/nno.prep3g
 test -f "${outdir}"/nno.prep3g ||
     <"${outdir}"/nno.disam.lower                                                     \
     grep -o '\^[^$]*<n>[^$/]*<def>[$] [^$]*/[a-zæøå]*<pr>[^$]*[$] [^$]*<n>[^$/]*[$]' \
@@ -40,6 +46,7 @@ test -f "${outdir}"/nno.prep3g ||
          >"${outdir}"/nno.prep3g
 
 # TODO: inner join this one with nno.sgen too
+echo "${outdir}"/nno.noprepdag
 test -f "${outdir}"/nno.noprepdag ||
     <"${outdir}"/nno.disam.lower                                                                              \
      grep -o '\^[^$]*<n>[^$/]*<def>[$] [^$]*\(laur\|søn\|sun\|mån\|man\|tys\|tirs\|ons\|fre\)dag<n>[^$/]*[$]' \
