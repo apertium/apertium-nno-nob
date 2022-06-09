@@ -4,57 +4,67 @@ outdir=nobackup/genitive-prepositions
 mkdir -p "${outdir}"
 
 test -f modes/nno-nob-disam-notrace.mode ||
-    sed 's/ -t / /g' modes/nno-nob-disam.mode > modes/nno-nob-disam-notrace.mode
-test -f modes/nob-nno_e-disam-notrace.mode ||
-    sed 's/ -t / /g' modes/nob-nno_e-disam.mode > modes/nob-nno_e-disam-notrace.mode
+    sed 's/ -t / /g; s/ -w / /g' modes/nno-nob-disam.mode   > modes/nno-nob-disam-notrace.mode
+test -f modes/nob-nno-disam-notrace.mode ||
+    sed 's/ -t / /g; s/ -w / /g' modes/nob-nno-disam.mode > modes/nob-nno-disam-notrace.mode
 
 echo "${outdir}"/nno.disam
+nnols=$(xzcat  ~/corpora/nno/*ntb*xz | wc -l)
 test -f "${outdir}"/nno.disam ||
-    xzcat  ~/corpora/nno/*ntb*xz | apertium -d . nno-nob-disam-notrace >"${outdir}"/nno.disam
-test -f "${outdir}"/nno.disam.lower ||
-    <"${outdir}"/nno.disam     \
-     awk '{print tolower($0)}' \
-     >"${outdir}"/nno.disam.lower
-
-echo "${outdir}"/nob.disam
-test -f "${outdir}"/nob.disam ||
-    xzcat  ~/corpora/nob/*ntb*xz                \
-    | apertium -d . nob-nno_e-disam-notrace \
-        >"${outdir}"/nob.disam
+    xzcat  ~/corpora/nno/*ntb*xz              \
+        | apertium -d . nno-nob-disam-notrace \
+        | pv -ls "${nnols}"                   \
+             >"${outdir}"/nno.disam
 
 echo "${outdir}"/nno.sgen
 test -f "${outdir}"/nno.sgen ||
+    <"${outdir}"/nno.disam                                                               \
+    grep '/[^</$]*<n>[^/$]*<gen>[$] \^[^$]*<n>[^$]*[$]' -o                               \
+    | sed 's,/[^$]*+,/,g;s,\^[^/]*,,;s,/[^$]*/,/,g;s/<\(sg\|pl\|sp\|def\|ind\|gen\)>//g' \
+    | tr -d '/$'                                                                         \
+      > "${outdir}"/nno.sgen                                                             \
+
+echo "${outdir}"/nob.disam
+nobls=$(xzcat  ~/corpora/nob/*ntb*xz | wc -l)
+test -f "${outdir}"/nob.disam ||
+    xzcat  ~/corpora/nob/*ntb*xz              \
+        | apertium -d . nob-nno-disam-notrace \
+        | pv -ls "${nobls}"                   \
+        >"${outdir}"/nob.disam
+
+echo "${outdir}"/nob2nno.sgen
+test -f "${outdir}"/nob2nno.sgen ||
     <"${outdir}"/nob.disam                                                               \
     grep '/[^</$]*<n>[^/$]*<gen>[$] \^[^$]*<n>[^$]*[$]' -o                               \
     | sed 's,/[^$]*+,/,g;s,\^[^/]*,,;s,/[^$]*/,/,g;s/<\(sg\|pl\|sp\|def\|ind\|gen\)>//g' \
     | tr -d '/$'                                                                         \
     | tee "${outdir}"/nob.sgen_n                                                         \
-    | awk '{print tolower($0)}'                                                          \
     | sed 's/[0-9]*-\(åring\|tall\|år\)</1-\1</'                                         \
     | sed 's,^,^,;s, ,<sg><ind>$ ^,;s,$,<sg><ind>$,'                                     \
     | lt-proc -b nob-nno.autobil.bin                                                     \
     | sed 's/<sg><ind>//g;s,\^[^/]*/,,g;s/\$//g'                                         \
-          >"${outdir}"/nno.sgen
+          >"${outdir}"/nob2nno.sgen
 
 echo "${outdir}"/nno.prep3g
 test -f "${outdir}"/nno.prep3g ||
-    <"${outdir}"/nno.disam.lower                                                     \
+    <"${outdir}"/nno.disam                                                           \
     grep -o '\^[^$]*<n>[^$/]*<def>[$] [^$]*/[a-zæøå]*<pr>[^$]*[$] [^$]*<n>[^$/]*[$]' \
     | sed 's,\^[^$]*/\([^<]*<pr>\)[^$]*[$],\1,'                                      \
     | sed 's,\^[^$]*[/+],,g;s/<\(sg\|pl\|sp\|def\|ind\|cmp-split\|gen\)>//g'         \
     | tr -d '$'                                                                      \
          >"${outdir}"/nno.prep3g
 
-# TODO: inner join this one with nno.sgen too
+# TODO: inner join this one with nob2nno.sgen too
 echo "${outdir}"/nno.noprepdag
 test -f "${outdir}"/nno.noprepdag ||
-    <"${outdir}"/nno.disam.lower                                                                              \
+    <"${outdir}"/nno.disam                                                                                    \
      grep -o '\^[^$]*<n>[^$/]*<def>[$] [^$]*\(laur\|søn\|sun\|mån\|man\|tys\|tirs\|ons\|fre\)dag<n>[^$/]*[$]' \
         | sed 's,\^[^$]*[/+],,g;s/<\(sg\|pl\|sp\|def\|ind\|cmp-split\|gen\)>//g'                              \
         | tr -d '$'                                                                                           \
              >"${outdir}"/nno.noprepdag
 
-<"${outdir}"/nno.prep3g                                                  \
- gawk -v sgenf="${outdir}"/nno.sgen                                      \
- -f "$(dirname "$0")"/genitive-prepositions.awk				 \
+<"${outdir}"/nno.prep3g                         \
+ gawk -v nob2nnosgenf="${outdir}"/nob2nno.sgen  \
+      -v nnosgenf="${outdir}"/nno.sgen          \
+ -f "$(dirname "$0")"/genitive-prepositions.awk \
     | tee "${outdir}"/out
