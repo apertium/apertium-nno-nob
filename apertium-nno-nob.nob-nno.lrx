@@ -905,29 +905,25 @@
   <rule weight="1.0" c="default del">
     <match lemma="andel" tags="n.*"> <select lemma="del"/> </match>
   </rule>
-  <rule weight="2.0" c="Andelen felte elg → Talet på felte elg (first in sentence)">
-    <match lemma="andel">
-      <select lemma="talet på"/>
-    </match>
-    <or>
-      <match tags="adj.pp.*"/>
-      <match tags="vblex.pp.*"/>
-      <match tags="vblex.pret.*"/>
-    </or>
-    <match tags="n.*"/>
+  <rule weight="3.0" c="en andel på → en andel på">
+    <match lemma="andel" tags="n.*"><select lemma="andel"/></match>
+    <match lemma="på"/>
   </rule>
-  <rule weight="2.0" c="Andelen eldre → Talet på eldre (first in sentence)">
-    <match lemma="andel">
-      <select lemma="talet på"/>
-    </match>
-    <or>
-      <match tags="adj.*"/>
-      <match tags="n.*"/>
-    </or>
+  <rule weight="3.0" c="andelen → andelen">
+    <match lemma="andel" tags="n.*.*.def.*"><select lemma="andel"/></match>
+  </rule>
+  <rule weight="3.0" c="andeler → andelar">
+    <match lemma="andel" tags="n.*.pl.*"><select lemma="andel"/></match>
   </rule>
   <rule weight="2.0" c="… andel (not first in sentence) → del">
     <match tags="*"/>
     <match lemma="andel"><select lemma="del"/></match>
+  </rule>
+  <rule weight="2.0" c="eierandel → eigardel">
+    <match tags="n.*.cmp"/>
+    <match lemma="andel" tags="n.*">
+      <select lemma="del"/>
+    </match>
   </rule>
   <!-- /andel -->
 
