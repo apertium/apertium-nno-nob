@@ -2,7 +2,8 @@
 
 BEGIN{
     OFS=FS=" "
-    while(getline<sgenf)s[$1][$2]++
+    while(getline<nob2nnosgenf)s[$1][$2]++
+    while(getline<nnosgenf)ns[$1][$2]++
     PROCINFO["sorted_in"]="@val_num_desc"
 }
 
