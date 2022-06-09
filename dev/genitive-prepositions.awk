@@ -11,6 +11,7 @@ $3 in s && $1 in s[$3]{
     bi[$3][$2][$1]++
     uni[$3][$2]++
     unio[$1][$2]++
+    biAllPr[$3][$1]++
     # print ":"$0
 }
 
@@ -64,6 +65,13 @@ END{
                     }
                 }
             }
+
+    for(head in ns) for(obj in ns[head]) {
+            if(ns[head][obj] > biAllPr[head][obj]) {
+                print "<!-- " head "s\t" obj " ? -->"
+            }
+        }
+
     PROCINFO["sorted_in"]="@ind_str_asc"
     print "\n<!-- Genitive preps where bigram frequency gt til -->"
     for(pr in bilist) {
