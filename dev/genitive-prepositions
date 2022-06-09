@@ -3,10 +3,8 @@
 outdir=nobackup/genitive-prepositions
 mkdir -p "${outdir}"
 
-test -f modes/nno-nob-disam-notrace.mode ||
-    sed 's/ -t / /g; s/ -w / /g' modes/nno-nob-disam.mode   > modes/nno-nob-disam-notrace.mode
-test -f modes/nob-nno-disam-notrace.mode ||
-    sed 's/ -t / /g; s/ -w / /g' modes/nob-nno-disam.mode > modes/nob-nno-disam-notrace.mode
+sed 's/ -t / /g; s/cg-proc *-w /cg-proc /g' modes/nno-nob-disam.mode > modes/nno-nob-disam-notrace.mode
+sed 's/ -t / /g; s/cg-proc *-w /cg-proc /g' modes/nob-nno-disam.mode > modes/nob-nno-disam-notrace.mode
 
 echo "${outdir}"/nno.disam
 nnols=$(xzcat  ~/corpora/nno/*ntb*xz | wc -l)
