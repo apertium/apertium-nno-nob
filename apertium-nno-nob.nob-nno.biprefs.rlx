@@ -81,6 +81,12 @@ REMOVE:røyndom_røyndom ("røynd"i) IF (0 ("røyndom"i));
 SELECT:beskrive_skildre  ("skildre"i) IF (0 ("beskrive"i) + (VAR:beskrive_skildre));
 REMOVE:beskrive_beskrive ("skildre"i) IF (0 ("beskrive"i));
 
+SELECT:mark_makk  ("makk"i) IF (0 ("mark"i) + (VAR:mark_makk));
+REMOVE:mark_mark ("makk"i) IF (0 ("mark"i));
+
+SELECT:nærast_nærmast  ("nærmast"i) IF (0 ("nærast"i) + (VAR:nærast_nærmast));
+REMOVE:nærast_nærast ("nærmast"i) IF (0 ("nærast"i));
+
 LIST lm_kross = ".*kross"ri;
 SELECT:kors_kross lm_kross + m IF (0 (VAR:kors_kross));
 REMOVE:kors_kross lm_kross + m;
@@ -95,6 +101,9 @@ REMOVE:mørke_mørke ("mørker"i) IF (0 ("mørke"i));
 
 SELECT:stemme_røyste ("røyste"i) IF (0 ("stemme"i) + (VAR:stemme_røyste));
 REMOVE:stemme_stemme ("røyste"i) IF (0 ("stemme"i));
+
+SELECT:stemmerett_røysterett ("røysterett"i) IF (0 ("stemmerett"i) + (VAR:stemmerett_røysterett));
+REMOVE:stemmerett_stemmerett ("røysterett"i) IF (0 ("stemmerett"i));
 
 LIST lm_attfortelje = "attfortelje"i "attforteljing"i "fortelje# att"i;
 SELECT:stemme_røyste lm_attfortelje IF (0 ("gjenfortelje"i) + (VAR:gjenfortelje_attfortelje));
