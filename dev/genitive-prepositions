@@ -7,27 +7,30 @@ sed 's/ -t / /g; s/cg-proc *-w /cg-proc /g' modes/nno-nob-disam.mode > modes/nno
 sed 's/ -t / /g; s/cg-proc *-w /cg-proc /g' modes/nob-nno-disam.mode > modes/nob-nno-disam-notrace.mode
 
 echo "${outdir}"/nno.disam
-nnols=$(xzcat  ~/corpora/nno/*ntb*xz | wc -l)
+nnols () { xzcat  ~/corpora/nno/*ntb*xz | wc -l; }
 test -f "${outdir}"/nno.disam ||
     xzcat  ~/corpora/nno/*ntb*xz              \
         | apertium -d . nno-nob-disam-notrace \
-        | pv -ls "${nnols}"                   \
+        | pv -ls "$(nnols)"                   \
              >"${outdir}"/nno.disam
 
 echo "${outdir}"/nno.sgen
 test -f "${outdir}"/nno.sgen ||
     <"${outdir}"/nno.disam                                                               \
     grep '/[^</$]*<n>[^/$]*<gen>[$] \^[^$]*<n>[^$]*[$]' -o                               \
+    | grep -v '<cmp'                                                                     \
+    | grep -v 'alphabet<'                                                                \
+    | sed -E 's,/[^/]*<(adj|vblex|adv|pr|ij|cnjsub|cnjcoo|np|det|xpst[so]?)>[^/$]*,,g'   \
     | sed 's,/[^$]*+,/,g;s,\^[^/]*,,;s,/[^$]*/,/,g;s/<\(sg\|pl\|sp\|def\|ind\|gen\)>//g' \
     | tr -d '/$'                                                                         \
       > "${outdir}"/nno.sgen                                                             \
 
 echo "${outdir}"/nob.disam
-nobls=$(xzcat  ~/corpora/nob/*ntb*xz | wc -l)
+nobls () { xzcat  ~/corpora/nob/*ntb*xz | wc -l; }
 test -f "${outdir}"/nob.disam ||
     xzcat  ~/corpora/nob/*ntb*xz              \
         | apertium -d . nob-nno-disam-notrace \
-        | pv -ls "${nobls}"                   \
+        | pv -ls "$(nobls)"                   \
         >"${outdir}"/nob.disam
 
 echo "${outdir}"/nob2nno.sgen
