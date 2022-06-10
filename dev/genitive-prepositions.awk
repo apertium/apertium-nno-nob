@@ -68,7 +68,7 @@ END{
 
     PROCINFO["sorted_in"]="@ind_str_asc"
     print "\n<!-- s-genitives found in TL corpus where bi-frequency lt top prepositional: -->"
-    print "\n<def-list n=\"bi-keep-gen-s\">"
+    print "\n<def-list n=\"bi-keep-gen-s\" c=\"Keep the s-genitive construction for these bigrams. Target-language lemmas.\">"
     for(head in ns) {
         hs=head;sub(/<.*/,"",hs)
         # if(umax_s[head] > umax[head] && umax_s[head] > 2)
