@@ -3,7 +3,7 @@
 BEGIN{
     OFS=FS=" "
     while(getline<nob2nnosgenf)s[$1][$2]++
-    while(getline<nnosgenf)ns[$1][$2]++
+    while(getline<nnosgenf){ ns[$1][$2]++; umax_s[$1]++; omax_s[$2]++; }
     PROCINFO["sorted_in"]="@val_num_desc"
 }
 
@@ -66,11 +66,24 @@ END{
                 }
             }
 
-    for(head in ns) for(obj in ns[head]) {
-            if(ns[head][obj] > biAllPr[head][obj]) {
-                print "<!-- " head "s\t" obj " ? -->"
+    PROCINFO["sorted_in"]="@ind_str_asc"
+    print "\n<!-- s-genitives found in TL corpus where bi-frequency lt top prepositional: -->"
+    print "\n<def-list n=\"bi-keep-gen-s\">"
+    for(head in ns) {
+        hs=head;sub(/<.*/,"",hs)
+        # if(umax_s[head] > umax[head] && umax_s[head] > 2)
+                # print hs "\t________\t" umax_s[head]
+        for(obj in ns[head]) {
+            os=obj;sub(/<.*/,"",os)
+            # if(omax_s[obj] > omax[obj] && omax_s[obj] > 2)
+                # print "________\t" obj "\t" omax_s[obj]
+            if(hs && os && ns[head][obj] > biAllPr[head][obj] && ns[head][obj] > 1) {
+                print "\t<list-item v=\""hs"_"os"\"/>\t<!-- "ns[head][obj] " -->"
+                # print hs "\t" os "\t" ns[head][obj]
             }
         }
+    }
+    print "</def-list>"
 
     PROCINFO["sorted_in"]="@ind_str_asc"
     print "\n<!-- Genitive preps where bigram frequency gt til -->"
