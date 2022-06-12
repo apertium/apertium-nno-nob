@@ -2168,7 +2168,7 @@
       </e>
       <e>
         <p><l>Spania<s n="np"/><s n="top"/><s n="gen"/><s n="Aa"/></l>          <r></r></p>  <par n="d:"/>
-        <p><l></l>            <r>spansk<s n="adj"/></r></p>
+        <p><l></l>            <r>spansk<s n="adj"/><s n="sint"/></r></p>
       </e>
       <e>
         <p><l>Sri<b/>Lanka<s n="np"/><s n="top"/><s n="gen"/><s n="Aa"/></l>          <r></r></p>  <par n="d:"/>
@@ -2354,24 +2354,45 @@
       </e>
     </pardef>
 
+    <pardef n="landsnamn-gen2adj-obj-mf-ind"> <!-- amerikansk økonomi -->
+      <e><i>økonomi<s n="n"/><s n="m"/></i></e>
+    </pardef>
+
     <pardef n="landsnamn-gen2adj-obj-mf">
       <e><i>hovedstad<s n="n"/><s n="m"/></i></e>
       <e><i>ambassade<s n="n"/><s n="m"/></i></e>
       <e><i>regjering<s n="n"/><s n="m"/></i></e>
       <e><i>regjering<s n="n"/><s n="f"/></i></e>
       <e><i>hær<s n="n"/><s n="m"/></i></e>
-      <e><i>utenriksdepartement<s n="n"/><s n="nt"/></i></e>
+      <e><i>sentralbank<s n="n"/><s n="m"/></i></e>
+      <e><par n="ncmp*"/><i>kyst<s n="n"/><s n="m"/></i></e>
+      <e><i>østkyst<s n="n"/><s n="m"/></i></e>
+      <e><i>vestkyst<s n="n"/><s n="m"/></i></e>
+      <e><i>økonomi<s n="n"/><s n="m"/></i></e>
+      <e><i>grense<s n="n"/><s n="f"/></i></e>
     </pardef>
 
     <pardef n="landsnamn-gen2adj-obj-nt">
-      <e>
-        <i><w/><s n="n"/><t/><s n="ind"/><s n="cmp"/><d/></i>
-        <i>departement<s n="n"/><s n="nt"/></i>
-      </e>
+      <e><par n="ncmp*"/><i>departement<s n="n"/><s n="nt"/></i></e>
+      <e><i>utenriksdepartement<s n="n"/><s n="nt"/></i></e>
       <e><i>landbruksdepartement<s n="n"/><s n="nt"/></i></e>
       <e><i>finansdepartement<s n="n"/><s n="nt"/></i></e>
       <e><i>samferdselsdepartement<s n="n"/><s n="nt"/></i></e>
       <e><i>konsulat<s n="n"/><s n="nt"/></i></e>
+      <e><par n="ncmp*"/><i>landslag<s n="n"/><s n="nt"/></i></e>
+      <e><i>fotballandslag<s n="n"/><s n="nt"/></i></e>
+    </pardef>
+
+    <pardef n="landsnamn-gen2adj-obj-pl">
+      <e><i>sanksjon<s n="n"/><s n="m"/></i></e>
+      <e><i>styrke<s n="n"/><s n="m"/></i></e>
+      <e><par n="ncmp*"/><i>herre<s n="n"/><s n="m"/></i></e>
+      <e><par n="ncmp*"/><i>herr<s n="n"/><s n="m"/></i></e>
+      <e><par n="ncmp*"/><i>dame<s n="n"/><t/></i></e>
+      <e><par n="ncmp*"/><i>mann<s n="n"/><s n="m"/></i></e>
+      <e><par n="ncmp*"/><i>kvinne<s n="n"/><t/></i></e>
+      <e><par n="ncmp*"/><i>gutt<s n="n"/><s n="m"/></i></e>
+      <e><par n="ncmp*"/><i>jente<s n="n"/><t/></i></e>
     </pardef>
 
     <pardef n="landsnamn-gen-på"> <!-- Øysamfunn -->
@@ -12835,7 +12856,22 @@
   <p><l><s n="sg"/><s n="ind"/><s n="aa"/></l> <r><s n="sg"/><s n="def"/><s n="aa"/></r></p> <par n="d"/>
 </e>
 
+<e lm="USAs sanksjoner -> de amerikanske sansjonene" c="dei amerikanske sansjonene">
+  <p><l></l>                   <r>den<s n="det"/><s n="dem"/><s n="un"/><s n="pl"/><s n="aa"/><d/></r></p>
+  <par n="landsnamn-gen2adj-def"/>
+  <par n="landsnamn-gen2adj-obj-pl"/> <!-- sanksjoner, styrker o.l. -->
+  <p><l><s n="pl"/><s n="ind"/><s n="aa"/></l> <r><s n="pl"/><s n="def"/><s n="aa"/></r></p> <par n="d"/>
+</e>
+
+<e lm="i Norges økonomi -> i norsk økonomi" c="i norsk økonomi">
+  <i><w/><s n="pr"/><t/></i> <par n="d"/>
+  <par n="landsnamn-gen2adj-ind-mf"/>
+  <par n="landsnamn-gen2adj-obj-mf-ind"/> <!-- økonomi o.l. -->
+  <i><s n="sg"/><s n="ind"/><s n="aa"/></i> <par n="d"/>
+</e>
+
 <e lm="Islands myndigheter -> myndighetene på Island" c="styresmaktene på Island" w="1.0">
+  <par n="ncmp*"/>
   <p><l></l>                   <r>myndighet<s n="n"/><s n="f"/><s n="pl"/><s n="def"/><s n="aa"/><d/></r></p>
   <p><l></l>                   <r>på<s n="pr"/><s n="aa"/><d/></r></p>  
   <par n="landsnamn-gen-på"/>
@@ -12844,6 +12880,7 @@
 </e>
 
 <e lm="Sveriges myndigheter -> myndighetene i Sverige" c="styresmaktene i Sverige" w="2.0">
+  <par n="ncmp*"/>
   <p><l></l>                   <r>myndighet<s n="n"/><s n="f"/><s n="pl"/><s n="def"/><s n="aa"/><d/></r></p>
   <p><l></l>                   <r>i<s n="pr"/><s n="aa"/><d/></r></p>
   <i><w/><s n="np"/><s n="top"/></i>
