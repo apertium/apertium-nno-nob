@@ -6496,10 +6496,73 @@
     <match lemma="ansikt"/>
   </rule>
 
-  <rule><match lemma="betydelig"><select lemma="betydeleg"/></match></rule>
+  <rule><match lemma="betydelig" tags="adv.*"><select lemma="betydeleg"/></match></rule>
+  <rule><match lemma="betydelig" tags="adj.*"><select lemma="stor"/></match></rule>
   <rule weight="2.0">
-    <match lemma="betydelig"><select lemma="stor"/></match>
-    <match lemma="fare"/>
+    <match lemma="en" tags="det.qnt.*"/>
+    <match lemma="betydelig" tags="adj.*"><select lemma="stor"/></match>
+  </rule>
+  <rule weight="2.0">
+    <match tags="vblex.*"/>
+    <match lemma="betydelig" tags="adv.*"><select lemma="mykje"/></match>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="betydelig" tags="adv.*"><select lemma="mykje"/></match>
+    <or>
+      <match tags="adj.comp.*"/>
+      <match tags="adj.sint.comp.*"/>
+    </or>
+  </rule>
+  <rule weight="3.0" c="godt over/under">
+    <match lemma="betydelig" tags="adv.*"><select lemma="betydeleg"/></match>
+    <or>
+      <match lemma="over"/>
+      <match lemma="under"/>
+    </or>
+  </rule>
+  <rule weight="3.0" c="betydelig mye > monaleg mykje">
+    <match lemma="betydelig" tags="adv.*"><select lemma="monaleg"/></match>
+    <match lemma="mye" tags="adj.sint.pst.*"/>
+  </rule>
+  <rule weight="4.0" c="betydelig flere > mange fleire">
+    <match lemma="betydelig" tags="adj.*"><select lemma="betydeleg"/></match>
+    <match lemma="mange" tags="adj.sint.comp.*"/>
+  </rule>
+  <rule weight="2.0" c="betydelig rolle > betydeleg rolle">
+    <match lemma="betydelig" tags="adj.*"><select lemma="betydeleg"/></match>
+    <match lemma="rolle"/>
+  </rule>
+  <rule weight="2.0" c="betydeleg skredfare">
+    <match lemma="betydelig" tags="adj.*"><select lemma="betydeleg"/></match>
+    <or>
+      <match lemma="fare"/>
+      <match lemma="rasfare"/>
+      <match lemma="skredfare"/>
+      <match lemma="flomfare"/>
+    </or>
+  </rule>
+  <rule weight="2.0" c="betydeleg snøskredfare">
+    <match lemma="betydelig" tags="adj.*"><select lemma="betydeleg"/></match>
+    <match tags="n.*.cmp"/>
+    <or>
+      <match lemma="fare"/>
+      <match lemma="rasfare"/>
+      <match lemma="skredfare"/>
+    </or>
+  </rule>
+  <rule weight="3.0" c="stor eller betydeleg">
+    <match tags="adj.*"/>
+    <match lemma="eller"/>
+    <match lemma="betydelig" tags="adj.*"><select lemma="betydeleg"/></match>
+  </rule>
+  <rule weight="3.0" c="betydeleg eller stor">
+    <match lemma="betydelig" tags="adj.*"><select lemma="betydeleg"/></match>
+    <match lemma="eller"/>
+    <match tags="adj.*"/>
+  </rule>
+  <rule weight="3.0">
+    <match lemma="betydelig" tags="adv.*"><select lemma="monaleg"/></match>
+    <match tags="vblex.pp.*"/>
   </rule>
 
   <rule><match lemma="feste# sin lit" tags="vblex.*"><select lemma="setje# sin lit"/></match></rule>
