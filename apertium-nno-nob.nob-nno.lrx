@@ -11090,6 +11090,16 @@ preposisjonar gir ekstra utfordringar. -->
       <match lemma="handling"/>
     </or>
   </rule>
+  <rule weight="2.0">
+    <match lemma="drap"/>
+    <repeat from="0" upto="1">
+      <match tags="vblex.*"/>
+    </repeat>
+    <or>
+      <match lemma="overlegge" tags="adj.*"><select lemma="overlegge"/></match>
+      <match lemma="overlegge" tags="vblex.pp.*"><select lemma="overlegge"/></match>
+    </or>
+  </rule>
 
   <!-- MWE VS CMP: Remove multiword expressions from compounds, otherwise prefer them. -->
   <rule c="after cmp"><match tags="*.cmp"/>   <match><remove contains="#"/></match></rule>
