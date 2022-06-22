@@ -5605,6 +5605,12 @@
     <match lemma="til"/>
   </rule>
 
+  <rule><match lemma="hevning" tags="n.*"><select lemma="hemning"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="rente"/>
+    <match lemma="hevning" tags="n.*"><select lemma="heving"/></match>
+  </rule>
+
   <rule><match lemma="beklageligvis" tags="adv.*"><select lemma="dessverre"/></match></rule>
 
   <rule><match lemma="bekymring" tags="n.*"><select lemma="bekymring"/></match></rule>
@@ -7436,6 +7442,17 @@
     <match lemma="avholde" tags="adj.pprs.*"><select lemma="avhalde"/></match>
   </rule>
 
+  <rule weight="2.0"> <!-- vedtok lovgiverne enstemmig, men med 14 avholdende -->
+  <or>
+    <match lemma="stemme"/>
+    <match lemma="enstemmig"/>
+  </or>
+  <repeat from="0" upto="5">
+    <match tags=".*"/>
+  </repeat>
+    <match lemma="avholde" tags="adj.*"><select lemma="avhalde"/></match>
+  </rule>
+
   <rule>
     <match lemma="avholde" tags="adj.*"><select lemma="halde"/></match>
   </rule>
@@ -7458,9 +7475,7 @@
   <rule> <!-- Kasich skal avholde seg fra valgkamp i Indiana. -->
     <match lemma="avholde# seg fra" tags="vblex.*"><select lemma="halde# seg unna"/></match>
     <repeat from="0" upto="1">
-    <or>
       <match tags="adj.*"/>
-    </or>
     </repeat>
     <match tags="n.*"/>
   </rule>
@@ -7468,9 +7483,7 @@
   <rule> <!-- Jeg har derfor besluttet at jeg fra i dag av avholder meg fra enhver offentlig uttalelse. -->
     <match lemma="avholde# meg fra" tags="vblex.*"><select lemma="halde# meg unna"/></match>
     <repeat from="0" upto="1">
-    <or>
       <match tags="adj.*"/>
-    </or>
     </repeat>
     <match tags="n.*"/>
   </rule>
@@ -7478,9 +7491,7 @@
   <rule> <!-- Vi skal avholde oss fra valgkampeb i Indiana. -->
     <match lemma="avholde# oss fra" tags="vblex.*"><select lemma="halde# oss unna"/></match>
     <repeat from="0" upto="1">
-    <or>
       <match tags="adj.*"/>
-    </or>
     </repeat>
     <match tags="n.*"/>
   </rule>
@@ -7505,9 +7516,7 @@
   <rule weight="2.0"> <!-- argentineren fikk Ruud til å bevege mye på seg. -->
     <match lemma="bevege" tags="vblex.*"><select lemma="røre"/></match>
     <repeat from="0" upto="2">
-    <or>
       <match tags="adj.*"/>
-    </or>
     </repeat>
     <match lemma="på"/>
     <match lemma="seg"/>
