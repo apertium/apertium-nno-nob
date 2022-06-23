@@ -1000,6 +1000,7 @@
     <def-var n="out_lemq"       c="lemq part to output after chunk"/>
     <def-var n="lemq-skip"      c="whether lemq can skip ndef's"/>
     <def-var n="det_gen"/>
+    <def-var n="tmp"/>
     <def-var n="lemma"          c="Used within macros"/>
     <def-var n="brlemma"        c="Only used for 'britenes statsminister'-rule"/>
     <def-var n="mwe-queue"      c="Must be output before next verb or sent. TODO: There should be an EOF-rule in case nothing at end."/>
@@ -5491,6 +5492,7 @@
                     <test><equal><clip pos="1" side="ref" part="nbr"/><lit-tag v="pl"/></equal></test>
                     <let><var n="pp_nbr"/><lit-tag v="pl"/></let>
                     <let><var n="pp_gen"/><lit-tag v="un"/></let> <!-- just some nonempty value we can override the slot in t2x -->
+                    <!-- <let><var n="tmp"/><concat><lit v="["/><var n="pp_nbr"/><lit v="!]"/></concat></let><out><var n="tmp"/></out> -->
                   </when>
                   <otherwise>
                     <let><var n="pp_nbr"/><lit-tag v="sg"/></let>
@@ -5499,6 +5501,7 @@
                       <test><equal><clip pos="1" side="ref" part="gen"/><lit-tag v="nt"/></equal></test>
                       <let><var n="pp_gen"/><lit-tag v="nt"/></let>
                     </when></choose>
+                    <!-- <let><var n="tmp"/><concat><lit v="["/><var n="pp_gen"/><lit v="!]"/></concat></let><out><var n="tmp"/></out> -->
                   </otherwise>
                 </choose>
                 <out>
