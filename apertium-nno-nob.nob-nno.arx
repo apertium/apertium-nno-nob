@@ -6,7 +6,7 @@
     <delimiter>
         <parameter-item has-tags="sent"/>
         <parameter-item has-tags="clb"/>
-        <parameter-item has-tags="cnjsub"/>
+        <!-- <parameter-item has-tags="cnjsub"/> -->
     </delimiter>
 
     <!-- <def-parameter n="adjpp_OR_pasv"> -->
@@ -25,6 +25,7 @@
         <parameter-item has-tags="n f"    exclude-tags="cmp"/>
         <parameter-item has-tags="n"      exclude-tags="cmp"/>
         <parameter-item has-tags="prn pers"/>
+        <parameter-item has-tags="expl"/>
       </antecedent>
     </def-parameter>
 
@@ -50,8 +51,18 @@
       <cat-item has-tags="n"/>
     </def-cat>
 
+    <def-cat n="nom_OR_pers">
+      <cat-item has-tags="n"/>
+      <cat-item has-tags="prn pers"/>
+      <cat-item has-tags="expl"/>
+    </def-cat>
+
     <def-cat n="cnjsub">
       <cat-item has-tags="cnjsub"/>
+    </def-cat>
+
+    <def-cat n="w_som">
+      <cat-item lemma="som"/>
     </def-cat>
 
     <def-cat n="np">
@@ -73,28 +84,38 @@
     <markable n="CNJSUB_SUBJ">  <!-- ord etter cnjsub meir sannsynlege -->
       <pattern>
         <pattern-item n="cnjsub"/>
-        <pattern-item n="nom" head="t"/>
+        <pattern-item n="nom_OR_pers" head="t"/>
       </pattern>
       <pattern>
         <pattern-item n="cnjsub"/>
         <pattern-item n="ncmp"/>
-        <pattern-item n="nom" head="t"/>
-      </pattern>
-      <pattern>
-        <pattern-item n="cnjsub"/>
-        <pattern-item n="ncmp"/>
-        <pattern-item n="ncmp"/>
-        <pattern-item n="nom" head="t"/>
+        <pattern-item n="nom_OR_pers" head="t"/>
       </pattern>
       <pattern>
         <pattern-item n="cnjsub"/>
         <pattern-item n="ncmp"/>
         <pattern-item n="ncmp"/>
+        <pattern-item n="nom_OR_pers" head="t"/>
+      </pattern>
+      <pattern>
+        <pattern-item n="cnjsub"/>
         <pattern-item n="ncmp"/>
-        <pattern-item n="nom" head="t"/>
+        <pattern-item n="ncmp"/>
+        <pattern-item n="ncmp"/>
+        <pattern-item n="nom_OR_pers" head="t"/>
       </pattern>
 
-      <score n="10"/>
+      <score n="3"/>
+    </markable>
+
+
+    <markable n="SUBJ_SOM">  <!-- ord rett før som meir sannsynlege -->
+      <pattern>
+        <pattern-item n="nom_OR_pers" head="t"/>
+        <pattern-item n="w_som"/>
+      </pattern>
+
+      <score n="3"/>
     </markable>
 
     <markable n="PP">           <!-- preposisjonsfrasar mindre sannsynlege -->
