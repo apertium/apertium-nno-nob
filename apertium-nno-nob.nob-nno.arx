@@ -17,20 +17,20 @@
       </anaphor>
 
       <antecedent>
-        <parameter-item has-tags="np ant" exclude-tags="cmp"/>
-        <parameter-item has-tags="np cog" exclude-tags="cmp"/>
-        <parameter-item has-tags="np org" exclude-tags="cmp"/>
-        <parameter-item has-tags="n m"    exclude-tags="cmp"/>
-        <parameter-item has-tags="n ut"   exclude-tags="cmp"/>
-        <parameter-item has-tags="n nt"   exclude-tags="cmp"/>
-        <parameter-item has-tags="n f"    exclude-tags="cmp"/>
-        <parameter-item has-tags="n"      exclude-tags="cmp"/>
+        <parameter-item has-tags="np ant" exclude-tags="cmp cmp-split"/>
+        <parameter-item has-tags="np cog" exclude-tags="cmp cmp-split"/>
+        <parameter-item has-tags="np org" exclude-tags="cmp cmp-split"/>
+        <parameter-item has-tags="n m"    exclude-tags="cmp cmp-split"/>
+        <parameter-item has-tags="n ut"   exclude-tags="cmp cmp-split"/>
+        <parameter-item has-tags="n nt"   exclude-tags="cmp cmp-split"/>
+        <parameter-item has-tags="n f"    exclude-tags="cmp cmp-split"/>
+        <parameter-item has-tags="n"      exclude-tags="cmp cmp-split"/>
         <parameter-item has-tags="prn pers"/>
         <parameter-item has-tags="expl"/>          <!-- at det gjøres endringer-->
         <parameter-item has-tags="det dem nt sg"/> <!-- Dette gjøres -->
         <parameter-item has-tags="det dem un pl"/> <!-- De første -->
-        <parameter-item has-tags="den dem m sg"/>  <!-- Den første -->
-        <parameter-item has-tags="den dem nt sg"/> <!-- Det første -->
+        <parameter-item has-tags="det dem m sg"/>  <!-- Den første -->
+        <parameter-item has-tags="det dem nt sg"/> <!-- Det første -->
         <parameter-item lemma="mye" has-tags="adj nt sg"/> <!-- Mye tas i bruk -->
       </antecedent>
     </def-parameter>
@@ -40,8 +40,24 @@
 
 
   <section-def-cats>
+    <def-cat n="pres">
+      <cat-item has-tags="pres"/>
+    </def-cat>
+    <def-cat n="inf">
+      <cat-item has-tags="inf"/>
+    </def-cat>
+
+    <def-cat n="pasv">
+      <cat-item has-tags="pasv"/>
+    </def-cat>
+
     <def-cat n="det">
       <cat-item has-tags="det"/>
+    </def-cat>
+
+    <def-cat n="maybe_expl">
+      <cat-item has-tags="expl"/>
+      <cat-item lemma="den" has-tags="nt sg"/> <!-- allow for some mistagging -->
     </def-cat>
 
     <def-cat n="adj">
@@ -73,6 +89,9 @@
     <def-cat n="w_som">
       <cat-item lemma="som"/>
     </def-cat>
+    <def-cat n="w_antall">
+      <cat-item lemma="antall"/>
+    </def-cat>
 
     <def-cat n="np">
       <cat-item has-tags="np"/>
@@ -84,10 +103,10 @@
     <def-cat n="pr">
       <cat-item has-tags="pr"/>
     </def-cat>
- 
+
     <def-cat n="cm">
       <cat-item has-tags="cm"/>
-    </def-cat> 
+    </def-cat>
     <def-cat n="lpar">
       <cat-item has-tags="lpar"/>
     </def-cat>
@@ -151,6 +170,17 @@
     <markable n="SUBJ_SOM">  <!-- ord rett før som meir sannsynlege -->
       <pattern>
         <pattern-item n="nom_OR_pers" head="t"/>
+        <pattern-item n="w_som"/>
+      </pattern>
+      <pattern>
+        <pattern-item n="nom_OR_pers" head="t"/> <!-- ansatte ved sykehus som -->
+        <pattern-item n="pr"/>
+        <pattern-item n="nom"/>
+        <pattern-item n="w_som"/>
+      </pattern>
+      <pattern>
+        <pattern-item n="nom_OR_pers" head="t"/> <!-- nokre punkt, som -->
+        <pattern-item n="cm"/>
         <pattern-item n="w_som"/>
       </pattern>
       <pattern>
@@ -262,12 +292,12 @@
       </pattern>
       <pattern>
         <pattern-item n="np"/>
-        <pattern-item n="np"/>
+        <pattern-item n="np" head="t"/>
       </pattern>
       <pattern>
         <pattern-item n="np"/>
         <pattern-item n="np"/>
-        <pattern-item n="np"/>
+        <pattern-item n="np" head="t"/>
       </pattern>
       <score n="1"/>
     </markable>
@@ -286,6 +316,39 @@
         <pattern-item n="npgen"/>
       </pattern>
       <score n="-2"/>
+    </markable>
+
+    <markable n="EXPL_PRES_INF"> <!-- Det kan være -->
+      <pattern>
+        <pattern-item n="maybe_expl" head="t"/>
+        <pattern-item n="pres"/>
+        <pattern-item n="inf"/>
+      </pattern>
+      <score n="-1"/>
+    </markable>
+
+    <markable n="EXPL_PASV">
+      <pattern>
+        <pattern-item n="maybe_expl" head="t"/>
+        <pattern-item n="pasv"/>
+      </pattern>
+      <score n="1"/>
+    </markable>
+
+    <markable n="ANTALL_NOM">
+      <pattern>
+        <pattern-item n="w_antall" head="t"/>
+        <pattern-item n="nom"/>
+      </pattern>
+      <score n="1"/>
+    </markable>
+
+    <markable n="NOM_PASV">     <!-- Det kan være bare timer fra en sikkerhetsoppdatering slippes fra en leverandør -->
+      <pattern>                 <!-- Det er andre gang mannen dømmes -->
+        <pattern-item n="nom"/>
+        <pattern-item n="pasv"/>
+      </pattern>
+      <score n="1"/>
     </markable>
 
   </section-markables>
