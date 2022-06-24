@@ -875,6 +875,16 @@
       <attr-item tags="cmp"/>
       <attr-item tags="cmp-split"/>
     </def-attr>
+    <def-attr n="a_prop">
+      <attr-item tags="cog"/>
+      <attr-item tags="ant"/>
+      <attr-item tags="org"/>
+      <attr-item tags="top"/>
+      <attr-item tags="al"/>
+      <attr-item tags="attr"/>
+      <attr-item tags="cgguess"/>
+      <attr-item tags="guess"/>
+    </def-attr>
     <def-attr n="persona">
       <attr-item tags="p1"/>
       <attr-item tags="p2"/>
@@ -5501,10 +5511,16 @@
                   </when>
                   <otherwise>
                     <let><var n="pp_nbr"/><lit-tag v="sg"/></let>
-                    <let><var n="pp_gen"/><lit-tag v="mf"/></let>
+                    <let><var n="pp_gen"/><lit-tag v="nt"/></let>
                     <choose><when>
-                      <test><equal><clip pos="1" side="ref" part="gen"/><lit-tag v="nt"/></equal></test>
-                      <let><var n="pp_gen"/><lit-tag v="nt"/></let>
+                      <test><or>
+                        <equal><clip pos="1" side="ref" part="gen"/><lit-tag v="mf"/></equal>
+                        <equal><clip pos="1" side="ref" part="gen"/><lit-tag v="f"/></equal>
+                        <equal><clip pos="1" side="ref" part="gen"/><lit-tag v="m"/></equal>
+                        <equal><clip pos="1" side="ref" part="a_prop"/><lit-tag v="cog"/></equal>
+                        <equal><clip pos="1" side="ref" part="a_prop"/><lit-tag v="ant"/></equal>
+                      </or></test>
+                      <let><var n="pp_gen"/><lit-tag v="mf"/></let>
                     </when></choose>
                     <!-- <let><var n="tmp"/><concat><lit v="["/><var n="pp_gen"/><lit v="!]"/></concat></let><out><var n="tmp"/></out> -->
                   </otherwise>
