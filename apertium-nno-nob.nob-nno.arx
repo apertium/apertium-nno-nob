@@ -32,6 +32,9 @@
         <parameter-item has-tags="det dem m sg"/>  <!-- Den første -->
         <parameter-item has-tags="det dem nt sg"/> <!-- Det første -->
         <parameter-item lemma="mye" has-tags="adj nt sg"/> <!-- Mye tas i bruk -->
+        <parameter-item lemma="hvor mange" has-tags="det"/> <!-- hvor mange som friskmeldes -->
+        <parameter-item lemma="all" has-tags="det"/>
+        <parameter-item lemma="noe" has-tags="det"/>
       </antecedent>
     </def-parameter>
 
@@ -89,8 +92,14 @@
     <def-cat n="w_som">
       <cat-item lemma="som"/>
     </def-cat>
+    <def-cat n="w_noe">
+      <cat-item lemma="noe"/>
+    </def-cat>
     <def-cat n="w_antall">
       <cat-item lemma="antall"/>
+    </def-cat>
+    <def-cat n="w_hvor_mange">
+      <cat-item lemma="hvor mange"/>
     </def-cat>
 
     <def-cat n="np">
@@ -181,6 +190,14 @@
       <pattern>
         <pattern-item n="nom_OR_pers" head="t"/> <!-- nokre punkt, som -->
         <pattern-item n="cm"/>
+        <pattern-item n="w_som"/>
+      </pattern>
+      <pattern>
+        <pattern-item n="w_hvor_mange" head="t"/>
+        <pattern-item n="w_som"/>
+      </pattern>
+      <pattern>
+        <pattern-item n="w_noe" head="t"/>
         <pattern-item n="w_som"/>
       </pattern>
       <pattern>
