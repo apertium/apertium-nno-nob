@@ -6,7 +6,8 @@
     <delimiter>
         <parameter-item has-tags="sent"/>
         <parameter-item has-tags="clb"/>
-        <!-- <parameter-item has-tags="cnjsub"/> -->
+        <!-- <parameter-item has-tags="cnjsub"/>
+        TODO: https://github.com/apertium/apertium-anaphora/issues/49 -->
     </delimiter>
 
     <!-- <def-parameter n="adjpp_OR_pasv"> -->
@@ -109,6 +110,10 @@
       <cat-item has-tags="np gen"/>
     </def-cat>
 
+    <def-cat n="ngen">
+      <cat-item has-tags="n gen"/>
+    </def-cat>
+
     <def-cat n="pr">
       <cat-item has-tags="pr"/>
     </def-cat>
@@ -175,6 +180,26 @@
       <score n="2"/>
     </markable>
 
+    <markable n="DETMOD"> <!-- score modifying determinatives/adj's a little lower (we only want *lone* det/adj to be antecedents) -->
+      <!-- TODO: https://github.com/apertium/apertium-anaphora/issues/50 -->
+      <pattern>
+        <pattern-item n="det"/>
+        <pattern-item n="det"/>
+        <pattern-item n="nom"/>
+      </pattern>
+      <pattern>
+        <pattern-item n="det"/>
+        <pattern-item n="nom"/>
+      </pattern>
+      <pattern>
+        <pattern-item n="det"/>
+        <pattern-item n="adj"/>
+        <pattern-item n="nom"/>
+      </pattern>
+
+      <score n="-1"/>
+    </markable>
+
 
     <markable n="SUBJ_SOM">  <!-- ord rett før som meir sannsynlege -->
       <pattern>
@@ -213,6 +238,7 @@
     </markable>
 
     <markable n="PP">           <!-- preposisjonsfrasar mindre sannsynlege -->
+      <!-- TODO: https://github.com/apertium/apertium-anaphora/issues/48 -->
       <pattern>
         <pattern-item n="pr"/>
         <pattern-item n="det"/>
@@ -320,6 +346,9 @@
     </markable>
 
     <markable n="PNP_GEN">          <!-- genitivsnamn mindre sannsynlege: Benjamin<not antecedent!> Netanyahus samlingsregjering<antecedent!> -->
+      <pattern>
+        <pattern-item n="ngen"/>
+      </pattern>
       <pattern>
         <pattern-item n="npgen"/>
       </pattern>

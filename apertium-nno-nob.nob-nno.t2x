@@ -674,6 +674,9 @@
 
     <def-macro n="set_ana" npar="1"
                c="arg.1: noun or verb. Set vars for for later use by modify_pp_gender">
+      <!-- TODO: when
+           https://github.com/apertium/apertium-anaphora/issues/28 we
+           can use arx and throw out all ana-stuff from this file -->
       <choose>
         <when>
           <test><equal><var n="ana_temps"/><lit v=""/></equal></test>
