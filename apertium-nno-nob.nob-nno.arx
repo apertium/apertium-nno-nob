@@ -9,21 +9,13 @@
         <parameter-item has-tags="cnjsub"/>
     </delimiter>
 
-    <def-parameter n="adjpp_OR_pasv">
+    <def-parameter n="ana_pasv">
       <anaphor>
-        <parameter-item has-tags="adj pp"/>
         <parameter-item has-tags="pasv"/>
       </anaphor>
 
       <antecedent>
-        <parameter-item has-tags="np ant" exclude-tags="cmp"/>
-        <parameter-item has-tags="np cog" exclude-tags="cmp"/>
-        <parameter-item has-tags="n m"    exclude-tags="cmp"/>
-        <parameter-item has-tags="n ut"   exclude-tags="cmp"/>
-        <parameter-item has-tags="n nt"   exclude-tags="cmp"/>
-        <parameter-item has-tags="n f"    exclude-tags="cmp"/>
-        <parameter-item has-tags="n"      exclude-tags="cmp"/>
-        <parameter-item has-tags="prn pers"/>
+        <parameter-item has-tags="@subj"/>
       </antecedent>
     </def-parameter>
 
@@ -32,36 +24,9 @@
 
 
   <section-def-cats>
-    <def-cat n="det">
-      <cat-item has-tags="det"/>
-      <cat-item has-tags="det pos"/>
-    </def-cat>
 
-    <def-cat n="ind">
-      <cat-item has-tags="det qnt"/>
-    </def-cat>
-
-    <def-cat n="ncmp">
-      <cat-item has-tags="n cmp"/>
-    </def-cat>
-
-    <def-cat n="nom">
-      <cat-item has-tags="n"/>
-    </def-cat>
-
-    <def-cat n="cnjsub">
-      <cat-item has-tags="cnjsub"/>
-    </def-cat>
-
-    <def-cat n="np">
-      <cat-item has-tags="np"/>
-    </def-cat>
-    <def-cat n="npgen">
-      <cat-item has-tags="np gen"/>
-    </def-cat>
-
-    <def-cat n="prep">
-      <cat-item has-tags="pr"/>
+    <def-cat n="obj">
+      <cat-item has-tags="@obj"/>
     </def-cat>
 
   </section-def-cats>
@@ -69,124 +34,12 @@
 
   <section-markables>
 
-    <markable n="CNJSUB_SUBJ">  <!-- ord etter cnjsub meir sannsynlege -->
+    <markable n="MAYBE_OBJ">
       <pattern>
-        <pattern-item n="cnjsub"/>
-        <pattern-item n="nom" head="t"/>
-      </pattern>
-      <pattern>
-        <pattern-item n="cnjsub"/>
-        <pattern-item n="ncmp"/>
-        <pattern-item n="nom" head="t"/>
-      </pattern>
-      <pattern>
-        <pattern-item n="cnjsub"/>
-        <pattern-item n="ncmp"/>
-        <pattern-item n="ncmp"/>
-        <pattern-item n="nom" head="t"/>
-      </pattern>
-      <pattern>
-        <pattern-item n="cnjsub"/>
-        <pattern-item n="ncmp"/>
-        <pattern-item n="ncmp"/>
-        <pattern-item n="ncmp"/>
-        <pattern-item n="nom" head="t"/>
-      </pattern>
-
-      <score n="10"/>
-    </markable>
-
-    <markable n="PP">           <!-- preposisjonsfrasar mindre sannsynlege -->
-      <pattern>
-        <pattern-item n="prep"/>
-        <pattern-item n="det"/>
-        <pattern-item n="nom" head="t"/>
-      </pattern>
-      <pattern>
-        <pattern-item n="prep"/>
-        <pattern-item n="det"/>
-        <pattern-item n="ncmp"/>
-        <pattern-item n="nom" head="t"/>
-      </pattern>
-      <pattern>
-        <pattern-item n="prep"/>
-        <pattern-item n="det"/>
-        <pattern-item n="ncmp"/>
-        <pattern-item n="ncmp"/>
-        <pattern-item n="nom" head="t"/>
-      </pattern>
-      <pattern>
-        <pattern-item n="prep"/>
-        <pattern-item n="det"/>
-        <pattern-item n="ncmp"/>
-        <pattern-item n="ncmp"/>
-        <pattern-item n="ncmp"/>
-        <pattern-item n="nom" head="t"/>
-      </pattern>
-      <pattern>
-        <pattern-item n="prep"/>
-        <pattern-item n="nom" head="t"/>
-      </pattern>
-      <pattern>
-        <pattern-item n="prep"/>
-        <pattern-item n="ncmp"/>
-        <pattern-item n="nom" head="t"/>
-      </pattern>
-      <pattern>
-        <pattern-item n="prep"/>
-        <pattern-item n="ncmp"/>
-        <pattern-item n="ncmp"/>
-        <pattern-item n="nom" head="t"/>
-      </pattern>
-      <pattern>
-        <pattern-item n="prep"/>
-        <pattern-item n="ncmp"/>
-        <pattern-item n="ncmp"/>
-        <pattern-item n="ncmp"/>
-        <pattern-item n="nom" head="t"/>
+        <pattern-item n="obj"/>
       </pattern>
 
       <score n="-1"/>
-    </markable>
-
-    <markable n="IP">           <!-- «en bil» mindre sannsynleg enn t.d. «bilen»(?) -->
-      <pattern>
-        <pattern-item n="ind"/>
-        <pattern-item n="nom"/>
-      </pattern>
-      <score n="-1"/>
-    </markable>
-
-    <markable n="PNP">          <!-- namn meir sannsynlege -->
-      <pattern>
-        <pattern-item n="np"/>
-      </pattern>
-      <pattern>
-        <pattern-item n="np"/>
-        <pattern-item n="np"/>
-      </pattern>
-      <pattern>
-        <pattern-item n="np"/>
-        <pattern-item n="np"/>
-        <pattern-item n="np"/>
-      </pattern>
-      <score n="1"/>
-    </markable>
-
-    <markable n="PNP_GEN">          <!-- genitivsnamn mindre sannsynlege: Benjamin<not antecedent!> Netanyahus samlingsregjering<antecedent!> -->
-      <pattern>
-        <pattern-item n="npgen"/>
-      </pattern>
-      <pattern>
-        <pattern-item n="np"/>
-        <pattern-item n="npgen"/>
-      </pattern>
-      <pattern>
-        <pattern-item n="np"/>
-        <pattern-item n="np"/>
-        <pattern-item n="npgen"/>
-      </pattern>
-      <score n="-2"/>
     </markable>
 
   </section-markables>

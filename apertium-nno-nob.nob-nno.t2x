@@ -451,6 +451,7 @@
     <def-attr n="gen">
       <attr-item tags="m"/>
       <attr-item tags="mf"/>
+      <attr-item tags="un"/>
       <attr-item tags="nt"/>
       <attr-item tags="f"/>
       <attr-item tags="GD"/>
@@ -548,6 +549,7 @@
     <def-var n="ana_gen_m-f" c="m or f"/>
     <def-var n="ana_nbr"/>
     <def-var n="ana_temps" c="Last seen finite verb temps (pres/pret)"/>
+    <def-var n="tmp"/>
   </section-def-vars>
 
   <section-def-lists>
@@ -672,6 +674,9 @@
 
     <def-macro n="set_ana" npar="1"
                c="arg.1: noun or verb. Set vars for for later use by modify_pp_gender">
+      <!-- TODO: when
+           https://github.com/apertium/apertium-anaphora/issues/28 we
+           can use arx and throw out all ana-stuff from this file -->
       <choose>
         <when>
           <test><equal><var n="ana_temps"/><lit v=""/></equal></test>
@@ -724,24 +729,55 @@
         </when>
       </choose>
     </def-macro>
+
     <def-macro n="modify_pp_gen_nbr" npar="1"
                c="arg.1: adj.pp / vblex.pp
                   Assumes set_ana only sets variable combinations that are OK for adj.pp's">
+      <let><var n="tmp"/><lit v=""/></let>
       <choose><when>
         <test><equal><clip pos="1" part="tags"/><lit-tag v="vblex.pp"/></equal></test>
+        <let><var n="tmp"/><concat><lit v="["/><clip pos="1" part="tags"/><lit v="]"/></concat></let>
+        <!-- <out><var n="tmp"/></out> -->
         <let><clip pos="1" part="tags"/><lit-tag v="adj.pp.nt.sg.ind"/></let>
         <let><clip pos="1" part="lemh"/><lit v="adj"/></let>
       </when></choose>
       <choose><when>
         <test><not><equal><var n="ana_nbr"/><lit v=""/></equal></not></test>
+        <choose><when>
+          <test><and>
+            <not><equal><clip pos="1" part="nbr"/><var n="ana_nbr"/></equal></not>
+            <equal><var n="tmp"/><lit v=""/></equal>
+          </and></test>
+          <let><var n="tmp"/><concat><lit v="["/><clip pos="1" part="nbr"/><clip pos="1" part="gen"/><lit v="→"/><var n="ana_nbr"/><var n="ana_gen"/><lit v="]"/></concat></let>
+          <!-- <out><var n="tmp"/></out> -->
+        </when></choose>
+
         <let><clip pos="1" part="nbr"/><var n="ana_nbr"/></let>
         <let><clip pos="1" part="gen"/><var n="ana_gen"/></let>
       </when></choose>
       <choose><when>
         <test><equal><clip pos="1" part="nbr"/><lit-tag v="pl"/></equal></test>
         <let><clip pos="1" part="art"/><lit v=""/></let>
+        <let><clip pos="1" part="gen"/><lit v=""/></let>
       </when></choose>
     </def-macro>
+    <def-macro n="modify_pp_gen_nbr_NOANA" npar="1"
+               c="arg.1: adj.pp / vblex.pp">
+      <let><var n="tmp"/><lit v=""/></let>
+      <choose><when>
+        <test><equal><clip pos="1" part="tags"/><lit-tag v="vblex.pp"/></equal></test>
+        <let><var n="tmp"/><concat><lit v="["/><clip pos="1" part="tags"/><lit v="]"/></concat></let>
+        <!-- <out><var n="tmp"/></out> -->
+        <let><clip pos="1" part="tags"/><lit-tag v="adj.pp.nt.sg.ind"/></let>
+        <let><clip pos="1" part="lemh"/><lit v="adj"/></let>
+      </when></choose>
+      <choose><when>
+        <test><equal><clip pos="1" part="nbr"/><lit-tag v="pl"/></equal></test>
+        <let><clip pos="1" part="art"/><lit v=""/></let>
+        <let><clip pos="1" part="gen"/><lit v=""/></let>
+      </when></choose>
+    </def-macro>
+
     <def-macro n="modify_prn_gen" npar="1"
                c="arg.1: prn">
       <choose><when>
@@ -1054,7 +1090,7 @@
         <pattern-item n="adjpart"/>
       </pattern>
       <action>
-        <call-macro n="modify_pp_gen_nbr"><with-param pos="2"/></call-macro>
+        <call-macro n="modify_pp_gen_nbr_NOANA"><with-param pos="2"/></call-macro>
         <out>
           <chunk>
             <clip pos="1" part="whole"/>
@@ -1075,6 +1111,7 @@
       </pattern>
       <action>
         <call-macro n="modify_prn_gen"><with-param pos="3"/></call-macro>
+        <call-macro n="set_ana"><with-param pos="3"/></call-macro>
         <call-macro n="modify_pp_gen_nbr"><with-param pos="2"/></call-macro>
         <out>
           <chunk>
@@ -1102,6 +1139,7 @@
         <pattern-item n="adv_movable"/>
       </pattern>
       <action>
+        <call-macro n="set_ana"><with-param pos="3"/></call-macro>
         <call-macro n="modify_prn_gen"><with-param pos="3"/></call-macro>
         <call-macro n="modify_pp_gen_nbr"><with-param pos="2"/></call-macro>
         <out>
@@ -1133,7 +1171,7 @@
         <pattern-item n="adv_movable"/>
       </pattern>
       <action>
-        <call-macro n="modify_pp_gen_nbr"><with-param pos="2"/></call-macro>
+        <call-macro n="modify_pp_gen_nbr_NOANA"><with-param pos="2"/></call-macro>
         <out>
           <chunk>
             <clip pos="1" part="whole"/>
@@ -1160,7 +1198,7 @@
         <pattern-item n="adv_movable"/>
       </pattern>
       <action>
-        <call-macro n="modify_pp_gen_nbr"><with-param pos="2"/></call-macro>
+        <call-macro n="modify_pp_gen_nbr_NOANA"><with-param pos="2"/></call-macro>
         <out>
           <chunk>
             <clip pos="1" part="whole"/>
@@ -1191,7 +1229,7 @@
         <pattern-item n="adv_movable"/>
       </pattern>
       <action>
-        <call-macro n="modify_pp_gen_nbr"><with-param pos="2"/></call-macro>
+        <call-macro n="modify_pp_gen_nbr_NOANA"><with-param pos="2"/></call-macro>
         <out>
           <chunk>
             <clip pos="1" part="whole"/>
@@ -1223,7 +1261,7 @@
         <pattern-item n="adv_movable"/>
       </pattern>
       <action>
-        <call-macro n="modify_pp_gen_nbr"><with-param pos="2"/></call-macro>
+        <call-macro n="modify_pp_gen_nbr_NOANA"><with-param pos="2"/></call-macro>
         <out>
           <chunk>
             <clip pos="1" part="whole"/>
@@ -1255,7 +1293,7 @@
         <pattern-item n="adjpart"/>
       </pattern>
       <action>
-        <call-macro n="modify_pp_gen_nbr"><with-param pos="3"/></call-macro>
+        <call-macro n="modify_pp_gen_nbr_NOANA"><with-param pos="3"/></call-macro>
         <out>
           <chunk>
             <clip pos="1" part="whole"/>
@@ -1280,7 +1318,7 @@
         <pattern-item n="adjpart"/>
       </pattern>
       <action>
-        <call-macro n="modify_pp_gen_nbr"><with-param pos="4"/></call-macro>
+        <call-macro n="modify_pp_gen_nbr_NOANA"><with-param pos="4"/></call-macro>
         <out>
           <chunk>
             <clip pos="1" part="whole"/>
@@ -1865,12 +1903,13 @@
       <pattern>
         <pattern-item n="aux"/>
         <pattern-item n="adv"/>
+        <!-- TODO: where's the adjpart ?? -->
         <pattern-item n="vblex"/>
         <pattern-item n="lemq-skip-obj"/>
         <pattern-item n="prn_acc"/>
       </pattern>
       <action>
-        <call-macro n="modify_pp_gen_nbr"><with-param pos="3"/></call-macro>
+        <call-macro n="modify_pp_gen_nbr_NOANA"><with-param pos="3"/></call-macro>
         <call-macro n="modify_prn_gen"><with-param pos="5"/></call-macro>
         <call-macro n="set_ana"><with-param pos="3"/></call-macro>
         <out>

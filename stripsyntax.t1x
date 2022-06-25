@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<transfer>
+  <!-- TODO:
+       * boka vart [lese vs lesen], concord
+         VBLEXPASS rule should have adj.pp.nt.sg.ind as the second chunk
+  -->
+  <section-def-cats>
+
+    <def-cat n="any">
+      <cat-item tags="*"/>
+      <cat-item tags=""/>
+    </def-cat>
+    <def-cat n="subj">
+      <cat-item tags="*.@subj"/>
+      <cat-item tags="*.@subj.*"/>
+    </def-cat>
+  </section-def-cats>
+
+  <section-def-attrs>
+    <def-attr n="a_syntax">
+      <attr-item tags="@fv"/>
+      <attr-item tags="@iv"/>
+      <attr-item tags="@subj"/>
+      <attr-item tags="@obj"/>
+      <attr-item tags="@i-obj"/>
+      <attr-item tags="@s-pred"/>
+      <attr-item tags="@o-pred"/>
+      <attr-item tags="@adv"/>
+      <attr-item tags="@adv→"/>
+      <attr-item tags="@←adv"/>
+      <attr-item tags="@app"/>
+      <attr-item tags="@tittel"/>
+      <attr-item tags="@det→"/>
+      <attr-item tags="@←det"/>
+      <attr-item tags="@subst→"/>
+      <attr-item tags="@←subst"/>
+      <attr-item tags="@←p-utfyll"/>
+      <attr-item tags="@interj"/>
+      <attr-item tags="@adj→"/>
+      <attr-item tags="@kon"/>
+      <attr-item tags="@laus-np"/>
+      <attr-item tags="@←sbu"/>
+      <attr-item tags="@←sbu-rel"/>
+      <attr-item tags="@s-gr"/>
+    </def-attr>
+  </section-def-attrs>
+
+  <section-def-vars>
+    <def-var n="cur_subj"/>
+  </section-def-vars>
+
+  <section-def-lists>
+    <def-list n="l_foo">
+      <list-item v="foo"/>
+    </def-list>
+  </section-def-lists>
+
+  <section-def-macros>
+    <def-macro n="m_foo" npar="1">
+      <out><b/></out>
+    </def-macro>
+  </section-def-macros>
+
+
+  <section-rules>
+
+    <rule>
+      <pattern>
+        <pattern-item n="subj"/>
+      </pattern>
+      <action>
+        <let><var n="cur_subj"/><clip pos="1" side="tl" part="whole"/></let>
+        <let><clip pos="1" side="tl" part="a_syntax"/><lit v=""/></let>
+        <let><clip pos="1" side="sl" part="a_syntax"/><lit v=""/></let>
+        <out>
+          <lu>
+            <clip pos="1" side="sl" part="whole"/>
+            <lit v="/"/>
+            <clip pos="1" side="tl" part="whole"/>
+            <lit v="/"/>
+            <clip pos="1" side="ref" part="whole"/>
+          </lu>
+        </out>
+      </action>
+    </rule>
+
+    <rule>
+      <pattern>
+        <pattern-item n="any"/>
+      </pattern>
+      <action>
+        <let><clip pos="1" side="tl" part="a_syntax"/><lit v=""/></let>
+        <let><clip pos="1" side="sl" part="a_syntax"/><lit v=""/></let>
+        <out>
+          <lu>
+            <clip pos="1" side="sl" part="whole"/>
+            <lit v="/"/>
+            <clip pos="1" side="tl" part="whole"/>
+            <lit v="/"/>
+            <var n="cur_subj"/>
+          </lu>
+        </out>
+      </action>
+    </rule>
+
+  </section-rules>
+</transfer>
