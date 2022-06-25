@@ -875,6 +875,16 @@
       <attr-item tags="cmp"/>
       <attr-item tags="cmp-split"/>
     </def-attr>
+    <def-attr n="a_prop">
+      <attr-item tags="cog"/>
+      <attr-item tags="ant"/>
+      <attr-item tags="org"/>
+      <attr-item tags="top"/>
+      <attr-item tags="al"/>
+      <attr-item tags="attr"/>
+      <attr-item tags="cgguess"/>
+      <attr-item tags="guess"/>
+    </def-attr>
     <def-attr n="persona">
       <attr-item tags="p1"/>
       <attr-item tags="p2"/>
@@ -985,6 +995,8 @@
     <def-var n="ntags"/>
     <def-var n="dettags"/>
     <def-var n="adjtags"/>
+    <def-var n="pp_nbr"         c="Anaphoric number from antecedent for inserted participle"/>
+    <def-var n="pp_gen"         c="Anaphoric gender from antecedent for inserted participle"/>
     <def-var n="movable_tag"    c="np-movable iff we can move pp past np"/>
     <def-var n="advtags"/>
     <def-var n="prevlem"/>
@@ -998,6 +1010,7 @@
     <def-var n="out_lemq"       c="lemq part to output after chunk"/>
     <def-var n="lemq-skip"      c="whether lemq can skip ndef's"/>
     <def-var n="det_gen"/>
+    <def-var n="tmp"/>
     <def-var n="lemma"          c="Used within macros"/>
     <def-var n="brlemma"        c="Only used for 'britenes statsminister'-rule"/>
     <def-var n="mwe-queue"      c="Must be output before next verb or sent. TODO: There should be an EOF-rule in case nothing at end."/>
@@ -3480,6 +3493,7 @@
       <list-item v="vite"/>
       <list-item v="vente"/>
       <list-item v="forvente"/>
+      <list-item v="mistenke"/>
       <list-item v="eige"/>
     </def-list>
 
@@ -5491,6 +5505,33 @@
                   </when>
                   <otherwise><let><var n="movable_tag"/><lit-tag v="np-movable"/></let></otherwise>
                 </choose>
+                <choose c="Apply anaphoric variables">
+                  <when>
+                    <test><or>
+                      <equal><clip pos="1" side="ref" part="nbr"/><lit-tag v="pl"/></equal>
+                      <ends-with><clip pos="1" side="ref" part="lemh"/><lit v="tusenvis"/></ends-with>
+                      <ends-with><clip pos="1" side="ref" part="lemh"/><lit v="hundrevis"/></ends-with>
+                    </or></test>
+                    <let><var n="pp_nbr"/><lit-tag v="pl"/></let>
+                    <let><var n="pp_gen"/><lit-tag v="un"/></let> <!-- just some nonempty value we can override the slot in t2x -->
+                    <!-- <let><var n="tmp"/><concat><lit v="["/><var n="pp_nbr"/><lit v="!]"/></concat></let><out><var n="tmp"/></out> -->
+                  </when>
+                  <otherwise>
+                    <let><var n="pp_nbr"/><lit-tag v="sg"/></let>
+                    <let><var n="pp_gen"/><lit-tag v="nt"/></let>
+                    <choose><when>
+                      <test><or>
+                        <equal><clip pos="1" side="ref" part="gen"/><lit-tag v="mf"/></equal>
+                        <equal><clip pos="1" side="ref" part="gen"/><lit-tag v="f"/></equal>
+                        <equal><clip pos="1" side="ref" part="gen"/><lit-tag v="m"/></equal>
+                        <equal><clip pos="1" side="ref" part="a_prop"/><lit-tag v="cog"/></equal>
+                        <equal><clip pos="1" side="ref" part="a_prop"/><lit-tag v="ant"/></equal>
+                      </or></test>
+                      <let><var n="pp_gen"/><lit-tag v="mf"/></let>
+                    </when></choose>
+                    <!-- <let><var n="tmp"/><concat><lit v="["/><var n="pp_gen"/><lit v="!]"/></concat></let><out><var n="tmp"/></out> -->
+                  </otherwise>
+                </choose>
                 <out>
                   <chunk name="aux" case="caseFirstWord">
                     <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
@@ -5499,12 +5540,20 @@
                   <b/>
                   <chunk name="adj2vblex">
                     <tags>
-                      <tag><lit-tag v="adj.pp.nt.sg.ind"/></tag>
+                      <!-- <tag><lit-tag v="adj.pp.nt.sg.ind"/></tag> -->
+                      <tag><lit-tag v="adj.pp"/></tag>
+                      <tag><var n="pp_gen"/></tag>
+                      <tag><var n="pp_nbr"/></tag>
+                      <tag><lit-tag v="ind"/></tag>
                       <tag><var n="movable_tag"/></tag>
                     </tags>
                     <lu>
                       <clip pos="1" side="tl" part="lemh"/>
-                      <lit-tag v="adj.pp.nt.sg.ind"/>
+                      <!-- <lit-tag v="adj.pp.nt.sg.ind"/> -->
+                      <lit-tag v="adj.pp"/>
+                      <var n="pp_gen"/>
+                      <var n="pp_nbr"/>
+                      <lit-tag v="ind"/>
                       <var n="c_lemq"/>
                     </lu>
                   </chunk>
