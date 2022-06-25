@@ -4,14 +4,15 @@
   <section-parameters>
 
     <delimiter>
+      <!-- The first antecedent after a delimiter gets a +2 score (hardcoded for now) -->
         <parameter-item has-tags="sent"/>
         <parameter-item has-tags="clb"/>
-        <!-- <parameter-item has-tags="cnjsub"/>
-        TODO: https://github.com/apertium/apertium-anaphora/issues/49 -->
+        <parameter-item has-tags="cnjsub"/>
+        <!-- TODO: https://github.com/apertium/apertium-anaphora/issues/49 -->
     </delimiter>
 
-    <!-- <def-parameter n="adjpp_OR_pasv"> -->
-    <def-parameter n="pasv">
+    <!-- <def-parameter n="ana_adjpp_OR_pasv"> -->
+    <def-parameter n="ana_pasv">
       <anaphor>
         <!-- <parameter-item has-tags="adj pp"/> -->
         <parameter-item has-tags="pres pasv"/>
@@ -49,6 +50,10 @@
     </def-cat>
     <def-cat n="inf">
       <cat-item has-tags="inf"/>
+    </def-cat>
+    <def-cat n="fv.actv">
+      <cat-item has-tags="pres" exclude-tags="pasv"/>
+      <cat-item has-tags="pret" exclude-tags="pasv"/>
     </def-cat>
 
     <def-cat n="pasv">
@@ -136,50 +141,6 @@
 
   <section-markables>
 
-    <markable n="CNJSUB_SUBJ">  <!-- ord etter cnjsub meir sannsynlege -->
-      <pattern>
-        <pattern-item n="cnjsub"/>
-        <pattern-item n="nom_OR_pers" head="t"/>
-      </pattern>
-      <pattern>
-        <pattern-item n="cnjsub"/>
-        <pattern-item n="ncmp"/>
-        <pattern-item n="nom_OR_pers" head="t"/>
-      </pattern>
-      <pattern>
-        <pattern-item n="cnjsub"/>
-        <pattern-item n="ncmp"/>
-        <pattern-item n="ncmp"/>
-        <pattern-item n="nom_OR_pers" head="t"/>
-      </pattern>
-      <pattern>
-        <pattern-item n="cnjsub"/>
-        <pattern-item n="ncmp"/>
-        <pattern-item n="ncmp"/>
-        <pattern-item n="ncmp"/>
-        <pattern-item n="nom_OR_pers" head="t"/>
-      </pattern>
-      <pattern>
-        <pattern-item n="cnjsub"/>       <!-- at -->
-        <pattern-item n="det"/>          <!-- de -->
-        <pattern-item n="det"/>          <!-- to -->
-        <pattern-item n="nom" head="t"/> <!-- litauerne -->
-      </pattern>
-      <pattern>
-        <pattern-item n="cnjsub"/>       <!-- at -->
-        <pattern-item n="det"/>          <!-- 20.000 -->
-        <pattern-item n="nom" head="t"/> <!-- ansatte -->
-      </pattern>
-      <pattern>
-        <pattern-item n="cnjsub"/>       <!-- at -->
-        <pattern-item n="pr"/>           <!-- rundt -->
-        <pattern-item n="det"/>          <!-- 80 -->
-        <pattern-item n="nom" head="t"/> <!-- prosent -->
-      </pattern>
-
-      <score n="2"/>
-    </markable>
-
     <markable n="DETMOD"> <!-- score modifying determinatives/adj's a little lower (we only want *lone* det/adj to be antecedents) -->
       <!-- TODO: https://github.com/apertium/apertium-anaphora/issues/50 -->
       <pattern>
@@ -237,7 +198,7 @@
       <score n="2"/>
     </markable>
 
-    <markable n="PP">           <!-- preposisjonsfrasar mindre sannsynlege -->
+    <markable n="PP">           <!-- preposisjonsfrasar mindre sannsynlege? tja -->
       <!-- TODO: https://github.com/apertium/apertium-anaphora/issues/48 -->
       <pattern>
         <pattern-item n="pr"/>
@@ -321,30 +282,6 @@
       <score n="-1"/>
     </markable>
 
-    <!-- <markable n="IP">           <!-\- «en bil» mindre sannsynleg enn t.d. «bilen»(?) -\-> -->
-    <!--   <pattern> -->
-    <!--     <pattern-item n="ind"/> -->
-    <!--     <pattern-item n="nom"/> -->
-    <!--   </pattern> -->
-    <!--   <score n="-1"/> -->
-    <!-- </markable> -->
-
-    <markable n="PNP">          <!-- namn meir sannsynlege -->
-      <pattern>
-        <pattern-item n="np"/>
-      </pattern>
-      <pattern>
-        <pattern-item n="np"/>
-        <pattern-item n="np" head="t"/>
-      </pattern>
-      <pattern>
-        <pattern-item n="np"/>
-        <pattern-item n="np"/>
-        <pattern-item n="np" head="t"/>
-      </pattern>
-      <score n="1"/>
-    </markable>
-
     <markable n="PNP_GEN">          <!-- genitivsnamn mindre sannsynlege: Benjamin<not antecedent!> Netanyahus samlingsregjering<antecedent!> -->
       <pattern>
         <pattern-item n="ngen"/>
@@ -362,6 +299,21 @@
         <pattern-item n="npgen"/>
       </pattern>
       <score n="-2"/>
+    </markable>
+
+    <markable n="VSLURP">
+      <pattern>
+        <!-- <pattern-item n="w_som"/> issue 49 -->
+        <pattern-item n="fv.actv"/>  <!-- this verb uses up the antecedent -->
+        <pattern-item n="nom"/>
+      </pattern>
+      <pattern>
+        <!-- <pattern-item n="w_som"/> issue 49 -->
+        <pattern-item n="fv.actv"/>  <!-- this verb uses up the antecedent -->
+        <pattern-item n="det"/>
+        <pattern-item n="nom"/>
+      </pattern>
+      <score n="-1"/>
     </markable>
 
     <markable n="EXPL_PRES_INF"> <!-- Det kan være -->
