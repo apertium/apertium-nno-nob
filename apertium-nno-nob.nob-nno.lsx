@@ -189,7 +189,7 @@
       <e><p><l><s n="@s-gr"/></l>      <r></r></p></e>
     </pardef>
 
-    <pardef n="aa|" c="Optional aa tag and function tags (includes empty)">
+    <pardef n="aa|" c="Optional aa tag (includes empty)">
       <e></e>
       <e><i><s n="aa"/></i></e>
       <e><i><s n="Aa"/></i></e>
@@ -199,10 +199,16 @@
       <e><par n="aa|"/><par n="@x|"/><i><d/></i></e>
     </pardef>
     <pardef n="d:" c="Delete word-separator and optional preceding aa tag – but output titlecase as lone ^Aa$ marker for post-nob-nno.lsx to handle">
-      <e>                                  <par n="@x:"/> <p><l><d/></l> <r></r></p></e>
-      <e><p><l><s n="aa"/></l> <r></r></p> <par n="@x:"/> <p><l><d/></l> <r></r></p></e>
-      <e>   <i><s n="Aa"/></i>             <par n="@x:"/> <p><l><d/></l> <r></r></p></e> <!-- handled in post-nob-nno.lsx -->
-      <e><p><l><s n="AA"/></l> <r></r></p> <par n="@x:"/> <p><l><d/></l> <r></r></p></e>
+      <e>                                  <par n="@x:"/> <p><l><d/></l> <r></r>    </p></e>
+      <e><p><l><s n="aa"/></l> <r></r></p> <par n="@x:"/> <p><l><d/></l> <r></r>    </p></e>
+      <e>   <i><s n="Aa"/></i>             <par n="@x:"/> <p><l><d/></l> <r><d/></r></p></e> <!-- handled in post-nob-nno.lsx -->
+      <e><p><l><s n="AA"/></l> <r></r></p> <par n="@x:"/> <p><l><d/></l> <r></r>    </p></e>
+    </pardef>
+
+    <pardef n="aa_d" c="Copy and *require* aa/Aa/AA-tag, then (optional) function tags, then word-separator">
+      <e> <i><s n="aa"/></i> <par n="@x|"/> <i><d/></i> </e>
+      <e> <i><s n="Aa"/></i> <par n="@x|"/> <i><d/></i> </e>
+      <e> <i><s n="AA"/></i> <par n="@x|"/> <i><d/></i> </e>
     </pardef>
 
     <pardef n="aa:Aa" c="Titlecase if downcased, keep UPPERCASE as-is">
@@ -387,30 +393,22 @@
     <pardef n="n.sg.ind" c="No final t/ – avoid cmp!">
       <e><i><w/><s n="n"/><t/><s n="sg"/><s n="ind"/><d/></i></e>
       <e><i><w/><s n="n"/><t/><s n="sg"/><s n="ind"/><s n="gen"/><d/></i></e>
-      <e><i><w/><s n="n"/><t/><s n="sg"/><s n="ind"/><s n="aa"/><d/></i></e>
-      <e><i><w/><s n="n"/><t/><s n="sg"/><s n="ind"/><s n="Aa"/><d/></i></e>
-      <e><i><w/><s n="n"/><t/><s n="sg"/><s n="ind"/><s n="AA"/><d/></i></e>
-      <e><i><w/><s n="n"/><t/><s n="sg"/><s n="ind"/><s n="gen"/><s n="aa"/><d/></i></e>
-      <e><i><w/><s n="n"/><t/><s n="sg"/><s n="ind"/><s n="gen"/><s n="Aa"/><d/></i></e>
-      <e><i><w/><s n="n"/><t/><s n="sg"/><s n="ind"/><s n="gen"/><s n="AA"/><d/></i></e>
+      <e><i><w/><s n="n"/><t/><s n="sg"/><s n="ind"/></i>             <par n="aa_d"/></e>
+      <e><i><w/><s n="n"/><t/><s n="sg"/><s n="ind"/><s n="gen"/></i> <par n="aa_d"/></e>
     </pardef>
 
     <pardef n="n.ind" c="Sg and pl, no gen. No final t/ – avoid cmp!">
       <e><i><w/><s n="n"/><t/><s n="ind"/><d/></i></e>
-      <e><i><w/><s n="n"/><t/><s n="ind"/><s n="aa"/><d/></i></e>
-      <e><i><w/><s n="n"/><t/><s n="ind"/><s n="Aa"/><d/></i></e>
-      <e><i><w/><s n="n"/><t/><s n="ind"/><s n="AA"/><d/></i></e>
+      <e><i><w/><s n="n"/><t/><s n="ind"/></i><par n="aa_d"/></e>
       <e>
         <i><w/><s n="n"/><t/><s n="ind"/><s n="cmp-split"/><t/><d/></i>
         <i><w/><s n="cnjcoo"/><t/><d/></i>
-        <i><w/><s n="n"/><t/><s n="ind"/><t/><d/></i>
-      </e>
+        <i><w/><s n="n"/><t/><s n="ind"/></i><par n="aa_d"/></e>
       <e>
-        <i><w/><s n="n"/><t/><s n="ind"/><s n="cmp-split"/><s n="aa"/><d/></i>
+        <i><w/><s n="n"/><t/><s n="ind"/><s n="cmp-split"/><t/><d/></i>
         <i><w/><s n="cnjcoo"/><t/><d/></i>
-        <i><w/><s n="n"/><t/><s n="ind"/><s n="cmp"/><d/></i>
-        <i><w/><s n="n"/><t/><s n="ind"/><s n="aa"/><d/></i>
-      </e>
+        <i><w/><t/><s n="cmp"/><d/></i>
+        <i><w/><s n="n"/><t/><s n="ind"/></i><par n="aa_d"/></e>
     </pardef>
 
     <pardef n="ncmp">
