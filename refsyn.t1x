@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <transfer>
-  <!-- TODO:
-       * boka vart [lese vs lesen], concord
-         VBLEXPASS rule should have adj.pp.nt.sg.ind as the second chunk
+  <!-- This applies the currrent @subj tag to the "ref" side of passive lu's
+       and strips syntax tags from the tl/sl sides.
   -->
   <section-def-cats>
 
@@ -71,7 +70,7 @@
       <action>
         <let><var n="cur_subj"/><clip pos="1" side="tl" part="whole"/></let>
         <let><clip pos="1" side="tl" part="a_syntax"/><lit v=""/></let>
-        <let><clip pos="1" side="sl" part="a_syntax"/><lit v=""/></let>
+        <let><clip pos="1" side="sl" part="a_syntax"/><lit v=""/></let> <!-- preprocess-transfer gives a mistaken warning – this does have effect -->
         <out>
           <lu>
             <clip pos="1" side="sl" part="whole"/>
@@ -90,7 +89,7 @@
       </pattern>
       <action>
         <let><clip pos="1" side="tl" part="a_syntax"/><lit v=""/></let>
-        <let><clip pos="1" side="sl" part="a_syntax"/><lit v=""/></let>
+        <let><clip pos="1" side="sl" part="a_syntax"/><lit v=""/></let> <!-- preprocess-transfer gives a mistaken warning – this does have effect -->
         <out>
           <lu>
             <clip pos="1" side="sl" part="whole"/>

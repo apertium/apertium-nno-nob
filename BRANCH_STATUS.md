@@ -3,7 +3,7 @@
 We wait with apertium-anaphora for now. What we want is to put the
 governed @subj – which is typically the *nearest* – into <clip
 side="ref"> for transfer to use. It's syntactic, not anaphoric.
-- See stripsyntax.t1x which stores `cur_subj` and places it on `pasv`
+- See `synref.t1x` which stores `cur_subj` and places it on `pasv`
   in the ref field (as well as remove syntactic function tags so tNx
   doesn't have to deal with them – using syntax tags in transfer will
   have to be a later extension)
