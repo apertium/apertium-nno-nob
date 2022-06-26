@@ -104,24 +104,105 @@
     <sdef n="aa"/>
     <sdef n="AA"/>
     <sdef n="Aa"/>
+
+    <sdef n="@fv"/>
+    <sdef n="@iv"/>
+    <sdef n="@subj"/>
+    <sdef n="@obj"/>
+    <sdef n="@i-obj"/>
+    <sdef n="@s-pred"/>
+    <sdef n="@o-pred"/>
+    <sdef n="@adv"/>
+    <sdef n="@adv→"/>
+    <sdef n="@←adv"/>
+    <sdef n="@app"/>
+    <sdef n="@tittel"/>
+    <sdef n="@det→"/>
+    <sdef n="@←det"/>
+    <sdef n="@subst→"/>
+    <sdef n="@←subst"/>
+    <sdef n="@←p-utfyll"/>
+    <sdef n="@interj"/>
+    <sdef n="@adj→"/>
+    <sdef n="@kon"/>
+    <sdef n="@laus-np"/>
+    <sdef n="@←sbu"/>
+    <sdef n="@←sbu-rel"/>
+    <sdef n="@s-gr"/>
+
   </sdefs>
 
   <pardefs>
 
-    <pardef n="aa|" c="Optional aa tag (includes empty)">
+    <pardef n="@x|" c="copy all function tags (includes empty)">
+      <e></e>
+      <e><i><s n="@fv"/></i></e>
+      <e><i><s n="@iv"/></i></e>
+      <e><i><s n="@subj"/></i></e>
+      <e><i><s n="@obj"/></i></e>
+      <e><i><s n="@i-obj"/></i></e>
+      <e><i><s n="@s-pred"/></i></e>
+      <e><i><s n="@o-pred"/></i></e>
+      <e><i><s n="@adv"/></i></e>
+      <e><i><s n="@adv→"/></i></e>
+      <e><i><s n="@←adv"/></i></e>
+      <e><i><s n="@app"/></i></e>
+      <e><i><s n="@tittel"/></i></e>
+      <e><i><s n="@det→"/></i></e>
+      <e><i><s n="@←det"/></i></e>
+      <e><i><s n="@subst→"/></i></e>
+      <e><i><s n="@←subst"/></i></e>
+      <e><i><s n="@←p-utfyll"/></i></e>
+      <e><i><s n="@interj"/></i></e>
+      <e><i><s n="@adj→"/></i></e>
+      <e><i><s n="@kon"/></i></e>
+      <e><i><s n="@laus-np"/></i></e>
+      <e><i><s n="@←sbu"/></i></e>
+      <e><i><s n="@←sbu-rel"/></i></e>
+      <e><i><s n="@s-gr"/></i></e>
+    </pardef>
+    <pardef n="@x:" c="remove all function tags (includes empty)">
+      <e></e>
+      <e><p><l><s n="@fv"/></l>        <r></r></p></e>
+      <e><p><l><s n="@iv"/></l>        <r></r></p></e>
+      <e><p><l><s n="@subj"/></l>      <r></r></p></e>
+      <e><p><l><s n="@obj"/></l>       <r></r></p></e>
+      <e><p><l><s n="@i-obj"/></l>     <r></r></p></e>
+      <e><p><l><s n="@s-pred"/></l>    <r></r></p></e>
+      <e><p><l><s n="@o-pred"/></l>    <r></r></p></e>
+      <e><p><l><s n="@adv"/></l>       <r></r></p></e>
+      <e><p><l><s n="@adv→"/></l>      <r></r></p></e>
+      <e><p><l><s n="@←adv"/></l>      <r></r></p></e>
+      <e><p><l><s n="@app"/></l>       <r></r></p></e>
+      <e><p><l><s n="@tittel"/></l>    <r></r></p></e>
+      <e><p><l><s n="@det→"/></l>      <r></r></p></e>
+      <e><p><l><s n="@←det"/></l>      <r></r></p></e>
+      <e><p><l><s n="@subst→"/></l>    <r></r></p></e>
+      <e><p><l><s n="@←subst"/></l>    <r></r></p></e>
+      <e><p><l><s n="@←p-utfyll"/></l> <r></r></p></e>
+      <e><p><l><s n="@interj"/></l>    <r></r></p></e>
+      <e><p><l><s n="@adj→"/></l>      <r></r></p></e>
+      <e><p><l><s n="@kon"/></l>       <r></r></p></e>
+      <e><p><l><s n="@laus-np"/></l>   <r></r></p></e>
+      <e><p><l><s n="@←sbu"/></l>      <r></r></p></e>
+      <e><p><l><s n="@←sbu-rel"/></l>  <r></r></p></e>
+      <e><p><l><s n="@s-gr"/></l>      <r></r></p></e>
+    </pardef>
+
+    <pardef n="aa|" c="Optional aa tag and function tags (includes empty)">
       <e></e>
       <e><i><s n="aa"/></i></e>
       <e><i><s n="Aa"/></i></e>
       <e><i><s n="AA"/></i></e>
     </pardef>
-    <pardef n="d" c="Copy over word-separator with optional preceding aa tag">
-      <e><par n="aa|"/><i><d/></i></e>
+    <pardef n="d" c="Copy over word-separator with optional preceding aa and function tag">
+      <e><par n="aa|"/><par n="@x|"/><i><d/></i></e>
     </pardef>
     <pardef n="d:" c="Delete word-separator and optional preceding aa tag – but output titlecase as lone ^Aa$ marker for post-nob-nno.lsx to handle">
-      <e><p><l><d/></l>            <r></r></p></e>
-      <e><p><l><s n="aa"/><d/></l> <r></r></p></e>
-      <e><p><l><s n="Aa"/><d/></l> <r><s n="Aa"/><d/></r></p></e> <!-- handled in post-nob-nno.lsx -->
-      <e><p><l><s n="AA"/><d/></l> <r></r></p></e>
+      <e>                                  <par n="@x:"/> <p><l><d/></l> <r></r></p></e>
+      <e><p><l><s n="aa"/></l> <r></r></p> <par n="@x:"/> <p><l><d/></l> <r></r></p></e>
+      <e>   <i><s n="Aa"/></i>             <par n="@x:"/> <p><l><d/></l> <r></r></p></e> <!-- handled in post-nob-nno.lsx -->
+      <e><p><l><s n="AA"/></l> <r></r></p> <par n="@x:"/> <p><l><d/></l> <r></r></p></e>
     </pardef>
 
     <pardef n="aa:Aa" c="Titlecase if downcased, keep UPPERCASE as-is">
@@ -5259,7 +5340,7 @@
       <p><l>i<t/><d/></l> <r></r></p>
       <i>en<t/><d/></i>
       <p><l></l>                 <r>kort<s n="adj"/><s n="sint"/><s n="pst"/><s n="mf"/><s n="sg"/><s n="ind"/><s n="aa"/><d/></r></p>
-      <i>øyeblikk<s n="n"/><s n="nt"/><s n="sg"/><s n="ind"/><s n="aa"/><d/></i>
+      <i>øyeblikk<s n="n"/><s n="nt"/><s n="sg"/><s n="ind"/></i> <par n="d"/>
     </e>
 
     <e lm="i et kort øyeblikk -> et kort øyeblikk" c="ei kort stund">
