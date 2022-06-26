@@ -38,6 +38,7 @@ TARGETS_PREFIX2 =                                             \
      $(PREFIX2).prob                                          \
      $(PREFIX2).autolex.bin                                   \
      $(PREFIX2).autobil.bin                                   \
+     refsyn.t1x.bin                                           \
      $(PREFIX2).t1x.bin $(PREFIX2).t2x.bin $(PREFIX2).t3x.bin \
      $(PREFIX2).autopgen.bin                                  \
      $(PREFIX2).biprefs.rlx.bin                               \
@@ -55,7 +56,7 @@ e: modes/$(PREFIX1).mode	# build just nob-nno_e
 	cd $(AP_SRC1) && ${MAKE} $(LANG1).autogen.bin $(LANG1).e_vi_prefs.rlx.bin $(LANG1).prefs.rlx.bin $(LANG1).autopgen.bin
 	cd $(AP_SRC2) && ${MAKE} $(LANG2).automorf.bin $(LANG2).seg.rlx.bin $(LANG2).syn.rlx.bin $(LANG2).rlx.bin $(LANG2).prob
 	${MAKE} $(TARGETS_PREFIX2)
-r: modes/$(PREFIX1).mode $(PREFIX2).autolex.bin $(PREFIX2).t1x.bin $(PREFIX2).t2x.bin $(PREFIX2).t3x.bin # build just transfer and rlx files for nob-nno(_e)
+r: modes/$(PREFIX1).mode $(PREFIX2).autolex.bin refsyn.t1x.bin $(PREFIX2).t1x.bin $(PREFIX2).t2x.bin $(PREFIX2).t3x.bin # build just transfer and rlx files for nob-nno(_e)
 	cd $(AP_SRC2) && ${MAKE} $(LANG2).seg.rlx.bin $(LANG2).syn.rlx.bin $(LANG2).rlx.bin
 	${MAKE} $(PREFIX2).seg.rlx.bin $(PREFIX2).syn.rlx.bin $(PREFIX2).rlx.bin $(PREFIX2).biprefs.rlx.bin $(PREFIX2).autoseq.bin capstag.autoseq.bin $(LANG1).autoseq.bin capstag.rlx.bin
 
@@ -194,6 +195,10 @@ $(PREFIX1).t3x.bin: $(BASENAME).$(PREFIX1).t3x
 	apertium-validate-postchunk $<
 	apertium-preprocess-transfer $< $@
 
+
+refsyn.t1x.bin: refsyn.t1x
+	apertium-validate-transfer $<
+	apertium-preprocess-transfer $< $@
 
 $(PREFIX2).t1x.bin: $(BASENAME).$(PREFIX2).t1x
 	apertium-validate-transfer $<
