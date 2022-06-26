@@ -25,4 +25,6 @@ stored in the ref field, which will have the right gender.
     (or <par n="d:"/>) which can skip the function tags; try
     `xmllint --xpath '//l/s[@n="aa"]/../../l/d/../..' apertium-nno-nob.nob-nno.lsx`
 
+- Syntax CG removes readings that disam doesn't – sometimes the wrong ones!
+
 - A million regressions, most seem to be rlx or lsx?
