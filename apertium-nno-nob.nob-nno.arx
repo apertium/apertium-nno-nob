@@ -55,6 +55,10 @@
       <cat-item has-tags="pres" exclude-tags="pasv"/>
       <cat-item has-tags="pret" exclude-tags="pasv"/>
     </def-cat>
+    <def-cat n="NOT_nom_adj">
+      <cat-item exclude-tags="n"/>
+      <cat-item exclude-tags="adj"/>
+    </def-cat>
 
     <def-cat n="pasv">
       <cat-item has-tags="pasv"/>
@@ -71,10 +75,6 @@
 
     <def-cat n="adj">
       <cat-item has-tags="adj"/>
-    </def-cat>
-
-    <def-cat n="ind">
-      <cat-item has-tags="det qnt"/>
     </def-cat>
 
     <def-cat n="ncmp">
@@ -141,24 +141,14 @@
 
   <section-markables>
 
-    <markable n="DETMOD"> <!-- score modifying determinatives/adj's a little lower (we only want *lone* det/adj to be antecedents) -->
+    <markable n="LONE_DET"> <!-- we only want *lone* det/adj to be antecedents -->
       <!-- TODO: https://github.com/apertium/apertium-anaphora/issues/50 -->
       <pattern>
         <pattern-item n="det"/>
-        <pattern-item n="det"/>
-        <pattern-item n="nom"/>
-      </pattern>
-      <pattern>
-        <pattern-item n="det"/>
-        <pattern-item n="nom"/>
-      </pattern>
-      <pattern>
-        <pattern-item n="det"/>
-        <pattern-item n="adj"/>
-        <pattern-item n="nom"/>
+        <pattern-item n="NOT_nom_adj"/>
       </pattern>
 
-      <score n="-1"/>
+      <score n="0"/>            <!-- TODO decide -->
     </markable>
 
 
