@@ -19,13 +19,6 @@ side="ref"> for transfer to use. It's syntactic, not anaphoric.
 
 ## Main work remaining:
 
-- We should use the subj→ref method for participles as well as
-  passives. Currently we "disambiguate" participles based on preceding
-  subject, but that fails when subject changes gender in bidix, since
-  we disambiguate based on nob gender – while it's the target language
-  subject that gets stored in the `ref` field, which *will* have the
-  right gender.
-
 - lrx needs to deal with @-tags (typically does, but some rules might
   end in <aa>)
 
@@ -37,3 +30,13 @@ side="ref"> for transfer to use. It's syntactic, not anaphoric.
 - Syntax CG removes readings that disam doesn't – sometimes the wrong ones!
 
 - A million regressions, most seem to be rlx or lsx?
+
+- In some cases, we need to use a subject that's to the right,
+  refsyn.t1x needs some rules for that
+
+- We should use the subj→ref method for participles as well as
+  passives. Currently we "disambiguate" participles based on preceding
+  subject, but that fails when subject changes gender in bidix, since
+  we disambiguate based on nob gender – while it's the target language
+  subject that gets stored in the `ref` field, which *will* have the
+  right gender.
