@@ -1,21 +1,30 @@
 # PLAN
 
+This branch changes the pipeline to insert the syntax CG right after
+disam and capstag (before tagger), which gives us syntax @-tags on all
+lexical units. Then, after bidix and lexical selection, the new step
+refsyn.t1x removes the @-tags, but also attends to the last seen @subj
+and puts it in the ref-field (of the following words). Then t1x reads
+the ref-field and uses that to compute the gender/number of pp's
+created from passives.
+
+- See `refsyn.t1x` which stores `cur_subj` and places it in the ref
+  field (as well as remove syntactic function tags so tNx doesn't have
+  to deal with them – using syntax tags in transfer will have to be a
+  later extension)
+
 We wait with apertium-anaphora for now. What we want is to put the
 governed @subj – which is typically the *nearest* – into <clip
 side="ref"> for transfer to use. It's syntactic, not anaphoric.
-- See `synref.t1x` which stores `cur_subj` and places it on `pasv`
-  in the ref field (as well as remove syntactic function tags so tNx
-  doesn't have to deal with them – using syntax tags in transfer will
-  have to be a later extension)
-
-We should use the subj→ref method for participles as well as passives.
-Currently we "disambiguate" participles based on preceding subject,
-but that fails when subject changes gender in bidix, since we
-disambiguate based on nob gender. OTOH it's the tl subject that gets
-stored in the ref field, which will have the right gender.
-
 
 ## Main work remaining:
+
+- We should use the subj→ref method for participles as well as
+  passives. Currently we "disambiguate" participles based on preceding
+  subject, but that fails when subject changes gender in bidix, since
+  we disambiguate based on nob gender – while it's the target language
+  subject that gets stored in the `ref` field, which *will* have the
+  right gender.
 
 - lrx needs to deal with @-tags (typically does, but some rules might
   end in <aa>)
