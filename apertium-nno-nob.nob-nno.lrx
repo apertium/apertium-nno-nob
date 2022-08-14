@@ -3079,14 +3079,14 @@
     <match lemma="påfølgende" tags="adj.*">
       <select lemma="etterfølgande"/>
     </match>
-    <match tags="n.*.ind.aa"/>
+    <match tags="n.*.ind.*"/>
   </rule>
   <rule weight="2.0">
     <match lemma="påfølgende" tags="adj.*">
       <select lemma="etterfølgande"/>
     </match>
     <or><match tags="n.*.cmp"/><match tags="np.*.cmp"/></or>
-    <match tags="n.*.ind.aa"/>
+    <match tags="n.*.ind.*"/>
   </rule>
   <rule weight="2.0">
     <match lemma="påfølgende" tags="adj.*">
@@ -3094,7 +3094,7 @@
     </match>
     <or><match tags="n.*.cmp"/><match tags="np.*.cmp"/></or>
     <or><match tags="n.*.cmp"/><match tags="np.*.cmp"/></or>
-    <match tags="n.*.ind.aa"/>
+    <match tags="n.*.ind.*"/>
   </rule>
 
   <rule><match lemma="fullstendig" tags="adv.*"><select lemma="fullstendig"/></match></rule>
@@ -3571,13 +3571,14 @@
   </rule>
 
   <rule><match lemma="myndighet" tags="n.*"><select lemma="styresmakt"/></match></rule>
+  <rule weight="2.0"><match lemma="myndighet" tags="n.*.cmp"><select lemma="styresmakt"/></match></rule>
   <rule weight="2.0">
     <match lemma="myndighet" tags="n.*.sg.ind.*"><select lemma="myndigheit"/></match>
     <match lemma="til" tags="pr.*"/>
   </rule>
   <rule weight="2.0" c="opptre med myndighet">
     <match lemma="med" tags="pr.*"/>
-    <match lemma="myndighet" tags="n.*.sg.ind.aa"><select lemma="myndigheit"/></match>
+    <match lemma="myndighet" tags="n.*.sg.ind.*"><select lemma="myndigheit"/></match>
   </rule>
   <rule c="instruksjonsmyndigheit">
     <match lemma="instruksjon"/>
@@ -4484,7 +4485,7 @@
 <rule weight="2.0">
   <match lemma="tilbringe" tags="vblex.*"><select lemma="gjennomføre"/></match>
     <repeat from="0" upto="1">
-      <match tags="n.*.gen.aa"/>
+      <match tags="n.*.gen.*"/>
     </repeat>
     <match tags="n.*"/>
 </rule>
@@ -4928,12 +4929,12 @@
            - en henlagt sak → ei bortlagd sak"
         weight="2.0">
     <match lemma="henlegge"><select lemma="bortlegge"/></match>
-    <match tags="n.*.ind.aa"/>
+    <match tags="n.*.ind.*.aa"/>
   </rule>
   <rule c="… men «henlegger sak» er ikkje attributiv"
         weight="2.0">
     <match lemma="henlegge" tags="vblex.pres.*"><select lemma="legge# bort"/></match>
-    <match tags="n.*.ind.aa"/>
+    <match tags="n.*.ind.*.aa"/>
   </rule>
 
   <!-- The transitive paradigm for "velte" can be used in the
@@ -6824,14 +6825,14 @@
  <rule><match lemma="sannhetens øyeblikk" tags="adv.*"><select lemma="skjebnedag"/></match></rule>
   <rule weight="2.0">
     <match lemma="en"/>
-    <match lemma="sannhetens øyeblikk" tags="adv.aa"><select lemma="avgjerande vendepunkt"/></match>
+    <match lemma="sannhetens øyeblikk" tags="adv.*"><select lemma="avgjerande vendepunkt"/></match>
   </rule>
   <rule weight="2.0">
-    <match lemma="sannhetens øyeblikk" tags="adv.aa"><select lemma="skjebnedagen"/></match>
+    <match lemma="sannhetens øyeblikk" tags="adv.*"><select lemma="skjebnedagen"/></match>
     <match lemma="komme"/>
   </rule>
     <rule weight="1.5">
-    <match lemma="sannhetens øyeblikk" tags="adv.aa"><select lemma="ein skjebnedag"/></match>
+    <match lemma="sannhetens øyeblikk" tags="adv.*"><select lemma="ein skjebnedag"/></match>
     <match lemma="for"/>
   </rule>
 <!--ØYEBLIKK: END-->
