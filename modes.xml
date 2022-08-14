@@ -15,11 +15,11 @@
       <program name="cg-proc" debug-suff="capstag">
 	<file name="capstag.rlx.bin"/>
       </program>
-      <program name="cg-proc" debug-suff="syntax">
-	<file name="nob-nno.syn.rlx.bin"/>
-      </program>
-      <program name="apertium-tagger -g $2">
+      <program name="apertium-tagger -p -g $2">
         <file name="nob-nno.prob"/>
+      </program>
+      <program name="cg-proc -n -1" debug-suff="syntax">
+	<file name="nob-nno.syn.rlx.bin"/>
       </program>
       <program name="apertium-pretransfer"/>
       <program name="lsx-proc -w">
@@ -82,11 +82,11 @@
       <program name="cg-proc" debug-suff="capstag">
 	<file name="capstag.rlx.bin"/>
       </program>
-      <program name="cg-proc" debug-suff="syntax">
-	<file name="nob-nno.syn.rlx.bin"/>
-      </program>
-      <program name="apertium-tagger -g $2">
+      <program name="apertium-tagger -p -g $2">
         <file name="nob-nno.prob"/>
+      </program>
+      <program name="cg-proc -n -1" debug-suff="syntax">
+	<file name="nob-nno.syn.rlx.bin"/>
       </program>
       <program name="apertium-pretransfer"/>
       <program name="lsx-proc -w">
