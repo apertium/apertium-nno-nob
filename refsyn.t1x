@@ -13,6 +13,16 @@
       <cat-item tags="*.@subj"/>
       <cat-item tags="*.@subj.*"/>
     </def-cat>
+    <def-cat n="obj_OR_s-pred">
+      <cat-item tags="*.@obj"/>
+      <cat-item tags="*.@obj.*"/>
+      <cat-item tags="*.@s-pred"/>
+      <cat-item tags="*.@s-pred.*"/>
+    </def-cat>
+    <def-cat n="Lsbu-rel">
+      <cat-item tags="*.@←sbu-rel"/>
+      <cat-item tags="*.@←sbu-rel.*"/>
+    </def-cat>
   </section-def-cats>
 
   <section-def-attrs>
@@ -78,6 +88,39 @@
             <clip pos="1" side="tl" part="whole"/>
             <lit v="/"/>
             <clip pos="1" side="ref" part="whole"/>
+          </lu>
+        </out>
+      </action>
+    </rule>
+
+    <rule c="Object of main clause can become subject of relative clause.
+             «I bunnen ligger opplevelser@obj som@←sbu-rel bringes for en dag»">
+      <!-- TODO: Antallet spurte som sier de<@s-pred> har blitt hetset på sosiale medier, har i samme tidsperiode økt. -->
+      <pattern>
+        <pattern-item n="obj_OR_s-pred"/>
+        <pattern-item n="Lsbu-rel"/>
+      </pattern>
+      <action>
+        <let><var n="cur_subj"/><clip pos="1" side="tl" part="whole"/></let>
+        <let><clip pos="1" side="tl" part="a_syntax"/><lit v=""/></let>
+        <let><clip pos="1" side="sl" part="a_syntax"/><lit v=""/></let> <!-- preprocess-transfer gives a mistaken warning – this does have effect -->
+        <let><clip pos="2" side="tl" part="a_syntax"/><lit v=""/></let>
+        <let><clip pos="2" side="sl" part="a_syntax"/><lit v=""/></let> <!-- preprocess-transfer gives a mistaken warning – this does have effect -->
+        <out>
+          <lu>
+            <clip pos="1" side="sl" part="whole"/>
+            <lit v="/"/>
+            <clip pos="1" side="tl" part="whole"/>
+            <lit v="/"/>
+            <clip pos="1" side="ref" part="whole"/>
+          </lu>
+          <b/>
+          <lu>
+            <clip pos="2" side="sl" part="whole"/>
+            <lit v="/"/>
+            <clip pos="2" side="tl" part="whole"/>
+            <lit v="/"/>
+            <var n="cur_subj"/>
           </lu>
         </out>
       </action>
