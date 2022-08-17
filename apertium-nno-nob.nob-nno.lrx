@@ -11235,5 +11235,11 @@ preposisjonar gir ekstra utfordringar. -->
   <rule><match lemma="overordentlig" tags="adj.*"><select lemma="overordentleg"/></match></rule>
   <!-- TODO: omframt storting? -->
 
+  <rule><match lemma="mulighet" tags="n.*"><select lemma="moglegheit"/></match></rule>
+  <rule weight="2.0" c="mulighet til å -> høve til å">
+    <match lemma="mulighet" tags="n.*"><select lemma="høve" tags="n.*"/></match>
+    <match lemma="til"/>
+  </rule>
+
 </rules>
 </lrx>
