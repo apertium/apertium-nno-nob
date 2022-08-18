@@ -19,6 +19,14 @@
       <cat-item tags="*.@s-pred"/>
       <cat-item tags="*.@s-pred.*"/>
     </def-cat>
+    <def-cat n="fv">
+      <cat-item tags="*.@fv"/>
+      <cat-item tags="*.@fv.*"/>
+    </def-cat>
+    <def-cat n="adv">
+      <cat-item tags="*.@adv"/>
+      <cat-item tags="*.@adv.*"/>
+    </def-cat>
     <def-cat n="Lsbu-rel">
       <cat-item tags="*.@←sbu-rel"/>
       <cat-item tags="*.@←sbu-rel.*"/>
@@ -92,6 +100,78 @@
             <clip pos="1" side="tl" part="whole"/>
             <lit v="/"/>
             <clip pos="1" side="ref" part="whole"/>
+          </lu>
+        </out>
+      </action>
+    </rule>
+
+    <rule c="«selges kuene» – handle a following subject">
+      <pattern>
+        <pattern-item n="fv"/>
+        <pattern-item n="subj"/>
+      </pattern>
+      <action>
+        <let><var n="cur_subj"/><clip pos="2" side="tl" part="whole"/></let>
+        <let><clip pos="1" side="tl" part="a_syntax"/><lit v=""/></let>
+        <let><clip pos="1" side="sl" part="a_syntax"/><lit v=""/></let> <!-- preprocess-transfer gives a mistaken warning – this does have effect -->
+        <let><clip pos="2" side="tl" part="a_syntax"/><lit v=""/></let>
+        <let><clip pos="2" side="sl" part="a_syntax"/><lit v=""/></let> <!-- preprocess-transfer gives a mistaken warning – this does have effect -->
+        <out>
+          <lu>
+            <clip pos="1" side="sl" part="whole"/>
+            <lit v="/"/>
+            <clip pos="1" side="tl" part="whole"/>
+            <lit v="/"/>
+            <var n="cur_subj"/>
+          </lu>
+          <b/>
+          <lu>
+            <clip pos="2" side="sl" part="whole"/>
+            <lit v="/"/>
+            <clip pos="2" side="tl" part="whole"/>
+            <lit v="/"/>
+            <var n="cur_subj"/>
+          </lu>
+        </out>
+      </action>
+    </rule>
+    <rule c="«selges nok kuene» – handle a following subject with intervening adv">
+      <pattern>
+        <pattern-item n="fv"/>
+        <pattern-item n="adv"/>
+        <pattern-item n="subj"/>
+      </pattern>
+      <action>
+        <let><var n="cur_subj"/><clip pos="3" side="tl" part="whole"/></let>
+        <let><clip pos="1" side="tl" part="a_syntax"/><lit v=""/></let>
+        <let><clip pos="1" side="sl" part="a_syntax"/><lit v=""/></let> <!-- preprocess-transfer gives a mistaken warning – this does have effect -->
+        <let><clip pos="2" side="tl" part="a_syntax"/><lit v=""/></let>
+        <let><clip pos="2" side="sl" part="a_syntax"/><lit v=""/></let> <!-- preprocess-transfer gives a mistaken warning – this does have effect -->
+        <let><clip pos="3" side="tl" part="a_syntax"/><lit v=""/></let>
+        <let><clip pos="3" side="sl" part="a_syntax"/><lit v=""/></let> <!-- preprocess-transfer gives a mistaken warning – this does have effect -->
+        <out>
+          <lu>
+            <clip pos="1" side="sl" part="whole"/>
+            <lit v="/"/>
+            <clip pos="1" side="tl" part="whole"/>
+            <lit v="/"/>
+            <var n="cur_subj"/>
+          </lu>
+          <b/>
+          <lu>
+            <clip pos="2" side="sl" part="whole"/>
+            <lit v="/"/>
+            <clip pos="2" side="tl" part="whole"/>
+            <lit v="/"/>
+            <var n="cur_subj"/>
+          </lu>
+          <b/>
+          <lu>
+            <clip pos="3" side="sl" part="whole"/>
+            <lit v="/"/>
+            <clip pos="3" side="tl" part="whole"/>
+            <lit v="/"/>
+            <var n="cur_subj"/>
           </lu>
         </out>
       </action>
