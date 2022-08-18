@@ -456,6 +456,11 @@
       <attr-item tags="f"/>
       <attr-item tags="GD"/>
     </def-attr>
+    <def-attr n="gen_of_detsg" c="TODO: eine/andre/eigne har un">
+      <attr-item tags="m"/>
+      <attr-item tags="f"/>
+      <attr-item tags="nt"/>
+    </def-attr>
     <def-attr n="sl-gen">
       <attr-item tags="sl-m"/>
       <attr-item tags="sl-mf"/>
@@ -642,7 +647,8 @@
                 <equal><var n="det_gender"/><lit v=""/></equal>
                 <and>
                   <equal><var n="number_no_sp"/><lit-tag v="sg"/></equal>
-                  <equal><clip pos="1" part="gen"/><lit-tag v="GD"/></equal>
+                  <!-- nb: this test doesn't work for eine/andre/eigne – but fortunately we don't create those from scratch: -->
+                  <not><equal><clip pos="1" part="gen"/><clip pos="1" part="gen_of_detsg"/></equal></not>
                 </and>
               </or></test>
               <let><var n="det_gender"/><lit-tag v="m"/></let>
@@ -674,9 +680,6 @@
 
     <def-macro n="set_ana" npar="1"
                c="arg.1: noun or verb. Set vars for for later use by modify_pp_gender">
-      <!-- TODO: when
-           https://github.com/apertium/apertium-anaphora/issues/28 we
-           can use arx and throw out all ana-stuff from this file -->
       <choose>
         <when>
           <test><equal><var n="ana_temps"/><lit v=""/></equal></test>
