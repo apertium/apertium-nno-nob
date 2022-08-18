@@ -76,6 +76,9 @@ REMOVE:verken_verken ("korkje"i) IF (0 ("verken"i));
 SELECT:røyndom_røynd  ("røynd"i) IF (0 ("røyndom"i) + (VAR:røyndom_røynd));
 REMOVE:røyndom_røyndom ("røynd"i) IF (0 ("røyndom"i));
 
+SELECT:røyndom_verkelegheit ("verkelegheit") IF (0 ("røyndom"i) + (VAR:røyndom_verkelegheit));
+REMOVE:røyndom_røyndom ("verkelegheit") IF (0 ("røyndom"i));
+
 SELECT:beskrive_skildre  ("skildre"i) IF (0 ("beskrive"i) + (VAR:beskrive_skildre));
 REMOVE:beskrive_beskrive ("skildre"i) IF (0 ("beskrive"i));
 
