@@ -23,6 +23,10 @@
       <cat-item tags="*.@←sbu-rel"/>
       <cat-item tags="*.@←sbu-rel.*"/>
     </def-cat>
+    <def-cat n="sent">
+      <cat-item tags="sent.*"/>
+      <cat-item tags="sent"/>
+    </def-cat>
   </section-def-cats>
 
   <section-def-attrs>
@@ -126,7 +130,27 @@
       </action>
     </rule>
 
-    <rule>
+    <rule c="Clear the current-subject variable on sentence end.">
+      <pattern>
+        <pattern-item n="sent"/>
+      </pattern>
+      <action>
+        <let><clip pos="1" side="tl" part="a_syntax"/><lit v=""/></let>
+        <let><clip pos="1" side="sl" part="a_syntax"/><lit v=""/></let> <!-- preprocess-transfer gives a mistaken warning – this does have effect -->
+        <out>
+          <lu>
+            <clip pos="1" side="sl" part="whole"/>
+            <lit v="/"/>
+            <clip pos="1" side="tl" part="whole"/>
+            <lit v="/"/>
+            <var n="cur_subj"/>
+          </lu>
+        </out>
+        <let><var n="cur_subj"/><lit v=""/></let>
+      </action>
+    </rule>
+
+    <rule c="Add the current subject to the ref field of the lexical unit, clear syntax tags">
       <pattern>
         <pattern-item n="any"/>
       </pattern>
