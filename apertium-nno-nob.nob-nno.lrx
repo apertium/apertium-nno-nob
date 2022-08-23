@@ -11241,5 +11241,17 @@ preposisjonar gir ekstra utfordringar. -->
     <match lemma="til"/>
   </rule>
 
+  <rule><match lemma="masse" tags="adj.*"><select lemma="mykje"/></match></rule>
+  <rule weight="2.0" c="masse (nye) prosjekter -> mange (nye) prosjekt">
+    <match lemma="masse" tags="adj.*"><select lemma="mange" tags="adj.*"/></match>
+    <repeat from="0" upto="1">
+      <or>
+        <match tags="adj.*"/>
+        <match tags="det.dem.*"/>
+      </or>
+    </repeat>
+    <match tags="n.*.pl.ind.*"/>
+  </rule>
+
 </rules>
 </lrx>
