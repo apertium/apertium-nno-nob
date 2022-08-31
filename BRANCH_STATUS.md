@@ -17,7 +17,7 @@ We wait with apertium-anaphora for now. What we want is to put the
 governed @subj – which is typically the *nearest* – into <clip
 side="ref"> for transfer to use. It's syntactic, not anaphoric.
 
-## Main work remaining:
+## Pretty much done:
 
 - lrx needs to deal with @-tags (typically does, but some rules might
   end in <aa>)
@@ -27,12 +27,22 @@ side="ref"> for transfer to use. It's syntactic, not anaphoric.
     (or <par n="d:"/>) which can skip the function tags; try
     `xmllint --xpath '//l/s[@n="aa"]/../../l/d/../..' apertium-nno-nob.nob-nno.lsx`
 
-- Syntax CG removes readings that disam doesn't – sometimes the wrong ones!
-
-- A million regressions, most seem to be rlx or lsx?
+- passive gender/number now uses the `ref` field, via refsyn.t1x
 
 - In some cases, we need to use a subject that's to the right,
   refsyn.t1x needs some rules for that
+
+Most lrx/lsx regressions seem fixed, but need to check this again
+after merging newest master.
+
+## Main work remaining:
+
+- Remaining regressions in passive genders (missing refsyn.t1x
+  patterns, bad syntax disambiguation?)
+
+- Syntax CG removes readings that disam doesn't – sometimes the wrong ones!
+  For now, we keep syntax after -tagger, so it stays stable.
+  The next phase might reorder those so we can use syntax for disambiguation.
 
 - We should use the subj→ref method for participles as well as
   passives. Currently we "disambiguate" participles based on preceding
