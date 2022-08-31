@@ -3831,6 +3831,13 @@
       <list-item v="knøttliten"/>
       <list-item v="ovliten"/>
     </def-list>
+    <def-list n="no-samsvar" c="avoid «gåtte» etc.">
+      <list-item v="unngå"/>
+      <list-item v="gå"/>
+      <list-item v="få"/>
+      <list-item v="gi"/>
+      <list-item v="gje"/>
+    </def-list>
   </section-def-lists>
 
   <section-def-macros>
@@ -5506,12 +5513,15 @@
                 </choose>
                 <choose c="Apply anaphoric variables">
                   <when>
-                    <test><or>
-                      <equal><clip pos="1" side="ref" part="nbr"/><lit-tag v="pl"/></equal>
-                      <ends-with><clip pos="1" side="ref" part="lemh"/><lit v="tusenvis"/></ends-with>
-                      <ends-with><clip pos="1" side="ref" part="lemh"/><lit v="hundrevis"/></ends-with>
-                      <ends-with><clip pos="1" side="ref" part="lemh"/><lit v="mange"/></ends-with>
-                    </or></test>
+                    <test><and>
+                      <not><in><clip pos="1" side="tl" part="lemh"/><list n="no-samsvar"/></in></not>
+                      <or>
+                        <equal><clip pos="1" side="ref" part="nbr"/><lit-tag v="pl"/></equal>
+                        <ends-with><clip pos="1" side="ref" part="lemh"/><lit v="tusenvis"/></ends-with>
+                        <ends-with><clip pos="1" side="ref" part="lemh"/><lit v="hundrevis"/></ends-with>
+                        <ends-with><clip pos="1" side="ref" part="lemh"/><lit v="mange"/></ends-with>
+                      </or>
+                    </and></test>
                     <let><var n="pp_nbr"/><lit-tag v="pl"/></let>
                     <let><var n="pp_gen"/><lit-tag v="un"/></let> <!-- just some nonempty value we can override the slot in t2x -->
                     <!-- <let><var n="tmp"/><concat><lit v="["/><var n="pp_nbr"/><lit v="!]"/></concat></let><out><var n="tmp"/></out> -->
