@@ -972,6 +972,9 @@
       <attr-item tags="defdrop"/>
       <attr-item tags="gendefdrop"/> <!-- the object would like to drop the genitive's defnes -->
     </def-attr>
+    <def-attr n="a_postsubj" c="Message from refsyn that the subject was after the verb">
+      <attr-item tags="postsubj"/>
+    </def-attr>
     <def-attr n="art">
       <attr-item tags="def"/>
       <attr-item tags="ind"/>
@@ -5497,9 +5500,10 @@
               <otherwise>
                 <call-macro n="set_aux"><with-param pos="1"/></call-macro>
                 <!-- todo: why do I get a bus error when calling set_aux2 here? -->
-                <choose c="Only movable past an NP if no lemq or not in np-immovable-verb list">
+                <choose c="Only movable past an NP if no lemq or not in np-immovable-verb list, and refsyn has found subject after verb">
                   <when>
                     <test><or>
+                      <not><equal><clip pos="1" side="ref" part="a_postsubj"/><lit-tag v="postsubj"/></equal></not>
                       <in><clip pos="1" side="tl" part="lemh"/><list n="np-immovable-verb"/></in>
                       <not><equal><clip pos="1" side="tl" part="lemq"/><lit v=""/></equal></not>
                     </or></test>
