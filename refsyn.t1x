@@ -2,12 +2,19 @@
 <transfer>
   <!-- This applies the currrent @subj tag to the "ref" side of passive lu's
        and strips syntax tags from the tl/sl sides.
+
+       To understand what this does, look at the "simple rules" at the end of the file first.
+       The rules in the beginning handle more exceptional situations.
   -->
   <section-def-cats>
 
     <def-cat n="any">
       <cat-item tags="*"/>
       <cat-item tags=""/>
+    </def-cat>
+    <def-cat n="cm">
+      <cat-item tags="cm"/>
+      <cat-item tags="cm.*"/>
     </def-cat>
     <def-cat n="subj">
       <cat-item tags="*.@subj"/>
@@ -18,7 +25,8 @@
       <cat-item tags="*.@obj.*"/>
       <cat-item tags="*.@s-pred"/>
       <cat-item tags="*.@s-pred.*"/>
-      <cat-item lemma="hvor mange" tags="det.*"/> <!-- Tallet@subjOuter på hvor mange@subjInner som friskmeldes@refInner publiseres@refOuter snart -->
+      <cat-item tags="*.@←p-utfyll"/> <!-- Tallet@subjOuter på hvor mange@subjInner som friskmeldes@refInner publiseres@refOuter snart -->
+      <cat-item tags="*.@←p-utfyll.*"/>
     </def-cat>
     <def-cat n="fv">
       <cat-item tags="*.@fv"/>
@@ -86,25 +94,8 @@
 
   <section-rules>
 
-    <rule>
-      <pattern>
-        <pattern-item n="subj"/>
-      </pattern>
-      <action>
-        <let><var n="cur_subj"/><clip pos="1" side="tl" part="whole"/></let>
-        <let><clip pos="1" side="tl" part="a_syntax"/><lit v=""/></let>
-        <let><clip pos="1" side="sl" part="a_syntax"/><lit v=""/></let> <!-- preprocess-transfer gives a mistaken warning – this does have effect -->
-        <out>
-          <lu>
-            <clip pos="1" side="sl" part="whole"/>
-            <lit v="/"/>
-            <clip pos="1" side="tl" part="whole"/>
-            <lit v="/"/>
-            <clip pos="1" side="ref" part="whole"/>
-          </lu>
-        </out>
-      </action>
-    </rule>
+
+    <!-- ***** Exceptional rules first: subjects after verbs + relative clause/subordination subjects ***** -->
 
     <rule c="«selges kuene» – handle a following subject">
       <pattern>
@@ -210,6 +201,72 @@
         </out>
       </action>
     </rule>
+    <rule c="Object of main clause can become subject of relative clause.
+             With comma: «De har gått til angrep mot provinsen@←p-utfyll, som@←sbu-rel kontrolleres av noen.»">
+      <pattern>
+        <pattern-item n="obj_OR_s-pred"/>
+        <pattern-item n="cm"/>
+        <pattern-item n="Lsbu-rel"/>
+      </pattern>
+      <action>
+        <let><var n="cur_subj"/><clip pos="1" side="tl" part="whole"/></let>
+        <let><clip pos="1" side="tl" part="a_syntax"/><lit v=""/></let>
+        <let><clip pos="1" side="sl" part="a_syntax"/><lit v=""/></let> <!-- preprocess-transfer gives a mistaken warning – this does have effect -->
+        <let><clip pos="2" side="tl" part="a_syntax"/><lit v=""/></let>
+        <let><clip pos="2" side="sl" part="a_syntax"/><lit v=""/></let> <!-- preprocess-transfer gives a mistaken warning – this does have effect -->
+        <let><clip pos="3" side="tl" part="a_syntax"/><lit v=""/></let>
+        <let><clip pos="3" side="sl" part="a_syntax"/><lit v=""/></let> <!-- preprocess-transfer gives a mistaken warning – this does have effect -->
+        <out>
+          <lu>
+            <clip pos="1" side="sl" part="whole"/>
+            <lit v="/"/>
+            <clip pos="1" side="tl" part="whole"/>
+            <lit v="/"/>
+            <clip pos="1" side="ref" part="whole"/>
+          </lu>
+          <b/>
+          <lu>
+            <clip pos="2" side="sl" part="whole"/>
+            <lit v="/"/>
+            <clip pos="2" side="tl" part="whole"/>
+            <lit v="/"/>
+            <var n="cur_subj"/>
+          </lu>
+          <b/>
+          <lu>
+            <clip pos="3" side="sl" part="whole"/>
+            <lit v="/"/>
+            <clip pos="3" side="tl" part="whole"/>
+            <lit v="/"/>
+            <var n="cur_subj"/>
+          </lu>
+        </out>
+      </action>
+    </rule>
+
+
+
+    <!-- ***** The simple rules: Store, Clear, Apply ***** -->
+
+    <rule c="Found a subject, store it in variable">
+      <pattern>
+        <pattern-item n="subj"/>
+      </pattern>
+      <action>
+        <let><var n="cur_subj"/><clip pos="1" side="tl" part="whole"/></let>
+        <let><clip pos="1" side="tl" part="a_syntax"/><lit v=""/></let>
+        <let><clip pos="1" side="sl" part="a_syntax"/><lit v=""/></let> <!-- preprocess-transfer gives a mistaken warning – this does have effect -->
+        <out>
+          <lu>
+            <clip pos="1" side="sl" part="whole"/>
+            <lit v="/"/>
+            <clip pos="1" side="tl" part="whole"/>
+            <lit v="/"/>
+            <clip pos="1" side="ref" part="whole"/>
+          </lu>
+        </out>
+      </action>
+    </rule>
 
     <rule c="Clear the current-subject variable on sentence end.">
       <pattern>
@@ -249,6 +306,7 @@
         </out>
       </action>
     </rule>
+
 
   </section-rules>
 </transfer>
