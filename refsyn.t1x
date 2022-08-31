@@ -75,6 +75,16 @@
       <attr-item tags="@←sbu-rel"/>
       <attr-item tags="@s-gr"/>
     </def-attr>
+    <def-attr n="a_prop">
+      <attr-item tags="cog"/>
+      <attr-item tags="ant"/>
+      <attr-item tags="org"/>
+      <attr-item tags="top"/>
+      <attr-item tags="al"/>
+      <attr-item tags="attr"/>
+      <attr-item tags="cgguess"/>
+      <attr-item tags="guess"/>
+    </def-attr>
   </section-def-attrs>
 
   <section-def-vars>
@@ -180,6 +190,10 @@
         <pattern-item n="Lsbu-rel"/>
       </pattern>
       <action>
+        <choose><when c="den første personen i Belgia som">
+          <test><not><equal><clip pos="1" side="tl" part="a_prop"/><lit v=""/></equal></not></test>
+          <reject-current-rule shifting="no"/>
+        </when></choose>
         <let><var n="cur_subj"/><clip pos="1" side="tl" part="whole"/></let>
         <let><clip pos="1" side="tl" part="a_syntax"/><lit v=""/></let>
         <let><clip pos="1" side="sl" part="a_syntax"/><lit v=""/></let> <!-- preprocess-transfer gives a mistaken warning – this does have effect -->
@@ -212,6 +226,10 @@
         <pattern-item n="Lsbu-rel"/>
       </pattern>
       <action>
+        <choose><when c="den første personen i Belgia, som">
+          <test><not><equal><clip pos="1" side="tl" part="a_prop"/><lit v=""/></equal></not></test>
+          <reject-current-rule shifting="no"/>
+        </when></choose>
         <let><var n="cur_subj"/><clip pos="1" side="tl" part="whole"/></let>
         <let><clip pos="1" side="tl" part="a_syntax"/><lit v=""/></let>
         <let><clip pos="1" side="sl" part="a_syntax"/><lit v=""/></let> <!-- preprocess-transfer gives a mistaken warning – this does have effect -->
