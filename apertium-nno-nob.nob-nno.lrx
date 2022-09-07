@@ -4202,6 +4202,22 @@
       <match lemma="ha" tags="vblex.pres.*"/>
     </or>
   </rule>
+  <rule weight="2.0">
+    <match lemma="hittil" tags="adv.*"><select lemma="så langt"/></match>
+    <match lemma="i"/>
+    <match lemma="år"/>
+  </rule>
+  <rule weight="2.0">
+    <or>
+      <match lemma="være" tags="vblex.pres.*"/>
+      <match lemma="ha" tags="vblex.pres.*"/>
+    </or>    <match lemma="hittil" tags="adv.*"><select lemma="til no"/></match>
+    <or>
+      <match tags="vblex.pp.*"/>
+      <match tags="vblex.pret.*"/>
+      <match tags="adj.pp.*"/>
+    </or>
+  </rule>
   <!-- HITTIL: END-->
 
   <!--  BESTEMME: START -->
