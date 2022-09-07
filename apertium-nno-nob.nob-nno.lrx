@@ -4232,8 +4232,12 @@
     <match lemma="hittil" tags="adv.*"><select lemma="til no"/></match>
     <or>
       <match tags="cm.*"/>
-      <match tags="sent.*"/>
+      <match tags="sent.clb.*"/>
     </or>  
+  </rule>
+  <rule weight="1.5">
+    <match tags="sent.clb.*"/>
+    <match lemma="hittil" tags="adv.*"><select lemma="så langt"/></match> 
   </rule>
   <!-- HITTIL: END-->
 
