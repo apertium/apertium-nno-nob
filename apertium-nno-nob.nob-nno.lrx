@@ -4181,6 +4181,28 @@
   </rule>
   <!--PELLE/PELLE: END-->
 
+  <!-- HITTIL: START-->
+  <rule>
+    <match lemma="hittil" tags="adv.*"><select lemma="hittil"/></match>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="første"/>
+    <match lemma="og"/>
+    <match lemma="hittil" tags="adv.*"><select lemma="til no"/></match>
+    <match lemma="eneste"/>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="som"/>
+    <match lemma="hittil" tags="adv.*"><select lemma="så langt"/></match>
+    <repeat from="0" upto="1">
+      <match lemma="ikke"/>
+    </repeat>
+    <or>
+      <match lemma="være" tags="vblex.pres.*"/>
+      <match lemma="ha" tags="vblex.pres.*"/>
+    </or>
+  </rule>
+  <!-- HITTIL: END-->
 
   <!--  BESTEMME: START -->
 
