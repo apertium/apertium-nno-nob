@@ -4224,6 +4224,17 @@
       <match tags="adj.pp.*"/>
     </or>
   </rule>
+  <rule weight="1.5">
+    <match lemma="hittil" tags="adv.*"><select lemma="enno"/></match>
+    <match lemma="ikke"/>
+  </rule>
+  <rule weight="1.5">
+    <match lemma="hittil" tags="adv.*"><select lemma="til no"/></match>
+    <or>
+      <match tags="cm.*"/>
+      <match tags="sent.*"/>
+    </or>  
+  </rule>
   <!-- HITTIL: END-->
 
   <!--  BESTEMME: START -->
