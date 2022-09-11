@@ -28,6 +28,12 @@
       <cat-item tags="*.@←p-utfyll"/> <!-- Tallet@subjOuter på hvor mange@subjInner som friskmeldes@refInner publiseres@refOuter snart -->
       <cat-item tags="*.@←p-utfyll.*"/>
     </def-cat>
+    <def-cat n="adj-un-sp-subj">
+      <cat-item tags="adj.*.un.sp.*.@subj"/>
+      <cat-item tags="adj.*.un.sp.*.@subj.*"/>
+      <cat-item tags="adj.un.sp.*.@subj"/>
+      <cat-item tags="adj.un.sp.*.@subj.*"/>
+    </def-cat>
     <def-cat n="fv">
       <cat-item tags="*.@fv"/>
       <cat-item tags="*.@fv.*"/>
@@ -320,6 +326,38 @@
             <clip pos="3" side="sl" part="whole"/>
             <lit v="/"/>
             <clip pos="3" side="tl" part="whole"/>
+            <lit v="/"/>
+            <var n="cur_subj"/>
+          </lu>
+        </out>
+      </action>
+    </rule>
+
+    <rule c="Ungendered adjective-subject takes gender from preceding determiner
+             «Den første beskrives som …»">
+      <pattern>
+        <pattern-item n="detR"/>
+        <pattern-item n="adj-un-sp-subj"/>
+      </pattern>
+      <action>
+        <let><var n="cur_subj"/><clip pos="1" side="tl" part="whole"/></let>
+        <let><clip pos="1" side="tl" part="a_syntax"/><lit v=""/></let>
+        <let><clip pos="1" side="sl" part="a_syntax"/><lit v=""/></let> <!-- preprocess-transfer gives a mistaken warning – this does have effect -->
+        <let><clip pos="2" side="tl" part="a_syntax"/><lit v=""/></let>
+        <let><clip pos="2" side="sl" part="a_syntax"/><lit v=""/></let> <!-- preprocess-transfer gives a mistaken warning – this does have effect -->
+        <out>
+          <lu>
+            <clip pos="1" side="sl" part="whole"/>
+            <lit v="/"/>
+            <clip pos="1" side="tl" part="whole"/>
+            <lit v="/"/>
+            <clip pos="1" side="ref" part="whole"/>
+          </lu>
+          <b/>
+          <lu>
+            <clip pos="2" side="sl" part="whole"/>
+            <lit v="/"/>
+            <clip pos="2" side="tl" part="whole"/>
             <lit v="/"/>
             <var n="cur_subj"/>
           </lu>
