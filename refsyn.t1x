@@ -101,6 +101,20 @@
       <attr-item tags="cgguess"/>
       <attr-item tags="guess"/>
     </def-attr>
+    <def-attr n="gen">
+      <attr-item tags="m"/>
+      <attr-item tags="mf"/>
+      <attr-item tags="nt"/>
+      <attr-item tags="f"/>
+      <attr-item tags="un"/>
+      <attr-item tags="GD"/>
+    </def-attr>
+    <def-attr n="nbr">
+      <attr-item tags="sg"/>
+      <attr-item tags="pl"/>
+      <attr-item tags="sp"/>
+      <attr-item tags="ND"/>
+    </def-attr>
   </section-def-attrs>
 
   <section-def-vars>
@@ -258,8 +272,15 @@
         <pattern-item n="Lsbu-rel"/>
       </pattern>
       <action>
-        <choose><when c="den første personen i Belgia som">
-          <test><not><equal><clip pos="1" side="tl" part="a_prop"/><lit v=""/></equal></not></test>
+        <choose><when c="den første personen i Belgia som
+                         viktigste som">
+          <test><or>
+            <not><equal><clip pos="1" side="tl" part="a_prop"/><lit v=""/></equal></not>
+            <and>
+              <equal><clip pos="1" side="tl" part="gen"/><lit-tag v="un"/></equal>
+              <equal><clip pos="1" side="tl" part="nbr"/><lit-tag v="sp"/></equal>
+            </and>
+          </or></test>
           <reject-current-rule shifting="no"/>
         </when></choose>
         <let><var n="cur_subj"/><clip pos="1" side="tl" part="whole"/></let>
@@ -294,8 +315,15 @@
         <pattern-item n="Lsbu-rel"/>
       </pattern>
       <action>
-        <choose><when c="den første personen i Belgia, som">
-          <test><not><equal><clip pos="1" side="tl" part="a_prop"/><lit v=""/></equal></not></test>
+        <choose><when c="den første personen i Belgia, som
+                         viktigste, som">
+          <test><or>
+            <not><equal><clip pos="1" side="tl" part="a_prop"/><lit v=""/></equal></not>
+            <and>
+              <equal><clip pos="1" side="tl" part="gen"/><lit-tag v="un"/></equal>
+              <equal><clip pos="1" side="tl" part="nbr"/><lit-tag v="sp"/></equal>
+            </and>
+          </or></test>
           <reject-current-rule shifting="no"/>
         </when></choose>
         <let><var n="cur_subj"/><clip pos="1" side="tl" part="whole"/></let>
