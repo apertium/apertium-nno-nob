@@ -221,12 +221,13 @@
     <def-cat n="prn_acc">
       <cat-item tags="prn.*.acc"/>
     </def-cat>
-    <def-cat n="prn_subj">
+    <def-cat n="synsubj">
       <cat-item tags="prn.*.nt.*"/>
       <cat-item tags="prn.*.nt"/>
       <cat-item tags="det.*.expl.*"/>
       <cat-item tags="det.*.expl"/>
       <cat-item tags="prn.pers.*.nom"/>
+      <cat-item tags="*.@subj"/>
     </def-cat>
     <def-cat n="sin">
       <cat-item lemma="detsin" tags="det.pos.*"/>
@@ -1105,12 +1106,12 @@
         </out>
       </action>
     </rule>
-    <rule comment="AUX PASV-PP PRN_SUBJ => AUX PRN_SUBJ PASV-PP
+    <rule comment="AUX PASV-PP SYNSUBJ => AUX SYNSUBJ PASV-PP
                    (Videre) påpekes det =1> (Vidare) blir påpeikt det =2> (Vidare) blir det påpeikt">
       <pattern>
         <pattern-item n="aux"/>
         <pattern-item n="pasv-pp"/>
-        <pattern-item n="prn_subj"/>
+        <pattern-item n="synsubj"/>
       </pattern>
       <action>
         <call-macro n="modify_prn_gen"><with-param pos="3"/></call-macro>
@@ -1131,14 +1132,14 @@
         </out>
       </action>
     </rule>
-    <rule comment="AUX PASV-PP PRN_SUBJ ADV_MOVABLE => AUX PRN_SUBJ PASV-PP ADV_MOVABLE
+    <rule comment="AUX PASV-PP SYNSUBJ ADV_MOVABLE => AUX SYNSUBJ PASV-PP ADV_MOVABLE
                    (Videre) oppgis det ikke =1> (Vidare) blir oppgitt det ikkje =2> (Vidare) blir det ikkje oppgitt
 
                    «I en uttalelse på Twitter oppgis det ikke antall drepte eller sårede»">
       <pattern>
         <pattern-item n="aux"/>
         <pattern-item n="pasv-pp"/>
-        <pattern-item n="prn_subj"/>
+        <pattern-item n="synsubj"/>
         <pattern-item n="adv_movable"/>
       </pattern>
       <action>
