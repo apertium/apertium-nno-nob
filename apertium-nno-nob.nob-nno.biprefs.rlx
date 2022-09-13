@@ -1,4 +1,5 @@
 # -*- cg-pre-pipe: "apertium -f none -d . nob-nno-biltrans"; cg-command: "~/src/ap/vislcg3/src/cg-proc"; cg-extra-args: "-t -g -n -z -w apertium-nno-nob.nob-nno.biprefs.rlx # " -*-
+
 # GPL-2+
 #
 # Bilingual dictionary preference rules.
@@ -48,7 +49,7 @@ SELECT:apa_apen lm_ape + m IF (0 (VAR:apa_apen));
 REMOVE:apa_apen lm_ape + m;
 
 # words that default to <m>, but can be overridden to <f>:
-LIST lm_bane = ".*bane"ri ".*opptakt"ri ".*kai"ri ".*tillit"ri ".*dialekt"ri ".*omtale"ri;
+LIST lm_bane = ".*bane"ri ".*opptakt"ri ".*kai"ri ".*tillit"ri ".*dialekt"ri ;
 SELECT:banen_bana lm_bane + f IF (0 (VAR:banen_bana));
 REMOVE:banen_bana lm_bane + f;
 
