@@ -1,0 +1,461 @@
+<?xml version="1.0" encoding="utf-8"?>
+<transfer>
+  <!-- This applies the currrent @subj tag to the "ref" side of passive lu's
+       and strips syntax tags from the tl/sl sides.
+
+       To understand what this does, look at the "simple rules" at the end of the file first.
+       The rules in the beginning handle more exceptional situations.
+  -->
+  <section-def-cats>
+
+    <def-cat n="any">
+      <cat-item tags="*"/>
+      <cat-item tags=""/>
+    </def-cat>
+    <def-cat n="cm">
+      <cat-item tags="cm"/>
+      <cat-item tags="cm.*"/>
+    </def-cat>
+    <def-cat n="subj">
+      <cat-item tags="*.@subj"/>
+      <cat-item tags="*.@subj.*"/>
+    </def-cat>
+    <def-cat n="obj_OR_s-pred">
+      <cat-item tags="*.@obj"/>
+      <cat-item tags="*.@obj.*"/>
+      <cat-item tags="*.@s-pred"/>
+      <cat-item tags="*.@s-pred.*"/>
+      <cat-item tags="*.@←p-utfyll"/> <!-- Tallet@subjOuter på hvor mange@subjInner som friskmeldes@refInner publiseres@refOuter snart -->
+      <cat-item tags="*.@←p-utfyll.*"/>
+    </def-cat>
+    <def-cat n="adj-un-sp-subj">
+      <cat-item tags="adj.*.un.sp.*.@subj"/>
+      <cat-item tags="adj.*.un.sp.*.@subj.*"/>
+      <cat-item tags="adj.un.sp.*.@subj"/>
+      <cat-item tags="adj.un.sp.*.@subj.*"/>
+    </def-cat>
+    <def-cat n="fv">
+      <cat-item tags="*.@fv"/>
+      <cat-item tags="*.@fv.*"/>
+    </def-cat>
+    <def-cat n="adv_OR_detR_OR_cmp">
+      <cat-item tags="adv"/>    <!-- NOT @adv – don't want to match head of adverbial clause here, just lone adverbs -->
+      <cat-item tags="adv.*"/>
+      <cat-item tags="*.@det→"/>
+      <cat-item tags="*.@det→.*"/>
+      <cat-item tags="*.cmp"/>
+    </def-cat>
+    <def-cat n="detR">
+      <cat-item tags="*.@det→"/>
+      <cat-item tags="*.@det→.*"/>
+    </def-cat>
+    <def-cat n="adjR_OR_cmp">
+      <cat-item tags="*.@adj→"/>
+      <cat-item tags="*.@adj→.*"/>
+      <cat-item tags="*.cmp"/>
+    </def-cat>
+    <def-cat n="Lsbu-rel">
+      <cat-item tags="*.@←sbu-rel"/>
+      <cat-item tags="*.@←sbu-rel.*"/>
+    </def-cat>
+    <def-cat n="sent">
+      <cat-item tags="sent.*"/>
+      <cat-item tags="sent"/>
+    </def-cat>
+  </section-def-cats>
+
+  <section-def-attrs>
+    <def-attr n="a_syntax">
+      <attr-item tags="@fv"/>
+      <attr-item tags="@iv"/>
+      <attr-item tags="@subj"/>
+      <attr-item tags="@obj"/>
+      <attr-item tags="@i-obj"/>
+      <attr-item tags="@s-pred"/>
+      <attr-item tags="@o-pred"/>
+      <attr-item tags="@adv"/>
+      <attr-item tags="@adv→"/>
+      <attr-item tags="@←adv"/>
+      <attr-item tags="@app"/>
+      <attr-item tags="@tittel"/>
+      <attr-item tags="@det→"/>
+      <attr-item tags="@←det"/>
+      <attr-item tags="@subst→"/>
+      <attr-item tags="@←subst"/>
+      <attr-item tags="@←p-utfyll"/>
+      <attr-item tags="@interj"/>
+      <attr-item tags="@adj→"/>
+      <attr-item tags="@kon"/>
+      <attr-item tags="@laus-np"/>
+      <attr-item tags="@←sbu"/>
+      <attr-item tags="@←sbu-rel"/>
+      <attr-item tags="@s-gr"/>
+    </def-attr>
+    <def-attr n="a_prop">
+      <attr-item tags="cog"/>
+      <attr-item tags="ant"/>
+      <attr-item tags="org"/>
+      <attr-item tags="top"/>
+      <attr-item tags="al"/>
+      <attr-item tags="attr"/>
+      <attr-item tags="cgguess"/>
+      <attr-item tags="guess"/>
+    </def-attr>
+    <def-attr n="gen">
+      <attr-item tags="m"/>
+      <attr-item tags="mf"/>
+      <attr-item tags="nt"/>
+      <attr-item tags="f"/>
+      <attr-item tags="un"/>
+      <attr-item tags="GD"/>
+    </def-attr>
+    <def-attr n="nbr">
+      <attr-item tags="sg"/>
+      <attr-item tags="pl"/>
+      <attr-item tags="sp"/>
+      <attr-item tags="ND"/>
+    </def-attr>
+  </section-def-attrs>
+
+  <section-def-vars>
+    <def-var n="cur_subj"/>
+  </section-def-vars>
+
+  <section-def-lists>
+    <def-list n="l_foo">
+      <list-item v="foo"/>
+    </def-list>
+  </section-def-lists>
+
+  <section-def-macros>
+    <def-macro n="m_foo" npar="1">
+      <out><b/></out>
+    </def-macro>
+  </section-def-macros>
+
+
+  <section-rules>
+
+
+    <!-- ***** Exceptional rules first: subjects after verbs + relative clause/subordination subjects ***** -->
+
+    <rule c="«selges kuene» – handle a following subject">
+      <pattern>
+        <pattern-item n="fv"/>
+        <pattern-item n="subj"/>
+      </pattern>
+      <action>
+        <let><var n="cur_subj"/><clip pos="2" side="tl" part="whole"/></let>
+        <let><clip pos="1" side="tl" part="a_syntax"/><lit v=""/></let>
+        <let><clip pos="1" side="sl" part="a_syntax"/><lit v=""/></let> <!-- preprocess-transfer gives a mistaken warning – this does have effect -->
+        <let><clip pos="2" side="tl" part="a_syntax"/><lit v=""/></let>
+        <let><clip pos="2" side="sl" part="a_syntax"/><lit v=""/></let> <!-- preprocess-transfer gives a mistaken warning – this does have effect -->
+        <out>
+          <lu>
+            <clip pos="1" side="sl" part="whole"/>
+            <lit v="/"/>
+            <clip pos="1" side="tl" part="whole"/>
+            <lit v="/"/>
+            <var n="cur_subj"/><lit-tag v="postsubj"/> <!-- notify t1x that we can place participle after a subject -->
+          </lu>
+          <b/>
+          <lu>
+            <clip pos="2" side="sl" part="whole"/>
+            <lit v="/"/>
+            <clip pos="2" side="tl" part="whole"/>
+            <lit v="/"/>
+            <var n="cur_subj"/>
+          </lu>
+        </out>
+      </action>
+    </rule>
+    <rule c="«selges nok kuene» – handle a following subject with intervening adv/det/cmp">
+      <pattern>
+        <pattern-item n="fv"/>
+        <pattern-item n="adv_OR_detR_OR_cmp"/>
+        <pattern-item n="subj"/>
+      </pattern>
+      <action>
+        <let><var n="cur_subj"/><clip pos="3" side="tl" part="whole"/></let>
+        <let><clip pos="1" side="tl" part="a_syntax"/><lit v=""/></let>
+        <let><clip pos="1" side="sl" part="a_syntax"/><lit v=""/></let> <!-- preprocess-transfer gives a mistaken warning – this does have effect -->
+        <let><clip pos="2" side="tl" part="a_syntax"/><lit v=""/></let>
+        <let><clip pos="2" side="sl" part="a_syntax"/><lit v=""/></let> <!-- preprocess-transfer gives a mistaken warning – this does have effect -->
+        <let><clip pos="3" side="tl" part="a_syntax"/><lit v=""/></let>
+        <let><clip pos="3" side="sl" part="a_syntax"/><lit v=""/></let> <!-- preprocess-transfer gives a mistaken warning – this does have effect -->
+        <out>
+          <lu>
+            <clip pos="1" side="sl" part="whole"/>
+            <lit v="/"/>
+            <clip pos="1" side="tl" part="whole"/>
+            <lit v="/"/>
+            <var n="cur_subj"/><lit-tag v="postsubj"/> <!-- notify t1x that we can place participle after a subject -->
+          </lu>
+          <b/>
+          <lu>
+            <clip pos="2" side="sl" part="whole"/>
+            <lit v="/"/>
+            <clip pos="2" side="tl" part="whole"/>
+            <lit v="/"/>
+            <var n="cur_subj"/>
+          </lu>
+          <b/>
+          <lu>
+            <clip pos="3" side="sl" part="whole"/>
+            <lit v="/"/>
+            <clip pos="3" side="tl" part="whole"/>
+            <lit v="/"/>
+            <var n="cur_subj"/>
+          </lu>
+        </out>
+      </action>
+    </rule>
+    <rule c="«selges de fine kuene» – handle a following subject with intervening det+adj">
+      <pattern>
+        <pattern-item n="fv"/>
+        <pattern-item n="detR"/>
+        <pattern-item n="adjR_OR_cmp"/>
+        <pattern-item n="subj"/>
+      </pattern>
+      <action>
+        <let><var n="cur_subj"/><clip pos="4" side="tl" part="whole"/></let>
+        <let><clip pos="1" side="tl" part="a_syntax"/><lit v=""/></let>
+        <let><clip pos="1" side="sl" part="a_syntax"/><lit v=""/></let> <!-- preprocess-transfer gives a mistaken warning – this does have effect -->
+        <let><clip pos="2" side="tl" part="a_syntax"/><lit v=""/></let>
+        <let><clip pos="2" side="sl" part="a_syntax"/><lit v=""/></let> <!-- preprocess-transfer gives a mistaken warning – this does have effect -->
+        <let><clip pos="3" side="tl" part="a_syntax"/><lit v=""/></let>
+        <let><clip pos="3" side="sl" part="a_syntax"/><lit v=""/></let> <!-- preprocess-transfer gives a mistaken warning – this does have effect -->
+        <let><clip pos="4" side="tl" part="a_syntax"/><lit v=""/></let>
+        <let><clip pos="4" side="sl" part="a_syntax"/><lit v=""/></let> <!-- preprocess-transfer gives a mistaken warning – this does have effect -->
+        <out>
+          <lu>
+            <clip pos="1" side="sl" part="whole"/>
+            <lit v="/"/>
+            <clip pos="1" side="tl" part="whole"/>
+            <lit v="/"/>
+            <var n="cur_subj"/><lit-tag v="postsubj"/> <!-- notify t1x that we can place participle after a subject -->
+          </lu>
+          <b/>
+          <lu>
+            <clip pos="2" side="sl" part="whole"/>
+            <lit v="/"/>
+            <clip pos="2" side="tl" part="whole"/>
+            <lit v="/"/>
+            <var n="cur_subj"/>
+          </lu>
+          <b/>
+          <lu>
+            <clip pos="3" side="sl" part="whole"/>
+            <lit v="/"/>
+            <clip pos="3" side="tl" part="whole"/>
+            <lit v="/"/>
+            <var n="cur_subj"/>
+          </lu>
+          <b/>
+          <lu>
+            <clip pos="4" side="sl" part="whole"/>
+            <lit v="/"/>
+            <clip pos="4" side="tl" part="whole"/>
+            <lit v="/"/>
+            <var n="cur_subj"/>
+          </lu>
+        </out>
+      </action>
+    </rule>
+
+
+    <rule c="Object of main clause can become subject of relative clause.
+             «I bunnen ligger opplevelser@obj som@←sbu-rel bringes for en dag»">
+      <!-- TODO: Antallet spurte som sier de<@s-pred> har blitt hetset på sosiale medier, har i samme tidsperiode økt. -->
+      <pattern>
+        <pattern-item n="obj_OR_s-pred"/>
+        <pattern-item n="Lsbu-rel"/>
+      </pattern>
+      <action>
+        <choose><when c="den første personen i Belgia som
+                         viktigste som">
+          <test><or>
+            <not><equal><clip pos="1" side="tl" part="a_prop"/><lit v=""/></equal></not>
+            <and>
+              <equal><clip pos="1" side="tl" part="gen"/><lit-tag v="un"/></equal>
+              <equal><clip pos="1" side="tl" part="nbr"/><lit-tag v="sp"/></equal>
+            </and>
+          </or></test>
+          <reject-current-rule shifting="no"/>
+        </when></choose>
+        <let><var n="cur_subj"/><clip pos="1" side="tl" part="whole"/></let>
+        <let><clip pos="1" side="tl" part="a_syntax"/><lit v=""/></let>
+        <let><clip pos="1" side="sl" part="a_syntax"/><lit v=""/></let> <!-- preprocess-transfer gives a mistaken warning – this does have effect -->
+        <let><clip pos="2" side="tl" part="a_syntax"/><lit v=""/></let>
+        <let><clip pos="2" side="sl" part="a_syntax"/><lit v=""/></let> <!-- preprocess-transfer gives a mistaken warning – this does have effect -->
+        <out>
+          <lu>
+            <clip pos="1" side="sl" part="whole"/>
+            <lit v="/"/>
+            <clip pos="1" side="tl" part="whole"/>
+            <lit v="/"/>
+            <clip pos="1" side="ref" part="whole"/>
+          </lu>
+          <b/>
+          <lu>
+            <clip pos="2" side="sl" part="whole"/>
+            <lit v="/"/>
+            <clip pos="2" side="tl" part="whole"/>
+            <lit v="/"/>
+            <var n="cur_subj"/>
+          </lu>
+        </out>
+      </action>
+    </rule>
+    <rule c="Object of main clause can become subject of relative clause.
+             With comma: «De har gått til angrep mot provinsen@←p-utfyll, som@←sbu-rel kontrolleres av noen.»">
+      <pattern>
+        <pattern-item n="obj_OR_s-pred"/>
+        <pattern-item n="cm"/>
+        <pattern-item n="Lsbu-rel"/>
+      </pattern>
+      <action>
+        <choose><when c="den første personen i Belgia, som
+                         viktigste, som">
+          <test><or>
+            <not><equal><clip pos="1" side="tl" part="a_prop"/><lit v=""/></equal></not>
+            <and>
+              <equal><clip pos="1" side="tl" part="gen"/><lit-tag v="un"/></equal>
+              <equal><clip pos="1" side="tl" part="nbr"/><lit-tag v="sp"/></equal>
+            </and>
+          </or></test>
+          <reject-current-rule shifting="no"/>
+        </when></choose>
+        <let><var n="cur_subj"/><clip pos="1" side="tl" part="whole"/></let>
+        <let><clip pos="1" side="tl" part="a_syntax"/><lit v=""/></let>
+        <let><clip pos="1" side="sl" part="a_syntax"/><lit v=""/></let> <!-- preprocess-transfer gives a mistaken warning – this does have effect -->
+        <let><clip pos="2" side="tl" part="a_syntax"/><lit v=""/></let>
+        <let><clip pos="2" side="sl" part="a_syntax"/><lit v=""/></let> <!-- preprocess-transfer gives a mistaken warning – this does have effect -->
+        <let><clip pos="3" side="tl" part="a_syntax"/><lit v=""/></let>
+        <let><clip pos="3" side="sl" part="a_syntax"/><lit v=""/></let> <!-- preprocess-transfer gives a mistaken warning – this does have effect -->
+        <out>
+          <lu>
+            <clip pos="1" side="sl" part="whole"/>
+            <lit v="/"/>
+            <clip pos="1" side="tl" part="whole"/>
+            <lit v="/"/>
+            <clip pos="1" side="ref" part="whole"/>
+          </lu>
+          <b/>
+          <lu>
+            <clip pos="2" side="sl" part="whole"/>
+            <lit v="/"/>
+            <clip pos="2" side="tl" part="whole"/>
+            <lit v="/"/>
+            <var n="cur_subj"/>
+          </lu>
+          <b/>
+          <lu>
+            <clip pos="3" side="sl" part="whole"/>
+            <lit v="/"/>
+            <clip pos="3" side="tl" part="whole"/>
+            <lit v="/"/>
+            <var n="cur_subj"/>
+          </lu>
+        </out>
+      </action>
+    </rule>
+
+    <rule c="Ungendered adjective-subject takes gender from preceding determiner
+             «Den første beskrives som …»">
+      <pattern>
+        <pattern-item n="detR"/>
+        <pattern-item n="adj-un-sp-subj"/>
+      </pattern>
+      <action>
+        <let><var n="cur_subj"/><clip pos="1" side="tl" part="whole"/></let>
+        <let><clip pos="1" side="tl" part="a_syntax"/><lit v=""/></let>
+        <let><clip pos="1" side="sl" part="a_syntax"/><lit v=""/></let> <!-- preprocess-transfer gives a mistaken warning – this does have effect -->
+        <let><clip pos="2" side="tl" part="a_syntax"/><lit v=""/></let>
+        <let><clip pos="2" side="sl" part="a_syntax"/><lit v=""/></let> <!-- preprocess-transfer gives a mistaken warning – this does have effect -->
+        <out>
+          <lu>
+            <clip pos="1" side="sl" part="whole"/>
+            <lit v="/"/>
+            <clip pos="1" side="tl" part="whole"/>
+            <lit v="/"/>
+            <clip pos="1" side="ref" part="whole"/>
+          </lu>
+          <b/>
+          <lu>
+            <clip pos="2" side="sl" part="whole"/>
+            <lit v="/"/>
+            <clip pos="2" side="tl" part="whole"/>
+            <lit v="/"/>
+            <var n="cur_subj"/>
+          </lu>
+        </out>
+      </action>
+    </rule>
+
+
+
+    <!-- ***** The simple rules: Store, Clear, Apply ***** -->
+
+    <rule c="Found a subject, store it in variable">
+      <pattern>
+        <pattern-item n="subj"/>
+      </pattern>
+      <action>
+        <let><var n="cur_subj"/><clip pos="1" side="tl" part="whole"/></let>
+        <let><clip pos="1" side="tl" part="a_syntax"/><lit v=""/></let>
+        <let><clip pos="1" side="sl" part="a_syntax"/><lit v=""/></let> <!-- preprocess-transfer gives a mistaken warning – this does have effect -->
+        <out>
+          <lu>
+            <clip pos="1" side="sl" part="whole"/>
+            <lit v="/"/>
+            <clip pos="1" side="tl" part="whole"/>
+            <lit v="/"/>
+            <var n="cur_subj"/>
+          </lu>
+        </out>
+      </action>
+    </rule>
+
+    <rule c="Clear the current-subject variable on sentence end.">
+      <pattern>
+        <pattern-item n="sent"/>
+      </pattern>
+      <action>
+        <let><clip pos="1" side="tl" part="a_syntax"/><lit v=""/></let>
+        <let><clip pos="1" side="sl" part="a_syntax"/><lit v=""/></let> <!-- preprocess-transfer gives a mistaken warning – this does have effect -->
+        <out>
+          <lu>
+            <clip pos="1" side="sl" part="whole"/>
+            <lit v="/"/>
+            <clip pos="1" side="tl" part="whole"/>
+            <lit v="/"/>
+            <var n="cur_subj"/>
+          </lu>
+        </out>
+        <let><var n="cur_subj"/><lit v=""/></let>
+      </action>
+    </rule>
+
+    <rule c="Add the current subject to the ref field of the lexical unit, clear syntax tags">
+      <pattern>
+        <pattern-item n="any"/>
+      </pattern>
+      <action>
+        <let><clip pos="1" side="tl" part="a_syntax"/><lit v=""/></let>
+        <let><clip pos="1" side="sl" part="a_syntax"/><lit v=""/></let> <!-- preprocess-transfer gives a mistaken warning – this does have effect -->
+        <out>
+          <lu>
+            <clip pos="1" side="sl" part="whole"/>
+            <lit v="/"/>
+            <clip pos="1" side="tl" part="whole"/>
+            <lit v="/"/>
+            <var n="cur_subj"/>
+          </lu>
+        </out>
+      </action>
+    </rule>
+
+
+  </section-rules>
+</transfer>

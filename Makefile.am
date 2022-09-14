@@ -30,6 +30,7 @@ TARGETS_PREFIX1 =                                             \
 TARGETS_PREFIX2 =                                             \
      $(PREFIX2).automorf.bin                                  \
      $(PREFIX2).seg.rlx.bin                                   \
+     $(PREFIX2).syn.rlx.bin                                   \
      $(PREFIX2).rlx.bin                                       \
      $(PREFIX2).autoseq.bin                                   \
      capstag.autoseq.bin                                      \
@@ -37,6 +38,7 @@ TARGETS_PREFIX2 =                                             \
      $(PREFIX2).prob                                          \
      $(PREFIX2).autolex.bin                                   \
      $(PREFIX2).autobil.bin                                   \
+     $(PREFIX2).refsyn.t1x.bin                                \
      $(PREFIX2).t1x.bin $(PREFIX2).t2x.bin $(PREFIX2).t3x.bin \
      $(PREFIX2).autopgen.bin                                  \
      $(PREFIX2).biprefs.rlx.bin                               \
@@ -52,11 +54,11 @@ $(PREFIX2): $(TARGETS_PREFIX2)
 # Debug/development goals:
 e: modes/$(PREFIX1).mode	# build just nob-nno_e
 	cd $(AP_SRC1) && ${MAKE} $(LANG1).autogen.bin $(LANG1).e_vi_prefs.rlx.bin $(LANG1).prefs.rlx.bin $(LANG1).autopgen.bin
-	cd $(AP_SRC2) && ${MAKE} $(LANG2).automorf.bin  $(LANG2).seg.rlx.bin $(LANG2).rlx.bin $(LANG2).prob
+	cd $(AP_SRC2) && ${MAKE} $(LANG2).automorf.bin $(LANG2).seg.rlx.bin $(LANG2).syn.rlx.bin $(LANG2).rlx.bin $(LANG2).prob
 	${MAKE} $(TARGETS_PREFIX2)
-r: modes/$(PREFIX1).mode $(PREFIX2).autolex.bin $(PREFIX2).t1x.bin $(PREFIX2).t2x.bin $(PREFIX2).t3x.bin # build just transfer and rlx files for nob-nno(_e)
-	cd $(AP_SRC2) && ${MAKE} $(LANG2).seg.rlx.bin $(LANG2).rlx.bin
-	${MAKE} $(PREFIX2).seg.rlx.bin $(PREFIX2).rlx.bin $(PREFIX2).biprefs.rlx.bin $(PREFIX2).autoseq.bin capstag.autoseq.bin $(LANG1).autoseq.bin capstag.rlx.bin
+r: modes/$(PREFIX1).mode $(PREFIX2).autolex.bin $(PREFIX2).refsyn.t1x.bin $(PREFIX2).t1x.bin $(PREFIX2).t2x.bin $(PREFIX2).t3x.bin # build just transfer and rlx files for nob-nno(_e)
+	cd $(AP_SRC2) && ${MAKE} $(LANG2).seg.rlx.bin $(LANG2).syn.rlx.bin $(LANG2).rlx.bin
+	${MAKE} $(PREFIX2).seg.rlx.bin $(PREFIX2).syn.rlx.bin $(PREFIX2).rlx.bin $(PREFIX2).biprefs.rlx.bin $(PREFIX2).autoseq.bin capstag.autoseq.bin $(LANG1).autoseq.bin capstag.rlx.bin
 
 # This include defines goals for install-modes, .deps/.d and .mode files:
 @ap_include@
@@ -111,13 +113,13 @@ $(PREFIX2).prob: $(AP_SRC2)/$(LANG2).prob
 $(PREFIX1).rlx.bin: $(AP_SRC1)/$(LANG1).rlx.bin
 	cp $< $@
 
-$(PREFIX1).seg.rlx.bin: $(AP_SRC1)/$(LANG1).seg.rlx.bin
+$(PREFIX1).%.rlx.bin: $(AP_SRC1)/$(LANG1).%.rlx.bin
 	cp $< $@
 
 $(PREFIX2).rlx.bin: $(AP_SRC2)/$(LANG2).rlx.bin
 	cp $< $@
 
-$(PREFIX2).seg.rlx.bin: $(AP_SRC2)/$(LANG2).seg.rlx.bin
+$(PREFIX2).%.rlx.bin: $(AP_SRC2)/$(LANG2).%.rlx.bin
 	cp $< $@
 
 ###############################################################################
@@ -194,6 +196,10 @@ $(PREFIX1).t3x.bin: $(BASENAME).$(PREFIX1).t3x
 	apertium-preprocess-transfer $< $@
 
 
+$(PREFIX2).refsyn.t1x.bin: $(BASENAME).$(PREFIX2).refsyn.t1x
+	apertium-validate-transfer $<
+	apertium-preprocess-transfer $< $@
+
 $(PREFIX2).t1x.bin: $(BASENAME).$(PREFIX2).t1x
 	apertium-validate-transfer $<
 	apertium-preprocess-transfer $< $@
@@ -235,6 +241,7 @@ EXTRA_DIST=$(BASENAME).$(PREFIX1).dix \
 	   $(BASENAME).$(PREFIX1).t1x \
 	   $(BASENAME).$(PREFIX1).t2x \
 	   $(BASENAME).$(PREFIX1).t3x \
+	   $(BASENAME).$(PREFIX2).refsyn.t1x \
 	   $(BASENAME).$(PREFIX2).t1x \
 	   $(BASENAME).$(PREFIX2).t2x \
 	   $(BASENAME).$(PREFIX2).t3x \
@@ -254,6 +261,7 @@ apertium_nno_nob_DATA=$(TARGETS_COMMON) \
 	$(BASENAME).$(PREFIX1).t1x \
 	$(BASENAME).$(PREFIX1).t2x \
 	$(BASENAME).$(PREFIX1).t3x \
+	$(BASENAME).$(PREFIX2).refsyn.t1x \
 	$(BASENAME).$(PREFIX2).t1x \
 	$(BASENAME).$(PREFIX2).t2x \
 	$(BASENAME).$(PREFIX2).t3x

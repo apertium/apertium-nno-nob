@@ -104,9 +104,90 @@
     <sdef n="aa"/>
     <sdef n="AA"/>
     <sdef n="Aa"/>
+
+    <sdef n="@fv"/>
+    <sdef n="@iv"/>
+    <sdef n="@subj"/>
+    <sdef n="@obj"/>
+    <sdef n="@i-obj"/>
+    <sdef n="@s-pred"/>
+    <sdef n="@o-pred"/>
+    <sdef n="@adv"/>
+    <sdef n="@adv→"/>
+    <sdef n="@←adv"/>
+    <sdef n="@app"/>
+    <sdef n="@tittel"/>
+    <sdef n="@det→"/>
+    <sdef n="@←det"/>
+    <sdef n="@subst→"/>
+    <sdef n="@←subst"/>
+    <sdef n="@←p-utfyll"/>
+    <sdef n="@interj"/>
+    <sdef n="@adj→"/>
+    <sdef n="@kon"/>
+    <sdef n="@laus-np"/>
+    <sdef n="@←sbu"/>
+    <sdef n="@←sbu-rel"/>
+    <sdef n="@s-gr"/>
+
   </sdefs>
 
   <pardefs>
+
+    <pardef n="@x|" c="copy all function tags (includes empty)">
+      <e></e>
+      <e><i><s n="@fv"/></i></e>
+      <e><i><s n="@iv"/></i></e>
+      <e><i><s n="@subj"/></i></e>
+      <e><i><s n="@obj"/></i></e>
+      <e><i><s n="@i-obj"/></i></e>
+      <e><i><s n="@s-pred"/></i></e>
+      <e><i><s n="@o-pred"/></i></e>
+      <e><i><s n="@adv"/></i></e>
+      <e><i><s n="@adv→"/></i></e>
+      <e><i><s n="@←adv"/></i></e>
+      <e><i><s n="@app"/></i></e>
+      <e><i><s n="@tittel"/></i></e>
+      <e><i><s n="@det→"/></i></e>
+      <e><i><s n="@←det"/></i></e>
+      <e><i><s n="@subst→"/></i></e>
+      <e><i><s n="@←subst"/></i></e>
+      <e><i><s n="@←p-utfyll"/></i></e>
+      <e><i><s n="@interj"/></i></e>
+      <e><i><s n="@adj→"/></i></e>
+      <e><i><s n="@kon"/></i></e>
+      <e><i><s n="@laus-np"/></i></e>
+      <e><i><s n="@←sbu"/></i></e>
+      <e><i><s n="@←sbu-rel"/></i></e>
+      <e><i><s n="@s-gr"/></i></e>
+    </pardef>
+    <pardef n="@x:" c="remove all function tags (includes empty)">
+      <e></e>
+      <e><p><l><s n="@fv"/></l>        <r></r></p></e>
+      <e><p><l><s n="@iv"/></l>        <r></r></p></e>
+      <e><p><l><s n="@subj"/></l>      <r></r></p></e>
+      <e><p><l><s n="@obj"/></l>       <r></r></p></e>
+      <e><p><l><s n="@i-obj"/></l>     <r></r></p></e>
+      <e><p><l><s n="@s-pred"/></l>    <r></r></p></e>
+      <e><p><l><s n="@o-pred"/></l>    <r></r></p></e>
+      <e><p><l><s n="@adv"/></l>       <r></r></p></e>
+      <e><p><l><s n="@adv→"/></l>      <r></r></p></e>
+      <e><p><l><s n="@←adv"/></l>      <r></r></p></e>
+      <e><p><l><s n="@app"/></l>       <r></r></p></e>
+      <e><p><l><s n="@tittel"/></l>    <r></r></p></e>
+      <e><p><l><s n="@det→"/></l>      <r></r></p></e>
+      <e><p><l><s n="@←det"/></l>      <r></r></p></e>
+      <e><p><l><s n="@subst→"/></l>    <r></r></p></e>
+      <e><p><l><s n="@←subst"/></l>    <r></r></p></e>
+      <e><p><l><s n="@←p-utfyll"/></l> <r></r></p></e>
+      <e><p><l><s n="@interj"/></l>    <r></r></p></e>
+      <e><p><l><s n="@adj→"/></l>      <r></r></p></e>
+      <e><p><l><s n="@kon"/></l>       <r></r></p></e>
+      <e><p><l><s n="@laus-np"/></l>   <r></r></p></e>
+      <e><p><l><s n="@←sbu"/></l>      <r></r></p></e>
+      <e><p><l><s n="@←sbu-rel"/></l>  <r></r></p></e>
+      <e><p><l><s n="@s-gr"/></l>      <r></r></p></e>
+    </pardef>
 
     <pardef n="aa|" c="Optional aa tag (includes empty)">
       <e></e>
@@ -114,14 +195,20 @@
       <e><i><s n="Aa"/></i></e>
       <e><i><s n="AA"/></i></e>
     </pardef>
-    <pardef n="d" c="Copy over word-separator with optional preceding aa tag">
-      <e><par n="aa|"/><i><d/></i></e>
+    <pardef n="d" c="Copy over word-separator with optional preceding aa and function tag">
+      <e><par n="aa|"/><par n="@x|"/><i><d/></i></e>
     </pardef>
     <pardef n="d:" c="Delete word-separator and optional preceding aa tag – but output titlecase as lone ^Aa$ marker for post-nob-nno.lsx to handle">
-      <e><p><l><d/></l>            <r></r></p></e>
-      <e><p><l><s n="aa"/><d/></l> <r></r></p></e>
-      <e><p><l><s n="Aa"/><d/></l> <r><s n="Aa"/><d/></r></p></e> <!-- handled in post-nob-nno.lsx -->
-      <e><p><l><s n="AA"/><d/></l> <r></r></p></e>
+      <e>                                  <par n="@x:"/> <p><l><d/></l> <r></r>    </p></e>
+      <e><p><l><s n="aa"/></l> <r></r></p> <par n="@x:"/> <p><l><d/></l> <r></r>    </p></e>
+      <e>   <i><s n="Aa"/></i>             <par n="@x:"/> <p><l><d/></l> <r><d/></r></p></e> <!-- handled in post-nob-nno.lsx -->
+      <e><p><l><s n="AA"/></l> <r></r></p> <par n="@x:"/> <p><l><d/></l> <r></r>    </p></e>
+    </pardef>
+
+    <pardef n="aa_d" c="Copy and *require* aa/Aa/AA-tag, then (optional) function tags, then word-separator">
+      <e> <i><s n="aa"/></i> <par n="@x|"/> <i><d/></i> </e>
+      <e> <i><s n="Aa"/></i> <par n="@x|"/> <i><d/></i> </e>
+      <e> <i><s n="AA"/></i> <par n="@x|"/> <i><d/></i> </e>
     </pardef>
 
     <pardef n="aa:Aa" c="Titlecase if downcased, keep UPPERCASE as-is">
@@ -306,30 +393,22 @@
     <pardef n="n.sg.ind" c="No final t/ – avoid cmp!">
       <e><i><w/><s n="n"/><t/><s n="sg"/><s n="ind"/><d/></i></e>
       <e><i><w/><s n="n"/><t/><s n="sg"/><s n="ind"/><s n="gen"/><d/></i></e>
-      <e><i><w/><s n="n"/><t/><s n="sg"/><s n="ind"/><s n="aa"/><d/></i></e>
-      <e><i><w/><s n="n"/><t/><s n="sg"/><s n="ind"/><s n="Aa"/><d/></i></e>
-      <e><i><w/><s n="n"/><t/><s n="sg"/><s n="ind"/><s n="AA"/><d/></i></e>
-      <e><i><w/><s n="n"/><t/><s n="sg"/><s n="ind"/><s n="gen"/><s n="aa"/><d/></i></e>
-      <e><i><w/><s n="n"/><t/><s n="sg"/><s n="ind"/><s n="gen"/><s n="Aa"/><d/></i></e>
-      <e><i><w/><s n="n"/><t/><s n="sg"/><s n="ind"/><s n="gen"/><s n="AA"/><d/></i></e>
+      <e><i><w/><s n="n"/><t/><s n="sg"/><s n="ind"/></i>             <par n="aa_d"/></e>
+      <e><i><w/><s n="n"/><t/><s n="sg"/><s n="ind"/><s n="gen"/></i> <par n="aa_d"/></e>
     </pardef>
 
     <pardef n="n.ind" c="Sg and pl, no gen. No final t/ – avoid cmp!">
       <e><i><w/><s n="n"/><t/><s n="ind"/><d/></i></e>
-      <e><i><w/><s n="n"/><t/><s n="ind"/><s n="aa"/><d/></i></e>
-      <e><i><w/><s n="n"/><t/><s n="ind"/><s n="Aa"/><d/></i></e>
-      <e><i><w/><s n="n"/><t/><s n="ind"/><s n="AA"/><d/></i></e>
+      <e><i><w/><s n="n"/><t/><s n="ind"/></i><par n="aa_d"/></e>
       <e>
         <i><w/><s n="n"/><t/><s n="ind"/><s n="cmp-split"/><t/><d/></i>
         <i><w/><s n="cnjcoo"/><t/><d/></i>
-        <i><w/><s n="n"/><t/><s n="ind"/><t/><d/></i>
-      </e>
+        <i><w/><s n="n"/><t/><s n="ind"/></i><par n="aa_d"/></e>
       <e>
-        <i><w/><s n="n"/><t/><s n="ind"/><s n="cmp-split"/><s n="aa"/><d/></i>
+        <i><w/><s n="n"/><t/><s n="ind"/><s n="cmp-split"/><t/><d/></i>
         <i><w/><s n="cnjcoo"/><t/><d/></i>
-        <i><w/><s n="n"/><t/><s n="ind"/><s n="cmp"/><d/></i>
-        <i><w/><s n="n"/><t/><s n="ind"/><s n="aa"/><d/></i>
-      </e>
+        <i><w/><t/><s n="cmp"/><d/></i>
+        <i><w/><s n="n"/><t/><s n="ind"/></i><par n="aa_d"/></e>
     </pardef>
 
     <pardef n="ncmp">
@@ -392,7 +471,7 @@
         <par n="d"/>
       </e>
       <e>
-        <i><w/><s n="n"/><t/><s n="ind"/><s n="cmp-split"/><s n="aa"/><d/></i>
+        <i><w/><s n="n"/><t/><s n="ind"/><s n="cmp-split"/></i> <par n="d"/>
         <i><w/><s n="cnjcoo"/><t/><d/></i>
         <i><w/><s n="n"/><t/><s n="ind"/><s n="cmp"/><d/></i>
         <i><w/><s n="n"/><t/></i>
@@ -5482,7 +5561,7 @@
 
     <e lm="gjort på et øyeblikk -> fort gjort" c="fort gjort">
       <p><l></l>                 <r>fort<s n="adj"/><s n="sint"/><s n="pst"/><s n="nt"/><s n="sg"/><s n="ind"/><s n="aa"/><d/></r></p>
-      <i>gjøre<s n="vblex"/><s n="pp"/><s n="aa"/><d/></i>
+      <i>gjøre<s n="vblex"/><s n="pp"/></i> <par n="d"/>
       <p><l>på<t/><d/></l> <r></r></p>
       <p><l>en<t/><d/></l> <r></r></p>
       <p><l>øyeblikk<t/><d/></l> <r></r></p>
@@ -5506,14 +5585,14 @@
       <p><l>i<t/><d/></l> <r></r></p>
       <i>en<t/><d/></i>
       <p><l></l>                 <r>kort<s n="adj"/><s n="sint"/><s n="pst"/><s n="mf"/><s n="sg"/><s n="ind"/><s n="aa"/><d/></r></p>
-      <i>øyeblikk<s n="n"/><s n="nt"/><s n="sg"/><s n="ind"/><s n="aa"/><d/></i>
+      <i>øyeblikk<s n="n"/><s n="nt"/><s n="sg"/><s n="ind"/></i> <par n="d"/>
     </e>
 
     <e lm="i et kort øyeblikk -> et kort øyeblikk" c="ei kort stund">
       <p><l>i<t/><d/></l> <r></r></p>
       <i>en<t/><d/></i>
       <i>kort<t/><d/></i>
-      <i>øyeblikk<s n="n"/><s n="nt"/><s n="sg"/><s n="ind"/><s n="aa"/><d/></i>
+      <i>øyeblikk<s n="n"/><s n="nt"/><s n="sg"/><s n="ind"/></i> <par n="d"/>
     </e>
 
     <e lm="i samme øyeblikk → i samme øyeblikket" c="i same augneblinken">
@@ -5524,7 +5603,7 @@
 
     <e lm="et øyeblikks + subst -> et glimt av + subst" c="eit glimt av + subst">
       <i>en<t/><d/></i>
-      <p><l>øyeblikk<s n="n"/><s n="nt"/><s n="sg"/><s n="ind"/><s n="gen"/><s n="aa"/><d/></l> <r></r></p>
+      <p><l>øyeblikk<s n="n"/><s n="nt"/><s n="sg"/><s n="ind"/><s n="gen"/></l> <r></r></p> <par n="d:"/>
       <p><l></l>                 <r>glimt<s n="n"/><s n="nt"/><s n="sg"/><s n="ind"/><s n="aa"/><d/></r></p>
       <p><l></l>                 <r>av<s n="pr"/><d/></r></p>
       <i><w/><s n="n"/><t/><d/></i>
@@ -7068,7 +7147,7 @@
       <p><l></l> <r>bli<s n="vblex"/><s n="pres"/><d/></r></p>
       <p><l></l> <r>opplyse<s n="vblex"/><s n="pp"/><d/></r></p>
       <p><l></l> <r>at<s n="cnjsub"/><d/></r></p>
-      <p><l><w/><s n="n"/><t/><s n="Aa"/></l> <r><w/><s n="n"/><t/><s n="aa"/></r></p> <par n="d"/>
+      <i><w/><s n="n"/><t/></i> <par n="Aa:aa"/> <par n="d"/>
       <par n="cm|og|eller|empty"/>
       <par n="det+SN|"/>
       <par n="pr|empty"/>
@@ -7085,7 +7164,7 @@
       <p><l></l> <r>bli<s n="vblex"/><s n="pres"/><d/></r></p>
       <p><l></l> <r>opplyse<s n="vblex"/><s n="pp"/><d/></r></p>
       <p><l></l> <r>at<s n="cnjsub"/><d/></r></p>
-      <i><w/><s n="n"/><t/><s n="aa"/><d/></i>
+      <i><w/><s n="n"/><t/><s n="aa"/></i> <par n="d"/>
       <par n="cm|og|eller|empty"/>
       <par n="det+SN|"/>
       <par n="pr|empty"/>
@@ -7102,7 +7181,7 @@
       <p><l></l> <r>bli<s n="vblex"/><s n="pres"/><d/></r></p>
       <p><l></l> <r>opplyse<s n="vblex"/><s n="pp"/><d/></r></p>
       <p><l></l> <r>at<s n="cnjsub"/><d/></r></p>
-      <i><w/><s n="adj"/><t/><s n="aa"/><d/></i>
+      <i><w/><s n="adj"/><t/><s n="aa"/></i> <par n="d"/>
       <par n="SN"/>
       <par n="cm|og|eller|empty"/>
       <par n="det+SN|"/>
@@ -7156,7 +7235,7 @@
       <p><l></l> <r>bli<s n="vblex"/><s n="pres"/><d/></r></p>
       <p><l></l> <r>opplyse<s n="vblex"/><s n="pp"/><d/></r></p>
       <p><l></l> <r>at<s n="cnjsub"/><d/></r></p>
-      <i><w/><s n="det"/><t/><s n="aa"/><d/></i>
+      <i><w/><s n="det"/><t/><s n="aa"/></i> <par n="d"/>
       <par n="det|empty"/>
       <par n="det|empty"/>
       <par n="SN|empty"/>
@@ -7212,7 +7291,7 @@
     <!-- /Oppgi -->
 
     <e lm="det fryktes at -> man frykter for at" c="ein fryktar for at">
-      <p><l>den<s n="prn"/><s n="pers"/><s n="p3"/><s n="nt"/><s n="sg"/><s n="acc"/></l> <r>man<s n="prn"/><s n="pers"/><s n="p3"/><s n="un"/><s n="sg"/><s n="nom"/></r></p>  <par n="d"/>
+      <p><l>den<s n="prn"/><s n="pers"/><s n="p3"/><s n="nt"/><s n="sg"/><t/></l> <r>man<s n="prn"/><s n="pers"/><s n="p3"/><s n="un"/><s n="sg"/><s n="nom"/></r></p>  <par n="d"/>
       <p><l>frykte<s n="vblex"/><s n="pres"/><s n="pasv"/></l> <r>frykte<s n="vblex"/><s n="pres"/></r></p>  <par n="d"/>
       <p><l></l>      <r>for<s n="pr"/><d/></r></p>
       <i>at<t/><d/></i>
@@ -7371,7 +7450,7 @@
     </e>
     <e lm="Ytterligere + talord/siffer + subst -> Talord/siffer + subst + til" c="ytterligere talord/siffer + subst + til">
       <!-- Flytt stor forbokstav ved setningsstart -->
-      <par n="ytterligere:"/> <p><l><s n="Aa"/><d/></l>   <r></r></p>
+      <par n="ytterligere:"/> <p><l><s n="Aa"/></l>   <r></r></p> <par n="d:"/>
       <i><w/><s n="det"/><s n="qnt"/><s n="un"/><t/></i> <par n="aa:Aa"/><par n="d"/>
       <par n="ncmp*.n"/>
       <p><l></l>               <r>til<s n="pr"/><d/></r></p>
@@ -10140,12 +10219,12 @@
   <e lm="Fornærmede -> Den fornærmede" c="Den fornærma">
     <p><l></l> <r>den<s n="det"/><s n="dem"/><s n="m"/><s n="sg"/><s n="Aa"/><d/></r></p>
     <par n="ncmp*"/>
-    <par n="ndef_fornærma/sikta/tiltalte"/>  <p><l><s n="Aa"/></l> <r><s n="aa"/></r></p>
+    <par n="ndef_fornærma/sikta/tiltalte"/>  <par n="Aa:aa"/><par n="d"/>
   </e>
   <e lm="fornærmede -> den fornærmede" c="den fornærma">
     <p><l></l> <r>den<s n="det"/><s n="dem"/><s n="m"/><s n="sg"/><s n="aa"/><d/></r></p>
     <par n="ncmp*"/>
-    <par n="ndef_fornærma/sikta/tiltalte"/>  <i><s n="aa"/></i>
+    <par n="ndef_fornærma/sikta/tiltalte"/>  <i><s n="aa"/></i><par n="d"/>
   </e>
   <!-- /fornærmede/siktede/tiltalt -->
 
@@ -12321,7 +12400,7 @@
       <par n="tidenes-rem"/>
       <p><l></l>                                  <r>den<s n="det"/><s n="dem"/><s n="un"/><s n="pl"/><s n="aa"/><d/></r></p>
       <par n="adj.ord|sup+adv"/>
-      <p><l></l>                                  <r><d space="yes"/>noen gang<s n="adv"/><s n="aa"/><d space="no"/></r></p>
+      <p><l></l>                                  <r><d space="yes"/>noen<b/>gang<s n="adv"/><s n="aa"/><d space="no"/></r></p>
       <par n="sent-cm"/>
     </e>
 
@@ -12329,7 +12408,7 @@
       <par n="tidenes-rem"/>
       <par n="adj.sup2comp"/>
       <p><l></l>                                  <r>enn<s n="pr"/><s n="aa"/><d space="yes"/></r></p>
-      <p><l></l>                                  <r>noen gang<s n="adv"/><s n="aa"/><d space="no"/></r></p>
+      <p><l></l>                                  <r>noen<b/>gang<s n="adv"/><s n="aa"/><d space="no"/></r></p>
       <par n="sent-cm"/>
     </e>
 
