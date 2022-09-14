@@ -11318,5 +11318,11 @@ preposisjonar gir ekstra utfordringar. -->
     <match tags="n.*.pl.ind.*"/>
   </rule>
 
+  <rule><match lemma="bondepike" tags="n.*"><select lemma="bondejente"/></match></rule>
+  <rule weight="2.0" c="tilslørte bondepiker -> tilslørte bondepiker">
+    <match lemma="tilsløre" tags="adj.*"/>
+    <match lemma="bondepike" tags="n.*"><select lemma="bondepike"/></match>
+  </rule>
+
 </rules>
 </lrx>
