@@ -1118,17 +1118,29 @@
         <call-macro n="set_ana"><with-param pos="3"/></call-macro>
         <call-macro n="modify_pp_gen_nbr"><with-param pos="2"/></call-macro>
         <out>
-          <chunk>
-            <clip pos="1" part="whole"/>
-          </chunk>
-          <b pos="1"/>
-          <chunk>
-            <clip pos="3" part="whole"/>
-          </chunk>
-          <b pos="2"/>
-          <chunk>
-            <clip pos="2" part="whole"/>
-          </chunk>
+          <chunk><clip pos="1" part="whole"/></chunk><b/>
+          <chunk><clip pos="3" part="whole"/></chunk><b/>
+          <chunk><clip pos="2" part="whole"/></chunk>
+        </out>
+      </action>
+    </rule>
+    <rule comment="AUX PASV-PP DET SYNSUBJ => AUX DET SYNSUBJ PASV-PP
+                   noteres 4,5 prosent =1> blir notert 4,5 prosent =2> blir 4,5 prosent notert">
+      <pattern>
+        <pattern-item n="aux"/>
+        <pattern-item n="pasv-pp"/>
+        <pattern-item n="det"/>
+        <pattern-item n="synsubj"/>
+      </pattern>
+      <action>
+        <call-macro n="modify_prn_gen"><with-param pos="4"/></call-macro>
+        <call-macro n="set_ana"><with-param pos="4"/></call-macro>
+        <call-macro n="modify_pp_gen_nbr"><with-param pos="2"/></call-macro>
+        <out>
+          <chunk><clip pos="1" part="whole"/></chunk><b/>
+          <chunk><clip pos="3" part="whole"/></chunk><b/>
+          <chunk><clip pos="4" part="whole"/></chunk><b/>
+          <chunk><clip pos="2" part="whole"/></chunk>
         </out>
       </action>
     </rule>
@@ -1147,21 +1159,10 @@
         <call-macro n="modify_prn_gen"><with-param pos="3"/></call-macro>
         <call-macro n="modify_pp_gen_nbr"><with-param pos="2"/></call-macro>
         <out>
-          <chunk>
-            <clip pos="1" part="whole"/>
-          </chunk>
-          <b pos="1"/>
-          <chunk>
-            <clip pos="3" part="whole"/>
-          </chunk>
-          <b pos="2"/>
-          <chunk>
-            <clip pos="4" part="whole"/>
-          </chunk>
-          <b pos="3"/>
-          <chunk>
-            <clip pos="2" part="whole"/>
-          </chunk>
+          <chunk><clip pos="1" part="whole"/></chunk> <b/>
+          <chunk><clip pos="3" part="whole"/></chunk> <b/>
+          <chunk><clip pos="4" part="whole"/></chunk> <b/>
+          <chunk><clip pos="2" part="whole"/></chunk>
         </out>
       </action>
     </rule>
@@ -1424,21 +1425,10 @@
         <call-macro n="set_ana"><with-param pos="4"/></call-macro>
         <call-macro n="modify_pp_gen_nbr"><with-param pos="2"/></call-macro>
         <out>
-          <chunk>
-            <clip pos="1" part="whole"/>
-          </chunk>
-          <b pos="1"/>
-          <chunk>
-            <clip pos="3" part="whole"/>
-          </chunk>
-          <b pos="2"/>
-          <chunk>
-            <clip pos="4" part="whole"/>
-          </chunk>
-          <b pos="3"/>
-          <chunk>
-            <clip pos="2" part="whole"/>
-          </chunk>
+          <chunk><clip pos="1" part="whole"/></chunk> <b/>
+          <chunk><clip pos="3" part="whole"/></chunk> <b/>
+          <chunk><clip pos="4" part="whole"/></chunk> <b/>
+          <chunk><clip pos="2" part="whole"/></chunk>
         </out>
       </action>
     </rule>
