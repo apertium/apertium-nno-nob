@@ -221,12 +221,13 @@
     <def-cat n="prn_acc">
       <cat-item tags="prn.*.acc"/>
     </def-cat>
-    <def-cat n="prn_subj">
+    <def-cat n="synsubj">
       <cat-item tags="prn.*.nt.*"/>
       <cat-item tags="prn.*.nt"/>
       <cat-item tags="det.*.expl.*"/>
       <cat-item tags="det.*.expl"/>
       <cat-item tags="prn.pers.*.nom"/>
+      <cat-item tags="*.@subj"/>
     </def-cat>
     <def-cat n="sin">
       <cat-item lemma="detsin" tags="det.pos.*"/>
@@ -451,9 +452,15 @@
     <def-attr n="gen">
       <attr-item tags="m"/>
       <attr-item tags="mf"/>
+      <attr-item tags="un"/>
       <attr-item tags="nt"/>
       <attr-item tags="f"/>
       <attr-item tags="GD"/>
+    </def-attr>
+    <def-attr n="gen_of_detsg" c="TODO: eine/andre/eigne har un">
+      <attr-item tags="m"/>
+      <attr-item tags="f"/>
+      <attr-item tags="nt"/>
     </def-attr>
     <def-attr n="sl-gen">
       <attr-item tags="sl-m"/>
@@ -548,6 +555,7 @@
     <def-var n="ana_gen_m-f" c="m or f"/>
     <def-var n="ana_nbr"/>
     <def-var n="ana_temps" c="Last seen finite verb temps (pres/pret)"/>
+    <def-var n="tmp"/>
   </section-def-vars>
 
   <section-def-lists>
@@ -640,7 +648,8 @@
                 <equal><var n="det_gender"/><lit v=""/></equal>
                 <and>
                   <equal><var n="number_no_sp"/><lit-tag v="sg"/></equal>
-                  <equal><clip pos="1" part="gen"/><lit-tag v="GD"/></equal>
+                  <!-- nb: this test doesn't work for eine/andre/eigne – but fortunately we don't create those from scratch: -->
+                  <not><equal><clip pos="1" part="gen"/><clip pos="1" part="gen_of_detsg"/></equal></not>
                 </and>
               </or></test>
               <let><var n="det_gender"/><lit-tag v="m"/></let>
@@ -724,24 +733,55 @@
         </when>
       </choose>
     </def-macro>
+
     <def-macro n="modify_pp_gen_nbr" npar="1"
                c="arg.1: adj.pp / vblex.pp
                   Assumes set_ana only sets variable combinations that are OK for adj.pp's">
+      <let><var n="tmp"/><lit v=""/></let>
       <choose><when>
         <test><equal><clip pos="1" part="tags"/><lit-tag v="vblex.pp"/></equal></test>
+        <let><var n="tmp"/><concat><lit v="["/><clip pos="1" part="tags"/><lit v="]"/></concat></let>
+        <!-- <out><var n="tmp"/></out> -->
         <let><clip pos="1" part="tags"/><lit-tag v="adj.pp.nt.sg.ind"/></let>
         <let><clip pos="1" part="lemh"/><lit v="adj"/></let>
       </when></choose>
       <choose><when>
         <test><not><equal><var n="ana_nbr"/><lit v=""/></equal></not></test>
+        <choose><when>
+          <test><and>
+            <not><equal><clip pos="1" part="nbr"/><var n="ana_nbr"/></equal></not>
+            <equal><var n="tmp"/><lit v=""/></equal>
+          </and></test>
+          <let><var n="tmp"/><concat><lit v="["/><clip pos="1" part="nbr"/><clip pos="1" part="gen"/><lit v="→"/><var n="ana_nbr"/><var n="ana_gen"/><lit v="]"/></concat></let>
+          <!-- <out><var n="tmp"/></out> -->
+        </when></choose>
+
         <let><clip pos="1" part="nbr"/><var n="ana_nbr"/></let>
         <let><clip pos="1" part="gen"/><var n="ana_gen"/></let>
       </when></choose>
       <choose><when>
         <test><equal><clip pos="1" part="nbr"/><lit-tag v="pl"/></equal></test>
         <let><clip pos="1" part="art"/><lit v=""/></let>
+        <let><clip pos="1" part="gen"/><lit v=""/></let>
       </when></choose>
     </def-macro>
+    <def-macro n="modify_pp_gen_nbr_NOANA" npar="1"
+               c="arg.1: adj.pp / vblex.pp">
+      <let><var n="tmp"/><lit v=""/></let>
+      <choose><when>
+        <test><equal><clip pos="1" part="tags"/><lit-tag v="vblex.pp"/></equal></test>
+        <let><var n="tmp"/><concat><lit v="["/><clip pos="1" part="tags"/><lit v="]"/></concat></let>
+        <!-- <out><var n="tmp"/></out> -->
+        <let><clip pos="1" part="tags"/><lit-tag v="adj.pp.nt.sg.ind"/></let>
+        <let><clip pos="1" part="lemh"/><lit v="adj"/></let>
+      </when></choose>
+      <choose><when>
+        <test><equal><clip pos="1" part="nbr"/><lit-tag v="pl"/></equal></test>
+        <let><clip pos="1" part="art"/><lit v=""/></let>
+        <let><clip pos="1" part="gen"/><lit v=""/></let>
+      </when></choose>
+    </def-macro>
+
     <def-macro n="modify_prn_gen" npar="1"
                c="arg.1: prn">
       <choose><when>
@@ -1054,7 +1094,7 @@
         <pattern-item n="adjpart"/>
       </pattern>
       <action>
-        <call-macro n="modify_pp_gen_nbr"><with-param pos="2"/></call-macro>
+        <call-macro n="modify_pp_gen_nbr_NOANA"><with-param pos="2"/></call-macro>
         <out>
           <chunk>
             <clip pos="1" part="whole"/>
@@ -1066,15 +1106,16 @@
         </out>
       </action>
     </rule>
-    <rule comment="AUX PASV-PP PRN_SUBJ => AUX PRN_SUBJ PASV-PP
+    <rule comment="AUX PASV-PP SYNSUBJ => AUX SYNSUBJ PASV-PP
                    (Videre) påpekes det =1> (Vidare) blir påpeikt det =2> (Vidare) blir det påpeikt">
       <pattern>
         <pattern-item n="aux"/>
         <pattern-item n="pasv-pp"/>
-        <pattern-item n="prn_subj"/>
+        <pattern-item n="synsubj"/>
       </pattern>
       <action>
         <call-macro n="modify_prn_gen"><with-param pos="3"/></call-macro>
+        <call-macro n="set_ana"><with-param pos="3"/></call-macro>
         <call-macro n="modify_pp_gen_nbr"><with-param pos="2"/></call-macro>
         <out>
           <chunk>
@@ -1091,17 +1132,18 @@
         </out>
       </action>
     </rule>
-    <rule comment="AUX PASV-PP PRN_SUBJ ADV_MOVABLE => AUX PRN_SUBJ PASV-PP ADV_MOVABLE
+    <rule comment="AUX PASV-PP SYNSUBJ ADV_MOVABLE => AUX SYNSUBJ PASV-PP ADV_MOVABLE
                    (Videre) oppgis det ikke =1> (Vidare) blir oppgitt det ikkje =2> (Vidare) blir det ikkje oppgitt
 
                    «I en uttalelse på Twitter oppgis det ikke antall drepte eller sårede»">
       <pattern>
         <pattern-item n="aux"/>
         <pattern-item n="pasv-pp"/>
-        <pattern-item n="prn_subj"/>
+        <pattern-item n="synsubj"/>
         <pattern-item n="adv_movable"/>
       </pattern>
       <action>
+        <call-macro n="set_ana"><with-param pos="3"/></call-macro>
         <call-macro n="modify_prn_gen"><with-param pos="3"/></call-macro>
         <call-macro n="modify_pp_gen_nbr"><with-param pos="2"/></call-macro>
         <out>
@@ -1133,7 +1175,7 @@
         <pattern-item n="adv_movable"/>
       </pattern>
       <action>
-        <call-macro n="modify_pp_gen_nbr"><with-param pos="2"/></call-macro>
+        <call-macro n="modify_pp_gen_nbr_NOANA"><with-param pos="2"/></call-macro>
         <out>
           <chunk>
             <clip pos="1" part="whole"/>
@@ -1160,7 +1202,7 @@
         <pattern-item n="adv_movable"/>
       </pattern>
       <action>
-        <call-macro n="modify_pp_gen_nbr"><with-param pos="2"/></call-macro>
+        <call-macro n="modify_pp_gen_nbr_NOANA"><with-param pos="2"/></call-macro>
         <out>
           <chunk>
             <clip pos="1" part="whole"/>
@@ -1191,7 +1233,7 @@
         <pattern-item n="adv_movable"/>
       </pattern>
       <action>
-        <call-macro n="modify_pp_gen_nbr"><with-param pos="2"/></call-macro>
+        <call-macro n="modify_pp_gen_nbr_NOANA"><with-param pos="2"/></call-macro>
         <out>
           <chunk>
             <clip pos="1" part="whole"/>
@@ -1223,7 +1265,7 @@
         <pattern-item n="adv_movable"/>
       </pattern>
       <action>
-        <call-macro n="modify_pp_gen_nbr"><with-param pos="2"/></call-macro>
+        <call-macro n="modify_pp_gen_nbr_NOANA"><with-param pos="2"/></call-macro>
         <out>
           <chunk>
             <clip pos="1" part="whole"/>
@@ -1255,7 +1297,7 @@
         <pattern-item n="adjpart"/>
       </pattern>
       <action>
-        <call-macro n="modify_pp_gen_nbr"><with-param pos="3"/></call-macro>
+        <call-macro n="modify_pp_gen_nbr_NOANA"><with-param pos="3"/></call-macro>
         <out>
           <chunk>
             <clip pos="1" part="whole"/>
@@ -1280,7 +1322,7 @@
         <pattern-item n="adjpart"/>
       </pattern>
       <action>
-        <call-macro n="modify_pp_gen_nbr"><with-param pos="4"/></call-macro>
+        <call-macro n="modify_pp_gen_nbr_NOANA"><with-param pos="4"/></call-macro>
         <out>
           <chunk>
             <clip pos="1" part="whole"/>
@@ -1865,12 +1907,13 @@
       <pattern>
         <pattern-item n="aux"/>
         <pattern-item n="adv"/>
+        <!-- TODO: where's the adjpart ?? -->
         <pattern-item n="vblex"/>
         <pattern-item n="lemq-skip-obj"/>
         <pattern-item n="prn_acc"/>
       </pattern>
       <action>
-        <call-macro n="modify_pp_gen_nbr"><with-param pos="3"/></call-macro>
+        <call-macro n="modify_pp_gen_nbr_NOANA"><with-param pos="3"/></call-macro>
         <call-macro n="modify_prn_gen"><with-param pos="5"/></call-macro>
         <call-macro n="set_ana"><with-param pos="3"/></call-macro>
         <out>
