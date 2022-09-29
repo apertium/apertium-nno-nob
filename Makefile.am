@@ -71,7 +71,7 @@ r: modes/$(PREFIX1).mode $(PREFIX2).autolex.bin $(PREFIX2).refsyn.t1x.bin $(PREF
 # Nynorsk analysis:
 # ---------------------
 $(PREFIX1).automorf.bin: $(AP_SRC1)/$(LANG1).automorf.bin $(PREFIX1).autobil.bin
-	lt-trim $^ $@
+	lt-trim --match-section=regex@standard $^ $@
 
 # -------------------
 # Nynorsk generation:
@@ -86,7 +86,7 @@ $(PREFIX2).autopgen.bin: $(AP_SRC1)/$(LANG1).autopgen.bin
 # Bokmål analysis:
 # ---------------------
 $(PREFIX2).automorf.bin: $(AP_SRC2)/$(LANG2).automorf.bin $(PREFIX2).autobil.bin
-	lt-trim $^ $@
+	lt-trim --match-section=regex@standard $^ $@
 
 # -------------------
 # Bokmål generation:
