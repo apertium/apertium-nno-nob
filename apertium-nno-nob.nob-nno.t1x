@@ -7761,7 +7761,6 @@ no lemq-moving">
       <action>
         <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
         <let><clip pos="2" side="tl" part="a_remspc"/><lit v=""/></let>
-        <let><clip pos="2" side="tl" part="a_caps"/><lit v=""/></let>
         <out>
           <chunk name="det" case="caseFirstWord">
             <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
@@ -7911,7 +7910,6 @@ no lemq-moving">
         <pattern-item n="sent"/>
       </pattern>
       <action>
-        <let><clip pos="1" side="tl" part="a_caps"/><lit v=""/></let>
         <call-macro n="flush-mwe-queue"><with-param pos="1"/></call-macro>
         <let><var n="caseFirstWord"/><lit v=""/></let>
         <choose><when>
