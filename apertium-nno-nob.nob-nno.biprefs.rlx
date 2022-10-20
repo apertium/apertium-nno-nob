@@ -114,6 +114,9 @@ REMOVE:stemme_stemme lm_attfortelje IF (0 ("gjenfortelje"i));
 SELECT:også_òg ("òg"i) IF (0 ("også"i) + (VAR:også_òg));
 REMOVE:også_òg ("òg"i) IF (0 ("også"i));
 
+SELECT:samtidig_samstundes ("samstundes"i) IF (0 ("samtidig"i) + (VAR:samtidig_samstundes));
+REMOVE:samtidig_samtidig   ("samstundes"i) IF (0 ("samtidig"i));
+
 # DEBUG NOTES:
 # $ echo '[<STREAMCMD:SETVAR:forskjell_skilnad,samd_einig>]^forskjell<n><m><sg><ind>/forskjell<n><m><sg><ind>/skilnad<n><m><sg><ind>$ ^enig<adj><sint><pst><nt><sg><ind>/samd<adj><sint><pst><nt><sg><ind>/einig<adj><sint><pst><nt><sg><ind>$' | ~/src/ap/vislcg3/src/cg-proc -t biprefs.nob-nno.rlx.bin |cg-conv
 # [<STREAMCMD:SETVAR:forskjell_skilnad,samd_einig>]
