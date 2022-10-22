@@ -156,7 +156,6 @@
       <attr-item tags="n"/>
       <attr-item tags="n.acr"/>
       <attr-item tags="np"/>
-      <attr-item tags="np.top"/>
     </def-attr>
     <def-attr n="persona">
       <attr-item tags="p1"/>
@@ -275,21 +274,35 @@
 
     <def-macro n="set_caseFirstWord" npar="1">
       <let><var n="caseFirstWord"/><get-case-from pos="1"><lit v="aa"/></get-case-from></let>
-      <modify-case><clip pos="1" side="tl" part="lemh"/><lit v="aa"/></modify-case>
+      <choose><when>
+        <test><not><or>
+          <equal><get-case-from pos="1"><lit v="aa"/></get-case-from><lit v="AA"/></equal>
+          <ends-with><clip pos="1" side="tl" part="lemh"/><lit v="0"/></ends-with>
+          <ends-with><clip pos="1" side="tl" part="lemh"/><lit v="1"/></ends-with>
+          <ends-with><clip pos="1" side="tl" part="lemh"/><lit v="2"/></ends-with>
+          <ends-with><clip pos="1" side="tl" part="lemh"/><lit v="3"/></ends-with>
+          <ends-with><clip pos="1" side="tl" part="lemh"/><lit v="4"/></ends-with>
+          <ends-with><clip pos="1" side="tl" part="lemh"/><lit v="5"/></ends-with>
+          <ends-with><clip pos="1" side="tl" part="lemh"/><lit v="6"/></ends-with>
+          <ends-with><clip pos="1" side="tl" part="lemh"/><lit v="7"/></ends-with>
+          <ends-with><clip pos="1" side="tl" part="lemh"/><lit v="8"/></ends-with>
+          <ends-with><clip pos="1" side="tl" part="lemh"/><lit v="9"/></ends-with>
+          <begins-with><clip pos="1" side="tl" part="a_nom"/><lit-tag v="np"/></begins-with>
+        </or></not></test>
+        <modify-case><clip pos="1" side="tl" part="lemh"/><lit v="aa"/></modify-case>
+      </when></choose>
     </def-macro>
     <def-macro n="set_caseFirstWord2" npar="2">
       <!-- arg.1: possessed noun. arg.2: det.pos, gives typographic case -->
       <choose>
         <when>
-          <test><not>
-            <and>
-              <equal><clip pos="2" side="tl" part="lemh"/><lit v="De"/></equal>
-              <equal><clip pos="2" side="tl" part="a_det"/><lit-tag v="det.pos"/></equal>
-              <equal><clip pos="2" side="tl" part="persona"/><lit-tag v="p2"/></equal>
-            </and>
-          </not></test>
+          <test><not><and>
+            <equal><clip pos="2" side="tl" part="lemh"/><lit v="De"/></equal>
+            <equal><clip pos="2" side="tl" part="a_det"/><lit-tag v="det.pos"/></equal>
+            <equal><clip pos="2" side="tl" part="persona"/><lit-tag v="p2"/></equal>
+          </and></not></test>
+          <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
           <let><var n="caseFirstWord"/><get-case-from pos="2"><lit v="aa"/></get-case-from></let>
-          <modify-case><clip pos="1" side="tl" part="lemh"/><lit v="aa"/></modify-case>
         </when>
       </choose>
     </def-macro>
