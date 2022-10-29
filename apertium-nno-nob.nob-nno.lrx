@@ -6646,7 +6646,10 @@
   </rule>
   <rule weight="3.0">
     <match lemma="betydelig" tags="adv.*"><select lemma="monaleg"/></match>
-    <match tags="vblex.pp.*"/>
+    <or>
+      <match tags="vblex.pp.*"/>
+      <match tags="adj.pp.*"/>
+    </or>
   </rule>
 
   <rule><match lemma="feste# sin lit" tags="vblex.*"><select lemma="setje# sin lit"/></match></rule>
