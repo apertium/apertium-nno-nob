@@ -30,6 +30,9 @@
     <def-cat n="n_cnjcoo_adj_n">
       <cat-item name="n_cnjcoo_adj_n"/>
     </def-cat>
+    <def-cat n="adj_n_cnjcoo_n">
+      <cat-item name="adj_n_cnjcoo_n"/>
+    </def-cat>
     <def-cat n="n_n_cnjcoo_n">
       <cat-item name="n_n_cnjcoo_n"/>
     </def-cat>
@@ -807,6 +810,26 @@
         <call-macro n="out_adj"><with-param pos="3"/><with-param pos="0"/></call-macro>
         <out>
           <b pos="3"/>
+          <lu><clip pos="4" part="whole"/></lu>
+        </out>
+      </action>
+    </rule>
+    <rule comment="CHUNK: adj_n_cnjcoo_n">
+      <pattern>
+        <pattern-item n="adj_n_cnjcoo_n"/>
+      </pattern>
+      <action>
+        <call-macro n="clean_n.adj_defnes"><with-param pos="2"/><with-param pos="1"/><with-param pos="0"/></call-macro>
+        <call-macro n="out_adj"><with-param pos="1"/><with-param pos="0"/></call-macro>
+        <out>
+          <b/>
+          <lu><clip pos="2" part="whole"/></lu>
+        </out>
+        <call-macro n="clean_n"><with-param pos="4"/><with-param pos="0"/></call-macro>
+        <out>
+          <b/>
+          <lu><clip pos="3" part="whole"/></lu>
+          <b/>
           <lu><clip pos="4" part="whole"/></lu>
         </out>
       </action>
