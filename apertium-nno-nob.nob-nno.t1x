@@ -5656,50 +5656,13 @@
               </or></test>
               <let><var n="c_name"/><lit v="aux"/></let>
             </when></choose>
-
-
-            <!-- WIP: -->
-            <choose c="Apply anaphoric variables">
-              <when>
-                <test><and>
-                  <not><in><clip pos="1" side="tl" part="lemh"/><list n="no-samsvar"/></in></not>
-                  <equal><clip pos="1" side="tl" part="temps"/><lit-tag v="pp"/></equal>
-                </and></test>
-                <choose><when>
-                  <test><or>
-                    <equal><clip pos="1" side="ref" part="nbr"/><lit-tag v="pl"/></equal>
-                    <ends-with><clip pos="1" side="ref" part="lemh"/><lit v="tusenvis"/></ends-with>
-                    <ends-with><clip pos="1" side="ref" part="lemh"/><lit v="hundrevis"/></ends-with>
-                    <ends-with><clip pos="1" side="ref" part="lemh"/><lit v="mange"/></ends-with>
-                  </or></test>
-                  <let><clip pos="1" side="tl" part="tags"/><lit-tag v="adj.pp.pl"/></let>
-                </when>
-                <when>
-                  <test><or>
-                    <equal><clip pos="1" side="ref" part="gen"/><lit-tag v="mf"/></equal>
-                    <equal><clip pos="1" side="ref" part="gen"/><lit-tag v="f"/></equal>
-                    <equal><clip pos="1" side="ref" part="gen"/><lit-tag v="m"/></equal>
-                    <equal><clip pos="1" side="ref" part="a_prop"/><lit-tag v="cog"/></equal>
-                    <equal><clip pos="1" side="ref" part="a_prop"/><lit-tag v="ant"/></equal>
-                  </or></test>
-                  <let><clip pos="1" side="tl" part="tags"/><lit-tag v="adj.pp.mf.sg.ind"/></let>
-                </when>
-                <otherwise>
-                  <let><clip pos="1" side="tl" part="tags"/><lit-tag v="adj.pp.nt.sg.ind"/></let>
-                </otherwise>
-                </choose>
-              </when>
-            </choose>
-            <!-- /WIP -->
-
-
-
             <out>
               <chunk namefrom="c_name" case="caseFirstWord">
                 <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
                 <lu>
                   <clip pos="1" side="tl" part="lemh"/>
-                  <clip pos="1" side="tl" part="tags"/>
+                  <clip pos="1" side="tl" part="a_verb"/>
+                  <clip pos="1" side="tl" part="temps"/>
                   <clip pos="1" side="tl" part="lemq"/>
                 </lu>
               </chunk>
