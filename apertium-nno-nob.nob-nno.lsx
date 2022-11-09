@@ -3235,6 +3235,18 @@
       <e><i><w/><t/><d/></i></e>
     </pardef>
 
+    <pardef n="ANYWORDx8|empty">
+      <e>
+        <par n="ANYWORD|"/>
+          <par n="ANYWORD|"/>
+            <par n="ANYWORD|"/>
+              <par n="ANYWORD|"/>
+                <par n="ANYWORD|"/>
+                  <par n="ANYWORD|"/>
+                    <par n="ANYWORD|"/>
+      </e>
+    </pardef>
+
     <pardef n="persontitlar-korte">
       <e><i>leder<s n="n"/><t/><s n="sg"/><s n="ind"/></i></e>
       <e><i>sjef<s n="n"/><t/><s n="sg"/><s n="ind"/></i></e>
@@ -7819,25 +7831,36 @@
       <p><l>breddegrad<s n="n"/><s n="m"/><s n="pl"/><s n="ind"/></l> <r>strøk<s n="n"/><s n="nt"/><s n="pl"/><s n="ind"/></r></p> <par n="d"/>
     </e>
 
-    <e lm="levne pron/subst/særnamn i stikken -> svikte pron/subst/særnamn" c="svikte pron/subst/særnamn">
-      <p><l>levne</l>           <r>svikte</r></p> <i><t/><d/></i>
-      <par n="SN|np|prn"/>
-      <p><l>i<t/><d/></l>   <r></r></p>
-      <p><l>stikken<t/><d/></l>   <r></r></p>
+    <e lm="la i stikken -> gi på båten" c="gi på båten (svike, svikte, forlate)">
+      <p><l>la<s n="vblex"/></l>                      <r>gi<s n="vblex"/></r></p> <i><t/><d/></i>
+      <par n="ANYWORDx8|empty"/>
+      <p><l>i<s n="pr"/></l>                          <r>på<s n="pr"/></r></p> <i><t/><d/></i>
+      <p><l>stikken<s n="n"/><t/></l>                 <r></r></p>  <par n="d:"/>
+      <p><l></l>                                      <r>båt<s n="n"/><s n="m"/><s n="sg"/><s n="def"/><s n="aa"/><d/></r></p>
+    </e>
+    
+    <e lm="latt i stikken -> overlatt til seg selv" c="overlaten til seg sjølv(e)">
+      <p><l>la<s n="adj"/><s n="pp"/></l>             <r>overlate<s n="adj"/><s n="pp"/></r></p> <i><t/><d/></i>
+      <p><l>i<s n="pr"/></l>                          <r>til<s n="pr"/></r></p> <i><t/><d/></i>
+      <p><l>stikken<s n="n"/><t/></l>                 <r></r></p>  <par n="d:"/>
+      <p><l></l>                                      <r>seg<s n="prn"/><s n="ref"/><s n="p3"/><s n="un"/><s n="sp"/><s n="acc"/><s n="aa"/><d/></r></p>
+      <p><l></l>                                      <r>selv<s n="det"/><s n="emph"/><s n="un"/><s n="sp"/><s n="aa"/><d/></r></p>
     </e>
 
-    <e lm="late pron/subst/særnamn i stikken -> svikte pron/subst/særnamn" c="svikte pron/subst/særnamn">
-      <p><l>late</l>           <r>svikte</r></p> <i><t/><d/></i>
-      <par n="SN|np|prn"/>
-      <p><l>i<t/><d/></l>   <r></r></p>
-      <p><l>stikken<t/><d/></l>   <r></r></p>
+    <e lm="levne i stikken -> gi på båten" c="gi på båten (svike, svikte, forlate)">
+      <p><l>levne<s n="vblex"/></l>                   <r>gi<s n="vblex"/></r></p> <i><t/><d/></i>
+      <par n="ANYWORDx8|empty"/>
+      <p><l>i<s n="pr"/></l>                          <r>på<s n="pr"/></r></p> <i><t/><d/></i>
+      <p><l>stikken<s n="n"/><t/></l>                 <r></r></p>  <par n="d:"/>
+      <p><l></l>                                      <r>båt<s n="n"/><s n="m"/><s n="sg"/><s n="def"/><s n="aa"/><d/></r></p>
     </e>
-
-    <e lm="la pron/subst/særnamn i stikken -> svikte pron/subst/særnamn" c="svikte pron/subst/særnamn">
-      <p><l>la</l>           <r>svikte</r></p> <i><t/><d/></i>
-      <par n="SN|np|prn"/>
-      <p><l>i<t/><d/></l>   <r></r></p>
-      <p><l>stikken<t/><d/></l>   <r></r></p>
+    
+    <e lm="levnet i stikken -> overlatt til seg selv" c="overlaten til seg sjølv(e)">
+      <p><l>levne<s n="adj"/><s n="pp"/></l>          <r>overlate<s n="adj"/><s n="pp"/></r></p> <i><t/><d/></i>
+      <p><l>i<s n="pr"/></l>                          <r>til<s n="pr"/></r></p> <i><t/><d/></i>
+      <p><l>stikken<s n="n"/><t/></l>                 <r></r></p>  <par n="d:"/>
+      <p><l></l>                                      <r>seg<s n="prn"/><s n="ref"/><s n="p3"/><s n="un"/><s n="sp"/><s n="acc"/><s n="aa"/><d/></r></p>
+      <p><l></l>                                      <r>selv<s n="det"/><s n="emph"/><s n="un"/><s n="sp"/><s n="aa"/><d/></r></p>
     </e>
 
     <e lm="henlagt på grunn av bevisets stilling -> lagt bort på grunn av mangel på bevis" c="lagt bort på grunn av mangel på bevis">
