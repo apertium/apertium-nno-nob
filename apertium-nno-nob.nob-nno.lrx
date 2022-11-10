@@ -11032,13 +11032,13 @@ preposisjonar gir ekstra utfordringar. -->
 
   <rule c="sjeldan heleri"><match lemma="heling" tags="n.*"><select lemma="heiling"/></match></rule>
 
-  <rule><match lemma="forlovede" tags="n.*"><select lemma="trulova"/></match></rule>
-  <rule weight="2.0">
-    <match tags="det.pos.*"/>
-    <repeat from="0" upto="1">
-      <match tags="adj.*"/>
-    </repeat>
-    <match lemma="forlovede" tags="n.*"><select lemma="kjærast"/></match>
+  <rule><match lemma="forlovede" tags="n.*"><select lemma="kjærast"/></match></rule>
+  <rule weight="2.0">	
+    <or>
+      <match tags="det.dem.*"/>
+      <match tags="det.qnt.*"/>
+    </or>
+    <match lemma="forlovede" tags="n.*"><select lemma="forlova"/></match>
   </rule>
 
   <rule><match lemma="foreta" tags="vblex.*"><select lemma="gjennomføre"/></match></rule>
