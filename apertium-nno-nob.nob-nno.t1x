@@ -6936,6 +6936,35 @@ no lemq-moving">
         </out>
       </action>
     </rule>
+    <rule comment="NCMP NGEN CNJCOO NCMP NGEN: tilsynspersonens og barneverntjenestens → til tilsynspersonen og barneverntjenesten">
+      <pattern>
+        <pattern-item n="ncmp"/>
+        <pattern-item n="ngen"/>
+        <pattern-item n="cnjcoo_nkon"/>
+        <pattern-item n="ncmp"/>
+        <pattern-item n="ngen"/>
+      </pattern>
+      <action>
+        <call-macro n="set_caseFirstWordCmp">
+          <with-param pos="1"/>
+          <with-param pos="2"/>
+        </call-macro>
+        <call-macro n="out_gen-prep"><with-param pos="5"/></call-macro>
+        <call-macro n="stash_case_in_ntags2"><with-param pos="5"/><with-param pos="2"/></call-macro>
+        <out>
+          <chunk name="n_n_cnjcoo_n_n" case="caseFirstWord">
+            <tags><tag><var n="ntags"/></tag></tags>
+            <lu><clip pos="1" side="tl" part="whole"/></lu>
+            <lu><clip pos="2" side="tl" part="whole"/></lu>
+            <b/>
+            <lu><clip pos="3" side="tl" part="lemh"/><lit-tag v="cnjcoo"/></lu>
+            <b/>
+            <lu><clip pos="4" side="tl" part="whole"/></lu>
+            <lu><clip pos="5" side="tl" part="whole"/></lu>
+          </chunk>
+        </out>
+      </action>
+    </rule>
 
 
     <rule comment="ADJ CNJCOO ADJ N: dedikert og nyhetsdrevet avis
