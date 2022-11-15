@@ -7671,9 +7671,11 @@ no lemq-moving">
                   </or></test>
                   <let><clip pos="1" side="tl" part="tags"/><lit-tag v="adj.pp.mf.sg.ind"/></let>
                 </when>
-                <otherwise>
+                <when>
+                  <test><equal><clip pos="1" side="ref" part="gen"/><lit-tag v="nt"/></equal></test>
                   <let><clip pos="1" side="tl" part="tags"/><lit-tag v="adj.pp.nt.sg.ind"/></let>
-                </otherwise>
+                </when>
+                <!-- otherwise, no good subject: leave as-is / fall back to nob.rlx disambiguation -->
                 </choose>
               </when>
             </choose>
