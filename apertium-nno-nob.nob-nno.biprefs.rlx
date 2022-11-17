@@ -83,8 +83,11 @@ REMOVE:røyndom_røyndom ("verkelegheit") IF (0 ("røyndom"i));
 SELECT:beskrive_skildre  ("skildre"i) IF (0 ("beskrive"i) + (VAR:beskrive_skildre));
 REMOVE:beskrive_beskrive ("skildre"i) IF (0 ("beskrive"i));
 
-SELECT:mark_makk  ("makk"i) IF (0 ("mark"i) + (VAR:mark_makk));
-REMOVE:mark_mark ("makk"i) IF (0 ("mark"i));
+# Plain "makk" (not in a lexicalised compound) is "<mark¹>" (nob analysis, treated like form), while "børstemark" etc. has no ¹
+SELECT:mark_makk  ("makk"i) IF (0 ("<mark¹>"i) + (VAR:mark_makk));
+REMOVE:mark_mark ("makk"i) IF (0 ("<mark¹>"i));
+SELECT:mark_makk  (".+makk"i) IF (0 (".+mark"i) + (VAR:mark_makk));
+REMOVE:mark_mark (".+makk"i) IF (0 (".+mark"i));
 
 SELECT:nærast_nærmast  ("nærmast"i) IF (0 ("nærast"i) + (VAR:nærast_nærmast));
 REMOVE:nærast_nærast ("nærmast"i) IF (0 ("nærast"i));
