@@ -64,6 +64,26 @@
       <cat-item tags="sent.*"/>
       <cat-item tags="sent"/>
     </def-cat>
+    <def-cat n="w_antall">
+      <cat-item lemma="antall" tags="n.*"/>
+      <cat-item lemma="mengde" tags="n.*"/>
+      <cat-item lemma="gruppe" tags="n.*"/>
+      <cat-item lemma="andel"  tags="n.*"/>
+      <cat-item lemma="del"    tags="n.*"/>
+    </def-cat>
+    <def-cat n="w_av">
+      <cat-item lemma="av"     tags="pr.*"/>
+    </def-cat>
+    <def-cat n="Lsubst">
+      <cat-item tags="*.@←subst"/>
+      <cat-item tags="*.@←subst.*"/>
+      <cat-item tags="*.@s-pred"/>
+      <cat-item tags="*.@s-pred.*"/>
+    </def-cat>
+    <def-cat n="Lputfyll">
+      <cat-item tags="*.@←p-utfyll"/>
+      <cat-item tags="*.@←p-utfyll.*"/>
+    </def-cat>
   </section-def-cats>
 
   <section-def-attrs>
@@ -458,6 +478,134 @@
       </action>
     </rule>
 
+    <rule c="SMALL SUBCLAUSE: [et] antall demonstranter
+             Use 'inner subject' (Lsubst) as cur_subj">
+      <pattern>
+        <pattern-item n="w_antall"/>
+        <pattern-item n="Lsubst"/>
+      </pattern>
+      <action>
+        <let><var n="cur_subj"/><clip pos="2" side="tl" part="whole"/></let>
+        <let><clip pos="1" side="tl" part="a_syntax"/><lit v=""/></let>
+        <let><clip pos="1" side="sl" part="a_syntax"/><lit v=""/></let> <!-- preprocess-transfer gives a mistaken warning – this does have effect -->
+        <let><clip pos="2" side="tl" part="a_syntax"/><lit v=""/></let>
+        <let><clip pos="2" side="sl" part="a_syntax"/><lit v=""/></let> <!-- preprocess-transfer gives a mistaken warning – this does have effect -->
+        <out>
+          <lu>
+            <clip pos="1" side="sl" part="whole"/>
+            <lit v="/"/>
+            <clip pos="1" side="tl" part="whole"/>
+            <lit v="/"/>
+            <clip pos="1" side="ref" part="whole"/>
+          </lu>
+          <b/>
+          <lu>
+            <clip pos="2" side="sl" part="whole"/>
+            <lit v="/"/>
+            <clip pos="2" side="tl" part="whole"/>
+            <lit v="/"/>
+            <var n="cur_subj"/>
+          </lu>
+        </out>
+      </action>
+    </rule>
+
+    <rule c="SMALL SUBCLAUSE: [et] antall av disse
+             Use 'inner subject' (Lputfyll) as cur_subj">
+      <pattern>
+        <pattern-item n="w_antall"/>
+        <pattern-item n="w_av"/>
+        <pattern-item n="Lputfyll"/>
+      </pattern>
+      <action>
+        <let><var n="cur_subj"/><clip pos="3" side="tl" part="whole"/></let>
+        <let><clip pos="1" side="tl" part="a_syntax"/><lit v=""/></let>
+        <let><clip pos="1" side="sl" part="a_syntax"/><lit v=""/></let> <!-- preprocess-transfer gives a mistaken warning – this does have effect -->
+        <let><clip pos="2" side="tl" part="a_syntax"/><lit v=""/></let>
+        <let><clip pos="2" side="sl" part="a_syntax"/><lit v=""/></let> <!-- preprocess-transfer gives a mistaken warning – this does have effect -->
+        <let><clip pos="3" side="tl" part="a_syntax"/><lit v=""/></let>
+        <let><clip pos="3" side="sl" part="a_syntax"/><lit v=""/></let> <!-- preprocess-transfer gives a mistaken warning – this does have effect -->
+        <out>
+          <lu>
+            <clip pos="1" side="sl" part="whole"/>
+            <lit v="/"/>
+            <clip pos="1" side="tl" part="whole"/>
+            <lit v="/"/>
+            <clip pos="1" side="ref" part="whole"/>
+          </lu>
+          <b/>
+          <lu>
+            <clip pos="2" side="sl" part="whole"/>
+            <lit v="/"/>
+            <clip pos="2" side="tl" part="whole"/>
+            <lit v="/"/>
+            <clip pos="2" side="ref" part="whole"/>
+          </lu>
+          <b/>
+          <lu>
+            <clip pos="3" side="sl" part="whole"/>
+            <lit v="/"/>
+            <clip pos="3" side="tl" part="whole"/>
+            <lit v="/"/>
+            <var n="cur_subj"/>
+          </lu>
+        </out>
+      </action>
+    </rule>
+
+    <rule c="SMALL SUBCLAUSE: [et] antall av deres krigere
+             Use 'inner subject' (Lputfyll) as cur_subj">
+      <pattern>
+        <pattern-item n="w_antall"/>
+        <pattern-item n="w_av"/>
+        <pattern-item n="detR"/>
+        <pattern-item n="Lputfyll"/>
+      </pattern>
+      <action>
+        <let><var n="cur_subj"/><clip pos="4" side="tl" part="whole"/></let>
+        <let><clip pos="1" side="tl" part="a_syntax"/><lit v=""/></let>
+        <let><clip pos="1" side="sl" part="a_syntax"/><lit v=""/></let> <!-- preprocess-transfer gives a mistaken warning – this does have effect -->
+        <let><clip pos="2" side="tl" part="a_syntax"/><lit v=""/></let>
+        <let><clip pos="2" side="sl" part="a_syntax"/><lit v=""/></let> <!-- preprocess-transfer gives a mistaken warning – this does have effect -->
+        <let><clip pos="3" side="tl" part="a_syntax"/><lit v=""/></let>
+        <let><clip pos="3" side="sl" part="a_syntax"/><lit v=""/></let> <!-- preprocess-transfer gives a mistaken warning – this does have effect -->
+        <let><clip pos="4" side="tl" part="a_syntax"/><lit v=""/></let>
+        <let><clip pos="4" side="sl" part="a_syntax"/><lit v=""/></let> <!-- preprocess-transfer gives a mistaken warning – this does have effect -->
+        <out>
+          <lu>
+            <clip pos="1" side="sl" part="whole"/>
+            <lit v="/"/>
+            <clip pos="1" side="tl" part="whole"/>
+            <lit v="/"/>
+            <clip pos="1" side="ref" part="whole"/>
+          </lu>
+          <b/>
+          <lu>
+            <clip pos="2" side="sl" part="whole"/>
+            <lit v="/"/>
+            <clip pos="2" side="tl" part="whole"/>
+            <lit v="/"/>
+            <clip pos="2" side="ref" part="whole"/>
+          </lu>
+          <b/>
+          <lu>
+            <clip pos="3" side="sl" part="whole"/>
+            <lit v="/"/>
+            <clip pos="3" side="tl" part="whole"/>
+            <lit v="/"/>
+            <clip pos="3" side="ref" part="whole"/>
+          </lu>
+          <b/>
+          <lu>
+            <clip pos="4" side="sl" part="whole"/>
+            <lit v="/"/>
+            <clip pos="4" side="tl" part="whole"/>
+            <lit v="/"/>
+            <var n="cur_subj"/>
+          </lu>
+        </out>
+      </action>
+    </rule>
 
 
     <!-- ***** The simple rules: Store, Clear, Apply ***** -->
