@@ -74,6 +74,16 @@
     <def-cat n="w_av">
       <cat-item lemma="av"     tags="pr.*"/>
     </def-cat>
+    <def-cat n="w_stadig">
+      <cat-item lemma="stadig" tags="adv"/>
+      <cat-item lemma="stadig" tags="adv.*"/>
+    </def-cat>
+    <def-cat n="w_flere">
+      <cat-item lemma="mange"  tags="adj.*.comp.*"/>
+    </def-cat>
+    <def-cat n="w_få">
+      <cat-item lemma="få" tags="adj.*"/>
+    </def-cat>
     <def-cat n="Lsubst">
       <cat-item tags="*.@←subst"/>
       <cat-item tags="*.@←subst.*"/>
@@ -513,6 +523,80 @@
       </action>
     </rule>
 
+    <rule c="SMALL SUBCLAUSE: stadig flere personer
+             Use 'inner subject' (Lputfyll) as cur_subj">
+      <pattern>
+        <pattern-item n="w_stadig"/>
+        <pattern-item n="w_flere"/>
+        <pattern-item n="Lsubst"/>
+      </pattern>
+      <action>
+        <let><var n="cur_subj"/><clip pos="3" side="tl" part="whole"/></let>
+        <let><clip pos="1" side="tl" part="a_syntax"/><lit v=""/></let>
+        <let><clip pos="1" side="sl" part="a_syntax"/><lit v=""/></let> <!-- preprocess-transfer gives a mistaken warning – this does have effect -->
+        <let><clip pos="2" side="tl" part="a_syntax"/><lit v=""/></let>
+        <let><clip pos="2" side="sl" part="a_syntax"/><lit v=""/></let> <!-- preprocess-transfer gives a mistaken warning – this does have effect -->
+        <let><clip pos="3" side="tl" part="a_syntax"/><lit v=""/></let>
+        <let><clip pos="3" side="sl" part="a_syntax"/><lit v=""/></let> <!-- preprocess-transfer gives a mistaken warning – this does have effect -->
+        <out>
+          <lu>
+            <clip pos="1" side="sl" part="whole"/>
+            <lit v="/"/>
+            <clip pos="1" side="tl" part="whole"/>
+            <lit v="/"/>
+            <clip pos="1" side="ref" part="whole"/>
+          </lu>
+          <b/>
+          <lu>
+            <clip pos="2" side="sl" part="whole"/>
+            <lit v="/"/>
+            <clip pos="2" side="tl" part="whole"/>
+            <lit v="/"/>
+            <clip pos="2" side="ref" part="whole"/>
+          </lu>
+          <b/>
+          <lu>
+            <clip pos="3" side="sl" part="whole"/>
+            <lit v="/"/>
+            <clip pos="3" side="tl" part="whole"/>
+            <lit v="/"/>
+            <var n="cur_subj"/>
+          </lu>
+        </out>
+      </action>
+    </rule>
+
+    <rule c="SMALL SUBCLAUSE: [bare noen] få bedrifter
+             Use 'inner subject' (Lputfyll) as cur_subj">
+      <pattern>
+        <pattern-item n="w_få"/>
+        <pattern-item n="Lsubst"/>
+      </pattern>
+      <action>
+        <let><var n="cur_subj"/><clip pos="2" side="tl" part="whole"/></let>
+        <let><clip pos="1" side="tl" part="a_syntax"/><lit v=""/></let>
+        <let><clip pos="1" side="sl" part="a_syntax"/><lit v=""/></let> <!-- preprocess-transfer gives a mistaken warning – this does have effect -->
+        <let><clip pos="2" side="tl" part="a_syntax"/><lit v=""/></let>
+        <let><clip pos="2" side="sl" part="a_syntax"/><lit v=""/></let> <!-- preprocess-transfer gives a mistaken warning – this does have effect -->
+        <out>
+          <lu>
+            <clip pos="1" side="sl" part="whole"/>
+            <lit v="/"/>
+            <clip pos="1" side="tl" part="whole"/>
+            <lit v="/"/>
+            <clip pos="1" side="ref" part="whole"/>
+          </lu>
+          <b/>
+          <lu>
+            <clip pos="2" side="sl" part="whole"/>
+            <lit v="/"/>
+            <clip pos="2" side="tl" part="whole"/>
+            <lit v="/"/>
+            <var n="cur_subj"/>
+          </lu>
+        </out>
+      </action>
+    </rule>
 
     <!-- ***** The simple rules: Store, Clear, Apply ***** -->
 
