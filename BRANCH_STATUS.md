@@ -32,17 +32,14 @@ side="ref"> for transfer to use. It's syntactic, not anaphoric.
 - In some cases, we need to use a subject that's to the right,
   refsyn.t1x needs some rules for that
 
-Most lrx/lsx regressions seem fixed, but need to check this again
-after merging newest master.
+- Syntax CG now before tagger, using syntax for disambiguation.
+
+- Most lrx/lsx regressions fixed.
 
 ## Main work remaining:
 
 - Remaining regressions in passive genders (missing refsyn.t1x
   patterns, bad syntax disambiguation?)
-
-- Syntax CG removes readings that disam doesn't – sometimes the wrong ones!
-  For now, we keep syntax after -tagger, so it stays stable.
-  The next phase might reorder those so we can use syntax for disambiguation.
 
 - We should use the subj→ref method for participles as well as
   passives. Currently we "disambiguate" participles based on preceding
