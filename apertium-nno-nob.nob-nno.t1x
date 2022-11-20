@@ -918,6 +918,9 @@
     <def-attr n="a_remspc">
       <attr-item tags="remspc"/>
     </def-attr>
+    <def-attr n="a_date">
+      <attr-item tags="date"/>
+    </def-attr>
     <def-attr n="a_det">
       <attr-item tags="det"/>
       <attr-item tags="det.emph"/>
@@ -4734,6 +4737,50 @@
         <out><b pos="1"/></out>
       </when></choose>
     </def-macro>
+    
+
+    <def-macro n="ref-subj2adj" npar="1"
+               c="arg.1: adjective, possibly with subj in ref
+                  Apply subject gender/number to adjective (given subject stored in side ref)">
+      <choose>
+        <when>
+          <test><and>
+            <equal><clip pos="1" side="tl" part="temps"/><lit-tag v="pp"/></equal>
+            <not><in><clip pos="1" side="tl" part="lemh"/><list n="no-samsvar"/></in></not>
+          </and></test>
+          <choose>
+            <when>
+              <test><equal><clip pos="1" side="ref" part="a_date"/><lit-tag v="date"/></equal></test>
+              <let><clip pos="1" side="tl" part="tags"/><lit-tag v="adj.pp.nt.sg.ind"/></let>
+            </when>
+            <when>
+              <test><or>
+                <equal><clip pos="1" side="ref" part="nbr"/><lit-tag v="pl"/></equal>
+                <ends-with><clip pos="1" side="ref" part="lemh"/><lit v="tusenvis"/></ends-with>
+                <ends-with><clip pos="1" side="ref" part="lemh"/><lit v="hundrevis"/></ends-with>
+                <ends-with><clip pos="1" side="ref" part="lemh"/><lit v="mange"/></ends-with>
+              </or></test>
+              <let><clip pos="1" side="tl" part="tags"/><lit-tag v="adj.pp.pl"/></let>
+            </when>
+            <when>
+              <test><or>
+                <equal><clip pos="1" side="ref" part="gen"/><lit-tag v="mf"/></equal>
+                <equal><clip pos="1" side="ref" part="gen"/><lit-tag v="f"/></equal>
+                <equal><clip pos="1" side="ref" part="gen"/><lit-tag v="m"/></equal>
+                <equal><clip pos="1" side="ref" part="a_prop"/><lit-tag v="cog"/></equal>
+                <equal><clip pos="1" side="ref" part="a_prop"/><lit-tag v="ant"/></equal>
+              </or></test>
+              <let><clip pos="1" side="tl" part="tags"/><lit-tag v="adj.pp.mf.sg.ind"/></let>
+            </when>
+            <when>
+              <test><equal><clip pos="1" side="ref" part="gen"/><lit-tag v="nt"/></equal></test>
+              <let><clip pos="1" side="tl" part="tags"/><lit-tag v="adj.pp.nt.sg.ind"/></let>
+            </when>
+            <!-- otherwise, no good subject: leave as-is / fall back to nob.rlx disambiguation -->
+          </choose>
+        </when>
+      </choose>
+    </def-macro>
 
   </section-def-macros>
 
@@ -5566,6 +5613,11 @@
                   <otherwise><let><var n="movable_tag"/><lit-tag v="np-movable"/></let></otherwise>
                 </choose>
                 <choose c="Apply anaphoric variables">
+                  <when>
+                    <test><equal><clip pos="1" side="ref" part="a_date"/><lit-tag v="date"/></equal></test>
+                    <let><var n="pp_nbr"/><lit-tag v="sg"/></let>
+                    <let><var n="pp_gen"/><lit-tag v="nt"/></let>
+                  </when>
                   <when>
                     <test><and>
                       <not><in><clip pos="1" side="tl" part="lemh"/><list n="no-samsvar"/></in></not>
@@ -7641,46 +7693,10 @@ no lemq-moving">
               <not><equal><clip pos="1" side="tl" part="lem"/><lit v=""/></equal></not>
             </test>
             <let><var n="c_name"/><lit v="adj"/></let>
+            <call-macro n="ref-subj2adj"><with-param pos="1"/></call-macro>
             <call-macro n="set_gender1.adj"><with-param pos="1"/></call-macro>
             <call-macro n="set_grau_aux1"><with-param pos="1"/></call-macro>
             <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
-
-            <!-- WIP: -->
-            <choose c="Apply anaphoric variables">
-              <when>
-                <test><and>
-                  <not><in><clip pos="1" side="tl" part="lemh"/><list n="no-samsvar"/></in></not>
-                  <equal><clip pos="1" side="tl" part="temps"/><lit-tag v="pp"/></equal>
-                </and></test>
-                <choose><when>
-                  <test><or>
-                    <equal><clip pos="1" side="ref" part="nbr"/><lit-tag v="pl"/></equal>
-                    <ends-with><clip pos="1" side="ref" part="lemh"/><lit v="tusenvis"/></ends-with>
-                    <ends-with><clip pos="1" side="ref" part="lemh"/><lit v="hundrevis"/></ends-with>
-                    <ends-with><clip pos="1" side="ref" part="lemh"/><lit v="mange"/></ends-with>
-                  </or></test>
-                  <let><clip pos="1" side="tl" part="tags"/><lit-tag v="adj.pp.pl"/></let>
-                </when>
-                <when>
-                  <test><or>
-                    <equal><clip pos="1" side="ref" part="gen"/><lit-tag v="mf"/></equal>
-                    <equal><clip pos="1" side="ref" part="gen"/><lit-tag v="f"/></equal>
-                    <equal><clip pos="1" side="ref" part="gen"/><lit-tag v="m"/></equal>
-                    <equal><clip pos="1" side="ref" part="a_prop"/><lit-tag v="cog"/></equal>
-                    <equal><clip pos="1" side="ref" part="a_prop"/><lit-tag v="ant"/></equal>
-                  </or></test>
-                  <let><clip pos="1" side="tl" part="tags"/><lit-tag v="adj.pp.mf.sg.ind"/></let>
-                </when>
-                <when>
-                  <test><equal><clip pos="1" side="ref" part="gen"/><lit-tag v="nt"/></equal></test>
-                  <let><clip pos="1" side="tl" part="tags"/><lit-tag v="adj.pp.nt.sg.ind"/></let>
-                </when>
-                <!-- otherwise, no good subject: leave as-is / fall back to nob.rlx disambiguation -->
-                </choose>
-              </when>
-            </choose>
-            <!-- /WIP -->
-
             <out>
               <chunk namefrom="c_name" case="caseFirstWord">
                 <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
@@ -7720,6 +7736,7 @@ no lemq-moving">
           <reject-current-rule shifting="no"/>
         </when></choose>
         <let><var n="c_name"/><lit v="adj_adj"/></let>
+        <call-macro n="ref-subj2adj"><with-param pos="2"/></call-macro>
         <call-macro n="set_gender1.adj"><with-param pos="1"/></call-macro>
         <call-macro n="set_gender1.adj"><with-param pos="2"/></call-macro>
         <call-macro n="set_grau_aux2"><with-param pos="1"/><with-param pos="2"/></call-macro>
