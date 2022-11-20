@@ -36,14 +36,35 @@ side="ref"> for transfer to use. It's syntactic, not anaphoric.
 
 - Most lrx/lsx regressions fixed.
 
+- Use the subj→ref method for participles as well as passives. The old
+  method was to "disambiguate" participles based on preceding subject,
+  but that fails when subject changes gender in bidix, since we
+  disambiguate based on nob gender. OTOH it's the target language
+  subject that gets stored in the `ref` field, which *will* have the
+  right gender. T1X now uses the `ref` field if it's set, falling back
+  to the input gender/number (given by the old method) if unset.
+
 ## Main work remaining:
 
 - Remaining regressions in passive genders (missing refsyn.t1x
   patterns, bad syntax disambiguation?)
 
-- We should use the subj→ref method for participles as well as
-  passives. Currently we "disambiguate" participles based on preceding
-  subject, but that fails when subject changes gender in bidix, since
-  we disambiguate based on nob gender – while it's the target language
-  subject that gets stored in the `ref` field, which *will* have the
-  right gender.
+- Try to keep refsyn as simple and as language-neutral as possible
+  - We should tag the subject of relative clause as @subj *in CG*, not
+    in refsyn:
+    - mannen<mf> i 50-åra som …
+  - We should tag subject of «antall» as @subj *in CG*, not in refsyn:
+    - et antall av deres krigere<pl> …
+
+- Sometimes the subject is a whole clause – should give nt:
+  - [At disse<pl> ble solgt] er fint<nt!>
+
+- Coordination should give plural
+  - To politivakter og en vakt fra et privat vaktselskap ble drept<pl!>
+
+- Missing relative pronouns are difficult:
+  - Jeg er her på grunn av beslutninger tatt på europeiske møter
+  - difficult, since e.g.: ble det ved flere anledninger tatt opp i Stortinget
+
+- adj.sg.nt.@adv should be adv_movable
+  - domineres sterkt → er sterkt dominert
