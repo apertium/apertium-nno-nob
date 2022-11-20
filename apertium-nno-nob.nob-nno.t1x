@@ -996,6 +996,7 @@
       <attr-item tags="@fv"/>
       <attr-item tags="@iv"/>
       <attr-item tags="@subj"/>
+      <attr-item tags="@xubj"/>
       <attr-item tags="@obj"/>
       <attr-item tags="@i-obj"/>
       <attr-item tags="@s-pred"/>
@@ -4033,9 +4034,12 @@
               <!-- refsyn.t1x strips @subj tag from sl so we don't have to change every single
                    def-cat, but if the lemma is the same as ref we're probably on the subject: -->
               <equal><clip pos="1" side="sl" part="lem"/><clip pos="1" side="ref" part="lem"/></equal>
-              <equal><clip pos="1" side="ref" part="a_syntax"/><lit-tag v="@subj"/></equal>
+              <or>
+                <equal><clip pos="1" side="ref" part="a_syntax"/><lit-tag v="@subj"/></equal>
+                <equal><clip pos="1" side="ref" part="a_syntax"/><lit-tag v="@xubj"/></equal>
+              </or>
             </and></test>
-            <append n="ntags"><lit-tag v="@subj"/></append>
+            <append n="ntags"><clip pos="1" side="ref" part="a_syntax"/></append>
           </when>
         </choose>
     </def-macro>
