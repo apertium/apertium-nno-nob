@@ -5,6 +5,11 @@
 
        To understand what this does, look at the "simple rules" at the end of the file first.
        The rules in the beginning handle more exceptional situations.
+
+TODO:
+- Tag subject of relative clause as @subj *in CG*: mannen<mf> i 50-åra som …
+- Tag subject of «antall» @subj *in CG*: et antall av deres krigere<pl> …
+
   -->
   <section-def-cats>
 
@@ -15,6 +20,10 @@
     <def-cat n="cm">
       <cat-item tags="cm"/>
       <cat-item tags="cm.*"/>
+    </def-cat>
+    <def-cat n="pr">
+      <cat-item tags="pr"/>
+      <cat-item tags="pr.*"/>
     </def-cat>
     <def-cat n="subj">
       <cat-item tags="*.@subj"/>
@@ -265,7 +274,7 @@
     <!-- /SHIFTING RULES -->
 
 
-    <rule c="Object of main clause can become subject of relative clause.
+    <rule c="RELATIVE: Object of main clause can become subject of relative clause.
              «I bunnen ligger opplevelser@obj som@←sbu-rel bringes for en dag»">
       <!-- TODO: Antallet spurte som sier de<@s-pred> har blitt hetset på sosiale medier, har i samme tidsperiode økt. -->
       <pattern>
@@ -308,7 +317,7 @@
         </out>
       </action>
     </rule>
-    <rule c="Object of main clause can become subject of relative clause.
+    <rule c="RELATIVE: Object of main clause can become subject of relative clause.
              With comma: «De har gått til angrep mot provinsen@←p-utfyll, som@←sbu-rel kontrolleres av noen.»">
       <pattern>
         <pattern-item n="obj_OR_s-pred"/>
@@ -355,6 +364,145 @@
             <clip pos="3" side="sl" part="whole"/>
             <lit v="/"/>
             <clip pos="3" side="tl" part="whole"/>
+            <lit v="/"/>
+            <var n="cur_subj"/>
+          </lu>
+        </out>
+      </action>
+    </rule>
+    <rule c="RELATIVE: Object of main clause can become subject of relative clause.
+             With prep-phrase: «Politiet fortsetter tirsdag søket etter mannen i 50-årene som er antatt omkommet etter raset i Jølster.»">
+      <pattern>
+        <pattern-item n="obj_OR_s-pred"/>
+        <pattern-item n="pr"/>
+        <pattern-item n="Lputfyll"/>
+        <pattern-item n="Lsbu-rel"/>
+      </pattern>
+      <action>
+        <choose><when c="den første personen i Belgia, som
+                         viktigste, som">
+          <test><or>
+            <not><equal><clip pos="1" side="tl" part="a_prop"/><lit v=""/></equal></not>
+            <and>
+              <equal><clip pos="1" side="tl" part="gen"/><lit-tag v="un"/></equal>
+              <equal><clip pos="1" side="tl" part="nbr"/><lit-tag v="sp"/></equal>
+            </and>
+          </or></test>
+          <reject-current-rule shifting="no"/>
+        </when></choose>
+        <let><var n="cur_subj"/><clip pos="1" side="tl" part="whole"/></let>
+        <let><clip pos="1" side="tl" part="a_syntax"/><lit v=""/></let>
+        <let><clip pos="1" side="sl" part="a_syntax"/><lit v=""/></let> <!-- preprocess-transfer gives a mistaken warning – this does have effect -->
+        <let><clip pos="2" side="tl" part="a_syntax"/><lit v=""/></let>
+        <let><clip pos="2" side="sl" part="a_syntax"/><lit v=""/></let> <!-- preprocess-transfer gives a mistaken warning – this does have effect -->
+        <let><clip pos="3" side="tl" part="a_syntax"/><lit v=""/></let>
+        <let><clip pos="3" side="sl" part="a_syntax"/><lit v=""/></let> <!-- preprocess-transfer gives a mistaken warning – this does have effect -->
+        <let><clip pos="4" side="tl" part="a_syntax"/><lit v=""/></let>
+        <let><clip pos="4" side="sl" part="a_syntax"/><lit v=""/></let> <!-- preprocess-transfer gives a mistaken warning – this does have effect -->
+        <out>
+          <lu>
+            <clip pos="1" side="sl" part="whole"/>
+            <lit v="/"/>
+            <clip pos="1" side="tl" part="whole"/>
+            <lit v="/"/>
+            <clip pos="1" side="ref" part="whole"/>
+          </lu>
+          <b/>
+          <lu>
+            <clip pos="2" side="sl" part="whole"/>
+            <lit v="/"/>
+            <clip pos="2" side="tl" part="whole"/>
+            <lit v="/"/>
+            <var n="cur_subj"/>
+          </lu>
+          <b/>
+          <lu>
+            <clip pos="3" side="sl" part="whole"/>
+            <lit v="/"/>
+            <clip pos="3" side="tl" part="whole"/>
+            <lit v="/"/>
+            <var n="cur_subj"/>
+          </lu>
+          <b/>
+          <lu>
+            <clip pos="4" side="sl" part="whole"/>
+            <lit v="/"/>
+            <clip pos="4" side="tl" part="whole"/>
+            <lit v="/"/>
+            <var n="cur_subj"/>
+          </lu>
+        </out>
+      </action>
+    </rule>
+    <rule c="RELATIVE: Object of main clause can become subject of relative clause.
+             With prep-phrase: «Den andre skal ha vært en mann i 20-årene, som ble drept i Qalandiya utenfor Jerusalem.»">
+      <pattern>
+        <pattern-item n="obj_OR_s-pred"/>
+        <pattern-item n="pr"/>
+        <pattern-item n="Lputfyll"/>
+        <pattern-item n="cm"/>
+        <pattern-item n="Lsbu-rel"/>
+      </pattern>
+      <action>
+        <choose><when c="den første personen i Belgia, som
+                         viktigste, som">
+          <test><or>
+            <not><equal><clip pos="1" side="tl" part="a_prop"/><lit v=""/></equal></not>
+            <and>
+              <equal><clip pos="1" side="tl" part="gen"/><lit-tag v="un"/></equal>
+              <equal><clip pos="1" side="tl" part="nbr"/><lit-tag v="sp"/></equal>
+            </and>
+          </or></test>
+          <reject-current-rule shifting="no"/>
+        </when></choose>
+        <let><var n="cur_subj"/><clip pos="1" side="tl" part="whole"/></let>
+        <let><clip pos="1" side="tl" part="a_syntax"/><lit v=""/></let>
+        <let><clip pos="1" side="sl" part="a_syntax"/><lit v=""/></let> <!-- preprocess-transfer gives a mistaken warning – this does have effect -->
+        <let><clip pos="2" side="tl" part="a_syntax"/><lit v=""/></let>
+        <let><clip pos="2" side="sl" part="a_syntax"/><lit v=""/></let> <!-- preprocess-transfer gives a mistaken warning – this does have effect -->
+        <let><clip pos="3" side="tl" part="a_syntax"/><lit v=""/></let>
+        <let><clip pos="3" side="sl" part="a_syntax"/><lit v=""/></let> <!-- preprocess-transfer gives a mistaken warning – this does have effect -->
+        <let><clip pos="4" side="tl" part="a_syntax"/><lit v=""/></let>
+        <let><clip pos="4" side="sl" part="a_syntax"/><lit v=""/></let> <!-- preprocess-transfer gives a mistaken warning – this does have effect -->
+        <let><clip pos="5" side="tl" part="a_syntax"/><lit v=""/></let>
+        <let><clip pos="5" side="sl" part="a_syntax"/><lit v=""/></let> <!-- preprocess-transfer gives a mistaken warning – this does have effect -->
+        <out>
+          <lu>
+            <clip pos="1" side="sl" part="whole"/>
+            <lit v="/"/>
+            <clip pos="1" side="tl" part="whole"/>
+            <lit v="/"/>
+            <clip pos="1" side="ref" part="whole"/>
+          </lu>
+          <b/>
+          <lu>
+            <clip pos="2" side="sl" part="whole"/>
+            <lit v="/"/>
+            <clip pos="2" side="tl" part="whole"/>
+            <lit v="/"/>
+            <var n="cur_subj"/>
+          </lu>
+          <b/>
+          <lu>
+            <clip pos="3" side="sl" part="whole"/>
+            <lit v="/"/>
+            <clip pos="3" side="tl" part="whole"/>
+            <lit v="/"/>
+            <var n="cur_subj"/>
+          </lu>
+          <b/>
+          <lu>
+            <clip pos="4" side="sl" part="whole"/>
+            <lit v="/"/>
+            <clip pos="4" side="tl" part="whole"/>
+            <lit v="/"/>
+            <var n="cur_subj"/>
+          </lu>
+          <b/>
+          <lu>
+            <clip pos="5" side="sl" part="whole"/>
+            <lit v="/"/>
+            <clip pos="5" side="tl" part="whole"/>
             <lit v="/"/>
             <var n="cur_subj"/>
           </lu>
