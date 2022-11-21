@@ -44,17 +44,15 @@ side="ref"> for transfer to use. It's syntactic, not anaphoric.
   right gender. T1X now uses the `ref` field if it's set, falling back
   to the input gender/number (given by the old method) if unset.
 
+- Subjects of relative clauses and subclauses tagged as @xubj
+  - de<pl><@subj> nevner mannen<mf><@xubj> i 50-åra som …
+  - et antall<sg><@subj> av deres krigere<pl><@xubj> …
+
+
 ## Main work remaining:
 
 - Remaining regressions in passive genders (missing refsyn.t1x
   patterns, bad syntax disambiguation?)
-
-- Try to keep refsyn as simple and as language-neutral as possible
-  - We should tag the subject of relative clause as @subj *in CG*, not
-    in refsyn:
-    - mannen<mf> i 50-åra som …
-  - We should tag subject of «antall» as @subj *in CG*, not in refsyn:
-    - et antall av deres krigere<pl> …
 
 - Sometimes the subject is a whole clause – should give nt:
   - [At disse<pl> ble solgt] er fint<nt!>
