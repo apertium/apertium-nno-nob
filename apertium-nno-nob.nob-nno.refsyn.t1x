@@ -40,7 +40,7 @@
       <cat-item tags="*.@←p-utfyll"/> <!-- Tallet@subjOuter på hvor mange@subjInner som friskmeldes@refInner publiseres@refOuter snart -->
       <cat-item tags="*.@←p-utfyll.*"/>
     </def-cat>
-    <def-cat n="adj-un-sp-subj">
+    <def-cat n="adj.un.sp.subj">
       <cat-item tags="adj.*.un.sp.*.@subj"/>
       <cat-item tags="adj.*.un.sp.*.@subj.*"/>
       <cat-item tags="adj.un.sp.*.@subj"/>
@@ -49,6 +49,9 @@
       <cat-item tags="adj.*.un.sp.*.@xubj.*"/>
       <cat-item tags="adj.un.sp.*.@xubj"/>
       <cat-item tags="adj.un.sp.*.@xubj.*"/>
+    </def-cat>
+    <def-cat n="adj.pp">
+      <cat-item tags="adj.pp.*"/>
     </def-cat>
     <def-cat n="fv">
       <cat-item tags="*.@fv"/>
@@ -254,7 +257,7 @@
              ">
       <pattern>
         <pattern-item n="detR"/>
-        <pattern-item n="adj-un-sp-subj"/>
+        <pattern-item n="adj.un.sp.subj"/>
       </pattern>
       <action>
         <let><var n="cur_subj"/><clip pos="1" side="tl" part="whole"/></let>
@@ -277,6 +280,37 @@
             <clip pos="2" side="tl" part="whole"/>
             <lit v="/"/>
             <var n="cur_subj"/>
+          </lu>
+        </out>
+      </action>
+    </rule>
+
+    <rule c="Nominal adjective keeps gender/number (ignore preceding subject)
+             «10.700 sysselsatte»">
+      <pattern>
+        <pattern-item n="detR"/>
+        <pattern-item n="adj.pp"/>
+      </pattern>
+      <action>
+        <let><clip pos="1" side="tl" part="a_syntax"/><lit v=""/></let>
+        <let><clip pos="1" side="sl" part="a_syntax"/><lit v=""/></let> <!-- preprocess-transfer gives a mistaken warning – this does have effect -->
+        <let><clip pos="2" side="tl" part="a_syntax"/><lit v=""/></let>
+        <let><clip pos="2" side="sl" part="a_syntax"/><lit v=""/></let> <!-- preprocess-transfer gives a mistaken warning – this does have effect -->
+        <out>
+          <lu>
+            <clip pos="1" side="sl" part="whole"/>
+            <lit v="/"/>
+            <clip pos="1" side="tl" part="whole"/>
+            <lit v="/"/>
+            <var n="cur_subj"/>
+          </lu>
+          <b/>
+          <lu>
+            <clip pos="2" side="sl" part="whole"/>
+            <lit v="/"/>
+            <clip pos="2" side="tl" part="whole"/>
+            <lit v="/"/>
+            <clip pos="2" side="ref" part="whole"/>
           </lu>
         </out>
       </action>
