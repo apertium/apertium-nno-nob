@@ -989,7 +989,7 @@
       <attr-item tags="un.sp.def"/>
       <attr-item tags="mf.sg.ind"/>
     </def-attr>
-    <def-attr n="expl">
+    <def-attr n="a_expl">
       <attr-item tags="expl"/>
     </def-attr>
     <def-attr n="a_syntax">
@@ -4741,16 +4741,18 @@
         <out><b pos="1"/></out>
       </when></choose>
     </def-macro>
-    
+
 
     <def-macro n="ref-subj2adj" npar="1"
                c="arg.1: adjective, possibly with subj in ref
-                  Apply subject gender/number to adjective (given subject stored in side ref)">
+                  Apply subject gender/number to participle adjective (given subject stored in side ref)
+                  We don't change when subject is formal 'det'.">
       <choose>
         <when>
           <test><and>
             <equal><clip pos="1" side="tl" part="temps"/><lit-tag v="pp"/></equal>
             <not><in><clip pos="1" side="tl" part="lemh"/><list n="no-samsvar"/></in></not>
+            <not><equal><clip pos="1" side="ref" part="a_expl"/><lit-tag v="expl"/></equal></not>
           </and></test>
           <choose>
             <when>
@@ -4791,7 +4793,7 @@
 
 
   <section-rules>
-    
+
     <rule comment="Sps finanspolitiske talsperson NN → finanspolitisk talsperson for Sp NN">
       <pattern>
         <!--pattern-item n="parti.gen"/-->
@@ -5625,6 +5627,7 @@
                   <when>
                     <test><and>
                       <not><in><clip pos="1" side="tl" part="lemh"/><list n="no-samsvar"/></in></not>
+                      <not><equal><clip pos="1" side="ref" part="a_expl"/><lit-tag v="expl"/></equal></not>
                       <or>
                         <equal><clip pos="1" side="ref" part="nbr"/><lit-tag v="pl"/></equal>
                         <ends-with><clip pos="1" side="ref" part="lemh"/><lit v="tusenvis"/></ends-with>
@@ -7433,6 +7436,7 @@ no lemq-moving">
           <test><or>
             <equal><clip pos="1" side="tl" part="lemh"/><lit v=""/></equal>
             <and>
+              <!-- TODO: allow tettest befolkede områdene! -->
               <not><in><clip pos="1" side="tl" part="lemh"/><list n="adj-ind-def"/></in></not>
               <equal><clip pos="1" side="tl" part="art"/><lit-tag v="ind"/></equal>
               <equal><clip pos="3" side="tl" part="art"/><lit-tag v="def"/></equal>
@@ -7826,7 +7830,7 @@ no lemq-moving">
         <let><var n="dettags"/><clip pos="1" side="tl" part="tags"/></let>
         <choose c="set c_name">
           <when>
-            <test><equal><clip pos="1" side="tl" part="expl"/><lit-tag v="expl"/></equal></test>
+            <test><equal><clip pos="1" side="tl" part="a_expl"/><lit-tag v="expl"/></equal></test>
             <let><var n="dettags"/><clip pos="1" side="tl" part="tags"/></let>
             <let><var n="c_name"/><lit v="detexpl"/></let>
           </when>
