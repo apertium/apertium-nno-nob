@@ -502,7 +502,7 @@
       <attr-item tags="def"/>
       <attr-item tags="ind"/>
     </def-attr>
-    <def-attr n="expl">
+    <def-attr n="a_expl">
       <attr-item tags="expl"/>
     </def-attr>
     <def-attr n="n-movable">
@@ -3550,7 +3550,7 @@
         <choose><when c="only set ana based on det if no ana, or if det is expl">
           <test><or>
             <equal><var n="ana_nbr"/><lit v=""/></equal>
-            <equal><clip pos="1" part="expl"/><lit-tag v="expl"/></equal>
+            <equal><clip pos="1" part="a_expl"/><lit-tag v="expl"/></equal>
           </or></test>
           <call-macro n="set_ana"><with-param pos="1"/></call-macro>
         </when></choose>
