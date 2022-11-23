@@ -7749,8 +7749,11 @@ no lemq-moving">
           <reject-current-rule shifting="no"/>
         </when></choose>
         <let><var n="c_name"/><lit v="adj_adj"/></let>
-        <choose><when c="We want subj2adj in «alvorleg skadde», but not in «flere ansatte»:">
-          <test><not><equal><clip pos="1" side="tl" part="lemh"/><lit v="mange"/></equal></not></test>
+        <choose><when c="We want subj2adj in «alvorleg skadde», but not in «flere ansatte» or «best rangerte»:">
+          <test><not><or>
+            <equal><clip pos="1" side="tl" part="lemh"/><lit v="mange"/></equal>
+            <equal><clip pos="1" side="tl" part="grau"/><lit-tag v="sup"/></equal>
+          </or></not></test>
           <call-macro n="ref-subj2adj"><with-param pos="2"/></call-macro>
         </when></choose>
         <call-macro n="set_gender1.adj"><with-param pos="1"/></call-macro>
