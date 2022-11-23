@@ -921,6 +921,9 @@
     <def-attr n="a_date">
       <attr-item tags="date"/>
     </def-attr>
+    <def-attr n="a_itg">
+      <attr-item tags="itg"/>
+    </def-attr>
     <def-attr n="a_det">
       <attr-item tags="det"/>
       <attr-item tags="det.emph"/>
@@ -4756,7 +4759,10 @@
           </and></test>
           <choose>
             <when>
-              <test><equal><clip pos="1" side="ref" part="a_date"/><lit-tag v="date"/></equal></test>
+              <test><or>
+                <equal><clip pos="1" side="ref" part="a_date"/><lit-tag v="date"/></equal>
+                <equal><clip pos="1" side="ref" part="a_itg"/><lit-tag v="itg"/></equal>
+              </or></test>
               <let><clip pos="1" side="tl" part="tags"/><lit-tag v="adj.pp.nt.sg.ind"/></let>
             </when>
             <when>
