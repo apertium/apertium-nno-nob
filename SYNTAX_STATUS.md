@@ -66,3 +66,8 @@ side="ref"> for transfer to use. It's syntactic, not anaphoric.
 
 - adj.sg.nt.@adv should be adv_movable
   - domineres sterkt → er sterkt dominert
+
+- Crossing subject are difficult:
+  - Samtidig skal vi ha respekt for den politiske plattformen<subj>
+    som de fire partiene<subj> fremforhandlet på Granavollen, og som
+    ble godkjent<plattform> av partienes organer

@@ -1122,6 +1122,7 @@
       <list-item v="mellombels"/>
       <list-item v="suverent"/>
       <list-item v="verkeleg"/>
+      <list-item v="tydeleg"/>  <!-- de tydelig frustrerte … -->
     </def-list>
     <!-- TODO: Currently, offentlig_ansatte is handled by lsx; could
          do specific lsx (+reverse) rules for these as we find them,
@@ -7449,6 +7450,7 @@ no lemq-moving">
               <equal><clip pos="3" side="tl" part="art"/><lit-tag v="def"/></equal>
             </and>
             <and>
+              <not><in><clip pos="1" side="tl" part="lemh"/><list n="adj-ind-def"/></in></not>
               <equal><clip pos="1" side="sl" part="gen"/><lit-tag v="nt"/></equal>
               <equal><clip pos="2" side="sl" part="gen"/><lit-tag v="nt"/></equal>
               <not><equal><clip pos="3" side="sl" part="gen"/><lit-tag v="nt"/></equal></not>
