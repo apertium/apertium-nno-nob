@@ -4961,6 +4961,50 @@
   </rule>
 <!--UTEBLI: END-->
 
+<!-- klare/klar: start -->
+<rule><match lemma="klare" tags="vblex.*"><select lemma="klare"/></match></rule>
+<rule><match lemma="klare¹" tags="vblex.*"><select lemma="klare¹"/></match></rule>
+<rule><match lemma="klar" tags="adj.*"><select lemma="klar"/></match></rule>
+<rule weight="3.0" c="klare tankane">
+    <match lemma="klare" tags="vblex.*"><select lemma="klare¹"/></match>
+      <or>
+        <match lemma="opp"/>
+        <match lemma="tanke"/>
+      </or>
+</rule>
+<rule weight="5.0" c="vere klar over">
+  <match lemma="klar"><select lemma="klar¹"/></match>
+    <or>
+      <match lemma="over" tags="adv.*"/>
+      <match lemma="på" tags="pr.*"/>
+    </or>
+</rule>
+<rule weight="2.0" c="klar for/til">
+  <match lemma="klar"><select lemma="klar"/></match>
+    <or>
+      <match lemma="for" tags="pr.*"/>
+      <match lemma="til" tags="pr.*"/>
+    </or>
+</rule>
+<rule weight="2.0" c="vere klar">
+    <match tags="vblex.*"/>
+    <match lemma="klar" tags="adj.*"><select lemma="klar"/></match>
+</rule>
+<rule weight="2.2" c="klar i blikket">
+    <match lemma="klar" tags="adj.*"><select lemma="klar¹"/></match>
+    <match lemma="i"/>
+    <match tags="n.*.*.def.*"/>
+</rule>
+<rule weight="2.0" c="heilt klart">
+    <match lemma="hel" tags="adj.*"/>
+    <match lemma="klar" tags="adj.sint.pst.nt.*"><select lemma="klar¹"/></match>
+</rule>
+<rule weight="2.0" c="klare tankar">
+    <match lemma="klar" tags="adj.*"><select lemma="klar¹"/></match>
+    <match tags="n.*.*.*"/>
+</rule>
+<!-- klare/klar: end -->
+
   <rule><match lemma="hvor" tags="adv.*"><select lemma="kor"/></match></rule>
   <rule weight="3.0">
     <match lemma="hvor" tags="adv.*"><select lemma="kvar"/></match>
