@@ -129,6 +129,9 @@ REMOVE:eigentleg_eigenleg   ("eigenleg"i) IF (0 ("eigentleg"i));
 SELECT:nød_naud.dift-ø2au ("naudsynt"i) IF (0 ("nødvendig"i) + (VAR:nød_naud.dift-ø2au));
 REMOVE:nød_naud.dift-ø2au ("naudsynt"i) IF (0 ("nødvendig"i));
 
+SELECT:nød_naud.dift-ø2au ("ikkje-naudsynt"i) IF (0 ("ikkje-nødvendig"i) + (VAR:nød_naud.dift-ø2au));
+REMOVE:nød_naud.dift-ø2au ("ikkje-naudsynt"i) IF (0 ("ikkje-nødvendig"i));
+
 SELECT:nød_naud.dift-ø2au ("livsnaudsynt"i) IF (0 ("livsnødvendig"i) + (VAR:nød_naud.dift-ø2au));
 REMOVE:nød_naud.dift-ø2au ("livsnaudsynt"i) IF (0 ("livsnødvendig"i));
 
@@ -140,6 +143,9 @@ REMOVE:nød_naud.dift-ø2au ("naudsyn"i) IF (0 ("nødvendigheit"i));
 
 SELECT:nød_naud.dift-ø2au ("naudsynleg"i) IF (0 ("nødvendigvis"i) + (VAR:nød_naud.dift-ø2au));
 REMOVE:nød_naud.dift-ø2au ("naudsynleg"i) IF (0 ("nødvendigvis"i));
+
+SELECT:nød_naud.dift-ø2au ("naudsynleggjere"i) IF (0 ("nødvendiggjere"i) + (VAR:nød_naud.dift-ø2au));
+REMOVE:nød_naud.dift-ø2au ("naudsynleggjere"i) IF (0 ("nødvendiggjere"i));
 
 # DEBUG NOTES:
 # $ echo '[<STREAMCMD:SETVAR:forskjell_skilnad,samd_einig>]^forskjell<n><m><sg><ind>/forskjell<n><m><sg><ind>/skilnad<n><m><sg><ind>$ ^enig<adj><sint><pst><nt><sg><ind>/samd<adj><sint><pst><nt><sg><ind>/einig<adj><sint><pst><nt><sg><ind>$' | ~/src/ap/vislcg3/src/cg-proc -t biprefs.nob-nno.rlx.bin |cg-conv
