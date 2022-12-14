@@ -147,6 +147,12 @@ REMOVE:nød_naud.dift-ø2au ("naudsynleg"i) IF (0 ("nødvendigvis"i));
 SELECT:nød_naud.dift-ø2au ("naudsynleggjere"i) IF (0 ("nødvendiggjere"i) + (VAR:nød_naud.dift-ø2au));
 REMOVE:nød_naud.dift-ø2au ("naudsynleggjere"i) IF (0 ("nødvendiggjere"i));
 
+SELECT:dødeleg_døyeleg.dift-ø2øy ("døying"i) IF (0 ("dødelegheit"i) + (VAR:dødeleg_døyeleg.dift-ø2øy));
+REMOVE:dødeleg_døyeleg.dift-ø2øy ("døying"i) IF (0 ("dødelegheit"i));
+
+SELECT:dødeleg_døyeleg.dift-ø2øy ("barnedøying"i) IF (0 ("barnedødelegheit"i) + (VAR:dødeleg_døyeleg.dift-ø2øy));
+REMOVE:dødeleg_døyeleg.dift-ø2øy ("barnedøying"i) IF (0 ("barnedødelegheit"i));
+
 # DEBUG NOTES:
 # $ echo '[<STREAMCMD:SETVAR:forskjell_skilnad,samd_einig>]^forskjell<n><m><sg><ind>/forskjell<n><m><sg><ind>/skilnad<n><m><sg><ind>$ ^enig<adj><sint><pst><nt><sg><ind>/samd<adj><sint><pst><nt><sg><ind>/einig<adj><sint><pst><nt><sg><ind>$' | ~/src/ap/vislcg3/src/cg-proc -t biprefs.nob-nno.rlx.bin |cg-conv
 # [<STREAMCMD:SETVAR:forskjell_skilnad,samd_einig>]
