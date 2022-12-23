@@ -6382,7 +6382,10 @@
     <match lemma="bli"/>
     <match lemma="henge"><select lemma="henge¹"/></match>
   </rule>
-    <rule weight="2.0">
+  <rule weight="2.0">
+    <match lemma="henge" tags="vblex.pres.pasv.*"><select lemma="henge¹"/></match>
+  </rule>
+  <rule weight="2.0">
     <match lemma="henge"><select lemma="henge¹"/></match>
     <or>
       <match tags="prn.pers.*.acc.*"/>
@@ -6405,6 +6408,21 @@
     <or>
       <match lemma="opp"/>
       <match lemma="ut"/>
+    </or>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="henge"><select lemma="henge"/></match>
+    <repeat from="0" upto="3"><seq n="NOT_sent_lpar_lquot_rquot"/></repeat>
+    <or>
+      <match lemma="med"/>
+      <match lemma="etter"/>
+    </or>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="henge"><select lemma="henge"/></match>
+    <repeat from="0" upto="6"><seq n="NOT_sent_lpar_lquot_rquot"/></repeat>
+    <or>
+      <match lemma="sammen"/>
     </or>
   </rule>
 <!--HENGE/HENGJE: END-->
