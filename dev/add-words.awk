@@ -54,16 +54,18 @@ BEGIN {
        if(ng=="f" &&nw in ana["nno"]["m"]) print "nno-side dupe!"
        if(ng=="f" &&nw in ana["nno"]["nt"]) print "nno-side dupe!"
        if(ng=="m" &&nw in ana["nno"]["nt"]) print "nno-side dupe!"
-       if(ng=="v" && bw in ana["nob"]["v"])        print "<e>       <p><l>"nw"</l><r>"bw"</r></p><par n=\"vblex_adj\"/></e>"
-       else if(ng=="as" && bw in ana["nob"]["as"]) print "<e>       <p><l>"nw"</l><r>"bw"</r></p><par n=\"adj_sint\"/></e>"
-       else if(ng=="an" && bw in ana["nob"]["as"]) print "<e>       <p><l>"nw"</l><r>"bw"</r></p><par n=\"adj:adj_sint\"/></e>"
-       else if(ng=="as" && bw in ana["nob"]["an"]) print "<e>       <p><l>"nw"</l><r>"bw"</r></p><par n=\"adj_sint:adj\"/></e>"
-       else if(ng=="an" && bw in ana["nob"]["an"]) print "<e>       <p><l>"nw"</l><r>"bw"</r></p><par n=\"adj\"/></e>"
-       else if(ng=="av" && bw in ana["nob"]["av"]) print "<e>       <p><l>"nw"<s n=\"adv\"/></l><r>"bw"<s n=\"adv\"/></r></p></e>"
+       nW=nw;gsub(/ /,"<b/>",nW)
+       bW=bw;gsub(/ /,"<b/>",bW)
+       if(ng=="v" && bw in ana["nob"]["v"])        print "<e>       <p><l>"nW"</l><r>"bW"</r></p><par n=\"vblex_adj\"/></e>"
+       else if(ng=="as" && bw in ana["nob"]["as"]) print "<e>       <p><l>"nW"</l><r>"bW"</r></p><par n=\"adj_sint\"/></e>"
+       else if(ng=="an" && bw in ana["nob"]["as"]) print "<e>       <p><l>"nW"</l><r>"bW"</r></p><par n=\"adj:adj_sint\"/></e>"
+       else if(ng=="as" && bw in ana["nob"]["an"]) print "<e>       <p><l>"nW"</l><r>"bW"</r></p><par n=\"adj_sint:adj\"/></e>"
+       else if(ng=="an" && bw in ana["nob"]["an"]) print "<e>       <p><l>"nW"</l><r>"bW"</r></p><par n=\"adj\"/></e>"
+       else if(ng=="av" && bw in ana["nob"]["av"]) print "<e>       <p><l>"nW"<s n=\"adv\"/></l><r>"bW"<s n=\"adv\"/></r></p></e>"
        else {
-            if(bw in ana["nob"]["f"])              print "<e>       <p><l>"nw"<s n=\"n\"/><s n=\""ng"\"/></l><r>"bw"</r></p><par n=\":n_m_RL_f\"/></e>"
-            else if(bw in ana["nob"]["m"])         print "<e>       <p><l>"nw"<s n=\"n\"/><s n=\""ng"\"/></l><r>"bw"<s n=\"n\"/><s n=\"m\"/></r></p></e>"
-            if(bw in ana["nob"]["nt"])             print "<e>       <p><l>"nw"<s n=\"n\"/><s n=\""ng"\"/></l><r>"bw"<s n=\"n\"/><s n=\"nt\"/></r></p></e>"
+            if(bw in ana["nob"]["f"])              print "<e>       <p><l>"nW"<s n=\"n\"/><s n=\""ng"\"/></l><r>"bW"</r></p><par n=\":n_m_RL_f\"/></e>"
+            else if(bw in ana["nob"]["m"])         print "<e>       <p><l>"nW"<s n=\"n\"/><s n=\""ng"\"/></l><r>"bW"<s n=\"n\"/><s n=\"m\"/></r></p></e>"
+            if(bw in ana["nob"]["nt"])             print "<e>       <p><l>"nW"<s n=\"n\"/><s n=\""ng"\"/></l><r>"bW"<s n=\"n\"/><s n=\"nt\"/></r></p></e>"
             else if(!(bw in ana["nob"]["f"] || bw in ana["nob"]["m"])) {
                 # all the print <e> above failed:
                 bgg=""; for(bg in ana["nob"])if(bw in ana["nob"][bg])bgg=bgg"]["bg; sub(/^\]\[/,"",bgg)

@@ -15,9 +15,14 @@ else
     script=add-words.awk
 fi
 
-make -q langs
+make -q langs >&2
 if [[ $? = 1 ]]; then
-    echo "make -j langs # do this first" 1>&2
+    cat 1>&2 <<EOF
+
+                    # [1;31mUNCOMPILED DEPENDENCIES[0m
+\$ make -j langs     # [31mDO THIS AND RERUN[0m
+
+EOF
 fi
 
 
