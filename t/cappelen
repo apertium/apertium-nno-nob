@@ -13,8 +13,13 @@ declare -a vars=(
     # Monodix preferences:
     infa_infe
     me_vi
+    # TODO: Dei vil ha -j- på verbet ønskje og substantivet rekkje, men ikkje dei andre
     tenkje-leggje.kons-kj2k_gj2g
+    enkje_enke.kons-kj2k_gj2g
+    følgje_følge.kons-lgj2lg
     stader_stadar.subst-ene2ane
+    # TODO: Dei vil ha lauk, men nød:
+    # nød_naud.dift-ø2au
     er_ar
     tek_tar
     vart-vorte_blei-blitt.verb-bli2verte
@@ -33,7 +38,7 @@ declare -a vars=(
     veps_kvefs
     derfor_difor
     skapet_skapen
-    voks_vaks
+    voks_vaks.vok-o2a
     mengd_mengde
     apa_apen
     banen_bana
@@ -50,4 +55,26 @@ declare -a vars=(
 )
 export AP_SETVAR="$(tr ' ' ',' <<< "${vars[@]}" )"
 
-sourced || main "$@"
+
+# Simple sanity test, shout if we can't find all the variable names in one of monodix and biprefs
+selftest () {
+    (
+        cd "$(dirname "${BASH_SOURCE[0]}")"/..
+        if [[ ! -f ../apertium-nno/apertium-nno.nno.dix ]]; then
+            echo "$PWD/../apertium-nno/apertium-nno.nno.dix doesn't exist, skipping selftest"
+            return
+        fi
+        for x in "${vars[@]}"; do
+            grep -q -w -F "VAR:$x" apertium-nno-nob.nob-nno.biprefs.rlx          \
+            || grep -q -F "sdef n=\"v:$x\"" ../apertium-nno/apertium-nno.nno.dix \
+            || echo "WARNING: v:$x not found in nno.dix nor biprefs.rlx" >&2
+        done
+    )
+}
+
+
+if sourced; then
+    selftest
+else
+    main "$@"
+fi
