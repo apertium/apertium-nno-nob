@@ -665,15 +665,9 @@
       <e><par n="SN"/><i><w/><s n="cnjsub"/><t/><d/></i><i><w/><s n="vblex"/><t/><d/></i></e>
     </pardef>
 
-    <pardef n="pr+SN+cnj+vblex" c="Includes empty!">
+    <pardef n="pr+SN+cnj+vblex|" c="Includes empty!">
       <e></e>
       <e><i><w/><s n="pr"/><t/><d/></i><par n="SN+cnj+vblex"/></e>
-    </pardef>
-
-    <pardef n="adv+SN" c="Includes empty!">
-      <e></e>
-      <e><i><w/><s n="adv"/><t/><d/></i><par n="SN"/></e>
-      <e><i><w/><s n="adv"/><t/><d/></i><par n="det+SN"/></e>
     </pardef>
 
     <pardef n="SN|ADV|prn|" c="Includes empty!">
@@ -731,8 +725,7 @@
       <e><i><w/><s n="np"/><t/><d/></i><par n="ncmp*.n"/></e>
     </pardef>
 
-    <pardef n="SN|np|prn|det">
-      <e></e>
+    <pardef n="SN|np|prn|det">>
       <e><par n="det+SN"/></e>
       <e><par n="prn"/></e>
       <e><i><w/><s n="np"/><t/><d/></i></e>
@@ -3245,12 +3238,12 @@
     <pardef n="ANYWORDx8|empty">
       <e>
         <par n="ANYWORD|"/>
-          <par n="ANYWORD|"/>
-            <par n="ANYWORD|"/>
-              <par n="ANYWORD|"/>
-                <par n="ANYWORD|"/>
-                  <par n="ANYWORD|"/>
-                    <par n="ANYWORD|"/>
+        <par n="ANYWORD|"/>
+        <par n="ANYWORD|"/>
+        <par n="ANYWORD|"/>
+        <par n="ANYWORD|"/>
+        <par n="ANYWORD|"/>
+        <par n="ANYWORD|"/>
       </e>
     </pardef>
 
@@ -10129,7 +10122,7 @@
 
   <e lm="ventes i dagene som kommer -> er i dagene som kommer ventet" c="er i dagane som kjem venta">
     <p><l>vente<s n="vblex"/><s n="pres"/><s n="pasv"/></l> <r>være<s n="vblex"/><s n="pres"/></r></p>  <i><t/><d/></i>
-    <par n="pr+SN+cnj+vblex"/>
+    <par n="pr+SN+cnj+vblex|"/>
     <p><l></l>    <r>vente<s n="vblex"/><s n="pp"/><d/></r></p>
   </e>
   <!-- /flytting -->
