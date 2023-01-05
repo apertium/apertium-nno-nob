@@ -7884,6 +7884,7 @@ no lemq-moving">
             <and>
               <not><in><clip pos="1" side="tl" part="lemh"/><list n="adj-ind-def"/></in></not>
               <not><equal><clip pos="1" side="tl" part="grau"/><lit-tag v="sup"/></equal></not> <!-- allow «tettest/mest befolkede områdene» -->
+              <not><equal><clip pos="2" side="tl" part="grau"/><lit-tag v="sup"/></equal></not> <!-- allow «klart best rangerte» -->
               <equal><clip pos="1" side="tl" part="art"/><lit-tag v="ind"/></equal>
               <equal><clip pos="3" side="tl" part="art"/><lit-tag v="def"/></equal>
             </and>
@@ -7894,7 +7895,9 @@ no lemq-moving">
         <choose><when c="We want subj2adj on the *last* adj in «alvorleg skadde», but not in «flere ansatte» or «best rangerte»:">
           <test><not><or>
             <equal><clip pos="1" side="tl" part="lemh"/><lit v="mange"/></equal>
+            <equal><clip pos="2" side="tl" part="lemh"/><lit v="mange"/></equal>
             <equal><clip pos="1" side="tl" part="grau"/><lit-tag v="sup"/></equal>
+            <equal><clip pos="2" side="tl" part="grau"/><lit-tag v="sup"/></equal>
           </or></not></test>
           <call-macro n="ref-subj2adj"><with-param pos="3"/></call-macro>
         </when></choose>
