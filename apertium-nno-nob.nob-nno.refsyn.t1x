@@ -18,6 +18,10 @@
       <cat-item tags="cm"/>
       <cat-item tags="cm.*"/>
     </def-cat>
+    <def-cat n="cm-clb">
+      <cat-item tags="cm.clb"/>
+      <cat-item tags="cm.clb.*"/>
+    </def-cat>
     <def-cat n="pr">
       <cat-item tags="pr"/>
       <cat-item tags="pr.*"/>
@@ -137,6 +141,7 @@
 
   <section-def-vars>
     <def-var n="cur_subj"/>
+    <def-var n="prev_subj"/>
   </section-def-vars>
 
   <section-def-lists>
@@ -164,6 +169,7 @@
         <pattern-item n="subj"/>
       </pattern>
       <action>
+        <let><var n="prev_subj"/><var n="cur_subj"/></let>
         <let><var n="cur_subj"/><clip pos="2" side="tl" part="whole"/></let>
         <let><clip pos="1" side="tl" part="a_syntax"/><lit v=""/></let>
         <let><clip pos="1" side="sl" part="a_syntax"/><lit v=""/></let> <!-- preprocess-transfer gives a mistaken warning – this does have effect -->
@@ -186,6 +192,7 @@
         <pattern-item n="subj"/>
       </pattern>
       <action>
+        <let><var n="prev_subj"/><var n="cur_subj"/></let>
         <let><var n="cur_subj"/><clip pos="3" side="tl" part="whole"/></let>
         <let><clip pos="1" side="tl" part="a_syntax"/><lit v=""/></let>
         <let><clip pos="1" side="sl" part="a_syntax"/><lit v=""/></let> <!-- preprocess-transfer gives a mistaken warning – this does have effect -->
@@ -209,6 +216,7 @@
         <pattern-item n="subj"/>
       </pattern>
       <action>
+        <let><var n="prev_subj"/><var n="cur_subj"/></let>
         <let><var n="cur_subj"/><clip pos="4" side="tl" part="whole"/></let>
         <let><clip pos="1" side="tl" part="a_syntax"/><lit v=""/></let>
         <let><clip pos="1" side="sl" part="a_syntax"/><lit v=""/></let> <!-- preprocess-transfer gives a mistaken warning – this does have effect -->
@@ -233,6 +241,7 @@
         <pattern-item n="subj"/>
       </pattern>
       <action>
+        <let><var n="prev_subj"/><var n="cur_subj"/></let>
         <let><var n="cur_subj"/><clip pos="5" side="tl" part="whole"/></let>
         <let><clip pos="1" side="tl" part="a_syntax"/><lit v=""/></let>
         <let><clip pos="1" side="sl" part="a_syntax"/><lit v=""/></let> <!-- preprocess-transfer gives a mistaken warning – this does have effect -->
@@ -260,6 +269,7 @@
         <pattern-item n="adj.un.sp.subj"/>
       </pattern>
       <action>
+        <let><var n="prev_subj"/><var n="cur_subj"/></let>
         <let><var n="cur_subj"/><clip pos="1" side="tl" part="whole"/></let>
         <let><clip pos="1" side="tl" part="a_syntax"/><lit v=""/></let>
         <let><clip pos="1" side="sl" part="a_syntax"/><lit v=""/></let> <!-- preprocess-transfer gives a mistaken warning – this does have effect -->
@@ -323,6 +333,7 @@
         <pattern-item n="subj_OR_xubj"/>
       </pattern>
       <action>
+        <let><var n="prev_subj"/><var n="cur_subj"/></let>
         <let><var n="cur_subj"/><clip pos="1" side="tl" part="whole"/></let>
         <let><clip pos="1" side="tl" part="a_syntax"/><lit v=""/></let>
         <let><clip pos="1" side="sl" part="a_syntax"/><lit v=""/></let> <!-- preprocess-transfer gives a mistaken warning – this does have effect -->
@@ -338,7 +349,7 @@
       </action>
     </rule>
 
-    <rule c="Clear the current-subject variable on sentence end.">
+    <rule c="Clear the prev- and current-subject variables on sentence end.">
       <pattern>
         <pattern-item n="sent"/>
       </pattern>
@@ -354,7 +365,22 @@
             <var n="cur_subj"/>
           </lu>
         </out>
+        <let><var n="prev_subj"/><lit v=""/></let>
         <let><var n="cur_subj"/><lit v=""/></let>
+      </action>
+    </rule>
+
+    <rule c="Switch to prev subject variable on clause boundary comma">
+      <pattern>
+        <pattern-item n="cm-clb"/>
+      </pattern>
+      <action>
+        <choose><when>
+          <test><not><equal><var n="prev_subj"/><lit v=""/></equal></not></test>
+          <let><var n="cur_subj"/><var n="prev_subj"/></let>
+          <let><var n="prev_subj"/><lit v=""/></let>
+        </when></choose>
+        <reject-current-rule shifting="no"/>
       </action>
     </rule>
 
