@@ -56,10 +56,15 @@ side="ref"> for transfer to use. It's syntactic, not anaphoric.
 
 - Sometimes the subject is a whole clause – should give nt:
   - [At disse<pl> ble solgt] er fint<nt!>
-  - May require "outer" ref, flip on clause boundary
+  May require "outer" ref, flip on clause boundary.
+  But we can't always trust that som+comma ends the clause:
+  - Han stadfestar at<nt> alle tenestemennene<pl> som avfyrte skot, no
+    er avhøyrde<pl>
 
 - Coordination should give plural
   - To politivakter og en vakt fra et privat vaktselskap ble drept<pl!>
+  But sometimes hard to know if it's the same person (sg) or different (pl):
+  - Programleder og tidligere gjengleder skutt og drept i København.
 
 - Missing relative pronouns are difficult:
   - Jeg er her på grunn av beslutninger tatt på europeiske møter
@@ -72,5 +77,6 @@ side="ref"> for transfer to use. It's syntactic, not anaphoric.
   - Samtidig skal vi ha respekt for den politiske plattformen<subj>
     som de fire partiene<subj> fremforhandlet på Granavollen, og som
     ble godkjent<plattform> av partienes organer
+
 
 - Regular (non-pp) adjectives
