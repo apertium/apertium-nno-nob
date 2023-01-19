@@ -3891,6 +3891,15 @@
       <list-item v="gi"/>
       <list-item v="gje"/>
     </def-list>
+    <def-list n="vekedag">
+      <list-item v="måndag"/>
+      <list-item v="tysdag"/>
+      <list-item v="onsdag"/>
+      <list-item v="torsdag"/>
+      <list-item v="fredag"/>
+      <list-item v="laurdag"/>
+      <list-item v="søndag"/>
+    </def-list>
   </section-def-lists>
 
   <section-def-macros>
@@ -4765,6 +4774,7 @@
               <test><or>
                 <equal><clip pos="1" side="ref" part="a_date"/><lit-tag v="date"/></equal>
                 <equal><clip pos="1" side="ref" part="a_itg"/><lit-tag v="itg"/></equal>
+                <equal><clip pos="1" side="ref" part="lemh"/><lit v="at"/></equal>
               </or></test>
               <let><clip pos="1" side="tl" part="tags"/><lit-tag v="adj.pp.nt.sg.ind"/></let>
             </when>
@@ -7240,7 +7250,7 @@ no lemq-moving">
       </pattern>
       <action>
         <!-- TODO: Don't chunk «[den er] tilpasset.adj.pl brukernes.n.pl.def.gen [mål og behov]» -->
-        <choose><when c="Don't chunk «lite nedbør» etc.">
+        <choose><when c="Don't chunk «lite nedbør», «vedtatt fredag» etc.">
           <test><or>
             <equal><clip pos="1" side="tl" part="lemh"/><lit v=""/></equal>
             <and>
@@ -7251,6 +7261,10 @@ no lemq-moving">
             <and>
               <equal><clip pos="1" side="sl" part="gen"/><lit-tag v="nt"/></equal>
               <not><equal><clip pos="2" side="sl" part="gen"/><lit-tag v="nt"/></equal></not>
+            </and>
+            <and>
+              <equal><clip pos="1" side="tl" part="temps"/><lit-tag v="pp"/></equal>
+              <in><clip pos="2" side="tl" part="lemh"/><list n="vekedag"/></in>
             </and>
           </or></test>
           <reject-current-rule shifting="no"/>

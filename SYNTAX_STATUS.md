@@ -56,6 +56,7 @@ side="ref"> for transfer to use. It's syntactic, not anaphoric.
 
 - Sometimes the subject is a whole clause – should give nt:
   - [At disse<pl> ble solgt] er fint<nt!>
+  - May require "outer" ref, flip on clause boundary
 
 - Coordination should give plural
   - To politivakter og en vakt fra et privat vaktselskap ble drept<pl!>
@@ -71,3 +72,5 @@ side="ref"> for transfer to use. It's syntactic, not anaphoric.
   - Samtidig skal vi ha respekt for den politiske plattformen<subj>
     som de fire partiene<subj> fremforhandlet på Granavollen, og som
     ble godkjent<plattform> av partienes organer
+
+- Regular (non-pp) adjectives
