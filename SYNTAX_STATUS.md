@@ -77,6 +77,13 @@ side="ref"> for transfer to use. It's syntactic, not anaphoric.
   - Samtidig skal vi ha respekt for den politiske plattformen<subj>
     som de fire partiene<subj> fremforhandlet på Granavollen, og som
     ble godkjent<plattform> av partienes organer
-
+  - Antallet<subj> mennesker<subj> som døde<menneske> i etterkant, var
+    kraftig underrapportert<antall>.
+  We could use commas as a signal to switch to a previous subject, which would fix the above, but
+  but commas after relatives should *not* lead to a switch:
+  - Han<subj> opplyser at alle flyvinger<subj> som var planlagt<flyvning> tysdag, er innstilt<flyvning>.
+  - Regjeringa<subj> stadfestar no at lisenskontoret<subj> i Mo i
+    Rana, som har<lisenskontoret> 106 arbeidsplassar, legges<lisenskontoret> ned.
+  Such commas should however *not* be tagged <clb> (no subject in following clause).
 
 - Regular (non-pp) adjectives
