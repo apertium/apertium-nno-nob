@@ -83,6 +83,12 @@
       <cat-item tags="sent.*"/>
       <cat-item tags="sent"/>
     </def-cat>
+    <def-cat n="sent_OR_at.clb">
+      <cat-item tags="sent.*"/>
+      <cat-item tags="sent"/>
+      <cat-item lemma="at" tags="cnjcoo.clb"/>
+      <cat-item lemma="at" tags="cnjcoo.clb.*"/>
+    </def-cat>
   </section-def-cats>
 
   <section-def-attrs>
@@ -349,9 +355,9 @@
       </action>
     </rule>
 
-    <rule c="Clear the prev- and current-subject variables on sentence end.">
+    <rule c="Clear the prev- and current-subject variables on sentence end or ‘that’">
       <pattern>
-        <pattern-item n="sent"/>
+        <pattern-item n="sent_OR_at.clb"/>
       </pattern>
       <action>
         <let><clip pos="1" side="tl" part="a_syntax"/><lit v=""/></let>
@@ -370,6 +376,7 @@
       </action>
     </rule>
 
+    <!-- TODO: also switch on seeing «og som», as in «plattformen som de fire partiene forhandlet frem, og som ble godkjent» -->
     <rule c="Switch to prev subject variable on clause boundary comma">
       <pattern>
         <pattern-item n="cm-clb"/>
