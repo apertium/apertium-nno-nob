@@ -74,6 +74,12 @@ REMOVE:derfor_derfor ("difor"i) IF (0 ("derfor"i));
 SELECT:verken_korkje  ("korkje"i) IF (0 ("verken"i) + (VAR:verken_korkje));
 REMOVE:verken_verken ("korkje"i) IF (0 ("verken"i));
 
+SELECT:kvifor_korfor  ("korfor"i) IF (0 ("kvifor"i) + (VAR:kvifor_korfor.syn));
+REMOVE:kvifor_kvifor ("korfor"i) IF (0 ("kvifor"i));
+
+SELECT:førebels_foreløpig  ("foreløpig"i) IF (0 ("førebels"i) + (VAR:førebels_foreløpig.syn));
+REMOVE:førebels_førebels ("foreløpig"i) IF (0 ("førebels"i));
+
 SELECT:røyndom_røynd  ("røynd"i) IF (0 ("røyndom"i) + (VAR:røyndom_røynd));
 REMOVE:røyndom_røyndom ("røynd"i) IF (0 ("røyndom"i));
 
