@@ -159,6 +159,9 @@ REMOVE:dødeleg_døyeleg.dift-ø2øy ("døying"i) IF (0 ("dødelegheit"i));
 SELECT:dødeleg_døyeleg.dift-ø2øy ("barnedøying"i) IF (0 ("barnedødelegheit"i) + (VAR:dødeleg_døyeleg.dift-ø2øy));
 REMOVE:dødeleg_døyeleg.dift-ø2øy ("barnedøying"i) IF (0 ("barnedødelegheit"i));
 
+SELECT:Oskeladden_Askeladden.vok-a2o ("Askeladden"i) IF (0 ("Oskeladden"i) + (VAR:oske_aske.vok-a2o));
+REMOVE:Oskeladden_Askeladden.vok-a2o ("Askeladden"i) IF (0 ("Oskeladden"i));
+
 # DEBUG NOTES:
 # $ echo '[<STREAMCMD:SETVAR:forskjell_skilnad,samd_einig>]^forskjell<n><m><sg><ind>/forskjell<n><m><sg><ind>/skilnad<n><m><sg><ind>$ ^enig<adj><sint><pst><nt><sg><ind>/samd<adj><sint><pst><nt><sg><ind>/einig<adj><sint><pst><nt><sg><ind>$' | ~/src/ap/vislcg3/src/cg-proc -t biprefs.nob-nno.rlx.bin |cg-conv
 # [<STREAMCMD:SETVAR:forskjell_skilnad,samd_einig>]
