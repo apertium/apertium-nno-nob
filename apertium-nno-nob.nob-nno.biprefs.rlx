@@ -56,9 +56,6 @@ REMOVE:banen_bana lm_bane + f;
 SELECT:motsetning_motsetnad  ("motsetnad"i) IF (0 ("motsetning"i) + (VAR:motsetning_motsetnad));
 REMOVE:motsetning_motsetning ("motsetnad"i) IF (0 ("motsetning"i));
 
-SELECT:kviss_quiz  ("quiz"i) IF (0 ("kviss"i) + (VAR:kviss_quiz));
-REMOVE:kviss_kviss ("quiz"i) IF (0 ("kviss"i));
-
 SELECT:veps_kvefs  ("kvefs"i) IF (0 ("veps"i) + (VAR:veps_kvefs));
 REMOVE:veps_veps ("kvefs"i) IF (0 ("veps"i));
 
@@ -161,6 +158,9 @@ REMOVE:dødeleg_døyeleg.dift-ø2øy ("barnedøying"i) IF (0 ("barnedødelegheit
 
 SELECT:Oskeladden_Askeladden.vok-a2o ("Askeladden"i) IF (0 ("Oskeladden"i) + (VAR:oske_aske.vok-a2o));
 REMOVE:Oskeladden_Askeladden.vok-a2o ("Askeladden"i) IF (0 ("Oskeladden"i));
+
+SELECT:tek_tar.vb-en2tt ("unntatt"i) IF (0 ("unnateken"i) + (VAR:tek_tar.vb-en2tt));
+REMOVE:tek_tar.vb-en2tt ("unntatt"i) IF (0 ("unnateken"i));
 
 # DEBUG NOTES:
 # $ echo '[<STREAMCMD:SETVAR:forskjell_skilnad,samd_einig>]^forskjell<n><m><sg><ind>/forskjell<n><m><sg><ind>/skilnad<n><m><sg><ind>$ ^enig<adj><sint><pst><nt><sg><ind>/samd<adj><sint><pst><nt><sg><ind>/einig<adj><sint><pst><nt><sg><ind>$' | ~/src/ap/vislcg3/src/cg-proc -t biprefs.nob-nno.rlx.bin |cg-conv
