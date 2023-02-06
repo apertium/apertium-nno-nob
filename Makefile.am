@@ -219,19 +219,13 @@ $(PREFIX2).t3x.bin: $(BASENAME).$(PREFIX2).t3x
 $(LANG1).preferences.xml: $(AP_SRC1)/$(LANG1).preferences.xml
 	cp $< $@
 
-define mergePrefs =
-$(MKDIR_P) prefs
-echo '<preferences>' >$@.tmp
-for f in $^; do xmllint --xpath '/preferences/preference' "$$f"; done >>$@.tmp
-echo '</preferences>' >>$@.tmp
-mv $@.tmp $@
-endef
+prefs/$(PREFIX2).xml: $(LANG1).preferences.xml $(PREFIX2).preferences.xml merge-prefs.xslt
+	$(MKDIR_P) prefs
+	xsltproc --stringparam with-file $<  merge-prefs.xslt  $(PREFIX2).preferences.xml >$@
 
-prefs/$(PREFIX2).xml: $(LANG1).preferences.xml $(PREFIX2).preferences.xml
-	$(mergePrefs)
-
-prefs/$(PREFIX2)_e.xml: $(LANG1).preferences.xml $(PREFIX2).preferences.xml
-	$(mergePrefs)
+prefs/$(PREFIX2)_e.xml: $(LANG1).preferences.xml $(PREFIX2).preferences.xml merge-prefs.xslt
+	$(MKDIR_P) prefs
+	xsltproc --stringparam with-file $<  merge-prefs.xslt  $(PREFIX2).preferences.xml >$@
 
 ###############################################################################
 ## Distribution
@@ -248,6 +242,7 @@ EXTRA_DIST=$(BASENAME).$(PREFIX1).dix \
 	   $(BASENAME).$(PREFIX1).lrx \
 	   $(BASENAME).$(PREFIX2).lrx \
 	   $(PREFIX2).preferences.xml \
+	   merge-prefs.xslt           \
 	   modes.xml
 
 ###############################################################################
