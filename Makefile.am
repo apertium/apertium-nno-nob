@@ -6,9 +6,6 @@ LANG1=nno
 LANG2=nob
 PREFIX1=$(LANG1)-$(LANG2)
 PREFIX2=$(LANG2)-$(LANG1)
-# TODO:
-# PREFIX1e1a=$(LANG1e)-$(LANG1)
-# PREFIX1a1e=$(LANG1)-$(LANG1e)
 
 BASENAME=apertium-$(PREFIX1)
 
@@ -27,38 +24,44 @@ TARGETS_PREFIX1 =                                             \
      $(PREFIX1).t1x.bin $(PREFIX1).t2x.bin $(PREFIX1).t3x.bin \
      $(PREFIX1).autogen.bin
 
+TARGETS_PREFIX2_FAST =                \
+     $(LANG1).autoseq.bin             \
+     $(PREFIX2).autolex.bin           \
+     $(PREFIX2).autopgen.bin          \
+     $(PREFIX2).autoseq.bin           \
+     $(PREFIX2).biprefs.rlx.bin       \
+     $(PREFIX2).e_vi_genprefs.rlx.bin \
+     $(PREFIX2).genprefs.rlx.bin      \
+     $(PREFIX2).prob                  \
+     $(PREFIX2).refsyn.t1x.bin        \
+     $(PREFIX2).rlx.bin               \
+     $(PREFIX2).seg.rlx.bin           \
+     $(PREFIX2).syn.rlx.bin           \
+     $(PREFIX2).t1x.bin               \
+     $(PREFIX2).t2x.bin               \
+     $(PREFIX2).t3x.bin               \
+     capstag.autoseq.bin              \
+     capstag.rlx.bin                  \
+     prefs/$(PREFIX2).xml
+
 TARGETS_PREFIX2 =                                             \
      $(PREFIX2).automorf.bin                                  \
-     $(PREFIX2).seg.rlx.bin                                   \
-     $(PREFIX2).syn.rlx.bin                                   \
-     $(PREFIX2).rlx.bin                                       \
-     $(PREFIX2).autoseq.bin                                   \
-     capstag.autoseq.bin                                      \
-     $(LANG1).autoseq.bin                                     \
-     $(PREFIX2).prob                                          \
-     $(PREFIX2).autolex.bin                                   \
-     $(PREFIX2).autobil.bin                                   \
-     $(PREFIX2).refsyn.t1x.bin                                \
-     $(PREFIX2).t1x.bin $(PREFIX2).t2x.bin $(PREFIX2).t3x.bin \
-     $(PREFIX2).autopgen.bin                                  \
-     $(PREFIX2).biprefs.rlx.bin                               \
      $(PREFIX2).autogen.bin                                   \
-     $(PREFIX2).e_vi_genprefs.rlx.bin                         \
-     $(PREFIX2).genprefs.rlx.bin                              \
-     capstag.rlx.bin                                          \
-     prefs/$(PREFIX2).xml
+     $(PREFIX2).autobil.bin                                   \
+     $(TARGETS_PREFIX2_FAST)
 
 $(PREFIX1): $(TARGETS_PREFIX1)
 $(PREFIX2): $(TARGETS_PREFIX2)
 
 # Debug/development goals:
 e: modes/$(PREFIX1).mode	# build just nob-nno_e
-	cd $(AP_SRC1) && ${MAKE} $(LANG1).autogen.bin $(LANG1).e_vi_prefs.rlx.bin $(LANG1).prefs.rlx.bin $(LANG1).autopgen.bin
-	cd $(AP_SRC2) && ${MAKE} $(LANG2).automorf.bin $(LANG2).seg.rlx.bin $(LANG2).syn.rlx.bin $(LANG2).rlx.bin $(LANG2).prob
+	cd $(AP_SRC1) && ${MAKE} $(LANG1).e_vi_prefs.rlx.bin $(LANG1).prefs.rlx.bin $(LANG1).autogen.bin $(LANG1).autopgen.bin
+	cd $(AP_SRC2) && ${MAKE} $(LANG2).seg.rlx.bin $(LANG2).syn.rlx.bin $(LANG2).rlx.bin $(LANG2).automorf.bin $(LANG2).prob
 	${MAKE} $(TARGETS_PREFIX2)
-r: modes/$(PREFIX1).mode $(PREFIX2).autolex.bin $(PREFIX2).refsyn.t1x.bin $(PREFIX2).t1x.bin $(PREFIX2).t2x.bin $(PREFIX2).t3x.bin # build just transfer and rlx files for nob-nno(_e)
+r: modes/$(PREFIX1).mode
+	cd $(AP_SRC1) && ${MAKE} $(LANG1).e_vi_prefs.rlx.bin $(LANG1).prefs.rlx.bin $(LANG1).autopgen.bin
 	cd $(AP_SRC2) && ${MAKE} $(LANG2).seg.rlx.bin $(LANG2).syn.rlx.bin $(LANG2).rlx.bin
-	${MAKE} $(PREFIX2).seg.rlx.bin $(PREFIX2).syn.rlx.bin $(PREFIX2).rlx.bin $(PREFIX2).biprefs.rlx.bin $(PREFIX2).autoseq.bin capstag.autoseq.bin $(LANG1).autoseq.bin capstag.rlx.bin
+	${MAKE} $(TARGETS_PREFIX2_FAST)
 
 # This include defines goals for install-modes, .deps/.d and .mode files:
 @ap_include@
