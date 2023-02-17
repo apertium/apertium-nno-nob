@@ -11407,6 +11407,29 @@ preposisjonar gir ekstra utfordringar. -->
     <match tags="n.*.cmp"/>
     <match lemma="setting" tags="n.m.*"><select lemma="setjing" tags="n.f.*"/></match>
   </rule>
+  
+  <rule><match lemma="feste" tags="vblex.*"><select lemma="feste"/></match></rule>
+  <rule weight="3.0" c="feste heile natta (a-verb)">
+    <match lemma="feste" tags="vblex.*">
+      <select lemma="feste¹"/>
+    </match>
+    <match lemma="hel"/>
+  </rule>
+  <rule weight="3.0" c="drikke og feste">
+    <or>
+      <match lemma="drikke"/>
+      <match lemma="ture"/>
+      <match lemma="bråke"/>
+      <match lemma="skråle"/>
+      <match lemma="danse"/>
+      <match lemma="synge"/>
+      <match lemma="feire"/>
+    </or>
+    <match lemma="og"/>
+    <match lemma="feste" tags="vblex.*">
+      <select lemma="feste¹"/>
+    </match>
+  </rule>
 
 </rules>
 </lrx>
