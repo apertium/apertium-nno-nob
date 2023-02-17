@@ -104,8 +104,9 @@ REMOVE:kors_kors  ("korsferd"i) IF (0 ("korstog"i));
 SELECT:oversikt_oversyn  ("oversyn"i) IF (0 ("oversikt"i) + (VAR:oversikt_oversyn));
 REMOVE:oversikt_oversikt ("oversyn"i) IF (0 ("oversikt"i));
 
-SELECT:mørke_mørker.stav("mørker"i) IF (0 ("mørke"i) + (VAR:mørke_mørker.stav));
-REMOVE:mørke_mørke.stav("mørker"i) IF (0 ("mørke"i));
+LIST lm_mørke = ".*mørke"ri;
+SELECT:mørke_mørker.stav lm_mørke + nt IF (0 (VAR:mørke_mørker.stav));
+REMOVE:mørke_mørke.stav lm_mørke + nt;
 
 SELECT:stemme_røyste ("røyste"i) IF (0 ("stemme"i) + (VAR:stemme_røyste));
 REMOVE:stemme_stemme ("røyste"i) IF (0 ("stemme"i));
