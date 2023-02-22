@@ -1,0 +1,6 @@
+#!/bin/bash
+
+# Usage:
+# $ dev/scandi-vr-to-nno-nob ../apertium-dan-nor/apertium-dan-nor.dan-nor.dix >suggestions.tsv
+
+awk 'BEGIN{OFS=FS="\t"; } {l=$0; sub(/.*<l>/,"",l);sub(/<\/l>.*/,"",l); par="";if(/<par n/ && l!~/</){par=$0;sub(/.*<par n="/,"",par);sub(/".*/,"",par)}; r=$0;sub(/.*<r>/,"",r);sub(/(<\/r>|<s ).*/,"",r);} !l{next} !r{next} /vr="nno"/{nno[l":"par][r]++}/vr="nob"/{nob[l":"par][r]++} END{for(lp in nno)if(lp in nob)for(n in nno[lp])for(b in nob[lp])print lp,n,b}' "$@"
