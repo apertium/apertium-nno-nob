@@ -108,6 +108,9 @@ LIST lm_mørke = ".*mørke"ri;
 SELECT:mørke_mørker.stav lm_mørke + nt IF (0 (VAR:mørke_mørker.stav));
 REMOVE:mørke_mørke.stav lm_mørke + nt;
 
+SELECT:avgjerd_avgjersle.stav  ("avgjersle"i) IF (0 ("avgjerd"i) + (VAR:avgjerd_avgjersle.stav));
+REMOVE:avgjerd_avgjerd.stav ("avgjersle"i) IF (0 ("avgjerd"i));
+
 SELECT:stemme_røyste ("røyste"i) IF (0 ("stemme"i) + (VAR:stemme_røyste));
 REMOVE:stemme_stemme ("røyste"i) IF (0 ("stemme"i));
 
