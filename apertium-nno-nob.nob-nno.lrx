@@ -11446,5 +11446,18 @@ preposisjonar gir ekstra utfordringar. -->
 
   <rule><match lemma="etterape" tags="vblex.*"><select lemma="ape# etter"/></match></rule>
 
+  <rule><match lemma="velle" tags="vblex.*"><select lemma="velle"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="velle" tags="vblex.*"><select lemma="velle¹"/></match>
+    <or>
+      <match lemma="fram"/>
+      <match lemma="frem"/>
+      <match lemma="ut"/>
+      <match lemma="inn"/>
+      <match lemma="utover"/>
+      <match lemma="innover"/>
+    </or>
+  </rule>
+
 </rules>
 </lrx>
