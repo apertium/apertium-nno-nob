@@ -6174,26 +6174,39 @@
   </rule>
 <!--RENNE: END-->
 <!--SKRELLE: START-->
-  <rule><match lemma="skrelle" tags="vblex.*"><select lemma="skrelle¹"/></match></rule>
-  <rule><match lemma="skrelle" tags="adj.pprs.*"><select lemma="skrelle¹"/></match></rule>
+  <rule><match lemma="skrelle" tags="vblex.*"><select lemma="skrelle"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="det"/>
+    <match lemma="skrelle¹" tags="vblex.*"><select lemma="skrelle¹"/></match>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="skrelle" tags="vblex.*"><select lemma="skrelle²"/></match>
+    <or>
+      <match lemma="til"/>
+      <match lemma="igjen"/>
+      <match lemma="i"/>
+      <match lemma="hånd"/>
+      <match lemma="fot"/>
+      <match lemma="hode"/>
+      <match lemma="ball"/>
+      <match lemma="puck"/>
+      <match tags="prn.pers.*.acc.*"/>
+    </or>
+  </rule>
   <rule weight="2.0">
     <match lemma="skrelle" tags="vblex.*"><select lemma="skrelle"/></match>
     <or>
-      <match lemma="til"/>
-      <match lemma="opp"/>
-      <match lemma="igjen"/>
       <match lemma="bort"/>
-      <match lemma="potet"/>
-      <match lemma="gulrot"/>
-      <match lemma="grønnsak"/>
-      <match lemma="granateple"/>
-      <match tags="prn.pers.*.acc.*"/>
-      <match tags="prn.ref.*.acc.*"/>
-      <match lemma="selv"/>
+      <match lemma="av"/>
+      <match lemma="vekk"/>
+      <match  tags="n.*"/>
     </or>
   </rule>
     <rule weight="2.0">
-    <match lemma="bli"/>
+      <or>
+        <match lemma="bli"/>
+        <match lemma="være"/>
+      </or>
     <match lemma="skrelle" tags="vblex.*"><select lemma="skrelle"/></match>
   </rule>
 <!--SKRELLE: END-->
