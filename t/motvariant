@@ -1,0 +1,52 @@
+#!/bin/bash
+
+sourced () {
+    [[ "$0" != "${BASH_SOURCE[0]}" ]]
+}
+
+main () {
+    set -e -u
+    apertium -d . nob-nno "$@"
+}
+
+
+# TODO: read the <incompatibilities> section and remove any where both have v="true"
+
+allPrefsExceptNPK () {
+    cd "$(dirname "${BASH_SOURCE[0]}")"/..
+    set -o pipefail
+    grep -o '<preference  *id="[^"]*"' prefs/nob-nno.xml \
+        | sed 's,.*id=",,;s,"$,,' \
+        | grep -vxe infa_infe -e me_vi
+}
+
+# shopt -s inherit_errexit # apparently this doesn't exist in bash<4.4
+AP_SETVAR="$(allPrefsExceptNPK | tr '\n' ',' | sed 's/,$//' )"
+export AP_SETVAR
+
+# Simple sanity test, shout if we can't find all the variable names in one of monodix and biprefs
+selftest () {
+    (
+        cd "$(dirname "${BASH_SOURCE[0]}")"/..
+        if [[ ! -f ../apertium-nno/apertium-nno.nno.dix ]]; then
+            echo "$PWD/../apertium-nno/apertium-nno.nno.dix doesn't exist, skipping selftest"
+            return
+        fi
+        allPrefsExceptNPK | while IFS=$'\n' read -r x; do
+            if [[ $x == kløyvd_inf ]]; then
+                # no sdef for this one, lemma-list in genprefs instead
+                continue
+            fi
+            grep -q -w -F "VAR:$x" apertium-nno-nob.nob-nno.biprefs.rlx          \
+            || grep -q -F "sdef n=\"v:$x\"" ../apertium-nno/apertium-nno.nno.dix \
+            || echo "WARNING: v:$x not found in nno.dix nor biprefs.rlx" >&2
+        done
+    )
+}
+
+# shellcheck disable=SC2310
+if sourced; then
+    selftest
+else
+    main "$@"
+fi

@@ -14,7 +14,7 @@ difs () {
         [[ ${name} = *${namefilter}* ]] || continue
         dif1 "${ref}" "${name}" || (( errs++ ))
     done
-    return ${errs}
+    return "${errs}"
 }
 wdif () {
     colorspec=$1
@@ -72,7 +72,7 @@ $0 expect         # add sentence from stdin as new test with current as expected
 
 get-mode () {
     # TODO: Get mode from file name (but need an unambiguous file name scheme then)
-    if [[ $1 = *cappelen* ]]; then
+    if [[ $1 = *cappelen* || $1 = *motvariant* ]]; then
         echo nob-nno
     else
         echo nob-nno_e
@@ -83,6 +83,9 @@ setvars () {
     if [[ $1 = *cappelen* ]]; then
         # shellcheck source=./cappelen
         source t/cappelen
+    elif [[ $1 = *motvariant* ]]; then
+        # shellcheck source=./motvariant
+        source t/motvariant
     else
         export AP_SETVAR=''
     fi
@@ -98,6 +101,7 @@ case $1 in
         for f in tests/*.input.txt; do
             name="$(basename "${f%.input.txt}")"
             [[ ${name} = *${namefilter}* ]] || continue
+            # shellcheck disable=SC2311
             mode=$(get-mode "${name}")
             setvars "${name}"
             apertium -d . "${mode}" < tests/"${name}".input.txt >tests/out/"${name}.${step}".current.txt
@@ -123,6 +127,7 @@ case $1 in
         for f in tests/*.input.txt; do
             name="$(basename "${f%.input.txt}")"
             [[ ${name} = *${namefilter}* ]] || continue
+            # shellcheck disable=SC2311
             mode=$(get-mode "${name}")
             setvars "${name}"
             expf=tests/out/"${name}".all.expected.txt
