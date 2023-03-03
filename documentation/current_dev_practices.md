@@ -97,3 +97,29 @@ This frequently means that a paradigm is wrong in one of the 3 dictionaries.
 #### A word gets \* in front of it
 This means the word is not recognized by Apertium. Check if the word has been added to the dictionaries and compile your changes again. 
 
+## Adding varieties to the nynorsk translation
+
+There is a high rate of variance within Nynorsk. For example, users can choose between "me" and "vi" (ENG: "we"), or root differences in a word, such as "naud" and "nød" (ENG: "need"). 
+
+In 2022 the work to add new varieties accelerated. Currently, there is a high number of variants to choose from, making the translation from Bokmål to Nynorsk highly customizable.
+
+### Adding lemma varieties
+It's simple to add a variety were the users choose between 2 different lemmas, like the example of "me"/"vi".
+
+To add a new variety of this type you can follow the template in the following commit: [VAR: samtidig_samstundes](https://github.com/apertium/apertium-nno-nob/commit/3bda68feca97ca0b5b667d050e97df5c890be672)
+
+Remember that both varieties need to be in the Nynorsk dictionary and in BIDIX.
+
+### Adding variations of the same lemma
+
+It can be slightly more complicated to add variations of the same lemma. An example of this type of variant is the verb "kome" which can also be written as "komme" (ENG: "to come").
+
+To add a lemma variation of a common noun this is one way of doing it: [VAR: stove_stue](https://github.com/apertium/apertium-nno/commit/821a1dfb6ce9f4811cda1f6deeb0bfb1df8c64b6)
+
+To add a variant of a lemma where you also need to adjust the inflection paradigm you can do something similar to this: [VAR: komme_kome](https://github.com/apertium/apertium-nno/commit/c932ee73f3af43acf7f665ac84b717c6c13e579d)
+
+## Confirm that the varieties are working
+
+You can check if your variety is working in the terminal like this:
+
+`echo "Det er én skole i kommunen." | AP_SETVAR="skule_skole.vok-u2o" apertium -d. nob-nno_e`
