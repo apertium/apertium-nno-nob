@@ -7060,9 +7060,25 @@
       <seq n="alle-månedene"/>
       <match lemma="måned"/>
       <match lemma="år"/>
+      <match lemma="uke"/>
+      <match lemma="periode"/>
+      <match lemma="åremålsperiode"/>
+      <match lemma="søknadsfrist"/>
+      <match lemma="neste"/>
       <match tags="det.qnt.un.pl.date.*"/>
+      <match tags="adj.ord.pst.un.sp.def.*"/> <!-- Årstal før punktum -->
     </or>
   </rule>
+  <rule weight="2.0">
+    <match lemma="utløp" tags="n.*"><select lemma="utgang"/></match>
+    <match lemma="av"/>
+    <match tags="*.cmp"/>
+    <or>
+      <match lemma="periode"/>
+      <match lemma="frist"/>
+    </or>
+  </rule>
+
 
 
   <rule><match lemma="knepen" tags="adj.*"><select lemma="hårfin"/></match></rule>
