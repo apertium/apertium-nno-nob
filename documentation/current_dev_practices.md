@@ -108,6 +108,8 @@ It's simple to add a variety were the users choose between 2 different lemmas, l
 
 To add a new variety of this type you can follow the template in the following commit: [VAR: samtidig_samstundes](https://github.com/apertium/apertium-nno-nob/commit/3bda68feca97ca0b5b667d050e97df5c890be672)
 
+Slightly more complicated is having grouping several different lemmas under one rule: [VAR: apa_apen](https://github.com/apertium/apertium-nno-nob/commit/cebc2a145929b59cb72a49a108d772fa2307979b) (Note: This commit only shows how we can achieve this in one of the files. You still need to add the variety name in nob-nno.preferences.xml and make sure all the lemmas are in BIDIX without any RL/LR-tags)
+
 Remember that both varieties need to be in the Nynorsk dictionary and in BIDIX.
 
 ### Adding variations of the same lemma
@@ -123,3 +125,11 @@ To add a variant of a lemma where you also need to adjust the inflection paradig
 You can check if your variety is working in the terminal like this:
 
 `echo "Det er én skole i kommunen." | AP_SETVAR="skule_skole.vok-u2o" apertium -d. nob-nno_e`
+
+You can also check specific words in a group of words within one variety like ths:
+
+`echo "Den apen, den kassen" | AP_SETVAR="apa_apen=kasse:ape" apertium -d. nob-nno_e`
+
+Or just one word:
+
+`echo "Den apen, den kassen" | AP_SETVAR="apa_apen=kasse" apertium -d. nob-nno_e`
