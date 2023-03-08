@@ -1,0 +1,31 @@
+#!/bin/bash
+# shellcheck disable=SC2312
+
+dir="$1"
+
+sane_and_similar_line_lengths () {
+    awk 'BEGIN{OFS=FS="\t"; minLineLen=25; minLenRatio=0.5 }
+function abs(v) {return v < 0 ? -v : v}
+{ l1=length($1); l2=length($2); }
+   l1>minLineLen && l2>minLineLen && (l1/(l2+1))>minLenRatio && (l2/(l1+1))>minLenRatio'
+}
+
+split_multiple_sents () {
+    awk 'BEGIN{OFS=FS="\t";d="[.] "}
+{ n1=split($1,s1,d);n2=split($2,s2,d);n3=split($3,s3,d); }
+n1==n2 && n2==n3 {
+    for(i=1;i<n1;i++){ print s1[i]".",s2[i]".",s3[i]"." }
+    print s1[n1],s2[n1],s3[n1]
+    next
+}
+{ print }
+'
+}
+
+tab='	'
+
+for ap in "${dir}"/*-apertium.txt; do
+    paste "${ap}" "${ap%%apertium.txt}"korrektur.txt "${ap%%apertium.txt}"original.txt
+done | sed "s/ *${tab}/${tab}/g; s/ *$//"                                           \
+     | split_multiple_sents                                                         \
+     | sane_and_similar_line_lengths
