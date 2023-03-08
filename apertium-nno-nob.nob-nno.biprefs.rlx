@@ -115,6 +115,12 @@ LIST lm_mørke = ".*mørke"ri;
 SELECT:mørke_mørker.stav lm_mørke + nt IF (0 (VAR:mørke_mørker.stav));
 REMOVE:mørke_mørke.stav lm_mørke + nt;
 
+LIST lm_avl = "husdyral" "bial" "dronningal" "feal" "fiskeal" "fjørfeal" "forsøksal" "frøavl" "griseal" "hesteal" "kryssal" "reveal" "saual" "saueal" "seminal" "smieal" "svineal" "fruktal" "geital" "geiteal" ;
+SELECT:avl_al.stav ("al"i) IF (0 ("avl"i) + (VAR:avl_al.stav));
+REMOVE:avl_avl.stav ("al"i) IF (0 ("avl"i));
+SELECT:avl_al.stav lm_avl IF (0 (VAR:avl_al.stav));
+REMOVE:avl_avl.stav lm_avl;
+
 SELECT:avgjerd_avgjersle.stav  ("avgjersle"i) IF (0 ("avgjerd"i) + (VAR:avgjerd_avgjersle.stav));
 REMOVE:avgjerd_avgjerd.stav ("avgjersle"i) IF (0 ("avgjerd"i));
 
