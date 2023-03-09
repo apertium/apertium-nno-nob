@@ -51,7 +51,7 @@ SELECT:no_filter m + apa_apen_nouns IF (0 (VAR:apa_apen=*));
 REMOVE:unset     m + apa_apen_nouns;
 
 # words that default to <m>, but can be overridden to <f>:
-LIST banen_bana_nouns = ".*(art|bane|beskjed|dialekt|dump|farge|flamme|takt|kai|tillit)"ri;
+LIST banen_bana_nouns = ".*(art|bane|beskjed|dialekt|dump|farge|flamme|kai|klasse|takt|tillit)"ri;
 SELECT:compounds f + banen_bana_nouns IF (0 (VSTR:VAR:banen_bana.n.m2f=/\\b$1\\b/r)) ;
 SELECT:lm_filter f + ("<(.+)>"r)    IF (0 (VSTR:VAR:banen_bana.n.m2f=/\\b$1\\b/r)) ;
 SELECT:no_filter f + banen_bana_nouns IF (0 (VAR:banen_bana.n.m2f=*));
