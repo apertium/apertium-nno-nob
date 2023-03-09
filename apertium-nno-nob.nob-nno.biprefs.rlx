@@ -44,7 +44,7 @@ SELECT:lova_loven lm_lov + m IF (0 (VAR:lova_loven));
 REMOVE:lova_loven lm_lov + m;
 
 # words that default to <f>, but can be overridden to <m>:
-LIST apa_apen_nouns = ".*(ape|kasse|festning|olje)"ri;
+LIST apa_apen_nouns = ".*(ape|kasse|festning|olje|kulde)"ri;
 SELECT:compounds m + apa_apen_nouns IF (0 (VSTR:VAR:apa_apen=/\\b$1\\b/r)) ;
 SELECT:lm_filter m + ("<(.+)>"r)    IF (0 (VSTR:VAR:apa_apen=/\\b$1\\b/r)) ;
 SELECT:no_filter m + apa_apen_nouns IF (0 (VAR:apa_apen=*));
@@ -56,9 +56,6 @@ SELECT:compounds f + banen_bana_nouns IF (0 (VSTR:VAR:banen_bana.n.m2f=/\\b$1\\b
 SELECT:lm_filter f + ("<(.+)>"r)    IF (0 (VSTR:VAR:banen_bana.n.m2f=/\\b$1\\b/r)) ;
 SELECT:no_filter f + banen_bana_nouns IF (0 (VAR:banen_bana.n.m2f=*));
 REMOVE:unset     f + banen_bana_nouns;
-
-#SELECT:banen_bana lm_bane + f IF (0 (VAR:banen_bana));
-#REMOVE:banen_bana lm_bane + f;
 
 SELECT:motsetning_motsetnad  ("motsetnad"i) IF (0 ("motsetning"i) + (VAR:motsetning_motsetnad));
 REMOVE:motsetning_motsetning ("motsetnad"i) IF (0 ("motsetning"i));
