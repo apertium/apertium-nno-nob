@@ -52,7 +52,7 @@ or
 
 ### Run a corpus test before and after your changes
 
-You can of course create your own corpus to test your changes. Below is just an example. The `korpus.xz` is a file we've used in development for a whil. Ask Kevin for a copy if you want to use it too. The commands are run from the `apertium-nno-nob` repository in the terminal.
+You can of course create your own corpus to test your changes. Below is just an example. The `korpus.xz` is a file we've used in development for a while. Ask Kevin for a copy if you want to use it too. The commands are run from the `apertium-nno-nob` repository in the terminal.
 
 1. Run a corpus test before your change 
 `xzcat ~/path-to-file/korpus.xz | head -10000 | apertium -d . nob-nno_e >/tmp/før.txt`
@@ -87,7 +87,7 @@ While BIDIX (the short, colloquial name for the `apertium-nno-nob/apertium-nno-n
 1. Check if the word exists in the Nynorsk dictionary: `apertium-nno.nno.dix`. This file is found in the repository `apertium-nno`. If the word is in the Nynorsk dictionary then move on, if not add the word with the correct paradigm. (Tip: Use the same paradigm as similar words uses if the paradigm names are confusing.)
 2. Check if the word exists in the Bokmål dictionary: `apertium-nob.nob.dix`. This file is found in the repository `apertium-nob`. If the word is in the Bokmål dictionary then move on, if not add the word with the correct paradigm. (New tip: Unsure if the paradigm you chose is correct? You can search for the paradigm in the .DIX file like this: `pardef n="paradigm_name"`)
 3. Check if the word is in the translation dictionary (BIDIX): `apertium-nno-nob/apertium-nno-nob.nno-nob.dix`. If not, add the translation with the correct paradigms in the file. 
-4. Compile your changes and test if your word is now being translated.
+4. Save and compile your changes, then test if your word is now being translated correctly.
 
 ### Troubleshooting
 
@@ -108,7 +108,7 @@ It's simple to add a variety were the users choose between 2 different lemmas, l
 
 To add a new variety of this type you can follow the template in the following commit: [VAR: samtidig_samstundes](https://github.com/apertium/apertium-nno-nob/commit/3bda68feca97ca0b5b667d050e97df5c890be672)
 
-Slightly more complicated is having grouping several different lemmas under one rule: [VAR: apa_apen](https://github.com/apertium/apertium-nno-nob/commit/cebc2a145929b59cb72a49a108d772fa2307979b) (Note: This commit only shows how we can achieve this in one of the files. You still need to add the variety name in nob-nno.preferences.xml and make sure all the lemmas are in BIDIX without any RL/LR-tags)
+Slightly more complicated is having a grouping of several different lemmas under one rule: [VAR: apa_apen](https://github.com/apertium/apertium-nno-nob/commit/cebc2a145929b59cb72a49a108d772fa2307979b) (Note: This commit only shows how we can achieve this in one of the files. You still need to add the variety name in nob-nno.preferences.xml and make sure all the lemmas are in BIDIX without any RL/LR-tags)
 
 Remember that both varieties need to be in the Nynorsk dictionary and in BIDIX.
 
