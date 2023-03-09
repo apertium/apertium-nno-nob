@@ -111,7 +111,7 @@ REMOVE:kors_kors  ("korsferd"i) IF (0 ("korstog"i));
 SELECT:oversikt_oversyn  ("oversyn"i) IF (0 ("oversikt"i) + (VAR:oversikt_oversyn));
 REMOVE:oversikt_oversikt ("oversyn"i) IF (0 ("oversikt"i));
 
-LIST lm_mørke = ".*mørke"ri;
+LIST lm_mørke = ".*mørker"ri;
 SELECT:mørke_mørker.stav lm_mørke + nt IF (0 (VAR:mørke_mørker.stav));
 REMOVE:mørke_mørke.stav lm_mørke + nt;
 
