@@ -63,10 +63,11 @@ selftest () {
             echo "$PWD/../apertium-nno/apertium-nno.nno.dix doesn't exist, skipping selftest"
             return
         fi
-        for x in "${vars[@]}"; do
-            grep -q -w -F "VAR:$x" apertium-nno-nob.nob-nno.biprefs.rlx          \
-            || grep -q -F "sdef n=\"v:$x\"" ../apertium-nno/apertium-nno.nno.dix \
-            || echo "WARNING: v:$x not found in nno.dix nor biprefs.rlx" >&2
+        for varWithVal in "${vars[@]}"; do
+            var="${varWithVal%%=*}"
+            grep -q -w -F "VAR:${var}" apertium-nno-nob.nob-nno.biprefs.rlx          \
+            || grep -q -F "sdef n=\"v:${var}\"" ../apertium-nno/apertium-nno.nno.dix \
+            || echo "WARNING: v:${var} not found in nno.dix nor biprefs.rlx" >&2
         done
     )
 }
