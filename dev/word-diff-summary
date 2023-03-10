@@ -15,11 +15,21 @@ if [[ $1 = --org ]]; then org=true; shift; fi
 d=$(mktemp -d -t apertium-word-diff-summary.XXXXXXXXXXX)
 trap 'rm -rf "$d"' EXIT
 
-tab='	'                       # TODO: Does mac bash support $'\t' ?
-
 clean () {
     # Remove anything irrelevant before diffing
     tr -d '*' <"$@"
+}
+
+orgclean () {
+    sed -e 's/[[:space:]]*<w>[[:space:]]*/ ~/g'                               \
+        -e 's/[[:space:]]*<x>[[:space:]]*<y>[[:space:]]*/~ → */g' \
+        -e 's/[[:space:]]*<x>[[:space:]]*/~ /g'                               \
+        -e 's/[[:space:]]*<y>[[:space:]]*/ */g'                               \
+        -e 's/[[:space:]]*<z>[[:space:]]*/* /g'
+}
+
+ansiclean () {
+    cat
 }
 
 wdiff () {
@@ -27,10 +37,10 @@ wdiff () {
     bold="0"; if [[ $1 = --bold ]]; then bold="1"; shift; fi
     if "$org"; then
         c=""
-        w=" ~"
-        x="~ → "
-        y=" *"
-        z="* "
+        w="<w>"
+        x="<x>"
+        y="<y>"
+        z="<z>"
     else
         c="-c"
         w="[${bold};31m"
@@ -40,6 +50,7 @@ wdiff () {
     fi
     dwdiff -u $c --aggregate-changes -d "${delimiters}" -w"$w" -x $"$x" -y"$y" -z"$z"  "$@" \
         | tail -n+3 \
+        | if "$org"; then orgclean; else ansiclean; fi \
         || true
 }
 
@@ -50,7 +61,6 @@ wdiff "$d/dif" >"$d/wdif"
 
 # Use dwdiff -3 to get just the context-less change pairs along with their line ranges
 wdiff --bold -SX -3 "$d/dif" \
-    | sed 's/ *~ →/~ →/g; s/→ [[:space:]]*/→ /g' \
     | awk -v wdiff="$d/wdif" -f "$(dirname "$0")"/word-diff-summary.awk
 # which the awk script combines with the examples
 
