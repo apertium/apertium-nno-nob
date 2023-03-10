@@ -1,0 +1,61 @@
+#!/bin/bash
+
+if [[ $# -lt 2 || $# -gt 3 ]]; then
+    echo "Usage: $0 BEFORE AFTER"
+    echo "where BEFORE and AFTER are e.g. corpus translation outputs"
+    echo
+    echo "Optional first arg --org for output in org-mode format."
+fi
+
+set -euo pipefail
+
+org=false
+if [[ $1 = --org ]]; then org=true; shift; fi
+
+d=$(mktemp -d -t apertium-word-diff-summary.XXXXXXXXXXX)
+trap 'rm -rf "$d"' EXIT
+
+tab='	'                       # TODO: Does mac bash support $'\t' ?
+
+clean () {
+    # Remove anything irrelevant before diffing
+    tr -d '*' <"$@"
+}
+
+wdiff () {
+    delimiters=' ^.:?!/\\[]{}()-,'
+    bold="0"; if [[ $1 = --bold ]]; then bold="1"; shift; fi
+    if "$org"; then
+        c=""
+        w=" ~"
+        x="~ → "
+        y=" *"
+        z="* "
+    else
+        c="-c"
+        w="[${bold};31m"
+        x="[90m→[0m"
+        y="[${bold};32m"
+        z="[0m"
+    fi
+    dwdiff -u $c --aggregate-changes -d "${delimiters}" -w"$w" -x $"$x" -y"$y" -z"$z"  "$@" \
+        | tail -n+3 \
+        || true
+}
+
+diff -U0 <(clean "$1") <(clean "$2") >"$d/dif" || true
+
+# Create example sentences with fairly regular dwdiff -c call
+wdiff "$d/dif" >"$d/wdif"
+
+# Use dwdiff -3 to get just the context-less change pairs along with their line ranges
+wdiff --bold -SX -3 "$d/dif" \
+    | sed 's/ *~ →/~ →/g; s/→ [[:space:]]*/→ /g' \
+    | awk -v wdiff="$d/wdif" -f "$(dirname "$0")"/word-diff-summary.awk
+# which the awk script combines with the examples
+
+
+
+# In emacs, try
+# (ansi-color-apply-on-region (point-min) (point-max))
+# on the output file
