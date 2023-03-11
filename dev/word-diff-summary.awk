@@ -7,8 +7,9 @@
 /^==/{ next }
 range {
     sub(/^[\t ]*/, "")
-    difs[$0][range]++
-    ndifs[$0]++
+    d=tolower($0)
+    difs[d][$0][range]++
+    ndifs[d]++
 }
 
 END{
@@ -18,16 +19,19 @@ END{
     }
     # Sort by number of examples per dif, start with most examples:
     PROCINFO["sorted_in"]="@val_num_desc"
-    for(d in ndifs) {
+    for(d in ndifs){
         if(d ~ /^[0-9 [:punct:]]*$/) { continue } # skip noise
-        print "* " d;
-        print ""
-        for(range in difs[d]) {
-            # print range;
-            for(sent in wdifs[range]) {
-                print " " sent
+        header=0
+        for(D in difs[d]) {
+            if(!header++) print "* " D; # D is original-case version of d
+            print ""
+            for(range in difs[d][D]) {
+                # print range;
+                for(sent in wdifs[range]) {
+                    print " " sent
+                }
             }
+            print ""
         }
-        print ""
     }
 }
