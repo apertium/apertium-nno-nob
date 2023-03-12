@@ -196,6 +196,32 @@
     <def-attr n="a_po_sin">
       <attr-item tags="po_sin"/>
     </def-attr>
+    <def-attr n="gen_prep_override">
+      <attr-item tags="pr_til"/>
+      <attr-item tags="pr_av"/>
+      <attr-item tags="pr_blant"/>
+      <attr-item tags="pr_etter"/>
+      <attr-item tags="pr_for"/>
+      <attr-item tags="pr_frå"/>
+      <attr-item tags="pr_før"/>
+      <attr-item tags="pr_gjennom"/>
+      <attr-item tags="pr_hos"/>
+      <attr-item tags="pr_i"/>
+      <attr-item tags="pr_med"/>
+      <attr-item tags="pr_mellom"/>
+      <attr-item tags="pr_mot"/>
+      <attr-item tags="pr_om"/>
+      <attr-item tags="pr_over"/>
+      <attr-item tags="pr_per"/>
+      <attr-item tags="pr_på"/>
+      <attr-item tags="pr_rundt"/>
+      <attr-item tags="pr_som"/>
+      <attr-item tags="pr_uansett"/>
+      <attr-item tags="pr_under"/>
+      <attr-item tags="pr_unna"/>
+      <attr-item tags="pr_ut"/>
+      <attr-item tags="pr_ved"/>
+    </def-attr>
   </section-def-attrs>
 
   <section-def-vars>
@@ -261,15 +287,22 @@
       <list-item v="halvbror"/>
       <list-item v="grunn"/> <!-- av den enkle grunn -->
       <list-item v="teikn"/> <!-- det minste teikn -->
+      <list-item v="garde"/>
+      <list-item v="uhumske"/>
+    </def-list>
+    <def-list n="n-keep-sg.ind.pr" c="Don't change ind→def on these nouns if sg AND prepositional rewrite
+                                      Only regards lone occurrences; we still do def after adj.def or before possessives
+                                      - avisens spørsmål → spørsmål frå avisa
+                                      - avisens fine spørsmål → det fine spørsmålet frå avisa (has adj.def before)
+                                      - hennes spørsmål → spørsmålet hennar (no prepositional rewrite)
+                                      ">
+      <list-item v="spørsmål"/>
       <list-item v="talsperson"/>
       <list-item v="talsmann"/>
       <list-item v="talskvinne"/>
-      <list-item v="spørsmål"/>
       <list-item v="favør"/>
       <list-item v="disfavør"/>
       <list-item v="stengetid"/>
-      <list-item v="garde"/>
-      <list-item v="uhumske"/>
     </def-list>
     <def-list n="dem_sg_genders">
       <list-item v="&lt;m&gt;"/>
@@ -418,7 +451,13 @@
           <not><equal><clip pos="1" part="a_cmp"/><lit-tag v="cmp-split"/></equal></not>
           <not><and>
             <equal><clip pos="1" part="nbr"/><lit-tag v="sg"/></equal>
-            <in caseless="yes"><clip pos="1" part="lemh"/><list n="n-keep-sg.ind"/></in>
+            <or>
+              <in caseless="yes"><clip pos="1" part="lemh"/><list n="n-keep-sg.ind"/></in>
+              <and>
+                <in caseless="yes"><clip pos="1" part="lemh"/><list n="n-keep-sg.ind.pr"/></in>
+                <not><equal><clip pos="2" part="gen_prep_override"/><lit v=""/></equal></not>
+              </and>
+            </or>
           </and></not>
           <not><and>
             <equal><clip pos="1" part="nbr"/><lit-tag v="pl"/></equal>
