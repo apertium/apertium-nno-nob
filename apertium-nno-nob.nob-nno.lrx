@@ -6671,6 +6671,9 @@
 
   <rule><match lemma="betydelig" tags="adv.*"><select lemma="betydeleg"/></match></rule>
   <rule><match lemma="betydelig" tags="adj.*"><select lemma="stor"/></match></rule>
+  <rule weight="2.0" c="betydeleg politisk diskusjon">
+    <match lemma="betydelig" tags="adj.*.@adv→"><select lemma="betydeleg"/></match>
+  </rule>
   <rule weight="2.0">
     <match lemma="en" tags="det.qnt.*"/>
     <match lemma="betydelig" tags="adj.*"><select lemma="stor"/></match>
@@ -6686,11 +6689,20 @@
       <match tags="adj.sint.comp.*"/>
     </or>
   </rule>
+  <rule weight="3.0">
+    <match lemma="betydelig" tags="adv.*"><select lemma="langt"/></match>
+    <match lemma="få" tags="adj.sint.comp.*"/>
+  </rule>
+  <rule weight="3.0" c="reduseres betydeleg">
+    <match tags="vblex.*.pasv.*"/>
+    <match lemma="betydelig" tags="adv.*"><select lemma="betydeleg"/></match>
+  </rule>
   <rule weight="3.0" c="godt over/under">
     <match lemma="betydelig" tags="adv.*"><select lemma="betydeleg"/></match>
     <or>
       <match lemma="over"/>
       <match lemma="under"/>
+      <match lemma="opp"/>
     </or>
   </rule>
   <rule weight="3.0" c="betydelig mye > monaleg mykje">
@@ -6702,7 +6714,7 @@
     <match lemma="mange" tags="adj.sint.comp.*"/>
   </rule>
   <rule weight="2.0" c="betydelig rolle > betydeleg rolle">
-    <match lemma="betydelig" tags="adj.*"><select lemma="betydeleg"/></match>
+    <match lemma="betydelig"><select lemma="betydeleg"/></match>
     <match lemma="rolle"/>
   </rule>
   <rule weight="2.0" c="betydeleg skredfare">
