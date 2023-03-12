@@ -2864,25 +2864,30 @@
     <match tags="pr.*"/>
   </rule>
 
-  <rule><match lemma="utelukke" tags="vblex.*"><select lemma="sjå# bort frå"/></match></rule>
+  <rule><match lemma="utelukke"><select lemma="avvise"/></match></rule>
+  <rule><match lemma="utelukke"><select lemma="avvise"/></match></rule>
+  <!-- <rule><match lemma="utelukke"><select lemma="sjå# bort frå"/></match></rule> -->
   <rule weight="2.0">
-    <match lemma="utelukke" tags="vblex.*">
+    <match lemma="utelukke">
       <select lemma="avvise"/>
     </match>
     <match lemma="noe"/>
   </rule>
   <rule weight="3.0" c="utelukke [selskapet] [helt] fra">
-    <match lemma="utelukke" tags="vblex.*">
+    <match lemma="utelukke">
       <select lemma="stenge# ute"/>
     </match>
     <repeat from="0" upto="1"><match tags="n.*.def.*"/></repeat>
     <repeat from="0" upto="1"><match lemma="hel"/></repeat>
     <match lemma="fra"/>
   </rule>
-
-
-  <rule weight="2.0"><match lemma="utelukke" tags="vblex.pp.*"><select lemma="avvise"/></match></rule>
-  <rule weight="2.0"><match lemma="utelukke" tags="adj.*"><select lemma="avvise"/></match></rule>
+  <rule weight="3.0" c="utelukke i 10 måneder">
+    <match lemma="utelukke">
+      <select lemma="stenge# ute"/>
+    </match>
+    <match lemma="i"/>
+    <match tags="det.qnt.*"/>
+  </rule>
 
   <rule><match lemma="gjenfortelle" tags="vblex.*"><select lemma="fortelje# att"/></match></rule>
 
