@@ -8,6 +8,10 @@ It's meant to be an up-to-date compilation of know-how's and tips and tricks to 
 
 An overview of the repository, how to install Apertium, how to use Apertium to translate in the command line and citations are found in the README.md at the root of this repository.
 
+## The Pipeline
+
+The Apertium pipeline consists of several separate modules that follow a sequential order. You can find an overview of the pipeline [here](https://wiki.apertium.org/w/images/4/4f/Nob-nno-pipeline-marked-autoseq.png). Note that the recent module LSX has not been added yet.
+
 ## Git
 
 The current workflow has been to commit and push on the **master** branch. We generally do not create new branches unless there is a good reason for it.
