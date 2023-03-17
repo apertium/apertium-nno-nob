@@ -1,0 +1,12 @@
+#!/bin/bash
+
+while read -r w;do
+
+    for d in {nno,nob}; do
+        echo "$d: "
+        echo "$w"| apertium -d ../apertium-"$d" "$d"-morph
+    done
+
+    echo "bidix:"
+    grep --color=always "[lr]>$w<" ./apertium-nno-nob.nno-nob.dix
+done
