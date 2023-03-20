@@ -1,12 +1,15 @@
 #!/bin/bash
 
+cd "$(dirname "$0")"/.. || exit 1
+
 while read -r w;do
 
+    printf '[0;33m%s[0m\n' "== $w =="
     for d in {nno,nob}; do
-        echo "$d: "
-        echo "$w"| apertium -d ../apertium-"$d" "$d"-morph
+        printf '[32m%s[0m\n' "$d: "
+        echo "$w" | apertium-destxt -n | apertium -f none -d ../apertium-"$d" "$d"-morph | apertium-retxt
     done
 
-    echo "bidix:"
+    printf '[32m%s[0m\n' "BIDIX: "
     grep --color=always "[lr]>$w<" ./apertium-nno-nob.nno-nob.dix
 done
