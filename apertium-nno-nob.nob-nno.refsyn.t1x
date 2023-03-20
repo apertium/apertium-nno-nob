@@ -57,6 +57,16 @@
     <def-cat n="adj.pp">
       <cat-item tags="adj.pp.*"/>
     </def-cat>
+    <def-cat n="lexadj_adv">
+      <cat-item tags="adj.*.pst.*.@adv"/>
+      <cat-item tags="adj.pst.*.@adv"/>
+      <cat-item tags="adj.*.pst.*.@adv.*"/>
+      <cat-item tags="adj.pst.*.@adv.*"/>
+      <cat-item tags="adj.*.comp.*.@adv"/>
+      <cat-item tags="adj.*.sup.*.@adv"/>
+      <cat-item tags="adj.*.comp.*.@adv.*"/>
+      <cat-item tags="adj.*.sup.*.@adv.*"/>
+    </def-cat>
     <def-cat n="fv">
       <cat-item tags="*.@fv"/>
       <cat-item tags="*.@fv.*"/>
@@ -388,6 +398,25 @@
           <let><var n="prev_subj"/><lit v=""/></let>
         </when></choose>
         <reject-current-rule shifting="no"/>
+      </action>
+    </rule>
+
+    <rule c="Override add-rule: Adverbial non-participle adjectives should not agree, don't add subject">
+      <pattern>
+        <pattern-item n="lexadj_adv"/>
+      </pattern>
+      <action>
+        <let><clip pos="1" side="tl" part="a_syntax"/><lit v=""/></let>
+        <let><clip pos="1" side="sl" part="a_syntax"/><lit v=""/></let> <!-- preprocess-transfer gives a mistaken warning – this does have effect -->
+        <out>
+          <lu>
+            <clip pos="1" side="sl" part="whole"/>
+            <lit v="/"/>
+            <clip pos="1" side="tl" part="whole"/>
+            <lit v="/"/>
+            <clip pos="1" side="tl" part="whole"/>
+          </lu>
+        </out>
       </action>
     </rule>
 

@@ -4773,10 +4773,15 @@
                c="arg.1: adjective, possibly with subj in ref
                   Apply subject gender/number to participle adjective (given subject stored in side ref)
                   We don't change when subject is formal 'det'.">
+      <let><var n="adjtags"/><lit v=""/></let> <!-- by default, don't change anything -->
       <choose>
         <when>
           <test><and>
-            <equal><clip pos="1" side="tl" part="temps"/><lit-tag v="pp"/></equal>
+            <or>
+              <equal><clip pos="1" side="tl" part="temps"/><lit-tag v="pp"/></equal> <!-- participles might not agree in bokmål, so here we want to guess both gender and number agreement -->
+              <equal><clip pos="1" side="tl" part="grau"/><lit-tag v="pst"/></equal> <!-- comparatives don't agree; superlatives do, but only in number, which will be the same in bokmål -->
+            </or>
+            <not><equal><clip pos="1" side="tl" part="art"/><lit-tag v="def"/></equal></not> <!-- det farlige er … -->
             <not><in><clip pos="1" side="tl" part="lemh"/><list n="no-samsvar"/></in></not>
             <not><equal><clip pos="1" side="ref" part="a_expl"/><lit-tag v="expl"/></equal></not>
           </and></test>
@@ -4787,7 +4792,7 @@
                 <equal><clip pos="1" side="ref" part="a_itg"/><lit-tag v="itg"/></equal>
                 <equal><clip pos="1" side="ref" part="lemh"/><lit v="at"/></equal>
               </or></test>
-              <let><clip pos="1" side="tl" part="tags"/><lit-tag v="adj.pp.nt.sg.ind"/></let>
+              <let><var n="adjtags"/><lit-tag v="nt.sg.ind"/></let>
               <!-- <let><var n="tmp"/><concat><lit v="[("/><clip pos="1" side="ref" part="lemh"/><lit v=".date.nt)]"/></concat></let><out><var n="tmp"/></out> -->
             </when>
             <when>
@@ -4798,7 +4803,15 @@
                 <ends-with><clip pos="1" side="ref" part="lemh"/><lit v="mange"/></ends-with>
                 <ends-with><clip pos="1" side="ref" part="lemh"/><lit v="halvpart"/></ends-with> <!-- halvparten vart drepne -->
               </or></test>
-              <let><clip pos="1" side="tl" part="tags"/><lit-tag v="adj.pp.pl"/></let>
+              <choose>
+                <when c="slightly different tagging of pp vs lexical adj's here">
+                  <test><equal><clip pos="1" side="tl" part="temps"/><lit-tag v="pp"/></equal></test>
+                  <let><var n="adjtags"/><lit-tag v="pl"/></let>
+                </when>
+                <otherwise>
+                  <let><var n="adjtags"/><lit-tag v="un.pl.ind"/></let>
+                </otherwise>
+              </choose>
               <!-- <let><var n="tmp"/><concat><lit v="[("/><clip pos="1" side="ref" part="lemh"/><lit v=".pl)]"/></concat></let><out><var n="tmp"/></out> -->
             </when>
             <when>
@@ -4809,18 +4822,29 @@
                 <equal><clip pos="1" side="ref" part="a_prop"/><lit-tag v="cog"/></equal>
                 <equal><clip pos="1" side="ref" part="a_prop"/><lit-tag v="ant"/></equal>
               </or></test>
-              <let><clip pos="1" side="tl" part="tags"/><lit-tag v="adj.pp.mf.sg.ind"/></let>
+              <let><var n="adjtags"/><lit-tag v="mf.sg.ind"/></let>
               <!-- <let><var n="tmp"/><concat><lit v="[("/><clip pos="1" side="ref" part="lemh"/><lit v=".mf)]"/></concat></let><out><var n="tmp"/></out> -->
             </when>
             <when>
               <test><equal><clip pos="1" side="ref" part="gen"/><lit-tag v="nt"/></equal></test>
-              <let><clip pos="1" side="tl" part="tags"/><lit-tag v="adj.pp.nt.sg.ind"/></let>
+              <let><var n="adjtags"/><lit-tag v="nt.sg.ind"/></let>
               <!-- <let><var n="tmp"/><concat><lit v="[("/><clip pos="1" side="ref" part="lemh"/><lit v=".nt)]"/></concat></let><out><var n="tmp"/></out> -->
             </when>
             <!-- otherwise, no good subject: leave as-is / fall back to nob.rlx disambiguation -->
           </choose>
         </when>
       </choose>
+      <choose><when c="If the above tests found gender to change, set tags">
+        <test><not><equal><var n="adjtags"/><lit v=""/></equal></not></test>
+        <let>
+          <clip pos="1" side="tl" part="tags"/>
+          <concat>
+            <clip pos="1" side="tl" part="a_adj"/>
+            <clip pos="1" side="tl" part="grau"/>
+            <var n="adjtags"/>
+          </concat>
+        </let>
+      </when></choose>
     </def-macro>
 
   </section-def-macros>

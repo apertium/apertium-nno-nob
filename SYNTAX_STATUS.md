@@ -69,6 +69,7 @@ side="ref"> for transfer to use. It's syntactic, not anaphoric.
 - Missing relative pronouns are difficult:
   - Jeg er her på grunn av beslutninger<pl> tatt<pl> på europeiske møter
   Difficult, since e.g.: ble det ved flere anledninger<pl> tatt<nt> opp i Stortinget
+  - Maybe we can use ngram frequencies f(ta beslutninger) >>> f(ta anledninger)
 
 - adj.sg.nt.@adv should be adv_movable
   - domineres sterkt → er sterkt dominert
