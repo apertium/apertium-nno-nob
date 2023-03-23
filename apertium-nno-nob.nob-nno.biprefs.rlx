@@ -37,21 +37,15 @@ LIST lm_skap = ".*skap"ri;
 SELECT:skapet_skapen lm_skap + m IF (0 (VAR:skapet_skapen));
 REMOVE:skapet_skapet lm_skap + m;
 
-LIST lm_lov = ".*lov"ri;
-SELECT:lova_loven lm_lov + m IF (0 (VAR:lova_loven));
-
-# utlendingsloven § 21 -> utlendingsloven § 21
-REMOVE:lova_loven lm_lov + m;
-
 # words that default to <f>, but can be overridden to <m>:
-LIST apa_apen_nouns = ".*(ape|blokk|bøye|grad|grunne|kasse|klage|krise|kulde|lampe|festning|olje)"ri;
-SELECT:compounds m + apa_apen_nouns IF (0 (VSTR:VAR:apa_apen.n.f2m=/\\b$1\\b/r)) ;
-SELECT:lm_filter m + ("<(.+)>"r)    IF (0 (VSTR:VAR:apa_apen.n.f2m=/\\b$1\\b/r)) ;
-SELECT:no_filter m + apa_apen_nouns IF (0 (VAR:apa_apen.n.f2m=*));
-REMOVE:unset     m + apa_apen_nouns;
+LIST lova_loven_nouns = ".*(ape|blokk|bøye|grad|grunne|kasse|klage|krise|kulde|lampe|lov|maskin|festning|olje)"ri;
+SELECT:compounds m + lova_loven_nouns IF (0 (VSTR:VAR:lova_loven.n.f2m=/\\b$1\\b/r)) ;
+SELECT:lm_filter m + ("<(.+)>"r)    IF (0 (VSTR:VAR:lova_loven.n.f2m=/\\b$1\\b/r)) ;
+SELECT:no_filter m + lova_loven_nouns IF (0 (VAR:lova_loven.n.f2m=*));
+REMOVE:unset     m + lova_loven_nouns;
 
 # words that default to <m>, but can be overridden to <f>:
-LIST banen_bana_nouns = ".*(art|bane|bete|beskjed|dialekt|dump|farge|flamme|kai|klasse|krabbe|kunst|larve|pakke|persille|plante|takt|tekst|tillit|stamme|svikt|synagoge|takk|tale|trost|bygning|doning|kledning|ladning|leidning|munning|pasning|rydning)"ri;
+LIST banen_bana_nouns = ".*(art|bane|bete|beskjed|dialekt|dump|farge|flamme|kai|klasse|krabbe|kunst|larve|meis|pakke|persille|plante|takt|tekst|tillit|stamme|svikt|synagoge|takk|tale|trost|bygning|doning|kledning|ladning|leidning|munning|pasning|rydning)"ri;
 SELECT:compounds f + banen_bana_nouns IF (0 (VSTR:VAR:banen_bana.n.m2f=/\\b$1\\b/r)) ;
 SELECT:lm_filter f + ("<(.+)>"r)    IF (0 (VSTR:VAR:banen_bana.n.m2f=/\\b$1\\b/r)) ;
 SELECT:no_filter f + banen_bana_nouns IF (0 (VAR:banen_bana.n.m2f=*));
