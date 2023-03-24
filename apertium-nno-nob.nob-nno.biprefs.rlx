@@ -38,7 +38,7 @@ SELECT:skapet_skapen lm_skap + m IF (0 (VAR:skapet_skapen));
 REMOVE:skapet_skapet lm_skap + m;
 
 # words that default to <f>, but can be overridden to <m>:
-LIST lova_loven_nouns = ".*(ape|blokk|bøye|grad|grunne|kasse|klage|krise|kulde|lampe|lov|maskin|festning|olje)"ri;
+LIST lova_loven_nouns = ".*(ape|blokk|bøye|grad|grunne|kasse|klage|krise|kulde|lampe|lov|maskin|nytte|festning|olje|pinse|potet|prøve|påske|scene)"ri;
 SELECT:compounds m + lova_loven_nouns IF (0 (VSTR:VAR:lova_loven.n.f2m=/\\b$1\\b/r)) ;
 SELECT:lm_filter m + ("<(.+)>"r)    IF (0 (VSTR:VAR:lova_loven.n.f2m=/\\b$1\\b/r)) ;
 SELECT:no_filter m + lova_loven_nouns IF (0 (VAR:lova_loven.n.f2m=*));
