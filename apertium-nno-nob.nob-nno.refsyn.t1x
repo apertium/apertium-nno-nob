@@ -57,16 +57,6 @@
     <def-cat n="adj.pp">
       <cat-item tags="adj.pp.*"/>
     </def-cat>
-    <def-cat n="lexadj_adv">
-      <cat-item tags="adj.pst.*.@adv"/>
-      <cat-item tags="adj.comp.*.@adv"/>
-      <cat-item tags="adj.sup.*.@adv"/>
-      <cat-item tags="adj.sint.*.@adv"/>
-      <cat-item tags="adj.pst.*.@adv.*"/>
-      <cat-item tags="adj.comp.*.@adv.*"/>
-      <cat-item tags="adj.sup.*.@adv.*"/>
-      <cat-item tags="adj.sint.*.@adv.*"/>
-    </def-cat>
     <def-cat n="lexadj">
       <cat-item tags="adj.pst.*"/>
       <cat-item tags="adj.comp.*"/>
@@ -164,8 +154,8 @@
   <section-def-vars>
     <def-var n="cur_subj"/>
     <def-var n="prev_subj"/>
-    <def-var n="cur_subj_genswitch"/>
-    <def-var n="prev_subj_genswitch"/>
+    <def-var n="cur_subj_lexadj"/>
+    <def-var n="prev_subj_lexadj"/>
     <def-var n="lexadj_ref"/>
   </section-def-vars>
 
@@ -178,7 +168,7 @@
   <section-def-macros>
     <def-macro n="set_cur_subj" npar="1">
       <let><var n="prev_subj"/><var n="cur_subj"/></let>
-      <let><var n="prev_subj_genswitch"/><var n="cur_subj_genswitch"/></let>
+      <let><var n="prev_subj_lexadj"/><var n="cur_subj_lexadj"/></let>
       <let><var n="cur_subj"/><clip pos="1" side="tl" part="whole"/></let>
       <choose>
         <when c="Word changed gender to or from nt">
@@ -194,10 +184,10 @@
               <equal><clip pos="1" side="tl" part="nbr"/><lit-tag v="pl"/></equal>
             </or>
           </test>
-          <let><var n="cur_subj_genswitch"/><lit v="YES"/></let>
+          <let><var n="cur_subj_lexadj"/><var n="cur_subj"/></let>
         </when>
         <otherwise>
-          <let><var n="cur_subj_genswitch"/><lit v=""/></let>
+          <let><var n="cur_subj_lexadj"/><lit v=""/></let>
         </otherwise>
       </choose>
 
@@ -409,8 +399,8 @@
         </out>
         <let><var n="prev_subj"/><lit v=""/></let>
         <let><var n="cur_subj"/><lit v=""/></let>
-        <let><var n="prev_subj_genswitch"/><lit v=""/></let>
-        <let><var n="cur_subj_genswitch"/><lit v=""/></let>
+        <let><var n="prev_subj_lexadj"/><lit v=""/></let>
+        <let><var n="cur_subj_lexadj"/><lit v=""/></let>
       </action>
     </rule>
 
@@ -423,15 +413,15 @@
         <choose><when>
           <test><not><equal><var n="prev_subj"/><lit v=""/></equal></not></test>
           <let><var n="cur_subj"/><var n="prev_subj"/></let>
-          <let><var n="cur_subj_genswitch"/><var n="prev_subj_genswitch"/></let>
+          <let><var n="cur_subj_lexadj"/><var n="prev_subj_lexadj"/></let>
           <let><var n="prev_subj"/><lit v=""/></let>
-          <let><var n="prev_subj_genswitch"/><lit v=""/></let>
+          <let><var n="prev_subj_lexadj"/><lit v=""/></let>
         </when></choose>
         <reject-current-rule shifting="no"/>
       </action>
     </rule>
 
-    <rule c="Lexical/non-pp adj special handling: Only add ref (only agree) if @s-pred and subject gender switched to/from nt:
+    <rule c="Lexical/non-pp adj special handling: Only add ref (only agree) if @s-pred and subject gender switched to/from nt or number is pl:
              Ie. not for adverbial usage like
              - Tallene er sterkt@adv dominert
              - Det vi har fått til teknologisk">
@@ -440,15 +430,12 @@
       </pattern>
       <action>
         <choose>
-          <when c="Override (ie. do add refsyn) if gender switched and we're predicative">
-            <test><and>
-              <equal><var n="cur_subj_genswitch"/><lit v="YES"/></equal>
-              <equal><clip pos="1" side="tl" part="a_syntax"/><lit-tag v="@s-pred"/></equal>
-            </and></test>
-            <let><var n="lexadj_ref"/><var n="cur_subj"/></let>
+          <when c="We only want refsyn if predicative, otherwise ensure it's empty since this is a lexical adjective.">
+            <test><equal><clip pos="1" side="tl" part="a_syntax"/><lit-tag v="@s-pred"/></equal></test>
+            <let><var n="lexadj_ref"/><var n="cur_subj_lexadj"/></let>
           </when>
-          <otherwise c="Adverbials or where subject gender stayed the same shouldn't agree">
-            <let><var n="lexadj_ref"/><clip pos="1" side="tl" part="whole"/></let>
+          <otherwise>
+            <let><var n="lexadj_ref"/><lit v=""/></let>
           </otherwise>
         </choose>
         <let><clip pos="1" side="tl" part="a_syntax"/><lit v=""/></let>
@@ -483,7 +470,6 @@
         </out>
       </action>
     </rule>
-
 
   </section-rules>
 </transfer>
