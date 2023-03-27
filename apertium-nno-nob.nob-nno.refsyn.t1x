@@ -183,13 +183,16 @@
       <choose>
         <when c="Word changed gender to or from nt">
           <test>
-            <and>
-              <not><equal><clip pos="1" side="sl" part="gen"/><clip pos="1" side="tl" part="gen"/></equal></not>
-              <or>
-                <equal><clip pos="1" side="sl" part="gen"/><lit-tag v="nt"/></equal>
-                <equal><clip pos="1" side="tl" part="gen"/><lit-tag v="nt"/></equal>
-              </or>
-            </and>
+            <or>
+              <and>
+                <not><equal><clip pos="1" side="sl" part="gen"/><clip pos="1" side="tl" part="gen"/></equal></not>
+                <or>
+                  <equal><clip pos="1" side="sl" part="gen"/><lit-tag v="nt"/></equal>
+                  <equal><clip pos="1" side="tl" part="gen"/><lit-tag v="nt"/></equal>
+                </or>
+              </and>
+              <equal><clip pos="1" side="tl" part="nbr"/><lit-tag v="pl"/></equal>
+            </or>
           </test>
           <let><var n="cur_subj_genswitch"/><lit v="YES"/></let>
         </when>
