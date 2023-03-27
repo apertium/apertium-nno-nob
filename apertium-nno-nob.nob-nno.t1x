@@ -4781,6 +4781,8 @@
               <equal><clip pos="1" side="tl" part="temps"/><lit-tag v="pp"/></equal> <!-- participles might not agree in bokmål, so here we want to guess both gender and number agreement -->
               <equal><clip pos="1" side="tl" part="grau"/><lit-tag v="pst"/></equal> <!-- comparatives don't agree; superlatives do, but only in number, which will be the same in bokmål -->
             </or>
+            <equal><clip pos="1" side="tl" part="a_cmp"/><lit v=""/></equal> <!-- Not a compound or split-compound -->
+            <not><equal><clip pos="1" side="tl" part="a_adj"/><lit-tag v="adj.ord"/></equal></not>
             <not><equal><clip pos="1" side="tl" part="art"/><lit-tag v="def"/></equal></not> <!-- det farlige er … -->
             <not><in><clip pos="1" side="tl" part="lemh"/><list n="no-samsvar"/></in></not>
             <not><equal><clip pos="1" side="ref" part="a_expl"/><lit-tag v="expl"/></equal></not>
