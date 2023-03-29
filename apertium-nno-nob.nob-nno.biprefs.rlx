@@ -72,6 +72,10 @@ REMOVE:verken_verken ("korkje"i) IF (0 ("verken"i));
 SELECT:kvifor_korfor  ("korfor"i) IF (0 ("kvifor"i) + (VAR:kvifor_korfor.syn));
 REMOVE:kvifor_kvifor ("korfor"i) IF (0 ("kvifor"i));
 
+LIST lm_tyde = "tyde"i "tyding"i;
+SELECT:bety_tyde  lm_tyde IF (0 (VAR:bety_tyde.syn));
+REMOVE:bety_tyde lm_tyde;
+
 SELECT:førebels_foreløpig  ("foreløpig"i) IF (0 ("førebels"i) + (VAR:førebels_foreløpig.syn));
 REMOVE:førebels_førebels ("foreløpig"i) IF (0 ("førebels"i));
 
