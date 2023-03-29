@@ -149,6 +149,13 @@
       <attr-item tags="sp"/>
       <attr-item tags="ND"/>
     </def-attr>
+    <def-attr n="temps">
+      <attr-item tags="inf"/>
+      <attr-item tags="imp"/>
+      <attr-item tags="pres"/>
+      <attr-item tags="pret"/>
+      <attr-item tags="pp"/>
+    </def-attr>
   </section-def-attrs>
 
   <section-def-vars>
@@ -157,6 +164,7 @@
     <def-var n="cur_subj_lexadj"/>
     <def-var n="prev_subj_lexadj"/>
     <def-var n="lexadj_ref"/>
+    <def-var n="fv_after_xubj"/>
   </section-def-vars>
 
   <section-def-lists>
@@ -167,6 +175,7 @@
 
   <section-def-macros>
     <def-macro n="set_cur_subj" npar="1">
+      <let><var n="fv_after_xubj"/><lit v=""/></let>
       <let><var n="prev_subj"/><var n="cur_subj"/></let>
       <let><var n="prev_subj_lexadj"/><var n="cur_subj_lexadj"/></let>
       <let><var n="cur_subj"/><clip pos="1" side="tl" part="whole"/></let>
@@ -401,11 +410,12 @@
         <let><var n="cur_subj"/><lit v=""/></let>
         <let><var n="prev_subj_lexadj"/><lit v=""/></let>
         <let><var n="cur_subj_lexadj"/><lit v=""/></let>
+        <let><var n="fv_after_xubj"/><lit v=""/></let>
       </action>
     </rule>
 
     <!-- TODO: also switch on seeing «og som», as in «plattformen som de fire partiene forhandlet frem, og som ble godkjent» -->
-    <rule c="Switch to prev subject variable on clause boundary comma">
+    <rule c="Switch to prev subject variable on clause boundary comma. Unconditionally skips to next rule without outputting.">
       <pattern>
         <pattern-item n="cm-clb"/>
       </pattern>
@@ -416,12 +426,42 @@
           <let><var n="cur_subj_lexadj"/><var n="prev_subj_lexadj"/></let>
           <let><var n="prev_subj"/><lit v=""/></let>
           <let><var n="prev_subj_lexadj"/><lit v=""/></let>
+          <let><var n="fv_after_xubj"/><lit v=""/></let>
         </when></choose>
         <reject-current-rule shifting="no"/>
       </action>
     </rule>
 
-    <rule c="Lexical/non-pp adj special handling: Only add ref (only agree) if @s-pred and subject gender switched to/from nt or number is pl:
+    <rule c="Switch to prev subject variable on second finite verb if cur is @xubj. Unconditionally skips to next rule without outputting.">
+      <pattern>
+        <pattern-item n="fv"/>
+      </pattern>
+      <action>
+        <choose>
+          <when c="Seeing the first finite verb after an @xubj, set fv_after_xubj to 'seen'">
+            <test><and>
+              <not><equal><var n="fv_after_xubj"/><lit v="seen"/></equal></not>
+              <ends-with><var n="cur_subj"/><lit-tag v="@xubj"/></ends-with>
+            </and></test>
+            <let><var n="fv_after_xubj"/><lit v="seen"/></let>
+          </when>
+          <when c="Seeing the second finite verb after an @xubj, switch to previous subject and clear fv_after_xubj">
+          <test><and>
+            <equal><var n="fv_after_xubj"/><lit v="seen"/></equal>
+            <ends-with><var n="cur_subj"/><lit-tag v="@xubj"/></ends-with>
+          </and></test>
+          <let><var n="fv_after_xubj"/><lit v=""/></let>
+          <let><var n="cur_subj"/><var n="prev_subj"/></let>
+          <let><var n="cur_subj_lexadj"/><var n="prev_subj_lexadj"/></let>
+          <let><var n="prev_subj"/><lit v=""/></let>
+          <let><var n="prev_subj_lexadj"/><lit v=""/></let>
+        </when></choose>
+        <reject-current-rule shifting="no"/>
+      </action>
+    </rule>
+
+
+    <rule c="Lexical/non-pp adj special handling: Only add ref (only agree) if @s-pred and subject gender changed to/from nt or number is pl:
              Ie. not for adverbial usage like
              - Tallene er sterkt@adv dominert
              - Det vi har fått til teknologisk">
