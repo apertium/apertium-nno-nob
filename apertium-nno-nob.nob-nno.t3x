@@ -83,6 +83,9 @@
     <def-cat n="adj_adj_n_n_n_n">
       <cat-item name="adj_adj_n_n_n_n"/>
     </def-cat>
+    <def-cat n="adj_cm_adj_n">
+      <cat-item name="adj_cm_adj_n"/>
+    </def-cat>
     <!-- ADJ ADJ ADJ N+ -->
     <def-cat n="adj_adj_adj_n">
       <cat-item name="adj_adj_adj_n"/>
@@ -1187,6 +1190,25 @@
           <lu><clip pos="4" part="whole"/></lu><b/>
           <lu><clip pos="5" part="whole"/></lu><b/>
           <lu><clip pos="6" part="whole"/></lu>
+        </out>
+      </action>
+    </rule>
+    <rule comment="CHUNK: adj_cm_adj_n">
+      <pattern>
+        <pattern-item n="adj_cm_adj_n"/>
+      </pattern>
+      <action>
+        <call-macro n="clean_n.adj"><with-param pos="4"/><with-param pos="1"/><with-param pos="0"/></call-macro>
+        <call-macro n="clean_n.adj_defnes"><with-param pos="4"/><with-param pos="3"/><with-param pos="0"/></call-macro>
+        <call-macro n="out_adj"><with-param pos="1"/><with-param pos="0"/></call-macro>
+        <out>
+          <lu><clip pos="2" part="whole"/></lu>
+          <b/><b/>              <!-- double because there was an empty space before comma-->
+        </out>
+        <call-macro n="out_adj"><with-param pos="3"/><with-param pos="0"/></call-macro>
+        <out>
+          <b/>
+          <lu><clip pos="4" part="whole"/></lu>
         </out>
       </action>
     </rule>

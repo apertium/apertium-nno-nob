@@ -48,6 +48,9 @@ side="ref"> for transfer to use. It's syntactic, not anaphoric.
   - de<pl><@subj> nevner mannen<mf><@xubj> i 50-åra som …
   - et antall<sg><@subj> av deres krigere<pl><@xubj> …
 
+- Regular (non-pp) adjectives
+  - restricted to the cases where the subject is plural, or it changes
+    in translation between nt and non-nt genders
 
 ## Main work remaining:
 
@@ -99,5 +102,3 @@ side="ref"> for transfer to use. It's syntactic, not anaphoric.
 
   Possible idea: split @clb-tag into clause-with-subject vs clause-without-subject (ellipsis)?
 
-
-- Regular (non-pp) adjectives

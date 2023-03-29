@@ -7229,6 +7229,67 @@ no lemq-moving">
       </action>
     </rule>
 
+    <rule comment="ADJ CM ADJ N">
+      <pattern>
+        <pattern-item n="adj"/>
+        <pattern-item n="cm"/>
+        <pattern-item n="adj"/>
+        <pattern-item n="n_np"/>
+      </pattern>
+      <action>
+        <choose><when c="Don't chunk «generelt lite fugl» etc.">
+          <test><or>
+            <equal><clip pos="1" side="tl" part="lemh"/><lit v=""/></equal>
+            <and>
+              <not><in><clip pos="1" side="tl" part="lemh"/><list n="adj-ind-def"/></in></not>
+              <not><equal><clip pos="1" side="tl" part="grau"/><lit-tag v="sup"/></equal></not> <!-- allow «tettest/mest befolkede områdene» -->
+              <equal><clip pos="1" side="tl" part="art"/><lit-tag v="ind"/></equal>
+              <equal><clip pos="4" side="tl" part="art"/><lit-tag v="def"/></equal>
+            </and>
+            <and>
+              <not><in><clip pos="1" side="tl" part="lemh"/><list n="adj-ind-def"/></in></not>
+              <equal><clip pos="1" side="sl" part="gen"/><lit-tag v="nt"/></equal>
+              <equal><clip pos="3" side="sl" part="gen"/><lit-tag v="nt"/></equal>
+              <not><equal><clip pos="4" side="sl" part="gen"/><lit-tag v="nt"/></equal></not>
+            </and>
+          </or></test>
+          <reject-current-rule shifting="no"/>
+        </when></choose>
+        <let><var n="c_name"/><lit v="adj_cm_adj_n"/></let>
+        <call-macro n="set_gender2.n.pre-adj"><with-param pos="4"/><with-param pos="1"/></call-macro>
+        <call-macro n="set_gender2.n.adj"><with-param pos="4"/><with-param pos="3"/></call-macro>
+        <call-macro n="set_grau_aux2"><with-param pos="1"/><with-param pos="3"/></call-macro>
+        <call-macro n="set_caseFirstWord3">
+          <with-param pos="1"/>
+          <with-param pos="3"/>
+          <with-param pos="4"/>
+        </call-macro>
+        <call-macro n="out_gen-prep"><with-param pos="4"/></call-macro>
+        <call-macro n="stash_case_in_ntags1"><with-param pos="4"/></call-macro>
+        <out>
+          <chunk namefrom="c_name" case="caseFirstWord">
+            <tags><tag><var n="ntags"/></tag></tags>
+            <var n="grau_aux"/>
+            <lu>
+              <clip pos="1" side="tl" part="lemh"/>
+              <clip pos="1" side="tl" part="tags"/>
+              <clip pos="1" side="tl" part="lemq"/>
+            </lu>
+            <b/>
+            <lu><clip pos="2" side="tl" part="whole"/></lu>
+            <b/>
+            <lu>
+              <clip pos="3" side="tl" part="lemh"/>
+              <clip pos="3" side="tl" part="tags"/>
+              <clip pos="3" side="tl" part="lemq"/>
+            </lu>
+            <b/>
+            <lu><clip pos="4" side="tl" part="whole"/></lu>
+          </chunk>
+        </out>
+      </action>
+    </rule>
+
     <!-- NP_NOGEN NINDGEN -->
     <rule comment="NP_NOGEN NINDGEN: Sogn tingretts → Sogn tingretts
                    Chunk for genitive movement">
