@@ -79,6 +79,10 @@ LIST lm_begynne = "begynne"i "begynning"i "begynnar"i "nybegynnar"i "begynnande"
 SELECT:byrje_begynne  lm_begynne IF (0 (VAR:byrje_begynne.syn));
 REMOVE:byrje_byrje lm_begynne;
 
+LIST lm_eksempel = "eksempel"i "for eksempel"i;
+SELECT:døme_eksempel  lm_eksempel IF (0 (VAR:døme_eksempel.syn));
+REMOVE:døme_døme lm_eksempel;
+
 LIST lm_tyde = "tyde"i "tyding"i;
 SELECT:bety_tyde  lm_tyde IF (0 (VAR:bety_tyde.syn));
 REMOVE:bety_bety lm_tyde;
