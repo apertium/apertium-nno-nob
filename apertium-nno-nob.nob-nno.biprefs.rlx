@@ -58,6 +58,10 @@ SELECT:lm_filter m + ("<(.+)>"r)    IF (0 (VSTR:VAR:minuttet_minutten.n.nt2m=/\\
 SELECT:no_filter m + minuttet_minutten_nouns IF (0 (VAR:minuttet_minutten.n.nt2m=*));
 REMOVE:unset     m + minuttet_minutten_nouns;
 
+LIST redsel_redsle_nouns = ".*(redsel|skremsel)"ri;
+SELECT:redsel_redsle f + redsel_redsle_nouns IF (0 (VAR:redsel_redsle.kons-sel2sle));
+REMOVE:unset         f + redsel_redsle_nouns;
+
 SELECT:motsetning_motsetnad  ("motsetnad"i) IF (0 ("motsetning"i) + (VAR:motsetning_motsetnad));
 REMOVE:motsetning_motsetning ("motsetnad"i) IF (0 ("motsetning"i));
 
