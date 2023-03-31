@@ -51,6 +51,13 @@ SELECT:lm_filter f + ("<(.+)>"r)    IF (0 (VSTR:VAR:banen_bana.n.m2f=/\\b$1\\b/r
 SELECT:no_filter f + banen_bana_nouns IF (0 (VAR:banen_bana.n.m2f=*));
 REMOVE:unset     f + banen_bana_nouns;
 
+# words that default to <nt>, but can be overridden to <m>:
+LIST minuttet_minutten_nouns = ".*(minutt|sekund)"ri;
+SELECT:compounds m + minuttet_minutten_nouns IF (0 (VSTR:VAR:minuttet_minutten.n.nt2m=/\\b$1\\b/r)) ;
+SELECT:lm_filter m + ("<(.+)>"r)    IF (0 (VSTR:VAR:minuttet_minutten.n.nt2m=/\\b$1\\b/r)) ;
+SELECT:no_filter m + minuttet_minutten_nouns IF (0 (VAR:minuttet_minutten.n.nt2m=*));
+REMOVE:unset     m + minuttet_minutten_nouns;
+
 SELECT:motsetning_motsetnad  ("motsetnad"i) IF (0 ("motsetning"i) + (VAR:motsetning_motsetnad));
 REMOVE:motsetning_motsetning ("motsetnad"i) IF (0 ("motsetning"i));
 
