@@ -60,7 +60,7 @@ REMOVE:unset     m + minuttet_minutten_nouns;
 
 # words that default to suffix -sel (<m> or <nt>), but can be overridden to -sle (<f>)
 # fixed compounds (-sels* / -sle*) handled in nno.dix
-LIST redsel_redsle_nouns = ".*(blygsel|drygsel|høyrsel|køyrsel|ferdsel|redsel|skremsel)"ri;
+LIST redsel_redsle_nouns = ".*(blygsel|drygsel|høyrsel|køyrsel|ferdsel|førsel|lengsel|redsel|skremsel|trengsel|vigsel)"ri;
 SELECT:redsel_redsle f + redsel_redsle_nouns IF (0 (VAR:redsel_redsle.kons-sel2sle));
 REMOVE:unset         f + redsel_redsle_nouns;
 
