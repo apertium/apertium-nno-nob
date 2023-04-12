@@ -91,6 +91,9 @@ REMOVE:blant_blant ("mellom"i) IF (0 ("blant"i));
 SELECT:begge_båe ("båe"i) IF (0 ("begge"i) + (VAR:begge_båe.syn));
 REMOVE:begge_begge   ("båe"i) IF (0 ("begge"i));
 
+SELECT:hos_hja ("hjå"i) IF (0 ("hos"i) + (VAR:hos_hjå.syn));
+REMOVE:hos_hos   ("hjå"i) IF (0 ("hos"i));
+
 LIST lm_begynne = "begynne"i "begynning"i "begynnar"i "nybegynnar"i "begynnande"i "påbegynne"i;
 SELECT:byrje_begynne  lm_begynne IF (0 (VAR:byrje_begynne.syn));
 REMOVE:byrje_byrje lm_begynne;
