@@ -64,6 +64,11 @@ LIST redsel_redsle_nouns = ".*(blygsel|drygsel|høyrsel|køyrsel|ferdsel|førsel
 SELECT:redsel_redsle f + redsel_redsle_nouns IF (0 (VAR:redsel_redsle.kons-sel2sle));
 REMOVE:unset         f + redsel_redsle_nouns;
 
+# words that default to suffix -sle (<f>), but can be overridden to -sel (<m>)
+LIST gløymsle_gløymsel_nouns = ".*(gløymsel|gøymsel)"ri;
+SELECT:gløymsle_gløymsel m + gløymsle_gløymsel_nouns IF (0 (VAR:gløymsle_gløymsel.kons-sel2sle));
+REMOVE:unset         m + gløymsle_gløymsel_nouns;
+
 SELECT:motsetning_motsetnad  ("motsetnad"i) IF (0 ("motsetning"i) + (VAR:motsetning_motsetnad));
 REMOVE:motsetning_motsetning ("motsetnad"i) IF (0 ("motsetning"i));
 
