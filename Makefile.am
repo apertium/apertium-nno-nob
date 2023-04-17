@@ -42,6 +42,7 @@ TARGETS_PREFIX2_FAST =                \
      $(PREFIX2).t3x.bin               \
      capstag.autoseq.bin              \
      capstag.rlx.bin                  \
+     merge-names.rlx.bin              \
      prefs/$(PREFIX2).xml
 
 TARGETS_PREFIX2 =                                             \
@@ -141,6 +142,9 @@ $(LANG1).autoseq.bin: $(BASENAME).$(LANG1).lsx
 # Language-general:
 capstag.autoseq.bin: $(BASENAME).capstag.lsx
 	lsx-comp lr $< $@
+
+merge-names.rlx.bin: merge-names.rlx
+	cg-comp $< $@
 
 ###############################################################################
 ## Bilingual dictionaries
