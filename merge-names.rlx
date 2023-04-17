@@ -1,0 +1,65 @@
+DELIMITERS = "." "?" sent ;
+
+# Example input:
+# "<Rolv>"
+# 	"Rolv" np ant m Aa @subst→
+# "<Ravlo>"
+# 	"Ravlo" np cog Aa @app
+# "<.>"
+# 	"." sent clb aa
+# "<Rolv>"
+# 	"Rolv" np ant m Aa @subst→
+# "<Molv>"
+# 	"Molv" np ant m Aa @subst→
+# "<Ravlo>"
+# 	"Ravlo" np cog Aa @app
+# "<.>"
+# 	"." sent clb aa
+#
+# Expected output:
+# "<Rolv Ravlo>"
+# 	"Rolv Ravlo" np cog cgguess Aa @app
+# "<.>"
+# 	"." sent clb aa
+# "<Rolv Molv Ravlo>"
+# 	"Rolv Molv Ravlo" np cog cgguess Aa @app
+# "<.>"
+# 	"." sent clb aa
+
+
+
+
+LIST wf = "<(.*)>"r ;
+LIST bf = "([^<].*)"r ;
+LIST fn = (np ant) ;
+LIST ln = (np cog) ;
+LIST aa = /^\([Aa]+\)$/r ;
+LIST syn =  /^\(@.*\)$/r ;
+
+MERGECOHORTS:f+l ("<$1 $3>"v "$2 $4"v np cog cgguess VSTR:$5 VSTR:$6)
+                     wf + bf + fn
+          WITH
+                  (1 wf + bf + ln + aa + syn)
+;
+
+# TODO: The below looks like it should work, but doesn't, for some reason we need two rules:
+# MERGECOHORTS:f+l+l ("<$1 $3 $5>"v "$2 $4 $6"v np cog cgguess VSTR:$7 VSTR:$8)
+#                      wf + bf + fn
+#           WITH
+#                   (1 wf + bf LINK 0 fn OR ln)
+#                   (2 wf + bf + ln + aa + syn)
+# ;
+
+MERGECOHORTS:f+l+l ("<$1 $3 $5>"v "$2 $4 $6"v np cog cgguess VSTR:$7 VSTR:$8)
+                     wf + bf + fn
+          WITH
+                  (1 wf + bf + ln)
+                  (2 wf + bf + ln + aa + syn)
+;
+
+MERGECOHORTS:f+f+l ("<$1 $3 $5>"v "$2 $4 $6"v np cog cgguess VSTR:$7 VSTR:$8)
+                     wf + bf + fn
+          WITH
+                  (1 wf + bf + fn)
+                  (2 wf + bf + ln + aa + syn)
+;
