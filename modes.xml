@@ -68,7 +68,7 @@
     </pipeline>
   </mode>
 
-  <mode name="nob-nno_e" install="yes" gendebug="yes"> <!-- infinitive verbs ending in -e, pron 3pl vi -->
+  <mode name="before" gendebug="yes">
     <pipeline>
       <program name="lt-proc -w -e">
         <file name="nob-nno.automorf.bin"/>
@@ -138,7 +138,7 @@
     </pipeline>
   </mode>
 
-  <mode name="foo" install="no" gendebug="yes">
+  <mode name="nob-nno_e" install="yes" gendebug="yes"> <!-- infinitive verbs ending in -e, pron 3pl vi -->
     <pipeline>
       <program name="lt-proc -w -e">
         <file name="nob-nno.automorf.bin"/>
@@ -158,10 +158,10 @@
       <program name="apertium-tagger -p -g $2">
         <file name="nob-nno.prob"/>
       </program>
-      <program name="cg-proc -n" debug-suff="namemerge">
+      <program name="cg-proc" debug-suff="namemerge">
 	<file name="merge-names.rlx.bin"/>
       </program>
-      <program name="apertium-pretransfer"/>
+      <program name="apertium-pretransfer -n"/>
       <program name="lsx-proc -w">
         <file name="nob-nno.autoseq.bin"/>
       </program>
