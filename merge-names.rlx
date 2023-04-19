@@ -36,6 +36,36 @@ LIST ln = (np cog) ;
 LIST aa = /^\([Aa]+\)$/r ;
 LIST syn =  /^\(@.*\)$/r ;
 
+# First genitives:
+MERGECOHORTS:f+lG ("<$1 $3>"v "$2 $4"v np cog cgguess gen VSTR:$5 VSTR:$6)
+                     wf + bf + fn
+                  (NEGATE 0/1 (*))
+                  (NEGATE 1/1 (*))
+          WITH
+                  (1 wf + bf + ln + (gen) + aa + syn)
+;
+
+MERGECOHORTS:f+l+lG ("<$1 $3 $5>"v "$2 $4 $6"v np cog cgguess gen VSTR:$7 VSTR:$8)
+                     wf + bf + fn
+                  (NEGATE 0/1 (*))
+                  (NEGATE 1/1 (*))
+                  (NEGATE 2/1 (*))
+          WITH
+                  (1 wf + bf + ln)
+                  (2 wf + bf + ln + (gen) + aa + syn)
+;
+
+MERGECOHORTS:f+f+lG ("<$1 $3 $5>"v "$2 $4 $6"v np cog cgguess gen VSTR:$7 VSTR:$8)
+                     wf + bf + fn
+                  (NEGATE 0/1 (*))
+                  (NEGATE 1/1 (*))
+                  (NEGATE 2/1 (*))
+          WITH
+                  (1 wf + bf + fn)
+                  (2 wf + bf + ln + (gen) + aa + syn)
+;
+
+# Then non-genitives:
 MERGECOHORTS:f+l ("<$1 $3>"v "$2 $4"v np cog cgguess VSTR:$5 VSTR:$6)
                      wf + bf + fn
                   (NEGATE 0/1 (*))
@@ -43,14 +73,6 @@ MERGECOHORTS:f+l ("<$1 $3>"v "$2 $4"v np cog cgguess VSTR:$5 VSTR:$6)
           WITH
                   (1 wf + bf + ln + aa + syn)
 ;
-
-# TODO: The below looks like it should work, but doesn't, for some reason we need two rules:
-# MERGECOHORTS:f+l+l ("<$1 $3 $5>"v "$2 $4 $6"v np cog cgguess VSTR:$7 VSTR:$8)
-#                      wf + bf + fn
-#           WITH
-#                   (1 wf + bf LINK 0 fn OR ln)
-#                   (2 wf + bf + ln + aa + syn)
-# ;
 
 MERGECOHORTS:f+l+l ("<$1 $3 $5>"v "$2 $4 $6"v np cog cgguess VSTR:$7 VSTR:$8)
                      wf + bf + fn
@@ -71,3 +93,11 @@ MERGECOHORTS:f+f+l ("<$1 $3 $5>"v "$2 $4 $6"v np cog cgguess VSTR:$7 VSTR:$8)
                   (1 wf + bf + fn)
                   (2 wf + bf + ln + aa + syn)
 ;
+
+# TODO: The below looks like it should work, but doesn't, for some reason we need two rules:
+# MERGECOHORTS:f+l+l ("<$1 $3 $5>"v "$2 $4 $6"v np cog cgguess VSTR:$7 VSTR:$8)
+#                      wf + bf + fn
+#           WITH
+#                   (1 wf + bf LINK 0 fn OR ln)
+#                   (2 wf + bf + ln + aa + syn)
+# ;
