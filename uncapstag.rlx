@@ -1,0 +1,8 @@
+#
+
+DELIMITERS = "." "?" sent ;
+APPEND ("%u$1"v) TARGET ("([^<].*)"r Aa) ;
+REMOVE (Aa);
+
+APPEND ("%U$1"v) TARGET ("([^<].*)"r AA) ;
+REMOVE (AA);

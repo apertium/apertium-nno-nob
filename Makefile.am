@@ -42,6 +42,7 @@ TARGETS_PREFIX2_FAST =                \
      $(PREFIX2).t3x.bin               \
      capstag.autoseq.bin              \
      capstag.rlx.bin                  \
+     uncapstag.rlx.bin                \
      merge-names.rlx.bin              \
      prefs/$(PREFIX2).xml
 
@@ -188,6 +189,8 @@ $(PREFIX2).autolex.bin: $(BASENAME).$(PREFIX2).lrx
 ###############################################################################
 
 capstag.rlx.bin: capstag.rlx
+	cg-comp $< $@
+uncapstag.rlx.bin: uncapstag.rlx
 	cg-comp $< $@
 
 $(PREFIX1).t1x.bin: $(BASENAME).$(PREFIX1).t1x

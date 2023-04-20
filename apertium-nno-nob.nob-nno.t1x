@@ -4034,7 +4034,7 @@
                   Initialises ntags to tags; adds casedrop to ntags, clears defdrop from lu tags, adds source gender to ntags
                   Does not add keep-sin nor call bigram_genprep (we expect that to happen after call to this)
                   Empties a_caps and a_defdrop!">
-      <let><clip pos="1" side="tl" part="a_caps"/><lit v=""/></let>
+      <!-- <let><clip pos="1" side="tl" part="a_caps"/><lit v=""/></let> -->
       <let><var n="ntags"/><clip pos="1" side="tl" part="tags"/></let>
       <choose><when>
         <test><equal><clip pos="1" side="tl" part="a_nom"/><lit-tag v="n"/></equal></test>
@@ -4167,8 +4167,8 @@
         <otherwise><let><var n="chunkCase"/><lit v="aa"/></let></otherwise>
       </choose>
       <let><var n="prevDeletedCase"/><lit v=""/></let> <!-- Ensure we don't use this more than once! -->
-      <let><clip pos="1" side="tl" part="a_caps"/><lit v=""/></let> <!-- discard value -->
-      <let><clip pos="2" side="tl" part="a_caps"/><lit v=""/></let> <!-- discard value -->
+      <!-- <let><clip pos="1" side="tl" part="a_caps"/><lit v=""/></let> <!-\- discard value -\-> -->
+      <!-- <let><clip pos="2" side="tl" part="a_caps"/><lit v=""/></let> <!-\- discard value -\-> -->
     </def-macro>
 
 
@@ -4553,7 +4553,7 @@
       </choose>
       <let><clip pos="1" side="tl" part="art"/><lit-tag v="def"/></let>
       <out>
-        <chunk name="nn" case="caseFirstWord">
+        <chunk name="nn">
           <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
           <lu>
             <clip pos="1" side="tl" part="lemh"/>
@@ -4631,7 +4631,7 @@
             </when>
           </choose>
           <out>
-            <chunk name="prn" case="caseFirstWord">
+            <chunk name="prn">
               <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
               <lu>
                 <clip pos="1" side="tl" part="lemh"/>
@@ -4644,7 +4644,7 @@
           <call-macro n="set_caseFirstWord"><with-param pos="2"/></call-macro>
           <let><clip pos="1" side="tl" part="cas"/><lit v=""/></let>
           <out>
-            <chunk name="nn" case="caseFirstWord">
+            <chunk name="nn">
               <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
               <lu>
                 <get-case-from pos="2"><clip pos="1" side="tl" part="lemh"/></get-case-from>
@@ -4764,7 +4764,7 @@
       </choose>
       <let><clip pos="2" side="tl" part="art"/><lit-tag v="def"/></let>
       <out>
-        <chunk namefrom="c_name" case="caseFirstWord">
+        <chunk namefrom="c_name">
           <tags>
             <tag><clip pos="2" side="tl" part="tags"/></tag>
           </tags>
@@ -4885,7 +4885,7 @@
         <let><clip pos="2" side="tl" part="art_sg"/><lit-tag v="mf.sg.ind"/></let>
 
         <out>
-          <chunk name="adj_n" case="caseFirstWord">
+          <chunk name="adj_n">
             <tags>
               <tag><clip pos="2" side="tl" part="tags"/></tag>
             </tags>
@@ -4933,7 +4933,7 @@
         <let><clip pos="1" side="tl" part="cas"/><lit v=""/></let>
 
         <out>
-          <chunk name="adv" case="caseFirstWord">
+          <chunk name="adv">
             <tags><tag><lit-tag v="adv"/></tag></tags>
             <lu>
               <lit v="den"/>
@@ -5000,7 +5000,7 @@
         <let><clip pos="2" side="tl" part="art_sg"/><lit-tag v="mf.sg.ind"/></let>
 
         <out>
-          <chunk name="adj_n" case="caseFirstWord">
+          <chunk name="adj_n">
             <tags>
               <tag><clip pos="2" side="tl" part="tags"/></tag>
             </tags>
@@ -5046,7 +5046,7 @@
         <let><clip pos="2" side="tl" part="art_sg"/><lit-tag v="mf.sg.ind"/></let>
 
         <out>
-          <chunk name="adj_n" case="caseFirstWord">
+          <chunk name="adj_n">
             <tags>
               <tag><clip pos="2" side="tl" part="tags"/></tag>
             </tags>
@@ -5079,7 +5079,7 @@
         <choose><when><test><not><equal><clip pos="1" side="tl" part="a_cmp"/><lit v=""/></equal></not></test><reject-current-rule shifting="no"/></when></choose>
         <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
         <out>
-          <chunk name="nn" case="caseFirstWord">
+          <chunk name="nn">
             <tags>
               <tag><lit-tag v="adv"/></tag>
               <tag><clip pos="1" side="tl" part="tags"/></tag>
@@ -5101,12 +5101,12 @@
       <action>
         <call-macro n="set_caseFirstWord3"><with-param pos="1"/><with-param pos="2"/><with-param pos="3"/></call-macro>
         <out>
-          <chunk name="prn" case="caseFirstWord">
+          <chunk name="prn">
             <tags><tag><clip pos="3" side="tl" part="tags"/></tag></tags>
             <lu><clip pos="3" side="tl" part="whole"/></lu>
           </chunk>
           <b pos="1"/>
-          <chunk name="det" case="caseSecondWord">
+          <chunk name="det">
             <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
             <lu><clip pos="1" side="tl" part="whole"/></lu>
           </chunk>
@@ -5127,12 +5127,12 @@
         </call-macro>
         <call-macro n="stash_case_in_ntags1"><with-param pos="2"/></call-macro>
         <out>
-          <chunk name="gen-prep" case="caseSecondWord">
+          <chunk name="gen-prep">
             <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
             <lu><clip pos="1" side="tl" part="lemh"/><clip pos="1" side="tl" part="tags"/></lu>
           </chunk>
           <b pos="1"/>
-          <chunk name="nn" case="caseFirstWord">
+          <chunk name="nn">
             <tags><tag><var n="ntags"/></tag></tags>
             <lu><clip pos="2" side="tl" part="whole"/></lu>
           </chunk>
@@ -5155,12 +5155,12 @@
         <call-macro n="stash_case_in_ntags1"><with-param pos="2"/></call-macro>
         <call-macro n="set_lemq"><with-param pos="1"/></call-macro>
         <out>
-          <chunk name="adj" case="caseFirstWord">
+          <chunk name="adj">
             <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
             <lu><clip pos="1" side="tl" part="lemh"/><clip pos="1" side="tl" part="tags"/><var n="c_lemq"/></lu>
           </chunk>
           <b pos="1"/>
-          <chunk name="nn" case="caseSecondWord">
+          <chunk name="nn">
             <tags><tag><var n="ntags"/></tag></tags>
             <lu><clip pos="2" side="tl" part="whole"/></lu>
           </chunk>
@@ -5182,12 +5182,12 @@
         <call-macro n="stash_case_in_ntags1"><with-param pos="3"/></call-macro>
         <call-macro n="set_lemq"><with-param pos="2"/></call-macro>
         <out>
-          <chunk name="adj" case="caseFirstWord">
+          <chunk name="adj">
             <tags><tag><clip pos="2" side="tl" part="tags"/></tag></tags>
             <lu><clip pos="2" side="tl" part="lemh"/><clip pos="2" side="tl" part="tags"/><var n="c_lemq"/></lu>
           </chunk>
           <b pos="1"/>
-          <chunk name="nn" case="caseSecondWord">
+          <chunk name="nn">
             <tags><tag><var n="ntags"/></tag></tags>
             <lu><clip pos="3" side="tl" part="whole"/></lu>
           </chunk>
@@ -5214,7 +5214,7 @@
           <let><clip pos="2" side="tl" part="gen"/><lit-tag v="un"/></let>
         </when></choose>
         <out>
-          <chunk name="det2adj" case="caseFirstWord">
+          <chunk name="det2adj">
             <tags><tag><clip pos="2" side="tl" part="tags"/></tag></tags>
             <lu><clip pos="2" side="tl" part="whole"/></lu>
           </chunk>
@@ -5235,7 +5235,7 @@
           <with-param pos="2"/>
         </call-macro>
         <out>
-          <chunk name="pr" case="caseFirstWord">
+          <chunk name="pr">
             <tags><tag><lit-tag v="pr.med"/></tag></tags>
             <lu>
               <lit v="med"/>
@@ -5276,7 +5276,7 @@
           <with-param pos="2"/>
         </call-macro>
         <out>
-          <chunk name="aux" case="caseFirstWord">
+          <chunk name="aux">
             <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
             <lu>
               <lit v="skulle"/>
@@ -5284,7 +5284,7 @@
             </lu>
           </chunk>
           <b pos="1"/>
-          <chunk name="aux" case="caseSecondWord">
+          <chunk name="aux">
             <tags><tag><lit-tag v="vblex.inf"/></tag></tags>
             <lu>
               <clip pos="1" side="tl" part="lemh"/>
@@ -5310,7 +5310,7 @@
           <when c="fleire">
             <test><equal><clip pos="2" side="tl" part="lemh"/><lit v="fleire"/></equal></test>
             <out>
-              <chunk name="adj" case="caseFirstWord">
+              <chunk name="adj">
                 <tags><tag><lit-tag v="adj.sint.comp.un.sp"/></tag></tags>
                 <lu>
                   <lit v="mange"/>
@@ -5326,12 +5326,12 @@
           <otherwise>
             <call-macro n="stash_case_in_ntags1"><with-param pos="2"/></call-macro>
             <out>
-              <chunk name="det" case="caseFirstWord">
+              <chunk name="det">
                 <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
                 <lu><clip pos="1" side="tl" part="whole"/></lu>
               </chunk>
               <b pos="1"/>
-              <chunk name="nn" case="caseSecondWord">
+              <chunk name="nn">
                 <tags><tag><var n="ntags"/></tag></tags>
                 <lu><clip pos="2" side="tl" part="whole"/></lu>
               </chunk>
@@ -5362,7 +5362,7 @@
               <equal><clip pos="3" side="tl" part="lemh"/><clip pos="3" side="tl" part="lemh"/></equal>
             </or></test>
             <out>
-              <chunk name="adj" case="caseFirstWord">
+              <chunk name="adj">
                 <tags><tag><lit-tag v="adj.sint.pst.un.pl.ind"/></tag></tags>
                 <lu>
                   <lit v="mange"/>
@@ -5376,17 +5376,17 @@
           <otherwise>
             <call-macro n="stash_case_in_ntags1"><with-param pos="3"/></call-macro>
             <out>
-              <chunk name="det" case="caseFirstWord">
+              <chunk name="det">
                 <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
                 <lu><clip pos="1" side="tl" part="whole"/></lu>
               </chunk>
               <b pos="1"/>
-              <chunk name="adj" case="caseSecondWord">
+              <chunk name="adj">
                 <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
                 <lu><clip pos="2" side="tl" part="whole"/></lu>
               </chunk>
               <b pos="2"/>
-              <chunk name="nn" case="caseSecondWord">
+              <chunk name="nn">
                 <tags><tag><var n="ntags"/></tag></tags>
                 <lu><clip pos="3" side="tl" part="whole"/></lu>
               </chunk>
@@ -5432,7 +5432,7 @@
           <with-param pos="2"/>
         </call-macro>
         <out>
-          <chunk name="adv" case="caseFirstWord">
+          <chunk name="adv">
             <tags><tag><lit-tag v="adv"/></tag></tags>
             <lu>
               <lit v="den"/>
@@ -5481,7 +5481,7 @@
           </otherwise>
         </choose>
         <out>
-          <chunk name="adv" case="caseFirstWord">
+          <chunk name="adv">
             <tags><tag><lit-tag v="adv"/></tag></tags>
             <lu>
               <lit v="den"/>
@@ -5520,7 +5520,7 @@
           <with-param pos="2"/>
         </call-macro>
         <out>
-          <chunk name="adv" case="caseFirstWord">
+          <chunk name="adv">
             <tags><tag><lit-tag v="adv"/></tag></tags>
             <lu><clip pos="1" side="tl" part="whole"/></lu>
             <b pos="1"/>
@@ -5542,7 +5542,7 @@
         </call-macro>
         <let><clip pos="3" side="tl" part="a_remspc"/><lit v=""/></let>
         <out>
-          <chunk name="adv" case="caseFirstWord">
+          <chunk name="adv">
             <tags><tag><lit-tag v="adv"/></tag></tags>
             <lu><clip pos="1" side="tl" part="whole"/></lu>
             <b pos="1"/>
@@ -5617,7 +5617,7 @@
         <let><clip pos="2" side="tl" part="art"/><var n="defnes"/></let>
         <call-macro n="stash_case_in_ntags1"><with-param pos="2"/></call-macro>
         <out>
-          <chunk namefrom="c_name" case="caseFirstWord">
+          <chunk namefrom="c_name">
             <tags><tag><var n="ntags"/></tag></tags>
             <var n="grau_aux"/>
             <lu>
@@ -5664,7 +5664,7 @@
                   <equal><clip pos="1" side="tl" part="voice"/><lit v=""/></equal> <!-- explicitly translating into active form in bidix -->
                 </or></test>
                 <out>
-                  <chunk name="vblex" case="caseFirstWord">
+                  <chunk name="vblex">
                     <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
                     <lu>
                       <clip pos="1" side="tl" part="lemh"/>
@@ -5727,7 +5727,7 @@
                   </otherwise>
                 </choose>
                 <out>
-                  <chunk name="aux" case="caseFirstWord">
+                  <chunk name="aux">
                     <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
                     <var n="aux"/>
                   </chunk>
@@ -5787,7 +5787,7 @@
               <let><var n="c_name"/><lit v="aux"/></let>
             </when></choose>
             <out>
-              <chunk namefrom="c_name" case="caseFirstWord">
+              <chunk namefrom="c_name">
                 <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
                 <lu>
                   <clip pos="1" side="tl" part="lemh"/>
@@ -5832,7 +5832,7 @@
               <let><var n="c_name"/><lit v="aux"/></let>
             </when></choose>
             <out>
-              <chunk namefrom="c_name" case="caseFirstWord">
+              <chunk namefrom="c_name">
                 <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
                 <lu>
                   <clip pos="1" side="tl" part="lemh"/>
@@ -5861,7 +5861,7 @@
       <action>
         <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
         <out>
-          <chunk name="infm" case="caseFirstWord">
+          <chunk name="infm">
             <tags>
               <tag><clip pos="1" side="tl" part="tags"/></tag>
             </tags>
@@ -5893,7 +5893,7 @@
           </append>
         </when></choose>
         <out>
-          <chunk name="adv" case="caseFirstWord">
+          <chunk name="adv">
             <tags><tag><var n="advtags"/></tag></tags>
             <lu><clip pos="1" side="tl" part="whole"/></lu>
           </chunk>
@@ -5911,7 +5911,7 @@
         <let><var n="advtags"/><clip pos="1" side="tl" part="tags"/></let>
         <!-- not movable -->
         <out>
-          <chunk name="adv" case="caseFirstWord">
+          <chunk name="adv">
             <tags><tag><var n="advtags"/></tag></tags>
             <lu><clip pos="1" side="tl" part="whole"/></lu>
             <b pos="1"/>
@@ -5997,12 +5997,12 @@
         <call-macro n="set_grau_aux1"><with-param pos="2"/></call-macro>
         <call-macro n="set_caseFirstWord3"><with-param pos="1"/><with-param pos="2"/><with-param pos="3"/></call-macro>
         <out>
-          <chunk name="detpos-keep" case="caseFirstWord">
+          <chunk name="detpos-keep">
             <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
             <lu><clip pos="1" side="tl" part="whole"/></lu>
           </chunk>
           <b pos="1"/>
-          <chunk namefrom="c_name" case="caseSecondWord">
+          <chunk namefrom="c_name">
             <tags>
               <tag><clip pos="3" side="tl" part="tags"/></tag>
             </tags>
@@ -6055,12 +6055,12 @@
           <with-param pos="4"/>
         </call-macro>
         <out>
-          <chunk name="detpos-keep" case="caseFirstWord">
+          <chunk name="detpos-keep">
             <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
             <lu><clip pos="1" side="tl" part="whole"/></lu>
           </chunk>
           <b/>
-          <chunk namefrom="c_name" case="caseSecondWord">
+          <chunk namefrom="c_name">
             <tags>
               <tag><clip pos="4" side="tl" part="tags"/></tag>
             </tags>
@@ -6126,7 +6126,7 @@
           <let><var n="c_name"/><lit v="aux"/></let>
         </when></choose>
         <out>
-          <chunk namefrom="c_name" case="caseFirstWord">
+          <chunk namefrom="c_name">
             <tags><tag><clip pos="4" side="tl" part="tags"/></tag></tags>
             <lu>
               <clip pos="4" side="tl" part="lemh"/>
@@ -6179,7 +6179,7 @@ no lemq-moving">
             </test>
             <call-macro n="set_aux2"><with-param pos="4"/><with-param pos="4"/></call-macro>
             <out>
-              <chunk name="vblex" case="caseFirstWord">
+              <chunk name="vblex">
                 <tags><tag><clip pos="4" side="tl" part="tags"/></tag></tags>
                 <var n="aux"/>
               </chunk>
@@ -6198,7 +6198,7 @@ no lemq-moving">
           <otherwise>
             <out>
               <b pos="3"/>
-              <chunk name="vblex" case="caseFirstWord">
+              <chunk name="vblex">
                 <tags><tag><clip pos="4" side="tl" part="tags"/></tag></tags>
                 <lu>
                   <clip pos="4" side="tl" part="lemh"/>
@@ -6243,7 +6243,7 @@ no lemq-moving">
         </choose>
 
         <out>
-          <chunk namefrom="c_name" case="caseFirstWord">
+          <chunk namefrom="c_name">
             <tags><tag><clip pos="2" side="tl" part="tags"/></tag></tags>
             <lu><clip pos="1" side="tl" part="whole"/></lu>
             <b pos="1"/>
@@ -6266,7 +6266,7 @@ no lemq-moving">
       <action>
         <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
         <out>
-          <chunk name="nn" case="caseFirstWord">
+          <chunk name="nn">
             <tags>
               <tag><lit-tag v="timemeas"/></tag>
               <tag><clip pos="1" side="tl" part="tags"/></tag>
@@ -6290,7 +6290,7 @@ no lemq-moving">
           <with-param pos="2"/>
         </call-macro>
         <out>
-          <chunk namefrom="c_name" case="caseFirstWord">
+          <chunk namefrom="c_name">
             <tags>
               <tag><lit-tag v="timemeas"/></tag>
               <tag><clip pos="2" side="tl" part="tags"/></tag>
@@ -6319,12 +6319,12 @@ no lemq-moving">
           <with-param pos="2"/>
         </call-macro>
         <out>
-          <chunk name="nn" case="caseFirstWord">
+          <chunk name="nn">
             <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
             <lu><clip pos="1" side="tl" part="whole"/></lu>
           </chunk>
           <b pos="1"/>
-          <chunk name="nn" case="caseSecondWord">
+          <chunk name="nn">
             <tags><tag><clip pos="2" side="tl" part="tags"/></tag></tags>
             <lu><clip pos="2" side="tl" part="whole"/></lu>
           </chunk>
@@ -6342,12 +6342,12 @@ no lemq-moving">
           <with-param pos="2"/>
         </call-macro>
         <out>
-          <chunk name="nn" case="caseFirstWord">
+          <chunk name="nn">
             <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
             <lu><clip pos="1" side="tl" part="whole"/></lu>
           </chunk>
           <b pos="1"/>
-          <chunk name="nn" case="caseSecondWord">
+          <chunk name="nn">
             <tags><tag><clip pos="2" side="tl" part="tags"/></tag></tags>
             <lu><clip pos="2" side="tl" part="whole"/></lu>
           </chunk>
@@ -6370,13 +6370,13 @@ no lemq-moving">
         <call-macro n="out_gen-prep"><with-param pos="3"/></call-macro>
         <call-macro n="stash_case_in_ntags1"><with-param pos="3"/></call-macro>
         <out>
-          <chunk name="n_n" case="caseFirstWord">
+          <chunk name="n_n">
             <tags><tag><clip pos="2" side="tl" part="tags"/></tag></tags>
             <lu><clip pos="1" side="tl" part="whole"/></lu>
             <lu><clip pos="2" side="tl" part="whole"/></lu>
           </chunk>
           <b pos="2"/>
-          <chunk name="nn" case="caseSecondWord">
+          <chunk name="nn">
             <tags><tag><var n="ntags"/></tag></tags>
             <lu><clip pos="3" side="tl" part="whole"/></lu>
           </chunk>
@@ -6402,13 +6402,13 @@ no lemq-moving">
         <call-macro n="out_gen-prep"><with-param pos="4"/></call-macro>
         <call-macro n="stash_case_in_ntags1"><with-param pos="4"/></call-macro>
         <out>
-          <chunk name="n_n" case="caseFirstWord">
+          <chunk name="n_n">
             <tags><tag><clip pos="2" side="tl" part="tags"/></tag></tags>
             <lu><clip pos="1" side="tl" part="whole"/></lu>
             <lu><clip pos="2" side="tl" part="whole"/></lu>
           </chunk>
           <b/>
-          <chunk name="adj_n" case="caseSecondWord">
+          <chunk name="adj_n">
             <tags><tag><var n="ntags"/></tag></tags>
             <var n="grau_aux"/>
             <lu>
@@ -6441,7 +6441,7 @@ no lemq-moving">
           <with-param pos="2"/>
         </call-macro>
         <out>
-          <chunk name="nn" case="caseFirstWord">
+          <chunk name="nn">
             <tags>
               <tag><clip pos="1" side="tl" part="tags"/></tag>
               <tag><lit-tag v="gen"/></tag>
@@ -6449,7 +6449,7 @@ no lemq-moving">
             <lu><clip pos="1" side="tl" part="whole"/></lu>
           </chunk>
           <b/>
-          <chunk name="nn" case="caseSecondWord">
+          <chunk name="nn">
             <tags>
               <tag><clip pos="2" side="tl" part="tags"/></tag>
             </tags>
@@ -6475,7 +6475,7 @@ no lemq-moving">
         <!-- They were in the list – keep the s-genitive: -->
         <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
         <out>
-          <chunk name="nn" case="caseFirstWord">
+          <chunk name="nn">
             <tags>
               <tag><clip pos="1" side="tl" part="tags"/></tag>
               <tag><lit-tag v="gen"/></tag>
@@ -6489,7 +6489,7 @@ no lemq-moving">
         <let><var n="c_name"/><lit v="adj_n"/></let>
         <call-macro n="set_grau_aux1"><with-param pos="2"/></call-macro>
         <out>
-          <chunk namefrom="c_name" case="caseFirstWord">
+          <chunk namefrom="c_name">
             <tags><tag><clip pos="3" side="tl" part="tags"/></tag></tags>
             <var n="grau_aux"/>
             <lu>
@@ -6553,17 +6553,17 @@ no lemq-moving">
       <action>
         <call-macro n="set_caseFirstWord3"><with-param pos="1"/><with-param pos="2"/><with-param pos="3"/></call-macro>
         <out>
-          <chunk name="pr" case="caseFirstWord">
+          <chunk name="pr">
             <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
             <lu><clip pos="1" side="tl" part="whole"/></lu>
           </chunk>
           <b/>
-          <chunk name="n" case="caseSecondWord">
+          <chunk name="n">
             <tags><tag><clip pos="2" side="tl" part="tags"/></tag></tags>
             <lu><clip pos="2" side="tl" part="whole"/></lu>
           </chunk>
           <b/>
-          <chunk name="n" case="caseFirstWord">
+          <chunk name="n">
             <tags><tag><clip pos="3" side="tl" part="tags"/></tag></tags>
             <lu><clip pos="3" side="tl" part="whole"/></lu>
           </chunk>
@@ -6587,7 +6587,7 @@ no lemq-moving">
             <call-macro n="out_gen-prep"><with-param pos="1"/></call-macro>
             <call-macro n="stash_case_in_ntags1"><with-param pos="1"/></call-macro>
             <out>
-              <chunk name="nn" case="caseFirstWord">
+              <chunk name="nn">
                 <tags><tag><var n="ntags"/></tag></tags>
                 <lu><clip pos="1" side="tl" part="whole"/></lu>
               </chunk>
@@ -6614,7 +6614,7 @@ no lemq-moving">
         <call-macro n="out_gen-prep"><with-param pos="2"/></call-macro>
         <call-macro n="stash_case_in_ntags1"><with-param pos="2"/></call-macro>
         <out>
-          <chunk name="n_n" case="caseFirstWord">
+          <chunk name="n_n">
             <tags><tag><var n="ntags"/></tag></tags>
             <lu><clip pos="1" side="tl" part="whole"/></lu>
             <lu><clip pos="2" side="tl" part="whole"/></lu>
@@ -6637,7 +6637,7 @@ no lemq-moving">
         <call-macro n="out_gen-prep"><with-param pos="3"/></call-macro>
         <call-macro n="stash_case_in_ntags1"><with-param pos="3"/></call-macro>
         <out>
-          <chunk name="n_n_n" case="caseFirstWord">
+          <chunk name="n_n_n">
             <tags><tag><var n="ntags"/></tag></tags>
             <lu><clip pos="1" side="tl" part="whole"/></lu>
             <lu><clip pos="2" side="tl" part="whole"/></lu>
@@ -6663,7 +6663,7 @@ no lemq-moving">
         <call-macro n="out_gen-prep"><with-param pos="4"/></call-macro>
         <call-macro n="stash_case_in_ntags1"><with-param pos="4"/></call-macro>
         <out>
-          <chunk name="n_n_n_n" case="caseFirstWord">
+          <chunk name="n_n_n_n">
             <tags><tag><var n="ntags"/></tag></tags>
             <lu><clip pos="1" side="tl" part="whole"/></lu>
             <lu><clip pos="2" side="tl" part="whole"/></lu>
@@ -6689,7 +6689,7 @@ no lemq-moving">
         <call-macro n="set_gender1.adj"><with-param pos="2"/></call-macro>
         <call-macro n="set_grau_aux1"><with-param pos="2"/></call-macro>
         <out>
-          <chunk namefrom="c_name" case="caseFirstWord">
+          <chunk namefrom="c_name">
             <tags><tag><clip pos="2" side="tl" part="tags"/></tag></tags>
             <var n="grau_aux"/>
             <lu><clip pos="1" side="tl" part="whole"/></lu>
@@ -6714,7 +6714,7 @@ no lemq-moving">
         <call-macro n="set_gender1.adj"><with-param pos="3"/></call-macro>
         <call-macro n="set_grau_aux1"><with-param pos="3"/></call-macro>
         <out>
-          <chunk namefrom="c_name" case="caseFirstWord">
+          <chunk namefrom="c_name">
             <tags><tag><clip pos="3" side="tl" part="tags"/></tag></tags>
             <var n="grau_aux"/>
             <lu><clip pos="1" side="tl" part="whole"/></lu>
@@ -6742,7 +6742,7 @@ no lemq-moving">
         <call-macro n="set_gender1.adj"><with-param pos="4"/></call-macro>
         <call-macro n="set_grau_aux1"><with-param pos="4"/></call-macro>
         <out>
-          <chunk namefrom="c_name" case="caseFirstWord">
+          <chunk namefrom="c_name">
             <tags><tag><clip pos="4" side="tl" part="tags"/></tag></tags>
             <var n="grau_aux"/>
             <lu><clip pos="1" side="tl" part="whole"/></lu>
@@ -6773,7 +6773,7 @@ no lemq-moving">
         <call-macro n="set_gender1.adj"><with-param pos="5"/></call-macro>
         <call-macro n="set_grau_aux1"><with-param pos="5"/></call-macro>
         <out>
-          <chunk namefrom="c_name" case="caseFirstWord">
+          <chunk namefrom="c_name">
             <tags><tag><clip pos="5" side="tl" part="tags"/></tag></tags>
             <var n="grau_aux"/>
             <lu><clip pos="1" side="tl" part="whole"/></lu>
@@ -6818,7 +6818,7 @@ no lemq-moving">
         <call-macro n="out_gen-prep"><with-param pos="3"/></call-macro>
         <call-macro n="stash_case_in_ntags1"><with-param pos="3"/></call-macro>
         <out>
-          <chunk namefrom="c_name" case="caseFirstWord">
+          <chunk namefrom="c_name">
             <tags><tag><var n="ntags"/></tag></tags>
             <var n="grau_aux"/>
             <lu><clip pos="1" side="tl" part="whole"/></lu>
@@ -6864,7 +6864,7 @@ no lemq-moving">
         <call-macro n="out_gen-prep"><with-param pos="3"/></call-macro>
         <call-macro n="stash_case_in_ntags2"><with-param pos="3"/><with-param pos="1"/></call-macro>
         <out>
-          <chunk name="n_cnjcoo_n" case="caseFirstWord">
+          <chunk name="n_cnjcoo_n">
             <tags><tag><var n="ntags"/></tag></tags>
             <lu><clip pos="1" side="tl" part="whole"/></lu>
             <b pos="1"/>
@@ -6894,7 +6894,7 @@ no lemq-moving">
         <call-macro n="out_gen-prep"><with-param pos="4"/></call-macro>
         <call-macro n="stash_case_in_ntags2"><with-param pos="4"/><with-param pos="2"/></call-macro>
         <out>
-          <chunk name="adj_n_cnjcoo_n" case="caseFirstWord">
+          <chunk name="adj_n_cnjcoo_n">
             <tags><tag><var n="ntags"/></tag></tags>
             <lu><clip pos="1" side="tl" part="whole"/></lu>
             <b/>
@@ -6926,7 +6926,7 @@ no lemq-moving">
         <call-macro n="out_gen-prep"><with-param pos="4"/></call-macro>
         <call-macro n="stash_case_in_ntags2"><with-param pos="4"/><with-param pos="1"/></call-macro>
         <out>
-          <chunk name="n_cnjcoo_adj_n" case="caseFirstWord">
+          <chunk name="n_cnjcoo_adj_n">
             <tags><tag><var n="ntags"/></tag></tags>
             <lu><clip pos="1" side="tl" part="whole"/></lu>
             <b pos="1"/>
@@ -6958,7 +6958,7 @@ no lemq-moving">
         <call-macro n="out_gen-prep"><with-param pos="4"/></call-macro>
         <call-macro n="stash_case_in_ntags2"><with-param pos="4"/><with-param pos="2"/></call-macro>
         <out>
-          <chunk name="n_n_cnjcoo_n" case="caseFirstWord">
+          <chunk name="n_n_cnjcoo_n">
             <tags><tag><var n="ntags"/></tag></tags>
             <lu><clip pos="1" side="tl" part="whole"/></lu>
             <lu><clip pos="2" side="tl" part="whole"/></lu>
@@ -6987,7 +6987,7 @@ no lemq-moving">
         <call-macro n="out_gen-prep"><with-param pos="4"/></call-macro>
         <call-macro n="stash_case_in_ntags2"><with-param pos="4"/><with-param pos="1"/></call-macro>
         <out>
-          <chunk name="n_cnjcoo_n_n" case="caseFirstWord">
+          <chunk name="n_cnjcoo_n_n">
             <tags><tag><var n="ntags"/></tag></tags>
             <lu><clip pos="1" side="tl" part="whole"/></lu>
             <b pos="1"/>
@@ -7022,7 +7022,7 @@ no lemq-moving">
         <let><clip pos="5" side="tl" part="art"/><lit-tag v="def"/></let>
         <call-macro n="stash_case_in_ntags2"><with-param pos="5"/><with-param pos="1"/></call-macro>
         <out>
-          <chunk name="n_cnjcoo_det_adj_n" case="caseFirstWord">
+          <chunk name="n_cnjcoo_det_adj_n">
             <tags><tag><var n="ntags"/></tag></tags>
             <lu><clip pos="1" side="tl" part="whole"/></lu>
             <b pos="1"/>
@@ -7051,17 +7051,17 @@ no lemq-moving">
           <with-param pos="3"/>
         </call-macro>
         <out>
-          <chunk name="nn" case="caseFirstWord">
+          <chunk name="nn">
             <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
             <lu><clip pos="1" side="tl" part="whole"/></lu>
           </chunk>
           <b pos="1"/>
-          <chunk name="default" case="caseFirstWord">
+          <chunk name="default">
             <tags><tag><clip pos="2" side="tl" part="tags"/></tag></tags>
             <lu><clip pos="2" side="tl" part="lemh"/><lit-tag v="cnjcoo"/></lu>
           </chunk>
           <b pos="2"/>
-          <chunk name="nn" case="caseFirstWord">
+          <chunk name="nn">
             <tags><tag><clip pos="3" side="tl" part="tags"/></tag></tags>
             <lu><clip pos="3" side="tl" part="whole"/></lu>
           </chunk>
@@ -7084,7 +7084,7 @@ no lemq-moving">
         <call-macro n="out_gen-prep"><with-param pos="5"/></call-macro>
         <call-macro n="stash_case_in_ntags2"><with-param pos="5"/><with-param pos="2"/></call-macro>
         <out>
-          <chunk name="n_n_cnjcoo_n_n" case="caseFirstWord">
+          <chunk name="n_n_cnjcoo_n_n">
             <tags><tag><var n="ntags"/></tag></tags>
             <lu><clip pos="1" side="tl" part="whole"/></lu>
             <lu><clip pos="2" side="tl" part="whole"/></lu>
@@ -7120,7 +7120,7 @@ no lemq-moving">
         <call-macro n="out_gen-prep"><with-param pos="4"/></call-macro>
         <call-macro n="stash_case_in_ntags1"><with-param pos="4"/></call-macro>
         <out>
-          <chunk name="adj_cnjcoo_adj_n" case="caseFirstWord">
+          <chunk name="adj_cnjcoo_adj_n">
             <tags><tag><var n="ntags"/></tag></tags>
             <lu><clip pos="1" side="tl" part="whole"/></lu>
             <b pos="1"/>
@@ -7156,7 +7156,7 @@ no lemq-moving">
         <call-macro n="out_gen-prep"><with-param pos="5"/></call-macro>
         <call-macro n="stash_case_in_ntags1"><with-param pos="5"/></call-macro>
         <out>
-          <chunk name="adj_cnjcoo_adj_adj_n" case="caseFirstWord">
+          <chunk name="adj_cnjcoo_adj_adj_n">
             <tags><tag><var n="ntags"/></tag></tags>
             <lu><clip pos="1" side="tl" part="whole"/></lu><b/>
             <lu><clip pos="2" side="tl" part="lemh"/><lit-tag v="cnjcoo"/></lu><b/>
@@ -7189,7 +7189,7 @@ no lemq-moving">
         <call-macro n="out_gen-prep"><with-param pos="5"/></call-macro>
         <call-macro n="stash_case_in_ntags1"><with-param pos="5"/></call-macro>
         <out>
-          <chunk name="adj_cnjcoo_adj_n_n" case="caseFirstWord">
+          <chunk name="adj_cnjcoo_adj_n_n">
             <tags><tag><var n="ntags"/></tag></tags>
             <lu><clip pos="1" side="tl" part="whole"/></lu>
             <b/>
@@ -7223,7 +7223,7 @@ no lemq-moving">
         <call-macro n="out_gen-prep"><with-param pos="6"/></call-macro>
         <call-macro n="stash_case_in_ntags1"><with-param pos="6"/></call-macro>
         <out>
-          <chunk name="n_adj_cnjcoo_adj_n_n" case="caseFirstWord">
+          <chunk name="n_adj_cnjcoo_adj_n_n">
             <tags><tag><var n="ntags"/></tag></tags>
             <lu><clip pos="1" side="tl" part="whole"/></lu>
             <lu><clip pos="2" side="tl" part="whole"/></lu>
@@ -7277,7 +7277,7 @@ no lemq-moving">
         <call-macro n="out_gen-prep"><with-param pos="4"/></call-macro>
         <call-macro n="stash_case_in_ntags1"><with-param pos="4"/></call-macro>
         <out>
-          <chunk namefrom="c_name" case="caseFirstWord">
+          <chunk namefrom="c_name">
             <tags><tag><var n="ntags"/></tag></tags>
             <var n="grau_aux"/>
             <lu>
@@ -7318,7 +7318,7 @@ no lemq-moving">
         <call-macro n="out_gen-prep"><with-param pos="2"/></call-macro>
         <call-macro n="stash_case_in_ntags1"><with-param pos="2"/></call-macro>
         <out>
-          <chunk name="n_n" case="caseFirstWord">
+          <chunk name="n_n">
             <tags><tag><var n="ntags"/></tag></tags>
             <lu><clip pos="1" side="tl" part="whole"/></lu>
             <b pos="1"/>
@@ -7345,7 +7345,7 @@ no lemq-moving">
         <call-macro n="out_gen-prep"><with-param pos="3"/></call-macro>
         <call-macro n="stash_case_in_ntags1"><with-param pos="3"/></call-macro>
         <out>
-          <chunk name="n_n_n" case="caseFirstWord">
+          <chunk name="n_n_n">
             <tags><tag><var n="ntags"/></tag></tags>
             <lu><clip pos="1" side="tl" part="whole"/></lu>
             <b pos="1"/>
@@ -7397,7 +7397,7 @@ no lemq-moving">
           <append n="ntags"><lit-tag v="sup"/></append>
         </when></choose>
         <out>
-          <chunk namefrom="c_name" case="caseFirstWord">
+          <chunk namefrom="c_name">
             <tags><tag><var n="ntags"/></tag></tags>
             <var n="grau_aux"/>
             <lu>
@@ -7441,7 +7441,7 @@ no lemq-moving">
         <call-macro n="out_gen-prep"><with-param pos="3"/></call-macro>
         <call-macro n="stash_case_in_ntags1"><with-param pos="3"/></call-macro>
         <out>
-          <chunk namefrom="c_name" case="caseFirstWord">
+          <chunk namefrom="c_name">
             <tags><tag><var n="ntags"/></tag></tags>
             <var n="grau_aux"/>
             <lu>
@@ -7491,7 +7491,7 @@ no lemq-moving">
         <call-macro n="out_gen-prep"><with-param pos="4"/></call-macro>
         <call-macro n="stash_case_in_ntags1"><with-param pos="4"/></call-macro>
         <out>
-          <chunk namefrom="c_name" case="caseFirstWord">
+          <chunk namefrom="c_name">
             <tags><tag><var n="ntags"/></tag></tags>
             <var n="grau_aux"/>
             <lu>
@@ -7545,7 +7545,7 @@ no lemq-moving">
         <call-macro n="out_gen-prep"><with-param pos="5"/></call-macro>
         <call-macro n="stash_case_in_ntags1"><with-param pos="5"/></call-macro>
         <out>
-          <chunk namefrom="c_name" case="caseFirstWord">
+          <chunk namefrom="c_name">
             <tags><tag><var n="ntags"/></tag></tags>
             <var n="grau_aux"/>
             <lu>
@@ -7605,7 +7605,7 @@ no lemq-moving">
           <let><var n="c_name"/><lit v="adj_n"/></let>
         </when></choose>
         <out>
-          <chunk namefrom="c_name" case="caseFirstWord">
+          <chunk namefrom="c_name">
             <tags><tag><var n="ntags"/></tag></tags>
             <var n="grau_aux"/>
             <lu>
@@ -7667,7 +7667,7 @@ no lemq-moving">
           <let><var n="c_name"/><lit v="adj_n_n"/></let>
         </when></choose>
         <out>
-          <chunk namefrom="c_name" case="caseFirstWord">
+          <chunk namefrom="c_name">
             <tags><tag><var n="ntags"/></tag></tags>
             <var n="grau_aux"/>
             <lu>
@@ -7735,7 +7735,7 @@ no lemq-moving">
           <let><var n="c_name"/><lit v="adj_n_n_n"/></let>
         </when></choose>
         <out>
-          <chunk namefrom="c_name" case="caseFirstWord">
+          <chunk namefrom="c_name">
             <tags><tag><var n="ntags"/></tag></tags>
             <var n="grau_aux"/>
             <lu>
@@ -7806,7 +7806,7 @@ no lemq-moving">
           <let><var n="c_name"/><lit v="adj_n_n_n_n"/></let>
         </when></choose>
         <out>
-          <chunk namefrom="c_name" case="caseFirstWord">
+          <chunk namefrom="c_name">
             <tags><tag><var n="ntags"/></tag></tags>
             <var n="grau_aux"/>
             <lu>
@@ -7874,7 +7874,7 @@ no lemq-moving">
           <let><var n="c_name"/><lit v="adj_adj_n"/></let>
         </when></choose>
         <out>
-          <chunk namefrom="c_name" case="caseFirstWord">
+          <chunk namefrom="c_name">
             <tags><tag><var n="ntags"/></tag></tags>
             <lu>
               <clip pos="1" side="tl" part="lemh"/>
@@ -7919,7 +7919,7 @@ no lemq-moving">
             <call-macro n="set_grau_aux1"><with-param pos="1"/></call-macro>
             <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
             <out>
-              <chunk namefrom="c_name" case="caseFirstWord">
+              <chunk namefrom="c_name">
                 <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
                 <var n="grau_aux"/>
                 <lu>
@@ -7985,7 +7985,7 @@ no lemq-moving">
           <let><var n="c_name"/><lit v="adj"/></let>
         </when></choose>
         <out>
-          <chunk namefrom="c_name" case="caseFirstWord">
+          <chunk namefrom="c_name">
             <tags><tag><clip pos="2" side="tl" part="tags"/></tag></tags>
             <var n="grau_aux"/>
             <lu>
@@ -8049,7 +8049,7 @@ no lemq-moving">
           <let><var n="c_name"/><lit v="adj_adj"/></let>
         </when></choose>
         <out>
-          <chunk namefrom="c_name" case="caseFirstWord">
+          <chunk namefrom="c_name">
             <tags><tag><clip pos="3" side="tl" part="tags"/></tag></tags>
             <lu>
               <clip pos="1" side="tl" part="lemh"/>
@@ -8086,12 +8086,12 @@ no lemq-moving">
       <action>
         <call-macro n="set_caseFirstWord3"><with-param pos="1"/><with-param pos="2"/><with-param pos="3"/></call-macro>
         <out>
-          <chunk name="detpos-keep" case="caseFirstWord">
+          <chunk name="detpos-keep">
             <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
             <lu><clip pos="1" side="tl" part="whole"/></lu>
           </chunk>
           <b/>
-          <chunk name="cnjcoo" case="caseSecondWord">
+          <chunk name="cnjcoo">
             <tags><tag><clip pos="2" side="tl" part="tags"/></tag></tags>
             <lu><clip pos="2" side="tl" part="whole"/></lu>
           </chunk>
@@ -8110,7 +8110,7 @@ no lemq-moving">
       <action>
         <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
         <out>
-          <chunk name="detpos-keep" case="caseFirstWord">
+          <chunk name="detpos-keep">
             <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
             <lu><clip pos="1" side="tl" part="whole"/></lu>
           </chunk>
@@ -8168,7 +8168,7 @@ no lemq-moving">
         </when></choose>
 
         <out>
-          <chunk namefrom="c_name" case="caseFirstWord">
+          <chunk namefrom="c_name">
             <tags><tag><var n="dettags"/></tag></tags>
             <lu><clip pos="1" side="tl" part="whole"/></lu>
           </chunk>
@@ -8184,13 +8184,13 @@ no lemq-moving">
       <action>
         <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
         <let><clip pos="2" side="tl" part="a_remspc"/><lit v=""/></let>
-        <let><clip pos="2" side="tl" part="a_caps"/><lit v=""/></let>
+        <!-- <let><clip pos="2" side="tl" part="a_caps"/><lit v=""/></let> -->
         <out>
-          <chunk name="det" case="caseFirstWord">
+          <chunk name="det">
             <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
             <lu><clip pos="1" side="tl" part="whole"/></lu>
           </chunk>
-          <chunk name="sent" case="caseFirstWord">
+          <chunk name="sent">
             <tags><tag><clip pos="2" side="tl" part="tags"/></tag></tags>
             <lu><clip pos="2" side="tl" part="whole"/></lu>
           </chunk>
@@ -8205,7 +8205,7 @@ no lemq-moving">
       <action>
         <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
         <out>
-          <chunk name="prn" case="caseFirstWord">
+          <chunk name="prn">
             <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
             <lu><clip pos="1" side="tl" part="whole"/></lu>
           </chunk>
@@ -8242,7 +8242,7 @@ no lemq-moving">
               </otherwise>
             </choose>
             <out>
-              <chunk name="pr" case="caseFirstWord">
+              <chunk name="pr">
                 <tags>
                   <tag><clip pos="1" side="tl" part="tags"/></tag>
                   <tag><var n="c_lemtag"/></tag>
@@ -8284,7 +8284,7 @@ no lemq-moving">
           <out><b pos="1"/></out>
         </when></choose>
         <out>
-          <chunk name="det" case="caseFirstWord">
+          <chunk name="det">
             <tags><tag><clip pos="2" side="tl" part="tags"/></tag></tags>
             <lu><clip pos="2" side="tl" part="whole"/></lu>
           </chunk>
@@ -8302,7 +8302,7 @@ no lemq-moving">
         <pattern-item n="guio"/>
       </pattern>
       <action>
-        <let><clip pos="1" side="tl" part="a_caps"/><lit v=""/></let>
+        <!-- <let><clip pos="1" side="tl" part="a_caps"/><lit v=""/></let> -->
         <out>
           <chunk name="guio">
             <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
@@ -8334,7 +8334,7 @@ no lemq-moving">
         <pattern-item n="sent"/>
       </pattern>
       <action>
-        <let><clip pos="1" side="tl" part="a_caps"/><lit v=""/></let>
+        <!-- <let><clip pos="1" side="tl" part="a_caps"/><lit v=""/></let> -->
         <call-macro n="flush-mwe-queue"><with-param pos="1"/></call-macro>
         <let><var n="caseFirstWord"/><lit v=""/></let>
         <choose><when>
@@ -8357,7 +8357,7 @@ no lemq-moving">
       <action>
         <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
         <out>
-          <chunk name="cnjsub" case="caseFirstWord">
+          <chunk name="cnjsub">
             <tags>
               <tag><clip pos="1" side="tl" part="tags"/></tag>
               <tag><concat><lit v="&lt;"/><clip pos="1" side="tl" part="lemh"/><lit v="&gt;"/></concat></tag>
@@ -8375,7 +8375,7 @@ no lemq-moving">
       <action>
         <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
         <out>
-          <chunk name="cnjcoo" case="caseFirstWord">
+          <chunk name="cnjcoo">
             <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
             <lu><clip pos="1" side="tl" part="whole"/></lu>
           </chunk>
@@ -8390,7 +8390,7 @@ no lemq-moving">
       <action>
         <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
         <out>
-          <chunk name="ij" case="caseFirstWord">
+          <chunk name="ij">
             <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
             <lu><clip pos="1" side="tl" part="whole"/></lu>
           </chunk>
@@ -8405,7 +8405,7 @@ no lemq-moving">
       <action>
         <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
         <out>
-          <chunk name="url" case="caseFirstWord">
+          <chunk name="url">
             <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
             <lu><clip pos="1" side="tl" part="whole"/></lu>
           </chunk>

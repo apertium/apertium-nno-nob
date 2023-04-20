@@ -202,14 +202,17 @@
       <program name="lsx-proc -w" debug-suff="tlseq">
         <file name="nno.autoseq.bin"/>
       </program>
-      <program name="lt-proc $1 -b" debug-suff="dgen">
+      <program name="lt-proc $1 -c -b" debug-suff="dgen">
         <file name="nob-nno.autogen.bin"/>
       </program>
       <program name="cg-proc" debug-suff="e_vi-genprefs">
         <file name="nob-nno.e_vi_genprefs.rlx.bin"/>
       </program>
-      <program name="cg-proc -1 -n -g" debug-suff="genprefs">
+      <program name="cg-proc -1" debug-suff="genprefs">
         <file name="nob-nno.genprefs.rlx.bin"/>
+      </program>
+      <program name="cg-proc -1 -n -g" debug-suff="uncapstag">
+        <file name="uncapstag.rlx.bin"/>
       </program>
       <program name="lt-proc -p">
         <file name="nob-nno.autopgen.bin"/>
