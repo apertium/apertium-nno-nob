@@ -29,8 +29,8 @@ DELIMITERS = "." "?" sent ;
 
 
 # Restricting to letters will exclude e.g. «Haddy N’jie», but at least then bidix will let it through
-LIST wf = "<(\\p{Lu}\\p{L}*)>"r ;
-LIST bf = "(\\p{Lu}\\p{L}*)"r ;
+LIST wf = "<(\\p{Lu}\\p{L}+)>"r ;
+LIST bf = "(\\p{Lu}\\p{L}+)"r ;
 LIST fn = (np ant) ;
 LIST ln = (np cog) ;
 LIST aa = /^\([Aa]+\)$/r ;
