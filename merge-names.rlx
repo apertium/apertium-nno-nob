@@ -28,13 +28,15 @@ DELIMITERS = "." "?" sent ;
 
 
 
-
-LIST wf = "<(.*)>"r ;
-LIST bf = "([^<].*)"r ;
+# Restricting to letters will exclude e.g. «Haddy N’jie», but at least then bidix will let it through
+LIST wf = "<(\\p{Lu}\\p{L}*)>"r ;
+LIST bf = "(\\p{Lu}\\p{L}*)"r ;
 LIST fn = (np ant) ;
 LIST ln = (np cog) ;
 LIST aa = /^\([Aa]+\)$/r ;
 LIST syn =  /^\(@.*\)$/r ;
+
+AFTER-SECTIONS                  # only run once
 
 # First genitives:
 MERGECOHORTS:f+l+lG ("<$1 $3 $5>"v "$2 $4 $6"v np cog cgguess gen VSTR:$7 VSTR:$8)
