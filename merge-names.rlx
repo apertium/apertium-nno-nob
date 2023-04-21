@@ -33,10 +33,10 @@ LIST wf = "<(\\p{Lu}\\p{L}+)>"r ;
 LIST bf = "(\\p{Lu}\\p{L}+)"r ;
 LIST fn = (np ant) ;
 LIST ln = (np cog) ;
+LIST mn = (np ant) (np cog) ;
 LIST aa = /^\([Aa]+\)$/r ;      # TODO: no longer needed, now we use * to copy tags from first word
 LIST syn =  /^\(@.*\)$/r ;
 LIST gen = gen ;
-LIST gender = /^(m|f|nt)$/r ; # all ant-tagged np's except "Jr" have gender tags (Jr should maybe be cog?)
 
 AFTER-SECTIONS                  # only run once
 
@@ -47,17 +47,7 @@ MERGECOHORTS:f+l+lG ("<$1 $3 $5>"v "$2 $4 $6"v * VSTR:$8)
                   (NEGATE 1/1 (*)) (NEGATE 1 gen)
                   (NEGATE 2/1 (*))        (2 gen)
           WITH
-                  (1 wf + bf + ln)
-                  (2 wf + bf + ln + aa + syn)
-;
-
-MERGECOHORTS:f+f+lG ("<$1 $3 $5>"v "$2 $4 $6"v * VSTR:$8)
-                     wf + bf + fn
-                  (NEGATE 0/1 (*)) (NEGATE 0 gen)
-                  (NEGATE 1/1 (*)) (NEGATE 1 gen)
-                  (NEGATE 2/1 (*))        (2 gen)
-          WITH
-                  (1 wf + bf + fn)
+                  (1 wf + bf + mn)
                   (2 wf + bf + ln + aa + syn)
 ;
 
@@ -71,23 +61,13 @@ MERGECOHORTS:f+lG ("<$1 $3>"v "$2 $4"v np ant * VSTR:$6)
 
 
 # Then non-genitives:
-MERGECOHORTS:f+l+l ("<$1 $3 $5>"v "$2 $4 $6"v * VSTR:$8)
-                     wf + bf + fn
-                  (NEGATE 0/1 (*)) (NEGATE 0 gen)
-                  (NEGATE 1/1 (*)) (NEGATE 1 gen)
-                  (NEGATE 2/1 (*)) (NEGATE 2 gen)
-          WITH
-                  (1 wf + bf + ln)
-                  (2 wf + bf + ln + aa + syn)
-;
-
 MERGECOHORTS:f+f+l ("<$1 $3 $5>"v "$2 $4 $6"v * VSTR:$8)
                      wf + bf + fn
                   (NEGATE 0/1 (*)) (NEGATE 0 gen)
                   (NEGATE 1/1 (*)) (NEGATE 1 gen)
                   (NEGATE 2/1 (*)) (NEGATE 2 gen)
           WITH
-                  (1 wf + bf + fn)
+                  (1 wf + bf + mn)
                   (2 wf + bf + ln + aa + syn)
 ;
 
@@ -101,10 +81,3 @@ MERGECOHORTS:f+l ("<$1 $3>"v "$2 $4"v * VSTR:$6)
 
 REMOVE (@subst→) ;
 
-# TODO: The below looks like it should work, but doesn't, for some reason we need two rules:
-# MERGECOHORTS:f+l+l ("<$1 $3 $5>"v "$2 $4 $6"v np ant cgguess VSTR:$7 VSTR:$8)
-#                      wf + bf + fn
-#           WITH
-#                   (1 wf + bf LINK 0 fn OR ln)
-#                   (2 wf + bf + ln + aa + syn)
-# ;
