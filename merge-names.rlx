@@ -41,7 +41,7 @@ LIST gen = gen ;
 AFTER-SECTIONS                  # only run once
 
 # First genitives:
-MERGECOHORTS:f+l+lG ("<$1 $3 $5>"v "$2 $4 $6"v cgguess * VSTR:$8)
+MERGECOHORTS:f+l+lG ("<$1 $3 $5>"v "$2 $4 $6"v cgguess gen * VSTR:$8)
                      wf + bf + fn
                   (NEGATE 0/1 (*)) (NEGATE 0 gen)
                   (NEGATE 1/1 (*)) (NEGATE 1 gen)
@@ -51,7 +51,7 @@ MERGECOHORTS:f+l+lG ("<$1 $3 $5>"v "$2 $4 $6"v cgguess * VSTR:$8)
                   (2 wf + bf + ln + aa + syn)
 ;
 
-MERGECOHORTS:f+lG ("<$1 $3>"v "$2 $4"v cgguess * VSTR:$6)
+MERGECOHORTS:f+lG ("<$1 $3>"v "$2 $4"v cgguess gen * VSTR:$6)
                      wf + bf + fn
                   (NEGATE 0/1 (*)) (NEGATE 0 gen)
                   (NEGATE 1/1 (*))        (1 gen)
@@ -79,6 +79,7 @@ MERGECOHORTS:f+l ("<$1 $3>"v "$2 $4"v cgguess * VSTR:$6)
                   (1 wf + bf + ln + aa + syn)
 ;
 
-REMOVE (@subst→) ;
+REMOVE:1@ (@subst→) ;
 
-SUBSTITUTE (cgguess np ant) (np ant cgguess) (np ant cgguess) ;
+SUBSTITUTE:gen (cgguess gen np ant) (np ant cgguess gen) (cgguess gen np ant)         ;
+SUBSTITUTE:nom (cgguess     np ant) (np ant cgguess    ) (cgguess     np ant) - (gen) ;
