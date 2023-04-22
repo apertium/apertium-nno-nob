@@ -44,9 +44,9 @@ AFTER-SECTIONS                  # only run once
 # First genitives:
 MERGECOHORTS:f+m+lG ("<$1 $3 $5>"v "$2 $4 $6"v cgguess gen * VSTR:$8)
                      wf + bf + fn
-                  (NEGATE 0/1 (*)) (NEGATE 0 gen OR cgguess)
-                  (NEGATE 1/1 (*)) (NEGATE 1 gen OR cgguess)
-                  (NEGATE 2/1 (*))        (2 gen - cgguess)
+                  (NEGATE 0/1 (*)) (NEGATE 0 gen)
+                  (NEGATE 1/1 (*)) (NEGATE 1 gen)
+                  (NEGATE 2/1 (*))        (2 gen)
           WITH
                   (1 wf + bf + mn)
                   (2 wf + bf + ln + aa + syn)
@@ -54,8 +54,8 @@ MERGECOHORTS:f+m+lG ("<$1 $3 $5>"v "$2 $4 $6"v cgguess gen * VSTR:$8)
 
 MERGECOHORTS:m+lG ("<$1 $3>"v "$2 $4"v cgguess gen * VSTR:$6)
                      wf + bf + mn
-                  (NEGATE 0/1 (*)) (NEGATE 0 gen OR cgguess)
-                  (NEGATE 1/1 (*))        (1 gen - cgguess)
+                  (NEGATE 0/1 (*)) (NEGATE 0 gen)
+                  (NEGATE 1/1 (*))        (1 gen)
           WITH
                   (1 wf + bf + ln + aa + syn)
 ;
@@ -65,9 +65,9 @@ MERGECOHORTS:m+lG ("<$1 $3>"v "$2 $4"v cgguess gen * VSTR:$6)
 # Then non-genitives:
 MERGECOHORTS:f+m+l ("<$1 $3 $5>"v "$2 $4 $6"v cgguess * VSTR:$8)
                      wf + bf + fn
-                  (NEGATE 0/1 (*)) (NEGATE 0 gen OR cgguess)
-                  (NEGATE 1/1 (*)) (NEGATE 1 gen OR cgguess)
-                  (NEGATE 2/1 (*)) (NEGATE 2 gen OR cgguess)
+                  (NEGATE 0/1 (*)) (NEGATE 0 gen)
+                  (NEGATE 1/1 (*)) (NEGATE 1 gen)
+                  (NEGATE 2/1 (*)) (NEGATE 2 gen)
           WITH
                   (1 wf + bf + mn)
                   (2 wf + bf + ln + aa + syn)
@@ -75,8 +75,8 @@ MERGECOHORTS:f+m+l ("<$1 $3 $5>"v "$2 $4 $6"v cgguess * VSTR:$8)
 
 MERGECOHORTS:m+l ("<$1 $3>"v "$2 $4"v cgguess * VSTR:$6)
                      wf + bf + mn
-                  (NEGATE 0/1 (*)) (NEGATE 0 gen OR cgguess)
-                  (NEGATE 1/1 (*)) (NEGATE 1 gen OR cgguess)
+                  (NEGATE 0/1 (*)) (NEGATE 0 gen)
+                  (NEGATE 1/1 (*)) (NEGATE 1 gen)
           WITH
                   (1 wf + bf + ln + aa + syn)
 ;
