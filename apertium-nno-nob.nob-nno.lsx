@@ -725,7 +725,7 @@
       <e><i><w/><s n="np"/><t/><d/></i><par n="ncmp*.n"/></e>
     </pardef>
 
-    <pardef n="SN|np|prn|det">>
+    <pardef n="SN|np|prn|det">
       <e><par n="det+SN"/></e>
       <e><par n="prn"/></e>
       <e><i><w/><s n="np"/><t/><d/></i></e>
@@ -744,6 +744,18 @@
       <e><par n="SN"/><par n="pr"/><par n="SN"/></e>
       <e><par n="pr"/><par n="det+det+SN"/></e>
       <e><par n="SN"/><par n="np"/></e>
+    </pardef>
+    
+    <pardef n="np|prn|n" c="idømme barn/han / Norsk Pasientskadeerstatning">
+      <e><par n="prn"/></e>
+      <e><i><w/><s n="np"/><t/><d/></i></e>
+      <e><par n="np"/></e>
+      <e><par n="np"/><par n="np"/></e>
+      <e><par n="np"/><par n="np"/><par n="np"/></e>
+      <e><i>barn<s n="n"/><t/><d/></i></e>
+      <e><i>rett<s n="n"/><t/><d/></i></e>
+      <e><i>domstol<s n="n"/><t/><d/></i></e>
+      <e><i>dommer<s n="n"/><t/><d/></i></e>
     </pardef>
 
     <pardef n="Verbs|prep|adv">
@@ -14417,6 +14429,19 @@
   <i>mulm<s n="n"/><t/></i> <par n="d"/>
   <i>og<s n="cnjcoo"/><t/></i> <par n="d"/>
   <i>mørke<s n="n"/><t/></i> <par n="d"/>
+</e>
+
+<e lm="bli/være idømt → bli/være dømt til" c="bli/vere dømd til">
+  <par n="være/bli"/>
+  <p><l>idømme<s n="adj"/><s n="pp"/></l>            <r>dømme<s n="adj"/><s n="pp"/></r></p> <i><t/><d/></i>
+  <p><l></l>                                <r>til<s n="pr"/><s n="aa"/><d/></r></p>
+  <par n="ANYWORD|"/>
+</e>
+
+<e lm="idømme barn straff → dømme barn til straff" c="dømme barn til straff">
+  <p><l>idømme<s n="vblex"/></l>            <r>dømme<s n="vblex"/></r></p> <i><t/><d/></i>
+  <par n="np|prn|n"/>
+  <p><l></l>                                <r>til<s n="pr"/><s n="aa"/><d/></r></p>
 </e>
 
 </section>
