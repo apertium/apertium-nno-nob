@@ -96,6 +96,9 @@ REMOVE:blant_blant ("mellom"i) IF (0 ("blant"i));
 SELECT:begge_båe ("båe"i) IF (0 ("begge"i) + (VAR:begge_båe.syn));
 REMOVE:begge_begge   ("båe"i) IF (0 ("begge"i));
 
+SELECT:lagnad_skjebne ("skjebne"i) IF (0 ("lagnad"i) + (VAR:lagnad_skjebne.syn));
+REMOVE:lagnad_lagnad   ("skjebne"i) IF (0 ("lagnad"i));
+
 SELECT:hos_hja ("hjå"i) IF (0 ("hos"i) + (VAR:hos_hjå.syn));
 REMOVE:hos_hos   ("hjå"i) IF (0 ("hos"i));
 
