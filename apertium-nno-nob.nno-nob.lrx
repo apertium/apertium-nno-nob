@@ -275,4 +275,8 @@
 
   <rule><match lemma="skilje" tags="vblex.*"><select lemma="skille"/></match></rule>
   <rule><match lemma="spent" tags="adj.*"><select lemma="spent"/></match></rule>
+
+  <!-- «spelling» more likely than «syllable», unless pl -->
+  <rule><match lemma="staving" tags="n.*"><select lemma="staving"/></match></rule>
+  <rule weight="2.0"><match lemma="staving" tags="n.*.pl.*"><select lemma="stavelse"/></match></rule>
 </rules>
