@@ -110,6 +110,9 @@ REMOVE:bekrefte_bekrefte lm_bekrefte;
 SELECT:hos_hja ("hjå"i) IF (0 ("hos"i) + (VAR:hos_hjå.syn));
 REMOVE:hos_hos   ("hjå"i) IF (0 ("hos"i));
 
+SELECT:kvar_kor ("kor"i) IF (0 ("kvar"i) + (VAR:kvar_kor.syn));
+REMOVE:kvar_kvar   ("kor"i) IF (0 ("kvar"i));
+
 LIST lm_begynne = "begynne"i "begynning"i "begynnar"i "nybegynnar"i "begynnande"i "påbegynne"i;
 SELECT:byrje_begynne  lm_begynne IF (0 (VAR:byrje_begynne.syn));
 REMOVE:byrje_byrje lm_begynne;
