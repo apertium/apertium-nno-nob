@@ -103,6 +103,10 @@ LIST lm_nøgd = "nøgd"i "misnøgd"i;
 SELECT:fornøgd_nøgd lm_nøgd IF (0  (VAR:fornøgd_nøgd.syn));
 REMOVE:fornøgd_fornøgd lm_nøgd;
 
+LIST lm_bekrefte = "bekrefte"i "bekreftande"i "bekrefting"i "ubekrefta"i "foreldrebekrefting"i "totrinnsbekrefting"i;
+SELECT:stadfeste_bekrefte lm_bekrefte IF (0  (VAR:stadfeste_bekrefte.syn));
+REMOVE:bekrefte_bekrefte lm_bekrefte;
+
 SELECT:hos_hja ("hjå"i) IF (0 ("hos"i) + (VAR:hos_hjå.syn));
 REMOVE:hos_hos   ("hjå"i) IF (0 ("hos"i));
 
