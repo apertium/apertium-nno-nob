@@ -30,9 +30,6 @@ REMOVE:samd_samd  ("ueinig"i) IF (0 ("usamd"i));
 SELECT:anten_enten ("enten"i) IF (0 ("anten"i) + (VAR:anten_enten));
 REMOVE:anten_anten ("enten"i) IF (0 ("anten"i));
 
-SELECT:mellom_blant  ("blant anna"i) IF (0 ("mellom anna"i) + (VAR:mellom_blant));
-REMOVE:mellom_mellom ("blant anna"i) IF (0 ("mellom anna"i));
-
 LIST lm_skap = ".*skap"ri;
 SELECT:bodskapen_bodskapet.n.m2nt lm_skap + nt IF (0 (VAR:bodskapen_bodskapet.n.m2nt));
 REMOVE:bodskapen_bodskapet.n.m2nt lm_skap + nt;
@@ -92,6 +89,9 @@ REMOVE:kvifor_kvifor ("korfor"i) IF (0 ("kvifor"i));
 
 SELECT:blant_mellom  ("mellom"i) IF (0 ("blant"i) + (VAR:blant_mellom.syn));
 REMOVE:blant_blant ("mellom"i) IF (0 ("blant"i));
+
+SELECT:mellom_blant  ("blant anna"i) IF (0 ("mellom anna"i) + (VAR:mellom_blant.syn));
+REMOVE:mellom_mellom ("blant anna"i) IF (0 ("mellom anna"i));
 
 SELECT:begge_båe ("båe"i) IF (0 ("begge"i) + (VAR:begge_båe.syn));
 REMOVE:begge_begge   ("båe"i) IF (0 ("begge"i));
