@@ -11,5 +11,6 @@ while read -r w;do
     done
 
     printf '[32m%s[0m\n' "BIDIX: "
-    grep --color=always "[lr]>$w<" ./apertium-nno-nob.nno-nob.dix
+    wb=${w// /<b\/>}
+    grep --color=always "[lr]>${wb}<" ./apertium-nno-nob.nno-nob.dix
 done
