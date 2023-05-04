@@ -32,6 +32,12 @@ Because the files we work on are so long, it's rare to get a merge-conflict.
 6. `git push`
 7. Done!
 
+### Tips and tricks in the terminal
+Check if a word in is in all 3 dictionaries with this simple command run from the root of the apertium-nno-nob-folder:
+
+Enter this in the terminal to look up the word "kake" (or other words):
+`echo kake | dev/word-lookup`
+
 ### Other useful Git commands
 1. `git status` <-- to see which files have been changed
 2. `git diff` <-- to see which changes have been done inside the files
@@ -99,11 +105,11 @@ While BIDIX (the short, colloquial name for the `apertium-nno-nob/apertium-nno-n
 This frequently means that a paradigm is wrong in one of the 3 dictionaries. 
 
 #### A word gets \* in front of it
-This means the word is not recognized by Apertium. Check if the word has been added to the dictionaries and compile your changes again. 
+This means the word is not recognized by Apertium. Check if the word has been added to the dictionaries and compile your changes again.
 
 ## Adding varieties to the nynorsk translation
 
-There is a high rate of variance within Nynorsk. For example, users can choose between "me" and "vi" (ENG: "we"), or root differences in a word, such as "naud" and "nød" (ENG: "need"). 
+There is a high rate of variance within Nynorsk. For example, users can choose between "me" and "vi" (ENG: "we"), or root differences in a word, such as "naud" and "nød" (ENG: "need").
 
 In 2022 the work to add new varieties accelerated. Currently, there is a high number of variants to choose from, making the translation from Bokmål to Nynorsk highly customizable.
 
