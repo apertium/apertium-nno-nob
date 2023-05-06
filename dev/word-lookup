@@ -2,15 +2,28 @@
 
 cd "$(dirname "$0")"/.. || exit 1
 
-while read -r w;do
+colour=never
+if [[ -t 1 ]]; then             # stdout is a terminal
+    colour=always
+fi
 
-    printf '[0;33m%s[0m\n' "== $w =="
+echo_colour () {
+    if [[ $colour = always ]]; then
+        printf '[%sm%s[0m\n' "$1" "$2"
+    else
+        printf '%s\n' "$2"
+    fi
+}
+
+while read -r w; do
+
+    echo_colour 33 "== $w =="
     for d in {nno,nob}; do
-        printf '[32m%s[0m\n' "$d: "
+        echo_colour 32 "$d: "
         echo "$w" | apertium-destxt -n | apertium -f none -d ../apertium-"$d" "$d"-morph | apertium-retxt
     done
 
-    printf '[32m%s[0m\n' "BIDIX: "
+    echo_colour 32 "BIDIX: "
     wb=${w// /<b\/>}
-    grep --color=always "[lr]>${wb}<" ./apertium-nno-nob.nno-nob.dix
+    grep --color="${colour}" "[lr]>${wb}<" ./apertium-nno-nob.nno-nob.dix
 done
