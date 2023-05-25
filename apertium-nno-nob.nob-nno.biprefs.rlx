@@ -111,7 +111,9 @@ SELECT:hos_hja ("hjå"i) IF (0 ("hos"i) + (VAR:hos_hjå.syn));
 REMOVE:hos_hos   ("hjå"i) IF (0 ("hos"i));
 
 SELECT:kvar_kor ("kor"i) IF (0 ("kvar"i) + (VAR:kvar_kor.syn));
-REMOVE:kvar_kvar   ("kor"i) IF (0 ("kvar"i));
+# Otherwise let lrx rules decide. One can always use "kor" in any
+# context (if VAR:kvar_kor), but it's not possible to use "kvar" in
+# every context.
 
 SELECT:også_og ("òg"i) IF (0 ("også"i) + (VAR:også_og.syn));
 REMOVE:også_også   ("òg"i) IF (0 ("også"i));
