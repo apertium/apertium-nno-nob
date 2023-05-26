@@ -212,6 +212,12 @@
           <match lemma="desember"/>
         </or>
       </def-seq>
+      <def-seq n="være-bli">
+        <or>
+          <match lemma="være"/>
+          <match lemma="bli"/>
+        </or>
+      </def-seq>
 
       <def-seq n="animat_unk">
         <or>
@@ -294,6 +300,14 @@
            <match tags="cnjsub.*"/>
            <match tags="cnjcoo.*"/>
            <match tags="cnjadv.*"/>
+         </or>
+       </def-seq>
+      <def-seq n="prn-n-np-adv">
+        <or>
+           <match tags="prn.*"/>
+           <match tags="n.*"/>
+           <match tags="np.*"/>
+           <match tags="adv.*"/>
          </or>
        </def-seq>
       <def-seq n="ref-prn">
@@ -11501,5 +11515,63 @@ preposisjonar gir ekstra utfordringar. -->
     <match tags="*.cmp"/>
     <match lemma="idømme"><select lemma="idøme"/></match>
   </rule>
+
+<!-- noen ganger -->
+  <rule><match lemma="noen ganger"><select lemma="nokre gonger"/></match></rule>
+
+  <rule weight="3.0" c="nokre gonger i året">
+    <match lemma="noen ganger"><select lemma="nokre gonger"/></match>
+    <match lemma="i"/>
+    <seq n="tidseining"/>
+  </rule>
+
+  <rule weight="2.0" c="det er/var stundom">
+    <or>
+      <match tags="vblex.pres.*"/>
+      <match tags="vblex.pret.*"/>
+    </or>
+    <repeat from="0" upto="1">
+        <seq n="prn-n-np-adv"/>
+    </repeat>
+    <match lemma="noen ganger"><select lemma="stundom"/></match>
+  </rule>
+
+  <rule weight="2.0" c="stundom var det">
+    <match lemma="noen ganger"><select lemma="stundom"/></match>
+    <match tags="vblex.pret.*"/>
+  </rule>
+
+  <rule weight="2.0" c="deprimert og stundom fortvilt">
+    <match lemma="noen ganger"><select lemma="stundom"/></match>
+    <match tags="adj.*"/>
+  </rule>
+
+  <rule weight="2.0" c="av og til er det">
+    <match lemma="noen ganger"><select lemma="av og til"/></match>
+    <match tags="vblex.pres.*"/>
+  </rule>
+
+  <rule weight="2.0" c="det skjer iblant.">
+    <seq n="være-bli"/>
+    <repeat from="0" upto="5"><match/></repeat>
+    <match lemma="noen ganger"><select lemma="iblant"/></match>
+    <or>
+      <match tags="sent.clb.*"/>
+      <match tags="cm.*"/>
+    </or>
+  </rule>
+
+  <rule weight="2.0" c="det skjer iblant.">
+    <or>
+      <match tags="vblex.pres.*"/>
+      <match tags="vblex.pret.*"/>
+    </or>
+    <match lemma="noen ganger"><select lemma="iblant"/></match>
+    <or>
+      <match tags="sent.clb.*"/>
+      <match tags="cm.*"/>
+    </or>
+  </rule>
+
 </rules>
 </lrx>
