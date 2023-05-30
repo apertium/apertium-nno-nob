@@ -115,6 +115,9 @@ SELECT:kvar_kor ("kor"i) IF (0 ("kvar"i) + (VAR:kvar_kor.syn));
 # context (if VAR:kvar_kor), but it's not possible to use "kvar" in
 # every context.
 
+SELECT:halde-fram_fortsetje ("fortsetje"i) IF (0 ("halde# fram"i) + (VAR:fortsetje_halde-fram.syn));
+REMOVE:halde-fram_halde-fram   ("fortsetje"i) IF (0 ("halde# fram"i));
+
 SELECT:også_og ("òg"i) IF (0 ("også"i) + (VAR:også_og.syn));
 REMOVE:også_også   ("òg"i) IF (0 ("også"i));
 
