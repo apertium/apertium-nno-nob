@@ -842,10 +842,9 @@
     <def-cat n="vblexinfpass">
       <cat-item tags="vblex.inf.pasv.*"/>
     </def-cat>
-    <def-cat n="vblexpassfv">
-      <cat-item tags="vblex.pres.pasv.*"/>
-      <cat-item tags="vblex.pret.pasv.*"/>
-      <cat-item tags="vblex.pstv.pres.*"/>
+    <def-cat n="vblexpass">
+      <cat-item tags="vblex.*.pasv.*"/>
+      <cat-item tags="vblex.pstv.*"/>
     </def-cat>
     <def-cat n="vblexaux">
       <cat-item tags="vblex.*" lemma="kunne"/>
@@ -5637,9 +5636,19 @@
                    If we don't see an infinitive marker in t2x, the aux gets
                    deleted again.">
       <pattern>
-        <pattern-item n="vblexpassfv"/>
+        <pattern-item n="vblexpass"/>
       </pattern>
       <action>
+        <choose><when>
+          <test><not>
+            <or>
+              <equal><var n="prevlem"/><lit v="å"/></equal>
+              <equal><clip pos="1" side="tl" part="temps"/><lit-tag v="pres"/></equal>
+              <equal><clip pos="1" side="tl" part="temps"/><lit-tag v="pret"/></equal>
+            </or>
+          </not></test>
+          <reject-current-rule shifting="no"/>
+        </when></choose>
         <choose>
           <when c="Only output if bidix has a lemma in l">
             <test>
@@ -5726,7 +5735,6 @@
                   <b/>
                   <chunk name="adj2vblex">
                     <tags>
-                      <!-- <tag><lit-tag v="adj.pp.nt.sg.ind"/></tag> -->
                       <tag><lit-tag v="adj.pp"/></tag>
                       <tag><var n="pp_gen"/></tag>
                       <tag><var n="pp_nbr"/></tag>
@@ -5735,7 +5743,6 @@
                     </tags>
                     <lu>
                       <clip pos="1" side="tl" part="lemh"/>
-                      <!-- <lit-tag v="adj.pp.nt.sg.ind"/> -->
                       <lit-tag v="adj.pp"/>
                       <var n="pp_gen"/>
                       <var n="pp_nbr"/>
@@ -5862,6 +5869,7 @@
             </lu>
           </chunk>
         </out>
+        <let><var n="prevlem"/><clip pos="1" side="tl" part="lem"/></let>
       </action>
     </rule>
     <rule comment="ADV">

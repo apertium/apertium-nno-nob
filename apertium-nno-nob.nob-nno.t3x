@@ -147,6 +147,7 @@
       <attr-item tags="mf"/>
       <attr-item tags="nt"/>
       <attr-item tags="f"/>
+      <attr-item tags="un"/>
       <attr-item tags="GD"/>
     </def-attr>
     <def-attr n="art">
@@ -371,23 +372,24 @@
           </test>
           <let><clip pos="1" part="nbr"/><clip pos="2" part="nbr"/></let>
         </when></choose>
-        <choose>
-          <when>
-            <test><equal><clip pos="1" part="nbr"/><lit-tag v="pl"/></equal></test>
-            <choose>
-              <when>
-                <test><equal><clip pos="1" part="temps"/><lit-tag v="pp"/></equal></test>
-                <let><clip pos="1" part="gen"/><lit v=""/></let>
-                <let><clip pos="1" part="art"/><lit v=""/></let>
-              </when>
-              <otherwise>
-                <let><clip pos="1" part="gen"/><lit-tag v="un"/></let>
-                <let><clip pos="1" part="art"/><lit-tag v="ind"/></let>
-              </otherwise>
-            </choose>
-          </when>
-        </choose>
       </when></choose>
+
+      <choose>
+        <when>
+          <test><equal><clip pos="1" part="nbr"/><lit-tag v="pl"/></equal></test>
+          <choose>
+            <when>
+              <test><equal><clip pos="1" part="temps"/><lit-tag v="pp"/></equal></test>
+              <let><clip pos="1" part="gen"/><lit v=""/></let>
+              <let><clip pos="1" part="art"/><lit v=""/></let>
+            </when>
+            <otherwise>
+              <let><clip pos="1" part="gen"/><lit-tag v="un"/></let>
+              <let><clip pos="1" part="art"/><lit-tag v="ind"/></let>
+            </otherwise>
+          </choose>
+        </when>
+      </choose>
 
       <choose><when>
         <test><and>
@@ -645,7 +647,10 @@
     <def-macro n="clean_det" npar="2"
                c="arg.1: determiner, arg.2: chunk">
       <let><clip pos="1" part="nbr"/><clip pos="2" part="nbr"/></let>
-      <let><clip pos="1" part="gen"/><clip pos="2" part="gen"/></let>
+      <choose><when>
+        <test><not><equal><clip pos="1" part="gen"/><lit-tag v="un"/></equal></not></test>
+        <let><clip pos="1" part="gen"/><clip pos="2" part="gen"/></let>
+      </when></choose>
       <choose><when>
         <test><or>
           <equal><clip pos="1" part="gen"/><lit-tag v="GD"/></equal>
