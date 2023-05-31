@@ -1763,6 +1763,34 @@
       </action>
     </rule>
 
+    <rule comment="ADV VBLEX LEMQ ADV_MOVABLE NDEF → ADV VBLEX ADV_MOVABLE NDEF LEMQ
+                   Push blanks two places up since lemq space is inside the chunk.
+                   Should be fairly safe compared to above rule (rarely do we have adv vblex adv object)
+                   Torsdag oppgav altså 19-åringen [sin forklaring] → Torsdag gav altså 19-åringen frå seg [si forklaring]">
+      <pattern>
+        <pattern-item n="adv"/>
+        <pattern-item n="vblex"/>
+        <pattern-item n="lemq"/>
+        <pattern-item n="adv_movable"/>
+        <pattern-item n="ndef"/>
+      </pattern>
+      <action>
+        <call-macro n="set_ana"><with-param pos="2"/></call-macro>
+        <call-macro n="set_ana"><with-param pos="5"/></call-macro>
+        <out>
+          <chunk><clip pos="1" part="whole"/></chunk>
+          <b/>
+          <chunk><clip pos="2" part="whole"/></chunk>
+          <b/>
+          <b/>
+          <chunk><clip pos="4" part="whole"/></chunk>
+          <b/>
+          <chunk><clip pos="5" part="whole"/></chunk>
+          <chunk><clip pos="3" part="whole"/></chunk>
+        </out>
+      </action>
+    </rule>
+
     <rule comment="VBLEX LEMQ PRN_NOM => VBLEX PRN_NOM LEMQ
                    Push blanks one place up since lemq space is inside the chunk.">
       <pattern>
