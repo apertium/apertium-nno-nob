@@ -202,6 +202,10 @@ REMOVE:forslag_forslag   ("framlegg"i) IF (0 ("forslag"i));
 SELECT:førebu_seg_bu_seg ("bu# seg"i) IF (0 ("førebu# seg"i) + (VAR:førebu_seg_bu_seg));
 REMOVE:førebu_seg_førebu_seg ("bu# seg"i) IF (0 ("førebu# seg"i));
 
+LIST lm_tinge = "tinging"i "avtinging"i "tingingsside"i "timetinging"i "tingingsdrap"i "tingingsverk"i "tingingstjuveri"i "tingingsvare"i "avtingingsforsikring"i "førehandstinging"i "spesialtinging"i "avtinge"i "førehandstinge"i "tinge"i;
+SELECT:bestille_tinge  lm_tinge IF (0 (VAR:bestille_tinge.syn));
+REMOVE:bestille_bestille lm_tinge;
+
 SELECT:ankel_okle ("okle"i) IF (0 ("ankel"i) + (VAR:ankel_okle));
 REMOVE:ankel_ankel   ("okle"i) IF (0 ("ankel"i));
 
