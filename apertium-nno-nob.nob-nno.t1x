@@ -4850,6 +4850,49 @@
       </when></choose>
     </def-macro>
 
+    <def-macro n="ref-subj2pasv" npar="1"
+               c="arg.1: passive, possibly with subj in ref
+                  Apply subject gender/number to passive participle (given subject stored in side ref)
+                  We don't change when subject is formal 'det'.">
+      <choose c="Apply anaphoric variables">
+        <when>
+          <test><equal><clip pos="1" side="ref" part="a_date"/><lit-tag v="date"/></equal></test>
+          <let><var n="pp_nbr"/><lit-tag v="sg"/></let>
+          <let><var n="pp_gen"/><lit-tag v="nt"/></let>
+        </when>
+        <when>
+          <test><and>
+            <not><in><clip pos="1" side="tl" part="lemh"/><list n="no-samsvar"/></in></not>
+            <not><equal><clip pos="1" side="ref" part="a_expl"/><lit-tag v="expl"/></equal></not>
+            <or>
+              <equal><clip pos="1" side="ref" part="nbr"/><lit-tag v="pl"/></equal>
+              <ends-with><clip pos="1" side="ref" part="lemh"/><lit v="tusenvis"/></ends-with>
+              <ends-with><clip pos="1" side="ref" part="lemh"/><lit v="hundrevis"/></ends-with>
+              <ends-with><clip pos="1" side="ref" part="lemh"/><lit v="mange"/></ends-with>
+            </or>
+          </and></test>
+          <let><var n="pp_nbr"/><lit-tag v="pl"/></let>
+          <let><var n="pp_gen"/><lit-tag v="un"/></let> <!-- just some nonempty value we can override the slot in t2x -->
+          <!-- <let><var n="tmp"/><concat><lit v="[("/><clip pos="1" side="ref" part="lemh"/><var n="pp_nbr"/><lit v=")]"/></concat></let><out><var n="tmp"/></out> -->
+        </when>
+        <otherwise>
+          <let><var n="pp_nbr"/><lit-tag v="sg"/></let>
+          <let><var n="pp_gen"/><lit-tag v="nt"/></let>
+          <choose><when>
+            <test><or>
+              <equal><clip pos="1" side="ref" part="gen"/><lit-tag v="mf"/></equal>
+              <equal><clip pos="1" side="ref" part="gen"/><lit-tag v="f"/></equal>
+              <equal><clip pos="1" side="ref" part="gen"/><lit-tag v="m"/></equal>
+              <equal><clip pos="1" side="ref" part="a_prop"/><lit-tag v="cog"/></equal>
+              <equal><clip pos="1" side="ref" part="a_prop"/><lit-tag v="ant"/></equal>
+            </or></test>
+            <let><var n="pp_gen"/><lit-tag v="mf"/></let>
+          </when></choose>
+          <!-- <let><var n="tmp"/><concat><lit v="[("/><clip pos="1" side="ref" part="lemh"/><var n="pp_gen"/><lit v=")]"/></concat></let><out><var n="tmp"/></out> -->
+        </otherwise>
+      </choose>
+    </def-macro>
+
   </section-def-macros>
 
 
@@ -5690,43 +5733,7 @@
                   </when>
                   <otherwise><let><var n="movable_tag"/><lit-tag v="np-movable"/></let></otherwise>
                 </choose>
-                <choose c="Apply anaphoric variables">
-                  <when>
-                    <test><equal><clip pos="1" side="ref" part="a_date"/><lit-tag v="date"/></equal></test>
-                    <let><var n="pp_nbr"/><lit-tag v="sg"/></let>
-                    <let><var n="pp_gen"/><lit-tag v="nt"/></let>
-                  </when>
-                  <when>
-                    <test><and>
-                      <not><in><clip pos="1" side="tl" part="lemh"/><list n="no-samsvar"/></in></not>
-                      <not><equal><clip pos="1" side="ref" part="a_expl"/><lit-tag v="expl"/></equal></not>
-                      <or>
-                        <equal><clip pos="1" side="ref" part="nbr"/><lit-tag v="pl"/></equal>
-                        <ends-with><clip pos="1" side="ref" part="lemh"/><lit v="tusenvis"/></ends-with>
-                        <ends-with><clip pos="1" side="ref" part="lemh"/><lit v="hundrevis"/></ends-with>
-                        <ends-with><clip pos="1" side="ref" part="lemh"/><lit v="mange"/></ends-with>
-                      </or>
-                    </and></test>
-                    <let><var n="pp_nbr"/><lit-tag v="pl"/></let>
-                    <let><var n="pp_gen"/><lit-tag v="un"/></let> <!-- just some nonempty value we can override the slot in t2x -->
-                    <!-- <let><var n="tmp"/><concat><lit v="[("/><clip pos="1" side="ref" part="lemh"/><var n="pp_nbr"/><lit v=")]"/></concat></let><out><var n="tmp"/></out> -->
-                  </when>
-                  <otherwise>
-                    <let><var n="pp_nbr"/><lit-tag v="sg"/></let>
-                    <let><var n="pp_gen"/><lit-tag v="nt"/></let>
-                    <choose><when>
-                      <test><or>
-                        <equal><clip pos="1" side="ref" part="gen"/><lit-tag v="mf"/></equal>
-                        <equal><clip pos="1" side="ref" part="gen"/><lit-tag v="f"/></equal>
-                        <equal><clip pos="1" side="ref" part="gen"/><lit-tag v="m"/></equal>
-                        <equal><clip pos="1" side="ref" part="a_prop"/><lit-tag v="cog"/></equal>
-                        <equal><clip pos="1" side="ref" part="a_prop"/><lit-tag v="ant"/></equal>
-                      </or></test>
-                      <let><var n="pp_gen"/><lit-tag v="mf"/></let>
-                    </when></choose>
-                    <!-- <let><var n="tmp"/><concat><lit v="[("/><clip pos="1" side="ref" part="lemh"/><var n="pp_gen"/><lit v=")]"/></concat></let><out><var n="tmp"/></out> -->
-                  </otherwise>
-                </choose>
+                <call-macro n="ref-subj2pasv"><with-param pos="1"/></call-macro>
                 <out>
                   <chunk name="aux" case="caseFirstWord">
                     <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
