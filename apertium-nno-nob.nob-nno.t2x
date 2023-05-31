@@ -83,22 +83,15 @@
       <cat-item tags="n.*.ind.cmp-split"/>
       <cat-item tags="n.*.ind.cmp-split.*"/>
     </def-cat>
-    <def-cat n="ndef_OR_np_pers">
+    <def-cat n="ndef_OR_np_agent"> <!-- TODO: should be @subj (but then we need to keep @-tags after refsyn.t1x) -->
       <cat-item tags="n.*.def"/>
       <cat-item tags="n.*.def.*"/>
       <cat-item tags="np.ant"/>
-      <cat-item tags="np.cog"/>
       <cat-item tags="np.ant.*"/>
-      <cat-item tags="np.cog.*"/>
-      <cat-item tags="unknown"/>
-    </def-cat>
-    <def-cat n="ndef_OR_np">
-      <cat-item tags="n.*.def"/>
-      <cat-item tags="n.*.def.*"/>
-      <cat-item tags="np.ant"/>
       <cat-item tags="np.cog"/>
-      <cat-item tags="np.ant.*"/>
       <cat-item tags="np.cog.*"/>
+      <cat-item tags="np.org"/>
+      <cat-item tags="np.org.*"/>
       <cat-item tags="unknown"/>
     </def-cat>
     <def-cat n="np_pers">
@@ -1724,7 +1717,7 @@
       </action>
     </rule>
 
-    <rule comment="ADV VBLEX LEMQ NDEF → ADV VBLEX NDEF LEMQ / aDV VBLEX LEMQ NDEF
+    <rule comment="ADV VBLEX LEMQ NDEF → ADV VBLEX NDEF LEMQ / ADV VBLEX LEMQ NDEF
                    Push blanks one place up since lemq space is inside the chunk.
                    Without subj/obj tagging, changing order here becomes dangerous; we only want it to happen when ndef is subj.
                    So for now we only change order when adv is titlecase (likely subject because ndef early in sentence).
@@ -1978,7 +1971,7 @@
       <pattern>
         <pattern-item n="vblex"/>
         <pattern-item n="lemq-skip-n"/>
-        <pattern-item n="ndef_OR_np_pers"/>
+        <pattern-item n="ndef_OR_np_agent"/>
       </pattern>
       <action>
         <call-macro n="set_ana"><with-param pos="1"/></call-macro>
@@ -2270,7 +2263,7 @@
                    Hard to know which word «sin» belongs to, but typically the last one.">
       <pattern>
         <pattern-item n="detqnt"/>
-        <pattern-item n="ndef_OR_np_pers"/>
+        <pattern-item n="ndef_OR_np_agent"/>
         <pattern-item n="sin"/>
         <pattern-item n="nind"/>
       </pattern>
@@ -2289,7 +2282,7 @@
 
                    Hard to know which word «sin» belongs to, but typically the last one.">
       <pattern>
-        <pattern-item n="ndef_OR_np_pers"/>
+        <pattern-item n="ndef_OR_np_agent"/>
         <pattern-item n="sin"/>
         <pattern-item n="nind"/>
       </pattern>
