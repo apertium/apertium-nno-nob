@@ -32,8 +32,8 @@ DELIMITERS = "." "?" sent ;
 LIST wf = "<(\\p{Lu}\\p{L}+)>"r ;
 LIST bf = "(\\p{Lu}\\p{L}+)"r ;
 LIST fn = (np ant) ;
-LIST ln = (np cog) ;
-LIST mn = (np ant) (np cog) ;
+LIST ln =          (np cog) (np top) ; # NB: toponyms are considered possible middle/last names
+LIST mn = (np ant) (np cog) (np top) ; #     (but only where preceded by ant/cog, not when starting)
 LIST aa = /^\([Aa]+\)$/r ;      # TODO: no longer needed, now we use * to copy tags from first word
 LIST syn =  /^\(@.*\)$/r ;
 LIST gen = gen ;
@@ -53,7 +53,7 @@ MERGECOHORTS:f+m+lG ("<$1 $3 $5>"v "$2 $4 $6"v cgguess gen * VSTR:$8)
 ;
 
 MERGECOHORTS:m+lG ("<$1 $3>"v "$2 $4"v cgguess gen * VSTR:$6)
-                     wf + bf + mn
+                     wf + bf + mn - (top)
                   (NEGATE 0/1 (*)) (NEGATE 0 gen)
                   (NEGATE 1/1 (*))        (1 gen)
           WITH
@@ -74,7 +74,7 @@ MERGECOHORTS:f+m+l ("<$1 $3 $5>"v "$2 $4 $6"v cgguess * VSTR:$8)
 ;
 
 MERGECOHORTS:m+l ("<$1 $3>"v "$2 $4"v cgguess * VSTR:$6)
-                     wf + bf + mn
+                     wf + bf + mn - (top)
                   (NEGATE 0/1 (*)) (NEGATE 0 gen)
                   (NEGATE 1/1 (*)) (NEGATE 1 gen)
           WITH
