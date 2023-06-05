@@ -1,0 +1,104 @@
+DELIMITERS = "." "?" sent ;
+
+# Example input:
+# "<Rolv>"
+# 	"Rolv" np ant m Aa @subst→
+# "<Ravlo>"
+# 	"Ravlo" np cog Aa @app
+# "<.>"
+# 	"." sent clb aa
+# "<Rolv>"
+# 	"Rolv" np ant m Aa @subst→
+# "<Molv>"
+# 	"Molv" np ant m Aa @subst→
+# "<Ravlo>"
+# 	"Ravlo" np cog Aa @app
+# "<.>"
+# 	"." sent clb aa
+#
+# Expected output:
+# "<Rolv Ravlo>"
+# 	"Rolv Ravlo" np cog cgguess Aa @app
+# "<.>"
+# 	"." sent clb aa
+# "<Rolv Molv Ravlo>"
+# 	"Rolv Molv Ravlo" np cog cgguess Aa @app
+# "<.>"
+# 	"." sent clb aa
+
+
+
+# Restricting to letters will exclude e.g. «Haddy N’jie», but at least then bidix will let it through
+LIST wf = "<(\\p{Lu}\\p{L}+)>"r ;
+LIST bf = "(\\p{Lu}\\p{L}+)"r ;
+LIST fn = (np ant) ;
+LIST ln =          (np cog) (np top) ; # NB: toponyms are considered possible middle/last names
+LIST mn = (np ant) (np cog) (np top) ;
+LIST aa = /^\([Aa]+\)$/r ;      # TODO: no longer needed, now we use * to copy tags from first word
+LIST syn =  /^\(@.*\)$/r ;
+LIST gen = gen ;
+LIST np = np ;
+
+
+# Never merge these toponyms:
+LIST top-exceptions = "Norge" "Noreg" "Japan" "USA" "Sverige" "Danmark" "Finland" "Island" "Storbritannia"
+        "India" "Pakistan" "Syria" "Tyskland" "Russland" "Ukraina"
+        ;
+
+
+AFTER-SECTIONS                  # only run once
+
+PROTECT np IF (0 top-exceptions) ;
+PROTECT np IF (1 top-exceptions) ;
+PROTECT np IF (2 top-exceptions) ;
+
+# First genitives:
+MERGECOHORTS:f+m+lG ("<$1 $3 $5>"v "$2 $4 $6"v cgguess gen * VSTR:$8)
+                     wf + bf + fn
+                  (NEGATE 0/1 (*)) (NEGATE 0 gen)
+                  (NEGATE 1/1 (*)) (NEGATE 1 gen)
+                  (NEGATE 2/1 (*))        (2 gen)
+          WITH
+                  (1 wf + bf + mn)
+                  (2 wf + bf + ln + aa + syn)
+;
+
+MERGECOHORTS:m+lG ("<$1 $3>"v "$2 $4"v cgguess gen * VSTR:$6)
+                     wf + bf + mn
+                  (NEGATE 0/1 (*)) (NEGATE 0 gen)
+                  (NEGATE 1/1 (*))        (1 gen)
+          WITH
+                  (1 wf + bf + ln + aa + syn)
+;
+
+
+
+# Then non-genitives:
+MERGECOHORTS:f+m+l ("<$1 $3 $5>"v "$2 $4 $6"v cgguess * VSTR:$8)
+                     wf + bf + fn
+                  (NEGATE 0/1 (*)) (NEGATE 0 gen)
+                  (NEGATE 1/1 (*)) (NEGATE 1 gen)
+                  (NEGATE 2/1 (*)) (NEGATE 2 gen)
+          WITH
+                  (1 wf + bf + mn)
+                  (2 wf + bf + ln + aa + syn)
+;
+
+MERGECOHORTS:m+l ("<$1 $3>"v "$2 $4"v cgguess * VSTR:$6)
+                     wf + bf + mn
+                  (NEGATE 0/1 (*)) (NEGATE 0 gen)
+                  (NEGATE 1/1 (*)) (NEGATE 1 gen)
+          WITH
+                  (1 wf + bf + ln + aa + syn)
+;
+
+REMOVE:1@ (@subst→) ;
+
+SUBSTITUTE:gen (cgguess gen np ant) (np ant cgguess gen) (cgguess gen np ant)         ;
+SUBSTITUTE:nom (cgguess     np ant) (np ant cgguess    ) (cgguess     np ant) - (gen) ;
+
+SUBSTITUTE:gen (cgguess gen np cog) (np cog cgguess gen) (cgguess gen np cog)         ;
+SUBSTITUTE:nom (cgguess     np cog) (np cog cgguess    ) (cgguess     np cog) - (gen) ;
+
+SUBSTITUTE:gen (cgguess gen np top) (np top cgguess gen) (cgguess gen np top)         ;
+SUBSTITUTE:nom (cgguess     np top) (np top cgguess    ) (cgguess     np top) - (gen) ;

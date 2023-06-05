@@ -71,6 +71,7 @@ side="ref"> for transfer to use. It's syntactic, not anaphoric.
 
 - Missing relative pronouns are difficult:
   - Jeg er her på grunn av beslutninger<pl> tatt<pl> på europeiske møter
+  - Brasil<nt> er hardt truffet med vel 55.000 dødsfall<pl> relatert<pl> til pandemien
   Difficult, since e.g.: ble det ved flere anledninger<pl> tatt<nt> opp i Stortinget
   - Maybe we can use ngram frequencies f(ta beslutninger) >>> f(ta anledninger)
 
