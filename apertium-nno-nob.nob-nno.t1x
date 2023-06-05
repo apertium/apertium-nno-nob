@@ -4840,7 +4840,10 @@
               <!-- <let><var n="tmp"/><concat><lit v="[("/><clip pos="1" side="ref" part="lemh"/><lit v=".mf)]"/></concat></let><out><var n="tmp"/></out> -->
             </when>
             <when>
-              <test><equal><clip pos="1" side="ref" part="gen"/><lit-tag v="nt"/></equal></test>
+              <test><or>
+                <equal><clip pos="1" side="ref" part="gen"/><lit-tag v="nt"/></equal>
+                <begins-with><clip pos="1" side="ref" part="a_prop"/><lit-tag v="top"/></begins-with>
+              </or></test>
               <let><var n="adjtags"/><lit-tag v="nt.sg.ind"/></let>
               <!-- <let><var n="tmp"/><concat><lit v="[("/><clip pos="1" side="ref" part="lemh"/><lit v=".nt)]"/></concat></let><out><var n="tmp"/></out> -->
             </when>
