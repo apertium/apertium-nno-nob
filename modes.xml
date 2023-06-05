@@ -21,6 +21,9 @@
       <program name="apertium-tagger -g $2">
         <file name="nob-nno.prob"/>
       </program>
+      <program name="cg-proc -n -1" debug-suff="namemerge">
+	<file name="merge-names.rlx.bin"/>
+      </program>
       <program name="apertium-pretransfer"/>
       <program name="lsx-proc -w">
         <file name="nob-nno.autoseq.bin"/>
