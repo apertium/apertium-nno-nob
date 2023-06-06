@@ -9825,7 +9825,9 @@
     <match lemma="anerkjennende" tags="adj.*"><select lemma="godkjennande"/></match>
   </rule>
 
-  <rule><match lemma="begivenhet" tags="n.*"><select lemma="storhending"/></match></rule>
+  <rule><match lemma="begivenhet" tags="n.*.sg.ind.*"><select lemma="storhending"/></match></rule>
+  <rule><match lemma="begivenhet" tags="n.*.sg.def.*"><select lemma="hending"/></match></rule>
+  <rule><match lemma="begivenhet" tags="n.*.pl.*"><select lemma="hending"/></match></rule>
   <rule weight="2.0" c="store og små begivenheter">
     <or><match lemma="liten"/><match lemma="stor"/></or>
     <match lemma="og"/>
