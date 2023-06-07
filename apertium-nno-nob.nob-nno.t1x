@@ -219,18 +219,23 @@
       <cat-item tags="np.*.gen"/>
       <cat-item tags="np.*.gen.*"/>
       <cat-item tags="np.*.gen.guio.*"/>
+      <cat-item tags="np.*.f"/>
       <cat-item tags="np.*.f.aa"/>
       <cat-item tags="np.*.f.Aa"/>
       <cat-item tags="np.*.f.AA"/>
+      <cat-item tags="np.*.m"/>
       <cat-item tags="np.*.m.aa"/>
       <cat-item tags="np.*.m.Aa"/>
       <cat-item tags="np.*.m.AA"/>
+      <cat-item tags="np.*.nt"/>
       <cat-item tags="np.*.nt.aa"/>
       <cat-item tags="np.*.nt.Aa"/>
       <cat-item tags="np.*.nt.AA"/>
+      <cat-item tags="np.org"/>
       <cat-item tags="np.org.aa"/>
       <cat-item tags="np.org.Aa"/>
       <cat-item tags="np.org.AA"/>
+      <cat-item tags="np.top"/>
       <cat-item tags="np.top.aa"/>
       <cat-item tags="np.top.Aa"/>
       <cat-item tags="np.top.AA"/>
@@ -243,15 +248,19 @@
       <cat-item tags="np.*.cgguess.aa"/>
       <cat-item tags="np.*.cgguess.Aa"/>
       <cat-item tags="np.*.cgguess.AA"/>
+      <cat-item tags="np.guess"/>
       <cat-item tags="np.guess.aa"/>
       <cat-item tags="np.guess.Aa"/>
       <cat-item tags="np.guess.AA"/>
+      <cat-item tags="np.cog"/>
       <cat-item tags="np.cog.aa"/>
       <cat-item tags="np.cog.Aa"/>
       <cat-item tags="np.cog.AA"/>
+      <cat-item tags="np.al"/>
       <cat-item tags="np.al.aa"/>
       <cat-item tags="np.al.Aa"/>
       <cat-item tags="np.al.AA"/>
+      <cat-item tags="np.attr"/>
       <cat-item tags="np.attr.aa"/>
       <cat-item tags="np.attr.Aa"/>
       <cat-item tags="np.attr.AA"/>
@@ -862,11 +871,11 @@
       <cat-item tags="vblex.*" lemma="måtte"/>
     </def-cat>
     <def-cat n="sent">
-      <cat-item tags="sent.*"/>
+      <cat-item tags="sent"/>
       <cat-item tags="sent.*"/>
     </def-cat>
     <def-cat n="cm">
-      <cat-item tags="cm.*"/>
+      <cat-item tags="cm"/>
       <cat-item tags="cm.*"/>
     </def-cat>
     <def-cat n="guio">
@@ -8209,6 +8218,30 @@ no lemq-moving">
         <out>
           <chunk name="det" case="caseFirstWord">
             <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
+            <lu><clip pos="1" side="tl" part="whole"/></lu>
+          </chunk>
+          <chunk name="sent" case="caseFirstWord">
+            <tags><tag><clip pos="2" side="tl" part="tags"/></tag></tags>
+            <lu><clip pos="2" side="tl" part="whole"/></lu>
+          </chunk>
+        </out>
+      </action>
+    </rule>
+
+    <rule comment="N REMSPC: remove space inserted by pretransfer">
+      <pattern>
+        <pattern-item n="n_np"/>
+        <pattern-item n="remspc"/>
+      </pattern>
+      <action>
+        <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
+        <let><clip pos="2" side="tl" part="a_remspc"/><lit v=""/></let>
+        <let><clip pos="2" side="tl" part="a_caps"/><lit v=""/></let>
+        <call-macro n="out_gen-prep"><with-param pos="1"/></call-macro>
+        <call-macro n="stash_case_in_ntags1"><with-param pos="1"/></call-macro>
+        <out>
+          <chunk name="nn" case="caseFirstWord">
+            <tags><tag><var n="ntags"/></tag></tags>
             <lu><clip pos="1" side="tl" part="whole"/></lu>
           </chunk>
           <chunk name="sent" case="caseFirstWord">
