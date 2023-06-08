@@ -201,6 +201,11 @@
           </or>
       </def-seq>
 
+      <def-seq n="n-np.cmp">
+          <match tags="*.*.cmp"/>
+          <match tags="n.*.def.*"/>
+      </def-seq>
+
       <def-seq n="art_adj_np">
           <match tags="det.qnt.m.*"/>
           <match tags="adj.*"/>
@@ -241,7 +246,7 @@
 
       <def-seq n="animat_unk">
         <or>
-          <match tags=""/>            <!-- Unknown, presumably proper -->
+          <match tags=""/>            <!-- Unknown, presumably proper --> 
           <match tags="prn.pers.*"/>
           <match tags="np.ant.*"/>
           <match tags="np.cog.*"/>
@@ -308,6 +313,19 @@
           <match lemma="sekretær"/>
           <match lemma="statssekretær"/>
           <match lemma="statssråd"/>
+        </or>
+      </def-seq>
+      <def-seq n="n_np_prn_adv">
+        <or>
+          <match tags="n.*.*.def.*"/>
+          <match tags="prn.pers.*"/>
+          <match tags="np.ant.*"/>
+          <match tags="np.cog.*"/>
+          <match tags="np.cgguess"/>
+          <match tags="np.cgguess.*"/>
+          <match tags="adj.*"/>
+          <match tags="adv.*"/>
+
         </or>
       </def-seq>
       <def-seq n="not-noun">
@@ -2931,6 +2949,7 @@
   <rule><match lemma="uthule" tags="adj.*"><select lemma="uthule"/></match></rule>
 
   <rule><match lemma="fortsette" tags="vblex.*"><select lemma="halde# fram"/></match></rule>
+  <rule><match lemma="fortsette# med" tags="vblex.*"><select lemma="halde# fram med"/></match></rule>
   <!--rule><match lemma="fortsette" tags="adj.*"><select lemma="halde# fram"/></match></rule-->
   <rule weight="2.0" c=", fortsetter Stöckl som herrelandslagstrener">
     <match lemma=","/>
@@ -2949,6 +2968,7 @@
     </or>
     <or>
       <seq n="animat_unk"/> <!-- , seier ministeren -->
+      <seq n="n-np.cmp"/> <!-- , seier SAS-piloten -->
       <seq n="dbl_bunden"/> <!-- , seier den tyske midtbanegeneralen -->
       <seq n="art_adj_np"/> <!-- , seier ein engasjert Hergeirsson -->
       <match tags="np.cog.*"/> <!-- , seier Hergeirsson -->
@@ -2958,7 +2978,12 @@
       <!--match tags="cm.*"/-->
       <match lemma="og"/>
     </or>
-  </rule> 
+  </rule>
+  <rule weight="2.0" c=", fortsetter slik også -> held fram slik også (toledda arverb)">
+    <match lemma="fortsette" tags="vblex.*"><select lemma="halde# fram"/></match>
+    <match tags="adv.*"/>
+    <match tags="adv.*"/>
+  </rule>
   <rule weight="2.0" c=", fortsetter Støre sin reise / , fortsetter hun sin møysommelige praksis">
     <match lemma=","/>
     <match lemma="fortsette" tags="vblex.*"><select lemma="halde# fram"/></match>
