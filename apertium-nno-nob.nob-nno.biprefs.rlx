@@ -202,6 +202,9 @@ REMOVE:samtidig_samtidig   ("samstundes"i) IF (0 ("samtidig"i));
 SELECT:forslag_framlegg ("framlegg"i) IF (0 ("forslag"i) + (VAR:forslag_framlegg));
 REMOVE:forslag_forslag   ("framlegg"i) IF (0 ("forslag"i));
 
+SELECT:etterspurnad_etterspørsel ("etterspørsel"i) IF (0 ("etterspurnad"i) + (VAR:etterspurnad_etterspørsel.syn));
+REMOVE:etterspurnad_etterspurnad   ("etterspørsel"i) IF (0 ("etterspurnad"i));
+
 SELECT:førebu_seg_bu_seg ("bu# seg"i) IF (0 ("førebu# seg"i) + (VAR:førebu_seg_bu_seg));
 REMOVE:førebu_seg_førebu_seg ("bu# seg"i) IF (0 ("førebu# seg"i));
 
