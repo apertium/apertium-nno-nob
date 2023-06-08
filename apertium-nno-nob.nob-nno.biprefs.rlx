@@ -215,6 +215,10 @@ LIST lm_tinge = "tinging"i "avtinging"i "tingingsside"i "timetinging"i "tingings
 SELECT:bestille_tinge  lm_tinge IF (0 (VAR:bestille_tinge.syn));
 REMOVE:bestille_bestille lm_tinge;
 
+LIST lm_lækjar = "lækjar"i "berrfotlækjar"i "skoletannlækjar"i "skuletannlækjar"i "tannlækjar"i "anestesilækjar"i "assistentlækjar"i "avdelingslækjar"i "barnelækjar"i "bedriftslækjar"i "distriktslækjar"i "distriktstannlækjar"i "dyrlækjar"i "fastlækjar"i "fylkeslækjar"i "hudlækjar"i "huslækjar"i "livlækjar"i "naturlækjar"i "overlækjar"i "reservelækjar"i "sesjonslækjar"i "skipslækjar"i "allmennlækjar"i "smittevernlækjar"i "sjelelækjar"i "stadslækjar"i "augnelækjar"i "sjukehuslækjar"i "landlækjar"i "kommunelækjar"i "skulelækjar"i "lækje"i "lækjarassistert"i "lækjarbehandling"i "lækjardekking"i "lækjarerklæring"i "lækjarhjelp"i "lækjemiddelassistert"i "lækjarpraksis"i "lækjarråd"i "lækjarstilling"i "lækjarvakt"i "lækjevitskap"i "lækjande"i "lækjarambulanse"i "lækjarattest"i "lækjarbehandling"i "lækjarbesøk"i "lækjarbok"i "lækjaretisk"i "lækjarhjelp"i "lækjarhonorar"i "lækjarkontor"i "lækjarmeld"i "lækjarpraksis"i "lækjarroman"i "lækjarråd"i "lækjarsekretær"i "lækjarsenter"i "lækjarstand"i "lækjarstilling"i "lækjartilsyn"i "lækjartime"i "lækjarundersøking"i "lækjarvakt"i "lækjarvisitt"i "lækjekunst"i "lækjemiddel"i "lækjemiddelassistert"i "lækjemiddelindustri"i "lækjeplante"i "lækjevitskap"i;
+SELECT:lege_lækjar  lm_lækjar IF (0 (VAR:lege_lækjar.syn));
+REMOVE:lege_lege lm_lækjar;
+
 SELECT:ankel_okle ("okle"i) IF (0 ("ankel"i) + (VAR:ankel_okle));
 REMOVE:ankel_ankel   ("okle"i) IF (0 ("ankel"i));
 
