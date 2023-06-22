@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# shellcheck disable=SC2312
+
 outdir=nobackup/genitive-prepositions
 mkdir -p "${outdir}"
 
@@ -7,9 +9,9 @@ sed 's/ -t / /g; s/cg-proc *-w /cg-proc /g' modes/nno-nob-disam.mode > modes/nno
 sed 's/ -t / /g; s/cg-proc *-w /cg-proc /g' modes/nob-nno-disam.mode > modes/nob-nno-disam-notrace.mode
 
 echo "${outdir}"/nno.disam
-nnols () { xzcat  ~/corpora/nno/*ntb*xz | wc -l; }
+nnols () { xzcat  corpus/nno/*xz | wc -l; }
 test -f "${outdir}"/nno.disam ||
-    xzcat  ~/corpora/nno/*ntb*xz              \
+    xzcat  corpus/nno/*xz              \
         | apertium -d . nno-nob-disam-notrace \
         | pv -ls "$(nnols)"                   \
              >"${outdir}"/nno.disam
@@ -26,9 +28,9 @@ test -f "${outdir}"/nno.sgen ||
       > "${outdir}"/nno.sgen                                                             \
 
 echo "${outdir}"/nob.disam
-nobls () { xzcat  ~/corpora/nob/*ntb*xz | wc -l; }
+nobls () { xzcat  corpus/nob/*xz | wc -l; }
 test -f "${outdir}"/nob.disam ||
-    xzcat  ~/corpora/nob/*ntb*xz              \
+    xzcat  corpus/nob/*xz              \
         | apertium -d . nob-nno-disam-notrace \
         | pv -ls "$(nobls)"                   \
         >"${outdir}"/nob.disam
