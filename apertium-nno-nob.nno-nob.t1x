@@ -2,16 +2,10 @@
 <transfer default="chunk">
   <section-def-cats>
     <!-- compound lhs's are never genitive: -->
-    <def-cat n="ncmp">
-      <cat-item tags="n.*.cmp"/>
-      <cat-item tags="n.*.cmp.guio"/>
-      <cat-item tags="n.*.cmp.detriple"/>
-      <cat-item tags="np.*.cmp"/>
-      <cat-item tags="np.*.cmp.guio"/>
-      <cat-item tags="np.*.cmp.detriple"/>
-      <cat-item tags="vblex.*.cmp"/>
-      <cat-item tags="vblex.*.cmp.guio"/>
-      <cat-item tags="vblex.*.cmp.detriple"/>
+    <def-cat n="ncmp" c="No need to specify PoS/subtags (that will just slow down compilation
+                         since this pattern often gets used many times per rule)">
+      <cat-item tags="*.cmp"/>
+      <cat-item tags="*.cmp.*"/>
     </def-cat>
     <def-cat n="nind">
       <cat-item tags="n.*.*.ind"/>
