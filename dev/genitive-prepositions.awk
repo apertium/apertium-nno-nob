@@ -120,7 +120,7 @@ END{
     print "\n<!-- put in t1x out_gen-prep macro choose: -->"
     for(pr in unilist) {
         prs=pr; sub(/<.*/,"",prs)
-        printf "          <when><test><in><var n=\"lu_lemh\"/><list n=\"gen-%s\"/></in></test><let><var n=\"gen-prep\"/><lit v=\"%s\"/></let></when>\n", prs, prs
+        printf "          <when><test><in><var n=\"lemma\"/><list n=\"gen-%s\"/></in></test><let><var n=\"gen-prep\"/><lit v=\"%s\"/></let></when>\n", prs, prs
     }
 
     print "\n<!-- put in t1x bigram_genprep macro choose: -->"
@@ -130,13 +130,13 @@ END{
     }
     print "        <otherwise>\n          <choose><when c=\"Only use obj unigram if both out_gen-prep and bi-gen didn't pick something first\">\n            <test><equal><var n=\"gen-prep\"/><lit v=\"til\"/></equal></test>\n            <choose>"
     # Manual override lists first:
-    print "              <when><test><in><var n=\"lu_lemh\"/><list n=\"obj-gen-frå2\"/></in></test><append n=\"ntags\"><lit-tag v=\"pr_frå\"/></append></when>"
-    print "              <when><test><in><var n=\"lu_lemh\"/><list n=\"obj-gen-med2\"/></in></test><append n=\"ntags\"><lit-tag v=\"pr_med\"/></append></when>"
-    print "              <when><test><in><var n=\"lu_lemh\"/><list n=\"obj-gen-av2\"/></in></test><append n=\"ntags\"><lit-tag v=\"pr_av\"/></append></when>"
-    print "              <when><test><in><var n=\"lu_lemh\"/><list n=\"obj-gen-på2\"/></in></test><append n=\"ntags\"><lit-tag v=\"pr_på\"/></append></when>"
+    print "              <when><test><in><var n=\"lemma\"/><list n=\"obj-gen-frå2\"/></in></test><append n=\"ntags\"><lit-tag v=\"pr_frå\"/></append></when>"
+    print "              <when><test><in><var n=\"lemma\"/><list n=\"obj-gen-med2\"/></in></test><append n=\"ntags\"><lit-tag v=\"pr_med\"/></append></when>"
+    print "              <when><test><in><var n=\"lemma\"/><list n=\"obj-gen-av2\"/></in></test><append n=\"ntags\"><lit-tag v=\"pr_av\"/></append></when>"
+    print "              <when><test><in><var n=\"lemma\"/><list n=\"obj-gen-på2\"/></in></test><append n=\"ntags\"><lit-tag v=\"pr_på\"/></append></when>"
     for(pr in olist) {
         prs=pr; sub(/<.*/,"",prs)
-        printf "              <when><test><in><var n=\"lu_lemh\"/><list n=\"obj-gen-%s\"/></in></test><append n=\"ntags\"><lit-tag v=\"pr_%s\"/></append></when>\n", prs, prs
+        printf "              <when><test><in><var n=\"lemma\"/><list n=\"obj-gen-%s\"/></in></test><append n=\"ntags\"><lit-tag v=\"pr_%s\"/></append></when>\n", prs, prs
     }
     print "            </choose>\n          </when></choose>\n        </otherwise>"
 
