@@ -6479,7 +6479,10 @@ no lemq-moving">
         <let><var n="bilem"/><concat><clip pos="1" side="tl" part="lem"/><lit v="_"/><clip pos="2" side="tl" part="lem"/></concat></let>
         <modify-case><var n="bilem"/><lit v="aa"/></modify-case>
         <choose><when>
-          <test><not><in><var n="bilem"/><list n="bi-keep-gen-s"/></in></not></test>
+          <test><or>
+            <not><in><var n="bilem"/><list n="bi-keep-gen-s"/></in></not>
+            <not><equal><clip pos="2" side="tl" part="a_cmp"/><lit v=""/></equal></not>
+          </or></test>
           <reject-current-rule shifting="no"/>
         </when></choose>
         <!-- They were in the list – keep the s-genitive: -->
@@ -6516,7 +6519,10 @@ no lemq-moving">
         <let><var n="bilem"/><concat><clip pos="1" side="tl" part="lem"/><lit v="_"/><clip pos="3" side="tl" part="lem"/></concat></let>
         <modify-case><var n="bilem"/><lit v="aa"/></modify-case>
         <choose><when>
-          <test><not><in><var n="bilem"/><list n="bi-keep-gen-s"/></in></not></test>
+          <test><or>
+            <not><in><var n="bilem"/><list n="bi-keep-gen-s"/></in></not>
+            <not><equal><clip pos="3" side="tl" part="a_cmp"/><lit v=""/></equal></not>
+          </or></test>
           <reject-current-rule shifting="no"/>
         </when></choose>
         <!-- They were in the list – keep the s-genitive: -->
