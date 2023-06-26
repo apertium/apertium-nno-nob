@@ -1334,9 +1334,17 @@
     <match lemma="rett" tags="n.*.gen.*"/>
     <match lemma="gang" tags="n.*"><select lemma="gang"/></match>
   </rule>
+  <rule weight="9.0" c="spillets gang, livets gang">
+    <match tags="n.*.gen.*"/>
+    <match lemma="gang" tags="n.*"><select lemma="gang"/></match>
+  </rule>
+  <rule weight="2.0" c="livets gang">
+    <match lemma="livsens" tags="adj.*"/>
+    <match lemma="gang" tags="n.*"><select lemma="gang"/></match>
+  </rule>
   <rule weight="2.0">
     <!-- TODO: can't merge this with the next rule until we fix https://github.com/apertium/apertium-lex-tools/issues/12 -->
-    <match tags="n.*.cmp"/>
+    <match tags="n.*.cmp.*"/>
     <match lemma="gang" tags="n.*">
       <select lemma="gang"/>
     </match>
