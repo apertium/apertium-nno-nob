@@ -1304,7 +1304,7 @@
   </rule>
   <rule weight="2.0">
     <match lemma="med"/>
-    <match lemma="hensikt" tags="n.*"><select lemma="overlegg"/></match>
+    <match lemma="hensikt" tags="n.m.sg.ind.*"><select lemma="overlegg"/></match>
   </rule>
 <!--HENSIKT: END-->
 <!--UANFEKTET: START-->
@@ -6441,7 +6441,9 @@
       <match lemma="med"/>
       <match lemma="på"/>
       <match lemma="ut av"/>
+      <match lemma="ut"/>
       <match lemma="i"/>
+      <match lemma="inn"/>
       </or>
     </repeat>
     <or>
@@ -11210,14 +11212,24 @@ preposisjonar gir ekstra utfordringar. -->
       <match lemma="etappe" tags="n.*"/>
     </or>
   </rule>
-  <rule weight="2.4" c="framme og bak">
+  <rule weight="2.0" c="før og under">
+    <match lemma="foran" tags="pr.*"><select lemma="før"/></match>
+    <match lemma="og"/>
+    <match lemma="under"/>
+  </rule>
+  <rule weight="2.4" c="to framme og tre bak">
     <match lemma="foran" tags="pr.*"><select lemma="framme"/></match>
     <match lemma="og"/>
+    <repeat from="0" upto="3"/>
     <match lemma="bak"/>
   </rule>
   <rule weight="2.4" c="bak og framme">
     <match lemma="bak"/>
     <match lemma="og"/>
+    <match lemma="foran" tags="pr.*"><select lemma="framme"/></match>
+  </rule>
+  <rule weight="2.4" c="heilt framme">
+    <match lemma="hel"/>
     <match lemma="foran" tags="pr.*"><select lemma="framme"/></match>
   </rule>
 
