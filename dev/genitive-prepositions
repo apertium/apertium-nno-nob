@@ -37,15 +37,17 @@ test -f "${outdir}"/nob.disam ||
 
 echo "${outdir}"/nob2nno.sgen
 test -f "${outdir}"/nob2nno.sgen ||
-    <"${outdir}"/nob.disam                                                               \
-    grep '/[^</$]*<n>[^/$]*<gen>[$] \^[^$]*<n>[^$]*[$]' -o                               \
-    | sed 's,/[^$]*+,/,g;s,\^[^/]*,,;s,/[^$]*/,/,g;s/<\(sg\|pl\|sp\|def\|ind\|gen\)>//g' \
-    | tr -d '/$'                                                                         \
-    | tee "${outdir}"/nob.sgen_n                                                         \
-    | sed 's/[0-9]*-\(åring\|tall\|år\)</1-\1</'                                         \
-    | sed 's,^,^,;s, ,<sg><ind>$ ^,;s,$,<sg><ind>$,'                                     \
-    | lt-proc -b nob-nno.autobil.bin                                                     \
-    | sed 's/<sg><ind>//g;s,\^[^/]*/,,g;s/\$//g'                                         \
+    <"${outdir}"/nob.disam                                                                                     \
+    grep '/[^</$]*<n>[^/$]*<gen>[$] \^[^$]*<n>[^$]*[$]' -o                                                     \
+    | sed 's,/[^$]*+,/,g;s,\^[^/]*,,;s,/[^$]*/,/,g;s/<\(sg\|pl\|sp\|def\|ind\|gen\)>//g'                       \
+    | tr -d '/$'                                                                                               \
+    | tee "${outdir}"/nob.sgen_n                                                                               \
+    | sed 's/[0-9]*-\(åring\|tall\|år\)</1-\1</'                                                               \
+    | sed 's,^,^,;s, ,<sg><ind>$ ^,;s,$,<sg><ind>$,'                                                           \
+    | lt-proc -b nob-nno.autobil.bin                                                                           \
+    | sed 's/<sg><ind>//g;s,\^[^/]*/,^,g'                                                                      \
+    | awk -F'\\^|\\$' '# Expand all combinations of possible bidix ambiguity:
+        {nh=split($2,ah,"/"); no=split($4,ao,"/");for(i=1;i<=nh;i++)for(j=1;j<=no;j++)print ah[i]" "ao[j]}' \
           >"${outdir}"/nob2nno.sgen
 
 echo "${outdir}"/nno.prep3g
