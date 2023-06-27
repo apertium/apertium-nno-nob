@@ -12,16 +12,23 @@ BEGIN{
 
     PROCINFO["sorted_in"]="@val_num_desc"
 
-    min_freq_bi_keep_sgen = 2
+    min_nob_s_gen_freq = 1    # minimum head+obj    freq in nob2nno.sgen required for making prep rules
+    min_nno_pr_freq = 1       # minimum head+pr+obj freq in nno.prep3g   required for making prep rules
+    min_freq_bi_keep_sgen = 2 # minimum head+obj    freq in nno.sgen     required for making keep-s-gen rules
 }
 
 # input is tab-separated
 # 1:obj	2:prep	3:head
-$3 in s && $1 in s[$3]{
-    bi[$3][$2][$1]++
-    uni[$3][$2]++
-    unio[$1][$2]++
-    biAllPr[$3][$1]++
+{
+    obj  = $1
+    pr   = $2
+    head = $3
+}
+head in s && obj in s[head]{
+    bi[head][pr][obj]++  # bigram frequency of head + preposition + object
+    uni[head][pr]++      # unigram frequency of head with this preposition
+    unio[obj][pr]++      # unigram frequency of object with this preposition
+    biAllPr[head][obj]++ # bigram frequency of head + object over all prepositions
     # print ":"$0
 }
 
@@ -30,8 +37,8 @@ END{
     for(obj in unio)
         for(pr in unio[obj])
             if(omax[obj] < unio[obj][pr]) {
-                omax[obj] = unio[obj][pr]
-                omaxpr[obj] = pr
+                omax[obj] = unio[obj][pr] # highest unigram frequency of this object for some preposition
+                omaxpr[obj] = pr          # preposition that has the highest frequency for this object (argmax)
             }
 
     for(head in uni)
@@ -53,13 +60,13 @@ END{
                 prs=pr; sub(/<.*/,"",prs)
                 heads=head; sub(/<.*/,"",heads)
                 for(obj in bi[head][pr]) {
-                    nob_s_gen_freq = s[head][obj] >= 1
-                    nno_tri_freq = bi[head][pr][obj] >= 1
+                    nob_s_gen_freq = s[head][obj] >= min_nob_s_gen_freq
+                    nno_pr_freq = bi[head][pr][obj] >= min_nno_pr_freq
                     nno_bi_gt_til = bi[head][pr][obj] > (bi[head]["til<pr>"][obj]+0)
                     nno_umax_gt_til = umax[head] > uni[head]["til<pr>"]        && umaxpr[head]      == pr
                     nno_bi_is_max = bimax[head,obj] > bi[head]["til<pr>"][obj] && bimaxpr[head,obj] == pr
                     nno_obj_is_max = omax[obj] > unio[obj]["til<pr>"]          && omaxpr[obj]       == pr && omax[obj] > uni[head]["til<pr>"]
-                    if(nob_s_gen_freq && nno_bi_gt_til && nno_tri_freq) {
+                    if(nob_s_gen_freq && nno_bi_gt_til && nno_pr_freq) {
                         if(nno_umax_gt_til)
                             unilist[pr][head]++
                         else {
