@@ -58,7 +58,7 @@ END{
 
     for(head in bi) for(pr in bi[head]) if(pr != "til<pr>") {
                 prs=pr; sub(/<.*/,"",prs)
-                heads=head; sub(/<.*/,"",heads)
+                head_lm=head; sub(/<.*/,"",head_lm)
                 for(obj in bi[head][pr]) {
                     nob_s_gen_freq = s[head][obj] >= min_nob_s_gen_freq
                     nno_pr_freq = bi[head][pr][obj] >= min_nno_pr_freq
@@ -67,17 +67,23 @@ END{
                     nno_bi_is_max = bimax[head,obj] > bi[head]["til<pr>"][obj] && bimaxpr[head,obj] == pr
                     nno_obj_is_max = omax[obj] > unio[obj]["til<pr>"]          && omaxpr[obj]       == pr && omax[obj] > uni[head]["til<pr>"]
                     if(nob_s_gen_freq && nno_bi_gt_til && nno_pr_freq) {
-                        if(nno_umax_gt_til)
+                        obj_lm=obj; sub(/<.*/,"", obj_lm)
+                        if(nno_umax_gt_til) {
+                            # TODO: why do we do this for each obj, shouldn't it happen in outer (head) loop?
+                            # Also, if NOT nno_bi_is_max (but nno_umax_gt_til), we want an entry in bi-gen-til !!!
+                            # (That way we can get "siger_lag" in bi-gen-til even if "lag" is in gen-i)
                             unilist[pr][head]++
+                        }
                         else {
                             # No point in bigram entry if this prep is selected by head unigram anyway
                             # (But we do want bigram entry if it's just selected by obj,
                             #  obj-lists can't override head unigrams, but bigrams can)
-                            if(nno_obj_is_max)
+                            if(nno_obj_is_max) {
                                 olist[pr][obj]++
-                            objs=obj; sub(/<.*/,"",objs)
-                            if(nno_bi_is_max)
-                                bilist[pr][objs"_"heads]++
+                            }
+                            if(nno_bi_is_max) {
+                                bilist[pr][obj_lm"_"head_lm]++
+                            }
                         }
                     }
                 }
