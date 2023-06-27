@@ -2,11 +2,21 @@
 
 BEGIN{
     OFS=FS=" "
-    while(getline<nob2nnosgenf)s[$1][$2]++
+
+    # s: nno head:obj pairs that appeared in the genitive in nob corpus
+    # (these have been sent through bidix)
+    while(getline<nob2nnosgenf) { s[$1][$2]++ }
+
+    # ns: nno head:obj pairs that appeared in the genitive in nno corpus
     while(getline<nnosgenf){ ns[$1][$2]++; umax_s[$1]++; omax_s[$2]++; }
+
     PROCINFO["sorted_in"]="@val_num_desc"
+
+    min_freq_bi_keep_sgen = 2
 }
 
+# input is tab-separated
+# 1:obj	2:prep	3:head
 $3 in s && $1 in s[$3]{
     bi[$3][$2][$1]++
     uni[$3][$2]++
@@ -77,8 +87,8 @@ END{
             os=obj;sub(/<.*/,"",os)
             # if(omax_s[obj] > omax[obj] && omax_s[obj] > 2)
                 # print "________\t" obj "\t" omax_s[obj]
-            if(hs && os && ns[head][obj] > biAllPr[head][obj] && ns[head][obj] > 1) {
-                print "\t<list-item v=\""hs"_"os"\"/>\t<!-- "ns[head][obj] " -->"
+            if(hs && os && ns[head][obj] > biAllPr[head][obj] && ns[head][obj] >= min_freq_bi_keep_sgen && head in s && obj in s[head]) {
+                print "\t<list-item v=\""hs"_"os"\"/>\t<!-- ns["head"]["obj"] "ns[head][obj]" > biAllPr " biAllPr[head][obj] " -->"
                 # print hs "\t" os "\t" ns[head][obj]
             }
         }
