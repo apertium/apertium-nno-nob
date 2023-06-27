@@ -52,11 +52,11 @@ test -f "${outdir}"/nob2nno.sgen ||
 
 echo "${outdir}"/nno.prep3g
 test -f "${outdir}"/nno.prep3g ||
-    <"${outdir}"/nno.disam                                                           \
-    grep -o '\^[^$]*<n>[^$/]*<def>[$] [^$]*/[a-zæøå]*<pr>[^$]*[$] [^$]*<n>[^$/]*[$]' \
-    | sed 's,\^[^$]*/\([^<]*<pr>\)[^$]*[$],\1,'                                      \
-    | sed 's,\^[^$]*[/+],,g;s/<\(sg\|pl\|sp\|def\|ind\|cmp-split\|gen\)>//g'         \
-    | tr -d '$'                                                                      \
+    <"${outdir}"/nno.disam                                                                      \
+    grep -o '\^[^$]*<n>[^$/]*<def>[$] [^$]*/[a-zæøå]*<pr>[^$]*[$] [^$]*<n>[^$/]*<def>[^$/]*[$]' \
+    | sed 's,\^[^$]*/\([^<]*<pr>\)[^$]*[$],\1,'                                                 \
+    | sed 's,\^[^$]*[/+],,g;s/<\(sg\|pl\|sp\|def\|ind\|cmp-split\|gen\)>//g'                    \
+    | tr -d '$'                                                                                 \
          >"${outdir}"/nno.prep3g
 
 # TODO: inner join this one with nob2nno.sgen too
