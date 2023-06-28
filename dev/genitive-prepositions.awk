@@ -72,14 +72,17 @@ END{
                     nob_s_gen_freq = s[head][obj] >= min_nob_s_gen_freq
                     nno_pr_freq = bi[head][pr][obj] >= min_nno_pr_freq
                     nno_bi_gt_til = bi[head][pr][obj] > (bi[head]["til"][obj]+0)
+                    nno_bimax_is_til = bimaxpr[head,obj] == "til"
                     nno_umax_gt_til = umax[head] > uni[head]["til"]        && umaxpr[head]      == pr
                     nno_bi_is_max = bimax[head,obj] > bi[head]["til"][obj] && bimaxpr[head,obj] == pr
                     nno_obj_is_max = omax[obj] > unio[obj]["til"]          && omaxpr[obj]       == pr && omax[obj] > uni[head]["til"]
+                    if(nob_s_gen_freq && nno_bimax_is_til && nno_umax_gt_til) {
+                        # We want "sigeren til laget" even if "lag" is gen-i
+                        bilist["til"][obj"_"head]++
+                    }
                     if(nob_s_gen_freq && nno_bi_gt_til && nno_pr_freq) {
                         if(nno_umax_gt_til) {
                             # TODO: why do we do this for each obj, shouldn't it happen in outer (head) loop?
-                            # Also, if NOT nno_bi_is_max (but nno_umax_gt_til), we want an entry in bi-gen-til !!!
-                            # (That way we can get "siger_lag" in bi-gen-til even if "lag" is in gen-i)
                             unilist[pr][head]++
                         }
                         else {

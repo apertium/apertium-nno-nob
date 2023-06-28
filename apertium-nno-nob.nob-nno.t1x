@@ -1820,7 +1820,7 @@
       <list-item v="åtakar"/>
     </def-list>
 
-    <def-list n="bi-gen-til" c="This list checked before the generated bigram-lists and unigram lists,
+    <def-list n="bi-gen-til2" c="This list checked before the generated bigram-lists and unigram lists,
                                 for overriding back to «til»">
       <list-item v="tid_regjering"/>
       <list-item v="vogge_vår"/>
@@ -3985,7 +3985,7 @@
       <let><var n="bilem"/><concat><clip pos="1" side="tl" part="lem"/><lit v="_"/><var n="prevlem"/></concat></let>
       <modify-case><var n="bilem"/><lit v="aa"/></modify-case>
       <choose>
-        <when><test><in><var n="bilem"/><list n="bi-gen-til"/></in></test><append n="ntags"><lit-tag v="pr_til"/></append></when>
+        <when><test><in><var n="bilem"/><list n="bi-gen-til2"/></in></test><append n="ntags"><lit-tag v="pr_til"/></append></when>
         <when><test><in><var n="bilem"/><list n="bi-gen-av2"/></in></test><append n="ntags"><lit-tag v="pr_av"/></append></when>
         <when><test><in><var n="bilem"/><list n="bi-gen-frå2"/></in></test><append n="ntags"><lit-tag v="pr_frå"/></append></when>
         <when><test><in><var n="bilem"/><list n="bi-gen-for2"/></in></test><append n="ntags"><lit-tag v="pr_for"/></append></when>
