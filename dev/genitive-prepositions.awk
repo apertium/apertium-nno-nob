@@ -57,7 +57,7 @@ END{
                 }
 
     for(head in bi) for(pr in bi[head]) if(pr != "til<pr>") {
-                prs=pr; sub(/<.*/,"",prs)
+                pr_lm=pr; sub(/<.*/,"",pr_lm)
                 head_lm=head; sub(/<.*/,"",head_lm)
                 for(obj in bi[head][pr]) {
                     nob_s_gen_freq = s[head][obj] >= min_nob_s_gen_freq
@@ -111,8 +111,8 @@ END{
     PROCINFO["sorted_in"]="@ind_str_asc"
     print "\n<!-- Genitive preps where bigram frequency gt til -->"
     for(pr in bilist) {
-        prs=pr; sub(/<.*/,"",prs)
-        print "\n<def-list n=\"bi-gen-"prs"\">"
+        pr_lm=pr; sub(/<.*/,"",pr_lm)
+        print "\n<def-list n=\"bi-gen-"pr_lm"\">"
         for(head in bilist[pr]) {
             sub(/<.*/,"",head)
             print "\t<list-item v=\""head"\"/>"
@@ -121,8 +121,8 @@ END{
     }
     print "\n<!-- Genitive preps where unigram frequency of *object* gt til -->"
     for(pr in olist) {
-        prs=pr; sub(/<.*/,"",prs)
-        print "\n<def-list n=\"obj-gen-"prs"\">"
+        pr_lm=pr; sub(/<.*/,"",pr_lm)
+        print "\n<def-list n=\"obj-gen-"pr_lm"\">"
         for(obj in olist[pr]) {
             sub(/<.*/,"",obj)
             print "\t<list-item v=\""obj"\"/>"
@@ -131,8 +131,8 @@ END{
     }
     print "\n<!-- Genitive preps where unigram frequency gt til -->"
     for(pr in unilist) {
-        prs=pr; sub(/<.*/,"",prs)
-        print "\n<def-list n=\"gen-"prs"\">"
+        pr_lm=pr; sub(/<.*/,"",pr_lm)
+        print "\n<def-list n=\"gen-"pr_lm"\">"
         for(head in unilist[pr]) {
             sub(/<.*/,"",head)
             print "\t<list-item v=\""head"\"/>"
@@ -142,14 +142,14 @@ END{
 
     print "\n<!-- put in t1x out_gen-prep macro choose: -->"
     for(pr in unilist) {
-        prs=pr; sub(/<.*/,"",prs)
-        printf "          <when><test><in><var n=\"lemma\"/><list n=\"gen-%s\"/></in></test><let><var n=\"gen-prep\"/><lit v=\"%s\"/></let></when>\n", prs, prs
+        pr_lm=pr; sub(/<.*/,"",pr_lm)
+        printf "          <when><test><in><var n=\"lemma\"/><list n=\"gen-%s\"/></in></test><let><var n=\"gen-prep\"/><lit v=\"%s\"/></let></when>\n", pr_lm, pr_lm
     }
 
     print "\n<!-- put in t1x bigram_genprep macro choose: -->"
     for(pr in bilist) {
-        prs=pr; sub(/<.*/,"",prs)
-        printf "        <when><test><in><var n=\"bilem\"/><list n=\"bi-gen-%s\"/></in></test><append n=\"ntags\"><lit-tag v=\"pr_%s\"/></append></when>\n", prs, prs
+        pr_lm=pr; sub(/<.*/,"",pr_lm)
+        printf "        <when><test><in><var n=\"bilem\"/><list n=\"bi-gen-%s\"/></in></test><append n=\"ntags\"><lit-tag v=\"pr_%s\"/></append></when>\n", pr_lm, pr_lm
     }
     print "        <otherwise>\n          <choose><when c=\"Only use obj unigram if both out_gen-prep and bi-gen didn't pick something first\">\n            <test><equal><var n=\"gen-prep\"/><lit v=\"til\"/></equal></test>\n            <choose>"
     # Manual override lists first:
@@ -158,14 +158,14 @@ END{
     print "              <when><test><in><var n=\"lemma\"/><list n=\"obj-gen-av2\"/></in></test><append n=\"ntags\"><lit-tag v=\"pr_av\"/></append></when>"
     print "              <when><test><in><var n=\"lemma\"/><list n=\"obj-gen-på2\"/></in></test><append n=\"ntags\"><lit-tag v=\"pr_på\"/></append></when>"
     for(pr in olist) {
-        prs=pr; sub(/<.*/,"",prs)
-        printf "              <when><test><in><var n=\"lemma\"/><list n=\"obj-gen-%s\"/></in></test><append n=\"ntags\"><lit-tag v=\"pr_%s\"/></append></when>\n", prs, prs
+        pr_lm=pr; sub(/<.*/,"",pr_lm)
+        printf "              <when><test><in><var n=\"lemma\"/><list n=\"obj-gen-%s\"/></in></test><append n=\"ntags\"><lit-tag v=\"pr_%s\"/></append></when>\n", pr_lm, pr_lm
     }
     print "            </choose>\n          </when></choose>\n        </otherwise>"
 
     print "\n<!-- put in t2x out_bi-gen-prep macro choose: -->"
     for(pr in bilist) {
-        prs=pr; sub(/<.*/,"",prs)
-        printf "        <when><test><equal><var n=\"genpr\"/><lit-tag v=\"pr_%s\"/></equal></test><let><var n=\"pr_lemh\"/><lit v=\"%s\"/></let></when>\n", prs, prs
+        pr_lm=pr; sub(/<.*/,"",pr_lm)
+        printf "        <when><test><equal><var n=\"genpr\"/><lit-tag v=\"pr_%s\"/></equal></test><let><var n=\"pr_lemh\"/><lit v=\"%s\"/></let></when>\n", pr_lm, pr_lm
     }
 }
