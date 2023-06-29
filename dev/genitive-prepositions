@@ -16,16 +16,24 @@ test -f "${outdir}"/nno.disam ||
         | pv -ls "$(nnols)"                   \
              >"${outdir}"/nno.disam
 
+onlyNounsMainPos () {
+    # Keep only the noun readings, drop non-head compound parts, drop inflection tags, keep only one of ambiguous readings
+    sed 's,/[^$/]*+,/,g'                                                               \
+  | sed -E 's,/[^/+$]*<(adj|vblex|adv|pr|ij|cnjsub|cnjcoo|np|det|xpst[so]?)>[^/$]*,,g' \
+  | sed 's,\^[^$]*/,,g'                                                                \
+  | sed 's/<\(sg\|pl\|sp\|def\|ind\|gen\)>//g'                                         \
+  | tr -d '$'
+}
+
 echo "${outdir}"/nno.sgen
 test -f "${outdir}"/nno.sgen ||
-    <"${outdir}"/nno.disam                                                               \
-    grep '/[^</$]*<n>[^/$]*<gen>[$] \^[^$]*<n>[^$]*[$]' -o                               \
-    | grep -v '<cmp'                                                                     \
-    | grep -v 'alphabet<'                                                                \
-    | sed -E 's,/[^/]*<(adj|vblex|adv|pr|ij|cnjsub|cnjcoo|np|det|xpst[so]?)>[^/$]*,,g'   \
-    | sed 's,/[^$]*+,/,g;s,\^[^/]*,,;s,/[^$]*/,/,g;s/<\(sg\|pl\|sp\|def\|ind\|gen\)>//g' \
-    | tr -d '/$'                                                                         \
-      > "${outdir}"/nno.sgen                                                             \
+    <"${outdir}"/nno.disam                                 \
+    grep '/[^</$]*<n>[^/$]*<gen>[$] \^[^$]*<n>[^$]*[$]' -o \
+    | grep -v '<cmp[^>]'                                   \
+    | grep -v 'alphabet<'                                  \
+    | onlyNounsMainPos                                     \
+    | tr -d /                                              \
+      > "${outdir}"/nno.sgen                               \
 
 echo "${outdir}"/nob.disam
 nobls () { xzcat  corpus/nob/*xz | wc -l; }
@@ -52,19 +60,21 @@ test -f "${outdir}"/nob2nno.sgen ||
 
 echo "${outdir}"/nno.prep3g
 test -f "${outdir}"/nno.prep3g ||
-    <"${outdir}"/nno.disam                                                                      \
-    grep -o '\^[^$]*<n>[^$/]*<def>[$] [^$]*/[a-zæøå]*<pr>[^$]*[$] [^$]*<n>[^$/]*<def>[^$/]*[$]' \
-    | sed 's,\^[^$]*/\([^<]*<pr>\)[^$]*[$],\1,'                                                 \
-    | sed 's,\^[^$]*[/+],,g;s/<\(sg\|pl\|sp\|def\|ind\|cmp-split\|gen\)>//g'                    \
-    | tr -d '$'                                                                                 \
+    <"${outdir}"/nno.disam                                                                        \
+    grep -o '\^[^$]*<n>[^$/]*<def>[$] [^$]*/[a-zæøå]*<pr>[^$]*[$] [^$]*<n>[^$]*[$]'               \
+    | grep -Ee '<pr>.*(kvinne|mann|herre|jente|gut|dame)<n>' -e '<pr>.*<n>[^$/]*<def>[^$/+]*[$/]' \
+    | sed 's,\^[^$]*/\([^<]*<pr>\)[^$]*[$],\1,'                                                   \
+    | onlyNounsMainPos                                                                            \
          >"${outdir}"/nno.prep3g
+# The kvinne|mann|… is from <def-list n="bi-indgen-owner">
 
 # TODO: inner join this one with nob2nno.sgen too
 echo "${outdir}"/nno.noprepdag
 test -f "${outdir}"/nno.noprepdag ||
     <"${outdir}"/nno.disam                                                                                    \
      grep -o '\^[^$]*<n>[^$/]*<def>[$] [^$]*\(laur\|søn\|sun\|mån\|man\|tys\|tirs\|ons\|fre\)dag<n>[^$/]*[$]' \
-        | sed 's,\^[^$]*[/+],,g;s/<\(sg\|pl\|sp\|def\|ind\|cmp-split\|gen\)>//g'                              \
+        | sed 's,\^[^$]*[/+],,g;'                                                                             \
+        | sed 's/<\(sg\|pl\|sp\|def\|ind\|cmp-split\|gen\)>//g'                                               \
         | tr -d '$'                                                                                           \
              >"${outdir}"/nno.noprepdag
 
