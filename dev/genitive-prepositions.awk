@@ -23,6 +23,9 @@ BEGIN{
     min_nob_s_gen_freq = 1    # minimum head+obj    freq in nob2nno.sgen required for making prep rules
     min_nno_pr_freq = 1       # minimum head+pr+obj freq in nno.prep3g   required for making prep rules
     min_freq_bi_keep_sgen = 2 # minimum head+obj    freq in nno.sgen     required for making keep-s-gen rules
+    bi_factor = 1 # head,obj+pr has to be this much more frequent than head,obj+til for making bigram gen rules
+    uni_factor = 3 # head+pr has to be this much more frequent than head+til for making unigram gen rules
+    obj_factor = 3 # obj+pr has to be this much more frequent than obj+til for making obj-gen rules
 }
 
 # input is space-separated
@@ -73,9 +76,9 @@ END{
                     nno_pr_freq = bi[head][pr][obj] >= min_nno_pr_freq
                     nno_bi_gt_til = bi[head][pr][obj] > (bi[head]["til"][obj]+0)
                     nno_bimax_is_til = bimaxpr[head,obj] == "til"
-                    nno_umax_gt_til = umax[head] > uni[head]["til"]        && umaxpr[head]      == pr
-                    nno_bi_is_max = bimax[head,obj] > bi[head]["til"][obj] && bimaxpr[head,obj] == pr
-                    nno_obj_is_max = omax[obj] > unio[obj]["til"]          && omaxpr[obj]       == pr && omax[obj] > uni[head]["til"]
+                    nno_umax_gt_til =    umax[head] > uni_factor * uni[head]["til"]     && umaxpr[head] == pr
+                    nno_bi_is_max = bimax[head,obj] > bi_factor  * bi[head]["til"][obj] && bimaxpr[head,obj] == pr
+                    nno_obj_is_max =      omax[obj] > obj_factor * unio[obj]["til"]     && omaxpr[obj] == pr && omax[obj] > uni[head]["til"]
                     if(nob_s_gen_freq && nno_bimax_is_til && nno_umax_gt_til) {
                         # We want "sigeren til laget" even if "lag" is gen-i
                         bilist["til"][obj"_"head]++
