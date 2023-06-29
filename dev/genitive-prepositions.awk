@@ -123,7 +123,6 @@ END{
     PROCINFO["sorted_in"]="@ind_str_asc"
     print "\n<!-- Genitive preps where bigram frequency gt til -->"
     for(pr in bilist) {
-        pr=pr; sub(/<.*/,"",pr)
         print "\n<def-list n=\"bi-gen-"pr"\">"
         for(head in bilist[pr]) {
             sub(/<.*/,"",head)
@@ -133,7 +132,6 @@ END{
     }
     print "\n<!-- Genitive preps where unigram frequency of *object* gt til -->"
     for(pr in olist) {
-        pr=pr; sub(/<.*/,"",pr)
         print "\n<def-list n=\"obj-gen-"pr"\">"
         for(obj in olist[pr]) {
             sub(/<.*/,"",obj)
@@ -143,7 +141,6 @@ END{
     }
     print "\n<!-- Genitive preps where unigram frequency gt til -->"
     for(pr in unilist) {
-        pr=pr; sub(/<.*/,"",pr)
         print "\n<def-list n=\"gen-"pr"\">"
         for(head in unilist[pr]) {
             sub(/<.*/,"",head)
@@ -154,12 +151,13 @@ END{
 
     print "\n<!-- put in t1x out_gen-prep macro choose: -->"
     for(pr in unilist) {
-        pr=pr; sub(/<.*/,"",pr)
+        if(pr ~ /blant|mellom/) { print "<!-- gen-" pr " should only be chosen when plural -->"; continue; }
         printf "          <when><test><in><var n=\"lemma\"/><list n=\"gen-%s\"/></in></test><let><var n=\"gen-prep\"/><lit v=\"%s\"/></let></when>\n", pr, pr
     }
 
     print "\n<!-- put in t1x bigram_genprep macro choose: -->"
     for(pr in bilist) {
+        if(pr ~ /blant|mellom/) { print "<!-- gen-" pr " should only be chosen when plural -->"; continue; }
         printf "        <when><test><in><var n=\"bilem\"/><list n=\"bi-gen-%s\"/></in></test><append n=\"ntags\"><lit-tag v=\"pr_%s\"/></append></when>\n", pr, pr
     }
     print "        <otherwise>\n          <choose><when c=\"Only use obj unigram if both out_gen-prep and bi-gen didn't pick something first\">\n            <test><equal><var n=\"gen-prep\"/><lit v=\"til\"/></equal></test>\n            <choose>"
