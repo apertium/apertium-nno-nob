@@ -83,3 +83,29 @@ test -f "${outdir}"/nno.noprepdag ||
       -v nnosgenf="${outdir}"/nno.sgen          \
  -f "$(dirname "$0")"/genitive-prepositions.awk \
     | tee "${outdir}"/out
+
+
+
+
+
+
+
+dedupe_bi_gen () {
+    # Helper to remove useless bigram entries (where unigram entries would pick the head anyway).
+    # NB. Runs through the file twice, first to collect unigram entries, then to drop useless bigrams (and keep the rest).
+    # Idempotent.
+    awk '
+/^ *<def-list n="/ { name=$0; sub(/.*<def-list n="/,"",name); sub(/".*/,"",name) }
+/<\/def-list/ { name = uniname = "" }
+/<list-item v="/{item=$0;sub(/.*v="/,"",item);sub(/".*/,"",item)}
+
+# We are on the first run, store unigram entries:
+NR==FNR && name && /<list-item/ {uni[name][item]++}
+
+# We are on the second run, skip bigram entries where the head is in a unigram entry:
+NR>FNR && /<def-list n="bi-/ { uniname=name; sub(/bi-/,"",uniname); }
+NR>FNR && uniname && /<list-item/ { head=item; sub(/.*_/,"",head); if(uniname in uni && head in uni[uniname]) next }
+NR>FNR { print }' \
+        apertium-nno-nob.nob-nno.t1x \
+        apertium-nno-nob.nob-nno.t1x
+}
