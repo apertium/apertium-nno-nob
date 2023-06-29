@@ -21,11 +21,12 @@ BEGIN{
     PROCINFO["sorted_in"]="@val_num_desc"
 
     min_nob_s_gen_freq = 1    # minimum head+obj    freq in nob2nno.sgen required for making prep rules
-    min_nno_pr_freq = 1       # minimum head+pr+obj freq in nno.prep3g   required for making prep rules
+    min_nno_pr_freq = 2       # minimum head+pr+obj freq in nno.prep3g   required for making prep rules
     min_freq_bi_keep_sgen = 2 # minimum head+obj    freq in nno.sgen     required for making keep-s-gen rules
     bi_factor = 1 # head,obj+pr has to be this much more frequent than head,obj+til for making bigram gen rules
     uni_factor = 3 # head+pr has to be this much more frequent than head+til for making unigram gen rules
     obj_factor = 3 # obj+pr has to be this much more frequent than obj+til for making obj-gen rules
+    sgen_factor = 2 # obj<s-gen>head has to be this much more frequent than sum of all head,obj+PR for making s-gen exceptions
 }
 
 # input is space-separated
@@ -112,7 +113,7 @@ END{
         for(obj in ns[head]) {
             # if(omax_s[obj] > omax[obj] && omax_s[obj] > 2)
                 # print "________\t" obj "\t" omax_s[obj]
-            if(head && obj && ns[head][obj] > biAllPr[head][obj] && ns[head][obj] >= min_freq_bi_keep_sgen && head in s && obj in s[head]) {
+            if(head && obj && ns[head][obj] > sgen_factor * biAllPr[head][obj] && ns[head][obj] >= min_freq_bi_keep_sgen && head in s && obj in s[head]) {
                 print "\t<list-item v=\""head"_"obj"\"/>\t<!-- ns["head"]["obj"] "ns[head][obj]" > biAllPr " biAllPr[head][obj] " -->"
                 # print head "\t" obj "\t" ns[head][obj]
             }
