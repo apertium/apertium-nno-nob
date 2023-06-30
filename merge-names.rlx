@@ -95,8 +95,11 @@ MERGECOHORTS:m+l ("<$1 $3>"v "$2 $4"v cgguess * VSTR:$6)
 
 REMOVE:1@ (@subst→) ;
 
-SUBSTITUTE:gen (cgguess gen np ant) (np ant cgguess gen) (cgguess gen np ant)         ;
-SUBSTITUTE:nom (cgguess     np ant) (np ant cgguess    ) (cgguess     np ant) - (gen) ;
+SUBSTITUTE:gen (cgguess gen np ant)    (np ant cgguess    gen) (cgguess gen np ant)         ;
+SUBSTITUTE:gen (cgguess gen np ant m)  (np ant cgguess m  gen) (cgguess gen np ant m)       ;
+SUBSTITUTE:gen (cgguess gen np ant f)  (np ant cgguess f  gen) (cgguess gen np ant f)       ;
+SUBSTITUTE:gen (cgguess gen np ant nt) (np ant cgguess nt gen) (cgguess gen np ant nt)      ;
+SUBSTITUTE:nom (cgguess     np ant)    (np ant cgguess       ) (cgguess     np ant) - (gen) ;
 
 SUBSTITUTE:gen (cgguess gen np cog) (np cog cgguess gen) (cgguess gen np cog)         ;
 SUBSTITUTE:nom (cgguess     np cog) (np cog cgguess    ) (cgguess     np cog) - (gen) ;
