@@ -1730,6 +1730,23 @@
     <match tags="n.*"/>
   </rule>
 
+  <rule><match lemma="tilbakedatere" tags="vblex.*"><select lemma="datere# tilbake"/></match></rule>
+  <rule weight="2.0">
+    <or>
+      <match lemma="være" tags="vblex.*"/>
+      <match lemma="bli" tags="vblex.*"/>
+    </or>
+    <match lemma="tilbakedatere" tags="*.pp.*">
+      <select lemma="datere# tilbake"/>
+    </match>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="tilbakedatere" tags="adj.pp.*">
+      <select lemma="tilbakedatere"/>
+    </match>
+    <match tags="n.*"/>
+  </rule>
+
   <rule><match lemma="utskrive" tags="vblex.*"><select lemma="skrive# ut"/></match></rule>
   <rule weight="2.0">
     <or>
