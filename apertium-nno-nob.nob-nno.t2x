@@ -1997,21 +1997,13 @@
         <call-macro n="modify_prn_gen"><with-param pos="1"/></call-macro>
         <call-macro n="set_ana"><with-param pos="1"/></call-macro>
         <out>
-          <chunk>
-            <clip pos="1" part="whole"/>
-          </chunk>
+          <chunk><clip pos="1" part="whole"/></chunk>
           <b/>
-          <chunk>
-            <clip pos="2" part="whole"/>
-          </chunk>
+          <chunk><clip pos="2" part="whole"/></chunk>
           <b/>      <!-- extra space since empty blank before lemq -->
-          <chunk>
-            <clip pos="3" part="whole"/>
-          </chunk>
+          <chunk><clip pos="3" part="whole"/></chunk>
           <b/>
-          <chunk>
-            <clip pos="4" part="whole"/>
-          </chunk>
+          <chunk><clip pos="4" part="whole"/></chunk>
         </out>
       </action>
     </rule>
@@ -2026,18 +2018,62 @@
       </pattern>
       <action>
         <call-macro n="set_ana"><with-param pos="1"/></call-macro>
+        <call-macro n="set_ana"><with-param pos="3"/></call-macro>
         <out>
-          <chunk>
-            <clip pos="1" part="whole"/>
-          </chunk>
+          <chunk><clip pos="1" part="whole"/></chunk>
           <b/>      <!-- extra space since empty blank before lemq -->
           <b/>
-          <chunk>
-            <clip pos="3" part="whole"/>
-          </chunk>
-          <chunk>
-            <clip pos="2" part="whole"/>
-          </chunk>
+          <chunk><clip pos="3" part="whole"/></chunk>
+          <chunk><clip pos="2" part="whole"/></chunk>
+        </out>
+      </action>
+    </rule>
+
+    <rule comment="VBLEX LEMQ-SKIP-N DET NDEF_NP_PERS => VBLEX DET NDEF_NP_PERS LEMQ-SKIP-N
+                   , fortsetter den britiske mutasjonen → , held den britiske mutasjonen fram">
+      <pattern>
+        <pattern-item n="vblex"/>            <!-- 1. held -->
+        <pattern-item n="lemq-skip-n"/>      <!-- 2. fram -->
+        <pattern-item n="det"/>              <!-- 3. den -->
+        <pattern-item n="ndef_OR_np_agent"/> <!-- 4. britiske mutasjonen -->
+      </pattern>
+      <action>
+        <call-macro n="set_ana"><with-param pos="1"/></call-macro>
+        <call-macro n="set_ana"><with-param pos="4"/></call-macro>
+        <out>
+          <chunk><clip pos="1" part="whole"/></chunk>
+          <b/>      <!-- extra space since empty blank before lemq -->
+          <b/>
+          <chunk><clip pos="3" part="whole"/></chunk>
+          <b/>
+          <chunk><clip pos="4" part="whole"/></chunk>
+          <chunk><clip pos="2" part="whole"/></chunk>
+        </out>
+      </action>
+    </rule>
+
+    <rule comment="VBLEX LEMQ-SKIP-N DET NDEF_NP_PERS ADV_MOVABLE => VBLEX DET NDEF_NP_PERS ADV_MOVABLE LEMQ-SKIP-N
+                   , fortsetter den britiske mutasjonen stadig → , held den britiske mutasjonen stadig fram">
+      <pattern>
+        <pattern-item n="vblex"/>            <!-- 1. held -->
+        <pattern-item n="lemq-skip-n"/>      <!-- 2. fram -->
+        <pattern-item n="det"/>              <!-- 3. den -->
+        <pattern-item n="ndef_OR_np_agent"/> <!-- 4. britiske mutasjonen -->
+        <pattern-item n="adv_movable"/>      <!-- 5. stadig -->
+      </pattern>
+      <action>
+        <call-macro n="set_ana"><with-param pos="1"/></call-macro>
+        <call-macro n="set_ana"><with-param pos="4"/></call-macro>
+        <out>
+          <chunk><clip pos="1" part="whole"/></chunk>
+          <b/>      <!-- extra space since empty blank before lemq -->
+          <b/>
+          <chunk><clip pos="3" part="whole"/></chunk>
+          <b/>
+          <chunk><clip pos="4" part="whole"/></chunk>
+          <b/>
+          <chunk><clip pos="5" part="whole"/></chunk>
+          <chunk><clip pos="2" part="whole"/></chunk>
         </out>
       </action>
     </rule>
@@ -2054,21 +2090,13 @@
       <action>
         <call-macro n="set_ana"><with-param pos="1"/></call-macro>
         <out>
-          <chunk>
-            <clip pos="1" part="whole"/>
-          </chunk>
+          <chunk><clip pos="1" part="whole"/></chunk>
           <b/>      <!-- extra space since empty blank before lemq -->
           <b/>
-          <chunk>
-            <clip pos="3" part="whole"/>
-          </chunk>
+          <chunk><clip pos="3" part="whole"/></chunk>
           <b/>
-          <chunk>
-            <clip pos="4" part="whole"/>
-          </chunk>
-          <chunk>
-            <clip pos="2" part="whole"/>
-          </chunk>
+          <chunk><clip pos="4" part="whole"/></chunk>
+          <chunk><clip pos="2" part="whole"/></chunk>
         </out>
       </action>
     </rule>
@@ -2085,25 +2113,15 @@
       <action>
         <call-macro n="set_ana"><with-param pos="1"/></call-macro>
         <out>
-          <chunk>
-            <clip pos="1" part="whole"/>
-          </chunk>
+          <chunk><clip pos="1" part="whole"/></chunk>
           <b/>      <!-- extra space since empty blank before lemq -->
           <b/>
-          <chunk>
-            <clip pos="3" part="whole"/>
-          </chunk>
+          <chunk><clip pos="3" part="whole"/></chunk>
           <b/>
-          <chunk>
-            <clip pos="4" part="whole"/>
-          </chunk>
+          <chunk><clip pos="4" part="whole"/></chunk>
           <b/>
-          <chunk>
-            <clip pos="5" part="whole"/>
-          </chunk>
-          <chunk>
-            <clip pos="2" part="whole"/>
-          </chunk>
+          <chunk><clip pos="5" part="whole"/></chunk>
+          <chunk><clip pos="2" part="whole"/></chunk>
         </out>
       </action>
     </rule>
