@@ -255,6 +255,9 @@ REMOVE:Oskeladden_Askeladden.vok-a2o ("Askeladden"i) IF (0 ("Oskeladden"i));
 SELECT:tek_tar.vb-en2tt ("unntatt"i) IF (0 ("unnateken"i) + (VAR:tek_tar.vb-en2tt));
 REMOVE:tek_tar.vb-en2tt ("unntatt"i) IF (0 ("unnateken"i));
 
+SELECT:storleik_størrelse ("størrelse"i) IF (0 ("storleik"i) + (VAR:storleik_størrelse.syn));
+REMOVE:storleik_størrelse ("størrelse"i) IF (0 ("storleik"i));
+
 # DEBUG NOTES:
 # $ echo '[<STREAMCMD:SETVAR:forskjell_skilnad,samd_einig>]^forskjell<n><m><sg><ind>/forskjell<n><m><sg><ind>/skilnad<n><m><sg><ind>$ ^enig<adj><sint><pst><nt><sg><ind>/samd<adj><sint><pst><nt><sg><ind>/einig<adj><sint><pst><nt><sg><ind>$' | ~/src/ap/vislcg3/src/cg-proc -t biprefs.nob-nno.rlx.bin |cg-conv
 # [<STREAMCMD:SETVAR:forskjell_skilnad,samd_einig>]
