@@ -1748,14 +1748,22 @@
   </rule>
 
   <rule><match lemma="utskrive" tags="vblex.*"><select lemma="skrive# ut"/></match></rule>
-  <rule weight="2.0">
+  <rule weight="3.0">
     <or>
       <match lemma="være" tags="vblex.*"/>
       <match lemma="bli" tags="vblex.*"/>
+      <match lemma="få" tags="vblex.*"/>
     </or>
+    <repeat from="0" upto="3"><match/></repeat>
     <match lemma="utskrive" tags="*.pp.*">
       <select lemma="skrive# ut"/>
     </match>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="utskrive" tags="adj.pp.*">
+      <select lemma="skrive# ut"/>
+    </match>
+    <match tags="pr.*"/>
   </rule>
   <rule weight="2.0">
     <match lemma="utskrive" tags="adj.pp.*">
