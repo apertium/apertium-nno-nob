@@ -1107,6 +1107,17 @@
     </repeat>
     <match tags="n.*.ind.*"/>
   </rule>
+  <rule weight="2.0" c="Pass på så karamellen ikke blir for mørk og brent">
+    <match lemma="bli" tags="vblex.*"/>
+    <repeat from="0" upto="1">
+      <match tags="*"/>
+    </repeat>
+    <match tags="adj.*"/>
+    <match lemma="og"/>
+    <match lemma="brenne" tags="adj.pp.*">
+      <select lemma="brenne¹"/>
+    </match>
+  </rule>
 
   <rule> <match lemma="foreligge" tags="vblex.*"> <select lemma="ligge# føre"/> </match> </rule>
   <rule> <match lemma="foreligge" tags="adj.*"> <select lemma="gjelde"/> </match> </rule>
