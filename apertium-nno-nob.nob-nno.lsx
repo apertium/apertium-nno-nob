@@ -987,6 +987,12 @@
       <e><i>neste<t/><d/></i></e>
     </pardef>
 
+    <pardef n="ha|gi|få">
+      <e><i>ha<s n="vblex"/><t/><d/></i></e>
+      <e><i>gi<s n="vblex"/><t/><d/></i></e>
+      <e><i>få<s n="vblex"/><t/><d/></i></e>
+    </pardef>
+    
     <pardef n="første-andre-siste-neste">
       <e><par n="første-neste-siste"/></e>
       <e><i>annen<s n="det"/><s n="dem"/><s n="un"/><s n="pl"/><t/><d/></i></e>
@@ -3257,6 +3263,25 @@
     <pardef n="ANYWORD|">
       <e></e>
       <e><i><w/><t/><d/></i></e>
+    </pardef>
+
+    <pardef n="ANYWORDx3|empty">
+      <e>
+        <par n="ANYWORD|"/>
+        <par n="ANYWORD|"/>
+        <par n="ANYWORD|"/>
+      </e>
+    </pardef>
+
+    <pardef n="ANYWORDx6|empty">
+      <e>
+        <par n="ANYWORD|"/>
+        <par n="ANYWORD|"/>
+        <par n="ANYWORD|"/>
+        <par n="ANYWORD|"/>
+        <par n="ANYWORD|"/>
+        <par n="ANYWORD|"/>
+      </e>
     </pardef>
 
     <pardef n="ANYWORDx8|empty">
@@ -14618,6 +14643,21 @@
   <p><l><t/><s n="ind"/><t/></l> <r><t/><s n="def"/><t/></r></p>  <par n="d"/>
   <i><w/><s n="adj"/><t/></i> <par n="d"/>
   <i><w/><s n="n"/><t/></i> <par n="d"/>
+</e>
+
+<!-- *.ind, see LRX -->
+<e lm="ha/gi/få + muligheten til → ha/gi/få + høve til" c="ha/gi/få + høve til">
+  <par n="ha|gi|få"/>
+  <par n="ANYWORDx6|empty"/>
+  <p><l>mulighet<s n="n"/><t/><s n="sg"/><s n="def"/></l>         <r>høve<s n="n"/><s n="nt"/><s n="sg"/><s n="ind"/></r></p> <i><t/><d/></i>
+  <i>til<s n="pr"/><t/></i> <par n="d"/>
+</e>
+
+<e lm="benytte + muligheten til → benytte + høvet til" c="nytte + høvet til">
+  <i>benytte<t/><d/></i>
+  <par n="ANYWORDx6|empty"/>
+  <p><l>mulighet<s n="n"/><t/><s n="sg"/><s n="def"/></l>         <r>høve<s n="n"/><s n="nt"/><s n="sg"/><s n="def"/></r></p> <i><t/><d/></i>
+  <i>til<s n="pr"/><t/></i> <par n="d"/>
 </e>
 
 <!-- TODO: for (både) Olas og Karis del o.l. -->
