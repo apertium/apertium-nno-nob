@@ -312,6 +312,11 @@
       <cat-item tags="adv.movable"/>
       <cat-item tags="adv.movable.*"/>
     </def-cat>
+    <def-cat n="adv_movable_OR_adjadv">
+      <cat-item tags="adv.movable"/>
+      <cat-item tags="adv.movable.*"/>
+      <cat-item tags="adj.*.nt.sg.*"/>
+    </def-cat>
     <def-cat n="adjsg">
       <cat-item tags="adj.*.sg.*"/>
     </def-cat>
@@ -2034,7 +2039,7 @@
       <pattern>
         <pattern-item n="vblex"/>            <!-- 1. held -->
         <pattern-item n="lemq-skip-n"/>      <!-- 2. # fram med -->
-        <pattern-item n="adv_movable"/>      <!-- 3. nemleg -->
+        <pattern-item n="adv_movable_OR_adjadv"/> <!-- 3. nemleg/stadig -->
         <pattern-item n="ndef_OR_np_agent"/> <!-- 4. flya -->
       </pattern>
       <action>

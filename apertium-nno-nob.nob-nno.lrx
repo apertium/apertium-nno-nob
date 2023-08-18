@@ -328,6 +328,12 @@
 
         </or>
       </def-seq>
+      <def-seq n="adverbial">
+        <or>
+          <match tags="adj.*.@adv"/>
+          <match tags="adv.*"/>
+        </or>
+      </def-seq>
       <def-seq n="not-noun">
         <or>
            <match tags="prn.*"/>
@@ -3042,7 +3048,7 @@
   <!-- Always «halde fram med» before «å»: -->
   <rule weight="9.0">
     <match lemma="fortsette" tags="vblex.*"><select lemma="halde# fram med"/></match>
-    <repeat from="0" upto="2"><match tags="adv.*"/></repeat>
+    <repeat from="0" upto="2"><seq n="adverbial"/></repeat>
     <repeat from="0" upto="1"><or>
       <seq n="animat_unk"/>
       <match tags="*.@subj"/>
