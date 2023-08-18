@@ -2029,6 +2029,30 @@
       </action>
     </rule>
 
+    <rule comment="VBLEX LEMQ-SKIP-N ADV_MOVABLE NDEF_NP_PERS => VBLEX NDEF_NP_PERS ADV_MOVABLE LEMQ-SKIP-N
+                   , fortsetter nemlig flyene [å lande] → , held nemleg flya fram med [å lande]">
+      <pattern>
+        <pattern-item n="vblex"/>            <!-- 1. held -->
+        <pattern-item n="lemq-skip-n"/>      <!-- 2. # fram med -->
+        <pattern-item n="adv_movable"/>      <!-- 3. nemleg -->
+        <pattern-item n="ndef_OR_np_agent"/> <!-- 4. flya -->
+      </pattern>
+      <action>
+        <call-macro n="set_ana"><with-param pos="1"/></call-macro>
+        <call-macro n="set_ana"><with-param pos="4"/></call-macro>
+        <out>
+          <chunk><clip pos="1" part="whole"/></chunk>
+          <b/>      <!-- extra space since empty blank before lemq -->
+          <b/>
+          <chunk><clip pos="3" part="whole"/></chunk>
+          <b/>
+          <chunk><clip pos="4" part="whole"/></chunk>
+          <chunk><clip pos="2" part="whole"/></chunk>
+        </out>
+      </action>
+    </rule>
+
+
     <rule comment="VBLEX LEMQ-SKIP-N DET NDEF_NP_PERS => VBLEX DET NDEF_NP_PERS LEMQ-SKIP-N
                    , fortsetter den britiske mutasjonen → , held den britiske mutasjonen fram">
       <pattern>

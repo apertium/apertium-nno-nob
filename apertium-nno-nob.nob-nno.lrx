@@ -3041,9 +3041,12 @@
   </rule>
   <!-- Always «halde fram med» before «å»: -->
   <rule weight="9.0">
-    <match lemma=","/>
     <match lemma="fortsette" tags="vblex.*"><select lemma="halde# fram med"/></match>
-    <seq n="animat_unk"/>
+    <repeat from="0" upto="2"><match tags="adv.*"/></repeat>
+    <repeat from="0" upto="1"><or>
+      <seq n="animat_unk"/>
+      <match tags="*.@subj"/>
+    </or></repeat>
     <match lemma="å" tags="part.*"/>
   </rule>
   <rule weight="9.0" c="fortsetter å → held fram med å">
