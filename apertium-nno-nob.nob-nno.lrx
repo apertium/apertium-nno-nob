@@ -11701,6 +11701,12 @@ preposisjonar gir ekstra utfordringar. -->
       <match tags="cm.*"/>
     </or>
   </rule>
+  
+  <rule><match lemma="besparende" tags="adj.*"><select lemma="besparande"/></match></rule>
+  <rule weight="2.0" c="arbeidssparande, kostnadssparande">
+    <match tags="*.cmp"></match>
+    <match lemma="besparende" tags="adj.*"><select lemma="sparande"/></match>
+  </rule>
 
 </rules>
 </lrx>
