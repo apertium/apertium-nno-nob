@@ -8359,16 +8359,6 @@
 
   <!-- UBETINGET: END -->
 
-  <rule> <!-- han har utelukkende vært forsvarer for Norge fram til nå. -->
-    <match lemma="utelukkende" tags="adv.*"><select lemma="berre"/></match>
-    <or>
-      <match lemma="fordi"/>
-      <match lemma="om"/>
-      <match lemma="når"/>
-      <match tags="vblex.*"/>
-    </or>
-  </rule>
-
   <rule><match lemma="enkelt"><select lemma="enkelt"/></match></rule>
   <rule weight="2.0">
     <or>
@@ -8400,19 +8390,11 @@
     </or>
   </rule>
 
-  <rule> <!-- det var ikke utelukkende enkelt. -->
-    <match lemma="ikke"/>
-    <match lemma="utelukkende" tags="adv.*"><select lemma="berre"/></match>
-  </rule>
-
-  <rule> <!-- til Staff opplyste 21-åringen at det var utelukkende han som skjøt. -->
-    <match lemma="utelukkende" tags="adv.*"><select lemma="einast"/></match>
-    <match tags="prn.*"/>
-  </rule>
-
-  <rule> <!-- det skjer utelukkende av etiske grunner. -->
+  <rule><match lemma="utelukkende" tags="adv.*"><select lemma="berre"/></match></rule>
+  <rule weight="2.0" c="fokusere utelukkende på">
+    <match tags="vblex.*"/>
     <match lemma="utelukkende" tags="adv.*"><select lemma="eine og åleine"/></match>
-    <match lemma="av"/>
+    <match tags="pr.*"/>
   </rule>
 
   <!-- I STADEN (FOR): START -->
