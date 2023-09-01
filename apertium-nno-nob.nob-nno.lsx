@@ -3403,15 +3403,15 @@
       <e><i><w/><s n="n"/><s n="m"/><s n="sg"/><t/><d/></i></e>
       <e><i><w/><s n="n"/><s n="f"/><s n="sg"/><t/><d/></i></e>
     </pardef>
-    
-    <pardef n="pr|å|adv|cm|sent">
-      <e><i><w/><s n="pr"/><t/><d/></i></e>
-      <e><i>å<s n="part"/><t/><d/></i></e>
-      <e><i><w/><s n="adv"/><t/><d/></i></e>
-      <e><p><l/><r><d space="no"/></r></p> <i><w/><s n="cm"/><t/><d/></i></e>
-      <e><p><l/><r><d space="no"/></r></p> <i><w/><s n="sent"/><t/><d/></i></e>
+
+    <pardef n=":d+pr|å|adv|cm|sent" c="Outputs initial delimiter (with space if and only if punctuation follows)">
+      <e><p><l/><r><d space="yes"/></r></p> <i><w/><s n="pr"/><t/><d/></i></e>
+      <e><p><l/><r><d space="yes"/></r></p> <i>å<s n="part"/><t/><d/></i></e>
+      <e><p><l/><r><d space="yes"/></r></p> <i><w/><s n="adv"/><t/><d/></i></e>
+      <e><p><l/><r><d space="no"/></r></p>  <i><w/><s n="cm"/><t/><d/></i></e>
+      <e><p><l/><r><d space="no"/></r></p>  <i><w/><s n="sent"/><t/><d/></i></e>
     </pardef>
-    
+
     <pardef n="n+np-rem-gen">
       <e>
         <i><w/><s n="n"/><t/></i>
@@ -14844,16 +14844,18 @@
   <p><l><t/><s n="ind"/></l>                                        <r><t/><s n="def"/></r></p> <par n="d"/>
 </e>
 
+
+<!-- verdens beste -->
 <e lm="båten er verdens beste (på) → båten er den beste i verden" c="båten er den beste i verda">
   <par n="n.mf.sg"/>
   <par n="være/bli"/>
   <p><l>verd<s n="n"/><s n="m"/><s n="sg"/><s n="def"/><s n="gen"/><t/></l>                            <r></r></p>  <par n="d:"/>
-  <p><l></l>                                <r>den<s n="det"/><s n="dem"/><s n="m"/><s n="sg"/><s n="aa"/><d/></r></p>
+  <p><l></l>                                <r>den<s n="det"/><s n="dem"/><s n="m"/><s n="sg"/><s n="aa"/><d space="yes"/></r></p>
   <par n="adj|adv|empty"/>
-  <par n="adj.ord|sup"/>
-  <p><l></l>                                <r>i<s n="pr"/><s n="aa"/><d/></r></p>
-  <p><l></l>                                <r>verd<s n="n"/><s n="m"/><s n="sg"/><s n="def"/><s n="aa"/><d/></r></p>
-  <par n="pr|å|adv|cm|sent"/>
+  <i><w/><s n="adj"/><t/><d space="yes"/></i>
+  <p><l></l>                                <r>i<s n="pr"/><s n="aa"/><d space="yes"/></r></p>
+  <p><l></l>                                <r>verd<s n="n"/><s n="m"/><s n="sg"/><s n="def"/><s n="aa"/></r></p>
+  <par n=":d+pr|å|adv|cm|sent"/>
 </e>
 
 <e lm="laget er verdens beste (på) → laget er det beste i verden" c="laget er det beste i verda">
@@ -14862,10 +14864,10 @@
   <p><l>verd<s n="n"/><s n="m"/><s n="sg"/><s n="def"/><s n="gen"/><t/></l>                            <r></r></p>  <par n="d:"/>
   <p><l></l>                                <r>den<s n="det"/><s n="dem"/><s n="nt"/><s n="sg"/><s n="aa"/><d/></r></p>
   <par n="adj|adv|empty"/>
-  <par n="adj.ord|sup"/>
-  <p><l></l>                                <r>i<s n="pr"/><s n="aa"/><d/></r></p>
-  <p><l></l>                                <r>verd<s n="n"/><s n="m"/><s n="sg"/><s n="def"/><s n="aa"/><d/></r></p>
-  <par n="pr|å|adv|cm|sent"/>
+  <i><w/><s n="adj"/><t/><d space="yes"/></i>
+  <p><l></l>                                <r>i<s n="pr"/><s n="aa"/><d space="yes"/></r></p>
+  <p><l></l>                                <r>verd<s n="n"/><s n="m"/><s n="sg"/><s n="def"/><s n="aa"/></r></p>
+  <par n=":d+pr|å|adv|cm|sent"/>
 </e>
 
 <e lm="bilene er verdens beste (på) → bilene er de beste i verden" c="bilane er dei beste i verda">
@@ -14874,10 +14876,10 @@
   <p><l>verd<s n="n"/><s n="m"/><s n="sg"/><s n="def"/><s n="gen"/><t/></l>                            <r></r></p>  <par n="d:"/>
   <p><l></l>                                <r>den<s n="det"/><s n="dem"/><s n="un"/><s n="pl"/><s n="aa"/><d/></r></p>
   <par n="adj|adv|empty"/>
-  <par n="adj.ord|sup"/>
-  <p><l></l>                                <r>i<s n="pr"/><s n="aa"/><d/></r></p>
-  <p><l></l>                                <r>verd<s n="n"/><s n="m"/><s n="sg"/><s n="def"/><s n="aa"/><d/></r></p>
-  <par n="pr|å|adv|cm|sent"/>
+  <i><w/><s n="adj"/><t/><d space="yes"/></i>
+  <p><l></l>                                <r>i<s n="pr"/><s n="aa"/><d space="yes"/></r></p>
+  <p><l></l>                                <r>verd<s n="n"/><s n="m"/><s n="sg"/><s n="def"/><s n="aa"/></r></p>
+  <par n=":d+pr|å|adv|cm|sent"/>
 </e>
 
 <e lm="han er verdens beste (på) → han er beste i verden" c="han er best i verda">
@@ -14887,9 +14889,9 @@
   <par n="adj|adv|empty"/>
   <i><w/><s n="adj"/><t/><s n="sup"/><t/></i>
   <p><l><t/><s n="def"/><t/></l>                                        <r><t/><s n="ind"/><t/></r></p> <par n="d"/>
-  <p><l></l>                                <r>i<s n="pr"/><s n="aa"/><d/></r></p>
-  <p><l></l>                                <r>verd<s n="n"/><s n="m"/><s n="sg"/><s n="def"/><s n="aa"/><d/></r></p>
-  <par n="pr|å|adv|cm|sent"/>
+  <p><l></l>                                <r>i<s n="pr"/><s n="aa"/><d space="yes"/></r></p>
+  <p><l></l>                                <r>verd<s n="n"/><s n="m"/><s n="sg"/><s n="def"/><s n="aa"/></r></p>
+  <par n=":d+pr|å|adv|cm|sent"/>
 </e>
 
 <e lm="Trine er verdens beste (på) → Trine er beste i verden" c="Trine er best i verda">
@@ -14899,10 +14901,12 @@
   <par n="adj|adv|empty"/>
   <i><w/><s n="adj"/><t/><s n="sup"/><t/></i>
   <p><l><t/><s n="def"/><t/></l>                                        <r><t/><s n="ind"/><t/></r></p> <par n="d"/>
-  <p><l></l>                                <r>i<s n="pr"/><s n="aa"/><d/></r></p>
-  <p><l></l>                                <r>verd<s n="n"/><s n="m"/><s n="sg"/><s n="def"/><s n="aa"/><d/></r></p>
-  <par n="pr|å|adv|cm|sent"/>
+  <p><l></l>                                <r>i<s n="pr"/><s n="aa"/><d space="yes"/></r></p>
+  <p><l></l>                                <r>verd<s n="n"/><s n="m"/><s n="sg"/><s n="def"/><s n="aa"/></r></p>
+  <par n=":d+pr|å|adv|cm|sent"/>
 </e>
+<!-- /verdens beste -->
+
 
 <e lm="fortsetter (X) å -> held (X) fram med å">
   <p><l>fortsette# med<s n="vblex"/></l>             <r>holde<s n="vblex"/></r></p>  <i><t/><d/></i>
