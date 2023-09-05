@@ -312,9 +312,36 @@
       </e>
     </pardef>
 
+
     <pardef n="def2ind">
       <e><p><l><s n="def"/></l> <r><s n="ind"/></r></p></e>
+      <e><p><l><s n="ind"/></l> <r><s n="ind"/></r></p></e>
     </pardef>
+    <pardef n="sg2pl">
+      <e><p><l><s n="sg"/></l> <r><s n="pl"/></r></p></e>
+      <e><p><l><s n="pl"/></l> <r><s n="pl"/></r></p></e>
+      <e><p><l><s n="sp"/></l> <r><s n="pl"/></r></p></e>
+    </pardef>
+    <pardef n="gender2un">
+      <e><p><l><s n="nt"/></l> <r><s n="un"/></r></p></e>
+      <e><p><l><s n="mf"/></l> <r><s n="un"/></r></p></e>
+      <e><p><l><s n="m"/></l>  <r><s n="un"/></r></p></e>
+      <e><p><l><s n="f"/></l>  <r><s n="un"/></r></p></e>
+      <e><p><l><s n="un"/></l> <r><s n="un"/></r></p></e>
+    </pardef>
+
+    <pardef n="_adj_" c="Main pos adj – no initial lemma, no trailing tags or word delimiter.">
+      <e><i><s n="adj"/></i></e>
+      <e>
+        <i><t/><s n="cmp"/><d/></i>
+        <i><w/><s n="adj"/></i>
+      </e>
+    </pardef>
+
+    <pardef n="_adj.2pl_" c="Ensure un.pl.ind – no initial lemma, no trailing tags or word delimiter.">
+      <e> <par n="_adj_"/> <i><t/></i> <par n="gender2un"/><par n="sg2pl"/><par n="def2ind"/> </e>
+    </pardef>
+
 
     <pardef n="pr">
       <e><i><w/><s n="pr"/><d/></i></e>
@@ -5822,41 +5849,40 @@
       <i><w/><s n="n"/><t/><d/></i>
     </e>
 
-    <e lm="psykisk skikkethet -> psykiske kvalifikasjoner" c="psykiske kvalifikasjonar">
-      <i><w/><t/></i> <par n="d"/>
-      <i><w/><s n="adj"/><t/></i>
-      <p><l><t/><s n="mf"/><s n="sg"/><s n="ind"/><t/></l>                  <r><t/><s n="un"/><s n="pl"/><s n="def"/><t/></r></p> <par n="d"/>
-      <p><l>skikkethet<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/></l> <r></r></p> <par n="d:"/>
-      <p><l></l>                  <r>kvalifikasjon<s n="n"/><s n="m"/><s n="pl"/><s n="ind"/><d/></r></p>
-    </e>
 
     <e lm="den psykiske skikketheten -> de psykiske kvalifikasjonene" c="dei psykiske kvalifikasjonane">
-      <i>den<s n="det"/><s n="dem"/></i>
-      <p><l><s n="m"/><s n="sg"/><t/></l>                                <r><s n="un"/><s n="pl"/><t/></r></p> <par n="d"/>
-      <i><w/><s n="adj"/><t/></i> <par n="d"/>
+      <i>den<s n="det"/><s n="dem"/></i>       <par n="gender2un"/><par n="sg2pl"/> <i><t/><d/></i>
+      <i><w/></i> <par n="_adj.2pl_"/> <i><t/><d/></i>
       <p><l>skikkethet<s n="n"/><s n="m"/><s n="sg"/><s n="def"/></l> <r></r></p> <par n="d:"/>
       <p><l></l>                                <r>kvalifikasjon<s n="n"/><s n="m"/><s n="pl"/><s n="def"/><s n="aa"/></r></p>
-    </e> 
+    </e>
 
     <e lm="min psykiske skikkethet -> mine psykiske kvalifikasjoner" c="dei psykiske kvalifikasjonane mine">
-      <i><w/><s n="det"/><s n="pos"/></i>
-      <p><l><s n="m"/><s n="sg"/><t/></l>                                <r><s n="un"/><s n="pl"/><t/></r></p> <par n="d"/>
-      <i><w/><s n="adj"/><t/></i> <par n="d"/>
+      <i><w/><s n="det"/><s n="pos"/></i>      <par n="gender2un"/><par n="sg2pl"/> <i><t/><d/></i>
+      <i><w/></i> <par n="_adj.2pl_"/> <i><t/><d/></i>
       <p><l>skikkethet<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/></l> <r></r></p> <par n="d:"/>
       <p><l></l>                                <r>kvalifikasjon<s n="n"/><s n="m"/><s n="pl"/><s n="ind"/><s n="aa"/></r></p>
     </e>
 
-    <e lm="må vurdere søkerens (psykiske) skikkethet (ind) -> må vurdere søkerens (psykiske) skikkethet (def)" c="(dei psykiske) kvalifikasjonane til søkjaren">
+    <e lm="min skikkethet -> mine kvalifikasjoner" c="kvalifikasjonane mine">
+      <i><w/><s n="det"/><s n="pos"/></i>      <par n="gender2un"/><par n="sg2pl"/> <i><t/><d/></i>
+      <p><l>skikkethet<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/></l> <r></r></p> <par n="d:"/>
+      <p><l></l>                                <r>kvalifikasjon<s n="n"/><s n="m"/><s n="pl"/><s n="ind"/><s n="aa"/></r></p>
+    </e>
+
+    <e lm="(må vurdere) søkerens skikkethet → søkerens kvalifikasjonar" c="kvalifikasjonane til søkjaren">
       <i><w/><s n="n"/><t/><s n="gen"/></i> <par n="d"/>
-      <par n="adj|empty"/>
       <p><l>skikkethet<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/></l> <r></r></p> <par n="d:"/>
       <p><l></l>                                <r>kvalifikasjon<s n="n"/><s n="m"/><s n="pl"/><s n="ind"/><s n="aa"/></r></p>
     </e>
 
-   <e lm="min skikkethet -> mine (fl) skikkethet" c="dei personlege kvalifikasjonane mine (fl)">
-      <p><l>min<s n="det"/><s n="pos"/><s n="m"/><s n="sg"/></l><r>min<s n="det"/><s n="pos"/><s n="un"/><s n="pl"/></r></p> <i><t/><d/></i>
-      <p><l>skikkethet</l>      <r>skikkethet<s n="n"/><s n="m"/><s n="sg"/><s n="def"/></r></p> <i><t/><d/></i>
+    <e lm="(avhenger av) psykisk skikkethet → psykiske kvalifikasjonar" c="dei psykiske kvalifikasjonane">
+      <i><w/></i> <par n="_adj.2pl_"/> <i><t/><d/></i>
+      <p><l>skikkethet<s n="n"/><s n="m"/><s n="sg"/></l>      <r>kvalifikasjon<s n="n"/><s n="m"/><s n="pl"/></r></p> <i><t/><d/></i>
     </e>
+
+
+
 
     <e lm="ustabilitet i forsyning -> ustabil forsyning" c="ustabil forsyning">
       <p><l>ustabilitet<t/><d/></l> <r></r></p>
