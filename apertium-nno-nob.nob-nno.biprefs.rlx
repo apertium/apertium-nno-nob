@@ -258,6 +258,10 @@ REMOVE:tek_tar.vb-en2tt ("unntatt"i) IF (0 ("unnateken"i));
 SELECT:storleik_størrelse ("størrelse"i) IF (0 ("storleik"i) + (VAR:storleik_størrelse.syn));
 REMOVE:storleik_størrelse ("størrelse"i) IF (0 ("storleik"i));
 
+LIST lm_nyheit = "nyhende"i "nyhendebyrå"i "nyhendebyrået AP"i "nyhendeanker"i "nyhendedriven"i;
+SELECT:nyheit_nyhende lm_nyheit IF (0 (VAR:nyheit_nyhende.syn));
+REMOVE:nyheit_nyhende lm_nyheit;
+
 # DEBUG NOTES:
 # $ echo '[<STREAMCMD:SETVAR:forskjell_skilnad,samd_einig>]^forskjell<n><m><sg><ind>/forskjell<n><m><sg><ind>/skilnad<n><m><sg><ind>$ ^enig<adj><sint><pst><nt><sg><ind>/samd<adj><sint><pst><nt><sg><ind>/einig<adj><sint><pst><nt><sg><ind>$' | ~/src/ap/vislcg3/src/cg-proc -t biprefs.nob-nno.rlx.bin |cg-conv
 # [<STREAMCMD:SETVAR:forskjell_skilnad,samd_einig>]
