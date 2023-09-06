@@ -22,11 +22,6 @@ LIST nt = nt ;
 SELECT:forskjell_skilnad   ("skilnad"i) IF (0 ("forskjell"i) + (VAR:forskjell_skilnad));
 REMOVE:forskjell_forskjell ("skilnad"i) IF (0 ("forskjell"i));
 
-#SELECT:samd_einig ("einig"i) IF (0 ("samd"i) + (VAR:samd_einig.syn));
-#REMOVE:samd_samd  ("einig"i) IF (0 ("samd"i));
-#SELECT:samd_einig ("ueinig"i) IF (0 ("usamd"i) + (VAR:samd_einig.syn));
-#REMOVE:samd_samd  ("ueinig"i) IF (0 ("usamd"i));
-
 # words that default to samd//semje, but can be overridden to einig/einigheit
 LIST lm_einig = ".*(einig|einigheit)"ri;
 SELECT:samd_einig lm_einig IF (0 (VAR:samd_einig.syn));
