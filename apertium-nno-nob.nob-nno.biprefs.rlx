@@ -29,9 +29,6 @@ LIST lm_einig = ".*(einig|einigheit)"ri;
 SELECT:samd_einig lm_einig IF (0 (VAR:samd_einig.syn));
 REMOVE:samd_einig lm_einig;
 
-SELECT:anten_enten ("enten"i) IF (0 ("anten"i) + (VAR:anten_enten));
-REMOVE:anten_anten ("enten"i) IF (0 ("anten"i));
-
 LIST lm_skap = ".*skap"ri;
 SELECT:bodskapen_bodskapet.n.m2nt lm_skap + nt IF (0 (VAR:bodskapen_bodskapet.n.m2nt));
 REMOVE:bodskapen_bodskapet.n.m2nt lm_skap + nt;
