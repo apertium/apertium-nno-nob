@@ -19,8 +19,10 @@ LIST nt = nt ;
 # SELECT:default_other   ("other"i) IF (0 ("default"i) + (VAR:default_other));
 # REMOVE:default_default ("other"i) IF (0 ("default"i));
 
-SELECT:forskjell_skilnad   ("skilnad"i) IF (0 ("forskjell"i) + (VAR:forskjell_skilnad));
-REMOVE:forskjell_forskjell ("skilnad"i) IF (0 ("forskjell"i));
+# words that default to forskjell, but can be overridden to skilnad
+LIST lm_skilnad = ".*(skilnad)"ri "til skilnad frå";
+SELECT:forskjell_skilnad lm_skilnad IF (0 (VAR:forskjell_skilnad.syn));
+REMOVE:forskjell_skilnad lm_skilnad;
 
 # words that default to samd//semje, but can be overridden to einig/einigheit
 LIST lm_einig = ".*(einig|einigheit)"ri;
