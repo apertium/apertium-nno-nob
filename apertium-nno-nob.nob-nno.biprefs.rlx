@@ -20,7 +20,7 @@ LIST nt = nt ;
 # REMOVE:default_default ("other"i) IF (0 ("default"i));
 
 # words that default to forskjell, but can be overridden to skilnad
-LIST lm_skilnad = ".*(skilnad)"ri "til skilnad frå";
+LIST lm_skilnad = ".*(skilnad)"ri "til skilnad frå"i;
 SELECT:forskjell_skilnad lm_skilnad IF (0 (VAR:forskjell_skilnad.syn));
 REMOVE:forskjell_skilnad lm_skilnad;
 
@@ -28,6 +28,11 @@ REMOVE:forskjell_skilnad lm_skilnad;
 LIST lm_einig = ".*(einig|einigheit)"ri;
 SELECT:samd_einig lm_einig IF (0 (VAR:samd_einig.syn));
 REMOVE:samd_einig lm_einig;
+
+# words that default to oppmode/oppmoding, but can be overridden to oppfordre/oppfordring
+LIST lm_oppfordre = "oppfordre"i "oppfordring"i;
+SELECT:oppmode_oppfordre lm_oppfordre IF (0 (VAR:oppmode_oppfordre.syn));
+REMOVE:oppmode_oppfordre lm_oppfordre;
 
 LIST lm_skap = ".*skap"ri;
 SELECT:bodskapen_bodskapet.n.m2nt lm_skap + nt IF (0 (VAR:bodskapen_bodskapet.n.m2nt));
