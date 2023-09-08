@@ -6687,8 +6687,15 @@
       <list-item v="&lt;pret&gt;"/>
     </def-list>
 
-    <def-list n="np-immovable-verb" c="These verbs in passive-turned-into-participles shouldn't be moved past noun phrases">
-      <list-item v="tildele"/> <!-- Gunnar Sønsteby tildeles denne dekorasjonen → blir tildelt denne dekorasjonen -->
+    <def-list n="np-immovable-verb" c="These verbs in passive-turned-into-participles shouldn't be moved noun phrases">
+      <list-item v="tildele"/> <!-- Gunnar Sønsteby tildeles denne dekorasjonen → Sønsteby blir tildelt denne dekorasjonen -->
+      <!-- Hacky :(
+           With passives, the rule is we want to move past a single SUBJ/OBJ argument if we have ADVL PASV SUBJ/OBJ:
+           [I dag]_ADVL tildeles [Gunnar Sønsteby]_SUBJ [denne dekorasjonen]_OBJ → [I dag]_ADVL blir [Gunnar Sønsteby]_SUBJ tildelt [denne dekorasjonen]_OBJ
+           [I dag]_ADVL tildeles [denne dekorasjonen]_OBJ [Gunnar Sønsteby]_SUBJ → [I dag]_ADVL blir [denne dekorasjonen]_OBJ tildelt [Gunnar Sønsteby]_SUBJ
+           while e.g. SUBJ PASV OBJ has no move:
+           Denne dekorasjonen tildeles Gunnar Sønsteby → Denne dekorasjonen blir tildelt Gunnar Sønsteby.
+      -->
     </def-list>
 
     <def-list n="n-movable-adv" c="These adverbs can move out of noun phrases / past regular nouns">

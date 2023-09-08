@@ -83,7 +83,7 @@
       <cat-item tags="n.*.ind.cmp-split"/>
       <cat-item tags="n.*.ind.cmp-split.*"/>
     </def-cat>
-    <def-cat n="ndef_OR_np_agent"> <!-- TODO: should be @subj (but then we need to keep @-tags after refsyn.t1x) -->
+    <def-cat n="ndef_OR_np_agent">
       <cat-item tags="n.*.def"/>
       <cat-item tags="n.*.def.*"/>
       <cat-item tags="np.ant"/>
@@ -92,6 +92,13 @@
       <cat-item tags="np.cog.*"/>
       <cat-item tags="np.org"/>
       <cat-item tags="np.org.*"/>
+      <cat-item tags="unknown"/>
+    </def-cat>
+    <def-cat n="n_OR_np_subj">
+      <cat-item tags="n.*.@subj"/>
+      <cat-item tags="n.*.@xubj"/>
+      <cat-item tags="np.*.@subj"/>
+      <cat-item tags="np.*.@xubj"/>
       <cat-item tags="unknown"/>
     </def-cat>
     <def-cat n="np_pers">
@@ -2019,7 +2026,7 @@
       <pattern>
         <pattern-item n="vblex"/>
         <pattern-item n="lemq-skip-n"/>
-        <pattern-item n="ndef_OR_np_agent"/>
+        <pattern-item n="n_OR_np_subj"/>
       </pattern>
       <action>
         <call-macro n="set_ana"><with-param pos="1"/></call-macro>
@@ -2040,7 +2047,7 @@
         <pattern-item n="vblex"/>            <!-- 1. held -->
         <pattern-item n="lemq-skip-n"/>      <!-- 2. # fram med -->
         <pattern-item n="adv_movable_OR_adjadv"/> <!-- 3. nemleg/stadig -->
-        <pattern-item n="ndef_OR_np_agent"/> <!-- 4. flya -->
+        <pattern-item n="n_OR_np_subj"/>     <!-- 4. flya -->
       </pattern>
       <action>
         <call-macro n="set_ana"><with-param pos="1"/></call-macro>
@@ -2064,7 +2071,7 @@
         <pattern-item n="vblex"/>            <!-- 1. held -->
         <pattern-item n="lemq-skip-n"/>      <!-- 2. fram -->
         <pattern-item n="det"/>              <!-- 3. den -->
-        <pattern-item n="ndef_OR_np_agent"/> <!-- 4. britiske mutasjonen -->
+        <pattern-item n="n_OR_np_subj"/>     <!-- 4. britiske mutasjonen -->
       </pattern>
       <action>
         <call-macro n="set_ana"><with-param pos="1"/></call-macro>
@@ -2087,7 +2094,7 @@
         <pattern-item n="vblex"/>            <!-- 1. held -->
         <pattern-item n="lemq-skip-n"/>      <!-- 2. fram -->
         <pattern-item n="det"/>              <!-- 3. den -->
-        <pattern-item n="ndef_OR_np_agent"/> <!-- 4. britiske mutasjonen -->
+        <pattern-item n="n_OR_np_subj"/>     <!-- 4. britiske mutasjonen -->
         <pattern-item n="adv_movable"/>      <!-- 5. stadig -->
       </pattern>
       <action>
