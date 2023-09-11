@@ -67,6 +67,14 @@
       <cat-item tags="*.@fv"/>
       <cat-item tags="*.@fv.*"/>
     </def-cat>
+    <def-cat n="cnjcoo">
+      <cat-item tags="cnjcoo"/>
+      <cat-item tags="cnjcoo.*"/>
+    </def-cat>
+    <def-cat n="cnjsub">
+      <cat-item tags="cnjsub"/>
+      <cat-item tags="cnjsub.*"/>
+    </def-cat>
     <def-cat n="adv_OR_detR_OR_cmp">
       <cat-item tags="adv"/>    <!-- NOT @adv – don't want to match head of adverbial clause here, just lone adverbs -->
       <cat-item tags="adv.*"/>
@@ -458,6 +466,20 @@
           <let><var n="cur_subj_lexadj"/><var n="prev_subj_lexadj"/></let>
           <let><var n="prev_subj"/><lit v=""/></let>
           <let><var n="prev_subj_lexadj"/><lit v=""/></let>
+        </when></choose>
+        <reject-current-rule shifting="no"/>
+      </action>
+    </rule>
+
+    <rule c="«og som»: Override switching back to prev subject variable / require another fv before switching back. Unconditionally skips to next rule without outputting.">
+      <pattern>
+        <pattern-item n="cnjcoo"/>
+        <pattern-item n="cnjsub"/>
+      </pattern>
+      <action>
+        <choose><when>
+          <test><equal><var n="fv_after_xubj"/><lit v="seen"/></equal></test>
+          <let><var n="fv_after_xubj"/><lit v=""/></let>
         </when></choose>
         <reject-current-rule shifting="no"/>
       </action>
