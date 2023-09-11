@@ -9344,14 +9344,17 @@ no lemq-moving">
 
     <!-- Catch wrong bracketing:  -->
     <rule comment="preadj-ADV ADJIND
+                   hvor stor → kor stor
                    Ikkje: «altså kvinnelig [vektløfting]»">
       <pattern>
         <pattern-item n="preadj-adv"/>
         <pattern-item n="adjind"/>
       </pattern>
       <action>
+        <!-- Don't chunk «[er] ikke kjent [med]»: -->
+        <choose><when><test><equal><clip pos="1" side="tl" part="lemh"/><lit v="ikkje"/></equal></test><reject-current-rule shifting="no"/></when></choose>
         <!-- c_name setting after set_grau_aux since adv first in chunk -->
-        <call-macro n="ref-subj2adj"><with-param pos="2"/></call-macro>
+        <!-- We don't call ref-subj2adj for these; if the adj agrees, it's within a noun phrase, not with preceding subject («Vi.pl.subj så hvor stor.sg! oppgaven.sg var»)  -->
         <call-macro n="set_gender1.adj"><with-param pos="2"/></call-macro>
         <call-macro n="set_grau_aux1"><with-param pos="2"/></call-macro>
         <call-macro n="set_caseFirstWord2">
