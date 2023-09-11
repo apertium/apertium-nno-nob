@@ -221,14 +221,18 @@
     <def-cat n="prn_acc">
       <cat-item tags="prn.*.acc"/>
     </def-cat>
-    <def-cat n="synsubj">
+    <def-cat n="pasvsubj" c="If a subject is after a passive, assume the chunk before the passive was adverbial, meaning we need to move the main (non-aux) verb
+                             We want to move a passive main verb past a single argument if we have ADVL PASV ARG.
+                             Typically, the argument is a subject (though objects are also technically possible, though less likely).
+                             We typically *don't* want to move past @xubj, since PASV XUBJ don't tend to come after ADVL
+                             (e.g. «som.NOT_ADVL kalles.PASV. arkeologisk tre.XUBJ»)">
+      <cat-item tags="*.@subj"/>
+      <!-- <cat-item tags="*.@xubj"/> -->
       <cat-item tags="prn.*.nt.*"/>
       <cat-item tags="prn.*.nt"/>
       <cat-item tags="det.*.expl.*"/>
       <cat-item tags="det.*.expl"/>
       <cat-item tags="prn.pers.*.nom"/>
-      <cat-item tags="*.@subj"/>
-      <cat-item tags="*.@xubj"/>
     </def-cat>
     <def-cat n="sin">
       <cat-item lemma="detsin" tags="det.pos.*"/>
@@ -1140,7 +1144,7 @@
       <pattern>
         <pattern-item n="aux"/>
         <pattern-item n="pasv-pp"/>
-        <pattern-item n="synsubj"/>
+        <pattern-item n="pasvsubj"/>
       </pattern>
       <action>
         <call-macro n="modify_prn_gen"><with-param pos="3"/></call-macro>
@@ -1159,7 +1163,7 @@
         <pattern-item n="aux"/>
         <pattern-item n="pasv-pp"/>
         <pattern-item n="det"/>
-        <pattern-item n="synsubj"/>
+        <pattern-item n="pasvsubj"/>
       </pattern>
       <action>
         <call-macro n="modify_prn_gen"><with-param pos="4"/></call-macro>
@@ -1180,7 +1184,7 @@
       <pattern>
         <pattern-item n="aux"/>
         <pattern-item n="pasv-pp"/>
-        <pattern-item n="synsubj"/>
+        <pattern-item n="pasvsubj"/>
         <pattern-item n="adv_movable"/>
       </pattern>
       <action>
