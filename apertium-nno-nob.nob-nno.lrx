@@ -5646,6 +5646,13 @@
     <match tags="det.qnt.*"/>
     <match lemma="ubeseiret" tags="adj.*"><select lemma="ubeseira"/></match>
   </rule>
+  <rule weight="2.0" c="Ubeseirede Inter">
+    <match lemma="ubeseiret" tags="adj.*.def.*"><select lemma="ubeseira"/></match>
+    <or>
+      <match tags=""/>          <!-- ukjend -->
+      <match tags="np.*"/>
+    </or>
+  </rule>
 
   <!-- TODO: is avhending ever right? -->
   <rule><match lemma="overdragelse" tags="n.*"><select lemma="overdraging"/></match></rule>
