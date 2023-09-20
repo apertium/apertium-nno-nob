@@ -11693,6 +11693,20 @@ preposisjonar gir ekstra utfordringar. -->
     <match tags="*.cmp"></match>
     <match lemma="besparende" tags="adj.*"><select lemma="sparande"/></match>
   </rule>
+  
+  <rule><match lemma="gjengi" tags="vblex.*"><select lemma="gje# att"/></match></rule>
+  <rule weight="2.0" c="gjengitt -> referert">    
+    <or>
+      <match lemma="gjengi" tags="vblex.pp.*"><select lemma="referere"/></match>
+      <match lemma="gjengi" tags="adj.pp.*"><select lemma="referere"/></match>
+    </or>
+  </rule>
+  <rule weight="2.0" c=", gjengir VG. -> , skriv VG.">    
+    <match tags="cm.*"/>
+    <match lemma="gjengi" tags="vblex.pres.*"><select lemma="skrive"/></match>
+    <match tags="np.*"/>
+    <match tags="sent.clb.*"/>
+  </rule>
 
 </rules>
 </lrx>
