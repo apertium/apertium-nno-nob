@@ -70,6 +70,10 @@ LIST gløymsle_gløymsel_nouns = ".*(gløymsel|gøymsel)"ri;
 SELECT:gløymsle_gløymsel m + gløymsle_gløymsel_nouns IF (0 (VAR:gløymsle_gløymsel.kons-sel2sle));
 REMOVE:unset         m + gløymsle_gløymsel_nouns;
 
+LIST lm_bevisst = ".*bevisst"ri ".*bevisstheit"ri "bevisstlaus"i "bevisstløyse"i;
+SELECT:medviten_bevisst lm_bevisst IF (0 (VAR:medviten_bevisst.syn));
+REMOVE:medviten_bevisst lm_bevisst;
+
 SELECT:motsetning_motsetnad  ("motsetnad"i) IF (0 ("motsetning"i) + (VAR:motsetning_motsetnad));
 REMOVE:motsetning_motsetning ("motsetnad"i) IF (0 ("motsetning"i));
 
