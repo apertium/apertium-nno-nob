@@ -74,6 +74,10 @@ LIST lm_bevisst = ".*bevisst"ri ".*bevisstheit"ri "bevisstlaus"i "bevisstløyse"
 SELECT:medviten_bevisst lm_bevisst IF (0 (VAR:medviten_bevisst.syn));
 REMOVE:medviten_bevisst lm_bevisst;
 
+LIST lm_myndigheit = ".*myndigheit"ri "myndigheit.*"ri;
+SELECT:styresmakt_myndigheit lm_myndigheit IF (0 (VAR:styresmakt_myndigheit.syn));
+REMOVE:styresmakt_myndigheit lm_myndigheit;
+
 SELECT:motsetning_motsetnad  ("motsetnad"i) IF (0 ("motsetning"i) + (VAR:motsetning_motsetnad));
 REMOVE:motsetning_motsetning ("motsetnad"i) IF (0 ("motsetning"i));
 
