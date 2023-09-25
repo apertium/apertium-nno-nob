@@ -82,6 +82,10 @@ LIST lm_anbefale = "anbefale"ri ".*anbefalt"ri ".*anbefaling"ri "anbefaling.*"ri
 SELECT:tilrå_anbefale lm_anbefale IF (0 (VAR:tilrå_anbefale.syn));
 REMOVE:tilrå_anbefale lm_anbefale;
 
+LIST lm_røyste = ".*røyste"ri ".*røyst"ri "røyst.*"ri ".*røysting"ri "røysting.*"ri;
+SELECT:stemme_røyste lm_røyste IF (0 (VAR:stemme_røyste.syn));
+REMOVE:stemme_røyste lm_røyste;
+
 SELECT:motsetning_motsetnad  ("motsetnad"i) IF (0 ("motsetning"i) + (VAR:motsetning_motsetnad));
 REMOVE:motsetning_motsetning ("motsetnad"i) IF (0 ("motsetning"i));
 
