@@ -11700,7 +11700,7 @@ preposisjonar gir ekstra utfordringar. -->
     <match tags="*.cmp"></match>
     <match lemma="besparende" tags="adj.*"><select lemma="sparande"/></match>
   </rule>
-  
+
   <rule><match lemma="gjengi" tags="vblex.*"><select lemma="gje# att"/></match></rule>
   <rule weight="2.0" c="gjengitt -> referert">    
     <or>
@@ -11713,6 +11713,12 @@ preposisjonar gir ekstra utfordringar. -->
     <match lemma="gjengi" tags="vblex.pres.*"><select lemma="skrive"/></match>
     <match tags="np.*"/>
     <match tags="sent.clb.*"/>
+  </rule>
+  
+  <rule><match lemma="anmelderi" tags="n.*"><select lemma="kritikarverksemd"/></match></rule>
+  <rule weight="2.0" c="kulturanmelderi -> kulturkritikk">
+    <match tags="*.cmp"/>
+    <match lemma="anmelderi" tags="n.*"><select lemma="kritikk"/></match>
   </rule>
 
 </rules>
