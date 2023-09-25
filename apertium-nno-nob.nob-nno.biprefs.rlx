@@ -78,6 +78,10 @@ LIST lm_myndigheit = ".*myndigheit"ri "myndigheit.*"ri;
 SELECT:styresmakt_myndigheit lm_myndigheit IF (0 (VAR:styresmakt_myndigheit.syn));
 REMOVE:styresmakt_myndigheit lm_myndigheit;
 
+LIST lm_anbefale = "anbefale"ri ".*anbefalt"ri ".*anbefaling"ri "anbefaling.*"ri;
+SELECT:tilrå_anbefale lm_anbefale IF (0 (VAR:tilrå_anbefale.syn));
+REMOVE:tilrå_anbefale lm_anbefale;
+
 SELECT:motsetning_motsetnad  ("motsetnad"i) IF (0 ("motsetning"i) + (VAR:motsetning_motsetnad));
 REMOVE:motsetning_motsetning ("motsetnad"i) IF (0 ("motsetning"i));
 
