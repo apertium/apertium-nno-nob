@@ -88,6 +88,10 @@ LIST lm_sikkerheit = ".*sikkerheit"ri "sikkerheit.*"ri ".*sikkerheit.*"ri;
 SELECT:tryggleik_sikkerheit lm_sikkerheit IF (0 (VAR:tryggleik_sikkerheit.syn));
 REMOVE:tryggleik_sikkerheit lm_sikkerheit;
 
+LIST lm_andlet = ".*andlet"ri "andlet.*"ri;
+SELECT:ansikt_andlet lm_andlet IF (0 (VAR:ansikt_andlet.syn));
+REMOVE:ansikt_andlet lm_andlet;
+
 SELECT:motsetning_motsetnad  ("motsetnad"i) IF (0 ("motsetning"i) + (VAR:motsetning_motsetnad));
 REMOVE:motsetning_motsetning ("motsetnad"i) IF (0 ("motsetning"i));
 
