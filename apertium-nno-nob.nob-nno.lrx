@@ -11721,6 +11721,28 @@ preposisjonar gir ekstra utfordringar. -->
     <match tags="*.cmp"/>
     <match lemma="anmelderi" tags="n.*"><select lemma="kritikk"/></match>
   </rule>
+  
+  <rule><match lemma="avgivelse" tags="n.*"><select lemma="overlevering"/></match></rule>
+  <rule weight="2.0" c="avgivelse av (norsk) suvernitet">
+    <match lemma="avgivelse" tags="n.*"><select lemma="avståing"/></match>
+    <match lemma="av"/>
+    <repeat from="0" upto="1">
+      <match tags="adj.*"/>
+    </repeat>
+    <or>
+      <match lemma="suverenitet"/>
+      <match lemma="land"/>
+      <match lemma="areal"/>
+    </or>
+  </rule>
+  <rule weight="2.0" c="avgivelse av fullmakt">
+    <match lemma="avgivelse" tags="n.*"><select lemma="overføring"/></match>
+    <match lemma="av"/>
+    <or>
+      <match lemma="fullmakt"/>
+      <match lemma="navnetrekk"/>
+    </or>
+  </rule>
 
 </rules>
 </lrx>
