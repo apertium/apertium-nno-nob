@@ -82,7 +82,8 @@ LIST lm_anbefale = "anbefale"ri ".*anbefalt"ri ".*anbefaling"ri "anbefaling.*"ri
 SELECT:tilrå_anbefale lm_anbefale IF (0 (VAR:tilrå_anbefale.syn));
 REMOVE:tilrå_anbefale lm_anbefale;
 
-# override tryggleik, trygging, not sikring
+# override tryggleik, trygging, not sikring, tryggleik (trygghet); 
+# keeps official names: Tryggingsrådet, Politiets tryggingsteneste.
 LIST lm_sikkerheit = ".*sikkerheit"ri "sikkerheit.*"ri ".*sikkerheit.*"ri;
 SELECT:tryggleik_sikkerheit lm_sikkerheit IF (0 (VAR:tryggleik_sikkerheit.syn));
 REMOVE:tryggleik_sikkerheit lm_sikkerheit;
@@ -168,27 +169,29 @@ REMOVE:røyndom_røyndom ("røynd"i) IF (0 ("røyndom"i));
 SELECT:røyndom_verkelegheit ("verkelegheit") IF (0 ("røyndom"i) + (VAR:røyndom_verkelegheit));
 REMOVE:røyndom_røyndom ("verkelegheit") IF (0 ("røyndom"i));
 
-SELECT:beskrive_skildre  ("skildre"i) IF (0 ("beskrive"i) + (VAR:beskrive_skildre));
-REMOVE:beskrive_beskrive ("skildre"i) IF (0 ("beskrive"i));
+### Må eventuelt disambiguerast: beskrive -> skildre, forklare, klarleggje, gjere greie for, karakterisere, omtale o.l.
+### Valet bør også omfatte substantiv: beskriving -> skildring, forklaring, klargjering, utgreiing, skisse o.l.
+# SELECT:beskrive_skildre  ("skildre"i) IF (0 ("beskrive"i) + (VAR:beskrive_skildre));
+# REMOVE:beskrive_beskrive ("skildre"i) IF (0 ("beskrive"i));
 
 # Plain "makk" (not in a lexicalised compound) is "<mark¹>" (nob analysis, treated like form), while "børstemark" etc. has no superscript ¹
-SELECT:mark_makk  ("makk"i) IF (0 ("<mark¹>"i) + (VAR:mark_makk));
+SELECT:mark_makk  ("makk"i) IF (0 ("<mark¹>"i) + (VAR:mark_makk.syn));
 REMOVE:mark_mark ("makk"i) IF (0 ("<mark¹>"i));
 LIST lm_mark = ".+mark"ri ;
 LIST lm_makk = ".+makk"ri ;
 SELECT:mark_makk lm_makk IF (0 lm_mark + (VAR:mark_makk));
 REMOVE:mark_mark lm_makk IF (0 lm_mark);
 
-SELECT:nærast_nærmast  ("nærmast"i) IF (0 ("nærast"i) + (VAR:nærast_nærmast));
+SELECT:nærast_nærmast  ("nærmast"i) IF (0 ("nærast"i) + (VAR:nærast_nærmast.stav));
 REMOVE:nærast_nærast ("nærmast"i) IF (0 ("nærast"i));
 
 LIST lm_kross = ".*kross"ri;
-SELECT:kors_kross lm_kross + m IF (0 (VAR:kors_kross));
+SELECT:kors_kross lm_kross + m IF (0 (VAR:kors_kross.stav));
 REMOVE:kors_kross lm_kross + m;
-SELECT:kors_kross ("korsferd"i) IF (0 ("korstog"i) + (VAR:kors_kross));
+SELECT:kors_kross ("korsferd"i) IF (0 ("korstog"i) + (VAR:kors_kross.stav));
 REMOVE:kors_kors  ("korsferd"i) IF (0 ("korstog"i));
 
-SELECT:oversikt_oversyn  ("oversyn"i) IF (0 ("oversikt"i) + (VAR:oversikt_oversyn));
+SELECT:oversikt_oversyn  ("oversyn"i) IF (0 ("oversikt"i) + (VAR:oversikt_oversyn.syn));
 REMOVE:oversikt_oversikt ("oversyn"i) IF (0 ("oversikt"i));
 
 LIST lm_mørke = ".*mørker"ri;
@@ -209,16 +212,13 @@ SELECT:stemme_røyste lm_røyste IF (0 (VAR:stemme_røyste.syn));
 REMOVE:stemme_røyste lm_røyste;
 
 LIST lm_attfortelje = "attfortelje"i "attforteljing"i "fortelje# att"i;
-SELECT:stemme_røyste lm_attfortelje IF (0 ("gjenfortelje"i) + (VAR:gjenfortelje_attfortelje));
+SELECT:stemme_røyste lm_attfortelje IF (0 ("gjenfortelje"i) + (VAR:gjenfortelje_attfortelje.syn));
 REMOVE:stemme_stemme lm_attfortelje IF (0 ("gjenfortelje"i));
 
-SELECT:også_òg ("òg"i) IF (0 ("også"i) + (VAR:også_òg));
-REMOVE:også_òg ("òg"i) IF (0 ("også"i));
-
-SELECT:samtidig_samstundes ("samstundes"i) IF (0 ("samtidig"i) + (VAR:samtidig_samstundes));
+SELECT:samtidig_samstundes ("samstundes"i) IF (0 ("samtidig"i) + (VAR:samtidig_samstundes.syn));
 REMOVE:samtidig_samtidig   ("samstundes"i) IF (0 ("samtidig"i));
 
-SELECT:forslag_framlegg ("framlegg"i) IF (0 ("forslag"i) + (VAR:forslag_framlegg));
+SELECT:forslag_framlegg ("framlegg"i) IF (0 ("forslag"i) + (VAR:forslag_framlegg.syn));
 REMOVE:forslag_forslag   ("framlegg"i) IF (0 ("forslag"i));
 
 SELECT:etterspurnad_etterspørsel ("etterspørsel"i) IF (0 ("etterspurnad"i) + (VAR:etterspurnad_etterspørsel.syn));
@@ -238,7 +238,7 @@ LIST lm_lækjar = "lækjar"i "berrfotlækjar"i "skoletannlækjar"i "skuletannlæ
 SELECT:lege_lækjar  lm_lækjar IF (0 (VAR:lege_lækjar.syn));
 REMOVE:lege_lege lm_lækjar;
 
-SELECT:ankel_okle ("okle"i) IF (0 ("ankel"i) + (VAR:ankel_okle));
+SELECT:ankel_okle ("okle"i) IF (0 ("ankel"i) + (VAR:ankel_okle.syn));
 REMOVE:ankel_ankel   ("okle"i) IF (0 ("ankel"i));
 
 SELECT:nød_naud.dift-ø2au ("naudsynt"i) IF (0 ("nødvendig"i) + (VAR:nød_naud.dift-ø2au));
