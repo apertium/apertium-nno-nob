@@ -82,6 +82,11 @@ LIST lm_anbefale = "anbefale"ri ".*anbefalt"ri ".*anbefaling"ri "anbefaling.*"ri
 SELECT:tilrå_anbefale lm_anbefale IF (0 (VAR:tilrå_anbefale.syn));
 REMOVE:tilrå_anbefale lm_anbefale;
 
+# override tryggleik, trygging, not sikring
+LIST lm_sikkerheit = ".*sikkerheit"ri "sikkerheit.*"ri ".*sikkerheit.*"ri;
+SELECT:tryggleik_sikkerheit lm_sikkerheit IF (0 (VAR:tryggleik_sikkerheit.syn));
+REMOVE:tryggleik_sikkerheit lm_sikkerheit;
+
 SELECT:motsetning_motsetnad  ("motsetnad"i) IF (0 ("motsetning"i) + (VAR:motsetning_motsetnad));
 REMOVE:motsetning_motsetning ("motsetnad"i) IF (0 ("motsetning"i));
 
@@ -202,9 +207,6 @@ REMOVE:avgjerd_avgjerd.stav ("avgjersle"i) IF (0 ("avgjerd"i));
 LIST lm_røyste = ".*røyste"ri ".*røyst"ri "røyst.*"ri ".*røysting"ri "røysting.*"ri "samrøystes"i;
 SELECT:stemme_røyste lm_røyste IF (0 (VAR:stemme_røyste.syn));
 REMOVE:stemme_røyste lm_røyste;
-
-SELECT:stemmerett_røysterett ("røysterett"i) IF (0 ("stemmerett"i) + (VAR:stemmerett_røysterett));
-REMOVE:stemmerett_stemmerett ("røysterett"i) IF (0 ("stemmerett"i));
 
 LIST lm_attfortelje = "attfortelje"i "attforteljing"i "fortelje# att"i;
 SELECT:stemme_røyste lm_attfortelje IF (0 ("gjenfortelje"i) + (VAR:gjenfortelje_attfortelje));
