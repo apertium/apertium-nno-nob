@@ -216,8 +216,8 @@ SELECT:stemme_røyste lm_røyste IF (0 (VAR:stemme_røyste.syn));
 REMOVE:stemme_røyste lm_røyste;
 
 LIST lm_attfortelje = "attfortelje"i "attforteljing"i "fortelje# att"i;
-SELECT:stemme_røyste lm_attfortelje IF (0 ("gjenfortelje"i) + (VAR:gjenfortelje_attfortelje.syn));
-REMOVE:stemme_stemme lm_attfortelje IF (0 ("gjenfortelje"i));
+SELECT:gjenfortelje_attfortelje lm_attfortelje IF (0 ("gjenfortelje"i) + (VAR:gjenfortelje_attfortelje.syn));
+REMOVE:gjenfortelje_attfortelje lm_attfortelje IF (0 ("gjenfortelje"i));
 
 SELECT:samtidig_samstundes ("samstundes"i) IF (0 ("samtidig"i) + (VAR:samtidig_samstundes.syn));
 REMOVE:samtidig_samtidig   ("samstundes"i) IF (0 ("samtidig"i));
@@ -230,6 +230,9 @@ REMOVE:etterspurnad_etterspurnad   ("etterspørsel"i) IF (0 ("etterspurnad"i));
 
 SELECT:ramme_råke ("råke"i) IF (0 ("ramme"i) + (VAR:ramme_råke.syn));
 REMOVE:ramme_ramme   ("råke"i) IF (0 ("ramme"i));
+
+SELECT:vise_syne ("syne.*"ri) IF (0 ("vise.*"ri) + (VAR:vise_syne.syn));
+REMOVE:vise_syne ("syne.*"ri) IF (0 ("vise.*"ri));
 
 SELECT:førebu_seg_bu_seg ("bu# seg"i) IF (0 ("førebu# seg"i) + (VAR:førebu_seg_bu_seg));
 REMOVE:førebu_seg_førebu_seg ("bu# seg"i) IF (0 ("førebu# seg"i));
