@@ -82,10 +82,6 @@ LIST lm_anbefale = "anbefale"ri ".*anbefalt"ri ".*anbefaling"ri "anbefaling.*"ri
 SELECT:tilrå_anbefale lm_anbefale IF (0 (VAR:tilrå_anbefale.syn));
 REMOVE:tilrå_anbefale lm_anbefale;
 
-LIST lm_røyste = ".*røyste"ri ".*røyst"ri "røyst.*"ri ".*røysting"ri "røysting.*"ri "samrøystes"i;
-SELECT:stemme_røyste lm_røyste IF (0 (VAR:stemme_røyste.syn));
-REMOVE:stemme_røyste lm_røyste;
-
 SELECT:motsetning_motsetnad  ("motsetnad"i) IF (0 ("motsetning"i) + (VAR:motsetning_motsetnad));
 REMOVE:motsetning_motsetning ("motsetnad"i) IF (0 ("motsetning"i));
 
@@ -203,8 +199,9 @@ REMOVE:avl_avl.stav lm_avl;
 SELECT:avgjerd_avgjersle.stav  ("avgjersle"i) IF (0 ("avgjerd"i) + (VAR:avgjerd_avgjersle.stav));
 REMOVE:avgjerd_avgjerd.stav ("avgjersle"i) IF (0 ("avgjerd"i));
 
-SELECT:stemme_røyste ("røyste"i) IF (0 ("stemme"i) + (VAR:stemme_røyste));
-REMOVE:stemme_stemme ("røyste"i) IF (0 ("stemme"i));
+LIST lm_røyste = ".*røyste"ri ".*røyst"ri "røyst.*"ri ".*røysting"ri "røysting.*"ri "samrøystes"i;
+SELECT:stemme_røyste lm_røyste IF (0 (VAR:stemme_røyste.syn));
+REMOVE:stemme_røyste lm_røyste;
 
 SELECT:stemmerett_røysterett ("røysterett"i) IF (0 ("stemmerett"i) + (VAR:stemmerett_røysterett));
 REMOVE:stemmerett_stemmerett ("røysterett"i) IF (0 ("stemmerett"i));
