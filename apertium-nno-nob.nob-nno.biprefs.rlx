@@ -191,7 +191,8 @@ REMOVE:nærast_nærast ("nærmast"i) IF (0 ("nærast"i));
 
 LIST lm_kross = ".*kross"ri;
 SELECT:kors_kross lm_kross + m IF (0 (VAR:kors_kross.stav));
-REMOVE:kors_kross lm_kross + m;
+REMOVE:kors_kors  lm_kross + m;
+# kors→kross happens in nno.dix when not ending a noun:
 SELECT:kors_kross ("korsferd"i) IF (0 ("korstog"i) + (VAR:kors_kross.stav));
 REMOVE:kors_kors  ("korsferd"i) IF (0 ("korstog"i));
 
