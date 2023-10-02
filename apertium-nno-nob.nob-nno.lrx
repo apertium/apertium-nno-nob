@@ -991,6 +991,28 @@
       <select lemma="andel"/>
     </match>
   </rule>
+  <rule weight="2.0" c="andel av fellesgjeld/formue/likningsverdi/... → andel av fellesgjeld/formue/likningsverdi/...">
+    <match lemma="andel" tags="n.*"><select lemma="andel"/></match>
+    <match lemma="av"/>
+      <or>
+      <match lemma="fellesgjeld"/>
+      <match lemma="formue"/>
+      <match lemma="likningsverdi"/>
+    </or>
+  </rule>
+  <rule weight="2.0" c="andel av fradragsberettigede kostnader → andel av kostnader med frådragsrett">
+    <match lemma="andel" tags="n.*"><select lemma="andel"/></match>
+    <match lemma="av"/>
+    <match lemma="kostnad"/>
+    <match lemma="med"/>
+    <match lemma="fradragsrett"/>
+  </rule>
+  <rule weight="2.0" c="andel av skattepliktige inntekter → andel av skattepliktige inntekter">
+    <match lemma="andel" tags="n.*"><select lemma="andel"/></match>
+    <match lemma="av"/>
+    <match lemma="skattepliktig"/>
+    <match lemma="inntekt"/>
+  </rule>
   <!-- /andel -->
 
   <!-- UTSPILLE: START -->
