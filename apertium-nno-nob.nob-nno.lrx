@@ -7409,6 +7409,13 @@
       <match lemma="gjeld"/>
   </rule>
 
+  <rule><match lemma="anskaffelse" tags="n.*"><select lemma="anskaffing"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="gå"/>
+    <match lemma="til"/>
+    <match lemma="anskaffelse" tags="n.*"><select lemma="innkjøp"/></match>
+    <match lemma="av"/>
+  </rule>
 
   <rule><match lemma="seilas" tags="n.*"><select lemma="segling"/></match></rule>
   <rule weight="2.0">
