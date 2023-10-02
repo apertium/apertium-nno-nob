@@ -102,8 +102,9 @@ REMOVE:veps_kvefs lm_kvefs;
 SELECT:itilfelle_ifall  ("i fall"i) IF (0 ("i tilfelle"i) + (VAR:itilfelle_ifall));
 REMOVE:itilfelle_itilfelle ("i fall"i) IF (0 ("i tilfelle"i));
 
-SELECT:blomster_blome  ("blome"i) IF (0 ("blomster"i) + (VAR:blomster_blome));
-REMOVE:blomster_blomster ("blome"i) IF (0 ("blomster"i));
+LIST lm_blome = ".*blome"ri "blome.*"ri;
+SELECT:blomster_blome lm_blome IF (0 (VAR:blomster_blome.syn));
+REMOVE:blomster_blome lm_blome;
 
 SELECT:derfor_difor  ("difor"i) IF (0 ("derfor"i) + (VAR:derfor_difor));
 REMOVE:derfor_derfor ("difor"i) IF (0 ("derfor"i));
