@@ -166,11 +166,13 @@ REMOVE:bety_bety lm_tyde;
 SELECT:førebels_foreløpig  ("foreløpig"i) IF (0 ("førebels"i) + (VAR:førebels_foreløpig.syn));
 REMOVE:førebels_førebels ("foreløpig"i) IF (0 ("førebels"i));
 
-SELECT:røyndom_røynd  ("røynd"i) IF (0 ("røyndom"i) + (VAR:røyndom_røynd));
-REMOVE:røyndom_røyndom ("røynd"i) IF (0 ("røyndom"i));
-
-SELECT:røyndom_verkelegheit ("verkelegheit") IF (0 ("røyndom"i) + (VAR:røyndom_verkelegheit));
+# Override røyndom with verkelegheit; keep idiom "i røynda" ("i virkeligheten")
+SELECT:røyndom_verkelegheit ("verkelegheit") IF (0 ("røyndom"i) + (VAR:røyndom_verkelegheit.syn));
+SELECT:verkelegheit_i-røynda ("røynd") IF (0 ("røynd"i) + (VAR:røyndom_verkelegheit.syn));
 REMOVE:røyndom_røyndom ("verkelegheit") IF (0 ("røyndom"i));
+
+SELECT:i-røynda_i-verkelegheita  ("i verkelegheita"i) IF (0 ("i røynda"i) + (VAR:i-røynda_i-verkelegheita.syn));
+REMOVE:i-røynda_i-verkelegheita ("i verkelegheita"i) IF (0 ("i røynda"i));
 
 ### Må eventuelt disambiguerast: beskrive -> skildre, forklare, klarleggje, gjere greie for, karakterisere, omtale o.l.
 ### Valet bør også omfatte substantiv: beskriving -> skildring, forklaring, klargjering, utgreiing, skisse o.l.
