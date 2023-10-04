@@ -40,7 +40,9 @@ dif1 () {
         diff -U0 -I'^nno-nob\|AP_SRC'                  \
              "${reffile}"                              \
              tests/out/"${name}"."${step}".current.txt \
+            | awk '/./&&!p { print "@@"; p++ } { print }' \
             | wdif "${colorspec}"
+        # Prepending @@ to non-empty diff ensures file paths are coloured too
     )
 }
 
