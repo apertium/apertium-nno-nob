@@ -60,12 +60,13 @@
     <def-cat n="nind_noadj">
       <cat-item lemma="nn" tags="n.*.ind"/>
       <cat-item lemma="nn" tags="n.*.ind.*"/>
-      <cat-item lemma="n_n" tags="n.*.ind"/>
-      <cat-item lemma="n_n" tags="n.*.ind.*"/>
-      <cat-item lemma="n_n_n" tags="n.*.ind"/>
-      <cat-item lemma="n_n_n" tags="n.*.ind.*"/>
-      <cat-item lemma="n_n_n_n" tags="n.*.ind"/>
-      <cat-item lemma="n_n_n_n" tags="n.*.ind.*"/>
+      <cat-item lemma="n_n" tags="n.*.ind"/>   <!-- Sogn tingrett -->
+      <cat-item lemma="cmp_n" tags="n.*.ind"/> <!-- kaffetingrett -->
+      <cat-item lemma="cmp_n" tags="n.*.ind.*"/>
+      <cat-item lemma="cmp_cmp_n" tags="n.*.ind"/>
+      <cat-item lemma="cmp_cmp_n" tags="n.*.ind.*"/>
+      <cat-item lemma="cmp_cmp_cmp_n" tags="n.*.ind"/>
+      <cat-item lemma="cmp_cmp_cmp_n" tags="n.*.ind.*"/>
     </def-cat>
     <def-cat n="nplind">
       <cat-item tags="n.*.pl.ind"/>
@@ -184,29 +185,29 @@
       <cat-item lemma="adj_n"               tags="n.*.def.*"/>
       <cat-item lemma="adj_adj_n"           tags="n.*.def.*"/>
       <cat-item lemma="adj_adj_adj_n"       tags="n.*.def.*"/>
-      <cat-item lemma="adj_n_n"             tags="n.*.def.*"/>
-      <cat-item lemma="adj_adj_n_n"         tags="n.*.def.*"/>
-      <cat-item lemma="adj_adj_adj_n_n"     tags="n.*.def.*"/>
-      <cat-item lemma="adj_n_n_n"           tags="n.*.def.*"/>
-      <cat-item lemma="adj_adj_n_n_n"       tags="n.*.def.*"/>
-      <cat-item lemma="adj_adj_adj_n_n_n"   tags="n.*.def.*"/>
-      <cat-item lemma="adj_n_n_n_n"         tags="n.*.def.*"/>
-      <cat-item lemma="adj_adj_n_n_n_n"     tags="n.*.def.*"/>
-      <cat-item lemma="adj_adj_adj_n_n_n_n" tags="n.*.def.*"/>
+      <cat-item lemma="adj_cmp_n"             tags="n.*.def.*"/>
+      <cat-item lemma="adj_adj_cmp_n"         tags="n.*.def.*"/>
+      <cat-item lemma="adj_adj_adj_cmp_n"     tags="n.*.def.*"/>
+      <cat-item lemma="adj_cmp_cmp_n"           tags="n.*.def.*"/>
+      <cat-item lemma="adj_adj_cmp_cmp_n"       tags="n.*.def.*"/>
+      <cat-item lemma="adj_adj_adj_cmp_cmp_n"   tags="n.*.def.*"/>
+      <cat-item lemma="adj_cmp_cmp_cmp_n"         tags="n.*.def.*"/>
+      <cat-item lemma="adj_adj_cmp_cmp_cmp_n"     tags="n.*.def.*"/>
+      <cat-item lemma="adj_adj_adj_cmp_cmp_cmp_n" tags="n.*.def.*"/>
     </def-cat>
     <def-cat n="anom_ind">
       <cat-item lemma="adj_n"               tags="n.*.ind.*"/>
       <cat-item lemma="adj_adj_n"           tags="n.*.ind.*"/>
       <cat-item lemma="adj_adj_adj_n"       tags="n.*.ind.*"/>
-      <cat-item lemma="adj_n_n"             tags="n.*.ind.*"/>
-      <cat-item lemma="adj_adj_n_n"         tags="n.*.ind.*"/>
-      <cat-item lemma="adj_adj_adj_n_n"     tags="n.*.ind.*"/>
-      <cat-item lemma="adj_n_n_n"           tags="n.*.ind.*"/>
-      <cat-item lemma="adj_adj_n_n_n"       tags="n.*.ind.*"/>
-      <cat-item lemma="adj_adj_adj_n_n_n"   tags="n.*.ind.*"/>
-      <cat-item lemma="adj_n_n_n_n"         tags="n.*.ind.*"/>
-      <cat-item lemma="adj_adj_n_n_n_n"     tags="n.*.ind.*"/>
-      <cat-item lemma="adj_adj_adj_n_n_n_n" tags="n.*.ind.*"/>
+      <cat-item lemma="adj_cmp_n"             tags="n.*.ind.*"/>
+      <cat-item lemma="adj_adj_cmp_n"         tags="n.*.ind.*"/>
+      <cat-item lemma="adj_adj_adj_cmp_n"     tags="n.*.ind.*"/>
+      <cat-item lemma="adj_cmp_cmp_n"           tags="n.*.ind.*"/>
+      <cat-item lemma="adj_adj_cmp_cmp_n"       tags="n.*.ind.*"/>
+      <cat-item lemma="adj_adj_adj_cmp_cmp_n"   tags="n.*.ind.*"/>
+      <cat-item lemma="adj_cmp_cmp_cmp_n"         tags="n.*.ind.*"/>
+      <cat-item lemma="adj_adj_cmp_cmp_cmp_n"     tags="n.*.ind.*"/>
+      <cat-item lemma="adj_adj_adj_cmp_cmp_cmp_n" tags="n.*.ind.*"/>
     </def-cat>
     <def-cat n="nom_sup">
       <cat-item tags="n.*.sup"/>
@@ -868,10 +869,10 @@
       <choose><when>
         <test><or>
           <begins-with caseless="yes"><clip pos="1" part="lemh"/><lit v="adj"/></begins-with>
-          <begins-with caseless="yes"><clip pos="1" part="lemh"/><lit v="n_adj"/></begins-with>
-          <begins-with caseless="yes"><clip pos="1" part="lemh"/><lit v="n_n_adj"/></begins-with>
-          <begins-with caseless="yes"><clip pos="1" part="lemh"/><lit v="n_n_n_adj"/></begins-with>
-          <begins-with caseless="yes"><clip pos="1" part="lemh"/><lit v="n_n_n_n_adj"/></begins-with>
+          <begins-with caseless="yes"><clip pos="1" part="lemh"/><lit v="cmp_adj"/></begins-with>
+          <begins-with caseless="yes"><clip pos="1" part="lemh"/><lit v="cmp_cmp_adj"/></begins-with>
+          <begins-with caseless="yes"><clip pos="1" part="lemh"/><lit v="cmp_cmp_cmp_adj"/></begins-with>
+          <begins-with caseless="yes"><clip pos="1" part="lemh"/><lit v="cmp_cmp_cmp_cmp_adj"/></begins-with>
           <begins-with caseless="yes"><clip pos="1" part="lemh"/><lit v="needdet_"/></begins-with>
           <begins-with caseless="yes"><clip pos="1" part="tags"/><lit-tag v="det.qnt"/></begins-with>
         </or></test>
