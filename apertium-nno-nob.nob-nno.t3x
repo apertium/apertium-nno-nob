@@ -92,6 +92,9 @@
     <def-cat n="adj_adj_cmp_n">
       <cat-item name="adj_adj_cmp_n"/>
     </def-cat>
+    <def-cat n="cmp_adj_adj_n">
+      <cat-item name="cmp_adj_adj_n"/>
+    </def-cat>
     <def-cat n="adj_adj_cmp_cmp_n">
       <cat-item name="adj_adj_cmp_cmp_n"/>
     </def-cat>
@@ -1217,6 +1220,25 @@
         <out>
           <b pos="2"/>
           <lu><clip pos="3" part="whole"/></lu><b/>
+          <lu><clip pos="4" part="whole"/></lu>
+        </out>
+      </action>
+    </rule>
+    <rule comment="CHUNK: cmp_adj_adj_n">
+      <pattern>
+        <pattern-item n="cmp_adj_adj_n"/>
+      </pattern>
+      <action>
+        <call-macro n="clean_n.adj"><with-param pos="4"/><with-param pos="2"/><with-param pos="0"/></call-macro>
+        <call-macro n="clean_n.adj_defnes"><with-param pos="4"/><with-param pos="3"/><with-param pos="0"/></call-macro>
+        <out>
+          <lu><clip pos="1" part="whole"/></lu>
+        </out>
+        <call-macro n="out_adj"><with-param pos="2"/><with-param pos="0"/></call-macro>
+        <out><b/><b/></out>
+        <call-macro n="out_adj"><with-param pos="3"/><with-param pos="0"/></call-macro>
+        <out>
+          <b/>
           <lu><clip pos="4" part="whole"/></lu>
         </out>
       </action>
