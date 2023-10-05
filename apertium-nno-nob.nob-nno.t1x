@@ -6,7 +6,7 @@
   -->
   <section-def-cats>
     <!-- compound lhs's are never genitive, and don't get capstags: -->
-    <def-cat n="ncmp" c="No need to specify PoS/subtags (that will just slow down compilation
+    <def-cat n="cmp" c="No need to specify PoS/subtags (that will just slow down compilation
                          since this pattern often gets used many times per rule)">
       <cat-item tags="*.cmp"/>
       <cat-item tags="*.cmp.*"/>
@@ -9487,10 +9487,10 @@ no lemq-moving">
         </out>
       </action>
     </rule>
-    <rule comment="NCMP NGEN_KEEP_GEN_S NIND: 710-kilos hai → 710-kilos hai
+    <rule comment="CMP NGEN_KEEP_GEN_S NIND: 710-kilos hai → 710-kilos hai
                    morgendagens lærere → morgondagens lærare">
       <pattern>
-        <pattern-item n="ncmp"/>
+        <pattern-item n="cmp"/>
         <pattern-item n="ngen_keep_gen_s"/>
         <pattern-item n="nind_indgen"/>
       </pattern>
@@ -9516,9 +9516,9 @@ no lemq-moving">
         </out>
       </action>
     </rule>
-    <rule comment="NCMP NGEN_KEEP_GEN_S ADJ NIND: 710-kilos stor hai → 710-kilos stor hai">
+    <rule comment="CMP NGEN_KEEP_GEN_S ADJ NIND: 710-kilos stor hai → 710-kilos stor hai">
       <pattern>
-        <pattern-item n="ncmp"/>
+        <pattern-item n="cmp"/>
         <pattern-item n="ngen_keep_gen_s"/>
         <pattern-item n="adj"/>
         <pattern-item n="nind_indgen"/>
@@ -9739,10 +9739,10 @@ no lemq-moving">
         </choose>
       </action>
     </rule>
-    <rule comment="NCMP N: ytelses ytelse => ytingsyting
+    <rule comment="CMP N: ytelses ytelse => ytingsyting
                    Remove the space that pretransfer added">
       <pattern>
-        <pattern-item n="ncmp"/>
+        <pattern-item n="cmp"/>
         <pattern-item n="n_np"/>
       </pattern>
       <action>
@@ -9761,10 +9761,10 @@ no lemq-moving">
         </out>
       </action>
     </rule>
-    <rule comment="NCMP NCMP N: Falk lands krigen => Falklandskrigen">
+    <rule comment="CMP CMP N: Falk lands krigen => Falklandskrigen">
       <pattern>
-        <pattern-item n="ncmp"/>
-        <pattern-item n="ncmp"/>
+        <pattern-item n="cmp"/>
+        <pattern-item n="cmp"/>
         <pattern-item n="n_np"/>
       </pattern>
       <action>
@@ -9785,11 +9785,11 @@ no lemq-moving">
         </out>
       </action>
     </rule>
-    <rule comment="NCMP NCMP NCMP N">
+    <rule comment="CMP CMP CMP N">
       <pattern>
-        <pattern-item n="ncmp"/>
-        <pattern-item n="ncmp"/>
-        <pattern-item n="ncmp"/>
+        <pattern-item n="cmp"/>
+        <pattern-item n="cmp"/>
+        <pattern-item n="cmp"/>
         <pattern-item n="n_np"/>
       </pattern>
       <action>
@@ -9813,10 +9813,10 @@ no lemq-moving">
       </action>
     </rule>
 
-    <!-- NCMP+ADJ, no following noun -->
-    <rule comment="NCMP NCMP ADJ">
+    <!-- CMP+ADJ, no following noun -->
+    <rule comment="CMP CMP ADJ">
       <pattern>
-        <pattern-item n="ncmp"/>
+        <pattern-item n="cmp"/>
         <pattern-item n="adj"/>
       </pattern>
       <action>
@@ -9837,10 +9837,10 @@ no lemq-moving">
         </out>
       </action>
     </rule>
-    <rule comment="NCMP NCMP ADJ">
+    <rule comment="CMP CMP ADJ">
       <pattern>
-        <pattern-item n="ncmp"/>
-        <pattern-item n="ncmp"/>
+        <pattern-item n="cmp"/>
+        <pattern-item n="cmp"/>
         <pattern-item n="adj"/>
       </pattern>
       <action>
@@ -9863,11 +9863,11 @@ no lemq-moving">
         </out>
       </action>
     </rule>
-    <rule comment="NCMP NCMP NCMP ADJ">
+    <rule comment="CMP CMP CMP ADJ">
       <pattern>
-        <pattern-item n="ncmp"/>
-        <pattern-item n="ncmp"/>
-        <pattern-item n="ncmp"/>
+        <pattern-item n="cmp"/>
+        <pattern-item n="cmp"/>
+        <pattern-item n="cmp"/>
         <pattern-item n="adj"/>
       </pattern>
       <action>
@@ -9892,12 +9892,12 @@ no lemq-moving">
         </out>
       </action>
     </rule>
-    <rule comment="NCMP NCMP NCMP NCMP ADJ">
+    <rule comment="CMP CMP CMP CMP ADJ">
       <pattern>
-        <pattern-item n="ncmp"/>
-        <pattern-item n="ncmp"/>
-        <pattern-item n="ncmp"/>
-        <pattern-item n="ncmp"/>
+        <pattern-item n="cmp"/>
+        <pattern-item n="cmp"/>
+        <pattern-item n="cmp"/>
+        <pattern-item n="cmp"/>
         <pattern-item n="adj"/>
       </pattern>
       <action>
@@ -9924,10 +9924,10 @@ no lemq-moving">
         </out>
       </action>
     </rule>
-    <!-- NCMP+ADJ N, with following noun -->
-    <rule comment="NCMP ADJ N">
+    <!-- CMP+ADJ N, with following noun -->
+    <rule comment="CMP ADJ N">
       <pattern>
-        <pattern-item n="ncmp"/>
+        <pattern-item n="cmp"/>
         <pattern-item n="adj"/>
         <pattern-item n="n_np"/>
       </pattern>
@@ -9967,11 +9967,11 @@ no lemq-moving">
         </out>
       </action>
     </rule>
-    <rule comment="NCMP ADJ NCMP N">
+    <rule comment="CMP ADJ CMP N">
       <pattern>
-        <pattern-item n="ncmp"/>
+        <pattern-item n="cmp"/>
         <pattern-item n="adj"/>
-        <pattern-item n="ncmp"/>
+        <pattern-item n="cmp"/>
         <pattern-item n="n_np"/>
       </pattern>
       <action>
@@ -10059,10 +10059,10 @@ no lemq-moving">
       </action>
     </rule>
 
-    <rule comment="NCMP NIND CNJCOO N: landenes selvbestemmelse og suverenitet → sjølvbestemminga og suvereniteten til landa
+    <rule comment="CMP NIND CNJCOO N: landenes selvbestemmelse og suverenitet → sjølvbestemminga og suvereniteten til landa
                    Chunk the coordination for genitive-movement in t2x">
       <pattern>
-        <pattern-item n="ncmp"/>
+        <pattern-item n="cmp"/>
         <pattern-item n="n_np"/>
         <pattern-item n="cnjcoo_nkon"/>
         <pattern-item n="n_np"/>
@@ -10089,12 +10089,12 @@ no lemq-moving">
         </out>
       </action>
     </rule>
-    <rule comment="NIND CNJCOO NCMP N: (kvinners) kontroll- og konstitusjonskomité → kontroll- og konstitusjonskomitéen til kvinner
+    <rule comment="NIND CNJCOO CMP N: (kvinners) kontroll- og konstitusjonskomité → kontroll- og konstitusjonskomitéen til kvinner
                    Chunk the coordination for genitive-movement in t2x">
       <pattern>
         <pattern-item n="n_np"/>
         <pattern-item n="cnjcoo_nkon"/>
-        <pattern-item n="ncmp"/>
+        <pattern-item n="cmp"/>
         <pattern-item n="n_np"/>
       </pattern>
       <action>
@@ -10118,12 +10118,12 @@ no lemq-moving">
         </out>
       </action>
     </rule>
-    <rule comment="ADJ CNJCOO NCMP ADJ N: små og saktevoksende svulster
+    <rule comment="ADJ CNJCOO CMP ADJ N: små og saktevoksende svulster
                    Chunk the coordination for genitive-movement in t2x">
       <pattern>
         <pattern-item n="adj"/>
         <pattern-item n="cnjcoo_nkon"/>
-        <pattern-item n="ncmp"/>
+        <pattern-item n="cmp"/>
         <pattern-item n="adj"/>
         <pattern-item n="n_np"/>
       </pattern>
@@ -10220,12 +10220,12 @@ no lemq-moving">
         </out>
       </action>
     </rule>
-    <rule comment="NCMP NGEN CNJCOO NCMP NGEN: tilsynspersonens og barneverntjenestens → til tilsynspersonen og barneverntjenesten">
+    <rule comment="CMP NGEN CNJCOO CMP NGEN: tilsynspersonens og barneverntjenestens → til tilsynspersonen og barneverntjenesten">
       <pattern>
-        <pattern-item n="ncmp"/>
+        <pattern-item n="cmp"/>
         <pattern-item n="ngen"/>
         <pattern-item n="cnjcoo_nkon"/>
-        <pattern-item n="ncmp"/>
+        <pattern-item n="cmp"/>
         <pattern-item n="ngen"/>
       </pattern>
       <action>
@@ -10382,13 +10382,13 @@ no lemq-moving">
         </out>
       </action>
     </rule>
-    <rule comment="ADJ CNJCOO ADJ NCMP N: dedikert og nyhetsdrevet lokalavis
+    <rule comment="ADJ CNJCOO ADJ CMP N: dedikert og nyhetsdrevet lokalavis
                    Chunk the coordination for GD-setting (DET NOM-rule) in t2x">
       <pattern>
         <pattern-item n="adj"/>         <!-- 1 -->
         <pattern-item n="cnjcoo_nkon"/> <!-- 2 -->
         <pattern-item n="adj"/>         <!-- 3 -->
-        <pattern-item n="ncmp"/>        <!-- 4 -->
+        <pattern-item n="cmp"/>         <!-- 4 -->
         <pattern-item n="n_np"/>        <!-- 5-->
       </pattern>
       <action>
@@ -10418,14 +10418,14 @@ no lemq-moving">
         </out>
       </action>
     </rule>
-    <rule comment="NCMP ADJ CNJCOO ADJ NCMP N: robotdedikert og nyhetsdrevet lokalavis
+    <rule comment="CMP ADJ CNJCOO ADJ CMP N: robotdedikert og nyhetsdrevet lokalavis
                    Chunk the coordination for GD-setting (DET NOM-rule) in t2x">
       <pattern>
-        <pattern-item n="ncmp"/>        <!-- 1 robot -->
+        <pattern-item n="cmp"/>         <!-- 1 robot -->
         <pattern-item n="adj"/>         <!-- 2 dedikert -->
         <pattern-item n="cnjcoo"/>      <!-- 3 og -->
         <pattern-item n="adj"/>         <!-- 4 nyhetsdrevet -->
-        <pattern-item n="ncmp"/>        <!-- 5 lokal -->
+        <pattern-item n="cmp"/>         <!-- 5 lokal -->
         <pattern-item n="n_np"/>        <!-- 6 avis-->
       </pattern>
       <action>
@@ -10544,11 +10544,11 @@ no lemq-moving">
         </out>
       </action>
     </rule>
-    <rule comment="NP_NOGEN NCMP NINDGEN: Sogn politidistrikts → Sogn politidistrikts
+    <rule comment="NP_NOGEN CMP NINDGEN: Sogn politidistrikts → Sogn politidistrikts
                    Chunk for genitive movement">
       <pattern>
         <pattern-item n="np_nogen"/>
-        <pattern-item n="ncmp"/>
+        <pattern-item n="cmp"/>
         <pattern-item n="nindgen"/>
       </pattern>
       <action>
@@ -10628,10 +10628,10 @@ no lemq-moving">
         </out>
       </action>
     </rule>
-    <rule comment="ADJ NCMP N">
+    <rule comment="ADJ CMP N">
       <pattern>
         <pattern-item n="adj"/>
-        <pattern-item n="ncmp"/>
+        <pattern-item n="cmp"/>
         <pattern-item n="n_np"/>
       </pattern>
       <action>
@@ -10673,11 +10673,11 @@ no lemq-moving">
         </out>
       </action>
     </rule>
-    <rule comment="ADJ NCMP NCMP N">
+    <rule comment="ADJ CMP CMP N">
       <pattern>
         <pattern-item n="adj"/>
-        <pattern-item n="ncmp"/>
-        <pattern-item n="ncmp"/>
+        <pattern-item n="cmp"/>
+        <pattern-item n="cmp"/>
         <pattern-item n="n_np"/>
       </pattern>
       <action>
@@ -10724,12 +10724,12 @@ no lemq-moving">
         </out>
       </action>
     </rule>
-    <rule comment="ADJ NCMP NCMP NCMP N">
+    <rule comment="ADJ CMP CMP CMP N">
       <pattern>
         <pattern-item n="adj"/>
-        <pattern-item n="ncmp"/>
-        <pattern-item n="ncmp"/>
-        <pattern-item n="ncmp"/>
+        <pattern-item n="cmp"/>
+        <pattern-item n="cmp"/>
+        <pattern-item n="cmp"/>
         <pattern-item n="n_np"/>
       </pattern>
       <action>
@@ -10844,11 +10844,11 @@ no lemq-moving">
         </out>
       </action>
     </rule>
-    <rule comment="ADJ ADJ NCMP N">
+    <rule comment="ADJ ADJ CMP N">
       <pattern>
         <pattern-item n="adj"/>
         <pattern-item n="adj"/>
-        <pattern-item n="ncmp"/>
+        <pattern-item n="cmp"/>
         <pattern-item n="n_np"/>
       </pattern>
       <action>
@@ -10910,12 +10910,12 @@ no lemq-moving">
         </out>
       </action>
     </rule>
-    <rule comment="ADJ ADJ NCMP NCMP N">
+    <rule comment="ADJ ADJ CMP CMP N">
       <pattern>
         <pattern-item n="adj"/>
         <pattern-item n="adj"/>
-        <pattern-item n="ncmp"/>
-        <pattern-item n="ncmp"/>
+        <pattern-item n="cmp"/>
+        <pattern-item n="cmp"/>
         <pattern-item n="n_np"/>
       </pattern>
       <action>
@@ -10982,13 +10982,13 @@ no lemq-moving">
         </out>
       </action>
     </rule>
-    <rule comment="ADJ ADJ NCMP NCMP NCMP N">
+    <rule comment="ADJ ADJ CMP CMP CMP N">
       <pattern>
         <pattern-item n="adj"/>
         <pattern-item n="adj"/>
-        <pattern-item n="ncmp"/>
-        <pattern-item n="ncmp"/>
-        <pattern-item n="ncmp"/>
+        <pattern-item n="cmp"/>
+        <pattern-item n="cmp"/>
+        <pattern-item n="cmp"/>
         <pattern-item n="n_np"/>
       </pattern>
       <action>
