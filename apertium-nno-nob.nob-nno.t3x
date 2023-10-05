@@ -3,6 +3,9 @@
 
 <!--
     Postchunk matches on names, which signify the number of LU's in the chunk.
+
+    TODO: merge adj|n|cmp into single "nom" category and have rules
+    check main pos, for fewer rules (but longer def-cats)
 -->
 
 <postchunk>
@@ -56,6 +59,9 @@
     </def-cat>
     <def-cat n="adj_cnjcoo_n_adj_n">
       <cat-item name="adj_cnjcoo_n_adj_n"/>
+    </def-cat>
+    <def-cat n="adj_cnjcoo_cmp_adj_n">
+      <cat-item name="adj_cnjcoo_cmp_adj_n"/>
     </def-cat>
     <def-cat n="adj_cnjcoo_adj_cmp_n">
       <cat-item name="adj_cnjcoo_adj_cmp_n"/>
@@ -1004,6 +1010,27 @@
         <out>
           <b/>
           <lu><clip pos="5" part="whole"/></lu>
+        </out>
+      </action>
+    </rule>
+    <rule comment="CHUNK: adj_cnjcoo_cmp_adj_n">
+      <pattern>
+        <pattern-item n="adj_cnjcoo_cmp_adj_n"/>
+      </pattern>
+      <action>
+        <call-macro n="clean_n.adj"><with-param pos="5"/><with-param pos="1"/><with-param pos="0"/></call-macro>
+        <call-macro n="clean_n.adj_defnes"><with-param pos="5"/><with-param pos="4"/><with-param pos="0"/></call-macro>
+        <call-macro n="out_adj"><with-param pos="1"/><with-param pos="0"/></call-macro> <!-- små -->
+        <out>
+          <b/>
+          <lu><clip pos="2" part="whole"/></lu>                                         <!-- og -->
+          <b/>
+          <lu><clip pos="3" part="whole"/></lu><b/>                                     <!-- sakte -->
+        </out>
+        <call-macro n="out_adj"><with-param pos="4"/><with-param pos="0"/></call-macro> <!-- veksande -->
+        <out>
+          <b/>
+          <lu><clip pos="5" part="whole"/></lu>                                         <!-- svulstar -->
         </out>
       </action>
     </rule>
