@@ -9819,7 +9819,7 @@ no lemq-moving">
     </rule>
 
     <!-- CMP+ADJ, no following noun -->
-    <rule comment="CMP CMP ADJ">
+    <rule comment="CMP ADJ">
       <pattern>
         <pattern-item n="cmp"/>
         <pattern-item n="adj"/>
@@ -11316,6 +11316,7 @@ no lemq-moving">
         <choose><when>
           <test><or>
             <equal><clip pos="1" side="tl" part="lemh"/><lit v=""/></equal>
+            <not><equal><clip pos="1" side="tl" part="a_cmp"/><lit v=""/></equal></not> <!-- rødkokt-->
             <not><equal><clip pos="2" side="tl" part="a_cmp"/><lit v=""/></equal></not> <!-- flere lang [ruter] -->
             <and>
               <not><in><clip pos="1" side="tl" part="lemh"/><list n="adj-ind-def"/></in></not>
@@ -11383,6 +11384,8 @@ no lemq-moving">
         <choose><when>
           <test><or>
             <equal><clip pos="1" side="tl" part="lemh"/><lit v=""/></equal>
+            <not><equal><clip pos="1" side="tl" part="a_cmp"/><lit v=""/></equal></not>
+            <not><equal><clip pos="2" side="tl" part="a_cmp"/><lit v=""/></equal></not> <!-- lettere rødkokt-->
             <not><equal><clip pos="3" side="tl" part="a_cmp"/><lit v=""/></equal></not> <!-- langt flere lang [ruter] -->
             <and>
               <not><in><clip pos="1" side="tl" part="lemh"/><list n="adj-ind-def"/></in></not>
