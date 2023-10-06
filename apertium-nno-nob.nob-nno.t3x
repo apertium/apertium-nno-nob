@@ -13,9 +13,10 @@
     <def-cat n="n">
       <cat-item name="nn"/>
     </def-cat>
-    <def-cat n="cmp_n">
+    <def-cat n="prenom_n">
       <cat-item name="n_n"/>    <!-- Sogn tingrett -->
       <cat-item name="cmp_n"/>  <!-- kaffetingrett -->
+      <cat-item name="adj_n"/>
     </def-cat>
     <def-cat n="cmp_cmp_n">
       <cat-item name="cmp_cmp_n"/>
@@ -36,17 +37,13 @@
     <def-cat n="n_cnjcoo_n">
       <cat-item name="n_cnjcoo_n"/>
     </def-cat>
-    <def-cat n="n_cnjcoo_adj_n">
+    <def-cat n="n_cnjcoo_prenom_n">
       <cat-item name="n_cnjcoo_adj_n"/>
-    </def-cat>
-    <def-cat n="adj_n_cnjcoo_n">
-      <cat-item name="adj_n_cnjcoo_n"/>
-    </def-cat>
-    <def-cat n="cmp_n_cnjcoo_n">
-      <cat-item name="cmp_n_cnjcoo_n"/>
-    </def-cat>
-    <def-cat n="n_cnjcoo_cmp_n">
       <cat-item name="n_cnjcoo_cmp_n"/>
+    </def-cat>
+    <def-cat n="prenom_n_cnjcoo_n">
+      <cat-item name="adj_n_cnjcoo_n"/>
+      <cat-item name="cmp_n_cnjcoo_n"/>
     </def-cat>
     <def-cat n="n_cnjcoo_det_adj_n">
       <cat-item name="n_cnjcoo_det_adj_n"/>
@@ -73,9 +70,6 @@
       <cat-item name="n_adj_cnjcoo_adj_cmp_n"/>
     </def-cat>
     <!-- ADJ N+ -->
-    <def-cat n="adj_n">
-      <cat-item name="adj_n"/>
-    </def-cat>
     <def-cat n="adj_cmp_n">
       <cat-item name="adj_cmp_n"/>
     </def-cat>
@@ -681,6 +675,40 @@
       </when></choose>
     </def-macro>
 
+    <def-macro n="out_noun_phrase1" npar="2"
+               c="arg1: Only LU, noun
+                  arg2: Chunk">
+      <call-macro n="maybe_out_ndem"><with-param pos="1"/><with-param pos="2"/></call-macro>
+      <call-macro n="clean_n"><with-param pos="1"/><with-param pos="2"/></call-macro>
+      <out><lu><clip pos="1" part="whole"/></lu></out>
+    </def-macro>
+
+    <def-macro n="out_noun_phrase2" npar="3"
+               c="arg1: First LU, either cmp, adj or noun
+                  arg2: Second LU, noun
+                  arg3: Chunk">
+      <!-- TODO: in n_cnjcoo_adj_n rule, we had clean_n.adj_defnes call before maybe_out_ndem, does it matter? -->
+      <call-macro n="maybe_out_ndem"><with-param pos="2"/><with-param pos="3"/></call-macro>
+      <choose>
+        <when c="1 cmp">
+          <test><not><equal><clip pos="1" part="a_cmp"/><lit v=""/></equal></not></test>
+          <out><lu><clip pos="1" part="whole"/></lu><b/></out>
+        </when>
+        <when c="1 adj">
+          <test><not><equal><clip pos="1" part="a_adj"/><lit v=""/></equal></not></test>
+          <call-macro n="clean_n.adj_defnes"><with-param pos="2"/><with-param pos="1"/><with-param pos="3"/></call-macro>
+          <call-macro n="out_adj"><with-param pos="1"/><with-param pos="3"/></call-macro>
+          <out><b/></out>
+        </when>
+        <otherwise c="1 noun">
+          <out><lu><clip pos="1" part="whole"/></lu><b/></out>
+        </otherwise>
+      </choose>
+      <call-macro n="clean_n"><with-param pos="2"/><with-param pos="3"/></call-macro>
+      <out><lu><clip pos="2" part="whole"/></lu></out>
+    </def-macro>
+
+
 </section-def-macros>
 
 
@@ -803,19 +831,16 @@
         </out>
       </action>
     </rule>
-    <rule comment="CHUNK: cmp_n">
+
+    <rule comment="CHUNK: prenom_n">
       <pattern>
-        <pattern-item n="cmp_n"/>
+        <pattern-item n="prenom_n"/>
       </pattern>
       <action>
-        <call-macro n="maybe_out_ndem"><with-param pos="2"/><with-param pos="0"/></call-macro>
-        <call-macro n="clean_n"><with-param pos="2"/><with-param pos="0"/></call-macro>
-        <out>
-          <lu><clip pos="1" part="whole"/></lu><b/>
-          <lu><clip pos="2" part="whole"/></lu>
-        </out>
+        <call-macro n="out_noun_phrase2"><with-param pos="1"/><with-param pos="2"/><with-param pos="0"/></call-macro>
       </action>
     </rule>
+
     <rule comment="CHUNK: cmp_cmp_n">
       <pattern>
         <pattern-item n="cmp_cmp_n"/>
@@ -851,104 +876,30 @@
         <pattern-item n="n_cnjcoo_n"/>
       </pattern>
       <action>
-        <call-macro n="maybe_out_ndem"><with-param pos="1"/><with-param pos="0"/></call-macro>
-        <call-macro n="clean_n"><with-param pos="1"/><with-param pos="0"/></call-macro>
-        <out>
-          <lu><clip pos="1" part="whole"/></lu>
-          <b pos="1"/>
-          <lu><clip pos="2" part="whole"/></lu>
-          <b pos="2"/>
-        </out>
-        <call-macro n="maybe_out_ndem"><with-param pos="3"/><with-param pos="0"/></call-macro>
-        <call-macro n="clean_n"><with-param pos="3"/><with-param pos="0"/></call-macro>
-        <out>
-          <lu><clip pos="3" part="whole"/></lu>
-        </out>
+        <call-macro n="out_noun_phrase1"><with-param pos="1"/><with-param pos="0"/></call-macro>
+        <out><b/><lu><clip pos="2" part="whole"/></lu><b/></out>
+        <call-macro n="out_noun_phrase1"><with-param pos="3"/><with-param pos="0"/></call-macro>
       </action>
     </rule>
-    <rule comment="CHUNK: n_cnjcoo_adj_n">
+    <rule comment="CHUNK: n_cnjcoo_prenom_n">
       <pattern>
-        <pattern-item n="n_cnjcoo_adj_n"/>
+        <pattern-item n="n_cnjcoo_prenom_n"/>
       </pattern>
       <action>
-        <call-macro n="maybe_out_ndem"><with-param pos="1"/><with-param pos="0"/></call-macro>
-        <call-macro n="clean_n"><with-param pos="1"/><with-param pos="0"/></call-macro>
-        <out>
-          <lu><clip pos="1" part="whole"/></lu>
-          <b pos="1"/>
-          <lu><clip pos="2" part="whole"/></lu>
-          <b pos="2"/>
-        </out>
-        <call-macro n="clean_n.adj_defnes"><with-param pos="4"/><with-param pos="3"/><with-param pos="0"/></call-macro>
-        <call-macro n="maybe_out_ndem2"><with-param pos="4"/><with-param pos="3"/><with-param pos="0"/></call-macro>
-        <call-macro n="out_adj"><with-param pos="3"/><with-param pos="0"/></call-macro>
-        <out>
-          <b pos="3"/>
-          <lu><clip pos="4" part="whole"/></lu>
-        </out>
+        <call-macro n="out_noun_phrase1"><with-param pos="1"/><with-param pos="0"/></call-macro>
+        <out><b/><lu><clip pos="2" part="whole"/></lu><b/></out>
+        <call-macro n="out_noun_phrase2"><with-param pos="3"/><with-param pos="4"/><with-param pos="0"/></call-macro>
       </action>
     </rule>
-    <rule comment="CHUNK: adj_n_cnjcoo_n">
+
+    <rule comment="CHUNK: prenom_n_cnjcoo_n">
       <pattern>
-        <pattern-item n="adj_n_cnjcoo_n"/>
+        <pattern-item n="prenom_n_cnjcoo_n"/>
       </pattern>
       <action>
-        <call-macro n="clean_n.adj_defnes"><with-param pos="2"/><with-param pos="1"/><with-param pos="0"/></call-macro>
-        <call-macro n="out_adj"><with-param pos="1"/><with-param pos="0"/></call-macro>
-        <out>
-          <b/>
-          <lu><clip pos="2" part="whole"/></lu>
-        </out>
-        <call-macro n="clean_n"><with-param pos="4"/><with-param pos="0"/></call-macro>
-        <out>
-          <b/>
-          <lu><clip pos="3" part="whole"/></lu>
-          <b/>
-          <lu><clip pos="4" part="whole"/></lu>
-        </out>
-      </action>
-    </rule>
-    <rule comment="CHUNK: cmp_n_cnjcoo_n">
-      <pattern>
-        <pattern-item n="cmp_n_cnjcoo_n"/>
-      </pattern>
-      <action>
-        <call-macro n="maybe_out_ndem"><with-param pos="2"/><with-param pos="0"/></call-macro>
-        <call-macro n="clean_n"><with-param pos="2"/><with-param pos="0"/></call-macro>
-        <out>
-          <lu><clip pos="1" part="whole"/></lu>
-          <b/>
-          <lu><clip pos="2" part="whole"/></lu>
-          <b/>
-          <lu><clip pos="3" part="whole"/></lu>
-          <b/>
-        </out>
-        <call-macro n="maybe_out_ndem"><with-param pos="4"/><with-param pos="0"/></call-macro>
-        <call-macro n="clean_n"><with-param pos="4"/><with-param pos="0"/></call-macro>
-        <out>
-          <lu><clip pos="4" part="whole"/></lu>
-        </out>
-      </action>
-    </rule>
-    <rule comment="CHUNK: n_cnjcoo_cmp_n">
-      <pattern>
-        <pattern-item n="n_cnjcoo_cmp_n"/>
-      </pattern>
-      <action>
-        <call-macro n="maybe_out_ndem"><with-param pos="1"/><with-param pos="0"/></call-macro>
-        <call-macro n="clean_n"><with-param pos="1"/><with-param pos="0"/></call-macro>
-        <out>
-          <lu><clip pos="1" part="whole"/></lu>
-          <b/>
-          <lu><clip pos="2" part="whole"/></lu> <!-- og -->
-          <b/>
-        </out>
-        <call-macro n="maybe_out_ndem"><with-param pos="4"/><with-param pos="0"/></call-macro>
-        <call-macro n="clean_n"><with-param pos="4"/><with-param pos="0"/></call-macro>
-        <out>
-          <lu><clip pos="3" part="whole"/></lu><b/>
-          <lu><clip pos="4" part="whole"/></lu>
-        </out>
+        <call-macro n="out_noun_phrase2"><with-param pos="1"/><with-param pos="2"/><with-param pos="0"/></call-macro>
+        <out><b/><lu><clip pos="3" part="whole"/></lu><b/></out>
+        <call-macro n="out_noun_phrase1"><with-param pos="4"/><with-param pos="0"/></call-macro>
       </action>
     </rule>
     <rule comment="CHUNK: n_cnjcoo_det_adj_n">
@@ -1128,19 +1079,6 @@
       </action>
     </rule>
     <!-- ADJ N+ -->
-    <rule comment="CHUNK: adj_n">
-      <pattern>
-        <pattern-item n="adj_n"/>
-      </pattern>
-      <action>
-        <call-macro n="clean_n.adj_defnes"><with-param pos="2"/><with-param pos="1"/><with-param pos="0"/></call-macro>
-        <call-macro n="out_adj"><with-param pos="1"/><with-param pos="0"/></call-macro>
-        <out>
-          <b pos="1"/>
-          <lu><clip pos="2" part="whole"/></lu>
-        </out>
-      </action>
-    </rule>
     <rule comment="CHUNK: adj_cmp_n">
       <pattern>
         <pattern-item n="adj_cmp_n"/>
