@@ -290,6 +290,9 @@ LIST lm_nyheit = "nyhende"i "nyhendebyrå"i "nyhendebyrået AP"i "nyhendeanker"i
 SELECT:nyheit_nyhende lm_nyheit IF (0 (VAR:nyheit_nyhende.syn));
 REMOVE:nyheit_nyhende lm_nyheit;
 
+SELECT:enkelt_einskild ("einskild"i) IF (0 ("enkelt"i) + (VAR:enkelt_einskild.syn));
+REMOVE:enkelt_einskild ("einskild"i) IF (0 ("enkelt"i));
+
 # DEBUG NOTES:
 # $ echo '[<STREAMCMD:SETVAR:forskjell_skilnad,samd_einig>]^forskjell<n><m><sg><ind>/forskjell<n><m><sg><ind>/skilnad<n><m><sg><ind>$ ^enig<adj><sint><pst><nt><sg><ind>/samd<adj><sint><pst><nt><sg><ind>/einig<adj><sint><pst><nt><sg><ind>$' | ~/src/ap/vislcg3/src/cg-proc -t biprefs.nob-nno.rlx.bin |cg-conv
 # [<STREAMCMD:SETVAR:forskjell_skilnad,samd_einig>]
