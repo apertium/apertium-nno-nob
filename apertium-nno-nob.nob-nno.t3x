@@ -272,6 +272,7 @@
 
   <section-def-vars>
     <def-var n="space" v=" "/>  <!-- TODO: v attribute doesn't seem to have any effect, have to let-bind it -->
+    <def-var n="n_cleaned" v="false"/>
   </section-def-vars>
 
   <section-def-lists>
@@ -492,46 +493,54 @@
       </when></choose>
     </def-macro>
 
+
     <def-macro n="clean_n" npar="2"
                c="arg.1: noun, arg.2: chunk.
-                  Nouns typically get chunk defnes.">
-      <choose><when>
-        <test><and>
-          <not><equal><clip pos="2" part="art"/><lit v=""/></equal></not>
-          <not><equal><clip pos="1" part="a_cmp"/><lit-tag v="cmp-split"/></equal></not>
-          <not><and>
-            <equal><clip pos="1" part="nbr"/><lit-tag v="sg"/></equal>
-            <or>
-              <in caseless="yes"><clip pos="1" part="lemh"/><list n="n-keep-sg.ind"/></in>
-              <and>
-                <in caseless="yes"><clip pos="1" part="lemh"/><list n="n-keep-sg.ind.pr"/></in>
-                <not><equal><clip pos="2" part="gen_prep_override"/><lit v=""/></equal></not>
-              </and>
-            </or>
-          </and></not>
-          <not><and>
-            <equal><clip pos="1" part="nbr"/><lit-tag v="pl"/></equal>
-            <in caseless="yes"><clip pos="1" part="lemh"/><list n="n-keep-pl.ind"/></in>
-          </and></not>
-        </and></test>
-        <let><clip pos="1" part="art"/><clip pos="2" part="art"/></let>
-      </when></choose>
-      <choose><when c="force indefinite before 'sin' on n-keep-sg.ind">
-        <test><and>
-          <equal><clip pos="2" part="a_po_sin"/><lit-tag v="po_sin"/></equal>
-          <equal><clip pos="1" part="nbr"/><lit-tag v="sg"/></equal>
-          <in caseless="yes"><clip pos="1" part="lemh"/><list n="n-keep-sg.ind"/></in>
-        </and></test>
-        <let><clip pos="1" part="art"/><lit-tag v="ind"/></let>
-      </when></choose>
+                  Nouns typically get chunk defnes.
+                  Important: set n_cleaned at start of rules/macros calling this macro!">
+      <choose><when c="Don't run this macro if n has already been cleaned wrt. adj">
+        <test><equal><var n="n_cleaned"/><lit v="false"/></equal></test>
 
-      <choose><when c="som en hvilken som helst annen sak → som alle andre saker">
-        <test><equal><clip pos="2" part="a_chunknum"/><lit-tag v="chunknum"/></equal></test>
-        <let><clip pos="1" part="a_chunknum"/><lit v=""/></let>
-        <let><clip pos="1" part="nbr"/><clip pos="2" part="nbr"/></let>
+        <choose><when>
+          <test><and>
+            <not><equal><clip pos="2" part="art"/><lit v=""/></equal></not>
+            <not><equal><clip pos="1" part="a_cmp"/><lit-tag v="cmp-split"/></equal></not>
+            <not><and>
+              <equal><clip pos="1" part="nbr"/><lit-tag v="sg"/></equal>
+              <or>
+                <in caseless="yes"><clip pos="1" part="lemh"/><list n="n-keep-sg.ind"/></in>
+                <and>
+                  <in caseless="yes"><clip pos="1" part="lemh"/><list n="n-keep-sg.ind.pr"/></in>
+                  <not><equal><clip pos="2" part="gen_prep_override"/><lit v=""/></equal></not>
+                </and>
+              </or>
+            </and></not>
+            <not><and>
+              <equal><clip pos="1" part="nbr"/><lit-tag v="pl"/></equal>
+              <in caseless="yes"><clip pos="1" part="lemh"/><list n="n-keep-pl.ind"/></in>
+            </and></not>
+          </and></test>
+          <let><clip pos="1" part="art"/><clip pos="2" part="art"/></let>
+        </when></choose>
+        <choose><when c="force indefinite before 'sin' on n-keep-sg.ind">
+          <test><and>
+            <equal><clip pos="2" part="a_po_sin"/><lit-tag v="po_sin"/></equal>
+            <equal><clip pos="1" part="nbr"/><lit-tag v="sg"/></equal>
+            <in caseless="yes"><clip pos="1" part="lemh"/><list n="n-keep-sg.ind"/></in>
+          </and></test>
+          <let><clip pos="1" part="art"/><lit-tag v="ind"/></let>
+        </when></choose>
+
+        <choose><when c="som en hvilken som helst annen sak → som alle andre saker">
+          <test><equal><clip pos="2" part="a_chunknum"/><lit-tag v="chunknum"/></equal></test>
+          <let><clip pos="1" part="a_chunknum"/><lit v=""/></let>
+          <let><clip pos="1" part="nbr"/><clip pos="2" part="nbr"/></let>
+        </when></choose>
+        <call-macro n="apply_casedrop_defdrop"><with-param pos="1"/><with-param pos="2"/></call-macro>
+
       </when></choose>
-      <call-macro n="apply_casedrop_defdrop"><with-param pos="1"/><with-param pos="2"/></call-macro>
     </def-macro>
+
 
     <def-macro n="out_ndem" npar="1"
                c="arg.1: noun
@@ -666,6 +675,7 @@
           </otherwise>
         </choose>
       </when></choose>
+      <let><var n="n_cleaned"/><lit v="true"/></let>
     </def-macro>
 
     <def-macro n="apply_chunk_defnes_to_adj" npar="2"
@@ -734,6 +744,7 @@
     <def-macro n="out_noun_phrase1" npar="2"
                c="arg1: Only LU, head noun
                   arg2: Chunk">
+      <let><var n="n_cleaned"/><lit v="false"/></let>
       <call-macro n="maybe_out_ndem"><with-param pos="1"/><with-param pos="2"/></call-macro>
       <call-macro n="clean_n"><with-param pos="1"/><with-param pos="2"/></call-macro>
       <out><lu><clip pos="1" part="whole"/></lu></out>
@@ -743,10 +754,12 @@
                c="arg1: First LU, either cmp, adj or noun
                   arg2: Second LU, head noun
                   arg3: Chunk">
+      <let><var n="n_cleaned"/><lit v="false"/></let>
       <!-- TODO: in n_cnjcoo_adj_n rule, we had clean_n.adj_defnes call before maybe_out_ndem, does it matter? -->
       <call-macro n="maybe_out_ndem"><with-param pos="2"/><with-param pos="3"/></call-macro>
       <call-macro n="apply_chunk_defnes_to_adj"><with-param pos="1"/><with-param pos="3"/></call-macro>
       <call-macro n="out_prenom"><with-param pos="1"/><with-param pos="2"/><with-param pos="3"/></call-macro>
+
       <call-macro n="clean_n"><with-param pos="2"/><with-param pos="3"/></call-macro>
       <out><lu><clip pos="2" part="whole"/></lu></out>
     </def-macro>
@@ -756,6 +769,7 @@
                   arg2: Second LU, either cmp, adj or noun
                   arg3: Third LU, head noun
                   arg4: Chunk">
+      <let><var n="n_cleaned"/><lit v="false"/></let>
       <call-macro n="maybe_out_ndem"><with-param pos="3"/><with-param pos="4"/></call-macro>
       <call-macro n="apply_chunk_defnes_to_adj"><with-param pos="2"/><with-param pos="3"/></call-macro>
       <call-macro n="out_prenom"><with-param pos="1"/><with-param pos="3"/><with-param pos="4"/></call-macro>
@@ -770,6 +784,7 @@
                   arg3: Third LU, either cmp, adj or noun
                   arg4: Fourth LU, head noun
                   arg5: Chunk">
+      <let><var n="n_cleaned"/><lit v="false"/></let>
       <call-macro n="maybe_out_ndem"><with-param pos="4"/><with-param pos="5"/></call-macro>
       <call-macro n="apply_chunk_defnes_to_adj"><with-param pos="3"/><with-param pos="4"/></call-macro>
       <call-macro n="out_prenom"><with-param pos="1"/><with-param pos="4"/><with-param pos="5"/></call-macro>
@@ -786,6 +801,7 @@
                   arg4: Fourth LU, either cmp, adj or noun
                   arg5: Fifth LU, head noun
                   arg6: Chunk">
+      <let><var n="n_cleaned"/><lit v="false"/></let>
       <call-macro n="maybe_out_ndem"><with-param pos="5"/><with-param pos="6"/></call-macro>
       <call-macro n="apply_chunk_defnes_to_adj"><with-param pos="4"/><with-param pos="5"/></call-macro>
       <call-macro n="out_prenom"><with-param pos="1"/><with-param pos="5"/><with-param pos="6"/></call-macro>
@@ -804,6 +820,7 @@
                   arg5: Fifth LU, either cmp, adj or noun
                   arg6: Sixth LU, head noun
                   arg7: Chunk">
+      <let><var n="n_cleaned"/><lit v="false"/></let>
       <call-macro n="maybe_out_ndem"><with-param pos="6"/><with-param pos="7"/></call-macro>
       <call-macro n="apply_chunk_defnes_to_adj"><with-param pos="5"/><with-param pos="6"/></call-macro>
       <call-macro n="out_prenom"><with-param pos="1"/><with-param pos="6"/><with-param pos="7"/></call-macro>
@@ -930,6 +947,7 @@
         <pattern-item n="n"/>
       </pattern>
       <action>
+        <let><var n="n_cleaned"/><lit v="false"/></let>
         <call-macro n="maybe_out_ndem"><with-param pos="1"/><with-param pos="0"/></call-macro>
         <call-macro n="clean_n"><with-param pos="1"/><with-param pos="0"/></call-macro>
         <out>
@@ -1035,6 +1053,7 @@
           <lu><clip pos="3" part="whole"/></lu> <!-- det -->
           <b/>
         </out>
+        <let><var n="n_cleaned"/><lit v="false"/></let>
         <!-- Not using out_noun_phrase2 since we don't want to output determiner: -->
         <call-macro n="apply_chunk_defnes_to_adj"><with-param pos="4"/><with-param pos="0"/></call-macro>
         <call-macro n="out_prenom"><with-param pos="4"/><with-param pos="5"/><with-param pos="0"/></call-macro>
