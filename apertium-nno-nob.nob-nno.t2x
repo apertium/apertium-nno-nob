@@ -501,6 +501,9 @@
     <def-attr n="a_keepgenx" c="Mark that we'd like to keep gen-case of possessor (throw away prep)">
       <attr-item tags="keepgenx"/>
     </def-attr>
+    <def-attr n="a_needdet" c="Needs determiner when moved out of genitive">
+      <attr-item tags="needdet"/>
+    </def-attr>
     <def-attr n="a_date">
       <attr-item tags="date"/>
     </def-attr>
@@ -873,7 +876,7 @@
           <begins-with caseless="yes"><clip pos="1" part="lemh"/><lit v="cmp_cmp_adj"/></begins-with>
           <begins-with caseless="yes"><clip pos="1" part="lemh"/><lit v="cmp_cmp_cmp_adj"/></begins-with>
           <begins-with caseless="yes"><clip pos="1" part="lemh"/><lit v="cmp_cmp_cmp_cmp_adj"/></begins-with>
-          <begins-with caseless="yes"><clip pos="1" part="lemh"/><lit v="needdet_"/></begins-with>
+          <equal><clip pos="1" part="a_needdet"/><lit-tag v="needdet"/></equal>
           <begins-with caseless="yes"><clip pos="1" part="tags"/><lit-tag v="det.qnt"/></begins-with>
         </or></test>
         <call-macro n="out_det"><with-param pos="1"/><with-param pos="2"/></call-macro>

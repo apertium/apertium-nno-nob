@@ -8756,6 +8756,10 @@
             <reject-current-rule shifting="no"/>
           </otherwise>
         </choose>
+        <call-macro n="set_caseFirstWord2">
+          <with-param pos="1"/>
+          <with-param pos="2"/>
+        </call-macro>
         <choose>
           <when>
             <test><or>
@@ -8764,20 +8768,17 @@
             </or></test>
             <let><var n="c_name"/><lit v="adj_n"/></let>
             <let><var n="adjtags"/><lit-tag v="adj.pst.mf.sg.ind"/></let>
-            <let><var n="defnes"/><lit-tag v="ind"/></let>
+            <let><clip pos="2" side="tl" part="art"/><lit-tag v="ind"/></let>
+            <call-macro n="stash_case_in_ntags1"><with-param pos="2"/></call-macro>
           </when>
           <otherwise>
             <let><var n="c_name"/><lit v="needdet_adj_n"/></let>
             <let><var n="adjtags"/><lit-tag v="adj.pst.un.sp.def"/></let>
-            <let><var n="defnes"/><lit-tag v="def"/></let>
+            <let><clip pos="2" side="tl" part="art"/><lit-tag v="def"/></let>
+            <call-macro n="stash_case_in_ntags1"><with-param pos="2"/></call-macro>
+            <append n="ntags"><lit-tag v="needdet"/></append>
           </otherwise>
         </choose>
-        <call-macro n="set_caseFirstWord2">
-          <with-param pos="1"/>
-          <with-param pos="2"/>
-        </call-macro>
-        <let><clip pos="2" side="tl" part="art"/><var n="defnes"/></let>
-        <call-macro n="stash_case_in_ntags1"><with-param pos="2"/></call-macro>
         <out>
           <chunk namefrom="c_name" case="caseFirstWord">
             <tags><tag><var n="ntags"/></tag></tags>
