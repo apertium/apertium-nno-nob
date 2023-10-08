@@ -6998,6 +6998,17 @@
       <list-item v="hore"/>
       <list-item v="jævel"/>
     </def-list>
+    <def-list n="n_needs_det" c="Adj-like nouns that need determiner when undergoing genitive movement">
+      <list-item v="tilsett"/>
+      <list-item v="nytilsett"/>
+      <list-item v="bekjent"/>
+      <list-item v="kjent"/>
+      <list-item v="etterlatt"/>
+      <list-item v="tiltalt"/>
+      <list-item v="innsett"/>
+      <list-item v="medtiltalt"/>
+      <list-item v="hovudtiltalt"/>
+    </def-list>
 
     <def-list n="keep_lemma_case" c="Keep these lemma-case (don't keep titlecase/input-case unless all upper or first in sentence).
                                      We put lemmas here if we want the first character to stay lowercase mid-sentence.
@@ -7221,6 +7232,10 @@
       <choose><when>
         <test><in caseless="yes"><clip pos="1" side="sl" part="lemh"/><list n="n_keep_sin"/></in></test>
         <append n="ntags"><lit-tag v="keep-sin"/></append>
+      </when></choose>
+      <choose><when>
+        <test><in caseless="yes"><clip pos="1" side="tl" part="lemh"/><list n="n_needs_det"/></in></test>
+        <append n="ntags"><lit-tag v="needdet"/></append>
       </when></choose>
       <call-macro n="bigram_genprep"><with-param pos="1"/></call-macro>
     </def-macro>

@@ -358,17 +358,6 @@
       <list-item v="&lt;f&gt;"/>
       <list-item v="&lt;nt&gt;"/>
     </def-list>
-    <def-list n="n_needs_det">
-      <list-item v="tilsett"/>
-      <list-item v="nytilsett"/>
-      <list-item v="bekjent"/>
-      <list-item v="kjent"/>
-      <list-item v="etterlatt"/>
-      <list-item v="tiltalt"/>
-      <list-item v="innsett"/>
-      <list-item v="medtiltalt"/>
-      <list-item v="hovudtiltalt"/>
-    </def-list>
     <def-list n="months">
       <list-item v="januar"/>
       <list-item v="februar"/>
@@ -540,78 +529,6 @@
       </when></choose>
     </def-macro>
 
-
-    <def-macro n="out_ndem" npar="1"
-               c="arg.1: noun
-                  Output the correct determiner for this noun.
-                  This macro doesn't check that we actually *need* a determiner –
-                  it's called by maybe_out_ndem/maybe_out_ndem2 which decide that.">
-      <let><var n="space"/><lit v=" "/></let>
-      <choose>
-        <when>
-          <test><and>
-            <in><clip pos="1" part="gen"/><list n="dem_sg_genders"/></in>
-            <equal><clip pos="1" part="nbr"/><lit-tag v="sg"/></equal>
-          </and></test>
-          <out>
-            <lu>
-              <lit v="den"/>
-              <lit-tag v="det.dem"/>
-              <clip pos="1" part="gen"/>
-              <lit-tag v="sg"/>
-            </lu>
-          </out>
-        </when>
-        <otherwise>
-          <out><lu><lit v="den"/><lit-tag v="det.dem.un.pl"/></lu></out>
-        </otherwise>
-      </choose>
-      <out><var n="space"/></out>
-    </def-macro>
-
-    <!-- TODO: This one is *only* for ansatte/tilsatte/innsatte and such adjlikes when transformed by genitive! -->
-    <def-macro n="maybe_out_ndem" npar="2"
-               c="arg.1: noun, arg.2: chunk.
-                  Use *before* clean_n
-                  Hacky, only affects 'tilsett' when it's changed from ind to def.">
-      <choose><when>
-        <test><and>
-          <equal><clip pos="1" part="art"/><lit-tag v="ind"/></equal>
-          <equal><clip pos="2" part="art"/><lit-tag v="def"/></equal>
-          <equal><clip pos="2" part="a_defdrop"/><lit v=""/></equal>
-          <equal><clip pos="2" part="a_casedrop"/><lit v=""/></equal>
-          <in><clip pos="1" part="lem"/><list n="n_needs_det"/></in>
-        </and></test>
-        <call-macro n="out_ndem"><with-param pos="1"/></call-macro>
-      </when></choose>
-    </def-macro>
-
-    <def-macro n="maybe_out_ndem2" npar="3"
-               c="arg.1: noun, arg.2: adj, arg.2: chunk.
-                  Use *after* clean_n.adj, where we know there's no immediately preceding determiner.
-
-                  For chunks starting with adjs, we get the determiner in t2x,
-                  but we can't do that with coordinations like n_cnjcoo_adj_n.
-                  TODO: Remove determiner-adding in t2x altogether and do it all
-                  in this file instead?">
-      <choose>
-        <when c="(selskapets) daglige leder → den daglege leiaren (i selskapet)">
-          <test><and>
-            <equal><clip pos="2" part="art"/><lit-tag v="def"/></equal>
-            <!-- Demand that chunk is def – this means we've done genitive movement
-                 We don't want to insert determiners when we haven't done genitive movement,
-                 since e.g. «Kværners kontantstrøm og finansielle.def stilling.ind» is fine
-                 (the preceding s-genitive functions as the determiner).
-            -->
-            <equal><clip pos="3" part="art"/><lit-tag v="def"/></equal>
-            <equal><clip pos="2" part="a_defdrop"/><lit v=""/></equal>
-            <equal><clip pos="2" part="a_casedrop"/><lit v=""/></equal>
-          </and></test>
-          <call-macro n="out_ndem"><with-param pos="1"/></call-macro>
-        </when>
-      </choose>
-    </def-macro>
-
     <def-macro n="clean_n.adj" npar="3"
                c="arg.1: noun, arg.2: adjective, arg.3: chunk.
                   Nouns typically get chunk defnes.
@@ -745,7 +662,6 @@
                c="arg1: Only LU, head noun
                   arg2: Chunk">
       <let><var n="n_cleaned"/><lit v="false"/></let>
-      <call-macro n="maybe_out_ndem"><with-param pos="1"/><with-param pos="2"/></call-macro>
       <call-macro n="clean_n"><with-param pos="1"/><with-param pos="2"/></call-macro>
       <out><lu><clip pos="1" part="whole"/></lu></out>
     </def-macro>
@@ -755,8 +671,6 @@
                   arg2: Second LU, head noun
                   arg3: Chunk">
       <let><var n="n_cleaned"/><lit v="false"/></let>
-      <!-- TODO: in n_cnjcoo_adj_n rule, we had clean_n.adj_defnes call before maybe_out_ndem, does it matter? -->
-      <call-macro n="maybe_out_ndem"><with-param pos="2"/><with-param pos="3"/></call-macro>
       <call-macro n="apply_chunk_defnes_to_adj"><with-param pos="1"/><with-param pos="3"/></call-macro>
       <call-macro n="out_prenom"><with-param pos="1"/><with-param pos="2"/><with-param pos="3"/></call-macro>
 
@@ -770,7 +684,6 @@
                   arg3: Third LU, head noun
                   arg4: Chunk">
       <let><var n="n_cleaned"/><lit v="false"/></let>
-      <call-macro n="maybe_out_ndem"><with-param pos="3"/><with-param pos="4"/></call-macro>
       <call-macro n="apply_chunk_defnes_to_adj"><with-param pos="2"/><with-param pos="3"/></call-macro>
       <call-macro n="out_prenom"><with-param pos="1"/><with-param pos="3"/><with-param pos="4"/></call-macro>
       <call-macro n="out_prenom"><with-param pos="2"/><with-param pos="3"/><with-param pos="4"/></call-macro>
@@ -785,7 +698,6 @@
                   arg4: Fourth LU, head noun
                   arg5: Chunk">
       <let><var n="n_cleaned"/><lit v="false"/></let>
-      <call-macro n="maybe_out_ndem"><with-param pos="4"/><with-param pos="5"/></call-macro>
       <call-macro n="apply_chunk_defnes_to_adj"><with-param pos="3"/><with-param pos="4"/></call-macro>
       <call-macro n="out_prenom"><with-param pos="1"/><with-param pos="4"/><with-param pos="5"/></call-macro>
       <call-macro n="out_prenom"><with-param pos="2"/><with-param pos="4"/><with-param pos="5"/></call-macro>
@@ -802,7 +714,6 @@
                   arg5: Fifth LU, head noun
                   arg6: Chunk">
       <let><var n="n_cleaned"/><lit v="false"/></let>
-      <call-macro n="maybe_out_ndem"><with-param pos="5"/><with-param pos="6"/></call-macro>
       <call-macro n="apply_chunk_defnes_to_adj"><with-param pos="4"/><with-param pos="5"/></call-macro>
       <call-macro n="out_prenom"><with-param pos="1"/><with-param pos="5"/><with-param pos="6"/></call-macro>
       <call-macro n="out_prenom"><with-param pos="2"/><with-param pos="5"/><with-param pos="6"/></call-macro>
@@ -821,7 +732,6 @@
                   arg6: Sixth LU, head noun
                   arg7: Chunk">
       <let><var n="n_cleaned"/><lit v="false"/></let>
-      <call-macro n="maybe_out_ndem"><with-param pos="6"/><with-param pos="7"/></call-macro>
       <call-macro n="apply_chunk_defnes_to_adj"><with-param pos="5"/><with-param pos="6"/></call-macro>
       <call-macro n="out_prenom"><with-param pos="1"/><with-param pos="6"/><with-param pos="7"/></call-macro>
       <call-macro n="out_prenom"><with-param pos="2"/><with-param pos="6"/><with-param pos="7"/></call-macro>
@@ -948,7 +858,6 @@
       </pattern>
       <action>
         <let><var n="n_cleaned"/><lit v="false"/></let>
-        <call-macro n="maybe_out_ndem"><with-param pos="1"/><with-param pos="0"/></call-macro>
         <call-macro n="clean_n"><with-param pos="1"/><with-param pos="0"/></call-macro>
         <out>
           <lu><clip pos="1" part="whole"/></lu>
