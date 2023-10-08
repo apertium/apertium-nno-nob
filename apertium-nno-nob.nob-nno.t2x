@@ -501,8 +501,8 @@
     <def-attr n="a_keepgenx" c="Mark that we'd like to keep gen-case of possessor (throw away prep)">
       <attr-item tags="keepgenx"/>
     </def-attr>
-    <def-attr n="a_needdet" c="Needs determiner when moved out of genitive">
-      <attr-item tags="needdet"/>
+    <def-attr n="a_move-needs-det" c="Needs determiner when moved out of genitive">
+      <attr-item tags="move-needs-det"/>
     </def-attr>
     <def-attr n="a_date">
       <attr-item tags="date"/>
@@ -876,7 +876,7 @@
           <begins-with caseless="yes"><clip pos="1" part="lemh"/><lit v="cmp_cmp_adj"/></begins-with>
           <begins-with caseless="yes"><clip pos="1" part="lemh"/><lit v="cmp_cmp_cmp_adj"/></begins-with>
           <begins-with caseless="yes"><clip pos="1" part="lemh"/><lit v="cmp_cmp_cmp_cmp_adj"/></begins-with>
-          <equal><clip pos="1" part="a_needdet"/><lit-tag v="needdet"/></equal>
+          <equal><clip pos="1" part="a_move-needs-det"/><lit-tag v="move-needs-det"/></equal>
           <begins-with caseless="yes"><clip pos="1" part="tags"/><lit-tag v="det.qnt"/></begins-with>
         </or></test>
         <call-macro n="out_det"><with-param pos="1"/><with-param pos="2"/></call-macro>
@@ -1027,7 +1027,7 @@
       </pattern>
       <action>
         <call-macro n="set_ana"><with-param pos="1"/></call-macro>
-        <call-macro n="out_det_when_adjlike"><with-param pos="1"/><with-param pos="1"/></call-macro>
+        <call-macro n="out_det"><with-param pos="1"/><with-param pos="1"/></call-macro>
         <let><clip pos="1" part="lemh"/><lit v="adj_n"/></let>
         <out>
           <chunk><clip pos="1" part="whole"/></chunk>
