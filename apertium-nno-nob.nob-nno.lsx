@@ -3422,6 +3422,33 @@
       <e><par n="ncmp*"/><i>spiss<s n="n"/><t/></i> <par n="d"/></e>
     </pardef>
 
+    <pardef n="vedtaks-ord">
+      <e><par n="ncmp*"/><i>vedtak<s n="n"/><t/></i> <par n="d"/></e>
+      <e><i>hastevedtak<s n="n"/><t/></i> <par n="d"/></e>
+      <e><i>bystyrevedtak<s n="n"/><t/></i> <par n="d"/></e>
+      <e><i>fengslingsvedtak<s n="n"/><t/></i> <par n="d"/></e>
+      <e><i>kollegievedtak<s n="n"/><t/></i> <par n="d"/></e>
+      <e><i>konsensvedtak<s n="n"/><t/></i> <par n="d"/></e>
+      <e><i>papirvedtak<s n="n"/><t/></i> <par n="d"/></e>
+      <e><i>prinsippvedtak<s n="n"/><t/></i> <par n="d"/></e>
+      <e><i>sanksjonsvedtak<s n="n"/><t/></i> <par n="d"/></e>
+      <e><i>senatsvedtak<s n="n"/><t/></i> <par n="d"/></e>
+      <e><i>stortingsvedtak<s n="n"/><t/></i> <par n="d"/></e>
+      <e><i>styrevedtak<s n="n"/><t/></i> <par n="d"/></e>
+      <e><i>ekspropriasjonsvedtak<s n="n"/><t/></i> <par n="d"/></e>
+      <e><i>årsmøtevedtak<s n="n"/><t/></i> <par n="d"/></e>
+      <e><i>påtalevedtak<s n="n"/><t/></i> <par n="d"/></e>
+      <e><i>enkeltvedtak<s n="n"/><t/></i> <par n="d"/></e>
+      <e><i>daddelvedtak<s n="n"/><t/></i> <par n="d"/></e>
+    </pardef>
+
+    <pardef n="avgjerds-ord">
+      <e><par n="ncmp*"/><i>avgjørelse<s n="n"/><t/></i> <par n="d"/></e>
+      <e><par n="ncmp*"/><i>beslutning<s n="n"/><t/></i> <par n="d"/></e>
+      <e><i>tiltalebeslutning<s n="n"/><t/></i> <par n="d"/></e>
+      <e><i>påtaleavgjørelse<s n="n"/><t/></i> <par n="d"/></e>
+    </pardef>
+
     <pardef n="rem-sikkerhet-trygghet">
       <e><p><l>sikkerhet<s n="n"/><t/><s n="sg"/><s n="ind"/></l>   <r></r></p>  <par n="d:"/></e>
       <e><p><l>trygghet<s n="n"/><t/><s n="sg"/><s n="ind"/></l>   <r></r></p>  <par n="d:"/></e>
@@ -10032,23 +10059,58 @@
       <p><l></l>                                <r>på<s n="pr"/><d/></r></p>
       <p><l></l>                                <r>seg<s n="prn"/><s n="ref"/><s n="p3"/><s n="un"/><s n="sp"/><s n="acc"/><d/></r></p>
     </e>
+    
+    <e lm="fatte vedtak -> gjøre vedtak" c="gjere vedtak">
+      <p><l>fatte</l>                          <r>gjøre</r></p>  <i><t/><d/></i>
+      <par n="ANYWORDx8|empty"/>
+      <par n="vedtaks-ord"/>
+    </e>
+    
+    <e lm="fatte en avgjørelse/beslutning -> ta en avgjørelse/beslutning" c="ta ei avgjerd">
+      <p><l>fatte</l>                          <r>ta</r></p>  <i><t/><d/></i>
+      <par n="ANYWORDx8|empty"/>
+      <par n="avgjerds-ord"/>
+    </e>
+    
+    <e lm="vedtaket fattes / vil bli fattet -> vedtaket gjøres / vil bli gjort">
+      <par n="vedtaks-ord"/>
+      <par n="ANYWORDx8|empty"/>
+      <p><l>fatte<s n="vblex"/></l>                          <r>gjøre<s n="vblex"/></r></p>  <i><t/><d/></i>
+    </e>
+    
+    <e lm="avgjørelsen fattes / vil bli tatt -> avgjørelsen tas / vil bli tatt">
+      <par n="avgjerds-ord"/>
+      <par n="ANYWORDx8|empty"/>
+      <p><l>fatte<s n="vblex"/></l>                          <r>ta<s n="vblex"/></r></p>  <i><t/><d/></i>
+    </e>
+    
+    <e lm="vedtaket ble fattet -> vedtaket ble gjort" c="vedtaket vart gjort">
+      <par n="vedtaks-ord"/>
+      <par n="ANYWORDx8|empty"/>
+      <p><l>fatte<s n="adj"/><s n="pp"/></l>                          <r>gjøre<s n="adj"/><s n="pp"/></r></p>  <i><t/><d/></i>
+    </e>
+    
+    <e lm="avgjørelsen ble fattet -> avgjørelsen ble tatt" c="avgjerda vart teken">
+      <par n="avgjerds-ord"/>
+      <par n="ANYWORDx8|empty"/>
+      <p><l>fatte<s n="adj"/><s n="pp"/></l>                          <r>ta<s n="adj"/><s n="pp"/></r></p>  <i><t/><d/></i>
+    </e>
+
+    <e lm="fatte mistanke -> få mistanke" c="få mistanke">
+      <p><l>fatte</l>                          <r>få</r></p>  <i><t/><d/></i>
+      <par n="ANYWORDx3|empty"/>
+      <i>mistanke<t/><d/></i>
+    </e>
 
     <e lm="fatte håp -> få nytt håp" c="få nytt håp">
       <p><l>fatte</l>                          <r>få</r></p>  <i><t/><d/></i>
-      <p><l></l>                                <r>ny<s n="adj"/><s n="sint"/><s n="pst"/><s n="nt"/><s n="sg"/><s n="ind"/><d/></r></p>
+      <par n="ANYWORDx3|empty"/>
       <i>håp<t/><d/></i>
     </e>
 
     <e lm="fatte mot -> få nytt mot" c="få nytt mot">
       <p><l>fatte</l>                          <r>få</r></p>  <i><t/><d/></i>
-      <p><l></l>                                <r>ny<s n="adj"/><s n="sint"/><s n="pst"/><s n="nt"/><s n="sg"/><s n="ind"/><d/></r></p>
-      <i>mot<s n="n"/><t/><d/></i>
-    </e>
-
-    <e lm="fatter jeg mot -> får jeg nytt mot" c="får eg nytt mot">
-      <p><l>fatte</l>                          <r>få</r></p>  <i><t/><d/></i>
-      <par n="prn"/>
-      <p><l></l>                                <r>ny<s n="adj"/><s n="sint"/><s n="pst"/><s n="nt"/><s n="sg"/><s n="ind"/><d/></r></p>
+      <par n="ANYWORDx3|empty"/>
       <i>mot<s n="n"/><t/><d/></i>
     </e>
 
