@@ -99,18 +99,34 @@
       <cat-item name="n_cnjcoo_n"/>
     </def-cat>
     <def-cat n="n_cnjcoo_prenom_n">
-      <cat-item name="n_cnjcoo_adj_n"/>
       <cat-item name="n_cnjcoo_cmp_n"/>
+      <cat-item name="n_cnjcoo_adj_n"/>
     </def-cat>
     <def-cat n="prenom_n_cnjcoo_n">
-      <cat-item name="adj_n_cnjcoo_n"/>
       <cat-item name="cmp_n_cnjcoo_n"/>
+      <cat-item name="adj_n_cnjcoo_n"/>
     </def-cat>
     <def-cat n="prenom_n_cnjcoo_prenom_n">
       <cat-item name="cmp_n_cnjcoo_cmp_n"/>
       <cat-item name="cmp_n_cnjcoo_adj_n"/>
       <cat-item name="adj_n_cnjcoo_cmp_n"/>
       <cat-item name="adj_n_cnjcoo_adj_n"/>
+    </def-cat>
+    <def-cat n="prenom_prenom_n_cnjcoo_n">
+      <cat-item name="cmp_cmp_n_cnjcoo_n"/>
+      <cat-item name="cmp_adj_n_cnjcoo_n"/>
+      <cat-item name="adj_cmp_n_cnjcoo_n"/>
+      <cat-item name="adj_adj_n_cnjcoo_n"/>
+    </def-cat>
+    <def-cat n="prenom_prenom_prenom_n_cnjcoo_n">
+      <cat-item name="cmp_cmp_cmp_n_cnjcoo_n"/>
+      <cat-item name="cmp_cmp_adj_n_cnjcoo_n"/>
+      <cat-item name="cmp_adj_cmp_n_cnjcoo_n"/>
+      <cat-item name="cmp_adj_adj_n_cnjcoo_n"/>
+      <cat-item name="adj_cmp_cmp_n_cnjcoo_n"/>
+      <cat-item name="adj_cmp_adj_n_cnjcoo_n"/>
+      <cat-item name="adj_adj_cmp_n_cnjcoo_n"/>
+      <cat-item name="adj_adj_adj_n_cnjcoo_n"/>
     </def-cat>
     <def-cat n="n_cnjcoo_det_prenom_n">
       <cat-item name="n_cnjcoo_det_adj_n"/>
@@ -947,6 +963,26 @@
         <call-macro n="out_noun_phrase2"><with-param pos="1"/><with-param pos="2"/><with-param pos="0"/></call-macro>
         <out><b/><lu><clip pos="3" part="whole"/></lu><b/></out>
         <call-macro n="out_noun_phrase2"><with-param pos="4"/><with-param pos="5"/><with-param pos="0"/></call-macro>
+      </action>
+    </rule>
+    <rule comment="CHUNK: prenom_prenom_n_cnjcoo_n">
+      <pattern>
+        <pattern-item n="prenom_prenom_n_cnjcoo_n"/>
+      </pattern>
+      <action>
+        <call-macro n="out_noun_phrase3"><with-param pos="1"/><with-param pos="2"/><with-param pos="3"/><with-param pos="0"/></call-macro>
+        <out><b/><lu><clip pos="4" part="whole"/></lu><b/></out>
+        <call-macro n="out_noun_phrase1"><with-param pos="5"/><with-param pos="0"/></call-macro>
+      </action>
+    </rule>
+    <rule comment="CHUNK: prenom_prenom_prenom_n_cnjcoo_n">
+      <pattern>
+        <pattern-item n="prenom_prenom_prenom_n_cnjcoo_n"/>
+      </pattern>
+      <action>
+        <call-macro n="out_noun_phrase4"><with-param pos="1"/><with-param pos="2"/><with-param pos="3"/><with-param pos="4"/><with-param pos="0"/></call-macro>
+        <out><b/><lu><clip pos="5" part="whole"/></lu><b/></out>
+        <call-macro n="out_noun_phrase1"><with-param pos="6"/><with-param pos="0"/></call-macro>
       </action>
     </rule>
 
