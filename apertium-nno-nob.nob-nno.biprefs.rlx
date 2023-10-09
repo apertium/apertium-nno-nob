@@ -35,8 +35,8 @@ SELECT:oppmode_oppfordre lm_oppfordre IF (0 (VAR:oppmode_oppfordre.syn));
 REMOVE:oppmode_oppfordre lm_oppfordre;
 
 LIST lm_skap = ".*skap"ri;
-SELECT:bodskapen_bodskapet.n.m2nt lm_skap + nt IF (0 (VAR:bodskapen_bodskapet.n.m2nt));
-REMOVE:bodskapen_bodskapet.n.m2nt lm_skap + nt;
+SELECT:bodskapen_bodskapet.n-m2nt lm_skap + nt IF (0 (VAR:bodskapen_bodskapet.n-m2nt));
+REMOVE:bodskapen_bodskapet.n-m2nt lm_skap + nt;
 
 # words that default to <f>, but can be overridden to <m>:
 LIST lova_loven_nouns = ".*(ape|blokk|bøye|grad|grunne|kasse|klage|krise|kulde|lampe|lov|maskin|nytte|olje|pinse|potet|prøve|påske|scene|sinke|ørn|anretning|demning|festning|forlegning|legning|pakning|strekning)"ri;
@@ -92,7 +92,7 @@ LIST lm_andlet = ".*andlet"ri "andlet.*"ri;
 SELECT:ansikt_andlet lm_andlet IF (0 (VAR:ansikt_andlet.syn));
 REMOVE:ansikt_andlet lm_andlet;
 
-SELECT:motsetning_motsetnad  ("motsetnad"i) IF (0 ("motsetning"i) + (VAR:motsetning_motsetnad));
+SELECT:motsetning_motsetnad  ("motsetnad"i) IF (0 ("motsetning"i) + (VAR:motsetning_motsetnad.syn));
 REMOVE:motsetning_motsetning ("motsetnad"i) IF (0 ("motsetning"i));
 
 LIST lm_kvefs = ".*kvefs"ri "kvefs.*"ri;
