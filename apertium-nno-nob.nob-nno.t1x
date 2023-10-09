@@ -1054,6 +1054,7 @@
     <def-var n="pp_gen"         c="Anaphoric gender from antecedent for inserted participle"/>
     <def-var n="movable_tag"    c="np-movable iff we can move pp past np"/>
     <def-var n="advtags"/>
+    <def-var n="syntag"         c="The syntax tag of this word"/>
     <def-var n="prevlem"/>
     <def-var n="prevnbr"/>
     <def-var n="prevDeletedCase"/>
@@ -7176,6 +7177,28 @@
       <let><var n="prevnbr"/><clip pos="1" side="tl" part="nbr"/></let>
     </def-macro>
 
+    <def-macro n="set_syntag" npar="1"
+               c="Use a_syntax of ref to set syntag when it seems like this word is ref.
+                  Temporary solution until we start including syntax tags in pattern-items.">
+      <choose>
+        <when>
+          <test><and>
+            <!-- refsyn.t1x strips @subj tag from sl so we don't have to change every single
+                 def-cat, but if the lemma is the same as ref we're probably on the subject: -->
+            <equal><clip pos="1" side="tl" part="lem"/><clip pos="1" side="ref" part="lem"/></equal>
+            <or>
+              <equal><clip pos="1" side="ref" part="a_syntax"/><lit-tag v="@subj"/></equal>
+              <equal><clip pos="1" side="ref" part="a_syntax"/><lit-tag v="@xubj"/></equal>
+            </or>
+          </and></test>
+          <let><var n="syntag"/><clip pos="1" side="ref" part="a_syntax"/></let>
+        </when>
+        <otherwise>
+          <let><var n="syntag"/><lit v=""/></let>
+        </otherwise>
+      </choose>
+    </def-macro>
+
     <def-macro n="stash_case_in_ntags0" npar="1"
                c="Helper for stash_case_in_ntags1 and stash_case_in_ntags2
                   Initialises ntags to tags; adds casedrop to ntags, clears defdrop from lu tags, adds source gender to ntags
@@ -7211,20 +7234,8 @@
           </when>
         </choose>
       </when></choose>
-      <choose>
-          <when>
-            <test><and>
-              <!-- refsyn.t1x strips @subj tag from sl so we don't have to change every single
-                   def-cat, but if the lemma is the same as ref we're probably on the subject: -->
-              <equal><clip pos="1" side="tl" part="lem"/><clip pos="1" side="ref" part="lem"/></equal>
-              <or>
-                <equal><clip pos="1" side="ref" part="a_syntax"/><lit-tag v="@subj"/></equal>
-                <equal><clip pos="1" side="ref" part="a_syntax"/><lit-tag v="@xubj"/></equal>
-              </or>
-            </and></test>
-            <append n="ntags"><clip pos="1" side="ref" part="a_syntax"/></append>
-          </when>
-        </choose>
+      <call-macro n="set_syntag"><with-param pos="1"/></call-macro>
+      <append n="ntags"><var n="syntag"/></append>
     </def-macro>
 
     <def-macro n="stash_case_in_ntags1" npar="1"
@@ -11617,9 +11628,13 @@ no lemq-moving">
       </pattern>
       <action>
         <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
+        <call-macro n="set_syntag"><with-param pos="1"/></call-macro>
         <out>
           <chunk name="prn" case="caseFirstWord">
-            <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
+            <tags>
+              <tag><clip pos="1" side="tl" part="tags"/></tag>
+              <tag><var n="syntag"/></tag>
+            </tags>
             <lu><clip pos="1" side="tl" part="whole"/></lu>
           </chunk>
         </out>
