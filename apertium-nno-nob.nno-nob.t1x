@@ -151,6 +151,10 @@
       <attr-item tags="n.acr"/>
       <attr-item tags="np"/>
     </def-attr>
+    <def-attr n="a_cmp">
+      <attr-item tags="cmp"/>
+      <attr-item tags="cmp-split"/>
+    </def-attr>
     <def-attr n="persona">
       <attr-item tags="p1"/>
       <attr-item tags="p2"/>
@@ -774,6 +778,11 @@
         <call-macro n="set_grau_aux2"><with-param pos="1"/><with-param pos="2"/></call-macro>
         <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
         <call-macro n="set_ntags"><with-param pos="3"/></call-macro>
+        <let><var n="blank"/><lit v=" "/></let>
+        <choose><when>
+          <test><equal><clip pos="1" side="tl" part="a_cmp"/><lit-tag v="cmp"/></equal></test>
+          <let><var n="blank"/><lit v=""/></let>
+        </when></choose>
         <choose><when>
           <!-- set_grau_aux2 may have removed the first adj: -->
           <test><equal><clip pos="1" side="tl" part="whole"/><lit v=""/></equal></test>
@@ -783,18 +792,10 @@
           <chunk namefrom="c_name" case="caseFirstWord">
             <tags><tag><var n="ntags"/></tag></tags>
             <var n="grau_aux"/>
-            <lu>
-              <clip pos="1" side="tl" part="lemh"/>
-              <clip pos="1" side="tl" part="tags"/>
-              <clip pos="1" side="tl" part="lemq"/>
-            </lu>
-            <b pos="1"/>
-            <lu>
-              <clip pos="2" side="tl" part="lemh"/>
-              <clip pos="2" side="tl" part="tags"/>
-              <clip pos="2" side="tl" part="lemq"/>
-            </lu>
-            <b pos="2"/>
+            <lu><clip pos="1" side="tl" part="whole"/></lu>
+            <var n="blank"/>
+            <lu><clip pos="2" side="tl" part="whole"/></lu>
+            <b/>
             <lu><clip pos="3" side="tl" part="whole"/></lu>
           </chunk>
         </out>
