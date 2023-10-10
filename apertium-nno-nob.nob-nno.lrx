@@ -8426,7 +8426,11 @@
 
   <!-- UBETINGET: END -->
 
-  <rule><match lemma="enkelt"><select lemma="enkelt"/></match></rule>
+  <rule><match lemma="enkelt"><remove lemma="lett"/></match></rule> <!-- REMOVE pga. fleire alternativ (enkelt og einskild) -->
+  <rule weight="2.0">
+    <match lemma="såre"/>
+    <match lemma="enkelt"><remove lemma="lett"/></match>
+  </rule>
   <rule weight="2.0">
     <or>
       <match lemma="være"/>
@@ -8435,26 +8439,9 @@
     <repeat from="0" upto="2">
       <match tags="adv.*"/>
     </repeat>
-    <match lemma="enkelt" tags="adj.*">
+    <match lemma="enkelt">
       <select lemma="lett"/>
     </match>
-  </rule>
-  <rule weight="2.0" c="Derimot ble enkelte andre i støtteapparatet kritisert">
-    <or>
-      <match lemma="være"/>
-      <match lemma="bli"/>
-    </or>
-    <repeat from="0" upto="2">
-      <match tags="adv.*"/>
-    </repeat>
-    <or>
-      <match lemma="enkelt" tags="adj.*.pl.*"><select lemma="enkelt"/></match>
-      <match lemma="enkelt" tags="adj.*.def.*"><select lemma="enkelt"/></match>
-    </or>
-    <or>
-      <match lemma="annen"/>
-      <match tags="pr.*"/>
-    </or>
   </rule>
 
   <rule><match lemma="utelukkende" tags="adv.*"><select lemma="berre"/></match></rule>
