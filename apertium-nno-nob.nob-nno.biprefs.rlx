@@ -40,16 +40,16 @@ REMOVE:bodskapen_bodskapet.n-m2nt lm_skap + nt;
 
 # words that default to <f>, but can be overridden to <m>:
 LIST lova_loven_nouns = ".*(ape|blokk|bøye|grad|grunne|kasse|klage|krise|kulde|lampe|lov|maskin|nytte|olje|pinse|potet|prøve|påske|scene|sinke|ørn|anretning|demning|festning|forlegning|legning|pakning|strekning)"ri;
-SELECT:compounds m + lova_loven_nouns IF (0 (VSTR:VAR:lova_loven.n.f2m=/\\b$1\\b/r)) ;
-SELECT:lm_filter m + ("<(.+)>"r)    IF (0 (VSTR:VAR:lova_loven.n.f2m=/\\b$1\\b/r)) ;
-SELECT:no_filter m + lova_loven_nouns IF (0 (VAR:lova_loven.n.f2m=*));
+SELECT:compounds m + lova_loven_nouns IF (0 (VSTR:VAR:lova_loven.n-f2m=/\\b$1\\b/r)) ;
+SELECT:lm_filter m + ("<(.+)>"r)    IF (0 (VSTR:VAR:lova_loven.n-f2m=/\\b$1\\b/r)) ;
+SELECT:no_filter m + lova_loven_nouns IF (0 (VAR:lova_loven.n-f2m=*));
 REMOVE:unset     m + lova_loven_nouns;
 
 # words that default to <m>, but can be overridden to <f>:
 LIST banen_bana_nouns = ".*(art|bane|bete|beskjed|dialekt|dump|farge|flamme|kai|klasse|krabbe|kunst|larve|meis|pakke|persille|plante|takt|tekst|tillit|stamme|svikt|synagoge|takk|tale|trost|bygning|doning|kledning|ladning|leidning|munning|pasning|rydning)"ri;
-SELECT:compounds f + banen_bana_nouns IF (0 (VSTR:VAR:banen_bana.n.m2f=/\\b$1\\b/r)) ;
-SELECT:lm_filter f + ("<(.+)>"r)    IF (0 (VSTR:VAR:banen_bana.n.m2f=/\\b$1\\b/r)) ;
-SELECT:no_filter f + banen_bana_nouns IF (0 (VAR:banen_bana.n.m2f=*));
+SELECT:compounds f + banen_bana_nouns IF (0 (VSTR:VAR:banen_bana.n-m2f=/\\b$1\\b/r)) ;
+SELECT:lm_filter f + ("<(.+)>"r)    IF (0 (VSTR:VAR:banen_bana.n-m2f=/\\b$1\\b/r)) ;
+SELECT:no_filter f + banen_bana_nouns IF (0 (VAR:banen_bana.n-m2f=*));
 REMOVE:unset     f + banen_bana_nouns;
 
 # words that default to <nt>, but can be overridden to <m>:
