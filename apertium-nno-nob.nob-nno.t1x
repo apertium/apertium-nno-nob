@@ -7837,6 +7837,7 @@
         <test><and>
           <equal><clip pos="1" side="sl" part="cas"/><lit-tag v="gen"/></equal>
           <equal><clip pos="1" side="tl" part="a_nom"/><lit-tag v="n"/></equal>
+          <!-- TODO: We might want a def-list of exceptions where we want gen-prep even if indefinite, e.g. "avsenders saksbehandler" -->
           <not><equal><clip pos="1" side="tl" part="art"/><lit-tag v="ind"/></equal></not> <!-- to bilers bredde: no gen-drop on ind -->
         </and></test>
         <choose>
