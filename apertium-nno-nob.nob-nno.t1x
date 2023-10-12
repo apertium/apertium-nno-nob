@@ -602,6 +602,9 @@
       <cat-item tags="det.itg.*"/>
       <cat-item tags="det.qnt.*"/>
     </def-cat>
+    <def-cat n="detdem">
+      <cat-item tags="det.dem.*"/>
+    </def-cat>
     <def-cat n="posgen">
       <cat-item tags="det.pos.*"/>
       <cat-item tags="n.*.gen.*"/>
@@ -641,11 +644,14 @@
       <cat-item lemma="delvis" tags="adv.*"/>
     </def-cat>
     <def-cat n="adjind">
-      <cat-item tags="adj.*.*.*.ind.*"/>
+      <cat-item tags="adj.*.ind.*"/>
       <cat-item tags="adj.*.pl.*"/>
       <cat-item tags="adj.comp.*"/>
       <cat-item tags="adj.sint.comp.*"/>
       <cat-item tags="adj.pprs.*"/>                              <!--hvor truende-->
+    </def-cat>
+    <def-cat n="adjdef">
+      <cat-item tags="adj.*.def.*"/>
     </def-cat>
     <def-cat n="adv">
       <cat-item tags="adv"/>
@@ -6655,6 +6661,19 @@
          for ord som skal bli ståande ubestemte når me skriv om
          genitiv, t.d. Xs talsperson → talsperson for X -->
 
+    <def-list n="bi-keep-n-ind" c="Let the noun of these adj+noun phrases stay indefinite (even though adj definite)
+                                   Lemmas are in Nynorsk.">
+      <list-item v="liten_knirk"/>      <!-- det minste knirk -->
+      <list-item v="våt_element"/>      <!-- det våte element -->
+      <list-item v="stor_alvor"/>       <!-- det største alvor -->
+      <list-item v="enkel_grunn"/>      <!-- av den enkle grunn-->
+      <list-item v="liten_teikn"/>      <!-- det minste tegn -->
+      <list-item v="privat_initiativ"/> <!-- det private initiativ -->
+      <list-item v="djup_alvor"/>       <!-- det dypeste alvor -->
+      <list-item v="stor_elende"/>      <!-- den største elendighet -->
+      <list-item v="fri_ord"/>          <!-- det frie ord -->
+      <list-item v="stor_utland"/>      <!-- det store utland -->
+    </def-list>
 
     <def-list n="det_indef">
       <!-- feels like these should have their own
@@ -9684,6 +9703,48 @@ no lemq-moving">
         </out>
       </action>
     </rule>
+
+    <rule comment="DETDEM ADJDEF NIND: det minste knirk → det minste knirk (avoid turning definite)">
+      <pattern>
+        <pattern-item n="detdem"/>
+        <pattern-item n="adjdef"/>
+        <pattern-item n="nind"/>
+      </pattern>
+      <action>
+        <!-- Don't run this rule if the lemmas are not in bi-keep-gen-s: -->
+        <let><var n="bilem"/><concat><clip pos="2" side="tl" part="lem"/><lit v="_"/><clip pos="3" side="tl" part="lem"/></concat></let>
+        <modify-case><var n="bilem"/><lit v="aa"/></modify-case>
+        <choose><when>
+          <test><or>
+            <not><in><var n="bilem"/><list n="bi-keep-n-ind"/></in></not>
+            <not><equal><clip pos="2" side="tl" part="a_cmp"/><lit v=""/></equal></not>
+            <not><equal><clip pos="3" side="tl" part="a_cmp"/><lit v=""/></equal></not>
+          </or></test>
+          <reject-current-rule shifting="no"/>
+        </when></choose>
+        <!-- Word-pair was in the list – keep the noun indefinite: -->
+        <call-macro n="set_caseFirstWord3">
+          <with-param pos="1"/>
+          <with-param pos="2"/>
+          <with-param pos="3"/>
+        </call-macro>
+        <out>
+          <!-- Since we let name be just det instead of detdd, t2x won't make adj_n chunk definite -->
+          <chunk name="det" case="caseFirstWord">
+            <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
+            <lu><clip pos="1" side="tl" part="whole"/></lu>
+          </chunk>
+          <b/>
+          <chunk name="adj_n" case="caseSecondWord">
+            <tags><tag><clip pos="3" side="tl" part="tags"/></tag></tags>
+            <lu><clip pos="2" side="tl" part="whole"/></lu>
+            <b/>
+            <lu><clip pos="3" side="tl" part="whole"/></lu>
+          </chunk>
+        </out>
+      </action>
+    </rule>
+
     <rule comment="NGEN NIND_GEN2CMP: søndagens etappe => søndagsetappen">
       <pattern>
         <pattern-item n="ngen_vekedag"/>
