@@ -10,6 +10,8 @@
                          since this pattern often gets used many times per rule)">
       <cat-item tags="*.cmp"/>
       <cat-item tags="*.cmp.*"/>
+      <cat-item tags="*.cmp-split"/>
+      <cat-item tags="*.cmp-split.*"/>
     </def-cat>
     <def-cat n="ngen">
       <cat-item tags="n.*.gen.*"/>
@@ -1073,6 +1075,7 @@
     <def-var n="lemq-skip"      c="whether lemq can skip ndef's"/>
     <def-var n="det_gen"/>
     <def-var n="tmp"/>
+    <def-var n="b" v=" "        c="Single space. For when we can't use b."/>
     <def-var n="lemma"          c="Used within macros"/>
     <def-var n="brlemma"        c="Only used for 'britenes statsminister'-rule"/>
     <def-var n="mwe-queue"      c="Must be output before next verb or sent. TODO: There should be an EOF-rule in case nothing at end."/>
@@ -10124,7 +10127,7 @@ no lemq-moving">
             <tags><tag><var n="ntags"/></tag></tags>
             <var n="grau_aux"/>
             <lu><clip pos="1" side="tl" part="whole"/></lu>
-            <lu><clip pos="2" side="tl" part="whole"/></lu><b/>
+            <lu><clip pos="2" side="tl" part="whole"/></lu><var n="b"/> <!-- should be just b, but doesn't output anything on «2.plasserte Svetlana» -->
             <lu><clip pos="3" side="tl" part="whole"/></lu>
           </chunk>
         </out>
