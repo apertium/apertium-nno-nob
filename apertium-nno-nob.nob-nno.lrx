@@ -11797,5 +11797,20 @@ preposisjonar gir ekstra utfordringar. -->
   </rule>
 
   <rule><match lemma="metthet" tags="n.*"><select lemma="mettheit"/></match></rule>
+
+  <rule><match lemma="undergi"><select lemma="gje"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="undergi"><select lemma="underlegge"/></match>
+    <match lemma="taushetsplikt"/>
+  </rule>
+
+  <rule><match lemma="ettergåelse" tags="n.*"><select lemma="gransking"/></match></rule>
+  <rule weight="2.0">
+    <or>
+      <match lemma="nærmere"/>
+      <match lemma="nær"/>
+    </or>
+    <match lemma="ettergåelse" tags="n.*"><select lemma="undersøking"/></match>
+  </rule>
 </rules>
 </lrx>
