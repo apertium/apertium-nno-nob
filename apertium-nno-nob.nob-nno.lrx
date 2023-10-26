@@ -11487,9 +11487,9 @@ preposisjonar gir ekstra utfordringar. -->
   </rule>
 
   <!-- MWE VS CMP: Remove multiword expressions from compounds, otherwise prefer them. -->
-  <rule c="after cmp"><match tags="*.cmp"/>   <match><remove contains="#"/></match></rule>
-  <rule c="after cmp"><match tags="*.cmp.*"/> <match><remove contains="#"/></match></rule>
-  <rule c="is cmp">              <match tags="*.cmp"><remove contains="#"/></match></rule>
+  <rule c="after cmp" weight="99"><match tags="*.cmp"/>   <match><remove contains="#"/></match></rule>
+  <rule c="after cmp" weight="99"><match tags="*.cmp.*"/> <match><remove contains="#"/></match></rule>
+  <rule c="is cmp" weight="99">   <match tags="*.cmp"><remove contains="#"/></match></rule>
 
   <rule> <match lemma="printe">   <select lemma="skrive# ut"/></match></rule>
   <rule> <match lemma="gjenvinne"><select lemma="vinne# tilbake"/></match></rule>
