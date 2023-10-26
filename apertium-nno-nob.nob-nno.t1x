@@ -9057,10 +9057,7 @@
       </action>
     </rule>
 
-    <rule comment="CMP VBLEX
-                   If we have nn multiwords, these need the lemq after the
-                   inflected part. All lemq's include their own initial space.
-                   This rule has to be below the passive rule.">
+    <rule comment="CMP VBLEX">
       <pattern>
         <pattern-item n="cmp"/>
         <pattern-item n="vblex"/>
@@ -9080,6 +9077,66 @@
               <clip pos="2" side="tl" part="temps"/>
               <clip pos="2" side="tl" part="voice"/>
               <clip pos="2" side="tl" part="a_cmp"/>
+              <var n="c_lemq"/>
+            </lu>
+          </chunk>
+        </out>
+        <out><var n="out_lemq"/></out>
+      </action>
+    </rule>
+    <rule comment="CMP CMP VBLEX">
+      <pattern>
+        <pattern-item n="cmp"/>
+        <pattern-item n="cmp"/>
+        <pattern-item n="vblex"/>
+      </pattern>
+      <action>
+        <call-macro n="flush-mwe-queue"><with-param pos="1"/></call-macro>
+        <call-macro n="set_caseFirstWord3"><with-param pos="1"/><with-param pos="2"/><with-param pos="3"/></call-macro>
+        <call-macro n="set_lemq"><with-param pos="3"/></call-macro>
+        <let><var n="c_name"/><lit v="cmp_cmp_vblex"/></let> <!-- never aux when compound -->
+        <out>
+          <chunk namefrom="c_name" case="caseFirstWord">
+            <tags><tag><clip pos="3" side="tl" part="tags"/></tag></tags>
+            <lu><clip pos="1" side="tl" part="whole"/></lu>
+            <lu><clip pos="2" side="tl" part="whole"/></lu>
+            <lu>
+              <clip pos="3" side="tl" part="lemh"/>
+              <clip pos="3" side="tl" part="a_verb"/>
+              <clip pos="3" side="tl" part="temps"/>
+              <clip pos="3" side="tl" part="voice"/>
+              <clip pos="3" side="tl" part="a_cmp"/>
+              <var n="c_lemq"/>
+            </lu>
+          </chunk>
+        </out>
+        <out><var n="out_lemq"/></out>
+      </action>
+    </rule>
+    <rule comment="CMP CMP CMP VBLEX">
+      <pattern>
+        <pattern-item n="cmp"/>
+        <pattern-item n="cmp"/>
+        <pattern-item n="cmp"/>
+        <pattern-item n="vblex"/>
+      </pattern>
+      <action>
+        <call-macro n="flush-mwe-queue"><with-param pos="1"/></call-macro>
+        <call-macro n="set_caseFirstWord4"><with-param pos="1"/><with-param pos="2"/><with-param pos="3"/><with-param pos="4"/></call-macro>
+        <call-macro n="set_lemq"><with-param pos="4"/></call-macro>
+        <let><var n="c_name"/><lit v="cmp_cmp_cmp_vblex"/></let> <!-- never aux when compound -->
+        <out>
+          <chunk namefrom="c_name" case="caseFirstWord">
+            <tags><tag><clip pos="4" side="tl" part="tags"/></tag></tags>
+            <lu><clip pos="1" side="tl" part="whole"/></lu>
+            <lu><clip pos="2" side="tl" part="whole"/></lu>
+            <lu><clip pos="3" side="tl" part="whole"/></lu>
+            <lu>
+              <clip pos="4" side="tl" part="lemh"/>
+              <clip pos="4" side="tl" part="a_verb"/>
+              <clip pos="4" side="tl" part="temps"/>
+              <clip pos="4" side="tl" part="voice"/>
+              <clip pos="4" side="tl" part="a_cmp"/>
               <var n="c_lemq"/>
             </lu>
           </chunk>
