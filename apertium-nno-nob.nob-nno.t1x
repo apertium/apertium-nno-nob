@@ -7526,13 +7526,16 @@
       <call-macro n="set_caseSecondWord"><with-param pos="2"/></call-macro>
     </def-macro>
 
-    <def-macro n="set_lemq" npar="1" c="make lemq its own chunk iff we're translating from non-mwe to mwe">
+    <def-macro n="set_lemq" npar="1" c="make lemq its own chunk iff
+                                        a) we're translating from non-mwe to mwe, AND
+                                        b) this is not a participle">
       <choose>
         <when>
           <test>
             <and>
               <equal><clip pos="1" side="sl" part="lemq"/><lit v=""/></equal>
               <not><equal><clip pos="1" side="tl" part="lemq"/><lit v=""/></equal></not>
+              <not><equal><clip pos="1" side="tl" part="temps"/><lit-tag v="pp"/></equal></not>
             </and>
           </test>
           <let><var n="c_lemq"/><lit v=""/></let>
@@ -9017,48 +9020,6 @@
       </action>
     </rule>
 
-    <rule comment="VBLEXPP
-                   This rule has to be above the regular vblex rule,
-                   override lemq-moving for pp verbs.">
-      <pattern>
-        <pattern-item n="vblexpp"/>
-      </pattern>
-      <action>
-        <choose>
-          <when c="Only output if bidix has a lemma in l">
-            <test>
-              <not><equal><clip pos="1" side="tl" part="lem"/><lit v=""/></equal></not>
-            </test>
-            <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
-            <let><var n="c_name"/><lit v="vblex"/></let>
-            <choose><when>
-              <test><or>
-                <equal><clip pos="1" side="tl" part="lemh"/><lit v="bli"/></equal>
-                <equal><clip pos="1" side="tl" part="lemh"/><lit v="vere"/></equal>
-                <equal><clip pos="1" side="tl" part="lemh"/><lit v="ha"/></equal>
-              </or></test>
-              <let><var n="c_name"/><lit v="aux"/></let>
-            </when></choose>
-            <out>
-              <chunk namefrom="c_name" case="caseFirstWord">
-                <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
-                <lu>
-                  <clip pos="1" side="tl" part="lemh"/>
-                  <clip pos="1" side="tl" part="a_verb"/>
-                  <clip pos="1" side="tl" part="temps"/>
-                  <clip pos="1" side="tl" part="lemq"/>
-                </lu>
-              </chunk>
-            </out>
-          </when>
-          <otherwise>
-            <let><var n="prevDeletedCase"/><lit v="aa"/></let>
-            <modify-case><var n="prevDeletedCase"/><var n="caseFirstWord"/></modify-case>
-          </otherwise>
-        </choose>
-      </action>
-    </rule>
-
     <rule comment="VBLEX
                    If we have nn multiwords, these need the lemq after the
                    inflected part. All lemq's include their own initial space.
@@ -9068,42 +9029,31 @@
       </pattern>
       <action>
         <call-macro n="flush-mwe-queue"><with-param pos="1"/></call-macro>
-        <choose>
-          <when c="Only output if bidix has a lemma in l">
-            <test>
-              <not><equal><clip pos="1" side="tl" part="lem"/><lit v=""/></equal></not>
-            </test>
-            <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
-            <call-macro n="set_lemq"><with-param pos="1"/></call-macro>
-            <let><var n="c_name"/><lit v="vblex"/></let>
-            <choose><when>
-              <test><or>
-                <equal><clip pos="1" side="tl" part="lemh"/><lit v="bli"/></equal>
-                <equal><clip pos="1" side="tl" part="lemh"/><lit v="vere"/></equal>
-                <equal><clip pos="1" side="tl" part="lemh"/><lit v="ha"/></equal>
-              </or></test>
-              <let><var n="c_name"/><lit v="aux"/></let>
-            </when></choose>
-            <out>
-              <chunk namefrom="c_name" case="caseFirstWord">
-                <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
-                <lu>
-                  <clip pos="1" side="tl" part="lemh"/>
-                  <clip pos="1" side="tl" part="a_verb"/>
-                  <clip pos="1" side="tl" part="temps"/>
-                  <clip pos="1" side="tl" part="voice"/>
-                  <clip pos="1" side="tl" part="a_cmp"/>
-                  <var n="c_lemq"/>
-                </lu>
-              </chunk>
-            </out>
-            <out><var n="out_lemq"/></out>
-          </when>
-          <otherwise>
-            <let><var n="prevDeletedCase"/><lit v="aa"/></let>
-            <modify-case><var n="prevDeletedCase"/><var n="caseFirstWord"/></modify-case>
-          </otherwise>
-        </choose>
+        <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
+        <call-macro n="set_lemq"><with-param pos="1"/></call-macro>
+        <let><var n="c_name"/><lit v="vblex"/></let>
+        <choose><when>
+          <test><or>
+            <equal><clip pos="1" side="tl" part="lemh"/><lit v="bli"/></equal>
+            <equal><clip pos="1" side="tl" part="lemh"/><lit v="vere"/></equal>
+            <equal><clip pos="1" side="tl" part="lemh"/><lit v="ha"/></equal>
+          </or></test>
+          <let><var n="c_name"/><lit v="aux"/></let>
+        </when></choose>
+        <out>
+          <chunk namefrom="c_name" case="caseFirstWord">
+            <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
+            <lu>
+              <clip pos="1" side="tl" part="lemh"/>
+              <clip pos="1" side="tl" part="a_verb"/>
+              <clip pos="1" side="tl" part="temps"/>
+              <clip pos="1" side="tl" part="voice"/>
+              <clip pos="1" side="tl" part="a_cmp"/>
+              <var n="c_lemq"/>
+            </lu>
+          </chunk>
+        </out>
+        <out><var n="out_lemq"/></out>
       </action>
     </rule>
 
