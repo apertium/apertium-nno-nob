@@ -752,26 +752,10 @@
 
     <def-macro n="modify_pp_gen_nbr" npar="1"
                c="arg.1: adj.pp / vblex.pp
+                  Does nothing for vblex.pp
                   Assumes set_ana only sets variable combinations that are OK for adj.pp's">
-      <let><var n="tmp"/><lit v=""/></let>
-      <choose><when>
-        <test><equal><clip pos="1" part="tags"/><lit-tag v="vblex.pp"/></equal></test>
-        <let><var n="tmp"/><concat><lit v="["/><clip pos="1" part="tags"/><lit v="]"/></concat></let>
-        <!-- <out><var n="tmp"/></out> -->
-        <let><clip pos="1" part="tags"/><lit-tag v="adj.pp.nt.sg.ind"/></let>
-        <let><clip pos="1" part="lemh"/><lit v="adj"/></let>
-      </when></choose>
       <choose><when>
         <test><not><equal><var n="ana_nbr"/><lit v=""/></equal></not></test>
-        <choose><when>
-          <test><and>
-            <not><equal><clip pos="1" part="nbr"/><var n="ana_nbr"/></equal></not>
-            <equal><var n="tmp"/><lit v=""/></equal>
-          </and></test>
-          <let><var n="tmp"/><concat><lit v="["/><clip pos="1" part="nbr"/><clip pos="1" part="gen"/><lit v="→"/><var n="ana_nbr"/><var n="ana_gen"/><lit v="]"/></concat></let>
-          <!-- <out><var n="tmp"/></out> -->
-        </when></choose>
-
         <let><clip pos="1" part="nbr"/><var n="ana_nbr"/></let>
         <let><clip pos="1" part="gen"/><var n="ana_gen"/></let>
       </when></choose>
@@ -782,15 +766,8 @@
       </when></choose>
     </def-macro>
     <def-macro n="modify_pp_gen_nbr_NOANA" npar="1"
-               c="arg.1: adj.pp / vblex.pp">
-      <let><var n="tmp"/><lit v=""/></let>
-      <choose><when>
-        <test><equal><clip pos="1" part="tags"/><lit-tag v="vblex.pp"/></equal></test>
-        <let><var n="tmp"/><concat><lit v="["/><clip pos="1" part="tags"/><lit v="]"/></concat></let>
-        <!-- <out><var n="tmp"/></out> -->
-        <let><clip pos="1" part="tags"/><lit-tag v="adj.pp.nt.sg.ind"/></let>
-        <let><clip pos="1" part="lemh"/><lit v="adj"/></let>
-      </when></choose>
+               c="arg.1: adj.pp / vblex.pp
+                  Does nothing for vblex.pp">
       <choose><when>
         <test><equal><clip pos="1" part="nbr"/><lit-tag v="pl"/></equal></test>
         <let><clip pos="1" part="art"/><lit v=""/></let>
@@ -1138,7 +1115,7 @@
           <chunk>
             <clip pos="1" part="whole"/>
           </chunk>
-          <b pos="1"/>
+          <b/>
           <chunk>
             <clip pos="2" part="whole"/>
           </chunk>
