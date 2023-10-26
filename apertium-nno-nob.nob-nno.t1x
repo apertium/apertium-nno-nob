@@ -9057,6 +9057,37 @@
       </action>
     </rule>
 
+    <rule comment="CMP VBLEX
+                   If we have nn multiwords, these need the lemq after the
+                   inflected part. All lemq's include their own initial space.
+                   This rule has to be below the passive rule.">
+      <pattern>
+        <pattern-item n="cmp"/>
+        <pattern-item n="vblex"/>
+      </pattern>
+      <action>
+        <call-macro n="flush-mwe-queue"><with-param pos="1"/></call-macro>
+        <call-macro n="set_caseFirstWord2"><with-param pos="1"/><with-param pos="2"/></call-macro>
+        <call-macro n="set_lemq"><with-param pos="2"/></call-macro>
+        <let><var n="c_name"/><lit v="cmp_vblex"/></let> <!-- never aux when compound -->
+        <out>
+          <chunk namefrom="c_name" case="caseFirstWord">
+            <tags><tag><clip pos="2" side="tl" part="tags"/></tag></tags>
+            <lu><clip pos="1" side="tl" part="whole"/></lu>
+            <lu>
+              <clip pos="2" side="tl" part="lemh"/>
+              <clip pos="2" side="tl" part="a_verb"/>
+              <clip pos="2" side="tl" part="temps"/>
+              <clip pos="2" side="tl" part="voice"/>
+              <clip pos="2" side="tl" part="a_cmp"/>
+              <var n="c_lemq"/>
+            </lu>
+          </chunk>
+        </out>
+        <out><var n="out_lemq"/></out>
+      </action>
+    </rule>
+
     <rule comment="INFM">
       <pattern>
         <pattern-item n="infm"/>
