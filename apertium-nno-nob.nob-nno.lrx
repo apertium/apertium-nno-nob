@@ -11812,5 +11812,19 @@ preposisjonar gir ekstra utfordringar. -->
     </or>
     <match lemma="ettergåelse" tags="n.*"><select lemma="undersøking"/></match>
   </rule>
+
+  <rule><match lemma="besatt" tags="adj.*"><select lemma="besett"/></match></rule>
+  <rule weight="2.2" c="demonforgjord">
+    <or>
+      <match lemma="djevel" tags="n.*.cmp"/>
+      <match lemma="demon" tags="n.*.cmp"/>
+    </or>
+    <match lemma="besatt" tags="adj.*">    <select lemma="forgjord"/> </match>
+  </rule>
+  <rule weight="2.0" c="gullpryda">
+    <match tags="*.cmp"/>
+    <match lemma="besatt" tags="adj.*">    <select lemma="pryda"/> </match>
+  </rule>
+
 </rules>
 </lrx>

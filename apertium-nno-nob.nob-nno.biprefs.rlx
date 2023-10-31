@@ -239,7 +239,7 @@ REMOVE:vise_syne ("syne.*"ri) IF (0 ("vise.*"ri));
 SELECT:førebu_seg_bu_seg ("bu# seg"i) IF (0 ("førebu# seg"i) + (VAR:førebu_seg_bu_seg));
 REMOVE:førebu_seg_førebu_seg ("bu# seg"i) IF (0 ("førebu# seg"i));
 
-LIST lm_tinge = "tinging"i "avtinging"i "tingingsside"i "timetinging"i "tingingsdrap"i "tingingsverk"i "tingingstjuveri"i "tingingsvare"i "avtingingsforsikring"i "førehandstinging"i "spesialtinging"i "avtinge"i "førehandstinge"i "tinge"i;
+LIST lm_tinge = ".*tinging.*"ri "avtinging"i "tingingsside"i "timetinging"i "tingingsdrap"i "tingingsverk"i "tingingstjuveri"i "tingingsvare"i "avtingingsforsikring"i "førehandstinging"i "spesialtinging"i "avtinge"i "førehandstinge"i "tinge"i ".*tingar"ri;
 SELECT:bestille_tinge  lm_tinge IF (0 (VAR:bestille_tinge.syn));
 REMOVE:bestille_bestille lm_tinge;
 
