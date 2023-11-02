@@ -93,6 +93,14 @@ setvars () {
     fi
 }
 
+filter_stderr () {
+    # Drop some warnings we don't care about
+    grep -v \
+         -e '^Warning: matching case-sensitively since processor state size >= 65536' \
+         -e '^Warning: compoundAnalysis.s MAX_COMBINATIONS exceeded for' \
+         -e '^         gave up at char [0-9]'
+}
+
 [[ $# -lt 1 || $# -gt 2 ]] && assert-usage
 
 namefilter=''
@@ -106,7 +114,10 @@ case $1 in
             # shellcheck disable=SC2311
             mode=$(get-mode "${name}")
             setvars "${name}"
-            apertium -d . "${mode}" < tests/"${name}".input.txt >tests/out/"${name}.${step}".current.txt
+            apertium -d . "${mode}"                            \
+                     < tests/"${name}".input.txt               \
+                     > tests/out/"${name}.${step}".current.txt \
+                     2>>>(filter_stderr || true)
         done
         ;;
     update)
