@@ -19,6 +19,7 @@
       <xsl:value-of select="$LineBreak"/>
 
       <xsl:value-of select="$LineBreak"/>
+      <xsl:value-of select="$LineBreak"/>
 
       <incompatibilities>
       <xsl:value-of select="$LineBreak"/><xsl:text>    </xsl:text>
@@ -30,6 +31,20 @@
       <xsl:value-of select="$LineBreak"/>
       </incompatibilities>
 
+      <xsl:value-of select="$LineBreak"/>
+      <xsl:value-of select="$LineBreak"/>
+
+      <templates>
+      <xsl:value-of select="$LineBreak"/><xsl:text>    </xsl:text>
+      <xsl:apply-templates select="templates/template"/>
+      <xsl:value-of select="$LineBreak"/>
+      <xsl:comment><xsl:value-of select="$with-file"/>: </xsl:comment>
+      <xsl:value-of select="$LineBreak"/><xsl:text>    </xsl:text>
+      <xsl:apply-templates select="document($with-file)/preferences/templates/template"/>
+      <xsl:value-of select="$LineBreak"/>
+      </templates>
+
+      <xsl:value-of select="$LineBreak"/>
       <xsl:value-of select="$LineBreak"/>
     </xsl:copy>
   </xsl:template>
