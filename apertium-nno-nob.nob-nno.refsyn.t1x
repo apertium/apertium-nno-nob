@@ -63,6 +63,12 @@
       <cat-item tags="adj.sup.*"/>
       <cat-item tags="adj.sint.*"/>
     </def-cat>
+    <def-cat n="cmp">
+      <cat-item tags="*.cmp"/>
+      <cat-item tags="*.cmp.*"/>
+      <cat-item tags="*.cmp-split"/>
+      <cat-item tags="*.cmp-split.*"/>
+    </def-cat>
     <def-cat n="fv">
       <cat-item tags="*.@fv"/>
       <cat-item tags="*.@fv.*"/>
@@ -374,6 +380,47 @@
             <clip pos="2" side="tl" part="whole"/>
             <lit v="/"/>
             <clip pos="2" side="ref" part="whole"/>
+          </lu>
+        </out>
+      </action>
+    </rule>
+    <rule c="Nominal adjective keeps gender/number (ignore preceding subject)
+             «de blåkledde»">
+      <pattern>
+        <pattern-item n="detR"/>
+        <pattern-item n="cmp"/>
+        <pattern-item n="adj.pp"/>
+      </pattern>
+      <action>
+        <let><clip pos="1" side="tl" part="a_syntax"/><lit v=""/></let>
+        <let><clip pos="1" side="sl" part="a_syntax"/><lit v=""/></let> <!-- preprocess-transfer gives a mistaken warning – this does have effect -->
+        <let><clip pos="2" side="tl" part="a_syntax"/><lit v=""/></let>
+        <let><clip pos="2" side="sl" part="a_syntax"/><lit v=""/></let> <!-- preprocess-transfer gives a mistaken warning – this does have effect -->
+        <let><clip pos="3" side="tl" part="a_syntax"/><lit v=""/></let>
+        <let><clip pos="3" side="sl" part="a_syntax"/><lit v=""/></let> <!-- preprocess-transfer gives a mistaken warning – this does have effect -->
+        <out>
+          <lu>
+            <clip pos="1" side="sl" part="whole"/>
+            <lit v="/"/>
+            <clip pos="1" side="tl" part="whole"/>
+            <lit v="/"/>
+            <var n="cur_subj"/>
+          </lu>
+          <b/>
+          <lu>
+            <clip pos="2" side="sl" part="whole"/>
+            <lit v="/"/>
+            <clip pos="2" side="tl" part="whole"/>
+            <lit v="/"/>
+            <clip pos="2" side="ref" part="whole"/>
+          </lu>
+          <b/>
+          <lu>
+            <clip pos="3" side="sl" part="whole"/>
+            <lit v="/"/>
+            <clip pos="3" side="tl" part="whole"/>
+            <lit v="/"/>
+            <clip pos="3" side="ref" part="whole"/>
           </lu>
         </out>
       </action>

@@ -57,6 +57,13 @@ side="ref"> for transfer to use. It's syntactic, not anaphoric.
 - Remaining regressions in passive genders (missing refsyn.t1x
   patterns, bad syntax disambiguation?)
 
+- We should not remove marked plurals! Our tagging doesn't show if
+  e.g. utelatt<adj><pp><pl> was the ambiguous form "utelatt" or the
+  plural-only "utelatte", so T1X might turn that into mf.sg.ind to
+  match the @subj, but if it actually was unambiguously plural in nob
+  we should keep it that way (e.g. when adj is used as noun in
+  "rapportering av utelatte").
+
 - Sometimes the subject is a whole clause – should give nt:
   - [At disse<pl> ble solgt] er fint<nt!>
   May require "outer" ref, flip on clause boundary.
