@@ -1971,10 +1971,12 @@
         </out>
       </action>
     </rule>
-    <rule comment="FV LEMQ-SKIP-OBJ PRN_ACC => FV PRN_ACC LEMQ-SKIP_OBJ
-                   Push blanks one place up since lemq space is inside the chunk.">
+    <rule comment="VBLEX LEMQ-SKIP-OBJ PRN_ACC => VBLEX PRN_ACC LEMQ-SKIP_OBJ
+                   Push blanks one place up since lemq space is inside the chunk.
+                   å innlevere dem → å levere inn dei → å levere dei inn
+                   (object pronouns are the exception where we move infinite lemq's)">
       <pattern>
-        <pattern-item n="fv"/>
+        <pattern-item n="vblex"/>
         <pattern-item n="lemq-skip-obj"/>
         <pattern-item n="prn_acc"/>
       </pattern>
