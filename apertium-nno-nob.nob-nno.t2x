@@ -301,6 +301,14 @@
       <cat-item tags="vblex"/>
       <cat-item tags="vblex.*"/>
     </def-cat>
+    <def-cat n="fv">
+      <cat-item tags="vblex.pres"/>
+      <cat-item tags="vblex.pres.*"/>
+      <cat-item tags="vblex.pret"/>
+      <cat-item tags="vblex.pret.*"/>
+      <cat-item tags="vblex.imp"/>
+      <cat-item tags="vblex.imp.*"/>
+    </def-cat>
     <def-cat n="pr_OR_vblex">
       <cat-item tags="vblex"/>
       <cat-item tags="vblex.*"/>
@@ -1636,10 +1644,10 @@
         </out>
       </action>
     </rule>
-    <rule comment="VBLEX LEMQ ADV_MOVABLE => VBLEX ADV_MOVABLE LEMQ
+    <rule comment="FV LEMQ ADV_MOVABLE => FV ADV_MOVABLE LEMQ
                    Push blanks one place up since lemq space is inside the chunk.">
       <pattern>
-        <pattern-item n="vblex"/>
+        <pattern-item n="fv"/>
         <pattern-item n="lemq"/>
         <pattern-item n="adv_movable"/>
       </pattern>
@@ -1660,10 +1668,10 @@
         </out>
       </action>
     </rule>
-    <rule comment="VBLEX LEMQ ADV_MOVABLE ADV_MOVABLE => VBLEX ADV_MOVABLE ADV_MOVABLE LEMQ
+    <rule comment="FV LEMQ ADV_MOVABLE ADV_MOVABLE => FV ADV_MOVABLE ADV_MOVABLE LEMQ
                    Push blanks one place up since lemq space is inside the chunk.">
       <pattern>
-        <pattern-item n="vblex"/>
+        <pattern-item n="fv"/>
         <pattern-item n="lemq"/>
         <pattern-item n="adv_movable"/>
         <pattern-item n="adv_movable"/>
@@ -1690,10 +1698,10 @@
       </action>
     </rule>
 
-    <rule comment="VBLEX LEMQ NDEF NDEF => VBLEX NDEF LEMQ NDEF
+    <rule comment="FV LEMQ NDEF NDEF => FV NDEF LEMQ NDEF
                    Push blanks one place up since lemq space is inside the chunk.">
       <pattern>
-        <pattern-item n="vblex"/>
+        <pattern-item n="fv"/>
         <pattern-item n="lemq"/>
         <pattern-item n="ndef"/>
         <pattern-item n="ndef"/>
@@ -1718,7 +1726,7 @@
       <pattern>
         <pattern-item n="clb"/>
         <pattern-item n="adv"/>
-        <pattern-item n="vblex"/>
+        <pattern-item n="fv"/>
         <pattern-item n="lemq"/>
         <pattern-item n="ndef"/>
       </pattern>
@@ -1739,7 +1747,7 @@
       </action>
     </rule>
 
-    <rule comment="ADV VBLEX LEMQ NDEF → ADV VBLEX NDEF LEMQ / ADV VBLEX LEMQ NDEF
+    <rule comment="ADV FV LEMQ NDEF → ADV FV NDEF LEMQ / ADV FV LEMQ NDEF
                    Push blanks one place up since lemq space is inside the chunk.
                    Without subj/obj tagging, changing order here becomes dangerous; we only want it to happen when ndef is subj.
                    So for now we only change order when adv is titlecase (likely subject because ndef early in sentence).
@@ -1747,7 +1755,7 @@
                    KEEP:  [De 50 millionene som] nå tilfaller forbundet [vil] → [Dei 50 millionane som] no fell forbundet til [vil]">
       <pattern>
         <pattern-item n="adv"/>
-        <pattern-item n="vblex"/>
+        <pattern-item n="fv"/>
         <pattern-item n="lemq"/>
         <pattern-item n="ndef"/>
       </pattern>
@@ -1785,13 +1793,13 @@
       </action>
     </rule>
 
-    <rule comment="ADV VBLEX LEMQ ADV_MOVABLE NDEF → ADV VBLEX ADV_MOVABLE NDEF LEMQ
+    <rule comment="ADV FV LEMQ ADV_MOVABLE NDEF → ADV FV ADV_MOVABLE NDEF LEMQ
                    Push blanks two places up since lemq space is inside the chunk.
-                   Should be fairly safe compared to above rule (rarely do we have adv vblex adv object)
+                   Should be fairly safe compared to above rule (rarely do we have adv fv adv object)
                    Torsdag oppgav altså 19-åringen [sin forklaring] → Torsdag gav altså 19-åringen frå seg [si forklaring]">
       <pattern>
         <pattern-item n="adv"/>
-        <pattern-item n="vblex"/>
+        <pattern-item n="fv"/>
         <pattern-item n="lemq"/>
         <pattern-item n="adv_movable"/>
         <pattern-item n="ndef"/>
@@ -1813,10 +1821,10 @@
       </action>
     </rule>
 
-    <rule comment="VBLEX LEMQ PRN_NOM => VBLEX PRN_NOM LEMQ
+    <rule comment="FV LEMQ PRN_NOM => FV PRN_NOM LEMQ
                    Push blanks one place up since lemq space is inside the chunk.">
       <pattern>
-        <pattern-item n="vblex"/>
+        <pattern-item n="fv"/>
         <pattern-item n="lemq"/>
         <pattern-item n="prn_nom"/>
       </pattern>
@@ -1838,11 +1846,11 @@
         </out>
       </action>
     </rule>
-    <rule comment="VBLEX LEMQ PRN_NOM ADV_MOVABLE => VBLEX PRN_NOM ADV_MOVABLE LEMQ
+    <rule comment="FV LEMQ PRN_NOM ADV_MOVABLE => FV PRN_NOM ADV_MOVABLE LEMQ
                    Push blanks one place up since lemq space is inside the chunk.
                    [Da] fortsatte hun like_godt [karrieren] → heldt ho fram like godt → heldt ho like godt fram">
       <pattern>
-        <pattern-item n="vblex"/>
+        <pattern-item n="fv"/>
         <pattern-item n="lemq"/>
         <pattern-item n="prn_nom"/>
         <pattern-item n="adv_movable"/>
@@ -1861,11 +1869,11 @@
         </out>
       </action>
     </rule>
-    <rule comment="VBLEX LEMQ PRN_NOM ADV_MOVABLE ADV_MOVABLE => VBLEX PRN_NOM ADV_MOVABLE ADV_MOVABLE LEMQ
+    <rule comment="FV LEMQ PRN_NOM ADV_MOVABLE ADV_MOVABLE => FV PRN_NOM ADV_MOVABLE ADV_MOVABLE LEMQ
                    Push blanks one place up since lemq space is inside the chunk.
                    [Derfor] fraråder vi nå klart [å] → rår mot vi no klart → rår vi no klart mot">
       <pattern>
-        <pattern-item n="vblex"/>
+        <pattern-item n="fv"/>
         <pattern-item n="lemq"/>
         <pattern-item n="prn_nom"/>
         <pattern-item n="adv_movable"/>
@@ -1888,11 +1896,11 @@
       </action>
     </rule>
 
-    <rule comment="VBLEX LEMQ PRN_ACC ADV_MOVABLE => VBLEX PRN_ACC ADV_MOVABLE LEMQ
+    <rule comment="FV LEMQ PRN_ACC ADV_MOVABLE => FV PRN_ACC ADV_MOVABLE LEMQ
                    Push blanks one place up since lemq space is inside the chunk.
                    [men] utelukker det ikke → ser bort frå det ikkje → ser ikkje bort frå det">
       <pattern>
-        <pattern-item n="vblex"/> <!-- 1. ser -->
+        <pattern-item n="fv"/> <!-- 1. ser -->
         <pattern-item n="lemq"/>  <!-- 2. bort frå -->
         <pattern-item n="prn_acc"/> <!-- 3. det -->
         <pattern-item n="adv_movable"/> <!-- 4. ikkje -->
@@ -1912,12 +1920,12 @@
       </action>
     </rule>
 
-    <rule comment="ADV VBLEX LEMQ PRN_NOM => ADV VBLEX PRN_NOM LEMQ
+    <rule comment="ADV FV LEMQ PRN_NOM => ADV FV PRN_NOM LEMQ
                    Push blanks one place up since lemq space is inside the chunk.
                    da oppga han → då gav opp han → då gav han opp">
       <pattern>
         <pattern-item n="adv_movable"/>
-        <pattern-item n="vblex"/>
+        <pattern-item n="fv"/>
         <pattern-item n="lemq"/>
         <pattern-item n="prn_nom"/>
       </pattern>
@@ -1936,13 +1944,13 @@
       </action>
     </rule>
 
-    <rule comment="AUX ADV ADJPART VBLEX LEMQ-SKIP-OBJ PRN_ACC => AUX ADV ADJPART VBLEX PRN_ACC LEMQ-SKIP_OBJ
+    <rule comment="AUX ADV ADJPART FV LEMQ-SKIP-OBJ PRN_ACC => AUX ADV ADJPART FV PRN_ACC LEMQ-SKIP_OBJ
                    Push blanks one place up since lemq space is inside the chunk.">
       <pattern>
         <pattern-item n="aux"/>
         <pattern-item n="adv"/>
         <!-- TODO: where's the adjpart ?? -->
-        <pattern-item n="vblex"/>
+        <pattern-item n="fv"/>
         <pattern-item n="lemq-skip-obj"/>
         <pattern-item n="prn_acc"/>
       </pattern>
@@ -1963,10 +1971,10 @@
         </out>
       </action>
     </rule>
-    <rule comment="VBLEX LEMQ-SKIP-OBJ PRN_ACC => VBLEX PRN_ACC LEMQ-SKIP_OBJ
+    <rule comment="FV LEMQ-SKIP-OBJ PRN_ACC => FV PRN_ACC LEMQ-SKIP_OBJ
                    Push blanks one place up since lemq space is inside the chunk.">
       <pattern>
-        <pattern-item n="vblex"/>
+        <pattern-item n="fv"/>
         <pattern-item n="lemq-skip-obj"/>
         <pattern-item n="prn_acc"/>
       </pattern>
@@ -1983,12 +1991,12 @@
       </action>
     </rule>
 
-    <rule comment="NP_PRNNOM_OG VBLEX LEMQ-SKIP-N NDEF => NP_PRNNOM_OG VBLEX LEMQ-SKIP-N NDEF
+    <rule comment="NP_PRNNOM_OG FV LEMQ-SKIP-N NDEF => NP_PRNNOM_OG FV LEMQ-SKIP-N NDEF
                    Override below rule
                    We want: Carlsen heldt fram sigersrekka, not *Carlsen heldt sigersrekka fram">
       <pattern>
         <pattern-item n="np_prnnom_og"/>
-        <pattern-item n="vblex"/>
+        <pattern-item n="fv"/>
         <pattern-item n="lemq-skip-n"/>
         <pattern-item n="ndef"/>
       </pattern>
@@ -2007,11 +2015,11 @@
       </action>
     </rule>
 
-    <rule comment="VBLEX LEMQ-SKIP-N NDEF_NP_PERS => VBLEX NDEF_NP_PERS LEMQ-SKIP-N
+    <rule comment="FV LEMQ-SKIP-N NDEF_NP_PERS => FV NDEF_NP_PERS LEMQ-SKIP-N
                    - Søndag fortsatte kamphandlingene → Søndag heldt kamphandlingane fram
                    , fortsatte Ola → , heldt Ola fram">
       <pattern>
-        <pattern-item n="vblex"/>
+        <pattern-item n="fv"/>
         <pattern-item n="lemq-skip-n"/>
         <pattern-item n="n_OR_np_subj"/>
       </pattern>
@@ -2028,10 +2036,10 @@
       </action>
     </rule>
 
-    <rule comment="VBLEX LEMQ-SKIP-N ADV_MOVABLE NDEF_NP_PERS => VBLEX NDEF_NP_PERS ADV_MOVABLE LEMQ-SKIP-N
+    <rule comment="FV LEMQ-SKIP-N ADV_MOVABLE NDEF_NP_PERS => FV NDEF_NP_PERS ADV_MOVABLE LEMQ-SKIP-N
                    , fortsetter nemlig flyene [å lande] → , held nemleg flya fram med [å lande]">
       <pattern>
-        <pattern-item n="vblex"/>            <!-- 1. held -->
+        <pattern-item n="fv"/>            <!-- 1. held -->
         <pattern-item n="lemq-skip-n"/>      <!-- 2. # fram med -->
         <pattern-item n="adv_movable_OR_adjadv"/> <!-- 3. nemleg/stadig -->
         <pattern-item n="n_OR_np_subj"/>     <!-- 4. flya -->
@@ -2052,10 +2060,10 @@
     </rule>
 
 
-    <rule comment="VBLEX LEMQ-SKIP-N DET NDEF_NP_PERS => VBLEX DET NDEF_NP_PERS LEMQ-SKIP-N
+    <rule comment="FV LEMQ-SKIP-N DET NDEF_NP_PERS => FV DET NDEF_NP_PERS LEMQ-SKIP-N
                    , fortsetter den britiske mutasjonen → , held den britiske mutasjonen fram">
       <pattern>
-        <pattern-item n="vblex"/>            <!-- 1. held -->
+        <pattern-item n="fv"/>            <!-- 1. held -->
         <pattern-item n="lemq-skip-n"/>      <!-- 2. fram -->
         <pattern-item n="det"/>              <!-- 3. den -->
         <pattern-item n="n_OR_np_subj"/>     <!-- 4. britiske mutasjonen -->
@@ -2075,10 +2083,10 @@
       </action>
     </rule>
 
-    <rule comment="VBLEX LEMQ-SKIP-N DET NDEF_NP_PERS ADV_MOVABLE => VBLEX DET NDEF_NP_PERS ADV_MOVABLE LEMQ-SKIP-N
+    <rule comment="FV LEMQ-SKIP-N DET NDEF_NP_PERS ADV_MOVABLE => FV DET NDEF_NP_PERS ADV_MOVABLE LEMQ-SKIP-N
                    , fortsetter den britiske mutasjonen stadig → , held den britiske mutasjonen stadig fram">
       <pattern>
-        <pattern-item n="vblex"/>            <!-- 1. held -->
+        <pattern-item n="fv"/>            <!-- 1. held -->
         <pattern-item n="lemq-skip-n"/>      <!-- 2. fram -->
         <pattern-item n="det"/>              <!-- 3. den -->
         <pattern-item n="n_OR_np_subj"/>     <!-- 4. britiske mutasjonen -->
@@ -2101,11 +2109,11 @@
       </action>
     </rule>
 
-    <rule comment="VBLEX LEMQ-SKIP-N NP_PERS NP_PERS => VBLEX NP_PERS NP_PERS LEMQ-SKIP-N
+    <rule comment="FV LEMQ-SKIP-N NP_PERS NP_PERS => FV NP_PERS NP_PERS LEMQ-SKIP-N
                    Push blanks one place up since lemq space is inside the chunk.
                    , fortsatte Ola Hansen → , heldt Ola Hansen fram">
       <pattern>
-        <pattern-item n="vblex"/>
+        <pattern-item n="fv"/>
         <pattern-item n="lemq-skip-n"/>
         <pattern-item n="np_pers"/>
         <pattern-item n="np_nonorg"/>
@@ -2123,11 +2131,11 @@
         </out>
       </action>
     </rule>
-    <rule comment="VBLEX LEMQ-SKIP-N NP_PERS NP_PERS NP_PERS => VBLEX NP_PERS NP_PERS NP_PERS LEMQ-SKIP-N
+    <rule comment="FV LEMQ-SKIP-N NP_PERS NP_PERS NP_PERS => FV NP_PERS NP_PERS NP_PERS LEMQ-SKIP-N
                    Push blanks one place up since lemq space is inside the chunk.
                    , fortsatte Ole Andre Hansen → , heldt Ole Andre Hansen fram">
       <pattern>
-        <pattern-item n="vblex"/>
+        <pattern-item n="fv"/>
         <pattern-item n="lemq-skip-n"/>
         <pattern-item n="np_pers"/>
         <pattern-item n="np_nonorg"/>

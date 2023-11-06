@@ -549,6 +549,12 @@
       </e>
     </pardef>
 
+    <pardef n="fv" c="Only matches vblex+subtag, no catchalls nor word delimiter">
+      <e><i><s n="vblex"/><s n="pres"/></i></e>
+      <e><i><s n="vblex"/><s n="pret"/></i></e>
+      <e><i><s n="vblex"/><s n="imp"/></i></e>
+    </pardef>
+
     <pardef n="det+SN">
       <e><par n="SN"/></e>
       <e><i><w/><s n="det"/><t/><d/></i><par n="SN"/></e>
@@ -1859,7 +1865,7 @@
     </e>
 
     <e lm="halde fram med ADJ/ADV å -> halde ADJ/ADV fram med å" c="halde alltid fram med å">
-      <i>halde<s n="vblex"/><t/><d space="yes"/></i>
+      <i>halde</i><par n="fv"/><i><d space="yes"/></i>
       <p><l><g><b/>fram<b/>med</g><d/></l>  <r></r></p>
       <par n="adj|adv"/>
       <p><l></l>                  <r>fram<s n="pr"/><d/></r></p>
@@ -1868,7 +1874,7 @@
     </e>
 
     <e lm="held X fram ADJ/ADV å-> held X ADJ/ADV fram med å" c="held han uforstyrra fram med å">
-      <i>halde<s n="vblex"/><t/><d space="yes"/></i>
+      <i>halde</i><par n="fv"/><i><d space="yes"/></i>
       <par n="ANYWORD"/>
       <p><l><g><b/>fram</g><d/></l>  <r></r></p>
       <par n="adj|adv"/>
@@ -1878,7 +1884,7 @@
     </e>
 
     <e lm="fortsette + ukedag + sin + subst(ubest + m) -> held + fram + vekedag + subst(best) + sin" c="held laurdag fram løpet sitt">
-      <i>halde<s n="vblex"/><t/><d space="yes"/></i>
+      <i>halde</i><par n="fv"/><i><d space="yes"/></i>
       <p><l><g><b/>fram</g><d/></l>  <r></r></p>
       <par n="Vekedag"/>
       <p><l></l>                  <r>fram<s n="pr"/><d/></r></p>
@@ -1890,7 +1896,7 @@
     </e>
 
   <e lm="fortsetter (X) å -> held (X) fram med å">
-    <i>halde<s n="vblex"/><t/><d space="yes"/></i>
+    <i>halde</i><par n="fv"/><i><d space="yes"/></i>
     <p><l><g><b/>fram<b/>med</g><d/></l>  <r></r></p>
     <par n="ANYWORD|"/>
     <p><l></l>                  <r>fram<s n="pr"/><d/></r></p>
@@ -1899,7 +1905,7 @@
   </e>
 
   <e lm="fortsetter han å -> held fram han å -> held han fram med å">
-    <i>halde<s n="vblex"/><t/><d space="yes"/></i>
+    <i>halde</i><par n="fv"/><i><d space="yes"/></i>
     <p><l><g><b/>fram</g><d/></l>  <r></r></p>
     <par n="ANYWORD|"/>
     <par n="ANYWORD|"/>
@@ -1910,7 +1916,7 @@
   </e>
 
   <e lm="fortsetter den lille gutten å -> held den vesle guten fram å -> held den vesle guten fram med å">
-    <i>halde<s n="vblex"/><t/><d space="yes"/></i>
+    <i>halde</i><par n="fv"/><i><d space="yes"/></i>
     <par n="ANYWORD|"/>
     <par n="ANYWORD|"/>
     <par n="ANYWORD|"/>
@@ -1923,7 +1929,7 @@
   </e>
 
   <e lm="fortsette slik -> halde slik fram -> halde fram slik" c="spesielle adverb">
-    <i>halde<s n="vblex"/><t/><d/></i>
+    <i>halde</i><par n="fv"/><i><d/></i>
     <p><l></l>                  <r>fram<s n="pr"/><d space="yes"/></r></p>
     <par n="fortsette-adverb"/>
     <p><l><g><b/>fram</g><d/></l>  <r></r></p>
