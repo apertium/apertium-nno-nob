@@ -8106,6 +8106,11 @@
   </rule>
 
 
+  <rule weight="2.0" c="yrkesvalgsbetinget, situasjonsbetinget, etc. compounds → ~avhengig">
+    <match tags="*.cmp"/>
+    <match lemma="betinget" tags="adj.*"><select lemma="avhengig"/></match>
+  </rule>
+
   <rule> <!-- Og så mener vi at hele straffen skulle vært betinget, hvis han skal dømmes. -->
     <match lemma="betinget" tags="adj.*"><select lemma="vilkårsbunden"/></match>
   </rule>
