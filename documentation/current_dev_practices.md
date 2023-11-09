@@ -97,7 +97,7 @@ There is also a shortcut to adding a sentence to an existing test set:
      echo 'Dette er en setning som har en grei oversettelse nå.' | t/progression expect ymse
 
 This will add that sentence to `tests/ymse-nob-nno_e.input.txt`, and
-the current output to `tests/out/ymse-nob-nno_e.all.expected.txt`,
+the current output to `tests/expected/ymse-nob-nno_e.all.expected.txt`,
 which you can then commit.
 
 ## Add a new translation to the nno-nob dictionary
