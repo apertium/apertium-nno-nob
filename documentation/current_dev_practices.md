@@ -55,9 +55,9 @@ It's handy to check if your change fixed what it was supposed to fix and did not
 ### Run the test sets
 
 Run the command:
-1. `make -j tests` 
+1. `make -j tests` to run all tests
 or 
-`make test-progression`
+`make test-progression` to run only the "progression" tests (from the `./tests` folder).
 2. See if your changes have improved or broken anything. The words in *blue* script are the current translations. The *green* script is from when the tests were updated last. 
 
 ### Run a corpus test before and after your changes
@@ -83,12 +83,22 @@ If you see that the output from the test sets are both outdated and improved, yo
 1. `make update-progression`
 2. `git commit -m "higher expectations (or something)"`
 
+(Note: `make update-progression` will first translate the full test set before updating the expectations to the current output. If you have already run `make test-progression` and not done any other changes and now want to accept the current output, it's faster to just run `t/progression update` and then commit.)
+
 ####  Adding new test cases
 
 You can add your own test cases. Here is how:
 
 1. Add the sentences you want as test cases at the end of `tests/ymse-nob-nno_e.input.txt`. Commit and push.
 2. Alternatively, add your own files in `tests/`. The format should be something like: `NICENAME-nob-nno_e.input.txt`. Add, commit and push. Your file should now be automatically picked up when running the test commands.
+
+There is also a shortcut to adding a sentence to an existing test set:
+
+     echo 'Dette er en setning som har en grei oversettelse nå.' | t/progression expect ymse
+
+This will add that sentence to `tests/ymse-nob-nno_e.input.txt`, and
+the current output to `tests/out/ymse-nob-nno_e.all.expected.txt`,
+which you can then commit.
 
 ## Add a new translation to the nno-nob dictionary
 
