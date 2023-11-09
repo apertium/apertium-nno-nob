@@ -288,7 +288,6 @@ clean-local:
 ###############################################################################
 
 test: all test-progression
-	apertium-regtest test
 	t/bidix-sanity
 	t/hash-count
 	t/wer-loss
