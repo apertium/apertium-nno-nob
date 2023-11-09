@@ -105,6 +105,7 @@ namefilter=''
 
 case $1 in
     translate)
+        mkdir -p tests/current
         for f in tests/*.input.txt; do
             name="$(basename "${f%.input.txt}")"
             [[ ${name} = *${namefilter}* ]] || continue
