@@ -2,8 +2,6 @@
 
 set -u
 
-step=all
-
 cd "$(dirname "$0")"/.. || exit 1
 
 difs () {
@@ -29,9 +27,9 @@ dif1 () {
     name=$2
     case ${ref} in
         expected) colorspec=green,bcyan
-                  reffile=tests/expected/"${name}.${step}".expected.txt ;;
+                  reffile=tests/expected/"${name}".expected.txt ;;
         gold) colorspec=brown,bcyan
-              reffile=tests/gold/"${name}.${step}".gold.txt ;;
+              reffile=tests/gold/"${name}".gold.txt ;;
         *)
             echo "ERROR bug in call to dif1" >&2; exit 1 ;;
     esac
@@ -39,7 +37,7 @@ dif1 () {
         set -o pipefail
         diff -U0 -I'^nno-nob\|AP_SRC'                  \
              "${reffile}"                              \
-             tests/current/"${name}"."${step}".current.txt \
+             tests/current/"${name}".current.txt \
             | awk '/./&&!p { print "@@"; p++ } { print }' \
             | wdif "${colorspec}"
         # Prepending @@ to non-empty diff ensures file paths are coloured too
@@ -50,7 +48,7 @@ assert-translated () {
     for f in tests/*.input.txt; do
         name="$(basename "${f%.input.txt}")"
         [[ ${name} = *${namefilter}* ]] || continue
-        cur=tests/current/"${name}"."${step}".current.txt
+        cur=tests/current/"${name}".current.txt
         if [[ ! -f "${cur}" ]]; then
             echo "${cur} not found" >&2
             echo >&2
@@ -115,15 +113,15 @@ case $1 in
             setvars "${name}"
             apertium -d . "${mode}"                            \
                      < tests/"${name}".input.txt               \
-                     > tests/current/"${name}.${step}".current.txt \
+                     > tests/current/"${name}".current.txt \
                      2>>>(filter_stderr || true)
         done
         ;;
     update)
         assert-translated "${namefilter}"
-        for cur in tests/current/*."${step}".current.txt; do
+        for cur in tests/current/*.current.txt; do
             name="$(basename "${cur%.current.txt}")"
-            cp -v "${cur}" tests/expected/"${name}".all.expected.txt
+            cp -v "${cur}" tests/expected/"${name}".expected.txt
         done
         ;;
     diff-expected)
@@ -143,8 +141,8 @@ case $1 in
             # shellcheck disable=SC2311
             mode=$(get-mode "${name}")
             setvars "${name}"
-            expf=tests/expected/"${name}".all.expected.txt
-            goldf=tests/gold/"${name}".all.gold.txt
+            expf=tests/expected/"${name}".expected.txt
+            goldf=tests/gold/"${name}".gold.txt
             input=$(cat)
             [[ "${input}" = *[.?\!] ]] || input="${input}." # ensure final punctuation
             echo "${input}" | tee -a "${f}" | apertium -d . "${mode}" | tee -a "${expf}" "${goldf}"
