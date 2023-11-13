@@ -95,6 +95,9 @@ REMOVE:ansikt_andlet lm_andlet;
 SELECT:motsetning_motsetnad  ("motsetnad"i) IF (0 ("motsetning"i) + (VAR:motsetning_motsetnad.syn));
 REMOVE:motsetning_motsetning ("motsetnad"i) IF (0 ("motsetning"i));
 
+SELECT:talet_på_antal  ("antal"i) IF (0 ("talet på"i) + (VAR:talet_på_antal.syn));
+REMOVE:antal_antal ("antal"i) IF (0 ("antal"i));
+
 LIST lm_kvefs = ".*kvefs"ri "kvefs.*"ri;
 SELECT:veps_kvefs lm_kvefs IF (0 (VAR:veps_kvefs.syn));
 REMOVE:veps_kvefs lm_kvefs;
