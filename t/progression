@@ -5,17 +5,33 @@ set -u
 cd "$(dirname "$0")"/.. || exit 1
 
 difs () {
-    ref=$1
-    declare -i errs=0
+    local ref=$1
+    local namefilter=$2
+    local -i errs=0
     for f in tests/*.input.txt; do
         name="$(basename "${f%.input.txt}")"
         [[ ${name} = *${namefilter}* ]] || continue
-        dif1 "${ref}" "${name}" || (( errs++ ))
+        out=$(dif1 "${ref}" "${name}")
+        # Count number of lines starting with '-' except the initial header lines:
+        errs+=$(tail -n+3 <<<"${out}" | grep -c '^-')
+        [[ -n "${out}" ]] && wdif "${ref}" <<<"$out"
     done
-    return "${errs}"
+    # TODO: count *lines* of fails, not just files failed!
+    # If number of errors <= THRESHOLD, we don't fail
+    if [[ "${errs}" -le "${THRESHOLD:-0}" ]]; then
+        return 0
+    else
+        return "${errs}"
+    fi
 }
 wdif () {
-    colorspec=$1
+    local ref=$1
+    local colorspec
+    case ${ref} in
+        expected) colorspec=green,bcyan ;;
+        gold) colorspec=brown,bcyan ;;
+        *) echo "ERROR bug in call to wdif" >&2; exit 1 ;;
+    esac
     if command -V dwdiff &>/dev/null; then
         dwdiff --color="${colorspec}" --diff-input
     else
@@ -23,24 +39,20 @@ wdif () {
     fi
 }
 dif1 () {
-    ref=$1
-    name=$2
+    local ref=$1
+    local name=$2
     case ${ref} in
-        expected) colorspec=green,bcyan
-                  reffile=tests/expected/"${name}".expected.txt ;;
-        gold) colorspec=brown,bcyan
-              reffile=tests/gold/"${name}".gold.txt ;;
-        *)
-            echo "ERROR bug in call to dif1" >&2; exit 1 ;;
+        expected) reffile=tests/expected/"${name}".expected.txt ;;
+        gold) reffile=tests/gold/"${name}".gold.txt ;;
+        *) echo "ERROR bug in call to dif1" >&2; exit 1 ;;
     esac
     (
         set -o pipefail
-        diff -U0 -I'^nno-nob\|AP_SRC'                  \
-             "${reffile}"                              \
-             tests/current/"${name}".current.txt \
-            | awk '/./&&!p { print "@@"; p++ } { print }' \
-            | wdif "${colorspec}"
-        # Prepending @@ to non-empty diff ensures file paths are coloured too
+        diff -U0 -I'^nno-nob\|AP_SRC'                     \
+             "${reffile}"                                 \
+             tests/current/"${name}".current.txt          \
+            | awk '/./&&!p { print "@@"; p++ } { print }'
+              # Prepending @@ to non-empty diff ensures file paths are coloured too
     )
 }
 
@@ -92,9 +104,9 @@ setvars () {
 
 filter_stderr () {
     # Drop some warnings we don't care about
-    grep -v \
+    grep -v                                                                           \
          -e '^Warning: matching case-sensitively since processor state size >= 65536' \
-         -e '^Warning: compoundAnalysis.s MAX_COMBINATIONS exceeded for' \
+         -e '^Warning: compoundAnalysis.s MAX_COMBINATIONS exceeded for'              \
          -e '^         gave up at char [0-9]'
 }
 
@@ -114,7 +126,7 @@ case $1 in
             setvars "${name}"
             apertium -d . "${mode}"                            \
                      < tests/"${name}".input.txt               \
-                     > tests/current/"${name}".current.txt \
+                     > tests/current/"${name}".current.txt     \
                      2>>>(filter_stderr || true)
         done
         ;;

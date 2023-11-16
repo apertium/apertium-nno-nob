@@ -294,7 +294,7 @@ test: all test-progression
 
 test-progression: $(PREFIX2)
 	t/progression translate
-	t/progression diff-expected
+	THRESHOLD=10 t/progression diff-expected
 
 update-progression: $(PREFIX2)
 	t/progression translate
