@@ -4753,11 +4753,23 @@
   <rule><match lemma="slippe" tags="vblex.*"><select lemma="sleppe¹"/></match></rule>
   <rule><match lemma="slippe" tags="adj.*"><select lemma="sleppe¹"/></match></rule>
   <rule weight="2.0" c="slippe/sleppe: passiv">
-      <match lemma="bli"/>
     <or>
-      <match lemma="slippe" tags="vblex.*"><select lemma="sleppe¹"/></match>
-      <match lemma="sleppe" tags="vblex.*"><select lemma="sleppe¹"/></match>
+        <match lemma="være" tags="vblex.*"/>
+        <match lemma="bli" tags="vblex.*"/>
     </or>
+    <repeat from="0" upto="5"><match/></repeat>
+    <or>
+      <match lemma="slippe" tags="adj.*"><select lemma="sleppe¹"/></match>
+      <match lemma="sleppe" tags="adj.*"><select lemma="sleppe¹"/></match>
+    </or>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="slippe" tags="vblex.*"><select lemma="sleppe"/></match>
+    <match tags="n.*.sg.ind.*"/>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="slippe" tags="vblex.*"><select lemma="sleppe"/></match>
+    <match lemma="til"/>
   </rule>
   <rule weight="2.0">
     <match lemma="slippe" tags="vblex.*"><select lemma="sleppe"/></match>
