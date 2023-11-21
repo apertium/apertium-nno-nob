@@ -90,6 +90,7 @@
     <sdef n="cog"     c="Cognomen" />
     <sdef n="org"     c="Organisation" />
     <sdef n="ant"     c="Anthroponym" />
+    <sdef n="attr"    c="Preposition" />
 
     <sdef n="cmp"     c="Compound-left-part"/>
     <sdef n="cmp-split" c="Split compound-left-part"/>
@@ -440,6 +441,21 @@
     <pardef n="np.ant|np.cog" c="Personnamn">
       <e><i><w/><s n="np"/><s n="ant"/><t/><d/></i></e>
       <e><i><w/><s n="np"/><s n="cog"/><t/><d/></i></e>
+    </pardef>
+
+    <pardef n="np.org">
+      <e>
+        <i><w/><s n="np"/><t/><d/></i>
+      </e>
+      <e>
+        <i><w/><s n="np"/><t/><d/></i>
+        <i><w/><s n="np"/><t/><d/></i>
+      </e>
+      <e>
+        <i><w/><s n="np"/><t/><d/></i>
+        <i><w/><s n="np"/><s n="attr"/><t/><d/></i>
+        <i><w/><s n="np"/><t/><d/></i>
+      </e>
     </pardef>
 
     <pardef n="n.sg.ind" c="No final t/ – avoid cmp!">
@@ -1044,6 +1060,10 @@
     <pardef n="ordinal">
       <e><i>annen<s n="det"/><s n="dem"/><s n="un"/><s n="pl"/><t/><d/></i></e>
       <e><i>annen<s n="det"/><s n="dem"/><s n="un"/><s n="sg"/><s n="def"/><t/><d/></i></e>
+      <e>
+        <p><l>annen<s n="det"/><s n="dem"/><s n="m"/><s n="sg"/><s n="ind"/><t/></l>             <r></r></p>    <par n="d:"/>
+        <p><l></l>                   <r>andre<s n="adj"/><s n="ord"/><s n="pst"/><s n="un"/><s n="sp"/><s n="def"/><s n="aa"/><d/></r></p>
+      </e>
       <e><i><w/><s n="adj"/><s n="ord"/><s n="pst"/><t/><d/></i></e>
     </pardef>
     
@@ -1062,6 +1082,17 @@
       <e><par n="adj"/><par n="adj"/><par n="adj"/></e>
       <e><par n="adj"/><par n="og|eller"/><par n="adj"/></e>
       <e><par n="adj"/><par n="cm"/><par n="adj"/><par n="og|eller"/><par n="adj"/></e>
+    </pardef>
+
+    <pardef n="andre-gang">
+      <e>
+        <i>gang<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/><t/></i> <par n="d"/>
+      </e>
+      <e>
+        <par n="ncmp*"/>
+        <i><w/><s n="n"/><t/></i>
+        <p><l><t/><s n="sg"/><s n="ind"/></l>      <r><t/><s n="sg"/><s n="def"/></r></p>  <par n="d"/>
+      </e>
     </pardef>
 
     <pardef n="fjorårs-ord">
@@ -8607,10 +8638,18 @@
       <i><w/><s n="np"/><t/></i> <p><l><s n="gen"/></l><r></r></p> <par n="d"/>
       <p><l>berømmelse<t/><d/></l>   <r></r></p>
     </e>
+    
+    <e lm="for annen gang -> for andre gang" c="for andre gong">
+      <i>for<t/></i>  <par n="d"/>
+      <p><l>annen<s n="det"/><s n="dem"/><s n="m"/><s n="sg"/><s n="ind"/><t/></l>             <r></r></p>    <par n="d:"/>
+      <p><l></l>                   <r>andre<s n="adj"/><s n="ord"/><s n="pst"/><s n="un"/><s n="sp"/><s n="def"/><s n="aa"/><d/></r></p>
+      <i>gang<s n="n"/><t/></i>
+    </e>
 
     <e lm="er annen gang -> er andre gongen" c="er andre gongen">
       <i>være<s n="vblex"/><s n="pres"/></i> <par n="d"/>
-      <p><l>annen<s n="det"/><s n="dem"/><s n="m"/><s n="sg"/><s n="ind"/></l> <r>annen<s n="det"/><s n="dem"/><s n="un"/><s n="pl"/></r></p> <par n="d"/>
+      <p><l>annen<s n="det"/><s n="dem"/><s n="m"/><s n="sg"/><s n="ind"/><t/></l>             <r></r></p>    <par n="d:"/>
+      <p><l></l>                   <r>andre<s n="adj"/><s n="ord"/><s n="pst"/><s n="un"/><s n="sp"/><s n="def"/><s n="aa"/><d/></r></p>
       <p><l>gang<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/></l> <r>gang<s n="n"/><s n="m"/><s n="sg"/><s n="def"/></r></p> <par n="d"/>
     </e>
 
@@ -13783,13 +13822,72 @@
       <p><l></l>                                  <r>år<s n="n"/><s n="nt"/><s n="sg"/><s n="ind"/><d/></r></p>
     </e>
 
-    <!--e lm="årets Tour de Fjords (i Norge) -> Tour de Fjords (i Norge) i år" c="Tour de Fjords (i Noreg) i år">
+    <e lm="årets Tour de Fjords (i Norge) -> Tour de Fjords (i Norge) i år" c="Tour de Fjords (i Noreg) i år">
       <p><l>år<s n="n"/><s n="nt"/><s n="sg"/><s n="def"/><s n="gen"/></l>  <r></r></p>  <par n="d:"/>
-      <i><w/><s n="np"/><s n="org"/><t/></i>  <par n="d"/>
+      <par n="np.org"/>
       <par n="prepledd|empty"/>
       <p><l></l>                                  <r>i<s n="pr"/><d/></r></p>
       <p><l></l>                                  <r>år<s n="n"/><s n="nt"/><s n="sg"/><s n="ind"/><d/></r></p>
-    </e-->
+    </e>
+
+    <e lm="at årets julefeiring er -> at julefeiringa i år er">
+      <par n="cnjcoo|cnjsub"/>
+      <p><l>år<s n="n"/><s n="nt"/><s n="sg"/><s n="def"/><s n="gen"/><t/></l>             <r></r></p>    <par n="d:"/>
+      <par n="ncmp*"/>
+      <i><w/><s n="n"/><t/></i>  
+      <p><l><t/><s n="ind"/></l>      <r><t/><s n="def"/></r></p>  <par n="d"/>
+      <par n="prepledd|empty"/>
+      <p><l></l>                   <r>i<s n="pr"/><s n="aa"/><d/></r></p>
+      <p><l></l>                   <r>år<s n="n"/><s n="nt"/><s n="sg"/><s n="ind"/><s n="aa"/><d/></r></p>
+      <par n="ADV|empty"/>
+      <i><w/><s n="vblex"/><t/></i>  <par n="d"/>
+    </e>
+    
+    <e lm="i årets valgkamp -> i valkampen i år">
+      <i>i<s n="pr"/><t/></i>  <par n="d"/>
+      <p><l>år<s n="n"/><s n="nt"/><s n="sg"/><s n="def"/><s n="gen"/><t/></l>             <r></r></p>    <par n="d:"/>
+      <par n="ncmp*"/>
+      <i><w/><s n="n"/><t/></i>  
+      <p><l><t/><s n="ind"/></l>      <r><t/><s n="def"/></r></p>  <par n="d"/>
+      <par n="prepledd|empty"/>
+      <p><l></l>                   <r>i<s n="pr"/><s n="aa"/><d/></r></p>
+      <p><l></l>                   <r>år<s n="n"/><s n="nt"/><s n="sg"/><s n="ind"/><s n="aa"/><d/></r></p>
+    </e>
+    
+    <e lm="i årets britiske mesterskap -> i det britiske mesterskapet i år">
+      <i>i<s n="pr"/><t/></i>  <par n="d"/>
+      <p><l>år<s n="n"/><s n="nt"/><s n="sg"/><s n="def"/><s n="gen"/><t/></l>             <r></r></p>    <par n="d:"/>
+      <p><l></l>                   <r>den<s n="det"/><s n="dem"/><s n="nt"/><s n="sg"/><s n="aa"/><d/></r></p>
+      <par n="adj"/>
+      <par n="ncmp*"/>
+      <i><w/><s n="n"/><s n="nt"/><t/></i>  
+      <p><l><t/><s n="ind"/></l>      <r><t/><s n="def"/></r></p>  <par n="d"/>
+      <par n="prepledd|empty"/>
+      <p><l></l>                   <r>i<s n="pr"/><s n="aa"/><d/></r></p>
+      <p><l></l>                   <r>år<s n="n"/><s n="nt"/><s n="sg"/><s n="ind"/><s n="aa"/><d/></r></p>
+    </e>
+    
+    <e lm="i årets første kamp -> i den første kampen i år">
+      <i>i<s n="pr"/><t/></i>  <par n="d"/>
+      <p><l>år<s n="n"/><s n="nt"/><s n="sg"/><s n="def"/><s n="gen"/><t/></l>             <r></r></p>    <par n="d:"/>
+      <p><l></l>                   <r>den<s n="det"/><s n="dem"/><s n="m"/><s n="sg"/><s n="aa"/><d/></r></p>
+      <par n="adj"/>
+      <par n="ncmp*"/>
+      <i><w/><s n="n"/><s n="m"/><t/></i>  
+      <p><l><t/><s n="ind"/></l>      <r><t/><s n="def"/></r></p>  <par n="d"/>
+      <par n="prepledd|empty"/>
+      <p><l></l>                   <r>i<s n="pr"/><s n="aa"/><d/></r></p>
+      <p><l></l>                   <r>år<s n="n"/><s n="nt"/><s n="sg"/><s n="ind"/><s n="aa"/><d/></r></p>
+    </e>
+    
+    <e lm="i årets Roland-Garros -> i Roland-Garros i år">
+      <i>i<s n="pr"/><t/></i>  <par n="d"/>
+      <p><l>år<s n="n"/><s n="nt"/><s n="sg"/><s n="def"/><s n="gen"/><t/></l>             <r></r></p>    <par n="d:"/>
+      <par n="np.org"/>
+      <par n="prepledd|empty"/>
+      <p><l></l>                   <r>i<s n="pr"/><s n="aa"/><d/></r></p>
+      <p><l></l>                   <r>år<s n="n"/><s n="nt"/><s n="sg"/><s n="ind"/><s n="aa"/><d/></r></p>
+    </e>
 
 <!-- ukens/ukas -->
 
@@ -16613,9 +16711,7 @@
 <e lm="for andre år på rad → for andre året på rad">
   <i>for<t/></i>  <par n="d"/>
   <par n="ordinal"/>
-  <par n="ncmp*"/>
-  <i><w/><s n="n"/><t/></i> 
-  <p><l><t/><s n="sg"/><s n="ind"/></l>      <r><t/><s n="sg"/><s n="def"/></r></p>  <par n="d"/>
+  <par n="andre-gang"/>
   <i>på<s n="pr"/><t/></i>  <par n="d"/>
   <i>rad<s n="n"/><t/></i>  <par n="d"/>
 </e>
