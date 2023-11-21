@@ -624,9 +624,11 @@
     <def-cat n="detpos">
       <cat-item tags="det.pos.*"/>
     </def-cat>
-    <def-cat n="detpos-dens">
+    <def-cat n="detpos-keeporder">
       <cat-item lemma="dets" tags="det.pos.*"/>
       <cat-item lemma="dens" tags="det.pos.*"/>
+      <cat-item lemma="hverandres" tags="det.pos.*"/>
+      <cat-item lemma="alles" tags="det.pos.*"/>
     </def-cat>
     <def-cat n="detnonpos">
       <cat-item tags="det.def.*"/>
@@ -11953,9 +11955,9 @@ no lemq-moving">
         </out>
       </action>
     </rule>
-    <rule comment="DETPOS-DENS: don't change order in t2x for dets/dens">
+    <rule comment="DETPOS-DENS: don't change order in t2x for dets/dens/hverandres">
       <pattern>
-        <pattern-item n="detpos-dens"/>
+        <pattern-item n="detpos-keeporder"/>
       </pattern>
       <action>
         <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
