@@ -648,14 +648,23 @@
       <e>                            <par n="ncmp*.n"/></e>
       <e>              <par n="adj"/><par n="ncmp*.n"/></e>
       <e><par n="adj"/><par n="adj"/><par n="ncmp*.n"/></e>
+      <e><par n="adj"/><par n="adj"/><par n="adj"/><par n="ncmp*.n"/></e>
     </pardef>
 
     <pardef n="SN|empty" c="Includes empty!">
       <e></e>
       <e>                            <par n="ncmp*.n"/></e>
       <e>              <par n="adj"/><par n="ncmp*.n"/></e>
-      <e><par n="adj"/><par n="adj"/><par n="ncmp*.n"/></e>
+      <e><par n="adj"/><par n="adj"/><par n="adj"/><par n="ncmp*.n"/></e>
       <e><i><w/><s n="det"/><t/><d/></i><par n="ncmp*.n"/></e>
+    </pardef>
+
+    <pardef n="SN-exp">
+      <e><par n="SN"/></e>
+      <e><par n="SN"/><i><w/><s n="cnjcoo"/><t/><d/></i><par n="SN"/></e>                               <!-- ditt og datt -->
+      <e><par n="SN"/><par n="cm"/><par n="SN"/><i><w/><s n="cnjcoo"/><t/><d/></i><par n="SN"/></e>     <!-- ditt, datt og dutt -->
+      <e><par n="SN"/><i><w/><s n="pr"/><t/><d/></i><par n="SN"/></e>                                   <!-- karakterer i krise -->
+      <e><i><w/><s n="adv"/><t/><d/></i><par n="SN"/><par n="SN"/></e>                                  <!-- helt vanlige mennesklige egenskaper -->
     </pardef>
 
     <pardef n="SN-mange">
@@ -16760,6 +16769,26 @@
   <i><w/><s n="np"/><t/></i> 
   <p><l><t/><s n="gen"/></l>      <r><t/></r></p>  <par n="d"/>
   <p><l>medlemsland<s n="n"/><s n="nt"/><t/></l>             <r></r></p>    <par n="d:"/>
+</e>
+
+<e lm="befatte seg med -> ha med å gjøre" c="ha med å gjere">
+  <p><l>befatte</l>             <r>ha</r></p>  <i><t/><d/></i>
+  <par n="SN|np|prn|empty"/>
+  <par n="rem-refl-prn"/>
+  <par n="ANYWORDx3|empty"/>
+  <i>med<t/></i>  <par n="d"/>
+  <par n="SN-exp"/>
+  <p><l></l>                   <r>å<s n="part"/><s n="aa"/><d/></r></p>
+  <p><l></l>                   <r>gjøre<s n="vblex"/><s n="inf"/><s n="aa"/><d/></r></p>
+</e>
+
+<e lm="befatte seg med -> engasjere seg i">
+  <i>befatte<s n="vblex"/><t/></i>  <par n="d"/> <!-- BIDIX: engasjere -->
+  <par n="SN|np|prn|empty"/>
+  <par n="refl-prn"/>
+  <par n="ANYWORDx3|empty"/>
+  <p><l>med<t/></l>             <r></r></p>    <par n="d:"/>
+  <p><l></l>                   <r>i<s n="pr"/><s n="aa"/><d/></r></p>
 </e>
 
 <!--e lm="fortsetter (X) å -> held (X) fram med å">
