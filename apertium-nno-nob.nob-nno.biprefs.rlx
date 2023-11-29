@@ -182,8 +182,9 @@ REMOVE:i-røynda_i-verkelegheita ("i verkelegheita"i) IF (0 ("i røynda"i));
 
 ### Må eventuelt disambiguerast: beskrive -> skildre, forklare, klarleggje, gjere greie for, karakterisere, omtale o.l.
 ### Valet bør også omfatte substantiv: beskriving -> skildring, forklaring, klargjering, utgreiing, skisse o.l.
-# SELECT:beskrive_skildre  ("skildre"i) IF (0 ("beskrive"i) + (VAR:beskrive_skildre));
-# REMOVE:beskrive_beskrive ("skildre"i) IF (0 ("beskrive"i));
+LIST lm_skildre = "skildre" "skildring";
+SELECT:beskrive_skildre lm_skildre IF (0 (VAR:beskrive_skildre));
+REMOVE:beskrive_beskrive lm_skildre;
 
 # Plain "makk" (not in a lexicalised compound) is "<mark¹>" (nob analysis, treated like form), while "børstemark" etc. has no superscript ¹
 SELECT:mark_makk  ("makk"i) IF (0 ("<mark¹>"i) + (VAR:mark_makk.syn));
