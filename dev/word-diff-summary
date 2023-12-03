@@ -54,7 +54,16 @@ wdiff () {
         || true
 }
 
-diff -U0 <(clean "$1") <(clean "$2") >"$d/dif" || true
+lines1=$(wc -l <"$1")
+lines2=$(wc -l <"$2")
+H=$(calc -p "min(${lines1}, ${lines2})")
+if [[ ${lines1} -ne ${lines2} ]]; then
+    echo "Unequal file lengths, using only the first $H lines" >&2
+fi
+diff -U0                        \
+     <(clean "$1" | head -"$H") \
+     <(clean "$2" | head -"$H") \
+     >"$d/dif" || true
 
 # Create example sentences with fairly regular dwdiff -c call
 wdiff "$d/dif" >"$d/wdif"
