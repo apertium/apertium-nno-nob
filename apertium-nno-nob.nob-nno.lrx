@@ -11839,5 +11839,16 @@ preposisjonar gir ekstra utfordringar. -->
     <match lemma="besatt" tags="adj.*">    <select lemma="pryda"/> </match>
   </rule>
 
+  <rule><match lemma="beklemt" tags="adj.*"><select lemma="brydd"/></match></rule>
+  <rule weight="2.0" c="beklemt situasjon">
+    <match lemma="beklemt" tags="adj.*"><select lemma="vanskeleg"/> </match>
+    <match lemma="situasjon" tags="n.*"/>
+  </rule>
+  <rule weight="2.0" c="situasjonen er beklemt">
+    <match lemma="situasjon" tags="n.*"/>
+    <match lemma="være" tags="vblex.*"/>
+    <match lemma="beklemt" tags="adj.*"><select lemma="vanskeleg"/> </match>
+  </rule>
+
 </rules>
 </lrx>
