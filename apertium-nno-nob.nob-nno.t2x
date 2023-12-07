@@ -1191,7 +1191,7 @@
       </action>
     </rule>
     <rule comment="AUX PASV-PP ADV_MOVABLE SYNSUBJ → AUX SYNSUBJ PASV-PP ADV_MOVABLE
-                   [I Mexico] brukes i dag gjenbruksvann → blir brukt i_dag gjenbruksvann → blir i_dag gjenbruksvatn brukt">
+                   [I Mexico] brukes i_dag gjenbruksvann → blir brukt i_dag gjenbruksvann → blir i_dag gjenbruksvatn brukt">
       <pattern>
         <pattern-item n="aux"/>
         <pattern-item n="pasv-pp"/>
@@ -1208,6 +1208,46 @@
           <chunk><clip pos="4" part="whole"/></chunk> <b/> <!-- gjenbruksvatn -->
           <chunk><clip pos="2" part="whole"/></chunk>      <!-- brukt -->
         </out>
+      </action>
+    </rule>
+    <rule comment="SYNSUBJ AUX PASV-PP ADV_MOVABLE → SYNSUBJ AUX (PASV-PP ADV_MOVABLE | ADV_MOVABLE PASV-PP)
+
+                   We've seen the subject, presumably this is a bound adverbial:
+                   loven tolkes i_dag → loven blir tolka i_dag → loven blir tolka i_dag
+                   boken publiseres i_dag → boka blir publisert i_dag → boka blir publisert i_dag
+
+                   BUT ALSO movement if subj is expl (where we expect main subject to follow):
+                   det brukes i_dag [gjenbruksvann] → det blir brukt i_dag → det blir i_dag brukt">
+      <pattern>
+        <pattern-item n="pasvsubj"/>    <!-- loven -->
+        <pattern-item n="aux"/>         <!-- blir -->
+        <pattern-item n="pasv-pp"/>     <!-- tolket-->
+        <pattern-item n="adv_movable"/> <!-- i dag -->
+      </pattern>
+      <action>
+        <call-macro n="set_ana"><with-param pos="1"/></call-macro>
+        <call-macro n="modify_prn_gen"><with-param pos="1"/></call-macro>
+        <call-macro n="modify_pp_gen_nbr"><with-param pos="2"/></call-macro>
+        <choose>
+          <when>
+            <test><equal><clip pos="1" part="a_expl"/><lit v=""/></equal></test>
+            <out>
+              <chunk><clip pos="1" part="whole"/></chunk> <b/> <!-- loven -->
+              <chunk><clip pos="2" part="whole"/></chunk> <b/> <!-- blir -->
+              <chunk><clip pos="3" part="whole"/></chunk> <b/> <!-- tolka -->
+              <chunk><clip pos="4" part="whole"/></chunk>      <!-- i dag -->
+            </out>
+          </when>
+          <otherwise>
+            <out>
+              <chunk><clip pos="1" part="whole"/></chunk> <b/> <!-- det -->
+              <chunk><clip pos="2" part="whole"/></chunk> <b/> <!-- blir -->
+              <chunk><clip pos="4" part="whole"/></chunk> <b/> <!-- i dag -->
+              <chunk><clip pos="3" part="whole"/></chunk>      <!-- brukt -->
+            </out>
+          </otherwise>
+        </choose>
+
       </action>
     </rule>
     <rule comment="AUXPASS ADJPART ADV_MOVABLE => AUXPASS ADV_MOVABLE ADJPART
