@@ -339,6 +339,10 @@
       <cat-item tags="adv.movable.*"/>
       <cat-item tags="adj.*.nt.sg.*"/>
     </def-cat>
+    <def-cat n="adv_movable_free">
+      <cat-item tags="adv.movable.free-movable"/>
+      <cat-item tags="adv.movable.free-movable.*"/>
+    </def-cat>
     <def-cat n="adjsg">
       <cat-item tags="adj.*.sg.*"/>
     </def-cat>
@@ -1222,12 +1226,12 @@
         <pattern-item n="pasvsubj"/>    <!-- loven -->
         <pattern-item n="aux"/>         <!-- blir -->
         <pattern-item n="pasv-pp"/>     <!-- tolket-->
-        <pattern-item n="adv_movable"/> <!-- i dag -->
+        <pattern-item n="adv_movable_free"/> <!-- i dag -->
       </pattern>
       <action>
         <call-macro n="set_ana"><with-param pos="1"/></call-macro>
         <call-macro n="modify_prn_gen"><with-param pos="1"/></call-macro>
-        <call-macro n="modify_pp_gen_nbr"><with-param pos="2"/></call-macro>
+        <call-macro n="modify_pp_gen_nbr"><with-param pos="3"/></call-macro>
         <choose>
           <when>
             <test><equal><clip pos="1" part="a_expl"/><lit v=""/></equal></test>
@@ -1250,7 +1254,48 @@
 
       </action>
     </rule>
-    <rule comment="AUXPASS ADJPART ADV_MOVABLE => AUXPASS ADV_MOVABLE ADJPART
+    <rule comment="SYNSUBJ AUX PASV-PP ADV_MOVABLE CNJSUB → SYNSUBJ AUX ADV_MOVABLE PASV-PP CNJSUB
+                   Den drives i dag som [jernbane] → Den blir driven i dag som → Den blir i dag driven som
+                   With following som-phrase, our adverb is typically free to enter the verb phrase">
+      <pattern>
+        <pattern-item n="pasvsubj"/>    <!-- den -->
+        <pattern-item n="aux"/>         <!-- blir -->
+        <pattern-item n="pasv-pp"/>     <!-- driven-->
+        <pattern-item n="adv_movable"/> <!-- i dag -->
+        <pattern-item n="prep_som"/>    <!-- som -->
+      </pattern>
+      <action>
+        <call-macro n="set_ana"><with-param pos="1"/></call-macro>
+        <call-macro n="modify_prn_gen"><with-param pos="1"/></call-macro>
+        <call-macro n="modify_pp_gen_nbr"><with-param pos="3"/></call-macro>
+        <out>
+          <chunk><clip pos="1" part="whole"/></chunk> <b/> <!-- den -->
+          <chunk><clip pos="2" part="whole"/></chunk> <b/> <!-- blir -->
+          <chunk><clip pos="4" part="whole"/></chunk> <b/> <!-- i dag -->
+          <chunk><clip pos="3" part="whole"/></chunk> <b/> <!-- driven -->
+          <chunk><clip pos="5" part="whole"/></chunk>      <!-- som -->
+        </out>
+      </action>
+    </rule>
+    <rule comment="AUXPASS ADJPART ADV_MOVABLE SENT → AUXPASS ADV_MOVABLE ADJPART SENT
+                   boken leses i dag. =1> boka blir lest i dag. =2> boka blir lest i dag.
+                   Override movement rules; probably bound adverbial (no following subj/obj,
+                   and adv is possible free adv / unlikely sentence-adverbial)">
+      <pattern>
+        <pattern-item n="auxpass"/>
+        <pattern-item n="adjpart"/>
+        <pattern-item n="adv_movable_free"/>
+      </pattern>
+      <action>
+        <call-macro n="modify_pp_gen_nbr_NOANA"><with-param pos="2"/></call-macro>
+        <out>
+          <chunk><clip pos="1" part="whole"/></chunk><b/> <!-- blir -->
+          <chunk><clip pos="2" part="whole"/></chunk><b/> <!-- lesen -->
+          <chunk><clip pos="3" part="whole"/></chunk>     <!-- i dag -->
+        </out>
+      </action>
+    </rule>
+    <rule comment="AUXPASS ADJPART ADV_SMOVABLE => AUXPASS ADV_SMOVABLE ADJPART
                    boken leses ofte =1> boka blir lest ofte =2> boka blir ofte lest
                    auxpass are created in t1x; move adv's behind these
                    (No match if the aux was there originally, then we don't move any adverbs)">
@@ -1262,17 +1307,9 @@
       <action>
         <call-macro n="modify_pp_gen_nbr_NOANA"><with-param pos="2"/></call-macro>
         <out>
-          <chunk>
-            <clip pos="1" part="whole"/>
-          </chunk>
-          <b pos="1"/>
-          <chunk>
-            <clip pos="3" part="whole"/>
-          </chunk>
-          <b pos="2"/>
-          <chunk>
-            <clip pos="2" part="whole"/>
-          </chunk>
+          <chunk><clip pos="1" part="whole"/></chunk><b/> <!-- blir -->
+          <chunk><clip pos="3" part="whole"/></chunk><b/> <!-- ofte -->
+          <chunk><clip pos="2" part="whole"/></chunk>     <!-- lesen -->
         </out>
       </action>
     </rule>
