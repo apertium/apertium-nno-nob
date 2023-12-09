@@ -275,6 +275,9 @@ REMOVE:nød_naud.dift-ø2au ("naudsyn"i) IF (0 ("nødvendigheit"i));
 SELECT:nød_naud.dift-ø2au ("naudsynleg"i) IF (0 ("nødvendigvis"i) + (VAR:nød_naud.dift-ø2au));
 REMOVE:nød_naud.dift-ø2au ("naudsynleg"i) IF (0 ("nødvendigvis"i));
 
+SELECT:nød_naud.dift-ø2au ("naudsynlegast"i) IF (0 ("nødvendigast"i) + (VAR:nød_naud.dift-ø2au));
+REMOVE:nød_naud.dift-ø2au ("naudsynlegast"i) IF (0 ("nødvendigast"i));
+
 SELECT:nød_naud.dift-ø2au ("naudsynleggjere"i) IF (0 ("nødvendiggjere"i) + (VAR:nød_naud.dift-ø2au));
 REMOVE:nød_naud.dift-ø2au ("naudsynleggjere"i) IF (0 ("nødvendiggjere"i));
 
