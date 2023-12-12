@@ -33,7 +33,11 @@ wdif () {
         *) echo "ERROR bug in call to wdif" >&2; exit 1 ;;
     esac
     if command -V dwdiff &>/dev/null; then
-        dwdiff --color="${colorspec}" --diff-input
+        if [[ -t 1 ]]; then     # stdout is a terminal, use colours
+            dwdiff --diff-input --color="${colorspec}"
+        else
+            dwdiff --diff-input
+        fi
     else
         cat
     fi
