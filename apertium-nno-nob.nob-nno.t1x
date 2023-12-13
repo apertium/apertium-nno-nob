@@ -1094,7 +1094,7 @@
     <def-var n="adjtags"/>
     <def-var n="pp_nbr"         c="Anaphoric number from antecedent for inserted participle"/>
     <def-var n="pp_gen"         c="Anaphoric gender from antecedent for inserted participle"/>
-    <def-var n="movable_tag"    c="np-movable iff we can move pp past np"/>
+    <def-var n="movable_tag"    c="pasv-pp is np-movable iff we can move pp past np"/>
     <def-var n="advtags"/>
     <def-var n="syntag"         c="The syntax tag of this word"/>
     <def-var n="prevlem"/>
@@ -6842,11 +6842,11 @@
       <list-item v="austanom"/>
       <list-item v="austnordaust"/>
       <list-item v="austsøraust"/>
-      <list-item v="av stad"/>
       <list-item v="av"/>
-      <list-item v="bak fram"/>
+      <list-item v="av stad"/>
       <list-item v="bakanfrå"/>
       <list-item v="bakanom"/>
+      <list-item v="bak fram"/>
       <list-item v="baklenges"/>
       <list-item v="baklengs"/>
       <list-item v="bort"/>
@@ -6862,38 +6862,39 @@
       <list-item v="denne vinteren"/>
       <list-item v="denne våren"/>
       <list-item v="denne våren"/>
-      <list-item v="der borte"/>
-      <list-item v="der inne"/>
       <list-item v="der"/>
+      <list-item v="der borte"/>
       <list-item v="derborte"/>
+      <list-item v="der inne"/>
       <list-item v="derinne"/>
       <list-item v="fram"/>
       <list-item v="her"/>
-      <list-item v="i dag morgon"/>
-      <list-item v="i dag tidleg"/>
       <list-item v="i dag"/>
       <list-item v="i dag"/>
       <list-item v="i dagevis"/>
+      <list-item v="i dag morgon"/>
+      <list-item v="i dag tidleg"/>
       <list-item v="i eitt køyr"/>
       <list-item v="i fjor"/>
       <list-item v="i forfjor"/>
       <list-item v="i forkant"/>
       <list-item v="i førgår"/>
       <list-item v="i førårs"/>
+      <list-item v="i går"/>
+      <list-item v="i går"/>
       <list-item v="i går kveld"/>
       <list-item v="i går morgon"/>
-      <list-item v="i går"/>
-      <list-item v="i går"/>
       <list-item v="i heile fjor"/>
       <list-item v="i hel"/>
+      <list-item v="ihel"/>
+      <list-item v="ihop"/>
       <list-item v="i hug"/>
       <list-item v="i lang tid"/>
       <list-item v="i morgon"/>
       <list-item v="i morgon"/>
-      <list-item v="ihel"/>
-      <list-item v="ihop"/>
       <list-item v="inatt"/>
       <list-item v="inn"/>
+      <list-item v="kort sagt"/> <!-- tas kort sagt alvorlig → blir kort sagt teke alvorleg -->
       <list-item v="laurdag"/>
       <list-item v="like ved"/>
       <list-item v="medurs"/>
@@ -6909,12 +6910,12 @@
       <list-item v="motstrøms"/>
       <list-item v="moturs"/>
       <list-item v="måndag"/>
-      <list-item v="no og då"/>
-      <list-item v="no til dags"/>
       <list-item v="non stop"/>
       <list-item v="nonstop"/>
+      <list-item v="no og då"/>
       <list-item v="nordaustover"/>
       <list-item v="nordover"/>
+      <list-item v="no til dags"/>
       <list-item v="om att"/>
       <list-item v="onsdag"/>
       <list-item v="på alvor"/>
@@ -6931,9 +6932,9 @@
       <list-item v="på lik linje"/>
       <list-item v="på minneleg vis"/>
       <list-item v="på måfå"/>
-      <list-item v="på si side"/>
       <list-item v="på sin måte"/>
       <list-item v="på sin plass"/>
+      <list-item v="på si side"/>
       <list-item v="på ståande fot"/>
       <list-item v="på sum"/>
       <list-item v="på tide"/>
@@ -6956,6 +6957,7 @@
       <list-item v="sørpå"/>
       <list-item v="sørvestover"/>
       <list-item v="til alle tider på døgnet"/>
+      <list-item v="tilbake"/>
       <list-item v="til beins"/>
       <list-item v="til bords"/>
       <list-item v="til botnar"/>
@@ -6972,6 +6974,8 @@
       <list-item v="til no"/>
       <list-item v="til orde for"/>
       <list-item v="til overs"/>
+      <list-item v="tilrette"/>
+      <list-item v="tilsaman"/>
       <list-item v="til sengs"/>
       <list-item v="til sides"/>
       <list-item v="til sin rett"/>
@@ -6983,16 +6987,13 @@
       <list-item v="til vanns"/>
       <list-item v="til verks"/>
       <list-item v="til vêrs"/>
-      <list-item v="tilbake"/>
-      <list-item v="tilrette"/>
-      <list-item v="tilsaman"/>
       <list-item v="torsdag"/>
       <list-item v="tysdag"/>
       <list-item v="uforstyrra"/>
       <list-item v="utaboks"/>
+      <list-item v="utanat"/>
       <list-item v="utan atterhald"/>
       <list-item v="utan avbrot"/>
-      <list-item v="utanat"/>
       <list-item v="utanfor"/>
       <list-item v="utanåt"/>
       <list-item v="utover all tvil"/>
@@ -7032,7 +7033,6 @@
       <list-item v="i lang tid"/>
       <list-item v="inn"/>
       <list-item v="i stand"/>
-      <list-item v="kort sagt"/>
       <list-item v="lenge"/>
       <list-item v="like"/> <!-- tas like alvorlig → blir tek(n)e like alvorleg -->
       <list-item v="like ved"/>
@@ -9446,21 +9446,24 @@
         <let><var n="advtags"/><clip pos="1" side="tl" part="tags"/></let>
         <choose>
           <when c="Only tag as movable if not in list of bound-adv's">
-            <test><not><in><clip pos="1" side="tl" part="lemh"/><list n="bound-adv"/></in></not></test>
+            <test><in><clip pos="1" side="tl" part="lemh"/><list n="bound-adv"/></in></test>
             <append n="advtags">
-              <lit-tag v="movable"/>
+              <lit-tag v="bound-adv"/>
             </append>
-            <choose>
-              <when>
-                <test><in><clip pos="1" side="tl" part="lemh"/><list n="free-adv"/></in></test>
-                <append n="advtags">
-                  <lit-tag v="free-movable"/>
-                </append>
-              </when>
-            </choose>
           </when>
+          <when>
+            <test><in><clip pos="1" side="tl" part="lemh"/><list n="free-adv"/></in></test>
+            <append n="advtags">
+              <lit-tag v="free-adv"/>
+            </append>
+          </when>
+          <otherwise>
+            <append n="advtags">
+              <lit-tag v="sent-adv"/>
+            </append>
+          </otherwise>
         </choose>
-        <choose><when c="Used for PoS change «ubevoktet →  utan tilsyn» (should probably happen in lsx)">
+        <choose><when c="Hack used for PoS change «ubevoktet →  utan tilsyn» (should probably happen in lsx)">
           <test><in><clip pos="1" side="tl" part="lemh"/><list n="n-movable-adv"/></in></test>
           <append n="advtags">
             <lit-tag v="n-movable"/>
