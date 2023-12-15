@@ -1273,7 +1273,7 @@
 
     <rule comment="SYNSUBJ AUX PASV-PP ADV_UNBOUND CNJSUB → SYNSUBJ AUX ADV_UNBOUND PASV-PP CNJSUB
                    Den drives i dag som [jernbane] → Den blir driven i dag som → Den blir i dag driven som
-                   With following som-phrase, our adverb is typically free to enter the verb phrase">
+                   With a following prep-phrase, our adverb is typically free to enter the verb phrase">
       <pattern>
         <pattern-item n="pasvsubj"/>    <!-- den -->
         <pattern-item n="aux"/>         <!-- blir -->
@@ -1292,6 +1292,11 @@
           <chunk><clip pos="3" part="whole"/></chunk> <b/> <!-- driven -->
           <chunk><clip pos="5" part="whole"/></chunk>      <!-- som -->
         </out>
+        <!-- TODO: when https://github.com/apertium/apertium/issues/194
+             is merged, we can do
+             <reject-current-rule shifting="4"/>
+             and not output pos=5 here
+        -->
       </action>
     </rule>
     <rule comment="AUXPASS ADJPART ADV_UNBOUND ARGUMENT → AUXPASS ADV_FREE UNBOUND ARGUMENT
@@ -2429,10 +2434,10 @@
         <call-macro n="out_det_when_adjlike"><with-param pos="3"/><with-param pos="2"/></call-macro>
         <call-macro n="out_ndef"><with-param pos="3"/><with-param pos="2"/></call-macro>
 
-        <out><b pos="1"/></out>
+        <out><b/></out>
         <call-macro n="out_bi-gen-prep"><with-param pos="1"/><with-param pos="3"/></call-macro>
         <let><clip pos="2" part="art"/><lit v=""/></let> <!-- don't let postchunk alter defnes of previously-genitive phrase (important for conjunctions of ind+def, e.g. barn og unge) -->
-        <out><b pos="2"/><chunk><clip pos="2" part="whole"/></chunk></out>
+        <out><b/><chunk><clip pos="2" part="whole"/></chunk></out>
       </action>
     </rule>
 
