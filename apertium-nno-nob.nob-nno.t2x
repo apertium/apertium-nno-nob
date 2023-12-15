@@ -1056,17 +1056,9 @@
       </pattern>
       <action>
         <out>
-          <chunk>
-            <clip pos="1" part="whole"/>
-          </chunk>
-          <b pos="1"/>
-          <chunk>
-            <clip pos="2" part="whole"/>
-          </chunk>
-          <b pos="2"/>
-          <chunk>
-            <clip pos="3" part="whole"/>
-          </chunk>
+          <chunk><clip pos="1" part="whole"/></chunk><b/>
+          <chunk><clip pos="2" part="whole"/></chunk><b/>
+          <chunk><clip pos="3" part="whole"/></chunk>
         </out>
       </action>
     </rule>
@@ -1079,21 +1071,10 @@
       </pattern>
       <action>
         <out>
-          <chunk>
-            <clip pos="1" part="whole"/>
-          </chunk>
-          <b pos="1"/>
-          <chunk>
-            <clip pos="2" part="whole"/>
-          </chunk>
-          <b pos="2"/>
-          <chunk>
-            <clip pos="3" part="whole"/>
-          </chunk>
-          <b pos="3"/>
-          <chunk>
-            <clip pos="4" part="whole"/>
-          </chunk>
+          <chunk><clip pos="1" part="whole"/></chunk><b/>
+          <chunk><clip pos="2" part="whole"/></chunk><b/>
+          <chunk><clip pos="3" part="whole"/></chunk><b/>
+          <chunk><clip pos="4" part="whole"/></chunk>
         </out>
       </action>
     </rule>
@@ -1107,25 +1088,11 @@
       </pattern>
       <action>
         <out>
-          <chunk>
-            <clip pos="1" part="whole"/>
-          </chunk>
-          <b pos="1"/>
-          <chunk>
-            <clip pos="2" part="whole"/>
-          </chunk>
-          <b pos="2"/>
-          <chunk>
-            <clip pos="3" part="whole"/>
-          </chunk>
-          <b pos="3"/>
-          <chunk>
-            <clip pos="4" part="whole"/>
-          </chunk>
-          <b pos="4"/>
-          <chunk>
-            <clip pos="5" part="whole"/>
-          </chunk>
+          <chunk><clip pos="1" part="whole"/></chunk><b/>
+          <chunk><clip pos="2" part="whole"/></chunk><b/>
+          <chunk><clip pos="3" part="whole"/></chunk><b/>
+          <chunk><clip pos="4" part="whole"/></chunk><b/>
+          <chunk><clip pos="5" part="whole"/></chunk>
         </out>
       </action>
     </rule>
@@ -1231,45 +1198,6 @@
         </out>
       </action>
     </rule>
-    <!-- <rule comment="SYNSUBJ AUX PASV-PP ADV_FREE → SYNSUBJ AUX (PASV-PP ADV_FREE | ADV_FREE PASV-PP) -->
-
-    <!--                We've seen the subject, presumably this is actually a bound adverbial: -->
-    <!--                loven tolkes i_dag → loven blir tolka i_dag → loven blir tolka i_dag -->
-    <!--                boken publiseres i_dag → boka blir publisert i_dag → boka blir publisert i_dag -->
-
-    <!--                BUT DO move if subj is expl (where we expect main subject to follow): -->
-    <!--                det brukes i_dag [gjenbruksvann] → det blir brukt i_dag → det blir i_dag brukt"> -->
-    <!--   <pattern> -->
-    <!--     <pattern-item n="pasvsubj"/>    <!-\- loven -\-> -->
-    <!--     <pattern-item n="aux"/>         <!-\- blir -\-> -->
-    <!--     <pattern-item n="pasv-pp"/>     <!-\- tolket-\-> -->
-    <!--     <pattern-item n="adv_free"/>    <!-\- i dag -\-> -->
-    <!--   </pattern> -->
-    <!--   <action> -->
-    <!--     <call-macro n="set_ana"><with-param pos="1"/></call-macro> -->
-    <!--     <call-macro n="modify_prn_gen"><with-param pos="1"/></call-macro> -->
-    <!--     <call-macro n="modify_pp_gen_nbr"><with-param pos="3"/></call-macro> -->
-    <!--     <choose> -->
-    <!--       <when> -->
-    <!--         <test><equal><clip pos="1" part="a_expl"/><lit v=""/></equal></test> -->
-    <!--         <out> -->
-    <!--           <chunk><clip pos="1" part="whole"/></chunk> <b/> <!-\- loven -\-> -->
-    <!--           <chunk><clip pos="2" part="whole"/></chunk> <b/> <!-\- blir -\-> -->
-    <!--           <chunk><clip pos="3" part="whole"/></chunk> <b/> <!-\- tolka -\-> -->
-    <!--           <chunk><clip pos="4" part="whole"/></chunk>      <!-\- i dag -\-> -->
-    <!--         </out> -->
-    <!--       </when> -->
-    <!--       <otherwise> -->
-    <!--         <out> -->
-    <!--           <chunk><clip pos="1" part="whole"/></chunk> <b/> <!-\- det -\-> -->
-    <!--           <chunk><clip pos="2" part="whole"/></chunk> <b/> <!-\- blir -\-> -->
-    <!--           <chunk><clip pos="4" part="whole"/></chunk> <b/> <!-\- i dag -\-> -->
-    <!--           <chunk><clip pos="3" part="whole"/></chunk>      <!-\- brukt -\-> -->
-    <!--         </out> -->
-    <!--       </otherwise> -->
-    <!--     </choose> -->
-    <!--   </action> -->
-    <!-- </rule> -->
 
     <rule comment="SYNSUBJ AUX PASV-PP ADV_UNBOUND CNJSUB → SYNSUBJ AUX ADV_UNBOUND PASV-PP CNJSUB
                    Den drives i dag som [jernbane] → Den blir driven i dag som → Den blir i dag driven som
@@ -1399,21 +1327,10 @@
       <action>
         <call-macro n="modify_pp_gen_nbr_NOANA"><with-param pos="2"/></call-macro>
         <out>
-          <chunk>
-            <clip pos="1" part="whole"/>
-          </chunk>
-          <b pos="1"/>
-          <chunk>
-            <clip pos="3" part="whole"/>
-          </chunk>
-          <b pos="2"/>
-          <chunk>
-            <clip pos="4" part="whole"/>
-          </chunk>
-          <b pos="3"/>
-          <chunk>
-            <clip pos="2" part="whole"/>
-          </chunk>
+          <chunk><clip pos="1" part="whole"/></chunk><b/>
+          <chunk><clip pos="3" part="whole"/></chunk><b/>
+          <chunk><clip pos="4" part="whole"/></chunk><b/>
+          <chunk><clip pos="2" part="whole"/></chunk>
         </out>
       </action>
     </rule>
@@ -1494,21 +1411,10 @@
         <call-macro n="set_ana"><with-param pos="3"/></call-macro>
         <call-macro n="modify_pp_gen_nbr"><with-param pos="2"/></call-macro>
         <out>
-          <chunk>
-            <clip pos="1" part="whole"/>
-          </chunk>
-          <b pos="1"/>
-          <chunk>
-            <clip pos="3" part="whole"/>
-          </chunk>
-          <b pos="2"/>
-          <chunk>
-            <clip pos="4" part="whole"/>
-          </chunk>
-          <b pos="3"/>
-          <chunk>
-            <clip pos="2" part="whole"/>
-          </chunk>
+          <chunk><clip pos="1" part="whole"/></chunk><b/>
+          <chunk><clip pos="3" part="whole"/></chunk><b/>
+          <chunk><clip pos="4" part="whole"/></chunk><b/>
+          <chunk><clip pos="2" part="whole"/></chunk>
         </out>
       </action>
     </rule>
@@ -1525,17 +1431,9 @@
         <call-macro n="set_ana"><with-param pos="3"/></call-macro>
         <call-macro n="modify_pp_gen_nbr"><with-param pos="2"/></call-macro>
         <out>
-          <chunk>
-            <clip pos="1" part="whole"/>
-          </chunk>
-          <b pos="1"/>
-          <chunk>
-            <clip pos="3" part="whole"/>
-          </chunk>
-          <b pos="2"/>
-          <chunk>
-            <clip pos="2" part="whole"/>
-          </chunk>
+          <chunk><clip pos="1" part="whole"/></chunk><b/>
+          <chunk><clip pos="3" part="whole"/></chunk><b/>
+          <chunk><clip pos="2" part="whole"/></chunk>
         </out>
       </action>
     </rule>
@@ -1582,21 +1480,10 @@
         <call-macro n="set_ana"><with-param pos="4"/></call-macro>
         <call-macro n="modify_pp_gen_nbr"><with-param pos="3"/></call-macro>
         <out>
-          <chunk>
-            <clip pos="1" part="whole"/>
-          </chunk>
-          <b pos="1"/>
-          <chunk>
-            <clip pos="2" part="whole"/>
-          </chunk>
-          <b pos="2"/>
-          <chunk>
-            <clip pos="3" part="whole"/>
-          </chunk>
-          <b pos="3"/>
-          <chunk>
-            <clip pos="4" part="whole"/>
-          </chunk>
+          <chunk><clip pos="1" part="whole"/></chunk><b/>
+          <chunk><clip pos="2" part="whole"/></chunk><b/>
+          <chunk><clip pos="3" part="whole"/></chunk><b/>
+          <chunk><clip pos="4" part="whole"/></chunk>
         </out>
       </action>
     </rule>
@@ -1618,25 +1505,11 @@
         <call-macro n="set_ana"><with-param pos="5"/></call-macro>
         <call-macro n="modify_pp_gen_nbr"><with-param pos="3"/></call-macro>
         <out>
-          <chunk>
-            <clip pos="1" part="whole"/>
-          </chunk>
-          <b pos="1"/>
-          <chunk>
-            <clip pos="2" part="whole"/>
-          </chunk>
-          <b pos="2"/>
-          <chunk>
-            <clip pos="3" part="whole"/>
-          </chunk>
-          <b pos="3"/>
-          <chunk>
-            <clip pos="4" part="whole"/>
-          </chunk>
-          <b pos="4"/>
-          <chunk>
-            <clip pos="5" part="whole"/>
-          </chunk>
+          <chunk><clip pos="1" part="whole"/></chunk><b/>
+          <chunk><clip pos="2" part="whole"/></chunk><b/>
+          <chunk><clip pos="3" part="whole"/></chunk><b/>
+          <chunk><clip pos="4" part="whole"/></chunk><b/>
+          <chunk><clip pos="5" part="whole"/></chunk>
         </out>
       </action>
     </rule>
@@ -1658,25 +1531,11 @@
         <call-macro n="set_ana"><with-param pos="5"/></call-macro>
         <call-macro n="modify_pp_gen_nbr"><with-param pos="4"/></call-macro>
         <out>
-          <chunk>
-            <clip pos="1" part="whole"/>
-          </chunk>
-          <b pos="1"/>
-          <chunk>
-            <clip pos="2" part="whole"/>
-          </chunk>
-          <b pos="2"/>
-          <chunk>
-            <clip pos="3" part="whole"/>
-          </chunk>
-          <b pos="3"/>
-          <chunk>
-            <clip pos="5" part="whole"/>
-          </chunk>
-          <b pos="4"/>
-          <chunk>
-            <clip pos="4" part="whole"/>
-          </chunk>
+          <chunk><clip pos="1" part="whole"/></chunk><b/>
+          <chunk><clip pos="2" part="whole"/></chunk><b/>
+          <chunk><clip pos="3" part="whole"/></chunk><b/>
+          <chunk><clip pos="5" part="whole"/></chunk><b/>
+          <chunk><clip pos="4" part="whole"/></chunk>
         </out>
       </action>
     </rule>
@@ -1695,29 +1554,12 @@
         <call-macro n="set_ana"><with-param pos="6"/></call-macro>
         <call-macro n="modify_pp_gen_nbr"><with-param pos="4"/></call-macro>
         <out>
-          <chunk>
-            <clip pos="1" part="whole"/>
-          </chunk>
-          <b pos="1"/>
-          <chunk>
-            <clip pos="2" part="whole"/>
-          </chunk>
-          <b pos="2"/>
-          <chunk>
-            <clip pos="3" part="whole"/>
-          </chunk>
-          <b pos="3"/>
-          <chunk>
-            <clip pos="5" part="whole"/>
-          </chunk>
-          <b pos="4"/>
-          <chunk>
-            <clip pos="6" part="whole"/>
-          </chunk>
-          <b pos="5"/>
-          <chunk>
-            <clip pos="4" part="whole"/>
-          </chunk>
+          <chunk><clip pos="1" part="whole"/></chunk><b/>
+          <chunk><clip pos="2" part="whole"/></chunk><b/>
+          <chunk><clip pos="3" part="whole"/></chunk><b/>
+          <chunk><clip pos="5" part="whole"/></chunk><b/>
+          <chunk><clip pos="6" part="whole"/></chunk><b/>
+          <chunk><clip pos="4" part="whole"/></chunk>
         </out>
       </action>
     </rule>
@@ -2295,13 +2137,11 @@
         <let><clip pos="2" part="a_casedrop"/><lit v=""/></let>
         <let><clip pos="2" part="a_defdrop"/><lit v=""/></let>
         <choose><when>
-          <test><not><equal><b pos="1"/><lit v=" "/></equal></not></test>
-          <out><b pos="1"/></out>
+          <test><not><equal><b/><lit v=" "/></equal></not></test>
+          <out><b/></out>
         </when></choose>
         <out>
-          <chunk>
-          <clip pos="2" part="whole"/>
-          </chunk>
+          <chunk><clip pos="2" part="whole"/></chunk>
         </out>
       </action>
     </rule>
@@ -2313,10 +2153,7 @@
       </pattern>
       <action>
         <out>
-          <chunk>
-          <clip pos="2" part="whole"/>
-          </chunk>
-          <b pos="1"/>
+          <chunk><clip pos="2" part="whole"/></chunk><b/>
         </out>
         <call-macro n="out_sin"><with-param pos="2"/></call-macro>
         <!-- TODO: keep case instead? ie. strip the casedrop -->
@@ -2333,17 +2170,12 @@
         <let><clip pos="3" part="a_casedrop"/><lit v=""/></let>
         <let><clip pos="3" part="a_defdrop"/><lit v=""/></let>
         <choose><when>
-          <test><not><equal><b pos="1"/><lit v=" "/></equal></not></test>
-          <out><b pos="2"/></out>
+          <test><not><equal><b/><lit v=" "/></equal></not></test>
+          <out><b/></out>
         </when></choose>
         <out>
-          <chunk>
-            <clip pos="1" part="whole"/>
-          </chunk>
-          <b pos="1"/>
-          <chunk>
-            <clip pos="3" part="whole"/>
-          </chunk>
+          <chunk><clip pos="1" part="whole"/></chunk><b/>
+          <chunk><clip pos="3" part="whole"/></chunk>
         </out>
       </action>
     </rule>
@@ -2376,12 +2208,11 @@
         <let><clip pos="2" part="a_casedrop"/><lit v=""/></let>
         <let><clip pos="3" part="a_keepgenx"/><lit v=""/></let>
         <choose><when>
-          <test><not><equal><b pos="1"/><lit v=" "/></equal></not></test>
-          <out><b pos="1"/></out>
+          <test><not><equal><b/><lit v=" "/></equal></not></test>
+          <out><b/></out>
         </when></choose>
         <out>
-          <chunk><clip pos="2" part="whole"/></chunk>
-          <b pos="2"/>
+          <chunk><clip pos="2" part="whole"/></chunk><b/>
           <chunk><clip pos="3" part="whole"/></chunk>
         </out>
       </action>
@@ -2613,7 +2444,7 @@
 
         <call-macro n="modify_det_gender2.n.det"><with-param pos="2"/><with-param pos="1"/></call-macro>
         <out>
-          <b pos="1"/>
+          <b/>
           <chunk><clip pos="1" part="whole"/></chunk>
         </out>
       </action>
@@ -2629,11 +2460,11 @@
         <call-macro n="switch_cases"><with-param pos="3"/><with-param pos="1"/></call-macro>
 
         <call-macro n="out_det"><with-param pos="3"/><with-param pos="1"/></call-macro>  <!-- dei -->
-        <out><chunk><clip pos="2" part="whole"/></chunk><b pos="1"/></out>               <!-- fire -->
+        <out><chunk><clip pos="2" part="whole"/></chunk><b/></out>                       <!-- fire -->
         <call-macro n="out_ndef"><with-param pos="3"/><with-param pos="1"/></call-macro> <!-- barna -->
 
         <call-macro n="modify_det_gender2.n.det"><with-param pos="3"/><with-param pos="1"/></call-macro>
-        <out><b pos="2"/><chunk><clip pos="1" part="whole"/></chunk></out>               <!-- sine -->
+        <out><b/><chunk><clip pos="1" part="whole"/></chunk></out>                       <!-- sine -->
       </action>
     </rule>
 
@@ -2645,8 +2476,7 @@
       </pattern>
       <action>
         <out>
-          <chunk><clip pos="1" part="whole"/></chunk>
-          <b pos="1"/>
+          <chunk><clip pos="1" part="whole"/></chunk><b/>
         </out>
         <choose>
           <when>
@@ -2673,13 +2503,11 @@
         <call-macro n="set_ana"><with-param pos="3"/></call-macro>
         <call-macro n="modify_det_gender2.n.det"><with-param pos="2"/><with-param pos="1"/></call-macro>
         <out>
-          <chunk><clip pos="1" part="whole"/></chunk>
-          <b pos="1"/>
+          <chunk><clip pos="1" part="whole"/></chunk><b/>
         </out>
         <call-macro n="out_det_when_adjlike"><with-param pos="2"/><with-param pos="3"/></call-macro>
         <out>
-          <chunk><clip pos="2" part="whole"/></chunk>
-          <b pos="2"/>
+          <chunk><clip pos="2" part="whole"/></chunk><b/>
         </out>
         <call-macro n="out_ndef"><with-param pos="3"/><with-param pos="3"/></call-macro>
       </action>
@@ -2697,15 +2525,13 @@
         <call-macro n="set_ana"><with-param pos="4"/></call-macro>
         <call-macro n="modify_det_gender2.n.det"><with-param pos="3"/><with-param pos="1"/></call-macro>
         <out>
-          <chunk><clip pos="1" part="whole"/></chunk>
-          <b pos="1"/>
+          <chunk><clip pos="1" part="whole"/></chunk><b/>
         </out>
         <call-macro n="out_det_when_adjlike"><with-param pos="4"/><with-param pos="2"/></call-macro>
         <call-macro n="out_ndef"><with-param pos="4"/><with-param pos="2"/></call-macro>
         <out>
-          <b pos="2"/>
-          <chunk><clip pos="2" part="whole"/></chunk>
-          <b pos="3"/>
+          <b/>
+          <chunk><clip pos="2" part="whole"/></chunk><b/>
           <chunk><clip pos="3" part="whole"/></chunk>
         </out>
       </action>
@@ -2756,15 +2582,15 @@
         <call-macro n="out_det_when_adjlike"><with-param pos="4"/><with-param pos="1"/></call-macro>
         <call-macro n="out_ndef"><with-param pos="4"/><with-param pos="1"/></call-macro>
 
-        <out><b pos="1"/></out>
+        <out><b/></out>
         <call-macro n="out_bi-gen-prep"><with-param pos="2"/><with-param pos="4"/></call-macro> <!-- 4=_snuten_ til katten -->
-        <out><b pos="2"/></out>
+        <out><b/></out>
         <call-macro n="out_det_when_adjlike"><with-param pos="3"/><with-param pos="3"/></call-macro>
         <call-macro n="out_ndef"><with-param pos="3"/><with-param pos="3"/></call-macro>
 
         <call-macro n="modify_det_gender2.n.det"><with-param pos="3"/><with-param pos="1"/></call-macro>
         <out>
-          <b pos="3"/>
+          <b/>
           <chunk><clip pos="1" part="whole"/></chunk>
         </out>
       </action>
@@ -2787,12 +2613,12 @@
         <call-macro n="out_det_when_adjlike"><with-param pos="3"/><with-param pos="2"/></call-macro>
         <out>
           <chunk><clip pos="3" part="whole"/></chunk>
-          <b pos="1"/>
+          <b/>
         </out>
         <call-macro n="out_ndef"><with-param pos="4"/><with-param pos="4"/></call-macro>
-        <out><b pos="2"/></out>
+        <out><b/></out>
         <call-macro n="out_bi-gen-prep"><with-param pos="1"/><with-param pos="4"/></call-macro> <!-- 4=_hundane_ på toppen -->
-        <out><b pos="3"/></out>
+        <out><b/></out>
         <out><chunk><clip pos="2" part="whole"/></chunk></out>
       </action>
     </rule>
@@ -2843,13 +2669,10 @@
         <call-macro n="modify_det_gender2.n.det"><with-param pos="4"/><with-param pos="1"/></call-macro>
         <call-macro n="modify_det_gender2.n.det"><with-param pos="4"/><with-param pos="2"/></call-macro>
         <out>
-          <b pos="1"/>
-          <chunk><clip pos="3" part="whole"/></chunk>
-          <b pos="2"/>
-          <chunk><clip pos="1" part="whole"/></chunk>
-          <b pos="3"/>
-          <chunk><clip pos="2" part="whole"/></chunk>
-          <b pos="4"/>
+          <b/>
+          <chunk><clip pos="3" part="whole"/></chunk><b/>
+          <chunk><clip pos="1" part="whole"/></chunk><b/>
+          <chunk><clip pos="2" part="whole"/></chunk><b/>
           <chunk><clip pos="4" part="whole"/></chunk>
         </out>
       </action>
@@ -2873,7 +2696,7 @@
         <call-macro n="modify_det_gender2.n.det"><with-param pos="4"/><with-param pos="3"/></call-macro>
         <out>
           <chunk><clip pos="2" part="whole"/></chunk>
-          <b pos="1"/>
+          <b/>
           <chunk>               <!-- Introducing Garpegenitiv: -->
             <lit v="detsin"/>
             <lit-tag v="det.pos"/>
@@ -2886,9 +2709,9 @@
                 <var n="number_no_sp"/>
             <lit v="$}"/>
           </chunk>
-          <b pos="2"/>
+          <b/>
           <chunk><clip pos="3" part="whole"/></chunk>
-          <b pos="3"/>
+          <b/>
           <chunk><clip pos="4" part="whole"/></chunk>
         </out>
       </action>
@@ -2994,9 +2817,8 @@
         <call-macro n="out_det_when_adjlike"><with-param pos="3"/><with-param pos="2"/></call-macro>
         <call-macro n="out_ndef"><with-param pos="3"/><with-param pos="1"/></call-macro>
         <out>
-          <b pos="1"/>
-          <chunk><clip pos="2" part="whole"/></chunk>
-          <b pos="2"/>
+          <b/>
+          <chunk><clip pos="2" part="whole"/></chunk><b/>
           <chunk>
             <lit v="vblex"/>
             <lit-tag v="vblex"/>
@@ -3006,7 +2828,7 @@
             <var n="ana_temps"/>
             <lit v="$}"/>
           </chunk>
-          <b pos="3"/>
+          <b/>
           <chunk><clip pos="4" part="whole"/></chunk>
         </out>
       </action>
@@ -3029,13 +2851,12 @@
         <call-macro n="out_det_when_adjlike"><with-param pos="3"/><with-param pos="2"/></call-macro>
         <out>
           <chunk><clip pos="3" part="whole"/></chunk>
-          <b pos="1"/>
+          <b/>
         </out>
         <call-macro n="out_ndef"><with-param pos="4"/><with-param pos="1"/></call-macro>
         <out>
-          <b pos="2"/>
-          <chunk><clip pos="2" part="whole"/></chunk>
-          <b pos="3"/>
+          <b/>
+          <chunk><clip pos="2" part="whole"/></chunk><b/>
           <chunk>
             <lit v="vblex"/>
             <lit-tag v="vblex"/>
@@ -3045,7 +2866,7 @@
             <var n="ana_temps"/>
             <lit v="$}"/>
           </chunk>
-          <b pos="4"/>
+          <b/>
           <chunk><clip pos="5" part="whole"/></chunk>
         </out>
       </action>
@@ -3062,8 +2883,7 @@
         <let><clip pos="1" part="gen_prep_override"/><lit v=""/></let>
         <let><clip pos="1" part="tags"/><concat><clip pos="1" part="tags"/><lit-tag v="po_sin"/></concat></let> <!-- notify t3x that we have a post-possessive -->
         <out>
-          <chunk><clip pos="1" part="whole"/></chunk>
-          <b pos="1"/>
+          <chunk><clip pos="1" part="whole"/></chunk><b/>
           <chunk><clip pos="2" part="whole"/></chunk>
         </out>
       </action>
@@ -3087,8 +2907,7 @@
           <call-macro n="set_ana"><with-param pos="2"/></call-macro>
         </when></choose>
         <out>
-          <chunk><clip pos="1" part="whole"/></chunk>
-          <b pos="1"/>
+          <chunk><clip pos="1" part="whole"/></chunk><b/>
           <chunk><clip pos="2" part="whole"/></chunk>
         </out>
       </action>
@@ -3115,12 +2934,9 @@
         <let><clip pos="4" part="nbr"/><clip pos="1" part="nbr"/></let>
         <let><clip pos="4" part="tags"/><concat><clip pos="4" part="tags"/><lit-tag v="chunknum"/></concat></let>
         <out>
-          <chunk><clip pos="1" part="whole"/></chunk>
-          <b pos="1"/>
-          <chunk><clip pos="2" part="whole"/></chunk>
-          <b pos="2"/>
-          <chunk><clip pos="3" part="whole"/></chunk>
-          <b pos="3"/>
+          <chunk><clip pos="1" part="whole"/></chunk><b/>
+          <chunk><clip pos="2" part="whole"/></chunk><b/>
+          <chunk><clip pos="3" part="whole"/></chunk><b/>
           <chunk><clip pos="4" part="whole"/></chunk>
         </out>
       </action>
@@ -3148,14 +2964,10 @@
         <let><clip pos="5" part="nbr"/><clip pos="1" part="nbr"/></let>
         <let><clip pos="5" part="tags"/><concat><clip pos="5" part="tags"/><lit-tag v="chunknum"/></concat></let>
         <out>
-          <chunk><clip pos="1" part="whole"/></chunk>
-          <b pos="1"/>
-          <chunk><clip pos="2" part="whole"/></chunk>
-          <b pos="2"/>
-          <chunk><clip pos="3" part="whole"/></chunk>
-          <b pos="3"/>
-          <chunk><clip pos="4" part="whole"/></chunk>
-          <b pos="4"/>
+          <chunk><clip pos="1" part="whole"/></chunk><b/>
+          <chunk><clip pos="2" part="whole"/></chunk><b/>
+          <chunk><clip pos="3" part="whole"/></chunk><b/>
+          <chunk><clip pos="4" part="whole"/></chunk><b/>
           <chunk><clip pos="5" part="whole"/></chunk>
         </out>
       </action>
@@ -3264,10 +3076,8 @@
           </otherwise>
         </choose>
         <out>
-          <chunk><clip pos="1" part="whole"/></chunk>
-          <b pos="1"/>
-          <chunk><clip pos="2" part="whole"/></chunk>
-          <b pos="2"/>
+          <chunk><clip pos="1" part="whole"/></chunk><b/>
+          <chunk><clip pos="2" part="whole"/></chunk><b/>
           <chunk><clip pos="3" part="whole"/></chunk>
         </out>
       </action>
@@ -3372,12 +3182,9 @@
         <call-macro n="modify_det_gender2.n.det"><with-param pos="4"/><with-param pos="1"/></call-macro>
         <call-macro n="set_n_defness"><with-param pos="4"/><with-param pos="1"/></call-macro>
         <out>
-          <chunk><clip pos="1" part="whole"/></chunk>
-          <b pos="1"/>
-          <chunk><clip pos="2" part="whole"/></chunk>
-          <b pos="2"/>
-          <chunk><clip pos="3" part="whole"/></chunk>
-          <b pos="3"/>
+          <chunk><clip pos="1" part="whole"/></chunk><b/>
+          <chunk><clip pos="2" part="whole"/></chunk><b/>
+          <chunk><clip pos="3" part="whole"/></chunk><b/>
           <chunk><clip pos="4" part="whole"/></chunk>
         </out>
       </action>
@@ -3407,10 +3214,8 @@
           </otherwise>
         </choose>
         <out>
-          <chunk><clip pos="1" part="whole"/></chunk>
-          <b pos="1"/>
-          <chunk><clip pos="2" part="whole"/></chunk>
-          <b pos="2"/>
+          <chunk><clip pos="1" part="whole"/></chunk><b/>
+          <chunk><clip pos="2" part="whole"/></chunk><b/>
           <chunk><clip pos="3" part="whole"/></chunk>
         </out>
       </action>
@@ -3444,14 +3249,10 @@
           </otherwise>
         </choose>
         <out>
-          <chunk><clip pos="1" part="whole"/></chunk>
-          <b pos="1"/>
-          <chunk><clip pos="2" part="whole"/></chunk>
-          <b pos="2"/>
-          <chunk><clip pos="3" part="whole"/></chunk>
-          <b pos="3"/>
-          <chunk><clip pos="4" part="whole"/></chunk>
-          <b pos="4"/>
+          <chunk><clip pos="1" part="whole"/></chunk><b/>
+          <chunk><clip pos="2" part="whole"/></chunk><b/>
+          <chunk><clip pos="3" part="whole"/></chunk><b/>
+          <chunk><clip pos="4" part="whole"/></chunk><b/>
           <chunk><clip pos="5" part="whole"/></chunk>
         </out>
       </action>
@@ -3482,14 +3283,10 @@
           </otherwise>
         </choose>
         <out>
-          <chunk><clip pos="1" part="whole"/></chunk>
-          <b pos="1"/>
-          <chunk><clip pos="2" part="whole"/></chunk>
-          <b pos="2"/>
-          <chunk><clip pos="3" part="whole"/></chunk>
-          <b pos="3"/>
-          <chunk><clip pos="4" part="whole"/></chunk>
-          <b pos="4"/>
+          <chunk><clip pos="1" part="whole"/></chunk><b/>
+          <chunk><clip pos="2" part="whole"/></chunk><b/>
+          <chunk><clip pos="3" part="whole"/></chunk><b/>
+          <chunk><clip pos="4" part="whole"/></chunk><b/>
           <chunk><clip pos="5" part="whole"/></chunk>
         </out>
       </action>
@@ -3512,8 +3309,7 @@
           <call-macro n="set_ana"><with-param pos="2"/></call-macro>
         </when></choose>
         <out>
-          <chunk><clip pos="1" part="whole"/></chunk>
-          <b pos="1"/>
+          <chunk><clip pos="1" part="whole"/></chunk><b/>
           <chunk><clip pos="2" part="whole"/></chunk>
         </out>
       </action>
@@ -3528,8 +3324,7 @@
       <action>
         <call-macro n="set_ana"><with-param pos="1"/></call-macro>
         <out>
-          <chunk><clip pos="1" part="whole"/></chunk>
-          <b pos="1"/>
+          <chunk><clip pos="1" part="whole"/></chunk><b/>
           <chunk><clip pos="2" part="whole"/></chunk>
         </out>
       </action>
@@ -3593,10 +3388,8 @@
           <call-macro n="modify_det_gender2.n.det"><with-param pos="3"/><with-param pos="2"/></call-macro>
         </when></choose>
         <out>
-          <chunk><clip pos="1" part="whole"/></chunk>
-          <b pos="1"/>
-          <chunk><clip pos="2" part="whole"/></chunk>
-          <b pos="2"/>
+          <chunk><clip pos="1" part="whole"/></chunk><b/>
+          <chunk><clip pos="2" part="whole"/></chunk><b/>
           <chunk><clip pos="3" part="whole"/></chunk>
         </out>
       </action>
@@ -3633,10 +3426,8 @@
           </otherwise>
         </choose>
         <out>
-          <chunk><clip pos="1" part="whole"/></chunk>
-          <b pos="1"/>
-          <chunk><clip pos="2" part="whole"/></chunk>
-          <b pos="2"/>
+          <chunk><clip pos="1" part="whole"/></chunk><b/>
+          <chunk><clip pos="2" part="whole"/></chunk><b/>
           <chunk><clip pos="3" part="whole"/></chunk>
         </out>
       </action>
@@ -3674,12 +3465,9 @@
           </otherwise>
         </choose>
         <out>
-          <chunk><clip pos="1" part="whole"/></chunk>
-          <b pos="1"/>
-          <chunk><clip pos="2" part="whole"/></chunk>
-          <b pos="2"/>
-          <chunk><clip pos="3" part="whole"/></chunk>
-          <b pos="3"/>
+          <chunk><clip pos="1" part="whole"/></chunk><b/>
+          <chunk><clip pos="2" part="whole"/></chunk><b/>
+          <chunk><clip pos="3" part="whole"/></chunk><b/>
           <chunk><clip pos="4" part="whole"/></chunk>
         </out>
       </action>
@@ -3718,14 +3506,10 @@
           </otherwise>
         </choose>
         <out>
-          <chunk><clip pos="1" part="whole"/></chunk>
-          <b pos="1"/>
-          <chunk><clip pos="2" part="whole"/></chunk>
-          <b pos="2"/>
-          <chunk><clip pos="3" part="whole"/></chunk>
-          <b pos="3"/>
-          <chunk><clip pos="4" part="whole"/></chunk>
-          <b pos="4"/>
+          <chunk><clip pos="1" part="whole"/></chunk><b/>
+          <chunk><clip pos="2" part="whole"/></chunk><b/>
+          <chunk><clip pos="3" part="whole"/></chunk><b/>
+          <chunk><clip pos="4" part="whole"/></chunk><b/>
           <chunk><clip pos="5" part="whole"/></chunk>
         </out>
       </action>
@@ -3740,8 +3524,7 @@
       <action>
         <call-macro n="set_ana"><with-param pos="1"/></call-macro>
         <out>
-          <chunk><clip pos="1" part="whole"/></chunk>
-          <b pos="1"/>
+          <chunk><clip pos="1" part="whole"/></chunk><b/>
           <chunk><clip pos="2" part="whole"/></chunk>
         </out>
       </action>
