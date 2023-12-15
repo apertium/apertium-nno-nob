@@ -8428,75 +8428,14 @@
       </choose>
     </def-macro>
 
-    <def-macro n="out_pasv" npar="1"
-               c="arg.1: passive verb, possibly compound-right
-                  Assumes these variables have been set first:
-                  - c_name
-                  - caseFirstWord
-                  - cmp-lefts
-
-                  leses → vert lest
-                  beholdes [ikke] → vert [ikkje] haldt på
-                  synes → synest
-
-                  TODO: verb probably should lose possible uppercasing,
-                  although it's unlikely to find the passive verb in
-                  the beginning of a sentence
-
-                  Only takes effect if we're after the infinitive mark, or pres/pret.
-                  (infintives after skal/kan etc. are fine)">
-      <call-macro n="flush-mwe-queue"><with-param pos="1"/></call-macro>
-      <call-macro n="set_lemq"><with-param pos="1"/></call-macro>
-
-      <call-macro n="set_aux"><with-param pos="1"/></call-macro>
-      <!-- todo: why do I get a bus error when calling set_aux2 here? -->
-      <choose c="Only movable past an NP if no lemq or not in np-immovable-verb list, and refsyn has found subject after verb">
-        <when>
-          <test><or>
-            <not><equal><clip pos="1" side="ref" part="a_postsubj"/><lit-tag v="postsubj"/></equal></not>
-            <in><clip pos="1" side="tl" part="lemh"/><list n="np-immovable-verb"/></in>
-            <not><equal><clip pos="1" side="tl" part="lemq"/><lit v=""/></equal></not>
-          </or></test>
-          <let><var n="movable_tag"/><lit v=""/></let>
-        </when>
-        <otherwise><let><var n="movable_tag"/><lit-tag v="np-movable"/></let></otherwise>
-      </choose>
-      <call-macro n="ref-subj2pasv"><with-param pos="1"/></call-macro>
-      <append n="c_name"><lit v="adj2vblex"/></append>
-      <out>
-        <chunk name="aux" case="caseFirstWord">
-          <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
-          <var n="aux"/>
-        </chunk>
-        <b/>
-        <chunk namefrom="c_name">
-          <tags>
-            <tag><lit-tag v="adj.pp"/></tag>
-            <tag><var n="pp_gen"/></tag>
-            <tag><var n="pp_nbr"/></tag>
-            <tag><lit-tag v="ind"/></tag>
-            <tag><var n="movable_tag"/></tag>
-          </tags>
-          <var n="cmp-lefts"/>
-          <lu>
-            <clip pos="1" side="tl" part="lemh"/>
-            <lit-tag v="adj.pp"/>
-            <var n="pp_gen"/>
-            <var n="pp_nbr"/>
-            <lit-tag v="ind"/>
-            <var n="c_lemq"/>
-          </lu>
-        </chunk>
-      </out>
-      <out><var n="out_lemq"/></out>
-    </def-macro>
-
     <def-macro n="out_verb" npar="1"
                c="arg.1: verb, passive or active, possibly compound-right
                   Assumes these variables have been set first:
                   - c_name
                   - caseFirstWord
                   - cmp-lefts">
+      <call-macro n="flush-mwe-queue"><with-param pos="1"/></call-macro>
+      <call-macro n="set_lemq"><with-param pos="1"/></call-macro>
       <choose>
         <when c="Run aux + pp transformation on passives that are finite or immediately follow 'å'">
           <test><and>
@@ -8507,11 +8446,47 @@
               <equal><clip pos="1" side="tl" part="temps"/><lit-tag v="pret"/></equal>
             </or>
           </and></test>
-          <call-macro n="out_pasv"><with-param pos="1"/></call-macro>
+          <call-macro n="set_aux"><with-param pos="1"/></call-macro> <!-- TODO: should use case from cmp -->
+          <choose c="Only movable past an NP if no lemq or not in np-immovable-verb list, and refsyn has found subject after verb">
+            <when>
+              <test><or>
+                <not><equal><clip pos="1" side="ref" part="a_postsubj"/><lit-tag v="postsubj"/></equal></not>
+                <in><clip pos="1" side="tl" part="lemh"/><list n="np-immovable-verb"/></in>
+                <not><equal><clip pos="1" side="tl" part="lemq"/><lit v=""/></equal></not>
+              </or></test>
+              <let><var n="movable_tag"/><lit v=""/></let>
+            </when>
+            <otherwise><let><var n="movable_tag"/><lit-tag v="np-movable"/></let></otherwise>
+          </choose>
+          <call-macro n="ref-subj2pasv"><with-param pos="1"/></call-macro>
+          <append n="c_name"><lit v="adj2vblex"/></append>
+          <out>
+            <chunk name="aux" case="caseFirstWord">
+              <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
+              <var n="aux"/>
+            </chunk>
+            <b/>
+            <chunk namefrom="c_name">
+              <tags>
+                <tag><lit-tag v="adj.pp"/></tag>
+                <tag><var n="pp_gen"/></tag>
+                <tag><var n="pp_nbr"/></tag>
+                <tag><lit-tag v="ind"/></tag>
+                <tag><var n="movable_tag"/></tag>
+              </tags>
+              <var n="cmp-lefts"/>
+              <lu>
+                <clip pos="1" side="tl" part="lemh"/>
+                <lit-tag v="adj.pp"/>
+                <var n="pp_gen"/>
+                <var n="pp_nbr"/>
+                <lit-tag v="ind"/>
+                <var n="c_lemq"/>
+              </lu>
+            </chunk>
+          </out>
         </when>
-        <otherwise>
-          <call-macro n="flush-mwe-queue"><with-param pos="1"/></call-macro>
-          <call-macro n="set_lemq"><with-param pos="1"/></call-macro>
+        <otherwise c="Active or infinitive passive after modal – no transformation">
           <choose c="Set c_name">
             <when>
               <test><and>
@@ -8542,9 +8517,9 @@
               </lu>
             </chunk>
           </out>
-          <out><var n="out_lemq"/></out>
         </otherwise>
       </choose>
+      <out><var n="out_lemq"/></out>
     </def-macro>
 
   </section-def-macros>
