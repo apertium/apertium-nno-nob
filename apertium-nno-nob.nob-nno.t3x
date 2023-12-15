@@ -242,9 +242,6 @@
       <attr-item tags="pret"/>
       <attr-item tags="pp"/>
     </def-attr>
-    <def-attr n="voice">
-      <attr-item tags="pasv"/>
-    </def-attr>
     <def-attr n="nbr">
       <attr-item tags="sg"/>
       <attr-item tags="pl"/>
@@ -793,33 +790,6 @@
       <action>
         <let><clip pos="1" part="gen"/><clip pos="0" part="gen"/></let>
         <out><lu><clip pos="1" part="whole"/></lu></out>
-      </action>
-    </rule>
-
-    <rule comment="CHUNK: vblex">
-      <pattern>
-        <pattern-item n="vblex"/>
-      </pattern>
-      <action>
-        <choose>
-          <when><test><and>
-            <equal><clip pos="0" part="tags"/><lit-tag v="vblex.inf.pasv"/></equal>
-            <equal><clip pos="1" part="temps"/><lit-tag v="pp"/></equal>
-          </and></test>
-          <out>
-            <lu>
-              <clip pos="1" part="lemh"/>
-              <clip pos="1" part="a_verb"/>
-              <clip pos="0" part="temps"/>
-              <clip pos="0" part="voice"/>
-              <clip pos="1" part="lemq"/>
-            </lu>
-          </out>
-          </when>
-          <otherwise>
-            <out><lu><clip pos="1" part="whole"/></lu></out>
-          </otherwise>
-        </choose>
       </action>
     </rule>
 
