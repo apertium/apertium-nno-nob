@@ -1,9 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <transfer default="chunk">
-  <!-- TODO:
-       * boka vart [lese vs lesen], concord
-         VBLEXPASS rule should have adj.pp.nt.sg.ind as the second chunk
-  -->
   <section-def-cats>
     <!-- compound lhs's are never genitive, and don't get capstags: -->
     <def-cat n="cmp" c="No need to specify PoS/subtags (that will just slow down compilation
@@ -893,13 +889,6 @@
       <cat-item tags="vblex.inf.*"/>
       <cat-item tags="vblex.inf.pasv.*"/>
     </def-cat>
-    <def-cat n="vblexinfpass">
-      <cat-item tags="vblex.inf.pasv.*"/>
-    </def-cat>
-    <def-cat n="vblexpass">
-      <cat-item tags="vblex.*.pasv.*"/>
-      <cat-item tags="vblex.pstv.*"/>
-    </def-cat>
     <def-cat n="vblexaux">
       <cat-item tags="vblex.*" lemma="kunne"/>
       <cat-item tags="vblex.*" lemma="burde"/>
@@ -1113,6 +1102,7 @@
     <def-var n="lemma"          c="Used within macros"/>
     <def-var n="brlemma"        c="Only used for 'britenes statsminister'-rule"/>
     <def-var n="mwe-queue"      c="Must be output before next verb or sent. TODO: There should be an EOF-rule in case nothing at end."/>
+    <def-var n="cmp-lefts"      c="Non-final lu's of compound (verb)"/>
   </section-def-vars>
 
   <section-def-lists>
@@ -8438,6 +8428,125 @@
       </choose>
     </def-macro>
 
+    <def-macro n="out_pasv" npar="1"
+               c="arg.1: passive verb, possibly compound-right
+                  Assumes these variables have been set first:
+                  - c_name
+                  - caseFirstWord
+                  - cmp-lefts
+
+                  leses → vert lest
+                  beholdes [ikke] → vert [ikkje] haldt på
+                  synes → synest
+
+                  TODO: verb probably should lose possible uppercasing,
+                  although it's unlikely to find the passive verb in
+                  the beginning of a sentence
+
+                  Only takes effect if we're after the infinitive mark, or pres/pret.
+                  (infintives after skal/kan etc. are fine)">
+      <call-macro n="flush-mwe-queue"><with-param pos="1"/></call-macro>
+      <call-macro n="set_lemq"><with-param pos="1"/></call-macro>
+
+      <call-macro n="set_aux"><with-param pos="1"/></call-macro>
+      <!-- todo: why do I get a bus error when calling set_aux2 here? -->
+      <choose c="Only movable past an NP if no lemq or not in np-immovable-verb list, and refsyn has found subject after verb">
+        <when>
+          <test><or>
+            <not><equal><clip pos="1" side="ref" part="a_postsubj"/><lit-tag v="postsubj"/></equal></not>
+            <in><clip pos="1" side="tl" part="lemh"/><list n="np-immovable-verb"/></in>
+            <not><equal><clip pos="1" side="tl" part="lemq"/><lit v=""/></equal></not>
+          </or></test>
+          <let><var n="movable_tag"/><lit v=""/></let>
+        </when>
+        <otherwise><let><var n="movable_tag"/><lit-tag v="np-movable"/></let></otherwise>
+      </choose>
+      <call-macro n="ref-subj2pasv"><with-param pos="1"/></call-macro>
+      <append n="c_name"><lit v="adj2vblex"/></append>
+      <out>
+        <chunk name="aux" case="caseFirstWord">
+          <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
+          <var n="aux"/>
+        </chunk>
+        <b/>
+        <chunk namefrom="c_name">
+          <tags>
+            <tag><lit-tag v="adj.pp"/></tag>
+            <tag><var n="pp_gen"/></tag>
+            <tag><var n="pp_nbr"/></tag>
+            <tag><lit-tag v="ind"/></tag>
+            <tag><var n="movable_tag"/></tag>
+          </tags>
+          <var n="cmp-lefts"/>
+          <lu>
+            <clip pos="1" side="tl" part="lemh"/>
+            <lit-tag v="adj.pp"/>
+            <var n="pp_gen"/>
+            <var n="pp_nbr"/>
+            <lit-tag v="ind"/>
+            <var n="c_lemq"/>
+          </lu>
+        </chunk>
+      </out>
+      <out><var n="out_lemq"/></out>
+    </def-macro>
+
+    <def-macro n="out_verb" npar="1"
+               c="arg.1: verb, passive or active, possibly compound-right
+                  Assumes these variables have been set first:
+                  - c_name
+                  - caseFirstWord
+                  - cmp-lefts">
+      <choose>
+        <when c="Run aux + pp transformation on passives that are finite or immediately follow 'å'">
+          <test><and>
+            <equal><clip pos="1" side="tl" part="voice"/><lit-tag v="pasv"/></equal>
+            <or>
+              <equal><var n="prevlem"/><lit v="å"/></equal>
+              <equal><clip pos="1" side="tl" part="temps"/><lit-tag v="pres"/></equal>
+              <equal><clip pos="1" side="tl" part="temps"/><lit-tag v="pret"/></equal>
+            </or>
+          </and></test>
+          <call-macro n="out_pasv"><with-param pos="1"/></call-macro>
+        </when>
+        <otherwise>
+          <call-macro n="flush-mwe-queue"><with-param pos="1"/></call-macro>
+          <call-macro n="set_lemq"><with-param pos="1"/></call-macro>
+          <choose c="Set c_name">
+            <when>
+              <test><and>
+                <equal><var n="c_name"/><lit v=""/></equal> <!-- not a compound -->
+                <or>
+                  <equal><clip pos="1" side="tl" part="lemh"/><lit v="bli"/></equal>
+                  <equal><clip pos="1" side="tl" part="lemh"/><lit v="vere"/></equal>
+                  <equal><clip pos="1" side="tl" part="lemh"/><lit v="ha"/></equal>
+                </or>
+              </and></test>
+              <let><var n="c_name"/><lit v="aux"/></let>
+            </when>
+            <otherwise>
+              <append n="c_name"><lit v="vblex"/></append>
+            </otherwise>
+          </choose>
+          <out>
+            <chunk namefrom="c_name" case="caseFirstWord">
+              <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
+              <var n="cmp-lefts"/>
+              <lu>
+                <clip pos="1" side="tl" part="lemh"/>
+                <clip pos="1" side="tl" part="a_verb"/>
+                <clip pos="1" side="tl" part="temps"/>
+                <clip pos="1" side="tl" part="voice"/>
+                <clip pos="1" side="tl" part="a_cmp"/>
+                <var n="c_lemq"/>
+              </lu>
+            </chunk>
+          </out>
+          <out><var n="out_lemq"/></out>
+        </otherwise>
+      </choose>
+    </def-macro>
+
   </section-def-macros>
 
 
@@ -9190,144 +9299,17 @@
     </rule>
 
     <!-- Verbs -->
-    <rule comment="VBLEX.PASV.FV: leses => vert lest
-                   beholdes [ikke] => vert [ikkje] haldt på
-                   synes => synest
-
-                   TODO: verb probably should lose possible uppercasing,
-                   although it's unlikely to find the passive verb in
-                   the beginning of a sentence
-
-                   If we translate into a pstv verb, output like the regular VBLEX rule.
-
-                   If we don't see an infinitive marker in t2x, the aux gets
-                   deleted again.">
-      <pattern>
-        <pattern-item n="vblexpass"/>
-      </pattern>
-      <action>
-        <choose><when>
-          <test><not>
-            <or>
-              <equal><var n="prevlem"/><lit v="å"/></equal>
-              <equal><clip pos="1" side="tl" part="temps"/><lit-tag v="pres"/></equal>
-              <equal><clip pos="1" side="tl" part="temps"/><lit-tag v="pret"/></equal>
-            </or>
-          </not></test>
-          <reject-current-rule shifting="no"/>
-        </when></choose>
-        <choose>
-          <when c="Only output if bidix has a lemma in l">
-            <test>
-              <not><equal><clip pos="1" side="tl" part="lem"/><lit v=""/></equal></not>
-            </test>
-            <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
-            <call-macro n="set_lemq"><with-param pos="1"/></call-macro>
-
-            <choose>
-              <when>
-                <test><or>
-                  <equal><clip pos="1" side="tl" part="a_verb"/><lit-tag v="vblex.pstv"/></equal>
-                  <equal><clip pos="1" side="sl" part="a_verb"/><lit-tag v="vblex.pstv"/></equal>
-                  <equal><clip pos="1" side="tl" part="voice"/><lit v=""/></equal> <!-- explicitly translating into active form in bidix -->
-                </or></test>
-                <out>
-                  <chunk name="vblex" case="caseFirstWord">
-                    <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
-                    <lu>
-                      <clip pos="1" side="tl" part="lemh"/>
-                      <clip pos="1" side="tl" part="a_verb"/>
-                      <clip pos="1" side="tl" part="temps"/>
-                      <var n="c_lemq"/>
-                    </lu>
-                  </chunk>
-                </out>
-              </when>
-              <otherwise>
-                <call-macro n="set_aux"><with-param pos="1"/></call-macro>
-                <!-- todo: why do I get a bus error when calling set_aux2 here? -->
-                <choose c="Only movable past an NP if no lemq or not in np-immovable-verb list, and refsyn has found subject after verb">
-                  <when>
-                    <test><or>
-                      <not><equal><clip pos="1" side="ref" part="a_postsubj"/><lit-tag v="postsubj"/></equal></not>
-                      <in><clip pos="1" side="tl" part="lemh"/><list n="np-immovable-verb"/></in>
-                      <not><equal><clip pos="1" side="tl" part="lemq"/><lit v=""/></equal></not>
-                    </or></test>
-                    <let><var n="movable_tag"/><lit v=""/></let>
-                  </when>
-                  <otherwise><let><var n="movable_tag"/><lit-tag v="np-movable"/></let></otherwise>
-                </choose>
-                <call-macro n="ref-subj2pasv"><with-param pos="1"/></call-macro>
-                <out>
-                  <chunk name="aux" case="caseFirstWord">
-                    <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
-                    <var n="aux"/>
-                  </chunk>
-                  <b/>
-                  <chunk name="adj2vblex">
-                    <tags>
-                      <tag><lit-tag v="adj.pp"/></tag>
-                      <tag><var n="pp_gen"/></tag>
-                      <tag><var n="pp_nbr"/></tag>
-                      <tag><lit-tag v="ind"/></tag>
-                      <tag><var n="movable_tag"/></tag>
-                    </tags>
-                    <lu>
-                      <clip pos="1" side="tl" part="lemh"/>
-                      <lit-tag v="adj.pp"/>
-                      <var n="pp_gen"/>
-                      <var n="pp_nbr"/>
-                      <lit-tag v="ind"/>
-                      <var n="c_lemq"/>
-                    </lu>
-                  </chunk>
-                </out>
-              </otherwise>
-            </choose>
-            <out><var n="out_lemq"/></out>
-          </when>
-          <otherwise>
-            <let><var n="prevDeletedCase"/><lit v="aa"/></let>
-            <modify-case><var n="prevDeletedCase"/><var n="caseFirstWord"/></modify-case>
-          </otherwise>
-        </choose>
-      </action>
-    </rule>
-
     <rule comment="VBLEX
                    If we have nn multiwords, these need the lemq after the
-                   inflected part. All lemq's include their own initial space.
-                   This rule has to be below the passive rule.">
+                   inflected part. All lemq's include their own initial space.">
       <pattern>
         <pattern-item n="vblex"/>
       </pattern>
       <action>
-        <call-macro n="flush-mwe-queue"><with-param pos="1"/></call-macro>
         <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
-        <call-macro n="set_lemq"><with-param pos="1"/></call-macro>
-        <let><var n="c_name"/><lit v="vblex"/></let>
-        <choose><when>
-          <test><or>
-            <equal><clip pos="1" side="tl" part="lemh"/><lit v="bli"/></equal>
-            <equal><clip pos="1" side="tl" part="lemh"/><lit v="vere"/></equal>
-            <equal><clip pos="1" side="tl" part="lemh"/><lit v="ha"/></equal>
-          </or></test>
-          <let><var n="c_name"/><lit v="aux"/></let>
-        </when></choose>
-        <out>
-          <chunk namefrom="c_name" case="caseFirstWord">
-            <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
-            <lu>
-              <clip pos="1" side="tl" part="lemh"/>
-              <clip pos="1" side="tl" part="a_verb"/>
-              <clip pos="1" side="tl" part="temps"/>
-              <clip pos="1" side="tl" part="voice"/>
-              <clip pos="1" side="tl" part="a_cmp"/>
-              <var n="c_lemq"/>
-            </lu>
-          </chunk>
-        </out>
-        <out><var n="out_lemq"/></out>
+        <let><var n="c_name"/><lit v=""/></let>
+        <let><var n="cmp-lefts"/><lit v=""/></let>
+        <call-macro n="out_verb"><with-param pos="1"/></call-macro>
       </action>
     </rule>
 
@@ -9337,25 +9319,13 @@
         <pattern-item n="vblex"/>
       </pattern>
       <action>
-        <call-macro n="flush-mwe-queue"><with-param pos="1"/></call-macro>
         <call-macro n="set_caseFirstWord2"><with-param pos="1"/><with-param pos="2"/></call-macro>
-        <call-macro n="set_lemq"><with-param pos="2"/></call-macro>
-        <let><var n="c_name"/><lit v="cmp_vblex"/></let> <!-- never aux when compound -->
-        <out>
-          <chunk namefrom="c_name" case="caseFirstWord">
-            <tags><tag><clip pos="2" side="tl" part="tags"/></tag></tags>
-            <lu><clip pos="1" side="tl" part="whole"/></lu>
-            <lu>
-              <clip pos="2" side="tl" part="lemh"/>
-              <clip pos="2" side="tl" part="a_verb"/>
-              <clip pos="2" side="tl" part="temps"/>
-              <clip pos="2" side="tl" part="voice"/>
-              <clip pos="2" side="tl" part="a_cmp"/>
-              <var n="c_lemq"/>
-            </lu>
-          </chunk>
-        </out>
-        <out><var n="out_lemq"/></out>
+        <let><var n="c_name"/><lit v="cmp_"/></let>
+        <let>
+          <var n="cmp-lefts"/>
+          <lu><clip pos="1" side="tl" part="whole"/></lu>
+        </let>
+        <call-macro n="out_verb"><with-param pos="2"/></call-macro>
       </action>
     </rule>
     <rule comment="CMP CMP VBLEX">
@@ -9365,26 +9335,16 @@
         <pattern-item n="vblex"/>
       </pattern>
       <action>
-        <call-macro n="flush-mwe-queue"><with-param pos="1"/></call-macro>
         <call-macro n="set_caseFirstWord3"><with-param pos="1"/><with-param pos="2"/><with-param pos="3"/></call-macro>
-        <call-macro n="set_lemq"><with-param pos="3"/></call-macro>
-        <let><var n="c_name"/><lit v="cmp_cmp_vblex"/></let> <!-- never aux when compound -->
-        <out>
-          <chunk namefrom="c_name" case="caseFirstWord">
-            <tags><tag><clip pos="3" side="tl" part="tags"/></tag></tags>
+        <let><var n="c_name"/><lit v="cmp_cmp_"/></let>
+        <let>
+          <var n="cmp-lefts"/>
+          <concat>
             <lu><clip pos="1" side="tl" part="whole"/></lu>
             <lu><clip pos="2" side="tl" part="whole"/></lu>
-            <lu>
-              <clip pos="3" side="tl" part="lemh"/>
-              <clip pos="3" side="tl" part="a_verb"/>
-              <clip pos="3" side="tl" part="temps"/>
-              <clip pos="3" side="tl" part="voice"/>
-              <clip pos="3" side="tl" part="a_cmp"/>
-              <var n="c_lemq"/>
-            </lu>
-          </chunk>
-        </out>
-        <out><var n="out_lemq"/></out>
+          </concat>
+        </let>
+        <call-macro n="out_verb"><with-param pos="3"/></call-macro>
       </action>
     </rule>
     <rule comment="CMP CMP CMP VBLEX">
@@ -9395,27 +9355,40 @@
         <pattern-item n="vblex"/>
       </pattern>
       <action>
-        <call-macro n="flush-mwe-queue"><with-param pos="1"/></call-macro>
         <call-macro n="set_caseFirstWord4"><with-param pos="1"/><with-param pos="2"/><with-param pos="3"/><with-param pos="4"/></call-macro>
-        <call-macro n="set_lemq"><with-param pos="4"/></call-macro>
-        <let><var n="c_name"/><lit v="cmp_cmp_cmp_vblex"/></let> <!-- never aux when compound -->
-        <out>
-          <chunk namefrom="c_name" case="caseFirstWord">
-            <tags><tag><clip pos="4" side="tl" part="tags"/></tag></tags>
+        <let><var n="c_name"/><lit v="cmp_cmp_cmp_"/></let>
+        <let>
+          <var n="cmp-lefts"/>
+          <concat>
             <lu><clip pos="1" side="tl" part="whole"/></lu>
             <lu><clip pos="2" side="tl" part="whole"/></lu>
             <lu><clip pos="3" side="tl" part="whole"/></lu>
-            <lu>
-              <clip pos="4" side="tl" part="lemh"/>
-              <clip pos="4" side="tl" part="a_verb"/>
-              <clip pos="4" side="tl" part="temps"/>
-              <clip pos="4" side="tl" part="voice"/>
-              <clip pos="4" side="tl" part="a_cmp"/>
-              <var n="c_lemq"/>
-            </lu>
-          </chunk>
-        </out>
-        <out><var n="out_lemq"/></out>
+          </concat>
+        </let>
+        <call-macro n="out_verb"><with-param pos="4"/></call-macro>
+      </action>
+    </rule>
+    <rule comment="CMP CMP CMP CMP VBLEX">
+      <pattern>
+        <pattern-item n="cmp"/>
+        <pattern-item n="cmp"/>
+        <pattern-item n="cmp"/>
+        <pattern-item n="cmp"/>
+        <pattern-item n="vblex"/>
+      </pattern>
+      <action>
+        <call-macro n="set_caseFirstWord5"><with-param pos="1"/><with-param pos="2"/><with-param pos="3"/><with-param pos="4"/><with-param pos="5"/></call-macro>
+        <let><var n="c_name"/><lit v="cmp_cmp_cmp_cmp_"/></let>
+        <let>
+          <var n="cmp-lefts"/>
+          <concat>
+            <lu><clip pos="1" side="tl" part="whole"/></lu>
+            <lu><clip pos="2" side="tl" part="whole"/></lu>
+            <lu><clip pos="3" side="tl" part="whole"/></lu>
+            <lu><clip pos="4" side="tl" part="whole"/></lu>
+          </concat>
+        </let>
+        <call-macro n="out_verb"><with-param pos="5"/></call-macro>
       </action>
     </rule>
 
