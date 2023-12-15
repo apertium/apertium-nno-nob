@@ -88,6 +88,18 @@
     <def-cat n="adj2vblex">
       <cat-item name="adj2vblex"/>
     </def-cat>
+    <def-cat n="cmp_adj2vblex">
+      <cat-item name="cmp_adj2vblex"/>
+    </def-cat>
+    <def-cat n="cmp_cmp_adj2vblex">
+      <cat-item name="cmp_cmp_adj2vblex"/>
+    </def-cat>
+    <def-cat n="cmp_cmp_cmp_adj2vblex">
+      <cat-item name="cmp_cmp_cmp_adj2vblex"/>
+    </def-cat>
+    <def-cat n="cmp_cmp_cmp_cmp_adj2vblex">
+      <cat-item name="cmp_cmp_cmp_cmp_adj2vblex"/>
+    </def-cat>
     <def-cat n="adj">
       <cat-item name="adj"/>
     </def-cat>
@@ -403,13 +415,21 @@
                   If we have a pp adj (verb used as adj), the lemq is a particle
                   which should be output before the adj, with no intervening space.">
 
+      <let><clip pos="2" part="a_movable"/><lit v=""/></let> <!-- cleanup adj2vblex -->
+      <choose><when c="For passives, apply no-samsvar to both gender and number
+                       TODO: why only to number for the others?">
+        <test><and>
+          <ends-with><clip pos="2" part="lem"/><lit v="adj2vblex"/></ends-with>
+          <not><in><clip pos="1" part="lem"/><list n="no-samsvar"/></in></not>
+        </and></test>
+        <let><clip pos="1" part="tags"/><clip pos="0" part="tags"/></let>
+      </when></choose>
+
       <choose><when c="enhver aksjon er udiskutabel → alle aksjonar er udiskutable">
         <test><equal><clip pos="2" part="a_chunknum"/><lit-tag v="chunknum"/></equal></test>
         <let><clip pos="1" part="a_chunknum"/><lit v=""/></let>
         <choose><when>
-          <test>
-            <not><in><clip pos="1" part="lem"/><list n="no-samsvar"/></in></not>
-          </test>
+          <test><not><in><clip pos="1" part="lem"/><list n="no-samsvar"/></in></not></test>
           <let><clip pos="1" part="nbr"/><clip pos="2" part="nbr"/></let>
         </when></choose>
       </when></choose>
@@ -763,14 +783,55 @@
         <pattern-item n="adj2vblex"/>
       </pattern>
       <action>
-        <choose><when>
-          <test>
-            <not><in><clip pos="1" part="lem"/><list n="no-samsvar"/></in></not>
-          </test>
-          <let><clip pos="1" part="tags"/><clip pos="0" part="tags"/></let>
-        </when></choose>
-        <let><clip pos="1" part="a_movable"/><lit v=""/></let>
         <call-macro n="out_adj"><with-param pos="1"/><with-param pos="0"/></call-macro>
+      </action>
+    </rule>
+    <rule comment="CHUNK: cmp_adj2vblex">
+      <pattern>
+        <pattern-item n="cmp_adj2vblex"/>
+      </pattern>
+      <action>
+        <out><lu><clip pos="1" part="whole"/></lu><b/></out>
+        <call-macro n="out_adj"><with-param pos="2"/><with-param pos="0"/></call-macro>
+      </action>
+    </rule>
+    <rule comment="CHUNK: cmp_cmp_adj2vblex">
+      <pattern>
+        <pattern-item n="cmp_cmp_adj2vblex"/>
+      </pattern>
+      <action>
+        <out>
+          <lu><clip pos="1" part="whole"/></lu><b/>
+          <lu><clip pos="2" part="whole"/></lu><b/>
+        </out>
+        <call-macro n="out_adj"><with-param pos="3"/><with-param pos="0"/></call-macro>
+      </action>
+    </rule>
+    <rule comment="CHUNK: cmp_cmp_cmp_adj2vblex">
+      <pattern>
+        <pattern-item n="cmp_cmp_cmp_adj2vblex"/>
+      </pattern>
+      <action>
+        <out>
+          <lu><clip pos="1" part="whole"/></lu><b/>
+          <lu><clip pos="2" part="whole"/></lu><b/>
+          <lu><clip pos="3" part="whole"/></lu><b/>
+        </out>
+        <call-macro n="out_adj"><with-param pos="4"/><with-param pos="0"/></call-macro>
+      </action>
+    </rule>
+    <rule comment="CHUNK: cmp_cmp_cmp_cmp_adj2vblex">
+      <pattern>
+        <pattern-item n="cmp_cmp_cmp_cmp_adj2vblex"/>
+      </pattern>
+      <action>
+        <out>
+          <lu><clip pos="1" part="whole"/></lu><b/>
+          <lu><clip pos="2" part="whole"/></lu><b/>
+          <lu><clip pos="3" part="whole"/></lu><b/>
+          <lu><clip pos="4" part="whole"/></lu><b/>
+        </out>
+        <call-macro n="out_adj"><with-param pos="5"/><with-param pos="0"/></call-macro>
       </action>
     </rule>
 
