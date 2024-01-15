@@ -411,9 +411,7 @@
   <section-def-macros>
     <def-macro n="out_adj" npar="2"
                c="arg.1: adjective
-                  arg.2: chunk
-                  If we have a pp adj (verb used as adj), the lemq is a particle
-                  which should be output before the adj, with no intervening space.">
+                  arg.2: chunk">
 
       <let><clip pos="2" part="a_movable"/><lit v=""/></let> <!-- cleanup adj2vblex -->
       <choose><when c="For passives, apply no-samsvar to both gender and number
@@ -460,20 +458,13 @@
         <let><clip pos="1" part="gen"/><concat><lit v=""/></concat></let>
       </when></choose>
 
-      <out><lu><clip pos="1" part="whole"/></lu></out>
-      <!-- This needs much more extensive testing: -->
-      <!-- <choose> -->
-      <!--   <when> -->
-      <!--     <test><equal><clip pos="1" part="temps"/><lit-tag v="pp"/></equal></test> -->
-      <!--     <out> -->
-      <!--       <lu><clip pos="1" part="lemq"/></lu> -->
-      <!--       <lu><clip pos="1" part="lemh"/><clip pos="1" part="tags"/></lu> -->
-      <!--     </out> -->
-      <!--   </when> -->
-      <!--   <otherwise> -->
-      <!--     <out><lu><clip pos="1" part="whole"/></lu></out> -->
-      <!--   </otherwise> -->
-      <!-- </choose> -->
+      <out>
+        <lu>
+          <clip pos="1" part="lemh"/>
+          <clip pos="1" part="tags"/>
+          <clip pos="1" part="lemq"/>
+        </lu>
+      </out>
     </def-macro>
 
     <def-macro n="apply_casedrop_defdrop" npar="2"
