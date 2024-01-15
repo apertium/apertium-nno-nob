@@ -306,7 +306,8 @@
       <list-item v="suverent"/>
       <list-item v="verkeleg"/>
     </def-list>
-    <def-list n="n-keep-pl.ind" c="Don't change ind→def on these nouns if pl, even if preceding adj gets def (tl/nno)">
+    <def-list n="n-keep-adj_pl.ind" c="Don't change ind→def on these nouns if pl, even if preceding adj gets def (tl/nno)
+                                       Require preceding adj («dei beste intensjonar», but «intensjonane mine»)">
       <list-item v="par"/>      <!-- de siste par timene -->
       <list-item v="tusen"/>    <!-- de flere tusen ansatte -->
       <list-item v="juletid"/>
@@ -318,7 +319,8 @@
       <list-item v="dag"/>
       <list-item v="intensjon"/> <!-- dei beste intensjonar -->
     </def-list>
-    <def-list n="n-keep-sg.ind" c="Don't change ind→def on these familiar nouns if sg, even if preceding adj gets def (tl/nno)">
+    <def-list n="n-keep-sg.ind" c="Don't change ind→def on these familiar nouns if sg, even if preceding adj/det gets def (tl/nno)
+                                   Applies even if no preceding adj (e.g. «far min», «min far»).">
       <list-item v="mor"/>
       <list-item v="oldemor"/>
       <list-item v="tippoldemor"/>
@@ -525,7 +527,8 @@
             </and></not>
             <not><and>
               <equal><clip pos="1" part="nbr"/><lit-tag v="pl"/></equal>
-              <in caseless="yes"><clip pos="1" part="lemh"/><list n="n-keep-pl.ind"/></in>
+              <begins-with><clip pos="0" part="lemh"/><lit v="adj"/></begins-with>
+              <in caseless="yes"><clip pos="1" part="lemh"/><list n="n-keep-adj_pl.ind"/></in>
             </and></not>
           </and></test>
           <let><clip pos="1" part="art"/><clip pos="2" part="art"/></let>
@@ -584,7 +587,8 @@
           </and></not>
           <not><and>
             <equal><clip pos="1" part="nbr"/><lit-tag v="pl"/></equal>
-            <in caseless="yes"><clip pos="1" part="lemh"/><list n="n-keep-pl.ind"/></in>
+            <begins-with><clip pos="0" part="lemh"/><lit v="adj"/></begins-with>
+            <in caseless="yes"><clip pos="1" part="lemh"/><list n="n-keep-adj_pl.ind"/></in>
           </and></not>
         </and></test>
         <let><clip pos="1" part="art"/><clip pos="3" part="art"/></let>
