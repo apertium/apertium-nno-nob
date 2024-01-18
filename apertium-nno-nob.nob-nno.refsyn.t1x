@@ -57,11 +57,24 @@
     <def-cat n="adj.pp">
       <cat-item tags="adj.pp.*"/>
     </def-cat>
+    <def-cat n="adj.pp.opred">
+      <cat-item tags="adj.pp.*.@o-pred"/>
+    </def-cat>
     <def-cat n="lexadj">
       <cat-item tags="adj.pst.*"/>
       <cat-item tags="adj.comp.*"/>
       <cat-item tags="adj.sup.*"/>
       <cat-item tags="adj.sint.*"/>
+    </def-cat>
+    <def-cat n="n.ind.nonsubj_som_er" c="Specifically for elided-«som er» rule">
+      <cat-item tags="n.*.ind.*.@obj"/>
+      <cat-item tags="n.*.ind.*.@i-obj"/>
+      <cat-item tags="n.*.ind.*.@s-pred"/>
+      <!-- <cat-item tags="n.*.ind.@adv"/> «Tre personer.pl ble mandag.sg.@adv drept.pl!» -->
+      <cat-item tags="n.*.ind.*.@←p-utfyll"/>
+      <cat-item tags="n.*.ind.*.@subst→"/>
+      <!-- <cat-item tags="n.*.ind.@←subst"/> «antall.sg mottakere.pl.@←subst justert.sg!» -->
+      <cat-item tags="n.*.ind.*.@laus-np"/>
     </def-cat>
     <def-cat n="cmp">
       <cat-item tags="*.cmp"/>
@@ -184,8 +197,12 @@
   </section-def-vars>
 
   <section-def-lists>
-    <def-list n="l_foo">
-      <list-item v="foo"/>
+    <def-list n="plural_nouns" c="pp gets plural even though noun is singular">
+      <list-item v="antall"/>
+      <list-item v="hundre"/>
+      <list-item v="tusen"/>
+      <list-item v="million"/>
+      <list-item v="milliard"/>
     </def-list>
   </section-def-lists>
 
@@ -559,6 +576,46 @@
             <clip pos="1" side="tl" part="whole"/>
             <lit v="/"/>
             <var n="lexadj_ref"/>
+          </lu>
+        </out>
+      </action>
+    </rule>
+
+    <rule c="NIND.NONSUBJ ADJPP.OPRED (elided «som er»)
+             This rule assumes there's a hidden «som er» between noun and participle.
+             «Dette kommer fram i en rapport.n.ind utarbeidet.adj.pp av FHI»
+
+             If this rule doesn't hit, ensure the adj.pp gets tagged @o-pred by nob.syn.rlx!">
+      <pattern>
+        <pattern-item n="n.ind.nonsubj_som_er"/>
+        <pattern-item n="adj.pp.opred"/>
+      </pattern>
+      <action>
+        <let><clip pos="1" side="tl" part="a_syntax"/><lit v=""/></let>
+        <let><clip pos="1" side="sl" part="a_syntax"/><lit v=""/></let> <!-- preprocess-transfer gives a mistaken warning – this does have effect -->
+        <let><clip pos="2" side="tl" part="a_syntax"/><lit v=""/></let>
+        <let><clip pos="2" side="sl" part="a_syntax"/><lit v=""/></let> <!-- preprocess-transfer gives a mistaken warning – this does have effect -->
+        <out>
+          <lu>
+            <clip pos="1" side="sl" part="whole"/>
+            <lit v="/"/>
+            <clip pos="1" side="tl" part="whole"/>
+            <lit v="/"/>
+            <clip pos="1" side="tl" part="whole"/>
+          </lu>
+          <b/>
+        </out>
+        <choose><when c="antall drepte; tusen arresterte">
+          <test><in><clip pos="1" side="sl" part="lemh"/><list n="plural_nouns"/></in></test>
+          <let><clip pos="1" side="tl" part="nbr"/><lit-tag v="pl"/></let>
+        </when></choose>
+        <out>
+          <lu>
+            <clip pos="2" side="sl" part="whole"/>
+            <lit v="/"/>
+            <clip pos="2" side="tl" part="whole"/>
+            <lit v="/"/>
+            <clip pos="1" side="tl" part="whole"/>
           </lu>
         </out>
       </action>
