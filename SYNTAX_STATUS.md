@@ -82,6 +82,12 @@ side="ref"> for transfer to use. It's syntactic, not anaphoric.
   - … stemte med mannens fingeravtrykk<nt> funnet<nt> hos …
   Difficult, since e.g.: ble det ved flere anledninger<pl> tatt<nt> opp i Stortinget
   - Maybe we can use ngram frequencies f(ta beslutninger) >>> f(ta anledninger)
+  - Current solution: We treat sequences `n.ind pp.@o-pred` as
+    agreeing. So a participle tagged as object predicate will agree in
+    this manner, but this fails in e.g. «med dødsfall relatert til»
+    where «dødsfall» is tagged `@←p-utfyll` and so «relatert» is just
+    tagged `@adv` (maybe syn.rlx could have an `@a-pred`, but this is
+    in general a difficult attachment problem)
 
 - adj.sg.nt.@adv should be adv_movable
   - domineres sterkt → er sterkt dominert
