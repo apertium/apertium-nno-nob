@@ -26,6 +26,9 @@
       <cat-item tags="pr"/>
       <cat-item tags="pr.*"/>
     </def-cat>
+    <def-cat n="infm">
+      <cat-item lemma="å" tags="part.*"/>
+    </def-cat>
     <def-cat n="subj">
       <cat-item tags="*.@subj"/>
       <cat-item tags="*.@subj.*"/>
@@ -53,6 +56,9 @@
       <cat-item tags="adj.*.un.sp.*.@xubj.*"/>
       <cat-item tags="adj.un.sp.*.@xubj"/>
       <cat-item tags="adj.un.sp.*.@xubj.*"/>
+    </def-cat>
+    <def-cat n="adj">
+      <cat-item tags="adj.*"/>
     </def-cat>
     <def-cat n="adj.pp">
       <cat-item tags="adj.pp.*"/>
@@ -443,6 +449,77 @@
       </action>
     </rule>
 
+    <rule c="NIND.NONSUBJ ADJPP.OPRED (elided «som er»)
+             This rule assumes there's a hidden «som er» between noun and participle.
+             «Dette kommer fram i en rapport.n.ind utarbeidet.adj.pp av FHI»
+
+             If this rule doesn't hit, ensure the adj.pp gets tagged @o-pred by nob.syn.rlx!">
+      <pattern>
+        <pattern-item n="n.ind.nonsubj_som_er"/>
+        <pattern-item n="adj.pp.opred"/>
+      </pattern>
+      <action>
+        <let><clip pos="1" side="tl" part="a_syntax"/><lit v=""/></let>
+        <let><clip pos="1" side="sl" part="a_syntax"/><lit v=""/></let> <!-- preprocess-transfer gives a mistaken warning – this does have effect -->
+        <let><clip pos="2" side="tl" part="a_syntax"/><lit v=""/></let>
+        <let><clip pos="2" side="sl" part="a_syntax"/><lit v=""/></let> <!-- preprocess-transfer gives a mistaken warning – this does have effect -->
+        <out>
+          <lu>
+            <clip pos="1" side="sl" part="whole"/>
+            <lit v="/"/>
+            <clip pos="1" side="tl" part="whole"/>
+            <lit v="/"/>
+            <clip pos="1" side="tl" part="whole"/>
+          </lu>
+          <b/>
+        </out>
+        <choose><when c="antall drepte; tusen arresterte">
+          <test><in><clip pos="1" side="sl" part="lemh"/><list n="plural_nouns"/></in></test>
+          <let><clip pos="1" side="tl" part="nbr"/><lit-tag v="pl"/></let>
+        </when></choose>
+        <out>
+          <lu>
+            <clip pos="2" side="sl" part="whole"/>
+            <lit v="/"/>
+            <clip pos="2" side="tl" part="whole"/>
+            <lit v="/"/>
+            <clip pos="1" side="tl" part="whole"/>
+          </lu>
+        </out>
+      </action>
+    </rule>
+
+    <rule c="«uforsvarlig å» – nt when agreeing with infinitive-clause
+             Both lexical and pp.">
+      <pattern>
+        <pattern-item n="adj"/>
+        <pattern-item n="infm"/>
+      </pattern>
+      <action>
+        <let><clip pos="1" side="tl" part="a_syntax"/><lit v=""/></let>
+        <let><clip pos="1" side="sl" part="a_syntax"/><lit v=""/></let> <!-- preprocess-transfer gives a mistaken warning – this does have effect -->
+        <let><clip pos="2" side="tl" part="a_syntax"/><lit v=""/></let>
+        <let><clip pos="2" side="sl" part="a_syntax"/><lit v=""/></let> <!-- preprocess-transfer gives a mistaken warning – this does have effect -->
+        <out>
+          <lu>
+            <clip pos="1" side="sl" part="whole"/>
+            <lit v="/"/>
+            <clip pos="1" side="tl" part="whole"/>
+            <lit v="/"/>
+            <clip pos="2" side="tl" part="whole"/>
+          </lu>
+          <b/>
+          <lu>
+            <clip pos="2" side="sl" part="whole"/>
+            <lit v="/"/>
+            <clip pos="2" side="tl" part="whole"/>
+            <lit v="/"/>
+            <clip pos="2" side="tl" part="whole"/>
+          </lu>
+        </out>
+      </action>
+    </rule>
+
     <!-- ***** The simple rules: Store, Clear, Apply ***** -->
 
     <rule c="Found a subject, store it in variable">
@@ -576,46 +653,6 @@
             <clip pos="1" side="tl" part="whole"/>
             <lit v="/"/>
             <var n="lexadj_ref"/>
-          </lu>
-        </out>
-      </action>
-    </rule>
-
-    <rule c="NIND.NONSUBJ ADJPP.OPRED (elided «som er»)
-             This rule assumes there's a hidden «som er» between noun and participle.
-             «Dette kommer fram i en rapport.n.ind utarbeidet.adj.pp av FHI»
-
-             If this rule doesn't hit, ensure the adj.pp gets tagged @o-pred by nob.syn.rlx!">
-      <pattern>
-        <pattern-item n="n.ind.nonsubj_som_er"/>
-        <pattern-item n="adj.pp.opred"/>
-      </pattern>
-      <action>
-        <let><clip pos="1" side="tl" part="a_syntax"/><lit v=""/></let>
-        <let><clip pos="1" side="sl" part="a_syntax"/><lit v=""/></let> <!-- preprocess-transfer gives a mistaken warning – this does have effect -->
-        <let><clip pos="2" side="tl" part="a_syntax"/><lit v=""/></let>
-        <let><clip pos="2" side="sl" part="a_syntax"/><lit v=""/></let> <!-- preprocess-transfer gives a mistaken warning – this does have effect -->
-        <out>
-          <lu>
-            <clip pos="1" side="sl" part="whole"/>
-            <lit v="/"/>
-            <clip pos="1" side="tl" part="whole"/>
-            <lit v="/"/>
-            <clip pos="1" side="tl" part="whole"/>
-          </lu>
-          <b/>
-        </out>
-        <choose><when c="antall drepte; tusen arresterte">
-          <test><in><clip pos="1" side="sl" part="lemh"/><list n="plural_nouns"/></in></test>
-          <let><clip pos="1" side="tl" part="nbr"/><lit-tag v="pl"/></let>
-        </when></choose>
-        <out>
-          <lu>
-            <clip pos="2" side="sl" part="whole"/>
-            <lit v="/"/>
-            <clip pos="2" side="tl" part="whole"/>
-            <lit v="/"/>
-            <clip pos="1" side="tl" part="whole"/>
           </lu>
         </out>
       </action>
