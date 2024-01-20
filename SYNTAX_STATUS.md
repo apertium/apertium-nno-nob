@@ -66,6 +66,7 @@ side="ref"> for transfer to use. It's syntactic, not anaphoric.
 
 - Sometimes the subject is a whole clause – should give nt:
   - [At disse<pl> ble solgt] er fint<nt!>
+  - [Hva de mistenkte<pl> skal ha gjort], er ikke kjent<nt!>.
   May require "outer" ref, flip on clause boundary.
   But we can't always trust that som+comma ends the clause:
   - Han stadfestar at<nt> alle tenestemennene<pl> som avfyrte skot, no
@@ -117,3 +118,5 @@ side="ref"> for transfer to use. It's syntactic, not anaphoric.
 
   Possible idea: split @clb-tag into clause-with-subject vs clause-without-subject (ellipsis)?
 
+- Uncommon, but referent may be far to the right:
+  - Desto lenger ut i kampen vi<pl> er, desto mer sliten<sg> blir muskulaturen<sg>.
