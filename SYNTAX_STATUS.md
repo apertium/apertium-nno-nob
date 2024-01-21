@@ -120,3 +120,4 @@ side="ref"> for transfer to use. It's syntactic, not anaphoric.
 
 - Uncommon, but referent may be far to the right:
   - Desto lenger ut i kampen vi<pl> er, desto mer sliten<sg> blir muskulaturen<sg>.
+  - Mange har reist langveisfra, spesielt populær<mf> kan det virke som om Foyle<mf> er i Australia.
