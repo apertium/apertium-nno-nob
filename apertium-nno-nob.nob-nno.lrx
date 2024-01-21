@@ -9351,37 +9351,37 @@
   </rule>
   <rule weight="2.0" c="bussen går kvar veke">
     <match lemma="ukentlig" tags="adj.*.sg.ind.*"><select lemma="kvar veke"/></match>
-	<or>
-	  <match tags="pr.*"/>
-	  <match tags="vblex.*"/>
+    <or>
+      <match tags="pr.*"/>
+      <match tags="vblex.*"/>
       <match tags="cnjcoo.*"/>
       <match tags="sent.clb.*"/>
-	</or>
+    </or>
   </rule>
   <rule weight="2.0" c="bussen går kvar veke">
-	<or>
-	  <match tags="pr.*"/>
-	  <match tags="vblex.*"/>
+    <or>
+      <match tags="pr.*"/>
+      <match tags="vblex.*"/>
       <match tags="cnjcoo.*"/>
       <match tags="adv.*"/>
-	</or>
-    <match lemma="ukentlig" tags="adj.*.sg.ind.*"><select lemma="kvar veke"/></match>
+    </or>
+    <match lemma="ukentlig"><select lemma="kvar veke"/></match>
   </rule>
   <rule weight="4.0" c="på vekefast basis">
-	<match tags="pr.*"/>
-    <match lemma="ukentlig" tags="adj.*"><select lemma="vekefast"/></match>
+    <match tags="pr.*"/>
+    <match lemma="ukentlig"><select lemma="vekefast"/></match>
   </rule>
   <rule weight="4.0" c="det vekefaste supermøtet">
-  	<match tags="det.dem.*"/>
+    <match tags="det.dem.*"/>
     <match lemma="ukentlig" tags="adj.*"><select lemma="vekefast"/></match>
   </rule>
   <rule weight="2.0" c="det vekefaste møtet">
     <match lemma="ukentlig" tags="adj.*"><select lemma="vekefast"/></match>
-	<match tags="n.*.def.*"/>
+    <match tags="n.*.def.*"/>
   </rule>
   <rule  weight="2.0" c="eit vekevis opplegg">
     <match lemma="ukentlig" tags="adj.*"><select lemma="vekevis"/></match>
-	<match tags="n.*.ind.*"/>
+    <match tags="n.*.ind.*"/>
   </rule>
   <!-- END: ukentlig, todo: haltande adjektivløysingar, særleg "vekevis", ofte overflødig? -->
 
