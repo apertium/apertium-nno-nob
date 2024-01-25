@@ -5211,7 +5211,11 @@
 
   <rule><match lemma="forskjellig" tags="adj.*"><select lemma="ulik"/></match></rule>
 
-  <rule><match lemma="løpende" tags="adj.*"><select lemma="løpende"/></match></rule>
+  <rule><match lemma="løpende" tags="adj.*"><select lemma="løpande"/></match></rule>
+  <rule weight="3.0">
+    <match lemma="løpende" tags="adj.*"><select lemma="løpande"/></match>
+    <match tags="n.*"/>
+  </rule>
   <rule weight="2.0">
     <or>
       <match lemma="komme"/>
