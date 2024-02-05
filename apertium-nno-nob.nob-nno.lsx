@@ -271,6 +271,11 @@
       <e><i><w/><s n="det"/><t/><d/></i></e>
     </pardef>
 
+    <pardef n="det_det|empty">
+      <e></e>
+      <e><i>den<s n="det"/><s n="dem"/><s n="nt"/><t/><d/></i></e>
+    </pardef>
+
     <pardef n="adj">
       <e><i><w/><s n="adj"/><t/><d/></i></e>
       <e>
@@ -896,6 +901,44 @@
       <e><par n="cm"/></e>
       <e><i>og<s n="cnjcoo"/><t/></i> <par n="d"/></e>
       <e><i>eller<s n="cnjcoo"/><t/></i> <par n="d"/></e>
+    </pardef>
+
+    <pardef n="være/bli_mene-være">
+      <e>
+        <p><l>være<s n="vblex"/><s n="pres"/></l>             <r>mene<s n="vblex"/><s n="pres"/></r></p> <i><t/><d/></i>
+        <p><l></l>             <r>være<s n="vblex"/><s n="pres"/></r></p>
+      </e>
+      <e>
+        <p><l>være<s n="vblex"/><s n="pret"/></l>             <r>mene<s n="vblex"/><s n="pret"/></r></p> <i><t/><d/></i>
+        <p><l></l>             <r>være<s n="vblex"/><s n="pret"/></r></p>
+      </e>
+      <e>
+        <p><l>bli<s n="vblex"/><s n="pres"/></l>             <r>mene<s n="vblex"/><s n="pres"/></r></p> <i><t/><d/></i>
+        <p><l></l>             <r>være<s n="vblex"/><s n="pres"/></r></p>
+      </e>
+      <e>
+        <p><l>bli<s n="vblex"/><s n="pret"/></l>             <r>mene<s n="vblex"/><s n="pret"/></r></p> <i><t/><d/></i>
+        <p><l></l>             <r>være<s n="vblex"/><s n="pret"/></r></p>
+      </e>
+    </pardef>
+
+    <pardef n="være/bli_mene-ha">
+      <e>
+        <p><l>være<s n="vblex"/><s n="pres"/></l>             <r>mene<s n="vblex"/><s n="pres"/></r></p> <i><t/><d/></i>
+        <p><l></l>             <r>ha<s n="vblex"/><s n="pres"/></r></p>
+      </e>
+      <e>
+        <p><l>være<s n="vblex"/><s n="pret"/></l>             <r>mene<s n="vblex"/><s n="pret"/></r></p> <i><t/><d/></i>
+        <p><l></l>             <r>ha<s n="vblex"/><s n="pret"/></r></p>
+      </e>
+      <e>
+        <p><l>bli<s n="vblex"/><s n="pres"/></l>             <r>mene<s n="vblex"/><s n="pres"/></r></p> <i><t/><d/></i>
+        <p><l></l>             <r>ha<s n="vblex"/><s n="pres"/></r></p>
+      </e>
+      <e>
+        <p><l>bli<s n="vblex"/><s n="pret"/></l>             <r>mene<s n="vblex"/><s n="pret"/></r></p> <i><t/><d/></i>
+        <p><l></l>             <r>ha<s n="vblex"/><s n="pret"/></r></p>
+      </e>
     </pardef>
 
     <pardef n="Tidsuttrykk">
@@ -2877,6 +2920,11 @@
       <e><i><w/><s n="prn"/><s n="ref"/><t/><d/></i></e>
     </pardef>
 
+    <pardef n="seg|empty">
+      <e></e>
+      <e><i><w/><s n="prn"/><s n="ref"/><t/><d/></i></e>
+    </pardef>
+
     <pardef n="rem-seg">
       <e><p><l><w/><s n="prn"/><s n="ref"/><t/><d/></l> <r></r></p></e>
     </pardef>
@@ -3403,6 +3451,12 @@
       <e><p><l>ytterligere<s n="adv"/></l>                                              <r></r></p> </e>
     </pardef>
 
+    <pardef n="REM_antatt">
+      <e><p><l>anta<s n="vblex"/><s n="pp"/><t/></l>       <r></r></p>  <par n="d:"/></e>
+      <e><p><l>anta<s n="adj"/><s n="pp"/><t/></l>         <r></r></p>  <par n="d:"/></e>
+      <e><p><l>antatt<s n="adv"/><t/></l>                  <r></r></p>  <par n="d:"/></e>
+    </pardef>
+
     <pardef n="at/om/av/som">
       <e><i>at<s n="adv"/></i> <par n="d"/></e>
       <e><i>at<s n="cnjsub"/></i> <par n="d"/></e>
@@ -3449,6 +3503,13 @@
     <pardef n="adj|empty" c="Includes empty!">
       <e></e>
       <e><par n="adj"/></e>
+    </pardef>
+
+    <pardef n="adj|adv|pr|empty" c="Includes empty!">
+      <e></e>
+      <e><par n="adj"/></e>
+      <e><par n="ADV"/></e>
+      <e><par n="pr"/></e>
     </pardef>
 
     <pardef n="pp|adj">
@@ -10313,6 +10374,135 @@
       <p><l></l>      <r>gå<s n="vblex"/><s n="pp"/><d/></r></p>
       <p><l></l>      <r>ut<s n="pr"/><d/></r></p>
       <p><l></l>      <r>fra<s n="pr"/><d/></r></p>
+    </e>
+    
+    <e lm="bli + antatt at -> være + grunn til å tro at" c="vere + grunn til å tru at">
+      <p><l>bli<s n="vblex"/></l>            <r>være<s n="vblex"/></r></p>   <i><t/><d/></i>
+      <par n="det_det|empty"/>
+      <par n="REM_antatt"/>
+      <p><l></l>      <r>grunn<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/><s n="aa"/><d/></r></p>
+      <p><l></l>      <r>til<s n="pr"/><s n="aa"/><d/></r></p>
+      <p><l></l>      <r>å<s n="part"/><s n="aa"/><d/></r></p>
+      <p><l></l>      <r>tro<s n="vblex"/><s n="inf"/><s n="aa"/><d/></r></p>
+      <i>at<t/></i>  <par n="d"/>
+    </e>
+        
+    <e lm="være + antatt at -> være + grunn til å tro at" c="vere + grunn til å tru at">
+      <i>være<s n="vblex"/><t/></i> <par n="d"/>
+      <par n="det_det|empty"/>
+      <par n="REM_antatt"/>
+      <p><l></l>      <r>grunn<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/><s n="aa"/><d/></r></p>
+      <p><l></l>      <r>til<s n="pr"/><s n="aa"/><d/></r></p>
+      <p><l></l>      <r>å<s n="part"/><s n="aa"/><d/></r></p>
+      <p><l></l>      <r>tro<s n="vblex"/><s n="inf"/><s n="aa"/><d/></r></p>
+      <i>at<t/></i>  <par n="d"/>
+    </e>
+    
+    <e lm="som + være + antatt å være -> som man + meine + være " c="som ein + meine + vere">
+      <i>som<t/><d/></i>
+      <p><l></l>                <r>man<s n="prn"/><s n="pers"/><s n="p3"/><s n="un"/><s n="sg"/><s n="nom"/><s n="aa"/><d/></r></p>
+      <par n="være/bli_mene-være"/>
+      <par n="REM_antatt"/>
+      <p><l>å<s n="part"/><t/></l>                      <r></r></p>  <par n="d:"/>
+      <p><l>være<s n="vblex"/><s n="inf"/><t/></l>      <r></r></p>  <par n="d:"/>
+    </e>
+    
+    <e lm="som + bli + antatt å være -> som man + mene + være " c="som ein + meiner + vere">
+      <i>som<t/><d/></i>
+      <p><l></l>                <r>man<s n="prn"/><s n="pers"/><s n="p3"/><s n="un"/><s n="sg"/><s n="nom"/><s n="aa"/><d/></r></p>
+      <par n="være/bli_mene-være"/>
+      <par n="REM_antatt"/>
+      <p><l>å<s n="part"/><t/></l>                      <r></r></p>  <par n="d:"/>
+      <p><l>være<s n="vblex"/><s n="inf"/><t/></l>      <r></r></p>  <par n="d:"/>
+    </e>
+    
+    <e lm="som + være + antatt å ha -> som man + mene + ha " c="som ein + meine + ha">
+      <i>som<t/><d/></i>
+      <p><l></l>                <r>man<s n="prn"/><s n="pers"/><s n="p3"/><s n="un"/><s n="sg"/><s n="nom"/><s n="aa"/><d/></r></p>
+      <par n="være/bli_mene-ha"/>
+      <par n="REM_antatt"/>
+      <p><l>å<s n="part"/><t/></l>                      <r></r></p>  <par n="d:"/>
+      <p><l>ha<s n="vblex"/><s n="inf"/><t/></l>      <r></r></p>  <par n="d:"/>
+    </e>
+    
+    <e lm="som + bli + antatt å ha -> som + være + truleg" c="som + truleg + vere">
+      <i>som<t/><d/></i>
+      <p><l></l>                <r>man<s n="prn"/><s n="pers"/><s n="p3"/><s n="un"/><s n="sg"/><s n="nom"/><s n="aa"/><d/></r></p>
+      <par n="være/bli_mene-ha"/>
+      <par n="REM_antatt"/>
+      <p><l>å<s n="part"/><t/></l>                      <r></r></p>  <par n="d:"/>
+      <p><l>ha<s n="vblex"/><s n="inf"/><t/></l>      <r></r></p>  <par n="d:"/>
+    </e>
+    
+    <e lm="være + antatt å være -> være + trolig" c="vere + truleg">
+      <i>være<s n="vblex"/><t/><d/></i>
+      <par n="adj|adv|pr|empty"/>
+      <par n="REM_antatt"/>
+      <p><l>å<s n="part"/><t/></l>                      <r></r></p>  <par n="d:"/>
+      <p><l>være<s n="vblex"/><s n="inf"/><t/></l>      <r></r></p>  <par n="d:"/>
+      <p><l></l>                <r>trolig<s n="adv"/><s n="aa"/><d/></r></p>
+    </e>
+    
+    <e lm="KOMMA, være + antatt å være -> , trolig + være" c=", truleg + vere">
+      <i><w/><s n="cm"/><t/><d/></i>
+      <p><l></l>                <r>trolig<s n="adv"/><s n="aa"/><d/></r></p>
+      <i>være<s n="vblex"/><t/><d/></i>
+      <par n="REM_antatt"/>
+      <p><l>å<s n="part"/><t/></l>                      <r></r></p>  <par n="d:"/>
+      <p><l>være<s n="vblex"/><s n="inf"/><t/></l>      <r></r></p>  <par n="d:"/>
+    </e>
+    
+    <e lm="bli + antatt å være -> være + truleg" c="vere + truleg">
+      <p><l>bli</l>                      <r>være</r></p> <i><t/><d/></i>
+      <par n="REM_antatt"/>
+      <p><l>å<s n="part"/><t/></l>                      <r></r></p>  <par n="d:"/>
+      <p><l>være<s n="vblex"/><s n="inf"/><t/></l>      <r></r></p>  <par n="d:"/>
+      <p><l></l>                <r>trolig<s n="adv"/><s n="aa"/><d/></r></p>
+    </e>
+    
+    <e lm="KOMMA, bli + antatt å være -> , trolig + være" c=", truleg + vere">
+      <i><w/><s n="cm"/><t/><d/></i>
+      <p><l></l>                <r>trolig<s n="adv"/><s n="aa"/><d/></r></p>
+      <p><l>bli</l>                      <r>være</r></p> <i><t/><d/></i>
+      <par n="REM_antatt"/>
+      <p><l>å<s n="part"/><t/></l>                      <r></r></p>  <par n="d:"/>
+      <p><l>være<s n="vblex"/><s n="inf"/><t/></l>      <r></r></p>  <par n="d:"/>
+    </e>
+    
+    <e lm="være + antatt å ha -> kunne + ha" c="kunne + ha">
+      <p><l>være</l>                      <r>kunne</r></p> <i><t/><d/></i>
+      <par n="REM_antatt"/>
+      <p><l>å<s n="part"/><t/></l>                      <r></r></p>  <par n="d:"/>
+      <i>ha<s n="vblex"/><t/><d/></i>
+    </e>
+    
+    <e lm="bli + antatt å + ha -> ha + antagelig" c="ha + antakeleg">
+      <p><l>bli</l>                      <r>kunne</r></p> <i><t/><d/></i>
+      <par n="REM_antatt"/>
+      <p><l>å<s n="part"/><t/></l>                      <r></r></p>  <par n="d:"/>
+      <i>ha<s n="vblex"/><t/><d/></i>
+    </e>
+    
+    <e lm="være + antatt å + vblex -> være + ventet å + vblex" c="vere venta å ">
+      <i>være<s n="vblex"/><t/></i>  <par n="d"/>
+      <par n="REM_antatt"/>
+      <p><l></l>                <r>vente<s n="vblex"/><s n="pp"/><s n="aa"/><d/></r></p>
+      <i>å<s n="part"/></i>  <par n="d"/>
+      <i><w/><s n="vblex"/><s n="inf"/></i>  <par n="d"/>
+    </e>
+    
+    <e lm="blir antatt å + vblex -> vblex + trolig" c="vblex + truleg">
+      <p><l>bli</l>                      <r>være</r></p> <i><t/><d/></i>
+      <par n="REM_antatt"/>
+      <p><l></l>                <r>vente<s n="vblex"/><s n="pp"/><s n="aa"/><d/></r></p>
+      <i>å<s n="part"/></i>  <par n="d"/>
+      <i><w/><s n="vblex"/><s n="inf"/></i>  <par n="d"/>
+    </e>
+    
+    <e lm="enn antatt -> enn ventet" c="enn venta">
+      <i>enn<t/></i>  <par n="d"/>
+      <par n="REM_antatt"/>
+      <p><l></l>                <r>vente<s n="vblex"/><s n="pp"/><s n="aa"/><d/></r></p>
     </e>
 
     <e lm="være ubestridt at -> være hevet over tvil at" c="vere heva over tvil at">
