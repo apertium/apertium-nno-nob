@@ -689,14 +689,6 @@
       <e><i><w/><s n="det"/><t/><d/></i><par n="ncmp*.n"/></e>
     </pardef>
 
-    <pardef n="SN-exp">
-      <e><par n="SN"/></e>
-      <e><par n="SN"/><i><w/><s n="cnjcoo"/><t/><d/></i><par n="SN"/></e>                               <!-- ditt og datt -->
-      <e><par n="SN"/><par n="cm"/><par n="SN"/><i><w/><s n="cnjcoo"/><t/><d/></i><par n="SN"/></e>     <!-- ditt, datt og dutt -->
-      <e><par n="SN"/><i><w/><s n="pr"/><t/><d/></i><par n="SN"/></e>                                   <!-- karakterer i krise -->
-      <e><i><w/><s n="adv"/><t/><d/></i><par n="SN"/><par n="SN"/></e>                                  <!-- helt vanlige mennesklige egenskaper -->
-    </pardef>
-
     <pardef n="SN-mange">
       <e><par n="SN"/></e>
       <e><i>mange<s n="adj"/><t/><d/></i></e>
@@ -729,6 +721,16 @@
       <e><par n="SN"/></e>
       <e><i><w/><s n="det"/><t/><d/></i><par n="SN"/></e>
       <e><i><w/><t/><s n="@det→"/><d/></i><i><w/><t/><s n="@det→"/><d/></i><par n="SN"/></e> <!-- «det samme været» -->
+    </pardef>
+
+    <pardef n="SN-exp">
+      <e><par n="SN"/></e>
+      <e><par n="det+SN"/></e>                                                                          <!-- alle verdier -->
+      <e><par n="det+SN"/><i><w/><s n="cnjcoo"/><t/><d/></i><par n="det+SN"/></e>                       <!-- all mening og alle verdier -->
+      <e><par n="SN"/><i><w/><s n="cnjcoo"/><t/><d/></i><par n="SN"/></e>                               <!-- ditt og datt -->
+      <e><par n="SN"/><par n="cm"/><par n="SN"/><i><w/><s n="cnjcoo"/><t/><d/></i><par n="SN"/></e>     <!-- ditt, datt og dutt -->
+      <e><par n="SN"/><i><w/><s n="pr"/><t/><d/></i><par n="SN"/></e>                                   <!-- karakterer i krise -->
+      <e><i><w/><s n="adv"/><t/><d/></i><par n="SN"/><par n="SN"/></e>                                  <!-- helt vanlige mennesklige egenskaper -->
     </pardef>
 
     <pardef n="pr+np">
@@ -847,6 +849,7 @@
       <e><par n="SN"/><par n="pr"/><par n="SN"/></e>
       <e><par n="pr"/><par n="det+det+SN"/></e>
       <e><par n="SN"/><par n="np"/></e>
+      <e><par n="SN-exp"/></e>
     </pardef>
     
     <pardef n="np|prn|n" c="idømme barn/han / Norsk Pasientskadeerstatning">
@@ -3005,6 +3008,27 @@
       <e><p><l>være<s n="vblex"/><s n="pret"/></l>          <r>spille<s n="vblex"/><s n="pret"/></r></p>  <i><t/><d/></i></e>
       <e><p><l>være<s n="vblex"/><s n="pp"/></l>          <r>spille<s n="vblex"/><s n="pp"/></r></p>  <i><t/><d/></i></e>
     </pardef>
+
+    <pardef n="to-verb-passiv" c="bli send; kunne spille">
+      <e>
+        <i><w/><s n="vblex"/><t/><d/></i>
+        <par n="adj|empty"/>
+      </e>
+      <e>
+        <i><w/><s n="vblex"/><t/><d/></i>
+        <i><w/><s n="vblex"/><s n="pp"/><t/><d/></i>
+      </e>
+      <e>
+        <par n="modal+ville"/>
+        <i><w/><s n="vblex"/><s n="inf"/><t/><d/></i>
+      </e>
+    </pardef>
+  
+    <pardef n="vblex|to-verb-passiv">
+      <e><i><w/><s n="vblex"/><t/><d/></i></e>
+      <e><par n="to-verb-passiv"/></e>
+    </pardef>
+  
 
     <pardef n="se_ta">
       <e><p><l>se<s n="vblex"/></l>          <r>ta<s n="vblex"/></r></p>  <i><t/><d/></i></e>
@@ -17281,6 +17305,42 @@
   <i>ingen<t/><d/></i>
   <p><l>verd<t/><d/></l> <r></r></p>
   <i>ting<t/><d/></i>
+</e>
+
+<e lm="hvorfra de fikk opplysningene → hvor de fikk opplysningene fra" c="kvar dei fekk opplysningane frå">
+  <p><l>hvorfra</l>           <r>hvor</r></p> <i><t/><d/></i>
+  <par n="SN|np|prn|det|SN+pr+SN"/>
+  <i><w/><s n="vblex"/><t/><d/></i>
+  <par n="SN|np|prn|det|SN+pr+SN"/>
+  <p><l></l>          <r>fra<s n="adv"/><s n="aa"/><d/></r></p>
+</e>
+
+<e lm="subst + hvorfra meldingen ble sendt → subst + som meldingen ble sendt fra" c="hytteturen som meldinga vart send frå">
+  <i><w/><s n="n"/><t/><d/></i>
+  <p><l>hvorfra<t/></l>      <r></r></p>   <par n="d:"/>
+  <p><l></l>          <r>som<s n="cnjsub"/><s n="aa"/><d/></r></p>
+  <par n="SN|np|prn|det|SN+pr+SN"/>
+  <par n="vblex|to-verb-passiv"/>
+  <p><l></l>          <r>fra<s n="adv"/><s n="aa"/><d/></r></p>
+</e>
+
+<e lm="hvorfra han kommer → hvor han kommer fra" c="kvar han kjem frå">
+  <p><l>hvorfra</l>           <r>hvor</r></p> <i><t/><d/></i>
+  <par n="SN|np|prn|det|SN+pr+SN"/>
+  <par n="vblex|to-verb-passiv"/>
+  <p><l></l>          <r>fra<s n="adv"/><s n="aa"/><d/></r></p>
+</e>
+
+<e lm="subst + KOMMA, hvorfra → KOMMA, der" C="ein utestad, der hovudfornærma vart kasta ut">
+  <i><w/><s n="n"/><t/><d/></i>
+  <par n="cm"/>
+  <p><l>hvorfra</l>           <r>der</r></p> <i><t/><d/></i>
+</e>
+
+<e lm="stadnamn + KOMMA, hvorfra → KOMMA, der" c="Egypt, der forsyningane vil sendast inn til Gaza">
+  <i><w/><s n="np"/><s n="top"/><t/><d/></i>
+  <par n="cm"/>
+  <p><l>hvorfra</l>           <r>der</r></p> <i><t/><d/></i>
 </e>
 
 </section>
