@@ -840,6 +840,19 @@
       <e><i><w/><s n="np"/><t/><d/></i><par n="ncmp*.n"/></e>
     </pardef>
 
+    <pardef n="SN-exp|np|prn|det|adv|adj|empty" c="Includes empty!">
+      <e></e>
+      <e><par n="SN-exp"/></e>
+      <e><par n="det+SN"/></e>
+      <e><par n="prn"/></e>
+      <e><i><w/><s n="np"/><t/><d/></i></e>
+      <e><par n="adj"/></e><e><i><w/><s n="np"/><t/><d/></i></e>
+      <e><i><w/><s n="det"/><t/><d/></i></e>
+      <e><i><w/><s n="np"/><t/><d/></i><par n="ncmp*.n"/></e>
+      <e><par n="ADV"/></e>
+      <e><par n="adj"/></e>
+    </pardef>
+
     <pardef n="SN|np|prn|det|SN+pr+SN">
       <e><par n="det+SN"/></e>
       <e><par n="prn"/></e>
@@ -8236,6 +8249,13 @@
       <p><l>framtid<s n="n"/><t/><s n="sg"/><s n="def"/></l>  <r></r></p>  <par n="d:"/>
       <p><l>bringe<s n="vblex"/><s n="pres"/></l>  <r></r></p>  <par n="d:"/>
       <p><l></l>                 <r>framtidsplan<s n="n"/><s n="m"/><s n="pl"/><s n="def"/><d/></r></p>
+    </e>
+
+    <e lm="bringe (noe) med seg -> føre (noe) med seg" c="føre (noko) med seg">
+      <p><l>bringe</l>   <r>føre</r></p> <i><t/><d/></i>
+      <par n="SN-exp|np|prn|det|adv|adj|empty"/>
+      <i>med<t/><d/></i>
+      <par n="refl-prn"/>
     </e>
 
     <e lm="berøre i avhør -> ta opp i avhør" c="ta opp i avhør">
