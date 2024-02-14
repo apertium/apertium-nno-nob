@@ -283,21 +283,29 @@
         <i><w/><s n="adj"/><t/><d/></i>
       </e>
     </pardef>
-    <pardef n="adj.ord|comp">
-      <e><i><w/><s n="adj"/><s n="ord"/><t/><d/></i></e>
-      <e><i><w/><s n="adj"/><s n="comp"/><t/><d/></i></e>
-      <e><i><w/><s n="adj"/><s n="sint"/><s n="comp"/><t/><d/></i></e>
-    </pardef>
     <pardef n="adj|empty">
       <e></e>
       <e><par n="adj"/></e>
       <e><par n="adj"/><par n="adj"/></e>
       <e><par n="adj"/><par n="adj"/><par n="adj"/></e>
     </pardef>
+    <pardef n="adj.pst.def">
+      <e><i><w/><s n="adj"/><s n="pst"/><s n="un"/><s n="sp"/><s n="def"/><t/><d/></i></e>
+      <e><i><w/><s n="adj"/><s n="sint"/><s n="pst"/><s n="un"/><s n="sp"/><s n="def"/><t/><d/></i></e>
+      <e><i><w/><s n="adj"/><s n="pp"/><s n="pl"/><t/><d/></i></e>
+    </pardef>
+    <pardef n="adj.ord|comp">
+      <e><i><w/><s n="adj"/><s n="ord"/><t/><d/></i></e>
+      <e><i><w/><s n="adj"/><s n="comp"/><t/><d/></i></e>
+      <e><i><w/><s n="adj"/><s n="sint"/><s n="comp"/><t/><d/></i></e>
+    </pardef>
     <pardef n="adj.ord|sup">
       <e><i><w/><s n="adj"/><s n="ord"/><t/><d/></i></e>
       <e><i><w/><s n="adj"/><s n="sup"/><t/><d/></i></e>
       <e><i><w/><s n="adj"/><s n="sint"/><s n="sup"/><t/><d/></i></e>
+      <e>
+        <i><w/><s n="adv"/><t/><d/></i>
+      </e>
     </pardef>
     <pardef n="adj.ord|sup+adv">
       <e><par n="adj.ord|sup"/></e>
@@ -305,12 +313,29 @@
         <i><w/><s n="adv"/><t/><d/></i>
         <par n="adj.ord|sup"/>
       </e>
+      <e>
+        <i><w/><s n="adj"/><t/><d/></i>
+        <par n="adj.ord|sup"/>
+      </e>
       <e><par n="adj.ord|sup"/></e>
       <e>
         <par n="adj.ord|sup"/>
         <par n="adj"/>
       </e>
+      <e c="mest respekterte">
+        <i>mye<s n="adj"/><s n="sint"/><s n="sup"/><t/><d/></i>
+        <par n="adj.pst.def"/>
+      </e>
+      <e c="minst respekterte">
+        <i>liten<s n="adj"/><s n="sint"/><s n="sup"/><t/><d/></i>
+        <par n="adj.pst.def"/>
+      </e>
+      <e c="mest/minst respekterte">
+        <i><w/><s n="adv"/><t/><d/></i>
+        <par n="adj.pst.def"/>
+      </e>
     </pardef>
+
     <pardef n="adj.sup2comp">
       <e>
         <i><w/><s n="adj"/><s n="sup"/></i>
@@ -1557,6 +1582,19 @@
       <e><i>gang<s n="n"/><s n="m"/><s n="pl"/><s n="ind"/><t/></i></e>
       <e><i>sted<s n="n"/><t/><s n="pl"/><s n="ind"/><t/></i></e>
       <e><i>tilfelle<s n="n"/><t/><s n="pl"/><s n="ind"/><t/></i></e>
+    </pardef>
+    
+    <pardef n="n.nt.sg_ind2def">
+      <e><par n="ncmp*"/><i><w/><s n="n"/><s n="nt"/><s n="sg"/></i>  <p><l><s n="ind"/></l><r><s n="def"/></r></p> <par n="d"/></e>
+    </pardef>
+
+    <pardef n="n.mf.sg_ind2def">
+      <e><par n="ncmp*"/><i><w/><s n="n"/><s n="m"/><s n="sg"/></i>  <p><l><s n="ind"/></l><r><s n="def"/></r></p> <par n="d"/></e>
+      <e><par n="ncmp*"/><i><w/><s n="n"/><s n="f"/><s n="sg"/></i>  <p><l><s n="ind"/></l><r><s n="def"/></r></p> <par n="d"/></e>
+    </pardef>
+    
+    <pardef n="n.*.pl_ind2def">
+      <e><par n="ncmp*"/><i><w/><s n="n"/><t/><s n="pl"/></i>  <p><l><s n="ind"/></l><r><s n="def"/></r></p> <par n="d"/></e>
     </pardef>
 
     <pardef n="genitiv2cmp" c="politiets arrest -> politiarresten; jf. t1x-reglar">
@@ -3804,6 +3842,25 @@
         <par n="ANYWORD|"/>
         <par n="ANYWORD|"/>
       </e>
+    </pardef>
+
+    <pardef n="ANYWORD-except-n" c="not n or np">
+      <e><i><w/><s n="vblex"/><t/><d/></i></e>
+      <e><i><w/><s n="adj"/><t/><d/></i></e>
+      <e><i><w/><s n="adv"/><t/><d/></i></e>
+      <e><i><w/><s n="pr"/><t/><d/></i></e>
+      <e><i><w/><s n="prn"/><t/><d/></i></e>
+      <e><i><w/><s n="cnjsub"/><t/><d/></i></e>
+      <e><i><w/><s n="cnjcoo"/><t/><d/></i></e>
+      <e><i><w/><s n="det"/><t/><d/></i></e>
+      <e><i><w/><s n="ij"/><t/><d/></i></e>
+      <e><i><w/><s n="cm"/><t/><d/></i></e>
+      <e><i><w/><s n="sent"/><t/><d/></i></e>
+    </pardef>
+
+    <pardef n="beste|empty_beste">
+      <e><i>god<s n="adj"/><s n="sint"/><s n="sup"/><s n="un"/><s n="sp"/><s n="def"/><t/><d/></i></e>
+      <e><p><l></l>                  <r>god<s n="adj"/><s n="sint"/><s n="sup"/><s n="un"/><s n="sp"/><s n="def"/><s n="aa"/><d/></r></p></e>
     </pardef>
 
     <pardef n="persontitlar-korte">
@@ -12595,6 +12652,74 @@
     <p><l>denne<s n="det"/><s n="dem"/><t/></l>  <r></r></p> <par n="d:"/>
     <i>land<t/><s n="gen"/><t/><d/></i>
     <i>verdighet<t/><d/></i>
+  </e>
+
+  <e lm="landets nest største (private) selskap -> det nest største (private) selskapet i landet" c="n + nt">
+    <p><l>land<s n="n"/><s n="nt"/><s n="sg"/><s n="def"/><s n="gen"/><t/></l>           <r></r></p> <par n="d:"/>
+    <p><l></l>                  <r>den<s n="det"/><s n="dem"/><s n="nt"/><s n="sg"/><d/></r></p>
+    <par n="adj.ord|sup+adv"/>
+    <par n="adj|empty"/>
+    <par n="n.nt.sg_ind2def"/>
+    <p><l></l>  <r>i<s n="pr"/><d/></r></p>
+    <p><l></l>  <r>land<s n="n"/><s n="nt"/><s n="sg"/><s n="def"/><d/></r></p>
+  </e>
+
+  <e lm="landets nest største (militære) by -> den nest største (militære) byen i landet" c="n + mf">
+    <p><l>land<s n="n"/><s n="nt"/><s n="sg"/><s n="def"/><s n="gen"/><t/></l>           <r></r></p> <par n="d:"/>
+    <p><l></l>                  <r>den<s n="det"/><s n="dem"/><s n="m"/><s n="sg"/><d/></r></p>
+    <par n="adj.ord|sup+adv"/>
+    <par n="adj|empty"/>
+    <par n="n.mf.sg_ind2def"/>
+    <p><l></l>  <r>i<s n="pr"/><d/></r></p>
+    <p><l></l>  <r>land<s n="n"/><s n="nt"/><s n="sg"/><s n="def"/><d/></r></p>
+  </e>
+
+  <e lm="landets aller største (forhenværende) diktere  -> de aller største (forhenværende) dikterne i landet" c="n + pl">
+    <p><l>land<s n="n"/><s n="nt"/><s n="sg"/><s n="def"/><s n="gen"/><t/></l>           <r></r></p> <par n="d:"/>
+    <p><l></l>                  <r>den<s n="det"/><s n="dem"/><s n="un"/><s n="pl"/><d/></r></p>
+    <par n="adj.ord|sup+adv"/>
+    <par n="adj|empty"/>
+    <par n="n.*.pl_ind2def"/>
+    <p><l></l>  <r>i<s n="pr"/><d/></r></p>
+    <p><l></l>  <r>land<s n="n"/><s n="nt"/><s n="sg"/><s n="def"/><d/></r></p>
+  </e>
+
+  <e lm="er landets rikeste -> er den rikeste i landet" c="sup utan substantiv etter">
+    <i>være<t/><d/></i>
+    <p><l>land<s n="n"/><s n="nt"/><s n="sg"/><s n="def"/><s n="gen"/><t/></l>           <r></r></p> <par n="d:"/>
+    <p><l></l>                  <r>den<s n="det"/><s n="dem"/><s n="m"/><s n="sg"/><d/></r></p>
+    <par n="adj.ord|sup+adv"/>
+    <p><l></l>  <r>i<s n="pr"/><d/></r></p>
+    <p><l></l>  <r>land<s n="n"/><s n="nt"/><s n="sg"/><s n="def"/><d/></r></p>
+    <par n="ANYWORD-except-n"/>
+  </e>
+
+  <e lm="landets fattige -> de fattige i landet" c="adj utan substantiv etter">
+    <p><l>land<s n="n"/><s n="nt"/><s n="sg"/><s n="def"/><s n="gen"/><t/></l>           <r></r></p> <par n="d:"/>
+    <p><l></l>                  <r>den<s n="det"/><s n="dem"/><s n="un"/><s n="pl"/><d/></r></p>
+    <par n="adj"/>
+    <p><l></l>  <r>i<s n="pr"/><d/></r></p>
+    <p><l></l>  <r>land<s n="n"/><s n="nt"/><s n="sg"/><s n="def"/><d/></r></p>
+    <par n="ANYWORD-except-n"/>
+  </e>
+
+  <e lm="landets mest respekterte intellektuelle -> de mest respekterte intellektuelle i landet" c="adj utan substantiv etter">
+    <p><l>land<s n="n"/><s n="nt"/><s n="sg"/><s n="def"/><s n="gen"/><t/></l>           <r></r></p> <par n="d:"/>
+    <p><l></l>                  <r>den<s n="det"/><s n="dem"/><s n="un"/><s n="pl"/><d/></r></p>
+    <par n="adj.ord|sup+adv"/>
+    <par n="adj"/>
+    <p><l></l>  <r>i<s n="pr"/><d/></r></p>
+    <p><l></l>  <r>land<s n="n"/><s n="nt"/><s n="sg"/><s n="def"/><d/></r></p>
+    <par n="ANYWORD-except-n"/>
+  </e>
+
+  <e lm="i landets (beste) interesse -> til beste for landet">
+    <p><l>i<s n="pr"/></l>   <r>til<s n="pr"/></r></p> <i><t/><d/></i>
+    <p><l>land<s n="n"/><s n="nt"/><s n="sg"/><s n="def"/><s n="gen"/><t/></l>           <r></r></p> <par n="d:"/>
+    <par n="beste|empty_beste"/>
+    <p><l>interesse<s n="n"/><t/></l>           <r></r></p> <par n="d:"/>
+    <p><l></l>  <r>for<s n="pr"/><d/></r></p>
+    <p><l></l>  <r>land<s n="n"/><s n="nt"/><s n="sg"/><s n="def"/><d/></r></p>
   </e>
 
   <e lm="stridens kjerne -> det striden står om" c="det striden står om">
