@@ -71,6 +71,65 @@
     </pipeline>
   </mode>
 
+  <mode name="nob-nno-autoseq-trace" install="no" gendebug="no">
+    <pipeline>
+      <program name="lt-proc -w -e">
+        <file name="nob-nno.automorf.bin"/>
+      </program>
+      <program name="cg-proc" debug-suff="seg">
+	<file name="nob-nno.seg.rlx.bin"/>
+      </program>
+      <program name="cg-proc">
+	<file name="nob-nno.rlx.bin"/>
+      </program>
+      <program name="cg-proc" debug-suff="capstag">
+	<file name="capstag.rlx.bin"/>
+      </program>
+      <program name="cg-proc" debug-suff="syntax">
+	<file name="nob-nno.syn.rlx.bin"/>
+      </program>
+      <program name="apertium-tagger -p -g $2">
+        <file name="nob-nno.prob"/>
+      </program>
+      <program name="cg-proc -n -1" debug-suff="namemerge">
+	<file name="merge-names.rlx.bin"/>
+      </program>
+      <program name="apertium-pretransfer"/>
+      <program name="lsx-proc -w">
+        <file name="nob-nno.autoseq-trace.bin"/>
+      </program>
+    </pipeline>
+  </mode>
+  <mode name="nob-nno_e-autoseq-trace" install="no" gendebug="no">
+    <pipeline>
+      <program name="lt-proc -w -e">
+        <file name="nob-nno.automorf.bin"/>
+      </program>
+      <program name="cg-proc" debug-suff="seg">
+	<file name="nob-nno.seg.rlx.bin"/>
+      </program>
+      <program name="cg-proc">
+	<file name="nob-nno.rlx.bin"/>
+      </program>
+      <program name="cg-proc" debug-suff="capstag">
+	<file name="capstag.rlx.bin"/>
+      </program>
+      <program name="cg-proc" debug-suff="syntax">
+	<file name="nob-nno.syn.rlx.bin"/>
+      </program>
+      <program name="apertium-tagger -p -g $2">
+        <file name="nob-nno.prob"/>
+      </program>
+      <program name="cg-proc -n -1" debug-suff="namemerge">
+	<file name="merge-names.rlx.bin"/>
+      </program>
+      <program name="apertium-pretransfer"/>
+      <program name="lsx-proc -w">
+        <file name="nob-nno.autoseq-trace.bin"/>
+      </program>
+    </pipeline>
+  </mode>
+
   <mode name="before" gendebug="yes">
     <pipeline>
       <program name="lt-proc -w -e">

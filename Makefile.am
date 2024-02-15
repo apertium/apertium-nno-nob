@@ -29,6 +29,7 @@ TARGETS_PREFIX2_FAST =                \
      $(PREFIX2).autolex.bin           \
      $(PREFIX2).autopgen.bin          \
      $(PREFIX2).autoseq.bin           \
+     $(PREFIX2).autoseq-trace.bin           \
      $(PREFIX2).biprefs.rlx.bin       \
      $(PREFIX2).e_vi_genprefs.rlx.bin \
      $(PREFIX2).genprefs.rlx.bin      \
@@ -134,6 +135,14 @@ $(PREFIX1).autoseq.bin: $(BASENAME).$(PREFIX1).lsx
 	lsx-comp lr $< $@
 
 $(PREFIX2).autoseq.bin: $(BASENAME).$(PREFIX2).lsx
+	lsx-comp lr $< $@
+
+
+.deps/trace-$(BASENAME).$(PREFIX2).lsx: $(BASENAME).$(PREFIX2).lsx .deps/.d
+	awk '{gsub(/<e /,"<e linenum=\""NR"\" "); gsub(/<e>/,"<e linenum=\""NR"\">")} {print}' $< > $@.lined
+	xsltproc -o $@ trace-lsx.xslt $@.lined
+
+$(PREFIX2).autoseq-trace.bin: .deps/trace-$(BASENAME).$(PREFIX2).lsx
 	lsx-comp lr $< $@
 
 $(LANG1).autoseq.bin: $(BASENAME).$(LANG1).lsx
