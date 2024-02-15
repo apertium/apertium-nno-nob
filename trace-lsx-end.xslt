@@ -3,28 +3,20 @@
 
   <xsl:output method="xml" encoding="UTF-8"/>
 
-  <xsl:variable name="LineBreak"><xsl:text>&#10;</xsl:text></xsl:variable>
-
   <xsl:template match="section">
     <xsl:copy>
       <xsl:apply-templates select="@*" />
-      <xsl:apply-templates select="./e" mode="Trace">
-        <xsl:with-param name="TemplatesInOrig" select="templates/template"/>
-      </xsl:apply-templates>
+      <xsl:apply-templates select="./e" mode="Trace"/>
     </xsl:copy>
   </xsl:template>
 
+  <!-- Mark the end of rules with END since lsx-comp -d only marks the beginning: -->
   <xsl:template match="e" mode="Trace">
     <xsl:copy>
       <xsl:apply-templates select="@*"/>
-      <!-- The attribute linenum is added by awk in Makefile.am, since
-           xsltproc can't do line numbers (only position()) -->
-      <p><l></l><r>{LINE:<xsl:value-of select="@linenum" /><d/></r></p>
       <xsl:apply-templates select="node()"/>
-      <p><l></l><r><d/>END:<xsl:value-of select="@linenum" />}</r></p>
-      <xsl:value-of select="$LineBreak"/>
+      <p><l></l><r>END</r></p>
     </xsl:copy>
-    <xsl:value-of select="$LineBreak"/>
   </xsl:template>
 
   <!-- workaround for

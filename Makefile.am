@@ -138,12 +138,11 @@ $(PREFIX2).autoseq.bin: $(BASENAME).$(PREFIX2).lsx
 	lsx-comp lr $< $@
 
 
-.deps/trace-$(BASENAME).$(PREFIX2).lsx: $(BASENAME).$(PREFIX2).lsx .deps/.d
-	awk '{gsub(/<e /,"<e linenum=\""NR"\" "); gsub(/<e>/,"<e linenum=\""NR"\">")} {print}' $< > $@.lined
-	xsltproc -o $@ trace-lsx.xslt $@.lined
+.deps/trace-$(BASENAME).$(PREFIX2).lsx: $(BASENAME).$(PREFIX2).lsx trace-lsx-end.xslt .deps/.d
+	xsltproc -o $@ trace-lsx-end.xslt $<
 
 $(PREFIX2).autoseq-trace.bin: .deps/trace-$(BASENAME).$(PREFIX2).lsx
-	lsx-comp lr $< $@
+	lsx-comp --debug lr $< $@
 
 $(LANG1).autoseq.bin: $(BASENAME).$(LANG1).lsx
 	lsx-comp lr $< $@
