@@ -41,6 +41,7 @@ TARGETS_PREFIX2_FAST =                \
      $(PREFIX2).t1x.bin               \
      $(PREFIX2).t2x.bin               \
      $(PREFIX2).t3x.bin               \
+     merge-laws.autoseq.bin           \
      capstag.autoseq.bin              \
      capstag.rlx.bin                  \
      merge-names.rlx.bin              \
@@ -147,8 +148,13 @@ $(PREFIX2).autoseq-trace.bin: .deps/trace-$(BASENAME).$(PREFIX2).lsx
 $(LANG1).autoseq.bin: $(BASENAME).$(LANG1).lsx
 	lsx-comp lr $< $@
 
-# Language-general:
+# Language-general (at least for nob-nno and nno-nob):
 capstag.autoseq.bin: $(BASENAME).capstag.lsx
+	lsx-comp lr $< $@
+
+.deps/laws.lsx: $(BASENAME).laws.txt laws2lsx.awk .deps/.d
+	awk -f laws2lsx.awk $< >$@
+merge-laws.autoseq.bin: .deps/laws.lsx
 	lsx-comp lr $< $@
 
 merge-names.rlx.bin: merge-names.rlx
