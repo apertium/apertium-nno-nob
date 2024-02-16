@@ -420,6 +420,12 @@
       <e><i><w/><s n="adj"/><t/><d/></i></e>
       <e><par n="adv"/></e>
     </pardef>
+    <pardef n="adj|adv|andre|empty">
+      <e></e>
+      <e><i><w/><s n="adj"/><t/><d/></i></e>
+      <e><par n="adv"/></e>
+      <e><i>annen<s n="det"/><s n="dem"/><t/><d/></i></e>
+    </pardef>
     <pardef n="prn">
       <e><i><w/><s n="prn"/><d/></i></e>
       <e><i><w/><s n="prn"/><t/><d/></i></e>
@@ -1224,6 +1230,15 @@
         <i><w/><s n="n"/><t/></i>
         <p><l><t/><s n="sg"/><s n="ind"/></l>      <r><t/><s n="sg"/><s n="def"/></r></p>  <par n="d"/>
       </e>
+    </pardef>
+   
+    <pardef n="tal" c="Incl. million, milliard">
+      <e><i><w/><s n="det"/><s n="qnt"/><t/><d/></i></e>
+      <e><i><w/><s n="det"/><s n="qnt"/><t/><d/></i><i>million<s n="n"/><t/><d/></i></e>
+      <e><i><w/><s n="det"/><s n="qnt"/><t/><d/></i><i>milliard<s n="n"/><t/><d/></i></e>
+      <e><i><w/><s n="det"/><s n="qnt"/><t/><d/></i><i>billion<s n="n"/><t/><d/></i></e>
+      <e><i><w/><s n="det"/><s n="qnt"/><t/><d/></i><i>billiard<s n="n"/><t/><d/></i></e>
+      <e><i><w/><s n="det"/><s n="qnt"/><t/><d/></i><i>trillion<s n="n"/><t/><d/></i></e>
     </pardef>
 
     <pardef n="fjorårs-ord">
@@ -3854,21 +3869,6 @@
         <par n="ANYWORD|"/>
         <par n="ANYWORD|"/>
       </e>
-    </pardef>
-
-    <pardef n="ANYWORD-except-n" c="not n or np">
-      <e><i><d/><w/><s n="vblex"/><t/><d/></i></e>
-      <e><i><d/><w/><s n="adj"/><t/><d/></i></e>
-      <e><i><d/><w/><s n="adv"/><t/><d/></i></e>
-      <e><i><d/><w/><s n="pr"/><t/><d/></i></e>
-      <e><i><w/><s n="pr"/><t/><d/></i></e>
-      <e><i><d/><w/><s n="prn"/><t/><d/></i></e>
-      <e><i><d/><w/><s n="cnjsub"/><t/><d/></i></e>
-      <e><i><d/><w/><s n="cnjcoo"/><t/><d/></i></e>
-      <e><i><d/><w/><s n="det"/><t/><d/></i></e>
-      <e><i><d/><w/><s n="ij"/><t/><d/></i></e>
-      <e><i><d space="no"/><w/><s n="cm"/><t/><d/></i></e>
-      <e><i><d space="no"/><w/><s n="sent"/><t/><d/></i></e>
     </pardef>
 
     <pardef n="beste|empty_beste">
@@ -12687,8 +12687,7 @@
     <p><l></l>  <r>land<s n="n"/><s n="nt"/><s n="sg"/><s n="def"/><d/></r></p>
   </e>
 
-  <e lm="av landets aller største (forhenværende) diktere  -> av de aller største (forhenværende) dikterne i landet" c="n + pl">
-    <i>av<t/><d/></i>
+  <e lm="landets aller største (forhenværende) diktere  -> de aller største (forhenværende) dikterne i landet" c="n + pl">
     <p><l>land<s n="n"/><s n="nt"/><s n="sg"/><s n="def"/><s n="gen"/><t/></l>           <r></r></p> <par n="d:"/>
     <p><l></l>                  <r>den<s n="det"/><s n="dem"/><s n="un"/><s n="pl"/><d/></r></p>
     <par n="adj.ord|sup+adv"/>
@@ -12715,7 +12714,6 @@
     <par n="adj"/>
     <p><l></l>  <r>i<s n="pr"/><d/></r></p>
     <p><l></l>  <r>land<s n="n"/><s n="nt"/><s n="sg"/><s n="def"/><d/></r></p>
-    <par n="ANYWORD-except-n"/>
   </e>
 
   <e lm="i landets (beste) interesse -> til beste for landet">
@@ -12734,7 +12732,6 @@
     <par n="adj.ord|sup+adv"/>
     <p><l></l>  <r>i<s n="pr"/><d/></r></p>
     <p><l></l>  <r>land<s n="n"/><s n="nt"/><s n="sg"/><s n="def"/><d/></r></p>
-    <par n="ANYWORD-except-n"/>
   </e>
 
   <e lm="landets fattige -> de fattige i landet" c="adj utan substantiv etter">
@@ -12743,7 +12740,18 @@
     <par n="adj"/>
     <p><l></l>  <r>i<s n="pr"/><d/></r></p>
     <p><l></l>  <r>land<s n="n"/><s n="nt"/><s n="sg"/><s n="def"/><d/></r></p>
-    <par n="ANYWORD-except-n"/>
+    <par n="ADV|empty"/>
+    <i><w/><s n="vblex"/><t/><d/></i>
+  </e>
+
+  <e lm="landets elleve fylker -> de elleve fylkene i landet" c="dei elleve fylka i landet">
+    <p><l>land<s n="n"/><s n="nt"/><s n="sg"/><s n="def"/><s n="gen"/><t/></l>           <r></r></p> <par n="d:"/>
+    <p><l></l>                  <r>den<s n="det"/><s n="dem"/><s n="un"/><s n="pl"/><d/></r></p>
+    <par n="tal" c="Incl. million, milliard"/>
+    <par n="adj|adv|andre|empty"/>
+    <par n="n.*.pl_ind2def"/>
+    <p><l></l>  <r>i<s n="pr"/><d/></r></p>
+    <p><l></l>  <r>land<s n="n"/><s n="nt"/><s n="sg"/><s n="def"/><d/></r></p>
   </e>
 
   <e lm="stridens kjerne -> det striden står om" c="det striden står om">
