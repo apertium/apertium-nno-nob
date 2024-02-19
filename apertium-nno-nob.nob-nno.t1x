@@ -12,7 +12,7 @@
     <def-cat n="ngen">
       <cat-item tags="n.*.gen.*"/>
     </def-cat>
-    <def-cat n="nsgind" c="Not cmp!">
+    <def-cat n="nsgind" c="Not cmp/gen!">
       <cat-item tags="n.*.sg.ind.aa"/>
       <cat-item tags="n.*.sg.ind.Aa"/>
       <cat-item tags="n.*.sg.ind.AA"/>
@@ -25,6 +25,11 @@
       <cat-item tags="n.*.*.ind.Aa"/>
       <cat-item tags="n.*.*.ind.AA"/>
       <cat-item tags="n.*.*.ind.gen.*"/>
+    </def-cat>
+    <def-cat n="nind_nogen" c="Not gen/cmp!">
+      <cat-item tags="n.*.*.ind.aa"/>
+      <cat-item tags="n.*.*.ind.Aa"/>
+      <cat-item tags="n.*.*.ind.AA"/>
     </def-cat>
     <def-cat n="nind_keep_gen_s"
              c="Owned nouns where we want the owner ngen to keep the genitive-s
@@ -11677,6 +11682,7 @@ no lemq-moving">
               <equal><clip pos="1" side="tl" part="temps"/><lit-tag v="pp"/></equal>
               <in><clip pos="2" side="tl" part="lemh"/><list n="vekedag"/></in>
             </and>
+            <equal><clip pos="1" side="tl" part="lemh"/><lit v="tilhøyrande"/></equal> <!-- [et bygg] tilhørende [landets justisminister]-->
           </or></test>
           <reject-current-rule shifting="no"/>
         </when></choose>
@@ -12396,6 +12402,78 @@ no lemq-moving">
               <clip pos="2" side="tl" part="tags"/>
               <clip pos="2" side="tl" part="lemq"/>
             </lu>
+            <b/>
+            <lu>
+              <clip pos="3" side="tl" part="lemh"/>
+              <clip pos="3" side="tl" part="tags"/>
+              <clip pos="3" side="tl" part="lemq"/>
+            </lu>
+            <b/>
+            <lu><clip pos="4" side="tl" part="whole"/></lu>
+          </chunk>
+        </out>
+      </action>
+    </rule>
+
+    <!-- DETQNT NIND ADJDEF N – (deres) ti mil lange reise -->
+    <rule comment="DETQNT NIND ADJDEF N
+                   - deres ti mil lange dachshund → den ti mil lange dachshunden deira
+                   - det republikanske partiets fire dager lange landsmøte → det fire dagar lange landsmøtet i det republikanske partiet">
+      <pattern>
+        <pattern-item n="detqnt"/>
+        <pattern-item n="nind_nogen"/>
+        <pattern-item n="adjdef"/>
+        <pattern-item n="n_np"/>
+      </pattern>
+      <action>
+        <choose><when c="Only after certain words, avoid:
+                         - (økning på) 13 tilfeller siste døgnet
+                         - alle håndballspilleres store mareritt
+                         - en buss tilhørende bortelaget
+                         - en krig hele dagen">
+          <test><or>
+            <equal><clip pos="1" side="tl" part="lemh"/><lit v="all"/></equal>
+            <equal><clip pos="1" side="tl" part="lemh"/><lit v="mange"/></equal>
+            <equal><clip pos="1" side="tl" part="lemh"/><lit v="ingen"/></equal>
+            <equal><clip pos="1" side="tl" part="lemh"/><lit v="annankvar"/></equal>
+            <equal><clip pos="3" side="tl" part="lemh"/><lit v="tilhøyrande"/></equal>
+          </or></test>
+          <reject-current-rule shifting="no"/>
+        </when></choose>
+        <let><var n="c_name"/><lit v="adj_adj_adj_n"/></let> <!-- so t2x/t3x will treat it as a string of adj's wrt. surrounding chunks (inside it's still det+n) -->
+        <choose c="set_gender2.n.det"> 
+          <when>
+            <test><or>
+              <equal><clip pos="2" side="tl" part="gen"/><lit-tag v="f"/></equal>
+              <equal><clip pos="2" side="tl" part="gen"/><lit-tag v="nt"/></equal>
+            </or></test>
+            <let><clip pos="1" side="tl" part="gen"/><clip pos="2" side="tl" part="gen"/></let>
+          </when>
+          <otherwise>
+            <let><clip pos="1" side="tl" part="gen"/><lit-tag v="m"/></let>
+          </otherwise>
+        </choose>
+        <call-macro n="set_gender2.n.adj"><with-param pos="4"/><with-param pos="3"/></call-macro>
+        <call-macro n="set_grau_aux1"><with-param pos="3"/></call-macro>
+        <call-macro n="set_caseFirstWord4">
+          <with-param pos="1"/>
+          <with-param pos="2"/>
+          <with-param pos="3"/>
+          <with-param pos="4"/>
+        </call-macro>
+        <call-macro n="out_gen-prep"><with-param pos="4"/></call-macro>
+        <call-macro n="stash_case_in_ntags1"><with-param pos="4"/></call-macro>
+        <choose><when>
+          <test><equal><clip pos="3" side="tl" part="grau"/><lit-tag v="sup"/></equal></test>
+          <append n="ntags"><lit-tag v="sup"/></append>
+        </when></choose>
+        <out>
+          <chunk namefrom="c_name" case="caseFirstWord">
+            <tags><tag><var n="ntags"/></tag></tags>
+            <var n="grau_aux"/>
+            <lu><clip pos="1" side="tl" part="whole"/></lu>
+            <b/>
+            <lu><clip pos="2" side="tl" part="whole"/></lu>
             <b/>
             <lu>
               <clip pos="3" side="tl" part="lemh"/>
