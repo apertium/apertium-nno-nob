@@ -1118,6 +1118,33 @@
         </out>
       </action>
     </rule>
+
+    <rule comment="AUX PASV-PP CNJCOO AUX PASV-PP → AUX PASV-PP CNJCOO PASV-PP">
+      <pattern>
+        <pattern-item n="aux"/>
+        <pattern-item n="pasv-pp"/>
+        <pattern-item n="cnjcoo"/>
+        <pattern-item n="aux"/>
+        <pattern-item n="pasv-pp"/>
+      </pattern>
+      <action>
+        <choose><when c="Only drop aux if they're the same">
+          <test><not><equal><clip pos="1" part="whole"/><clip pos="4" part="whole"/></equal></not></test>
+          <reject-current-rule shifting="no"/>
+        </when></choose>
+        <call-macro n="modify_pp_gen_nbr_NOANA"><with-param pos="2"/></call-macro>
+        <out>
+          <chunk><clip pos="1" part="whole"/></chunk>
+          <b/>
+          <chunk><clip pos="2" part="whole"/></chunk>
+          <b/>
+          <chunk><clip pos="3" part="whole"/></chunk>
+          <b/>
+          <chunk><clip pos="5" part="whole"/></chunk>
+        </out>
+      </action>
+    </rule>
+
     <rule comment="AUX PASV-PP SYNSUBJ => AUX SYNSUBJ PASV-PP
                    (Videre) påpekes det =1> (Vidare) blir påpeikt det =2> (Vidare) blir det påpeikt">
       <pattern>
