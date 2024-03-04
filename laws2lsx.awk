@@ -22,18 +22,18 @@ BEGIN {
     print "  <pardefs>"
     print ""
     print "    <pardef n=\"reading\" c=\"match and keep readings (incl. tagless/unknown). Includes end delimiter\">"
-    print "      <e>   <i>/<w/><d/></i>            </e>"
-    print "      <e>   <i>/<w/><t/><d/></i>        </e>"
+    print "      <e>   <i><f/><w/><d/></i>            </e>"
+    print "      <e>   <i><f/><w/><t/><d/></i>        </e>"
     print "    </pardef>"
     print ""
     print "    <pardef n=\"reading:\" c=\"match and drop readings (incl. tagless/unknown). Includes end delimiter\">"
-    print "      <e><p><l>/<w/><d/></l>    <r/></p></e>"
-    print "      <e><p><l>/<w/><t/><d/></l><r/></p></e>"
+    print "      <e><p><l><f/><w/><d/></l>    <r/></p></e>"
+    print "      <e><p><l><f/><w/><t/><d/></l><r/></p></e>"
     print "    </pardef>"
     print ""
     print "    <pardef n=\"pr|lpar|jf\" c=\"includes end delimiter\">"
-    print "      <e><i><w/>/<w/><s n=\"pr\"/><t/><d/></i></e>"
-    print "      <e><i><w/>/<w/><s n=\"lpar\"/><t/><d/></i></e>"
+    print "      <e><i><w/><f/><w/><s n=\"pr\"/><t/><d/></i></e>"
+    print "      <e><i><w/><f/><w/><s n=\"lpar\"/><t/><d/></i></e>"
     print "      <e><i>jf</i>      <par n=\"reading\"/></e>"
     print "      <e><i>jf.</i>     <par n=\"reading\"/></e>"
     print "      <e><i>jamføre</i> <par n=\"reading\"/></e>"
@@ -53,7 +53,7 @@ BEGIN {
     for(i=1;i<=NF;i++)
         printf "      <p><l>%s</l> <r></r></p> <par n=\"reading:\"/>\n",$i
     gsub(/ /, "<b/>")                       # use <b/> for blanks
-    print "      <p><l></l> <r>"$0"/"$0"<s n=\"np\"/><s n=\"aa\"/><s n=\"@app\"/><d/></r></p>"
+    print "      <p><l></l> <r>"$0"<f/>"$0"<s n=\"np\"/><s n=\"aa\"/><s n=\"@app\"/><d/></r></p>"
     print "    </e>"
 }
 
