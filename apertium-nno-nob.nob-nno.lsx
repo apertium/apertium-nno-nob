@@ -4179,6 +4179,13 @@
       <e><i>festning<s n="n"/><t/></i></e>
       <e><i>enklave<s n="n"/><t/></i></e>
     </pardef>
+
+   <pardef n="mot-til-med2mot">
+      <e><p><l>til</l>                   <r>mot</r></p> <i><s n="pr"/><t/><d/></i></e>
+      <e><p><l>med</l>                   <r>mot</r></p> <i><s n="pr"/><t/><d/></i></e>
+      <e><i>mot<s n="pr"/><t/><d/></i></e>
+    </pardef>
+
     
     <pardef n="n.mf.sg">
       <e><i><w/><s n="n"/><s n="m"/><s n="sg"/><t/><d/></i></e>
@@ -12796,6 +12803,13 @@
     <p><l></l>  <r>land<s n="n"/><s n="nt"/><s n="sg"/><s n="def"/><d/></r></p>
   </e>
 
+  <e lm="landets grenser mot -> grensene mot">    
+    <p><l>land<s n="n"/><s n="nt"/><s n="sg"/><s n="def"/><s n="gen"/><t/></l>           <r></r></p> <par n="d:"/>
+    <i>grense<s n="n"/><t/></i>  <p><l><s n="ind"/></l><r><s n="def"/></r></p> <par n="d"/>
+    <par n="mot-til-med2mot"/>
+    <i><w/><s n="np"/><s n="top"/><t/><d/></i>
+  </e>
+
   <e lm="stridens kjerne -> det striden står om" c="det striden står om">
     <p><l>strid<s n="n"/><s n="m"/><s n="sg"/><s n="def"/><s n="gen"/></l>  <r>den<s n="prn"/><s n="pers"/><s n="p3"/><s n="nt"/><s n="sg"/><s n="acc"/></r></p> <par n="d"/>
     <p><l>kjerne<s n="n"/><t/></l>  <r></r></p> <par n="d:"/>
@@ -17241,15 +17255,6 @@
   <i>seg<s n="prn"/><s n="ref"/><t/></i>  <par n="d"/>
 </e>
 
-<e lm="beleire ham → flokke seg rundt ham">
-  <p><l>beleire</l>             <r>flokke</r></p>  <i><t/><d/></i>
-  <par n="ANYWORDx3|empty"/>
-  <p><l></l>                    <r>seg<s n="prn"/><s n="ref"/><s n="p3"/><s n="un"/><s n="sp"/><s n="acc"/><s n="aa"/><d/></r></p>
-  <par n="ADV|empty"/>
-  <p><l></l>                    <r>rundt<s n="pr"/><s n="aa"/><d/></r></p>
-  <i><w/><s n="prn"/><s n="pers"/><t/><s n="sg"/><s n="acc"/><t/></i>  <par n="d"/>
-</e>
-
 <e lm="beleire oss → omleire oss">
   <p><l>beleire</l>             <r>omleire</r></p>  <i><t/><d/></i>
   <par n="ANYWORDx3|empty"/>
@@ -17577,6 +17582,33 @@
   <par n="SN|np|prn"/>
   <p><l></l>          <r>råd<s n="n"/><s n="nt"/><s n="sg"/><s n="ind"/><s n="aa"/><d/></r></p>
 </e>
+
+<e lm="utgi seg for → gi seg ut for">
+  <p><l>utgi</l>   <r>gi</r></p> <i><t/><d/></i>
+  <par n="SN|np|prn|empty"/>
+  <par n="refl-prn"/>
+  <par n="ADV|empty"/>
+  <p><l></l>                  <r>ut<s n="pr"/><s n="acc"/><d/></r></p>
+  <i>for<s n="pr"/><t/></i>  <par n="d"/>
+</e>
+
+<e lm="utgi seg for → gi seg ut for">
+  <p><l>utgi# seg</l>   <r>gi</r></p> <i><t/><d/></i>
+  <par n="SN|np|prn|empty"/>
+  <p><l></l>                  <r>seg<s n="prn"/><s n="ref"/><s n="p3"/><s n="un"/><s n="sp"/><s n="acc"/><d/></r></p>
+  <par n="ADV|empty"/>
+  <p><l></l>                  <r>ut<s n="pr"/><s n="acc"/><d/></r></p>
+  <i>for<s n="pr"/><t/></i>  <par n="d"/>
+</e>
+
+<e lm="foregå ifølge X → gå ifølge X føre seg">
+  <p><l>foregå</l>   <r>gå</r></p> <i><t/><d/></i>
+  <i>ifølge<s n="pr"/><t/><d/></i>
+  <par n="SN|np|prn|empty"/>
+  <p><l></l>                  <r>føre<s n="pr"/><d/></r></p>
+  <p><l></l>                  <r>seg<s n="prn"/><s n="ref"/><s n="p3"/><s n="un"/><s n="sp"/><s n="acc"/><d/></r></p>
+</e>
+
 </section>
 
 </dictionary>
