@@ -139,8 +139,8 @@ $(PREFIX2).autoseq.bin: $(BASENAME).$(PREFIX2).lsx
 	lsx-comp lr $< $@
 
 
-.deps/trace-$(BASENAME).$(PREFIX2).lsx: $(BASENAME).$(PREFIX2).lsx trace-lsx-end.xslt .deps/.d
-	xsltproc -o $@ trace-lsx-end.xslt $<
+.deps/trace-$(BASENAME).$(PREFIX2).lsx: $(BASENAME).$(PREFIX2).lsx .deps/.d
+	awk '/^ *<section/{s++} s&&/^ *<\/e>/{printf "<p><l></l><r>END</r></p>"} {print}' $< >$@
 
 $(PREFIX2).autoseq-trace.bin: .deps/trace-$(BASENAME).$(PREFIX2).lsx
 	lsx-comp --debug lr $< $@
