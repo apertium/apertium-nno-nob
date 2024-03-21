@@ -288,6 +288,33 @@
     </pipeline>
   </mode>
 
+
+  <mode name="nob-nno-surf-biltrans" install="no" gendebug="no">
+    <pipeline>
+      <program name="lt-proc -w -e">
+        <file name="nob-nno.automorf.bin"/>
+      </program>
+      <program name="cg-proc" debug-suff="seg">
+	<file name="nob-nno.seg.rlx.bin"/>
+      </program>
+      <program name="cg-proc">
+	<file name="nob-nno.rlx.bin"/>
+      </program>
+      <program name="cg-proc" debug-suff="capstag">
+	<file name="capstag.rlx.bin"/>
+      </program>
+      <program name="cg-proc" debug-suff="syntax">
+	<file name="nob-nno.syn.rlx.bin"/>
+      </program>
+      <program name="apertium-tagger -p -g $2">
+        <file name="nob-nno.prob"/>
+      </program>
+      <program name="lt-proc -O">
+        <file name="nob-nno.autobil.bin"/>
+      </program>
+    </pipeline>
+  </mode>
+
   <mode name="nob-nno_e-notagger" install="no" gendebug="no">
     <!--
         Due to https://github.com/apertium/apertium/issues/37 we
