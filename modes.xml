@@ -309,6 +309,7 @@
       <program name="apertium-tagger -p -g $2">
         <file name="nob-nno.prob"/>
       </program>
+      <program name="sed 's%/[^+$/]*+%/%g'"/> <!-- workaround https://github.com/apertium/apertium/issues/202 -->
       <program name="lt-proc -O">
         <file name="nob-nno.autobil.bin"/>
       </program>
