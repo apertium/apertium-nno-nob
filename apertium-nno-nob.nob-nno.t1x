@@ -12270,14 +12270,14 @@ no lemq-moving">
       </action>
     </rule>
 
-    <!-- DETQNT NIND ADJDEF N – (deres) ti mil lange reise -->
-    <rule comment="DETQNT NIND ADJDEF N
+    <!-- DETQNT NIND ADJ N – (deres) ti mil lange reise -->
+    <rule comment="DETQNT NIND ADJ N
                    - deres ti mil lange dachshund → den ti mil lange dachshunden deira
                    - det republikanske partiets fire dager lange landsmøte → det fire dagar lange landsmøtet i det republikanske partiet">
       <pattern>
         <pattern-item n="detqnt"/>
         <pattern-item n="nind_nogen"/>
-        <pattern-item n="adjdef"/>
+        <pattern-item n="adj"/>
         <pattern-item n="n_np"/>
       </pattern>
       <action>
@@ -12292,6 +12292,7 @@ no lemq-moving">
             <equal><clip pos="1" side="tl" part="lemh"/><lit v="ingen"/></equal>
             <equal><clip pos="1" side="tl" part="lemh"/><lit v="annankvar"/></equal>
             <equal><clip pos="3" side="tl" part="lemh"/><lit v="tilhøyrande"/></equal>
+            <not><equal><clip pos="3" side="tl" part="a_cmp"/><lit v=""/></equal></not>
           </or></test>
           <reject-current-rule shifting="no"/>
         </when></choose>
@@ -12341,12 +12342,12 @@ no lemq-moving">
         </out>
       </action>
     </rule>
-    <rule comment="DETQNT NIND ADJDEF CMP N
+    <rule comment="DETQNT NIND ADJ CMP N
                    - deres ti måneder lange valgkamp-turné → den ti månader lange valkamp-turnéen deira">
       <pattern>
         <pattern-item n="detqnt"/>
         <pattern-item n="nind_nogen"/>
-        <pattern-item n="adjdef"/>
+        <pattern-item n="adj"/>
         <pattern-item n="cmp"/>
         <pattern-item n="n_np"/>
       </pattern>
@@ -12362,6 +12363,7 @@ no lemq-moving">
             <equal><clip pos="1" side="tl" part="lemh"/><lit v="ingen"/></equal>
             <equal><clip pos="1" side="tl" part="lemh"/><lit v="annankvar"/></equal>
             <equal><clip pos="4" side="tl" part="lemh"/><lit v="tilhøyrande"/></equal>
+            <not><equal><clip pos="3" side="tl" part="a_cmp"/><lit v=""/></equal></not>
           </or></test>
           <reject-current-rule shifting="no"/>
         </when></choose>
