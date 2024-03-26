@@ -26,6 +26,7 @@ TARGETS_PREFIX1 =                                             \
 
 TARGETS_PREFIX2_FAST =                \
      $(LANG1).autoseq.bin             \
+     $(PREFIX2).postlex.bin           \
      $(PREFIX2).autolex.bin           \
      $(PREFIX2).autopgen.bin          \
      $(PREFIX2).autoseq.bin           \
@@ -146,6 +147,9 @@ $(PREFIX2).autoseq-trace.bin: .deps/trace-$(BASENAME).$(PREFIX2).lsx
 	lsx-comp --debug lr $< $@
 
 $(LANG1).autoseq.bin: $(BASENAME).$(LANG1).lsx
+	lsx-comp lr $< $@
+
+$(PREFIX2).postlex.bin: $(BASENAME).$(PREFIX2)-postlex.lsx
 	lsx-comp lr $< $@
 
 # Language-general (at least for nob-nno and nno-nob):
