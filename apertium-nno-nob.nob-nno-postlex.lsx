@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dictionary type="separable">
+  <!--
+
+      This file cleans up changes made in lrx, such as PoS changes and
+      multiword expressions.
+
+      Runs between LRX and T1X.
+
+      Input/output has *both* Bokmål and Nynorsk sides, separated by <f/>.
+
+  -->
+
+  <alphabet></alphabet>
+  <sdefs>
+    <sdef n="n"       c="Noun"/>
+    <sdef n="np"      c="Proper noun"/>
+    <sdef n="prn"     c="Pronoun"/>
+    <sdef n="det"     c="Determiner"/>
+    <sdef n="pos"     c="Possessive"/>
+
+    <sdef n="p1"      c="1st person"/>
+    <sdef n="p2"      c="2nd person"/>
+    <sdef n="p3"      c="3rd person"/>
+
+    <sdef n="nt"      c="Neuter"/>
+    <sdef n="mf"      c="Masculine / feminine, also utrum in nouns"/>
+    <sdef n="un"      c="No gender"/>
+    <sdef n="f"       c="Feminine"/>
+    <sdef n="m"       c="Masculine"/>
+
+    <sdef n="sp"      c="Singular / plural"/>
+    <sdef n="sg"      c="Singular"/>
+    <sdef n="pl"      c="Plural"/>
+
+    <sdef n="ind"     c="Indefinite"/>
+    <sdef n="def"     c="Definite"/>
+
+    <sdef n="nom"     c="Nominative"/>
+    <sdef n="acc"     c="Accusative"/>        <!-- objective case -->
+    <sdef n="gen"     c="Genitive"/>
+
+    <sdef n="dem"     c="Demonstrative"/>
+    <sdef n="itg"     c="Question word / interrogative"/>
+    <sdef n="qnt"     c="Quantifier"/>
+    <sdef n="neg"     c="Negative"/>
+    <sdef n="emph"    c="Emphatic"/>
+    <sdef n="pers"    c="Personal (pronoun)"/>
+    <sdef n="ref"     c="Reflexive pronoun"/>
+    <sdef n="expl"     c="Expletive pronoun"/>
+
+    <sdef n="vblex"   c="Verb"/>
+    <sdef n="pstv"    c="-st verb (Nynorsk)"/>
+    <sdef n="pasv"    c="Passive (Bokmål) or -st form (Nynorsk)"/>
+    <sdef n="inf"     c="Infinitive"/>
+    <sdef n="pres"    c="Present"/>
+    <sdef n="imp"     c="Imperative"/>
+    <sdef n="pret"    c="Preterite"/>
+    <sdef n="pp"      c="Perfect participle"/>
+    <sdef n="pprs"  c="Present participle (adjectival)"/>
+
+    <sdef n="pr"      c="Preposition"/>
+    <sdef n="ij"      c="Interjection"/>
+    <sdef n="adv"     c="Adverb"/>
+    <sdef n="adj"     c="Adjective"/>
+    <sdef n="sint"    c="Synthetic (of adjectives)"/>
+    <sdef n="part"    c="Participle (infinitive)"/>
+    <sdef n="cnjsub"  c="Subordinating conjunction"/>
+    <sdef n="cnjcoo"  c="Co-ordinating conjunction"/>
+    <sdef n="cnjadv"  c="Adverbial conjunction"/>
+
+    <sdef n="pst"    c="Positive"/>
+    <sdef n="comp"    c="Comparative"/>
+    <sdef n="sup"     c="Superlative"/>
+
+    <sdef n="ord"     c="Ordinal"/>
+    <sdef n="acr"     c="Acronym"/>
+    <sdef n="sent"    c="Sentence end" />
+    <sdef n="cm"      c="Comma" />
+    <sdef n="guio"      c="Dash" />
+    <sdef n="clb"     c="Possible clause boundary"/>
+    <sdef n="overskrift" c="Headline"/>
+    <sdef n="apos"    c="Apostrophe" />
+    <sdef n="lpar"    c="Left parenthesis" />
+    <sdef n="rpar"    c="Right parenthesis" />
+    <sdef n="lquot"   c="Left quotation mark"/>
+    <sdef n="rquot"   c="Right quotation mark"/>
+
+    <sdef n="top"     c="Toponym" />
+    <sdef n="cog"     c="Cognomen" />
+    <sdef n="org"     c="Organisation" />
+    <sdef n="ant"     c="Anthroponym" />
+
+    <sdef n="cmp"     c="Compound-left-part"/>
+    <sdef n="cmp-split" c="Split compound-left-part"/>
+
+    <sdef n="guess" 	c="Guesser"/>
+    <sdef n="cgguess" 	c="CG Guesser"/>
+    <sdef n="url" 	c="URL/E-mail"/>
+
+    <sdef n="GD"     c="Género por determinar" />
+    <sdef n="ND"     c="Número por determinar" />
+
+    <sdef n="aa"/>
+    <sdef n="AA"/>
+    <sdef n="Aa"/>
+  </sdefs>
+
+  <pardefs>
+    <pardef n="aa" c="Obligatory aa tag">
+      <e><i><s n="aa"/></i></e>
+      <e><i><s n="Aa"/></i></e>
+      <e><i><s n="AA"/></i></e>
+    </pardef>
+    <pardef n="aa|" c="Optional aa tag (includes empty)">
+      <e></e>
+      <e><i><s n="aa"/></i></e>
+      <e><i><s n="Aa"/></i></e>
+      <e><i><s n="AA"/></i></e>
+    </pardef>
+    <pardef n="d" c="Copy over word-separator with optional preceding aa tag">
+      <e><par n="aa|"/><i><d/></i></e>
+    </pardef>
+    <pardef n="d:" c="Delete word-separator and optional preceding aa tag">
+      <e><p><l><d/></l>            <r></r></p></e>
+      <e><p><l><s n="aa"/><d/></l> <r></r></p></e>
+      <e><p><l><s n="Aa"/><d/></l> <r></r></p></e>
+      <e><p><l><s n="AA"/><d/></l> <r></r></p></e>
+    </pardef>
+
+    <pardef n="aa:Aa" c="Titlecase if downcased, keep UPPERCASE as-is">
+      <e><p><l><s n="aa"/></l> <r><s n="Aa"/></r></p></e>
+      <e><p><l><s n="Aa"/></l> <r><s n="Aa"/></r></p></e>
+      <e><p><l><s n="AA"/></l> <r><s n="AA"/></r></p></e>
+    </pardef>
+    <pardef n="Aa:aa" c="Downcase if titlecased, keep UPPERCASE as-is">
+      <e><p><l><s n="aa"/></l> <r><s n="aa"/></r></p></e>
+      <e><p><l><s n="Aa"/></l> <r><s n="aa"/></r></p></e>
+      <e><p><l><s n="AA"/></l> <r><s n="AA"/></r></p></e>
+    </pardef>
+
+  </pardefs>
+
+
+  <section id="main" type="standard">
+
+    <e c="et/eit antall/fleire → fleire/fleire">
+      <p><l>en<t/><f/>ein<t/><d/></l>        <r></r></p>
+      <p><l>antall<t/><f/>fleire<t/><d/></l> <r></r> </p>
+      <p><l></l>                             <r>mange<s n="adj"/><s n="sint"/><s n="comp"/><s n="un"/><s n="sp"/><f/>mange<s n="adj"/><s n="sint"/><s n="comp"/><s n="un"/><s n="sp"/></r></p>
+    </e>
+
+</section>
+
+</dictionary>
