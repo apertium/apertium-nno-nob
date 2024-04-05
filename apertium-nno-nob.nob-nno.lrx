@@ -11840,5 +11840,12 @@ preposisjonar gir ekstra utfordringar. -->
     <match lemma="tideverv" tags="n.*"><select lemma="epoke"/> </match>
   </rule>
 
+  <rule><match lemma="taushet" tags="n.*"><select lemma="tausheit"/></match></rule>
+  <rule weight="2.0" c="bryte tausheten -> bryte stilla">
+    <match lemma="bryte" tags="vblex.*"/>
+    <repeat from="0" upto="3"><match/></repeat>
+    <match lemma="taushet" tags="n.*"><select lemma="stille"/> </match>
+  </rule>
+
 </rules>
 </lrx>
