@@ -19,9 +19,11 @@ verbose=false
 
 wikidata_filter_names () {
     items="$1" # A space-separated list of wikidata id's, e.g. 'wd:Q12000542 wd:Q36386 wd:Q95494946'
-    query="SELECT ?itemLabel WHERE {
+    # `item P31 Q5` means item has to be a person
+    query="SELECT ?itemLabel ?genderLabel WHERE {
   VALUES ?item { $items }
   ?item wdt:P31 wd:Q5.
+  ?item wdt:P21 ?gender.
   SERVICE wikibase:label { bd:serviceParam wikibase:language \"nb,nn,en\". }
 }"
     query=${query// /%20}
@@ -33,6 +35,11 @@ wikidata_filter_names () {
     nl=$'\n'
     query=${query//${nl}/%0A}
     curl -Ss -H 'Accept: application/sparql-results+json' "https://query.wikidata.org/sparql?query=${query}"
+}
+
+wdnames_by_gender () {
+    gender=$1
+    jq -r ".results.bindings | map(select(.genderLabel.value == \"${gender}\")) | map(.itemLabel.value) | .[]"
 }
 
 # This param gets set based on the output of the previous call to recentchanges:
@@ -53,8 +60,15 @@ while changes=$(curl -Ss "https://no.wikipedia.org/w/api.php?action=query&list=r
     wditems="$(echo "${wbitems}" | sed 's/^/wd:/' | tr '\n' ' ' || true)"
 
     wikidata_persons=$(wikidata_filter_names "${wditems}")
-    names=$(jq -r '.results.bindings | map(.itemLabel.value) | .[]' <<<"${wikidata_persons}")
-    echo "${names}" | grep -v '^Q[0-9]*$' # filter out ones without label
+    "${verbose}" && echo "${wikidata_persons}" >&2
+
+    names_f=$(jq -r '.results.bindings | map(select(.genderLabel.value == "kvinne")) | map(.itemLabel.value) | .[]' <<<"${wikidata_persons}")
+    names_m=$(jq -r '.results.bindings | map(select(.genderLabel.value == "mann")) | map(.itemLabel.value) | .[]' <<<"${wikidata_persons}")
+    names_al=$(jq -r '.results.bindings | map(select(.genderLabel.value != "kvinne" and .genderLabel.value != "mann")) | .[]' <<<"${wikidata_persons}")
+    # We filter out those that look like Q12345 – they're missing labels:
+    [[ -n "${names_f}" ]] && echo "${names_f}" | grep -v '^Q[0-9]*$' | sed $'s/^/<f>\t/'
+    [[ -n "${names_m}" ]] && echo "${names_m}" | grep -v '^Q[0-9]*$' | sed $'s/^/<m>\t/'
+    [[ -n "${names_al}" ]] && echo "${names_al}" | grep -v '^Q[0-9]*$' | sed $'s/^/<al>\t/'
 
     rccontinue=$(jq -r '.continue.rccontinue // ""' <<<"$changes")
     if [[ -n "${rccontinue}" ]]; then
