@@ -18,12 +18,19 @@ or
     $0 top < place-names-one-per-line.txt
     $0 m < masc-names-one-per-line.txt
     $0 org < org-names-one-per-line.txt
+
+Assumes apertium-nob is available in ../apertium-nob
 EOF
        exit 1;;
 esac
 
-sed 's/.*/[&]&/'                                                                             \
-    | apertium -f none -d . nob-nno_e-morph                                                  \
+# TODO: Should also check nno-morph for existence!
+
+nobdir=$(basename "$(dirname "$0")")/../../apertium-nob
+
+tr -d '\\/$[]{}'                                                                             \
+    | sed 's/.*/[&]&/'                                                                       \
+    | apertium -f none -d "${nobdir}" nob-morph                                              \
     | grep -v "]\^[^^]*<np>[^^]*<$1>[^^]*\$"                                                 \
     | sed 's/].*//;s/\[//'                                                                   \
     | awk -v p="$p" -v ps="$ps"                                                              \
@@ -32,4 +39,5 @@ sed 's/.*/[&]&/'                                                                
            {i=$0;gsub(/ /,"<b/>",i);print "<e lm=\""$0"\"><i>"i"</i><par n=\""pn"\"/></e>"}' \
     | rev                                                                                    \
     | sort -u                                                                                \
-    | rev
+    | rev                                                                                    \
+    || true
