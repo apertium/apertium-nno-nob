@@ -1088,6 +1088,9 @@
     <def-var n="aux"/>
     <def-var n="defnes"/>
     <def-var n="grau_aux"       c="lexical unit containing meir/mest if translating from sint to non-sint"/>
+    <def-var n="grau_aux1"      c="lexical unit containing meir/mest if translating from sint to non-sint, first adjective in sequence"/>
+    <def-var n="grau_aux2"      c="lexical unit containing meir/mest if translating from sint to non-sint, second adjective in sequence"/>
+    <def-var n="grau_aux3"      c="lexical unit containing meir/mest if translating from sint to non-sint, third adjective in sequence"/>
     <def-var n="c_lemq"         c="lemq part to output in chunk"/>
     <def-var n="out_lemq"       c="lemq part to output after chunk"/>
     <def-var n="lemq-skip"      c="whether lemq can skip ndef's"/>
@@ -11318,6 +11321,7 @@ no lemq-moving">
       </action>
     </rule>
 
+    <!-- ADJ CM ADJ N -->
     <rule comment="ADJ CM ADJ N">
       <pattern>
         <pattern-item n="adj"/>
@@ -11346,10 +11350,15 @@ no lemq-moving">
           </or></test>
           <reject-current-rule shifting="no"/>
         </when></choose>
-        <let><var n="c_name"/><lit v="adj_cm_adj_n"/></let>
         <call-macro n="set_gender2.n.adj"><with-param pos="4"/><with-param pos="1"/></call-macro> <!-- was set_gender2.n.pre-adj, but before comma the adj should be unambiguously modifying noun -->
         <call-macro n="set_gender2.n.adj"><with-param pos="4"/><with-param pos="3"/></call-macro>
-        <call-macro n="set_grau_aux2"><with-param pos="1"/><with-param pos="3"/></call-macro>
+
+        <!-- Start building c_name from the rightmost adjective (set_grau_aux1 may prepend to c_name): -->
+        <let><var n="c_name"/><lit v="adj_n"/></let>
+        <call-macro n="set_grau_aux1"><with-param pos="3"/></call-macro><let><var n="grau_aux2"/><var n="grau_aux"/></let>
+        <let><var n="c_name"/><concat><lit v="adj_cm_"/><var n="c_name"/></concat></let>
+        <call-macro n="set_grau_aux1"><with-param pos="1"/></call-macro><let><var n="grau_aux1"/><var n="grau_aux"/></let>
+
         <call-macro n="set_caseFirstWord3">
           <with-param pos="1"/>
           <with-param pos="3"/>
@@ -11360,7 +11369,7 @@ no lemq-moving">
         <out>
           <chunk namefrom="c_name" case="caseFirstWord">
             <tags><tag><var n="ntags"/></tag></tags>
-            <var n="grau_aux"/>
+            <var n="grau_aux1"/>
             <lu>
               <clip pos="1" side="tl" part="lemh"/>         <!-- kalde -->
               <clip pos="1" side="tl" part="tags"/>
@@ -11369,6 +11378,7 @@ no lemq-moving">
             <lu><clip pos="2" side="tl" part="whole"/></lu> <!-- , -->
             <b/>
             <b/>
+            <var n="grau_aux2"/>
             <lu>
               <clip pos="3" side="tl" part="lemh"/>         <!-- fine -->
               <clip pos="3" side="tl" part="tags"/>
@@ -11380,6 +11390,7 @@ no lemq-moving">
         </out>
       </action>
     </rule>
+
     <rule comment="CMP ADJ CM ADJ N: selvbetjente, digitaliserte kasser">
       <pattern>
         <pattern-item n="cmp"/>
@@ -11413,8 +11424,7 @@ no lemq-moving">
         <call-macro n="set_gender2.n.adj"><with-param pos="5"/><with-param pos="2"/></call-macro> <!-- was set_gender2.n.pre-adj, but before comma the adj should be unambiguously modifying noun -->
         <call-macro n="set_gender2.n.adj"><with-param pos="5"/><with-param pos="4"/></call-macro>
         <call-macro n="set_grau_aux2"><with-param pos="2"/><with-param pos="4"/></call-macro>
-        <call-macro n="set_caseFirstWord4">
-          <with-param pos="1"/>
+        <call-macro n="set_caseFirstWord3">
           <with-param pos="2"/>
           <with-param pos="4"/>
           <with-param pos="5"/>
@@ -11441,6 +11451,73 @@ no lemq-moving">
             </lu>
             <b/>
             <lu><clip pos="5" side="tl" part="whole"/></lu> <!-- kasser -->
+          </chunk>
+        </out>
+      </action>
+    </rule>
+
+    <rule comment="CMP ADJ CM CMP ADJ N: selvbetjente, budsjettvennlige kasser">
+      <pattern>
+        <pattern-item n="cmp"/>  <!-- 1 selv -->
+        <pattern-item n="adj"/>  <!-- 2 betjente -->
+        <pattern-item n="cm"/>   <!-- 3 , -->
+        <pattern-item n="cmp"/>  <!-- 4 budsjett -->
+        <pattern-item n="adj"/>  <!-- 5 vennlige -->
+        <pattern-item n="n_np"/> <!-- 6 kasser -->
+      </pattern>
+      <action>
+        <choose><when c="Don't chunk «generelt lite fugl» etc.">
+          <test><or>
+            <equal><clip pos="2" side="tl" part="lemh"/><lit v=""/></equal>
+            <equal><clip pos="5" side="tl" part="lemh"/><lit v="mange"/></equal> <!-- [stukket] [flere ganger] -->
+            <equal><clip pos="5" side="tl" part="lemh"/><lit v="mye"/></equal>   <!-- [tilbudt] [mye penger] -->
+            <and>
+              <not><in><clip pos="2" side="tl" part="lemh"/><list n="adj-ind-def"/></in></not>
+              <not><equal><clip pos="2" side="tl" part="grau"/><lit-tag v="sup"/></equal></not> <!-- allow «tettest/mest befolkede områdene» -->
+              <equal><clip pos="2" side="tl" part="art"/><lit-tag v="ind"/></equal>
+              <equal><clip pos="6" side="tl" part="art"/><lit-tag v="def"/></equal>
+            </and>
+            <and>
+              <not><in><clip pos="2" side="tl" part="lemh"/><list n="adj-ind-def"/></in></not>
+              <equal><clip pos="2" side="sl" part="gen"/><lit-tag v="nt"/></equal>
+              <equal><clip pos="5" side="sl" part="gen"/><lit-tag v="nt"/></equal>
+              <in><clip pos="6" side="sl" part="gen"/><list n="noun-gender-not-adjnt"/></in>
+            </and>
+          </or></test>
+          <reject-current-rule shifting="no"/>
+        </when></choose>
+        <let><var n="c_name"/><lit v="cmp_adj_cm_adj_n"/></let>
+        <call-macro n="set_gender2.n.adj"><with-param pos="6"/><with-param pos="2"/></call-macro> <!-- was set_gender2.n.pre-adj, but before comma the adj should be unambiguously modifying noun -->
+        <call-macro n="set_gender2.n.adj"><with-param pos="6"/><with-param pos="5"/></call-macro>
+        <call-macro n="set_grau_aux1"><with-param pos="1"/></call-macro> <!-- TODO: need three variants of grau_aux variable, for the three possible adjectives -->
+        <call-macro n="set_caseFirstWord3">
+          <with-param pos="2"/>
+          <with-param pos="5"/>
+          <with-param pos="6"/>
+        </call-macro>
+        <call-macro n="out_gen-prep"><with-param pos="6"/></call-macro>
+        <call-macro n="stash_case_in_ntags1"><with-param pos="6"/></call-macro>
+        <out>
+          <chunk namefrom="c_name" case="caseFirstWord">
+            <tags><tag><var n="ntags"/></tag></tags>
+            <var n="grau_aux"/>
+            <lu><clip pos="1" side="tl" part="whole"/></lu> <!-- selv -->
+            <lu>
+              <clip pos="2" side="tl" part="lemh"/>         <!-- betjente -->
+              <clip pos="2" side="tl" part="tags"/>
+              <clip pos="2" side="tl" part="lemq"/>
+            </lu>
+            <lu><clip pos="3" side="tl" part="whole"/></lu> <!-- , -->
+            <b/>
+            <b/>
+            <lu><clip pos="4" side="tl" part="whole"/></lu> <!-- budsjett -->
+            <lu>
+              <clip pos="5" side="tl" part="lemh"/>         <!-- vennlige -->
+              <clip pos="5" side="tl" part="tags"/>
+              <clip pos="5" side="tl" part="lemq"/>
+            </lu>
+            <b/>
+            <lu><clip pos="6" side="tl" part="whole"/></lu> <!-- kasser -->
           </chunk>
         </out>
       </action>
