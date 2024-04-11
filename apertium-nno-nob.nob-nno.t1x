@@ -8689,6 +8689,7 @@
             <let><var n="gen-prep"/><lit v="til"/></let>
           </otherwise>
         </choose>
+        <let><var n="b"/><lit v=" "/></let>
         <out>
           <chunk name="gen-prep">
             <tags><tag><lit-tag v="pr"/></tag></tags>
@@ -8697,7 +8698,7 @@
               <lit-tag v="pr"/>
             </lu>
           </chunk>
-          <b/>
+          <var n="b"/> <!-- can't use <b/> since that would consume one of the between-words input blanks (which might be empty string) -->
         </out>
       </when></choose>
     </def-macro>
@@ -11361,20 +11362,20 @@ no lemq-moving">
             <tags><tag><var n="ntags"/></tag></tags>
             <var n="grau_aux"/>
             <lu>
-              <clip pos="1" side="tl" part="lemh"/>
+              <clip pos="1" side="tl" part="lemh"/>         <!-- kalde -->
               <clip pos="1" side="tl" part="tags"/>
               <clip pos="1" side="tl" part="lemq"/>
             </lu>
+            <lu><clip pos="2" side="tl" part="whole"/></lu> <!-- , -->
             <b/>
-            <lu><clip pos="2" side="tl" part="whole"/></lu>
             <b/>
             <lu>
-              <clip pos="3" side="tl" part="lemh"/>
+              <clip pos="3" side="tl" part="lemh"/>         <!-- fine -->
               <clip pos="3" side="tl" part="tags"/>
               <clip pos="3" side="tl" part="lemq"/>
             </lu>
             <b/>
-            <lu><clip pos="4" side="tl" part="whole"/></lu>
+            <lu><clip pos="4" side="tl" part="whole"/></lu> <!-- tida -->
           </chunk>
         </out>
       </action>
@@ -11424,22 +11425,22 @@ no lemq-moving">
           <chunk namefrom="c_name" case="caseFirstWord">
             <tags><tag><var n="ntags"/></tag></tags>
             <var n="grau_aux"/>
-            <lu><clip pos="1" side="tl" part="whole"/></lu>
+            <lu><clip pos="1" side="tl" part="whole"/></lu> <!-- selv -->
             <lu>
-              <clip pos="2" side="tl" part="lemh"/>
+              <clip pos="2" side="tl" part="lemh"/>         <!-- betjente -->
               <clip pos="2" side="tl" part="tags"/>
               <clip pos="2" side="tl" part="lemq"/>
             </lu>
-            <lu><clip pos="3" side="tl" part="whole"/></lu>
+            <lu><clip pos="3" side="tl" part="whole"/></lu> <!-- , -->
             <b/>
             <b/>
             <lu>
-              <clip pos="4" side="tl" part="lemh"/>
+              <clip pos="4" side="tl" part="lemh"/>         <!-- digitaliserte -->
               <clip pos="4" side="tl" part="tags"/>
               <clip pos="4" side="tl" part="lemq"/>
             </lu>
             <b/>
-            <lu><clip pos="5" side="tl" part="whole"/></lu>
+            <lu><clip pos="5" side="tl" part="whole"/></lu> <!-- kasser -->
           </chunk>
         </out>
       </action>
