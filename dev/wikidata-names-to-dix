@@ -2,9 +2,24 @@
 
 set -e -u
 
-dev=$(basename "$(dirname "$0")")
+cd "$(basename "$(dirname "$0")")"/..
 
-[[ $# -ne 1 ]] && echo "expecting file with output of dev/wikidata-names-fetch as arg1"
+
+# Warn if we need to compile monodix:
+if ! make -q langs >/dev/null 2>/dev/null; then
+    cat 1>&2 <<EOF
+
+                    # [1;31mUNCOMPILED DEPENDENCIES[0m
+\$ make -j langs     # [31mDO THIS AND RERUN[0m
+
+EOF
+fi
+
+
+if [[ $# -ne 1 ]]; then
+    echo "Expecting path to file with output of dev/wikidata-names-fetch as arg1"
+    exit 1
+fi
 names=$1
 
 ant () {
@@ -21,19 +36,54 @@ cog () {
         "${names}"
 }
 
-echo "MONODIX:"
-for gen in f m al; do
-     ant "${names}" "${gen}" | "$dev"/namn-mono.sh "$gen"
-done
-cog "${names}" | "$dev"/namn-mono.sh cog
-
-echo
-
-echo "BIDIX":
-{
+# shellcheck disable=SC2312
+mono () {
+    lang="$1"
     for gen in f m al; do
-        ant "${names}" "${gen}" | "$dev"/namn-bidix.sh
+        ant "${names}" "${gen}" | dev/namn-mono.sh "${lang}" "$gen"
     done
-    cog "${names}" | "$dev"/namn-bidix.sh
-} | rev | sort -u | rev
-# ↑ deduplicate, since same lemma may be both in ant and cog lists
+    cog "${names}" | dev/namn-mono.sh "${lang}" cog
+}
+
+# shellcheck disable=SC2311,SC2312
+bi=$(
+    for gen in f m al; do
+        ant "${names}" "${gen}" | dev/namn-bidix.sh
+    done
+    cog "${names}" | dev/namn-bidix.sh
+)
+
+# shellcheck disable=SC2312
+revsort () {
+    rev | sort -u | rev
+}
+
+# shellcheck disable=SC2311,SC2312
+{
+    nob=$(mono nob | sort -u)
+    nno=$(mono nno | sort -u)
+}
+both_mono=$(comm -12 <(echo "$nno") <(echo "$nob"))
+nno_only=$(comm  -23 <(echo "$nno") <(echo "$nob"))
+nob_only=$(comm  -13 <(echo "$nno") <(echo "$nob"))
+if [[ -n "${both_mono}" ]]; then
+    echo "MONODIX:"
+    revsort <<<"${both_mono}"
+fi
+if [[ -n "${nno_only}" ]]; then
+    echo
+    echo "MONODIX NNO only:"
+    revsort <<<"${nno_only}"
+fi
+if [[ -n "${nob_only}" ]]; then
+    echo
+    echo "MONODIX NOB only:"
+    revsort <<<"${nob_only}"
+fi
+
+if [[ -n "${bi}" ]]; then
+    echo
+    echo "BIDIX":
+    revsort <<<"${bi}"
+fi
+
