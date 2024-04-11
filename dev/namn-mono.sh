@@ -6,6 +6,7 @@ case $1 in
     m) p="Jo__np"; ps="Jens__np";;
     org) p="Wikipedia__np"; ps="Findus__np";;
     top) p="Noreg__np"; ps="Ås__np";;
+    al) p="d'or__np"; ps="d'autres__np";;
     *) cat <<EOF
 Please supply main np tag as arg, e.g.
 
