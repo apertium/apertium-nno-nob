@@ -30,5 +30,5 @@ sed 's/.*/[&]&/'                                                                
            /[szx]$/{pn=ps}
            {i=$0;gsub(/ /,"<b/>",i);print "<e lm=\""$0"\"><i>"i"</i><par n=\""pn"\"/></e>"}' \
     | rev                                                                                    \
-    | sort                                                                                   \
+    | sort -u                                                                                \
     | rev
