@@ -30,7 +30,10 @@ cog "${names}" | "$dev"/namn-mono.sh cog
 echo
 
 echo "BIDIX":
-for gen in f m al; do
-    ant "${names}" "${gen}" | "$dev"/namn-bidix.sh
-done
-cog "${names}" | "$dev"/namn-bidix.sh
+{
+    for gen in f m al; do
+        ant "${names}" "${gen}" | "$dev"/namn-bidix.sh
+    done
+    cog "${names}" | "$dev"/namn-bidix.sh
+} | rev | sort -u | rev
+# ↑ deduplicate, since same lemma may be both in ant and cog lists
