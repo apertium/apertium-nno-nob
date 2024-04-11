@@ -13,6 +13,9 @@ rcstart=$(date --utc +%FT%TZ)
 rclimit=20                      # how many results per call to recenttchanges
 rcnamespace=0 # (Main/Article): The default namespace containing the main content of the encyclopedia
 
+verbose=false
+[[ $1 == -v ]] && verbose=true
+
 
 wikidata_filter_names () {
     items="$1" # A space-separated list of wikidata id's, e.g. 'wd:Q12000542 wd:Q36386 wd:Q95494946'
@@ -39,13 +42,14 @@ loop_max=20
 
 while changes=$(curl -Ss "https://no.wikipedia.org/w/api.php?action=query&list=recentchanges&rcprop=title|ids|timestamp&rctoponly&rclimit=${rclimit}&rcend=${rcend}&rcstart=${rcstart}&format=json&rcnamespace=${rcnamespace}${rccontinue_param}"); do
 
-    echo "Changes:" >&2; jq -r '(.query.recentchanges // []) | map(.title) | .[]' <<<"${changes}" >&2
+    "$verbose" && echo "Changes:" >&2
+    "$verbose" && jq -r '(.query.recentchanges // []) | map(.title) | .[]' <<<"${changes}" >&2
 
     pageids=$(jq -r '(.query.recentchanges // []) | map(.pageid) | join("|")' <<<"${changes}" || true)
     props=$(curl -Ss "https://no.wikipedia.org/w/api.php?action=query&pageids=${pageids}&prop=pageprops&format=json")
     wbitems=$(jq -r '.query.pages | to_entries | map(.value.pageprops.wikibase_item) | .[] | strings' <<<"$props")
 
-    echo "Wikibase items: ${wbitems}" >&2
+    "$verbose" && echo "Wikibase items: ${wbitems}" >&2
     wditems="$(echo "${wbitems}" | sed 's/^/wd:/' | tr '\n' ' ' || true)"
 
     wikidata_persons=$(wikidata_filter_names "${wditems}")
@@ -56,12 +60,12 @@ while changes=$(curl -Ss "https://no.wikipedia.org/w/api.php?action=query&list=r
     if [[ -n "${rccontinue}" ]]; then
         rccontinue_param="&rccontinue=${rccontinue}"
     else
-        echo "DONE" >&2
+        "$verbose" && echo "DONE" >&2
         break
     fi
     (( loop_max-- ))
     if [[ "${loop_max}" -le 0 ]]; then
-        echo "reached loop_max" >&2
+        "$verbose" && echo "reached loop_max" >&2
         break
     fi
 done
