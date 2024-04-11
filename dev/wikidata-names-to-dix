@@ -31,6 +31,6 @@ echo
 
 echo "BIDIX":
 for gen in f m al; do
-    < names-today awk -v gen="${gen}" 'BEGIN{FS="[\t ]"; OFS="\t"} $1 == "<"gen">"{ for(i=2;i<=NF-1;i++){if($i ~ /^[[:lower:]]/)break; print $i} }' | "$dev"/namn-bidix.sh
+    ant "${names}" "${gen}" | "$dev"/namn-bidix.sh
 done
 cog "${names}" | "$dev"/namn-bidix.sh
