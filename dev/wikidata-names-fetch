@@ -1,0 +1,86 @@
+#!/bin/bash
+
+# This script will loop through all no.wikipedia.org changes to main
+# article content from the last 24 hours, extract Wikidata id's and
+# look up Wikidata items for those which are categorised under Person,
+# printing their labels (preferring labels in nb, nn over en).
+
+# "end" is the oldest change, "start" is the most recent:
+rcend=$(date   --utc +%FT%TZ -d yesterday)
+# rcend=$(date   --utc +%FT%TZ -d '30 minutes ago')
+# ↑ for debugging
+rcstart=$(date --utc +%FT%TZ)
+rclimit=20                      # how many results per call to recenttchanges
+rcnamespace=0 # (Main/Article): The default namespace containing the main content of the encyclopedia
+
+verbose=false
+[[ $1 == -v ]] && verbose=true
+
+
+wikidata_filter_names () {
+    items="$1" # A space-separated list of wikidata id's, e.g. 'wd:Q12000542 wd:Q36386 wd:Q95494946'
+    # `item P31 Q5` means item has to be a person
+    query="SELECT ?itemLabel ?genderLabel WHERE {
+  VALUES ?item { $items }
+  ?item wdt:P31 wd:Q5.
+  ?item wdt:P21 ?gender.
+  SERVICE wikibase:label { bd:serviceParam wikibase:language \"nb,nn,en\". }
+}"
+    query=${query// /%20}
+    query=${query//:/%3A}
+    query=${query//\?/%3F}
+    query=${query//\{/%7B}
+    query=${query//\}/%7D}
+    query=${query//\"/%22}
+    nl=$'\n'
+    query=${query//${nl}/%0A}
+    curl -Ss -H 'Accept: application/sparql-results+json' "https://query.wikidata.org/sparql?query=${query}"
+}
+
+wdnames_by_gender () {
+    gender=$1
+    jq -r ".results.bindings | map(select(.genderLabel.value == \"${gender}\")) | map(.itemLabel.value) | .[]"
+}
+
+# This param gets set based on the output of the previous call to recentchanges:
+rccontinue_param=""
+# Sanity check, avoid endless loop if server for whatever reason gives bad rccontinue:
+loop_max=20
+
+while changes=$(curl -Ss "https://no.wikipedia.org/w/api.php?action=query&list=recentchanges&rcprop=title|ids|timestamp&rctoponly&rclimit=${rclimit}&rcend=${rcend}&rcstart=${rcstart}&format=json&rcnamespace=${rcnamespace}${rccontinue_param}"); do
+
+    "$verbose" && echo "Changes:" >&2
+    "$verbose" && jq -r '(.query.recentchanges // []) | map(.title) | .[]' <<<"${changes}" >&2
+
+    pageids=$(jq -r '(.query.recentchanges // []) | map(.pageid) | join("|")' <<<"${changes}" || true)
+    props=$(curl -Ss "https://no.wikipedia.org/w/api.php?action=query&pageids=${pageids}&prop=pageprops&format=json")
+    wbitems=$(jq -r '.query.pages | to_entries | map(.value.pageprops.wikibase_item) | .[] | strings' <<<"$props")
+
+    "$verbose" && echo "Wikibase items: ${wbitems}" >&2
+    wditems="$(echo "${wbitems}" | sed 's/^/wd:/' | tr '\n' ' ' || true)"
+
+    wikidata_persons=$(wikidata_filter_names "${wditems}")
+    "${verbose}" && echo "${wikidata_persons}" >&2
+
+    names_f=$(jq -r '.results.bindings | map(select(.genderLabel.value == "kvinne")) | map(.itemLabel.value) | .[]' <<<"${wikidata_persons}")
+    names_m=$(jq -r '.results.bindings | map(select(.genderLabel.value == "mann")) | map(.itemLabel.value) | .[]' <<<"${wikidata_persons}")
+    names_al=$(jq -r '.results.bindings | map(select(.genderLabel.value != "kvinne" and .genderLabel.value != "mann")) | .[]' <<<"${wikidata_persons}")
+    # We filter out those that look like Q12345 – they're missing labels:
+    [[ -n "${names_f}" ]] && echo "${names_f}" | grep -v '^Q[0-9]*$' | sed $'s/^/<f>\t/'
+    [[ -n "${names_m}" ]] && echo "${names_m}" | grep -v '^Q[0-9]*$' | sed $'s/^/<m>\t/'
+    [[ -n "${names_al}" ]] && echo "${names_al}" | grep -v '^Q[0-9]*$' | sed $'s/^/<al>\t/'
+
+    rccontinue=$(jq -r '.continue.rccontinue // ""' <<<"$changes")
+    if [[ -n "${rccontinue}" ]]; then
+        rccontinue_param="&rccontinue=${rccontinue}"
+    else
+        "$verbose" && echo "DONE" >&2
+        break
+    fi
+    (( loop_max-- ))
+    if [[ "${loop_max}" -le 0 ]]; then
+        "$verbose" && echo "reached loop_max" >&2
+        break
+    fi
+done
+

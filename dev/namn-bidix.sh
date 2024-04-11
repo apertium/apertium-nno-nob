@@ -6,5 +6,5 @@ sed 's/.*/[&]&/'                                                                
     | sed 's/].*//;s/\[//'                                                                                 \
     | awk '{i=$0;gsub(/ /,"<b/>",i);print "<e><p><l>"i"<s n=\"np\"/></l><r>"i"<s n=\"np\"/></r></p></e>"}' \
     | rev                                                                                                  \
-    | sort                                                                                                 \
+    | sort -u                                                                                              \
     | rev

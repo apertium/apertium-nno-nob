@@ -1,0 +1,39 @@
+#!/bin/bash
+
+set -e -u
+
+dev=$(basename "$(dirname "$0")")
+
+[[ $# -ne 1 ]] && echo "expecting file with output of dev/wikidata-names-fetch as arg1"
+names=$1
+
+ant () {
+    names=$1
+    gen=$2
+    awk -v gen="${gen}" \
+        'BEGIN{FS="[\t ]"; OFS="\t"} $1 == "<"gen">"{ for(i=2;i<=NF-1;i++){if($i ~ /^[[:lower:]]/)break; print $i} }' \
+        "${names}"
+}
+
+cog () {
+    names=$1
+    awk 'BEGIN{FS="[\t ]"; OFS="\t"} { pre=""; for(i=3;i<=NF;i++){ if($i ~ /\.$/){continue} if($i ~ /^[[:lower:]]/){pre=$i" ";continue}; print pre $i; pre=""} }' \
+        "${names}"
+}
+
+echo "MONODIX:"
+for gen in f m al; do
+     ant "${names}" "${gen}" | "$dev"/namn-mono.sh "$gen"
+done
+cog "${names}" | "$dev"/namn-mono.sh cog
+
+echo
+
+echo "BIDIX":
+{
+    for gen in f m al; do
+        ant "${names}" "${gen}" | "$dev"/namn-bidix.sh
+    done
+    cog "${names}" | "$dev"/namn-bidix.sh
+} | rev | sort -u | rev
+# ↑ deduplicate, since same lemma may be both in ant and cog lists

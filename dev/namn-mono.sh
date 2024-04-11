@@ -6,6 +6,7 @@ case $1 in
     m) p="Jo__np"; ps="Jens__np";;
     org) p="Wikipedia__np"; ps="Findus__np";;
     top) p="Noreg__np"; ps="Ås__np";;
+    al) p="d'or__np"; ps="d'autres__np";;
     *) cat <<EOF
 Please supply main np tag as arg, e.g.
 
@@ -23,12 +24,12 @@ esac
 
 sed 's/.*/[&]&/'                                                                             \
     | apertium -f none -d . nob-nno_e-morph                                                  \
-    | grep -v ']\^[^^]*<np>[^^]*$'                                                           \
+    | grep -v "]\^[^^]*<np>[^^]*<$1>[^^]*\$"                                                 \
     | sed 's/].*//;s/\[//'                                                                   \
     | awk -v p="$p" -v ps="$ps"                                                              \
           '{pn=p}
            /[szx]$/{pn=ps}
            {i=$0;gsub(/ /,"<b/>",i);print "<e lm=\""$0"\"><i>"i"</i><par n=\""pn"\"/></e>"}' \
     | rev                                                                                    \
-    | sort                                                                                   \
+    | sort -u                                                                                \
     | rev
