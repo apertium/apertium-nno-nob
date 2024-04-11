@@ -23,7 +23,7 @@ esac
 
 sed 's/.*/[&]&/'                                                                             \
     | apertium -f none -d . nob-nno_e-morph                                                  \
-    | grep -v ']\^[^^]*<np>[^^]*$'                                                           \
+    | grep -v "]\^[^^]*<np>[^^]*<$1>[^^]*\$"                                                 \
     | sed 's/].*//;s/\[//'                                                                   \
     | awk -v p="$p" -v ps="$ps"                                                              \
           '{pn=p}
