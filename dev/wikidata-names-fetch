@@ -64,7 +64,7 @@ while changes=$(curl -Ss "https://no.wikipedia.org/w/api.php?action=query&list=r
 
     names_f=$(jq -r '.results.bindings | map(select(.genderLabel.value == "kvinne")) | map(.itemLabel.value) | .[]' <<<"${wikidata_persons}")
     names_m=$(jq -r '.results.bindings | map(select(.genderLabel.value == "mann")) | map(.itemLabel.value) | .[]' <<<"${wikidata_persons}")
-    names_al=$(jq -r '.results.bindings | map(select(.genderLabel.value != "kvinne" and .genderLabel.value != "mann")) | .[]' <<<"${wikidata_persons}")
+    names_al=$(jq -r '.results.bindings | map(select(.genderLabel.value != "kvinne" and .genderLabel.value != "mann")) | map(.itemLabel.value) | .[]' <<<"${wikidata_persons}")
     # We filter out those that look like Q12345 – they're missing labels:
     [[ -n "${names_f}" ]] && echo "${names_f}" | grep -v '^Q[0-9]*$' | sed $'s/^/<f>\t/'
     [[ -n "${names_m}" ]] && echo "${names_m}" | grep -v '^Q[0-9]*$' | sed $'s/^/<m>\t/'
