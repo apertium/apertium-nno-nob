@@ -22,6 +22,7 @@ if [[ $# -ne 1 ]]; then
 fi
 names=$1
 
+
 ant () {
     names=$1
     gen=$2
@@ -53,9 +54,22 @@ bi=$(
     cog "${names}" | dev/namn-bidix.sh
 )
 
+# shellcheck disable=SC2311,SC2312
+mid () {
+    grep -o ' .* ' "${names}" | tr -s ' ' '\n' | sort -u
+}
+
 # shellcheck disable=SC2312
-revsort () {
-    rev | sort -u | rev
+revsort_markmid () {
+    rev | sort -u | rev | awk -v mid=<(mid) '
+# Put a comment on any names that were used as middle names, since we do not know if these were first or last names!
+#
+BEGIN{ while(getline<mid)m[$0]++ }
+{ lm=$0; sub(/.*<[li]>/,"",lm); sub(/<\/i>.*/,"",lm); sub(/<s .*/,"",lm); gsub("<b/>"," ",lm) }
+lm in m { $0 = $0" <!-- seen as middle name -->" }
+{ print }
+'
+
 }
 
 # shellcheck disable=SC2311,SC2312
@@ -68,22 +82,22 @@ nno_only=$(comm  -23 <(echo "$nno") <(echo "$nob"))
 nob_only=$(comm  -13 <(echo "$nno") <(echo "$nob"))
 if [[ -n "${both_mono}" ]]; then
     echo "MONODIX:"
-    revsort <<<"${both_mono}"
+    revsort_markmid <<<"${both_mono}"
 fi
 if [[ -n "${nno_only}" ]]; then
     echo
     echo "MONODIX NNO only:"
-    revsort <<<"${nno_only}"
+    revsort_markmid <<<"${nno_only}"
 fi
 if [[ -n "${nob_only}" ]]; then
     echo
     echo "MONODIX NOB only:"
-    revsort <<<"${nob_only}"
+    revsort_markmid <<<"${nob_only}"
 fi
 
 if [[ -n "${bi}" ]]; then
     echo
     echo "BIDIX":
-    revsort <<<"${bi}"
+    revsort_markmid <<<"${bi}"
 fi
 
