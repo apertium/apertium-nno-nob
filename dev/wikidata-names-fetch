@@ -16,14 +16,17 @@ rcnamespace=0 # (Main/Article): The default namespace containing the main conten
 verbose=false
 [[ $1 == -v ]] && verbose=true
 
+DATE_OF_BIRTH_MIN=$(date +%Y -d '100 years ago')
 
 wikidata_filter_names () {
     items="$1" # A space-separated list of wikidata id's, e.g. 'wd:Q12000542 wd:Q36386 wd:Q95494946'
     # `item P31 Q5` means item has to be a person
     query="SELECT ?itemLabel ?genderLabel WHERE {
-  VALUES ?item { $items }
+  VALUES ?item { ${items} }
   ?item wdt:P31 wd:Q5.
   ?item wdt:P21 ?gender.
+  ?item wdt:P569 ?dob.
+  FILTER(YEAR(?dob) > ${DATE_OF_BIRTH_MIN})
   SERVICE wikibase:label { bd:serviceParam wikibase:language \"nb,nn,en\". }
 }"
     query=${query// /%20}
