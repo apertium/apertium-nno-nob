@@ -63,16 +63,18 @@ mid () {
 revsort_markmid () {
     # Skip parentheses, e.g. «Octavia Sperati (skuespiller)»
     grep -v '[()]' \
-        | rev | sort -u | rev \
         | awk -v mid=<(mid) '
 # Put a comment on any names that were used as middle names, since we do not know if these were first or last names!
 #
 BEGIN{ while(getline<mid)m[$0]++ }
 { lm=$0; sub(/.*<[li]>/,"",lm); sub(/<\/i>.*/,"",lm); sub(/<s .*/,"",lm); gsub("<b/>"," ",lm) }
-lm in m { $0 = $0" <!-- seen as middle name -->" }
+                      { nametype=""            }
+/par n="/             { nametype="First name " }
+/par n="(Aasen|Kjos)_/{ nametype="Last name "  }
+lm in m { $0 = $0"\t<!-- " nametype "seen as middle name -->" }
 { print }
-'
-
+' \
+        | rev | sort -ru | rev
 }
 
 # shellcheck disable=SC2311,SC2312
