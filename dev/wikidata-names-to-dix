@@ -61,7 +61,10 @@ mid () {
 
 # shellcheck disable=SC2312
 revsort_markmid () {
-    rev | sort -u | rev | awk -v mid=<(mid) '
+    # Skip parentheses, e.g. «Octavia Sperati (skuespiller)»
+    grep -v '[()]' \
+        | rev | sort -u | rev \
+        | awk -v mid=<(mid) '
 # Put a comment on any names that were used as middle names, since we do not know if these were first or last names!
 #
 BEGIN{ while(getline<mid)m[$0]++ }
