@@ -111,7 +111,8 @@ filter_stderr () {
     grep -v                                                                           \
          -e '^Warning: matching case-sensitively since processor state size >= 65536' \
          -e '^Warning: compoundAnalysis.s MAX_COMBINATIONS exceeded for'              \
-         -e '^         gave up at char [0-9]'
+         -e '^         gave up at char [0-9]'                                         \
+         -e '^WBLANKS!'
 }
 
 [[ $# -lt 1 || $# -gt 2 ]] && assert-usage

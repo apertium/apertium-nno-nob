@@ -42,6 +42,7 @@ TARGETS_PREFIX2_FAST =                \
      $(PREFIX2).t1x.bin               \
      $(PREFIX2).t2x.bin               \
      $(PREFIX2).t3x.bin               \
+     $(PREFIX2).crx.bin               \
      merge-laws.autoseq.bin           \
      capstag.autoseq.bin              \
      capstag.rlx.bin                  \
@@ -152,10 +153,6 @@ $(LANG1).autoseq.bin: $(BASENAME).$(LANG1).lsx
 $(PREFIX2).postlex.bin: $(BASENAME).$(PREFIX2)-postlex.lsx
 	lsx-comp lr $< $@
 
-# Language-general (at least for nob-nno and nno-nob):
-capstag.autoseq.bin: $(BASENAME).capstag.lsx
-	lsx-comp lr $< $@
-
 .deps/laws.lsx: $(BASENAME).laws.txt laws2lsx.awk .deps/.d
 	awk -f laws2lsx.awk $< >$@
 merge-laws.autoseq.bin: .deps/laws.lsx
@@ -163,6 +160,19 @@ merge-laws.autoseq.bin: .deps/laws.lsx
 
 merge-names.rlx.bin: merge-names.rlx
 	cg-comp $< $@
+
+
+###############################################################################
+## Caps (titlecase, uppercase, lowercase)
+###############################################################################
+
+$(PREFIX2).crx.bin: $(BASENAME).$(PREFIX2).crx
+	apertium-validate-crx $<
+	apertium-compile-caps $< $@
+
+# Language-general (at least for nob-nno and nno-nob):
+capstag.autoseq.bin: $(BASENAME).capstag.lsx
+	lsx-comp lr $< $@
 
 ###############################################################################
 ## Bilingual dictionaries
