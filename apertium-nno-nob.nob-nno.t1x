@@ -764,6 +764,9 @@
       <cat-item tags="np.cog.*"/>
       <cat-item tags="n.acr.Aa"/>
     </def-cat>
+    <def-cat n="np.cgguess">
+      <cat-item tags="np.cgguess.*"/>
+    </def-cat>
     <def-cat n="adj.nye">
       <cat-item tags="adj.sint.pst.un.sp.def.aa"/>                <!-- nye, gamle -->
       <cat-item tags="adj.pp.sg.def.aa"/>                         <!-- fryktede -->
@@ -6599,6 +6602,26 @@
       <list-item v="landbruk"/>
       <list-item v="kongedømme"/>
       <list-item v="gruppe"/>
+
+      <list-item v="krf"/> <!-- NB: checks are always against lowercased lemmas -->
+      <list-item v="ap"/>
+      <list-item v="sv"/>
+      <list-item v="frp"/>
+      <list-item v="dei grøne"/>
+      <list-item v="mdg"/>
+      <list-item v="miljøpartiet dei grøne"/>
+      <list-item v="høgre"/>
+      <list-item v="venstre"/>
+      <list-item v="kristeleg folkeparti"/>
+      <list-item v="sp"/>
+      <list-item v="nato"/>
+      <list-item v="fn"/>
+      <list-item v="sn"/>
+      <list-item v="raudt"/>
+      <list-item v="fnb"/>
+      <list-item v="sverigedemokraterna"/>
+      <list-item v="wikileaks"/>
+      <list-item v="labour"/>
     </def-list>
 
     <def-list n="ind-gen-på" c="fredagens kamp→kampen på fredag, remove definiteness for these">
@@ -8709,6 +8732,30 @@
       </when></choose>
     </def-macro>
 
+    <def-macro n="out_gen-prep_np.org" npar="1"
+               c="arg.1: proper org noun
+                  Like out_gen-prep, but specialised for organisation names">
+      <let><var n="lemma"/><clip pos="1" side="tl" part="lemh"/></let>
+      <modify-case><var n="lemma"/><lit v="aa"/></modify-case>
+        <choose>
+          <when><test><in><var n="lemma"/><list n="gen-i2"/></in></test><let><var n="gen-prep"/><lit v="i"/></let></when>
+          <otherwise c="frå">
+            <let><var n="gen-prep"/><lit v="frå"/></let>
+          </otherwise>
+        </choose>
+        <let><var n="b"/><lit v=" "/></let>
+        <out>
+          <chunk name="gen-prep">
+            <tags><tag><lit-tag v="pr"/></tag></tags>
+            <lu>
+              <var n="gen-prep"/>
+              <lit-tag v="pr"/>
+            </lu>
+          </chunk>
+          <var n="b"/> <!-- can't use <b/> since that would consume one of the between-words input blanks (which might be empty string) -->
+        </out>
+    </def-macro>
+
     <def-macro n="gen2cmp" npar="2"
                c="arg.1: genitive noun
                   arg.2: owned noun">
@@ -8989,13 +9036,219 @@
 
   <section-rules>
 
+    <!-- NP.ORG.GEN rules -->
+
+    <rule comment="NP.ORG.GEN NP.PERS → NP.PERS i NP.ORG
+                   SVs Rasmus Berg → Rasmus Berg i SV">
+      <pattern>
+        <pattern-item n="np.org.gen"/> <!-- 1 -->
+        <pattern-item n="personnamn"/> <!-- 2 -->
+      </pattern>
+      <action>
+        <choose><when c="Skip if name is gen/cmp">
+          <test><or>
+            <equal><clip pos="2" side="sl" part="cas"/><lit-tag v="gen"/></equal>
+            <not><equal><clip pos="2" side="sl" part="a_cmp"/><lit v=""/></equal></not>
+          </or></test>
+          <reject-current-rule shifting="no"/>
+        </when></choose>
+
+        <call-macro n="set_caseFirstWord2">
+          <with-param pos="1"/>
+          <with-param pos="2"/>
+        </call-macro>
+
+        <out>
+          <chunk name="nn">
+            <tags><tag><clip pos="2" side="tl" part="tags"/></tag></tags>
+            <lu><clip pos="2" side="tl" part="whole"/></lu>
+          </chunk>
+          <b/>
+        </out>
+        <call-macro n="out_gen-prep_np.org"><with-param pos="1"/></call-macro>
+        <let><clip pos="1" side="tl" part="cas"/><lit v=""/></let>
+        <out>
+          <chunk name="nn">
+            <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
+            <lu><clip pos="1" side="tl" part="whole"/></lu>
+          </chunk>
+        </out>
+      </action>
+    </rule>
+    <rule comment="NP.ORG.GEN NP.PERS og NP.PERS → NP.PERS og NP.PERS i NP.ORG
+                   SVs Jeppe og Rasmus Berg → Jeppe og Rasmus Berg i SV">
+      <pattern>
+        <pattern-item n="np.org.gen"/> <!-- 1 -->
+        <pattern-item n="personnamn"/> <!-- 2 -->
+        <pattern-item n="cnjcoo"/>     <!-- 3 -->
+        <pattern-item n="personnamn"/> <!-- 4 -->
+      </pattern>
+      <action>
+        <choose><when c="Skip if name is gen/cmp">
+          <test><or>
+            <equal><clip pos="2" side="sl" part="cas"/><lit-tag v="gen"/></equal>
+            <not><equal><clip pos="2" side="sl" part="a_cmp"/><lit v=""/></equal></not>
+            <equal><clip pos="4" side="sl" part="cas"/><lit-tag v="gen"/></equal>
+            <not><equal><clip pos="4" side="sl" part="a_cmp"/><lit v=""/></equal></not>
+          </or></test>
+          <reject-current-rule shifting="no"/>
+        </when></choose>
+
+        <call-macro n="set_caseFirstWord4">
+          <with-param pos="1"/>
+          <with-param pos="2"/>
+          <with-param pos="3"/>
+          <with-param pos="4"/>
+        </call-macro>
+
+        <out>
+          <chunk name="nn" case="caseFirstWord">
+            <tags><tag><clip pos="2" side="tl" part="tags"/></tag></tags>
+            <lu><clip pos="2" side="tl" part="whole"/></lu>
+          </chunk>
+          <b/>
+          <chunk name="cnjcoo">
+            <tags><tag><clip pos="3" side="tl" part="tags"/></tag></tags>
+            <lu><clip pos="3" side="tl" part="whole"/></lu>
+          </chunk>
+          <b/>
+          <chunk name="nn">
+            <tags><tag><clip pos="4" side="tl" part="tags"/></tag></tags>
+            <lu><clip pos="4" side="tl" part="whole"/></lu>
+          </chunk>
+          <b/>
+        </out>
+        <call-macro n="out_gen-prep_np.org"><with-param pos="1"/></call-macro>
+        <let><clip pos="1" side="tl" part="cas"/><lit v=""/></let>
+        <out>
+          <chunk name="nn">
+            <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
+            <lu><clip pos="1" side="tl" part="whole"/></lu>
+          </chunk>
+        </out>
+      </action>
+    </rule>
+    <rule comment="NP.ORG.GEN NP.PERS, NP.PERS og NP.PERS → NP.PERS, NP.PERS og NP.PERS i NP.ORG
+                   SVs Jeppe, Nille og Rasmus Berg → Jeppe, Nille og Rasmus Berg i SV">
+      <pattern>
+        <pattern-item n="np.org.gen"/> <!-- 1 -->
+        <pattern-item n="personnamn"/> <!-- 2 -->
+        <pattern-item n="cm"/>         <!-- 3 -->
+        <pattern-item n="personnamn"/> <!-- 4 -->
+        <pattern-item n="cnjcoo"/>     <!-- 5 -->
+        <pattern-item n="personnamn"/> <!-- 6 -->
+      </pattern>
+      <action>
+        <choose><when c="Skip if name is gen/cmp">
+          <test><or>
+            <equal><clip pos="2" side="sl" part="cas"/><lit-tag v="gen"/></equal>
+            <not><equal><clip pos="2" side="sl" part="a_cmp"/><lit v=""/></equal></not>
+            <equal><clip pos="4" side="sl" part="cas"/><lit-tag v="gen"/></equal>
+            <not><equal><clip pos="4" side="sl" part="a_cmp"/><lit v=""/></equal></not>
+            <equal><clip pos="6" side="sl" part="cas"/><lit-tag v="gen"/></equal>
+            <not><equal><clip pos="6" side="sl" part="a_cmp"/><lit v=""/></equal></not>
+          </or></test>
+          <reject-current-rule shifting="no"/>
+        </when></choose>
+
+        <call-macro n="set_caseFirstWord5">
+          <with-param pos="1"/>
+          <with-param pos="2"/>
+          <with-param pos="4"/>
+          <with-param pos="5"/>
+          <with-param pos="6"/>
+        </call-macro>
+
+        <out>
+          <chunk name="nn" case="caseFirstWord">
+            <tags><tag><clip pos="2" side="tl" part="tags"/></tag></tags>
+            <lu><clip pos="2" side="tl" part="whole"/></lu>
+          </chunk>
+          <chunk name="cm" case="caseFirstWord">
+            <tags><tag><clip pos="3" side="tl" part="tags"/></tag></tags>
+            <lu><clip pos="3" side="tl" part="whole"/></lu>
+          </chunk>
+          <b/>
+          <b/>
+          <chunk name="nn" case="caseFirstWord">
+            <tags><tag><clip pos="4" side="tl" part="tags"/></tag></tags>
+            <lu><clip pos="4" side="tl" part="whole"/></lu>
+          </chunk>
+          <b/>
+          <chunk name="cnjcoo">
+            <tags><tag><clip pos="5" side="tl" part="tags"/></tag></tags>
+            <lu><clip pos="5" side="tl" part="whole"/></lu>
+          </chunk>
+          <b/>
+          <chunk name="nn">
+            <tags><tag><clip pos="6" side="tl" part="tags"/></tag></tags>
+            <lu><clip pos="6" side="tl" part="whole"/></lu>
+          </chunk>
+          <b/>
+        </out>
+        <call-macro n="out_gen-prep_np.org"><with-param pos="1"/></call-macro>
+        <let><clip pos="1" side="tl" part="cas"/><lit v=""/></let>
+        <out>
+          <chunk name="nn">
+            <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
+            <lu><clip pos="1" side="tl" part="whole"/></lu>
+          </chunk>
+        </out>
+      </action>
+    </rule>
+    <rule comment="NP.ORG.GEN NP.PERS CGGUESS → NP.PERS CGGUESS i NP.ORG
+                   SVs Jeppe Montanus → Jeppe Montanus i SV">
+      <pattern>
+        <pattern-item n="np.org.gen"/> <!-- 1 -->
+        <pattern-item n="personnamn"/> <!-- 2 -->
+        <pattern-item n="np.cgguess"/> <!-- 3 -->
+      </pattern>
+      <action>
+        <choose><when c="Skip if name is gen/cmp">
+          <test><or>
+            <equal><clip pos="2" side="sl" part="cas"/><lit-tag v="gen"/></equal>
+            <not><equal><clip pos="2" side="sl" part="a_cmp"/><lit v=""/></equal></not>
+          </or></test>
+          <reject-current-rule shifting="no"/>
+        </when></choose>
+
+        <call-macro n="set_caseFirstWord3">
+          <with-param pos="1"/>
+          <with-param pos="2"/>
+          <with-param pos="3"/>
+        </call-macro>
+
+        <out>
+          <chunk name="nn">
+            <tags><tag><clip pos="2" side="tl" part="tags"/></tag></tags>
+            <lu><clip pos="2" side="tl" part="whole"/></lu>
+          </chunk>
+          <b/>
+          <chunk name="nn">
+            <tags><tag><clip pos="3" side="tl" part="tags"/></tag></tags>
+            <lu><clip pos="3" side="tl" part="whole"/></lu>
+          </chunk>
+          <b/>
+        </out>
+        <call-macro n="out_gen-prep_np.org"><with-param pos="1"/></call-macro>
+        <let><clip pos="1" side="tl" part="cas"/><lit v=""/></let>
+        <out>
+          <chunk name="nn">
+            <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
+            <lu><clip pos="1" side="tl" part="whole"/></lu>
+          </chunk>
+        </out>
+      </action>
+    </rule>
+
+
     <rule comment="Sps finanspolitiske talsperson NN → finanspolitisk talsperson for Sp NN">
       <pattern>
         <!--pattern-item n="parti.gen"/-->
-        <pattern-item n="np.org.gen"/>     <!--  -->
-        <pattern-item n="adj"/>           <!-- 2 -->
-        <pattern-item n="talsperson"/>        <!-- 3 -->
-        <pattern-item n="personnamn"/>        <!-- 4 -->
+        <pattern-item n="np.org.gen"/> <!-- 1 -->
+        <pattern-item n="adj"/>        <!-- 2 -->
+        <pattern-item n="talsperson"/> <!-- 3 -->
+        <pattern-item n="personnamn"/> <!-- 4 -->
       </pattern>
       <action>
         <call-macro n="set_caseFirstWord4">
@@ -9041,10 +9294,10 @@
     <!-- Handle exeptions from the rule below -->
     <rule comment="Rikskonsertenes nye direktør NN → den nye direktøren i Rikskonsertane NN">
       <pattern>
-        <pattern-item n="np.org.gen"/>     <!-- 1 -->
-        <pattern-item n="adj.nye"/>           <!-- 2 -->
-        <pattern-item n="nsgind"/>        <!-- typisk direktør, leiar osv. -->
-        <pattern-item n="personnamn"/>    <!-- Helst skilt ut med komma, føreset at heile namnet er identifisert -->
+        <pattern-item n="np.org.gen"/> <!-- 1 -->
+        <pattern-item n="adj.nye"/>    <!-- 2 -->
+        <pattern-item n="nsgind"/> <!-- typisk direktør, leiar osv. -->
+        <pattern-item n="personnamn"/> <!-- Helst skilt ut med komma, føreset at heile namnet er identifisert -->
       </pattern>
       <action>
         <call-macro n="set_caseFirstWord4">
@@ -10970,12 +11223,12 @@ no lemq-moving">
             <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
             <lu><clip pos="1" side="tl" part="whole"/></lu>
           </chunk>
-          <b pos="1"/>
+          <b/>
           <chunk name="default" case="caseFirstWord">
             <tags><tag><clip pos="2" side="tl" part="tags"/></tag></tags>
             <lu><clip pos="2" side="tl" part="lemh"/><lit-tag v="cnjcoo"/></lu>
           </chunk>
-          <b pos="2"/>
+          <b/>
           <chunk name="nn" case="caseFirstWord">
             <tags><tag><clip pos="3" side="tl" part="tags"/></tag></tags>
             <lu><clip pos="3" side="tl" part="whole"/></lu>
