@@ -32,9 +32,9 @@ DELIMITERS = "." "?" sent ;
 
 
 # Restricting to letters will exclude e.g. «Haddy N’jie», but at least then bidix will let it through
-# We allow double names like "Arild Hareide", but require titlecase (so "Oslo lufthavn" doesn't go through)
-LIST wf = "<(\\p{Lu}\\p{L}+(?: \\p{Lu}\\p{L}+)*)>"r ;
-LIST bf =  "(\\p{Lu}\\p{L}+(?: \\p{Lu}\\p{L}+)*)"r ;
+# We allow a single space, like lemma "Arild Hareide", but require titlecase (so "Oslo lufthavn" doesn't go through)
+LIST wf = "<(\\p{Lu}\\p{L}+(?: \\p{Lu}\\p{L}+)?)>"r ;
+LIST bf =  "(\\p{Lu}\\p{L}+(?: \\p{Lu}\\p{L}+)?)"r ;
 LIST AA = "<\\p{Lu}\\p{Lu}.*>"r ; # at least two upper case chars in wf
 LIST fn = (np ant) ;
 LIST ln =          (np cog) (np top) (np cgguess) ; # NB: toponyms and guessed names are also considered possible middle/last names
@@ -44,6 +44,20 @@ LIST syn =  /^\(@.*\)$/r ;
 LIST gen = gen ;
 LIST np = np ;
 
+LIST _ = (*) ;
+
+
+# We can merge up to three lemmas in a row, but if incoming cohorts
+# already have spaces we might end up with longer sequences than .dix
+# can handle. The three-lemma rules should at most allow one of the
+# cohorts to have spaces; the below TEMPLATE will match if two of them
+# have spaces:
+LIST hasSpace = ".* .*"r ;
+TEMPLATE twoSpaces =
+        ([ hasSpace, hasSpace, _      ])
+     OR ([ _       , hasSpace, hasSpace ])
+     OR ([ hasSpace, _       , hasSpace ])
+        ;
 
 # Never merge these toponyms:
 LIST top-exceptions = "Norge" "Noreg" "Japan" "USA" "Sverige" "Danmark" "Finland" "Island" "Storbritannia"
@@ -63,6 +77,7 @@ MERGECOHORTS:f+m+lG ("<$1 $3 $5>"v "$2 $4 $6"v cgguess gen * VSTR:$8)
                   (NEGATE 0/1 (*)) (NEGATE 0 gen)
                   (NEGATE 1/1 (*)) (NEGATE 1 gen) (NEGATE 1 AA)
                   (NEGATE 2/1 (*))        (2 gen) (NEGATE 2 AA)
+                  (NEGATE 0 T:twoSpaces)
           WITH
                   (1 wf + bf + mn)
                   (2 wf + bf + ln + aa + syn)
@@ -84,6 +99,7 @@ MERGECOHORTS:f+m+l ("<$1 $3 $5>"v "$2 $4 $6"v cgguess * VSTR:$8)
                   (NEGATE 0/1 (*)) (NEGATE 0 gen)
                   (NEGATE 1/1 (*)) (NEGATE 1 gen) (NEGATE 1 AA)
                   (NEGATE 2/1 (*)) (NEGATE 2 gen) (NEGATE 2 AA)
+                  (NEGATE 0 T:twoSpaces)
           WITH
                   (1 wf + bf + mn)
                   (2 wf + bf + ln + aa + syn)
