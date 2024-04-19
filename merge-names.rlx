@@ -1,5 +1,8 @@
 DELIMITERS = "." "?" sent ;
 
+# TODO: "Lene" "Westgaard+Halle" – merge compound last-names
+
+
 # Example input:
 # "<Rolv>"
 # 	"Rolv" np ant m Aa @subst→
@@ -29,8 +32,9 @@ DELIMITERS = "." "?" sent ;
 
 
 # Restricting to letters will exclude e.g. «Haddy N’jie», but at least then bidix will let it through
-LIST wf = "<(\\p{Lu}\\p{L}+)>"r ;
-LIST bf = "(\\p{Lu}\\p{L}+)"r ;
+# We allow double names like "Arild Hareide", but require titlecase (so "Oslo lufthavn" doesn't go through)
+LIST wf = "<(\\p{Lu}\\p{L}+(?: \\p{Lu}\\p{L}+)*)>"r ;
+LIST bf =  "(\\p{Lu}\\p{L}+(?: \\p{Lu}\\p{L}+)*)"r ;
 LIST AA = "<\\p{Lu}\\p{Lu}.*>"r ; # at least two upper case chars in wf
 LIST fn = (np ant) ;
 LIST ln =          (np cog) (np top) (np cgguess) ; # NB: toponyms and guessed names are also considered possible middle/last names
