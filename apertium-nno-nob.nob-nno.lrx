@@ -201,26 +201,25 @@
           </or>
       </def-seq>
 
-      <def-seq n="n-np.cmp">
-          <match tags="*.*.cmp"/>
-          <match tags="n.*.def.*"/>
+      <def-seq n="cmp_n.def">
+        <match tags="*.*.cmp"/>
+        <match tags="n.*.def.*"/>
       </def-seq>
 
       <def-seq n="art_adj_np">
-          <match tags="det.qnt.m.*"/>
-          <match tags="adj.*"/>
-          <match tags="np.cog.*"/>
+        <match tags="det.qnt.m.*"/>
+        <match tags="adj.*"/>
+        <match tags="np.cog.*"/>
       </def-seq>
 
-      <def-seq n="søkkbart">
-        <or>
-          <match lemma="tråler"/>
-          <match lemma="båt"/>
-          <match lemma="gummibåt"/>
-          <match lemma="fartøy"/>
-          <match lemma="skip"/>
-        </or>
-      </def-seq>
+      <def-set n="lm:søkkbart" tags="n.*">
+        <lemma>tråler</lemma>
+        <lemma>båt</lemma>
+        <lemma>gummibåt</lemma>
+        <lemma>fartøy</lemma>
+        <lemma>skip</lemma>
+      </def-set>
+
       <def-seq n="alle-månedene">
         <or>
           <match lemma="januar"/>
@@ -237,6 +236,7 @@
           <match lemma="desember"/>
         </or>
       </def-seq>
+
       <def-seq n="være-bli">
         <or>
           <match lemma="være"/>
@@ -244,77 +244,56 @@
         </or>
       </def-seq>
 
+      <def-set n="lm:animat" tags="n.*">
+        <lemma>forfatter</lemma>
+        <lemma>kristiansunder</lemma>
+        <lemma>president</lemma>
+        <lemma>profil</lemma>
+        <lemma>prest</lemma>
+        <lemma>trener</lemma>
+        <lemma>spanjol</lemma>
+        <lemma>belgier</lemma>
+        <lemma>leder</lemma>
+        <lemma>nestleder</lemma>
+        <lemma>driftsleder</lemma>
+        <lemma>styreleder</lemma>
+        <lemma>kommissær</lemma>
+        <lemma>veteran</lemma>
+        <lemma>direktør</lemma>
+        <lemma>brite</lemma>
+        <lemma>advokat</lemma>
+        <lemma>riksadvokat</lemma>
+        <lemma>inspektør</lemma>
+        <lemma>politiinspektør</lemma>
+        <lemma>minister</lemma>
+        <lemma>justisminister</lemma>
+        <lemma>rådgiver</lemma>
+        <lemma>sekretær</lemma>
+        <lemma>statssekretær</lemma>
+        <lemma>statssråd</lemma>
+      </def-set>
       <def-seq n="animat_unk">
         <or>
-          <match tags=""/>            <!-- Unknown, presumably proper --> 
+          <match tags=""/>            <!-- Unknown, presumably proper -->
           <match tags="prn.pers.*"/>
           <match tags="np.ant.*"/>
           <match tags="np.cog.*"/>
           <match tags="np.cgguess"/>
           <match tags="np.cgguess.*"/>
-          <match lemma="forfatter"/>
-          <match lemma="kristiansunder"/>
-          <match lemma="president"/>
-          <match lemma="profil"/>
-          <match lemma="prest"/>
-          <match lemma="trener"/>
-          <match lemma="spanjol"/>
-          <match lemma="belgier"/>
-          <match lemma="leder"/>
-          <match lemma="nestleder"/>
-          <match lemma="driftsleder"/>
-          <match lemma="styreleder"/>
-          <match lemma="kommissær"/>
-          <match lemma="veteran"/>
-          <match lemma="direktør"/>
-          <match lemma="brite"/>
-          <match lemma="advokat"/>
-          <match lemma="riksadvokat"/>
-          <match lemma="inspektør"/>
-          <match lemma="politiinspektør"/>
-          <match lemma="minister"/>
-          <match lemma="justisminister"/>
-          <match lemma="rådgiver"/>
-          <match lemma="sekretær"/>
-          <match lemma="statssekretær"/>
-          <match lemma="statsråd"/>
+          <set n="lm:animat"/>
         </or>
       </def-seq>
       <def-seq n="animat">
-       <or>
+        <or>
           <match tags="prn.pers.*"/>
           <match tags="np.ant.*"/>
           <match tags="np.cog.*"/>
           <match tags="np.cgguess"/>
           <match tags="np.cgguess.*"/>
-          <match lemma="forfatter"/>
-          <match lemma="kristiansunder"/>
-          <match lemma="president"/>
-          <match lemma="profil"/>
-          <match lemma="prest"/>
-          <match lemma="trener"/>
-          <match lemma="spanjol"/>
-          <match lemma="belgier"/>
-          <match lemma="leder"/>
-          <match lemma="nestleder"/>
-          <match lemma="driftsleder"/>
-          <match lemma="styreleder"/>
-          <match lemma="kommissær"/>
-          <match lemma="veteran"/>
-          <match lemma="direktør"/>
-          <match lemma="brite"/>
-          <match lemma="advokat"/>
-          <match lemma="riksadvokat"/>
-          <match lemma="inspektør"/>
-          <match lemma="politiinspektør"/>
-          <match lemma="minister"/>
-          <match lemma="justisminister"/>
-          <match lemma="rådgiver"/>
-          <match lemma="sekretær"/>
-          <match lemma="statssekretær"/>
-          <match lemma="statssråd"/>
+          <set n="lm:animat"/>
         </or>
       </def-seq>
+
       <def-seq n="n_np_prn_adv">
         <or>
           <match tags="n.*.*.def.*"/>
@@ -325,15 +304,16 @@
           <match tags="np.cgguess.*"/>
           <match tags="adj.*"/>
           <match tags="adv.*"/>
-
         </or>
       </def-seq>
+
       <def-seq n="adverbial">
         <or>
           <match tags="adj.*.@adv"/>
           <match tags="adv.*"/>
         </or>
       </def-seq>
+
       <def-seq n="not-noun">
         <or>
            <match tags="prn.*"/>
@@ -348,6 +328,7 @@
            <match tags="cnjadv.*"/>
          </or>
        </def-seq>
+
       <def-seq n="prn-n-np-adv">
         <or>
            <match tags="prn.*"/>
@@ -356,12 +337,14 @@
            <match tags="adv.*"/>
          </or>
        </def-seq>
+
       <def-seq n="ref-prn">
         <or>
           <match tags="prn.ref.*"/>
           <match tags="prn.pers.*.acc.*"/>
         </or>
       </def-seq>
+
       <def-seq n="tidseining">
         <or>
           <match lemma="millisekund"/>
@@ -384,6 +367,7 @@
           <match lemma="årtusen"/>
         </or>
       </def-seq>
+
       <def-seq n="trussamfunn">
         <or>
           <match lemma="muslimsk"/>
@@ -395,6 +379,7 @@
           <match lemma="hindusistisk"/>
         </or>
       </def-seq>
+
       <def-seq n="også">
         <or>
           <match lemma="også"/>
@@ -3034,11 +3019,10 @@
       <match lemma="fortsette" tags="vblex.pret.*"><select lemma="seie"/></match>
     </or>
     <or>
-      <seq n="animat_unk"/> <!-- , seier ministeren -->
-      <seq n="n-np.cmp"/> <!-- , seier SAS-piloten -->
+      <seq n="animat_unk"/> <!-- , seier ministeren, seier Hergeirsson  -->
+      <seq n="cmp_n.def"/>  <!-- , seier SAS-piloten -->
       <seq n="dbl_bunden"/> <!-- , seier den tyske midtbanegeneralen -->
       <seq n="art_adj_np"/> <!-- , seier ein engasjert Hergeirsson -->
-      <match tags="np.cog.*"/> <!-- , seier Hergeirsson -->
     </or>
     <or>
       <match tags="sent.clb.*"/>
@@ -6145,14 +6129,14 @@
   <rule><match lemma="senke" tags="vblex.*"><select lemma="senke"/></match></rule>
   <rule><match lemma="senke" tags="adj.*"><select lemma="senke"/></match></rule>
   <rule weight="2.0" c="tråleren kan da senkes">
-    <seq n="søkkbart"/>
+    <set n="lm:søkkbart"/>
     <repeat from="0" upto="9"><seq n="NOT_sent_lpar_lquot_rquot"/></repeat>
     <match lemma="senke" tags="vblex.*"><select lemma="søkke¹"/></match>
   </rule>
   <rule weight="2.0" c="senker alle trålerne">
     <match lemma="senke" tags="vblex.*"><select lemma="søkke¹"/></match>
     <repeat from="0" upto="9"><seq n="NOT_sent_lpar_lquot_rquot"/></repeat>
-    <seq n="søkkbart"/>
+    <set n="lm:søkkbart"/>
   </rule>
   <rule weight="4.0" c="redusere antallet båter – eller senke hastigheten">
     <match lemma="senke" tags="vblex.*"><select lemma="senke"/></match>
