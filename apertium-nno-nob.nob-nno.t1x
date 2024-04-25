@@ -6602,26 +6602,6 @@
       <list-item v="landbruk"/>
       <list-item v="kongedømme"/>
       <list-item v="gruppe"/>
-
-      <list-item v="krf"/> <!-- NB: checks are always against lowercased lemmas -->
-      <list-item v="ap"/>
-      <list-item v="sv"/>
-      <list-item v="frp"/>
-      <list-item v="dei grøne"/>
-      <list-item v="mdg"/>
-      <list-item v="miljøpartiet dei grøne"/>
-      <list-item v="høgre"/>
-      <list-item v="venstre"/>
-      <list-item v="kristeleg folkeparti"/>
-      <list-item v="sp"/>
-      <list-item v="nato"/>
-      <list-item v="fn"/>
-      <list-item v="sn"/>
-      <list-item v="raudt"/>
-      <list-item v="fnb"/>
-      <list-item v="sverigedemokraterna"/>
-      <list-item v="wikileaks"/>
-      <list-item v="labour"/>
     </def-list>
 
     <def-list n="ind-gen-på" c="fredagens kamp→kampen på fredag, remove definiteness for these">
@@ -6794,6 +6774,35 @@
       <list-item v="mørk_kveld"/>
       <list-item v="mørk_natt"/>
       <list-item v="glatt_lag"/>
+    </def-list>
+
+    <def-list n="org-gen-i" c="Organisasjonsnamn som skal omskrivast frå genitiv til preposisjon «i»
+                               NB: Reglane sjekkar alltid mot lemma-med-små-bokstavar">
+      <list-item v="krf"/>
+      <list-item v="ap"/>
+      <list-item v="sv"/>
+      <list-item v="frp"/>
+      <list-item v="dei grøne"/>
+      <list-item v="mdg"/>
+      <list-item v="miljøpartiet dei grøne"/>
+      <list-item v="høgre"/>
+      <list-item v="venstre"/>
+      <list-item v="kristeleg folkeparti"/>
+      <list-item v="sp"/>
+      <list-item v="nato"/>
+      <list-item v="fn"/>
+      <list-item v="sn"/>
+      <list-item v="raudt"/>
+      <list-item v="fnb"/>
+      <list-item v="sverigedemokraterna"/>
+      <list-item v="wikileaks"/>
+      <list-item v="labour"/>
+    </def-list>
+    <def-list n="org-gen-frå" c="Organisasjonsnamn som skal omskrivast frå genitiv til preposisjon «frå»
+                                 NB: Reglane sjekkar alltid mot lemma-med-små-bokstavar">
+      <!-- TODO: -->
+      <list-item v="røde kors"/>
+      <list-item v="stabæk"/>
     </def-list>
 
     <def-list n="det_indef">
@@ -8659,6 +8668,22 @@
       </choose>
     </def-macro>
 
+    <def-macro n="out_gen-prep_from_var" npar="0"
+               c="arg.1: proper noun
+                  Assumes gen-prep variable has been set first">
+      <let><var n="b"/><lit v=" "/></let>
+      <out>
+        <chunk name="gen-prep">
+          <tags><tag><lit-tag v="pr"/></tag></tags>
+          <lu>
+            <var n="gen-prep"/>
+            <lit-tag v="pr"/>
+          </lu>
+        </chunk>
+        <var n="b"/> <!-- can't use <b/> since that would consume one of the between-words input blanks (which might be empty string) -->
+      </out>
+    </def-macro>
+
     <def-macro n="out_gen-prep" npar="1"
                c="arg.1: noun. Only acts on genitives. Adds a space after.
                   See also bigram_genprep which puts a prep-tag on the _chunk_ which may be used to change this one in t2x.">
@@ -8718,42 +8743,23 @@
             <let><var n="gen-prep"/><lit v="til"/></let>
           </otherwise>
         </choose>
-        <let><var n="b"/><lit v=" "/></let>
-        <out>
-          <chunk name="gen-prep">
-            <tags><tag><lit-tag v="pr"/></tag></tags>
-            <lu>
-              <var n="gen-prep"/>
-              <lit-tag v="pr"/>
-            </lu>
-          </chunk>
-          <var n="b"/> <!-- can't use <b/> since that would consume one of the between-words input blanks (which might be empty string) -->
-        </out>
+        <call-macro n="out_gen-prep_from_var"/>
       </when></choose>
     </def-macro>
 
-    <def-macro n="out_gen-prep_np.org" npar="1"
+    <def-macro n="set_gen-prep_np.org" npar="1"
                c="arg.1: proper org noun
-                  Like out_gen-prep, but specialised for organisation names">
+                  Used by rules for NP.ORG.GEN NP.PERS
+                  Does not output (we don't want to rewrite all these)">
       <let><var n="lemma"/><clip pos="1" side="tl" part="lemh"/></let>
       <modify-case><var n="lemma"/><lit v="aa"/></modify-case>
-        <choose>
-          <when><test><in><var n="lemma"/><list n="gen-i2"/></in></test><let><var n="gen-prep"/><lit v="i"/></let></when>
-          <otherwise c="frå">
-            <let><var n="gen-prep"/><lit v="frå"/></let>
-          </otherwise>
-        </choose>
-        <let><var n="b"/><lit v=" "/></let>
-        <out>
-          <chunk name="gen-prep">
-            <tags><tag><lit-tag v="pr"/></tag></tags>
-            <lu>
-              <var n="gen-prep"/>
-              <lit-tag v="pr"/>
-            </lu>
-          </chunk>
-          <var n="b"/> <!-- can't use <b/> since that would consume one of the between-words input blanks (which might be empty string) -->
-        </out>
+      <choose>
+        <when><test><in><var n="lemma"/><list n="org-gen-i"/></in></test>  <let><var n="gen-prep"/><lit v="i"/></let></when>
+        <when><test><in><var n="lemma"/><list n="org-gen-frå"/></in></test><let><var n="gen-prep"/><lit v="frå"/></let></when>
+        <otherwise c="No genitive rewriting:">
+          <let><var n="gen-prep"/><lit v=""/></let>
+        </otherwise>
+      </choose>
     </def-macro>
 
     <def-macro n="gen2cmp" npar="2"
@@ -9045,8 +9051,10 @@
         <pattern-item n="personnamn"/> <!-- 2 -->
       </pattern>
       <action>
-        <choose><when c="Skip if name is gen/cmp">
+        <call-macro n="set_gen-prep_np.org"><with-param pos="1"/></call-macro>
+        <choose><when c="Skip if name is gen/cmp – or if not in in org-gen-i etc. lists">
           <test><or>
+            <equal><var n="gen-prep"/><lit v=""/></equal>
             <equal><clip pos="2" side="sl" part="cas"/><lit-tag v="gen"/></equal>
             <not><equal><clip pos="2" side="sl" part="a_cmp"/><lit v=""/></equal></not>
           </or></test>
@@ -9065,7 +9073,7 @@
           </chunk>
           <b/>
         </out>
-        <call-macro n="out_gen-prep_np.org"><with-param pos="1"/></call-macro>
+        <call-macro n="out_gen-prep_from_var"/>
         <let><clip pos="1" side="tl" part="cas"/><lit v=""/></let>
         <out>
           <chunk name="nn">
@@ -9084,8 +9092,10 @@
         <pattern-item n="personnamn"/> <!-- 4 -->
       </pattern>
       <action>
-        <choose><when c="Skip if name is gen/cmp">
+        <call-macro n="set_gen-prep_np.org"><with-param pos="1"/></call-macro>
+        <choose><when c="Skip if name is gen/cmp – or if not in in org-gen-i etc. lists">
           <test><or>
+            <equal><var n="gen-prep"/><lit v=""/></equal>
             <equal><clip pos="2" side="sl" part="cas"/><lit-tag v="gen"/></equal>
             <not><equal><clip pos="2" side="sl" part="a_cmp"/><lit v=""/></equal></not>
             <equal><clip pos="4" side="sl" part="cas"/><lit-tag v="gen"/></equal>
@@ -9118,7 +9128,7 @@
           </chunk>
           <b/>
         </out>
-        <call-macro n="out_gen-prep_np.org"><with-param pos="1"/></call-macro>
+        <call-macro n="out_gen-prep_from_var"/>
         <let><clip pos="1" side="tl" part="cas"/><lit v=""/></let>
         <out>
           <chunk name="nn">
@@ -9139,8 +9149,10 @@
         <pattern-item n="personnamn"/> <!-- 6 -->
       </pattern>
       <action>
-        <choose><when c="Skip if name is gen/cmp">
+        <call-macro n="set_gen-prep_np.org"><with-param pos="1"/></call-macro>
+        <choose><when c="Skip if name is gen/cmp – or if not in in org-gen-i etc. lists">
           <test><or>
+            <equal><var n="gen-prep"/><lit v=""/></equal>
             <equal><clip pos="2" side="sl" part="cas"/><lit-tag v="gen"/></equal>
             <not><equal><clip pos="2" side="sl" part="a_cmp"/><lit v=""/></equal></not>
             <equal><clip pos="4" side="sl" part="cas"/><lit-tag v="gen"/></equal>
@@ -9186,7 +9198,7 @@
           </chunk>
           <b/>
         </out>
-        <call-macro n="out_gen-prep_np.org"><with-param pos="1"/></call-macro>
+        <call-macro n="out_gen-prep_from_var"/>
         <let><clip pos="1" side="tl" part="cas"/><lit v=""/></let>
         <out>
           <chunk name="nn">
@@ -9204,8 +9216,10 @@
         <pattern-item n="np.cgguess"/> <!-- 3 -->
       </pattern>
       <action>
-        <choose><when c="Skip if name is gen/cmp">
+        <call-macro n="set_gen-prep_np.org"><with-param pos="1"/></call-macro>
+        <choose><when c="Skip if name is gen/cmp – or if not in in org-gen-i etc. lists">
           <test><or>
+            <equal><var n="gen-prep"/><lit v=""/></equal>
             <equal><clip pos="2" side="sl" part="cas"/><lit-tag v="gen"/></equal>
             <not><equal><clip pos="2" side="sl" part="a_cmp"/><lit v=""/></equal></not>
           </or></test>
@@ -9230,7 +9244,7 @@
           </chunk>
           <b/>
         </out>
-        <call-macro n="out_gen-prep_np.org"><with-param pos="1"/></call-macro>
+        <call-macro n="out_gen-prep_from_var"/>
         <let><clip pos="1" side="tl" part="cas"/><lit v=""/></let>
         <out>
           <chunk name="nn">
