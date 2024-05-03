@@ -5842,6 +5842,28 @@
     <match lemma="forbindelse" tags="n.*"><select lemma="band"/></match>
     <match lemma="til"/>
   </rule>
+  <rule weight="2.0">
+    <match lemma="nær"/>
+    <match lemma="forbindelse" tags="n.*"><select lemma="band"/></match>
+    <match lemma="til"/>
+  </rule>
+  <rule weight="2.0">
+    <or>
+      <match lemma="kjemisk"/>
+      <match lemma="giftig"/>
+      <match lemma="syntetisk"/>
+      <match lemma="helseskadelig"/>
+      <match lemma="saltholdig"/>
+      <match lemma="blyholdig"/>
+      <match lemma="fosforholdig"/>
+      <match lemma="ammoniakkholdig"/>
+      <match lemma="klorholdig"/>
+      <match lemma="alkoholholdig"/>
+      <match lemma="fluorholdig"/>
+      <match lemma="svovelholdig"/>
+    </or>
+      <match lemma="forbindelse" tags="n.*"><select lemma="forbindelse"/></match>
+  </rule>
 
   <rule><match lemma="hevning" tags="n.*"><select lemma="hemning"/></match></rule>
   <rule weight="2.0">
