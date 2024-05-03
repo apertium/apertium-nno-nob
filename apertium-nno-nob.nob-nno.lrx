@@ -7682,6 +7682,12 @@
 
   <rule weight="2.0"> <!-- ...der det antas å være store reserver... -->
     <or>
+      <match lemma="som"/>
+      <match lemma="der"/>
+      <match lemma="hvor"/>
+      <match tags="cnjsub.*"/>
+    </or>
+    <or>
       <match tags="prn.*"/>
       <match tags="det.*"/>
       <match tags="n.*"/>
