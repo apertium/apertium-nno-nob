@@ -765,7 +765,10 @@
       <cat-item tags="np.cog.*"/>
       <cat-item tags="n.acr.Aa"/>
     </def-cat>
-    <def-cat n="np.cgguess">
+    <def-cat n="personnamn_cgguess">
+      <cat-item tags="np.ant.*"/>
+      <cat-item tags="np.cog.*"/>
+      <cat-item tags="n.acr.Aa"/>
       <cat-item tags="np.cgguess.*"/>
     </def-cat>
     <def-cat n="adj.nye">
@@ -9212,12 +9215,12 @@
         </out>
       </action>
     </rule>
-    <rule comment="NP.ORG.GEN NP.PERS CGGUESS → NP.PERS CGGUESS i NP.ORG
+    <rule comment="NP.ORG.GEN NP.PERS NP.PERS/CGGUESS → NP.PERS NP.PERS/CGGUESS i NP.ORG
                    SVs Jeppe Montanus → Jeppe Montanus i SV">
       <pattern>
-        <pattern-item n="np.org.gen"/> <!-- 1 -->
-        <pattern-item n="personnamn"/> <!-- 2 -->
-        <pattern-item n="np.cgguess"/> <!-- 3 -->
+        <pattern-item n="np.org.gen"/>         <!-- 1 -->
+        <pattern-item n="personnamn"/>         <!-- 2 -->
+        <pattern-item n="personnamn_cgguess"/> <!-- 3 -->
       </pattern>
       <action>
         <call-macro n="set_gen-prep_np.org"><with-param pos="1"/></call-macro>
@@ -9226,6 +9229,8 @@
             <equal><var n="gen-prep"/><lit v=""/></equal>
             <equal><clip pos="2" side="sl" part="cas"/><lit-tag v="gen"/></equal>
             <not><equal><clip pos="2" side="sl" part="a_cmp"/><lit v=""/></equal></not>
+            <equal><clip pos="3" side="sl" part="cas"/><lit-tag v="gen"/></equal>
+            <not><equal><clip pos="3" side="sl" part="a_cmp"/><lit v=""/></equal></not>
           </or></test>
           <reject-current-rule shifting="no"/>
         </when></choose>
