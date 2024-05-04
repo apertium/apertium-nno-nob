@@ -36,8 +36,8 @@ DELIMITERS = "." "?" sent ;
 # Restricting to letters will exclude e.g. «Haddy N’jie», but at least then bidix will let it through
 # We allow a single space, like lemma "Arild Hareide", but require titlecase (so "Oslo lufthavn" doesn't go through)
 # We allow a single dot, like initial "E."
-LIST wf = "<(\\p{Lu}\\p{L}+(?: \\p{Lu}\\p{L}+)?|\\p{Lu}[.])>"r ;
-LIST bf =  "(\\p{Lu}\\p{L}+(?: \\p{Lu}\\p{L}+)?|\\p{Lu}[.])"r ;
+LIST wf = "<(\\p{Lu}[\\p{L}-]+(?: \\p{Lu}\\p{L}+)?|\\p{Lu}[.])>"r ;
+LIST bf =  "(\\p{Lu}[\\p{L}-]+(?: \\p{Lu}\\p{L}+)?|\\p{Lu}[.])"r ;
 LIST AA = "<\\p{Lu}\\p{Lu}.*>"r ; # at least two upper case chars in wf
 LIST fn = (np ant) ;
 LIST ln =          (np cog) (np top) (np cgguess) ; # NB: toponyms and guessed names are also considered possible middle/last names
