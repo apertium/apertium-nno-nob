@@ -50,9 +50,6 @@ LIST np = np ;
 
 LIST _ = (*) ;
 
-TEMPLATE cmp|Gen      = (0/1 (*)) OR (0 gen)           ;
-TEMPLATE cmp|Gen|CAPS = (0/1 (*)) OR (0 gen) OR (0 AA) ;
-TEMPLATE cmp|CAPS     = (0/1 (*))            OR (0 AA) ;
 
 # We can merge up to three lemmas in a row, but if incoming cohorts
 # already have spaces we might end up with longer sequences than .dix
@@ -81,10 +78,9 @@ PROTECT np IF (2 top-exceptions) ;
 # First genitives:
 MERGECOHORTS:f+m+lG ("<$1 $3 $5>"v "$2 $4 $6"v cgguess gen * VSTR:$8)
                      wf + bf + fn
-                  (NEGATE 0 T:cmp|Gen)
-                  (NEGATE 1 T:cmp|Gen|CAPS)
-                  (NEGATE 2 T:cmp|CAPS)
-                  (2 gen)
+                  (NEGATE 0/1 (*)) (NEGATE 0 gen)
+                  (NEGATE 1/1 (*)) (NEGATE 1 gen) (NEGATE 1 AA)
+                  (NEGATE 2/1 (*))        (2 gen) (NEGATE 2 AA)
                   (NEGATE 0 T:twoSpaces)
           WITH
                   (1 wf + bf + mn)
@@ -93,20 +89,21 @@ MERGECOHORTS:f+m+lG ("<$1 $3 $5>"v "$2 $4 $6"v cgguess gen * VSTR:$8)
 
 MERGECOHORTS:m+lG ("<$1 $3>"v "$2 $4"v cgguess gen * VSTR:$6)
                      wf + bf + mn
-                  (NEGATE 0 T:cmp|Gen)
-                  (NEGATE 1 T:cmp|CAPS)
-                  (1 gen)
+                  (NEGATE 0/1 (*)) (NEGATE 0 gen)
+                  (NEGATE 1/1 (*))        (1 gen) (NEGATE 1 AA)
           WITH
                   (1 wf + bf + ln + aa + syn)
 ;
 
+
+
 # Then non-genitives:
 MERGECOHORTS:f+i+m+l ("<$1 $3 $5 $7>"v "$2 $4 $6 $8"v cgguess * VSTR:$9)
                      wf + bf + fn
-                  (NEGATE 0 T:cmp|Gen)
-                  (NEGATE 1 T:cmp|Gen|CAPS)
-                  (NEGATE 2 T:cmp|Gen|CAPS)
-                  (NEGATE 3 T:cmp|Gen|CAPS)
+                  (NEGATE 0/1 (*)) (NEGATE 0 gen)
+                  (NEGATE 1/1 (*)) (NEGATE 1 gen) (NEGATE 1 AA)
+                  (NEGATE 2/1 (*)) (NEGATE 2 gen) (NEGATE 2 AA)
+                  (NEGATE 3/1 (*)) (NEGATE 3 gen) (NEGATE 3 AA)
                   (NEGATE 0 T:twoSpaces)
           WITH
                   (1 wf + bf + init)
@@ -116,9 +113,9 @@ MERGECOHORTS:f+i+m+l ("<$1 $3 $5 $7>"v "$2 $4 $6 $8"v cgguess * VSTR:$9)
 
 MERGECOHORTS:f+m+l ("<$1 $3 $5>"v "$2 $4 $6"v cgguess * VSTR:$8)
                      wf + bf + fn
-                  (NEGATE 0 T:cmp|Gen)
-                  (NEGATE 1 T:cmp|Gen|CAPS)
-                  (NEGATE 2 T:cmp|Gen|CAPS)
+                  (NEGATE 0/1 (*)) (NEGATE 0 gen)
+                  (NEGATE 1/1 (*)) (NEGATE 1 gen) (NEGATE 1 AA)
+                  (NEGATE 2/1 (*)) (NEGATE 2 gen) (NEGATE 2 AA)
                   (NEGATE 0 T:twoSpaces)
           WITH
                   (1 wf + bf + mn)
@@ -127,8 +124,8 @@ MERGECOHORTS:f+m+l ("<$1 $3 $5>"v "$2 $4 $6"v cgguess * VSTR:$8)
 
 MERGECOHORTS:m+l ("<$1 $3>"v "$2 $4"v cgguess * VSTR:$6)
                      wf + bf + mn
-                  (NEGATE 0 T:cmp|Gen)
-                  (NEGATE 1 T:cmp|Gen|CAPS)
+                  (NEGATE 0/1 (*)) (NEGATE 0 gen)
+                  (NEGATE 1/1 (*)) (NEGATE 1 gen) (NEGATE 1 AA)
           WITH
                   (1 wf + bf + ln + aa + syn)
 ;
