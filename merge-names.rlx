@@ -41,7 +41,8 @@ LIST bf =  "(\\p{Lu}\\p{L}+(?: \\p{Lu}\\p{L}+)?|\\p{Lu}[.])"r ;
 LIST AA = "<\\p{Lu}\\p{Lu}.*>"r ; # at least two upper case chars in wf
 LIST fn = (np ant) ;
 LIST ln =          (np cog) (np top) (np cgguess) ; # NB: toponyms and guessed names are also considered possible middle/last names
-LIST mn = (np ant) (np cog) (np top) (np init) ;
+LIST mn = (np ant) (np cog) (np top) ;
+LIST mn/init = (np ant) (np cog) (np top) (np init) ;
 LIST init = (np init) ;
 LIST aa = /^\([Aa]+\)$/r ;      # TODO: no longer needed, now we use * to copy tags from first word
 LIST syn =  /^\(@.*\)$/r ;
@@ -83,7 +84,7 @@ MERGECOHORTS:f+m+lG ("<$1 $3 $5>"v "$2 $4 $6"v cgguess gen * VSTR:$8)
                   (NEGATE 2/1 (*))        (2 gen) (NEGATE 2 AA)
                   (NEGATE 0 T:twoSpaces)
           WITH
-                  (1 wf + bf + mn)
+                  (1 wf + bf + mn/init)
                   (2 wf + bf + ln + aa + syn)
 ;
 
@@ -107,7 +108,7 @@ MERGECOHORTS:f+i+m+l ("<$1 $3 $5 $7>"v "$2 $4 $6 $8"v cgguess * VSTR:$9)
                   (NEGATE 0 T:twoSpaces)
           WITH
                   (1 wf + bf + init)
-                  (2 wf + bf + mn)
+                  (2 wf + bf + mn/init)
                   (3 wf + bf + ln + syn)
 ;                   # We can handle four in a row if second is initial
 
@@ -118,7 +119,7 @@ MERGECOHORTS:f+m+l ("<$1 $3 $5>"v "$2 $4 $6"v cgguess * VSTR:$8)
                   (NEGATE 2/1 (*)) (NEGATE 2 gen) (NEGATE 2 AA)
                   (NEGATE 0 T:twoSpaces)
           WITH
-                  (1 wf + bf + mn)
+                  (1 wf + bf + mn/init)
                   (2 wf + bf + ln + aa + syn)
 ;
 
