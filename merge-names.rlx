@@ -34,10 +34,10 @@ DELIMITERS = "." "?" sent ;
 
 
 # Restricting to letters will exclude e.g. «Haddy N’jie», but at least then bidix will let it through
-# We allow a single space, like lemma "Arild Hareide", but require titlecase (so "Oslo lufthavn" doesn't go through)
-# We allow a single dot, like initial "E."
-LIST wf = "<(\\p{Lu}[\\p{L}-]+(?: \\p{Lu}\\p{L}+)?|\\p{Lu}[.])>"r ;
-LIST bf =  "(\\p{Lu}[\\p{L}-]+(?: \\p{Lu}\\p{L}+)?|\\p{Lu}[.])"r ;
+# We allow a single space or dash, like "Arild Hareide" or "Bakke-Jensen", but require titlecase on the second part (so "Oslo lufthavn" doesn't go through)
+# We also allow the regex to match just a single uppercase letter + single dot, like initial "E."
+LIST wf = "<(\\p{Lu}\\p{Ll}+(?:[ -]\\p{Lu}\\p{Ll}+)?|\\p{Lu}[.])>"r ;
+LIST bf =  "(\\p{Lu}\\p{Ll}+(?:[ -]\\p{Lu}\\p{Ll}+)?|\\p{Lu}[.])"r ;
 LIST AA = "<\\p{Lu}\\p{Lu}.*>"r ; # at least two upper case chars in wf
 LIST fn = (np ant) ;
 LIST ln =          (np cog) (np top) (np cgguess) ; # NB: toponyms and guessed names are also considered possible middle/last names
@@ -99,12 +99,13 @@ MERGECOHORTS:m+lG ("<$1 $3>"v "$2 $4"v cgguess gen * VSTR:$6)
 
 
 # Then non-genitives:
-MERGECOHORTS:f+i+m+l ("<$1 $3 $5 $7>"v "$2 $4 $6 $8"v cgguess * VSTR:$9)
+# For these we allow compounds, and just use form as lemma (since compound lemmas are split):
+MERGECOHORTS:f+i+m+l ("<$1 $3 $5 $7>"v "$1 $3 $5 $7"v cgguess * VSTR:$9)
                      wf + bf + fn
-                  (NEGATE 0/1 (*)) (NEGATE 0 gen)
-                  (NEGATE 1/1 (*)) (NEGATE 1 gen) (NEGATE 1 AA)
-                  (NEGATE 2/1 (*)) (NEGATE 2 gen) (NEGATE 2 AA)
-                  (NEGATE 3/1 (*)) (NEGATE 3 gen) (NEGATE 3 AA)
+                  (NEGATE 0 gen)
+                  (NEGATE 1 gen) (NEGATE 1 AA)
+                  (NEGATE 2 gen) (NEGATE 2 AA)
+                  (NEGATE 3 gen) (NEGATE 3 AA)
                   (NEGATE 0 T:twoSpaces)
           WITH
                   (1 wf + bf + init)
@@ -112,21 +113,21 @@ MERGECOHORTS:f+i+m+l ("<$1 $3 $5 $7>"v "$2 $4 $6 $8"v cgguess * VSTR:$9)
                   (3 wf + bf + ln + syn)
 ;                   # We can handle four in a row if second is initial
 
-MERGECOHORTS:f+m+l ("<$1 $3 $5>"v "$2 $4 $6"v cgguess * VSTR:$8)
+MERGECOHORTS:f+m+l ("<$1 $3 $5>"v "$1 $3 $5"v cgguess * VSTR:$8)
                      wf + bf + fn
-                  (NEGATE 0/1 (*)) (NEGATE 0 gen)
-                  (NEGATE 1/1 (*)) (NEGATE 1 gen) (NEGATE 1 AA)
-                  (NEGATE 2/1 (*)) (NEGATE 2 gen) (NEGATE 2 AA)
+                  (NEGATE 0 gen)
+                  (NEGATE 1 gen) (NEGATE 1 AA)
+                  (NEGATE 2 gen) (NEGATE 2 AA)
                   (NEGATE 0 T:twoSpaces)
           WITH
                   (1 wf + bf + mn/init)
                   (2 wf + bf + ln + aa + syn)
 ;
 
-MERGECOHORTS:m+l ("<$1 $3>"v "$2 $4"v cgguess * VSTR:$6)
+MERGECOHORTS:m+l ("<$1 $3>"v "$1 $3"v cgguess * VSTR:$6)
                      wf + bf + mn
-                  (NEGATE 0/1 (*)) (NEGATE 0 gen)
-                  (NEGATE 1/1 (*)) (NEGATE 1 gen) (NEGATE 1 AA)
+                  (NEGATE 0 gen)
+                  (NEGATE 1 gen) (NEGATE 1 AA)
           WITH
                   (1 wf + bf + ln + aa + syn)
 ;
