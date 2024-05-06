@@ -34,14 +34,15 @@ DELIMITERS = "." "?" sent ;
 
 
 # Restricting to letters will exclude e.g. «Haddy N’jie», but at least then bidix will let it through
-# We allow a single space, like lemma "Arild Hareide", but require titlecase (so "Oslo lufthavn" doesn't go through)
-# We allow a single dot, like initial "E."
-LIST wf = "<(\\p{Lu}\\p{L}+(?: \\p{Lu}\\p{L}+)?|\\p{Lu}[.])>"r ;
-LIST bf =  "(\\p{Lu}\\p{L}+(?: \\p{Lu}\\p{L}+)?|\\p{Lu}[.])"r ;
+# We allow a single space or dash, like "Arild Hareide" or "Bakke-Jensen", but require titlecase on the second part (so "Oslo lufthavn" doesn't go through)
+# We also allow the regex to match just a single uppercase letter + single dot, like initial "E."
+LIST wf = "<(\\p{Lu}\\p{Ll}+(?:[ -]\\p{Lu}\\p{Ll}+)?|\\p{Lu}[.])>"r ;
+LIST bf =  "(\\p{Lu}\\p{Ll}+(?:[ -]\\p{Lu}\\p{Ll}+)?|\\p{Lu}[.])"r ;
 LIST AA = "<\\p{Lu}\\p{Lu}.*>"r ; # at least two upper case chars in wf
 LIST fn = (np ant) ;
 LIST ln =          (np cog) (np top) (np cgguess) ; # NB: toponyms and guessed names are also considered possible middle/last names
-LIST mn = (np ant) (np cog) (np top) (np init) ;
+LIST mn = (np ant) (np cog) (np top) ;
+LIST mn/init = (np ant) (np cog) (np top) (np init) ;
 LIST init = (np init) ;
 LIST aa = /^\([Aa]+\)$/r ;      # TODO: no longer needed, now we use * to copy tags from first word
 LIST syn =  /^\(@.*\)$/r ;
@@ -50,9 +51,6 @@ LIST np = np ;
 
 LIST _ = (*) ;
 
-TEMPLATE cmp|Gen      = (0/1 (*)) OR (0 gen)           ;
-TEMPLATE cmp|Gen|CAPS = (0/1 (*)) OR (0 gen) OR (0 AA) ;
-TEMPLATE cmp|CAPS     = (0/1 (*))            OR (0 AA) ;
 
 # We can merge up to three lemmas in a row, but if incoming cohorts
 # already have spaces we might end up with longer sequences than .dix
@@ -81,54 +79,55 @@ PROTECT np IF (2 top-exceptions) ;
 # First genitives:
 MERGECOHORTS:f+m+lG ("<$1 $3 $5>"v "$2 $4 $6"v cgguess gen * VSTR:$8)
                      wf + bf + fn
-                  (NEGATE 0 T:cmp|Gen)
-                  (NEGATE 1 T:cmp|Gen|CAPS)
-                  (NEGATE 2 T:cmp|CAPS)
-                  (2 gen)
+                  (NEGATE 0/1 (*)) (NEGATE 0 gen)
+                  (NEGATE 1/1 (*)) (NEGATE 1 gen) (NEGATE 1 AA)
+                  (NEGATE 2/1 (*))        (2 gen) (NEGATE 2 AA)
                   (NEGATE 0 T:twoSpaces)
           WITH
-                  (1 wf + bf + mn)
+                  (1 wf + bf + mn/init)
                   (2 wf + bf + ln + aa + syn)
 ;
 
 MERGECOHORTS:m+lG ("<$1 $3>"v "$2 $4"v cgguess gen * VSTR:$6)
                      wf + bf + mn
-                  (NEGATE 0 T:cmp|Gen)
-                  (NEGATE 1 T:cmp|CAPS)
-                  (1 gen)
+                  (NEGATE 0/1 (*)) (NEGATE 0 gen)
+                  (NEGATE 1/1 (*))        (1 gen) (NEGATE 1 AA)
           WITH
                   (1 wf + bf + ln + aa + syn)
 ;
 
+
+
 # Then non-genitives:
-MERGECOHORTS:f+i+m+l ("<$1 $3 $5 $7>"v "$2 $4 $6 $8"v cgguess * VSTR:$9)
+# For these we allow compounds, and just use form as lemma (since compound lemmas are split):
+MERGECOHORTS:f+i+m+l ("<$1 $3 $5 $7>"v "$1 $3 $5 $7"v cgguess * VSTR:$9)
                      wf + bf + fn
-                  (NEGATE 0 T:cmp|Gen)
-                  (NEGATE 1 T:cmp|Gen|CAPS)
-                  (NEGATE 2 T:cmp|Gen|CAPS)
-                  (NEGATE 3 T:cmp|Gen|CAPS)
+                  (NEGATE 0 gen)
+                  (NEGATE 1 gen) (NEGATE 1 AA)
+                  (NEGATE 2 gen) (NEGATE 2 AA)
+                  (NEGATE 3 gen) (NEGATE 3 AA)
                   (NEGATE 0 T:twoSpaces)
           WITH
                   (1 wf + bf + init)
-                  (2 wf + bf + mn)
+                  (2 wf + bf + mn/init)
                   (3 wf + bf + ln + syn)
 ;                   # We can handle four in a row if second is initial
 
-MERGECOHORTS:f+m+l ("<$1 $3 $5>"v "$2 $4 $6"v cgguess * VSTR:$8)
+MERGECOHORTS:f+m+l ("<$1 $3 $5>"v "$1 $3 $5"v cgguess * VSTR:$8)
                      wf + bf + fn
-                  (NEGATE 0 T:cmp|Gen)
-                  (NEGATE 1 T:cmp|Gen|CAPS)
-                  (NEGATE 2 T:cmp|Gen|CAPS)
+                  (NEGATE 0 gen)
+                  (NEGATE 1 gen) (NEGATE 1 AA)
+                  (NEGATE 2 gen) (NEGATE 2 AA)
                   (NEGATE 0 T:twoSpaces)
           WITH
-                  (1 wf + bf + mn)
+                  (1 wf + bf + mn/init)
                   (2 wf + bf + ln + aa + syn)
 ;
 
-MERGECOHORTS:m+l ("<$1 $3>"v "$2 $4"v cgguess * VSTR:$6)
+MERGECOHORTS:m+l ("<$1 $3>"v "$1 $3"v cgguess * VSTR:$6)
                      wf + bf + mn
-                  (NEGATE 0 T:cmp|Gen)
-                  (NEGATE 1 T:cmp|Gen|CAPS)
+                  (NEGATE 0 gen)
+                  (NEGATE 1 gen) (NEGATE 1 AA)
           WITH
                   (1 wf + bf + ln + aa + syn)
 ;
