@@ -7694,6 +7694,16 @@
     </or>
     <match lemma="antas å være" tags="adv.*"><select lemma="truleg er"/></match>
   </rule>
+  <rule weight="3.0"> <!-- Mannen må antas å være hovedgjerningsmannen. -->
+    <or>
+      <match lemma="skulle"/>
+      <match lemma="måtte"/>
+      <match lemma="burde"/>
+      <match lemma="ville"/>
+      <match lemma="kunne"/>
+    </or>
+    <match lemma="antas å være" tags="adv.*"><select lemma="antakast å vere"/></match>
+  </rule>
 
   <rule weight="2.0"> <!-- Nå er mannen som antas å være hovedgjerningsmannen. -->
     <or>
@@ -7727,6 +7737,19 @@
       <match lemma="kunne"/>
     </or>
     <match lemma="det må antas at" tags="adv.*"><select lemma="ein må gå ut frå at"/></match>
+  </rule>
+  <rule weight="2.0">
+    <or>
+      <match lemma="skulle"/>
+      <match lemma="måtte"/>
+      <match lemma="burde"/>
+      <match lemma="ville"/>
+      <match lemma="kunne"/>
+    </or>
+    <repeat from="0" upto="5">
+      <match tags=".*"/>
+    </repeat>
+    <match lemma="anta" tags="vblex.inf.pasv.*"><select lemma="anta"/></match>
   </rule>
 <!-- ANTA: END -->
 
