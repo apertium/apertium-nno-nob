@@ -11860,5 +11860,18 @@ preposisjonar gir ekstra utfordringar. -->
     <match lemma="til"/>
   </rule>
 
+  <rule><match lemma="fortrekke" tags="vblex.*"><select lemma="fortrekke"/></match></rule>
+  <rule weight="3.0" c="fortrekke en mine">
+    <match lemma="fortrekke" tags="vblex.*"><select lemma="endre"/> </match>
+    <match lemma="en" tags="det.qnt.*"/>
+    <match lemma="mine" tags="n.*"/>
+  </rule>
+  <rule weight="3.0" c="fortrekker ikke en mine">
+    <match lemma="fortrekke" tags="vblex.*"><select lemma="endre"/> </match>
+    <match tags="adv.*"/>
+    <match lemma="en" tags="det.qnt.*"/>
+    <match lemma="mine" tags="n.*"/>
+  </rule>
+
 </rules>
 </lrx>
