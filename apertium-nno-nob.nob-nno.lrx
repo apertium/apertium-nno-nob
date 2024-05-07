@@ -7694,7 +7694,7 @@
     </or>
     <match lemma="antas å være" tags="adv.*"><select lemma="truleg er"/></match>
   </rule>
-  <rule weight="3.0"> <!-- Mannen må antas å være hovedgjerningsmannen. -->
+  <rule weight="3.0"> <!-- Mannen må antas å være hovedgjerningsmannen. / I prinsippet bør vi antas å være uskyldige -->
     <or>
       <match lemma="skulle"/>
       <match lemma="måtte"/>
@@ -7702,6 +7702,9 @@
       <match lemma="ville"/>
       <match lemma="kunne"/>
     </or>
+    <repeat from="0" upto="1">
+      <match tags=".*"/>
+    </repeat>
     <match lemma="antas å være" tags="adv.*"><select lemma="antakast å vere"/></match>
   </rule>
 
