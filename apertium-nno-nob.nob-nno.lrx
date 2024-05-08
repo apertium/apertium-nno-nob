@@ -3435,6 +3435,25 @@
     </or>
     <match lemma="minne"/>
   </rule>
+  <rule weight="3.0" c="bringe historien om">
+    <match lemma="bringe"><select lemma="bringe# vidare"/></match>
+    <or>
+      <match lemma="historie"/>
+      <match lemma="nyhet"/>
+    </or>
+    <match lemma="om"/>
+  </rule>
+  <rule weight="3.0" c="bringe (ny) kunnskap om">
+    <match lemma="bringe"><select lemma="bringe# fram"/></match>
+    <repeat from="0" upto="1">
+       <match tags="adj.*"/>
+   </repeat>
+    <or>
+      <match lemma="kunnskap"/>
+      <match lemma="viten"/>
+    </or>
+    <match lemma="om"/>
+  </rule>
 
   <!-- NOK: START -->
   <rule weight="2.0">
