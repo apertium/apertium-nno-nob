@@ -7727,6 +7727,10 @@
     <match lemma="antas å være" tags="adv.*"><select lemma="antakast å vere"/></match>
   </rule>
 
+  <rule weight="2.0"> <!-- Hun sier varianten ikke antas å være lite smittsom; jf. LSX -->
+    <match lemma="ikke antas å være" tags="adv.*"><select lemma="ikkje ser ut til å vere"/></match>
+  </rule>
+
   <rule weight="2.0"> <!-- Nå er mannen som antas å være hovedgjerningsmannen. -->
     <or>
       <match lemma="som"/>
@@ -7735,6 +7739,10 @@
   </rule>
 
   <rule> <!-- De antas å være bortført av samme gruppe. -->
+    <or>
+      <match tags="n.*"/>
+      <match tags="prn.*"/>
+    </or>
     <match lemma="antas å være" tags="adv.*"><select lemma="er truleg"/></match>
   </rule>
   <rule>
