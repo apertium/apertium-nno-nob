@@ -227,6 +227,11 @@
       <e><p><l><s n="Aa"/></l> <r><s n="aa"/></r></p></e>
       <e><p><l><s n="AA"/></l> <r><s n="AA"/></r></p></e>
     </pardef>
+    <pardef n="AA:aa" c="Downcase if titlecased/uppercased">
+      <e><p><l><s n="aa"/></l> <r><s n="aa"/></r></p></e>
+      <e><p><l><s n="Aa"/></l> <r><s n="aa"/></r></p></e>
+      <e><p><l><s n="AA"/></l> <r><s n="aa"/></r></p></e>
+    </pardef>
 
     <pardef n="sent">
       <e><i><w/><s n="sent"/></i></e>
@@ -1011,11 +1016,22 @@
       <e><i>dag<t/><d/></i></e>
     </pardef>
 
+    <pardef n="Meisterskap-lm" c="lemma only, no tags/word delimiters">
+      <e><i>OL</i></e>
+      <e><i>NM</i></e>
+      <e><i>EM</i></e>
+      <e><i>VM</i></e>
+    </pardef>
+
+    <pardef n="Årstid-lm" c="lemma only, no tags/word delimiters">
+      <e><i>høst</i></e>
+      <e><i>vår</i></e>
+      <e><i>sommer</i></e>
+      <e><i>vinter</i></e>
+    </pardef>
+
     <pardef n="Årstid">
-      <e><i>høst<t/><d/></i></e>
-      <e><i>vår<t/><d/></i></e>
-      <e><i>sommer<t/><d/></i></e>
-      <e><i>vinter<t/><d/></i></e>
+      <e><par n="Årstid-lm"/><i><t/><d/></i></e>
     </pardef>
 
     <pardef n="Månad">
@@ -14610,6 +14626,20 @@
       <i>mange<s n="adj"/><s n="sint"/><s n="comp"/><s n="un"/><s n="sp"/><t/></i>  <par n="d"/>
     </e> 
 
+    <!-- sommerens OL → sommer-OL osb. -->
+    <e lm="sommerens OL → sommer-OL" c="sommar-OL">
+      <par n="Årstid-lm"/>
+      <i><s n="n"/><t/><s n="sg"/></i>
+      <p><l><s n="def"/><s n="gen"/></l>  <r><s n="ind"/><s n="cmp"/><s n="guio"/></r></p>
+      <p><l><t/></l>  <r></r></p> <!-- fjern aa/syntakstaggar frå cmp-left -->
+      <i><d/></i>
+      <par n="Meisterskap-lm"/>
+      <i><t/></i>
+      <par n="AA:aa"/>
+      <par n="d"/>
+    </e>
+
+    <!-- årets-reglar -->
 
 <!-- fjorårets-reglar -->
 
