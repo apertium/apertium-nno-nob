@@ -16,8 +16,10 @@ if [[ "$1" = "-v" ]]; then
     mark_hyp='-'
     mark_sep='|'
     mark_bom='>'
-    col=$(env printf '\033[1;91;104m')
-    off=$(env printf '\033[0m')
+    if [[ -t 1 ]]; then
+        col=$(env printf '\033[1;91;104m')
+        off=$(env printf '\033[0m')
+    fi
 fi
 
 
