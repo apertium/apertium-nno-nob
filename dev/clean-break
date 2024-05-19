@@ -1,0 +1,34 @@
+#!/bin/bash
+
+# Clean non-breaking spaces, &shy; (soft hyphen) and other invisible chars
+
+mark_spc=''
+mark_hyp=''
+mark_sep=''
+mark_bom=''
+col=''
+off=''
+
+# With an argument -v (for visible), instead print the characters
+
+if [[ "$1" = "-v" ]]; then
+    mark_spc='_'
+    mark_hyp='-'
+    mark_sep='|'
+    mark_bom='>'
+    col=$(env printf '\033[1;91;104m')
+    off=$(env printf '\033[0m')
+fi
+
+
+bomss=$(env printf "\uFEFF")
+iseps=$(env printf "\x1f")       # Unit Separator
+zwsps=$(env printf "\u200b")     # Zero Width Space
+shies=$(env printf "\xc2\xad")   # Soft Hyphen
+nbsps=$(env printf "\u00A0\u1680\u180E\u2000\u2001\u2002\u2003\u2004\u2005\u2005\u2006\u2007\u2008\u2009\u200A\u200B\u200C\u200D\u202F\u205F\u2060\u3000\u00AD\uFEFF") # various non-breaking spaces from https://en.wikipedia.org/wiki/Whitespace_character#Unicode
+
+sed -e "s/[${zwsps}]/${col}${mark_hyp}${off}/g" \
+    -e "s/[${bomss}]/${col}${mark_bom}${off}/g" \
+    -e "s/[${shies}]/${col}${mark_hyp}${off}/g" \
+    -e "s/[${iseps}]/${col}${mark_sep}${off}/g" \
+    -e "s/[${nbsps}]/${col}${mark_spc}${off}/g"
