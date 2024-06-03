@@ -1291,9 +1291,10 @@
         <out>
           <chunk><clip pos="1" part="whole"/></chunk><b/> <!-- blir -->
           <chunk><clip pos="3" part="whole"/></chunk><b/> <!-- kort sagt -->
-          <chunk><clip pos="2" part="whole"/></chunk><b/> <!-- teken -->
-          <chunk><clip pos="4" part="whole"/></chunk>     <!-- alvorleg -->
+          <chunk><clip pos="2" part="whole"/></chunk>     <!-- teken -->
+          <!-- pos 4 is only matched, not output; instead we shift 3 words to let the next rules handle it -->
         </out>
+        <reject-current-rule shifting="3"/>
       </action>
     </rule>
     <rule comment="AUXPASS ADJPART ADV_FREE → AUXPASS ADJPART ADV_FREE
