@@ -2583,7 +2583,34 @@
     </match>
   </rule>
 
-  <rule><match lemma="oversende" tags="vblex.*"><select lemma="sende# over"/></match></rule>
+  <!--rule><match lemma="oversende" tags="vblex.*"><select lemma="sende# over"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="oversende" tags="vblex.pres.pasv.*">
+      <select lemma="oversende"/>
+    </match>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="oversende" tags="adj.pp.*">
+      <select lemma="sende# over"/>
+    </match>
+    <match lemma="til" tags="pr.*"/>
+  </rule>
+  <rule weight="2.0">
+    <or>
+      <match lemma="være" tags="vblex.*"/>
+      <match lemma="bli" tags="vblex.*"/>
+    </or>
+    <match lemma="oversende" tags="adj.pp.*">
+      <select lemma="oversende"/>
+    </match>
+  </rule>
+  <rule weight="2.0">    
+    <match lemma="ha" tags="vblex.*"/>
+    <match lemma="oversende" tags="vblex.pp.*">
+      <select lemma="oversende"/>
+    </match>
+  </rule-->
+
 <rule><match lemma="gjenkjenne" tags="vblex.*"><select lemma="kjenne# igjen"/></match></rule>
   <rule weight="2.0">
     <match lemma="gjenkjenne" tags="vblex.pres.pasv.*">
