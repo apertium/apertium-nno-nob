@@ -2,16 +2,26 @@
 <capitalization>
     <rules>
 
+        <rule weight="3.0">
+            <or>
+                <match lemma="iPhone" select="dix"/>
+                <match lemma="iPod" select="dix"/>
+                <match tags="np.*" select="dix"/>
+            </or>
+        </rule>
 
+        <!-- Only titlecase beginning of sentence if input titled and lemma lower -->
         <rule weight="2.0">
-            <begin/>
-            <match select="Aa"/>
+            <or>
+                <begin/>
+                <match tags="sent.*"/>
+            </or>
+            <match srcsurf="Aa" trglem="aa" select="Aa"/>
         </rule>
 
         <rule weight="1.0">
             <match select="dix"/>
         </rule>
-
 
     </rules>
 </capitalization>
