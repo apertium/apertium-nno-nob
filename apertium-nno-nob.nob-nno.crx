@@ -2,6 +2,21 @@
 <capitalization>
     <rules>
 
+        <!-- Keep funnily spelled words funnily spelled: -->
+        <rule weight="10.0">
+            <match srclem="*aA*" select="dix"/>
+        </rule>
+
+        <!-- Keep shouting as-is, but only if srclem was lower or title: -->
+        <rule weight="6.0">
+            <or>
+                <match srcsurf="AA" srclem="aa" select="AA"/>
+                <match srcsurf="AA" srclem="Aa" select="AA"/>
+            </or>
+        </rule>
+
+        <!-- Cf. https://github.com/apertium/apertium/issues/204 MixedcaseE will match srcsurf="AA" -->
+
         <rule weight="3.0">
             <or>
                 <match lemma="iPhone" select="dix"/>

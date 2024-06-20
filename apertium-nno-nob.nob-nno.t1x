@@ -8164,8 +8164,8 @@
           <test><equal><clip pos="2" side="sl" part="a_caps"/><lit-tag v="AA"/></equal></test>
           <let><var n="chunkCase"/><lit v="aa"/></let>
           <let><var n="upperMiddleParts"/><lit v="yes"/></let>
-          <modify-case><clip pos="1" side="tl" part="lem"/><lit v="AA"/></modify-case>
-          <modify-case><clip pos="2" side="tl" part="lem"/><lit v="AA"/></modify-case>
+          <!-- <modify-case><clip pos="1" side="tl" part="lem"/><lit v="AA"/></modify-case> -->
+          <!-- <modify-case><clip pos="2" side="tl" part="lem"/><lit v="AA"/></modify-case> -->
         </when>
         <when c="Not first word in sentence: set chunkCase aa">
           <test><not><equal><var n="chunkCase"/><lit v=""/></equal></not></test>
@@ -8202,7 +8202,7 @@
       <let><var n="caseFirstWord"/><var n="chunkCase"/></let>
       <choose><when>
         <test><equal><var n="upperMiddleParts"/><lit v="yes"/></equal></test>
-        <modify-case><clip pos="2" side="tl" part="lem"/><lit v="AA"/></modify-case>
+        <!-- <modify-case><clip pos="2" side="tl" part="lem"/><lit v="AA"/></modify-case> -->
       </when></choose>
     </def-macro>
     <def-macro n="set_caseFirstWordCmp4" npar="4">
@@ -8211,8 +8211,8 @@
       <let><var n="caseFirstWord"/><var n="chunkCase"/></let>
       <choose><when>
         <test><equal><var n="upperMiddleParts"/><lit v="yes"/></equal></test>
-        <modify-case><clip pos="2" side="tl" part="lem"/><lit v="AA"/></modify-case>
-        <modify-case><clip pos="3" side="tl" part="lem"/><lit v="AA"/></modify-case>
+        <!-- <modify-case><clip pos="2" side="tl" part="lem"/><lit v="AA"/></modify-case> -->
+        <!-- <modify-case><clip pos="3" side="tl" part="lem"/><lit v="AA"/></modify-case> -->
       </when></choose>
     </def-macro>
     <def-macro n="set_caseFirstWordCmp5" npar="5">
@@ -8221,9 +8221,9 @@
       <let><var n="caseFirstWord"/><var n="chunkCase"/></let>
       <choose><when>
         <test><equal><var n="upperMiddleParts"/><lit v="yes"/></equal></test>
-        <modify-case><clip pos="2" side="tl" part="lem"/><lit v="AA"/></modify-case>
-        <modify-case><clip pos="3" side="tl" part="lem"/><lit v="AA"/></modify-case>
-        <modify-case><clip pos="4" side="tl" part="lem"/><lit v="AA"/></modify-case>
+        <!-- <modify-case><clip pos="2" side="tl" part="lem"/><lit v="AA"/></modify-case> -->
+        <!-- <modify-case><clip pos="3" side="tl" part="lem"/><lit v="AA"/></modify-case> -->
+        <!-- <modify-case><clip pos="4" side="tl" part="lem"/><lit v="AA"/></modify-case> -->
       </when></choose>
     </def-macro>
 
@@ -8243,7 +8243,7 @@
       <let><var n="caseSecondWord"/><var n="chunkCase"/></let>
        <choose><when>
         <test><equal><var n="upperMiddleParts"/><lit v="yes"/></equal></test>
-        <modify-case><clip pos="2" side="tl" part="lem"/><lit v="AA"/></modify-case>
+        <!-- <modify-case><clip pos="2" side="tl" part="lem"/><lit v="AA"/></modify-case> -->
       </when></choose>
     </def-macro>
     <def-macro n="set_caseSecondWordCmp4" npar="4">
@@ -8252,8 +8252,8 @@
       <let><var n="caseSecondWord"/><var n="chunkCase"/></let>
       <choose><when>
         <test><equal><var n="upperMiddleParts"/><lit v="yes"/></equal></test>
-        <modify-case><clip pos="2" side="tl" part="lem"/><lit v="AA"/></modify-case>
-        <modify-case><clip pos="3" side="tl" part="lem"/><lit v="AA"/></modify-case>
+        <!-- <modify-case><clip pos="2" side="tl" part="lem"/><lit v="AA"/></modify-case> -->
+        <!-- <modify-case><clip pos="3" side="tl" part="lem"/><lit v="AA"/></modify-case> -->
       </when></choose>
     </def-macro>
 
