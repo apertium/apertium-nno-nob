@@ -11522,11 +11522,9 @@ preposisjonar gir ekstra utfordringar. -->
   <rule><match lemma="befriende" tags="adj.*"><select lemma="forløysande"/></match></rule>
 
   <rule><match lemma="overlegge" tags="vblex.*"><select lemma="drøfte"/></match></rule>
+  <rule><match lemma="overlegge" tags="adj.*"><select lemma="overlegge"/></match></rule>
   <rule weight="2.0">
-    <or>
-      <match lemma="overlegge" tags="adj.*"><select lemma="overlegge"/></match>
-      <match lemma="overlegge" tags="vblex.pp.*"><select lemma="overlegge"/></match>
-    </or>
+    <match lemma="overlegge"><select lemma="overlegge"/></match>
     <or>
       <match lemma="aggresjon"/>
       <match lemma="handling"/>
@@ -11537,10 +11535,11 @@ preposisjonar gir ekstra utfordringar. -->
     <repeat from="0" upto="1">
       <match tags="vblex.*"/>
     </repeat>
-    <or>
-      <match lemma="overlegge" tags="adj.*"><select lemma="overlegge"/></match>
-      <match lemma="overlegge" tags="vblex.pp.*"><select lemma="overlegge"/></match>
-    </or>
+    <match lemma="overlegge"><select lemma="overlegge"/></match>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="overlegge"><select lemma="overlegge"/></match>
+    <match lemma="drap"/>
   </rule>
 
   <!-- MWE VS CMP: Remove multiword expressions from compounds, otherwise prefer them. -->
