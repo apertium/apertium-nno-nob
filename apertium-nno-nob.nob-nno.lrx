@@ -3782,9 +3782,20 @@
   <rule><match lemma="motta" tags="vblex.*"><select lemma="få"/></match></rule>
   <rule weight="2.0">
     <match lemma="motta" tags="vblex.*"><select lemma="ta# imot"/></match>
-    <match lemma="applaus"/>
+    <or>
+      <match lemma="applaus"/>
+      <match lemma="tilbud"/>
+      <match lemma="hyllest"/>
+      <match tags="prn.*"/>
+    </or>
   </rule>
-  <rule weight="2.0">
+  <rule weight="2.0" c="då han tok imot Xi">
+    <match tags="cnjsub.*"/>
+    <repeat from="0" upto="3"><match tags="*"/></repeat>
+    <match lemma="motta" tags="vblex.*"><select lemma="ta# imot"/></match>
+    <match tags="np.*"/>
+  </rule>
+  <rule weight="2.5">
     <match lemma="ha" tags="vblex.*"/>
     <match lemma="motta" tags="vblex.*"><select lemma="få"/></match>
   </rule>
@@ -3792,7 +3803,7 @@
     <match lemma="ha" tags="vblex.*"/>
     <match lemma="motta" tags="adj.*"><select lemma="få"/></match>
   </rule>
-  <rule weight="2.0"><match lemma="motta" tags="vblex.pp.*"><select lemma="motta"/></match></rule>
+  <rule weight="2.0"><match lemma="motta" tags="vblex.pp.*"><select lemma="ta# imot"/></match></rule>
   <rule weight="2.0"><match lemma="motta" tags="vblex.*.pasv.*"><select lemma="motta"/></match></rule>
   <rule><match lemma="motta" tags="adj.*"><select lemma="motta"/></match></rule>
 
@@ -11946,6 +11957,9 @@ preposisjonar gir ekstra utfordringar. -->
     <match lemma="en" tags="det.qnt.*"/>
     <match lemma="mine" tags="n.*"/>
   </rule>
+
+  <rule><match lemma="vedlikeholde" tags="vblex.*"><select lemma="halde# ved like"/></match></rule>
+  <rule><match lemma="vedlikeholde" tags="adj.*"><select lemma="vedlikehalde"/></match></rule>
 
 </rules>
 </lrx>
