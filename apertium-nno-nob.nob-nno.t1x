@@ -304,6 +304,18 @@
       <cat-item tags="np.attr.Aa"/>
       <cat-item tags="np.attr.AA"/>
     </def-cat>
+    <def-cat n="top.gen" c="tags specified so we exclude cmp">
+      <cat-item tags="np.top.gen.aa"/>
+      <cat-item tags="np.top.gen.Aa"/>
+      <cat-item tags="np.top.gen.AA"/>
+    </def-cat>
+    <def-cat n="tittel">
+      <cat-item tags="*" lemma="statsminister"/>
+      <cat-item tags="*" lemma="president"/>
+      <cat-item tags="*" lemma="utensriksminister"/>
+      <!-- TODO: need override for «som Danmarks konge» etc. before we do this -->
+      <!-- <cat-item tags="*" lemma="konge"/> -->
+    </def-cat>
     <def-cat n="nacr">
       <cat-item tags="n.acr.*"/>
     </def-cat>
@@ -1112,6 +1124,7 @@
     <def-var n="brlemma"        c="Only used for 'britenes statsminister'-rule"/>
     <def-var n="mwe-queue"      c="Must be output before next verb or sent. TODO: There should be an EOF-rule in case nothing at end."/>
     <def-var n="cmp-lefts"      c="Non-final lu's of compound (verb)"/>
+    <def-var n="rewrite_np_gen" c="Allow prep-rewriting of genitive proper nouns"/>
   </section-def-vars>
 
   <section-def-lists>
@@ -2264,6 +2277,28 @@
       <list-item v="utgiftsside_budsjett"/>
       <list-item v="utgiftsside_statsbudsjett"/>
 
+      <!-- TODO: can we do this in the TITTEL-rule, to avoid the MxN combinations? -->
+      <list-item v="konge_danmark"/>
+      <list-item v="arveprins_danmark"/>
+      <list-item v="arveprinsesse_danmark"/>
+      <list-item v="dronning_danmark"/>
+      <list-item v="prinsesse_danmark"/>
+      <list-item v="prins_danmark"/>
+      <list-item v="kronprinsesse_danmark"/>
+      <list-item v="kronprins_danmark"/>
+      <list-item v="regent_danmark"/>
+      <list-item v="tronarving_danmark"/>
+      <list-item v="konge_belgia"/>
+      <list-item v="arveprins_belgia"/>
+      <list-item v="arveprinsesse_belgia"/>
+      <list-item v="dronning_belgia"/>
+      <list-item v="prinsesse_belgia"/>
+      <list-item v="prins_belgia"/>
+      <list-item v="kronprinsesse_belgia"/>
+      <list-item v="kronprins_belgia"/>
+      <list-item v="regent_belgia"/>
+      <list-item v="tronarving_belgia"/>
+
       <list-item v="slutt_periode"/>
       <list-item v="utløp_periode"/>
       <list-item v="varigheit_utbrot"/>
@@ -2363,6 +2398,7 @@
       <list-item v="innside"/>
       <list-item v="inntektsside"/>
       <list-item v="konsekvens"/>
+      <list-item v="konge"/>
       <list-item v="leside"/>
       <list-item v="midtside"/>
       <list-item v="motstandar"/>
@@ -6639,6 +6675,51 @@
       <list-item v="topp"/>
       <list-item v="kjøkken"/>
       <list-item v="skip"/>
+      <list-item v="andorra"/>
+      <list-item v="antigua og barbuda"/>
+      <list-item v="asorene"/>
+      <list-item v="azorene"/>
+      <list-item v="bahamas"/>
+      <list-item v="bali"/>
+      <list-item v="barbados"/>
+      <list-item v="belize"/>
+      <list-item v="costa rica"/>
+      <list-item v="cuba"/>
+      <list-item v="fiji"/>
+      <list-item v="filippinene"/>
+      <list-item v="færøyene"/>
+      <list-item v="grenada"/>
+      <list-item v="grønland"/>
+      <list-item v="hawaii"/>
+      <list-item v="island"/>
+      <list-item v="jamaica"/>
+      <list-item v="kapp verde"/>
+      <list-item v="kiribati"/>
+      <list-item v="komorene"/>
+      <list-item v="kypros"/>
+      <list-item v="madagaskar"/>
+      <list-item v="maldivene"/>
+      <list-item v="mallorca"/>
+      <list-item v="malta"/>
+      <list-item v="marshalløyene"/>
+      <list-item v="mauritius"/>
+      <list-item v="nauru"/>
+      <list-item v="new zealand"/>
+      <list-item v="niue"/>
+      <list-item v="orknøyene"/>
+      <list-item v="palau"/>
+      <list-item v="papua ny-guinea"/>
+      <list-item v="saint lucia"/>
+      <list-item v="salomonøyene"/>
+      <list-item v="samoa"/>
+      <list-item v="seychellene"/>
+      <list-item v="sri lanka"/>
+      <list-item v="taiwan"/>
+      <list-item v="tonga"/>
+      <list-item v="trinidad"/>
+      <list-item v="tuvalu"/>
+      <list-item v="vanuatu"/>
+      <list-item v="åland"/>
     </def-list>
     <def-list n="gen-av2">
       <list-item v="arbeidstid"/>
@@ -8066,7 +8147,10 @@
       <let><clip pos="1" side="tl" part="a_caps"/><lit v=""/></let>
       <let><var n="ntags"/><clip pos="1" side="tl" part="tags"/></let>
       <choose><when>
-        <test><equal><clip pos="1" side="tl" part="a_nom"/><lit-tag v="n"/></equal></test>
+        <test><or>
+          <equal><clip pos="1" side="tl" part="a_nom"/><lit-tag v="n"/></equal>
+          <equal><var n="rewrite_np_gen"/><lit v="yes"/></equal>
+        </or></test>
         <choose><when>
           <test><and>
             <not><equal><clip pos="1" side="tl" part="cas"/><lit v=""/></equal></not>
@@ -8714,7 +8798,10 @@
       <choose><when c="gen">
         <test><and>
           <equal><clip pos="1" side="sl" part="cas"/><lit-tag v="gen"/></equal>
-          <equal><clip pos="1" side="tl" part="a_nom"/><lit-tag v="n"/></equal>
+          <or>
+            <equal><clip pos="1" side="tl" part="a_nom"/><lit-tag v="n"/></equal>
+            <equal><var n="rewrite_np_gen"/><lit v="yes"/></equal>
+          </or>
           <!-- TODO: We might want a def-list of exceptions where we want gen-prep even if indefinite, e.g. "avsenders saksbehandler" -->
           <not><equal><clip pos="1" side="tl" part="art"/><lit-tag v="ind"/></equal></not> <!-- to bilers bredde: no gen-drop on ind -->
         </and></test>
@@ -8761,6 +8848,8 @@
           <when><test><in><var n="lemma"/><list n="gen-som"/></in></test><let><var n="gen-prep"/><lit v="som"/></let></when>
           <when><test><in><var n="lemma"/><list n="gen-ved"/></in></test><let><var n="gen-prep"/><lit v="ved"/></let></when>
 
+          <!-- «i» as default for np.top (e.g. if gen-på2 didn't do anything): -->
+          <when><test><begins-with><clip pos="1" side="tl" part="a_prop"/><lit-tag v="top"/></begins-with></test><let><var n="gen-prep"/><lit v="i"/></let></when>
           <otherwise c="til">
             <let><var n="gen-prep"/><lit v="til"/></let>
           </otherwise>
@@ -9486,6 +9575,49 @@
     </rule>
 
     <!-- Idiomatic rules first -->
+    <rule comment="TOP.GEN TITTEL → på/i TOP [TITTEL]
+                   Allow rewriting toponym proper noun genitives before titles:
+                   Danmarks utenriksminister → utenriksministeren i Danmark">
+      <pattern>
+        <pattern-item n="top.gen"/>
+        <pattern-item n="tittel"/>
+      </pattern>
+      <action>
+        <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
+        <let><var n="rewrite_np_gen"/><lit v="yes"/></let> <!-- remember to clear it again! -->
+        <call-macro n="out_gen-prep"><with-param pos="1"/></call-macro>
+        <call-macro n="stash_case_in_ntags1"><with-param pos="1"/></call-macro>
+        <let><var n="rewrite_np_gen"/><lit v=""/></let> <!-- phew, we remembered -->
+        <out>
+          <chunk name="nn" case="caseFirstWord">
+            <tags><tag><var n="ntags"/></tag></tags>
+            <lu><clip pos="1" side="tl" part="whole"/></lu>
+          </chunk>
+        </out>
+        <reject-current-rule shifting="1"/>
+      </action>
+    </rule>
+    <rule comment="TOP.GEN TITTEL NP → TOP.GEN [TITTEL NP]
+                   (Override rule with lookahead)
+                   Keep genitive, then reject and let other rules deal with word 2 and 3">
+      <pattern>
+        <pattern-item n="top.gen"/>
+        <pattern-item n="tittel"/>
+        <pattern-item n="np_nogen"/>
+      </pattern>
+      <action>
+        <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
+        <out>
+          <chunk name="nn" case="caseFirstWord">
+            <tags><tag><var n="ntags"/></tag></tags>
+            <lu><clip pos="1" side="tl" part="whole"/></lu>
+          </chunk>
+        </out>
+        <reject-current-rule shifting="1"/>
+      </action>
+    </rule>
+
+
     <rule comment="ALLE OG ENHVER AV PRN → PRN ALLE">
       <pattern>
         <pattern-item n="alle_og_enhver"/>
