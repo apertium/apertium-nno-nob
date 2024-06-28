@@ -310,18 +310,23 @@
       <cat-item tags="np.top.gen.AA"/>
     </def-cat>
     <def-cat n="tittel">
-      <cat-item tags="*" lemma="statsminister"/>
       <cat-item tags="*" lemma="president"/>
       <cat-item tags="*" lemma="leder"/>
-      <cat-item tags="*" lemma="utenriksminister"/>
-      <cat-item tags="*" lemma="forsvarsminister"/>
-      <cat-item tags="*" lemma="transportminister"/>
-      <cat-item tags="*" lemma="samferdselsminister"/>
-      <cat-item tags="*" lemma="miljøvernminister"/>
-      <cat-item tags="*" lemma="utdanningsminister"/>
+      <cat-item tags="*" lemma="minister"/>
+      <cat-item tags="*" lemma="prinsesse"/>
+      <cat-item tags="*" lemma="prins"/>
+      <cat-item tags="*" lemma="konge"/>
+      <cat-item tags="*" lemma="dronning"/>
+      <cat-item tags="*" lemma="regent"/>
+      <cat-item tags="*" lemma="*president"/>
+      <cat-item tags="*" lemma="*leder"/>
       <cat-item tags="*" lemma="*minister"/>
-      <!-- TODO: need override for «som Danmarks konge» etc. before we do this -->
-      <!-- <cat-item tags="*" lemma="konge"/> -->
+      <cat-item tags="*" lemma="*prinsesse"/> <!-- ikkje "*prins*", det vil matcha "prinsipp" :) -->
+      <cat-item tags="*" lemma="*prins"/>
+      <cat-item tags="*" lemma="*konge"/>
+      <cat-item tags="*" lemma="*dronning"/>
+      <cat-item tags="*" lemma="*regent"/>
+      <cat-item tags="*" lemma="tronarving"/>
     </def-cat>
     <def-cat n="nacr">
       <cat-item tags="n.acr.*"/>
@@ -800,14 +805,6 @@
       <cat-item lemma="legendarisk" tags="adj.pst.un.sp.def.aa"/>
       <cat-item lemma="totalitær" tags="adj.pst.un.sp.def.aa"/>
     </def-cat>
-    <def-cat n="britenes">
-      <cat-item lemma="brite" tags="n.m.pl.def.gen.*"/>
-      <cat-item lemma="russer" tags="n.m.pl.def.gen.*"/>
-      <cat-item lemma="sveitser" tags="n.m.pl.def.gen.*"/>
-      <cat-item lemma="same" tags="n.m.pl.def.gen.*"/>
-      <cat-item lemma="kina" tags="np.top.gen.*"/>
-      <cat-item lemma="india" tags="np.top.gen.*"/>
-    </def-cat>
     <def-cat n="denne">
       <cat-item lemma="denne" tags="det.dem.*"/>
     </def-cat>
@@ -845,7 +842,7 @@
       <cat-item lemma="hvilken som helst annen" tags="adj.*"/>
     </def-cat>
     <def-cat n="som">
-      <cat-item lemma="som" tags="pr.*"/>
+      <cat-item lemma="som" tags="*"/>
     </def-cat>
     <def-cat n="helst">
       <cat-item lemma="helst" tags="adv.*"/>
@@ -1112,6 +1109,7 @@
     <def-var n="advtags"/>
     <def-var n="syntag"         c="The syntax tag of this word"/>
     <def-var n="prevlem"/>
+    <def-var n="prevtags"/>
     <def-var n="prevnbr"/>
     <def-var n="prevDeletedCase"/>
     <def-var n="bilem"/>
@@ -1128,7 +1126,6 @@
     <def-var n="tmp"/>
     <def-var n="b" v=" "        c="Single space. For when we can't use b."/>
     <def-var n="lemma"          c="Used within macros"/>
-    <def-var n="brlemma"        c="Only used for 'britenes statsminister'-rule"/>
     <def-var n="mwe-queue"      c="Must be output before next verb or sent. TODO: There should be an EOF-rule in case nothing at end."/>
     <def-var n="cmp-lefts"      c="Non-final lu's of compound (verb)"/>
     <def-var n="rewrite_np_gen" c="Allow prep-rewriting of genitive proper nouns"/>
@@ -2283,28 +2280,6 @@
       <list-item v="start_studie"/>
       <list-item v="utgiftsside_budsjett"/>
       <list-item v="utgiftsside_statsbudsjett"/>
-
-      <!-- TODO: can we do this in the TITTEL-rule, to avoid the MxN combinations? -->
-      <list-item v="konge_danmark"/>
-      <list-item v="arveprins_danmark"/>
-      <list-item v="arveprinsesse_danmark"/>
-      <list-item v="dronning_danmark"/>
-      <list-item v="prinsesse_danmark"/>
-      <list-item v="prins_danmark"/>
-      <list-item v="kronprinsesse_danmark"/>
-      <list-item v="kronprins_danmark"/>
-      <list-item v="regent_danmark"/>
-      <list-item v="tronarving_danmark"/>
-      <list-item v="konge_belgia"/>
-      <list-item v="arveprins_belgia"/>
-      <list-item v="arveprinsesse_belgia"/>
-      <list-item v="dronning_belgia"/>
-      <list-item v="prinsesse_belgia"/>
-      <list-item v="prins_belgia"/>
-      <list-item v="kronprinsesse_belgia"/>
-      <list-item v="kronprins_belgia"/>
-      <list-item v="regent_belgia"/>
-      <list-item v="tronarving_belgia"/>
 
       <list-item v="slutt_periode"/>
       <list-item v="utløp_periode"/>
@@ -6906,6 +6881,27 @@
       <list-item v="stabæk"/>
     </def-list>
 
+    <def-list n="tittel-obj-gen-av" c="Overstyr genitivspreposisjon mot «av» i tittel-regelen">
+      <list-item v="konge"/>
+      <list-item v="ekskonge"/>
+      <list-item v="eksilkonge"/>
+      <list-item v="gamlekonge"/>
+      <list-item v="arveprins"/>
+      <list-item v="arveprinsesse"/>
+      <list-item v="dronning"/>
+      <list-item v="prinsesse"/>
+      <list-item v="prins"/>
+      <list-item v="kronprinsesse"/>
+      <list-item v="kronprins"/>
+      <list-item v="regent"/>
+      <list-item v="kronprinsregent"/>
+      <list-item v="kronprinsesseregent"/>
+      <list-item v="prinsregent"/>
+      <list-item v="prinsesseregent"/>
+      <list-item v="dronningregent"/>
+      <list-item v="tronarving"/>
+    </def-list>
+
     <def-list n="det_indef">
       <!-- feels like these should have their own
            sub-pos… «<det><dem> som kan ha <ind> etter seg på
@@ -8025,6 +8021,12 @@
       </when></choose>
     </def-macro>
 
+    <def-macro n="set_prevlem" npar="1"
+               c="Store previous lemma and tags">
+        <let><var n="prevlem"/><clip pos="1" side="tl" part="lem"/></let>
+        <let><var n="prevtags"/><clip pos="1" side="tl" part="tags"/></let>
+    </def-macro>
+
     <def-macro n="bigram_genprep" npar="1"
                c="arg.1: possibly owned noun. Helper for stash_case_in_ntags0
                   Also sets genind
@@ -8120,7 +8122,7 @@
           </when></choose>
         </otherwise>
       </choose>
-      <let><var n="prevlem"/><clip pos="1" side="tl" part="lem"/></let>
+      <call-macro n="set_prevlem"><with-param pos="1"/></call-macro>
       <let><var n="prevnbr"/><clip pos="1" side="tl" part="nbr"/></let>
     </def-macro>
 
@@ -8145,6 +8147,7 @@
         </otherwise>
       </choose>
     </def-macro>
+
 
     <def-macro n="stash_case_in_ntags0" npar="1"
                c="Helper for stash_case_in_ntags1 and stash_case_in_ntags2
@@ -9582,6 +9585,7 @@
     </rule>
 
     <!-- Idiomatic rules first -->
+
     <rule comment="TOP.GEN TITTEL → på/i TOP [TITTEL]
                    Allow rewriting toponym proper noun genitives before titles:
                    Danmarks utenriksminister → utenriksministeren i Danmark">
@@ -9590,9 +9594,32 @@
         <pattern-item n="tittel"/>
       </pattern>
       <action>
+        <choose><when c="Give up if second word is also genitive">
+          <test><equal><clip pos="2" side="tl" part="cas"/><lit-tag v="gen"/></equal></test>
+          <reject-current-rule shifting="no"/>
+        </when></choose>
+
+        <choose><when c="Leave genitive as-is after som.pr">
+          <test><and>
+            <equal><var n="prevlem"/><lit v="som"/></equal>
+            <begins-with><var n="prevtags"/><lit-tag v="pr"/></begins-with>
+          </and></test>
+          <reject-current-rule shifting="no"/>
+        </when></choose>
+
+        <!-- First handle the proper noun, outputting with gen-prep and stripping case: -->
         <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
         <let><var n="rewrite_np_gen"/><lit v="yes"/></let> <!-- remember to clear it again! -->
-        <call-macro n="out_gen-prep"><with-param pos="1"/></call-macro>
+        <choose>
+          <when c="Royal titles after place names are always «av» regardless of the proper noun:">
+            <test><in><clip pos="2" side="tl" part="lemh"/><list n="tittel-obj-gen-av"/></in></test>
+            <let><var n="gen-prep"/><lit v="av"/></let>
+            <call-macro n="out_gen-prep_from_var"/>
+          </when>
+          <otherwise>
+            <call-macro n="out_gen-prep"><with-param pos="1"/></call-macro>
+          </otherwise>
+        </choose>
         <call-macro n="stash_case_in_ntags1"><with-param pos="1"/></call-macro>
         <let><var n="rewrite_np_gen"/><lit v=""/></let> <!-- phew, we remembered -->
         <out>
@@ -9601,6 +9628,8 @@
             <lu><clip pos="1" side="tl" part="whole"/></lu>
           </chunk>
         </out>
+
+        <!-- Now output the owned noun with the regular noun rule: -->
         <reject-current-rule shifting="1"/>
       </action>
     </rule>
@@ -9932,80 +9961,6 @@
       </action>
     </rule>
 
-    <!-- idiomatic NGEN NIND → (DET) ADJ NDEF -->
-    <rule comment="britenes statsminister → (den) britiske statsministeren
-                   TODO: move to LSX">
-      <pattern>
-        <pattern-item n="britenes"/>
-        <pattern-item n="nind_indgen"/>
-      </pattern>
-      <action>
-        <let><var n="brlemma"/><clip pos="1" side="sl" part="lemh"/></let>
-        <modify-case><var n="brlemma"/><lit v="aa"/></modify-case>
-        <choose>
-          <when>
-            <test><equal><var n="brlemma"/><lit v="brite"/></equal></test>
-            <let>        <var n="brlemma"/><lit v="britisk"/></let>
-          </when>
-          <when>
-            <test><equal><var n="brlemma"/><lit v="russer"/></equal></test>
-            <let>        <var n="brlemma"/><lit v="russisk"/></let>
-          </when>
-          <when>
-            <test><equal><var n="brlemma"/><lit v="sveitser"/></equal></test>
-            <let>        <var n="brlemma"/><lit v="sveitsisk"/></let>
-          </when>
-          <when>
-            <test><equal><var n="brlemma"/><lit v="same"/></equal></test>
-            <let>        <var n="brlemma"/><lit v="samisk"/></let>
-          </when>
-          <when>
-            <test><equal><var n="brlemma"/><lit v="india"/></equal></test>
-            <let>        <var n="brlemma"/><lit v="indisk"/></let>
-          </when>
-          <when>
-            <test><equal><var n="brlemma"/><lit v="kina"/></equal></test>
-            <let>        <var n="brlemma"/><lit v="kinesisk"/></let>
-          </when>
-          <otherwise>
-            <reject-current-rule shifting="no"/>
-          </otherwise>
-        </choose>
-        <call-macro n="set_caseFirstWord2">
-          <with-param pos="1"/>
-          <with-param pos="2"/>
-        </call-macro>
-        <choose>
-          <when>
-            <test><or>
-              <equal><clip pos="2" side="tl" part="lemh"/><lit v="side"/></equal>
-              <equal><clip pos="2" side="tl" part="lemh"/><lit v="utmelding"/></equal>
-            </or></test>
-            <let><var n="c_name"/><lit v="adj_n"/></let>
-            <let><var n="adjtags"/><lit-tag v="adj.pst.mf.sg.ind"/></let>
-            <let><clip pos="2" side="tl" part="art"/><lit-tag v="ind"/></let>
-          </when>
-          <otherwise>
-            <let><var n="c_name"/><lit v="needdet_adj_n"/></let>
-            <let><var n="adjtags"/><lit-tag v="adj.pst.un.sp.def"/></let>
-            <let><clip pos="2" side="tl" part="art"/><lit-tag v="def"/></let>
-          </otherwise>
-        </choose>
-        <call-macro n="stash_case_in_ntags1"><with-param pos="2"/></call-macro>
-        <out>
-          <chunk namefrom="c_name" case="caseFirstWord">
-            <tags><tag><var n="ntags"/></tag></tags>
-            <var n="grau_aux"/>
-            <lu>
-              <var n="brlemma"/>
-              <var n="adjtags"/>
-            </lu>
-            <b pos="1"/>
-            <lu><clip pos="2" side="tl" part="whole"/></lu>
-          </chunk>
-        </out>
-      </action>
-    </rule>
 
     <!-- Verbs -->
     <rule comment="VBLEX
@@ -10117,7 +10072,7 @@
             </lu>
           </chunk>
         </out>
-        <let><var n="prevlem"/><clip pos="1" side="tl" part="lem"/></let>
+        <call-macro n="set_prevlem"><with-param pos="1"/></call-macro>
       </action>
     </rule>
     <rule comment="ADV">
@@ -10159,7 +10114,7 @@
             <lu><clip pos="1" side="tl" part="whole"/></lu>
           </chunk>
         </out>
-        <let><var n="prevlem"/><clip pos="1" side="tl" part="lem"/></let>
+        <call-macro n="set_prevlem"><with-param pos="1"/></call-macro>
       </when></choose></action>
     </rule>
     <rule comment="så-ADV lenge-ADV/ADJ: så lenge → så lenge">
@@ -10179,7 +10134,7 @@
             <lu><clip pos="2" side="tl" part="whole"/></lu>
           </chunk>
         </out>
-        <let><var n="prevlem"/><clip pos="2" side="tl" part="lem"/></let>
+        <call-macro n="set_prevlem"><with-param pos="2"/></call-macro>
       </action>
     </rule>
 
@@ -13398,7 +13353,7 @@ no lemq-moving">
                 <lu><clip pos="1" side="tl" part="whole"/></lu>
               </chunk>
             </out>
-            <let><var n="prevlem"/><clip pos="1" side="tl" part="lem"/></let>
+            <call-macro n="set_prevlem"><with-param pos="1"/></call-macro>
             <let><var n="prevnbr"/><clip pos="1" side="tl" part="nbr"/></let>
           </when>
           <otherwise>
@@ -13456,7 +13411,7 @@ no lemq-moving">
             <lu><clip pos="1" side="tl" part="whole"/></lu>
           </chunk>
         </out>
-        <let><var n="prevlem"/><clip pos="1" side="tl" part="lem"/></let>
+        <call-macro n="set_prevlem"><with-param pos="1"/></call-macro>
       </action>
     </rule>
 
@@ -13472,7 +13427,7 @@ no lemq-moving">
             <lu><clip pos="1" side="tl" part="whole"/></lu>
           </chunk>
         </out>
-        <let><var n="prevlem"/><clip pos="1" side="tl" part="lem"/></let>
+        <call-macro n="set_prevlem"><with-param pos="1"/></call-macro>
       </action>
     </rule>
 
@@ -13493,7 +13448,7 @@ no lemq-moving">
             </chunk>
           </out>
         </when></choose>
-        <let><var n="prevlem"/><clip pos="1" side="tl" part="lem"/></let>
+        <call-macro n="set_prevlem"><with-param pos="1"/></call-macro>
       </action>
     </rule>
 
@@ -13503,16 +13458,20 @@ no lemq-moving">
       </pattern>
       <action>
         <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
+        <let>
+          <var n="c_lemtag"/>
+          <concat><lit v="&lt;"/><clip pos="1" side="tl" part="lemh"/><lit v="&gt;"/></concat>
+        </let>
         <out>
           <chunk name="cnjsub" case="caseFirstWord">
             <tags>
               <tag><clip pos="1" side="tl" part="tags"/></tag>
-              <tag><concat><lit v="&lt;"/><clip pos="1" side="tl" part="lemh"/><lit v="&gt;"/></concat></tag>
+              <tag><var n="c_lemtag"/></tag>
             </tags>
             <lu><clip pos="1" side="tl" part="whole"/></lu>
           </chunk>
         </out>
-        <let><var n="prevlem"/><clip pos="1" side="tl" part="lem"/></let>
+        <call-macro n="set_prevlem"><with-param pos="1"/></call-macro>
       </action>
     </rule>
     <rule comment="CNJCOO">
@@ -13527,7 +13486,7 @@ no lemq-moving">
             <lu><clip pos="1" side="tl" part="whole"/></lu>
           </chunk>
         </out>
-        <let><var n="prevlem"/><clip pos="1" side="tl" part="lem"/></let>
+        <call-macro n="set_prevlem"><with-param pos="1"/></call-macro>
       </action>
     </rule>
     <rule comment="IJ">
@@ -13542,7 +13501,7 @@ no lemq-moving">
             <lu><clip pos="1" side="tl" part="whole"/></lu>
           </chunk>
         </out>
-        <let><var n="prevlem"/><clip pos="1" side="tl" part="lem"/></let>
+        <call-macro n="set_prevlem"><with-param pos="1"/></call-macro>
       </action>
     </rule>
     <rule comment="URL">
@@ -13557,7 +13516,7 @@ no lemq-moving">
             <lu><clip pos="1" side="tl" part="whole"/></lu>
           </chunk>
         </out>
-        <let><var n="prevlem"/><clip pos="1" side="tl" part="lem"/></let>
+        <call-macro n="set_prevlem"><with-param pos="1"/></call-macro>
       </action>
     </rule>
 
