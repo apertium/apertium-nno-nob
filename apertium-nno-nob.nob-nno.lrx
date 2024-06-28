@@ -11966,5 +11966,17 @@ preposisjonar gir ekstra utfordringar. -->
     <match lemma="seg" tags="prn.*"/>
   </rule>
 
+  <rule><match lemma="flyving" tags="n.*"><select lemma="flyging"/></match></rule>
+  <!-- Kan også dreie seg om eining i luftforsvar, ein flyving, men svært sjeldan.
+  Den mest vanlege meininga, flyferd ("flyvning"), er vanskeleg å skilje frå det fysiske
+  objektet utan utvida kontekst. -->
+  <rule weight="2.0" c="høyre/venstre flyvingen">
+    <or>
+      <match lemma="høyre"/>
+      <match lemma="venstre"/>
+    </or>
+    <match lemma="flyving" tags="n.*"><select lemma="flyveng"/> </match>
+  </rule>
+
 </rules>
 </lrx>
