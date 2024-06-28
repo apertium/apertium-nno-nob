@@ -9607,21 +9607,12 @@
           <reject-current-rule shifting="no"/>
         </when></choose>
 
-        <choose><when c="After «som» as preposition we want titles the title to be indefinite
-                         (or even leave the genitive as-is?)">
+        <choose><when c="Leave genitive as-is after som.pr">
           <test><and>
             <equal><var n="prevlem"/><lit v="som"/></equal>
             <begins-with><var n="prevtags"/><lit-tag v="pr"/></begins-with>
           </and></test>
-          <!-- If we just want to leave the genitive as-is: -->
-          <!-- <reject-current-rule shifting="no"/> -->
-          <let>
-            <clip pos="2" side="tl" part="tags"/>
-            <concat>
-              <clip pos="2" side="tl" part="tags"/>
-              <lit-tag v="defdrop"/>
-            </concat>
-          </let>
+          <reject-current-rule shifting="no"/>
         </when></choose>
 
         <!-- First handle the proper noun, outputting with gen-prep and stripping case: -->
@@ -9644,28 +9635,10 @@
             <tags><tag><var n="ntags"/></tag></tags>
             <lu><clip pos="1" side="tl" part="whole"/></lu>
           </chunk>
-          <b/>
         </out>
 
-        <!-- Now output the owned noun as in the regular noun rule: -->
-        <choose>
-          <when c="If this is the first part of a compound, let the regular rules handle it so we get correct compounding:
-                   (This means that som + compound will output definite, oh well)">
-            <test><not><equal><clip pos="2" side="tl" part="a_cmp"/><lit v=""/></equal></not></test>
-            <reject-current-rule shifting="1"/>
-          </when>
-          <otherwise c="Not a compound, output here in case we've set defdrop">
-            <call-macro n="set_caseFirstWord"><with-param pos="2"/></call-macro>
-            <call-macro n="out_gen-prep"><with-param pos="2"/></call-macro>
-            <call-macro n="stash_case_in_ntags1"><with-param pos="2"/></call-macro>
-            <out>
-              <chunk name="nn" case="caseFirstWord">
-                <tags><tag><var n="ntags"/></tag></tags>
-                <lu><clip pos="2" side="tl" part="whole"/></lu>
-              </chunk>
-            </out>
-          </otherwise>
-        </choose>
+        <!-- Now output the owned noun with the regular noun rule: -->
+        <reject-current-rule shifting="1"/>
       </action>
     </rule>
     <rule comment="TOP.GEN TITTEL NP → TOP.GEN [TITTEL NP]
