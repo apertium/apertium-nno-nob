@@ -805,14 +805,6 @@
       <cat-item lemma="legendarisk" tags="adj.pst.un.sp.def.aa"/>
       <cat-item lemma="totalitær" tags="adj.pst.un.sp.def.aa"/>
     </def-cat>
-    <def-cat n="britenes">
-      <cat-item lemma="brite" tags="n.m.pl.def.gen.*"/>
-      <cat-item lemma="russer" tags="n.m.pl.def.gen.*"/>
-      <cat-item lemma="sveitser" tags="n.m.pl.def.gen.*"/>
-      <cat-item lemma="same" tags="n.m.pl.def.gen.*"/>
-      <cat-item lemma="kina" tags="np.top.gen.*"/>
-      <cat-item lemma="india" tags="np.top.gen.*"/>
-    </def-cat>
     <def-cat n="denne">
       <cat-item lemma="denne" tags="det.dem.*"/>
     </def-cat>
@@ -1134,7 +1126,6 @@
     <def-var n="tmp"/>
     <def-var n="b" v=" "        c="Single space. For when we can't use b."/>
     <def-var n="lemma"          c="Used within macros"/>
-    <def-var n="brlemma"        c="Only used for 'britenes statsminister'-rule"/>
     <def-var n="mwe-queue"      c="Must be output before next verb or sent. TODO: There should be an EOF-rule in case nothing at end."/>
     <def-var n="cmp-lefts"      c="Non-final lu's of compound (verb)"/>
     <def-var n="rewrite_np_gen" c="Allow prep-rewriting of genitive proper nouns"/>
@@ -9594,6 +9585,7 @@
     </rule>
 
     <!-- Idiomatic rules first -->
+
     <rule comment="TOP.GEN TITTEL → på/i TOP [TITTEL]
                    Allow rewriting toponym proper noun genitives before titles:
                    Danmarks utenriksminister → utenriksministeren i Danmark">
@@ -9969,80 +9961,6 @@
       </action>
     </rule>
 
-    <!-- idiomatic NGEN NIND → (DET) ADJ NDEF -->
-    <rule comment="britenes statsminister → (den) britiske statsministeren
-                   TODO: move to LSX">
-      <pattern>
-        <pattern-item n="britenes"/>
-        <pattern-item n="nind_indgen"/>
-      </pattern>
-      <action>
-        <let><var n="brlemma"/><clip pos="1" side="sl" part="lemh"/></let>
-        <modify-case><var n="brlemma"/><lit v="aa"/></modify-case>
-        <choose>
-          <when>
-            <test><equal><var n="brlemma"/><lit v="brite"/></equal></test>
-            <let>        <var n="brlemma"/><lit v="britisk"/></let>
-          </when>
-          <when>
-            <test><equal><var n="brlemma"/><lit v="russer"/></equal></test>
-            <let>        <var n="brlemma"/><lit v="russisk"/></let>
-          </when>
-          <when>
-            <test><equal><var n="brlemma"/><lit v="sveitser"/></equal></test>
-            <let>        <var n="brlemma"/><lit v="sveitsisk"/></let>
-          </when>
-          <when>
-            <test><equal><var n="brlemma"/><lit v="same"/></equal></test>
-            <let>        <var n="brlemma"/><lit v="samisk"/></let>
-          </when>
-          <when>
-            <test><equal><var n="brlemma"/><lit v="india"/></equal></test>
-            <let>        <var n="brlemma"/><lit v="indisk"/></let>
-          </when>
-          <when>
-            <test><equal><var n="brlemma"/><lit v="kina"/></equal></test>
-            <let>        <var n="brlemma"/><lit v="kinesisk"/></let>
-          </when>
-          <otherwise>
-            <reject-current-rule shifting="no"/>
-          </otherwise>
-        </choose>
-        <call-macro n="set_caseFirstWord2">
-          <with-param pos="1"/>
-          <with-param pos="2"/>
-        </call-macro>
-        <choose>
-          <when>
-            <test><or>
-              <equal><clip pos="2" side="tl" part="lemh"/><lit v="side"/></equal>
-              <equal><clip pos="2" side="tl" part="lemh"/><lit v="utmelding"/></equal>
-            </or></test>
-            <let><var n="c_name"/><lit v="adj_n"/></let>
-            <let><var n="adjtags"/><lit-tag v="adj.pst.mf.sg.ind"/></let>
-            <let><clip pos="2" side="tl" part="art"/><lit-tag v="ind"/></let>
-          </when>
-          <otherwise>
-            <let><var n="c_name"/><lit v="needdet_adj_n"/></let>
-            <let><var n="adjtags"/><lit-tag v="adj.pst.un.sp.def"/></let>
-            <let><clip pos="2" side="tl" part="art"/><lit-tag v="def"/></let>
-          </otherwise>
-        </choose>
-        <call-macro n="stash_case_in_ntags1"><with-param pos="2"/></call-macro>
-        <out>
-          <chunk namefrom="c_name" case="caseFirstWord">
-            <tags><tag><var n="ntags"/></tag></tags>
-            <var n="grau_aux"/>
-            <lu>
-              <var n="brlemma"/>
-              <var n="adjtags"/>
-            </lu>
-            <b pos="1"/>
-            <lu><clip pos="2" side="tl" part="whole"/></lu>
-          </chunk>
-        </out>
-      </action>
-    </rule>
 
     <!-- Verbs -->
     <rule comment="VBLEX
