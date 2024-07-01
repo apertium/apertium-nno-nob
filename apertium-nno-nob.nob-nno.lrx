@@ -11980,45 +11980,9 @@ preposisjonar gir ekstra utfordringar. -->
 
   <rule><match lemma="bearbeide" tags="vblex.*"><select lemma="behandle"/></match></rule>
   <rule><match lemma="bearbeide" tags="adj.*"><select lemma="behandle"/></match></rule>
-  <rule weight="2.0" c="foredle fisk">
+  <rule weight="3.0" c="foredle fisk">
     <match lemma="bearbeide"><select lemma="foredle"/> </match>
     <repeat from="0" upto="5"><match/></repeat>
-    <or>
-      <match lemma="produkt"/>
-      <match lemma="råvare"/>
-      <match lemma="vare"/>
-      <match lemma="matvare"/>
-      <match lemma="jordbruksvare"/>
-      <match lemma="landbruksvare"/>
-      <match lemma="råstoff"/>
-      <match lemma="fisk"/>
-      <match lemma="laks"/>
-      <match lemma="fiskeprodukt"/>
-      <match lemma="oppdrettsfisk"/>
-      <match lemma="oppdrettslaks"/>
-      <match lemma="kjøtt"/>
-      <match lemma="kjøttprodukt"/>
-      <match lemma="ingrediens"/>
-      <match lemma="potet"/>
-      <match lemma="melk"/>
-      <match lemma="melkeprodukt"/>
-      <match lemma="blokk"/>
-      <match lemma="aluminium"/>
-      <match lemma="aluminiumsprofil"/>
-      <match lemma="tømmer"/>
-    </or>
-  </rule>
-  <rule weight="2.0" c="påverke marknaden">
-    <match lemma="bearbeide"><select lemma="påverke"/></match>
-    <repeat from="0" upto="5"><match/></repeat>
-    <or>
-      <match lemma="marked"/>
-      <match lemma="forbruker"/>
-      <match lemma="kunde"/>
-    </or>
-  </rule>
-  <rule weight="2.0" c="fisken blir foredla">
-    <repeat from="0" upto="10"><match/></repeat>
     <or>
       <match lemma="produkt"/>
       <match lemma="råvare"/>
@@ -12032,6 +11996,7 @@ preposisjonar gir ekstra utfordringar. -->
       <match lemma="fisk"/>
       <match lemma="laks"/>
       <match lemma="torsk"/>
+      <match lemma="kveite"/>
       <match lemma="sei"/>
       <match lemma="makrell"/>
       <match lemma="fiskeprodukt"/>
@@ -12043,12 +12008,55 @@ preposisjonar gir ekstra utfordringar. -->
       <match lemma="potet"/>
       <match lemma="melk"/>
       <match lemma="melkeprodukt"/>
-      <match lemma="dyreprotein"/>
       <match lemma="blokk"/>
       <match lemma="aluminium"/>
       <match lemma="aluminiumsprofil"/>
       <match lemma="tømmer"/>
+      <match lemma="skog"/>
     </or>
+  </rule>
+  <rule weight="2.0" c="påverke marknaden">
+    <match lemma="bearbeide"><select lemma="påverke"/></match>
+    <repeat from="0" upto="5"><match/></repeat>
+    <or>
+      <match lemma="marked"/>
+      <match lemma="forbruker"/>
+      <match lemma="kunde"/>
+    </or>
+  </rule>
+  <rule weight="2.0" c="fisken blir foredla">
+    <or>
+      <match lemma="produkt"/>
+      <match lemma="råvare"/>
+      <match lemma="vare"/>
+      <match lemma="matvare"/>
+      <match lemma="jordbruksvare"/>
+      <match lemma="landbruksvare"/>
+      <match lemma="jordbruksprodukt"/>
+      <match lemma="landbruksprodukt"/>
+      <match lemma="råstoff"/>
+      <match lemma="fisk"/>
+      <match lemma="laks"/>
+      <match lemma="torsk"/>
+      <match lemma="kveite"/>
+      <match lemma="sei"/>
+      <match lemma="makrell"/>
+      <match lemma="fiskeprodukt"/>
+      <match lemma="oppdrettsfisk"/>
+      <match lemma="oppdrettslaks"/>
+      <match lemma="kjøtt"/>
+      <match lemma="kjøttprodukt"/>
+      <match lemma="ingrediens"/>
+      <match lemma="potet"/>
+      <match lemma="melk"/>
+      <match lemma="melkeprodukt"/>
+      <match lemma="blokk"/>
+      <match lemma="aluminium"/>
+      <match lemma="aluminiumsprofil"/>
+      <match lemma="tømmer"/>
+      <match lemma="skog"/>
+    </or>
+    <repeat from="0" upto="8"><match/></repeat>
     <match lemma="bearbeide"><select lemma="foredle"/> </match>
   </rule>
   <rule weight="2.0" c="omarbeider jorda">
