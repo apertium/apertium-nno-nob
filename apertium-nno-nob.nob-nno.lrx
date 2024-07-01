@@ -12068,5 +12068,44 @@ preposisjonar gir ekstra utfordringar. -->
     </or>
   </rule>
 
+  <rule><match lemma="ubearbeidet" tags="adj.*"><select lemma="ubehandla"/></match></rule>
+  <rule weight="3.0" c="uforedla fisk">
+    <match lemma="ubearbeidet"><select lemma="uforedla"/> </match>
+    <or>
+      <match lemma="produkt"/>
+      <match lemma="råvare"/>
+      <match lemma="vare"/>
+      <match lemma="matvare"/>
+      <match lemma="jordbruksvare"/>
+      <match lemma="landbruksvare"/>
+      <match lemma="jordbruksprodukt"/>
+      <match lemma="landbruksprodukt"/>
+      <match lemma="råstoff"/>
+      <match lemma="fisk"/>
+      <match lemma="laks"/>
+      <match lemma="torsk"/>
+      <match lemma="kveite"/>
+      <match lemma="sei"/>
+      <match lemma="makrell"/>
+      <match lemma="fiskeprodukt"/>
+      <match lemma="oppdrettsfisk"/>
+      <match lemma="oppdrettslaks"/>
+      <match lemma="kjøtt"/>
+      <match lemma="kjøttprodukt"/>
+      <match lemma="ingrediens"/>
+      <match lemma="potet"/>
+      <match lemma="melk"/>
+      <match lemma="melkeprodukt"/>
+    </or>
+  </rule>
+  
+  <rule><match lemma="motstå" tags="vblex.*"><select lemma="stå# imot"/></match></rule>
+  <rule weight="2.0" c="stå imot presset">
+    <match lemma="motstå" tags="vblex.*"><select lemma="motstå"/> </match>
+    <repeat from="0" upto="3"><match/></repeat>
+    <or>
+      <match lemma="fristelse"/>
+    </or>
+  </rule>
 </rules>
 </lrx>
