@@ -12107,5 +12107,11 @@ preposisjonar gir ekstra utfordringar. -->
       <match lemma="fristelse"/>
     </or>
   </rule>
+  
+  <rule><match lemma="belyse" tags="vblex.*"><select lemma="klargjere"/></match></rule>
+  <rule weight="2.0" c="saken bør belyses på nytt">
+    <match lemma="belyse" tags="vblex.*.pasv.*"><select lemma="greie# ut"/> </match>
+  </rule>
+
 </rules>
 </lrx>
