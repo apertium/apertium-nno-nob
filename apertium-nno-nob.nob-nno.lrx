@@ -12112,6 +12112,29 @@ preposisjonar gir ekstra utfordringar. -->
   <rule weight="2.0" c="saken bør belyses på nytt">
     <match lemma="belyse" tags="vblex.*.pasv.*"><select lemma="greie# ut"/> </match>
   </rule>
+  
+  <rule><match lemma="anvise" tags="vblex.*"><select lemma="tilvise"/></match></rule>
+  <rule><match lemma="anvise" tags="adj.*"><select lemma="tilvise"/></match></rule>
+  <rule weight="2.0" c="anvise til">
+    <match lemma="anvise" tags="vblex.*"><select lemma="tilvise"/> </match>
+    <match lemma="til"/>
+  </rule>
+  <rule weight="2.3" c="anvist av">
+    <match lemma="anvise" tags="vblex.pp.*"><select lemma="føreskrive"/> </match>
+    <match lemma="av"/>
+  </rule>
+  <rule weight="2.0" c="anvist av">
+    <match lemma="anvise" tags="adj.pp.*"><select lemma="føreskrive"/> </match>
+    <match lemma="av"/>
+  </rule>
+  <rule weight="2.0" c="som anvist">
+    <match lemma="som"/>
+    <match lemma="anvise" tags="vblex.pp.*"><select lemma="forklare"/> </match>
+  </rule>
+  <rule weight="2.0" c="som anvist">
+    <match lemma="som"/>
+    <match lemma="anvise" tags="adj.pp.*"><select lemma="anvise"/> </match>
+  </rule>
 
 </rules>
 </lrx>
