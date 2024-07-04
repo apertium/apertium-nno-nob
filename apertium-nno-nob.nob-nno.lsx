@@ -267,6 +267,11 @@
       <e><par n="sent"/></e>
     </pardef>
 
+    <pardef n="cm|sent|vblex">
+      <e><par n="cm"/></e>
+      <e><par n="sent"/></e>
+    </pardef>
+
     <pardef n="det">
       <e><i><w/><s n="det"/><t/><d/></i></e>
     </pardef>
@@ -4245,6 +4250,11 @@
         <i>velge<t/><d/></i>
         <i>til<t/><d/></i>
       </e>
+    </pardef>
+    
+    <pardef n="vblex|pr">
+      <e><i><w/><s n="vblex"/><t/></i></e>
+      <e><i><w/><s n="pr"/><t/></i></e>
     </pardef>
     
     <pardef n="vblex|adv|pr|sent-cm">
@@ -18426,6 +18436,62 @@
   <p><l>Fakultet<s n="np"/><s n="cgguess"/></l>         <r>fakultet<s n="n"/><s n="nt"/><s n="sg"/><s n="def"/><s n="aa"/></r></p> <i><t/><d/></i>
   <i>for<s n="pr"/><t/></i>  <par n="d"/>
 </e>
+
+<!-- gen + håndtering av: førebels avgrensa av lange objektledd  -->
+<e lm="regjeringens håndtering av X kan -> måten regjeringen har håndtert X på, kan" c="måten regjeringa har handtert X på, kan">
+  <p><l></l>               <r>måte<s n="n"/><s n="m"/><s n="sg"/><s n="def"/><d/></r></p>
+  <par n="ncmp*"/><i><w/><s n="n"/><t/></i>
+  <p><l><s n="def"/><s n="gen"/></l> <r><s n="def"/></r></p>  <par n="d"/>
+  <p><l>håndtering<s n="n"/><t/></l>        <r></r></p>    <par n="d:"/>
+  <p><l></l>               <r>ha<s n="vblex"/><s n="pres"/><s n="aa"/><d/></r></p>
+  <p><l></l>               <r>håndtere<s n="vblex"/><s n="pp"/><s n="aa"/><d space="yes"/></r></p>
+  <p><l>av<s n="pr"/><t/></l>        <r></r></p>    <par n="d:"/>
+  <par n="SN"/>
+  <p><l></l>               <r>på<s n="pr"/><s n="aa"/><d space="no"/></r></p>
+  <par n="cm-insert"/>
+  <i><w/><s n="vblex"/><t/></i>  <par n="d"/>
+</e>
+
+<e lm="Brasils håndtering av X er -> måten Brasil har håndtert X på, er" c="måten Brasil har handtert X på, er">
+  <p><l></l>               <r>måte<s n="n"/><s n="m"/><s n="sg"/><s n="def"/><d/></r></p>
+  <i><w/><s n="np"/><t/></i>
+  <p><l><s n="gen"/></l> <r></r></p>  <par n="d"/>
+  <p><l>håndtering<s n="n"/><t/></l>        <r></r></p>    <par n="d:"/>
+  <p><l></l>               <r>ha<s n="vblex"/><s n="pres"/><s n="aa"/><d/></r></p>
+  <p><l></l>               <r>håndtere<s n="vblex"/><s n="pp"/><s n="aa"/><d space="yes"/></r></p>
+  <p><l>av<s n="pr"/><t/></l>        <r></r></p>    <par n="d:"/>
+  <par n="SN"/>
+  <p><l></l>               <r>på<s n="pr"/><s n="aa"/><d space="no"/></r></p>
+  <par n="cm-insert"/>
+  <i><w/><s n="vblex"/><t/></i>  <par n="d"/>
+</e>
+
+<e lm="regjeringens håndtering av X. -> måten regjeringen har håndtert X på." c="måten regjeringa har handtert X på.">
+  <p><l></l>               <r>måte<s n="n"/><s n="m"/><s n="sg"/><s n="def"/><d/></r></p>
+  <par n="ncmp*"/><i><w/><s n="n"/><t/></i>
+  <p><l><s n="def"/><s n="gen"/></l> <r><s n="def"/></r></p>  <par n="d"/>
+  <p><l>håndtering<s n="n"/><t/></l>        <r></r></p>    <par n="d:"/>
+  <p><l></l>               <r>ha<s n="vblex"/><s n="pres"/><s n="aa"/><d/></r></p>
+  <p><l></l>               <r>håndtere<s n="vblex"/><s n="pp"/><s n="aa"/><d space="yes"/></r></p>
+  <p><l>av<s n="pr"/><t/></l>        <r></r></p>    <par n="d:"/>
+  <par n="SN"/>
+  <p><l></l>               <r>på<s n="pr"/><s n="aa"/><d space="no"/></r></p>
+  <par n="cm|sent"/>
+</e>
+
+<e lm="Jens Stoltenbergs håndtering av X. -> måten Jens Stoltenberg har håndtert X på." c="måten Jens Stoltenberg har handtert X på.">
+  <p><l></l>               <r>måte<s n="n"/><s n="m"/><s n="sg"/><s n="def"/><d/></r></p>
+  <i><w/><s n="np"/><t/></i>
+  <p><l><s n="gen"/></l> <r></r></p>  <par n="d"/>
+  <p><l>håndtering<s n="n"/><t/></l>        <r></r></p>    <par n="d:"/>
+  <p><l></l>               <r>ha<s n="vblex"/><s n="pres"/><s n="aa"/><d/></r></p>
+  <p><l></l>               <r>håndtere<s n="vblex"/><s n="pp"/><s n="aa"/><d space="yes"/></r></p>
+  <p><l>av<s n="pr"/><t/></l>        <r></r></p>    <par n="d:"/>
+  <par n="SN"/>
+  <p><l></l>               <r>på<s n="pr"/><s n="aa"/><d space="no"/></r></p>
+  <par n="cm|sent"/>
+</e>
+<!-- / håndering av -->
 
 </section>
 
