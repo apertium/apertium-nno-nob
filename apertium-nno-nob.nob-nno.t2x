@@ -1132,7 +1132,7 @@
       <action>
         <choose><when c="Only drop aux if they're the same">
           <test><not><equal><clip pos="1" part="whole"/><clip pos="4" part="whole"/></equal></not></test>
-          <reject-current-rule shifting="no"/>
+          <reject-current-rule shifting="0"/>
         </when></choose>
         <call-macro n="modify_pp_gen_nbr_NOANA"><with-param pos="2"/></call-macro>
         <out>
@@ -3035,7 +3035,7 @@
               <not><equal><clip pos="2" part="a_cmp"/><lit v=""/></equal></not>
             </or></test>
             <!-- TODO: reject-current-rule in interchunk -->
-            <!-- <reject-current-rule shifting="no"/> -->
+            <!-- <reject-current-rule shifting="0"/> -->
           </when>
           <otherwise>
             <call-macro n="modify_det_gender2.n.det"><with-param pos="2"/><with-param pos="1"/></call-macro>
@@ -3072,7 +3072,7 @@
               <not><equal><clip pos="2" part="a_cmp"/><lit v=""/></equal></not>
             </or></test>
             <!-- TODO: reject-current-rule in interchunk -->
-            <!-- <reject-current-rule shifting="no"/> -->
+            <!-- <reject-current-rule shifting="0"/> -->
           </when>
           <otherwise>
             <call-macro n="modify_det_gender2.n.det"><with-param pos="3"/><with-param pos="1"/></call-macro>
@@ -3105,7 +3105,7 @@
               <not><equal><clip pos="3" part="sl-gen"/><lit-tag v="sl-nt"/></equal></not>
             </and></test>
             <!-- TODO: reject-current-rule in interchunk -->
-            <!-- <reject-current-rule shifting="no"/> -->
+            <!-- <reject-current-rule shifting="0"/> -->
           </when>
           <otherwise>
             <!-- pos=2 is adverbial, so no gender change -->
@@ -3136,7 +3136,7 @@
               <not><equal><clip pos="3" part="sl-gen"/><lit-tag v="sl-nt"/></equal></not>
             </and></test>
             <!-- TODO: reject-current-rule in interchunk -->
-            <!-- <reject-current-rule shifting="no"/> -->
+            <!-- <reject-current-rule shifting="0"/> -->
           </when>
           <otherwise>
             <call-macro n="modify_det_gender2.n.det"><with-param pos="3"/><with-param pos="1"/></call-macro>
@@ -3179,7 +3179,7 @@
               <not><equal><clip pos="4" part="sl-gen"/><lit-tag v="sl-nt"/></equal></not>
             </and></test>
             <!-- TODO: reject-current-rule in interchunk -->
-            <!-- <reject-current-rule shifting="no"/> -->
+            <!-- <reject-current-rule shifting="0"/> -->
           </when>
           <otherwise>
             <call-macro n="modify_det_gender2.n.det"><with-param pos="4"/><with-param pos="1"/></call-macro>
@@ -3243,7 +3243,7 @@
               <not><equal><clip pos="3" part="sl-gen"/><lit-tag v="sl-nt"/></equal></not>
             </and></test>
             <!-- TODO: reject-current-rule in interchunk -->
-            <!-- <reject-current-rule shifting="no"/> -->
+            <!-- <reject-current-rule shifting="0"/> -->
           </when>
           <otherwise>
             <!-- pos=2 needs no gender change -->
@@ -3277,7 +3277,7 @@
               <not><equal><clip pos="5" part="sl-gen"/><lit-tag v="sl-nt"/></equal></not>
             </and></test>
             <!-- TODO: reject-current-rule in interchunk -->
-            <!-- <reject-current-rule shifting="no"/> -->
+            <!-- <reject-current-rule shifting="0"/> -->
           </when>
           <otherwise>
             <call-macro n="modify_det_gender2.n.det"><with-param pos="5"/><with-param pos="2"/></call-macro>
@@ -3313,7 +3313,7 @@
               <not><equal><clip pos="5" part="sl-gen"/><lit-tag v="sl-nt"/></equal></not>
             </and></test>
             <!-- TODO: reject-current-rule in interchunk -->
-            <!-- <reject-current-rule shifting="no"/> -->
+            <!-- <reject-current-rule shifting="0"/> -->
           </when>
           <otherwise>
             <call-macro n="modify_det_gender2.n.det"><with-param pos="5"/><with-param pos="1"/></call-macro>
@@ -3448,7 +3448,7 @@
               <not><equal><clip pos="3" part="sl-gen"/><lit-tag v="sl-nt"/></equal></not>
             </and></test>
             <!-- TODO: reject-current-rule in interchunk -->
-            <!-- <reject-current-rule shifting="no"/> -->
+            <!-- <reject-current-rule shifting="0"/> -->
           </when>
           <otherwise>
             <choose c="can't use modify_det_gender2.n.det since that disallows plural nouns">
@@ -3487,7 +3487,7 @@
               <not><equal><clip pos="4" part="sl-gen"/><lit-tag v="sl-nt"/></equal></not>
             </and></test>
             <!-- TODO: reject-current-rule in interchunk -->
-            <!-- <reject-current-rule shifting="no"/> -->
+            <!-- <reject-current-rule shifting="0"/> -->
           </when>
           <otherwise>
             <choose c="can't use modify_det_gender2.n.det since that disallows plural nouns">
@@ -3528,7 +3528,7 @@
               <not><equal><clip pos="5" part="sl-gen"/><lit-tag v="sl-nt"/></equal></not>
             </and></test>
             <!-- TODO: reject-current-rule in interchunk -->
-            <!-- <reject-current-rule shifting="no"/> -->
+            <!-- <reject-current-rule shifting="0"/> -->
           </when>
           <otherwise>
             <choose c="can't use modify_det_gender2.n.det since that disallows plural nouns">
