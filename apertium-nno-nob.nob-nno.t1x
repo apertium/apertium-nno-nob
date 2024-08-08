@@ -6937,7 +6937,7 @@
     </def-list>
 
     <def-list n="tittel-obj-gen-av" c="Overstyr genitivspreposisjon mot «av» i tittel-regelen">
-      <list-item v="leiar"/>
+      <!-- <list-item v="leiar"/> -->
       <list-item v="konge"/>
       <list-item v="ekskonge"/>
       <list-item v="eksilkonge"/>
@@ -9696,6 +9696,10 @@
         </out>
         <choose><when c="stash_case_in_ntags1 has set prevlem to this np; so prevlem2 is the preceding word etc.:">
           <test><or>
+            <!-- Old lsx rules had these which were reduntant since there was also an "anything followed by vere" entry – but should we restrict it? -->
+            <!-- <and><equal><var n="prevlem3"/><lit v="som"/></equal><equal><var n="prevlem2"/><lit v="vere"/></equal></and> -->
+            <!-- <and><equal><var n="prevlem3"/><lit v="ha"/></equal><equal><var n="prevlem2"/><lit v="vere"/></equal></and> -->
+            <!-- <and><equal><var n="prevlem3"/><lit v="den"/></equal><equal><var n="prevlem2"/><lit v="vere"/></equal></and> -->
             <equal><var n="prevlem2"/><lit v="vere"/></equal>
             <and><equal><var n="prevlem3"/><lit v="velje"/></equal><equal><var n="prevlem2"/><lit v="til"/></equal></and>
           </or></test>
