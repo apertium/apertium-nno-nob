@@ -255,6 +255,10 @@
     <def-cat n="detpos">
       <cat-item tags="det.pos.*"/>
     </def-cat>
+    <def-cat n="prnpos_detpos">
+      <cat-item tags="prn.pos.*"/>
+      <cat-item tags="det.pos.*"/>
+    </def-cat>
     <def-cat n="detitg">
       <cat-item tags="det.itg.*"/>
     </def-cat>
@@ -2202,17 +2206,13 @@
 
     <!-- The regular possessive noun phrases, with more complex
          transfer operations.-->
-    <rule comment="PREP_GEN NGEN: [til] mannens => mannen sin
+    <rule comment="PREP_GEN NGEN: [til] mannens => mannens
                    Very heuristic fallback rule.
-                   If we can't match with the below rules, turn the
-                   genitive -s into 'sin' garpegenitiv instead.
-                   (Removing the prep_gen from t1x)
+                   If we can't match with the below rules, drop the preposition and
+                   leave it genitive.
                    A bit more fluent where eg. input is incomplete:
-                         mannens *sykkel => mannen sin *sykkel
-                   But we don't know gen/nbr of object, so we could end
-                   up with
-                         mannens *sykler => mannen sin *sykler
-                   So let's just hope plurals possess plurals etc...">
+                   - mannens *sykkel => mannens *sykkel
+                   - ektefellenes og deres aksjeforhold → ektefellanes og deira aksjeforhold">
       <pattern>
         <pattern-item n="prep_gen"/>
         <pattern-item n="ngen"/>
@@ -2269,6 +2269,26 @@
           <chunk>
             <clip pos="1" part="whole"/>
           </chunk>
+        </out>
+      </action>
+    </rule>
+
+    <rule comment="PRNPOS_DETPOS CNJCOO PREP_GEN
+                   deres og ektefellenes → deira og til ektefellene → deira og ektefellenes
+                   Override below prep-moving rules.">
+      <pattern>
+        <pattern-item n="prnpos_detpos"/>
+        <pattern-item n="cnjcoo"/>
+        <pattern-item n="prep_gen"/>
+        <pattern-item n="ngen"/>
+      </pattern>
+      <action>
+        <call-macro n="set_ana"><with-param pos="4"/></call-macro>
+        <let><clip pos="4" part="a_casedrop"/><lit v=""/></let>
+        <out>
+          <chunk><clip pos="1" part="whole"/></chunk><b/>
+          <chunk><clip pos="2" part="whole"/></chunk><b/>
+          <chunk><clip pos="4" part="whole"/></chunk>
         </out>
       </action>
     </rule>
