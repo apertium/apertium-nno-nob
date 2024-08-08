@@ -266,6 +266,57 @@
       <cat-item tags="np.attr.Aa"/>
       <cat-item tags="np.attr.AA"/>
     </def-cat>
+    <def-cat n="np">
+      <cat-item tags="np.*.cmp-split.*"/>
+      <cat-item tags="np.*.gen"/>
+      <cat-item tags="np.*.gen.*"/>
+      <cat-item tags="np.*.gen.guio.*"/>
+      <cat-item tags="np.*.f"/>
+      <cat-item tags="np.*.f.aa"/>
+      <cat-item tags="np.*.f.Aa"/>
+      <cat-item tags="np.*.f.AA"/>
+      <cat-item tags="np.*.m"/>
+      <cat-item tags="np.*.m.aa"/>
+      <cat-item tags="np.*.m.Aa"/>
+      <cat-item tags="np.*.m.AA"/>
+      <cat-item tags="np.*.nt"/>
+      <cat-item tags="np.*.nt.aa"/>
+      <cat-item tags="np.*.nt.Aa"/>
+      <cat-item tags="np.*.nt.AA"/>
+      <cat-item tags="np.org"/>
+      <cat-item tags="np.org.aa"/>
+      <cat-item tags="np.org.Aa"/>
+      <cat-item tags="np.org.AA"/>
+      <cat-item tags="np.top"/>
+      <cat-item tags="np.top.aa"/>
+      <cat-item tags="np.top.Aa"/>
+      <cat-item tags="np.top.AA"/>
+      <cat-item tags="np.ant.aa"/>
+      <cat-item tags="np.ant.Aa"/>
+      <cat-item tags="np.ant.AA"/>
+      <cat-item tags="np.cgguess.aa"/>
+      <cat-item tags="np.cgguess.Aa"/>
+      <cat-item tags="np.cgguess.AA"/>
+      <cat-item tags="np.*.cgguess.aa"/>
+      <cat-item tags="np.*.cgguess.Aa"/>
+      <cat-item tags="np.*.cgguess.AA"/>
+      <cat-item tags="np.guess"/>
+      <cat-item tags="np.guess.aa"/>
+      <cat-item tags="np.guess.Aa"/>
+      <cat-item tags="np.guess.AA"/>
+      <cat-item tags="np.cog"/>
+      <cat-item tags="np.cog.aa"/>
+      <cat-item tags="np.cog.Aa"/>
+      <cat-item tags="np.cog.AA"/>
+      <cat-item tags="np.al"/>
+      <cat-item tags="np.al.aa"/>
+      <cat-item tags="np.al.Aa"/>
+      <cat-item tags="np.al.AA"/>
+      <cat-item tags="np.attr"/>
+      <cat-item tags="np.attr.aa"/>
+      <cat-item tags="np.attr.Aa"/>
+      <cat-item tags="np.attr.AA"/>
+    </def-cat>
     <def-cat n="np_nogen">
       <cat-item tags="np.*.f.aa"/>
       <cat-item tags="np.*.f.Aa"/>
@@ -1110,11 +1161,14 @@
     <def-var n="movable_tag"    c="pasv-pp is np-movable iff we can move pp past np"/>
     <def-var n="advtags"/>
     <def-var n="syntag"         c="The syntax tag of this word"/>
+    <def-var n="prevlem3"/>
+    <def-var n="prevlem2"/>
     <def-var n="prevlem"/>
     <def-var n="prevtags"/>
     <def-var n="prevnbr"/>
     <def-var n="prevDeletedCase"/>
-    <def-var n="bilem"/>
+    <def-var n="prevWantsDefdrop"/>
+    <def-var n="bilem"          c="used by out_gen-prep via bigram_genprep"/>
     <def-var n="aux"/>
     <def-var n="defnes"/>
     <def-var n="grau_aux"       c="lexical unit containing meir/mest if translating from sint to non-sint"/>
@@ -8027,13 +8081,17 @@
 
     <def-macro n="set_prevlem" npar="1"
                c="Store previous lemma and tags">
+        <let><var n="prevlem3"/><var n="prevlem2"/></let>
+        <let><var n="prevlem2"/><var n="prevlem"/></let>
         <let><var n="prevlem"/><clip pos="1" side="tl" part="lem"/></let>
         <let><var n="prevtags"/><clip pos="1" side="tl" part="tags"/></let>
+        <let><var n="prevnbr"/><clip pos="1" side="tl" part="nbr"/></let>
+        <let><var n="prevWantsDefdrop"/><lit v=""/></let>
     </def-macro>
 
     <def-macro n="bigram_genprep" npar="1"
                c="arg.1: possibly owned noun. Helper for stash_case_in_ntags0
-                  Also sets genind
+                  Also sets genind and prevlem
                   See also out_gen-prep which outputs a preposition chunk (which may be overridden by t2x using the chunk tag set by this macro)">
       <choose><when>
         <test><and>
@@ -8127,7 +8185,6 @@
         </otherwise>
       </choose>
       <call-macro n="set_prevlem"><with-param pos="1"/></call-macro>
-      <let><var n="prevnbr"/><clip pos="1" side="tl" part="nbr"/></let>
     </def-macro>
 
     <def-macro n="set_syntag" npar="1"
@@ -8870,6 +8927,10 @@
         </choose>
         <call-macro n="out_gen-prep_from_var"/>
       </when></choose>
+      <choose><when c="Owner genitive wants defdrop">
+        <test><equal><var n="prevWantsDefdrop"/><lit v="yes"/></equal></test>
+        <let><clip pos="1" side="tl" part="tags"/><concat><clip pos="1" side="tl" part="tags"/><lit-tag v="defdrop"/></concat></let>
+      </when></choose>
     </def-macro>
 
     <def-macro n="set_gen-prep_np.org" npar="1"
@@ -9159,6 +9220,7 @@
         </otherwise>
       </choose>
       <out><var n="out_lemq"/></out>
+      <call-macro n="set_prevlem"><with-param pos="1"/></call-macro>
     </def-macro>
 
   </section-def-macros>
@@ -9632,6 +9694,14 @@
             <lu><clip pos="1" side="tl" part="whole"/></lu>
           </chunk>
         </out>
+        <choose><when c="stash_case_in_ntags1 has set prevlem to this np; so prevlem2 is the preceding word etc.:">
+          <test><or>
+            <equal><var n="prevlem2"/><lit v="vere"/></equal>
+            <and><equal><var n="prevlem3"/><lit v="velje"/></equal><equal><var n="prevlem2"/><lit v="til"/></equal></and>
+          </or></test>
+          <let><var n="prevWantsDefdrop"/><lit v="yes"/></let>
+        </when></choose>
+
 
         <!-- Now output the owned noun with the regular noun rule: -->
         <reject-current-rule shifting="1"/>
@@ -9643,7 +9713,7 @@
       <pattern>
         <pattern-item n="top.gen"/>
         <pattern-item n="tittel"/>
-        <pattern-item n="np_nogen"/>
+        <pattern-item n="np"/>
       </pattern>
       <action>
         <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
@@ -13002,6 +13072,7 @@ no lemq-moving">
                 </lu>
               </chunk>
             </out>
+            <call-macro n="set_prevlem"><with-param pos="1"/></call-macro>
           </when>
           <otherwise>
             <let><var n="prevDeletedCase"/><lit v="aa"/></let>
@@ -13358,7 +13429,6 @@ no lemq-moving">
               </chunk>
             </out>
             <call-macro n="set_prevlem"><with-param pos="1"/></call-macro>
-            <let><var n="prevnbr"/><clip pos="1" side="tl" part="nbr"/></let>
           </when>
           <otherwise>
             <let><var n="prevDeletedCase"/><lit v="aa"/></let>
