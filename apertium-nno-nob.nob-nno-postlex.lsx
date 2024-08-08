@@ -104,6 +104,32 @@
     <sdef n="aa"/>
     <sdef n="AA"/>
     <sdef n="Aa"/>
+
+    <sdef n="@fv"/>
+    <sdef n="@iv"/>
+    <sdef n="@subj"/>
+    <sdef n="@xubj"/>
+    <sdef n="@obj"/>
+    <sdef n="@i-obj"/>
+    <sdef n="@s-pred"/>
+    <sdef n="@o-pred"/>
+    <sdef n="@adv"/>
+    <sdef n="@adv→"/>
+    <sdef n="@←adv"/>
+    <sdef n="@app"/>
+    <sdef n="@tittel"/>
+    <sdef n="@det→"/>
+    <sdef n="@←det"/>
+    <sdef n="@subst→"/>
+    <sdef n="@←subst"/>
+    <sdef n="@←p-utfyll"/>
+    <sdef n="@interj"/>
+    <sdef n="@adj→"/>
+    <sdef n="@kon"/>
+    <sdef n="@laus-np"/>
+    <sdef n="@←sbu"/>
+    <sdef n="@←sbu-rel"/>
+    <sdef n="@s-gr"/>
   </sdefs>
 
   <pardefs>
@@ -139,6 +165,35 @@
       <e><p><l><s n="AA"/></l> <r><s n="AA"/></r></p></e>
     </pardef>
 
+    <pardef n="@x:" c="remove all function tags (includes empty)">
+      <e></e>
+      <e><p><l><s n="@fv"/></l>        <r></r></p></e>
+      <e><p><l><s n="@iv"/></l>        <r></r></p></e>
+      <e><p><l><s n="@subj"/></l>      <r></r></p></e>
+      <e><p><l><s n="@xubj"/></l>      <r></r></p></e>
+      <e><p><l><s n="@obj"/></l>       <r></r></p></e>
+      <e><p><l><s n="@i-obj"/></l>     <r></r></p></e>
+      <e><p><l><s n="@s-pred"/></l>    <r></r></p></e>
+      <e><p><l><s n="@o-pred"/></l>    <r></r></p></e>
+      <e><p><l><s n="@adv"/></l>       <r></r></p></e>
+      <e><p><l><s n="@adv→"/></l>      <r></r></p></e>
+      <e><p><l><s n="@←adv"/></l>      <r></r></p></e>
+      <e><p><l><s n="@app"/></l>       <r></r></p></e>
+      <e><p><l><s n="@tittel"/></l>    <r></r></p></e>
+      <e><p><l><s n="@det→"/></l>      <r></r></p></e>
+      <e><p><l><s n="@←det"/></l>      <r></r></p></e>
+      <e><p><l><s n="@subst→"/></l>    <r></r></p></e>
+      <e><p><l><s n="@←subst"/></l>    <r></r></p></e>
+      <e><p><l><s n="@←p-utfyll"/></l> <r></r></p></e>
+      <e><p><l><s n="@interj"/></l>    <r></r></p></e>
+      <e><p><l><s n="@adj→"/></l>      <r></r></p></e>
+      <e><p><l><s n="@kon"/></l>       <r></r></p></e>
+      <e><p><l><s n="@laus-np"/></l>   <r></r></p></e>
+      <e><p><l><s n="@←sbu"/></l>      <r></r></p></e>
+      <e><p><l><s n="@←sbu-rel"/></l>  <r></r></p></e>
+      <e><p><l><s n="@s-gr"/></l>      <r></r></p></e>
+    </pardef>
+
   </pardefs>
 
 
@@ -148,6 +203,19 @@
       <p><l>en<t/><f/>ein<t/><d/></l>        <r></r></p>
       <p><l>antall<t/><f/>fleire<t/><d/></l> <r></r> </p>
       <p><l></l>                             <r>mange<s n="adj"/><s n="sint"/><s n="comp"/><s n="un"/><s n="sp"/><f/>mange<s n="adj"/><s n="sint"/><s n="comp"/><s n="un"/><s n="sp"/></r></p>
+    </e>
+
+    <e c="i.pr stor.adj.comp grad.n → i stor grad.adv.comp
+          Turns three words «i ADJ grad» into a single adverb, for transfer (decomposed again by apertium-nno-nob.nno.lsx)">
+      <p><l>i<s n="pr"/><t/><f/>i<s n="pr"/><t/><d/></l> <r>i<b/></r></p> <!-- Turn i.pr/i.pr into 'i ' -->
+      <i><w/></i>                                            <!-- keep nob adj lemma -->
+      <p><l><s n="adj"/></l> <r><b/>grad<s n="adv"/></r></p> <!-- nob adj→adv, add grad to nob lemma -->
+      <i><t/><f/></i>                                        <!-- copy nob adj tags and the / separator -->
+      <p><l></l> <r>i<b/></r></p>                            <!-- prepend 'i ' on nno side -->
+      <i><w/></i>                                            <!-- keep nno adj lemma as-is -->
+      <p><l><s n="adj"/></l> <r><b/>grad<s n="adv"/></r></p> <!-- nno adj→adv, add grad to nno lemma -->
+      <i><t/><d/></i>                                        <!-- copy nno adj tags and the end of word -->
+      <p><l>grad<s n="n"/><t/><f/>grad<s n="n"/><t/><d/></l> <r></r></p> <!-- match and drop analysis of grad -->
     </e>
 
 </section>
