@@ -255,9 +255,11 @@
     <def-cat n="detpos">
       <cat-item tags="det.pos.*"/>
     </def-cat>
-    <def-cat n="prnpos_detpos">
+    <def-cat n="prnpos_detpos_ndef">
       <cat-item tags="prn.pos.*"/>
       <cat-item tags="det.pos.*"/>
+      <cat-item tags="n.*.def"/>
+      <cat-item tags="n.*.def.*"/>
     </def-cat>
     <def-cat n="detitg">
       <cat-item tags="det.itg.*"/>
@@ -2273,12 +2275,13 @@
       </action>
     </rule>
 
-    <rule comment="PRNPOS_DETPOS CNJCOO PREP_GEN
-                   deres og ektefellenes → deira og til ektefellene → deira og ektefellenes
+    <rule comment="PRNPOS_DETPOS_NDEF CNJCOO_NOT_CLB PREP_GEN NGEN
+                   deres og ektefellenes avtaler → deira og til ektefellene avtalar → deira og ektefellenes avtalar
+                   regjeringa og statens holdning → regjeringa og til staten haldning → regjeringa og statens haldning
                    Override below prep-moving rules.">
       <pattern>
-        <pattern-item n="prnpos_detpos"/>
-        <pattern-item n="cnjcoo"/>
+        <pattern-item n="prnpos_detpos_ndef"/>
+        <pattern-item n="cnjcoo_not_clb"/>
         <pattern-item n="prep_gen"/>
         <pattern-item n="ngen"/>
       </pattern>

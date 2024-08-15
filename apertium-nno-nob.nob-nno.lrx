@@ -498,6 +498,13 @@
   <rule> <match lemma="borgerskap">    <select lemma="borgarskap"    tags="n.nt.*"/> </match> </rule>
 
   <rule> <match lemma="være" tags="vblex.*"> <select lemma="vere"/> </match> </rule>
+  <rule weight="2.0" c="Den er omstridt og har blitt"> <!-- override "er→har blitt" rule if there is another "ha" -->
+    <match lemma="være" tags="vblex.*">
+      <select lemma="vere"/>
+    </match>
+    <repeat from="0" upto="3"><match/></repeat>
+    <match lemma="ha"/>
+  </rule>
   <rule weight="2.0" c="er altså Johaug også blitt">
     <match lemma="være" tags="vblex.*">
       <select lemma="ha"/>
