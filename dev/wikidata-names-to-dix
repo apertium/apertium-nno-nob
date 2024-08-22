@@ -61,8 +61,10 @@ mid () {
 
 # shellcheck disable=SC2312
 revsort_markmid () {
-    # Skip parentheses, e.g. «Octavia Sperati (skuespiller)»
-    grep -v '[()]' \
+    # Skip parentheses like «Octavia Sperati (skuespiller)» and common ambig names with «av»
+    grep -v \
+         -e '[()]' \
+         -e '>av<' \
         | awk -v mid=<(mid) '
 # Put a comment on any names that were used as middle names, since we do not know if these were first or last names!
 #
