@@ -1028,6 +1028,14 @@
       <e><i>dag<t/><d/></i></e>
     </pardef>
 
+    <pardef n="morgen-formiddag-ettermiddag-kveld-natt">
+      <e><i>morgen<t/></i></e>
+      <e><i>formiddag<t/></i></e>
+      <e><i>ettermiddag<t/></i></e>
+      <e><i>kveld<t/></i></e>
+      <e><i>natt<t/></i></e>
+    </pardef>
+
     <pardef n="Meisterskap-lm" c="lemma only, no tags/word delimiters">
       <e><i>OL</i></e>
       <e><i>NM</i></e>
@@ -1127,6 +1135,16 @@
     </pardef>
 
     <pardef n="alle-tider">
+      <e><par n="tid"/></e>
+      <e><par n="Tidsuttrykk"/></e>
+      <e><par n="Vekedag"/></e>
+      <e><par n="Vekedag"/><par n="dagtid"/></e> <!-- onsdag kveld -->
+      <e><par n="dagtid"/></e>
+      <e><par n="Månad"/></e>
+    </pardef>
+
+    <pardef n="alle-tider|empty">
+      <e></e>
       <e><par n="tid"/></e>
       <e><par n="Tidsuttrykk"/></e>
       <e><par n="Vekedag"/></e>
@@ -18486,6 +18504,88 @@
   <par n="cm|sent"/>
 </e>
 <!-- / håndering av -->
+
+<e lm="utbe seg -> be om">
+  <p><l>utbe<s n="vblex"/></l>                                      <r>be<s n="vblex"/></r></p> <i><t/><d/></i>
+  <par n="rem-refl-prn"/>
+  <par n="alle-tider|empty"/>
+  <p><l></l>                                   <r>om<s n="pr"/><s n="aa"/><d/></r></p>
+</e>
+
+<e lm="svar utbes -> vi ber om svar">
+  <p><l></l>                                   <r>vi<s n="prn"/><s n="pers"/><s n="p1"/><s n="un"/><s n="pl"/><s n="nom"/><s n="aa"/><d/></r></p>
+  <p><l></l>                                   <r>be<s n="vblex"/><s n="pres"/><s n="aa"/><d/></r></p>
+  <p><l></l>                                   <r>om<s n="pr"/><s n="aa"/><d/></r></p>
+  <i><w/><s n="n"/><t/><s n="aa"/></i>  <par n="d"/>
+  <p><l>utbe<s n="vblex"/><s n="pres"/><s n="pasv"/><t/></l>        <r></r></p>    <par n="d:"/>
+</e>
+<e lm="Svar utbes -> Vi ber om svar">
+  <p><l></l>                                   <r>vi<s n="prn"/><s n="pers"/><s n="p1"/><s n="un"/><s n="pl"/><s n="nom"/><s n="Aa"/><d/></r></p>
+  <p><l></l>                                   <r>be<s n="vblex"/><s n="pres"/><s n="aa"/><d/></r></p>
+  <p><l></l>                                   <r>om<s n="pr"/><s n="aa"/><d/></r></p>
+  <i><w/><s n="n"/><t/><s n="aa"/></i>  <par n="d"/>
+  <p><l>utbe<s n="vblex"/><s n="pres"/><s n="pasv"/><t/></l>        <r></r></p>    <par n="d:"/>
+</e>
+
+<!-- forleden -->
+
+<e lm="her forleden dag -> her om dagen">
+  <i>her<s n="adv"/><t/></i>  <par n="d"/>
+  <p><l>forleden<s n="adv"/><t/></l>        <r></r></p>    <par n="d:"/>
+  <p><l></l>                                   <r>om<s n="pr"/><s n="aa"/><d/></r></p>
+  <i>dag<t/></i>
+  <p><l><t/><s n="ind"/></l>         <r><t/><s n="def"/></r></p>  <par n="d"/>
+</e>
+
+<e lm="forleden dag -> her om dagen">
+  <p><l></l>                                   <r>her<s n="adv"/><s n="aa"/><d/></r></p>
+  <p><l>forleden<s n="adv"/><t/></l>        <r></r></p>    <par n="d:"/>
+  <p><l></l>                                   <r>om<s n="pr"/><s n="aa"/><d/></r></p>
+  <i>dag<t/></i>
+  <p><l><t/><s n="ind"/></l>         <r><t/><s n="def"/></r></p>  <par n="d"/>
+</e>
+
+<e lm="her forleden natt -> her en natt" c="her ei natt">
+  <i>her<t/></i>  <par n="d"/>
+  <p><l>forleden<s n="adv"/><t/></l>        <r></r></p>    <par n="d:"/>
+  <p><l></l>                                   <r>en<s n="det"/><s n="qnt"/><s n="m"/><s n="sg"/><s n="aa"/><d/></r></p>
+  <par n="morgen-formiddag-ettermiddag-kveld-natt"/>  <par n="d"/>
+</e>
+
+<e lm="forleden natt -> her en natt" c="her ei natt">
+  <p><l></l>                                   <r>her<s n="adv"/><s n="aa"/><d/></r></p>
+  <p><l>forleden<s n="adv"/><t/></l>        <r></r></p>    <par n="d:"/>
+  <p><l></l>                                   <r>en<s n="det"/><s n="qnt"/><s n="m"/><s n="sg"/><s n="aa"/><d/></r></p>
+  <par n="morgen-formiddag-ettermiddag-kveld-natt"/>  <par n="d"/>
+</e>
+
+<e lm="her forleden uke -> her for noen uker siden" c="her for nokre veker sidan"> <!-- substantiv utanom dei over: månad, år -->
+  <i>her<s n="adv"/><t/></i>  <par n="d"/>
+  <p><l>forleden<s n="adv"/><t/></l>        <r></r></p>    <par n="d:"/>
+  <p><l></l>                                   <r>for<s n="pr"/><s n="aa"/><d/></r></p>
+  <p><l></l>                                   <r>noe<s n="det"/><s n="qnt"/><s n="un"/><s n="pl"/><s n="aa"/><d/></r></p>
+  <i><w/><s n="n"/><t/></i>
+  <p><l><t/><s n="sg"/><t/></l>         <r><t/><s n="pl"/><t/></r></p>  <par n="d"/>
+  <p><l></l>                                   <r>siden<s n="adv"/><s n="aa"/><d/></r></p>
+</e>
+
+<e lm="forleden uke -> for noen uker siden" c="for nokre veker sidan">
+  <p><l>forleden<s n="adv"/><t/></l>        <r></r></p>    <par n="d:"/>
+  <p><l></l>                                   <r>for<s n="pr"/><s n="aa"/><d/></r></p>
+  <p><l></l>                                   <r>noe<s n="det"/><s n="qnt"/><s n="un"/><s n="pl"/><s n="aa"/><d/></r></p>
+  <i><w/><s n="n"/><t/></i>
+  <p><l><t/><s n="sg"/><t/></l>         <r><t/><s n="pl"/><t/></r></p>  <par n="d"/>
+  <p><l></l>                                   <r>siden<s n="adv"/><s n="aa"/><d/></r></p>
+</e>
+
+<e lm="her forleden -> her om dagen"> <!-- Utan annan kontekst, elles (utan "her"): "nylig" -->
+  <i>her<s n="adv"/><t/></i>  <par n="d"/>
+  <p><l>forleden<s n="adv"/><t/></l>        <r></r></p>    <par n="d:"/>
+  <p><l></l>                                   <r>om<s n="pr"/><s n="aa"/><d/></r></p>
+  <p><l></l>                                   <r>dag<s n="n"/><s n="m"/><s n="sg"/><s n="def"/><s n="aa"/><d/></r></p>
+</e>
+
+<!-- END: forleden -->
 
 </section>
 
