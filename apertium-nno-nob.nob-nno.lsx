@@ -1927,6 +1927,18 @@
         <i>gang<s n="n"/><t/></i>
         <p><l><s n="ind"/></l> <r><s n="def"/></r></p> <par n="aa_d"/>
       </e>
+      <e c="regjeringsplattforma">
+        <p><l>regjering<s n="n"/><t/><s n="sg"/><s n="def"/><s n="gen"/></l>        <r></r></p>    <par n="d:"/>
+        <p><l></l>               <r>regjering<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/><s n="cmp"/><d/></r></p>
+        <i>plattform<s n="n"/><t/></i>
+        <p><l><s n="ind"/></l> <r><s n="def"/></r></p> <par n="aa_d"/>
+      </e>
+      <e c="Regjeringsplattforma">
+        <p><l>Regjeringen<s n="np"/><s n="org"/><s n="m"/><s n="gen"/></l>        <r></r></p>    <par n="d:"/>
+        <p><l></l>               <r>regjering<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/><s n="cmp"/><d/></r></p>
+        <i>plattform<s n="n"/><t/></i>
+        <p><l><s n="ind"/></l> <r><s n="def"/></r></p> <par n="aa_d"/>
+      </e>
       <e c="partiprofil">
         <i>parti<s n="n"/><t/></i>
         <p><l><s n="def"/><s n="gen"/><s n="aa"/></l> <r><s n="ind"/><s n="cmp"/></r></p>  <par n="d"/>
@@ -3022,11 +3034,13 @@
       <e><par n="ncmp*"/><i><w/>reform<s n="n"/><t/></i></e>
       <e><par n="ncmp*"/><i>plan<s n="n"/><t/></i></e>
       <e><par n="ncmp*"/><i><w/>plan<s n="n"/><t/></i></e>
+      <e><par n="ncmp*"/><i>høring<s n="n"/><t/></i></e>
       <e><par n="ncmp*"/><i>satsing<s n="n"/><t/></i></e>
       <e><par n="ncmp*"/><i>ambisjon<s n="n"/><t/></i></e>
       <e><par n="ncmp*"/><i>utvalg<s n="n"/><t/></i></e>
       <e><par n="ncmp*"/><i><w/>forslag<s n="n"/><t/></i></e>
       <e><par n="ncmp*"/><i><w/>pakke<s n="n"/><t/></i></e>
+      <e><par n="ncmp*"/><i><w/>lov<s n="n"/><t/></i></e>
     </pardef>
 
     <pardef n="regjeringsord-forslag">
@@ -3042,7 +3056,13 @@
       <e><par n="ncmp*"/><i>tiltak<s n="n"/><t/></i></e>
       <e><par n="ncmp*"/><i><w/>tiltak<s n="n"/><t/></i></e>
       <e><par n="ncmp*"/><i>vedtak<s n="n"/><t/></i></e>
-      <e><i>pakke<s n="n"/><t/></i></e>
+      <e><par n="ncmp*"/><i>pakke<s n="n"/><t/></i></e>
+      <e><par n="ncmp*"/><i>advokat<s n="n"/><t/></i></e>
+      <e><par n="ncmp*"/><i>forhandlingsleder<s n="n"/><t/></i></e>
+      <e><par n="ncmp*"/><i>frist<s n="n"/><t/></i></e>
+      <e><par n="ncmp*"/><i>flytting<s n="n"/><t/></i></e>
+      <e><par n="ncmp*"/><i>prosjekt<s n="n"/><t/></i></e>
+      <e><par n="ncmp*"/><i>tilbud<s n="n"/><t/></i></e>
     </pardef>
     
 
@@ -18633,20 +18653,68 @@
   <i>foreslå<s n="adj"/><s n="pp"/><s n="sg"/><s n="def"/><t/></i>  <par n="d"/>
   <par n="ncmp*.n.ind2def.mf"/>
 </e>
-
 <e lm="regjeringens foreslåtte X -> det foreslåtte X">
-  <p><l>regjering<s n="n"/><t/><s n="sg"/><s n="def"/><s n="gen"/></l>        <r></r></p>    <par n="d:"/>
+  <par n="rem-regjeringens"/>
   <p><l></l>               <r>den<s n="det"/><s n="dem"/><s n="nt"/><s n="sg"/><d/></r></p>
   <i>foreslå<s n="adj"/><s n="pp"/><s n="sg"/><s n="def"/><t/></i>  <par n="d"/>
   <par n="ncmp*.n.ind2def.nt"/>
 </e>
-
 <e lm="regjeringens foreslåtte X -> de foreslåtte X" c="dei foreslåtte X">
-  <p><l>regjering<s n="n"/><t/><s n="sg"/><s n="def"/><s n="gen"/></l>        <r></r></p>    <par n="d:"/>
+  <par n="rem-regjeringens"/>
   <p><l></l>               <r>den<s n="det"/><s n="dem"/><s n="un"/><s n="pl"/><d/></r></p>
   <i>foreslå<s n="adj"/><s n="pp"/><s n="pl"/><t/></i>  <par n="d"/>
   <par n="ncmp*.n.ind2def.pl"/>
 </e>
+
+
+<e lm="regjeringens nye X er -> den nye X-en til regjeringen er">
+  <par n="rem-regjeringens"/>
+  <p><l></l>               <r>den<s n="det"/><s n="dem"/><s n="m"/><s n="sg"/><d/></r></p>
+  <i><w/><s n="adj"/><t/></i>  <par n="d"/>
+  <par n="ncmp*.n.ind2def.mf"/>
+  <p><l></l>               <r>til<s n="pr"/><s n="aa"/><d/></r></p>
+  <p><l></l>               <r>regjering<s n="n"/><s n="m"/><s n="sg"/><s n="def"/><s n="aa"/><d/></r></p>
+  <i><w/><s n="vblex"/><t/></i>  <par n="d"/>
+</e>
+<e lm="regjeringens nye X er -> det nye X-et til regjeringen er">
+  <par n="rem-regjeringens"/>
+  <p><l></l>               <r>den<s n="det"/><s n="dem"/><s n="nt"/><s n="sg"/><d/></r></p>
+  <i><w/><s n="adj"/><t/></i>  <par n="d"/>
+  <par n="ncmp*.n.ind2def.nt"/>
+  <p><l></l>               <r>til<s n="pr"/><s n="aa"/><d/></r></p>
+  <p><l></l>               <r>regjering<s n="n"/><s n="m"/><s n="sg"/><s n="def"/><s n="aa"/><d/></r></p>
+  <i><w/><s n="vblex"/><t/></i>  <par n="d"/>
+</e>
+<e lm="regjeringens nye X er -> de nye X-ene til regjeringen er">
+  <par n="rem-regjeringens"/>
+  <p><l></l>               <r>den<s n="det"/><s n="dem"/><s n="un"/><s n="pl"/><d/></r></p>
+  <i><w/><s n="adj"/><t/></i>  <par n="d"/>
+  <par n="ncmp*.n.ind2def.pl"/>
+  <p><l></l>               <r>til<s n="pr"/><s n="aa"/><d/></r></p>
+  <p><l></l>               <r>regjering<s n="n"/><s n="m"/><s n="sg"/><s n="def"/><s n="aa"/><d/></r></p>
+  <i><w/><s n="vblex"/><t/></i>  <par n="d"/>
+</e>
+
+
+<e lm="regjeringens nye X -> den nye X-en">
+  <par n="rem-regjeringens"/>
+  <p><l></l>               <r>den<s n="det"/><s n="dem"/><s n="m"/><s n="sg"/><d/></r></p>
+  <i><w/><s n="adj"/><t/></i>  <par n="d"/>
+  <par n="ncmp*.n.ind2def.mf"/>
+</e>
+<e lm="regjeringens nye X -> det nye X-et">
+  <par n="rem-regjeringens"/>
+  <p><l></l>               <r>den<s n="det"/><s n="dem"/><s n="nt"/><s n="sg"/><d/></r></p>
+  <i><w/><s n="adj"/><t/></i>  <par n="d"/>
+  <par n="ncmp*.n.ind2def.nt"/>
+</e>
+<e lm="regjeringens nye X -> de nye X-ene">
+  <par n="rem-regjeringens"/>
+  <p><l></l>               <r>den<s n="det"/><s n="dem"/><s n="un"/><s n="pl"/><d/></r></p>
+  <i><w/><s n="adj"/><t/></i>  <par n="d"/>
+  <par n="ncmp*.n.ind2def.pl"/>
+</e>
+
 
 <e lm="regjeringens forslag til/om -> forslaget til/om">
   <par n="rem-regjeringens"/>
@@ -18692,6 +18760,13 @@
   <par n="rem-regjeringens"/>
   <par n="regjeringsord"/>
   <p><l><t/><s n="ind"/></l> <r><t/><s n="def"/></r></p>  <par n="d"/>
+</e>
+
+<e lm="regjeringens støtteparti(er) -> støttepartiet|ene til regjeringen">
+  <par n="rem-regjeringens"/>
+  <i>støtteparti<s n="n"/><t/></i>
+  <p><l><t/><s n="ind"/></l> <r><t/><s n="def"/></r></p>  <par n="d"/>
+  <i><w/><s n="np"/><s n="org"/><t/></i>  <par n="d"/>
 </e>
 
 
