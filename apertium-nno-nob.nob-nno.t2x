@@ -1512,11 +1512,34 @@
         <pattern-item n="ndef"/>
       </pattern>
       <action>
+        <choose><when>
+          <test><equal><clip pos="3" part="cas"/><lit-tag v="gen"/></equal></test>
+          <reject-current-rule shifting="0"/>
+        </when></choose>
         <call-macro n="set_ana"><with-param pos="3"/></call-macro>
         <call-macro n="modify_pp_gen_nbr"><with-param pos="2"/></call-macro>
         <out>
           <chunk><clip pos="1" part="whole"/></chunk><b/>
           <chunk><clip pos="3" part="whole"/></chunk><b/>
+          <chunk><clip pos="2" part="whole"/></chunk>
+        </out>
+      </action>
+    </rule>
+    <rule comment="AUXPASS ADJPART NGEN NIND => AUXPASS NDEF NIND ADJPART
+                   (nå) reguleres årets utgave =1> blir regulert årets utgave =2> blir årets utgave regulert">
+      <pattern>
+        <pattern-item n="auxpass"/>
+        <pattern-item n="pp_np-movable"/>
+        <pattern-item n="ngen"/>
+        <pattern-item n="nind"/>
+      </pattern>
+      <action>
+        <call-macro n="set_ana"><with-param pos="4"/></call-macro>
+        <call-macro n="modify_pp_gen_nbr"><with-param pos="2"/></call-macro>
+        <out>
+          <chunk><clip pos="1" part="whole"/></chunk><b/>
+          <chunk><clip pos="3" part="whole"/></chunk><b/>
+          <chunk><clip pos="4" part="whole"/></chunk><b/>
           <chunk><clip pos="2" part="whole"/></chunk>
         </out>
       </action>
