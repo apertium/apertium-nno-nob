@@ -174,6 +174,12 @@
     <def-cat n="detdemdef">
       <cat-item tags="det.dem.*.def"/>
     </def-cat>
+    <def-cat n="adv_OR_cm">
+      <cat-item tags="cm"/>
+      <cat-item tags="cm.*"/>
+      <cat-item tags="adv"/>
+      <cat-item tags="adv.*"/>
+    </def-cat>
     <def-cat n="advladj">
       <cat-item tags="adj.*.nt.sg.ind"/>
       <cat-item tags="adv"/>
@@ -469,7 +475,7 @@
       <cat-item tags="sent"/>
     </def-cat>
     <def-cat n="cm">
-      <cat-item tags="cm.*"/>
+      <cat-item tags="cm"/>
       <cat-item tags="cm.*"/>
     </def-cat>
     <def-cat n="needdet_adj_n">
@@ -1221,6 +1227,38 @@
           <chunk><clip pos="3" part="whole"/></chunk><b/>
           <chunk><clip pos="4" part="whole"/></chunk><b/>
           <chunk><clip pos="2" part="whole"/></chunk>
+        </out>
+      </action>
+    </rule>
+    <rule comment="ADV AUX PASV-PP PREP_GEN NGEN SYNSUBJ → ADV AUX SYNSUBJ PREP_GEN N PASV-PP
+                   Torsdag spilles klubbens oppgjer =1> Torsdag blir spelt til klubben oppgjer =2> Torsdag blir oppgjeret til klubben spelt
+                   As above, but with genitive preposition rewriting;
+                   restricted to run after adv or comma.">
+      <pattern>
+        <pattern-item n="adv_OR_cm"/> <!-- torsdag -->
+        <pattern-item n="aux"/>       <!-- blir -->
+        <pattern-item n="pasv-pp"/>   <!-- spilt -->
+        <pattern-item n="prep_gen"/>  <!-- til -->
+        <pattern-item n="ngen"/>      <!-- klubben -->
+        <pattern-item n="nind"/>      <!-- oppgjer -->
+      </pattern>
+      <action>
+        <call-macro n="modify_pp_gen_nbr"><with-param pos="3"/></call-macro>
+        <call-macro n="set_ana"><with-param pos="6"/></call-macro>
+        <call-macro n="switch_cases"><with-param pos="6"/><with-param pos="5"/></call-macro>
+        <call-macro n="apply_gendefdrop"><with-param pos="5"/><with-param pos="6"/></call-macro>
+
+        <out><chunk><clip pos="1" part="whole"/></chunk><b/></out> <!-- Torsdag -->
+        <out><chunk><clip pos="2" part="whole"/></chunk><b/></out> <!-- blir -->
+        <call-macro n="out_det_when_adjlike"><with-param pos="6"/><with-param pos="5"/></call-macro>
+        <call-macro n="out_ndef"><with-param pos="6"/><with-param pos="5"/></call-macro> <!-- oppgjeret -->
+        <out><b/></out>
+        <call-macro n="out_bi-gen-prep"><with-param pos="4"/><with-param pos="6"/></call-macro> <!-- til-->
+        <let><clip pos="5" part="art"/><lit v=""/></let> <!-- don't let postchunk alter defnes of previously-genitive phrase (important for conjunctions of ind+def, e.g. barn og unge) -->
+        <out>
+          <b/>
+          <chunk><clip pos="5" part="whole"/></chunk><b/> <!-- klubben -->
+          <chunk><clip pos="3" part="whole"/></chunk> <!-- spelt -->
         </out>
       </action>
     </rule>
