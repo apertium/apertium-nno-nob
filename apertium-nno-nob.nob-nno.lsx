@@ -425,6 +425,10 @@
       <e><par n="adv"/><par n="adv"/></e>
       <e><par n="adv"/><par n="adv"/><par n="adv"/></e>
     </pardef>
+    <pardef n="adj|adv">
+      <e><i><w/><s n="adj"/><t/><d/></i></e>
+      <e><par n="adv"/></e>
+    </pardef>
     <pardef n="adj|adv|empty">
       <e></e>
       <e><i><w/><s n="adj"/><t/><d/></i></e>
@@ -4249,6 +4253,12 @@
     <pardef n="innta-drikke-ord">
       <e><par n="ncmp*"/><i>drikk<s n="n"/><t/></i></e>
       <e><par n="ncmp*"/><i>drikke<s n="n"/><t/></i></e>
+    </pardef>
+
+    <pardef n="berørt-ord">
+      <e><i>tydelig<t/><d/></i></e>
+      <e><i>synlig<t/><d/></i></e>
+      <e><i>svært<t/><d/></i></e>
     </pardef>
 
     <pardef n="head-noun" c="Requires 'aa' tag which is never used in compound-left-parts">
@@ -8843,6 +8853,22 @@
       <p><l>berøre</l>     <r></r></p><par n="pp:"/>
       <p><l>og<t/><d/></l> <r></r></p>
       <i>ramme</i>                    <par n="pp"/>
+    </e>
+
+    <e lm="berøre + np -> påvirke + np" c="påverke + np">
+      <p><l>berøre<s n="vblex"/></l>   <r>påvirke<s n="vblex"/></r></p> <i><t/><d/></i>
+      <i><w/><s n="np"/><t/><d/></i>
+    </e>
+
+    <e lm="svært berørt av -> svært påvirket av" c="svært påverka av">
+      <par n="adj|adv"/>
+      <p><l>berøre<s n="adj"/><s n="pp"/></l>   <r>påvirke<s n="adj"/><s n="pp"/></r></p> <i><t/><d/></i>
+      <i>av<s n="pr"/><t/><d/></i>
+    </e>
+
+    <e lm="tydelig berørt -> tydelig rørt">
+      <par n="berørt-ord"/>
+      <p><l>berøre<s n="adj"/><s n="pp"/></l>   <r>røre<s n="adj"/><s n="pp"/></r></p> <i><t/><d/></i>
     </e>
 
     <e lm="i den siste tiden -> den siste tiden" c="den siste tida">
