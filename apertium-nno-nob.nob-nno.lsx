@@ -3126,6 +3126,47 @@
       <e><i>granskning<s n="n"/><s n="f"/><s n="sg"/><s n="def"/><t/><d/></i></e>
     </pardef>
 
+    <pardef n="berøre-ord-ta-på">
+      <e><i>nese<s n="n"/><t/><d/></i></e>
+      <e><i>øre<s n="n"/><t/><d/></i></e>
+      <e><i>panne<s n="n"/><t/><d/></i></e>
+      <e><i>kinn<s n="n"/><t/><d/></i></e>
+      <e><i>hode<s n="n"/><t/><d/></i></e>
+      <e><i>hals<s n="n"/><t/><d/></i></e>
+      <e><i>arm<s n="n"/><t/><d/></i></e>
+      <e><i>bryst<s n="n"/><t/><d/></i></e>
+      <e><i>rygg<s n="n"/><t/><d/></i></e>
+      <e><i>rompe<s n="n"/><t/><d/></i></e>
+      <e><i>nakke<s n="n"/><t/><d/></i></e>
+      <e><i>hånd<s n="n"/><t/><d/></i></e>
+      <e><i>lår<s n="n"/><t/><d/></i></e>
+      <e><i>kne<s n="n"/><t/><d/></i></e>
+      <e><i>fot<s n="n"/><t/><d/></i></e>
+      <e><i>ankel<s n="n"/><t/><d/></i></e>
+      <e><i>finger<s n="n"/><t/><d/></i></e>
+      <e><i>tå<s n="n"/><t/><d/></i></e>
+    </pardef>
+
+    <pardef n="berøre-ord-gjelde">
+      <e><par n="ncmp*"/><i>problem<s n="n"/><t/><d/></i></e>
+      <e><i>problemstilling<s n="n"/><t/><d/></i></e>
+      <e><i>spørsmål<s n="n"/><t/><d/></i></e>
+    </pardef>
+
+    <pardef n="berøre-ord-påverke">
+      <e><par n="ncmp*"/><i>tilværelse<s n="n"/><t/><d/></i></e>
+      <e><par n="ncmp*"/><i>liv<s n="n"/><t/><d/></i></e>
+      <e><i>livsgrunnlag<s n="n"/><t/><d/></i></e>
+      <e><par n="ncmp*"/><i>hverdag<s n="n"/><t/><d/></i></e>
+      <e><par n="ncmp*"/><i>samfunn<s n="n"/><t/><d/></i></e>
+      <e><i><w/>samfunn<s n="n"/><t/><d/></i></e>
+    </pardef>
+
+    <pardef n="berøre-ord-komme-inn-på">
+      <e><par n="ncmp*"/><i>tema<s n="n"/><t/><d/></i></e>
+      <e><par n="ncmp*"/><i>budskap<s n="n"/><t/><d/></i></e>
+    </pardef>
+
     <pardef n="seg">
       <e><i><w/><s n="prn"/><s n="ref"/><t/><d/></i></e>
     </pardef>
@@ -8855,9 +8896,41 @@
       <i>ramme</i>                    <par n="pp"/>
     </e>
 
+    <e lm="berøre + tema -> komme inn på + tema">
+      <p><l>berøre<s n="vblex"/></l>   <r>komme<s n="vblex"/></r></p> <i><t/><d/></i>
+      <p><l></l>                  <r>inn<s n="pr"/><d/></r></p>
+      <p><l></l>                  <r>på<s n="pr"/><d/></r></p>
+      <par n="ANYWORDx3|empty"/>
+      <par n="berøre-ord-komme-inn-på"/>
+    </e>
+
+    <e lm="berøre + problem -> gjelde + problem">
+      <p><l>berøre<s n="vblex"/></l>   <r>gjelde<s n="vblex"/></r></p> <i><t/><d/></i>
+      <par n="berøre-ord-gjelde"/>
+    </e>
+
     <e lm="berøre + np -> påvirke + np" c="påverke + np">
       <p><l>berøre<s n="vblex"/></l>   <r>påvirke<s n="vblex"/></r></p> <i><t/><d/></i>
+      <par n="adv|empty"/>
       <i><w/><s n="np"/><t/><d/></i>
+    </e>
+
+    <e lm="berøre tilværelsen -> påvirke tilværelsen" c="påverke tilværet">
+      <p><l>berøre<s n="vblex"/></l>   <r>påvirke<s n="vblex"/></r></p> <i><t/><d/></i>
+      <par n="ANYWORDx3|empty"/>
+      <par n="berøre-ord-påverke"/>
+    </e>
+
+    <e lm="å berøre en X -> å røre ved en X" c="å røre ved ein X">
+      <i>å<t/><d/></i>
+      <p><l>berøre<s n="vblex"/><s n="inf"/></l>   <r>røre<s n="vblex"/><s n="inf"/></r></p> <i><t/><d/></i>
+      <p><l></l>                  <r>ved<s n="pr"/><d/></r></p>
+      <i>en<t/><d/></i>
+    </e>
+
+    <e lm="berører en hel generasjon -> påvirker en hel generasjon" c="påverkar ein heil generasjon">
+      <p><l>berøre<s n="vblex"/></l>   <r>påvirke<s n="vblex"/></r></p> <i><t/><d/></i>
+      <i>en<t/><d/></i>
     </e>
 
     <e lm="svært berørt av -> svært påvirket av" c="svært påverka av">
@@ -8869,6 +8942,15 @@
     <e lm="tydelig berørt -> tydelig rørt">
       <par n="berørt-ord"/>
       <p><l>berøre<s n="adj"/><s n="pp"/></l>   <r>røre<s n="adj"/><s n="pp"/></r></p> <i><t/><d/></i>
+    </e>
+
+    <e lm="kan berøre tilbudet -> kan få følger for tilbudet" c="kan få følgjer for tilbodet">
+      <par n="modal+ville"/>
+      <par n="SN-exp|np|prn|det|adv|adj|empty"/>
+      <par n="ANYWORDx3|empty"/>
+      <p><l>berøre<s n="vblex"/><s n="inf"/></l>   <r>få<s n="vblex"/><s n="inf"/></r></p> <i><t/><d/></i>
+      <p><l></l>                  <r>følge<s n="n"/><s n="m"/><s n="pl"/><s n="ind"/><s n="aa"/><d/></r></p>
+      <p><l></l>                  <r>for<s n="pr"/><d/></r></p>
     </e>
 
     <e lm="i den siste tiden -> den siste tiden" c="den siste tida">
