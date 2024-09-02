@@ -10997,6 +10997,20 @@ preposisjonar gir ekstra utfordringar. -->
     <match lemma="hestehode" tags="n.*"/>
     <match lemma="foran" tags="pr.*"><select lemma="føre"/></match>
   </rule>
+  <rule weight="2.0" c="framfor henne/huset/Stortinget/Støre stod">
+    <match lemma="foran" tags="pr.*"><select lemma="framfor"/></match>
+    <or>
+      <match tags="n.*"/>
+      <match tags="prn.pers.p3.*"/>
+      <match tags="np.org.*"/>
+      <match tags="np.cog.*"/>
+      <match tags="np.ant.*"/>
+    </or>
+    <or>
+      <match lemma="ligge" tags="vblex.*"/>
+      <match lemma="stå" tags="vblex.*"/>
+    </or>
+  </rule>
   <rule weight="2.0" c="komme (seg) føre (i mål)">
     <match lemma="komme" tags="vblex.*"/>
     <repeat from="0" upto="1">
