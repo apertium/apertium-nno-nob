@@ -811,6 +811,13 @@
       <e><i><w/><s n="pr"/><t/><d/></i><i><w/><s n="n"/><t/><s n="gen"/><t/><d/></i><par n="SN"/></e>
     </pardef>
 
+    <pardef n="i|på">
+      <e><i>i<s n="pr"/><d/></i></e>
+      <e><i>i<s n="pr"/><t/><d/></i></e>
+      <e><i>på<s n="pr"/><d/></i></e>
+      <e><i>på<s n="pr"/><t/><d/></i></e>
+    </pardef>
+
     <pardef n="det+SN|" c="Includes empty!">
       <e></e>
       <e>                            <par n="ncmp*.n"/></e>
@@ -3788,6 +3795,12 @@
       <e><par n="pr"/></e>
     </pardef>
 
+    <pardef n="adj|adv|pr">
+      <e><par n="adj"/></e>
+      <e><par n="ADV"/></e>
+      <e><par n="pr"/></e>
+    </pardef>
+
     <pardef n="adj|adv|pr|empty" c="Includes empty!">
       <e></e>
       <e><par n="adj"/></e>
@@ -3804,6 +3817,14 @@
       <e><i><w/><s n="adj"/><s n="pst"/><t/><d/></i></e>
       <e><i><w/><s n="adj"/><s n="sint"/><s n="pst"/><t/><d/></i></e>
       <e><i><w/><s n="adj"/><s n="pp"/><t/><d/></i></e>
+    </pardef>
+
+    <pardef n="adj|adv-i|på|ute|inne">
+      <e><par n="adj|adv"/></e>
+      <e><i>i<s n="pr"/><t/><d/></i></e>
+      <e><i>på<s n="pr"/><t/><d/></i></e>
+      <e><i>ute<s n="pr"/><t/><d/></i></e>
+      <e><i>inne<s n="pr"/><t/><d/></i></e>
     </pardef>
 
     <pardef n="Sår-og-kroppsord">
@@ -11597,6 +11618,13 @@
       <i>i<s n="pr"/><t/><d/></i>
     </e>
 
+    <e lm="tilbringe mye tid hjemme -> være mykje hjemme" c="vere mykje heime">
+      <p><l>tilbringe</l>                   <r>være</r></p> <i><s n="vblex"/><t/><d/></i>
+      <i>mye<t/><d/></i>
+      <p><l>tid<s n="n"/><t/><d/></l>                                     <r></r></p>
+      <par n="adj|adv-i|på|ute|inne"/>
+    </e>
+
     <e lm="tilbringe tid -> være" c="vere">
       <p><l>tilbringe</l>                   <r>være</r></p> <i><s n="vblex"/><t/><d/></i>
       <par n="SN|ADV|prn|"/>
@@ -19033,6 +19061,24 @@
   <i>med<t/><d/></i>
   <par n="adj|empty"/>
   <p><l>høytidelighet<s n="n"/></l>   <r>høytid<s n="n"/></r></p> <i><t/><d/></i>
+</e>
+
+<e lm="på elevenes vegne → på vegne av elevene">
+  <i>på<t/><d/></i>
+  <p><l></l>                <r>vegne<s n="n"/><s n="mf"/><s n="sp"/><s n="aa"/><d/></r></p>
+  <p><l></l>                <r>av<s n="pr"/><s n="aa"/><d/></r></p>
+  <i><w/><s n="n"/><t/></i>
+  <p><l><t/><s n="def"/><s n="gen"/></l>         <r><t/><s n="def"/></r></p>  <par n="d"/>
+  <p><l>vegne<s n="n"/><t/></l>        <r></r></p>    <par n="d:"/>
+</e>
+
+<e lm="på Tysklands vegne → på vegne av Tyskland">
+  <i>på<t/><d/></i>
+  <p><l></l>                <r>vegne<s n="n"/><s n="mf"/><s n="sp"/><s n="aa"/><d/></r></p>
+  <p><l></l>                <r>av<s n="pr"/><s n="aa"/><d/></r></p>
+  <i><w/><s n="np"/><t/></i>
+  <p><l><t/><s n="gen"/></l>         <r><t/></r></p>  <par n="d"/>
+  <p><l>vegne<s n="n"/><t/></l>        <r></r></p>    <par n="d:"/>
 </e>
 
 </section>
