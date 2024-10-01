@@ -5652,6 +5652,13 @@
     </or>
   </rule>
 
+  <rule><match lemma="anvende" tags="vblex.*"><select lemma="bruke"/></match></rule>
+  <rule weight="2.0" c="vel anvendt tid">
+    <match lemma="vel"/>
+    <match lemma="anvende" tags=".*"><select lemma="anvende"/></match>
+    <match lemma="tid"/>
+  </rule>
+
   <!-- TODO: is avhending ever right? -->
   <rule><match lemma="overdragelse" tags="n.*"><select lemma="overdraging"/></match></rule>
 
