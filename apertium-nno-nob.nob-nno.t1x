@@ -388,6 +388,12 @@
       <cat-item tags="n.*.def.*"/>
       <cat-item tags="n.*.def.gen.*"/>
     </def-cat>
+    <def-cat n="n_eining" c="ikkje genitiv">
+      <cat-item tags="n.m.sg.ind.aa" lemma="generasjon"/>
+      <cat-item tags="n.*.ind.aa" lemma="liter"/>
+      <cat-item tags="n.*.ind.aa" lemma="meter"/>
+      <cat-item tags="n.*.ind.aa" lemma="kilo"/>
+    </def-cat>
     <def-cat n="ngen_keep_gen_s"
              c="Owner nouns where we want to keep the genitive-s">
       <cat-item tags="n.m.sg.*.gen.*"   lemma="liter"/>
@@ -678,6 +684,9 @@
     </def-cat>
     <def-cat n="detqntun">      <!-- e.g. digits, not «en/et» -->
       <cat-item tags="det.qnt.un.*"/>
+    </def-cat>
+    <def-cat n="adj_OR_detqnt">
+      <cat-item tags="det.qnt.*"/>
     </def-cat>
     <def-cat n="remspc">
       <cat-item tags="sent.clb.remspc.*"/>
@@ -12903,6 +12912,49 @@ no lemq-moving">
         </out>
       </action>
     </rule>
+
+
+    <rule comment="ADJ N_EINING N
+                   [Nå testes] femte generasjon Kia → [No blir] femte generasjon Kia [testa]">
+      <pattern>
+        <pattern-item n="adj_OR_detqnt"/> <!-- TODO support for det -->
+        <pattern-item n="n_eining"/>      <!-- alternatively, just mark the unit and handle two N's in a row in t2x -->
+        <pattern-item n="n_np"/>
+      </pattern>
+      <action>
+        <let><var n="c_name"/><lit v="adj_n_n"/></let>
+        <call-macro n="set_gender2.n.adj"><with-param pos="2"/><with-param pos="1"/></call-macro>
+        <call-macro n="set_grau_aux1"><with-param pos="1"/></call-macro>
+        <call-macro n="set_caseFirstWord3">
+          <with-param pos="1"/>
+          <with-param pos="2"/>
+          <with-param pos="3"/>
+        </call-macro>
+        <call-macro n="out_gen-prep"><with-param pos="2"/></call-macro>
+        <call-macro n="stash_case_in_ntags1"><with-param pos="2"/></call-macro>
+        <choose><when>
+          <test><equal><clip pos="1" side="tl" part="grau"/><lit-tag v="sup"/></equal></test>
+          <append n="ntags"><lit-tag v="sup"/></append>
+        </when></choose>
+        <append n="ntags"><clip pos="3" side="ref" part="a_syntax"/></append>
+        <out>
+          <chunk namefrom="c_name" case="caseFirstWord">
+            <tags><tag><var n="ntags"/></tag></tags>
+            <var n="grau_aux"/>
+            <lu>
+              <clip pos="1" side="tl" part="lemh"/>
+              <clip pos="1" side="tl" part="tags"/>
+              <clip pos="1" side="tl" part="lemq"/>
+            </lu>
+            <b/>
+            <lu><clip pos="2" side="tl" part="whole"/></lu>
+            <b/>
+            <lu><clip pos="3" side="tl" part="whole"/></lu>
+          </chunk>
+        </out>
+      </action>
+    </rule>
+
 
     <!-- DETQNT NIND ADJ N – (deres) ti mil lange reise -->
     <rule comment="DETQNT NIND ADJ N
