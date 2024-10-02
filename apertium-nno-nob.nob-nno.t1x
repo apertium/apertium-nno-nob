@@ -388,6 +388,35 @@
       <cat-item tags="n.*.def.*"/>
       <cat-item tags="n.*.def.gen.*"/>
     </def-cat>
+    <def-cat n="n_eining" c="ikkje genitiv">
+      <cat-item tags="n.m.sg.ind.aa" lemma="generasjon"/>
+      <cat-item tags="n.*.ind.aa" lemma="centiliter"/>
+      <cat-item tags="n.*.ind.aa" lemma="centimeter"/>
+      <cat-item tags="n.*.ind.aa" lemma="dekaliter"/>
+      <cat-item tags="n.*.ind.aa" lemma="dekameter"/>
+      <cat-item tags="n.*.ind.aa" lemma="desiliter"/>
+      <cat-item tags="n.*.ind.aa" lemma="desimeter"/>
+      <cat-item tags="n.*.ind.aa" lemma="hektoliter"/>
+      <cat-item tags="n.*.ind.aa" lemma="kilo"/>
+      <cat-item tags="n.*.ind.aa" lemma="kilometer"/>
+      <cat-item tags="n.*.ind.aa" lemma="kilopondmeter"/>
+      <cat-item tags="n.*.ind.aa" lemma="kubikkcentimeter"/>
+      <cat-item tags="n.*.ind.aa" lemma="kubikkdesimeter"/>
+      <cat-item tags="n.*.ind.aa" lemma="kubikkmeter"/>
+      <cat-item tags="n.*.ind.aa" lemma="kvadratkilometer"/>
+      <cat-item tags="n.*.ind.aa" lemma="kvadratmeter"/>
+      <cat-item tags="n.*.ind.aa" lemma="liter"/>
+      <cat-item tags="n.*.ind.aa" lemma="løpemeter"/>
+      <cat-item tags="n.*.ind.aa" lemma="meter"/>
+      <cat-item tags="n.*.ind.aa" lemma="milliliter"/>
+      <cat-item tags="n.*.ind.aa" lemma="millimeter"/>
+      <cat-item tags="n.*.ind.aa" lemma="nanometer"/>
+      <cat-item tags="n.*.ind.aa" lemma="passasjerkilometer"/>
+      <cat-item tags="n.*.ind.aa" lemma="rutemeter"/>
+      <cat-item tags="n.*.ind.aa" lemma="sekundmeter"/>
+      <cat-item tags="n.*.ind.aa" lemma="spaltemillimeter"/>
+      <cat-item tags="n.*.ind.aa" lemma="tonnkilometer"/>
+    </def-cat>
     <def-cat n="ngen_keep_gen_s"
              c="Owner nouns where we want to keep the genitive-s">
       <cat-item tags="n.m.sg.*.gen.*"   lemma="liter"/>
@@ -678,6 +707,10 @@
     </def-cat>
     <def-cat n="detqntun">      <!-- e.g. digits, not «en/et» -->
       <cat-item tags="det.qnt.un.*"/>
+    </def-cat>
+    <def-cat n="adj_OR_detqnt">
+      <cat-item tags="adj.*"/>
+      <cat-item tags="det.qnt.*"/>
     </def-cat>
     <def-cat n="remspc">
       <cat-item tags="sent.clb.remspc.*"/>
@@ -11279,9 +11312,9 @@ no lemq-moving">
           <chunk name="n_cnjcoo_n" case="caseFirstWord">
             <tags><tag><var n="ntags"/></tag></tags>
             <lu><clip pos="1" side="tl" part="whole"/></lu>
-            <b pos="1"/>
+            <b/>
             <lu><clip pos="2" side="tl" part="lemh"/><lit-tag v="cnjcoo"/></lu>
-            <b pos="2"/>
+            <b/>
             <lu><clip pos="3" side="tl" part="whole"/></lu>
           </chunk>
         </out>
@@ -12904,6 +12937,127 @@ no lemq-moving">
         </out>
       </action>
     </rule>
+
+
+    <rule comment="ADJ N_EINING N
+                   [Nå testes] femte generasjon Kia → [No blir] femte generasjon Kia [testa]">
+      <pattern>
+        <pattern-item n="adj_OR_detqnt"/> <!-- TODO support for det -->
+        <pattern-item n="n_eining"/>
+        <pattern-item n="n_np"/>
+      </pattern>
+      <action>
+        <choose><when>
+          <test><or>
+            <equal><clip pos="3" side="tl" part="cas"/><lit-tag v="gen"/></equal>
+            <in><clip pos="3" side="tl" part="lemh"/><list n="vekedag"/></in>
+          </or></test>
+          <reject-current-rule shifting="0"/>
+        </when></choose>
+        <choose>
+          <when>
+            <test><begins-with><clip pos="1" side="tl" part="a_det"/><lit-tag v="det"/></begins-with></test>
+            <let><var n="c_name"/><lit v="det_n_n"/></let>
+          </when>
+          <otherwise>
+            <let><var n="c_name"/><lit v="adj_n_n"/></let>
+          </otherwise>
+        </choose>
+        <call-macro n="set_gender2.n.adj"><with-param pos="2"/><with-param pos="1"/></call-macro>
+        <call-macro n="set_grau_aux1"><with-param pos="1"/></call-macro>
+        <call-macro n="set_caseFirstWord3">
+          <with-param pos="1"/>
+          <with-param pos="2"/>
+          <with-param pos="3"/>
+        </call-macro>
+        <call-macro n="out_gen-prep"><with-param pos="2"/></call-macro>
+        <call-macro n="stash_case_in_ntags1"><with-param pos="2"/></call-macro>
+        <choose><when>
+          <test><equal><clip pos="1" side="tl" part="grau"/><lit-tag v="sup"/></equal></test>
+          <append n="ntags"><lit-tag v="sup"/></append>
+        </when></choose>
+        <append n="ntags"><clip pos="3" side="ref" part="a_syntax"/></append>
+        <append n="ntags"><lit-tag v="keep-sin"/></append>
+        <out>
+          <chunk namefrom="c_name" case="caseFirstWord">
+            <tags><tag><var n="ntags"/></tag></tags>
+            <var n="grau_aux"/>
+            <lu>
+              <clip pos="1" side="tl" part="lemh"/>
+              <clip pos="1" side="tl" part="tags"/>
+              <clip pos="1" side="tl" part="lemq"/>
+            </lu>
+            <b/>
+            <lu><clip pos="2" side="tl" part="whole"/></lu>
+            <b/>
+            <lu><clip pos="3" side="tl" part="whole"/></lu>
+          </chunk>
+        </out>
+      </action>
+    </rule>
+    <rule comment="ADJ N_EINING N CNJCOO N
+                   [Nå testes] femte generasjon Kia og Ford → [No blir] femte generasjon Kia og Ford [testa]">
+      <pattern>
+        <pattern-item n="adj_OR_detqnt"/> <!-- TODO support for det -->
+        <pattern-item n="n_eining"/>
+        <pattern-item n="n_np"/>
+        <pattern-item n="cnjcoo_nkon"/>
+        <pattern-item n="n_np"/>
+      </pattern>
+      <action>
+        <choose><when>
+          <test><or>
+            <equal><clip pos="3" side="tl" part="cas"/><lit-tag v="gen"/></equal>
+            <in><clip pos="3" side="tl" part="lemh"/><list n="vekedag"/></in>
+          </or></test>
+          <reject-current-rule shifting="0"/>
+        </when></choose>
+        <choose>
+          <when>
+            <test><begins-with><clip pos="1" side="tl" part="a_det"/><lit-tag v="det"/></begins-with></test>
+            <let><var n="c_name"/><lit v="det_n_n_cnjcoo_n"/></let>
+          </when>
+          <otherwise>
+            <let><var n="c_name"/><lit v="adj_n_n_cnjcoo_n"/></let>
+          </otherwise>
+        </choose>
+        <call-macro n="set_gender2.n.adj"><with-param pos="2"/><with-param pos="1"/></call-macro>
+        <call-macro n="set_grau_aux1"><with-param pos="1"/></call-macro>
+        <call-macro n="set_caseFirstWord3">
+          <with-param pos="1"/>
+          <with-param pos="2"/>
+          <with-param pos="3"/>
+        </call-macro>
+        <call-macro n="out_gen-prep"><with-param pos="2"/></call-macro>
+        <call-macro n="stash_case_in_ntags1"><with-param pos="2"/></call-macro>
+        <choose><when>
+          <test><equal><clip pos="1" side="tl" part="grau"/><lit-tag v="sup"/></equal></test>
+          <append n="ntags"><lit-tag v="sup"/></append>
+        </when></choose>
+        <append n="ntags"><clip pos="3" side="ref" part="a_syntax"/></append>
+        <append n="ntags"><lit-tag v="keep-sin"/></append>
+        <out>
+          <chunk namefrom="c_name" case="caseFirstWord">
+            <tags><tag><var n="ntags"/></tag></tags>
+            <var n="grau_aux"/>
+            <lu>
+              <clip pos="1" side="tl" part="lemh"/>
+              <clip pos="1" side="tl" part="tags"/>
+              <clip pos="1" side="tl" part="lemq"/>
+            </lu>
+            <b/>
+            <lu><clip pos="2" side="tl" part="whole"/></lu>
+            <b/>
+            <lu><clip pos="3" side="tl" part="whole"/></lu>
+            <b/>
+            <lu><clip pos="4" side="tl" part="lemh"/><lit-tag v="cnjcoo"/></lu>
+            <b/>
+            <lu><clip pos="5" side="tl" part="whole"/></lu>
+          </chunk>
+        </out>
+      </action>
+    </rule>
+
 
     <!-- DETQNT NIND ADJ N – (deres) ti mil lange reise -->
     <rule comment="DETQNT NIND ADJ N
