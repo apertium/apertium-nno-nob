@@ -8597,29 +8597,47 @@
                   or if noun has changed gender (if not GD, don't allow adj.f as target).
                   (We want to allow 'helt.nt svart.mf katt.m', no gender change nor GD on 'helt',
                    but o/w make sure adj corresponds: 'helt.nt forfatterskap => heil.mf forfattarskap')">
-      <choose><when>
-        <test><and>
-          <in><clip pos="1" side="tl" part="gen"/><list n="adj-genders"/></in>
-          <or>
-            <in><clip pos="2" side="tl" part="lem"/><list n="adj-f"/></in>
-            <not><equal><clip pos="1" side="sl" part="gen"/><clip pos="1" side="tl" part="gen"/></equal></not>
-          </or>
-        </and></test>
-        <choose>
-          <when>
+      <choose>
+        <when c="arg.2 is actually a determiner">
+          <test><begins-with><clip pos="2" side="tl" part="a_det"/><lit-tag v="det"/></begins-with></test>
+          <choose c="set_gender2.n.det">
+            <when>
+              <test><or>
+                <equal><clip pos="1" side="tl" part="gen"/><lit-tag v="f"/></equal>
+                <equal><clip pos="1" side="tl" part="gen"/><lit-tag v="nt"/></equal>
+              </or></test>
+              <let><clip pos="2" side="tl" part="gen"/><clip pos="1" side="tl" part="gen"/></let>
+            </when>
+            <otherwise>
+              <let><clip pos="2" side="tl" part="gen"/><lit-tag v="m"/></let>
+            </otherwise>
+          </choose>
+        </when>
+        <otherwise c="arg.2 is adj; try to use arg.1 noun gender:">
+          <choose><when>
             <test><and>
-              <not><in><clip pos="2" side="tl" part="lem"/><list n="adj-f"/></in></not>
-              <equal><clip pos="1" side="tl" part="gen"/><lit-tag v="f"/></equal>
+              <in><clip pos="1" side="tl" part="gen"/><list n="adj-genders"/></in>
+              <or>
+                <in><clip pos="2" side="tl" part="lem"/><list n="adj-f"/></in>
+                <not><equal><clip pos="1" side="sl" part="gen"/><clip pos="1" side="tl" part="gen"/></equal></not>
+              </or>
             </and></test>
-            <let><clip pos="2" side="tl" part="gen"/><lit-tag v="mf"/></let>
-          </when>
-          <otherwise>
-            <let><clip pos="2" side="tl" part="gen"/><clip pos="1" side="tl" part="gen"/></let>
-          </otherwise>
-        </choose>
-      </when>
+            <choose>
+              <when>
+                <test><and>
+                  <not><in><clip pos="2" side="tl" part="lem"/><list n="adj-f"/></in></not>
+                  <equal><clip pos="1" side="tl" part="gen"/><lit-tag v="f"/></equal>
+                </and></test>
+                <let><clip pos="2" side="tl" part="gen"/><lit-tag v="mf"/></let>
+              </when>
+              <otherwise>
+                <let><clip pos="2" side="tl" part="gen"/><clip pos="1" side="tl" part="gen"/></let>
+              </otherwise>
+            </choose>
+          </when></choose>
+          <call-macro n="set_gender1.adj"><with-param pos="2"/></call-macro>
+        </otherwise>
       </choose>
-      <call-macro n="set_gender1.adj"><with-param pos="2"/></call-macro>
     </def-macro>
 
     <def-macro n="set_gender2.n.pre-adj" npar="2"
