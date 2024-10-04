@@ -12972,7 +12972,15 @@ no lemq-moving">
           </or></test>
           <reject-current-rule shifting="0"/>
         </when></choose>
-        <let><var n="c_name"/><lit v="adj_n_n"/></let>
+        <choose>
+          <when>
+            <test><begins-with><clip pos="1" side="tl" part="a_det"/><lit-tag v="det"/></begins-with></test>
+            <let><var n="c_name"/><lit v="det_n_n"/></let>
+          </when>
+          <otherwise>
+            <let><var n="c_name"/><lit v="adj_n_n"/></let>
+          </otherwise>
+        </choose>
         <call-macro n="set_gender2.n.adj"><with-param pos="2"/><with-param pos="1"/></call-macro>
         <call-macro n="set_grau_aux1"><with-param pos="1"/></call-macro>
         <call-macro n="set_caseFirstWord3">
@@ -13021,7 +13029,15 @@ no lemq-moving">
           </or></test>
           <reject-current-rule shifting="0"/>
         </when></choose>
-        <let><var n="c_name"/><lit v="adj_n_n_cnjcoo_n"/></let>
+        <choose>
+          <when>
+            <test><begins-with><clip pos="1" side="tl" part="a_det"/><lit-tag v="det"/></begins-with></test>
+            <let><var n="c_name"/><lit v="det_n_n_cnjcoo_n"/></let>
+          </when>
+          <otherwise>
+            <let><var n="c_name"/><lit v="adj_n_n_cnjcoo_n"/></let>
+          </otherwise>
+        </choose>
         <call-macro n="set_gender2.n.adj"><with-param pos="2"/><with-param pos="1"/></call-macro>
         <call-macro n="set_grau_aux1"><with-param pos="1"/></call-macro>
         <call-macro n="set_caseFirstWord3">
