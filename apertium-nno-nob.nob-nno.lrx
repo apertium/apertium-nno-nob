@@ -8687,10 +8687,42 @@
     <match lemma="ikke"/>
   </rule>
   <rule weight="2.0">
+    <match lemma="forbli" tags="vblex.*"><select lemma="bli# verande"/></match>
+    <or>
+      <match tags="cm.*"/>
+      <match tags="cm.clb.*"/>
+      <match tags="sent.clb.*"/>
+      <match tags="conjcoo.*"/>
+    </or>
+  </rule>
+  <rule weight="2.0">
     <repeat from="0" upto="1">
       <match lemma="ikke"/>
     </repeat>
     <match lemma="forbli" tags="vblex.*"><select lemma="bli# verande"/></match>
+    <match lemma="i"/>
+  </rule>
+  <rule weight="2.5">
+    <or>
+      <match lemma="kunne"/>
+      <match lemma="burde"/>
+      <match lemma="måtte"/>
+      <match lemma="ville"/>
+      <match lemma="skulle"/>
+    </or>
+    <match lemma="forbli" tags="vblex.*.*"><select lemma="halde# fram"/></match>
+    <match lemma="i"/>
+    <match tags="np.*"/>
+  </rule>
+  <rule weight="2.2">
+    <or>
+      <match lemma="kunne"/>
+      <match lemma="burde"/>
+      <match lemma="måtte"/>
+      <match lemma="ville"/>
+      <match lemma="skulle"/>
+    </or>
+    <match lemma="forbli" tags="vblex.*.*"><select lemma="bli# verande"/></match>
     <match lemma="i"/>
   </rule>
   <rule>
@@ -9375,9 +9407,9 @@
       <match tags="adv.*"/>
     </or>
     <match lemma="meget" tags="adv.*"><select lemma="mykje" tags="adv.*"/></match>
-	<or>
+    <or>
       <match tags="sent.clb.*"/>
-	</or>
+    </or>
   </rule>
   <!-- END: meget, todo: "han reiste meget hele året rundt" -->
 
