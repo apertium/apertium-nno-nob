@@ -1084,23 +1084,6 @@
   <rule> <match lemma="foreligge" tags="vblex.*"> <select lemma="ligge# føre"/> </match> </rule>
   <rule> <match lemma="foreligge" tags="adj.*"> <select lemma="gjelde"/> </match> </rule>
 
-  <rule> <match lemma="forekomme" tags="vblex.*"> <select lemma="finnast"/> </match> </rule>
-  <rule> <match lemma="forekomme" tags="adj.*"> <select lemma="hende"/> </match> </rule>
-  <rule weight="2.0">
-    <match lemma="forekomme" tags="vblex.*">
-      <select lemma="hende"/>
-    </match>
-    <or>
-      <match lemma="ofte"/>
-      <match lemma="at"/>
-    </or>
-  </rule>
-  <rule weight="2.0" c="det forekommer meg at (could do mwe, but then nno would need mwe too, meh)">
-    <match lemma="forekomme" tags="vblex.*">
-      <select lemma="slå"/>
-    </match>
-    <match tags="prn.*"/>
-  </rule>
 
   <rule> <match lemma="male" tags="vblex.*"> <select lemma="måle¹"/> </match> </rule>
   <rule> <match lemma="male" tags="adj.*"> <select lemma="måle¹"/> </match> </rule>
