@@ -212,6 +212,17 @@
         <match tags="np.cog.*"/>
       </def-seq>
 
+      <def-seq n="sent_OR_cm_OR_clb">
+        <or>
+          <match tags="sent"/>
+          <match tags="sent.*"/>
+          <match tags="cm"/>
+          <match tags="cm.*"/>
+          <match tags="*.clb"/>
+          <match tags="*.clb.*"/>
+        </or>
+      </def-seq>
+
       <def-set n="lm:søkkbart" tags="n.*">
         <lemma>tråler</lemma>
         <lemma>båt</lemma>
@@ -5711,6 +5722,25 @@
       <match lemma="om"/>
       <match lemma="rundt"/>
     </or>
+  </rule>
+
+  <rule><match lemma="ned i"><select lemma="ned i"/></match></rule>
+  <rule weight="3.0" c="to astronauter går ned i historien av alle de verste grunnene">
+    <match lemma="gå"/>
+    <match lemma="ned i" tags="pr.*">
+      <select lemma="inn i"/>
+    </match>
+    <match lemma="historie"/>
+  </rule>
+
+  <rule><match lemma="for"><select lemma="for"/></match></rule>
+  <rule weight="3.0" c="de er der for en grunn,">
+    <match lemma="for" tags="pr.*">
+      <select lemma="av"/>
+    </match>
+    <match lemma="en"/>
+    <match lemma="grunn"/>
+    <seq n="sent_OR_cm_OR_clb"/>
   </rule>
 
   <rule c="auka medvit om">
