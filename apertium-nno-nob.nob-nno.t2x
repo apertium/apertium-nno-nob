@@ -1173,7 +1173,7 @@
       </action>
     </rule>
 
-    <rule comment="AUX PASV-PP SYNSUBJ => AUX SYNSUBJ PASV-PP
+    <rule comment="AUX PASV-PP PASVSUBJ => AUX PASVSUBJ PASV-PP
                    (Videre) påpekes det =1> (Vidare) blir påpeikt det =2> (Vidare) blir det påpeikt">
       <pattern>
         <pattern-item n="aux"/>
@@ -1191,7 +1191,7 @@
         </out>
       </action>
     </rule>
-    <rule comment="AUX PASV-PP DET SYNSUBJ => AUX DET SYNSUBJ PASV-PP
+    <rule comment="AUX PASV-PP DET PASVSUBJ => AUX DET PASVSUBJ PASV-PP
                    noteres 4,5 prosent =1> blir notert 4,5 prosent =2> blir 4,5 prosent notert">
       <pattern>
         <pattern-item n="aux"/>      <!-- blir -->
@@ -1211,7 +1211,7 @@
         </out>
       </action>
     </rule>
-    <rule comment="AUX PASV-PP NGEN SYNSUBJ => AUX NGEN SYNSUBJ PASV-PP
+    <rule comment="AUX PASV-PP NGEN PASVSUBJ => AUX NGEN PASVSUBJ PASV-PP
                    utvides tilsynets ansvar =1> blir utvida tilsynets ansvar =2> blir tilsynets ansvar utvida">
       <pattern>
         <pattern-item n="aux"/>      <!-- blir -->
@@ -1231,7 +1231,7 @@
         </out>
       </action>
     </rule>
-    <rule comment="ADV AUX PASV-PP PREP_GEN NGEN SYNSUBJ → ADV AUX SYNSUBJ PREP_GEN N PASV-PP
+    <rule comment="ADV AUX PASV-PP PREP_GEN NGEN NIND → ADV AUX NIND PREP_GEN N PASV-PP
                    Torsdag spilles klubbens oppgjer =1> Torsdag blir spelt til klubben oppgjer =2> Torsdag blir oppgjeret til klubben spelt
                    As above, but with genitive preposition rewriting;
                    restricted to run after adv or comma.">
@@ -1263,7 +1263,7 @@
         </out>
       </action>
     </rule>
-    <rule comment="AUX PASV-PP SYNSUBJ ADV_UNBOUND => AUX SYNSUBJ PASV-PP ADV_UNBOUND
+    <rule comment="AUX PASV-PP PASVSUBJ ADV_UNBOUND => AUX PASVSUBJ PASV-PP ADV_UNBOUND
                    (Videre) oppgis det ikke =1> (Vidare) blir oppgitt det ikkje =2> (Vidare) blir det ikkje oppgitt
 
                    «I en uttalelse på Twitter oppgis det ikke antall drepte eller sårede»">
@@ -1285,7 +1285,7 @@
         </out>
       </action>
     </rule>
-    <rule comment="AUX PASV-PP ADV_UNBOUND SYNSUBJ → AUX SYNSUBJ PASV-PP ADV_UNBOUND
+    <rule comment="AUX PASV-PP ADV_UNBOUND PASVSUBJ → AUX PASVSUBJ PASV-PP ADV_UNBOUND
                    [I Mexico] brukes i_dag gjenbruksvann → blir brukt i_dag gjenbruksvann → blir i_dag gjenbruksvatn brukt">
       <pattern>
         <pattern-item n="aux"/>
@@ -1306,7 +1306,7 @@
       </action>
     </rule>
 
-    <rule comment="SYNSUBJ AUX PASV-PP ADV_UNBOUND CNJSUB → SYNSUBJ AUX ADV_UNBOUND PASV-PP CNJSUB
+    <rule comment="PASVSUBJ AUX PASV-PP ADV_UNBOUND CNJSUB → PASVSUBJ AUX ADV_UNBOUND PASV-PP CNJSUB
                    Den drives i dag som [jernbane] → Den blir driven i dag som → Den blir i dag driven som
                    With a following prep-phrase, our adverb is typically free to enter the verb phrase">
       <pattern>
