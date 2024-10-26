@@ -12141,7 +12141,49 @@ preposisjonar gir ekstra utfordringar. -->
       <match lemma="fristelse"/>
     </or>
   </rule>
-  
+
+  <rule><match lemma="stå# opp for" tags="vblex.*"><select lemma="stå# opp for"/></match></rule>
+  <rule weight="3.0" c="stå opp for demokratiet → kjempe for demokratiet">
+    <match lemma="stå# opp for"><select lemma="kjempe# for"/> </match>
+    <repeat from="0" upto="3"><match/></repeat>
+    <or>
+      <match lemma="demokrati"/>
+      <match lemma="frihet"/>
+      <match lemma="natur"/>
+      <match lemma="vern"/>
+      <match lemma="sak"/>
+      <match lemma="de" tags="prn.*"/>
+      <match lemma="all"/>
+      <match lemma="folk"/>
+      <match lemma="rettighet"/>
+      <match lemma="integritet"/>
+      <match lemma="menneskerettighet"/>
+    </or>
+  </rule>
+  <rule weight="3.0" c="stå opp for retten → forsvare retten">
+    <match lemma="stå# opp for"><select lemma="forsvare"/> </match>
+    <repeat from="0" upto="3"><match/></repeat>
+    <or>
+      <match lemma="rett"/>
+      <match lemma="verdi"/>
+      <match lemma="kone"/>
+      <match lemma="mann"/>
+    </or>
+  </rule>
+  <rule weight="3.0" c="stå opp for Taiwan → støtte Taiwan">
+    <match lemma="stå# opp for"><select lemma="støtte"/> </match>
+    <or>
+      <match tags="np.top.*"/>
+      <match tags="prn.res.*"/>
+    </or>
+  </rule>
+  <rule weight="3.1" c="stå opp for sine verdier → verne om sine verdier">
+    <match lemma="stå# opp for"><select lemma="verne# om"/> </match>
+    <or>
+      <match tags="*.pos.*"/>
+    </or>
+  </rule>
+
   <rule><match lemma="anvise" tags="vblex.*"><select lemma="tilvise"/></match></rule>
   <rule><match lemma="anvise" tags="adj.*"><select lemma="tilvise"/></match></rule>
   <rule weight="2.0" c="anvise til">
