@@ -13496,6 +13496,9 @@ no lemq-moving">
           <let><clip pos="1" side="tl" part="cas"/><lit v=""/></let>
         </when></choose>
 
+        <call-macro n="set_syntag"><with-param pos="1"/></call-macro>
+        <append n="dettags"><var n="syntag"/></append>
+
         <out>
           <chunk namefrom="c_name" case="caseFirstWord">
             <tags><tag><var n="dettags"/></tag></tags>
