@@ -228,6 +228,10 @@
       <cat-item tags="prn.*.acc"/>
       <cat-item tags="prn.*.acc.*"/>
     </def-cat>
+    <def-cat n="subj">
+      <cat-item tags="*.@subj"/>
+      <cat-item tags="*.@subj.*"/>
+    </def-cat>
     <def-cat n="pasvsubj" c="If a subject is after a passive, assume the chunk before the passive was adverbial, meaning we need to move the main (non-aux) verb
                              We want to move a passive main verb past a single argument if we have ADVL PASV ARG.
                              Typically, the argument is a subject (though objects are also technically possible, though less likely).
@@ -1231,7 +1235,7 @@
         </out>
       </action>
     </rule>
-    <rule comment="ADV AUX PASV-PP PREP_GEN NGEN NIND → ADV AUX NIND PREP_GEN N PASV-PP
+    <rule comment="ADV_OR_CM AUX PASV-PP PREP_GEN NGEN NIND → ADV_OR_CM AUX NIND PREP_GEN N PASV-PP
                    Torsdag spilles klubbens oppgjer =1> Torsdag blir spelt til klubben oppgjer =2> Torsdag blir oppgjeret til klubben spelt
                    As above, but with genitive preposition rewriting;
                    restricted to run after adv or comma.">
@@ -1895,6 +1899,35 @@
             </out>
           </otherwise>
       </choose>
+      </action>
+    </rule>
+
+    <rule comment="ADV_OR_CM FV LEMQ NDEF SUBJ → ADV_OR_CM FV NDEF SUBJ LEMQ
+                   Push blanks one place up since lemq space is inside the chunk.
+                   , fortsatte leverandøren Unicon å selge betong.
+                   ">
+      <pattern>
+        <pattern-item n="adv_OR_cm"/> <!-- , -->
+        <pattern-item n="fv"/>        <!-- heldt -->
+        <pattern-item n="lemq"/>      <!-- fram -->
+        <pattern-item n="ndef"/>      <!-- leverandøren -->
+        <pattern-item n="subj"/>      <!-- Unicon -->
+      </pattern>
+      <action>
+        <call-macro n="set_ana"><with-param pos="2"/></call-macro>
+        <call-macro n="set_ana"><with-param pos="4"/></call-macro>
+        <call-macro n="set_ana"><with-param pos="5"/></call-macro>
+        <out>
+          <chunk><clip pos="1" part="whole"/></chunk>
+          <b/>
+          <chunk><clip pos="2" part="whole"/></chunk>
+          <b/>      <!-- extra space since empty blank before lemq -->
+          <b/>
+          <chunk><clip pos="4" part="whole"/></chunk>
+          <b/>
+          <chunk><clip pos="5" part="whole"/></chunk>
+          <chunk><clip pos="3" part="whole"/></chunk>
+        </out>
       </action>
     </rule>
 

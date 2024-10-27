@@ -74,6 +74,7 @@ side="ref"> for transfer to use. It's syntactic, not anaphoric.
 
 - Coordination should give plural
   - To politivakter og en vakt fra et privat vaktselskap ble drept<pl!>
+  - Et fransk kjærestepar sier til VG at det var de som fant norske Maren Ueland og danske Louisa Vesterager Jespersen drept i Marokko mandag morgen.
   But sometimes hard to know if it's the same person (sg) or different (pl):
   - Programleder og tidligere gjengleder skutt og drept i København.
 
