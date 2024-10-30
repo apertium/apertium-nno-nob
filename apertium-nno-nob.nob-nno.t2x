@@ -314,6 +314,10 @@
     <def-cat n="detenhver">
       <cat-item lemma="detenhver" tags="det.qnt.*"/>
     </def-cat>
+    <def-cat n="deten">
+      <cat-item lemma="deten" tags="det.qnt.*"/>
+      <!-- <cat-item lemma="det" tags="det.qnt.*"/> -->
+    </def-cat>
 
     <def-cat n="av_alle">
       <cat-item tags="pr.av alle"/>
@@ -2327,6 +2331,69 @@
       </action>
     </rule>
 
+    <rule comment="ADV/CM AUX PP [DETEN] → ADV/CM FV ein [DETEN]
+                   Neste år testes [en] → Neste år blir testa [ein] → Neste år blir det testa [ein]">
+      <pattern>
+        <pattern-item n="adv_OR_cm"/> <!-- 1. Neste år -->
+        <pattern-item n="aux"/>       <!-- 2. blir -->
+        <pattern-item n="pasv-pp"/>   <!-- 3. testa-->
+        <pattern-item n="deten"/>     <!-- 4. en -->
+      </pattern>
+      <action>
+        <choose><when c="Only at start of clause">
+          <test><not><or>
+            <equal><clip pos="1" part="lemh"/><lit v="Adv"/></equal>
+            <equal><clip pos="1" part="lemh"/><lit v="cm"/></equal>
+          </or></not></test>
+          <reject-current-rule shifting="0"/>
+        </when></choose>
+        <call-macro n="set_ana"><with-param pos="1"/></call-macro>
+        <call-macro n="set_ana"><with-param pos="4"/></call-macro>
+        <let><clip pos="3" part="nbr"/><lit-tag v="sg"/></let> <!-- samsvar med detexpl -->
+        <let><clip pos="3" part="gen"/><lit-tag v="nt"/></let>
+        <out>
+          <chunk><clip pos="1" part="whole"/></chunk>
+          <b/>
+          <chunk><clip pos="2" part="whole"/></chunk>
+          <b/>
+          <chunk><lit v="detexpl"/><lit-tag v="det.dem.nt.sg.expl.@subj"/><lit v="{^den"/><lit-tag v="det.dem.nt.sg.expl"/><lit v="$}"/></chunk>
+          <b/>
+          <chunk><clip pos="3" part="whole"/></chunk>
+        </out>
+        <reject-current-rule shifting="3"/> <!-- let the determiner be handled by following rules -->
+      </action>
+    </rule>
+
+    <rule comment="ADV/CM AUX PP [QNT] → ADV/CM FV ein [QNT]
+                   Neste år stoppes [de fleste] → Neste år blir stoppa [dei fleste] → Neste år stoppar ein [dei fleste]">
+      <pattern>
+        <pattern-item n="adv_OR_cm"/> <!-- 1. Neste år -->
+        <pattern-item n="aux"/>       <!-- 2. blir -->
+        <pattern-item n="pasv-pp"/>   <!-- 3. stoppa -->
+        <pattern-item n="detqnt"/>    <!-- 4. dei fleste -->
+      </pattern>
+      <action>
+        <choose><when c="Only at start of clause">
+          <test><not><or>
+            <equal><clip pos="1" part="lemh"/><lit v="Adv"/></equal>
+            <equal><clip pos="1" part="lemh"/><lit v="cm"/></equal>
+          </or></not></test>
+          <reject-current-rule shifting="0"/>
+        </when></choose>
+        <call-macro n="set_ana"><with-param pos="1"/></call-macro>
+        <call-macro n="set_ana"><with-param pos="4"/></call-macro>
+        <let><clip pos="3" part="nbr"/><lit-tag v="sg"/></let> <!-- samsvar med detexpl -->
+        <let><clip pos="3" part="gen"/><lit-tag v="nt"/></let>
+        <out>
+          <chunk><clip pos="1" part="whole"/></chunk>
+          <b/>
+          <chunk><lit v="vblex"/><lit-tag v="vblex"/><clip pos="2" part="temps"/><clip pos="3" part="chcontent"/></chunk>
+          <b/>
+          <chunk><lit v="prn"/><lit-tag v="prn.pers.p3.un.sg.nom.@subj"/><lit v="{^ein"/><lit-tag v="prn.pers.p3.un.sg.nom"/><lit v="$}"/></chunk>
+        </out>
+        <reject-current-rule shifting="3"/> <!-- let the determiner be handled by following rules -->
+      </action>
+    </rule>
 
     <!-- Possessive noun phrases -->
 

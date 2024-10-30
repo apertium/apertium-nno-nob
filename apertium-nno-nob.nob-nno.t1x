@@ -13459,22 +13459,23 @@ no lemq-moving">
         <choose c="set c_name">
           <when>
             <test><equal><clip pos="1" side="tl" part="a_expl"/><lit-tag v="expl"/></equal></test>
-            <let><var n="dettags"/><clip pos="1" side="tl" part="tags"/></let>
             <let><var n="c_name"/><lit v="detexpl"/></let>
           </when>
           <when>
+            <test><equal><clip pos="1" side="sl" part="lemh"/><lit v="en"/></equal></test>
+            <let><var n="c_name"/><lit v="deten"/></let>
+            <!-- <let><var n="c_name"/><lit v="det"/></let> -->
+          </when>
+          <when>
             <test><in caseless="yes"><clip pos="1" side="sl" part="lem"/><list n="det_indef"/></in></test>
-            <let><var n="dettags"/><clip pos="1" side="tl" part="tags"/></let>
             <let><var n="c_name"/><lit v="detdd"/></let>
           </when>
           <when>
             <test><equal caseless="yes"><clip pos="1" side="tl" part="lemh"/><lit v="sin"/></equal></test>
-            <let><var n="dettags"/><clip pos="1" side="tl" part="tags"/></let>
             <let><var n="c_name"/><lit v="detsin"/></let>
           </when>
           <when>
             <test><equal caseless="yes"><clip pos="1" side="tl" part="lemh"/><lit v="all"/></equal></test>
-            <let><var n="dettags"/><clip pos="1" side="tl" part="tags"/></let>
             <let><var n="c_name"/><lit v="detall"/></let>
             <choose><when>
               <test><equal caseless="yes"><clip pos="1" side="sl" part="lemh"/><lit v="enhver"/></equal></test>
@@ -13486,7 +13487,6 @@ no lemq-moving">
             <choose><when>
               <test><equal caseless="yes"><clip pos="1" side="sl" part="lemh"/><lit v="samtlige"/></equal></test>
               <let><var n="c_name"/><lit v="detsamtlige"/></let>
-              <let><var n="dettags"/><clip pos="1" side="tl" part="tags"/></let>
               <let><clip pos="1" side="tl" part="art"/><lit v=""/></let>
             </when></choose>
           </when>
