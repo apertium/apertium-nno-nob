@@ -180,6 +180,11 @@
       <cat-item name="det"/>
       <cat-item name="detdd"/>
       <cat-item name="detsin"/>
+      <cat-item name="deten"/>
+      <!-- <cat-item name="detall"/> -->
+      <!-- <cat-item name="detenhver"/> -->
+      <!-- <cat-item name="detsamtlige"/> -->
+      <!-- <cat-item name="detexpl"/> -->
       <cat-item name="detpos-keep"/>
     </def-cat>
     <def-cat n="detsin">
@@ -1213,6 +1218,31 @@
           <lu><clip pos="6" part="whole"/></lu><b/>
           <lu><clip pos="7" part="whole"/></lu>
         </out>
+      </action>
+    </rule>
+
+    <rule comment="CHUNK: vblex
+                   Only for when we need to move chunk tags onto lemma
+                   passive→active: Da stoppes de fleste → Då stoppar ein dei fleste">
+      <pattern>
+        <pattern-item n="vblex"/>
+      </pattern>
+      <action>
+        <choose>
+          <when>
+            <test><and>
+              <begins-with><clip pos="0" part="a_verb"/><lit-tag v="vblex"/></begins-with>
+              <begins-with><clip pos="1" part="a_adj"/><lit-tag v="adj"/></begins-with>
+            </and></test>
+            <out>
+              <lu><clip pos="1" part="lemh"/><clip pos="0" part="tags"/></lu>
+            </out>
+          </when>
+          <otherwise>
+            <reject-current-rule shifting="0"/>
+          </otherwise>
+        </choose>
+
       </action>
     </rule>
 

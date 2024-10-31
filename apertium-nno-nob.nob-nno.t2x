@@ -160,7 +160,9 @@
     </def-cat>
     <def-cat n="detind">
       <cat-item tags="det.*.ind"/>
+      <cat-item tags="det.*.ind.*"/>
       <cat-item tags="det.*.sg"/>
+      <cat-item tags="det.*.sg.*"/>
     </def-cat>
     <def-cat n="det">
       <cat-item tags="det.*"/>
@@ -173,6 +175,7 @@
     </def-cat>
     <def-cat n="detdemdef">
       <cat-item tags="det.dem.*.def"/>
+      <cat-item tags="det.dem.*.def.*"/>
     </def-cat>
     <def-cat n="adv_OR_cm">
       <cat-item tags="cm"/>
@@ -227,6 +230,10 @@
     <def-cat n="prn_acc">
       <cat-item tags="prn.*.acc"/>
       <cat-item tags="prn.*.acc.*"/>
+    </def-cat>
+    <def-cat n="subj">
+      <cat-item tags="*.@subj"/>
+      <cat-item tags="*.@subj.*"/>
     </def-cat>
     <def-cat n="pasvsubj" c="If a subject is after a passive, assume the chunk before the passive was adverbial, meaning we need to move the main (non-aux) verb
                              We want to move a passive main verb past a single argument if we have ADVL PASV ARG.
@@ -286,13 +293,17 @@
     </def-cat>
     <def-cat n="detqntpl">
       <cat-item tags="det.qnt.*.pl"/>
+      <cat-item tags="det.qnt.*.pl.*"/>
     </def-cat>
     <def-cat n="detqntpl_def">
       <cat-item tags="det.qnt.*.pl"/>
-      <cat-item tags="det.qnt.*.def"/> <!-- ene→eine -->
+      <cat-item tags="det.qnt.*.pl.*"/>
+      <cat-item tags="det.qnt.*.def"/>   <!-- ene→eine -->
+      <cat-item tags="det.qnt.*.def.*"/> <!-- ene→eine -->
     </def-cat>
     <def-cat n="detqntunpl">
       <cat-item tags="det.qnt.un.pl"/>
+      <cat-item tags="det.qnt.un.pl.*"/>
     </def-cat>
     <def-cat n="detall">
       <cat-item lemma="detall" tags="det.qnt.*.pl"/>
@@ -302,6 +313,10 @@
     </def-cat>
     <def-cat n="detenhver">
       <cat-item lemma="detenhver" tags="det.qnt.*"/>
+    </def-cat>
+    <def-cat n="deten">
+      <cat-item lemma="deten" tags="det.qnt.*"/>
+      <!-- <cat-item lemma="det" tags="det.qnt.*"/> -->
     </def-cat>
 
     <def-cat n="av_alle">
@@ -1173,7 +1188,7 @@
       </action>
     </rule>
 
-    <rule comment="AUX PASV-PP SYNSUBJ => AUX SYNSUBJ PASV-PP
+    <rule comment="AUX PASV-PP PASVSUBJ => AUX PASVSUBJ PASV-PP
                    (Videre) påpekes det =1> (Vidare) blir påpeikt det =2> (Vidare) blir det påpeikt">
       <pattern>
         <pattern-item n="aux"/>
@@ -1191,7 +1206,7 @@
         </out>
       </action>
     </rule>
-    <rule comment="AUX PASV-PP DET SYNSUBJ => AUX DET SYNSUBJ PASV-PP
+    <rule comment="AUX PASV-PP DET PASVSUBJ => AUX DET PASVSUBJ PASV-PP
                    noteres 4,5 prosent =1> blir notert 4,5 prosent =2> blir 4,5 prosent notert">
       <pattern>
         <pattern-item n="aux"/>      <!-- blir -->
@@ -1211,7 +1226,7 @@
         </out>
       </action>
     </rule>
-    <rule comment="AUX PASV-PP NGEN SYNSUBJ => AUX NGEN SYNSUBJ PASV-PP
+    <rule comment="AUX PASV-PP NGEN PASVSUBJ => AUX NGEN PASVSUBJ PASV-PP
                    utvides tilsynets ansvar =1> blir utvida tilsynets ansvar =2> blir tilsynets ansvar utvida">
       <pattern>
         <pattern-item n="aux"/>      <!-- blir -->
@@ -1231,7 +1246,7 @@
         </out>
       </action>
     </rule>
-    <rule comment="ADV AUX PASV-PP PREP_GEN NGEN SYNSUBJ → ADV AUX SYNSUBJ PREP_GEN N PASV-PP
+    <rule comment="ADV_OR_CM AUX PASV-PP PREP_GEN NGEN NIND → ADV_OR_CM AUX NIND PREP_GEN N PASV-PP
                    Torsdag spilles klubbens oppgjer =1> Torsdag blir spelt til klubben oppgjer =2> Torsdag blir oppgjeret til klubben spelt
                    As above, but with genitive preposition rewriting;
                    restricted to run after adv or comma.">
@@ -1263,7 +1278,7 @@
         </out>
       </action>
     </rule>
-    <rule comment="AUX PASV-PP SYNSUBJ ADV_UNBOUND => AUX SYNSUBJ PASV-PP ADV_UNBOUND
+    <rule comment="AUX PASV-PP PASVSUBJ ADV_UNBOUND => AUX PASVSUBJ PASV-PP ADV_UNBOUND
                    (Videre) oppgis det ikke =1> (Vidare) blir oppgitt det ikkje =2> (Vidare) blir det ikkje oppgitt
 
                    «I en uttalelse på Twitter oppgis det ikke antall drepte eller sårede»">
@@ -1285,7 +1300,7 @@
         </out>
       </action>
     </rule>
-    <rule comment="AUX PASV-PP ADV_UNBOUND SYNSUBJ → AUX SYNSUBJ PASV-PP ADV_UNBOUND
+    <rule comment="AUX PASV-PP ADV_UNBOUND PASVSUBJ → AUX PASVSUBJ PASV-PP ADV_UNBOUND
                    [I Mexico] brukes i_dag gjenbruksvann → blir brukt i_dag gjenbruksvann → blir i_dag gjenbruksvatn brukt">
       <pattern>
         <pattern-item n="aux"/>
@@ -1306,7 +1321,7 @@
       </action>
     </rule>
 
-    <rule comment="SYNSUBJ AUX PASV-PP ADV_UNBOUND CNJSUB → SYNSUBJ AUX ADV_UNBOUND PASV-PP CNJSUB
+    <rule comment="PASVSUBJ AUX PASV-PP ADV_UNBOUND CNJSUB → PASVSUBJ AUX ADV_UNBOUND PASV-PP CNJSUB
                    Den drives i dag som [jernbane] → Den blir driven i dag som → Den blir i dag driven som
                    With a following prep-phrase, our adverb is typically free to enter the verb phrase">
       <pattern>
@@ -1898,6 +1913,35 @@
       </action>
     </rule>
 
+    <rule comment="ADV_OR_CM FV LEMQ NDEF SUBJ → ADV_OR_CM FV NDEF SUBJ LEMQ
+                   Push blanks one place up since lemq space is inside the chunk.
+                   , fortsatte leverandøren Unicon å selge betong.
+                   ">
+      <pattern>
+        <pattern-item n="adv_OR_cm"/> <!-- , -->
+        <pattern-item n="fv"/>        <!-- heldt -->
+        <pattern-item n="lemq"/>      <!-- fram -->
+        <pattern-item n="ndef"/>      <!-- leverandøren -->
+        <pattern-item n="subj"/>      <!-- Unicon -->
+      </pattern>
+      <action>
+        <call-macro n="set_ana"><with-param pos="2"/></call-macro>
+        <call-macro n="set_ana"><with-param pos="4"/></call-macro>
+        <call-macro n="set_ana"><with-param pos="5"/></call-macro>
+        <out>
+          <chunk><clip pos="1" part="whole"/></chunk>
+          <b/>
+          <chunk><clip pos="2" part="whole"/></chunk>
+          <b/>      <!-- extra space since empty blank before lemq -->
+          <b/>
+          <chunk><clip pos="4" part="whole"/></chunk>
+          <b/>
+          <chunk><clip pos="5" part="whole"/></chunk>
+          <chunk><clip pos="3" part="whole"/></chunk>
+        </out>
+      </action>
+    </rule>
+
     <rule comment="ADV FV LEMQ ADV_UNBOUND NDEF → ADV FV ADV_UNBOUND NDEF LEMQ
                    Push blanks two places up since lemq space is inside the chunk.
                    Should be fairly safe compared to above rule (rarely do we have adv fv adv object)
@@ -2143,7 +2187,7 @@
       </action>
     </rule>
 
-    <rule comment="FV LEMQ-SKIP-N ADJ/ADV_UNBOUND NDEF_NP_PERS => FV NDEF_NP_PERS ADJ/ADV_UNBOUND LEMQ-SKIP-N
+    <rule comment="FV LEMQ-SKIP-N ADJ/ADV_UNBOUND SUBJ => FV ADJ/ADV_UNBOUND SUBJ LEMQ-SKIP-N
                    , fortsetter nemlig flyene [å lande] → , held nemleg flya fram med [å lande]">
       <pattern>
         <pattern-item n="fv"/>                    <!-- 1. held -->
@@ -2154,6 +2198,29 @@
       <action>
         <call-macro n="set_ana"><with-param pos="1"/></call-macro>
         <call-macro n="set_ana"><with-param pos="4"/></call-macro>
+        <out>
+          <chunk><clip pos="1" part="whole"/></chunk>
+          <b/>      <!-- extra space since empty blank before lemq -->
+          <b/>
+          <chunk><clip pos="3" part="whole"/></chunk>
+          <b/>
+          <chunk><clip pos="4" part="whole"/></chunk>
+          <chunk><clip pos="2" part="whole"/></chunk>
+        </out>
+      </action>
+    </rule>
+
+    <rule comment="FV LEMQ-SKIP-N ADJ/ADV_UNBOUND SUBJ → FV SUBJ ADJ/ADV_UNBOUND LEMQ-SKIP-N
+                   foregår det ikke [henrettelser] → går føre_seg det ikkje [avrettingar] → går det ikkje føre_seg [avrettingar]">
+      <pattern>
+        <pattern-item n="fv"/>                    <!-- 1. held -->
+        <pattern-item n="lemq-skip-n"/>           <!-- 2. # fram med -->
+        <pattern-item n="n_OR_np_subj"/>          <!-- 4. flya -->
+        <pattern-item n="adv_unbound_OR_adjadv"/> <!-- 3. nemleg/stadig -->
+      </pattern>
+      <action>
+        <call-macro n="set_ana"><with-param pos="1"/></call-macro>
+        <call-macro n="set_ana"><with-param pos="3"/></call-macro>
         <out>
           <chunk><clip pos="1" part="whole"/></chunk>
           <b/>      <!-- extra space since empty blank before lemq -->
@@ -2264,6 +2331,69 @@
       </action>
     </rule>
 
+    <rule comment="ADV/CM AUX PP [DETEN] → ADV/CM FV ein [DETEN]
+                   Neste år testes [en] → Neste år blir testa [ein] → Neste år blir det testa [ein]">
+      <pattern>
+        <pattern-item n="adv_OR_cm"/> <!-- 1. Neste år -->
+        <pattern-item n="aux"/>       <!-- 2. blir -->
+        <pattern-item n="pasv-pp"/>   <!-- 3. testa-->
+        <pattern-item n="deten"/>     <!-- 4. en -->
+      </pattern>
+      <action>
+        <choose><when c="Only at start of clause">
+          <test><not><or>
+            <equal><clip pos="1" part="lemh"/><lit v="Adv"/></equal>
+            <equal><clip pos="1" part="lemh"/><lit v="cm"/></equal>
+          </or></not></test>
+          <reject-current-rule shifting="0"/>
+        </when></choose>
+        <call-macro n="set_ana"><with-param pos="1"/></call-macro>
+        <call-macro n="set_ana"><with-param pos="4"/></call-macro>
+        <let><clip pos="3" part="nbr"/><lit-tag v="sg"/></let> <!-- samsvar med detexpl -->
+        <let><clip pos="3" part="gen"/><lit-tag v="nt"/></let>
+        <out>
+          <chunk><clip pos="1" part="whole"/></chunk>
+          <b/>
+          <chunk><clip pos="2" part="whole"/></chunk>
+          <b/>
+          <chunk><lit v="detexpl"/><lit-tag v="det.dem.nt.sg.expl.@subj"/><lit v="{^den"/><lit-tag v="det.dem.nt.sg.expl"/><lit v="$}"/></chunk>
+          <b/>
+          <chunk><clip pos="3" part="whole"/></chunk>
+        </out>
+        <reject-current-rule shifting="3"/> <!-- let the determiner be handled by following rules -->
+      </action>
+    </rule>
+
+    <rule comment="ADV/CM AUX PP [QNT] → ADV/CM FV ein [QNT]
+                   Neste år stoppes [de fleste] → Neste år blir stoppa [dei fleste] → Neste år stoppar ein [dei fleste]">
+      <pattern>
+        <pattern-item n="adv_OR_cm"/> <!-- 1. Neste år -->
+        <pattern-item n="aux"/>       <!-- 2. blir -->
+        <pattern-item n="pasv-pp"/>   <!-- 3. stoppa -->
+        <pattern-item n="detqnt"/>    <!-- 4. dei fleste -->
+      </pattern>
+      <action>
+        <choose><when c="Only at start of clause">
+          <test><not><or>
+            <equal><clip pos="1" part="lemh"/><lit v="Adv"/></equal>
+            <equal><clip pos="1" part="lemh"/><lit v="cm"/></equal>
+          </or></not></test>
+          <reject-current-rule shifting="0"/>
+        </when></choose>
+        <call-macro n="set_ana"><with-param pos="1"/></call-macro>
+        <call-macro n="set_ana"><with-param pos="4"/></call-macro>
+        <let><clip pos="3" part="nbr"/><lit-tag v="sg"/></let> <!-- samsvar med detexpl -->
+        <let><clip pos="3" part="gen"/><lit-tag v="nt"/></let>
+        <out>
+          <chunk><clip pos="1" part="whole"/></chunk>
+          <b/>
+          <chunk><lit v="vblex"/><lit-tag v="vblex"/><clip pos="2" part="temps"/><clip pos="3" part="chcontent"/></chunk>
+          <b/>
+          <chunk><lit v="prn"/><lit-tag v="prn.pers.p3.un.sg.nom.@subj"/><lit v="{^ein"/><lit-tag v="prn.pers.p3.un.sg.nom"/><lit v="$}"/></chunk>
+        </out>
+        <reject-current-rule shifting="3"/> <!-- let the determiner be handled by following rules -->
+      </action>
+    </rule>
 
     <!-- Possessive noun phrases -->
 
