@@ -2764,6 +2764,16 @@
     <match lemma="løpe" tags="adj.*"><select lemma="gå"/></match>
   </rule>
 
+    <rule weight="2.0" c="betalingen løper ut året">
+        <or>
+      <match lemma="betaling"/>
+      <match lemma="kår"/>
+      <match lemma="føderåd"/>
+      <match lemma="rente"/>
+    </or>
+    <match lemma="løpe" tags="vblex.*"><select lemma="løpe"/></match>
+  </rule>
+
   <rule><match lemma="grusom" tags="adj.*"><select lemma="forferdeleg"/></match></rule>
   <rule weight="2.0">
     <match lemma="grusom" tags="adj.*">
