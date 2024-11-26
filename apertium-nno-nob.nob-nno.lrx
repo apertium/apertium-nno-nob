@@ -2764,13 +2764,15 @@
     <match lemma="løpe" tags="adj.*"><select lemma="gå"/></match>
   </rule>
 
-    <rule weight="2.0" c="betalingen løper ut året">
-        <or>
-      <match lemma="betaling"/>
-      <match lemma="kår"/>
-      <match lemma="føderåd"/>
-      <match lemma="rente"/>
-    </or>
+  <rule weight="2.0" c="betalingen løper ut året">
+    <repeat from="0" upto="1">
+      <or>
+        <match lemma="betaling"/>
+        <match lemma="kår"/>
+        <match lemma="føderåd"/>
+        <match lemma="rente"/>
+      </or>
+    </repeat>
     <match lemma="løpe" tags="vblex.*"><select lemma="løpe"/></match>
   </rule>
 
