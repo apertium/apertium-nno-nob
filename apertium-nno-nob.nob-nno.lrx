@@ -2765,14 +2765,13 @@
   </rule>
 
   <rule weight="2.0" c="betalingen løper ut året">
-    <repeat from="0" upto="1">
-      <or>
-        <match lemma="betaling"/>
-        <match lemma="kår"/>
-        <match lemma="føderåd"/>
-        <match lemma="rente"/>
-      </or>
-    </repeat>
+    <or>
+      <match lemma="betaling"/>
+      <match lemma="kår"/>
+      <match lemma="føderåd"/>
+      <match lemma="rente"/>
+    </or>
+    <repeat from="0" upto="1"><match/></repeat>
     <match lemma="løpe" tags="vblex.*"><select lemma="løpe"/></match>
   </rule>
 
