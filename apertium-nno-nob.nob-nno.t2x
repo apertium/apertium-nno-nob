@@ -9,6 +9,9 @@
     <def-cat n="unknown">
       <cat-item tags="unknown"/>
     </def-cat>
+    <def-cat n="any">
+      <cat-item tags="*"/>
+    </def-cat>
     <def-cat n="np">
       <cat-item tags="np.*"/>
     </def-cat>
@@ -602,6 +605,9 @@
     </def-attr>
     <def-attr n="n-movable">
       <attr-item tags="n-movable"/>
+    </def-attr>
+    <def-attr n="a_clb">
+      <attr-item tags="clb"/>
     </def-attr>
 
     <def-attr n="gen_prep_override">
@@ -2406,14 +2412,18 @@
         <pattern-item n="aux"/>       <!-- 2. blir -->
         <pattern-item n="pasv-pp"/>   <!-- 3. ført -->
         <pattern-item n="ndef"/>      <!-- 4. bronkoskopet -->
-        <pattern-item n="cm-non-clb"/> <!-- 4. , -->
+        <pattern-item n="cm-non-clb"/> <!-- 5. , -->
+        <pattern-item n="any"/>        <!-- 6. et -->
       </pattern>
       <action>
-        <choose><when c="Only at start of clause">
-          <test><not><or>
-            <equal><clip pos="1" part="lemh"/><lit v="Adv"/></equal>
-            <equal><clip pos="1" part="lemh"/><lit v="cm"/></equal>
-          </or></not></test>
+        <choose><when c="Only at start of clause, not before clb">
+          <test><or>
+            <not><or>
+              <equal><clip pos="1" part="lemh"/><lit v="Adv"/></equal>
+              <equal><clip pos="1" part="lemh"/><lit v="cm"/></equal>
+            </or></not>
+            <equal><clip pos="6" part="a_clb"/><lit-tag v="clb"/></equal> <!-- Derfor avsluttes etterforskningen, og saken henlegges. -->
+          </or></test>
           <reject-current-rule shifting="0"/>
         </when></choose>
         <call-macro n="set_ana"><with-param pos="1"/></call-macro>
@@ -2427,7 +2437,7 @@
           <b/>
           <chunk><lit v="prn"/><lit-tag v="prn.pers.p3.un.sg.nom.@subj"/><lit v="{^ein"/><lit-tag v="prn.pers.p3.un.sg.nom"/><lit v="$}"/></chunk>
         </out>
-        <reject-current-rule shifting="3"/> <!-- let the noun be handled by following rules -->
+        <reject-current-rule shifting="3"/> <!-- let the noun etc. be handled by following rules -->
       </action>
     </rule>
 
