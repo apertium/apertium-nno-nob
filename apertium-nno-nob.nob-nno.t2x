@@ -401,6 +401,10 @@
       <cat-item tags="det.*"/>
       <cat-item tags="pr"/>
       <cat-item tags="pr.*"/>
+      <cat-item tags="part"/>
+      <cat-item tags="part.*"/>
+      <cat-item tags="cnjsub"/>
+      <cat-item tags="cnjsub.*"/>
     </def-cat>
     <def-cat n="adjsg">
       <cat-item tags="adj.*.sg.*"/>
@@ -1329,7 +1333,7 @@
         <pattern-item n="aux"/>         <!-- blir -->
         <pattern-item n="pasv-pp"/>     <!-- driven-->
         <pattern-item n="adv_unbound"/> <!-- i dag -->
-        <pattern-item n="prep"/>        <!-- som -->
+        <pattern-item n="prearg_OR_arg"/> <!-- som -->
       </pattern>
       <action>
         <call-macro n="set_ana"><with-param pos="1"/></call-macro>
@@ -1339,14 +1343,10 @@
           <chunk><clip pos="1" part="whole"/></chunk> <b/> <!-- den -->
           <chunk><clip pos="2" part="whole"/></chunk> <b/> <!-- blir -->
           <chunk><clip pos="4" part="whole"/></chunk> <b/> <!-- i dag -->
-          <chunk><clip pos="3" part="whole"/></chunk> <b/> <!-- driven -->
-          <chunk><clip pos="5" part="whole"/></chunk>      <!-- som -->
+          <chunk><clip pos="3" part="whole"/></chunk>      <!-- driven -->
+          <!-- pos 5 is only matched, not output; instead we shift 4 words to let the next rules handle it -->
         </out>
-        <!-- TODO: when https://github.com/apertium/apertium/issues/194
-             is merged, we can do
-             <reject-current-rule shifting="4"/>
-             and not output pos=5 here
-        -->
+        <reject-current-rule shifting="4"/>
       </action>
     </rule>
     <rule comment="AUXPASS ADJPART ADV_UNBOUND ARGUMENT → AUXPASS ADV_UNBOUND ADJPART ARGUMENT
