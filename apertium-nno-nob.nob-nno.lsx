@@ -12828,6 +12828,11 @@
 
   <!-- fornærmede/siktede/tiltalte -->
   <!-- First our overrides, in case "den" already exists: -->
+  <e lm="den samme fornærmede -> den samme fornærmede" c="den same fornærma">
+    <i>den<s n="det"/><s n="dem"/><s n="m"/><s n="sg"/></i> <par n="d"/>
+    <par n="ANYWORD|"/>
+    <par n="ndef_fornærma/sikta/tiltalte"/> <par n="d"/>
+  </e>
   <e lm="den fornærmede -> den fornærmede" c="den fornærma">
     <i>den<s n="det"/><s n="dem"/><s n="m"/><s n="sg"/></i> <par n="d"/>
     <par n="adj"/>
@@ -19268,6 +19273,54 @@
   <p><l></l>                <r>ikke<s n="adv"/><s n="aa"/><d/></r></p>
   <p><l></l>                <r>noe<s n="det"/><s n="qnt"/><s n="m"/><s n="sg"/><s n="aa"/><d/></r></p>
   <i>forbrytelse<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/><t/><d/></i>
+</e>
+
+<e lm="kan tilskrives -> kan knyttes til" c="kan knytast til">
+  <par n="modal"/>
+  <par n="ANYWORDx6|empty"/>
+  <p><l>tilskrive<s n="vblex"/><s n="inf"/><s n="pasv"/></l>   <r>knyte<s n="vblex"/><s n="inf"/><s n="pasv"/></r></p> <i><t/><d/></i>
+  <p><l></l>                <r>til<s n="pr"/><s n="aa"/><d/></r></p>
+</e>
+
+<e lm="tilskrives -> blir knyttet til">
+  <p><l>tilskrive<s n="vblex"/><s n="pres"/><s n="pasv"/></l>   <r>knyte<s n="vblex"/><s n="pres"/><s n="pasv"/></r></p> <i><t/><d/></i>
+  <par n="ADV|empty"/>
+  <p><l></l>                <r>til<s n="pr"/><s n="aa"/><d/></r></p>
+</e>
+
+<e lm="(vite) utmerket godt -> (vite) så altfor godt">
+  <p><l>utmerket<s n="adj"/><s n="pst"/><s n="nt"/><s n="sg"/><s n="ind"/><t/></l>   <r></r></p>    <par n="d:"/>
+  <p><l></l>                <r>så<s n="adv"/><s n="aa"/><d/></r></p>
+  <p><l></l>                <r>altfor<s n="adv"/><s n="aa"/><d/></r></p>
+  <i>godt<t/><d/></i>
+</e>
+
+<e lm="helt utmerket godt + vblex -> godt + vblex" c="godt gjerast">
+  <p><l>hel<s n="adj"/><s n="sint"/><s n="pst"/><s n="nt"/><s n="sg"/><s n="ind"/><t/></l>   <r></r></p>    <par n="d:"/>
+  <p><l>utmerket<s n="adj"/><s n="pst"/><s n="nt"/><s n="sg"/><s n="ind"/><t/></l>   <r></r></p>    <par n="d:"/>
+  <i>god<t/><d/></i>
+  <i><w/><s n="vblex"/><t/><d/></i>
+</e>
+<e lm="utmerket + vblex -> godt + vblex" c="godt gjerast">
+  <p><l>utmerket<s n="adj"/><s n="pst"/><s n="nt"/><s n="sg"/><s n="ind"/><t/></l>   <r></r></p>    <par n="d:"/>
+  <i>god<t/><d/></i>
+  <i><w/><s n="vblex"/><t/><d/></i>
+</e>
+<e lm="helt utmerket + vblex -> godt + vblex" c="godt gjerast">
+  <p><l>hel<s n="adj"/><s n="sint"/><s n="pst"/><s n="nt"/><s n="sg"/><s n="ind"/><t/></l>   <r></r></p>    <par n="d:"/>
+  <p><l>utmerket<s n="adj"/><s n="pst"/><s n="nt"/><s n="sg"/><s n="ind"/><t/></l>   <r></r></p>    <par n="d:"/>
+  <p><l></l>                <r>godt<s n="adv"/><s n="aa"/><d/></r></p>
+  <i><w/><s n="vblex"/><t/><d/></i>
+</e>
+<e lm="utmerket + vblex -> godt + vblex" c="godt gjerast">
+  <p><l>utmerket<s n="adj"/><s n="pst"/><s n="nt"/><s n="sg"/><s n="ind"/><t/></l>   <r></r></p>    <par n="d:"/>
+  <p><l></l>                <r>godt<s n="adv"/><s n="aa"/><d/></r></p>
+  <i><w/><s n="vblex"/><t/><d/></i>
+</e>
+
+<e lm="påløpte renter -> tillagte renter" c="tillagde renter">
+  <p><l>påløpe<s n="adj"/><s n="pp"/></l>   <r>tillegge<s n="adj"/><s n="pp"/></r></p> <i><t/><d/></i>
+  <i><w/><s n="n"/><t/><d/></i>
 </e>
 
 </section>
