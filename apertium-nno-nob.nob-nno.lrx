@@ -12235,6 +12235,25 @@ preposisjonar gir ekstra utfordringar. -->
 
   <rule><match lemma="motstride" tags="vblex.*"><select lemma="stri# mot"/></match></rule>
   <rule><match lemma="motstride" tags="adj.*"><select lemma="motstri"/></match></rule>
+  
+  <!-- nyansering -->
+  <rule><match lemma="hvis" tags="cnjsub.*"><select lemma="viss"/></match></rule>
+  <rule weight="2.0" c="dersom dette er ...">
+    <match lemma="hvis" tags="cnjsub.*"><select lemma="dersom"/> </match>
+    <or>
+      <match lemma="denne" tags="det.dem.*"/>
+      <match lemma="den" tags="det.dem.*"/>
+    </or>
+  </rule>
+  <rule weight="2.0" c="om det trengst">
+    <match lemma="hvis" tags="cnjsub.*"><select lemma="om"/> </match>
+    <or>
+      <match tags="prn.*"/>
+      <match lemma="man"/>
+      <match tags="adj.*"/>
+      <match lemma="ikke"/>
+    </or>
+  </rule>
 
 </rules>
 </lrx>
