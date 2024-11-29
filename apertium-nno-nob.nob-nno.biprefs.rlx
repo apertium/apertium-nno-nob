@@ -307,6 +307,10 @@ REMOVE:enkelt_einskild lm_einskild;
 SELECT:overta_ta-over.syn  ("ta# over"i) IF (0 ("overta"i) + (VAR:overta_ta-over.syn));
 REMOVE:overta_overta.syn ("ta# over"i) IF (0 ("overta"i));
 
+LIST lm_avskil = "avskjed"i ".*avskjed"ri "avskjeds.*"ri;
+SELECT:avskil_avskjed lm_avskil IF (0 (VAR:avskil_avskjed.syn));
+REMOVE:avskil_avskjed lm_avskil;
+
 # DEBUG NOTES:
 # $ echo '[<STREAMCMD:SETVAR:forskjell_skilnad,samd_einig>]^forskjell<n><m><sg><ind>/forskjell<n><m><sg><ind>/skilnad<n><m><sg><ind>$ ^enig<adj><sint><pst><nt><sg><ind>/samd<adj><sint><pst><nt><sg><ind>/einig<adj><sint><pst><nt><sg><ind>$' | ~/src/ap/vislcg3/src/cg-proc -t biprefs.nob-nno.rlx.bin |cg-conv
 # [<STREAMCMD:SETVAR:forskjell_skilnad,samd_einig>]
