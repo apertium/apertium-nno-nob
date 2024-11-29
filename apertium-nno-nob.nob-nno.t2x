@@ -9,6 +9,9 @@
     <def-cat n="unknown">
       <cat-item tags="unknown"/>
     </def-cat>
+    <def-cat n="any">
+      <cat-item tags="*"/>
+    </def-cat>
     <def-cat n="np">
       <cat-item tags="np.*"/>
     </def-cat>
@@ -401,6 +404,10 @@
       <cat-item tags="det.*"/>
       <cat-item tags="pr"/>
       <cat-item tags="pr.*"/>
+      <cat-item tags="part"/>
+      <cat-item tags="part.*"/>
+      <cat-item tags="cnjsub"/>
+      <cat-item tags="cnjsub.*"/>
     </def-cat>
     <def-cat n="adjsg">
       <cat-item tags="adj.*.sg.*"/>
@@ -493,6 +500,10 @@
     <def-cat n="cm">
       <cat-item tags="cm"/>
       <cat-item tags="cm.*"/>
+    </def-cat>
+    <def-cat n="cm-non-clb">
+      <cat-item tags="cm"/>
+      <cat-item tags="cm.aa"/>
     </def-cat>
     <def-cat n="needdet_adj_n">
       <cat-item lemma="needdet_adj_n" tags="n.*"/>
@@ -594,6 +605,9 @@
     </def-attr>
     <def-attr n="n-movable">
       <attr-item tags="n-movable"/>
+    </def-attr>
+    <def-attr n="a_clb">
+      <attr-item tags="clb"/>
     </def-attr>
 
     <def-attr n="gen_prep_override">
@@ -1329,7 +1343,7 @@
         <pattern-item n="aux"/>         <!-- blir -->
         <pattern-item n="pasv-pp"/>     <!-- driven-->
         <pattern-item n="adv_unbound"/> <!-- i dag -->
-        <pattern-item n="prep"/>        <!-- som -->
+        <pattern-item n="prearg_OR_arg"/> <!-- som -->
       </pattern>
       <action>
         <call-macro n="set_ana"><with-param pos="1"/></call-macro>
@@ -1339,14 +1353,10 @@
           <chunk><clip pos="1" part="whole"/></chunk> <b/> <!-- den -->
           <chunk><clip pos="2" part="whole"/></chunk> <b/> <!-- blir -->
           <chunk><clip pos="4" part="whole"/></chunk> <b/> <!-- i dag -->
-          <chunk><clip pos="3" part="whole"/></chunk> <b/> <!-- driven -->
-          <chunk><clip pos="5" part="whole"/></chunk>      <!-- som -->
+          <chunk><clip pos="3" part="whole"/></chunk>      <!-- driven -->
+          <!-- pos 5 is only matched, not output; instead we shift 4 words to let the next rules handle it -->
         </out>
-        <!-- TODO: when https://github.com/apertium/apertium/issues/194
-             is merged, we can do
-             <reject-current-rule shifting="4"/>
-             and not output pos=5 here
-        -->
+        <reject-current-rule shifting="4"/>
       </action>
     </rule>
     <rule comment="AUXPASS ADJPART ADV_UNBOUND ARGUMENT → AUXPASS ADV_UNBOUND ADJPART ARGUMENT
@@ -2392,6 +2402,42 @@
           <chunk><lit v="prn"/><lit-tag v="prn.pers.p3.un.sg.nom.@subj"/><lit v="{^ein"/><lit-tag v="prn.pers.p3.un.sg.nom"/><lit v="$}"/></chunk>
         </out>
         <reject-current-rule shifting="3"/> <!-- let the determiner be handled by following rules -->
+      </action>
+    </rule>
+
+    <rule comment="ADV/CM AUX PP [QNT] → ADV/CM FV ein [QNT]
+                   Deretter føres [bronkoskopet, et fleksibelt rør,] → Deretter blir ført [bronkoskopet,] → Deretter fører ein [bronkoskopet,]">
+      <pattern>
+        <pattern-item n="adv_OR_cm"/> <!-- 1. Deretter -->
+        <pattern-item n="aux"/>       <!-- 2. blir -->
+        <pattern-item n="pasv-pp"/>   <!-- 3. ført -->
+        <pattern-item n="ndef"/>      <!-- 4. bronkoskopet -->
+        <pattern-item n="cm-non-clb"/> <!-- 5. , -->
+        <pattern-item n="any"/>        <!-- 6. et -->
+      </pattern>
+      <action>
+        <choose><when c="Only at start of clause, not before clb">
+          <test><or>
+            <not><or>
+              <equal><clip pos="1" part="lemh"/><lit v="Adv"/></equal>
+              <equal><clip pos="1" part="lemh"/><lit v="cm"/></equal>
+            </or></not>
+            <equal><clip pos="6" part="a_clb"/><lit-tag v="clb"/></equal> <!-- Derfor avsluttes etterforskningen, og saken henlegges. -->
+          </or></test>
+          <reject-current-rule shifting="0"/>
+        </when></choose>
+        <call-macro n="set_ana"><with-param pos="1"/></call-macro>
+        <call-macro n="set_ana"><with-param pos="4"/></call-macro>
+        <let><clip pos="3" part="nbr"/><lit-tag v="sg"/></let> <!-- samsvar med detexpl -->
+        <let><clip pos="3" part="gen"/><lit-tag v="nt"/></let>
+        <out>
+          <chunk><clip pos="1" part="whole"/></chunk>
+          <b/>
+          <chunk><lit v="vblex"/><lit-tag v="vblex"/><clip pos="2" part="temps"/><clip pos="3" part="chcontent"/></chunk>
+          <b/>
+          <chunk><lit v="prn"/><lit-tag v="prn.pers.p3.un.sg.nom.@subj"/><lit v="{^ein"/><lit-tag v="prn.pers.p3.un.sg.nom"/><lit v="$}"/></chunk>
+        </out>
+        <reject-current-rule shifting="3"/> <!-- let the noun etc. be handled by following rules -->
       </action>
     </rule>
 
