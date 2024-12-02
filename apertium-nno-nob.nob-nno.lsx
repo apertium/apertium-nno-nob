@@ -1294,6 +1294,11 @@
       </e>
     </pardef>
    
+    <pardef n="mf-artikkel" c="ubunden artikkel - en/ei">
+      <e><i>en<s n="det"/><s n="qnt"/><s n="m"/><s n="sg"/><t/><d/></i></e>
+      <e><i>en<s n="det"/><s n="qnt"/><s n="f"/><s n="sg"/><t/><d/></i></e>
+    </pardef>
+   
     <pardef n="tal" c="Incl. million, milliard">
       <e><i><w/><s n="det"/><s n="qnt"/><t/><d/></i></e>
       <e><i><w/><s n="det"/><s n="qnt"/><t/><d/></i><i>million<s n="n"/><t/><d/></i></e>
@@ -12038,6 +12043,18 @@
       <par n="ANYWORDx8|empty"/>
       <par n="avgjerds-ord"/>
     </e>
+
+    <e lm="treffe avgjørelse -> ta avgjørelse" c="ta avgjerd">
+      <p><l>treffe<s n="vblex"/></l>   <r>ta<s n="vblex"/></r></p> <i><t/><d/></i>
+      <par n="ANYWORDx3|empty"/>
+      <par n="avgjerds-ord"/>
+    </e>
+
+    <e lm="treffe tiltak -> iverksette tiltak" c="setje i verk tiltak">
+      <p><l>treffe<s n="vblex"/></l>   <r>iverksette<s n="vblex"/></r></p> <i><t/><d/></i>
+      <par n="ANYWORDx3|empty"/>
+      <i>tiltak<t/><d/></i>
+    </e>
     
     <e lm="vedtaket fattes / vil bli fattet -> vedtaket gjøres / vil bli gjort">
       <par n="vedtaks-ord"/>
@@ -12045,10 +12062,28 @@
       <p><l>fatte<s n="vblex"/></l>                          <r>gjøre<s n="vblex"/></r></p>  <i><t/><d/></i>
     </e>
     
+    <e lm="vedtaket treffes -> vedtaket gjøres" c="vedtaket gjerast">
+      <par n="vedtaks-ord"/>
+      <par n="ANYWORDx8|empty"/>
+      <p><l>treffe<s n="vblex"/></l>   <r>gjøre<s n="vblex"/></r></p> <i><t/><d/></i>
+    </e>
+    
+    <e lm="tiltaket treffes -> tiltaket iverksette" c="tiltaket blir sett i verk">
+      <i>tiltak<t/><d/></i>
+      <par n="ANYWORDx8|empty"/>
+      <p><l>treffe<s n="vblex"/></l>   <r>iverksette<s n="vblex"/></r></p> <i><t/><d/></i>
+    </e>
+    
     <e lm="avgjørelsen fattes / vil bli tatt -> avgjørelsen tas / vil bli tatt">
       <par n="avgjerds-ord"/>
       <par n="ANYWORDx8|empty"/>
       <p><l>fatte<s n="vblex"/></l>                          <r>ta<s n="vblex"/></r></p>  <i><t/><d/></i>
+    </e>
+    
+    <e lm="avgjørelsen treffes -> avgjørelsen tas">
+      <par n="avgjerds-ord"/>
+      <par n="ANYWORDx8|empty"/>
+      <p><l>treffe<s n="vblex"/></l>                          <r>ta<s n="vblex"/></r></p>  <i><t/><d/></i>
     </e>
     
     <e lm="vedtaket ble fattet -> vedtaket ble gjort" c="vedtaket vart gjort">
@@ -19333,12 +19368,6 @@
   <i>anledning<s n="n"/><t/><d/></i>
 </e>
 
-<e lm="treffe avgjørelse -> ta avgjørelse" c="ta avgjerd">
-  <p><l>treffe<s n="vblex"/></l>   <r>ta<s n="vblex"/></r></p> <i><t/><d/></i>
-  <par n="ANYWORDx3|empty"/>
-  <i>avgjørelse<s n="n"/><t/><d/></i>
-</e>
-
 <e lm="være + behov for + art -> trenges + art" c="det trengst ei opprydding">
   <p><l>være<s n="vblex"/></l>   <r>trenges<s n="vblex"/><s n="pstv"/></r></p> <i><t/><d/></i>
   <p><l>behov<s n="n"/><s n="nt"/><s n="sg"/><s n="ind"/><t/></l>   <r></r></p>    <par n="d:"/>
@@ -19363,6 +19392,20 @@
   <p><l>bestemme<s n="adj"/><s n="pp"/><s n="pl"/><t/></l>   <r></r></p>    <par n="d:"/>
   <p><l></l>                <r>viss<s n="adj"/><s n="sint"/><s n="pst"/><s n="un"/><s n="pl"/><s n="ind"/><s n="aa"/><d/></r></p>
   <par n="ncmp*"/><i><w/><s n="n"/><t/><s n="pl"/><s n="ind"/><t/><d/></i>
+</e>
+
+<e lm="en bestemt alder -> en viss alder" c="ein viss alder">
+  <par n="mf-artikkel"/>
+  <p><l>bestemme<s n="adj"/><s n="pp"/><s n="mf"/><s n="sg"/><s n="ind"/><t/></l>   <r></r></p>    <par n="d:"/>
+  <p><l></l>                <r>viss<s n="adj"/><s n="sint"/><s n="pst"/><s n="mf"/><s n="sg"/><s n="ind"/><s n="aa"/><d/></r></p>
+  <par n="ncmp*"/><i><w/><s n="n"/><t/><t/><d/></i>
+</e>
+
+<e lm="et bestemt yrke -> et visst yrke" c="eit visst yrke">
+  <i>en<s n="det"/><s n="qnt"/><s n="nt"/><s n="sg"/><t/><d/></i>
+  <p><l>bestemme<s n="adj"/><s n="pp"/><s n="nt"/><s n="sg"/><s n="ind"/><t/></l>   <r></r></p>    <par n="d:"/>
+  <p><l></l>                <r>viss<s n="adj"/><s n="sint"/><s n="pst"/><s n="nt"/><s n="sg"/><s n="ind"/><s n="aa"/><d/></r></p>
+  <par n="ncmp*"/><i><w/><s n="n"/><t/><t/><d/></i>
 </e>
 
 </section>
