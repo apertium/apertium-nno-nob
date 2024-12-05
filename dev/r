@@ -18,7 +18,7 @@ or be in a file:
 
 with an optional reference translation to compare against:
 
-\$ $0 input.txt gold.txt   # Translate input.txt and compare with gold.txt on save
+\$ $0 input.txt ref.txt    # Translate input.txt and compare with ref.txt on save
 EOF
 }
 
@@ -27,13 +27,13 @@ trap 'rm -rf "${tmpd}"' EXIT
 
 case $# in
     1) input=$1
-       gold="${tmpd}/gold.txt"
-       touch "${gold}"
-       gold_is_prev=true
+       ref="${tmpd}/ref.txt"
+       touch "${ref}"
+       prev_as_ref=true
        ;;
     2) input=$1
-       gold=$2
-       gold_is_prev=false
+       ref=$2
+       prev_as_ref=false
        ;;
     0) if [[ -t 0 ]]; then
            # stdin is terminal, ie. nothing got piped in
@@ -42,9 +42,9 @@ case $# in
        else
            input="${tmpd}/input.txt"
            cat >"${input}"
-           gold="${tmpd}/gold.txt"
-           touch "${gold}"
-           gold_is_prev=true
+           ref="${tmpd}/ref.txt"
+           touch "${ref}"
+           prev_as_ref=true
        fi
        ;;
     *) usage
@@ -52,26 +52,34 @@ case $# in
        ;;
 esac
 
+header="${tmpd}/header.txt"
 out="${tmpd}/out.txt"
 dif="${tmpd}/dif.txt"
 touch "${out}" "${dif}"
 
+echo '@@
+-REFERENCE
++CURRENT
+@@' >"${header}"
+
 redo_script=$(cat <<EOF
-make -s -j r                                        \
-  &&  apertium -d . nob-nno_e <'${input}' >'${out}' \
-  &&  echo                                          \
-  &&  if diff -U1 '${out}' '${gold}' >'${dif}'; then
+make -s -j r                                            \
+  &&  apertium -d . nob-nno_e <'${input}' >'${out}'     \
+  &&  if diff -U1 '${ref}' '${out}' >'${dif}'; then
+        echo ""
         echo "(no difference)"
         cat '${out}'
       else
-        cat '${dif}' | dwdiff -uc | grep -ve '^+++' -e '^---' -e '^@@ '
+        grep -hve '^+++' -e '^---' '${header}' '${dif}' \
+         | dwdiff -uc                                   \
+         | sed 's/^@@.*//'
       fi
 
-if ${gold_is_prev}; then
-    cat '${out}' >'${gold}';
+if ${prev_as_ref}; then
+    cat '${out}' >'${ref}'
 fi
 EOF
 )
 
-find ../apertium-* -type f -name '*rlx' -maxdepth 1 \
+find ../apertium-* -maxdepth 1 -type f -name '*rlx'  \
     | entr -c bash -c "${redo_script}"
