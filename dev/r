@@ -57,17 +57,22 @@ out="${tmpd}/out.txt"
 dif="${tmpd}/dif.txt"
 touch "${out}" "${dif}"
 
-echo '@@
--REFERENCE
+if "${prev_as_ref}"; then
+    refstr=PREVIOUS
+else
+    refstr=REFERENCE
+fi
+echo "@@
+-${refstr}
 +CURRENT
-@@' >"${header}"
+@@" >"${header}"
 
 redo_script=$(cat <<EOF
 make -s -j r                                            \
   &&  apertium -d . nob-nno_e <'${input}' >'${out}'     \
   &&  if diff -U1 '${ref}' '${out}' >'${dif}'; then
         echo ""
-        echo "(no difference)"
+        echo "(no difference between ${refstr} and CURRENT)"
         cat '${out}'
       else
         grep -hve '^+++' -e '^---' '${header}' '${dif}' \
