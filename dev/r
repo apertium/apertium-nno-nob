@@ -1,6 +1,77 @@
-#!/bin/sh
+#!/bin/bash
 
 if ! command -V entr >/dev/null;   then echo "Please install entr" >&2;   exit 1; fi
 if ! command -V dwdiff >/dev/null; then echo "Please install dwdiff" >&2; exit 1; fi
 
-find ../apertium-nob/*rlx . -type f -maxdepth 1 | entr -cs "make -j r && <'$1' apertium -d . nob-nno_e | diff -sU1 - '$2' | dwdiff -uc"
+usage () {
+    cat <<EOF
+Run this script to compile your CG files each time you save, also
+translating your example sentence(s) for you.
+
+Examples can be piped in:
+
+\$ echo "en setning" | $0  # Translate "en setning" on save
+
+or be in a file:
+
+\$ $0 input.txt            # Translate input.txt on save
+
+with an optional reference translation to compare against:
+
+\$ $0 input.txt gold.txt   # Translate input.txt and compare with gold.txt on save
+EOF
+}
+
+tmpd=$(mktemp -d -t apertium.XXXXXXXXXX)
+trap 'rm -rf "${tmpd}"' EXIT
+
+case $# in
+    1) input=$1
+       gold="${tmpd}/gold.txt"
+       touch "${gold}"
+       gold_is_prev=true
+       ;;
+    2) input=$1
+       gold=$2
+       gold_is_prev=false
+       ;;
+    0) if [[ -t 0 ]]; then
+           # stdin is terminal, ie. nothing got piped in
+           usage
+           exit 0
+       else
+           input="${tmpd}/input.txt"
+           cat >"${input}"
+           gold="${tmpd}/gold.txt"
+           touch "${gold}"
+           gold_is_prev=true
+       fi
+       ;;
+    *) usage
+       exit 1
+       ;;
+esac
+
+out="${tmpd}/out.txt"
+dif="${tmpd}/dif.txt"
+touch "${out}" "${dif}"
+
+redo_script=$(cat <<EOF
+make -s -j r                                        \
+  &&  apertium -d . nob-nno_e <'${input}' >'${out}' \
+  &&  echo                                          \
+  &&  if diff -U1 '${out}' '${gold}' >'${dif}'; then
+        echo "(no difference)"
+        cat '${out}'
+      else
+        cat '${dif}' | dwdiff -uc | grep -ve '^+++' -e '^---' -e '^@@ '
+      fi
+
+if ${gold_is_prev}; then
+    cat '${out}' >'${gold}';
+fi
+EOF
+)
+
+find ../apertium-* -type f -name '*rlx' -maxdepth 1 \
+    | entr -c bash -c "${redo_script}"
