@@ -311,6 +311,9 @@ LIST lm_avskil = "avskjed"i ".*avskjed"ri "avskjeds.*"ri;
 SELECT:avskil_avskjed lm_avskil IF (0 (VAR:avskil_avskjed.syn));
 REMOVE:avskil_avskjed lm_avskil;
 
+SELECT:håpa_håpte.vb-e2a ("utpeikt"i) IF (0 ("utpeika"i) + (VAR:håpa_håpte.vb-e2a));
+REMOVE:håpa_håpte.vb-e2a ("utpeikt"i) IF (0 ("utpeika"i));
+
 # DEBUG NOTES:
 # $ echo '[<STREAMCMD:SETVAR:forskjell_skilnad,samd_einig>]^forskjell<n><m><sg><ind>/forskjell<n><m><sg><ind>/skilnad<n><m><sg><ind>$ ^enig<adj><sint><pst><nt><sg><ind>/samd<adj><sint><pst><nt><sg><ind>/einig<adj><sint><pst><nt><sg><ind>$' | ~/src/ap/vislcg3/src/cg-proc -t biprefs.nob-nno.rlx.bin |cg-conv
 # [<STREAMCMD:SETVAR:forskjell_skilnad,samd_einig>]
