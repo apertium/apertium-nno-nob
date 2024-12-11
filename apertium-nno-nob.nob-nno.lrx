@@ -7736,7 +7736,7 @@
   </rule>
 
   <rule weight="3.0"> <!-- ...han antas å være gjerningspersonen... -->
-    <match lemma="antas å være" tags="adv.*"><select lemma="er mistenkt for å vere"/></match>
+    <match lemma="antas å være"><select lemma="er mistenkt for å vere"/></match>
     <or>
       <match lemma="gjerning"/>
       <match lemma="gjerningsmann"/>
@@ -7756,7 +7756,7 @@
       <match tags="det.*"/>
       <match tags="n.*"/>
     </or>
-    <match lemma="antas å være" tags="adv.*"><select lemma="truleg er"/></match>
+    <match lemma="antas å være"><select lemma="truleg er"/></match>
   </rule>
   <rule weight="3.0"> <!-- Mannen må antas å være hovedgjerningsmannen. / I prinsippet bør vi antas å være uskyldige -->
     <or>
@@ -7769,18 +7769,18 @@
     <repeat from="0" upto="1">
       <match tags=".*"/>
     </repeat>
-    <match lemma="antas å være" tags="adv.*"><select lemma="antakast å vere"/></match>
+    <match lemma="antas å være"><select lemma="antakast å vere"/></match>
   </rule>
 
   <rule weight="2.0"> <!-- Hun sier varianten ikke antas å være lite smittsom; jf. LSX -->
-    <match lemma="ikke antas å være" tags="adv.*"><select lemma="ikkje ser ut til å vere"/></match>
+    <match lemma="ikke antas å være"><select lemma="ikkje ser ut til å vere"/></match>
   </rule>
 
   <rule weight="2.0"> <!-- Nå er mannen som antas å være hovedgjerningsmannen. -->
     <or>
       <match lemma="som"/>
     </or>
-    <match lemma="antas å være" tags="adv.*"><select lemma="ein går ut frå er"/></match>
+    <match lemma="antas å være"><select lemma="ein går ut frå er"/></match>
   </rule>
 
   <rule> <!-- De antas å være bortført av samme gruppe. -->
@@ -7789,20 +7789,10 @@
       <match tags="prn.*"/>
       <match tags="det.dem.*"/> <!-- Det antas å være -->
     </or>
-    <match lemma="antas å være" tags="adv.*"><select lemma="er truleg"/></match>
+    <match lemma="antas å være"><select lemma="er truleg"/></match>
   </rule>
   <rule>
-    <match lemma="det antas at" tags="adv.*"><select lemma="det er grunn til å tru at"/></match>
-  </rule>
-  <rule>
-    <or>
-      <match lemma="skulle"/>
-      <match lemma="måtte"/>
-      <match lemma="burde"/>
-      <match lemma="ville"/>
-      <match lemma="kunne"/>
-    </or>
-    <match lemma="det antas at" tags="adv.*"><select lemma="ein gå ut frå at"/></match>
+    <match lemma="det antas at"><select lemma="det er grunn til å tru at"/></match>
   </rule>
   <rule>
     <or>
@@ -7812,7 +7802,17 @@
       <match lemma="ville"/>
       <match lemma="kunne"/>
     </or>
-    <match lemma="det må antas at" tags="adv.*"><select lemma="ein må gå ut frå at"/></match>
+    <match lemma="det antas at"><select lemma="ein gå ut frå at"/></match>
+  </rule>
+  <rule>
+    <or>
+      <match lemma="skulle"/>
+      <match lemma="måtte"/>
+      <match lemma="burde"/>
+      <match lemma="ville"/>
+      <match lemma="kunne"/>
+    </or>
+    <match lemma="det må antas at"><select lemma="ein må gå ut frå at"/></match>
   </rule>
   <rule weight="2.0">
     <or>
