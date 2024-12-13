@@ -733,11 +733,18 @@
       <match lemma="grad"/>
     </or>
   </rule>
+  <rule weight="6.0" c="Rekordhøyt antall søkere; tilstrekkelig antall antall boliger">
+    <or>
+      <match tags="adj.pst.nt.*"/>
+      <match tags="adj.comp.*"/>
+      <match tags="adj.sup.*"/>
+    </or>
+    <match lemma="antall"><select lemma="tal på"/> </match>
+    <match tags="n.*"/>
+  </rule>
 
   <rule weight="2.0" c="Uavhengig av antall gir de folkene i departementene mer enn nok å gjøre">
-    <match lemma="antall">
-      <select lemma="mengde"/>  <!-- or just "tal"? -->
-    </match>
+    <match lemma="antall"><select lemma="mengde"/> </match>
     <or>                        <!-- vblex not pp -->
       <match tags="vblex.pret.*"/>
       <match tags="vblex.pres.*"/>
