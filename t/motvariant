@@ -38,8 +38,9 @@ selftest () {
                 continue
             fi
             grep -q -w -F "VAR:$x" apertium-nno-nob.nob-nno.biprefs.rlx          \
+            || grep -q -w -F "VAR:$x" merge-quotes.rlx                           \
             || grep -q -F "sdef n=\"v:$x\"" ../apertium-nno/apertium-nno.nno.dix \
-            || echo "WARNING: v:$x not found in nno.dix nor biprefs.rlx" >&2
+            || echo "WARNING: v:$x not found in nno.dix / merge-quotes.rlx / biprefs.rlx" >&2
         done
     )
 }
