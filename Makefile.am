@@ -46,6 +46,7 @@ TARGETS_PREFIX2_FAST =                \
      capstag.autoseq.bin              \
      capstag.rlx.bin                  \
      merge-names.rlx.bin              \
+     merge-quotes.rlx.bin             \
      prefs/$(PREFIX2).xml
 
 TARGETS_PREFIX2 =                                             \
@@ -162,6 +163,9 @@ merge-laws.autoseq.bin: .deps/laws.lsx
 	lsx-comp lr $< $@
 
 merge-names.rlx.bin: merge-names.rlx
+	cg-comp $< $@
+
+merge-quotes.rlx.bin: merge-quotes.rlx
 	cg-comp $< $@
 
 ###############################################################################

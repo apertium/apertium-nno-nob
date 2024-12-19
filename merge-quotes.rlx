@@ -1,0 +1,11 @@
+# -*- cg-pre-pipe: "apertium -d . nob-nno-lawmerge | cg-conv a" -*-
+
+DELIMITERS = "." "?" sent ;
+
+
+WITH ("«") IF (*1 ("»"))
+{
+  ADD (MERGE_BEG) ("«");
+  ADD (MERGE_END) _C1_;
+};
+
