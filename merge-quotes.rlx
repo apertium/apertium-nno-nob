@@ -1,0 +1,31 @@
+# -*- cg-pre-pipe: "apertium -d . nob-nno-tagger | cg-conv a" -*-
+
+DELIMITERS = "." "?" sent ;
+
+WITH ("«") IF
+  (*1 ("»"))
+{
+  ADD (MERGE_BEG) ("«") IF (0 (VAR:sitat.lastå));
+  ADD (MERGE_END) _C1_  IF (0 (VAR:sitat.lastå));
+  # NB: må dessverre ha VAR-sjekken på kvar ADD-regel, det fungerer ikkje å ha den på WITH
+  # kategorien er «lastå» sidan kanskje det kjem andre ting me vil la stå?
+};
+
+
+
+# TODO: Må legga " inn i ordboka for at denne skal fungera :)
+WITH ("\"") IF
+  (*1 ("\"") BARRIER ("\""))
+{
+  ADD (MERGE_BEG) ("\"") IF (0 (VAR:sitat.lastå));
+  ADD (MERGE_END) _C1_   IF (0 (VAR:sitat.lastå));
+};
+
+
+# TODO: Må legga ` inn i ordboka for at denne skal fungera :)
+WITH ("`") IF
+  (*1 ("`") BARRIER ("`"))
+{
+  ADD (MERGE_BEG) ("`") IF (0 (VAR:sitat.lastå)); # ev. la denne gå uavhengig av val?
+  ADD (MERGE_END) _C1_  IF (0 (VAR:sitat.lastå)); # (vil vel sjeldan omsetja kodesnuttar?)
+};

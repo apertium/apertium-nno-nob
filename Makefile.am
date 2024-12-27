@@ -46,6 +46,7 @@ TARGETS_PREFIX2_FAST =                \
      capstag.autoseq.bin              \
      capstag.rlx.bin                  \
      merge-names.rlx.bin              \
+     merge-quotes.rlx.bin             \
      prefs/$(PREFIX2).xml
 
 TARGETS_PREFIX2 =                                             \
@@ -74,17 +75,20 @@ r: modes/$(PREFIX1).mode
 ## Monolingual transducers
 ###############################################################################
 
+.deps/pass-through-genmerged.lsx.bin: pass-through-genmerged.lsx
+	lt-comp lr $^ $@
+
 # -------------------
 # Nynorsk analysis:
 # ---------------------
-$(PREFIX1).automorf.bin: $(AP_SRC1)/$(LANG1).automorf.bin $(PREFIX1).autobil.bin
+$(PREFIX1).automorf.bin: $(AP_SRC1)/$(LANG1).automorf.bin .deps/$(PREFIX1).autobil.bin
 	lt-trim --match-section=regex@standard $^ $@
 
 # -------------------
 # Nynorsk generation:
 # ---------------------
-$(PREFIX2).autogen.bin: $(AP_SRC1)/$(LANG1).autogen.bin
-	cp $< $@
+$(PREFIX2).autogen.bin: $(AP_SRC1)/$(LANG1).autogen.bin .deps/pass-through-genmerged.lsx.bin
+	lt-append $^ $@
 
 $(PREFIX2).autopgen.bin: $(AP_SRC1)/$(LANG1).autopgen.bin
 	cp $< $@
@@ -92,14 +96,14 @@ $(PREFIX2).autopgen.bin: $(AP_SRC1)/$(LANG1).autopgen.bin
 # -------------------
 # Bokmål analysis:
 # ---------------------
-$(PREFIX2).automorf.bin: $(AP_SRC2)/$(LANG2).automorf.bin $(PREFIX2).autobil.bin
+$(PREFIX2).automorf.bin: $(AP_SRC2)/$(LANG2).automorf.bin .deps/$(PREFIX2).autobil.bin
 	lt-trim --match-section=regex@standard $^ $@
 
 # -------------------
 # Bokmål generation:
 # ---------------------
-$(PREFIX1).autogen.bin: $(AP_SRC2)/$(LANG2).autogen.bin
-	cp $< $@
+$(PREFIX1).autogen.bin: $(AP_SRC2)/$(LANG2).autogen.bin .deps/pass-through-genmerged.lsx.bin
+	lt-append $^ $@
 
 
 ###############################################################################
@@ -164,17 +168,29 @@ merge-laws.autoseq.bin: .deps/laws.lsx
 merge-names.rlx.bin: merge-names.rlx
 	cg-comp $< $@
 
+merge-quotes.rlx.bin: merge-quotes.rlx
+	cg-comp $< $@
+
 ###############################################################################
 ## Bilingual dictionaries
 ###############################################################################
 
-$(PREFIX1).autobil.bin: $(BASENAME).$(PREFIX1).dix
+.deps/pass-through-bimerged.lsx.bin: pass-through-bimerged.lsx
+	lt-comp lr $^ $@
+
+.deps/$(PREFIX1).autobil.bin: $(BASENAME).$(PREFIX1).dix .deps/.d
 	apertium-validate-dictionary $<
 	lt-comp lr $< $@
 
-$(PREFIX2).autobil.bin: $(BASENAME).$(PREFIX1).dix
+.deps/$(PREFIX2).autobil.bin: $(BASENAME).$(PREFIX1).dix .deps/.d
 	apertium-validate-dictionary $<
 	lt-comp rl $< $@
+
+$(PREFIX1).autobil.bin: .deps/$(PREFIX1).autobil.bin .deps/pass-through-bimerged.lsx.bin
+	lt-append $^ $@
+
+$(PREFIX2).autobil.bin: .deps/$(PREFIX2).autobil.bin .deps/pass-through-bimerged.lsx.bin
+	lt-append $^ $@
 
 ###############################################################################
 ## Variant preferences
