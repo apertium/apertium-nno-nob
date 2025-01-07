@@ -603,6 +603,33 @@
     <def-attr n="a_expl">
       <attr-item tags="expl"/>
     </def-attr>
+    <def-attr n="a_syntax">
+      <attr-item tags="@fv"/>
+      <attr-item tags="@iv"/>
+      <attr-item tags="@subj"/>
+      <attr-item tags="@xubj"/>
+      <attr-item tags="@obj"/>
+      <attr-item tags="@i-obj"/>
+      <attr-item tags="@s-pred"/>
+      <attr-item tags="@o-pred"/>
+      <attr-item tags="@adv"/>
+      <attr-item tags="@adv→"/>
+      <attr-item tags="@←adv"/>
+      <attr-item tags="@app"/>
+      <attr-item tags="@tittel"/>
+      <attr-item tags="@det→"/>
+      <attr-item tags="@←det"/>
+      <attr-item tags="@subst→"/>
+      <attr-item tags="@←subst"/>
+      <attr-item tags="@←p-utfyll"/>
+      <attr-item tags="@interj"/>
+      <attr-item tags="@adj→"/>
+      <attr-item tags="@kon"/>
+      <attr-item tags="@laus-np"/>
+      <attr-item tags="@←sbu"/>
+      <attr-item tags="@←sbu-rel"/>
+      <attr-item tags="@s-gr"/>
+    </def-attr>
     <def-attr n="n-movable">
       <attr-item tags="n-movable"/>
     </def-attr>
@@ -1648,6 +1675,10 @@
         <pattern-item n="ndef"/>
       </pattern>
       <action>
+        <choose><when c="second noun is the subject">
+          <test><equal><clip pos="4" part="a_syntax"/><lit-tag v="@subj"/></equal></test>
+          <reject-current-rule shifting="0"/>
+        </when></choose>
         <call-macro n="set_ana"><with-param pos="4"/></call-macro>
         <call-macro n="modify_pp_gen_nbr"><with-param pos="3"/></call-macro>
         <out>
