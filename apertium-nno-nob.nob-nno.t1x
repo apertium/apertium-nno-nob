@@ -34,7 +34,7 @@
     <def-cat n="nind_keep_gen_s"
              c="Owned nouns where we want the owner ngen to keep the genitive-s
                 See also def-list keepgenx, and ngen_keep_gen_s for owner
-                See n_keep_sin for garp.">
+                See n.sg_keep_sin/n.pl_keep_sin for garp.">
       <cat-item tags="n.*.*.ind.*" lemma="beste"/>
       <cat-item tags="n.*.sg.ind.*" lemma="side"/>
       <cat-item tags="n.*.sg.ind.*" lemma="tur"/>
@@ -7391,7 +7391,7 @@
       <list-item v="gjere# rik"/>
     </def-list>
     <def-list n="keepgenx" c="Get tagged keepgenx for t2x to avoid gen-prep-transformation
-                              See also n_keep_sin and def-cats: nind_keep_gen_s, ngen_keep_gen_s">
+                              See also n.sg_keep_sin/n.pl_keep_sin and def-cats: nind_keep_gen_s, ngen_keep_gen_s">
       <list-item v="side"/>
       <list-item v="del"/>
       <list-item v="fordel"/>
@@ -7402,9 +7402,10 @@
       <list-item v="natur"/> <!-- i ungdommens natur -->
       <list-item v="nei"/>   <!-- Kongens nei -->
     </def-list>
-    <def-list n="n_keep_sin" c="keep prefixed 'sin' in 'mot sin vilje', 'på sin side' etc. – also «hans ord», «deres side»
-                                See also: nind_keep_gen_s ngen_keep_gen_s keepgenx.
-                                bokmål lemmas">
+    <def-list n="n.sg_keep_sin" c="keep prefixed 'sin' in 'på sin side' etc. (where 'side' singular) – also 'deres side'
+                                   Like n.pl_keep_sin, but restricted to where the noun is singular.
+                                   See also: nind_keep_gen_s ngen_keep_gen_s keepgenx.
+                                   bokmål lemmas">
       <list-item v="person"/>   <!-- oppstyret rundt min person -->
       <list-item v="lodd"/>     <!-- mitt lodd i livet -->
       <list-item v="avgang"/>
@@ -7518,6 +7519,216 @@
       <list-item v="råd"/>
       <list-item v="sak"/>
       <list-item v="side"/>
+      <list-item v="skjerv"/>
+      <list-item v="bakside"/>
+      <list-item v="situasjon"/>
+      <list-item v="sjel"/>
+      <list-item v="skjønn"/>
+      <list-item v="skyld"/>
+      <list-item v="smak"/>
+      <list-item v="spareveileder"/>
+      <list-item v="spor"/>
+      <list-item v="stand"/>
+      <list-item v="sted"/>
+      <list-item v="stil"/>
+      <list-item v="storfavoritt"/>
+      <list-item v="stund"/>
+      <list-item v="støtte"/>
+      <list-item v="suverenitet"/>
+      <list-item v="sympati"/>
+      <list-item v="syn"/>
+      <list-item v="tankegods"/>
+      <list-item v="tanke"/>
+      <list-item v="tid"/>
+      <list-item v="tilfelle"/>
+      <list-item v="tillit"/>
+      <list-item v="tilråding"/>
+      <list-item v="tiår"/>
+      <list-item v="tjeneste"/> <!-- ha nokon i si teneste -->
+      <list-item v="tur"/>
+      <list-item v="tvil"/>
+      <list-item v="type"/>
+      <list-item v="ulempe"/> <!-- det har sine ulemper -->
+      <list-item v="ungdom"/>
+      <list-item v="uro"/>
+      <list-item v="uskyld"/>
+      <list-item v="utstrekning"/>
+      <list-item v="uvilje"/>
+      <list-item v="vakt"/>
+      <list-item v="valg"/>
+      <list-item v="veg"/>
+      <list-item v="vei"/>
+      <list-item v="velsignelse"/>
+      <list-item v="velsigning"/>
+      <list-item v="verdi"/>
+      <list-item v="vilje"/>
+      <list-item v="vinge"/>
+      <list-item v="ving"/>
+      <list-item v="vinnerfavoritt"/>
+      <list-item v="virke"/>
+      <list-item v="vurdering"/>
+      <list-item v="øye"/>
+      <list-item v="øre"/>
+      <list-item v="øre¹"/>
+      <list-item v="ærend"/>
+      <list-item v="år"/>
+      <!-- Deverbale: -->
+      <list-item v="alliert"/>
+      <list-item v="ansatt"/>
+      <list-item v="frivillig"/>
+      <list-item v="bekjent"/>
+      <list-item v="etterlatt"/>
+      <list-item v="hovedtiltalt"/>
+      <list-item v="innsatt"/>
+      <list-item v="kjent"/>
+      <list-item v="lærd"/>
+      <list-item v="medsiktede"/>
+      <list-item v="medtiltalt"/>
+      <list-item v="militær"/>
+      <list-item v="nyansatt"/>
+      <list-item v="sakkyndig"/>
+      <list-item v="siktede"/>
+      <list-item v="sivil"/>
+      <list-item v="skriftlærd"/>
+      <list-item v="stemmeberettiget"/>
+      <list-item v="tiltalt"/>
+      <list-item v="tidsregning"/>
+      <list-item v="unnfallenhet"/>
+      <list-item v="fullkommenhet"/>
+      <list-item v="ufullkommenhet"/>
+      <list-item v="majestet"/>
+      <list-item v="krig"/>
+      <!-- Skjellsord: -->
+      <list-item v="tosk"/>
+      <list-item v="tulling"/>
+      <list-item v="idiot"/>
+      <list-item v="slask"/>
+      <list-item v="skurk"/>
+      <list-item v="dust"/>
+      <list-item v="kjeltring"/>
+      <list-item v="dumrian"/>
+      <list-item v="klodrian"/>
+      <list-item v="dumming"/>
+      <list-item v="hore"/>
+      <list-item v="jævel"/>
+    </def-list>
+    <def-list n="n.pl_keep_sin" c="keep prefixed 'sin' in 'sine memoarer', 'sine ben' etc. – also 'hans memoarer', 'deres ben'
+                                   Like n.sg_keep_sin, but restricted to where the noun is not singular.
+                                   See also: nind_keep_gen_s ngen_keep_gen_s keepgenx.
+                                   bokmål lemmas">
+      <list-item v="person"/>   <!-- oppstyret rundt min person -->
+      <list-item v="lodd"/>     <!-- mitt lodd i livet -->
+      <list-item v="avgang"/>
+      <list-item v="fravær"/>
+      <list-item v="fot"/>
+      <list-item v="memoarer"/>
+      <list-item v="frykt"/>
+      <list-item v="akilleshæl"/>
+      <list-item v="aksept"/>
+      <list-item v="aldersklasse"/>
+      <list-item v="alder"/>
+      <list-item v="alternativ"/>
+      <list-item v="anbefaling"/>
+      <list-item v="andel"/>
+      <list-item v="avsky"/> <!-- vise sin avsky -->
+      <list-item v="ansvar"/>
+      <list-item v="barndom"/>
+      <list-item v="bein"/>
+      <list-item v="ben"/>
+      <list-item v="bekymring"/>
+      <list-item v="beste"/> <!-- gir sitt beste -->
+      <list-item v="bord"/>
+      <list-item v="bortgang"/>
+      <list-item v="samtykke"/>
+      <list-item v="dag"/>
+      <list-item v="data"/>
+      <list-item v="debut"/>
+      <list-item v="del"/> <!-- men for vår del … -->
+      <list-item v="disfavør"/>
+      <list-item v="dom"/>
+      <list-item v="dont"/>
+      <list-item v="død"/>
+      <list-item v="døme"/>
+      <list-item v="eksempel"/>
+      <list-item v="evne"/>
+      <list-item v="element"/> <!-- i sitt rett element -->
+      <list-item v="fagfelt"/>
+      <list-item v="fagområde"/>
+      <list-item v="fantasi"/>
+      <list-item v="farvann"/>
+      <list-item v="favoritt"/>
+      <list-item v="favør"/>
+      <list-item v="feil"/>
+      <list-item v="felt"/>
+      <list-item v="forakt"/> <!-- vise si forakt -->
+      <list-item v="fordel"/> <!-- det er til vår fordel -->
+      <list-item v="form"/> <!--i sin beste form-->
+      <list-item v="forstand"/>
+      <list-item v="fotspor"/>
+      <list-item v="framtidshåp"/>
+      <list-item v="gang¹"/>
+      <list-item v="gebet"/>
+      <list-item v="generasjon"/>
+      <list-item v="godvilje"/>
+      <list-item v="grunn"/>
+      <list-item v="halvdel"/>
+      <list-item v="halvpart"/>
+      <list-item v="halvår"/>
+      <list-item v="hatt"/>
+      <list-item v="helhet"/>
+      <list-item v="hjertelag"/>
+      <list-item v="hjerte"/> <!--av hele sitt hjerte-->
+      <list-item v="hjelp"/> <!--tilbyr si hjelp-->
+      <list-item v="hyre"/> <!-- ha si fulle hyre med -->
+      <list-item v="håp"/>
+      <list-item v="initiativ"/>
+      <list-item v="interesse"/>
+      <list-item v="integritet"/>
+      <list-item v="kaliber"/>
+      <list-item v="kandidatur"/>
+      <list-item v="kant"/> <!-- på hver sin kant -->
+      <list-item v="kontroll"/> <!-- utanfor vår kontroll -->
+      <list-item v="kveld"/> <!-- Det var hans kveld. -->
+      <list-item v="kraft"/>
+      <list-item v="landsmann"/>
+      <list-item v="lest"/>
+      <list-item v="levedag"/> <!-- i sine levedagar -->
+      <list-item v="levetid"/> <!-- i si levetid -->
+      <list-item v="lit"/>
+      <list-item v="liv"/>
+      <list-item v="makt"/>
+      <list-item v="medfølelse"/>
+      <list-item v="medkjensle"/>
+      <list-item v="mening"/>
+      <list-item v="misjon"/>
+      <list-item v="misnøye"/>
+      <list-item v="motstand"/>
+      <list-item v="måte"/>
+      <list-item v="navn"/>
+      <list-item v="nytte"/>
+      <list-item v="nåde"/>
+      <list-item v="område"/>
+      <list-item v="oppfatning"/>
+      <list-item v="overraskelse"/> <!-- til si store overrasking -->
+      <list-item v="ordre"/>
+      <list-item v="ord"/>
+      <list-item v="otium"/>
+      <list-item v="overbevisning"/> <!-- det er min klare overbevisning -->
+      <list-item v="paradis"/>
+      <list-item v="part"/>
+      <list-item v="periode"/>
+      <list-item v="personnamn"/>
+      <list-item v="plass"/>
+      <list-item v="plikt"/>
+      <list-item v="posisjon"/>
+      <list-item v="preg"/>
+      <list-item v="pris"/>
+      <list-item v="problem"/>
+      <list-item v="publikum"/> <!-- "Elverhøi" hev altid sitt publikum -->
+      <list-item v="rett"/> <!-- krevje sin rett -->
+      <list-item v="råd"/>
+      <list-item v="sak"/>
+      <!-- <list-item v="side"/> -->
       <list-item v="skjerv"/>
       <list-item v="bakside"/>
       <list-item v="situasjon"/>
@@ -8302,10 +8513,22 @@
     <def-macro n="stash_case_in_ntags1" npar="1"
                c="arg.1: noun. Puts tags of noun in ntags (for use as chunk tags).">
       <call-macro n="stash_case_in_ntags0"><with-param pos="1"/></call-macro>
-      <choose><when>
-        <test><in caseless="yes"><clip pos="1" side="sl" part="lemh"/><list n="n_keep_sin"/></in></test>
-        <append n="ntags"><lit-tag v="keep-sin"/></append>
-      </when></choose>
+      <choose c="Should we keep sin/deres?">
+        <when>
+          <test><and>
+            <equal><clip pos="1" side="sl" part="nbr"/><lit-tag v="sg"/></equal>
+            <in caseless="yes"><clip pos="1" side="sl" part="lemh"/><list n="n.sg_keep_sin"/></in>
+          </and></test>
+          <append n="ntags"><lit-tag v="keep-sin"/></append>
+        </when>
+        <when>
+          <test><and>
+            <not><equal><clip pos="1" side="sl" part="nbr"/><lit-tag v="sg"/></equal></not>
+            <in caseless="yes"><clip pos="1" side="sl" part="lemh"/><list n="n.pl_keep_sin"/></in>
+          </and></test>
+          <append n="ntags"><lit-tag v="keep-sin"/></append>
+        </when>
+      </choose>
       <choose><when>
         <test><in caseless="yes"><clip pos="1" side="tl" part="lemh"/><list n="n_needs_det"/></in></test>
         <append n="ntags"><lit-tag v="move-needs-det"/></append>
@@ -8317,14 +8540,38 @@
                c="arg.1: head noun. Puts tags of noun in ntags (for use as chunk tags).
                   arg.2: coordinated noun (e.g. barndom og oppvekst), for keep-sin">
       <call-macro n="stash_case_in_ntags0"><with-param pos="1"/></call-macro>
-      <choose><when>
-        <test><in caseless="yes"><clip pos="1" side="sl" part="lemh"/><list n="n_keep_sin"/></in></test>
-        <append n="ntags"><lit-tag v="keep-sin"/></append>
-      </when>
-      <when>
-        <test><in caseless="yes"><clip pos="2" side="sl" part="lemh"/><list n="n_keep_sin"/></in></test>
-        <append n="ntags"><lit-tag v="keep-sin"/></append>
-      </when></choose>
+      <choose c="Should we keep sin/deres of arg.1?">
+        <when>
+          <test><and>
+            <equal><clip pos="1" side="sl" part="nbr"/><lit-tag v="sg"/></equal>
+            <in caseless="yes"><clip pos="1" side="sl" part="lemh"/><list n="n.sg_keep_sin"/></in>
+          </and></test>
+          <append n="ntags"><lit-tag v="keep-sin"/></append>
+        </when>
+        <when>
+          <test><and>
+            <not><equal><clip pos="1" side="sl" part="nbr"/><lit-tag v="sg"/></equal></not>
+            <in caseless="yes"><clip pos="1" side="sl" part="lemh"/><list n="n.pl_keep_sin"/></in>
+          </and></test>
+          <append n="ntags"><lit-tag v="keep-sin"/></append>
+        </when>
+      </choose>
+      <choose c="Should we keep sin/deres of arg.2?">
+        <when>
+          <test><and>
+            <equal><clip pos="2" side="sl" part="nbr"/><lit-tag v="sg"/></equal>
+            <in caseless="yes"><clip pos="2" side="sl" part="lemh"/><list n="n.sg_keep_sin"/></in>
+          </and></test>
+          <append n="ntags"><lit-tag v="keep-sin"/></append>
+        </when>
+        <when>
+          <test><and>
+            <not><equal><clip pos="2" side="sl" part="nbr"/><lit-tag v="sg"/></equal></not>
+            <in caseless="yes"><clip pos="2" side="sl" part="lemh"/><list n="n.pl_keep_sin"/></in>
+          </and></test>
+          <append n="ntags"><lit-tag v="keep-sin"/></append>
+        </when>
+      </choose>
       <call-macro n="bigram_genprep"><with-param pos="1"/></call-macro>
     </def-macro>
 
