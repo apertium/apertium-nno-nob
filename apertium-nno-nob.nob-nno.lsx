@@ -286,6 +286,11 @@
       <e><i>den<s n="det"/><s n="dem"/><s n="nt"/><t/><d/></i></e>
     </pardef>
 
+    <pardef n="rem:det" c="determinativ/pronomen, 'det' nt">
+      <e><p><l>den<s n="det"/><s n="dem"/><s n="nt"/><t/></l>             <r></r></p>    <par n="d:"/></e>
+      <e><p><l>den<s n="prn"/><s n="pers"/><s n="p3"/><s n="nt"/><s n="sg"/><s n="nom"/><t/></l>             <r></r></p>    <par n="d:"/></e>
+    </pardef>
+
     <pardef n="adj">
       <e><i><w/><s n="adj"/><t/><d/></i></e>
       <e>
@@ -5004,10 +5009,9 @@
       <e><i>få<s n="vblex"/><t/><d/></i></e>
     </pardef>
     
-    <pardef n="å|at|til">
+    <pardef n="å|at">
       <e><i>å<s n="part"/><t/><d/></i></e>
       <e><i>at<t/><d/></i></e>
-      <e><i>til<s n="pr"/><t/><d/></i></e>
     </pardef>
 
   </pardefs>
@@ -18323,6 +18327,29 @@
   <p><l></l>                   <r>med<s n="pr"/><s n="aa"/><d/></r></p>
 </e>
 
+<e lm="anslås det at -> reknar ein med at" w="2.0">
+  <p><l>anslå<s n="vblex"/><s n="pres"/><s n="pasv"/></l>   <r>regne<s n="vblex"/><s n="pres"/></r></p> <i><t/><d/></i>
+  <p><l></l>                <r>man<s n="prn"/><s n="pers"/><s n="p3"/><s n="un"/><s n="sg"/><s n="nom"/><s n="aa"/><d/></r></p>
+  <p><l></l>                <r>med<s n="pr"/><s n="aa"/><d/></r></p>
+  <par n="rem:det"/>
+  <i>at<t/><d/></i>
+  <par n="ANYWORD|"/>
+</e>
+
+<e lm="anslås å/at  -> blir anslått å/at" w="2.0">
+  <p><l>anslå<s n="vblex"/><s n="pres"/><s n="pasv"/></l>   <r>bli<s n="vblex"/><s n="pres"/></r></p> <i><t/><d/></i>
+  <p><l></l>                <r>anslå<s n="vblex"/><s n="pp"/><s n="aa"/><d/></r></p>
+  <par n="å|at"/>
+  <par n="ANYWORDx8|empty"/>
+</e>
+
+<e lm="anslås ... å/at -> blir anslått ... å/at" w="2.0">
+  <p><l>anslå<s n="vblex"/><s n="pres"/><s n="pasv"/></l>   <r>bli<s n="vblex"/><s n="pres"/></r></p> <i><t/><d/></i>
+  <par n="ANYWORDx8|empty"/>
+  <p><l></l>                <r>anslå<s n="vblex"/><s n="pp"/><s n="aa"/><d/></r></p>
+  <par n="å|at"/>
+</e>
+
 <e lm="anslå til å → anslå å" c= "anslå å">
   <i>anslå<t/></i>  <par n="d"/>
   <par n="ANYWORD|"/>
@@ -18336,12 +18363,12 @@
   <i>til<t/></i>  <par n="d"/>
 </e>
 
-<e lm="anslå at → regne med at" c= "rekne med at">
+<!--e lm="anslå at → regne med at" c= "rekne med at">
   <p><l>anslå</l>             <r>regne</r></p>  <i><t/><d/></i>
   <par n="ANYWORD|"/>
   <p><l></l>                   <r>med<s n="pr"/><s n="aa"/><d/></r></p>
   <i>at<t/></i>  <par n="d"/>
-</e>
+</e-->
 
 <e lm="politiets innsatsleder NN → innsatsleder i politet NN" c= "innsatsleiar i politet NN">
   <p><l>politi<s n="n"/><s n="nt"/><s n="sg"/><s n="def"/><s n="gen"/></l>             <r></r></p>    <par n="d:"/>
@@ -19512,19 +19539,6 @@
   <p><l><t/><s n="gen"/></l>                <r><t/></r></p>   <par n="d"/>
   <p><l>tillatelse<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/><t/></l>   <r></r></p>    <par n="d:"/>
   <i>til<t/><d/></i>
-</e>
-
-<e lm="anslås å/at/til  -> blir anslått å/at/til">
-  <p><l>anslå<s n="vblex"/><s n="pres"/><s n="pasv"/></l>   <r>bli<s n="vblex"/><s n="pres"/></r></p> <i><t/><d/></i>
-  <p><l></l>                <r>anslå<s n="vblex"/><s n="pp"/><s n="aa"/><d/></r></p>
-  <par n="å|at|til"/>
-  <par n="ANYWORDx8|empty"/>
-</e>
-<e lm="anslås ... å/at/til -> blir anslått ... å/at/til">
-  <p><l>anslå<s n="vblex"/><s n="pres"/><s n="pasv"/></l>   <r>bli<s n="vblex"/><s n="pres"/></r></p> <i><t/><d/></i>
-  <par n="ANYWORDx8|empty"/>
-  <p><l></l>                <r>anslå<s n="vblex"/><s n="pp"/><s n="aa"/><d/></r></p>
-  <par n="å|at|til"/>
 </e>
 
 </section>
