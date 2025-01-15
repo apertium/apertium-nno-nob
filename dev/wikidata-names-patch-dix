@@ -1,0 +1,45 @@
+#!/bin/bash
+
+# Use like
+# $ make -j langs                                             \
+#   && dev/wikidata-names-fetch -v >names-today               \
+#   && dev/wikidata-names-to-dix names-today >names-today.dix \
+#   && unversioned/wikinames-patch-dix names-today.dix
+
+set -e -u
+
+NEW_NAMES_PATH="$1"
+
+insert_names () {
+    typ=$1                      # bi or mono
+    shift
+    awk -v type="${typ}" -v names_file="${NEW_NAMES_PATH}" '
+BEGIN {
+    lang=""
+    if(ARGV[1]~/proper-nno/)lang="nno"
+    if(ARGV[1]~/proper-nob/)lang="nob"
+    while(getline < names_file){
+             if($0=="MONODIX:")          t="mono"
+        else if($0=="MONODIX NNO only:") t="mono_nno"
+        else if($0=="MONODIX NOB only:") t="mono_nob"
+        else if($0=="BIDIX:")            t="bi"
+        else if($0 && (t==type || t==type"_"lang) && $0!~/seen as middle name/) o=o"\n"$0
+    }
+}
+/\/SECTION: Proper nouns/{print o}
+                         {print}' "$@"
+}
+
+for f in ../apertium-nob/apertium-nob.proper-nob.dix ../apertium-nno/apertium-nno.proper-nno.dix;do
+    insert_names mono "$f" > "$f".patched
+    mv -f "$f".patched "$f"
+done
+
+for f in apertium-nno-nob.nno-nob.dix; do
+    insert_names bi "$f" > "$f".patched
+    mv -f "$f".patched "$f"
+done
+
+echo "Names ambiguous with non-names:"
+# shellcheck disable=SC2312
+grep -o 'lm="[^"]*' "$NEW_NAMES_PATH" | sed 's,^lm=",,;s,",,' | apertium -d . nob-nno_e-morph | sed -E 's,/[^$/]*(<np>|<sent>|\+)[^$/]*,,g' | grep '/[^*]' | tr '/' '\t' | tr -d '^'
