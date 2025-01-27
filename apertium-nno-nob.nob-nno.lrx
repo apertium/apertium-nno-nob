@@ -12335,5 +12335,36 @@ preposisjonar gir ekstra utfordringar. -->
     </or>
   </rule>
 
+  <rule> <match lemma="forekomme" tags="vblex.*"> <select lemma="førekomme"/> </match> </rule>
+  <rule weight="2.0" c="forekomme at">
+    <match lemma="forekomme" tags="vblex.*"><select lemma="hende"/> </match>
+    <match lemma="at"/>
+  </rule>
+
+  <rule> <match lemma="forvente" tags="vblex.*"> <select lemma="vente"/> </match> </rule>
+  <rule weight="2.5" c="en forventet avkastning">
+    <match lemma="en"/>
+    <match lemma="forvente" tags="adj.*"><select lemma="vente"/> </match>
+  </rule>
+  <rule weight="2.0" c="forventet levealder">
+    <match lemma="forvente" tags="adj.*"><select lemma="forvente"/> </match>
+    <or>
+      <match tags="adj.*"/>
+      <match tags="n.*"/>
+    </or>
+  </rule>
+  <rule weight="2.0" c="forvente å">
+    <match lemma="forvente"><select lemma="vente"/> </match>
+    <match lemma="å"/>
+  </rule>
+  <rule weight="2.0" c="vi forventer">
+    <match tags="prn.pers.*.nom.*"/>
+    <match lemma="forvente"><select lemma="forvente"/> </match>
+  </rule>
+  <rule weight="2.0" c="forventer vi">
+    <match lemma="forvente"><select lemma="forvente"/> </match>
+    <match tags="prn.pers.*.nom.*"/>
+  </rule>
+  
 </rules>
 </lrx>
