@@ -12226,9 +12226,13 @@ no lemq-moving">
               <equal><clip pos="1" side="tl" part="art"/><lit-tag v="ind"/></equal>
               <equal><clip pos="2" side="tl" part="art"/><lit-tag v="def"/></equal>
             </and>
-            <and>
+            <and>               <!-- don't chunk [likte] godt bil:-->
               <equal><clip pos="1" side="sl" part="gen"/><lit-tag v="nt"/></equal>
               <in><clip pos="2" side="sl" part="gen"/><list n="noun-gender-not-adjnt"/></in>
+            </and>
+            <and>            <!--don't chunk [en] god nummer [to]: -->
+              <equal><clip pos="2" side="sl" part="gen"/><lit-tag v="nt"/></equal>
+              <in><clip pos="1" side="sl" part="gen"/><list n="noun-gender-not-adjnt"/></in>
             </and>
             <and>
               <equal><clip pos="1" side="tl" part="temps"/><lit-tag v="pp"/></equal>
