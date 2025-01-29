@@ -12285,9 +12285,13 @@ no lemq-moving">
               <equal><clip pos="1" side="tl" part="art"/><lit-tag v="ind"/></equal>
               <equal><clip pos="3" side="tl" part="art"/><lit-tag v="def"/></equal>
             </and>
-            <and>
+            <and>               <!-- don't chunk [likte] godt bil:-->
               <equal><clip pos="1" side="sl" part="gen"/><lit-tag v="nt"/></equal>
               <in><clip pos="3" side="sl" part="gen"/><list n="noun-gender-not-adjnt"/></in>
+            </and>
+            <and>            <!--don't chunk [en] god nummer [to]: -->
+              <equal><clip pos="3" side="sl" part="gen"/><lit-tag v="nt"/></equal>
+              <in><clip pos="1" side="sl" part="gen"/><list n="noun-gender-not-adjnt"/></in>
             </and>
           </or></test>
           <reject-current-rule shifting="0"/>
@@ -12331,9 +12335,13 @@ no lemq-moving">
               <equal><clip pos="1" side="tl" part="art"/><lit-tag v="ind"/></equal>
               <equal><clip pos="4" side="tl" part="art"/><lit-tag v="def"/></equal>
             </and>
-            <and>
+            <and>               <!-- don't chunk [likte] godt bil:-->
               <equal><clip pos="1" side="sl" part="gen"/><lit-tag v="nt"/></equal>
               <in><clip pos="4" side="sl" part="gen"/><list n="noun-gender-not-adjnt"/></in>
+            </and>
+            <and>            <!--don't chunk [en] god nummer [to]: -->
+              <equal><clip pos="4" side="sl" part="gen"/><lit-tag v="nt"/></equal>
+              <in><clip pos="1" side="sl" part="gen"/><list n="noun-gender-not-adjnt"/></in>
             </and>
           </or></test>
           <reject-current-rule shifting="0"/>
@@ -12384,9 +12392,13 @@ no lemq-moving">
               <equal><clip pos="1" side="tl" part="art"/><lit-tag v="ind"/></equal>
               <equal><clip pos="5" side="tl" part="art"/><lit-tag v="def"/></equal>
             </and>
-            <and>
+            <and>               <!-- don't chunk [likte] godt bil:-->
               <equal><clip pos="1" side="sl" part="gen"/><lit-tag v="nt"/></equal>
               <in><clip pos="5" side="sl" part="gen"/><list n="noun-gender-not-adjnt"/></in>
+            </and>
+            <and>            <!--don't chunk [en] god nummer [to]: -->
+              <equal><clip pos="5" side="sl" part="gen"/><lit-tag v="nt"/></equal>
+              <in><clip pos="1" side="sl" part="gen"/><list n="noun-gender-not-adjnt"/></in>
             </and>
           </or></test>
           <reject-current-rule shifting="0"/>
