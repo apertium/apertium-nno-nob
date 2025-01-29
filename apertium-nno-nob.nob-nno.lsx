@@ -3420,47 +3420,61 @@
       </e>
     </pardef>
 
-    <pardef n="pr+SN.ind">
-      <e><i><w/><s n="pr"/><t/><d/></i><par n="SN.ind"/></e>
-      <e><i><w/><s n="pr"/><t/><d/></i><par n="det+SN"/></e>
-      <e>
-        <i><w/><s n="pr"/><t/><d/></i>
-        <par n="SN.ind"/>
-        <par n="cm|og|eller"/>
-        <par n="SN.ind"/>
-      </e>
-      <e>
-        <i><w/><s n="pr"/><t/><d/></i>
-        <par n="SN.ind"/>
-        <par n="cm|og|eller"/>
-        <par n="SN.ind"/>
-        <par n="cm|og|eller"/>
-        <par n="SN.ind"/>
-      </e>
+
+    <pardef n="genflytt-prep"
+            c="Preposisjonar der me lar genitivsomskrivingar flytta rundt, t.d. torsdagens kamp mot Bouvetøya → kampen mot Bouvetøya torsdag
+               Mange preposisjonar er farlege å flytta rundt, t.d. torsdagens kamp før finalen → *kampen før finalen tordag.
+               TODO: Dette burde heller gjerast med ein syntakstagg frå CG.">
+      <e><i>utenfor<s n="pr"/><t/></i></e> <!-- onsdagens markering utenfor konsulatet i Istanbul -->
+      <e><i>under<s n="pr"/><t/></i></e> <!-- fredagens slopestylerenn under verdenscupen i friski -->
+      <e><i>rundt<s n="pr"/><t/></i></e> <!-- fredagens oppdatering rundt turneringskriteriene -->
+      <e><i>blant<s n="pr"/><t/></i></e> <!-- mandagens vinner blant de store selskapene -->
+      <e><i>mellom<s n="pr"/><t/></i></e> <!-- onsdagens landskamp mellom England og Nederland på Wembley. -->
+      <e><i>fra<s n="pr"/><t/></i></e> <!-- lørdagens seertall fra boksekampen mellom Cecilia Brækhus og Anne-Sophie Mathis. -->
+      <e><i>på<s n="pr"/><t/></i></e> <!-- fredagens etappe på Beitostølen -->
+      <e><i>ved<s n="pr"/><t/></i></e> <!-- onsdagens oppmøte ved Høyblokka. -->
+      <e><i>i<s n="pr"/><t/></i></e>   <!-- tirsdagens klarspråkskonferanse i Oslo. -->
+      <e><i>med<s n="pr"/><t/></i></e> <!-- tirsdagens runde med avstemninger i Parlamentet, MEN: fredagens gullrekke med 1,4 millioner seere(?) startet tirsdagens handel med en liten oppgang(!) -->
+      <e><i>for<s n="pr"/><t/></i></e> <!--  årets konsesjonsrunde for såkalt modne leteområder -->
+      <e><i>over<s n="pr"/><t/></i></e> <!-- fratatt søndagens seier over England (?) -->
+      <e><i>mot<s n="pr"/><t/></i></e> <!-- onsdagens kamp mot Romania -->
+      <e><i>av<s n="pr"/><t/></i></e> <!-- Her fra mandagens framleggelse av PSTs åpne trusselvurdering -->
+      <e><i>om<s n="pr"/><t/></i></e> <!-- søndagens kamp om 7.-plassen -->
+      <!-- NB: ikkje t.d. til/før/etter/som:
+           - Oslo Børs snudde mandagens nedgang til oppgang tirsdag. [ikkje oppgang måndag tysdag!]
+           - fredagens uttak til VM-kvalifiseringskampene mot Gibraltar, Tyrkia og Montenegro senere i måneden. [ikkje kampene…fredag!]
+           - få minutter før onsdagens forhandlinger etter planen skulle ha startet [ikkje planen onsdag!]
+           - avlyste fredagens pressekonferanse etter en usikker koronaprøve. [ikkje koronaprøve fredag!]
+           - på fredagens pressekonferanse før derbyet [ikkje derbyet fredag!]
+           - ta kveldens kontroversielle avstemning som et nytt tegn på mangel på tillit til regjeringen [ikkje regjeringa denne kvelden!]
+           (men det finst nokre til-eksempel som er greie, t.d. «I årets forslag til statsbudsjett» – må løysast med CG.)
+           - vite om onsdagens dødsfall gjennom pressemeldingen torsdag
+           (men: søndagens overdådige prosesjon gjennom gamlebyen)
+      -->
     </pardef>
 
     <pardef n="prepledd-np-SN">
       <e>                                       <!-- i Ungarns asyllover -->
-        <i><w/><s n="pr"/><t/><d/></i>
+        <par n="genflytt-prep"/><i><d/></i>
         <i><w/><s n="np"/><t/><s n="gen"/><t/><d/></i>
         <par n="SN.ind"/>
       </e>
       <e>
-        <i><w/><s n="pr"/><t/><d/></i>
+        <par n="genflytt-prep"/><i><d/></i>
         <par n="np"/>
       </e>
       <e>                                             <!-- borte/heime mot Real Madrid -->
-        <i><w/><s n="pr"/><t/><d/></i>
-        <i><w/><s n="pr"/><t/><d/></i>
+        <par n="genflytt-prep"/><i><d/></i>
+        <par n="genflytt-prep"/><i><d/></i>
         <par n="np"/>
       </e>
       <e>
-        <i><w/><s n="pr"/><t/><d/></i>
+        <par n="genflytt-prep"/><i><d/></i>
         <i><w/><s n="n"/><t/><s n="sg"/><t/><d/></i> <!-- yrkestittel, utestedet Blå o.l -->
         <par n="np"/>
       </e>
       <e>
-        <i><w/><s n="pr"/><t/><d/></i>
+        <par n="genflytt-prep"/><i><d/></i>
         <par n="adj"/>
         <par n="np"/>
       </e>
@@ -3468,23 +3482,13 @@
         <par n="SN+np"/>
       </e>
       <e>
-        <i><w/><s n="pr"/><t/><d/></i>
+        <par n="genflytt-prep"/><i><d/></i>
         <par n="np"/>
         <par n="cm|og|eller"/>
         <par n="np"/>
       </e>
       <e>
-        <i><w/><s n="pr"/><t/><d/></i>
-        <par n="np"/>
-        <par n="cm|og|eller"/>
-        <par n="np"/>
-        <par n="cm|og|eller"/>
-        <par n="np"/>
-      </e>
-      <e>
-        <i><w/><s n="pr"/><t/><d/></i>
-        <par n="np"/>
-        <par n="cm|og|eller"/>
+        <par n="genflytt-prep"/><i><d/></i>
         <par n="np"/>
         <par n="cm|og|eller"/>
         <par n="np"/>
@@ -3492,10 +3496,39 @@
         <par n="np"/>
       </e>
       <e>
-        <par n="pr+SN.ind"/>
+        <par n="genflytt-prep"/><i><d/></i>
+        <par n="np"/>
+        <par n="cm|og|eller"/>
+        <par n="np"/>
+        <par n="cm|og|eller"/>
+        <par n="np"/>
+        <par n="cm|og|eller"/>
+        <par n="np"/>
+      </e>
+      <e>
+        <par n="genflytt-prep"/><i><d/></i>
+        <par n="SN.ind"/>
+      </e>
+      <e>
+        <par n="genflytt-prep"/><i><d/></i>
+        <par n="det+SN"/>
+      </e>
+      <e>
+        <par n="genflytt-prep"/><i><d/></i>
+        <par n="SN.ind"/>
+        <par n="cm|og|eller"/>
+        <par n="SN.ind"/>
+      </e>
+      <e>
+        <par n="genflytt-prep"/><i><d/></i>
+        <par n="SN.ind"/>
+        <par n="cm|og|eller"/>
+        <par n="SN.ind"/>
+        <par n="cm|og|eller"/>
+        <par n="SN.ind"/>
       </e>
       <e>                                   <!-- frå 1994 -->
-        <i><w/><s n="pr"/><t/><d/></i>
+        <par n="genflytt-prep"/><i><d/></i>
         <i><w/><s n="det"/><s n="qnt"/><s n="un"/><s n="pl"/><d/></i>
       </e>
     </pardef>
