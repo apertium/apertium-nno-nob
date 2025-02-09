@@ -22,6 +22,10 @@ if [[ $# -ne 1 ]]; then
 fi
 names=$1
 
+fix_spelling () {
+    # Use real quotes:
+    sed "s/'/’/g"
+}
 
 ant () {
     names=$1
@@ -41,22 +45,22 @@ cog () {
 mono () {
     lang="$1"
     for gen in f m al; do
-        ant "${names}" "${gen}" | dev/namn-mono.sh "${lang}" "$gen"
+        ant "${names}" "${gen}" | fix_spelling | dev/namn-mono.sh "${lang}" "$gen"
     done
-    cog "${names}" | dev/namn-mono.sh "${lang}" cog
+    cog "${names}" | fix_spelling | dev/namn-mono.sh "${lang}" cog
 }
 
 # shellcheck disable=SC2311,SC2312
 bi=$(
     for gen in f m al; do
-        ant "${names}" "${gen}" | dev/namn-bidix.sh
+        ant "${names}" "${gen}" | fix_spelling | dev/namn-bidix.sh
     done
-    cog "${names}" | dev/namn-bidix.sh
+    cog "${names}" | fix_spelling | dev/namn-bidix.sh
 )
 
 # shellcheck disable=SC2311,SC2312
 mid () {
-    grep -o ' .* ' "${names}" | tr -s ' ' '\n' | sort -u
+    grep -o ' .* ' "${names}"  | fix_spelling | tr -s ' ' '\n' | sort -u
 }
 
 # shellcheck disable=SC2312
