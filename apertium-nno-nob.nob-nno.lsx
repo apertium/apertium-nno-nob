@@ -429,10 +429,24 @@
       <e><i><w/><s n="adv"/><d/></i></e>
       <e><i><w/><s n="adv"/><t/><d/></i></e>
     </pardef>
+    <pardef n="@adverb">
+      <e><i><w/><t/><s n="@adv"/><d/></i></e>
+      <e><i><w/><t/><s n="@adv"/><t/><d/></i></e>
+      <e><i><w/><t/><s n="@adv→"/><d/></i></e>
+      <e><i><w/><t/><s n="@adv→"/><t/><d/></i></e>
+      <e><i><w/><t/><s n="@←adv"/><d/></i></e>
+      <e><i><w/><t/><s n="@←adv"/><t/><d/></i></e>
+    </pardef>
     <pardef n="ADV" c="adv-phrase, 1–3 adv's in a row">
       <e><par n="adv"/></e>
       <e><par n="adv"/><par n="adv"/></e>
       <e><par n="adv"/><par n="adv"/><par n="adv"/></e>
+    </pardef>
+    <pardef n="@ADVERB|empty" c="adv-phrase, 1–3 adv's in a row">
+      <e></e>
+      <e><par n="@adverb"/></e>
+      <e><par n="@adverb"/><par n="@adverb"/></e>
+      <e><par n="@adverb"/><par n="@adverb"/><par n="@adverb"/></e>
     </pardef>
     <pardef n="adj|adv">
       <e><i><w/><s n="adj"/><t/><d/></i></e>
@@ -781,6 +795,13 @@
         <i><w/><t/><d/></i>
         <i><w/><s n="np"/><s n="cog"/><t/><d/></i>
       </e>
+    </pardef>
+
+    <pardef n="SN|np|SN+np|empty">
+      <e></e>
+      <e><par n="SN"/></e>
+      <e><par n="SN+np"/></e>
+      <e><i><w/><s n="np"/><t/><d/></i></e>
     </pardef>
 
     <pardef n="det+SN">
@@ -19850,6 +19871,123 @@
   <p><l></l>                           <r>drastisk<s n="adj"/><s n="pst"/><s n="nt"/><s n="sg"/><s n="ind"/><s n="aa"/><d/></r></p>
   <p><l>til<s n="pr"/></l>             <r>til<b/>verks<s n="adv"/></r></p> <i><t/><d/></i>
   <p><l>ytterlighet<s n="n"/><t/><s n="pl"/><s n="ind"/><t/></l>   <r></r></p>    <par n="d:"/>
+</e>
+
+<e lm="bli + avkrevd  → få + krav om (noe)">
+  <p><l>bli<s n="vblex"/></l>   <r>få<s n="vblex"/></r></p> <i><t/><d/></i>
+  <par n="SN|np|SN+np|empty"/>
+  <p><l>avkreve<t/><s n="pp"/><t/></l>   <r></r></p>    <par n="d:"/>
+  <p><l></l>                           <r>krav<s n="n"/><s n="nt"/><s n="pl"/><s n="ind"/><s n="aa"/><d/></r></p>
+  <p><l></l>                <r>på<s n="pr"/><s n="aa"/><d/></r></p>
+  <par n="tal"/>
+</e>
+<e lm="bli + avkrevd (noe) → få + krav om (noe)">
+  <p><l>bli<s n="vblex"/></l>   <r>få<s n="vblex"/></r></p> <i><t/><d/></i>
+  <par n="SN|np|SN+np|empty"/>
+  <p><l>avkreve<t/><s n="pp"/><t/></l>   <r></r></p>    <par n="d:"/>
+  <p><l></l>                           <r>krav<s n="n"/><s n="nt"/><s n="pl"/><s n="ind"/><s n="aa"/><d/></r></p>
+  <p><l></l>                <r>om<s n="pr"/><s n="aa"/><d/></r></p>
+</e>
+<e lm="noen avkrevd (noe) → noen måtte gi (noe)">
+  <i><w/><t/><s n="@subj"/><d/></i>
+  <p><l>avkreve<s n="adj"/><s n="pp"/></l>   <r>måtte<s n="vblex"/><s n="pret"/></r></p> <i><t/><d/></i>
+  <p><l></l>                <r>gi<s n="vblex"/><s n="inf"/><s n="aa"/><d/></r></p>
+  <i><w/><s n="n"/><t/><d/></i>
+</e>
+
+<e lm="som (helt klart) + avkreve + respekt → som det (helt klart) + stå + respekt av">
+  <i>som<t/><d/></i>
+  <p><l></l>                           <r>den<s n="det"/><s n="dem"/><s n="nt"/><s n="sg"/><s n="aa"/><d/></r></p>
+  <par n="@ADVERB|empty"/>
+  <p><l>avkreve<s n="vblex"/></l>   <r>stå<s n="vblex"/></r></p> <i><t/><d/></i>
+  <i>respekt<s n="n"/><t/><d/></i>
+  <p><l></l>                <r>av<s n="pr"/><s n="aa"/><d/></r></p>
+</e>
+<e lm="naturen avkrever respekt → naturen må ein berre ha age for">
+  <i><w/><s n="n"/><t/><s n="def"/><t/><d/></i>
+  <p><l>avkreve<s n="vblex"/></l>   <r>måtte<s n="vblex"/></r></p> <i><t/><d/></i>
+  <p><l></l>                           <r>man<s n="prn"/><s n="pers"/><s n="p3"/><s n="un"/><s n="sg"/><s n="nom"/><s n="aa"/><d/></r></p>
+  <p><l></l>                           <r>bare<s n="adv"/><s n="aa"/><d/></r></p>
+  <p><l></l>                           <r>ha<s n="vblex"/><s n="inf"/><s n="aa"/><d/></r></p>
+  <p><l>respekt<s n="n"/></l>          <r>age<s n="n"/></r></p> <i><t/><d/></i>
+  <p><l></l>                           <r>for<s n="pr"/><s n="aa"/><d/></r></p>
+</e>
+<e lm="avkreve + respekt fra → be + om respekt fra">
+  <p><l>avkreve<s n="vblex"/></l>   <r>be<s n="vblex"/></r></p> <i><t/><d/></i>
+  <par n="ANYWORD|"/>
+  <p><l></l>                           <r>om<s n="pr"/><s n="aa"/><d/></r></p>
+  <i>respekt<s n="n"/><t/><d/></i>
+  <i><w/><s n="pr"/><t/><d/></i>
+</e>
+<e lm="avkreve + respekt → stå + det respekt av">
+  <p><l>avkreve<s n="vblex"/></l>   <r>stå<s n="vblex"/></r></p> <i><t/><d/></i>
+  <par n="ANYWORD|"/>
+  <p><l></l>                           <r>den<s n="det"/><s n="dem"/><s n="nt"/><s n="sg"/><s n="aa"/><d/></r></p>
+  <i>respekt<s n="n"/><t/><d/></i>
+  <p><l></l>                <r>av<s n="pr"/><s n="aa"/><d/></r></p>
+</e>
+
+
+<e lm="som (helt klart) + avtvinge + respekt → som (helt klart) + sette + seg i respekt">
+  <i>som<t/><d/></i>
+  <par n="@ADVERB|empty"/>
+  <p><l>avtvinge<s n="vblex"/></l>   <r>sette<s n="vblex"/></r></p> <i><t/><d/></i>
+  <p><l></l>                           <r>seg<s n="prn"/><s n="ref"/><s n="p3"/><s n="un"/><s n="sp"/><s n="acc"/><s n="aa"/><d/></r></p>
+  <p><l></l>                           <r>i<s n="pr"/><s n="aa"/><d/></r></p>
+  <i>respekt<s n="n"/><t/><d/></i>
+</e>
+<e lm="det + avtvinge + respekt → det + stå + det respekt av">
+  <i>den<t/><s n="nt"/><t/><s n="@subj"/><d/></i>
+  <p><l>avtvinge<s n="vblex"/></l>   <r>stå<s n="vblex"/></r></p> <i><t/><d/></i>
+  <p><l></l>                           <r>den<s n="det"/><s n="dem"/><s n="nt"/><s n="sg"/><s n="aa"/><d/></r></p>
+  <par n="ANYWORD|"/>
+  <i>respekt<s n="n"/><t/><d/></i>
+  <p><l></l>                <r>av<s n="pr"/><s n="aa"/><d/></r></p>
+</e>
+<e lm="ha + avtvunget respekt → ha + vunnet respekt">
+  <i>ha<s n="vblex"/><t/><d/></i>
+  <p><l>avtvinge<s n="vblex"/><s n="pp"/></l>   <r>vinne<s n="vblex"/><s n="pp"/></r></p> <i><t/><d/></i>
+  <i>respekt<s n="n"/><t/><d/></i>
+</e>
+<e lm="avtvinge + respekt blant → sette + seg i respekt blant">
+  <p><l>avtvinge<s n="vblex"/></l>   <r>sette<s n="vblex"/></r></p> <i><t/><d/></i>
+  <p><l></l>                           <r>seg<s n="prn"/><s n="ref"/><s n="p3"/><s n="un"/><s n="sp"/><s n="acc"/><s n="aa"/><d/></r></p>
+  <p><l></l>                           <r>i<s n="pr"/><s n="aa"/><d/></r></p>
+  <i>respekt<s n="n"/><t/><d/></i>
+  <i><w/><s n="pr"/><t/><d/></i>
+</e>
+<e lm="avtvinge + diplomaten respekt → sette + diplomaten seg i respekt">
+  <p><l>avtvinge<s n="vblex"/></l>   <r>sette<s n="vblex"/></r></p> <i><t/><d/></i>
+  <par n="ANYWORD"/>
+  <par n="ANYWORDx3|empty"/>
+  <p><l></l>                           <r>seg<s n="prn"/><s n="ref"/><s n="p3"/><s n="un"/><s n="sp"/><s n="acc"/><s n="aa"/><d/></r></p>
+  <p><l></l>                           <r>i<s n="pr"/><s n="aa"/><d/></r></p>
+  <i>respekt<s n="n"/><t/><d/></i>
+</e>
+
+<e lm="avtvinge + en/ei/et → presse + til å gi en/ei/et">
+  <p><l>avtvinge<s n="adj"/><s n="pp"/></l>   <r>presse<s n="adj"/><s n="pp"/></r></p> <i><t/><d/></i>
+  <p><l></l>                           <r>til<s n="pr"/><s n="aa"/><d/></r></p>
+  <p><l></l>                           <r>å<s n="part"/><s n="aa"/><d/></r></p>
+  <p><l></l>                           <r>gi<s n="vblex"/><s n="inf"/><s n="aa"/><d/></r></p>
+  <i>en<s n="det"/><s n="qnt"/><t/><s n="sg"/><t/><d/></i>
+</e>
+
+<e lm="avtvinge + noen en/ei/et → presse + noen til å gi en/ei/et">
+  <p><l>avtvinge<s n="vblex"/></l>   <r>presse<s n="vblex"/></r></p> <i><t/><d/></i>
+  <i><w/><t/><s n="@i-obj"/><d/></i>
+  <p><l></l>                           <r>til<s n="pr"/><s n="aa"/><d/></r></p>
+  <p><l></l>                           <r>å<s n="part"/><s n="aa"/><d/></r></p>
+  <p><l></l>                           <r>gi<s n="vblex"/><s n="inf"/><s n="aa"/><d/></r></p>
+  <i>en<s n="det"/><s n="qnt"/><t/><s n="sg"/><t/><d/></i>
+</e>
+
+<e lm="avtvinge + noen (noe) → + noen (noe)">
+  <p><l>avtvinge<s n="adj"/><s n="pp"/></l>   <r>presse<s n="adj"/><s n="pp"/></r></p> <i><t/><d/></i>
+  <p><l></l>                           <r>til<s n="pr"/><s n="aa"/><d/></r></p>
+  <p><l></l>                           <r>å<s n="part"/><s n="aa"/><d/></r></p>
+  <p><l></l>                           <r>gi<s n="vblex"/><s n="inf"/><s n="aa"/><d/></r></p>
+  <i>en<s n="det"/><s n="qnt"/><t/><s n="sg"/><t/><d/></i>
 </e>
 
 </section>
