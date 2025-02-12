@@ -5103,7 +5103,23 @@
       <e><i>opp<t/><d/></i></e>
       <e><i>ned<t/><d/></i></e>
     </pardef>
-  
+    
+    <pardef n="rekordhøyt|rekordstort:">
+      <e><p><l>rekordhøy<s n="adj"/><s n="pst"/><s n="nt"/><s n="sg"/><s n="ind"/><t/></l>   <r></r></p></e>
+      <e><p><l>rekordstor<s n="adj"/><s n="pst"/><s n="nt"/><s n="sg"/><s n="ind"/><t/></l>   <r></r></p></e>
+      <e><p><l>rekordartet<s n="adj"/><s n="pst"/><s n="nt"/><s n="sg"/><s n="ind"/><t/></l>   <r></r></p></e>
+    </pardef>
+    
+    <pardef n="høyt|stort">
+      <e><i>høy<s n="adj"/><s n="pst"/><s n="nt"/><s n="sg"/><s n="ind"/><t/><d/></i></e>
+      <e><i>stor<s n="adj"/><s n="pst"/><s n="nt"/><s n="sg"/><s n="ind"/><t/><d/></i></e>
+    </pardef>
+    
+    <pardef n="antal-ord">
+      <e><i>enorm<s n="adj"/><s n="pst"/><s n="nt"/><s n="sg"/><s n="ind"/><t/><d/></i></e>
+      <e><i>utrolig<s n="adj"/><s n="sint"/><s n="pst"/><s n="nt"/><s n="sg"/><s n="ind"/><t/><d/></i></e>
+      <e><i>uendelig<s n="adj"/><s n="pst"/><s n="nt"/><s n="sg"/><s n="ind"/><t/><d/></i></e>
+    </pardef>
 
 
   
@@ -14889,6 +14905,81 @@
       <i>antall<t/></i> <p><l><s n="ind"/></l>   <r><s n="def"/></r> </p> <i><t/><d/></i>
     </e>
 
+    <e lm="et rekordstort/-høyt antall → rekordmange">
+      <p><l>en<s n="det"/><s n="qnt"/><s n="nt"/><s n="sg"/><t/></l>   <r></r></p>    <par n="d:"/>
+      <par n="rekordhøyt|rekordstort:"/>    <par n="d:"/>
+      <p><l>antall<s n="n"/><s n="nt"/><s n="sg"/><s n="ind"/><t/></l>   <r></r></p>    <par n="d:"/>
+      <p><l></l>                <r>rekordmange<s n="det"/><s n="qnt"/><s n="un"/><s n="pl"/><s n="aa"/><d/></r></p>
+    </e>
+
+    <e lm="et rekordlavt antall → rekordfå">
+      <p><l>en<s n="det"/><s n="qnt"/><s n="nt"/><s n="sg"/><t/></l>   <r></r></p>    <par n="d:"/>
+      <p><l>rekordlav<s n="adj"/><s n="sint"/><s n="pst"/><s n="nt"/><s n="sg"/><s n="ind"/><t/></l>   <r></r></p>    <par n="d:"/>
+      <p><l>antall<s n="n"/><s n="nt"/><s n="sg"/><s n="ind"/><t/></l>   <r></r></p>    <par n="d:"/>
+      <p><l></l>                <r>rekordfå<s n="adj"/><s n="sint"/><s n="pst"/><s n="un"/><s n="pl"/><s n="ind"/><s n="aa"/><d/></r></p>
+    </e>
+
+    <e lm="et alarmerende høyt antall → alarmerende mange">
+      <p><l>en<s n="det"/><s n="qnt"/><s n="nt"/><s n="sg"/><t/></l>   <r></r></p>    <par n="d:"/>
+      <par n="adj|adv"/>
+      <par n="stort|høyt:"/> <par n="d:"/>
+      <p><l>antall<s n="n"/><s n="nt"/><s n="sg"/><s n="ind"/><t/></l>   <r></r></p>    <par n="d:"/>
+      <p><l></l>                <r>mange<s n="det"/><s n="qnt"/><s n="un"/><s n="pl"/><s n="aa"/><d/></r></p>
+    </e>
+
+    <e lm="et enormt antall → enormt mange">
+      <p><l>en<s n="det"/><s n="qnt"/><s n="nt"/><s n="sg"/><t/></l>   <r></r></p>    <par n="d:"/>
+      <par n="adj|adv|empty"/>
+      <par n="antal-ord"/>
+      <p><l>antall<s n="n"/><s n="nt"/><s n="sg"/><s n="ind"/><t/></l>   <r></r></p>    <par n="d:"/>
+      <p><l></l>                <r>mange<s n="det"/><s n="qnt"/><s n="un"/><s n="pl"/><s n="aa"/><d/></r></p>
+    </e>
+
+    <e lm="et svært lavt antall X → svært få X">
+      <p><l>en<s n="det"/><s n="qnt"/><s n="nt"/><s n="sg"/><t/></l>   <r></r></p>    <par n="d:"/>
+      <par n="adj|adv"/>
+      <p><l>lavt antall<s n="adj"/><t/></l>   <r></r></p>    <par n="d:"/>
+      <p><l></l>                <r>få<s n="adj"/><s n="sint"/><s n="pst"/><s n="un"/><s n="pl"/><s n="ind"/><s n="aa"/><d/></r></p>
+      <par n="SN"/>
+    </e>
+
+    <e lm="et lavere antall → færre">
+      <p><l>en<s n="det"/><s n="qnt"/><s n="nt"/><s n="sg"/><t/></l>   <r></r></p>    <par n="d:"/>
+      <p><l>lav<s n="adj"/><s n="sint"/><s n="comp"/><s n="un"/><s n="sp"/><t/></l>   <r></r></p>    <par n="d:"/>
+      <p><l>antall<s n="n"/><s n="nt"/><s n="sg"/><s n="ind"/><t/></l>   <r></r></p>    <par n="d:"/>
+      <p><l></l>                <r>få<s n="adj"/><s n="sint"/><s n="comp"/><s n="un"/><s n="sp"/><s n="aa"/><d/></r></p>
+    </e>
+
+    <e lm="et høyere antall → flere">
+      <p><l>en<s n="det"/><s n="qnt"/><s n="nt"/><s n="sg"/><t/></l>   <r></r></p>    <par n="d:"/>
+      <p><l>høy<s n="adj"/><s n="sint"/><s n="comp"/><s n="un"/><s n="sp"/><t/></l>   <r></r></p>    <par n="d:"/>
+      <p><l>antall<s n="n"/><s n="nt"/><s n="sg"/><s n="ind"/><t/></l>   <r></r></p>    <par n="d:"/>
+      <p><l></l>                <r>mange<s n="adj"/><s n="sint"/><s n="comp"/><s n="un"/><s n="sp"/><s n="aa"/><d/></r></p>
+    </e>
+
+    <e lm="et større antall → fleire">
+      <p><l>en<s n="det"/><s n="qnt"/><s n="nt"/><s n="sg"/><t/></l>   <r></r></p>    <par n="d:"/>
+      <p><l>stor<s n="adj"/><s n="sint"/><s n="comp"/><s n="un"/><s n="sp"/><t/></l>   <r></r></p>    <par n="d:"/>
+      <p><l>antall<s n="n"/><s n="nt"/><s n="sg"/><s n="ind"/><t/></l>   <r></r></p>    <par n="d:"/>
+      <p><l></l>                <r>mange<s n="adj"/><s n="sint"/><s n="comp"/><s n="un"/><s n="sp"/><s n="aa"/><d/></r></p>
+    </e>
+
+    <e lm="et mindre antall → nokre få">
+      <p><l>en<s n="det"/><s n="qnt"/><s n="nt"/><s n="sg"/><t/></l>   <r></r></p>    <par n="d:"/>
+      <p><l>liten<s n="adj"/><s n="sint"/><s n="comp"/><s n="un"/><s n="sp"/><t/></l>   <r></r></p>    <par n="d:"/>
+      <p><l>antall<s n="n"/><s n="nt"/><s n="sg"/><s n="ind"/><t/></l>   <r></r></p>    <par n="d:"/>
+      <p><l></l>                <r>noe<s n="det"/><s n="qnt"/><s n="un"/><s n="pl"/><s n="aa"/><d/></r></p>
+      <p><l></l>                <r>få<s n="adj"/><s n="sint"/><s n="pst"/><s n="un"/><s n="pl"/><s n="ind"/><s n="aa"/><d/></r></p>
+    </e>
+
+    <e lm="et redusert antall → litt færre">
+      <p><l>en<s n="det"/><s n="qnt"/><s n="nt"/><s n="sg"/><t/></l>   <r></r></p>    <par n="d:"/>
+      <p><l>redusere<s n="adj"/><s n="pp"/><s n="nt"/><s n="sg"/><s n="ind"/><t/></l>   <r></r></p>    <par n="d:"/>
+      <p><l>antall<s n="n"/><s n="nt"/><s n="sg"/><s n="ind"/><t/></l>   <r></r></p>    <par n="d:"/>
+      <p><l></l>                <r>litt<s n="adv"/><s n="aa"/><d/></r></p>
+      <p><l></l>                <r>få<s n="adj"/><s n="sint"/><s n="comp"/><s n="un"/><s n="sp"/><s n="aa"/><d/></r></p>
+    </e>
+
     <e c="et/eit antall/* på/på → ∅">
       <p><l>en<t/><d/></l>        <r></r></p>
       <p><l>antall<t/><t/><d/></l>   <r></r> </p>
@@ -14981,6 +15072,15 @@
       <p><l></l>           <r>noe<s n="det"/><s n="qnt"/><s n="un"/><s n="pl"/><d/></r></p>
       <p><l>antall<s n="n"/><s n="nt"/><s n="sg"/><s n="ind"/></l> <r>få<s n="adj"/><s n="sint"/><s n="pst"/><s n="un"/><s n="pl"/><s n="ind"/></r></p> <par n="d"/>
       <par n="ncmp*.n"/>
+    </e>
+
+    <e lm="for et avgrenset antall -> for noen få" c="for nokre få">
+      <i><w/><s n="pr"/><t/><d/></i>
+      <p><l>en<s n="det"/><t/></l>  <r></r></p>  <par n="d:"/>
+      <p><l>avgrense<s n="adj"/><s n="pp"/><t/></l>  <r></r></p>  <par n="d:"/>
+      <p><l>antall<s n="n"/><t/></l>  <r></r></p>  <par n="d:"/>
+      <p><l></l>           <r>noe<s n="det"/><s n="qnt"/><s n="un"/><s n="pl"/><d/></r></p>
+      <p><l></l>           <r>få<s n="adj"/><s n="sint"/><s n="pst"/><s n="un"/><s n="pl"/><s n="ind"/><s n="aa"/><d/></r></p>
     </e>
 
     <e lm="override rule for i et ubegrenset antall" c="i et ubegrenset antall">
