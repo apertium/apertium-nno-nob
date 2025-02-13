@@ -6606,6 +6606,23 @@
     <match lemma="på"/>
   </rule>
 <!--SKVETTE: END-->
+
+<!--DRYPE: START-->
+  <rule><match lemma="dryppe" tags="vblex.*"><select lemma="drype"/></match></rule>
+  <rule><match lemma="dryppe" tags="adj.*"><select lemma="drype"/></match></rule>
+
+  <rule weight="2.0">
+    <match lemma="dryppe"><select lemma="drype¹"/></match>
+    <match tags="n.*"/>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="dryppe" tags="vblex.pres.pasv.*"><select lemma="drype¹"/></match>
+  </rule>
+
+
+<!--DRYPE: END-->
+
+
 <!--HENGE/HENGJE: START-->
   <rule><match lemma="henge" tags="vblex.*"><select lemma="henge"/></match></rule>
   <rule><match lemma="henge" tags="adj.*"><select lemma="henge"/></match></rule>
