@@ -2782,15 +2782,14 @@
 
   <rule><match lemma="løpe" tags="vblex.*"><select lemma="springe"/></match></rule>
   <rule><match lemma="løpe" tags="adj.*"><select lemma="springe"/></match></rule>
-  <rule>
-    <match lemma="frist"/>
+  <rule weight="2.0" >
+      <match lemma="frist"/>
     <match lemma="løpe" tags="vblex.*"><select lemma="gå"/></match>
   </rule>
-  <rule>
+  <rule weight="2.0" >
     <match lemma="frist"/>
     <match lemma="løpe" tags="adj.*"><select lemma="gå"/></match>
   </rule>
-
   <rule weight="2.0" c="betalingen løper ut året">
     <or>
       <match lemma="betaling"/>
@@ -2800,6 +2799,16 @@
     </or>
     <repeat from="0" upto="1"><match/></repeat>
     <match lemma="løpe" tags="vblex.*"><select lemma="løpe"/></match>
+  </rule>
+  <rule weight="2.0" c="(kontrakten/avtalen) løper i (ytterligere) tre år">
+    <match lemma="løpe" tags="vblex.*"><select lemma="vare"/></match>
+    <match lemma="i"/>
+    <repeat from="0" upto="1"><match/></repeat>
+    <match tags="det.qnt.*"/>
+    <or>
+      <match lemma="år"/>
+      <match lemma="måned"/>
+    </or>
   </rule>
 
   <rule><match lemma="grusom" tags="adj.*"><select lemma="forferdeleg"/></match></rule>
