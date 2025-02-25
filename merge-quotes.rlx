@@ -2,16 +2,9 @@
 
 DELIMITERS = "." "?" sent ;
 
-WITH ("«") IF
-  (*1 ("»"))
-{
-  ADD (MERGE_BEG) ("«") IF (0 (VAR:sitat.lastå));
-  ADD (MERGE_END) _C1_  IF (0 (VAR:sitat.lastå));
-  # NB: må dessverre ha VAR-sjekken på kvar ADD-regel, det fungerer ikkje å ha den på WITH
-  # kategorien er «lastå» sidan kanskje det kjem andre ting me vil la stå?
-};
 
-
+ADD (MERGE_BEG) ("«") IF (0 (VAR:sitat.lastå)) (*1W ("»"));
+ADD (MERGE_END) ("»") IF (0 (VAR:sitat.lastå)) (-*1W ("«" MERGE_BEG) BARRIER (MERGE_END));
 
 # TODO: Må legga " inn i ordboka for at denne skal fungera :)
 WITH ("\"") IF
