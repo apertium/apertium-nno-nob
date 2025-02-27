@@ -4069,14 +4069,37 @@
   </rule>
 
   <rule><match lemma="avvente" tags="adj.*"><select lemma="avvente"/></match></rule>
-  <rule><match lemma="avvente" tags="vblex.*"><select lemma="vente# på"/></match></rule>
+  <rule><match lemma="avvente" tags="vblex.*"><select lemma="avvente"/></match></rule>
+  <rule weight="2.5">
+    <match lemma="avvente" tags="vblex.pres.pasv.*"><select lemma="avvente"/></match>
+    <repeat from="0" upto="3"><match tags="*"/></repeat>
+  </rule>
+  <rule weight="2.5" c="være/bli avventet -> vere/bli avventa">
+    <or>
+      <match lemma="være"/>
+      <match lemma="bli"/>
+    </or>
+    <repeat from="0" upto="3"><match tags="*"/></repeat>
+    <match lemma="avvente" tags="adj.*"><select lemma="avvente"/></match>
+  </rule>
   <rule weight="2.0" c="avventet med å → venta med å">
     <match lemma="avvente" tags="vblex.*"><select lemma="vente"/></match>
     <or>
       <match lemma="med"/>
+      <match lemma="til"/>
       <match tags="pr.*"/>
       <match lemma="noe"/>      <!-- etter å ha avventet noe, avfyrte han -->
+      <match lemma="så"/>
     </or>
+  </rule>
+  <rule weight="2.0" c="avvente en * -> vente på en">
+    <match lemma="avvente" tags="vblex.*"><select lemma="vente# på"/></match>
+    <match lemma="en" tags="det.qnt.*"/>
+  </rule>
+  <rule weight="2.0" c="avvente og se -> vente og sjå">
+    <match lemma="avvente" tags="vblex.*"><select lemma="vente"/></match>
+    <match lemma="og"/>
+    <match lemma="se"/>
   </rule>
   <rule weight="2.0">
     <match lemma="avvente" tags="vblex.*"><select lemma="sjå# det an"/></match>
@@ -4084,6 +4107,19 @@
       <match lemma=","/>
       <match tags="sent.*"/>
       <match tags="sent.*"/>
+    </or>
+  </rule>
+  <rule weight="2.0" c="avvente det -> sjå an det">
+    <match lemma="avvente" tags="vblex.*"><select lemma="sjå# an"/></match>
+    <or>
+      <match lemma="den" tags="det.dem.*"/>
+      <match lemma="denne" tags="det.dem.*"/>
+    </or>
+  </rule>
+  <rule weight="2.0" c="avvente hva → avvente kva">
+    <match lemma="avvente" tags="vblex.*"><select lemma="avvente"/></match>
+    <or>
+      <match lemma="hva"/>
     </or>
   </rule>
   <rule><match lemma="befeste" tags="vblex.*"><select lemma="styrke"/></match></rule>
