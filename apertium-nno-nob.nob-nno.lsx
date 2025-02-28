@@ -266,6 +266,21 @@
       </e>
     </pardef>
 
+    <pardef n="cm-insert-nosent" c="Not if sent or cm"> 
+      <e>
+        <p><l/><r><d space="no"/></r></p>    <!-- no space before-->
+        <i><w/><s n="sent"/><t/><d space="yes"/></i>
+      </e>
+      <e>
+        <p><l/><r><d space="no"/></r></p>    <!-- no space before-->
+        <i><w/><s n="cm"/><t/><d space="yes"/></i>
+      </e>
+      <e>
+        <p><l/><r><d space="no"/></r></p>    <!-- no space before-->
+        <p><l></l>            <r>,<s n="cm"/><d space="yes"/></r></p>
+      </e>
+    </pardef>
+
     <pardef n="cm|sent">
       <e><par n="cm"/></e>
       <e><par n="sent"/></e>
@@ -537,6 +552,40 @@
     <pardef n="np.ant|np.cog" c="Personnamn">
       <e><i><w/><s n="np"/><s n="ant"/><t/><d/></i></e>
       <e><i><w/><s n="np"/><s n="cog"/><t/><d/></i></e>
+      <e>
+        <i><w/><s n="np"/><s n="ant"/><t/><d/></i>
+        <i><w/><s n="np"/><s n="cog"/><t/><d/></i>
+      </e>
+    </pardef>
+
+    <pardef n="np.cog|np.top" c="Etternamn">
+      <e><i><w/><s n="np"/><s n="top"/><t/><d/></i></e>
+      <e><i><w/><s n="np"/><s n="cog"/><t/><d/></i></e>
+    </pardef>
+
+    <pardef n="fornamn+etternamn" c="fornamn (+ mellomnamn) + etternamn">
+      <e>
+        <i><w/><s n="np"/><s n="ant"/><s n="cgguess"/><t/><d/></i> <!-- feilar? -->
+      </e>
+      <e>
+        <i><w/><s n="np"/><s n="ant"/><t/><d/></i>
+        <par n="np.cog|np.top"/>
+      </e>
+      <e>
+        <i><w/><s n="np"/><s n="ant"/><t/><d/></i>
+        <i><w/><s n="np"/><s n="ant"/><t/><d/></i>
+        <par n="np.cog|np.top"/>
+      </e>
+      <e>
+        <i><w/><s n="np"/><s n="ant"/><t/><d/></i>
+        <par n="np.cog|np.top"/>
+        <par n="np.cog|np.top"/>
+      </e>
+      <e>
+        <i><w/><s n="np"/><s n="ant"/><t/><d/></i>
+        <i><w/><s n="np"/><s n="attr"/><t/><d/></i>
+        <par n="np.cog|np.top"/>
+      </e>
     </pardef>
 
     <pardef n="np.org_guio" c="Requires last part to not end in cmp">
@@ -16760,6 +16809,34 @@
   <p><l>evighet<s n="n"/><s n="m"/><s n="sg"/><s n="def"/><s n="gen"/></l>  <r></r></p>  <par n="d:"/>
   <p><l></l>                                  <r>evig<s n="adj"/><s n="sint"/><s n="pst"/><s n="mf"/><s n="sg"/><s n="ind"/><s n="aa"/><d/></r></p>
   <i><w/><s n="n"/><t/></i>  <par n="d"/>
+</e>
+
+<e lm="EU-kommisjonens leder NN -> lederen for EU-kommisjonen, NN," c="leiaren for EU-kommisjonen, NN,">
+  <p><l></l>                                  <r>leder<s n="n"/><s n="m"/><s n="sg"/><s n="def"/><s n="aa"/><d/></r></p>
+  <p><l></l>                                  <r>for<s n="pr"/><s n="aa"/><d/></r></p>
+  <i>EU-kommisjonen<s n="np"/><s n="org"/></i>
+  <p><l><s n="gen"/></l><r></r></p> <par n="d"/>
+  <p><l>leder<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/></l>  <r></r></p>  <par n="d:"/>
+  <par n="cm-insert"/>
+  <par n="fornamn+etternamn"/>
+  <par n="cm-insert-nosent"/>
+</e>
+
+<e lm="som EU-kommisjonens leder ... -> som leder for EU-kommisjonen ..." c="som leiar for EU-kommisjonen ">
+  <i>som<t/></i>  <par n="d"/>
+  <p><l></l>                                  <r>leder<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/><s n="aa"/><d/></r></p>
+  <p><l></l>                                  <r>for<s n="pr"/><s n="aa"/><d/></r></p>
+  <i>EU-kommisjonen<s n="np"/><s n="org"/></i>
+  <p><l><s n="gen"/></l><r></r></p> <par n="d"/>
+  <p><l>leder<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/></l>  <r></r></p>  <par n="d:"/>
+</e>
+
+<e lm="sier EU-kommisjonens leder ... -> sier lederen for EU-kommisjonen ..." c="seier leiaren for EU-kommisjonen ">
+  <p><l></l>                                  <r>leder<s n="n"/><s n="m"/><s n="sg"/><s n="def"/><s n="aa"/><d/></r></p>
+  <p><l></l>                                  <r>for<s n="pr"/><s n="aa"/><d/></r></p>
+  <i>EU-kommisjonen<s n="np"/><s n="org"/></i>
+  <p><l><s n="gen"/></l><r></r></p> <par n="d"/>
+  <p><l>leder<s n="n"/><s n="m"/><s n="sg"/><s n="ind"/></l>  <r></r></p>  <par n="d:"/>
 </e>
 
 <e lm="Arbeiderpartiets leder NN -> Arbeiderparti-leder NN" c="Arbeidarparti-leiar NN">
