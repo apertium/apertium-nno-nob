@@ -1,7 +1,8 @@
 # -*- cg-pre-pipe: "apertium -d . nob-nno-tagger | cg-conv a" -*-
 
-DELIMITERS = "." "?" sent ;
+CMDARGS += --num-windows 10 ;
 
+DELIMITERS = "." "?" sent ;
 
 ADD (MERGE_BEG) ("«") IF (0 (VAR:sitat.lastå)) (*1W ("»"));
 ADD (MERGE_END) ("»") IF (0 (VAR:sitat.lastå)) (-*1W ("«" MERGE_BEG) BARRIER (MERGE_END));
