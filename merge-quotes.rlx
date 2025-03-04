@@ -4,15 +4,15 @@ CMDARGS += --num-windows 10 ;
 
 DELIMITERS = "." "?" sent ;
 
-ADD (MERGE_BEG) ("«") IF (0 (VAR:sitat.lastå)) (*1W ("»"));
-ADD (MERGE_END) ("»") IF (0 (VAR:sitat.lastå)) (-*1W ("«" MERGE_BEG) BARRIER (MERGE_END));
+ADD (MERGE_BEG) ("«") IF (0 (VAR:sitat.notrans)) (*1W ("»"));
+ADD (MERGE_END) ("»") IF (0 (VAR:sitat.notrans)) (-*1W ("«" MERGE_BEG) BARRIER (MERGE_END));
 
 # TODO: Må legga " inn i ordboka for at denne skal fungera :)
 WITH ("\"") IF
   (*1 ("\"") BARRIER ("\""))
 {
-  ADD (MERGE_BEG) ("\"") IF (0 (VAR:sitat.lastå));
-  ADD (MERGE_END) _C1_   IF (0 (VAR:sitat.lastå));
+  ADD (MERGE_BEG) ("\"") IF (0 (VAR:sitat.notrans));
+  ADD (MERGE_END) _C1_   IF (0 (VAR:sitat.notrans));
 };
 
 
@@ -20,6 +20,6 @@ WITH ("\"") IF
 WITH ("`") IF
   (*1 ("`") BARRIER ("`"))
 {
-  ADD (MERGE_BEG) ("`") IF (0 (VAR:sitat.lastå)); # ev. la denne gå uavhengig av val?
-  ADD (MERGE_END) _C1_  IF (0 (VAR:sitat.lastå)); # (vil vel sjeldan omsetja kodesnuttar?)
+  ADD (MERGE_BEG) ("`") IF (0 (VAR:sitat.notrans)); # ev. la denne gå uavhengig av val?
+  ADD (MERGE_END) _C1_  IF (0 (VAR:sitat.notrans)); # (vil vel sjeldan omsetja kodesnuttar?)
 };
