@@ -196,6 +196,24 @@
     <def-cat n="vblex">
       <cat-item name="vblex"/>
     </def-cat>
+    <def-cat n="prenom_vblex">
+      <cat-item name="cmp_vblex"/>
+    </def-cat>
+    <def-cat n="prenom_prenom_vblex">
+      <cat-item name="cmp_vblex"/>
+      <cat-item name="cmp_cmp_vblex"/>
+    </def-cat>
+    <def-cat n="prenom_prenom_prenom_vblex">
+      <cat-item name="cmp_vblex"/>
+      <cat-item name="cmp_cmp_vblex"/>
+      <cat-item name="cmp_cmp_cmp_vblex"/>
+    </def-cat>
+    <def-cat n="prenom_prenom_prenom_prenom_vblex">
+      <cat-item name="cmp_vblex"/>
+      <cat-item name="cmp_cmp_vblex"/>
+      <cat-item name="cmp_cmp_cmp_vblex"/>
+      <cat-item name="cmp_cmp_cmp_cmp_vblex"/>
+    </def-cat>
   </section-def-cats>
 
 
@@ -1252,6 +1270,77 @@
           </otherwise>
         </choose>
 
+      </action>
+    </rule>
+
+    <rule comment="CHUNK: prenom_vblex">
+      <pattern>
+        <pattern-item n="prenom_vblex"/>
+      </pattern>
+      <action>
+        <let><clip pos="1" part="a_caps"/><lit v=""/></let>
+        <let><clip pos="1" part="a_detriple"/><lit v=""/></let>
+        <out>
+          <lu><clip pos="1" part="whole"/></lu>
+          <lu><clip pos="2" part="whole"/></lu>
+        </out>
+      </action>
+    </rule>
+    <rule comment="CHUNK: prenom_prenom_vblex">
+      <pattern>
+        <pattern-item n="prenom_prenom_vblex"/>
+      </pattern>
+      <action>
+        <let><clip pos="1" part="a_caps"/><lit v=""/></let>
+        <let><clip pos="1" part="a_detriple"/><lit v=""/></let>
+        <let><clip pos="2" part="a_caps"/><lit v=""/></let>
+        <let><clip pos="2" part="a_detriple"/><lit v=""/></let>
+        <out>
+          <lu><clip pos="1" part="whole"/></lu>
+          <lu><clip pos="2" part="whole"/></lu>
+          <lu><clip pos="3" part="whole"/></lu>
+        </out>
+      </action>
+    </rule>
+    <rule comment="CHUNK: prenom_prenom_prenom_vblex">
+      <pattern>
+        <pattern-item n="prenom_prenom_prenom_vblex"/>
+      </pattern>
+      <action>
+        <let><clip pos="1" part="a_caps"/><lit v=""/></let>
+        <let><clip pos="1" part="a_detriple"/><lit v=""/></let>
+        <let><clip pos="2" part="a_caps"/><lit v=""/></let>
+        <let><clip pos="2" part="a_caps"/><lit v=""/></let>
+        <let><clip pos="3" part="a_detriple"/><lit v=""/></let>
+        <let><clip pos="3" part="a_detriple"/><lit v=""/></let>
+        <out>
+          <lu><clip pos="1" part="whole"/></lu>
+          <lu><clip pos="2" part="whole"/></lu>
+          <lu><clip pos="3" part="whole"/></lu>
+          <lu><clip pos="4" part="whole"/></lu>
+        </out>
+      </action>
+    </rule>
+    <rule comment="CHUNK: prenom_prenom_prenom_prenom_vblex">
+      <pattern>
+        <pattern-item n="prenom_prenom_prenom_prenom_vblex"/>
+      </pattern>
+      <action>
+        <let><clip pos="1" part="a_caps"/><lit v=""/></let>
+        <let><clip pos="1" part="a_detriple"/><lit v=""/></let>
+        <let><clip pos="2" part="a_caps"/><lit v=""/></let>
+        <let><clip pos="2" part="a_caps"/><lit v=""/></let>
+        <let><clip pos="3" part="a_detriple"/><lit v=""/></let>
+        <let><clip pos="3" part="a_detriple"/><lit v=""/></let>
+        <let><clip pos="4" part="a_detriple"/><lit v=""/></let>
+        <let><clip pos="4" part="a_detriple"/><lit v=""/></let>
+        <out>
+          <lu><clip pos="1" part="whole"/></lu>
+          <lu><clip pos="2" part="whole"/></lu>
+          <lu><clip pos="3" part="whole"/></lu>
+          <lu><clip pos="4" part="whole"/></lu>
+          <lu><clip pos="5" part="whole"/></lu>
+        </out>
       </action>
     </rule>
 
