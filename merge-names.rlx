@@ -158,3 +158,9 @@ SUBSTITUTE:nom (cgguess     np top) (np top cgguess    ) (cgguess     np top) - 
 
 SUBSTITUTE:gen (cgguess gen np org) (np org cgguess gen) (cgguess gen np org)         ;
 SUBSTITUTE:nom (cgguess     np org) (np org cgguess    ) (cgguess     np org) - (gen) ;
+
+# Only ant has gender in cgguess:
+SUBSTITUTE:m (m)  (*) (cgguess m) - (ant) ;
+SUBSTITUTE:f (f)  (*) (cgguess f) - (ant) ;
+SUBSTITUTE:nt (nt) (*) (cgguess nt) - (ant) ;
+
