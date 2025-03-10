@@ -9651,7 +9651,10 @@
         </call-macro>
 
         <let><clip pos="1" side="tl" part="cas"/><lit v=""/></let>
-        <let><clip pos="2" side="tl" part="art_sg"/><lit-tag v="mf.sg.ind"/></let>
+        <choose><when>
+          <test><equal><clip pos="2" side="tl" part="grau"/><lit-tag v="pst"/></equal></test>
+          <let><clip pos="2" side="tl" part="art_sg"/><lit-tag v="mf.sg.ind"/></let>
+        </when></choose>
 
         <out>
           <chunk name="adj_n" case="caseFirstWord">
@@ -9683,11 +9686,11 @@
       </action>
     </rule>
 
-    <rule comment="administrerende direktør i selskapet → administrerande direktør i selskapet">
+    <rule comment="selskapets administrerende direktør → administrerande direktør i selskapet">
       <pattern>
-        <pattern-item n="ngen.parti"/>     <!-- forbund, organisasjon, selskap osv.  -->
-        <pattern-item n="adj"/>           <!-- 2 -->
-        <pattern-item n="nsgind.direktør"/>        <!-- 3 direktør, leiar osv. -->
+        <pattern-item n="ngen.parti"/>      <!-- 1. selskapets osb.  -->
+        <pattern-item n="adj"/>             <!-- 2. administrerende osb.  -->
+        <pattern-item n="nsgind.direktør"/> <!-- 3. direktør osb. -->
       </pattern>
       <action>
         <call-macro n="set_caseFirstWord3">
@@ -9697,18 +9700,19 @@
         </call-macro>
 
         <let><clip pos="1" side="tl" part="cas"/><lit v=""/></let>
-        <let><clip pos="2" side="tl" part="art_sg"/><lit-tag v="mf.sg.ind"/></let>
+        <choose><when>
+          <test><equal><clip pos="2" side="tl" part="grau"/><lit-tag v="pst"/></equal></test>
+          <let><clip pos="2" side="tl" part="art_sg"/><lit-tag v="mf.sg.ind"/></let>
+        </when></choose>
 
         <out>
           <chunk name="adj_n" case="caseFirstWord">
             <tags>
               <tag><clip pos="2" side="tl" part="tags"/></tag>
             </tags>
-
-            <lu><clip pos="2" side="tl" part="whole"/></lu> <!-- {^finanspolitisk<adj><pst><un><sp><def>$ ^talsperson<n><m><sg><ind>$}$  -->
+            <lu><clip pos="2" side="tl" part="whole"/></lu> <!-- administrerende -->
             <b/>
-            <lu><clip pos="3" side="tl" part="whole"/></lu>
-
+            <lu><clip pos="3" side="tl" part="whole"/></lu> <!-- direktør -->
           </chunk>
           <b/>
           <chunk name="pr">
@@ -9718,7 +9722,7 @@
           <b/>
           <chunk name="nn">
             <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
-            <lu><clip pos="1" side="tl" part="whole"/></lu>
+            <lu><clip pos="1" side="tl" part="whole"/></lu> <!-- selskapet -->
           </chunk>
         </out>
       </action>
