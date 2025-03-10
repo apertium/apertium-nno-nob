@@ -12408,6 +12408,16 @@ preposisjonar gir ekstra utfordringar. -->
 
   <rule> <match lemma="ytterlighet" tags="n.*.pl.*"> <select lemma="ytterlegheit"/> </match> </rule>
   <rule> <match lemma="ytterlighet" tags="n.*.sg.*"> <select lemma="ytterkant"/> </match> </rule>
-  
+
+  <rule c="oversvømmelser → flaum">
+    <match lemma="oversvømmelse"><select lemma="flaum" tags="n.*.sg.*"/></match>
+  </rule>
+  <rule weight="2.0" c="lokale oversvømmelser → lokale flaumar">
+    <match tags="adj.*.pl.*"/>
+    <match lemma="oversvømmelse" tags="n.*"><select lemma="flaum" tags="n.*.pl.*"/></match>
+  </rule>
+  <rule weight="2.0" c="oversvømmelsene → flaumane">
+    <match lemma="oversvømmelse" tags="n.*.def.*"><select lemma="flaum" tags="n.*.pl.*"/></match>
+  </rule>
 </rules>
 </lrx>
