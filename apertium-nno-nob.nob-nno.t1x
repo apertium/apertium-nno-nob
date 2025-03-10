@@ -13735,6 +13735,7 @@ no lemq-moving">
       </pattern>
       <action>
         <let><clip pos="1" side="tl" part="a_caps"/><lit v=""/></let>
+        <let><clip pos="1" side="tl" part="a_remspc"/><lit v=""/></let> <!-- can happen if lsx decides to move stuff around :-/ -->
         <call-macro n="flush-mwe-queue"><with-param pos="1"/></call-macro>
         <let><var n="caseFirstWord"/><lit v=""/></let>
         <choose><when>
