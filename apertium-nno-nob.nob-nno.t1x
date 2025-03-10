@@ -1017,6 +1017,9 @@
       <cat-item tags="guio"/>
       <cat-item tags="guio.*"/>
     </def-cat>
+    <def-cat n="default">
+      <cat-item tags="*"/>
+    </def-cat>
   </section-def-cats>
   <section-def-attrs>
     <def-attr n="a_caps">
@@ -9406,6 +9409,7 @@
         <pattern-item n="personnamn"/> <!-- 6 -->
       </pattern>
       <action>
+        <let><clip pos="3" side="tl" part="a_caps"/><lit v=""/></let>
         <call-macro n="set_gen-prep_np.org"><with-param pos="1"/></call-macro>
         <choose><when c="Skip if name is gen/cmp – or if not in in org-gen-i etc. lists">
           <test><or>
@@ -11884,6 +11888,7 @@ no lemq-moving">
           </or></test>
           <reject-current-rule shifting="0"/>
         </when></choose>
+        <let><clip pos="2" side="tl" part="a_caps"/><lit v=""/></let>
         <call-macro n="set_gender2.n.adj"><with-param pos="4"/><with-param pos="1"/></call-macro> <!-- was set_gender2.n.pre-adj, but before comma the adj should be unambiguously modifying noun -->
         <call-macro n="set_gender2.n.adj"><with-param pos="4"/><with-param pos="3"/></call-macro>
 
@@ -11954,6 +11959,7 @@ no lemq-moving">
           </or></test>
           <reject-current-rule shifting="0"/>
         </when></choose>
+        <let><clip pos="3" side="tl" part="a_caps"/><lit v=""/></let>
         <call-macro n="set_gender2.n.adj"><with-param pos="5"/><with-param pos="2"/></call-macro> <!-- was set_gender2.n.pre-adj, but before comma the adj should be unambiguously modifying noun -->
         <call-macro n="set_gender2.n.adj"><with-param pos="5"/><with-param pos="4"/></call-macro>
 
@@ -12027,6 +12033,7 @@ no lemq-moving">
           </or></test>
           <reject-current-rule shifting="0"/>
         </when></choose>
+        <let><clip pos="3" side="tl" part="a_caps"/><lit v=""/></let>
         <call-macro n="set_gender2.n.adj"><with-param pos="6"/><with-param pos="2"/></call-macro> <!-- was set_gender2.n.pre-adj, but before comma the adj should be unambiguously modifying noun -->
         <call-macro n="set_gender2.n.adj"><with-param pos="6"/><with-param pos="5"/></call-macro>
 
@@ -12103,6 +12110,8 @@ no lemq-moving">
           </or></test>
           <reject-current-rule shifting="0"/>
         </when></choose>
+        <let><clip pos="2" side="tl" part="a_caps"/><lit v=""/></let>
+        <let><clip pos="4" side="tl" part="a_caps"/><lit v=""/></let>
         <call-macro n="set_gender2.n.adj"><with-param pos="6"/><with-param pos="1"/></call-macro> <!-- was set_gender2.n.pre-adj, but before comma the adj should be unambiguously modifying noun -->
         <call-macro n="set_gender2.n.adj"><with-param pos="6"/><with-param pos="3"/></call-macro>
         <call-macro n="set_gender2.n.adj"><with-param pos="6"/><with-param pos="5"/></call-macro>
@@ -13706,14 +13715,12 @@ no lemq-moving">
         <pattern-item n="cm"/>
       </pattern>
       <action>
+        <let><clip pos="1" side="tl" part="a_caps"/><lit v=""/></let>
         <call-macro n="flush-mwe-queue"><with-param pos="1"/></call-macro>
         <out>
           <chunk name="cm">
             <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
-            <lu>
-              <clip pos="1" side="tl" part="lemh"/>
-              <lit-tag v="cm"/>
-            </lu>
+            <lu><clip pos="1" side="tl" part="whole"/></lu>
           </chunk>
         </out>
         <call-macro n="set_prevlem"><with-param pos="1"/></call-macro>
@@ -13806,6 +13813,21 @@ no lemq-moving">
           </chunk>
         </out>
         <call-macro n="set_prevlem"><with-param pos="1"/></call-macro>
+      </action>
+    </rule>
+
+    <rule comment="DEFAULT: just drop aa tag and output">
+      <pattern>
+        <pattern-item n="default"/>
+      </pattern>
+      <action>
+        <let><clip pos="1" side="tl" part="a_caps"/><lit v=""/></let>
+        <out>
+          <chunk name="default">
+            <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
+            <lu><clip pos="1" side="tl" part="whole"/></lu>
+          </chunk>
+        </out>
       </action>
     </rule>
 
