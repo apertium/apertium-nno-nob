@@ -10096,6 +10096,7 @@
           <with-param pos="2"/>
         </call-macro>
         <let><clip pos="3" side="tl" part="a_remspc"/><lit v=""/></let>
+        <let><clip pos="3" side="tl" part="a_caps"/><lit v=""/></let>
         <out>
           <chunk name="adv" case="caseFirstWord">
             <tags><tag><lit-tag v="adv"/></tag></tags>
@@ -13055,11 +13056,11 @@ no lemq-moving">
     <rule comment="ADJ N_EINING N CNJCOO N
                    [Nå testes] femte generasjon Kia og Ford → [No blir] femte generasjon Kia og Ford [testa]">
       <pattern>
-        <pattern-item n="adj_OR_detqnt"/> <!-- TODO support for det -->
-        <pattern-item n="n_eining"/>
-        <pattern-item n="n_np"/>
-        <pattern-item n="cnjcoo_nkon"/>
-        <pattern-item n="n_np"/>
+        <pattern-item n="adj_OR_detqnt"/> <!-- 1. siste --> <!-- TODO support for det -->
+        <pattern-item n="n_eining"/>      <!-- 2. generasjon -->
+        <pattern-item n="n_np"/>          <!-- 3. bensin- -->
+        <pattern-item n="cnjcoo_nkon"/>   <!-- 4. og -->
+        <pattern-item n="n_np"/>          <!-- 5. dieselbiler -->
       </pattern>
       <action>
         <choose><when>
@@ -13087,6 +13088,7 @@ no lemq-moving">
         </call-macro>
         <call-macro n="out_gen-prep"><with-param pos="2"/></call-macro>
         <call-macro n="stash_case_in_ntags1"><with-param pos="2"/></call-macro>
+        <let><clip pos="5" side="tl" part="a_caps"/><lit v=""/></let>
         <choose><when>
           <test><equal><clip pos="1" side="tl" part="grau"/><lit-tag v="sup"/></equal></test>
           <append n="ntags"><lit-tag v="sup"/></append>

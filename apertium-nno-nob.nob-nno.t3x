@@ -200,6 +200,11 @@
 
 
   <section-def-attrs>
+    <def-attr n="a_caps">
+      <attr-item tags="aa"/>
+      <attr-item tags="AA"/>
+      <attr-item tags="Aa"/>
+    </def-attr>
     <def-attr n="a_adj">
       <attr-item tags="adj"/>
       <attr-item tags="adj.pp"/>
@@ -243,6 +248,9 @@
     <def-attr n="a_defdrop" c="Mark that we'd like to change defnes to ind in t3x">
       <attr-item tags="defdrop"/>
       <attr-item tags="gendefdrop"/> <!-- the object would like to drop the genitive's defnes -->
+    </def-attr>
+    <def-attr n="a_detriple">
+      <attr-item tags="detriple"/>
     </def-attr>
     <def-attr n="a_verb">
       <attr-item tags="vblex"/>
@@ -556,7 +564,6 @@
           <let><clip pos="1" part="nbr"/><clip pos="2" part="nbr"/></let>
         </when></choose>
         <call-macro n="apply_casedrop_defdrop"><with-param pos="1"/><with-param pos="2"/></call-macro>
-
       </when></choose>
     </def-macro>
 
@@ -673,6 +680,8 @@
                   arg2: Head noun
                   arg3: Chunk
                   Assumes apply_chunk_defnes_to_adj has been called if last word before head noun">
+      <let><clip pos="1" part="a_caps"/><lit v=""/></let>
+      <let><clip pos="1" part="a_detriple"/><lit v=""/></let>
       <choose>
         <when c="1 cmp">
           <test><not><equal><clip pos="1" part="a_cmp"/><lit v=""/></equal></not></test>
