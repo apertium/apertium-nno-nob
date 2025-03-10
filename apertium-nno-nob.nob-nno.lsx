@@ -200,6 +200,12 @@
       <e><i><s n="Aa"/></i></e>
       <e><i><s n="AA"/></i></e>
     </pardef>
+    <pardef n="aa:" c="Delete aa tag if it exists (includes empty)">
+      <e></e>
+      <e><p><l><s n="aa"/></l> <r></r></p></e>
+      <e><p><l><s n="Aa"/></l> <r></r></p></e>
+      <e><p><l><s n="AA"/></l> <r></r></p></e>
+    </pardef>
     <pardef n="d" c="Copy over word-separator with optional preceding aa and function tag">
       <e><par n="aa|"/><par n="@x|"/><i><d/></i></e>
     </pardef>
@@ -1786,6 +1792,19 @@
       <e><par n="ncmp*"/><i><w/><s n="n"/><t/><s n="pl"/></i>  <p><l><s n="ind"/></l><r><s n="def"/></r></p> <par n="d"/></e>
     </pardef>
 
+    <pardef n="nbr2sg">
+      <e>  <p><l><s n="pl"/></l><r><s n="sg"/></r></p></e>
+      <e>  <p><l><s n="sg"/></l><r><s n="sg"/></r></p></e>
+    </pardef>
+
+    <pardef n="nbr.def.gen2sg.ind.cmp" c="Drops aa tag (not used in cmp)">
+      <e>
+        <par n="nbr2sg"/>
+        <p><l><s n="def"/><s n="gen"/></l> <r><s n="ind"/><s n="cmp"/></r></p>
+        <par n="aa:"/>
+      </e>
+    </pardef>
+
     <!-- S-GENITIV - SAMANSKRIVING -->
     <pardef n="genitiv2cmp" c="politiets arrest -> politiarresten; jf. t1x-reglar">
       <e c="barnas hovedstad -> barnehovudstaden">
@@ -1796,25 +1815,25 @@
       </e>
       <e c="krigens utbrudd -> krigsutbrotet">
         <i>krig<s n="n"/><t/></i>
-        <p><l><s n="def"/><s n="gen"/><s n="aa"/></l> <r><s n="ind"/><s n="cmp"/></r></p>  <par n="d"/>
+        <par n="nbr.def.gen2sg.ind.cmp"/>  <par n="d"/>
         <i>utbrudd<s n="n"/><t/></i>
         <p><l><s n="ind"/></l> <r><s n="def"/></r></p> <par n="aa_d"/>
       </e>
       <e c="jungelens lov -> jungellova">
         <i>jungel<s n="n"/><t/></i>
-        <p><l><s n="def"/><s n="gen"/><s n="aa"/></l> <r><s n="ind"/><s n="cmp"/></r></p>  <par n="d"/>
+        <par n="nbr.def.gen2sg.ind.cmp"/>  <par n="d"/>
         <i>lov<s n="n"/><t/></i>
         <p><l><s n="ind"/></l> <r><s n="def"/></r></p> <par n="aa_d"/>
       </e>
       <e c="verdens hav -> verdshava">
         <i>verd<s n="n"/><t/></i>
-        <p><l><s n="def"/><s n="gen"/><s n="aa"/></l> <r><s n="ind"/><s n="cmp"/></r></p>  <par n="d"/>
+        <par n="nbr.def.gen2sg.ind.cmp"/>  <par n="d"/>
         <i>hav<s n="n"/><t/></i>
         <p><l><s n="ind"/></l> <r><s n="def"/></r></p> <par n="aa_d"/>
       </e>
       <e c="verdens kulturarv -> verdskulturarven">
         <i>verd<s n="n"/><t/></i>
-        <p><l><s n="def"/><s n="gen"/><s n="aa"/></l> <r><s n="ind"/><s n="cmp"/></r></p>  <par n="d"/>
+        <par n="nbr.def.gen2sg.ind.cmp"/>  <par n="d"/>
         <i>kulturarv<s n="n"/><t/></i>
         <p><l><s n="ind"/></l> <r><s n="def"/></r></p> <par n="aa_d"/>
       </e>
@@ -1826,96 +1845,96 @@
       </e>
       <e c="politiarresten">
         <i>politi<s n="n"/><t/></i>
-        <p><l><s n="def"/><s n="gen"/><s n="aa"/></l> <r><s n="ind"/><s n="cmp"/></r></p>  <par n="d"/>
+        <par n="nbr.def.gen2sg.ind.cmp"/>  <par n="d"/>
         <i>arrest<s n="n"/><t/></i>
         <p><l><s n="ind"/></l> <r><s n="def"/></r></p> <par n="aa_d"/>
       </e>
       <e c="politinærværet">
         <i>politi<s n="n"/><t/></i>
-        <p><l><s n="def"/><s n="gen"/><s n="aa"/></l> <r><s n="ind"/><s n="cmp"/></r></p>  <par n="d"/>
+        <par n="nbr.def.gen2sg.ind.cmp"/>  <par n="d"/>
         <i>nærvær<s n="n"/><t/></i>
         <p><l><s n="ind"/></l> <r><s n="def"/></r></p> <par n="aa_d"/>
       </e>
       <e c="politimannskapa">
         <i>politi<s n="n"/><t/></i>
-        <p><l><s n="def"/><s n="gen"/><s n="aa"/></l> <r><s n="ind"/><s n="cmp"/></r></p>  <par n="d"/>
+        <par n="nbr.def.gen2sg.ind.cmp"/>  <par n="d"/>
         <i>mannskap<s n="n"/><t/></i>
         <p><l><s n="ind"/></l> <r><s n="def"/></r></p> <par n="aa_d"/>
       </e>
       <e c="politidrapa">
         <i>politi<s n="n"/><t/></i>
-        <p><l><s n="def"/><s n="gen"/><s n="aa"/></l> <r><s n="ind"/><s n="cmp"/></r></p>  <par n="d"/>
+        <par n="nbr.def.gen2sg.ind.cmp"/>  <par n="d"/>
         <i>drap<s n="n"/><t/></i>
         <p><l><s n="ind"/></l> <r><s n="def"/></r></p> <par n="aa_d"/>
       </e>
       <e c="polititeknikarane">
         <i>politi<s n="n"/><t/></i>
-        <p><l><s n="def"/><s n="gen"/><s n="aa"/></l> <r><s n="ind"/><s n="cmp"/></r></p>  <par n="d"/>
+        <par n="nbr.def.gen2sg.ind.cmp"/>  <par n="d"/>
         <i>tekniker<s n="n"/><t/></i>
         <p><l><s n="ind"/></l> <r><s n="def"/></r></p> <par n="aa_d"/>
       </e>
       <e c="politiarbeidet">
         <i>politi<s n="n"/><t/></i>
-        <p><l><s n="def"/><s n="gen"/><s n="aa"/></l> <r><s n="ind"/><s n="cmp"/></r></p>  <par n="d"/>
+        <par n="nbr.def.gen2sg.ind.cmp"/>  <par n="d"/>
         <i>arbeid<s n="n"/><t/></i>
         <p><l><s n="ind"/></l> <r><s n="def"/></r></p> <par n="aa_d"/>
       </e>
       <e c="politisperringane">
         <i>politi<s n="n"/><t/></i>
-        <p><l><s n="def"/><s n="gen"/><s n="aa"/></l> <r><s n="ind"/><s n="cmp"/></r></p>  <par n="d"/>
+        <par n="nbr.def.gen2sg.ind.cmp"/>  <par n="d"/>
         <i>sperring<s n="n"/><t/></i>
         <p><l><s n="ind"/></l> <r><s n="def"/></r></p> <par n="aa_d"/>
       </e>
       <e c="politiinnsatsen">
         <i>politi<s n="n"/><t/></i>
-        <p><l><s n="def"/><s n="gen"/><s n="aa"/></l> <r><s n="ind"/><s n="cmp"/></r></p>  <par n="d"/>
+        <par n="nbr.def.gen2sg.ind.cmp"/>  <par n="d"/>
         <i>innsats<s n="n"/><t/></i>
         <p><l><s n="ind"/></l> <r><s n="def"/></r></p> <par n="aa_d"/>
       </e>
       <e c="politiregisteret">
         <i>politi<s n="n"/><t/></i>
-        <p><l><s n="def"/><s n="gen"/><s n="aa"/></l> <r><s n="ind"/><s n="cmp"/></r></p>  <par n="d"/>
+        <par n="nbr.def.gen2sg.ind.cmp"/>  <par n="d"/>
         <i>register<s n="n"/><t/></i>
         <p><l><s n="ind"/></l> <r><s n="def"/></r></p> <par n="aa_d"/>
       </e>
       <e c="politiaksjonen">
         <i>politi<s n="n"/><t/></i>
-        <p><l><s n="def"/><s n="gen"/><s n="aa"/></l> <r><s n="ind"/><s n="cmp"/></r></p>  <par n="d"/>
+        <par n="nbr.def.gen2sg.ind.cmp"/>  <par n="d"/>
         <i>aksjon<s n="n"/><t/></i>
         <p><l><s n="ind"/></l> <r><s n="def"/></r></p> <par n="aa_d"/>
       </e>
       <e c="politivaretekt">
         <i>politi<s n="n"/><t/></i>
-        <p><l><s n="def"/><s n="gen"/><s n="aa"/></l> <r><s n="ind"/><s n="cmp"/></r></p>  <par n="d"/>
+        <par n="nbr.def.gen2sg.ind.cmp"/>  <par n="d"/>
         <i>varetekt<s n="n"/><t/></i> <par n="aa_d"/>
       </e>
       <e c="jernbanens kunder -> jernbanekundene">
         <i>jernbane<s n="n"/><t/></i>
-        <p><l><s n="def"/><s n="gen"/><s n="aa"/></l> <r><s n="ind"/><s n="cmp"/></r></p>  <par n="d"/>
+        <par n="nbr.def.gen2sg.ind.cmp"/>  <par n="d"/>
         <i>kunde<s n="n"/><t/></i>
         <p><l><s n="ind"/></l> <r><s n="def"/></r></p> <par n="aa_d"/>
       </e>
       <e c="havbotnen">
         <i>hav<s n="n"/><t/></i>
-        <p><l><s n="def"/><s n="gen"/><s n="aa"/></l> <r><s n="ind"/><s n="cmp"/></r></p>  <par n="d"/>
+        <par n="nbr.def.gen2sg.ind.cmp"/>  <par n="d"/>
         <i>bunn<s n="n"/><t/></i>
         <p><l><s n="ind"/></l> <r><s n="def"/></r></p> <par n="aa_d"/>
       </e>
       <e c="havhelsa">
         <i>hav<s n="n"/><t/></i>
-        <p><l><s n="def"/><s n="gen"/><s n="aa"/></l> <r><s n="ind"/><s n="cmp"/></r></p>  <par n="d"/>
+        <par n="nbr.def.gen2sg.ind.cmp"/>  <par n="d"/>
         <i>helse<s n="n"/><t/></i>
         <p><l><s n="ind"/></l> <r><s n="def"/></r></p> <par n="aa_d"/>
       </e>
       <e c="kommunegrensene">
         <i>kommune<s n="n"/><t/></i>
-        <p><l><s n="def"/><s n="gen"/><s n="aa"/></l> <r><s n="ind"/><s n="cmp"/></r></p>  <par n="d"/>
+        <par n="nbr.def.gen2sg.ind.cmp"/>  <par n="d"/>
         <i>grense<s n="n"/><t/></i>
         <p><l><s n="ind"/></l> <r><s n="def"/></r></p> <par n="aa_d"/>
       </e>
       <e c="kommunearkivet">
         <i>kommune<s n="n"/><t/></i>
-        <p><l><s n="def"/><s n="gen"/><s n="aa"/></l> <r><s n="ind"/><s n="cmp"/></r></p>  <par n="d"/>
+        <par n="nbr.def.gen2sg.ind.cmp"/>  <par n="d"/>
         <i>arkiv<s n="n"/><t/></i>
         <p><l><s n="ind"/></l> <r><s n="def"/></r></p> <par n="aa_d"/>
       </e>
@@ -1933,7 +1952,7 @@
       </e>
       <e c="menneskehjernen, kattehjernen o.l.">
         <i><w/><s n="n"/><t/></i>
-        <p><l><s n="def"/><s n="gen"/><s n="aa"/></l> <r><s n="ind"/><s n="cmp"/></r></p>  <par n="d"/>
+        <par n="nbr.def.gen2sg.ind.cmp"/>  <par n="d"/>
         <i>hjerne<s n="n"/><t/></i>
         <p><l><s n="ind"/></l> <r><s n="def"/></r></p> <par n="aa_d"/>
       </e>
@@ -1952,41 +1971,41 @@
       <e c="framtidslaget"> <!-- førebels innleiande ord, bør ha prioritet (også først i setning) -->
         <i><w/><t/></i>  <par n="d"/>
         <par n="framtid-fremtid"/>
-        <p><l><s n="def"/><s n="gen"/><s n="aa"/></l> <r><s n="ind"/><s n="cmp"/></r></p>  <par n="d"/>
+        <par n="nbr.def.gen2sg.ind.cmp"/>  <par n="d"/>
         <i>lag<s n="n"/><t/></i>
         <p><l><s n="ind"/></l> <r><s n="def"/></r></p> <par n="aa_d"/>
       </e>
       <e c="framtidssamfunnet"> <!-- førebels, bør ha prioritet -->
         <i><w/><t/></i>  <par n="d"/>
         <par n="framtid-fremtid"/>
-        <p><l><s n="def"/><s n="gen"/><s n="aa"/></l> <r><s n="ind"/><s n="cmp"/></r></p>  <par n="d"/>
+        <par n="nbr.def.gen2sg.ind.cmp"/>  <par n="d"/>
         <i>samfunn<s n="n"/><t/></i>
         <p><l><s n="ind"/></l> <r><s n="def"/></r></p> <par n="aa_d"/>
       </e>
       <e c="framtidsnæringane"> <!-- førebels, bør ha prioritet -->
         <i><w/><t/></i>  <par n="d"/>
         <par n="framtid-fremtid"/>
-        <p><l><s n="def"/><s n="gen"/><s n="aa"/></l> <r><s n="ind"/><s n="cmp"/></r></p>  <par n="d"/>
+        <par n="nbr.def.gen2sg.ind.cmp"/>  <par n="d"/>
         <i>næring<s n="n"/><t/></i>
         <p><l><s n="ind"/></l> <r><s n="def"/></r></p> <par n="aa_d"/>
       </e>
       <e c="framtidsoppgåvene"> <!-- førebels, bør ha prioritet -->
         <i><w/><t/></i>  <par n="d"/>
         <par n="framtid-fremtid"/>
-        <p><l><s n="def"/><s n="gen"/><s n="aa"/></l> <r><s n="ind"/><s n="cmp"/></r></p>  <par n="d"/>
+        <par n="nbr.def.gen2sg.ind.cmp"/>  <par n="d"/>
         <i>oppgave<s n="n"/><t/></i>
         <p><l><s n="ind"/></l> <r><s n="def"/></r></p> <par n="aa_d"/>
       </e>
       <e c="framtidsløysingane"> <!-- førebels, bør ha prioritet; 'Fjerdingstad seier at framtidsløysingane for miljøvennleg energi ligg i mange teknologiar' -->
         <i><w/><t/></i>  <par n="d"/>
         <par n="framtid-fremtid"/>
-        <p><l><s n="def"/><s n="gen"/><s n="aa"/></l> <r><s n="ind"/><s n="cmp"/></r></p>  <par n="d"/>
+        <par n="nbr.def.gen2sg.ind.cmp"/>  <par n="d"/>
         <i>løsning<s n="n"/><t/></i>
         <p><l><s n="ind"/></l> <r><s n="def"/></r></p> <par n="aa_d"/>
       </e>
       <e c="livsopphaldet">
         <i>liv<s n="n"/><t/></i>
-        <p><l><s n="def"/><s n="gen"/><s n="aa"/></l> <r><s n="ind"/><s n="cmp"/></r></p>  <par n="d"/>
+        <par n="nbr.def.gen2sg.ind.cmp"/>  <par n="d"/>
         <i>opphold<s n="n"/><t/></i>
         <p><l><s n="ind"/></l> <r><s n="def"/></r></p> <par n="aa_d"/>
       </e>
@@ -2009,49 +2028,49 @@
       </e>
       <e c="bilbatteriet, elbilbatteriet osv">
         <par n="gen2cmp-bilens-ord"/>
-        <p><l><s n="def"/><s n="gen"/><s n="aa"/></l> <r><s n="ind"/><s n="cmp"/></r></p>  <par n="d"/>
+        <par n="nbr.def.gen2sg.ind.cmp"/>  <par n="d"/>
         <i>batteri<s n="n"/><t/></i>
         <p><l><s n="ind"/></l> <r><s n="def"/></r></p> <par n="aa_d"/>
       </e>
       <e c="bildekka, traktordekka osv.">
         <par n="gen2cmp-bilens-ord"/>
-        <p><l><s n="def"/><s n="gen"/><s n="aa"/></l> <r><s n="ind"/><s n="cmp"/></r></p>  <par n="d"/>
+        <par n="nbr.def.gen2sg.ind.cmp"/>  <par n="d"/>
         <i>dekk<s n="n"/><t/></i>
         <p><l><s n="ind"/></l> <r><s n="def"/></r></p> <par n="aa_d"/>
       </e>
       <e c="skipsbesetninga, skipssida, skipsakslingen, skipslegen osv.">
         <i>skip<s n="n"/><t/></i>
-        <p><l><s n="def"/><s n="gen"/><s n="aa"/></l> <r><s n="ind"/><s n="cmp"/></r></p>  <par n="d"/>
+        <par n="nbr.def.gen2sg.ind.cmp"/>  <par n="d"/>
         <par n="gen2cmp-sms-ord"/>
         <p><l><s n="ind"/></l> <r><s n="def"/></r></p> <par n="aa_d"/>
       </e>
       <e c="jordoverflata, måneoverflata, havoverflata, kometoverlflata osv.">
         <i><w/><s n="n"/><t/></i>
-        <p><l><s n="def"/><s n="gen"/><s n="aa"/></l> <r><s n="ind"/><s n="cmp"/></r></p>  <par n="d"/>
+        <par n="nbr.def.gen2sg.ind.cmp"/>  <par n="d"/>
         <i>overflate<s n="n"/><t/></i>
         <p><l><s n="ind"/></l> <r><s n="def"/></r></p> <par n="aa_d"/>
       </e>
       <e c="jordkrumminga, universkrumminga, halskrumminga osv.">
         <i><w/><s n="n"/><t/></i>
-        <p><l><s n="def"/><s n="gen"/><s n="aa"/></l> <r><s n="ind"/><s n="cmp"/></r></p>  <par n="d"/>
+        <par n="nbr.def.gen2sg.ind.cmp"/>  <par n="d"/>
         <i>krumming<s n="n"/><t/></i>
         <p><l><s n="ind"/></l> <r><s n="def"/></r></p> <par n="aa_d"/>
       </e>
       <e c="planetbanen, solbanen, månebanen, flybanen osv.">
         <i><w/><s n="n"/><t/></i>
-        <p><l><s n="def"/><s n="gen"/><s n="aa"/></l> <r><s n="ind"/><s n="cmp"/></r></p>  <par n="d"/>
+        <par n="nbr.def.gen2sg.ind.cmp"/>  <par n="d"/>
         <i>bane<s n="n"/><t/></i>
         <p><l><s n="ind"/></l> <r><s n="def"/></r></p> <par n="aa_d"/>
       </e>
       <e c="jordatmosfæren, planetatmosfæren osv.">
         <i><w/><s n="n"/><t/></i>
-        <p><l><s n="def"/><s n="gen"/><s n="aa"/></l> <r><s n="ind"/><s n="cmp"/></r></p>  <par n="d"/>
+        <par n="nbr.def.gen2sg.ind.cmp"/>  <par n="d"/>
         <i>atmosfære<s n="n"/><t/></i>
         <p><l><s n="ind"/></l> <r><s n="def"/></r></p> <par n="aa_d"/>
       </e>
       <e c="saksgangen">
         <i>sak<s n="n"/><t/></i>
-        <p><l><s n="def"/><s n="gen"/><s n="aa"/></l> <r><s n="ind"/><s n="cmp"/></r></p>  <par n="d"/>
+        <par n="nbr.def.gen2sg.ind.cmp"/>  <par n="d"/>
         <i>gang<s n="n"/><t/></i>
         <p><l><s n="ind"/></l> <r><s n="def"/></r></p> <par n="aa_d"/>
       </e>
@@ -2069,13 +2088,13 @@
       </e>
       <e c="partiprofil">
         <i>parti<s n="n"/><t/></i>
-        <p><l><s n="def"/><s n="gen"/><s n="aa"/></l> <r><s n="ind"/><s n="cmp"/></r></p>  <par n="d"/>
+        <par n="nbr.def.gen2sg.ind.cmp"/>  <par n="d"/>
         <i>profil<s n="n"/><t/></i>
         <p><l><s n="ind"/></l> <r><s n="def"/></r></p> <par n="aa_d"/>
       </e>
       <e c="løvens hule -> løvehòla">
         <i>løve<s n="n"/><t/></i>
-        <p><l><s n="def"/><s n="gen"/><s n="aa"/></l> <r><s n="ind"/><s n="cmp"/></r></p>  <par n="d"/>
+        <par n="nbr.def.gen2sg.ind.cmp"/>  <par n="d"/>
         <i>hule<s n="n"/><t/></i>
         <p><l><s n="ind"/></l> <r><s n="def"/></r></p> <par n="aa_d"/>
       </e>
@@ -11834,7 +11853,7 @@
     <e lm="alle livets faser  -> alle livsfaser" c="alle livsfasar">
       <i>all<s n="det"/><s n="qnt"/><t/></i>  <par n="d"/>
       <i>liv<s n="n"/><t/></i>
-      <p><l><s n="def"/><s n="gen"/><s n="aa"/></l> <r><s n="ind"/><s n="cmp"/></r></p>  <par n="d"/>
+      <par n="nbr.def.gen2sg.ind.cmp"/>  <par n="d"/>
       <i>fase<t/></i>
     </e>
 
