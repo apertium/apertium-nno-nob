@@ -10234,43 +10234,46 @@
       <pattern>
         <pattern-item n="adv"/>
       </pattern>
-      <action><choose><when c="do nothing if empty target lemma">
-        <test><not><equal><clip pos="1" side="tl" part="lemh"/><lit v=""/></equal></not></test>
-        <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
-        <let><var n="advtags"/><clip pos="1" side="tl" part="tags"/></let>
-        <choose>
-          <when c="Only tag as movable if not in list of bound-adv's">
-            <test><in><clip pos="1" side="tl" part="lemh"/><list n="bound-adv"/></in></test>
+      <action>
+        <let><clip pos="1" side="tl" part="a_caps"/><lit v=""/></let>
+        <choose><when c="do nothing if empty target lemma">
+          <test><not><equal><clip pos="1" side="tl" part="lemh"/><lit v=""/></equal></not></test>
+          <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
+          <let><var n="advtags"/><clip pos="1" side="tl" part="tags"/></let>
+          <choose>
+            <when c="Only tag as movable if not in list of bound-adv's">
+              <test><in><clip pos="1" side="tl" part="lemh"/><list n="bound-adv"/></in></test>
+              <append n="advtags">
+                <lit-tag v="bound-adv"/>
+              </append>
+            </when>
+            <when>
+              <test><in><clip pos="1" side="tl" part="lemh"/><list n="free-adv"/></in></test>
+              <append n="advtags">
+                <lit-tag v="free-adv"/>
+              </append>
+            </when>
+            <otherwise>
+              <append n="advtags">
+                <lit-tag v="sent-adv"/>
+              </append>
+            </otherwise>
+          </choose>
+          <choose><when c="Hack used for PoS change «ubevoktet →  utan tilsyn» (should probably happen in lsx)">
+            <test><in><clip pos="1" side="tl" part="lemh"/><list n="n-movable-adv"/></in></test>
             <append n="advtags">
-              <lit-tag v="bound-adv"/>
+              <lit-tag v="n-movable"/>
             </append>
-          </when>
-          <when>
-            <test><in><clip pos="1" side="tl" part="lemh"/><list n="free-adv"/></in></test>
-            <append n="advtags">
-              <lit-tag v="free-adv"/>
-            </append>
-          </when>
-          <otherwise>
-            <append n="advtags">
-              <lit-tag v="sent-adv"/>
-            </append>
-          </otherwise>
-        </choose>
-        <choose><when c="Hack used for PoS change «ubevoktet →  utan tilsyn» (should probably happen in lsx)">
-          <test><in><clip pos="1" side="tl" part="lemh"/><list n="n-movable-adv"/></in></test>
-          <append n="advtags">
-            <lit-tag v="n-movable"/>
-          </append>
+          </when></choose>
+          <out>
+            <chunk name="adv" case="caseFirstWord">
+              <tags><tag><var n="advtags"/></tag></tags>
+              <lu><clip pos="1" side="tl" part="whole"/></lu>
+            </chunk>
+          </out>
+          <call-macro n="set_prevlem"><with-param pos="1"/></call-macro>
         </when></choose>
-        <out>
-          <chunk name="adv" case="caseFirstWord">
-            <tags><tag><var n="advtags"/></tag></tags>
-            <lu><clip pos="1" side="tl" part="whole"/></lu>
-          </chunk>
-        </out>
-        <call-macro n="set_prevlem"><with-param pos="1"/></call-macro>
-      </when></choose></action>
+      </action>
     </rule>
     <rule comment="så-ADV lenge-ADV/ADJ: så lenge → så lenge">
       <pattern>
