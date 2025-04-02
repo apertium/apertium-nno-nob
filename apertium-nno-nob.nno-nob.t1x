@@ -143,6 +143,13 @@
       <cat-item tags="sent.*"/>
       <cat-item tags="sent"/>
     </def-cat>
+    <def-cat n="remspc">
+      <cat-item tags="sent.clb.remspc"/>
+      <cat-item tags="sent.clb.remspc.*"/>
+    </def-cat>
+    <def-cat n="default">
+      <cat-item tags="*"/>
+    </def-cat>
   </section-def-cats>
 
   <section-def-attrs>
@@ -173,6 +180,9 @@
     </def-attr>
     <def-attr n="voice">
       <attr-item tags="pasv"/>
+    </def-attr>
+    <def-attr n="a_remspc">
+      <attr-item tags="remspc"/>
     </def-attr>
     <def-attr n="a_det">
       <attr-item tags="det"/>
@@ -1220,11 +1230,33 @@
       </action>
     </rule>
 
+    <rule comment="DET REMSPC: remove space inserted by pretransfer">
+      <pattern>
+        <pattern-item n="det"/>
+        <pattern-item n="remspc"/>
+      </pattern>
+      <action>
+        <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
+        <let><clip pos="2" side="tl" part="a_remspc"/><lit v=""/></let>
+        <out>
+          <chunk name="det" case="caseFirstWord">
+            <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
+            <lu><clip pos="1" side="tl" part="whole"/></lu>
+          </chunk>
+          <chunk name="sent" case="caseFirstWord">
+            <tags><tag><clip pos="2" side="tl" part="tags"/></tag></tags>
+            <lu><clip pos="2" side="tl" part="whole"/></lu>
+          </chunk>
+        </out>
+      </action>
+    </rule>
+
     <rule comment="SENT">
       <pattern>
         <pattern-item n="sent"/>
       </pattern>
       <action>
+        <let><clip pos="1" side="tl" part="a_remspc"/><lit v=""/></let>
         <let><var n="caseFirstWord"/><lit v=""/></let>
         <choose><when>
           <test><not><equal><clip pos="1" side="tl" part="lemh"/><lit v=""/></equal></not></test>
