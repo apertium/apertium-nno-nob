@@ -241,6 +241,7 @@
     <def-var n="aux"/>
     <def-var n="blank"/>
     <def-var n="grau_aux"       c="lexical unit containing meir/mest if translating from sint to non-sint"/>
+    <def-var n="lemh-case-reapplied"/>
   </section-def-vars>
 
   <section-def-lists>
@@ -263,28 +264,17 @@
       <let><var n="ntags"/><clip pos="1" side="tl" part="tags"/></let>
     </def-macro>
 
-    <def-macro n="switch_cases" npar="2">
-      <choose>
-        <when>
-          <test><not>
-            <and>
-              <equal><clip pos="2" side="tl" part="lemh"/><lit v="De"/></equal>
-              <equal><clip pos="2" side="tl" part="a_det"/><lit-tag v="det.pos"/></equal>
-              <equal><clip pos="2" side="tl" part="persona"/><lit-tag v="p2"/></equal>
-            </and>
-          </not></test>
-          <let><var n="caseFirstWord"/><get-case-from pos="1"><clip pos="1" side="tl" part="lemh"/></get-case-from></let>
-          <let><clip pos="1" side="tl" part="lemh"/><get-case-from pos="2"><clip pos="1" side="tl" part="lemh"/></get-case-from></let>
-          <modify-case><clip pos="2" side="tl" part="lemh"/><var n="caseFirstWord"/></modify-case>
-        </when>
-      </choose>
-    </def-macro>
-
     <def-macro n="set_caseFirstWord" npar="1">
-      <let><var n="caseFirstWord"/><get-case-from pos="1"><lit v="aa"/></get-case-from></let>
+      <let><var n="caseFirstWord"/><case-of pos="1" part="lemh" side="tl"/></let>
+
+      <!-- If caseFirstWord doesn't truly preserve case, we don't want to modify-case: -->
+      <let><var n="lemh-case-reapplied"/><clip pos="1" side="tl" part="lemh"/></let>
+      <modify-case><var n="lemh-case-reapplied"/><var n="caseFirstWord"/></modify-case>
+
       <choose><when>
         <test><not><or>
-          <equal><get-case-from pos="1"><lit v="aa"/></get-case-from><lit v="AA"/></equal>
+          <not><equal><var n="lemh-case-reapplied"/><clip pos="1" side="tl" part="lemh"/></equal></not>
+          <equal><get-case-from pos="1"><lit v="aa"/></get-case-from><lit v="AA"/></equal> <!-- also keep uppers upper -->
           <ends-with><clip pos="1" side="tl" part="lemh"/><lit v="0"/></ends-with>
           <ends-with><clip pos="1" side="tl" part="lemh"/><lit v="1"/></ends-with>
           <ends-with><clip pos="1" side="tl" part="lemh"/><lit v="2"/></ends-with>
