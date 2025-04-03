@@ -102,6 +102,10 @@
       <attr-item tags="sp"/>
       <attr-item tags="ND"/>
     </def-attr>
+    <def-attr n="a_cmp">
+      <attr-item tags="cmp"/>
+      <attr-item tags="cmp-split"/>
+    </def-attr>
   </section-def-attrs>
 
   <section-def-vars>
@@ -130,45 +134,48 @@
                c="arg.1: noun, arg.2: adjective, arg.3: chunk.
                   Nouns always get chunk defnes.
                   Allow adjectives to turn definite (from chunk defnes), but not indefinite.">
-      <choose><when>
-        <test><not>
-          <and>
-            <equal><clip pos="2" part="nbr"/><lit-tag v="sg"/></equal>
-            <equal><clip pos="1" part="art"/><lit v=""/></equal>
-          </and>
-        </not></test>
-        <let><clip pos="1" part="art"/><clip pos="3" part="art"/></let>
-      </when></choose>
+      <choose><when c="(don't change anything on compound left-side adjectives)">
+        <test><equal><clip pos="2" part="a_cmp"/><lit v=""/></equal></test>
+        <choose><when>
+          <test><not>
+            <and>
+              <equal><clip pos="2" part="nbr"/><lit-tag v="sg"/></equal>
+              <equal><clip pos="1" part="art"/><lit v=""/></equal>
+            </and>
+          </not></test>
+          <let><clip pos="1" part="art"/><clip pos="3" part="art"/></let>
+        </when></choose>
 
-      <choose><when>
-        <test><and>
-          <equal><clip pos="2" part="art"/><lit-tag v="ind"/></equal>
-          <equal><clip pos="3" part="art"/><lit-tag v="def"/></equal>
-        </and></test>
-        <let><clip pos="2" part="art"/><clip pos="3" part="art"/></let>
-      </when></choose>
+        <choose><when>
+          <test><and>
+            <equal><clip pos="2" part="art"/><lit-tag v="ind"/></equal>
+            <equal><clip pos="3" part="art"/><lit-tag v="def"/></equal>
+          </and></test>
+          <let><clip pos="2" part="art"/><clip pos="3" part="art"/></let>
+        </when></choose>
 
-      <choose><when>
-        <test><and>
-          <equal><clip pos="2" part="nbr"/><lit-tag v="pl"/></equal>
-          <equal><clip pos="2" part="art"/><lit-tag v="def"/></equal>
-        </and></test>
-        <let><clip pos="2" part="nbr"/><lit-tag v="sp"/></let>
-      </when></choose>
+        <choose><when>
+          <test><and>
+            <equal><clip pos="2" part="nbr"/><lit-tag v="pl"/></equal>
+            <equal><clip pos="2" part="art"/><lit-tag v="def"/></equal>
+          </and></test>
+          <let><clip pos="2" part="nbr"/><lit-tag v="sp"/></let>
+        </when></choose>
 
-      <choose><when>
-        <test><equal><clip pos="2" part="art"/><lit-tag v="def"/></equal></test>
-        <choose>
-          <when c="pp: always sg and no gender when def">
-            <test><equal><clip pos="2" part="temps"/><lit-tag v="pp"/></equal></test>
-            <let><clip pos="2" part="gen"/><lit v=""/></let>
-            <let><clip pos="2" part="nbr"/><lit-tag v="sg"/></let>
-          </when>
-          <otherwise c="pst/sup: always sp and un when def">
-            <let><clip pos="2" part="gen"/><lit-tag v="un"/></let>
-            <let><clip pos="2" part="nbr"/><lit-tag v="sp"/></let>
-          </otherwise>
-        </choose>
+        <choose><when>
+          <test><equal><clip pos="2" part="art"/><lit-tag v="def"/></equal></test>
+          <choose>
+            <when c="pp: always sg and no gender when def">
+              <test><equal><clip pos="2" part="temps"/><lit-tag v="pp"/></equal></test>
+              <let><clip pos="2" part="gen"/><lit v=""/></let>
+              <let><clip pos="2" part="nbr"/><lit-tag v="sg"/></let>
+            </when>
+            <otherwise c="pst/sup: always sp and un when def">
+              <let><clip pos="2" part="gen"/><lit-tag v="un"/></let>
+              <let><clip pos="2" part="nbr"/><lit-tag v="sp"/></let>
+            </otherwise>
+          </choose>
+        </when></choose>
       </when></choose>
     </def-macro>
   </section-def-macros>

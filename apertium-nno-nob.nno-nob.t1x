@@ -324,17 +324,20 @@
                   or if noun has changed gender (if not GD, don't allow adj.f as target).
                   (We want to allow 'helt.nt svart.mf katt.m', no gender change nor GD on 'helt',
                    but o/w make sure adj corresponds: 'helt.nt forfatterskap => heil.mf forfattarskap')">
-      <choose><when>
-        <test><or>
-          <equal><clip pos="2" side="tl" part="gen"/><lit-tag v="GD"/></equal>
-          <and>
-            <not><equal><clip pos="1" side="sl" part="gen"/><clip pos="1" side="tl" part="gen"/></equal></not>
-            <not><equal><clip pos="1" side="tl" part="gen"/><lit-tag v="f"/></equal></not>
-          </and>
-        </or></test>
-        <let><clip pos="2" side="tl" part="gen"/><clip pos="1" side="tl" part="gen"/></let>
+      <choose><when c="(don't change anything on compound left-side adjectives)">
+        <test><equal><clip pos="2" side="tl" part="a_cmp"/><lit v=""/></equal></test>
+        <choose><when c="Use noun gender?">
+          <test><or>
+            <equal><clip pos="2" side="tl" part="gen"/><lit-tag v="GD"/></equal>
+            <and>
+              <not><equal><clip pos="1" side="sl" part="gen"/><clip pos="1" side="tl" part="gen"/></equal></not>
+              <not><equal><clip pos="1" side="tl" part="gen"/><lit-tag v="f"/></equal></not>
+            </and>
+          </or></test>
+          <let><clip pos="2" side="tl" part="gen"/><clip pos="1" side="tl" part="gen"/></let>
+        </when></choose>
+        <call-macro n="set_gender1.adj"><with-param pos="2"/></call-macro>
       </when></choose>
-      <call-macro n="set_gender1.adj"><with-param pos="2"/></call-macro>
     </def-macro>
 
     
