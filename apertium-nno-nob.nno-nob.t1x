@@ -2,6 +2,13 @@
 <transfer default="chunk">
   <section-def-cats>
     <!-- compound lhs's are never genitive: -->
+    <def-cat n="cmp" c="No need to specify PoS/subtags (that will just slow down compilation
+                         since this pattern often gets used many times per rule)">
+      <cat-item tags="*.cmp"/>
+      <cat-item tags="*.cmp.*"/>
+      <cat-item tags="*.cmp-split"/>
+      <cat-item tags="*.cmp-split.*"/>
+    </def-cat>
     <def-cat n="ncmp" c="No need to specify PoS/subtags (that will just slow down compilation
                          since this pattern often gets used many times per rule)">
       <cat-item tags="*.cmp"/>
@@ -1078,6 +1085,27 @@
       </action>
     </rule>
 
+    <rule comment="CMP VBLEX">
+      <pattern>
+        <pattern-item n="cmp"/>
+        <pattern-item n="vblex"/>
+      </pattern>
+      <action>
+        <call-macro n="set_caseFirstWord2"><with-param pos="1"/><with-param pos="2"/></call-macro>
+        <let><var n="c_name"/><lit v="cmp_vblex"/></let>
+        <out>
+          <chunk namefrom="c_name" case="caseFirstWord">
+            <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
+            <lu><clip pos="1" side="tl" part="whole"/></lu>
+            <lu>
+              <clip pos="2" side="tl" part="lemh"/>
+              <clip pos="2" side="tl" part="tags"/>
+              <clip pos="2" side="tl" part="lemq"/>
+            </lu>
+          </chunk>
+        </out>
+      </action>
+    </rule>
 
     <!-- ADJ, no noun -->
     <rule comment="ADJ">
