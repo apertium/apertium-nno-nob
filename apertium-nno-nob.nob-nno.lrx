@@ -8949,26 +8949,64 @@
   <match lemma="plan"/>
 </rule>
 
-<rule><match lemma="umiddelbart" tags="adv.*"><select lemma="omgåande"/></match></rule>
-<rule weight="2.0">
-  <match lemma="umiddelbart" tags="adv.*"><select lemma="umiddelbart"/></match>
+<rule><match lemma="umiddelbart" tags="adv.*"><select lemma="umiddelbart"/></match></rule>
+<rule weight="2.5">
+  <match lemma="umiddelbart" tags="adv.*"><select lemma="straks"/></match>
   <match lemma="etter"/>
   <match lemma="at"/>
 </rule>
-<rule weight="2.0">
-  <match lemma="umiddelbart" tags="adv.*"><select lemma="umiddelbart"/></match>
-  <match lemma="etterpå"/>
+<rule weight="2.2">
+  <match lemma="umiddelbart" tags="adv.*"><select lemma="like"/></match>
+  <or>
+    <match lemma="etterpå"/>
+    <match lemma="etter"/>
+  </or>
+</rule>
+<rule weight="2.5">
+  <match lemma="umiddelbart" tags="adv.*"><select lemma="med ein gong"/></match>
+  <or>
+    <match tags="cnjcoo.*"/>
+    <match tags="cnjsub.*"/>
+  </or>
+</rule>
+<rule weight="2.2">
+  <match tags="vblex.*"/>
+  <repeat from="1" upto="3"><match/></repeat>
+  <match lemma="umiddelbart" tags="adv.*"><select lemma="med ein gong"/></match>
+</rule>
+<rule weight="2.5">
+  <match lemma="ikke"/>
+  <match lemma="umiddelbart" tags="adv.*"><select lemma="utan vidare"/></match>
+  <or>
+    <match tags="adv.*"/>
+    <match tags="adj.pst.*"/>
+    <match tags="adj.sint.pst.*"/>
+    <match tags="n.*"/>
+  </or>
 </rule>
 <rule weight="2.0">
-    <or>
-      <match lemma="kunne"/>
-      <match lemma="burde"/>
-      <match lemma="måtte"/>
-      <match lemma="ville"/>
-      <match lemma="skulle"/>
-    </or>
+  <match lemma="nesten"/>
+  <match lemma="umiddelbart" tags="adv.*"><select lemma="med det same"/></match>
+</rule>
+<rule weight="2.5">
   <match lemma="umiddelbart" tags="adv.*"><select lemma="straks"/></match>
-  <match tags="vblex.*"/>
+  <or>
+    <match tags="vblex.*"/>
+    <match lemma="å"/>
+  </or>
+</rule>
+<rule weight="2.0">
+  <or>
+    <match tags="vblex.*"/>
+    <match lemma="å"/>
+  </or>
+  <match lemma="umiddelbart" tags="adv.*"><select lemma="straks"/></match>
+</rule>
+<rule weight="2.8">
+  <or>
+    <match tags="prn.pers.*"/>
+  </or>
+  <match lemma="umiddelbart" tags="adv.*"><select lemma="straks"/></match>
 </rule>
 <!-- UMIDDELBAR: END -->
 
