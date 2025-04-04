@@ -2,17 +2,17 @@
 <!-- -*- nxml -*- -->
 <postchunk>
   <section-def-cats>
-    <def-cat n="n">
-      <cat-item name="n"/>
+    <def-cat n="nn">
+      <cat-item name="nn"/>
     </def-cat>
-    <def-cat n="n_n">
-      <cat-item name="n_n"/>
+    <def-cat n="nn_nn">
+      <cat-item name="nn_nn"/>
     </def-cat>
-    <def-cat n="n_n_n">
-      <cat-item name="n_n_n"/>
+    <def-cat n="nn_nn_nn">
+      <cat-item name="nn_nn_nn"/>
     </def-cat>
-    <def-cat n="n_n_n_n">
-      <cat-item name="n_n_n_n"/>
+    <def-cat n="nn_nn_nn_nn">
+      <cat-item name="nn_nn_nn_nn"/>
     </def-cat>
     <def-cat n="adj2vblex">
       <cat-item name="adj2vblex"/>
@@ -21,43 +21,43 @@
       <cat-item name="adj"/>
     </def-cat>
     <!-- ADJ N+ -->
-    <def-cat n="adj_n">
-      <cat-item name="adj_n"/>
+    <def-cat n="adj_nn">
+      <cat-item name="adj_nn"/>
     </def-cat>
-    <def-cat n="adj_n_n">
-      <cat-item name="adj_n_n"/>
+    <def-cat n="adj_nn_nn">
+      <cat-item name="adj_nn_nn"/>
     </def-cat>
-    <def-cat n="adj_n_n_n">
-      <cat-item name="adj_n_n_n"/>
+    <def-cat n="adj_nn_nn_nn">
+      <cat-item name="adj_nn_nn_nn"/>
     </def-cat>
-    <def-cat n="adj_n_n_n_n">
-      <cat-item name="adj_n_n_n_n"/>
+    <def-cat n="adj_nn_nn_nn_nn">
+      <cat-item name="adj_nn_nn_nn_nn"/>
     </def-cat>
     <!-- ADJ ADJ N+ -->
-    <def-cat n="adj_adj_n">
-      <cat-item name="adj_adj_n"/>
+    <def-cat n="adj_adj_nn">
+      <cat-item name="adj_adj_nn"/>
     </def-cat>
-    <def-cat n="adj_adj_n_n">
-      <cat-item name="adj_adj_n_n"/>
+    <def-cat n="adj_adj_nn_nn">
+      <cat-item name="adj_adj_nn_nn"/>
     </def-cat>
-    <def-cat n="adj_adj_n_n_n">
-      <cat-item name="adj_adj_n_n_n"/>
+    <def-cat n="adj_adj_nn_nn_nn">
+      <cat-item name="adj_adj_nn_nn_nn"/>
     </def-cat>
-    <def-cat n="adj_adj_n_n_n_n">
-      <cat-item name="adj_adj_n_n_n_n"/>
+    <def-cat n="adj_adj_nn_nn_nn_nn">
+      <cat-item name="adj_adj_nn_nn_nn_nn"/>
     </def-cat>
     <!-- ADJ ADJ ADJ N+ -->
-    <def-cat n="adj_adj_adj_n">
-      <cat-item name="adj_adj_adj_n"/>
+    <def-cat n="adj_adj_adj_nn">
+      <cat-item name="adj_adj_adj_nn"/>
     </def-cat>
-    <def-cat n="adj_adj_adj_n_n">
-      <cat-item name="adj_adj_adj_n_n"/>
+    <def-cat n="adj_adj_adj_nn_nn">
+      <cat-item name="adj_adj_adj_nn_nn"/>
     </def-cat>
-    <def-cat n="adj_adj_adj_n_n_n">
-      <cat-item name="adj_adj_adj_n_n_n"/>
+    <def-cat n="adj_adj_adj_nn_nn_nn">
+      <cat-item name="adj_adj_adj_nn_nn_nn"/>
     </def-cat>
-    <def-cat n="adj_adj_adj_n_n_n_n">
-      <cat-item name="adj_adj_adj_n_n_n_n"/>
+    <def-cat n="adj_adj_adj_nn_nn_nn_nn">
+      <cat-item name="adj_adj_adj_nn_nn_nn_nn"/>
     </def-cat>
     <def-cat n="det">
       <cat-item name="det"/>
@@ -109,7 +109,7 @@
   </section-def-attrs>
 
   <section-def-vars>
-    <def-var n="foo"/>
+    <def-var n="casing"/>
   </section-def-vars>
 
 
@@ -128,6 +128,16 @@
       </when></choose>
 
       <out><lu><clip pos="1" part="whole"/></lu></out>
+    </def-macro>
+
+    <def-macro n="apply_case" npar="2"
+               c="arg.1: first word of chunk
+                  arg.2: chunk">
+      <let><var n="casing"/><case-of pos="1" part="lemh"/></let>
+      <choose><when>
+        <test><equal><var n="casing"/><lit v="aa"/></equal></test>
+        <modify-case><clip pos="1" part="lemh"/><case-of pos="2" part="lemh"/></modify-case>
+      </when></choose>
     </def-macro>
 
     <def-macro n="clean_n.adj" npar="3"
@@ -241,22 +251,24 @@
     </rule>
 
     <!-- N+ -->
-    <rule comment="CHUNK: n">
+    <rule comment="CHUNK: nn">
       <pattern>
-        <pattern-item n="n"/>
+        <pattern-item n="nn"/>
       </pattern>
       <action>
+        <call-macro n="apply_case"><with-param pos="1"/><with-param pos="0"/></call-macro>
         <let><clip pos="1" part="art"/><clip pos="0" part="art"/></let>
         <out>
           <lu><clip pos="1" part="whole"/></lu>
         </out>
       </action>
     </rule>
-    <rule comment="CHUNK: n_n">
+    <rule comment="CHUNK: nn_nn">
       <pattern>
-        <pattern-item n="n_n"/>
+        <pattern-item n="nn_nn"/>
       </pattern>
       <action>
+        <call-macro n="apply_case"><with-param pos="1"/><with-param pos="0"/></call-macro>
         <let><clip pos="2" part="art"/><clip pos="0" part="art"/></let>
         <out>
           <lu><clip pos="1" part="whole"/></lu>
@@ -264,11 +276,12 @@
         </out>
       </action>
     </rule>
-    <rule comment="CHUNK: n_n_n">
+    <rule comment="CHUNK: nn_nn_nn">
       <pattern>
-        <pattern-item n="n_n_n"/>
+        <pattern-item n="nn_nn_nn"/>
       </pattern>
       <action>
+        <call-macro n="apply_case"><with-param pos="1"/><with-param pos="0"/></call-macro>
         <let><clip pos="3" part="art"/><clip pos="0" part="art"/></let>
         <out>
           <lu><clip pos="1" part="whole"/></lu>
@@ -277,11 +290,12 @@
         </out>
       </action>
     </rule>
-    <rule comment="CHUNK: n_n_n_n">
+    <rule comment="CHUNK: nn_nn_nn_nn">
       <pattern>
-        <pattern-item n="n_n_n_n"/>
+        <pattern-item n="nn_nn_nn_nn"/>
       </pattern>
       <action>
+        <call-macro n="apply_case"><with-param pos="1"/><with-param pos="0"/></call-macro>
         <let><clip pos="4" part="art"/><clip pos="0" part="art"/></let>
         <out>
           <lu><clip pos="1" part="whole"/></lu>
@@ -292,9 +306,9 @@
       </action>
     </rule>
     <!-- ADJ N+ -->
-    <rule comment="CHUNK: adj_n">
+    <rule comment="CHUNK: adj_nn">
       <pattern>
-        <pattern-item n="adj_n"/>
+        <pattern-item n="adj_nn"/>
       </pattern>
       <action>
         <call-macro n="clean_n.adj"><with-param pos="2"/><with-param pos="1"/><with-param pos="0"/></call-macro>
@@ -305,9 +319,9 @@
         </out>
       </action>
     </rule>
-    <rule comment="CHUNK: adj_n_n">
+    <rule comment="CHUNK: adj_nn_nn">
       <pattern>
-        <pattern-item n="adj_n_n"/>
+        <pattern-item n="adj_nn_nn"/>
       </pattern>
       <action>
         <call-macro n="clean_n.adj"><with-param pos="3"/><with-param pos="1"/><with-param pos="0"/></call-macro>
@@ -319,9 +333,9 @@
         </out>
       </action>
     </rule>
-    <rule comment="CHUNK: adj_n_n_n">
+    <rule comment="CHUNK: adj_nn_nn_nn">
       <pattern>
-        <pattern-item n="adj_n_n_n"/>
+        <pattern-item n="adj_nn_nn_nn"/>
       </pattern>
       <action>
         <call-macro n="clean_n.adj"><with-param pos="4"/><with-param pos="1"/><with-param pos="0"/></call-macro>
@@ -334,9 +348,9 @@
         </out>
       </action>
     </rule>
-    <rule comment="CHUNK: adj_n_n_n_n">
+    <rule comment="CHUNK: adj_nn_nn_nn_nn">
       <pattern>
-        <pattern-item n="adj_n_n_n_n"/>
+        <pattern-item n="adj_nn_nn_nn_nn"/>
       </pattern>
       <action>
         <call-macro n="clean_n.adj"><with-param pos="5"/><with-param pos="1"/><with-param pos="0"/></call-macro>
@@ -351,9 +365,9 @@
       </action>
     </rule>
     <!-- ADJ ADJ N+ -->
-    <rule comment="CHUNK: adj_adj_n">
+    <rule comment="CHUNK: adj_adj_nn">
       <pattern>
-        <pattern-item n="adj_adj_n"/>
+        <pattern-item n="adj_adj_nn"/>
       </pattern>
       <action>
         <call-macro n="clean_n.adj"><with-param pos="3"/><with-param pos="1"/><with-param pos="0"/></call-macro>
@@ -369,9 +383,9 @@
         </out>
       </action>
     </rule>
-    <rule comment="CHUNK: adj_adj_n_n">
+    <rule comment="CHUNK: adj_adj_nn_nn">
       <pattern>
-        <pattern-item n="adj_adj_n_n"/>
+        <pattern-item n="adj_adj_nn_nn"/>
       </pattern>
       <action>
         <call-macro n="clean_n.adj"><with-param pos="4"/><with-param pos="1"/><with-param pos="0"/></call-macro>
@@ -388,9 +402,9 @@
         </out>
       </action>
     </rule>
-    <rule comment="CHUNK: adj_adj_n_n_n">
+    <rule comment="CHUNK: adj_adj_nn_nn_nn">
       <pattern>
-        <pattern-item n="adj_adj_n_n_n"/>
+        <pattern-item n="adj_adj_nn_nn_nn"/>
       </pattern>
       <action>
         <call-macro n="clean_n.adj"><with-param pos="5"/><with-param pos="1"/><with-param pos="0"/></call-macro>
@@ -408,9 +422,9 @@
         </out>
       </action>
     </rule>
-    <rule comment="CHUNK: adj_adj_n_n_n_n">
+    <rule comment="CHUNK: adj_adj_nn_nn_nn_nn">
       <pattern>
-        <pattern-item n="adj_adj_n_n_n_n"/>
+        <pattern-item n="adj_adj_nn_nn_nn_nn"/>
       </pattern>
       <action>
         <call-macro n="clean_n.adj"><with-param pos="6"/><with-param pos="1"/><with-param pos="0"/></call-macro>
@@ -430,9 +444,9 @@
       </action>
     </rule>
     <!-- ADJ ADJ ADJ N+ -->
-    <rule comment="CHUNK: adj_adj_adj_n">
+    <rule comment="CHUNK: adj_adj_adj_nn">
       <pattern>
-        <pattern-item n="adj_adj_adj_n"/>
+        <pattern-item n="adj_adj_adj_nn"/>
       </pattern>
       <action>
         <call-macro n="clean_n.adj"><with-param pos="4"/><with-param pos="1"/><with-param pos="0"/></call-macro>
@@ -453,9 +467,9 @@
         </out>
       </action>
     </rule>
-    <rule comment="CHUNK: adj_adj_adj_n_n">
+    <rule comment="CHUNK: adj_adj_adj_nn_nn">
       <pattern>
-        <pattern-item n="adj_adj_adj_n_n"/>
+        <pattern-item n="adj_adj_adj_nn_nn"/>
       </pattern>
       <action>
         <call-macro n="clean_n.adj"><with-param pos="5"/><with-param pos="1"/><with-param pos="0"/></call-macro>
@@ -477,9 +491,9 @@
         </out>
       </action>
     </rule>
-    <rule comment="CHUNK: adj_adj_adj_n_n_n">
+    <rule comment="CHUNK: adj_adj_adj_nn_nn_nn">
       <pattern>
-        <pattern-item n="adj_adj_adj_n_n_n"/>
+        <pattern-item n="adj_adj_adj_nn_nn_nn"/>
       </pattern>
       <action>
         <call-macro n="clean_n.adj"><with-param pos="6"/><with-param pos="1"/><with-param pos="0"/></call-macro>
@@ -502,9 +516,9 @@
         </out>
       </action>
     </rule>
-    <rule comment="CHUNK: adj_adj_adj_n_n_n_n">
+    <rule comment="CHUNK: adj_adj_adj_nn_nn_nn_nn">
       <pattern>
-        <pattern-item n="adj_adj_adj_n_n_n_n"/>
+        <pattern-item n="adj_adj_adj_nn_nn_nn_nn"/>
       </pattern>
       <action>
         <call-macro n="clean_n.adj"><with-param pos="7"/><with-param pos="1"/><with-param pos="0"/></call-macro>

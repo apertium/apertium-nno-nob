@@ -583,7 +583,7 @@
         <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
         <call-macro n="set_ntags"><with-param pos="1"/></call-macro>
         <out>
-          <chunk name="n" case="caseFirstWord">
+          <chunk name="nn" case="caseFirstWord">
             <tags><tag><var n="ntags"/></tag></tags>
             <lu><clip pos="1" side="tl" part="whole"/></lu>
           </chunk>
@@ -600,7 +600,7 @@
         <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
         <call-macro n="set_ntags"><with-param pos="2"/></call-macro>
         <out>
-          <chunk name="n_n" case="caseFirstWord">
+          <chunk name="nn_nn" case="caseFirstWord">
             <tags><tag><var n="ntags"/></tag></tags>
             <lu><clip pos="1" side="tl" part="whole"/></lu>
             <lu><clip pos="2" side="tl" part="whole"/></lu>
@@ -618,7 +618,7 @@
         <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
         <call-macro n="set_ntags"><with-param pos="3"/></call-macro>
         <out>
-          <chunk name="n_n_n" case="caseFirstWord">
+          <chunk name="nn_nn_nn" case="caseFirstWord">
             <tags><tag><var n="ntags"/></tag></tags>
             <lu><clip pos="1" side="tl" part="whole"/></lu>
             <lu><clip pos="2" side="tl" part="whole"/></lu>
@@ -638,7 +638,7 @@
         <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
         <call-macro n="set_ntags"><with-param pos="4"/></call-macro>
         <out>
-          <chunk name="n_n_n_n" case="caseFirstWord">
+          <chunk name="nn_nn_nn_nn" case="caseFirstWord">
             <tags><tag><var n="ntags"/></tag></tags>
             <lu><clip pos="1" side="tl" part="whole"/></lu>
             <lu><clip pos="2" side="tl" part="whole"/></lu>
@@ -664,7 +664,7 @@
         <!--     </and> -->
         <!--   </test> -->
         <!-- </exception> -->
-        <let><var n="c_name"/><lit v="adj_n"/></let>
+        <let><var n="c_name"/><lit v="adj_nn"/></let>
         <call-macro n="set_gender2.n.adj"><with-param pos="2"/><with-param pos="1"/></call-macro>
         <call-macro n="set_grau_aux1"><with-param pos="1"/></call-macro>
         <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
@@ -691,7 +691,7 @@
         <pattern-item n="n_np"/>
       </pattern>
       <action>
-        <let><var n="c_name"/><lit v="adj_n_n"/></let>
+        <let><var n="c_name"/><lit v="adj_nn_nn"/></let>
         <call-macro n="set_gender2.n.adj"><with-param pos="3"/><with-param pos="1"/></call-macro>
         <call-macro n="set_grau_aux1"><with-param pos="1"/></call-macro>
         <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
@@ -720,7 +720,7 @@
         <pattern-item n="n_np"/>
       </pattern>
       <action>
-        <let><var n="c_name"/><lit v="adj_n_n_n"/></let>
+        <let><var n="c_name"/><lit v="adj_nn_nn_nn"/></let>
         <call-macro n="set_gender2.n.adj"><with-param pos="4"/><with-param pos="1"/></call-macro>
         <call-macro n="set_grau_aux1"><with-param pos="1"/></call-macro>
         <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
@@ -751,7 +751,7 @@
         <pattern-item n="n_np"/>
       </pattern>
       <action>
-        <let><var n="c_name"/><lit v="adj_n_n_n_n"/></let>
+        <let><var n="c_name"/><lit v="adj_nn_nn_nn_nn"/></let>
         <call-macro n="set_gender2.n.adj"><with-param pos="5"/><with-param pos="1"/></call-macro>
         <call-macro n="set_grau_aux1"><with-param pos="1"/></call-macro>
         <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
@@ -782,7 +782,7 @@
         <pattern-item n="n_np"/>
       </pattern>
       <action>
-        <let><var n="c_name"/><lit v="adj_adj_n"/></let>
+        <let><var n="c_name"/><lit v="adj_adj_nn"/></let>
         <call-macro n="set_gender2.n.adj"><with-param pos="3"/><with-param pos="1"/></call-macro>
         <call-macro n="set_gender2.n.adj"><with-param pos="3"/><with-param pos="2"/></call-macro>
         <call-macro n="set_grau_aux2"><with-param pos="1"/><with-param pos="2"/></call-macro>
@@ -796,7 +796,7 @@
         <choose><when>
           <!-- set_grau_aux2 may have removed the first adj: -->
           <test><equal><clip pos="1" side="tl" part="whole"/><lit v=""/></equal></test>
-          <let><var n="c_name"/><lit v="adj_n"/></let>
+          <let><var n="c_name"/><lit v="adj_nn"/></let>
         </when></choose>
         <out>
           <chunk namefrom="c_name" case="caseFirstWord">
@@ -827,7 +827,7 @@
         <pattern-item n="n_np"/>
       </pattern>
       <action>
-        <let><var n="c_name"/><lit v="adj_adj_n_n"/></let>
+        <let><var n="c_name"/><lit v="adj_adj_nn_nn"/></let>
         <call-macro n="set_gender2.n.adj"><with-param pos="4"/><with-param pos="1"/></call-macro>
         <call-macro n="set_gender2.n.adj"><with-param pos="4"/><with-param pos="2"/></call-macro>
         <call-macro n="set_grau_aux2"><with-param pos="1"/><with-param pos="2"/></call-macro>
@@ -836,7 +836,7 @@
         <choose><when>
           <!-- set_grau_aux2 may have removed the first adj: -->
           <test><equal><clip pos="1" side="tl" part="whole"/><lit v=""/></equal></test>
-          <let><var n="c_name"/><lit v="adj_n_n"/></let>
+          <let><var n="c_name"/><lit v="adj_nn_nn"/></let>
         </when></choose>
         <out>
           <chunk namefrom="c_name" case="caseFirstWord">
@@ -869,7 +869,7 @@
         <pattern-item n="n_np"/>
       </pattern>
       <action>
-        <let><var n="c_name"/><lit v="adj_adj_n_n_n"/></let>
+        <let><var n="c_name"/><lit v="adj_adj_nn_nn_nn"/></let>
         <call-macro n="set_gender2.n.adj"><with-param pos="5"/><with-param pos="1"/></call-macro>
         <call-macro n="set_gender2.n.adj"><with-param pos="5"/><with-param pos="2"/></call-macro>
         <call-macro n="set_grau_aux2"><with-param pos="1"/><with-param pos="2"/></call-macro>
@@ -878,7 +878,7 @@
         <choose><when>
           <!-- set_grau_aux2 may have removed the first adj: -->
           <test><equal><clip pos="1" side="tl" part="whole"/><lit v=""/></equal></test>
-          <let><var n="c_name"/><lit v="adj_n_n_n"/></let>
+          <let><var n="c_name"/><lit v="adj_nn_nn_nn"/></let>
         </when></choose>
         <out>
           <chunk namefrom="c_name" case="caseFirstWord">
@@ -913,7 +913,7 @@
         <pattern-item n="n_np"/>
       </pattern>
       <action>
-        <let><var n="c_name"/><lit v="adj_adj_n_n_n_n"/></let>
+        <let><var n="c_name"/><lit v="adj_adj_nn_nn_nn_nn"/></let>
         <call-macro n="set_gender2.n.adj"><with-param pos="6"/><with-param pos="1"/></call-macro>
         <call-macro n="set_gender2.n.adj"><with-param pos="6"/><with-param pos="2"/></call-macro>
         <call-macro n="set_grau_aux2"><with-param pos="1"/><with-param pos="2"/></call-macro>
@@ -922,7 +922,7 @@
         <choose><when>
           <!-- set_grau_aux2 may have removed the first adj: -->
           <test><equal><clip pos="1" side="tl" part="whole"/><lit v=""/></equal></test>
-          <let><var n="c_name"/><lit v="adj_n_n_n_n"/></let>
+          <let><var n="c_name"/><lit v="adj_nn_nn_nn_nn"/></let>
         </when></choose>
         <out>
           <chunk namefrom="c_name" case="caseFirstWord">
@@ -958,7 +958,7 @@
       </pattern>
       <action>
         <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
-        <let><var n="c_name"/><lit v="n_adj"/></let>
+        <let><var n="c_name"/><lit v="nn_adj"/></let>
         <call-macro n="set_gender1.adj"><with-param pos="2"/></call-macro>
         <call-macro n="set_grau_aux1"><with-param pos="2"/></call-macro>
         <out>
@@ -979,7 +979,7 @@
       </pattern>
       <action>
         <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
-        <let><var n="c_name"/><lit v="n_n_adj"/></let>
+        <let><var n="c_name"/><lit v="nn_nn_adj"/></let>
         <call-macro n="set_gender1.adj"><with-param pos="3"/></call-macro>
         <call-macro n="set_grau_aux1"><with-param pos="3"/></call-macro>
         <out>
@@ -1002,7 +1002,7 @@
       </pattern>
       <action>
         <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
-        <let><var n="c_name"/><lit v="n_n_n_adj"/></let>
+        <let><var n="c_name"/><lit v="nn_nn_nn_adj"/></let>
         <call-macro n="set_gender1.adj"><with-param pos="4"/></call-macro>
         <call-macro n="set_grau_aux1"><with-param pos="4"/></call-macro>
         <out>
@@ -1027,7 +1027,7 @@
       </pattern>
       <action>
         <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
-        <let><var n="c_name"/><lit v="n_n_n_n_adj"/></let>
+        <let><var n="c_name"/><lit v="nn_nn_nn_nn_adj"/></let>
         <call-macro n="set_gender1.adj"><with-param pos="5"/></call-macro>
         <call-macro n="set_grau_aux1"><with-param pos="5"/></call-macro>
         <out>
@@ -1065,7 +1065,7 @@
           </or></test>
           <reject-current-rule shifting="0"/>
         </when></choose>
-        <let><var n="c_name"/><lit v="n_adj_n"/></let>
+        <let><var n="c_name"/><lit v="nn_adj_nn"/></let>
         <call-macro n="set_gender2.n.adj"><with-param pos="3"/><with-param pos="2"/></call-macro>
         <call-macro n="set_grau_aux1"><with-param pos="2"/></call-macro>
         <call-macro n="set_caseFirstWord2">
