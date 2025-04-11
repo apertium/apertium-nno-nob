@@ -12474,5 +12474,15 @@ preposisjonar gir ekstra utfordringar. -->
   <rule weight="2.0" c="oversvømmelsene → flaumane">
     <match lemma="oversvømmelse" tags="n.*.def.*"><select lemma="flaum" tags="n.*.pl.*"/></match>
   </rule>
+
+  <rule> <match lemma="giftighet" tags="n.*.pl.*"> <select lemma="sarkasme"/> </match> </rule>
+  <rule> <match lemma="giftighet" tags="n.*.sg.*"> <select lemma="giftigheit"/> </match> </rule>
+    
+  <rule> <match lemma="holdig" tags="adj.*"> <select lemma="holdig"/> </match> </rule>
+  <rule weight="9.0" c="-holdig → -haldig (compounds always «haldig»)">
+    <match tags="n.*.cmp"/>
+    <match lemma="holdig" tags="adj.*"> <select lemma="haldig"/> </match>
+  </rule>
+
 </rules>
 </lrx>
