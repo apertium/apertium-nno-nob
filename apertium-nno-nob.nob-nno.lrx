@@ -256,6 +256,30 @@
       </def-seq>
 
       <def-set n="lm:animat" tags="n.*">
+        <lemma>mann</lemma>
+        <lemma>kvinne</lemma>
+        <lemma>gutt</lemma>
+        <lemma>jente</lemma>
+        <lemma>barn</lemma>
+        <lemma>far</lemma>
+        <lemma>mor</lemma>
+        <lemma>datter</lemma>
+        <lemma>sønn</lemma>
+        <lemma>søster</lemma>
+        <lemma>bror</lemma>
+        <lemma>tante</lemma>
+        <lemma>onkel</lemma>
+        <lemma>nevø</lemma>
+        <lemma>niese</lemma>
+        <lemma>bestefar</lemma>
+        <lemma>bestemor</lemma>
+        <lemma>farfar</lemma>
+        <lemma>farmor</lemma>
+        <lemma>morfar</lemma>
+        <lemma>mormor</lemma>
+        <lemma>oldefar</lemma>
+        <lemma>oldemor</lemma>
+        <lemma>barnebarn</lemma>
         <lemma>forfatter</lemma>
         <lemma>kristiansunder</lemma>
         <lemma>president</lemma>
@@ -3705,6 +3729,33 @@
     <match lemma="angivelig" tags="adv.*">
       <select lemma="truleg"/>
     </match>
+  </rule>
+
+  <rule><match lemma="angi" tags="vblex.*"><select lemma="oppgje"/></match></rule>
+  <rule><match lemma="angi" tags="adj.*"><select lemma="angje"/></match></rule>
+  <rule weight="2.0" c="angi hvor mye">
+    <match lemma="angi" tags="vblex.*"><select lemma="vise"/></match>
+    <or>
+      <match lemma="hvor" tags="adv.*"/>
+      <match lemma="hvor mye" tags="adv.*"/>
+      <match lemma="hvor mange" tags="det.qnt.*"/>
+      <match lemma="hva"/>
+    </or>
+  </rule>
+  <rule weight="2.0" c="angi når">
+    <match lemma="angi" tags="vblex.*"><select lemma="seie"/></match>
+    <repeat from="0" upto="1"><or><match tags="adv.*"/><match tags="adj.*"/></or></repeat>
+    <or>
+      <match lemma="når"/>
+      <match lemma="at"/>
+    </or>
+  </rule>
+  <rule weight="2.0" c="angi seg">
+    <match lemma="angi" tags="vblex.*"><select lemma="angje"/></match>
+    <or>
+      <seq n="animat"/>
+      <match tags="prn.ref.*"/>
+    </or>
   </rule>
 
   <rule><match lemma="fastholde" tags="vblex.*"><select lemma="halde# fast på"/></match></rule>
