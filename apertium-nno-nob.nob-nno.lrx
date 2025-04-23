@@ -8466,8 +8466,8 @@
   <!-- UANMELDT: END -->
 <!--OPPRETTHOLDELSE: START-->
   <rule><match lemma="opprettholdelse" tags="n.*"><select lemma="vidareføring"/></match></rule>
-  <rule weight="2.0">
-    <match lemma="opprettholdelse" tags="n.*"><select lemma="sikring"/></match>
+  <rule weight="2.5">
+    <match lemma="opprettholdelse" tags="n.*"><select lemma="handheving"/></match>
     <match lemma="av"/>
     <or>
       <match lemma="ro"/>
@@ -12011,10 +12011,56 @@ preposisjonar gir ekstra utfordringar. -->
   </rule>
 
   <rule><match lemma="opprettholde" tags="vblex.*"><select lemma="halde# oppe"/></match></rule>
-  <rule><match lemma="opprettholde" tags="adj.*"><select lemma="halde# oppe"/></match></rule>
+  <rule><match lemma="opprettholde" tags="adj.*"><select lemma="oppretthalde"/></match></rule>
+  <rule weight="2.0" c="opprettholdes">
+    <match lemma="opprettholde" tags="vblex.*.pasv.*"><select lemma="oppretthalde"/></match>
+  </rule>
   <rule weight="2.0" c="en opprettholdt ting">
     <match lemma="opprettholde" tags="adj.*"><select lemma="oppretthalde"/></match>
     <match tags="n.*"/>
+  </rule>
+  <rule weight="2.0" c="opprettholde et tiltak">
+    <match lemma="opprettholde" tags="vblex.*"><select lemma="oppretthalde"/></match>
+    <match tags="det.qnt.*.sg.*"/>
+  </rule>
+  <rule weight="2.0" c="opprettholde lov og orden">
+    <match lemma="opprettholde" tags="vblex.*"><select lemma="oppretthalde"/></match>
+    <or>
+      <match lemma="ro" tags="n.*"/>
+      <match lemma="lov" tags="n.*"/>
+    </or>
+    <match tags="cnjcoo.*"/>
+    <match tags="n.*"/>
+  </rule>
+  <rule weight="2.0" c="opprettholde krav">
+    <match lemma="opprettholde" tags="vblex.*"><select lemma="oppretthalde"/></match>
+    <or>
+      <match tags="*.cmp"/>
+        <or>
+          <match lemma="krav"/>
+          <match lemma="dom"/>
+          <match lemma="forbud"/>
+          <match lemma="straff"/>
+          <match lemma="lov"/>
+          <match lemma="henleggelse"/>
+          <match lemma="restriksjon"/>
+          <match lemma="mål"/>
+          <match lemma="godkjennelse"/>
+        </or>
+      <or>
+        <match lemma="krav"/>
+        <match lemma="dom"/>
+        <match lemma="forbud"/>
+        <match lemma="straff"/>
+        <match lemma="lov"/>
+        <match lemma="henleggelse"/>
+        <match lemma="restriksjon"/>
+        <match lemma="mål"/>
+        <match lemma="godkjennelse"/>
+        <match lemma="intergritet"/>
+        <match lemma="fred"/>
+      </or>
+    </or>
   </rule>
 
   <rule><match lemma="metthet" tags="n.*"><select lemma="mettheit"/></match></rule>
