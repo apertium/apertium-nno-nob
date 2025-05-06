@@ -13033,6 +13033,50 @@ no lemq-moving">
     </rule>
 
 
+    <!-- som sin (ADJ) N -->
+    <rule comment="som sin N → som N
+                   som sin oppgave → som si oppgåve">
+      <pattern>
+        <pattern-item n="som"/>
+        <pattern-item n="sin"/>
+        <pattern-item n="nind_nogen"/>
+      </pattern>
+      <action>
+        <call-macro n="set_caseFirstWord3">
+          <with-param pos="1"/>
+          <with-param pos="2"/>
+          <with-param pos="3"/>
+        </call-macro>
+        <out>
+          <chunk name="pr" case="caseFirstWord">
+            <tags>
+              <tag><lit-tag v="pr"/></tag>
+              <tag><lit-tag v="som"/></tag>
+              <tag><lit-tag v="nhead"/></tag>
+            </tags>
+            <lu><clip pos="1" side="tl" part="whole"/></lu>
+          </chunk>
+        </out>
+        <choose><when c="include 'sin' before 'oppgave' (t2x does gender agreement)">
+          <test><equal><clip pos="3" side="tl" part="lemh"/><lit v="oppgåve"/></equal></test>
+          <out>
+            <b/>
+            <chunk name="detpos-keep">
+              <tags><tag><clip pos="2" side="tl" part="tags"/></tag></tags>
+              <lu><clip pos="2" side="tl" part="whole"/></lu>
+            </chunk>
+          </out>
+        </when></choose>
+        <out>
+          <b/>
+          <chunk name="nn">
+            <tags><tag><clip pos="3" side="tl" part="tags"/></tag></tags>
+            <lu><clip pos="3" side="tl" part="whole"/></lu>
+          </chunk>
+        </out>
+      </action>
+    </rule>
+
     <!-- DETQNT NIND ADJ N – (deres) ti mil lange reise -->
     <rule comment="DETQNT NIND ADJ N
                    - deres ti mil lange dachshund → den ti mil lange dachshunden deira
