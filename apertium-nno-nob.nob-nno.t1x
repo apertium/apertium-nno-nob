@@ -13035,11 +13035,12 @@ no lemq-moving">
 
     <!-- som sin (ADJ) N -->
     <rule comment="som sin N → som N
-                   som sin oppgave → som si oppgåve">
+                   som sin oppgave → som si oppgåve
+                   (only outputs the first two words, adj is handled by other rules)">
       <pattern>
         <pattern-item n="som"/>
         <pattern-item n="sin"/>
-        <pattern-item n="nind_nogen"/>
+        <pattern-item n="nind"/>
       </pattern>
       <action>
         <call-macro n="set_caseFirstWord3">
@@ -13067,13 +13068,39 @@ no lemq-moving">
             </chunk>
           </out>
         </when></choose>
+        <reject-current-rule shifting="2"/>
+      </action>
+    </rule>
+
+    <rule comment="som sin ADJ → som sin ADJ
+                   (only outputs the first two words, adj is handled by other rules)">
+      <pattern>
+        <pattern-item n="som"/>
+        <pattern-item n="sin"/>
+        <pattern-item n="adj"/>
+      </pattern>
+      <action>
+        <call-macro n="set_caseFirstWord3">
+          <with-param pos="1"/>
+          <with-param pos="2"/>
+          <with-param pos="3"/>
+        </call-macro>
         <out>
+          <chunk name="pr" case="caseFirstWord">
+            <tags>
+              <tag><lit-tag v="pr"/></tag>
+              <tag><lit-tag v="som"/></tag>
+              <tag><lit-tag v="nhead"/></tag>
+            </tags>
+            <lu><clip pos="1" side="tl" part="whole"/></lu>
+          </chunk>
           <b/>
-          <chunk name="nn">
-            <tags><tag><clip pos="3" side="tl" part="tags"/></tag></tags>
-            <lu><clip pos="3" side="tl" part="whole"/></lu>
+          <chunk name="detpos-keep">
+            <tags><tag><clip pos="2" side="tl" part="tags"/></tag></tags>
+            <lu><clip pos="2" side="tl" part="whole"/></lu>
           </chunk>
         </out>
+        <reject-current-rule shifting="2"/>
       </action>
     </rule>
 
