@@ -82,16 +82,19 @@ LIST lm_anbefale = "anbefale"ri ".*anbefalt"ri ".*anbefaling"ri "anbefaling.*"ri
 SELECT:tilrå_anbefale lm_anbefale IF (0 (VAR:tilrå_anbefale.syn));
 REMOVE:tilrå_anbefale lm_anbefale;
 
-# override uvisse; 
+
+# override uvisse (NB: REMOVE rule needs to be below tryggleik_sikkrheit SELECT rule)
 LIST lm_usikkerheit = "usikkerheit"i ".*usikkerheit"ri "usikkerheit.*"ri;
 SELECT:uvisse_usikkerheit lm_usikkerheit IF (0 (VAR:uvisse_usikkerheit.syn));
-REMOVE:uvisse_usikkerheit lm_usikkerheit;
 
 # override tryggleik, trygging, not sikring, tryggleik (trygghet); 
 # keeps official names: Tryggingsrådet, Politiets tryggingsteneste.
 LIST lm_sikkerheit = ".*sikkerheit"ri "sikkerheit.*"ri ".*sikkerheit.*"ri;
 SELECT:tryggleik_sikkerheit lm_sikkerheit IF (0 (VAR:tryggleik_sikkerheit.syn));
 REMOVE:tryggleik_sikkerheit lm_sikkerheit;
+
+REMOVE:uvisse_usikkerheit lm_usikkerheit;
+
 
 LIST lm_andlet = ".*andlet"ri "andlet.*"ri;
 SELECT:ansikt_andlet lm_andlet IF (0 (VAR:ansikt_andlet.syn));
