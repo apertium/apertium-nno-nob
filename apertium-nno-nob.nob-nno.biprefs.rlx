@@ -83,17 +83,11 @@ SELECT:tilrå_anbefale lm_anbefale IF (0 (VAR:tilrå_anbefale.syn));
 REMOVE:tilrå_anbefale lm_anbefale;
 
 
-# override uvisse (NB: REMOVE rule needs to be below tryggleik_sikkrheit SELECT rule)
-LIST lm_usikkerheit = "usikkerheit"i ".*usikkerheit"ri "usikkerheit.*"ri;
-SELECT:uvisse_usikkerheit lm_usikkerheit IF (0 (VAR:uvisse_usikkerheit.syn));
-
-# override tryggleik, trygging, not sikring, tryggleik (trygghet); 
+# override tryggleik, trygging, not sikring, tryggleik (trygghet);
 # keeps official names: Tryggingsrådet, Politiets tryggingsteneste.
 LIST lm_sikkerheit = ".*sikkerheit"ri "sikkerheit.*"ri ".*sikkerheit.*"ri;
 SELECT:tryggleik_sikkerheit lm_sikkerheit IF (0 (VAR:tryggleik_sikkerheit.syn));
-REMOVE:tryggleik_sikkerheit lm_sikkerheit;
-
-REMOVE:uvisse_usikkerheit lm_usikkerheit;
+# REMOVE:tryggleik_sikkerheit lm_sikkerheit ; # LRX tar seg av (u)sikkerheit vs (u)tryggleik vs uvisse etc. når dette er uspesifisert
 
 
 LIST lm_andlet = ".*andlet"ri "andlet.*"ri;
