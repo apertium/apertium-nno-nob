@@ -181,3 +181,18 @@ You can also check specific words in a group of words within one variety like th
 Or just one word:
 
 `echo "Den apen, den kassen" | AP_SETVAR="apa_apen=kasse" apertium -d. nob-nno_e`
+
+
+If you want to use the same `AP_SETVAR` for several `apertium` commands, you can `export` the variable:
+
+`export AP_SETVAR="apa_apen=kasse"`
+
+Now when you do
+
+`echo "Den apen, den kassen" | apertium -d. nob-nno_e`
+
+you will get the same result as if you did
+
+`echo "Den apen, den kassen" | AP_SETVAR="apa_apen=kasse" apertium -d. nob-nno_e`
+
+The setting will last until you close the terminal (or export it to something else or `unset AP_SETVAR`).
