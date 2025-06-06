@@ -12590,5 +12590,11 @@ preposisjonar gir ekstra utfordringar. -->
     <match lemma="holdig" tags="adj.*"> <select lemma="haldig"/> </match>
   </rule>
 
+  <rule> <match lemma="uoverlagt" tags="adj.*"> <select lemma="uoverlagd"/> </match> </rule>
+  <rule weight="2.0" c="aktlaust drap">
+    <match lemma="uoverlagt" tags="adj.*">  <select lemma="aktlaus"/> </match>
+    <match lemma="drap"/>
+  </rule>
+
 </rules>
 </lrx>
