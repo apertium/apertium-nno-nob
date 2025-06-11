@@ -12602,5 +12602,11 @@ preposisjonar gir ekstra utfordringar. -->
     <match lemma="bevis"/>
   </rule>
 
+  <rule weight="2.0" c="bli forbrent">
+    <seq n="være-bli"/>
+    <repeat from="0" upto="5"><match/></repeat>
+    <match lemma="forbrenne" tags="adj.pp.*"><select lemma="forbrenne¹"/></match>
+  </rule>
+
 </rules>
 </lrx>
