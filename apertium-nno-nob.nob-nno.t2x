@@ -2619,7 +2619,7 @@
         <out><chunk><clip pos="2" part="whole"/></chunk></out> <!-- ngen -->
       </action>
     </rule>
-
+ 
     <rule comment="PREP_GEN NGEN NIND: naboens bil => bilen til naboen
                               naboens røde bil => den røde bilen til naboen
                    nind makes sure we don't match 'min Per(np)' nor 'min bils(gen)'">
@@ -2640,6 +2640,29 @@
         <call-macro n="out_bi-gen-prep"><with-param pos="1"/><with-param pos="3"/></call-macro>
         <let><clip pos="2" part="art"/><lit v=""/></let> <!-- don't let postchunk alter defnes of previously-genitive phrase (important for conjunctions of ind+def, e.g. barn og unge) -->
         <out><b/><chunk><clip pos="2" part="whole"/></chunk></out>
+      </action>
+    </rule>
+
+    <rule comment="PREP_GEN NGEN DETPOS NIND: sin nabos bil → til naboen sin bil → bilen til naboen sin">
+      <pattern>
+        <pattern-item n="prep_gen"/>
+        <pattern-item n="ngen"/>
+        <pattern-item n="detpos"/>
+        <pattern-item n="nind"/>
+      </pattern>
+      <action>
+        <call-macro n="set_ana"><with-param pos="4"/></call-macro>
+        <call-macro n="switch_cases"><with-param pos="4"/><with-param pos="2"/></call-macro>
+        <call-macro n="apply_gendefdrop"><with-param pos="2"/><with-param pos="4"/></call-macro>
+
+        <call-macro n="out_det_when_adjlike"><with-param pos="4"/><with-param pos="2"/></call-macro>
+        <call-macro n="out_ndef"><with-param pos="4"/><with-param pos="2"/></call-macro>
+
+        <out><b/></out>
+        <call-macro n="out_bi-gen-prep"><with-param pos="1"/><with-param pos="4"/></call-macro>
+        <let><clip pos="2" part="art"/><lit v=""/></let> <!-- don't let postchunk alter defnes of previously-genitive phrase (important for conjunctions of ind+def, e.g. barn og unge) -->
+        <out><b/><chunk><clip pos="2" part="whole"/></chunk></out>
+        <out><b/><chunk><clip pos="3" part="whole"/></chunk></out>
       </action>
     </rule>
 
@@ -2807,6 +2830,11 @@
         <pattern-item n="nind_nogen"/>
       </pattern>
       <action>
+        <choose><when>
+          <test><equal><clip pos="1" part="a_syntax"/><lit-tag v="@←det"/></equal></test>
+          <reject-current-rule shifting="0"/>
+        </when></choose>
+
         <call-macro n="set_ana"><with-param pos="2"/></call-macro>
         <call-macro n="switch_cases"><with-param pos="2"/><with-param pos="1"/></call-macro>
 
@@ -3176,10 +3204,10 @@
                    næringslivets tillit til de rådende myndigheter → til næringslivet tilliten de rådende myndigheter → tilliten næringslivet har til dei rådande styresmaktene
                    drop the prep_gen from t1x and rewrite with «har»">
       <pattern>
-        <pattern-item n="prep_gen"/>
-        <pattern-item n="ngendefORpl"/>
-        <pattern-item n="nind"/>
-        <pattern-item n="prep_nhead"/>
+        <pattern-item n="prep_gen"/>    <!-- til -->
+        <pattern-item n="ngendefORpl"/> <!-- næringslivet -->
+        <pattern-item n="nind"/>        <!-- tillit -->
+        <pattern-item n="prep_nhead"/>  <!-- til -->
       </pattern>
       <action>
         <call-macro n="set_ana"><with-param pos="3"/></call-macro>
@@ -3204,27 +3232,28 @@
         </out>
       </action>
     </rule>
-    <rule comment="DETPOS PREP_GEN NGENDEForPL NIND PREP_NHEAD
-                   vårt næringslivs tillit til de rådende myndigheter → tilliten næringslivet vårt har til dei rådande styresmaktene
-                   rewrite with «har»">
+    <rule comment="PREP_GEN NGENDEForPL DETPOS NIND PREP_NHEAD
+                   vårt næringslivs tillit til de rådende myndigheter → til næringslivet vårt tilliten de rådende myndigheter → tilliten næringslivet har til dei rådande styresmaktene
+                   drop the prep_gen from t1x and rewrite with «har»">
       <pattern>
-        <pattern-item n="detpos"/>     <!-- vårt-->
-        <pattern-item n="ngen"/>       <!-- næringslivs -->
-        <pattern-item n="nind"/>       <!-- tillit -->
-        <pattern-item n="prep_nhead"/> <!-- til -->
+        <pattern-item n="prep_gen"/>    <!-- til -->
+        <pattern-item n="ngendefORpl"/> <!-- næringslivet -->
+        <pattern-item n="detpos"/>      <!-- vårt-->
+        <pattern-item n="nind"/>        <!-- tillit -->
+        <pattern-item n="prep_nhead"/>  <!-- til -->
       </pattern>
       <action>
-        <call-macro n="set_ana"><with-param pos="3"/></call-macro>
-        <call-macro n="switch_cases"><with-param pos="3"/><with-param pos="1"/></call-macro>
+        <call-macro n="set_ana"><with-param pos="4"/></call-macro>
+        <call-macro n="switch_cases"><with-param pos="4"/><with-param pos="2"/></call-macro>
 
-        <call-macro n="out_det_when_adjlike"><with-param pos="3"/><with-param pos="2"/></call-macro>
-        <call-macro n="out_ndef"><with-param pos="3"/><with-param pos="1"/></call-macro> <!-- tilliten -->
+        <call-macro n="out_det_when_adjlike"><with-param pos="4"/><with-param pos="2"/></call-macro>
+        <call-macro n="out_ndef"><with-param pos="4"/><with-param pos="1"/></call-macro> <!-- tilliten -->
         <let><clip pos="2" part="art"/><lit-tag v="def"/></let>
         <let><clip pos="2" part="cas"/><lit-tag v="casedrop"/></let>
         <out>
           <b/>
-          <chunk><clip pos="2" part="whole"/></chunk><b/> <!-- vårt -->
-          <chunk><clip pos="1" part="whole"/></chunk><b/> <!-- næringsliv -->
+          <chunk><clip pos="2" part="whole"/></chunk><b/> <!-- næringslivet -->
+          <chunk><clip pos="3" part="whole"/></chunk><b/> <!-- vårt -->
           <chunk>
             <lit v="vblex"/>
             <lit-tag v="vblex"/>
@@ -3235,7 +3264,7 @@
             <lit v="$}"/>
           </chunk>
           <b/>
-          <chunk><clip pos="4" part="whole"/></chunk> <!-- til -->
+          <chunk><clip pos="5" part="whole"/></chunk> <!-- til -->
         </out>
       </action>
     </rule>
