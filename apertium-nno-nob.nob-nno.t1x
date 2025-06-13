@@ -10368,8 +10368,9 @@
     </rule>
 
     <!-- POSGEN måte å VBLEXINF -->
-    <rule comment="sin måte å VBLEXINF: sin måte å referere => sin måte å referere
-                   Override the below rule (TODO: use exception tag instead, when accepted to trunk).">
+    <rule comment="sin måte å VBLEXINF: sin måte [å referere] => sin måte [å referere]
+                   Override the below rule
+                   (only outputs first two words, leaves the last two words to other rules)">
       <pattern>
         <pattern-item n="sin"/>
         <pattern-item n="måte"/>
@@ -10377,19 +10378,16 @@
         <pattern-item n="vblexinf"/>
       </pattern>
       <action>
-        <call-macro n="set_caseFirstWord4">
+        <call-macro n="set_caseFirstWord2">
           <with-param pos="1"/>
           <with-param pos="2"/>
-          <with-param pos="3"/>
-          <with-param pos="4"/>
         </call-macro>
-        <call-macro n="set_lemq"><with-param pos="4"/></call-macro>
         <out>
           <chunk name="detsin">
             <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
             <lu><clip pos="1" side="tl" part="whole"/></lu>
           </chunk>
-          <b pos="1"/>
+          <b/>
           <chunk name="nn">
             <tags>
               <tag><clip pos="2" side="tl" part="tags"/></tag>
@@ -10397,33 +10395,8 @@
             </tags>
             <lu><clip pos="2" side="tl" part="whole"/></lu>
           </chunk>
-          <b pos="2"/>
-          <chunk name="infm">
-            <tags><tag><clip pos="3" side="tl" part="tags"/></tag></tags>
-            <lu><clip pos="3" side="tl" part="whole"/></lu>
-          </chunk>
-          <b pos="3"/>
         </out>
-        <let><var n="c_name"/><lit v="vblex"/></let>
-        <choose><when>
-          <test><or>
-            <equal><clip pos="4" side="tl" part="lemh"/><lit v="bli"/></equal>
-            <equal><clip pos="4" side="tl" part="lemh"/><lit v="vere"/></equal>
-          </or></test>
-          <let><var n="c_name"/><lit v="aux"/></let>
-        </when></choose>
-        <out>
-          <chunk namefrom="c_name" case="caseFirstWord">
-            <tags><tag><clip pos="4" side="tl" part="tags"/></tag></tags>
-            <lu>
-              <clip pos="4" side="tl" part="lemh"/>
-              <clip pos="4" side="tl" part="a_verb"/>
-              <clip pos="4" side="tl" part="temps"/>
-              <var n="c_lemq"/>
-            </lu>
-          </chunk>
-        </out>
-        <out><var n="out_lemq"/></out>
+        <reject-current-rule shifting="2"/>
       </action>
     </rule>
 
