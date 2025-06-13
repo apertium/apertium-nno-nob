@@ -10372,6 +10372,43 @@
       </action>
     </rule>
 
+    <rule comment="DETPOS NGEN: sine innbyggeres → til innbyggarane sine">
+      <pattern>
+        <pattern-item n="detpos"/>
+        <pattern-item n="ngen"/>
+      </pattern>
+      <action>
+        <choose><when>
+          <test><or>
+            <equal><clip pos="2" side="tl" part="lemh"/><lit v=""/></equal>
+            <in caseless="yes"><clip pos="2" side="sl" part="lemh"/><list n="n_keep_sin"/></in>
+          </or></test>
+          <reject-current-rule shifting="0"/>
+        </when></choose>
+        <call-macro n="set_caseFirstWord2">
+          <with-param pos="1"/>
+          <with-param pos="2"/>
+        </call-macro>
+        <let><clip pos="2" side="tl" part="art"/><lit-tag v="def"/></let>
+        <call-macro n="out_gen-prep"><with-param pos="2"/></call-macro>
+        <call-macro n="stash_case_in_ntags1"><with-param pos="2"/></call-macro>
+        <out>
+          <chunk name="nn" case="caseFirstWord">
+            <tags><tag><var n="ntags"/></tag></tags>
+            <lu><clip pos="2" side="tl" part="whole"/></lu>
+          </chunk>
+          <b/>
+          <chunk name="detpos" case="caseSecondWord">
+            <tags>
+              <tag><clip pos="1" side="tl" part="tags"/></tag>
+              <tag><lit-tag v="@←det"/></tag>
+            </tags>
+            <lu><clip pos="1" side="tl" part="whole"/></lu>
+          </chunk>
+        </out>
+      </action>
+    </rule>
+
     <!-- POSGEN måte å VBLEXINF -->
     <rule comment="sin måte å VBLEXINF: sin måte [å referere] => sin måte [å referere]
                    Override the below rule
