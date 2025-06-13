@@ -3243,6 +3243,10 @@
         <pattern-item n="detpos"/>
       </pattern>
       <action>
+        <choose><when>
+          <test><equal><clip pos="2" part="a_syntax"/><lit-tag v="@det→"/></equal></test>
+          <reject-current-rule shifting="0"/>
+        </when></choose>
         <call-macro n="set_ana"><with-param pos="1"/></call-macro>
         <call-macro n="modify_det_gender2.n.det"><with-param pos="1"/><with-param pos="2"/></call-macro>
         <let><clip pos="1" part="gen_prep_override"/><lit v=""/></let>

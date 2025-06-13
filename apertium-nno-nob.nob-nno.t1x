@@ -8833,17 +8833,15 @@
       </out>
     </def-macro>
 
-    <def-macro n="out_posgen_subj" npar="2">
-      <!-- arg.1: possessor, either genitive noun or det.pos.
-           arg.2: gives typographic case
-           Assumes no variables.
-           Turns eg. "min" into "eg", "naboens" into "naboen".
-           Strips case both from chunk and word.
-      -->
+    <def-macro n="out_posgen_subj" npar="2"
+               c="arg.1: possessor, either genitive noun or det.pos.
+                  arg.2: gives typographic case
+                  Assumes no variables.
+                  Turns eg. 'min' into 'eg'.
+                  Strips case both from chunk and word.">
       <choose>
         <when>
           <test><equal><clip pos="1" side="sl" part="a_det"/><lit-tag v="det.pos"/></equal></test>
-          <call-macro n="set_caseFirstWord"><with-param pos="2"/></call-macro>
           <choose>
             <when>
               <test><equal><clip pos="1" side="tl" part="lemh"/><lit v="min"/></equal></test>
@@ -8896,6 +8894,12 @@
               <let><clip pos="1" side="tl" part="tags"/><lit-tag v="prn.pers.p3.un.pl.nom"/></let>
             </when>
           </choose>
+        </when>
+      </choose>
+      <call-macro n="set_caseFirstWord"><with-param pos="2"/></call-macro>
+      <choose>
+        <when>
+          <test><equal><clip pos="1" side="sl" part="a_det"/><lit-tag v="det.pos"/></equal></test>
           <out>
             <chunk name="prn" case="caseFirstWord">
               <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
@@ -8907,11 +8911,12 @@
           </out>
         </when>
         <otherwise>
-          <call-macro n="set_caseFirstWord"><with-param pos="2"/></call-macro>
           <let><clip pos="1" side="tl" part="cas"/><lit v=""/></let>
           <out>
             <chunk name="nn" case="caseFirstWord">
-              <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
+              <tags>
+                <tag><clip pos="1" side="tl" part="tags"/></tag>
+              </tags>
               <lu>
                 <get-case-from pos="2"><clip pos="1" side="tl" part="lemh"/></get-case-from>
                 <clip pos="1" side="tl" part="tags"/>
@@ -10420,18 +10425,19 @@ no lemq-moving">
           <with-param pos="4"/>
         </call-macro>
         <call-macro n="out_ndef">
-	  <with-param pos="2"/>
-	  <with-param pos="1"/>
+	  <with-param pos="2"/> <!-- måten -->
+	  <with-param pos="1"/> <!-- (casing)-->
 	</call-macro>
         <out><b/></out>
         <call-macro n="out_posgen_subj">
-          <with-param pos="1"/>
-          <with-param pos="2"/>
+          <with-param pos="1"/> <!-- ho -->
+          <with-param pos="2"/> <!-- (casing)-->
         </call-macro>
         <choose><when>
           <test><not><equal><b/><lit v=" "/></equal></not></test>
           <out><b/></out>
         </when></choose>
+        <out><b/></out>
         <choose>
           <when>
             <test>
@@ -10457,7 +10463,6 @@ no lemq-moving">
           </when>
           <otherwise>
             <out>
-              <b/>
               <chunk name="vblex" case="caseFirstWord">
                 <tags><tag><clip pos="4" side="tl" part="tags"/></tag></tags>
                 <lu>
@@ -10465,6 +10470,106 @@ no lemq-moving">
                   <clip pos="4" side="tl" part="a_verb"/>
                   <lit-tag v="pres"/>
                   <clip pos="4" side="tl" part="lemq"/>
+                </lu>
+              </chunk>
+            </out>
+          </otherwise>
+        </choose>
+      </action>
+    </rule>
+    <rule comment="POSGEN POSGEN måte å VBLEXINF: min bils måte å repareres → måten bilen min vert reparert
+                   hennes fars måte å sykle → måten hennar far syklar → måten far hennar syklar
+                   butikkens bils måte å repareres → måten til butikken bil vert reparert → måten bilen til butikken vert reparert
+                   (t2x changes 'hennar far' to 'far hennar')
+
+Requires rather ugly RL prn lemmas in nn.dix, see personal_pronouns__prn pardef
+
+no lemq-moving">
+      <pattern>
+        <pattern-item n="posgen"/>
+        <pattern-item n="posgen"/>
+        <pattern-item n="måte"/>
+        <pattern-item n="infm"/>
+        <pattern-item n="vblexinf_or_infpass"/>
+      </pattern>
+      <action>
+        <call-macro n="set_caseFirstWord5">
+          <with-param pos="1"/>
+          <with-param pos="2"/>
+          <with-param pos="3"/>
+          <with-param pos="4"/>
+          <with-param pos="5"/>
+        </call-macro>
+        <call-macro n="out_ndef">
+	  <with-param pos="3"/> <!-- måten -->
+	  <with-param pos="1"/> <!-- (casing)-->
+	</call-macro>
+        <out><b/></out>
+        <choose>                <!-- min -->
+          <when>
+            <test><equal><clip pos="1" side="sl" part="a_det"/><lit-tag v="det.pos"/></equal></test>
+            <out>
+              <chunk name="detpos" case="caseSecondWord">
+                <tags>
+                  <tag><clip pos="1" side="tl" part="tags"/></tag>
+                  <tag><lit-tag v="@det→"/></tag>
+                </tags>
+                <lu>
+                  <clip pos="1" side="tl" part="lemh"/>
+                  <clip pos="1" side="tl" part="tags"/>
+                </lu>
+              </chunk>
+            </out>
+          </when>
+          <otherwise>           <!-- butikkens -->
+            <call-macro n="out_gen-prep"><with-param pos="1"/></call-macro>
+            <call-macro n="stash_case_in_ntags1"><with-param pos="1"/></call-macro>
+            <out>
+              <chunk name="nn" case="caseFirstWord">
+                <tags><tag><var n="ntags"/></tag></tags>
+                <lu><clip pos="1" side="tl" part="whole"/></lu>
+              </chunk>
+            </out>
+          </otherwise>
+        </choose>
+        <out><b/></out>
+        <call-macro n="out_posgen_subj">
+          <with-param pos="2"/> <!-- bil -->
+          <with-param pos="2"/> <!-- (casing)-->
+        </call-macro>
+        <out><b/></out>
+        <let><clip pos="5" side="tl" part="temps"/><lit-tag v="pres"/></let>
+        <choose>
+          <when>
+            <test>
+              <equal><clip pos="5" side="tl" part="voice"/><lit-tag v="pasv"/></equal>
+            </test>
+            <call-macro n="set_aux2"><with-param pos="5"/><with-param pos="5"/></call-macro>
+            <out>
+              <chunk name="vblex" case="caseFirstWord">
+                <tags><tag><clip pos="5" side="tl" part="tags"/></tag></tags>
+                <var n="aux"/>
+              </chunk>
+              <b/>
+              <chunk name="vblex">
+                <tags><tag><clip pos="5" side="tl" part="tags"/></tag></tags>
+                <lu>
+                  <clip pos="5" side="tl" part="lemh"/>
+                  <clip pos="5" side="tl" part="a_verb"/>
+                  <lit-tag v="pp"/>
+                  <clip pos="5" side="tl" part="lemq"/>
+                </lu>
+              </chunk>
+            </out>
+          </when>
+          <otherwise>
+            <out>
+              <chunk name="vblex" case="caseFirstWord">
+                <tags><tag><clip pos="5" side="tl" part="tags"/></tag></tags>
+                <lu>
+                  <clip pos="5" side="tl" part="lemh"/>
+                  <clip pos="5" side="tl" part="tags"/>
+                  <clip pos="5" side="tl" part="lemq"/>
                 </lu>
               </chunk>
             </out>
