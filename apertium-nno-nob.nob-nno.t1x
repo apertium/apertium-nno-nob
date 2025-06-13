@@ -1228,7 +1228,7 @@
   </section-def-vars>
 
   <section-def-lists>
-    <def-list n="noun_takes_til" c="Nouns that take an adverbial with the preposition 'til' in Bokmål, e.g. utgift/tilbud">
+    <def-list n="noun_takes_til" c="Nynorsk nouns that take an adverbial with the preposition 'til' in Bokmål, e.g. utgift/tilbud">
       <list-item v="oppkøyring"/>
       <list-item v="utkast"/>
       <list-item v="høve"/>
@@ -1278,7 +1278,7 @@
       <list-item v="trong"/>
       <list-item v="utgift"/>
     </def-list>
-    <def-list n="noun_takes_i" c="Nouns that take an adverbial with the preposition 'i' in Bokmål">
+    <def-list n="noun_takes_i" c="Nynorsk nouns that take an adverbial with the preposition 'i'">
       <list-item v="investering"/>
       <list-item v="million"/>  <!-- millioner i inntekter -->
       <list-item v="milliard"/>
@@ -1286,6 +1286,25 @@
       <list-item v="billiard"/>
       <list-item v="trillion"/>
       <list-item v="trilliard"/>
+    </def-list>
+    <def-list n="noun_takes_for" c="Nynorsk nouns that take an adverbial with the preposition 'for'">
+      <list-item v="behov"/>
+      <list-item v="grunnlag"/>
+      <list-item v="rom"/>
+      <list-item v="bakgrunn"/>
+    </def-list>
+    <def-list n="noun_takes_om" c="Nynorsk nouns that take an adverbial with the preposition 'om'">
+      <list-item v="ønske"/>
+      <list-item v="drøm"/>
+      <list-item v="håp"/>
+      <list-item v="plan"/>
+      <list-item v="intensjon"/>
+      <list-item v="ambisjon"/>
+      <list-item v="tanke"/>
+      <list-item v="vedtak"/>
+      <list-item v="avgjørelse"/>
+      <list-item v="trussel"/>
+      <list-item v="spørsmål"/>
     </def-list>
     <def-list n="adj-ind-def" c="Allow ind adj followed by def noun for these adv-like adjectives (tl/nno)">
       <list-item v="mykje"/>
@@ -13739,6 +13758,8 @@ no lemq-moving">
                 <test><or>
                   <and><in caseless="yes"><var n="prevlem"/><list n="noun_takes_i"/></in>  <equal caseless="yes"><clip pos="1" side="tl" part="lemh"/><lit v="i"/></equal></and>
                   <and><in caseless="yes"><var n="prevlem"/><list n="noun_takes_til"/></in><equal caseless="yes"><clip pos="1" side="tl" part="lemh"/><lit v="til"/></equal></and>
+                  <and><in caseless="yes"><var n="prevlem"/><list n="noun_takes_for"/></in><equal caseless="yes"><clip pos="1" side="tl" part="lemh"/><lit v="for"/></equal></and>
+                  <and><in caseless="yes"><var n="prevlem"/><list n="noun_takes_om"/></in> <equal caseless="yes"><clip pos="1" side="tl" part="lemh"/><lit v="om"/></equal></and>
                 </or></test>
                 <let><var n="pr_head"/><lit-tag v="nhead"/></let>
               </when>
