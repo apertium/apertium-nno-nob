@@ -559,7 +559,7 @@
           <chunk namefrom="c_name" case="caseFirstWord">
             <tags><tag><clip pos="2" side="tl" part="tags"/></tag></tags>
             <lu><clip pos="1" side="tl" part="whole"/></lu>
-            <b pos="1"/>
+            <b/>
             <var n="grau_aux"/>
             <lu>
               <clip pos="2" side="tl" part="lemh"/>
@@ -678,7 +678,7 @@
               <clip pos="1" side="tl" part="tags"/>
               <clip pos="1" side="tl" part="lemq"/>
             </lu>
-            <b pos="1"/>
+            <b/>
             <lu><clip pos="2" side="tl" part="whole"/></lu>
           </chunk>
         </out>
@@ -705,7 +705,7 @@
               <clip pos="1" side="tl" part="tags"/>
               <clip pos="1" side="tl" part="lemq"/>
             </lu>
-            <b pos="1"/>
+            <b/>
             <lu><clip pos="2" side="tl" part="whole"/></lu>
             <lu><clip pos="3" side="tl" part="whole"/></lu>
           </chunk>
@@ -734,7 +734,7 @@
               <clip pos="1" side="tl" part="tags"/>
               <clip pos="1" side="tl" part="lemq"/>
             </lu>
-            <b pos="1"/>
+            <b/>
             <lu><clip pos="2" side="tl" part="whole"/></lu>
             <lu><clip pos="3" side="tl" part="whole"/></lu>
             <lu><clip pos="4" side="tl" part="whole"/></lu>
@@ -765,7 +765,7 @@
               <clip pos="1" side="tl" part="tags"/>
               <clip pos="1" side="tl" part="lemq"/>
             </lu>
-            <b pos="1"/>
+            <b/>
             <lu><clip pos="2" side="tl" part="whole"/></lu>
             <lu><clip pos="3" side="tl" part="whole"/></lu>
             <lu><clip pos="4" side="tl" part="whole"/></lu>
@@ -889,13 +889,13 @@
               <clip pos="1" side="tl" part="tags"/>
               <clip pos="1" side="tl" part="lemq"/>
             </lu>
-            <b pos="1"/>
+            <b/>
             <lu>
               <clip pos="2" side="tl" part="lemh"/>
               <clip pos="2" side="tl" part="tags"/>
               <clip pos="2" side="tl" part="lemq"/>
             </lu>
-            <b pos="2"/>
+            <b/>
             <lu><clip pos="3" side="tl" part="whole"/></lu>
             <lu><clip pos="4" side="tl" part="whole"/></lu>
             <lu><clip pos="5" side="tl" part="whole"/></lu>
@@ -933,13 +933,13 @@
               <clip pos="1" side="tl" part="tags"/>
               <clip pos="1" side="tl" part="lemq"/>
             </lu>
-            <b pos="1"/>
+            <b/>
             <lu>
               <clip pos="2" side="tl" part="lemh"/>
               <clip pos="2" side="tl" part="tags"/>
               <clip pos="2" side="tl" part="lemq"/>
             </lu>
-            <b pos="2"/>
+            <b/>
             <lu><clip pos="3" side="tl" part="whole"/></lu>
             <lu><clip pos="4" side="tl" part="whole"/></lu>
             <lu><clip pos="5" side="tl" part="whole"/></lu>
@@ -1155,7 +1155,7 @@
               <clip pos="1" side="tl" part="tags"/>
               <clip pos="1" side="tl" part="lemq"/>
             </lu>
-            <b pos="1"/>
+            <b/>
             <lu>
               <clip pos="2" side="tl" part="lemh"/>
               <clip pos="2" side="tl" part="tags"/>
@@ -1220,15 +1220,15 @@
 
         <choose c="merge blanks">
           <when>
-            <test><equal><b pos="1"/><lit v=" "/></equal></test>
-            <let><var n="blank"/><b pos="2"/></let>
+            <test><equal><b/><lit v=" "/></equal></test>
+            <let><var n="blank"/><b/></let>
           </when>
           <when>
-            <test><equal><b pos="2"/><lit v=" "/></equal></test>
-            <let><var n="blank"/><b pos="1"/></let>
+            <test><equal><b/><lit v=" "/></equal></test>
+            <let><var n="blank"/><b/></let>
           </when>
           <otherwise>
-            <let><var n="blank"/><concat><b pos="1"/><b pos="2"/></concat></let>
+            <let><var n="blank"/><concat><b/><b/></concat></let>
           </otherwise>
         </choose>
 

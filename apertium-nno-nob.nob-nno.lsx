@@ -239,6 +239,17 @@
       <e><p><l><s n="AA"/></l> <r><s n="aa"/></r></p></e>
     </pardef>
 
+    <pardef n="number" c="Just match tag, no change">
+      <e><i><s n="sg"/></i></e>
+      <e><i><s n="pl"/></i></e>
+      <e><i><s n="sp"/></i></e>
+      <e><i><s n="ND"/></i></e>
+    </pardef>
+    <pardef n="defnes" c="Just match tag, no change">
+      <e><i><s n="def"/></i></e>
+      <e><i><s n="ind"/></i></e>
+    </pardef>
+
     <pardef n="sent">
       <e><i><w/><s n="sent"/></i></e>
       <e><i><w/><s n="sent"/><t/></i></e>
@@ -5568,7 +5579,7 @@
     <e lm="sine ansatte -> de ansatte" c="dei tilsette">
       <p><l><w/><s n="det"/><s n="pos"/><s n="un"/><s n="pl"/><t/></l>             <r></r></p> <par n="d:"/>
       <p><l></l>                <r>den<s n="det"/><s n="dem"/><s n="un"/><s n="pl"/><s n="aa"/><d/></r></p>
-      <i>ansatt<s n="n"/><t/><d/></i>
+      <i>ansatt<s n="n"/><s n="m"/><t/></i><!-- <par n="number"/><par n="defnes"/> --><par n="d"/>
     </e>
 
     <e lm="de avgitte stemmene -> stemmene" c="stemmene">
