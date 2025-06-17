@@ -1037,14 +1037,14 @@
 
 
   <!-- brenne¹ is transitive: -->
-  <rule> <match lemma="brenne" tags="adj.*"> <select lemma="brenne"/> </match> </rule>
+  <rule> <match lemma="brenne" tags="adj.*"> <select lemma="brenne¹"/> </match> </rule>
   <rule> <match lemma="brenne" tags="vblex.*"> <select lemma="brenne"/> </match> </rule>
   <rule weight="2.0" c="passiv: alltid transitiv">
     <match lemma="brenne" tags="vblex.*.pasv.*">
       <select lemma="brenne¹"/>
     </match>
   </rule>
-  <rule weight="2.0" c="passiv: alltid transitiv">
+  <rule weight="2.0" c="passiv bli: alltid transitiv">
     <match lemma="bli" tags="vblex.*"/>
     <repeat from="0" upto="1">
       <match tags="*"/>
@@ -1053,7 +1053,7 @@
       <select lemma="brenne¹"/>
     </match>
   </rule>
-  <rule weight="2.0" c="passiv: alltid transitiv">
+  <rule weight="2.0" c="passiv bli: alltid transitiv">
     <match lemma="bli" tags="vblex.*"/>
     <repeat from="0" upto="1">
       <match tags="*"/>
@@ -1062,13 +1062,36 @@
       <select lemma="brenne¹"/>
     </match>
   </rule>
-  <rule weight="2.0" c="brenne av, brenne en ting">
+  <rule weight="2.0" c="er brunnen ned">
+    <match lemma="brenne" tags="adj.pp.*">
+      <select lemma="brenne"/>
+    </match>
+    <or>
+      <match lemma="ned"/>
+      <match lemma="opp"/>
+      <match lemma="ned i"/>
+    </or>
+  </rule>
+  <rule weight="2.0" c="er brunnen ned">
+    <match lemma="være" tags="vblex.*"/>
+    <repeat from="0" upto="3">
+      <match tags="*"/>
+    </repeat>
+    <match lemma="brenne" tags="adj.pp.*">
+      <select lemma="brenne"/>
+    </match>
+    <or>
+      <match lemma="ned"/>
+      <match lemma="opp"/>
+    </or>
+  </rule>
+  <rule weight="2.0" c="brenne av, brenne en ting, brenne alle bruer">
     <match lemma="brenne" tags="vblex.*">
       <select lemma="brenne¹"/>
     </match>
     <or>
       <match lemma="av"/>
-      <match lemma="alle"/>
+      <match lemma="all"/>
       <match lemma="en"/>
     </or>
   </rule>
@@ -12602,6 +12625,15 @@ preposisjonar gir ekstra utfordringar. -->
     <match lemma="bevis"/>
   </rule>
 
+  <rule> <match lemma="forbrenne" tags="adj.*"> <select lemma="forbrenne¹"/> </match> </rule>
+  <rule weight="2.0" c="forbrenne handa">
+    <match lemma="forbrenne" tags="vblex.*"><select lemma="forbrenne¹"/></match>
+    <or>
+      <match tags="n.*"/>
+      <match lemma="en"/>
+      <match lemma="seg"/>
+    </or>
+  </rule>
   <rule weight="2.0" c="bli forbrent">
     <seq n="være-bli"/>
     <repeat from="0" upto="5"><match/></repeat>
@@ -12614,5 +12646,19 @@ preposisjonar gir ekstra utfordringar. -->
     <match lemma="ti"/>
     <match lemma="bud" tags="n.*"><select lemma="bodord"/></match>
   </rule>
+
+  <rule> <match lemma="skygge" tags="vblex.*"> <select lemma="skygge"/> </match> </rule>
+  <rule> <match lemma="skygge" tags="adj.*"> <select lemma="skygge"/> </match> </rule>
+  <rule weight="2.0" c="skygge unna">
+    <match lemma="skygge" tags="vblex.*">  <select lemma="skugge"/> </match>
+    <repeat from="0" upto="3"><match/></repeat>
+    <or>
+      <match lemma="unna"/>
+      <match lemma="bane"/>
+    </or>
+  </rule>
+
+
+
 </rules>
 </lrx>
