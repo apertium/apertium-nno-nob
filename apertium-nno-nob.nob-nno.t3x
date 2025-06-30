@@ -661,11 +661,13 @@
 
     <def-macro n="apply_chunk_defnes_to_adj" npar="2"
                c="arg.1: adjective, arg.2: chunk.
-                  Allow adjectives to turn definite (from chunk defnes), but not indefinite.">
+                  Allow singular adjectives to turn definite if chunk is definite.
+                  We never change the other way (def→ind).">
       <choose><when>
         <test><and>
           <equal><clip pos="1" part="a_cmp"/><lit v=""/></equal>            <!-- is not cmp, but -->
           <not><equal><clip pos="1" part="a_adj"/><lit v=""/></equal></not> <!-- is an adjective-->
+          <equal><clip pos="1" part="number"/><lit-tag v="sg"/></equal> <!-- Only singulars should become definite; plurals should stay pl.ind (don't change små to vesle) -->
           <equal><clip pos="1" part="art"/><lit-tag v="ind"/></equal>
           <equal><clip pos="2" part="art"/><lit-tag v="def"/></equal>
           <!-- avoid 'den meste viktige tingen' / 'dei mellombelse
