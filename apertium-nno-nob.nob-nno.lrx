@@ -4131,24 +4131,206 @@
     <match tags="adj.*"/>
   </rule>
 
-  <!-- merke¹ is transitive: -->
+  <!-- merkje is transitive: -->
   <rule><match lemma="merke" tags="vblex.*"><select lemma="merke"/></match></rule>
-  <rule><match lemma="merke" tags="adj.*"><select lemma="merke"/></match></rule>
-  <rule weight="2.0">
-    <or>
-      <match lemma="riktig"/>
-      <match lemma="være"/>
-      <match lemma="-"/>
-    </or>
+  <rule><match lemma="merke" tags="adj.*"><select lemma="merkje"/></match></rule>
+  <rule weight="3.0" c="merkjer (dei) seg">
     <match lemma="merke">
-      <select lemma="merke¹"/>
+      <select lemma="merkje"/>
+    </match>
+    <repeat from="0" upto="3"><match tags="*"/></repeat>
+    <seq n="ref-prn"/>
+  </rule>
+  <rule weight="3.0" c="merkje seg at">
+    <match lemma="merke">
+      <select lemma="merkje"/>
+    </match>
+    <repeat from="0" upto="3"><match tags="*"/></repeat>
+    <seq n="ref-prn"/>
+    <match lemma="at"/>
+  </rule>
+  <rule weight="3.0" c="det får folk merkje seg">
+    <match lemma="få" tags="vblex.*"/>
+    <repeat from="0" upto="3"><match tags="*"/></repeat>
+    <match lemma="merke">
+      <select lemma="merkje"/>
+    </match>
+    <seq n="ref-prn"/>
+  </rule>
+  <rule weight="3.0" c="vi merker oss">
+    <match tags="prn.pers.*"/>
+    <match lemma="merke" tags="vblex.*">
+      <select lemma="merkje"/>
+    </match>
+    <seq n="ref-prn"/>
+  </rule>
+  <rule weight="3.0" c="(det) merkte vi oss">
+    <match tags="prn.pers.*"/>
+    <match lemma="merke" tags="vblex.*">
+      <select lemma="merkje"/>
+    </match>
+    <match tags="prn.pers.*"/>
+    <seq n="ref-prn"/>
+  </rule>
+  <rule weight="3.0" c="det merka vi (godt)">
+    <or>
+      <match lemma="den" tags="prn.pers.*.nt.*"/>
+      <match lemma="den" tags="det.dem.nt.*"/>
+    </or>
+    <match lemma="merke" tags="vblex.*">
+      <select lemma="merke"/>
+    </match>
+    <match tags="prn.pers.*"/>
+  </rule>
+  <rule weight="13.8" c="vi merker det">
+    <match tags="prn.pers.*"/>
+    <match lemma="merke" tags="vblex.*">
+      <select lemma="merke"/>
+    </match>
+    <or>
+      <match lemma="den" tags="prn.pers.*.nt.*"/>
+      <match lemma="den" tags="det.dem.nt.*"/>
+      <match lemma="ingenting"/>
+      <match tags="adv.*"/>
+    </or>
+  </rule>
+  <rule weight="2.0" c="merker vi det">
+    <match lemma="merke" tags="vblex.*">
+      <select lemma="merke"/>
+    </match>
+    <match tags="prn.pers.*"/>
+    <or>
+      <match lemma="den" tags="prn.pers.*.nt.*"/>
+      <match lemma="den" tags="det.dem.nt.*"/>
+      <match lemma="ingenting"/>
+      <match lemma="noe"/>
+      <match tags="adv.*"/>
+    </or>
+  </rule>
+  <rule weight="2.0" c="ingen merket det">
+    <match lemma="merke" tags="vblex.*">
+      <select lemma="merke"/>
+    </match>
+    <or>
+      <match lemma="den" tags="prn.pers.*.nt.*"/>
+      <match lemma="den" tags="det.dem.nt.*"/>
+    </or>
+  </rule>
+  <rule weight="2.0" c="merke at">
+    <match lemma="merke" tags="vblex.*">
+      <select lemma="merke"/>
+    </match>
+    <repeat from="0" upto="3"><match tags="*"/></repeat>
+    <match lemma="at"/>
+  </rule>
+  <rule weight="2.0" c="få merke (noko)">
+    <match lemma="få" tags="vblex.*"/>
+    <repeat from="0" upto="3"><match tags="*"/></repeat>
+    <match lemma="merke" tags="vblex.*">
+      <select lemma="merke"/>
     </match>
   </rule>
-  <rule weight="2.0">
-    <match lemma="merke">
-      <select lemma="merke¹"/>
+  <rule weight="2.0" c="(vere/bli) merkt med">
+    <match lemma="merke" tags="vblex.*">
+      <select lemma="merkje"/>
+    </match>
+    <or>
+      <match lemma="med"/>
+      <match lemma="opp"/>
+    </or>
+  </rule>
+  <rule weight="2.2" c="merkje oppgåva med at">
+    <match lemma="merke" tags="vblex.*">
+      <select lemma="merkje"/>
+    </match>
+    <match tags="n.*"/>
+    <match lemma="med"/>
+    <match lemma="at"/>
+  </rule>
+  <rule weight="2.2" c="merkje plantar med">
+    <match lemma="merke" tags="vblex.*">
+      <select lemma="merkje"/>
+    </match>
+    <or>
+      <match tags="n.*"/>
+      <match tags="adj.*"/>
+      <match lemma="de" tags="adj.*"/>
+    </or>
+    <match lemma="med"/>
+  </rule>
+    <rule weight="2.2" c="merkje barnehagebarn med">
+    <match lemma="merke" tags="vblex.*">
+      <select lemma="merkje"/>
+    </match>
+    <match tags="*"/>
+    <match tags="n.*"/>
+    <match lemma="med"/>
+  </rule>
+  <rule weight="2.0" c="merkes som">
+    <match lemma="merke" tags="vblex.*.pasv.*">
+      <select lemma="merkje"/>
     </match>
     <match lemma="som"/>
+  </rule>
+  <rule weight="2.0" c="vere/bli merkt som">
+    <or>
+      <match lemma="være"/>
+      <match lemma="bli"/>
+      <match lemma="ha"/>
+    </or>
+    <repeat from="0" upto="6"><match tags="*"/></repeat>
+    <match lemma="merke" tags="*.pp.*">
+      <select lemma="merkje"/>
+    </match>
+    <match lemma="som"/>
+  </rule>
+  <rule weight="2.5" c="som merkar noko">
+    <match lemma="som"/>
+    <match lemma="merke" tags="vblex.pres.*">
+      <select lemma="merke"/>
+    </match>
+    <match tags="*"/>
+  </rule>
+  <rule weight="3.0" c="mange vil merkje seg">
+    <or>
+      <match lemma="ville"/>
+      <match lemma="kunne"/>
+      <match lemma="skulle"/>
+      <match lemma="burde"/>
+      <match lemma="måtte"/>
+    </or>
+    <match lemma="merke" tags="vblex.inf.*">
+      <select lemma="merkje"/>
+    </match>
+    <seq n="ref-prn"/>
+  </rule>
+  <rule weight="2.0" c="merkje stiar">
+    <match lemma="merke" tags="vblex.*">
+      <select lemma="merkje"/>
+    </match>
+    <or>
+      <match tags="det.qnt.*"/>
+      <match lemma="sti"/>
+      <match lemma="tursti"/>
+      <match lemma="løype"/>
+      <match lemma="turløype"/>
+      <match lemma="fisk"/>
+      <match lemma="laks"/>
+      <match lemma="dyr"/>
+      <match lemma="ku"/>
+      <match lemma="sau"/>
+      <match lemma="hjort"/>
+      <match lemma="bjørn"/>
+      <match lemma="ulv"/>
+      <match lemma="fugl"/>
+      <match lemma="tømmer"/>
+      <match lemma="plante"/>
+      <match lemma="produkt"/>
+      <match lemma="mat"/>
+      <match lemma="vare"/>
+      <match lemma="klær"/>
+      <match lemma="barn"/>
+    </or>
   </rule>
 
   <rule><match lemma="avvente" tags="adj.*"><select lemma="avvente"/></match></rule>
