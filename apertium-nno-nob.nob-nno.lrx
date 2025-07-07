@@ -12844,6 +12844,43 @@ preposisjonar gir ekstra utfordringar. -->
     </or>
   </rule>
 
+  <rule> <match lemma="bemerke" tags="vblex.*"> <select lemma="registrere"/> </match> </rule>
+  <rule> <match lemma="bemerke" tags="adj.*"> <select lemma="registrere"/> </match> </rule>
+  <rule weight="2.2" c="å bemerke at">
+    <match lemma="bemerke" tags="vblex.inf.*">  <select lemma="peike# på"/> </match>
+    <match lemma="at"/>
+  </rule>
+  <rule weight="2.0" c="bemerke at">
+    <match lemma="bemerke" tags="vblex.*">  <select lemma="merkje# seg"/> </match>
+    <match lemma="at"/>
+  </rule>
+  <rule weight="2.0" c="bemerker oss">
+    <match lemma="bemerke" tags="vblex.*">  <select lemma="merkje"/> </match>
+    <seq n="ref-prn"/>
+  </rule>
+  <rule weight="2.0" c="ingenting å bemerke">
+    <match lemma="å"/>
+    <match lemma="bemerke" tags="vblex.inf.*">  <select lemma="merkje"/> </match>
+    <seq n="ref-prn"/>
+  </rule>
+  <rule weight="2.0" c="bla bla, bemerker NN">
+    <match tags="cm.*"/>
+    <match lemma="bemerke" tags="vblex.*">  <select lemma="påpeike"/> </match>
+  </rule>
+  <rule weight="2.0" c="bemerke seg at">
+    <match lemma="bemerke# seg" tags="vblex.*">  <select lemma="merkje# seg"/> </match>
+    <match lemma="at"/>
+  </rule>
+  <rule weight="2.0" c="bemerke seg med">
+    <match lemma="bemerke# seg" tags="vblex.*">  <select lemma="utmerkje# seg"/> </match>
+    <or>
+      <match tags="pr.*"/>
+      <match tags="adv.*"/>
+      <match tags="adj.*"/>
+      <match lemma="som"/>
+    </or>
+  </rule>
+
 
 
 </rules>
