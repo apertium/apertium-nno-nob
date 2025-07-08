@@ -4337,6 +4337,20 @@
   <rule><match lemma="avmerke" tags="vblex.*"><select lemma="merkje# av"/></match></rule>
   <rule><match lemma="avmerke" tags="adj.*"><select lemma="avmerkje"/></match></rule>
 
+  <!-- å merkje om, ommerkt -->
+  <rule><match lemma="ommerke" tags="vblex.*"><select lemma="merkje# om"/></match></rule>
+  <rule><match lemma="ommerke" tags="adj.*"><select lemma="ommerkje"/></match></rule>
+  <rule weight="2.0" c="vere/bli merkt om">
+    <or>
+      <match lemma="være"/>
+      <match lemma="bli"/>
+    </or>
+    <repeat from="0" upto="3"><match tags="*"/></repeat>
+    <match lemma="ommerke" tags="adj.pp.*">
+      <select lemma="merkje# om"/>
+    </match>
+  </rule>
+
   <rule><match lemma="avvente" tags="adj.*"><select lemma="avvente"/></match></rule>
   <rule><match lemma="avvente" tags="vblex.*"><select lemma="avvente"/></match></rule>
   <rule weight="2.5">
@@ -12881,6 +12895,31 @@ preposisjonar gir ekstra utfordringar. -->
     </or>
   </rule>
 
+  <rule> <match lemma="anmerke" tags="vblex.*"> <select lemma="notere"/> </match> </rule>
+  <rule> <match lemma="anmerke" tags="adj.*"> <select lemma="notere"/> </match> </rule>
+  <rule weight="2.0" c="å anmerke">
+    <match lemma="å"/>
+    <match lemma="anmerke" tags="vblex.*">  <select lemma="gjere# merknad om"/> </match>
+  </rule>
+  <rule weight="2.0" c="bla bla, anmerker NN">
+    <match tags="cm.*"/>
+    <match lemma="anmerke" tags="vblex.*">  <select lemma="påpeike"/> </match>
+  </rule>
+  <rule weight="2.0" c="anmerket på/i (attesten)">
+    <match lemma="anmerke">  <select lemma="føre# opp"/> </match>
+    <or>
+      <match lemma="på"/>
+      <match lemma="i"/>
+    </or>
+  </rule>
+  <rule weight="2.0" c="anmerke at">
+    <match lemma="anmerke" tags="vblex.*">  <select lemma="peike# på"/> </match>
+    <match lemma="at"/>
+  </rule>
+  <rule weight="3.0" c="anmerket gjeld">
+    <match lemma="anmerke" tags="adj.pp.*">  <select lemma="anmerkje"/> </match>
+    <match tags="n.*"/>
+  </rule>
 
 
 </rules>
