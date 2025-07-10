@@ -12921,6 +12921,24 @@ preposisjonar gir ekstra utfordringar. -->
     <match tags="n.*"/>
   </rule>
 
+  <rule> <match lemma="sommerfugl" tags="n.*"> <select lemma="sommarfugl"/> </match> </rule>
+  <!-- gir fivreld ein liten plass iallfall -->
+  <rule weight="2.2" c="sommerfugler i magen">
+    <match lemma="sommerfugl" tags="n.*">  <select lemma="sommarfugl"/> </match>
+    <match lemma="i"/>
+    <match lemma="mage"/>
+  </rule>
+  <rule weight="2.0" c="en sommerfugl">
+    <match lemma="en"/>
+    <match lemma="sommerfugl" tags="n.*">  <select lemma="fivreld"/> </match>
+  </rule>
+  <rule weight="2.0" c="en liten sommerfugl">
+    <match lemma="en"/>
+    <match tags="adj.*"/>
+    <match lemma="sommerfugl" tags="n.*">  <select lemma="fivreld"/> </match>
+  </rule>
+
+
 
 </rules>
 </lrx>
