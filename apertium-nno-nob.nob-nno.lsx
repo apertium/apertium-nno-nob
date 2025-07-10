@@ -325,11 +325,15 @@
     <pardef n="det:nt" c="det/prn, 'det' nt">
       <e><i>den<s n="det"/><s n="dem"/><s n="nt"/><t/><d/></i></e>
       <e><i>den<s n="prn"/><s n="pers"/><s n="p3"/><s n="nt"/><s n="sg"/><s n="nom"/><t/><d/></i></e>
+    </pardef>  
+    <pardef n="det:nt-space">
+      <e><i>den<s n="det"/><s n="dem"/><s n="nt"/><t/><d space="yes"/></i></e>
+      <e><i>den<s n="prn"/><s n="pers"/><s n="p3"/><s n="nt"/><s n="sg"/><s n="nom"/><t/><d space="yes"/></i></e>
     </pardef>
 
     <pardef n="rem:det" c="determinativ/pronomen, 'det' nt">
       <e><p><l>den<s n="det"/><s n="dem"/><s n="nt"/><t/></l>             <r></r></p>    <par n="d:"/></e>
-      <e><p><l>den<s n="prn"/><s n="pers"/><s n="p3"/><s n="nt"/><s n="sg"/><s n="nom"/><t/></l>             <r></r></p>    <par n="d:"/></e>
+      <e><p><l>den<s n="prn"/><s n="pers"/><s n="p3"/><s n="nt"/><s n="sg"/><t/></l>             <r></r></p>    <par n="d:"/></e>
     </pardef>
 
     <pardef n="adj">
@@ -539,6 +543,19 @@
         <par n="np-institution"/>
       </e>
     </pardef>
+
+    <pardef n="np+cmp">
+      <e><par n="np"/></e>
+      <e>
+        <i><w/><s n="np"/><t/><s n="cmp"/><d/></i>
+        <i><w/><s n="n"/><t/><d/></i>
+      </e>
+      <e>
+        <i><w/><s n="np"/><t/><s n="guio"/><d/></i>
+        <i><w/><s n="n"/><t/><d/></i>
+      </e>
+    </pardef>
+
     <pardef n="np|empty">
       <e></e>
       <e><i><w/><s n="np"/><d/></i></e>
@@ -826,6 +843,11 @@
       <e><par n="adj"/><par n="adj"/><par n="adj"/><par n="ncmp*.n"/></e>
     </pardef>
 
+    <pardef n="SN-dbl-bf">
+      <e><i><w/><s n="det"/><s n="dem"/><t/><s n="sg"/><t/><d/></i></e>
+      <e>                                         <par n="SN"/></e>
+    </pardef>
+
     <pardef n="SN|empty" c="Includes empty!">
       <e></e>
       <e>                            <par n="ncmp*.n"/></e>
@@ -882,6 +904,8 @@
       <e><par n="det+SN"/><i><w/><s n="cnjcoo"/><t/><d/></i><par n="det+SN"/></e>                       <!-- all mening og alle verdier -->
       <e><par n="SN"/><i><w/><s n="cnjcoo"/><t/><d/></i><par n="SN"/></e>                               <!-- ditt og datt -->
       <e><par n="SN"/><par n="cm"/><par n="SN"/><i><w/><s n="cnjcoo"/><t/><d/></i><par n="SN"/></e>     <!-- ditt, datt og dutt -->
+      <e><par n="adj"/><i><w/><s n="cnjcoo"/><t/><d/></i><par n="SN"/></e>                              <!-- frie og demokratiske valg -->
+      <e><par n="adj"/><par n="cm"/><par n="adj"/><i><w/><s n="cnjcoo"/><t/><d/></i><par n="SN"/></e>   <!-- åpne, frie og demokratiske valg -->
       <e><par n="SN"/><i><w/><s n="pr"/><t/><d/></i><par n="SN"/></e>                                   <!-- karakterer i krise -->
       <e><i><w/><s n="adv"/><t/><d/></i><par n="SN"/><par n="SN"/></e>                                  <!-- helt vanlige mennesklige egenskaper -->
       <e>
@@ -5602,6 +5626,24 @@
       <e><i>noe<s n="det"/><s n="qnt"/><s n="nt"/><t/><d/></i></e>
       <e><i>ingenting<s n="adv"/><t/><d/></i></e>
       <e><i>ingenting<s n="n"/><t/><d/></i></e>
+    </pardef>
+
+    <pardef n="for|som">
+      <e><i>for<t/><d/></i></e>
+      <e><i>som<t/><d/></i></e>
+    </pardef>
+
+    <pardef n="denne|np">
+      <e><i><w/><s n="np"/><t/><d space="yes"/></i></e>
+      <e><i>denne<s n="det"/><s n="dem"/><t/><s n="sg"/><t/><d space="yes"/></i></e>
+      <e>
+        <i>den<t/><d/></i>
+        <i>her<s n="adv"/><t/><d space="yes"/></i>
+      </e>
+      <e>
+        <i>denne<t/><d/></i>
+        <i>her<s n="adv"/><t/><d space="yes"/></i>
+      </e>
     </pardef>
 
   </pardefs>
@@ -21001,6 +21043,114 @@
   <p><l></l>                <r>fram<s n="adv"/><s n="aa"/><d/></r></p>
   <par n="ANYWORD"/>
 </e>
+
+<e lm="viktigheten av å → hvor viktig det er å" c="kor viktig det er å" w="2.5">
+  <par n="ANYWORD"/>
+  <p><l>viktighet<s n="n"/><t/><s n="sg"/><s n="def"/><t/></l>   <r></r></p>    <par n="d:"/>
+  <p><l>av<t/></l>   <r></r></p>    <par n="d:"/>
+  <p><l></l>                <r>hvor<s n="adv"/><s n="aa"/><d/></r></p>
+  <p><l></l>                <r>viktig<s n="adj"/><s n="sint"/><s n="pst"/><s n="nt"/><s n="sg"/><s n="ind"/><s n="aa"/><d/></r></p>
+  <p><l></l>                <r>den<s n="det"/><s n="dem"/><s n="nt"/><s n="sg"/><s n="expl"/><s n="aa"/><d/></r></p>
+  <p><l></l>                <r>være<s n="vblex"/><s n="pres"/><s n="aa"/><d/></r></p>
+  <par n="å|at"/>
+  <par n="ANYWORD"/>
+</e>
+
+<e lm="viktigheten av det å → hvor viktig det er å" c="kor viktig det er å" w="2.5">
+  <par n="ANYWORD"/>
+  <p><l>viktighet<s n="n"/><t/><s n="sg"/><s n="def"/><t/></l>   <r></r></p>    <par n="d:"/>
+  <p><l>av<t/></l>   <r></r></p>    <par n="d:"/>
+  <p><l></l>                <r>hvor<s n="adv"/><s n="aa"/><d/></r></p>
+  <p><l></l>                <r>viktig<s n="adj"/><s n="sint"/><s n="pst"/><s n="nt"/><s n="sg"/><s n="ind"/><s n="aa"/><d/></r></p>
+  <p><l></l>                <r>den<s n="det"/><s n="dem"/><s n="nt"/><s n="sg"/><s n="expl"/><s n="aa"/><d/></r></p>
+  <p><l></l>                <r>være<s n="vblex"/><s n="pres"/><s n="aa"/><d/></r></p>
+  <par n="rem:det"/>
+  <par n="å|at"/>
+  <par n="ANYWORD"/>
+</e>
+
+<e lm="viktigheten av Facebook for → hvor viktig Facebook er for" c="kor viktig Facebook er for">
+  <p><l>viktighet<s n="n"/><t/><s n="sg"/><s n="def"/><t/></l>   <r></r></p>    <par n="d:"/>
+  <p><l>av<t/></l>   <r></r></p>    <par n="d:"/>
+  <p><l></l>                <r>hvor<s n="adv"/><s n="aa"/><d/></r></p>
+  <p><l></l>                <r>viktig<s n="adj"/><s n="sint"/><s n="pst"/><s n="nt"/><s n="sg"/><s n="ind"/><s n="aa"/><d/></r></p>
+  <par n="ANYWORD"/>
+  <par n="ANYWORDx3|empty"/>
+  <p><l></l>                <r>være<s n="vblex"/><s n="pres"/><s n="aa"/><d/></r></p>
+  <par n="adv|empty"/>
+  <par n="for|som"/>
+</e>
+
+<e lm="viktigheten av → hvor viktig det er med" c="kor viktig det er med">
+  <p><l>viktighet<s n="n"/><t/><s n="sg"/><s n="def"/><t/></l>   <r></r></p>    <par n="d:"/>
+  <p><l>av<t/></l>   <r></r></p>    <par n="d:"/>
+  <p><l></l>                <r>hvor<s n="adv"/><s n="aa"/><d/></r></p>
+  <p><l></l>                <r>viktig<s n="adj"/><s n="sint"/><s n="pst"/><s n="nt"/><s n="sg"/><s n="ind"/><s n="aa"/><d/></r></p>
+  <p><l></l>                <r>den<s n="det"/><s n="dem"/><s n="nt"/><s n="sg"/><s n="expl"/><s n="aa"/><d/></r></p>
+  <p><l></l>                <r>være<s n="vblex"/><s n="pres"/><s n="aa"/><d/></r></p>
+  <p><l></l>                <r>med<s n="pr"/><s n="aa"/><d/></r></p>
+  <par n="adv|empty"/>
+  <par n="SN-exp"/>
+</e>
+
+<e lm="viktigheten av dette, → hvor viktig dette er, " c="kor viktig dette er,">
+  <p><l>viktighet<s n="n"/><t/><s n="sg"/><s n="def"/><t/></l>   <r></r></p>    <par n="d:"/>
+  <p><l>av<t/></l>   <r></r></p>    <par n="d:"/>
+  <p><l></l>                <r>hvor<s n="adv"/><s n="aa"/><d/></r></p>
+  <p><l></l>                <r>viktig<s n="adj"/><s n="sint"/><s n="pst"/><s n="nt"/><s n="sg"/><s n="ind"/><s n="aa"/><d/></r></p>
+  <par n="denne|np"/>
+  <p><l></l>                <r>være<s n="vblex"/><s n="pres"/><s n="aa"/><d space="no"/></r></p>
+  <par n="cm|sent"/>
+</e>
+
+<e lm="og viktigheten av → og betydningen av" c="og betydninga av">
+  <par n="cnjcoo|cnjsub"/>
+  <p><l>viktighet<s n="n"/><t/><s n="sg"/><s n="def"/></l>   <r>betydning<s n="n"/><s n="m"/><s n="sg"/><s n="def"/></r></p> <i><t/><d/></i>  
+  <i>av<t/><d/></i>
+  <par n="ANYWORD"/>
+  <par n="ANYWORD"/>
+  <par n="ANYWORD"/>
+</e>
+
+<e lm="viktigheten av både → betydningen av både" c="betydninga av både">
+  <par n="ANYWORD"/>
+  <p><l>viktighet<s n="n"/><t/><s n="sg"/><s n="def"/></l>   <r>betydning<s n="n"/><s n="m"/><s n="sg"/><s n="def"/></r></p> <i><t/><d/></i>  
+  <i>av<t/><d/></i>
+  <i>både<t/><d/></i>
+</e>
+
+<e lm="Viktigheten av → Betydningen av " c="Betydninga av ">
+  <p><l>viktighet<s n="n"/><t/><s n="sg"/><s n="def"/><s n="Aa"/></l>   <r>betydning<s n="n"/><s n="m"/><s n="sg"/><s n="def"/><s n="Aa"/></r></p> <i><t/><d/></i>  
+  <i>av<t/><d/></i>
+  <par n="ANYWORD"/>
+  <par n="ANYWORD"/>
+  <par n="ANYWORD"/>
+</e>
+
+<e lm="viktigheten av årets → betydningen av årets" c="betydninga av årets">
+  <par n="ANYWORD"/>
+  <p><l>viktighet<s n="n"/><t/><s n="sg"/><s n="def"/></l>   <r>betydning<s n="n"/><s n="m"/><s n="sg"/><s n="def"/></r></p> <i><t/><d/></i>  
+  <i>av<t/><d/></i>
+  <i><w/><t/><s n="gen"/><t/><d/></i>
+  <par n="ANYWORD"/>
+</e>
+
+<e lm="viktigheten av det → betydningen av det folkelige samarbeidet" c="betydningen av det folkelege samarbeidet">
+  <par n="ANYWORD"/>
+  <p><l>viktighet<s n="n"/><t/><s n="sg"/><s n="def"/></l>   <r>betydning<s n="n"/><s n="m"/><s n="sg"/><s n="def"/></r></p> <i><t/><d/></i>  
+  <i>av<t/><d/></i>
+  <par n="det:nt"/>
+  <par n="ANYWORD"/>
+</e>
+
+<e lm="viktigheten av kampen. → betydningen av kampen." c="betydninga av kampen.">
+  <par n="ANYWORD"/>
+  <p><l>viktighet<s n="n"/><t/><s n="sg"/><s n="def"/></l>   <r>betydning<s n="n"/><s n="m"/><s n="sg"/><s n="def"/></r></p> <i><t/><d/></i>  
+  <i>av<t/><d/></i>
+  <i><w/><s n="n"/><t/><t/><s n="def"/><t/><d/></i>
+  <par n="cm|sent"/>
+</e>
+
 
 </section>
 
