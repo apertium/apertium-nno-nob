@@ -196,23 +196,33 @@
     <def-cat n="vblex">
       <cat-item name="vblex"/>
     </def-cat>
-    <def-cat n="prenom_vblex">
+    <def-cat n="prenom_vblexadj">
       <cat-item name="cmp_vblex"/>
+      <cat-item name="cmp_adj"/>
     </def-cat>
-    <def-cat n="prenom_prenom_vblex">
+    <def-cat n="prenom_prenom_vblexadj">
       <cat-item name="cmp_vblex"/>
       <cat-item name="cmp_cmp_vblex"/>
+      <cat-item name="cmp_adj"/>
+      <cat-item name="cmp_cmp_adj"/>
     </def-cat>
-    <def-cat n="prenom_prenom_prenom_vblex">
+    <def-cat n="prenom_prenom_prenom_vblexadj">
       <cat-item name="cmp_vblex"/>
       <cat-item name="cmp_cmp_vblex"/>
       <cat-item name="cmp_cmp_cmp_vblex"/>
+      <cat-item name="cmp_adj"/>
+      <cat-item name="cmp_cmp_adj"/>
+      <cat-item name="cmp_cmp_cmp_adj"/>
     </def-cat>
-    <def-cat n="prenom_prenom_prenom_prenom_vblex">
+    <def-cat n="prenom_prenom_prenom_prenom_vblexadj">
       <cat-item name="cmp_vblex"/>
       <cat-item name="cmp_cmp_vblex"/>
       <cat-item name="cmp_cmp_cmp_vblex"/>
       <cat-item name="cmp_cmp_cmp_cmp_vblex"/>
+      <cat-item name="cmp_adj"/>
+      <cat-item name="cmp_cmp_adj"/>
+      <cat-item name="cmp_cmp_cmp_adj"/>
+      <cat-item name="cmp_cmp_cmp_cmp_adj"/>
     </def-cat>
   </section-def-cats>
 
@@ -1282,9 +1292,9 @@
       </action>
     </rule>
 
-    <rule comment="CHUNK: prenom_vblex">
+    <rule comment="CHUNK: prenom_vblexadj">
       <pattern>
-        <pattern-item n="prenom_vblex"/>
+        <pattern-item n="prenom_vblexadj"/>
       </pattern>
       <action>
         <let><clip pos="1" part="a_caps"/><lit v=""/></let>
@@ -1295,9 +1305,9 @@
         </out>
       </action>
     </rule>
-    <rule comment="CHUNK: prenom_prenom_vblex">
+    <rule comment="CHUNK: prenom_prenom_vblexadj">
       <pattern>
-        <pattern-item n="prenom_prenom_vblex"/>
+        <pattern-item n="prenom_prenom_vblexadj"/>
       </pattern>
       <action>
         <let><clip pos="1" part="a_caps"/><lit v=""/></let>
@@ -1311,9 +1321,9 @@
         </out>
       </action>
     </rule>
-    <rule comment="CHUNK: prenom_prenom_prenom_vblex">
+    <rule comment="CHUNK: prenom_prenom_prenom_vblexadj">
       <pattern>
-        <pattern-item n="prenom_prenom_prenom_vblex"/>
+        <pattern-item n="prenom_prenom_prenom_vblexadj"/>
       </pattern>
       <action>
         <let><clip pos="1" part="a_caps"/><lit v=""/></let>
@@ -1330,9 +1340,9 @@
         </out>
       </action>
     </rule>
-    <rule comment="CHUNK: prenom_prenom_prenom_prenom_vblex">
+    <rule comment="CHUNK: prenom_prenom_prenom_prenom_vblexadj">
       <pattern>
-        <pattern-item n="prenom_prenom_prenom_prenom_vblex"/>
+        <pattern-item n="prenom_prenom_prenom_prenom_vblexadj"/>
       </pattern>
       <action>
         <let><clip pos="1" part="a_caps"/><lit v=""/></let>
