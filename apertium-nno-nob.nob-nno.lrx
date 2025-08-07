@@ -12409,7 +12409,7 @@ preposisjonar gir ekstra utfordringar. -->
   <rule weight="2.0" c="henvisende">
       <match lemma="henvise" tags="adj.*"><select lemma="tilvise"/></match>
   </rule>
-  <rule weight="3.0" c="henvise til lege">
+  <rule weight="4.0" c="henvise til lege">
     <match lemma="henvise" tags="vblex.*"><select lemma="tilvise"/></match>
     <repeat from="0" upto="5"><match/></repeat>
     <match lemma="til"/>
@@ -12427,7 +12427,7 @@ preposisjonar gir ekstra utfordringar. -->
       <match lemma="poliklinikk"/>
     </or>
   </rule>
-  <rule weight="3.0" c="henvise til">
+  <rule weight="2.0" c="henvise til">
     <match lemma="henvise" tags="vblex.*">
       <select lemma="vise"/>
     </match>
