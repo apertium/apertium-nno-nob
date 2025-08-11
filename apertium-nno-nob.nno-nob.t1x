@@ -14,10 +14,6 @@
       <cat-item tags="*.cmp"/>
       <cat-item tags="*.cmp.*"/>
     </def-cat>
-    <def-cat n="nind">
-      <cat-item tags="n.*.*.ind"/>
-      <cat-item tags="n.*.*.ind.gen"/>
-    </def-cat>
     <!-- n does not include compound lhs's: -->
     <def-cat n="n_np">
       <cat-item tags="n.*.cmp-split"/>
@@ -47,35 +43,11 @@
       <cat-item tags="np.al"/>
       <cat-item tags="np.attr"/>
     </def-cat>
-    <def-cat n="nacr">
-      <cat-item tags="n.acr"/>
-    </def-cat>
-    <def-cat n="ndef">
-      <cat-item tags="n.*.*.def"/>
-      <cat-item tags="n.*.*.def.gen"/>
-    </def-cat>
-    <def-cat n="ngen">
-      <cat-item tags="n.*.*.*.gen"/>
-    </def-cat>
     <def-cat n="det">
       <cat-item tags="det.*"/>
     </def-cat>
     <def-cat n="prn">
       <cat-item tags="prn.*"/>
-    </def-cat>
-    <def-cat n="detpos">
-      <cat-item tags="det.pos.*"/>
-    </def-cat>
-    <def-cat n="detnonpos">
-      <cat-item tags="det.def.*"/>
-      <cat-item tags="det.dem.*"/>
-      <cat-item tags="det.emph.*"/>
-      <cat-item tags="det.itg.*"/>
-      <cat-item tags="det.qnt.*"/>
-    </def-cat>
-    <def-cat n="posgen">
-      <cat-item tags="det.pos.*"/>
-      <cat-item tags="n.*.*.*.gen"/>
     </def-cat>
     <def-cat n="adj">
       <cat-item tags="adj.*"/>
@@ -110,28 +82,8 @@
     <def-cat n="infm">
       <cat-item lemma="å" tags="part"/>
     </def-cat>
-    <def-cat n="sin">
-      <cat-item lemma="sin" tags="det.pos.*"/>
-    </def-cat>
-    <def-cat n="måte">
-      <cat-item lemma="måte" tags="n.m.sg.ind"/>
-    </def-cat>
     <def-cat n="vblex">
       <cat-item tags="vblex.*"/>
-    </def-cat>
-    <def-cat n="vblexpp">
-      <cat-item tags="vblex.pp"/>
-      <cat-item tags="vblex.pp.*"/>
-    </def-cat>
-    <def-cat n="vblexinf">
-      <cat-item tags="vblex.inf"/>
-    </def-cat>
-    <def-cat n="vblexinfpass">
-      <cat-item tags="vblex.inf.pasv"/>
-    </def-cat>
-    <def-cat n="vblexpass">
-      <cat-item tags="vblex.*.pasv"/>
-      <cat-item tags="vblex.pstv.pres"/>
     </def-cat>
     <def-cat n="vblex_kan">
       <cat-item lemma="kunne" tags="vblex.*"/>
@@ -154,9 +106,6 @@
       <cat-item tags="sent.clb.remspc"/>
       <cat-item tags="sent.clb.remspc.*"/>
     </def-cat>
-    <def-cat n="default">
-      <cat-item tags="*"/>
-    </def-cat>
   </section-def-cats>
 
   <section-def-attrs>
@@ -174,20 +123,6 @@
       <attr-item tags="p2"/>
       <attr-item tags="p3"/>
     </def-attr>
-    <def-attr n="a_verb">
-      <attr-item tags="vblex"/>
-      <attr-item tags="vblex.pstv"/>
-    </def-attr>
-    <def-attr n="temps">
-      <attr-item tags="inf"/>
-      <attr-item tags="imp"/>
-      <attr-item tags="pres"/>
-      <attr-item tags="pret"/>
-      <attr-item tags="pp"/>
-    </def-attr>
-    <def-attr n="voice">
-      <attr-item tags="pasv"/>
-    </def-attr>
     <def-attr n="a_remspc">
       <attr-item tags="remspc"/>
     </def-attr>
@@ -200,7 +135,6 @@
       <attr-item tags="det.qnt.neg"/>
       <attr-item tags="det.pos"/>
     </def-attr>
-    
     <def-attr n="a_adj">
       <attr-item tags="adj"/>
       <attr-item tags="adj.pp"/>
@@ -212,7 +146,7 @@
     <def-attr n="grau">
       <attr-item tags="pst"/>
       <attr-item tags="comp"/>
-      <attr-item tags="sup"/> 
+      <attr-item tags="sup"/>
     </def-attr>
 
     <def-attr n="gen">
@@ -222,18 +156,6 @@
       <attr-item tags="f"/>
       <attr-item tags="GD"/>
     </def-attr>
-    <def-attr n="nbr">
-      <attr-item tags="sg"/>
-      <attr-item tags="pl"/>
-      <attr-item tags="sp"/>
-      <attr-item tags="ND"/>
-    </def-attr>
-    <def-attr n="cas">
-      <attr-item tags="nom"/>
-      <attr-item tags="gen"/>
-      <attr-item tags="acc"/>
-      <attr-item tags="CD"/>
-    </def-attr>
     <def-attr n="art">
       <attr-item tags="def"/>
       <attr-item tags="ind"/>
@@ -241,11 +163,9 @@
   </section-def-attrs>
 
   <section-def-vars>
-    <def-var n="gen-prep"/>
     <def-var n="caseFirstWord"/>
     <def-var n="c_name"         c="chunk name"/>
     <def-var n="ntags"/>
-    <def-var n="aux"/>
     <def-var n="blank"/>
     <def-var n="grau_aux"       c="lexical unit containing meir/mest if translating from sint to non-sint"/>
     <def-var n="lemh-case-reapplied"/>
@@ -347,7 +267,7 @@
       </when></choose>
     </def-macro>
 
-    
+
 
     <def-macro n="set_grau_aux1" npar="1"
                c="arg.1: adjective
@@ -1218,20 +1138,6 @@
       <action>
         <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
 
-        <choose c="merge blanks">
-          <when>
-            <test><equal><b/><lit v=" "/></equal></test>
-            <let><var n="blank"/><b/></let>
-          </when>
-          <when>
-            <test><equal><b/><lit v=" "/></equal></test>
-            <let><var n="blank"/><b/></let>
-          </when>
-          <otherwise>
-            <let><var n="blank"/><concat><b/><b/></concat></let>
-          </otherwise>
-        </choose>
-
         <out>
           <chunk name="aux" case="caseFirstWord">
             <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
@@ -1241,7 +1147,7 @@
               <clip pos="1" side="tl" part="lemq"/>
             </lu>
           </chunk>
-          <var n="blank"/>
+          <b/>
           <chunk name="vblex" case="caseFirstWord">
             <tags>
               <tag><lit-tag v="vblex"/></tag>
