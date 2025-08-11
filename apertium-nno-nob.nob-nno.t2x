@@ -12,9 +12,6 @@
     <def-cat n="any">
       <cat-item tags="*"/>
     </def-cat>
-    <def-cat n="np">
-      <cat-item tags="np.*"/>
-    </def-cat>
     <def-cat n="np_prnnom_og">
       <cat-item tags="np.*"/>
       <cat-item tags="prn.*.nom"/>
@@ -162,10 +159,6 @@
       <cat-item tags="n.*.pl.def.*"/>
       <cat-item tags="n.*.sp.def"/>
       <cat-item tags="n.*.sp.def.*"/>
-    </def-cat>
-    <def-cat n="detgen">
-      <cat-item tags="det.*.gen"/>
-      <cat-item tags="det.*.gen.*"/>
     </def-cat>
     <def-cat n="detind">
       <cat-item tags="det.*.ind"/>
@@ -418,24 +411,6 @@
     <def-cat n="adjsg">
       <cat-item tags="adj.*.sg.*"/>
     </def-cat>
-    <def-cat n="prenom">
-      <cat-item tags="adv"/>
-      <cat-item tags="adv.*"/>
-      <cat-item tags="adj.*"/>
-      <cat-item tags="det.*"/>
-      <cat-item tags="pr"/>
-      <cat-item tags="pr.*"/>
-    </def-cat>
-    <def-cat n="prenom_OR_nom">
-      <cat-item tags="adv"/>
-      <cat-item tags="adv.*"/>
-      <cat-item tags="adj.*"/>
-      <cat-item tags="det.*"/>
-      <cat-item tags="pr"/>
-      <cat-item tags="pr.*"/>
-      <cat-item tags="n.*"/>
-      <cat-item tags="np.*"/>
-    </def-cat>
     <def-cat n="infm">
       <cat-item lemma="infm" tags="part"/>
       <cat-item lemma="infm" tags="part.*"/>
@@ -528,19 +503,12 @@
       <attr-item tags="p2"/>
       <attr-item tags="p3"/>
     </def-attr>
-    <def-attr n="a_verb">
-      <attr-item tags="vblex"/>
-      <attr-item tags="vblex.pstv"/>
-    </def-attr>
     <def-attr n="temps">
       <attr-item tags="inf"/>
       <attr-item tags="imp"/>
       <attr-item tags="pres"/>
       <attr-item tags="pret"/>
       <attr-item tags="pp"/>
-    </def-attr>
-    <def-attr n="voice">
-      <attr-item tags="pasv"/>
     </def-attr>
     <def-attr n="a_det">
       <attr-item tags="det"/>
@@ -677,12 +645,6 @@
     <def-var n="caseFirstWord"/>
     <def-var n="det_gender"/>
     <def-var n="number_no_sp"/>
-    <def-var n="adj_number"/>
-    <def-var n="adj_gender"/>
-    <def-var n="adj_defness"/>
-    <def-var n="n_number"/>
-    <def-var n="case"/>
-    <def-var n="n_defness"/>
     <def-var n="lemh"/>
     <def-var n="pr_lemh"/>
     <def-var n="genpr"/>
@@ -690,7 +652,6 @@
     <def-var n="ana_gen_m-f" c="m or f"/>
     <def-var n="ana_nbr"/>
     <def-var n="ana_temps" c="Last seen finite verb temps (pres/pret)"/>
-    <def-var n="tmp"/>
   </section-def-vars>
 
   <section-def-lists>
