@@ -326,6 +326,10 @@ test: all test-progression
 	t/hash-count
 	t/wer-loss
 
+lint:
+	apertium-lint *.dix *.lsx *.lrx *.t[0-9]x
+# *.rlx
+
 test-progression: $(PREFIX2)
 	t/progression translate
 	THRESHOLD=10 t/progression diff-expected
