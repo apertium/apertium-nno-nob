@@ -8456,8 +8456,8 @@
 
 
     <def-macro n="set_reject_adj_n" npar="2"
-               c="arg.1: adj (possible modifier of arg.2)
-                  arg.2: noun (possible head of adj+noun phrase)
+               c="arg.1: adj
+                  arg.2: noun
                   Sets reject_adj_n to true iff this adj+noun combination should *not* be chunked.">
       <let><var n="reject_adj_n"/><lit v="false"/></let>
       <!-- TODO: Don't chunk «[den er] tilpasset.adj.pl brukernes.n.pl.def.gen [mål og behov]» -->
@@ -8488,9 +8488,9 @@
     </def-macro>
 
     <def-macro n="set_reject_adj_adj_n" npar="3"
-               c="arg.1: adj (possible modifier of arg.2. or arg.3)
-                  arg.2: adj (possible modifier of arg.3)
-                  arg.3: noun (possible head of adj+noun phrase)
+               c="arg.1: adj
+                  arg.2: adj
+                  arg.3: noun
                   Sets reject_adj_n to true iff this adj+dj+noun combination should *not* be chunked.">
       <!-- Initially set it as if we had just the second adj: -->
       <call-macro n="set_reject_adj_n"><with-param pos="2"/><with-param pos="3"/></call-macro>
@@ -8512,6 +8512,21 @@
           </and>
         </or></test>
         <let><var n="reject_adj_n"/><lit v="true"/></let> <!-- ie. caller should do <reject-current-rule shifting="0"/> -->
+      </when></choose>
+    </def-macro>
+
+    <def-macro n="set_reject_adj_adj_adj_n" npar="4"
+               c="arg.1: adj
+                  arg.2: adj
+                  arg.3: adj
+                  arg.4: noun
+                  Sets reject_adj_n to true iff this adj+dj+noun combination should *not* be chunked.">
+      <!-- Initially set it as if we had just the second and third adj: -->
+      <call-macro n="set_reject_adj_adj_n"><with-param pos="2"/><with-param pos="3"/><with-param pos="4"/></call-macro>
+      <choose><when c="Maybe override previous true to false">
+        <!-- allow «tettest/mest befolkede områdene»: -->
+        <test><equal><clip pos="1" side="tl" part="grau"/><lit-tag v="sup"/></equal></test>
+        <let><var n="reject_adj_n"/><lit v="false"/></let>
       </when></choose>
     </def-macro>
 
@@ -12669,7 +12684,7 @@ no lemq-moving">
         <pattern-item n="n_np"/>
       </pattern>
       <action>
-        <call-macro n="set_reject_adj_adj_n"><with-param pos="1"/><with-param pos="2"/><with-param pos="4"/></call-macro>
+        <call-macro n="set_reject_adj_adj_adj_n"><with-param pos="1"/><with-param pos="2"/><with-param pos="3"/><with-param pos="4"/></call-macro>
         <choose><when>
           <test><equal><var n="reject_adj_n"/><lit v="true"/></equal></test>
           <reject-current-rule shifting="0"/>
