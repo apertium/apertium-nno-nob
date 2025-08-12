@@ -1127,6 +1127,7 @@
     <def-var n="mwe-queue"      c="Must be output before next verb or sent. TODO: There should be an EOF-rule in case nothing at end."/>
     <def-var n="cmp-lefts"      c="Non-final lu's of compound (verb)"/>
     <def-var n="rewrite_np_gen" c="Allow prep-rewriting of genitive proper nouns"/>
+    <def-var n="reject_adj_n"   c="'true' iff this adj + n rule should be rejected"/>
   </section-def-vars>
 
   <section-def-lists>
@@ -8453,6 +8454,67 @@
       </choose>
     </def-macro>
 
+
+    <def-macro n="set_reject_adj_n" npar="2"
+               c="arg.1: adj (possible modifier of arg.2)
+                  arg.2: noun (possible head of adj+noun phrase)
+                  Sets reject_adj_n to true iff this adj+noun combination should *not* be chunked.">
+      <let><var n="reject_adj_n"/><lit v="false"/></let>
+      <!-- TODO: Don't chunk «[den er] tilpasset.adj.pl brukernes.n.pl.def.gen [mål og behov]» -->
+      <choose><when c="Don't chunk «lite nedbør» etc.">
+        <test><or>
+          <equal><clip pos="1" side="tl" part="lemh"/><lit v=""/></equal>
+          <and>
+            <not><in><clip pos="1" side="tl" part="lemh"/><list n="adj-ind-def"/></in></not>
+            <equal><clip pos="1" side="tl" part="art"/><lit-tag v="ind"/></equal>
+            <equal><clip pos="2" side="tl" part="art"/><lit-tag v="def"/></equal>
+          </and>
+          <and>               <!-- don't chunk [likte] godt bil:-->
+            <equal><clip pos="1" side="sl" part="gen"/><lit-tag v="nt"/></equal>
+            <in><clip pos="2" side="sl" part="gen"/><list n="noun-gender-not-adjnt"/></in>
+          </and>
+          <and>            <!--don't chunk [en] god nummer [to]: -->
+            <equal><clip pos="2" side="sl" part="gen"/><lit-tag v="nt"/></equal>
+            <in><clip pos="1" side="sl" part="gen"/><list n="noun-gender-not-adjnt"/></in>
+          </and>
+          <and>                 <!-- don't chunk vedtatt fredag: -->
+            <equal><clip pos="1" side="tl" part="temps"/><lit-tag v="pp"/></equal>
+            <in><clip pos="2" side="tl" part="lemh"/><list n="vekedag"/></in>
+          </and> <!-- don't chunk [et bygg] tilhørende [landets justisminister]:-->
+          <equal><clip pos="1" side="tl" part="lemh"/><lit v="tilhøyrande"/></equal>
+        </or></test>
+        <let><var n="reject_adj_n"/><lit v="true"/></let> <!-- ie. caller should do <reject-current-rule shifting="0"/> -->
+      </when></choose>
+    </def-macro>
+
+    <def-macro n="set_reject_adj_adj_n" npar="3"
+               c="arg.1: adj (possible modifier of arg.2. or arg.3)
+                  arg.2: adj (possible modifier of arg.3)
+                  arg.3: noun (possible head of adj+noun phrase)
+                  Sets reject_adj_n to true iff this adj+dj+noun combination should *not* be chunked.">
+      <!-- Initially set it as if we had just the second adj: -->
+      <call-macro n="set_reject_adj_n"><with-param pos="2"/><with-param pos="3"/></call-macro>
+      <choose><when c="Maybe override previous true to false">
+        <!-- allow «tettest/mest befolkede områdene»: -->
+        <test><equal><clip pos="1" side="tl" part="grau"/><lit-tag v="sup"/></equal></test>
+        <let><var n="reject_adj_n"/><lit v="false"/></let>
+      </when></choose>
+      <choose><when c="Don't chunk «generelt lite fugl» etc.">
+        <test><or>
+          <equal><clip pos="1" side="tl" part="lemh"/><lit v=""/></equal>
+          <equal><clip pos="2" side="tl" part="lemh"/><lit v="mange"/></equal> <!-- [stukket] [flere ganger] -->
+          <equal><clip pos="2" side="tl" part="lemh"/><lit v="mye"/></equal>   <!-- [tilbudt] [mye penger] -->
+          <and>
+            <not><in><clip pos="1" side="tl" part="lemh"/><list n="adj-ind-def"/></in></not>
+            <equal><clip pos="1" side="sl" part="gen"/><lit-tag v="nt"/></equal>
+            <equal><clip pos="2" side="sl" part="gen"/><lit-tag v="nt"/></equal>
+            <in><clip pos="3" side="sl" part="gen"/><list n="noun-gender-not-adjnt"/></in>
+          </and>
+        </or></test>
+        <let><var n="reject_adj_n"/><lit v="true"/></let> <!-- ie. caller should do <reject-current-rule shifting="0"/> -->
+      </when></choose>
+    </def-macro>
+
     <def-macro n="set_aux" npar="1"
                c="arg.1: main/content verb">
       <let><var n="aux"/><lit v=""/></let>
@@ -11092,21 +11154,12 @@ no lemq-moving">
         <pattern-item n="n_np"/>
       </pattern>
       <action>
-        <choose><when c="Don't chunk «lite nedbør» etc.">
-          <test><or>
-            <equal><clip pos="2" side="tl" part="lemh"/><lit v=""/></equal>
-            <and>
-              <not><in><clip pos="2" side="tl" part="lemh"/><list n="adj-ind-def"/></in></not>
-              <equal><clip pos="2" side="tl" part="art"/><lit-tag v="ind"/></equal>
-              <equal><clip pos="3" side="tl" part="art"/><lit-tag v="def"/></equal>
-            </and>
-            <and>
-              <equal><clip pos="2" side="sl" part="gen"/><lit-tag v="nt"/></equal>
-              <not><equal><clip pos="3" side="sl" part="gen"/><lit-tag v="nt"/></equal></not>
-            </and>
-          </or></test>
+        <call-macro n="set_reject_adj_n"><with-param pos="2"/><with-param pos="3"/></call-macro>
+        <choose><when>
+          <test><equal><var n="reject_adj_n"/><lit v="true"/></equal></test>
           <reject-current-rule shifting="0"/>
         </when></choose>
+
         <let><var n="c_name"/><lit v="cmp_adj_n"/></let>
         <call-macro n="set_gender2.n.adj"><with-param pos="3"/><with-param pos="2"/></call-macro>
         <call-macro n="set_grau_aux1"><with-param pos="2"/></call-macro>
@@ -11135,21 +11188,12 @@ no lemq-moving">
         <pattern-item n="n_np"/>
       </pattern>
       <action>
-        <choose><when c="Don't chunk «lite nedbør» etc.">
-          <test><or>
-            <equal><clip pos="2" side="tl" part="lemh"/><lit v=""/></equal>
-            <and>
-              <not><in><clip pos="2" side="tl" part="lemh"/><list n="adj-ind-def"/></in></not>
-              <equal><clip pos="2" side="tl" part="art"/><lit-tag v="ind"/></equal>
-              <equal><clip pos="4" side="tl" part="art"/><lit-tag v="def"/></equal>
-            </and>
-            <and>
-              <equal><clip pos="2" side="sl" part="gen"/><lit-tag v="nt"/></equal>
-              <in><clip pos="4" side="sl" part="gen"/><list n="noun-gender-not-adjnt"/></in>
-            </and>
-          </or></test>
+        <call-macro n="set_reject_adj_n"><with-param pos="2"/><with-param pos="4"/></call-macro>
+        <choose><when>
+          <test><equal><var n="reject_adj_n"/><lit v="true"/></equal></test>
           <reject-current-rule shifting="0"/>
         </when></choose>
+
         <let><var n="c_name"/><lit v="cmp_adj_cmp_n"/></let>
         <call-macro n="set_gender2.n.adj"><with-param pos="4"/><with-param pos="2"/></call-macro>
         <call-macro n="set_grau_aux1"><with-param pos="2"/></call-macro>
@@ -11419,6 +11463,12 @@ no lemq-moving">
         <pattern-item n="n_np"/>
       </pattern>
       <action>
+        <call-macro n="set_reject_adj_n"><with-param pos="1"/><with-param pos="4"/></call-macro>
+        <choose><when>
+          <test><equal><var n="reject_adj_n"/><lit v="true"/></equal></test>
+          <reject-current-rule shifting="0"/>
+        </when></choose>
+
         <call-macro n="set_caseFirstWord4">
           <with-param pos="1"/>
           <with-param pos="2"/>
@@ -11730,26 +11780,12 @@ no lemq-moving">
         <pattern-item n="n_np"/> <!-- 4 tida-->
       </pattern>
       <action>
-        <choose><when c="Don't chunk «generelt lite fugl» etc.">
-          <test><or>
-            <equal><clip pos="1" side="tl" part="lemh"/><lit v=""/></equal>
-            <equal><clip pos="3" side="tl" part="lemh"/><lit v="mange"/></equal> <!-- [stukket] [flere ganger] -->
-            <equal><clip pos="3" side="tl" part="lemh"/><lit v="mye"/></equal>   <!-- [tilbudt] [mye penger] -->
-            <and>
-              <not><in><clip pos="1" side="tl" part="lemh"/><list n="adj-ind-def"/></in></not>
-              <not><equal><clip pos="1" side="tl" part="grau"/><lit-tag v="sup"/></equal></not> <!-- allow «tettest/mest befolkede områdene» -->
-              <equal><clip pos="1" side="tl" part="art"/><lit-tag v="ind"/></equal>
-              <equal><clip pos="4" side="tl" part="art"/><lit-tag v="def"/></equal>
-            </and>
-            <and>
-              <not><in><clip pos="1" side="tl" part="lemh"/><list n="adj-ind-def"/></in></not>
-              <equal><clip pos="1" side="sl" part="gen"/><lit-tag v="nt"/></equal>
-              <equal><clip pos="3" side="sl" part="gen"/><lit-tag v="nt"/></equal>
-              <in><clip pos="4" side="sl" part="gen"/><list n="noun-gender-not-adjnt"/></in>
-            </and>
-          </or></test>
+        <call-macro n="set_reject_adj_adj_n"><with-param pos="1"/><with-param pos="3"/><with-param pos="4"/></call-macro>
+        <choose><when>
+          <test><equal><var n="reject_adj_n"/><lit v="true"/></equal></test>
           <reject-current-rule shifting="0"/>
         </when></choose>
+
         <let><clip pos="2" side="tl" part="a_caps"/><lit v=""/></let>
         <call-macro n="set_gender2.n.adj"><with-param pos="4"/><with-param pos="1"/></call-macro> <!-- was set_gender2.n.pre-adj, but before comma the adj should be unambiguously modifying noun -->
         <call-macro n="set_gender2.n.adj"><with-param pos="4"/><with-param pos="3"/></call-macro>
@@ -11801,26 +11837,12 @@ no lemq-moving">
         <pattern-item n="n_np"/> <!-- 5 kasser -->
       </pattern>
       <action>
-        <choose><when c="Don't chunk «generelt lite fugl» etc.">
-          <test><or>
-            <equal><clip pos="2" side="tl" part="lemh"/><lit v=""/></equal>
-            <equal><clip pos="4" side="tl" part="lemh"/><lit v="mange"/></equal> <!-- [stukket] [flere ganger] -->
-            <equal><clip pos="4" side="tl" part="lemh"/><lit v="mye"/></equal>   <!-- [tilbudt] [mye penger] -->
-            <and>
-              <not><in><clip pos="2" side="tl" part="lemh"/><list n="adj-ind-def"/></in></not>
-              <not><equal><clip pos="2" side="tl" part="grau"/><lit-tag v="sup"/></equal></not> <!-- allow «tettest/mest befolkede områdene» -->
-              <equal><clip pos="2" side="tl" part="art"/><lit-tag v="ind"/></equal>
-              <equal><clip pos="5" side="tl" part="art"/><lit-tag v="def"/></equal>
-            </and>
-            <and>
-              <not><in><clip pos="2" side="tl" part="lemh"/><list n="adj-ind-def"/></in></not>
-              <equal><clip pos="2" side="sl" part="gen"/><lit-tag v="nt"/></equal>
-              <equal><clip pos="4" side="sl" part="gen"/><lit-tag v="nt"/></equal>
-              <in><clip pos="5" side="sl" part="gen"/><list n="noun-gender-not-adjnt"/></in>
-            </and>
-          </or></test>
+        <call-macro n="set_reject_adj_adj_n"><with-param pos="2"/><with-param pos="4"/><with-param pos="5"/></call-macro>
+        <choose><when>
+          <test><equal><var n="reject_adj_n"/><lit v="true"/></equal></test>
           <reject-current-rule shifting="0"/>
         </when></choose>
+
         <let><clip pos="3" side="tl" part="a_caps"/><lit v=""/></let>
         <call-macro n="set_gender2.n.adj"><with-param pos="5"/><with-param pos="2"/></call-macro> <!-- was set_gender2.n.pre-adj, but before comma the adj should be unambiguously modifying noun -->
         <call-macro n="set_gender2.n.adj"><with-param pos="5"/><with-param pos="4"/></call-macro>
@@ -11875,26 +11897,12 @@ no lemq-moving">
         <pattern-item n="n_np"/> <!-- 6 kasser -->
       </pattern>
       <action>
-        <choose><when c="Don't chunk «generelt lite fugl» etc.">
-          <test><or>
-            <equal><clip pos="2" side="tl" part="lemh"/><lit v=""/></equal>
-            <equal><clip pos="5" side="tl" part="lemh"/><lit v="mange"/></equal> <!-- [stukket] [flere ganger] -->
-            <equal><clip pos="5" side="tl" part="lemh"/><lit v="mye"/></equal>   <!-- [tilbudt] [mye penger] -->
-            <and>
-              <not><in><clip pos="2" side="tl" part="lemh"/><list n="adj-ind-def"/></in></not>
-              <not><equal><clip pos="2" side="tl" part="grau"/><lit-tag v="sup"/></equal></not> <!-- allow «tettest/mest befolkede områdene» -->
-              <equal><clip pos="2" side="tl" part="art"/><lit-tag v="ind"/></equal>
-              <equal><clip pos="6" side="tl" part="art"/><lit-tag v="def"/></equal>
-            </and>
-            <and>
-              <not><in><clip pos="2" side="tl" part="lemh"/><list n="adj-ind-def"/></in></not>
-              <equal><clip pos="2" side="sl" part="gen"/><lit-tag v="nt"/></equal>
-              <equal><clip pos="5" side="sl" part="gen"/><lit-tag v="nt"/></equal>
-              <in><clip pos="6" side="sl" part="gen"/><list n="noun-gender-not-adjnt"/></in>
-            </and>
-          </or></test>
+        <call-macro n="set_reject_adj_adj_n"><with-param pos="2"/><with-param pos="5"/><with-param pos="6"/></call-macro>
+        <choose><when>
+          <test><equal><var n="reject_adj_n"/><lit v="true"/></equal></test>
           <reject-current-rule shifting="0"/>
         </when></choose>
+
         <let><clip pos="3" side="tl" part="a_caps"/><lit v=""/></let>
         <call-macro n="set_gender2.n.adj"><with-param pos="6"/><with-param pos="2"/></call-macro> <!-- was set_gender2.n.pre-adj, but before comma the adj should be unambiguously modifying noun -->
         <call-macro n="set_gender2.n.adj"><with-param pos="6"/><with-param pos="5"/></call-macro>
@@ -11952,26 +11960,12 @@ no lemq-moving">
         <pattern-item n="n_np"/> <!-- 6 tilsyn -->
       </pattern>
       <action>
-        <choose><when c="Don't chunk «generelt lite fugl» etc.">
-          <test><or>
-            <equal><clip pos="1" side="tl" part="lemh"/><lit v=""/></equal>
-            <equal><clip pos="5" side="tl" part="lemh"/><lit v="mange"/></equal> <!-- [stukket] [flere ganger] -->
-            <equal><clip pos="5" side="tl" part="lemh"/><lit v="mye"/></equal>   <!-- [tilbudt] [mye penger] -->
-            <and>
-              <not><in><clip pos="1" side="tl" part="lemh"/><list n="adj-ind-def"/></in></not>
-              <not><equal><clip pos="1" side="tl" part="grau"/><lit-tag v="sup"/></equal></not> <!-- allow «tettest/mest befolkede områdene» -->
-              <equal><clip pos="1" side="tl" part="art"/><lit-tag v="ind"/></equal>
-              <equal><clip pos="6" side="tl" part="art"/><lit-tag v="def"/></equal>
-            </and>
-            <and>
-              <not><in><clip pos="1" side="tl" part="lemh"/><list n="adj-ind-def"/></in></not>
-              <equal><clip pos="1" side="sl" part="gen"/><lit-tag v="nt"/></equal>
-              <equal><clip pos="5" side="sl" part="gen"/><lit-tag v="nt"/></equal>
-              <in><clip pos="6" side="sl" part="gen"/><list n="noun-gender-not-adjnt"/></in>
-            </and>
-          </or></test>
+        <call-macro n="set_reject_adj_adj_n"><with-param pos="1"/><with-param pos="5"/><with-param pos="6"/></call-macro>
+        <choose><when>
+          <test><equal><var n="reject_adj_n"/><lit v="true"/></equal></test>
           <reject-current-rule shifting="0"/>
         </when></choose>
+
         <let><clip pos="2" side="tl" part="a_caps"/><lit v=""/></let>
         <let><clip pos="4" side="tl" part="a_caps"/><lit v=""/></let>
         <call-macro n="set_gender2.n.adj"><with-param pos="6"/><with-param pos="1"/></call-macro> <!-- was set_gender2.n.pre-adj, but before comma the adj should be unambiguously modifying noun -->
@@ -12091,31 +12085,12 @@ no lemq-moving">
         <pattern-item n="n_np"/>
       </pattern>
       <action>
-        <!-- TODO: Don't chunk «[den er] tilpasset.adj.pl brukernes.n.pl.def.gen [mål og behov]» -->
-        <choose><when c="Don't chunk «lite nedbør», «vedtatt fredag» etc.">
-          <test><or>
-            <equal><clip pos="1" side="tl" part="lemh"/><lit v=""/></equal>
-            <and>
-              <not><in><clip pos="1" side="tl" part="lemh"/><list n="adj-ind-def"/></in></not>
-              <equal><clip pos="1" side="tl" part="art"/><lit-tag v="ind"/></equal>
-              <equal><clip pos="2" side="tl" part="art"/><lit-tag v="def"/></equal>
-            </and>
-            <and>               <!-- don't chunk [likte] godt bil:-->
-              <equal><clip pos="1" side="sl" part="gen"/><lit-tag v="nt"/></equal>
-              <in><clip pos="2" side="sl" part="gen"/><list n="noun-gender-not-adjnt"/></in>
-            </and>
-            <and>            <!--don't chunk [en] god nummer [to]: -->
-              <equal><clip pos="2" side="sl" part="gen"/><lit-tag v="nt"/></equal>
-              <in><clip pos="1" side="sl" part="gen"/><list n="noun-gender-not-adjnt"/></in>
-            </and>
-            <and>
-              <equal><clip pos="1" side="tl" part="temps"/><lit-tag v="pp"/></equal>
-              <in><clip pos="2" side="tl" part="lemh"/><list n="vekedag"/></in>
-            </and>
-            <equal><clip pos="1" side="tl" part="lemh"/><lit v="tilhøyrande"/></equal> <!-- [et bygg] tilhørende [landets justisminister]-->
-          </or></test>
+        <call-macro n="set_reject_adj_n"><with-param pos="1"/><with-param pos="2"/></call-macro>
+        <choose><when>
+          <test><equal><var n="reject_adj_n"/><lit v="true"/></equal></test>
           <reject-current-rule shifting="0"/>
         </when></choose>
+
         <let><var n="c_name"/><lit v="adj_n"/></let>
         <call-macro n="set_gender2.n.adj"><with-param pos="2"/><with-param pos="1"/></call-macro>
         <call-macro n="set_grau_aux1"><with-param pos="1"/></call-macro>
@@ -12151,25 +12126,12 @@ no lemq-moving">
         <pattern-item n="n_np"/>
       </pattern>
       <action>
-        <choose><when c="Don't chunk «lite nedbør» etc.">
-          <test><or>
-            <equal><clip pos="1" side="tl" part="lemh"/><lit v=""/></equal>
-            <and>
-              <not><in><clip pos="1" side="tl" part="lemh"/><list n="adj-ind-def"/></in></not>
-              <equal><clip pos="1" side="tl" part="art"/><lit-tag v="ind"/></equal>
-              <equal><clip pos="3" side="tl" part="art"/><lit-tag v="def"/></equal>
-            </and>
-            <and>               <!-- don't chunk [likte] godt bil:-->
-              <equal><clip pos="1" side="sl" part="gen"/><lit-tag v="nt"/></equal>
-              <in><clip pos="3" side="sl" part="gen"/><list n="noun-gender-not-adjnt"/></in>
-            </and>
-            <and>            <!--don't chunk [en] god nummer [to]: -->
-              <equal><clip pos="3" side="sl" part="gen"/><lit-tag v="nt"/></equal>
-              <in><clip pos="1" side="sl" part="gen"/><list n="noun-gender-not-adjnt"/></in>
-            </and>
-          </or></test>
+        <call-macro n="set_reject_adj_n"><with-param pos="1"/><with-param pos="3"/></call-macro>
+        <choose><when>
+          <test><equal><var n="reject_adj_n"/><lit v="true"/></equal></test>
           <reject-current-rule shifting="0"/>
         </when></choose>
+
         <let><var n="c_name"/><lit v="adj_cmp_n"/></let>
         <call-macro n="set_gender2.n.adj"><with-param pos="3"/><with-param pos="1"/></call-macro>
         <call-macro n="set_grau_aux1"><with-param pos="1"/></call-macro>
@@ -12201,25 +12163,12 @@ no lemq-moving">
         <pattern-item n="n_np"/>
       </pattern>
       <action>
-        <choose><when c="Don't chunk «lite nedbør» etc.">
-          <test><or>
-            <equal><clip pos="1" side="tl" part="lemh"/><lit v=""/></equal>
-            <and>
-              <not><in><clip pos="1" side="tl" part="lemh"/><list n="adj-ind-def"/></in></not>
-              <equal><clip pos="1" side="tl" part="art"/><lit-tag v="ind"/></equal>
-              <equal><clip pos="4" side="tl" part="art"/><lit-tag v="def"/></equal>
-            </and>
-            <and>               <!-- don't chunk [likte] godt bil:-->
-              <equal><clip pos="1" side="sl" part="gen"/><lit-tag v="nt"/></equal>
-              <in><clip pos="4" side="sl" part="gen"/><list n="noun-gender-not-adjnt"/></in>
-            </and>
-            <and>            <!--don't chunk [en] god nummer [to]: -->
-              <equal><clip pos="4" side="sl" part="gen"/><lit-tag v="nt"/></equal>
-              <in><clip pos="1" side="sl" part="gen"/><list n="noun-gender-not-adjnt"/></in>
-            </and>
-          </or></test>
+        <call-macro n="set_reject_adj_n"><with-param pos="1"/><with-param pos="4"/></call-macro>
+        <choose><when>
+          <test><equal><var n="reject_adj_n"/><lit v="true"/></equal></test>
           <reject-current-rule shifting="0"/>
         </when></choose>
+
         <let><var n="c_name"/><lit v="adj_cmp_cmp_n"/></let>
         <call-macro n="set_gender2.n.adj"><with-param pos="4"/><with-param pos="1"/></call-macro>
         <call-macro n="set_grau_aux1"><with-param pos="1"/></call-macro>
@@ -12257,26 +12206,12 @@ no lemq-moving">
         <pattern-item n="n_np"/>
       </pattern>
       <action>
-        <choose><when c="Don't chunk «lite nedbør» etc.">
-          <test><or>
-            <equal><clip pos="1" side="tl" part="lemh"/><lit v=""/></equal>
-            <and>
-              <not><in><clip pos="1" side="tl" part="lemh"/><list n="adj-ind-def"/></in></not>
-              <not><equal><clip pos="1" side="tl" part="grau"/><lit-tag v="sup"/></equal></not> <!-- allow «tettest/mest befolkede områdene» -->
-              <equal><clip pos="1" side="tl" part="art"/><lit-tag v="ind"/></equal>
-              <equal><clip pos="5" side="tl" part="art"/><lit-tag v="def"/></equal>
-            </and>
-            <and>               <!-- don't chunk [likte] godt bil:-->
-              <equal><clip pos="1" side="sl" part="gen"/><lit-tag v="nt"/></equal>
-              <in><clip pos="5" side="sl" part="gen"/><list n="noun-gender-not-adjnt"/></in>
-            </and>
-            <and>            <!--don't chunk [en] god nummer [to]: -->
-              <equal><clip pos="5" side="sl" part="gen"/><lit-tag v="nt"/></equal>
-              <in><clip pos="1" side="sl" part="gen"/><list n="noun-gender-not-adjnt"/></in>
-            </and>
-          </or></test>
+        <call-macro n="set_reject_adj_n"><with-param pos="1"/><with-param pos="5"/></call-macro>
+        <choose><when>
+          <test><equal><var n="reject_adj_n"/><lit v="true"/></equal></test>
           <reject-current-rule shifting="0"/>
         </when></choose>
+
         <let><var n="c_name"/><lit v="adj_cmp_cmp_cmp_n"/></let>
         <call-macro n="set_gender2.n.adj"><with-param pos="5"/><with-param pos="1"/></call-macro>
         <call-macro n="set_grau_aux1"><with-param pos="1"/></call-macro>
@@ -12315,26 +12250,12 @@ no lemq-moving">
         <pattern-item n="n_np"/>
       </pattern>
       <action>
-        <choose><when c="Don't chunk «generelt lite fugl» etc.">
-          <test><or>
-            <equal><clip pos="1" side="tl" part="lemh"/><lit v=""/></equal>
-            <equal><clip pos="2" side="tl" part="lemh"/><lit v="mange"/></equal> <!-- [stukket] [flere ganger] -->
-            <equal><clip pos="2" side="tl" part="lemh"/><lit v="mye"/></equal>   <!-- [tilbudt] [mye penger] -->
-            <and>
-              <not><in><clip pos="1" side="tl" part="lemh"/><list n="adj-ind-def"/></in></not>
-              <not><equal><clip pos="1" side="tl" part="grau"/><lit-tag v="sup"/></equal></not> <!-- allow «tettest/mest befolkede områdene» -->
-              <equal><clip pos="1" side="tl" part="art"/><lit-tag v="ind"/></equal>
-              <equal><clip pos="3" side="tl" part="art"/><lit-tag v="def"/></equal>
-            </and>
-            <and>
-              <not><in><clip pos="1" side="tl" part="lemh"/><list n="adj-ind-def"/></in></not>
-              <equal><clip pos="1" side="sl" part="gen"/><lit-tag v="nt"/></equal>
-              <equal><clip pos="2" side="sl" part="gen"/><lit-tag v="nt"/></equal>
-              <in><clip pos="3" side="sl" part="gen"/><list n="noun-gender-not-adjnt"/></in>
-            </and>
-          </or></test>
+        <call-macro n="set_reject_adj_adj_n"><with-param pos="1"/><with-param pos="2"/><with-param pos="3"/></call-macro>
+        <choose><when>
+          <test><equal><var n="reject_adj_n"/><lit v="true"/></equal></test>
           <reject-current-rule shifting="0"/>
         </when></choose>
+
         <let><var n="c_name"/><lit v="adj_adj_n"/></let>
         <call-macro n="set_gender2.n.pre-adj"><with-param pos="3"/><with-param pos="1"/></call-macro>
         <call-macro n="set_gender2.n.adj"><with-param pos="3"/><with-param pos="2"/></call-macro>
@@ -12380,26 +12301,12 @@ no lemq-moving">
         <pattern-item n="n_np"/>
       </pattern>
       <action>
-        <choose><when c="Don't chunk «generelt lite fugl» etc.">
-          <test><or>
-            <equal><clip pos="1" side="tl" part="lemh"/><lit v=""/></equal>
-            <equal><clip pos="2" side="tl" part="lemh"/><lit v="mange"/></equal> <!-- [stukket] [flere ganger] -->
-            <equal><clip pos="2" side="tl" part="lemh"/><lit v="mye"/></equal>   <!-- [tilbudt] [mye penger] -->
-            <and>
-              <not><in><clip pos="1" side="tl" part="lemh"/><list n="adj-ind-def"/></in></not>
-              <not><equal><clip pos="1" side="tl" part="grau"/><lit-tag v="sup"/></equal></not> <!-- allow «tettest/mest befolkede områdene» -->
-              <equal><clip pos="1" side="tl" part="art"/><lit-tag v="ind"/></equal>
-              <equal><clip pos="2" side="tl" part="art"/><lit-tag v="def"/></equal>
-            </and>
-            <and>
-              <not><in><clip pos="1" side="tl" part="lemh"/><list n="adj-ind-def"/></in></not>
-              <equal><clip pos="1" side="sl" part="gen"/><lit-tag v="nt"/></equal>
-              <equal><clip pos="2" side="sl" part="gen"/><lit-tag v="nt"/></equal>
-              <in><clip pos="4" side="sl" part="gen"/><list n="noun-gender-not-adjnt"/></in>
-            </and>
-          </or></test>
+        <call-macro n="set_reject_adj_adj_n"><with-param pos="1"/><with-param pos="2"/><with-param pos="4"/></call-macro>
+        <choose><when>
+          <test><equal><var n="reject_adj_n"/><lit v="true"/></equal></test>
           <reject-current-rule shifting="0"/>
         </when></choose>
+
         <let><var n="c_name"/><lit v="adj_adj_cmp_n"/></let>
         <call-macro n="set_gender2.n.pre-adj"><with-param pos="4"/><with-param pos="1"/></call-macro>
         <call-macro n="set_gender2.n.adj"><with-param pos="4"/><with-param pos="2"/></call-macro>
@@ -12446,26 +12353,12 @@ no lemq-moving">
         <pattern-item n="n_np"/>
       </pattern>
       <action>
-        <choose><when c="Don't chunk «generelt lite fugl» etc.">
-          <test><or>
-            <equal><clip pos="2" side="tl" part="lemh"/><lit v=""/></equal>
-            <equal><clip pos="3" side="tl" part="lemh"/><lit v="mange"/></equal> <!-- [stukket] [flere ganger] -->
-            <equal><clip pos="3" side="tl" part="lemh"/><lit v="mye"/></equal>   <!-- [tilbudt] [mye penger] -->
-            <and>
-              <not><in><clip pos="2" side="tl" part="lemh"/><list n="adj-ind-def"/></in></not>
-              <not><equal><clip pos="2" side="tl" part="grau"/><lit-tag v="sup"/></equal></not> <!-- allow «tettest/mest befolkede områdene» -->
-              <equal><clip pos="2" side="tl" part="art"/><lit-tag v="ind"/></equal>
-              <equal><clip pos="3" side="tl" part="art"/><lit-tag v="def"/></equal>
-            </and>
-            <and>
-              <not><in><clip pos="2" side="tl" part="lemh"/><list n="adj-ind-def"/></in></not>
-              <equal><clip pos="2" side="sl" part="gen"/><lit-tag v="nt"/></equal>
-              <equal><clip pos="3" side="sl" part="gen"/><lit-tag v="nt"/></equal>
-              <in><clip pos="4" side="sl" part="gen"/><list n="noun-gender-not-adjnt"/></in>
-            </and>
-          </or></test>
+        <call-macro n="set_reject_adj_adj_n"><with-param pos="2"/><with-param pos="3"/><with-param pos="4"/></call-macro>
+        <choose><when>
+          <test><equal><var n="reject_adj_n"/><lit v="true"/></equal></test>
           <reject-current-rule shifting="0"/>
         </when></choose>
+
         <let><var n="c_name"/><lit v="cmp_adj_adj_n"/></let>
         <call-macro n="set_gender2.n.pre-adj"><with-param pos="4"/><with-param pos="2"/></call-macro>
         <call-macro n="set_gender2.n.adj"><with-param pos="4"/><with-param pos="3"/></call-macro>
@@ -12513,26 +12406,12 @@ no lemq-moving">
         <pattern-item n="n_np"/>
       </pattern>
       <action>
-        <choose><when c="Don't chunk «generelt lite fugl» etc.">
-          <test><or>
-            <equal><clip pos="2" side="tl" part="lemh"/><lit v=""/></equal>
-            <equal><clip pos="3" side="tl" part="lemh"/><lit v="mange"/></equal> <!-- [stukket] [flere ganger] -->
-            <equal><clip pos="3" side="tl" part="lemh"/><lit v="mye"/></equal>   <!-- [tilbudt] [mye penger] -->
-            <and>
-              <not><in><clip pos="2" side="tl" part="lemh"/><list n="adj-ind-def"/></in></not>
-              <not><equal><clip pos="2" side="tl" part="grau"/><lit-tag v="sup"/></equal></not> <!-- allow «tettest/mest befolkede områdene» -->
-              <equal><clip pos="2" side="tl" part="art"/><lit-tag v="ind"/></equal>
-              <equal><clip pos="3" side="tl" part="art"/><lit-tag v="def"/></equal>
-            </and>
-            <and>
-              <not><in><clip pos="2" side="tl" part="lemh"/><list n="adj-ind-def"/></in></not>
-              <equal><clip pos="2" side="sl" part="gen"/><lit-tag v="nt"/></equal>
-              <equal><clip pos="3" side="sl" part="gen"/><lit-tag v="nt"/></equal>
-              <in><clip pos="5" side="sl" part="gen"/><list n="noun-gender-not-adjnt"/></in>
-            </and>
-          </or></test>
+        <call-macro n="set_reject_adj_adj_n"><with-param pos="2"/><with-param pos="3"/><with-param pos="3"/></call-macro>
+        <choose><when>
+          <test><equal><var n="reject_adj_n"/><lit v="true"/></equal></test>
           <reject-current-rule shifting="0"/>
         </when></choose>
+
         <let><var n="c_name"/><lit v="cmp_adj_adj_cmp_n"/></let>
         <call-macro n="set_gender2.n.pre-adj"><with-param pos="5"/><with-param pos="2"/></call-macro>
         <call-macro n="set_gender2.n.adj"><with-param pos="5"/><with-param pos="3"/></call-macro>
@@ -12577,26 +12456,12 @@ no lemq-moving">
         <pattern-item n="n_np"/>
       </pattern>
       <action>
-        <choose><when c="Don't chunk «generelt lite fugl» etc.">
-          <test><or>
-            <equal><clip pos="1" side="tl" part="lemh"/><lit v=""/></equal>
-            <equal><clip pos="3" side="tl" part="lemh"/><lit v="mange"/></equal> <!-- [stukket] [flere ganger] -->
-            <equal><clip pos="3" side="tl" part="lemh"/><lit v="mye"/></equal>   <!-- [tilbudt] [mye penger] -->
-            <and>
-              <not><in><clip pos="1" side="tl" part="lemh"/><list n="adj-ind-def"/></in></not>
-              <not><equal><clip pos="1" side="tl" part="grau"/><lit-tag v="sup"/></equal></not> <!-- allow «tettest/mest befolkede områdene» -->
-              <equal><clip pos="1" side="tl" part="art"/><lit-tag v="ind"/></equal>
-              <equal><clip pos="3" side="tl" part="art"/><lit-tag v="def"/></equal>
-            </and>
-            <and>
-              <not><in><clip pos="1" side="tl" part="lemh"/><list n="adj-ind-def"/></in></not>
-              <equal><clip pos="1" side="sl" part="gen"/><lit-tag v="nt"/></equal>
-              <equal><clip pos="3" side="sl" part="gen"/><lit-tag v="nt"/></equal>
-              <in><clip pos="4" side="sl" part="gen"/><list n="noun-gender-not-adjnt"/></in>
-            </and>
-          </or></test>
+        <call-macro n="set_reject_adj_adj_n"><with-param pos="1"/><with-param pos="3"/><with-param pos="4"/></call-macro>
+        <choose><when>
+          <test><equal><var n="reject_adj_n"/><lit v="true"/></equal></test>
           <reject-current-rule shifting="0"/>
         </when></choose>
+
         <let><var n="c_name"/><lit v="adj_cmp_adj_n"/></let>
         <call-macro n="set_gender2.n.pre-adj"><with-param pos="4"/><with-param pos="1"/></call-macro>
         <call-macro n="set_gender2.n.adj"><with-param pos="4"/><with-param pos="3"/></call-macro>
@@ -12644,26 +12509,12 @@ no lemq-moving">
         <pattern-item n="n_np"/>
       </pattern>
       <action>
-        <choose><when c="Don't chunk «generelt lite fugl» etc.">
-          <test><or>
-            <equal><clip pos="1" side="tl" part="lemh"/><lit v=""/></equal>
-            <equal><clip pos="2" side="tl" part="lemh"/><lit v="mange"/></equal> <!-- [stukket] [flere ganger] -->
-            <equal><clip pos="2" side="tl" part="lemh"/><lit v="mye"/></equal>   <!-- [tilbudt] [mye penger] -->
-            <and>
-              <not><in><clip pos="1" side="tl" part="lemh"/><list n="adj-ind-def"/></in></not>
-              <not><equal><clip pos="1" side="tl" part="grau"/><lit-tag v="sup"/></equal></not> <!-- allow «tettest/mest befolkede områdene» -->
-              <equal><clip pos="1" side="tl" part="art"/><lit-tag v="ind"/></equal>
-              <equal><clip pos="5" side="tl" part="art"/><lit-tag v="def"/></equal>
-            </and>
-            <and>
-              <not><in><clip pos="1" side="tl" part="lemh"/><list n="adj-ind-def"/></in></not>
-              <equal><clip pos="1" side="sl" part="gen"/><lit-tag v="nt"/></equal>
-              <equal><clip pos="2" side="sl" part="gen"/><lit-tag v="nt"/></equal>
-              <in><clip pos="5" side="sl" part="gen"/><list n="noun-gender-not-adjnt"/></in>
-            </and>
-          </or></test>
+        <call-macro n="set_reject_adj_adj_n"><with-param pos="1"/><with-param pos="2"/><with-param pos="5"/></call-macro>
+        <choose><when>
+          <test><equal><var n="reject_adj_n"/><lit v="true"/></equal></test>
           <reject-current-rule shifting="0"/>
         </when></choose>
+
         <let><var n="c_name"/><lit v="adj_adj_cmp_cmp_n"/></let>
         <call-macro n="set_gender2.n.pre-adj"><with-param pos="5"/><with-param pos="1"/></call-macro>
         <call-macro n="set_gender2.n.adj"><with-param pos="5"/><with-param pos="2"/></call-macro>
@@ -12717,26 +12568,12 @@ no lemq-moving">
         <pattern-item n="n_np"/>
       </pattern>
       <action>
-        <choose><when c="Don't chunk «generelt lite fugl» etc.">
-          <test><or>
-            <equal><clip pos="1" side="tl" part="lemh"/><lit v=""/></equal>
-            <equal><clip pos="2" side="tl" part="lemh"/><lit v="mange"/></equal> <!-- [stukket] [flere ganger] -->
-            <equal><clip pos="2" side="tl" part="lemh"/><lit v="mye"/></equal>   <!-- [tilbudt] [mye penger] -->
-            <and>
-              <not><in><clip pos="1" side="tl" part="lemh"/><list n="adj-ind-def"/></in></not>
-              <not><equal><clip pos="1" side="tl" part="grau"/><lit-tag v="sup"/></equal></not> <!-- allow «tettest/mest befolkede områdene» -->
-              <equal><clip pos="1" side="tl" part="art"/><lit-tag v="ind"/></equal>
-              <equal><clip pos="6" side="tl" part="art"/><lit-tag v="def"/></equal>
-            </and>
-            <and>
-              <not><in><clip pos="1" side="tl" part="lemh"/><list n="adj-ind-def"/></in></not>
-              <equal><clip pos="1" side="sl" part="gen"/><lit-tag v="nt"/></equal>
-              <equal><clip pos="2" side="sl" part="gen"/><lit-tag v="nt"/></equal>
-              <in><clip pos="6" side="sl" part="gen"/><list n="noun-gender-not-adjnt"/></in>
-            </and>
-          </or></test>
+        <call-macro n="set_reject_adj_adj_n"><with-param pos="1"/><with-param pos="2"/><with-param pos="6"/></call-macro>
+        <choose><when>
+          <test><equal><var n="reject_adj_n"/><lit v="true"/></equal></test>
           <reject-current-rule shifting="0"/>
         </when></choose>
+
         <let><var n="c_name"/><lit v="adj_adj_cmp_cmp_cmp_n"/></let>
         <call-macro n="set_gender2.n.pre-adj"><with-param pos="6"/><with-param pos="1"/></call-macro>
         <call-macro n="set_gender2.n.adj"><with-param pos="6"/><with-param pos="2"/></call-macro>
@@ -12791,26 +12628,12 @@ no lemq-moving">
         <pattern-item n="n_np"/>
       </pattern>
       <action>
-        <choose><when c="Don't chunk «generelt lite fugl» etc.">
-          <test><or>
-            <equal><clip pos="1" side="tl" part="lemh"/><lit v=""/></equal>
-            <equal><clip pos="2" side="tl" part="lemh"/><lit v="mange"/></equal> <!-- [stukket] [flere ganger] -->
-            <equal><clip pos="2" side="tl" part="lemh"/><lit v="mye"/></equal>   <!-- [tilbudt] [mye penger] -->
-            <and>
-              <not><in><clip pos="1" side="tl" part="lemh"/><list n="adj-ind-def"/></in></not>
-              <not><equal><clip pos="1" side="tl" part="grau"/><lit-tag v="sup"/></equal></not> <!-- allow «tettest/mest befolkede områdene» -->
-              <equal><clip pos="1" side="tl" part="art"/><lit-tag v="ind"/></equal>
-              <equal><clip pos="4" side="tl" part="art"/><lit-tag v="def"/></equal>
-            </and>
-            <and>
-              <not><in><clip pos="1" side="tl" part="lemh"/><list n="adj-ind-def"/></in></not>
-              <equal><clip pos="1" side="sl" part="gen"/><lit-tag v="nt"/></equal>
-              <equal><clip pos="2" side="sl" part="gen"/><lit-tag v="nt"/></equal>
-              <in><clip pos="4" side="sl" part="gen"/><list n="noun-gender-not-adjnt"/></in>
-            </and>
-          </or></test>
+        <call-macro n="set_reject_adj_adj_n"><with-param pos="1"/><with-param pos="2"/><with-param pos="4"/></call-macro>
+        <choose><when>
+          <test><equal><var n="reject_adj_n"/><lit v="true"/></equal></test>
           <reject-current-rule shifting="0"/>
         </when></choose>
+
         <let><var n="c_name"/><lit v="adj_adj_adj_n"/></let>
         <call-macro n="set_gender2.n.pre-adj"><with-param pos="4"/><with-param pos="1"/></call-macro>
         <call-macro n="set_gender2.n.pre-adj"><with-param pos="4"/><with-param pos="2"/></call-macro>
