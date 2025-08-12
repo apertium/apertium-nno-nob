@@ -12345,6 +12345,47 @@ no lemq-moving">
         </out>
       </action>
     </rule>
+    <rule comment="CMP CMP ADJ N: nyoppstartede organisasjonen">
+      <pattern>
+        <pattern-item n="cmp"/>
+        <pattern-item n="cmp"/>
+        <pattern-item n="adj"/>
+        <pattern-item n="n_np"/>
+      </pattern>
+      <action>
+        <call-macro n="set_reject_adj_n"><with-param pos="3"/><with-param pos="4"/></call-macro>
+        <choose><when>
+          <test><equal><var n="reject_adj_n"/><lit v="true"/></equal></test>
+          <reject-current-rule shifting="0"/>
+        </when></choose>
+
+        <let><var n="c_name"/><lit v="cmp_cmp_adj_n"/></let>
+        <call-macro n="set_gender2.n.adj"><with-param pos="4"/><with-param pos="3"/></call-macro>
+        <call-macro n="set_grau_aux2"><with-param pos="2"/><with-param pos="3"/></call-macro>
+        <call-macro n="set_caseFirstWord2">
+          <with-param pos="3"/>
+          <with-param pos="4"/>
+        </call-macro>
+        <call-macro n="set_caseSecondWordCmp3"><with-param pos="1"/><with-param pos="2"/><with-param pos="3"/></call-macro>
+        <call-macro n="out_gen-prep"><with-param pos="4"/></call-macro>
+        <call-macro n="stash_case_in_ntags1"><with-param pos="4"/></call-macro>
+        <out>
+          <chunk namefrom="c_name" case="caseFirstWord">
+            <tags><tag><var n="ntags"/></tag></tags>
+            <var n="grau_aux"/>
+            <lu><clip pos="1" side="tl" part="whole"/></lu>
+            <lu><clip pos="2" side="tl" part="whole"/></lu>
+            <lu>
+              <clip pos="3" side="tl" part="lemh"/>
+              <clip pos="3" side="tl" part="tags"/>
+              <clip pos="3" side="tl" part="lemq"/>
+            </lu>
+            <b/>
+            <lu><clip pos="4" side="tl" part="whole"/></lu>
+          </chunk>
+        </out>
+      </action>
+    </rule>
     <rule comment="CMP ADJ ADJ N: sivilmilitær internasjonal organisasjon">
       <pattern>
         <pattern-item n="cmp"/>
