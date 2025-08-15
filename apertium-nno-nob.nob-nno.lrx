@@ -6280,8 +6280,15 @@
   <!--   <match lemma="av"/> -->
   <!-- </rule> -->
 
-  <rule>
-    <match tags="det.qnt.nt.sg.*"/>
+  <rule><match lemma="indre"><select lemma="indre"/></match></rule>
+
+  <rule weight="2.0" c="internt britisk anliggende">
+    <or>
+      <match tags="det.qnt.nt.sg.*"/>
+      <match lemma="indre">
+        <select lemma="intern"/>
+      </match>
+    </or>
     <repeat from="0" upto="1">
       <match tags="adj.*"/>
     </repeat>
@@ -6298,7 +6305,7 @@
     <match lemma="anliggende">
       <select lemma="sak"/>
     </match>
-  </rule> 
+  </rule>
 
 
   <rule weight="2.0">
