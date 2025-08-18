@@ -974,9 +974,10 @@
     </def-attr>
     <def-attr n="a_sent">
       <attr-item tags="sent"/>
-      <attr-item tags="sent"/>
       <attr-item tags="cm"/>
-      <attr-item tags="cm"/>
+    </def-attr>
+    <def-attr n="a_clb">
+      <attr-item tags="clb"/>
     </def-attr>
     <def-attr n="temps">
       <attr-item tags="inf"/>
@@ -11806,6 +11807,10 @@ no lemq-moving">
           <test><equal><var n="reject_adj_n"/><lit v="true"/></equal></test>
           <reject-current-rule shifting="0"/>
         </when></choose>
+        <choose><when c="Comma is not clause boundary">
+          <test><not><equal><clip pos="2" side="tl" part="a_clb"/><lit v=""/></equal></not></test>
+          <reject-current-rule shifting="0"/>
+        </when></choose>
 
         <let><clip pos="2" side="tl" part="a_caps"/><lit v=""/></let>
         <call-macro n="set_gender2.n.adj"><with-param pos="4"/><with-param pos="1"/></call-macro> <!-- was set_gender2.n.pre-adj, but before comma the adj should be unambiguously modifying noun -->
@@ -11861,6 +11866,10 @@ no lemq-moving">
         <call-macro n="set_reject_adj_adj_n"><with-param pos="2"/><with-param pos="4"/><with-param pos="5"/></call-macro>
         <choose><when>
           <test><equal><var n="reject_adj_n"/><lit v="true"/></equal></test>
+          <reject-current-rule shifting="0"/>
+        </when></choose>
+        <choose><when c="Comma is not clause boundary">
+          <test><not><equal><clip pos="3" side="tl" part="a_clb"/><lit v=""/></equal></not></test>
           <reject-current-rule shifting="0"/>
         </when></choose>
 
@@ -11921,6 +11930,10 @@ no lemq-moving">
         <call-macro n="set_reject_adj_adj_n"><with-param pos="2"/><with-param pos="5"/><with-param pos="6"/></call-macro>
         <choose><when>
           <test><equal><var n="reject_adj_n"/><lit v="true"/></equal></test>
+          <reject-current-rule shifting="0"/>
+        </when></choose>
+        <choose><when c="Comma is not clause boundary">
+          <test><not><equal><clip pos="3" side="tl" part="a_clb"/><lit v=""/></equal></not></test>
           <reject-current-rule shifting="0"/>
         </when></choose>
 
@@ -11984,6 +11997,13 @@ no lemq-moving">
         <call-macro n="set_reject_adj_adj_n"><with-param pos="1"/><with-param pos="5"/><with-param pos="6"/></call-macro>
         <choose><when>
           <test><equal><var n="reject_adj_n"/><lit v="true"/></equal></test>
+          <reject-current-rule shifting="0"/>
+        </when></choose>
+        <choose><when c="Comma is not clause boundary">
+          <test><not><and>
+            <equal><clip pos="2" side="tl" part="a_clb"/><lit v=""/></equal>
+            <equal><clip pos="4" side="tl" part="a_clb"/><lit v=""/></equal>
+          </and></not></test>
           <reject-current-rule shifting="0"/>
         </when></choose>
 
