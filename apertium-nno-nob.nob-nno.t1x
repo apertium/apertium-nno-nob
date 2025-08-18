@@ -8490,6 +8490,7 @@
             <in><clip pos="2" side="tl" part="lemh"/><list n="vekedag"/></in>
           </and> <!-- don't chunk [et bygg] tilhørende [landets justisminister]:-->
           <equal><clip pos="1" side="tl" part="lemh"/><lit v="tilhøyrande"/></equal>
+          <equal><clip pos="1" side="tl" part="a_cmp"/><lit-tag v="cmp"/></equal>
         </or></test>
         <let><var n="reject_adj_n"/><lit v="true"/></let> <!-- ie. caller should do <reject-current-rule shifting="0"/> -->
       </when></choose>
@@ -8512,6 +8513,7 @@
           <equal><clip pos="1" side="tl" part="lemh"/><lit v=""/></equal>
           <equal><clip pos="2" side="tl" part="lemh"/><lit v="mange"/></equal> <!-- [stukket] [flere ganger] -->
           <equal><clip pos="2" side="tl" part="lemh"/><lit v="mye"/></equal>   <!-- [tilbudt] [mye penger] -->
+          <equal><clip pos="2" side="tl" part="a_cmp"/><lit-tag v="cmp"/></equal>
           <and>
             <not><in><clip pos="1" side="tl" part="lemh"/><list n="adj-ind-def"/></in></not>
             <equal><clip pos="1" side="sl" part="gen"/><lit-tag v="nt"/></equal>
@@ -8535,6 +8537,10 @@
         <!-- allow «tettest/mest befolkede områdene»: -->
         <test><equal><clip pos="1" side="tl" part="grau"/><lit-tag v="sup"/></equal></test>
         <let><var n="reject_adj_n"/><lit v="false"/></let>
+      </when></choose>
+      <choose><when>
+        <test><equal><clip pos="3" side="tl" part="a_cmp"/><lit-tag v="cmp"/></equal></test>
+        <let><var n="reject_adj_n"/><lit v="true"/></let> <!-- ie. caller should do <reject-current-rule shifting="0"/> -->
       </when></choose>
     </def-macro>
 
