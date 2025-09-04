@@ -24,7 +24,7 @@ Because the files we work on are so long, it's rare to get a merge-conflict.
 2. Compile your changes:
 `make -j e`
 2. Do a simple check to see if your change is working:
-`echo "This is what I'm checking" | apertium nob-nno`
+`echo "This is what I'm checking" | apertium -d. nob-nno_e`
 (For bigger changes you can run the test sets and/or run a before-and-after corpus check. This is explained in another section below.)
 3. `git add <filename>`
 4. `git commit -m "This is what I did"`
