@@ -1072,6 +1072,30 @@
       <match lemma="opp"/>
     </or>
   </rule>
+  <rule weight="2.4" c="refleksiv: alltid transitiv">
+    <match lemma="brenne" tags="vblex.*">
+      <select lemma="brenne¹"/>
+    </match>
+    <repeat from="0" upto="3">
+      <or>
+        <match tags="n.*"/>
+        <match tags="adj.*"/>
+        <match tags="det.dem.*"/>
+        <match tags="np.*"/>
+        <match tags="prn.*"/>
+      </or>
+    </repeat>
+	  <or>
+      <match lemma="seg"/>
+      <match lemma="jeg" tags="prn.pers.p1.mf.sg.acc.*"/>
+      <match lemma="du" tags="prn.pers.p2.mf.sg.acc.*"/>
+      <match lemma="han" tags="prn.pers.p3.m.sg.acc.*"/>
+      <match lemma="hun" tags="prn.pers.p3.f.sg.acc.*"/>
+      <match lemma="vi" tags="prn.pers.p1.un.pl.acc.*"/>
+      <match lemma="dere" tags="prn.pers.p2.un.pl.acc.*"/>
+      <match lemma="de" tags="prn.pers.p3.un.pl.acc.*"/>
+	  </or>
+  </rule>
   <rule weight="2.0" c="brenne av, brenne en ting, brenne alle bruer">
     <match lemma="brenne" tags="vblex.*">
       <select lemma="brenne¹"/>
@@ -1218,6 +1242,20 @@
   </rule>
 
   <rule weight="1.0"><match lemma="forestilling" tags="n.*"><select lemma="framsyning"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="forestilling" tags="n.*">
+      <select lemma="førestilling"/>
+    </match>
+    <repeat from="0" upto="6"><match/></repeat>
+    <or>
+      <match lemma="om"/>
+      <match lemma="av"/>
+    </or>
+    <or>
+      <match lemma="at"/>
+      <match lemma="hva"/>
+    </or>
+  </rule>
   <rule weight="2.0">
     <match lemma="forestilling" tags="n.*">
       <select lemma="førestilling"/>
