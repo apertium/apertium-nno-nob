@@ -12969,7 +12969,14 @@ preposisjonar gir ekstra utfordringar. -->
     <match lemma="sommerfugl" tags="n.*">  <select lemma="fivreld"/> </match>
   </rule>
 
-
+  <rule> <match lemma="høyttenke" tags="vblex.*"> <select lemma="seie"/> </match> </rule>
+  <rule weight="2.0" c="å høyttenke">
+    <match lemma="høyttenke" tags="vblex.inf.*">  <select lemma="tenke# høgt"/> </match>
+  </rule>
+  <rule weight="2.0" c="høyttenke om">
+    <match lemma="høyttenke" tags="vblex.*">  <select lemma="tenke# høgt"/> </match>
+    <match lemma="om"/>
+  </rule>
 
 </rules>
 </lrx>
