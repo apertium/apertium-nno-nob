@@ -34,6 +34,11 @@ BEGIN {
         else if($a~$1"<adj>"anrestrict)       ana[lang]["an"][$1]++
         else if($a~$1"<adv>"avrestrict)       ana[lang]["av"][$1]++
         else if($a~$1"<ij>"ijrestrict)        ana[lang]["ij"][$1]++
+        else if($a~$1"<np><cog>")             ana[lang]["npcog"][$1]++
+        else if($a~$1"<np><ant><m>")          ana[lang]["npantm"][$1]++
+        else if($a~$1"<np><ant><f>")          ana[lang]["npantf"][$1]++
+        else if($a~$1"<np><top>")             ana[lang]["nptop"][$1]++
+        else if($a~$1"<np><org>")             ana[lang]["nporg"][$1]++
       }
     }
 
@@ -65,6 +70,11 @@ BEGIN {
        else if(ng=="an" && bw in ana["nob"]["an"]) print "<e>       <p><l>"nW"</l><r>"bW"</r></p><par n=\"adj\"/></e>"
        else if(ng=="av" && bw in ana["nob"]["av"]) print "<e>       <p><l>"nW"<s n=\"adv\"/></l><r>"bW"<s n=\"adv\"/></r></p></e>"
        else if(ng=="ij" && bw in ana["nob"]["ij"]) print "<e>       <p><l>"nW"<s n=\"ij\"/></l><r>"bW"<s n=\"ij\"/></r></p></e>"
+       else if(ng=="npcog" && bw in ana["nob"]["npcog"])   print "<e>       <p><l>"nW"<s n=\"np\"/></l><r>"bW"<s n=\"np\"/></r></p></e>"
+       else if(ng=="npantm" && bw in ana["nob"]["npantm"]) print "<e>       <p><l>"nW"<s n=\"np\"/></l><r>"bW"<s n=\"np\"/></r></p></e>"
+       else if(ng=="npantf" && bw in ana["nob"]["npantf"]) print "<e>       <p><l>"nW"<s n=\"np\"/></l><r>"bW"<s n=\"np\"/></r></p></e>"
+       else if(ng=="nptop" && bw in ana["nob"]["nptop"])   print "<e>       <p><l>"nW"<s n=\"np\"/></l><r>"bW"<s n=\"np\"/></r></p></e>"
+       else if(ng=="nporg" && bw in ana["nob"]["nporg"])   print "<e>       <p><l>"nW"<s n=\"np\"/></l><r>"bW"<s n=\"np\"/></r></p></e>"
        else {
             if(bw in ana["nob"]["f"])              print "<e>       <p><l>"nW"<s n=\"n\"/><s n=\""ng"\"/></l><r>"bW"</r></p><par n=\":n_m_RL_f\"/></e>"
             else if(bw in ana["nob"]["m"])         print "<e>       <p><l>"nW"<s n=\"n\"/><s n=\""ng"\"/></l><r>"bW"<s n=\"n\"/><s n=\"m\"/></r></p></e>"
