@@ -75,7 +75,7 @@ r: modes/$(PREFIX1).mode
 ## Monolingual transducers
 ###############################################################################
 
-.deps/pass-through-genmerged.lsx.bin: pass-through-genmerged.lsx
+.deps/pass-through-genmerged.lsx.bin: pass-through-genmerged.lsx .deps/.d
 	lt-comp lr $^ $@
 
 # -------------------
