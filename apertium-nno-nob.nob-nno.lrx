@@ -12978,5 +12978,15 @@ preposisjonar gir ekstra utfordringar. -->
     <match lemma="om"/>
   </rule>
 
+  <rule> <match lemma="besvær" tags="n.*"> <select lemma="bryderi"/> </match> </rule>
+  <rule weight="2.0" c="besvær med">
+    <match lemma="besvær" tags="n.*">  <select lemma="problem"/> </match>
+    <match tags="pr.*"/>
+  </rule>
+  <rule weight="2.2" c="til besvær">
+    <match lemma="til"/>
+    <match lemma="besvær" tags="n.*">  <select lemma="bry"/> </match>
+  </rule>
+
 </rules>
 </lrx>
