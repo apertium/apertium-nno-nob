@@ -76,7 +76,7 @@ r: modes/$(PREFIX1).mode
 ###############################################################################
 
 .deps/pass-through-genmerged.lsx.bin: pass-through-genmerged.lsx .deps/.d
-	lt-comp lr $^ $@
+	lt-comp lr $< $@
 
 # -------------------
 # Nynorsk analysis:
