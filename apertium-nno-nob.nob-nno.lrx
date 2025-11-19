@@ -2834,6 +2834,21 @@
   <match lemma="sikkerhet" tags="n.*.sg.ind.*"><select lemma="garanti"/></match>
 	<match lemma="i"/>
   </rule>
+  <rule weight="2.0" c="jobbe (godt) med sikkerhet i ">
+    <match lemma="jobbe" tags="vblex.*"/>
+    <repeat from="0" upto="1">
+      <match tags="adv.*"/>
+    </repeat>
+    <match lemma="med"/>
+    <match lemma="sikkerhet" tags="n.*.sg.ind.*"><select lemma="tryggleik"/></match>
+	  <match lemma="i"/>
+  </rule>
+  <rule weight="2.0" c="med garanti i + adj">
+    <match lemma="med"/>
+    <match lemma="sikkerhet" tags="n.*.sg.ind.*"><select lemma="garanti"/></match>
+	  <match lemma="i"/>
+    <match tags="adj.*"/>
+  </rule>
   <rule weight="2.0" c="garanti i eigen bustad">
     <match lemma="sikkerhet" tags="n.*.sg.ind.*"><select lemma="garanti"/></match>
 	  <match lemma="i"/>
@@ -5139,7 +5154,6 @@
     <or>
       <match lemma="å" tags="part.*"/>
       <match lemma="opp"/>
-      <match lemma="løs"/>
       <match lemma="fri"/>
       <match lemma="frem"/>
       <match lemma="forbi"/>
@@ -5151,6 +5165,13 @@
       <match lemma="inn i"/>
       <match lemma="inn til"/>
       <match lemma="med"/>
+    </or>
+  </rule>
+  <rule weight="2.5">
+    <match lemma="slippe" tags="vblex.*"><select lemma="sleppe¹"/></match>
+    <repeat from="0" upto="3"><match/></repeat>
+    <or>
+      <match lemma="løs"/>
     </or>
   </rule>
   <rule weight="2.0">
@@ -9900,6 +9921,7 @@
   <!-- END: meget, todo: "han reiste meget hele året rundt" -->
 
   <!-- START: ukentlig -->
+  <rule><match lemma="ukentlig" tags="adj.*"><select lemma="vekentleg"/></match></rule>
   <rule weight="2.0" c="bussen går kvar veke">
     <match lemma="ukentlig" tags="adv.*"><select lemma="kvar veke"/></match>
   </rule>
@@ -9921,23 +9943,29 @@
     </or>
     <match lemma="ukentlig"><select lemma="kvar veke"/></match>
   </rule>
-  <rule weight="4.0" c="på vekefast basis">
+  <rule weight="2.0" c="dei drakk alkohol kvar veke">
+    <match tags="vblex.*"/>
+    <repeat from="0" upto="3"><match/></repeat>
+    <match tags="n.*"/>
+    <match lemma="ukentlig"><select lemma="kvar veke"/></match>
+  </rule>
+  <rule weight="4.0" c="på vekentleg basis">
     <match tags="pr.*"/>
-    <match lemma="ukentlig"><select lemma="vekefast"/></match>
+    <match lemma="ukentlig"><select lemma="vekentleg"/></match>
   </rule>
-  <rule weight="4.0" c="det vekefaste supermøtet">
+  <rule weight="4.0" c="det vekentlege supermøtet">
     <match tags="det.dem.*"/>
-    <match lemma="ukentlig" tags="adj.*"><select lemma="vekefast"/></match>
+    <match lemma="ukentlig" tags="adj.*"><select lemma="vekentleg"/></match>
   </rule>
-  <rule weight="2.0" c="det vekefaste møtet">
-    <match lemma="ukentlig" tags="adj.*"><select lemma="vekefast"/></match>
+  <rule weight="2.0" c="det vekentlege møtet">
+    <match lemma="ukentlig" tags="adj.*"><select lemma="vekentleg"/></match>
     <match tags="n.*.def.*"/>
   </rule>
-  <rule  weight="2.0" c="eit vekevis opplegg">
-    <match lemma="ukentlig" tags="adj.*"><select lemma="vekevis"/></match>
+  <rule  weight="2.0" c="eit vekentleg opplegg">
+    <match lemma="ukentlig" tags="adj.*"><select lemma="vekentleg"/></match>
     <match tags="n.*.ind.*"/>
   </rule>
-  <!-- END: ukentlig, todo: haltande adjektivløysingar, særleg "vekevis", ofte overflødig? -->
+  <!-- END: ukentlig -->
 
   <rule><match lemma="ester" tags="n.m.*"><select lemma="estar"/></match></rule>
   <!-- todo: kontekst for "ein ester", organisk sambinding -->
