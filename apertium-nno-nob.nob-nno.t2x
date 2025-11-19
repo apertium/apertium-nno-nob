@@ -286,6 +286,9 @@
     <def-cat n="detqnt">
       <cat-item tags="det.qnt.*"/>
     </def-cat>
+    <def-cat n="detdetqnt">
+      <cat-item lemma="det" tags="det.qnt.*"/>
+    </def-cat>
     <def-cat n="detnonpos">
       <cat-item tags="det.def.*"/>
       <cat-item tags="det.dem.*"/>
@@ -437,6 +440,9 @@
       <cat-item tags="vblex.lemq.lemq-skip-obj"/>
       <cat-item tags="vblex.lemq.lemq-skip-obj.*"/>
       <cat-item tags="vblex.lemq.*.lemq-skip-obj.*"/>
+    </def-cat>
+    <def-cat n="adj">
+      <cat-item tags="adj.*"/>
     </def-cat>
     <def-cat n="adjpart">
       <cat-item tags="vblex.pp"/>
@@ -2870,6 +2876,64 @@
     </rule>
 
 
+    <rule comment="DET DETDETQNT NOM: en 56 år gammel kvinne => ei 56 år gammal kvinne">
+      <pattern>
+        <pattern-item n="det"/>
+        <pattern-item n="detdetqnt"/>
+        <pattern-item n="nom"/>
+      </pattern>
+      <action>
+        <choose><when c="genitive?">
+          <test><equal><clip pos="3" part="cas"/><lit-tag v="gen"/></equal></test>
+          <reject-current-rule shifting="0"/>
+        </when></choose>
+        <call-macro n="set_ana"><with-param pos="3"/></call-macro>
+        <call-macro n="modify_det_gender2.n.det"><with-param pos="3"/><with-param pos="1"/></call-macro>
+        <call-macro n="set_n_defness"><with-param pos="3"/><with-param pos="1"/></call-macro>
+        <out>
+          <chunk><clip pos="1" part="whole"/></chunk>
+          <b/>
+        </out>
+        <call-macro n="modify_det_gender2.n.det"><with-param pos="3"/><with-param pos="2"/></call-macro>
+        <call-macro n="set_n_defness"><with-param pos="3"/><with-param pos="2"/></call-macro>
+        <out>
+          <chunk><clip pos="2" part="whole"/></chunk>
+          <b/>
+          <chunk><clip pos="3" part="whole"/></chunk>
+        </out>
+      </action>
+    </rule>
+    <rule comment="DET ADJ DETDETQNT NOM: en aktiv 56 år gammel kvinne => ei aktiv 56 år gammal kvinne">
+      <pattern>
+        <pattern-item n="det"/>
+        <pattern-item n="adj"/>
+        <pattern-item n="detdetqnt"/>
+        <pattern-item n="nom"/>
+      </pattern>
+      <action>
+        <choose><when c="genitive?">
+          <test><equal><clip pos="4" part="cas"/><lit-tag v="gen"/></equal></test>
+          <reject-current-rule shifting="0"/>
+        </when></choose>
+        <call-macro n="set_ana"><with-param pos="4"/></call-macro>
+        <call-macro n="modify_det_gender2.n.det"><with-param pos="4"/><with-param pos="1"/></call-macro>
+        <call-macro n="set_n_defness"><with-param pos="4"/><with-param pos="1"/></call-macro>
+        <out>
+          <chunk><clip pos="1" part="whole"/></chunk> <!-- en -->
+          <b/>
+          <chunk><clip pos="2" part="whole"/></chunk> <!-- aktiv -->
+          <b/>
+        </out>
+        <call-macro n="modify_det_gender2.n.det"><with-param pos="4"/><with-param pos="3"/></call-macro>
+        <call-macro n="set_n_defness"><with-param pos="4"/><with-param pos="3"/></call-macro>
+        <out>
+          <chunk><clip pos="3" part="whole"/></chunk> <!-- 56 -->
+          <b/>
+          <chunk><clip pos="4" part="whole"/></chunk> <!-- år gammel kvinne -->
+        </out>
+      </action>
+    </rule>
+
     <rule comment="PREP_GEN NGEN PREP_GEN NGEN NIND: [på] kjøkkenets [til] katts snute => snuten til katten på kjøkkenet">
       <pattern>
         <pattern-item n="prep_gen"/>
@@ -3450,7 +3514,6 @@
         </out>
       </action>
     </rule>
-
 
     <rule comment="DET ADVLADJ ANOM_DEF: det sterkt høyreorienterte nettstedet → den sterkt høgreorienterte nettstaden">
       <pattern>
