@@ -8005,6 +8005,39 @@
       <list-item v="knøttliten"/>
       <list-item v="ovliten"/>
     </def-list>
+    <def-list n="adjn" c="Noun-like adjectives like 'ansatt'.
+                          nob lemmas (see nob.rlx LIST adjn)">
+      <list-item v="militær"/>
+      <list-item v="fornærmet"/>
+      <list-item v="fornærmede"/>
+      <list-item v="siktet"/>
+      <list-item v="siktede"/>
+      <list-item v="sivil"/>
+      <list-item v="tiltalt"/>
+      <list-item v="ansatt"/>
+      <list-item v="etterlatt"/>
+      <list-item v="nyansatt"/>
+      <list-item v="bekjent"/>
+      <list-item v="kjent"/>
+      <list-item v="hovedtiltalt"/>
+      <list-item v="sakkyndig"/>
+      <list-item v="alliert"/>
+      <list-item v="lærd"/>
+      <list-item v="skriftlærd"/>
+      <list-item v="stemmeberettiget"/>
+      <list-item v="innsatt"/>
+      <list-item v="medtiltalt"/>
+      <list-item v="avdød"/>
+      <list-item v="oppmøtt"/>
+      <list-item v="frivillig"/>
+      <list-item v="drept"/>
+      <list-item v="borgerlig"/>
+      <list-item v="arbeidsledig"/>
+      <list-item v="sysselsatt"/>
+      <list-item v="sysselsette"/>
+      <list-item v="arbeidsløs"/>
+      <list-item v="konservativ"/>
+    </def-list>
     <def-list n="no-samsvar" c="avoid «gåtte» etc.">
       <list-item v="unngå"/>
       <list-item v="gå"/>
@@ -13130,9 +13163,14 @@ no lemq-moving">
             <call-macro n="set_gender1.adj"><with-param pos="1"/></call-macro>
             <call-macro n="set_grau_aux1"><with-param pos="1"/></call-macro>
             <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
+            <let><var n="adjtags"/><clip pos="1" side="tl" part="tags"/></let>
+            <choose><when>
+              <test><in><clip pos="1" side="sl" part="lemh"/><list n="adjn"/></in></test>
+              <append n="adjtags"><lit-tag v="adjn"/></append>
+            </when></choose>
             <out>
               <chunk namefrom="c_name" case="caseFirstWord">
-                <tags><tag><clip pos="1" side="tl" part="tags"/></tag></tags>
+                <tags><tag><var n="adjtags"/></tag></tags>
                 <var n="grau_aux"/>
                 <lu>
                   <clip pos="1" side="tl" part="lemh"/>
