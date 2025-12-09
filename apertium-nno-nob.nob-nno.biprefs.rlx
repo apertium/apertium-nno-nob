@@ -34,9 +34,15 @@ LIST lm_oppfordre = "oppfordre"i "oppfordring"i;
 SELECT:oppmode_oppfordre lm_oppfordre IF (0 (VAR:oppmode_oppfordre.syn));
 REMOVE:oppmode_oppfordre lm_oppfordre;
 
-LIST lm_skap = ".*skap"ri;
-SELECT:bodskapen_bodskapet.n-m2nt lm_skap + nt IF (0 (VAR:bodskapen_bodskapet.n-m2nt));
-REMOVE:bodskapen_bodskapet.n-m2nt lm_skap + nt;
+
+#LIST lm_skapet = ".*skap"ri;
+LIST lm_skapet = ".*(medlemskap|meisterskap|bodskap|kameratskap|leiarskap|vennskap|forfattarskap|eigarskap|fiendskap|slektskap|rekneskap|amatørskap|farskap|fellesskap)"ri;
+SELECT:bodskapen_bodskapet.n-m2nt lm_skapet + nt IF (0 (VAR:bodskapen_bodskapet.n-m2nt));
+REMOVE:bodskapen_bodskapet.n-m2nt lm_skapet + nt;
+
+LIST lm_skapen = ".*(adelskap|mannskap|borgarskap|formannskap|presidentskap|ridderskap|partnarskap|brorskap)"ri;
+SELECT:mannskapet_mannskapen.n-nt2m lm_skapen + m IF (0 (VAR:mannskapet_mannskapen.n-nt2m));
+REMOVE:mannskapet_mannskapen.n-nt2m lm_skapen + m;
 
 # words that default to <f>, but can be overridden to <m>:
 LIST lova_loven_nouns = ".*(ape|blokk|bøye|grad|grunne|kasse|klage|krise|kulde|lampe|lov|maskin|nytte|olje|pinse|potet|prøve|påske|scene|sinke|ørn|anretning|demning|festning|forlegning|legning|pakning|strekning)"ri;
