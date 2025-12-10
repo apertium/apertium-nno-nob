@@ -5146,13 +5146,16 @@
 
   <!-- sleppe¹ is transitive: START-->
   <rule><seq n="slippe_sleppe:sleppe_trans"/></rule>
-  <rule weight="2.0" c="slippe/sleppe: passiv">
+  <rule weight="2.0" c="slippe/sleppe: evidence of passive">
     <or>
         <match lemma="være" tags="vblex.*"/>
         <match lemma="bli" tags="vblex.*"/>
     </or>
     <repeat from="0" upto="5"><match/></repeat>
-    <seq n="slippe_sleppe:sleppe_trans"/>
+    <or>       <!-- can't use the simple def-seq, needs to be adj: -->
+      <match lemma="slippe" tags="adj.*"><select lemma="sleppe¹"/></match>
+      <match lemma="sleppe" tags="adj.*"><select lemma="sleppe¹"/></match>
+    </or>
   </rule>
   <rule weight="2.0">
     <seq n="slippe_sleppe:sleppe_intrans"/>
