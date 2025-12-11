@@ -2573,6 +2573,14 @@
 	<list-item v="ærlegdom_namn"/>	<!-- ns[ærlegdom][namn] 2 > biAllPr  -->
 	<list-item v="land_rolle"/>
 	<list-item v="land_interesse"/>
+	<list-item v="verd_lunge"/>
+	<list-item v="verd_søkelys"/>
+</def-list>
+<def-list n="bi-keep-gen-s-noadj" c="Keep the s-genitive construction for these bigrams – but ONLY if no intervening adj.
+                                     Target-language lemmas.">
+	<list-item v="verd_bokby"/>
+	<list-item v="verd_hovudstad"/>
+	<list-item v="verd_kamp"/>
 </def-list>
 
 <!-- Genitive preps where bigram frequency gt til -->
@@ -10783,7 +10791,7 @@ no lemq-moving">
         </out>
       </action>
     </rule>
-    <rule comment="NGEN NIND: kvinners retter → kvinners rettar – ONLY IF NOUN LEMMA-PAIR IN LIST bi-keep-gen-s">
+    <rule comment="NGEN NIND: kvinners retter → kvinners rettar – ONLY IF NOUN LEMMA-PAIR IN LIST bi-keep-gen-s / bi-keep-gen-s-noadj">
       <pattern>
         <pattern-item n="ngen"/>
         <pattern-item n="nind"/>
@@ -10794,7 +10802,10 @@ no lemq-moving">
         <modify-case><var n="bilem"/><lit v="aa"/></modify-case>
         <choose><when>
           <test><or>
-            <not><in><var n="bilem"/><list n="bi-keep-gen-s"/></in></not>
+            <not><or>
+              <in><var n="bilem"/><list n="bi-keep-gen-s"/></in>
+              <in><var n="bilem"/><list n="bi-keep-gen-s-noadj"/></in>
+            </or></not>
             <not><equal><clip pos="2" side="tl" part="a_cmp"/><lit v=""/></equal></not>
           </or></test>
           <reject-current-rule shifting="0"/>
@@ -10818,6 +10829,51 @@ no lemq-moving">
               <tag><clip pos="2" side="tl" part="tags"/></tag>
             </tags>
             <lu><clip pos="2" side="tl" part="whole"/></lu>
+          </chunk>
+        </out>
+      </action>
+    </rule>
+    <rule comment="NGEN CMP NIND: verdens sjokoladehovedstad – ONLY IF NOUN LEMMA-PAIR IN LIST bi-keep-gen-s / bi-keep-gen-s-noadj">
+      <pattern>
+        <pattern-item n="ngen"/>
+        <pattern-item n="cmp"/>
+        <pattern-item n="nind"/>
+      </pattern>
+      <action>
+        <!-- Don't run this rule if the lemmas are not in bi-keep-gen-s: -->
+        <let><var n="bilem"/><concat><clip pos="1" side="tl" part="lem"/><lit v="_"/><clip pos="3" side="tl" part="lem"/></concat></let>
+        <modify-case><var n="bilem"/><lit v="aa"/></modify-case>
+        <choose><when>
+          <test><or>
+            <not><or>
+              <in><var n="bilem"/><list n="bi-keep-gen-s"/></in>
+              <in><var n="bilem"/><list n="bi-keep-gen-s-noadj"/></in>
+            </or></not>
+            <not><equal><clip pos="3" side="tl" part="a_cmp"/><lit v=""/></equal></not>
+          </or></test>
+          <reject-current-rule shifting="0"/>
+        </when></choose>
+        <!-- They were in the list – keep the s-genitive: -->
+        <call-macro n="set_caseFirstWord"><with-param pos="1"/></call-macro>
+        <out>
+          <chunk name="nn" case="caseFirstWord">
+            <tags>
+              <tag><clip pos="1" side="tl" part="tags"/></tag>
+              <tag><lit-tag v="gen"/></tag>
+            </tags>
+            <lu><clip pos="1" side="tl" part="whole"/></lu>
+          </chunk>
+          <b/>
+        </out>
+        <call-macro n="set_caseFirstWordCmp"><with-param pos="1"/><with-param pos="2"/></call-macro>
+        <let><clip pos="3" side="tl" part="a_caps"/><lit v=""/></let>
+        <out>
+          <chunk name="cmp_n" case="caseSecondWord">
+            <tags>
+              <tag><clip pos="3" side="tl" part="tags"/></tag>
+            </tags>
+            <lu><clip pos="2" side="tl" part="whole"/></lu>
+            <lu><clip pos="3" side="tl" part="whole"/></lu>
           </chunk>
         </out>
       </action>
