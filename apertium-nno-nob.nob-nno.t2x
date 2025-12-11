@@ -2546,6 +2546,25 @@
       </action>
     </rule>
 
+    <rule comment="DETNONPOS PREP_GEN NGEN NKEEPGENX: den danske fotballstjernas tid → den til danske fotballstjernas tid → den danske fotballstjernas tid
+                   Override below prep-moving rules.">
+      <pattern>
+        <pattern-item n="detnonpos"/>
+        <pattern-item n="prep_gen"/>
+        <pattern-item n="ngen"/>
+        <pattern-item n="nkeepgenx"/>
+      </pattern>
+      <action>
+        <call-macro n="set_ana"><with-param pos="4"/></call-macro>
+        <let><clip pos="3" part="a_casedrop"/><lit v=""/></let>
+        <let><clip pos="4" part="a_keepgenx"/><lit v=""/></let>
+        <out>
+          <chunk><clip pos="1" part="whole"/></chunk><b/>
+          <chunk><clip pos="3" part="whole"/></chunk><b/>
+          <chunk><clip pos="4" part="whole"/></chunk>
+        </out>
+      </action>
+    </rule>
     <rule comment="PREP_GEN NGEN NKEEPGENX: (for) hovedindeksens del → til hovudindeksen del → hovedindeksens del
                    Override below prep-moving rules.">
       <pattern>
