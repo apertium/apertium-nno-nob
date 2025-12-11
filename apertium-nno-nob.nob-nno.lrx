@@ -351,6 +351,12 @@
          </or>
        </def-seq>
 
+       <def-seq n="maybe-adj.maybe-cmp.n">
+         <repeat from="0" upto="2"><match tags="adj.*"/></repeat>
+         <repeat from="0" upto="2"><match tags="*.cmp"/></repeat>
+         <match tags="n.*.aa.*"/> <!-- aa: not cmp -->
+       </def-seq>
+
       <def-seq n="prn-n-np-adv">
         <or>
            <match tags="prn.*"/>
@@ -8972,8 +8978,9 @@
       <match lemma="for"/>
     </or>
   </rule>
-  <rule>
-    <match lemma="anse# for"><select lemma="rekne# for"/></match>
+  <rule weight="9.0" c="Dessuten anses norsk sjømat å være av god kvalitet.">
+    <match lemma="anse"><select lemma="rekne# for"/></match>
+    <repeat from="0" upto="1"><seq n="maybe-adj.maybe-cmp.n"/></repeat>
     <match lemma="å"/>
   </rule>
   <rule weight="2.0">
