@@ -6640,7 +6640,11 @@
 <!--STREKKE/STREKKJE: START-->
   <rule c="strekkje seg">
     <match lemma="strekke" tags="vblex.*"><select lemma="strekke¹"/></match>
-    <match lemma="seg"/>
+    <or>
+      <match lemma="seg"/>
+      <match tags="n.*"/>
+      <match tags="n.*.cmp"/>
+    </or>
   </rule>
   <rule weight="2.0" c="mandatet ble strukket">
     <match lemma="bli"/>
