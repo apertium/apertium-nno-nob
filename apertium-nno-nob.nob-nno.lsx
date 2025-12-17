@@ -942,6 +942,11 @@
       <e><i>på<s n="pr"/><t/><d/></i></e>
     </pardef>
 
+    <pardef n="rem:i|empty">
+      <e></e>
+      <e><p><l>i<s n="pr"/><t/></l>                <r></r></p>  <par n="d:"/></e>
+    </pardef>
+
     <pardef n="med|uten">
       <e><i>med<s n="pr"/><d/></i></e>
       <e><i>med<s n="pr"/><t/><d/></i></e>
@@ -15513,6 +15518,12 @@
       <p><l>liten<s n="adj"/><s n="sint"/><s n="pst"/><s n="un"/><s n="sp"/><s n="def"/><t/></l>  <r></r></p>  <par n="d:"/>
       <p><l></l>                                  <r>ørliten<s n="adj"/><s n="sint"/><s n="pst"/><s n="un"/><s n="sp"/><s n="def"/><d/></r></p>
     </e>
+    
+    <e lm="x antall ganger -> så og så mange ganger" c="så og så mange ganger">
+      <i>xalphabet<s n="n"/><t/></i>  <par n="d"/>
+      <p><l>antall<s n="n"/><t/></l>  <r></r></p>  <par n="d:"/>
+      <i>gang<s n="n"/><s n="m"/><s n="pl"/><s n="ind"/><t/></i>  <par n="d"/>
+    </e>
 
     <e lm="tallet på antall -> tallet på" c="talet på">
       <i>tall<s n="n"/><t/></i>  <par n="d"/>
@@ -15655,6 +15666,7 @@
     <e lm="være/bli/ha/ville + bare + et begrenset antall -> bare noen få" c="berre nokre få">
       <par n="være/bli/ha/ville"/>
       <i>bare<t/><d/></i>
+      <par n="rem:i|empty"/>
       <p><l>en<s n="det"/><t/></l>  <r></r></p>  <par n="d:"/>
       <p><l>begrense<s n="adj"/><s n="pp"/><t/></l>  <r></r></p>  <par n="d:"/>
       <p><l></l>           <r>noe<s n="det"/><s n="qnt"/><s n="un"/><s n="pl"/><d/></r></p>
@@ -15664,6 +15676,7 @@
     <e lm="bare + være/bli/ha/ville + et begrenset antall -> bare noen få" c="berre nokre få">
       <i>bare<t/><d/></i>
       <par n="være/bli/ha/ville"/>
+      <par n="rem:i|empty"/>
       <p><l>en<s n="det"/><t/></l>  <r></r></p>  <par n="d:"/>
       <p><l>begrense<s n="adj"/><s n="pp"/><t/></l>  <r></r></p>  <par n="d:"/>
       <p><l></l>           <r>noe<s n="det"/><s n="qnt"/><s n="un"/><s n="pl"/><d/></r></p>
@@ -15673,6 +15686,7 @@
     <e lm="være/bli/ha/ville + kun + et begrenset antall -> bare noen få" c="berre nokre få">
       <par n="være/bli/ha/ville"/>
       <p><l>kun<s n="adv"/><t/></l>  <r></r></p>  <par n="d:"/>
+      <par n="rem:i|empty"/>
       <p><l>en<s n="det"/><t/></l>  <r></r></p>  <par n="d:"/>
       <p><l>begrense<s n="adj"/><s n="pp"/><t/></l>  <r></r></p>  <par n="d:"/>
       <p><l></l>           <r>bare<s n="adv"/><d/></r></p>
@@ -15684,6 +15698,7 @@
       <p><l>kun<s n="adv"/><t/></l>  <r></r></p>  <par n="d:"/>
       <p><l></l>           <r>bare<s n="adv"/><d/></r></p>
       <par n="være/bli/ha/ville"/>
+      <par n="rem:i|empty"/>
       <p><l>en<s n="det"/><t/></l>  <r></r></p>  <par n="d:"/>
       <p><l>begrense<s n="adj"/><s n="pp"/><t/></l>  <r></r></p>  <par n="d:"/>
       <p><l></l>           <r>noe<s n="det"/><s n="qnt"/><s n="un"/><s n="pl"/><d/></r></p>
@@ -15692,6 +15707,7 @@
 
     <e lm="være/bli/ha + et begrenset antall -> være/bli/ha + bare noen få" c="vere/bli/ha + berre nokre få">
       <par n="være/bli/ha"/>
+      <par n="rem:i|empty"/>
       <p><l>en<s n="det"/><t/></l>  <r></r></p>  <par n="d:"/>
       <p><l>begrense<s n="adj"/><s n="pp"/><t/></l>  <r></r></p>  <par n="d:"/>
       <p><l></l>           <r>bare<s n="adv"/><d/></r></p>
@@ -15701,6 +15717,7 @@
 
     <e lm="konj + et begrenset antall -> konj + noen få" c="konj + nokre få">
       <par n="cnjcoo|cnjsub"/>
+      <par n="rem:i|empty"/>
       <p><l>en<s n="det"/><t/></l>  <r></r></p>  <par n="d:"/>
       <p><l>begrense<s n="adj"/><s n="pp"/><t/></l>  <r></r></p>  <par n="d:"/>
       <p><l></l>           <r>noe<s n="det"/><s n="qnt"/><s n="un"/><s n="pl"/><d/></r></p>
@@ -15708,12 +15725,22 @@
     </e>
 
     <e lm="et begrenset antall + subst -> bare noen få + subst" c="berre nokre få + subst">
+      <par n="rem:i|empty"/>
       <p><l>en<s n="det"/><t/></l>  <r></r></p>  <par n="d:"/>
       <p><l>begrense<s n="adj"/><s n="pp"/><t/></l>  <r></r></p>  <par n="d:"/>
       <p><l></l>           <r>bare<s n="adv"/><d/></r></p>
       <p><l></l>           <r>noe<s n="det"/><s n="qnt"/><s n="un"/><s n="pl"/><d/></r></p>
       <p><l>antall<s n="n"/><s n="nt"/><s n="sg"/><s n="ind"/></l> <r>få<s n="adj"/><s n="sint"/><s n="pst"/><s n="un"/><s n="pl"/><s n="ind"/></r></p> <par n="d"/>
       <par n="ncmp*.n"/>
+    </e>
+
+    <e lm="med et begrenset antall -> med noen få" c="med nokre få">
+      <i><w/><s n="pr"/><t/><d/></i>
+      <p><l>en<s n="det"/><t/></l>  <r></r></p>  <par n="d:"/>
+      <p><l>begrense<s n="adj"/><s n="pp"/><t/></l>  <r></r></p>  <par n="d:"/>
+      <p><l>antall<s n="n"/><t/></l>  <r></r></p>  <par n="d:"/>
+      <p><l></l>           <r>noe<s n="det"/><s n="qnt"/><s n="un"/><s n="pl"/><d/></r></p>
+      <p><l></l>           <r>få<s n="adj"/><s n="sint"/><s n="pst"/><s n="un"/><s n="pl"/><s n="ind"/><s n="aa"/><d/></r></p>
     </e>
 
     <e lm="for et avgrenset antall -> for noen få" c="for nokre få">
