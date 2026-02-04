@@ -46,6 +46,7 @@ LIST mn/init = (np ant) (np cog) (np top) (np init) ;
 LIST ln/init =     (np cog) (np top) (np cgguess) (np init) ; # NB: toponyms and guessed names are also considered possible middle/last names
 LIST init = (np init) ;
 LIST org = (np org) ;
+LIST def = def ;
 LIST aa = /^\([Aa]+\)$/r ;      # TODO: no longer needed, now we use * to copy tags from first word
 LIST syn =  /^\(@.*\)$/r ;
 LIST gen = gen ;
@@ -136,8 +137,8 @@ MERGECOHORTS:m+l ("<$1 $3>"v "$1 $3"v cgguess * VSTR:$6)
 
 MERGECOHORTS:org+org ("<$1 $3>"v "$1 $3"v cgguess * VSTR:$6)
                      wf + bf + org
-                  (NEGATE 0 gen)
-                  (NEGATE 1 gen) (NEGATE 1 AA)
+                  (NEGATE 0 gen) (NEGATE 0 def)
+                  (NEGATE 1 gen) (NEGATE 1 AA) (NEGATE 1 def)
           WITH
                   (1 wf + bf + org + aa + syn)
 ;
