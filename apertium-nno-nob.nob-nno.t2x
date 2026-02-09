@@ -500,6 +500,9 @@
     <def-cat n="needdet_adj_n">
       <cat-item lemma="needdet_adj_n" tags="n.*"/>
     </def-cat>
+    <def-cat n="pr">
+      <cat-item tags="pr.*"/>
+    </def-cat>
   </section-def-cats>
 
   <section-def-attrs>
@@ -651,6 +654,9 @@
       <attr-item tags="pr_ut"/>
       <attr-item tags="pr_ved"/>
     </def-attr>
+    <def-attr n="lem">
+      <attr-item tags="lem"/>
+    </def-attr>
 
   </section-def-attrs>
 
@@ -666,6 +672,7 @@
     <def-var n="ana_gen_m-f" c="m or f"/>
     <def-var n="ana_nbr"/>
     <def-var n="ana_temps" c="Last seen finite verb temps (pres/pret)"/>
+    <def-var n="noun_gender"/>
   </section-def-vars>
 
   <section-def-lists>
@@ -1072,6 +1079,548 @@
 
 
   <section-rules>
+    <!-- Rule 1: deten + pr + detqnt + noun -->
+    <rule comment="Gender agreement: ein/ei/eit + preposition + number + noun">
+      <pattern>
+        <pattern-item n="deten"/>
+        <pattern-item n="pr"/>
+        <pattern-item n="detqnt"/>
+        <pattern-item n="nplind"/>
+      </pattern>
+      <action>
+        <!-- Get the noun's gender from position 4 -->
+        <let>
+          <var n="noun_gender"/>
+          <clip pos="4" part="gen"/>
+        </let>
+        
+        <!-- Set the determiner's gender to match the noun -->
+        <let>
+          <clip pos="1" part="gen"/>
+          <var n="noun_gender"/>
+        </let>
+        
+        <!-- Set the correct lemma based on gender -->
+        <choose>
+          <when>
+            <test>
+              <equal>
+                <var n="noun_gender"/>
+                <lit-tag v="m"/>
+              </equal>
+            </test>
+            <let>
+              <clip pos="1" part="lem"/>
+              <lit v="ein"/>
+            </let>
+          </when>
+          <when>
+            <test>
+              <equal>
+                <var n="noun_gender"/>
+                <lit-tag v="f"/>
+              </equal>
+            </test>
+            <let>
+              <clip pos="1" part="lem"/>
+              <lit v="ei"/>
+            </let>
+          </when>
+          <when>
+            <test>
+              <equal>
+                <var n="noun_gender"/>
+                <lit-tag v="nt"/>
+              </equal>
+            </test>
+            <let>
+              <clip pos="1" part="lem"/>
+              <lit v="eit"/>
+            </let>
+          </when>
+        </choose>
+        
+        <!-- Output all chunks -->
+        <out>
+          <chunk>
+            <clip pos="1" part="whole"/>
+          </chunk>
+          <b pos="1"/>
+          <chunk>
+            <clip pos="2" part="whole"/>
+          </chunk>
+          <b pos="2"/>
+          <chunk>
+            <clip pos="3" part="whole"/>
+          </chunk>
+          <b pos="3"/>
+          <chunk>
+            <clip pos="4" part="whole"/>
+          </chunk>
+        </out>
+      </action>
+    </rule>
+
+    <!-- Rule 2: deten + cnjcoo + detqnt + noun -->
+    <rule comment="Gender agreement: ein/ei/eit + conjunction + number + noun">
+      <pattern>
+        <pattern-item n="deten"/>
+        <pattern-item n="cnjcoo"/>
+        <pattern-item n="detqnt"/>
+        <pattern-item n="nplind"/>
+      </pattern>
+      <action>
+        <!-- Get the noun's gender from position 4 -->
+        <let>
+          <var n="noun_gender"/>
+          <clip pos="4" part="gen"/>
+        </let>
+        
+        <!-- Set the determiner's gender to match the noun -->
+        <let>
+          <clip pos="1" part="gen"/>
+          <var n="noun_gender"/>
+        </let>
+        
+        <!-- Set the correct lemma based on gender -->
+        <choose>
+          <when>
+            <test>
+              <equal>
+                <var n="noun_gender"/>
+                <lit-tag v="m"/>
+              </equal>
+            </test>
+            <let>
+              <clip pos="1" part="lem"/>
+              <lit v="ein"/>
+            </let>
+          </when>
+          <when>
+            <test>
+              <equal>
+                <var n="noun_gender"/>
+                <lit-tag v="f"/>
+              </equal>
+            </test>
+            <let>
+              <clip pos="1" part="lem"/>
+              <lit v="ei"/>
+            </let>
+          </when>
+          <when>
+            <test>
+              <equal>
+                <var n="noun_gender"/>
+                <lit-tag v="nt"/>
+              </equal>
+            </test>
+            <let>
+              <clip pos="1" part="lem"/>
+              <lit v="eit"/>
+            </let>
+          </when>
+        </choose>
+        
+        <!-- Output all chunks -->
+        <out>
+          <chunk>
+            <clip pos="1" part="whole"/>
+          </chunk>
+          <b pos="1"/>
+          <chunk>
+            <clip pos="2" part="whole"/>
+          </chunk>
+          <b pos="2"/>
+          <chunk>
+            <clip pos="3" part="whole"/>
+          </chunk>
+          <b pos="3"/>
+          <chunk>
+            <clip pos="4" part="whole"/>
+          </chunk>
+        </out>
+      </action>
+    </rule>
+
+    <!-- Rule 3: deten + cnjcoo + det + nom (for "ein eller ingen inntekt") -->
+    <rule comment="Gender agreement: ein/ei/eit + conjunction + ingen + noun">
+      <pattern>
+        <pattern-item n="deten"/>
+        <pattern-item n="cnjcoo"/>
+        <pattern-item n="det"/>
+        <pattern-item n="nom"/>
+      </pattern>
+      <action>
+        <!-- Get the noun's gender from position 4 -->
+        <let>
+          <var n="noun_gender"/>
+          <clip pos="4" part="gen"/>
+        </let>
+        
+        <!-- Set first determiner's gender to match the noun -->
+        <let>
+          <clip pos="1" part="gen"/>
+          <var n="noun_gender"/>
+        </let>
+        
+        <!-- Set first determiner's lemma based on gender -->
+        <choose>
+          <when>
+            <test>
+              <equal>
+                <var n="noun_gender"/>
+                <lit-tag v="m"/>
+              </equal>
+            </test>
+            <let>
+              <clip pos="1" part="lem"/>
+              <lit v="ein"/>
+            </let>
+          </when>
+          <when>
+            <test>
+              <equal>
+                <var n="noun_gender"/>
+                <lit-tag v="f"/>
+              </equal>
+            </test>
+            <let>
+              <clip pos="1" part="lem"/>
+              <lit v="ei"/>
+            </let>
+          </when>
+          <when>
+            <test>
+              <equal>
+                <var n="noun_gender"/>
+                <lit-tag v="nt"/>
+              </equal>
+            </test>
+            <let>
+              <clip pos="1" part="lem"/>
+              <lit v="eit"/>
+            </let>
+          </when>
+        </choose>
+        
+        <!-- Set second determiner's gender to match the noun -->
+        <let>
+          <clip pos="3" part="gen"/>
+          <var n="noun_gender"/>
+        </let>
+        
+        <!-- Set second determiner's lemma based on gender (ingen/inga/inkje) -->
+        <choose>
+          <when>
+            <test>
+              <equal>
+                <var n="noun_gender"/>
+                <lit-tag v="m"/>
+              </equal>
+            </test>
+            <let>
+              <clip pos="3" part="lem"/>
+              <lit v="ingen"/>
+            </let>
+          </when>
+          <when>
+            <test>
+              <equal>
+                <var n="noun_gender"/>
+                <lit-tag v="f"/>
+              </equal>
+            </test>
+            <let>
+              <clip pos="3" part="lem"/>
+              <lit v="inga"/>
+            </let>
+          </when>
+          <when>
+            <test>
+              <equal>
+                <var n="noun_gender"/>
+                <lit-tag v="nt"/>
+              </equal>
+            </test>
+            <let>
+              <clip pos="3" part="lem"/>
+              <lit v="inkje"/>
+            </let>
+          </when>
+        </choose>
+        
+        <!-- Output all chunks -->
+        <out>
+          <chunk>
+            <clip pos="1" part="whole"/>
+          </chunk>
+          <b pos="1"/>
+          <chunk>
+            <clip pos="2" part="whole"/>
+          </chunk>
+          <b pos="2"/>
+          <chunk>
+            <clip pos="3" part="whole"/>
+          </chunk>
+          <b pos="3"/>
+          <chunk>
+            <clip pos="4" part="whole"/>
+          </chunk>
+        </out>
+      </action>
+    </rule>
+
+    <!-- Rule 4: deten + cnjcoo + adj_n (for "ein eller fleire inntekter") -->
+    <rule comment="Gender agreement: ein/ei/eit + conjunction + adj+noun chunk">
+      <pattern>
+        <pattern-item n="deten"/>
+        <pattern-item n="cnjcoo"/>
+        <pattern-item n="anom_ind"/>
+      </pattern>
+      <action>
+        <!-- Get the noun's gender from the adj_n chunk (position 3) -->
+        <let>
+          <var n="noun_gender"/>
+          <clip pos="3" part="gen"/>
+        </let>
+        
+        <!-- Set the determiner's gender to match the noun -->
+        <let>
+          <clip pos="1" part="gen"/>
+          <var n="noun_gender"/>
+        </let>
+        
+        <!-- Set the correct lemma based on gender -->
+        <choose>
+          <when>
+            <test>
+              <equal>
+                <var n="noun_gender"/>
+                <lit-tag v="m"/>
+              </equal>
+            </test>
+            <let>
+              <clip pos="1" part="lem"/>
+              <lit v="ein"/>
+            </let>
+          </when>
+          <when>
+            <test>
+              <equal>
+                <var n="noun_gender"/>
+                <lit-tag v="f"/>
+              </equal>
+            </test>
+            <let>
+              <clip pos="1" part="lem"/>
+              <lit v="ei"/>
+            </let>
+          </when>
+          <when>
+            <test>
+              <equal>
+                <var n="noun_gender"/>
+                <lit-tag v="nt"/>
+              </equal>
+            </test>
+            <let>
+              <clip pos="1" part="lem"/>
+              <lit v="eit"/>
+            </let>
+          </when>
+        </choose>
+        
+        <!-- Output all chunks -->
+        <out>
+          <chunk>
+            <clip pos="1" part="whole"/>
+          </chunk>
+          <b pos="1"/>
+          <chunk>
+            <clip pos="2" part="whole"/>
+          </chunk>
+          <b pos="2"/>
+          <chunk>
+            <clip pos="3" part="whole"/>
+          </chunk>
+        </out>
+      </action>
+    </rule>
+
+    <!-- Rule 5: deten + pr + detqnt + adj + noun (5 chunks with adjective) -->
+    <rule comment="Gender agreement: ein/ei/eit + prep + number + adj + noun">
+      <pattern>
+        <pattern-item n="deten"/>
+        <pattern-item n="pr"/>
+        <pattern-item n="detqnt"/>
+        <pattern-item n="adj"/>
+        <pattern-item n="nplind"/>
+      </pattern>
+      <action>
+        <!-- Get the noun's gender from position 5 -->
+        <let>
+          <var n="noun_gender"/>
+          <clip pos="5" part="gen"/>
+        </let>
+        
+        <!-- Set the determiner's gender to match the noun -->
+        <let>
+          <clip pos="1" part="gen"/>
+          <var n="noun_gender"/>
+        </let>
+        
+        <!-- Set the correct lemma based on gender -->
+        <choose>
+          <when>
+            <test>
+              <equal>
+                <var n="noun_gender"/>
+                <lit-tag v="m"/>
+              </equal>
+            </test>
+            <let>
+              <clip pos="1" part="lem"/>
+              <lit v="ein"/>
+            </let>
+          </when>
+          <when>
+            <test>
+              <equal>
+                <var n="noun_gender"/>
+                <lit-tag v="f"/>
+              </equal>
+            </test>
+            <let>
+              <clip pos="1" part="lem"/>
+              <lit v="ei"/>
+            </let>
+          </when>
+          <when>
+            <test>
+              <equal>
+                <var n="noun_gender"/>
+                <lit-tag v="nt"/>
+              </equal>
+            </test>
+            <let>
+              <clip pos="1" part="lem"/>
+              <lit v="eit"/>
+            </let>
+          </when>
+        </choose>
+        
+        <!-- Output all chunks -->
+        <out>
+          <chunk>
+            <clip pos="1" part="whole"/>
+          </chunk>
+          <b pos="1"/>
+          <chunk>
+            <clip pos="2" part="whole"/>
+          </chunk>
+          <b pos="2"/>
+          <chunk>
+            <clip pos="3" part="whole"/>
+          </chunk>
+          <b pos="3"/>
+          <chunk>
+            <clip pos="4" part="whole"/>
+          </chunk>
+          <b pos="4"/>
+          <chunk>
+            <clip pos="5" part="whole"/>
+          </chunk>
+        </out>
+      </action>
+    </rule>
+
+    <!-- Rule 6: deten + cnjcoo + detqnt + adj + noun (5 chunks with adjective) -->
+    <rule comment="Gender agreement: ein/ei/eit + conj + number + adj + noun">
+      <pattern>
+        <pattern-item n="deten"/>
+        <pattern-item n="cnjcoo"/>
+        <pattern-item n="detqnt"/>
+        <pattern-item n="adj"/>
+        <pattern-item n="nplind"/>
+      </pattern>
+      <action>
+        <!-- Get the noun's gender from position 5 -->
+        <let>
+          <var n="noun_gender"/>
+          <clip pos="5" part="gen"/>
+        </let>
+        
+        <!-- Set the determiner's gender to match the noun -->
+        <let>
+          <clip pos="1" part="gen"/>
+          <var n="noun_gender"/>
+        </let>
+        
+        <!-- Set the correct lemma based on gender -->
+        <choose>
+          <when>
+            <test>
+              <equal>
+                <var n="noun_gender"/>
+                <lit-tag v="m"/>
+              </equal>
+            </test>
+            <let>
+              <clip pos="1" part="lem"/>
+              <lit v="ein"/>
+            </let>
+          </when>
+          <when>
+            <test>
+              <equal>
+                <var n="noun_gender"/>
+                <lit-tag v="f"/>
+              </equal>
+            </test>
+            <let>
+              <clip pos="1" part="lem"/>
+              <lit v="ei"/>
+            </let>
+          </when>
+          <when>
+            <test>
+              <equal>
+                <var n="noun_gender"/>
+                <lit-tag v="nt"/>
+              </equal>
+            </test>
+            <let>
+              <clip pos="1" part="lem"/>
+              <lit v="eit"/>
+            </let>
+          </when>
+        </choose>
+        
+        <!-- Output all chunks -->
+        <out>
+          <chunk>
+            <clip pos="1" part="whole"/>
+          </chunk>
+          <b pos="1"/>
+          <chunk>
+            <clip pos="2" part="whole"/>
+          </chunk>
+          <b pos="2"/>
+          <chunk>
+            <clip pos="3" part="whole"/>
+          </chunk>
+          <b pos="3"/>
+          <chunk>
+            <clip pos="4" part="whole"/>
+          </chunk>
+          <b pos="4"/>
+          <chunk>
+            <clip pos="5" part="whole"/>
+          </chunk>
+        </out>
+      </action>
+    </rule>
 
     <rule comment="AV_ALLE N: av alle beslag → av alle beslaga">
       <pattern>
