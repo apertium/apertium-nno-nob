@@ -1448,25 +1448,27 @@
       </action>
     </rule>
 
-    <!-- Rule 5: deten + pr + detqnt + adj + noun (5 chunks with adjective) -->
-    <rule comment="Gender agreement: ein/ei/eit + prep + number + adj + noun">
+    <!-- Rule 5: nom + pr + det + cnjcoo + adj + pr + nom (for "andeler i én eller flere av tillatelsene") -->
+    <rule comment="Gender agreement: noun + prep + det + conj + adj + prep + noun - look ahead to final noun">
       <pattern>
-        <pattern-item n="deten"/>
+        <pattern-item n="nom"/>
         <pattern-item n="pr"/>
-        <pattern-item n="detqnt"/>
+        <pattern-item n="det"/>
+        <pattern-item n="cnjcoo"/>
         <pattern-item n="adj"/>
-        <pattern-item n="nplind"/>
+        <pattern-item n="pr"/>
+        <pattern-item n="nom"/>
       </pattern>
       <action>
-        <!-- Get the noun's gender from position 5 -->
+        <!-- Get the noun's gender from position 7 (the final noun after "av") -->
         <let>
           <var n="noun_gender"/>
-          <clip pos="5" part="gen"/>
+          <clip pos="7" part="gen"/>
         </let>
         
-        <!-- Set the determiner's gender to match the noun -->
+        <!-- Set the determiner's gender to match the final noun -->
         <let>
-          <clip pos="1" part="gen"/>
+          <clip pos="3" part="gen"/>
           <var n="noun_gender"/>
         </let>
         
@@ -1480,7 +1482,7 @@
               </equal>
             </test>
             <let>
-              <clip pos="1" part="lem"/>
+              <clip pos="3" part="lem"/>
               <lit v="ein"/>
             </let>
           </when>
@@ -1492,7 +1494,7 @@
               </equal>
             </test>
             <let>
-              <clip pos="1" part="lem"/>
+              <clip pos="3" part="lem"/>
               <lit v="ei"/>
             </let>
           </when>
@@ -1504,7 +1506,7 @@
               </equal>
             </test>
             <let>
-              <clip pos="1" part="lem"/>
+              <clip pos="3" part="lem"/>
               <lit v="eit"/>
             </let>
           </when>
@@ -1530,6 +1532,14 @@
           <b pos="4"/>
           <chunk>
             <clip pos="5" part="whole"/>
+          </chunk>
+          <b pos="5"/>
+          <chunk>
+            <clip pos="6" part="whole"/>
+          </chunk>
+          <b pos="6"/>
+          <chunk>
+            <clip pos="7" part="whole"/>
           </chunk>
         </out>
       </action>
