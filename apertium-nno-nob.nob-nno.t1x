@@ -688,11 +688,25 @@
       <cat-item tags="pr"/>
       <cat-item tags="pr.*"/>
     </def-cat>
+    <def-cat n="pr_OR_cnjcoo">
+      <cat-item tags="pr"/>
+      <cat-item tags="pr.*"/>
+      <cat-item tags="cnjcoo"/>
+      <cat-item tags="cnjcoo.*"/>
+    </def-cat>
     <def-cat n="det">
       <cat-item tags="det.*"/>
     </def-cat>
     <def-cat n="detqnt">
       <cat-item tags="det.qnt.*"/>
+    </def-cat>
+    <def-cat n="detqnt_en">
+      <cat-item lemma="en" tags="det.qnt.*"/>
+      <cat-item lemma="én" tags="det.qnt.*"/>
+    </def-cat>
+    <def-cat n="det_OR_mange">
+      <cat-item tags="det.*"/>
+      <cat-item lemma="mange" tags="adj.*"/>
     </def-cat>
     <def-cat n="detqntun">      <!-- e.g. digits, not «en/et» -->
       <cat-item tags="det.qnt.un.*"/>
@@ -8065,6 +8079,18 @@
       <list-item v="laurdag"/>
       <list-item v="søndag"/>
     </def-list>
+    <def-list n="digit">
+      <list-item v="0"/>
+      <list-item v="1"/>
+      <list-item v="2"/>
+      <list-item v="3"/>
+      <list-item v="4"/>
+      <list-item v="5"/>
+      <list-item v="6"/>
+      <list-item v="7"/>
+      <list-item v="8"/>
+      <list-item v="9"/>
+    </def-list>
   </section-def-lists>
 
   <section-def-macros>
@@ -13489,6 +13515,97 @@ no lemq-moving">
           <chunk namefrom="c_name" case="caseFirstWord">
             <tags><tag><var n="dettags"/></tag></tags>
             <lu><clip pos="1" side="tl" part="whole"/></lu>
+          </chunk>
+        </out>
+      </action>
+    </rule>
+
+    <rule comment="DETQNT PR/CNJCOO DET/mange
+                   Chunks «en og samme» etc. so that t2x can treat it as a single determiner.
+
+                   [på] en og samme [tid] =1> [på] ein.GD og same [tid.f] =2> [på] ei.f og same [tid.f]
+
+                   Finally t3x applies the chunk gender to individual words.">
+      <pattern>
+        <pattern-item n="detqnt_en"/>
+        <pattern-item n="pr_OR_cnjcoo"/>
+        <pattern-item n="det_OR_mange"/>
+      </pattern>
+      <action>
+        <choose><when c="Check if we have one of the expected patterns. If we don't: skip this rule.">
+          <test><not><or>
+            <and>               <!-- en/én til/av/eller ingen/mange/flere -->
+              <or>
+                <equal caseless="yes"><clip pos="2" side="tl" part="lemh"/><lit v="til"/></equal>
+                <equal caseless="yes"><clip pos="2" side="tl" part="lemh"/><lit v="av"/></equal>
+                <equal caseless="yes"><clip pos="2" side="tl" part="lemh"/><lit v="eller"/></equal>
+              </or>
+              <or>
+                <equal caseless="yes"><clip pos="3" side="tl" part="lemh"/><lit v="ingen"/></equal>
+                <equal caseless="yes"><clip pos="3" side="tl" part="lemh"/><lit v="mange"/></equal> <!-- same lemma for «flere» -->
+              </or>
+            </and>
+            <and>               <!-- en og flere/annen/samme -->
+              <equal caseless="yes"><clip pos="2" side="tl" part="lemh"/><lit v="og"/></equal>
+              <or>
+                <equal caseless="yes"><clip pos="3" side="tl" part="lemh"/><lit v="mange"/></equal> <!-- «tok både én og flere reiser» -->
+                <equal caseless="yes"><clip pos="3" side="tl" part="lemh"/><lit v="annan"/></equal>
+                <equal caseless="yes"><clip pos="3" side="tl" part="lemh"/><lit v="same"/></equal>
+              </or>
+            </and>
+            <and>               <!-- en/én til/av/eller/og to/tre/fire/fem/etc -->
+              <or>
+                <equal caseless="yes"><clip pos="2" side="tl" part="lemh"/><lit v="til"/></equal>
+                <equal caseless="yes"><clip pos="2" side="tl" part="lemh"/><lit v="av"/></equal>
+                <equal caseless="yes"><clip pos="2" side="tl" part="lemh"/><lit v="eller"/></equal>
+                <equal caseless="yes"><clip pos="2" side="tl" part="lemh"/><lit v="og"/></equal>
+              </or>
+              <begins-with><clip pos="3" side="tl" part="tags"/><lit-tag v="det.qnt"/></begins-with>
+              <not><begins-with-list><clip pos="3" side="tl" part="lemh"/><list n="digit"/></begins-with-list></not> <!-- ikkje «en til 130.000 [kroner]» -->
+            </and>
+            <and>               <!-- en/én av [0-9]+ -->
+              <equal caseless="yes"><clip pos="2" side="tl" part="lemh"/><lit v="av"/></equal>
+              <begins-with><clip pos="3" side="tl" part="tags"/><lit-tag v="det.qnt"/></begins-with>
+            </and>
+          </or></not></test>
+          <reject-current-rule shifting="0"/>
+        </when></choose>
+
+        <call-macro n="set_caseFirstWord3"><with-param pos="1"/><with-param pos="2"/><with-param pos="3"/></call-macro>
+        <let><var n="dettags"/><clip pos="1" side="tl" part="tags"/></let>
+
+        <!-- Chunk lemma will be one of det_pr_det, det_cnjcoo_det, det_pr_adj, det_pr_adj, det_cnjcoo_adj -->
+        <let><var n="c_name"/><lit v="det"/></let>
+        <choose>
+          <when>
+            <test><begins-with><clip pos="2" side="tl" part="tags"/><lit-tag v="cnjcoo"/></begins-with></test>
+            <append n="c_name"><lit v="_cnjcoo"/></append>
+          </when>
+          <otherwise>
+            <append n="c_name"><lit v="_pr"/></append>
+          </otherwise>
+        </choose>
+        <choose>
+          <when>
+            <test><begins-with><clip pos="3" side="tl" part="tags"/><lit-tag v="adj"/></begins-with></test>
+            <append n="c_name"><lit v="_adj"/></append>
+          </when>
+          <otherwise>
+            <append n="c_name"><lit v="_det"/></append>
+          </otherwise>
+        </choose>
+
+        <call-macro n="set_syntag"><with-param pos="3"/></call-macro>
+        <append n="dettags"><var n="syntag"/></append>
+
+        <out>
+          <chunk namefrom="c_name" case="caseFirstWord">
+            <tags><tag><var n="dettags"/></tag></tags>
+            <lu><clip pos="1" side="tl" part="whole"/></lu>
+            <b/>
+            <lu><clip pos="2" side="tl" part="whole"/></lu>
+            <b/>
+            <lu><clip pos="3" side="tl" part="whole"/></lu>
           </chunk>
         </out>
       </action>

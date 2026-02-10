@@ -184,6 +184,12 @@
       <!-- <cat-item name="detexpl"/> -->
       <cat-item name="detpos-keep"/>
     </def-cat>
+    <def-cat n="det_pr_OR_cnjcoo_det_OR_adj">
+      <cat-item name="det_pr_det"/>
+      <cat-item name="det_cnjcoo_det"/>
+      <cat-item name="det_pr_adj"/>
+      <cat-item name="det_cnjcoo_adj"/>
+    </def-cat>
     <def-cat n="prn">
       <cat-item name="prn"/>
     </def-cat>
@@ -674,7 +680,10 @@
 
     <def-macro n="clean_det" npar="2"
                c="arg.1: determiner, arg.2: chunk">
-      <let><clip pos="1" part="nbr"/><clip pos="2" part="nbr"/></let>
+      <choose><when>
+        <test><not><equal><clip pos="1" part="nbr"/><lit-tag v="sp"/></equal></not></test>
+        <let><clip pos="1" part="nbr"/><clip pos="2" part="nbr"/></let>
+      </when></choose>
       <choose><when>
         <test><not><equal><clip pos="1" part="gen"/><lit-tag v="un"/></equal></not></test>
         <let><clip pos="1" part="gen"/><clip pos="2" part="gen"/></let>
@@ -685,6 +694,29 @@
           <equal><clip pos="1" part="gen"/><lit-tag v="mf"/></equal>
         </or></test>
         <let><clip pos="1" part="gen"/><lit-tag v="m"/></let>
+      </when></choose>
+    </def-macro>
+
+    <def-macro n="clean_det2" npar="3"
+               c="arg.1: determiner – gets nbr/gen from chunk
+                  arg.2: determiner – only gets gen from chunk
+                  arg.3: chunk">
+      <call-macro n="clean_det"><with-param pos="1"/><with-param pos="3"/></call-macro>
+      <choose><when c="Only set number if ND, else keep it!">
+        <test><equal><clip pos="1" part="nbr"/><lit-tag v="ND"/></equal></test>
+        <let><clip pos="1" part="nbr"/><clip pos="2" part="nbr"/></let>
+      </when></choose>
+      <!-- rest as in clean_det: -->
+      <choose><when>
+        <test><not><equal><clip pos="2" part="gen"/><lit-tag v="un"/></equal></not></test>
+        <let><clip pos="2" part="gen"/><clip pos="3" part="gen"/></let>
+      </when></choose>
+      <choose><when>
+        <test><or>
+          <equal><clip pos="2" part="gen"/><lit-tag v="GD"/></equal>
+          <equal><clip pos="2" part="gen"/><lit-tag v="mf"/></equal>
+        </or></test>
+        <let><clip pos="2" part="gen"/><lit-tag v="m"/></let>
       </when></choose>
     </def-macro>
 
@@ -916,6 +948,21 @@
             <lu><clip pos="1" part="whole"/></lu>
           </out>
         </when></choose>
+      </action>
+    </rule>
+    <rule comment="CHUNK: det pr_OR_cnjcoo det_OR_adj">
+      <pattern>
+        <pattern-item n="det_pr_OR_cnjcoo_det_OR_adj"/>
+      </pattern>
+      <action>
+        <call-macro n="clean_det2"><with-param pos="1"/><with-param pos="3"/><with-param pos="0"/></call-macro>
+        <out>
+          <lu><clip pos="1" part="whole"/></lu>
+          <b/>
+          <lu><clip pos="2" part="whole"/></lu>
+          <b/>
+          <lu><clip pos="3" part="whole"/></lu>
+        </out>
       </action>
     </rule>
 
