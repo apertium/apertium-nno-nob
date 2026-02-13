@@ -138,6 +138,9 @@ REMOVE:lagnad_lagnad   ("skjebne"i) IF (0 ("lagnad"i));
 SELECT:lagnad_skjebne ("skjebnesvanger"i) IF (0 ("lagnadstung"i) + (VAR:lagnad_skjebne.syn));
 REMOVE:lagnad_lagnad   ("skjebnesvanger"i) IF (0 ("lagnadstung"i));
 
+SELECT:lagnad_skjebne ("skjebnetime"i) IF (0 ("lagnadstime"i) + (VAR:lagnad_skjebne.syn));
+REMOVE:lagnad_lagnad   ("skjebnetime"i) IF (0 ("lagnadstime"i));
+
 LIST lm_nøgd = "nøgd"i "misnøgd"i;
 SELECT:fornøgd_nøgd lm_nøgd IF (0  (VAR:fornøgd_nøgd.syn));
 REMOVE:fornøgd_fornøgd lm_nøgd;
