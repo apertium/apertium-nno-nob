@@ -12797,6 +12797,9 @@ preposisjonar gir ekstra utfordringar. -->
     <repeat from="0" upto="5"><match/></repeat>
     <match lemma="forbrenne" tags="adj.pp.*"><select lemma="forbrenne¹"/></match>
   </rule>
+  <rule weight="2.0" c="forbrennes">
+    <match lemma="forbrenne" tags="vblex.*.pasv.*"><select lemma="forbrenne¹"/></match>
+  </rule>
 
   <rule><match lemma="bud" tags="n.*"><select lemma="bod"/></match></rule>
   <rule weight="2.0">
@@ -12919,6 +12922,16 @@ preposisjonar gir ekstra utfordringar. -->
   <rule weight="2.0" c="ha innflytelse på">
     <match lemma="innflytelse" tags="n.*">  <select lemma="innverknad"/> </match>
     <match lemma="på" tags="pr.*"/>
+  </rule>
+
+  <rule> <match lemma="framtoning" tags="n.*"> <select lemma="framtoning" tags="n.f.*"/> </match> </rule>
+  <rule> <match lemma="fremtoning" tags="n.*"> <select lemma="framtoning" tags="n.f.*"/> </match> </rule>
+  <rule weight="2.0" c="en underlig framtoning">
+    <match tags="adj.*"/>
+    <or>
+      <match lemma="framtoning" tags="n.*"> <select lemma="framtoning" tags="n.m.*"/> </match>
+      <match lemma="fremtoning" tags="n.*"> <select lemma="framtoning" tags="n.m.*"/> </match>
+    </or>
   </rule>
 
 </rules>
