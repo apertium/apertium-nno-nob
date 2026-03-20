@@ -1,0 +1,20 @@
+#!/usr/bin/jq -rMf
+
+# $ find finn-relaterte-ord.nno/article -type f -print0 | xargs -0 ./json-paradigm-to-tsv >finn-relaterte-ord.nno/lemma-tag-paradigm.tsv
+
+.lemmas
+  | map({
+      lemma: .lemma,
+      id: .id,
+      paradigm_id: (.paradigm_info[0].paradigm_id),
+      tags: (.paradigm_info | map(.tags | join(".")) | unique)
+    })
+  | map(. as $o | $o.tags[] | {
+      lemma: $o.lemma,
+      id: $o.id,
+      tags: .,
+      paradigm_id: $o.paradigm_id
+    })
+  | .[]
+  | [.lemma, (.tags | ascii_downcase), .paradigm_id, .id]
+  | @tsv
