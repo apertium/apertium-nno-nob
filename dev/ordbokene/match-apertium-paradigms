@@ -1,0 +1,97 @@
+#!/bin/bash
+
+# Assumes you have two subdirectories:
+# dev/ordbokene/finn-relaterte-ord.nno/
+# dev/ordbokene/finn-relaterte-ord.nob/
+# each of which contains a subdirectory /article/ with all the json articles from ordbokene.no
+
+# shellcheck disable=SC2312
+
+
+for lang in nno nob; do
+
+mkdir -p work."${lang}"
+
+if [[ -f work.${lang}/lemma-tag-paradigm.tsv ]]; then
+    echo "work.${lang}/lemma-tag-paradigm.tsv already exists, not recreating"
+else
+    find finn-relaterte-ord.${lang}/article -type f -print0 | xargs -0 ./json-paradigm-to-tsv >work.${lang}/lemma-tag-paradigm.tsv
+fi
+
+echo "work.${lang}/apertium-lemma-tag-paradigm.tsv"
+rg -IN 'lm="' ../apertium-${lang}/apertium-${lang}.${lang}.dix |sed 's,.*lm="\([^"]*\)".*<par n="\([^"]*__\([^"]*\)\)".*,\1\t\3\t\2,'|awk 'BEGIN{OFS=FS="\t"; } NF==3' > work.${lang}/apertium-lemma-tag-paradigm.tsv
+
+echo "work.${lang}/lemma-apertiumtag-paradigm.tsv"
+awk 'BEGIN{OFS=FS="\t"; } { sub(/^noun(\..*)?$/,"n",$2);sub(/^verb$/,"vblex",$2); sub(/sconj/,"cnjsub",$2); sub(/adj\..*/,"adj",$2); sub(/^intj$/,"ij",$2); sub(/^adp$/,"pr",$2); print }' work.${lang}/lemma-tag-paradigm.tsv > work.${lang}/lemma-apertiumtag-paradigm.tsv
+
+echo "work.${lang}/joined-paradigms"
+LC_ALL=C join -j1 -t$'\t'  \
+         <(sed 's,\t,===,' work.${lang}/apertium-lemma-tag-paradigm.tsv|LC_ALL=C sort -t$'\t' -k1b,1 ) \
+         <(sed 's,\t,===,' work.${lang}/lemma-apertiumtag-paradigm.tsv|LC_ALL=C sort -t$'\t' -k1b,1 ) \
+    | sed 's,===,\t,' \
+          > work.${lang}/joined-paradigms
+
+# Now for every field4 (ordbokene-paradigm), use the most frequent field3 (apertium-paradigm)
+
+echo "work.${lang}/best-paradigm-match"
+awk 'BEGIN{OFS=FS="\t"; } { f[$4][$3]++ } END{ PROCINFO["sorted_in"]="@val_num_desc"; for(o in f){printf "%s",o;for(a in f[o])printf "\t%s", a; print ""}}' work.${lang}/joined-paradigms >work.${lang}/best-paradigm-match
+
+# and we can add all the unknowns using lookup into that table
+
+# First analyse:
+if [[ -f "work.${lang}/analysed" ]]; then
+    echo "work.${lang}/analysed already exists, not recreating"
+else
+    cut -f1 work.${lang}/lemma-apertiumtag-paradigm.tsv |sed 's,$, .,' |tr -d '^$/@+{}[]' | lt-proc -ew ../apertium-${lang}/${lang}.automorf.bin |tr '/' '\t'|tr -d ^ | sed 's,><[^\t]*,>,g' >work.${lang}/analysed
+fi
+
+echo "line count should be the same, for safe pasting:"
+wc -l work.${lang}/lemma-apertiumtag-paradigm.tsv work.${lang}/analysed
+
+# then paste with tagged analysis-input and print the unanalysed ones with apertium paradigm as given from best-paradigm-match:
+
+echo "work.$lang/new.dix"
+paste work.${lang}/lemma-apertiumtag-paradigm.tsv work.${lang}/analysed \
+    | sed 's,\t,<,;s,\t,>\t,; s,\$[^\t]*,,g' \
+    | awk -v lang="${lang}" '
+# Sort comparison by index string length, for PROCINFO["sorted_in"]:
+function cmp_ind_len_desc(i1, v1, i2, v2,    l1, l2)
+{
+    l1 = length(i1)
+    l2 = length(i2)
+    if (l1 > l2) return -1   # i1 should come before i2
+    if (l1 < l2) return 1    # i1 should come after i2
+    return (i1 > i2) ? 1 : (i1 < i2 ? -1 : 0)   # tie‑break lexicographically
+}
+BEGIN{
+    OFS=FS="\t"
+    f_para="work." lang "/best-paradigm-match"
+    while(getline<f_para) {
+        for(i=NF;i>=2;i--) {
+            parname=$i
+            suff=parname; sub(/[^\/]*/,"",suff); sub(/_.*/,"",suff); sub(/\//,"",suff)
+            p[$1][suff]=parname # if we see two of the same suff, the leftmost / highest frequency one will win
+        }
+    }
+}
+# Check if analysis (field 1) is seen:
+{
+    seen=0
+    for(i=3;i<=NF;i++)if($i == $1)seen++
+}
+# If *not* seen in analyses, but we have a paradigm-mapping: print
+!seen {
+    lm=$1;   sub(/<.*/,"",lm)
+    PROCINFO["sorted_in"] = "cmp_ind_len_desc" # in the below loop, pick the longest matching suffix first:
+    for(suff in p[$2]) {
+        parname=p[$2][suff]
+        pref = substr(lm,0,length(lm)-length(suff))
+        if(lm == pref suff) {
+            gsub(/ /, "<b/>", pref)
+            printf "<e lm=\"%s\">\t<i>%s</i>\t<par n=\"%s\"/> </e>\n",lm,pref,parname
+            break   # found a match!
+        }
+    }
+}' | rev|sort|rev >work.$lang/new.dix
+
+done

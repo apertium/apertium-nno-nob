@@ -9,26 +9,33 @@
 #
 # $ echo 'bustadene:boligene' | dev/add-words inflected > new-words.dix
 
-if [[ $1 = inflected ]]; then
+# Run with first argument a mainpos to restrict known-forms to only that
+# mainpos (ie. allow "først<cnjsub>" as new word though it exists as adv/adj)
+
+if [[ "$1" = inflected ]]; then
     knownforms () { cat ; }
     script=add-words-inflected.awk
 else
     # We consider a form known by the bidix if its lemma has an analysis.
     # So grep away other forms, so we don't consider e.g. "dunst" (the noun) known just because "dunst<vblex><imp>" has an analysis:
-    knownforms () {
-        grep -E                                       \
-            -e '<vblex><inf>[$/]'                     \
-            -e '<vblex><pstv><inf>[$/]'               \
-            -e '<n><[mfnt]+><sg><ind>[$/]'            \
-            -e '<n><[mfnt]+><sp>[$/]'                 \
-            -e '<adv>[$/]'                            \
-            -e '<ij>[$/]'                             \
-            -e '<pr>[$/]'                             \
-            -e '<np>(<(ant|cog|top|org|al|f|m|nt)>)+' \
-            -e '<adj><sint><pst><mf><sg><ind>[$/]'    \
-            -e '<adj><pst><mf><sg><ind>[$/]'          \
-            ;
-    }
+    declare -A posrestrict
+    posrestrict["vblex"]='<vblex>(<pstv>)?<inf>[$/]'
+    posrestrict["n"]='<n><[mfnt]+>(<sp>|<sg><ind>)[$/]'
+    posrestrict["adv"]='<adv>[$/]'
+    posrestrict["cnjsub"]='<cnjsub>[$/]'
+    posrestrict["ij"]='<ij>[$/]'
+    posrestrict["pr"]='<pr>[$/]'
+    posrestrict["np"]='<np>(<(ant|cog|top|org|al|f|m|nt)>)+'
+    posrestrict["adj"]='<adj>(<sint>)?<pst><mf><sg><ind>[$/]'
+    allposrestrictions=$( IFS='|'; echo "${posrestrict[*]}"; )
+    if [[ -n "$1" ]]; then
+        restrictions=${posrestrict[$1]}
+        echo "Limiting known forms to '${restrictions}'" >&2
+        knownforms () { grep -E "${restrictions}" ;}
+    else
+        echo "Limiting known forms to all lemma forms '${allposrestrictions}'" >&2
+        knownforms () { grep -E "${allposrestrictions}" ;}
+    fi
     script=add-words.awk
 fi
 

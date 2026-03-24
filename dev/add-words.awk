@@ -10,6 +10,8 @@ BEGIN {
     anrestrict=""         # try all forms
     avrestrict=""         # try all forms
     ijrestrict=""         # try all forms
+    cjrestrict=""         # try all forms
+    prrestrict=""         # try all forms
     FS="/"
     langs["nno"]++
     langs["nob"]++
@@ -33,6 +35,8 @@ BEGIN {
         else if($a~$1"<adj><sint>"asrestrict) ana[lang]["as"][$1]++
         else if($a~$1"<adj>"anrestrict)       ana[lang]["an"][$1]++
         else if($a~$1"<adv>"avrestrict)       ana[lang]["av"][$1]++
+        else if($a~$1"<cnjsub>"cjrestrict)    ana[lang]["cj"][$1]++
+        else if($a~$1"<pr>"prrestrict)        ana[lang]["pr"][$1]++
         else if($a~$1"<ij>"ijrestrict)        ana[lang]["ij"][$1]++
         else if($a~$1"<np><cog>")             ana[lang]["npcog"][$1]++
         else if($a~$1"<np><ant><m>")          ana[lang]["npantm"][$1]++
@@ -70,6 +74,8 @@ BEGIN {
        else if(ng=="an" && bw in ana["nob"]["an"]) print "<e>       <p><l>"nW"</l><r>"bW"</r></p><par n=\"adj\"/></e>"
        else if(ng=="av" && bw in ana["nob"]["av"]) print "<e>       <p><l>"nW"<s n=\"adv\"/></l><r>"bW"<s n=\"adv\"/></r></p></e>"
        else if(ng=="ij" && bw in ana["nob"]["ij"]) print "<e>       <p><l>"nW"<s n=\"ij\"/></l><r>"bW"<s n=\"ij\"/></r></p></e>"
+       else if(ng=="cj" && bw in ana["nob"]["cj"]) print "<e>       <p><l>"nW"<s n=\"cnjsub\"/></l><r>"bW"<s n=\"cnjsub\"/></r></p></e>"
+       else if(ng=="pr" && bw in ana["nob"]["pr"]) print "<e>       <p><l>"nW"<s n=\"pr\"/></l><r>"bW"<s n=\"pr\"/></r></p></e>"
        else if(ng=="npcog" && bw in ana["nob"]["npcog"])   print "<e>       <p><l>"nW"<s n=\"np\"/></l><r>"bW"<s n=\"np\"/></r></p></e>"
        else if(ng=="npantm" && bw in ana["nob"]["npantm"]) print "<e>       <p><l>"nW"<s n=\"np\"/></l><r>"bW"<s n=\"np\"/></r></p></e>"
        else if(ng=="npantf" && bw in ana["nob"]["npantf"]) print "<e>       <p><l>"nW"<s n=\"np\"/></l><r>"bW"<s n=\"np\"/></r></p></e>"
