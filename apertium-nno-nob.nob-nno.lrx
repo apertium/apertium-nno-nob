@@ -10710,6 +10710,10 @@
   </rule>
 
   <rule><match lemma="løpe" tags="vblex.*"><select lemma="springe"/></match></rule>
+  <rule weight="2.0" c="løpende oppdatert">
+    <match lemma="løpe" tags="adj.pprs.*"><select lemma="løpe"/></match>
+    <match lemma="oppdatere"/>
+  </rule>
   <rule weight="2.0" c="ha risiko for">
     <match lemma="løpe" tags="vblex.*"><select lemma="ha"/></match>
     <repeat from="0" upto="9"><match tags="*"/></repeat>
