@@ -40,7 +40,7 @@ LIST lm_skapet = ".*(medlemskap|meisterskap|bodskap|kameratskap|leiarskap|vennsk
 SELECT:bodskapen_bodskapet.n-m2nt lm_skapet + nt IF (0 (VAR:bodskapen_bodskapet.n-m2nt));
 REMOVE:bodskapen_bodskapet.n-m2nt lm_skapet + nt;
 
-LIST lm_skapen = ".*(adelskap|mannskap|borgarskap|formannskap|presidentskap|ridderskap|partnarskap|brorskap)"ri;
+LIST lm_skapen = ".*(adelskap|mannskap|borgarskap|formannskap|presidentskap|ridderskap|partnarskap|brorskap|kunstnarskap)"ri;
 SELECT:mannskapet_mannskapen.n-nt2m lm_skapen + m IF (0 (VAR:mannskapet_mannskapen.n-nt2m));
 REMOVE:mannskapet_mannskapen.n-nt2m lm_skapen + m;
 
