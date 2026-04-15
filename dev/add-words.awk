@@ -19,10 +19,19 @@ BEGIN {
         ana[lang]["m"][""]++; delete ana[lang]["m"][""]
         ana[lang]["f"][""]++; delete ana[lang]["f"][""]
         ana[lang]["nt"][""]++; delete ana[lang]["nt"][""]
+        ana[lang]["vs"][""]++; delete ana[lang]["vs"][""]
         ana[lang]["v"][""]++; delete ana[lang]["v"][""]
         ana[lang]["as"][""]++; delete ana[lang]["as"][""]
         ana[lang]["an"][""]++; delete ana[lang]["an"][""]
         ana[lang]["av"][""]++; delete ana[lang]["av"][""]
+        ana[lang]["cj"][""]++; delete ana[lang]["cj"][""]
+        ana[lang]["pr"][""]++; delete ana[lang]["pr"][""]
+        ana[lang]["ij"][""]++; delete ana[lang]["ij"][""]
+        ana[lang]["npcog"][""]++; delete ana[lang]["npcog"][""]
+        ana[lang]["npantm"][""]++; delete ana[lang]["npantm"][""]
+        ana[lang]["npantf"][""]++; delete ana[lang]["npantf"][""]
+        ana[lang]["nptop"][""]++; delete ana[lang]["nptop"][""]
+        ana[lang]["nporg"][""]++; delete ana[lang]["nporg"][""]
     }
     for(lang in langs)while(getline<(tmpd"/"lang)){
       gsub(/[$^]/,"")
@@ -30,6 +39,7 @@ BEGIN {
              if($a~$1"<n><m>"nrestrict)       ana[lang]["m"][$1]++;
         else if($a~$1"<n><f>"nrestrict)       ana[lang]["f"][$1]++;
         else if($a~$1"<n><nt>"nrestrict)      ana[lang]["nt"][$1]++;
+        else if($a~$1"<vblex><pstv>"vrestrict)ana[lang]["vs"][$1]++
         else if($a~$1"<vblex>"vrestrict)      ana[lang]["v"][$1]++
         else if($a~$1"<adj><pp>"vprestrict)   ana[lang]["v"][$1]++
         else if($a~$1"<adj><sint>"asrestrict) ana[lang]["as"][$1]++
@@ -68,6 +78,7 @@ BEGIN {
        nW=nw;gsub(/ /,"<b/>",nW)
        bW=bw;gsub(/ /,"<b/>",bW)
        if(ng=="v" && bw in ana["nob"]["v"])        print "<e>       <p><l>"nW"</l><r>"bW"</r></p><par n=\"vblex_adj\"/></e>"
+       else if(ng=="vs" && bw in ana["nob"]["vs"]) print "<e>       <p><l>"nW"<s n=\"vblex\"/></l><r>"bW"<s n=\"vblex\"/></r></p></e>"
        else if(ng=="as" && bw in ana["nob"]["as"]) print "<e>       <p><l>"nW"</l><r>"bW"</r></p><par n=\"adj_sint\"/></e>"
        else if(ng=="an" && bw in ana["nob"]["as"]) print "<e>       <p><l>"nW"</l><r>"bW"</r></p><par n=\"adj:adj_sint\"/></e>"
        else if(ng=="as" && bw in ana["nob"]["an"]) print "<e>       <p><l>"nW"</l><r>"bW"</r></p><par n=\"adj_sint:adj\"/></e>"
