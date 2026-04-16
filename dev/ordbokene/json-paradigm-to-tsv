@@ -3,18 +3,17 @@
 # $ find finn-relaterte-ord.nno/article -type f -print0 | xargs -0 ./json-paradigm-to-tsv >finn-relaterte-ord.nno/lemma-tag-paradigm.tsv
 
 .lemmas
-  | map({
-      lemma: .lemma,
-      id: .id,
-      paradigm_id: (.paradigm_info[0].paradigm_id),
-      tags: (.paradigm_info | map(.tags | join(".")) | unique)
-    })
-  | map(. as $o | $o.tags[] | {
-      lemma: $o.lemma,
-      id: $o.id,
-      tags: .,
-      paradigm_id: $o.paradigm_id
-    })
+  | map(
+      . as $lemma
+      | .paradigm_info[]
+      | {
+          lemma: $lemma.lemma,
+          id: $lemma.id,
+          paradigm_id: .paradigm_id,
+          tags: (.tags | join(".")),
+          inflection_group: .inflection_group
+        }
+    )
   | .[]
-  | [.lemma, (.tags | ascii_downcase), .paradigm_id, .id]
+  | [.lemma, (.tags | ascii_downcase), .paradigm_id, .id, .inflection_group]
   | @tsv
