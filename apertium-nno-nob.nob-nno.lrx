@@ -5175,6 +5175,9 @@
       <match lemma="sleppe" tags="adj.*"><select lemma="sleppe¹"/></match>
     </or>
   </rule>
+  <rule weight="2.0" c="blir sleppt">
+    <match lemma="slippe" tags="vblex.pres.pasv.*"><select lemma="sleppe¹"/></match>
+  </rule>
   <rule weight="2.0">
     <seq n="slippe_sleppe:sleppe_intrans"/>
     <match tags="n.*.sg.ind.*"/>
@@ -6905,9 +6908,13 @@
 <!--HENGE/HENGJE: START-->
   <rule><match lemma="henge" tags="vblex.*"><select lemma="henge"/></match></rule>
   <rule><match lemma="henge" tags="adj.*"><select lemma="henge"/></match></rule>
-  <rule weight="2.0">
-    <match lemma="bli"/>
-    <match lemma="henge"><select lemma="henge¹"/></match>
+  <rule weight="2.0" c="være/bli hengd">
+    <or>
+        <match lemma="være" tags="vblex.*"/>
+        <match lemma="bli" tags="vblex.*"/>
+    </or>
+    <repeat from="0" upto="5"><match/></repeat>
+    <match lemma="henge" tags="adj.*"><select lemma="henge¹"/></match>
   </rule>
   <rule weight="2.0">
     <match lemma="henge" tags="vblex.pres.pasv.*"><select lemma="henge¹"/></match>
