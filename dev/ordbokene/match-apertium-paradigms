@@ -22,7 +22,11 @@ echo "work.${lang}/apertium-lemma-tag-paradigm.tsv"
 rg -IN 'lm="' ../apertium-${lang}/apertium-${lang}.${lang}.dix |sed 's,.*lm="\([^"]*\)".*<par n="\([^"]*__\([^"]*\)\)".*,\1\t\3\t\2,'|awk 'BEGIN{OFS=FS="\t"; } NF==3' > work.${lang}/apertium-lemma-tag-paradigm.tsv
 
 echo "work.${lang}/lemma-apertiumtag-paradigm.tsv"
-awk 'BEGIN{OFS=FS="\t"; } { sub(/^noun(\..*)?$/,"n",$2);sub(/^verb$/,"vblex",$2); sub(/sconj/,"cnjsub",$2); sub(/adj\..*/,"adj",$2); sub(/^intj$/,"ij",$2); sub(/^adp$/,"pr",$2); print }' work.${lang}/lemma-tag-paradigm.tsv > work.${lang}/lemma-apertiumtag-paradigm.tsv
+awk 'BEGIN{OFS=FS="\t"; }
+                      { sub(/^noun(\..*)?$/,"n",$2);sub(/^verb$/,"vblex",$2); sub(/sconj/,"cnjsub",$2); sub(/adj\..*/,"adj",$2); sub(/^intj$/,"ij",$2); sub(/^adp$/,"pr",$2) }
+ $5 == "VERB_regular" { $2="vblex_adj" } # alternative is VERB_sPass, which has no _adj
+                      {print}
+' work.${lang}/lemma-tag-paradigm.tsv > work.${lang}/lemma-apertiumtag-paradigm.tsv
 
 echo "work.${lang}/joined-paradigms"
 LC_ALL=C join -j1 -t$'\t'  \
@@ -74,6 +78,11 @@ BEGIN{
         }
     }
 }
+# Change pardef suffix to pos:
+{
+    sub(/<vblex_adj>/, "<vblex>")
+    # all other pardef suffixes equal mainpos
+}
 # Check if analysis (field 1) is seen:
 {
     seen=0
@@ -94,4 +103,13 @@ BEGIN{
     }
 }' | rev|sort|rev >work.$lang/new.dix
 
+
+
+# WIP: skip those adj's that already are in dix as adj/pp (but perhaps with a slightly different form etc.):
+# rg -IN __adj work.$lang/new.dix|rg -o 'lm="[^"]*'|sed 's,lm=",,'| apertium -d ../apertium-$lang -f none $lang-morph|rg -e '^\^[^$+*]*(<adj><pst>|<adj><sint><pst>|<adv>|<adj><pprs>|<adj><pp>)[^$+*]*\$$'  -e '^\^-'|sed 's,/[^$]*[$],,g'|tr -d ^ |sed 's,.*,lm="&",' >work.$lang/skip-adj
+# rg -IN __adj work.$lang/new.dix|rg -vFf work.$lang/skip-adj >work.$lang/adj.dix
+
+
+
 done
+
