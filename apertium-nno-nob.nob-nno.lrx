@@ -10770,6 +10770,17 @@
     <match lemma="løpe" tags="vblex.*"><select lemma="løpe"/></match>
     <match lemma="løpsk"/>
   </rule>
+  <rule weight="2.0" c="då sprang folk ut på gata">
+    <match lemma="løpe" tags="vblex.*"><select lemma="gå"/></match>
+    <match tags="n.*"/>
+    <match lemma="ut" tags="pr.*"/>
+    <match tags="pr.*"/>
+  </rule>
+  <rule weight="2.2" c="fredag går fristen ut">
+    <match lemma="løpe" tags="vblex.*"><select lemma="gå"/></match>
+    <match tags="n.*"/>
+    <match lemma="ut" tags="pr.*"/>
+  </rule>
 
 <!-- BEGIN: unnta -->
   <rule><match lemma="unnta" tags="vblex.*"><select lemma="gjere# unntak for" tags="vblex.*"/></match></rule>
