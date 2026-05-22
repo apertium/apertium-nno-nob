@@ -5958,6 +5958,12 @@
     <match lemma="tid"/>
   </rule>
 
+  <rule><match lemma="eter" tags="n.*"><select lemma="eter"/></match></rule>
+  <rule weight="2.0" c="planteeter">
+    <match lemma="plante"/>
+    <match lemma="eter" tags="n.*"><select lemma="etar"/></match>
+  </rule>
+
   <!-- TODO: is avhending ever right? -->
   <rule><match lemma="overdragelse" tags="n.*"><select lemma="overdraging"/></match></rule>
 
@@ -5965,7 +5971,6 @@
   <rule><match lemma="forbedring" tags="n.*"><select lemma="forbetring"/></match></rule>
   <rule><match lemma="slager" tags="n.*"><select lemma="slager"/></match></rule>
   <rule><match lemma="kløver" tags="n.*"><select lemma="kløver"/></match></rule>
-  <rule><match lemma="eter" tags="n.*"><select lemma="eter"/></match></rule>
   <rule><match lemma="klipper" tags="n.*"><select lemma="klippar"/></match></rule>
   <rule><match lemma="vender" tags="n.*"><select lemma="vendar"/></match></rule>
 
