@@ -7342,6 +7342,13 @@
       <list-item v="viktighet"/>
       <list-item v="tid"/>      <!-- den danske fotballspillerens tid -->
     </def-list>
+    <def-list n="gen-prep-even-if-ind" c="We want to rewrite genitives of these nouns to prepositions even if they are tagged ind
+                                          Lemmas are in nno.">
+      <list-item v="vedkommande"/>
+      <list-item v="avsendar"/>
+      <list-item v="innsendar"/>
+    </def-list>
+
     <def-list n="n_keep_sin" c="keep prefixed 'sin' in 'mot sin vilje', 'på sin side' etc. – also «hans ord», «deres side»
                                 See also: nind_keep_gen_s ngen_keep_gen_s keepgenx.
                                 bokmål lemmas">
@@ -8264,7 +8271,10 @@
         <choose><when>
           <test><and>
             <not><equal><clip pos="1" side="tl" part="cas"/><lit v=""/></equal></not>
-            <not><equal><clip pos="1" side="tl" part="art"/><lit-tag v="ind"/></equal></not> <!-- to bilers bredde: no gen-drop on ind -->
+            <or>
+              <in><clip pos="1" side="tl" part="lemh"/><list n="gen-prep-even-if-ind"/></in>   <!-- vedkommandes saksbehandlar -->
+              <not><equal><clip pos="1" side="tl" part="art"/><lit-tag v="ind"/></equal></not> <!-- to bilers bredde: no gen-drop on ind -->
+            </or>
           </and></test>
           <append n="ntags"><lit-tag v="casedrop"/></append>
         </when></choose>
@@ -9022,8 +9032,10 @@
             <equal><clip pos="1" side="tl" part="a_nom"/><lit-tag v="n"/></equal>
             <equal><var n="rewrite_np_gen"/><lit v="yes"/></equal>
           </or>
-          <!-- TODO: We might want a def-list of exceptions where we want gen-prep even if indefinite, e.g. "avsenders saksbehandler" -->
-          <not><equal><clip pos="1" side="tl" part="art"/><lit-tag v="ind"/></equal></not> <!-- to bilers bredde: no gen-drop on ind -->
+          <or>
+            <in><clip pos="1" side="tl" part="lemh"/><list n="gen-prep-even-if-ind"/></in>   <!-- vedkommandes saksbehandlar -->
+            <not><equal><clip pos="1" side="tl" part="art"/><lit-tag v="ind"/></equal></not> <!-- to bilers bredde: no gen-drop on ind -->
+          </or>
         </and></test>
         <choose>
           <!-- Manual lists first: -->
