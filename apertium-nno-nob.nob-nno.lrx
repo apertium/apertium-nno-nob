@@ -1006,12 +1006,17 @@
   <rule>
     <match lemma="utspille"><select lemma="utmanøvrere"/></match>
   </rule>
-  <rule weight="2.0">
-    <match lemma="utspille" tags="vblex.*"><select lemma="gå# føre"/></match>
+  <rule weight="3.0">
+    <match lemma="utspille" tags="vblex.pres.*"><select lemma="utspele"/></match>
+    <match lemma="seg"/>
+  </rule>
+  <rule weight="3.0">
+    <match lemma="utspille" tags=".*"><select lemma="utspele"/></match>
     <match lemma="seg"/>
   </rule>
   <rule weight="2.0">
-    <match lemma="utspille" tags="vblex.*.pasv.*"><select lemma="utspele"/></match>
+    <match lemma="utspille" tags="vblex.*"><select lemma="gå# føre"/></match>
+    <match lemma="seg"/>
   </rule>
   <rule>
     <or>
