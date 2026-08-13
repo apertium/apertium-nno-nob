@@ -6496,6 +6496,27 @@
   <rule weight="2.0">
     <match lemma="bli"/>
     <match lemma="trenge" tags="adj.*"><select lemma="trenge¹"/></match>
+    <or>
+      <match lemma="sammen"/>
+      <match lemma="inn"/>
+      <match lemma="ut"/>
+      <match lemma="opp"/>
+      <match lemma="ned"/>
+    </or>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="trenge" tags="vblex.pres.pasv.*"><select lemma="trenge¹"/></match>
+  </rule>
+  <rule><match lemma="trenges" tags="vblex.pres.*"><select lemma="trengast"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="trenges" tags="vblex.pstv.pres*"><select lemma="trenge¹" tags="vblex.pres.pasv.*"/></match>
+    <or>
+      <match lemma="sammen"/>
+      <match lemma="inn"/>
+      <match lemma="ut"/>
+      <match lemma="opp"/>
+      <match lemma="ned"/>
+    </or>
   </rule>
 
   <!-- TRENGE/TRENGJE: END -->
