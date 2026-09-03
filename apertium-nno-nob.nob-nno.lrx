@@ -11763,6 +11763,11 @@ preposisjonar gir ekstra utfordringar. -->
     <match lemma="rett" tags="adj.*"/>
     <match lemma="foran" tags="pr.*"><select lemma="framfor"/></match>
   </rule>
+  <rule weight="2.4" c="(rett) framfor nasen på">
+    <match lemma="foran" tags="pr.*"><select lemma="framfor"/></match>
+    <match lemma="nese" tags=".*"/>
+    <match lemma="på"/>
+  </rule>
   <rule weight="2.4" c="framfor ein eikeskog">
     <match lemma="foran" tags="pr.*"><select lemma="framfor"/></match>
     <or>
