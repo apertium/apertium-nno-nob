@@ -3913,6 +3913,16 @@
     <match lemma="og"/>
     <match lemma="myndighet" tags="n.*"><select lemma="mynde"/></match>
   </rule>
+  <rule weight="2.0" c="ha mynde til å">
+    <match lemma="myndighet" tags="n.*"><select lemma="mynde"/></match>
+    <match lemma="til"/>
+    <match lemma="å"/>
+  </rule>
+  <rule weight="2.0" c="med (stor) mynde">
+    <match lemma="med"/>
+    <repeat from="0" upto="1"><match tags="adj.*"/></repeat>
+    <match lemma="myndighet" tags="n.*.sg.*"><select lemma="mynde"/></match>
+  </rule>
   <rule weight="2.0">
     <match tags="det.pos.*"/>
     <match lemma="myndighet" tags="n.*"><select lemma="makt"/></match>
