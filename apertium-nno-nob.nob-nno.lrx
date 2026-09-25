@@ -7403,6 +7403,16 @@
     <match lemma="sannsynlighet" tags="n.*"><select lemma="risiko"/></match>
     <match lemma="for"/>
   </rule>
+  <rule weight="3.0" c="... har mus med pels større sannsynlighet for å overleve">
+    <match tags="adj.*.comp.*.*"/>
+    <match lemma="sannsynlighet" tags="n.*"><select lemma="sannsyn"/></match>
+    <match lemma="for"/>
+    <seq n="ANYTAG"/>
+    <or>
+      <match lemma="overleve"/>
+      <match lemma="rentekutt"/>
+    </or >
+  </rule>
 
   <rule><match lemma="patron" tags="n.*"><select lemma="patron" tags="n.f.*"/></match></rule>
 
