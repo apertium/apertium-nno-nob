@@ -2821,6 +2821,15 @@
     <match lemma="feil"/>
     </or>
   </rule>
+  <rule weight="2.2" c="hige etter">
+    <match lemma="trå" tags="vblex.*">
+      <select lemma="trå"/>
+    </match>
+    <repeat from="0" upto="1">
+	    <match tags="*"/>
+   	</repeat>
+    <match lemma="etter"/>
+  </rule>
 
 <!-- <rule><match lemma="sikkerhet" tags="n.*"><select lemma="sikkerheit"/></match></rule> -->
   <rule><match lemma="sikkerhet" tags="n.*"><select lemma="tryggleik"/></match></rule>
@@ -5472,7 +5481,7 @@
 </rule>
 <rule weight="2.0" c="klare tankar">
     <match lemma="klar" tags="adj.*"><select lemma="klar¹"/></match>
-    <match tags="n.*.*.*"/>
+    <match tags="n.*"/>
 </rule>
 <!-- klare/klar: end -->
 
