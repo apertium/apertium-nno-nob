@@ -13051,5 +13051,14 @@ preposisjonar gir ekstra utfordringar. -->
     <match lemma="forringe" tags="vblex.*">  <select lemma="redusere"/> </match>
   </rule>
 
+  <rule> <match lemma="skalle" tags="vblex.*"> <select lemma="skalle"/> </match> </rule>
+  <rule weight="2.0" c="skale av">
+    <match lemma="skalle" tags="vblex.*">
+      <select lemma="skale"/>
+    </match>
+    <repeat from="0" upto="3"><match/></repeat>
+    <match lemma="av"/>
+  </rule>
+
 </rules>
 </lrx>
