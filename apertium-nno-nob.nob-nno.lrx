@@ -7827,6 +7827,28 @@
   </rule>
 <!--ufortrøden: end-->
 
+<!--fortsatt: start-->
+  <rule><match lemma="fortsatt"><select lemma="framleis"/></match></rule>
+  <rule weight="2.0">
+    <match lemma="en"/>
+    <match lemma="fortsatt" tags="adj.*"><select lemma="vidare"/></match>
+  </rule>
+  <rule weight="3.0">
+    <match lemma="en"/>
+    <match lemma="fortsatt" tags="adj.*"><select lemma="vedhaldande"/></match>
+    <match lemma="høy"/>
+  </rule>
+  <rule weight="3.0">
+    <match lemma="fortsatt" tags="adj.*"><select lemma="vedhaldande"/></match>
+    <match lemma="fokus"/>
+  </rule>
+  <rule weight="3.0">
+    <match lemma="fortsatt"><select lemma="framleis"/></match>
+    <match lemma="å"/>
+  </rule>
+<!--fortsatt: end-->
+
+
   <rule><match lemma="middel" tags="n.*"><select lemma="middel"/></match></rule>
   <rule weight="2.0">
     <match lemma="frisk"/>
