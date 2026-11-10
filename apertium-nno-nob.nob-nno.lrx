@@ -6232,6 +6232,11 @@
   <rule><match lemma="inhabil" tags="adj.*"><select lemma="inhabil"/></match></rule>
 
   <rule><match lemma="forbindelse" tags="n.*"><select lemma="samband"/></match></rule>
+  <rule weight="2.0"> <!-- beskyttar omsetjinga av «i forbindelse med» -->
+    <match lemma="i"/>
+    <match lemma="forbindelse" tags="n.*"><select lemma="samband"/></match>
+    <match lemma="med"/>
+  </rule>
   <rule weight="2.0">
     <match lemma="med"/>
     <match lemma="forbindelse" tags="n.*"><select lemma="band"/></match>
@@ -6256,8 +6261,18 @@
       <match lemma="alkoholholdig"/>
       <match lemma="fluorholdig"/>
       <match lemma="svovelholdig"/>
+      <match lemma="nitrogen"/>
+      <match lemma="organisk"/>
     </or>
       <match lemma="forbindelse" tags="n.*"><select lemma="forbindelse"/></match>
+  </rule>
+  <rule weight="2.0">
+    <match lemma="forbindelse" tags="n.*"><select lemma="samanbinding"/></match>
+    <match lemma="av"/>
+    <or>
+      <match lemma="riksvei"/>
+      <match lemma="fylkesvei"/>
+    </or>
   </rule>
 
   <rule><match lemma="hevning" tags="n.*"><select lemma="hemning"/></match></rule>
