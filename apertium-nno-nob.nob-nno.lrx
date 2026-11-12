@@ -6285,7 +6285,7 @@
 
   <rule><match lemma="indre"><select lemma="indre"/></match></rule>
 
-  <rule weight="2.0" c="internt britisk anliggende">
+  <rule weight="2.2" c="internt britisk anliggende">
     <or>
       <match tags="det.qnt.nt.sg.*"/>
       <match lemma="indre">
@@ -6299,12 +6299,8 @@
       <select lemma="sak"/>
     </match>
   </rule>
-  <rule>
-    <or>
-      <match lemma="politisk"/>
-      <match lemma="internasjonal"/>
-      <match lemma="viktig"/>
-    </or>
+  <rule weight="2.0" c="globale anliggende">
+    <match tags="adj.*"/>
     <match lemma="anliggende">
       <select lemma="sak"/>
     </match>
@@ -13080,6 +13076,13 @@ preposisjonar gir ekstra utfordringar. -->
     </match>
     <repeat from="0" upto="3"><match/></repeat>
     <match lemma="av"/>
+  </rule>
+
+  <rule> <match lemma="atskille" tags="vblex.*"> <select lemma="skilje"/> </match> </rule>
+  <rule> <match lemma="adskille" tags="vblex.*"> <select lemma="skilje"/> </match> </rule>
+  <rule weight="2.0" c="åtskild frå">
+    <match lemma="atskille" tags="vblex.*">  <select lemma="åtskilje"/> </match>
+    <match tags="pr.*"/>
   </rule>
 
 </rules>
