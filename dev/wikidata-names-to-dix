@@ -4,6 +4,8 @@ set -e -u
 
 cd "$(basename "$(dirname "$0")")"/..
 
+# needed for comm/sort – TODO: check if works on mac
+export LC_ALL=C.UTF-8
 
 # Warn if we need to compile monodix:
 if ! make -q langs >/dev/null 2>/dev/null; then
