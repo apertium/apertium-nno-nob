@@ -8420,6 +8420,22 @@
     <match lemma="seg"/>
   </rule>
 
+  <rule><match lemma="løselig" tags="adj.*"><select lemma="lauseleg"/></match></rule>
+
+  <rule weight="2.0"> <!-- stoffet er lettløselig. -->
+    <match lemma="lett" tags=".*.cmp"/>
+    <match lemma="løselig" tags="adj.*"><select lemma="løyseleg"/></match>
+  </rule>
+  <rule weight="2.0"> <!-- stoffet er løselig i vann. -->
+    <match lemma="løselig" tags="adj.*"><select lemma="løyseleg"/></match>
+    <match lemma="i"/>
+    <match lemma="vann"/>
+  </rule>
+  <rule weight="2.0"> <!-- det er et løselig problem. -->
+    <match lemma="løselig" tags="adj.*"><select lemma="løyseleg"/></match>
+    <match lemma="problem"/>
+  </rule>
+
   <rule> <!-- Med relativt enkle midler kan man anrette stor skade. -->
     <match lemma="anrette" tags="vblex.*"><select lemma="gjere"/></match>
     <repeat from="0" upto="1">
